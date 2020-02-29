@@ -45,6 +45,8 @@ export default async function run(
   //
   // `random` example
   //
+  // https://www.npmjs.com/package/random
+  //
   // random.float(0, 1)
   // random.int(0, 1)
   // random.boolean()
