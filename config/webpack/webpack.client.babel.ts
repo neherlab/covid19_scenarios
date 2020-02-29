@@ -45,6 +45,7 @@ const devServerPort = getenv('WEB_DEV_SERVER_PORT', '3000')
 const analyzerPort = parseInt(getenv('WEB_DEV_BUNDLE_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
+const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
 
 const { moduleRoot, pkg } = findModuleRoot()
 const buildPath = path.join(moduleRoot, '.build', analyze ? 'analyze' : MODE, 'web') // prettier-ignore
@@ -237,7 +238,8 @@ export default {
 
     !analyze && webpackStylelint(),
 
-    !analyze &&
+    !disableLint &&
+      !analyze &&
       webpackTsChecker({
         memoryLimit: 1024,
         tslint: path.join(moduleRoot, 'tslint.json'),
