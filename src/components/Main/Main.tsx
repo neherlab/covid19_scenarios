@@ -111,10 +111,15 @@ const initialData: SeverityTableRow[] = [
 export interface CollapsibleCardProps {
   title?: React.ReactNode
   children?: React.ReactNode | React.ReactNode[]
+  defaultCollapsed?: boolean
 }
 
-function CollapsibleCard({ title, children }: CollapsibleCardProps) {
-  const [collapsed, setCollapsed] = useState(false)
+function CollapsibleCard({
+  title,
+  children,
+  defaultCollapsed = true,
+}: CollapsibleCardProps) {
+  const [collapsed, setCollapsed] = useState(defaultCollapsed)
   const toggle = () => setCollapsed(!collapsed)
 
   return (
