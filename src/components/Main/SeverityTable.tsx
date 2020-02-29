@@ -31,6 +31,7 @@ export interface SeverityTableRow {
   mild: number
   severe: number
   critical: number
+  fatal: number
 }
 
 export type SeverityTableColumn = Column

@@ -19,105 +19,75 @@ import SeverityTable, {
 
 import { CollapsibleCard } from './CollapsibleCard'
 
-interface MainFields {
-  populationServed: number
-  ageDistribution: string
-  suspectedCasesToday: number
-  importsPerDay: number
+import run from '../../algorithms/run'
+
+import {
+  AdditionalParams,
+  AllParams,
+  MainParams,
+  Month,
+} from '../../algorithms/Param.types'
+
+const mainParams: MainParams = {
+  populationServed: { name: 'Population Served', defaultValue: 100_000 },
+  ageDistribution: { name: 'Age Distribution', defaultValue: 'Switzerland' },
+  suspectedCasesToday: { name: 'Suspected Cases Today', defaultValue: 10 },
+  importsPerDay: { name: 'Imports Per Day', defaultValue: 2 },
 }
 
-const mainFieldNames = {
-  populationServed: 'Population Served',
-  ageDistribution: 'Age Distribution',
-  suspectedCasesToday: 'Suspected Cases Today',
-  importsPerDay: 'Imports Per Day',
+const additionalParams: AdditionalParams = {
+  r0: { name: 'R0', defaultValue: 2.2 },
+  serialInterval: { name: 'Serial Interval', defaultValue: 8 },
+  seasonalForcing: { name: 'Seasonal Forcing', defaultValue: 0.2 },
+  peakMonth: { name: 'Peak Month', defaultValue: Month.Jan },
 }
 
-const mainFieldDefaults: MainFields = {
-  populationServed: 100_000,
-  ageDistribution: 'Switzerland',
-  suspectedCasesToday: 10,
-  importsPerDay: 2,
-}
-
-export enum Month {
-  Jan = 'Jan',
-  Feb = 'Feb',
-  Mar = 'Mar',
-  Apr = 'Apr',
-  May = 'May',
-  Jun = 'Jun',
-  Jul = 'Jul',
-  Aug = 'Aug',
-  Sep = 'Sep',
-  Oct = 'Oct',
-  Nov = 'Nov',
-  Dec = 'Dec',
-}
-
-interface Params {
-  r0: number
-  serialInterval: number
-  seasonalForcing: number
-  peakMonth: Month
-}
-
-const paramNames = {
-  r0: 'R0',
-  serialInterval: 'Serial Interval',
-  seasonalForcing: 'Seasonal Forcing',
-  peakMonth: 'Peak Month',
-}
-
-const paramDefaults: Params = {
-  r0: 2.2,
-  serialInterval: 8,
-  seasonalForcing: 0.2,
-  peakMonth: Month.Jan,
-}
-
-type AllFields = MainFields | Params
-
-const allDefaults: AllFields = { ...mainFieldDefaults, ...paramDefaults }
+// Reduce default values into an object { key: defaultValue }
+const allDefaults = Object.entries({
+  ...mainParams,
+  ...additionalParams,
+}).reduce((result, [key, { defaultValue }]) => {
+  return { ...result, [key]: defaultValue }
+}, {}) as AllParams
 
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: 'Age group' },
   { name: 'mild', title: 'Mild' },
   { name: 'severe', title: 'Severe' },
   { name: 'critical', title: 'Critical' },
+  { name: 'fatal', title: 'Fatal' },
 ]
 
 const initialData: SeverityTableRow[] = [
-  { id: 0, ageGroup: 0, mild: 73, severe: 15, critical: 2 },
-  { id: 1, ageGroup: 5, mild: 80, severe: 10, critical: 2 },
-  { id: 2, ageGroup: 10, mild: 85, severe: 12, critical: 1 },
-  { id: 3, ageGroup: 15, mild: 85, severe: 12, critical: 1 },
-  { id: 4, ageGroup: 20, mild: 85, severe: 12, critical: 1 },
-  { id: 5, ageGroup: 25, mild: 85, severe: 12, critical: 1 },
-  { id: 6, ageGroup: 30, mild: 85, severe: 12, critical: 1 },
-  { id: 7, ageGroup: 35, mild: 85, severe: 12, critical: 1 },
-  { id: 8, ageGroup: 40, mild: 85, severe: 12, critical: 1 },
-  { id: 9, ageGroup: 45, mild: 85, severe: 12, critical: 1 },
-  { id: 10, ageGroup: 50, mild: 85, severe: 12, critical: 1 },
-  { id: 11, ageGroup: 55, mild: 85, severe: 12, critical: 1 },
-  { id: 12, ageGroup: 60, mild: 85, severe: 12, critical: 1 },
-  { id: 13, ageGroup: 65, mild: 85, severe: 12, critical: 1 },
-  { id: 14, ageGroup: 70, mild: 85, severe: 12, critical: 1 },
-  { id: 15, ageGroup: 75, mild: 85, severe: 12, critical: 1 },
-  { id: 16, ageGroup: 80, mild: 85, severe: 12, critical: 1 },
+  { id: 0, ageGroup: 0, mild: 73, severe: 15, critical: 2, fatal: 0 },
+  { id: 1, ageGroup: 5, mild: 80, severe: 10, critical: 2, fatal: 0 },
+  { id: 2, ageGroup: 10, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 3, ageGroup: 15, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 4, ageGroup: 20, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 5, ageGroup: 25, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 6, ageGroup: 30, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 7, ageGroup: 35, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 8, ageGroup: 40, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 9, ageGroup: 45, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 10, ageGroup: 50, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 11, ageGroup: 55, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 12, ageGroup: 60, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 13, ageGroup: 65, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 14, ageGroup: 70, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 15, ageGroup: 75, mild: 85, severe: 12, critical: 1, fatal: 0 },
+  { id: 16, ageGroup: 80, mild: 85, severe: 12, critical: 1, fatal: 0 },
 ]
 
-function Main() {
-  function handleSubmit(
-    values: AllFields,
-    { setSubmitting }: FormikHelpers<AllFields>,
-  ) {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2))
-      setSubmitting(false)
-    }, 500)
-  }
+async function handleSubmit(
+  values: AllParams,
+  { setSubmitting }: FormikHelpers<AllParams>,
+) {
+  const result = await run(values)
+  console.log(JSON.stringify({ result }, null, 2))
+  setSubmitting(false)
+}
 
+function Main() {
   return (
     <Row>
       <Col md={12}>
@@ -126,7 +96,7 @@ function Main() {
             <Card>
               <CardHeader>Main parameters</CardHeader>
               <CardBody>
-                {Object.entries(mainFieldNames).map(([key, name]) => (
+                {Object.entries(mainParams).map(([key, { name }]) => (
                   <FormGroup key={key}>
                     <label htmlFor={key}>{name}</label>
                     <Field className="form-control" id={key} name={key} />
@@ -136,7 +106,7 @@ function Main() {
             </Card>
 
             <CollapsibleCard title="Additional parameters">
-              {Object.entries(paramNames).map(([key, name]) => (
+              {Object.entries(additionalParams).map(([key, { name }]) => (
                 <FormGroup key={key}>
                   <label htmlFor={key}>{name}</label>
                   <Field className="form-control" id={key} name={key} />

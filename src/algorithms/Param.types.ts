@@ -1,0 +1,44 @@
+export enum Month {
+  Jan = 'Jan',
+  Feb = 'Feb',
+  Mar = 'Mar',
+  Apr = 'Apr',
+  May = 'May',
+  Jun = 'Jun',
+  Jul = 'Jul',
+  Aug = 'Aug',
+  Sep = 'Sep',
+  Oct = 'Oct',
+  Nov = 'Nov',
+  Dec = 'Dec',
+}
+
+export interface Param<ValueType> {
+  name: string
+  defaultValue: ValueType
+}
+
+export interface MainParams {
+  populationServed: Param<number>
+  ageDistribution: Param<string>
+  suspectedCasesToday: Param<number>
+  importsPerDay: Param<number>
+}
+
+export interface AdditionalParams {
+  r0: Param<number>
+  serialInterval: Param<number>
+  seasonalForcing: Param<number>
+  peakMonth: Param<Month>
+}
+
+export interface AllParams {
+  populationServed: number
+  ageDistribution: string
+  suspectedCasesToday: number
+  importsPerDay: number
+  r0: number
+  serialInterval: number
+  seasonalForcing: number
+  peakMonth: Month
+}
