@@ -42,6 +42,9 @@
     "test:coverage": "yarn test --coverage"
   },
   "dependencies": {
+    "@devexpress/dx-react-core": "2.3.2",
+    "@devexpress/dx-react-grid": "2.3.2",
+    "@devexpress/dx-react-grid-bootstrap4": "2.3.2",
     "@loadable/component": "5.12.0",
     "animate.css": "3.7.2",
     "axios": "0.19.2",

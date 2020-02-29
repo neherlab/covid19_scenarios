@@ -15,6 +15,11 @@ import {
 
 import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa'
 
+import SeverityTable, {
+  SeverityTableColumn,
+  SeverityTableRow,
+} from './SeverityTable'
+
 interface MainFields {
   populationServed: number
   ageDistribution: string
@@ -76,10 +81,61 @@ type AllFields = MainFields | Params
 
 const allDefaults: AllFields = { ...mainFieldDefaults, ...paramDefaults }
 
-function Main() {
+const columns: SeverityTableColumn[] = [
+  { name: 'ageGroup', title: 'Age group' },
+  { name: 'mild', title: 'Mild' },
+  { name: 'severe', title: 'Severe' },
+  { name: 'critical', title: 'Critical' },
+]
+
+const initialData: SeverityTableRow[] = [
+  { id: 0, ageGroup: '00-04', mild: 73, severe: 15, critical: 2 },
+  { id: 1, ageGroup: '05-09', mild: 80, severe: 10, critical: 2 },
+  { id: 2, ageGroup: '10-14', mild: 85, severe: 12, critical: 1 },
+  { id: 3, ageGroup: '15-19', mild: 85, severe: 12, critical: 1 },
+  { id: 4, ageGroup: '20-24', mild: 85, severe: 12, critical: 1 },
+  { id: 5, ageGroup: '25-29', mild: 85, severe: 12, critical: 1 },
+  { id: 6, ageGroup: '30-34', mild: 85, severe: 12, critical: 1 },
+  { id: 7, ageGroup: '35-39', mild: 85, severe: 12, critical: 1 },
+  { id: 8, ageGroup: '40-44', mild: 85, severe: 12, critical: 1 },
+  { id: 9, ageGroup: '45-49', mild: 85, severe: 12, critical: 1 },
+  { id: 10, ageGroup: '50-54', mild: 85, severe: 12, critical: 1 },
+  { id: 11, ageGroup: '55-59', mild: 85, severe: 12, critical: 1 },
+  { id: 12, ageGroup: '60-64', mild: 85, severe: 12, critical: 1 },
+  { id: 13, ageGroup: '65-69', mild: 85, severe: 12, critical: 1 },
+  { id: 14, ageGroup: '70-74', mild: 85, severe: 12, critical: 1 },
+  { id: 15, ageGroup: '75-79', mild: 85, severe: 12, critical: 1 },
+  { id: 16, ageGroup: '80...', mild: 85, severe: 12, critical: 1 },
+]
+
+export interface CollapsibleCardProps {
+  title?: React.ReactNode
+  children?: React.ReactNode | React.ReactNode[]
+}
+
+function CollapsibleCard({ title, children }: CollapsibleCardProps) {
   const [collapsed, setCollapsed] = useState(false)
   const toggle = () => setCollapsed(!collapsed)
 
+  return (
+    <Card>
+      <CardHeader>
+        <Button type="button" color="default" onClick={toggle}>
+          <span style={{ marginRight: '5px' }}>
+            {collapsed ? <FaPlusCircle /> : <FaMinusCircle />}
+          </span>
+          <span>{title}</span>
+        </Button>
+      </CardHeader>
+
+      <Collapse isOpen={!collapsed}>
+        <CardBody>{children}</CardBody>
+      </Collapse>
+    </Card>
+  )
+}
+
+function Main() {
   function handleSubmit(
     values: AllFields,
     { setSubmitting }: FormikHelpers<AllFields>,
@@ -107,31 +163,24 @@ function Main() {
               </CardBody>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <Button type="button" color="default" onClick={toggle}>
-                  <span style={{ marginRight: '5px' }}>
-                    {collapsed ? <FaPlusCircle /> : <FaMinusCircle />}
-                  </span>
-                  <span>Additional parameters</span>
-                </Button>
-              </CardHeader>
+            <CollapsibleCard title="Additional parameters">
+              {Object.entries(paramNames).map(([key, name]) => (
+                <FormGroup key={key}>
+                  <label htmlFor={key}>{name}</label>
+                  <Field className="form-control" id={key} name={key} />
+                </FormGroup>
+              ))}
+            </CollapsibleCard>
 
-              <Collapse isOpen={!collapsed}>
-                <CardBody>
-                  {Object.entries(paramNames).map(([key, name]) => (
-                    <FormGroup key={key}>
-                      <label htmlFor={key}>{name}</label>
-                      <Field className="form-control" id={key} name={key} />
-                    </FormGroup>
-                  ))}
-                </CardBody>
-              </Collapse>
-            </Card>
+            <CollapsibleCard title="Severity">
+              <SeverityTable columns={columns} initialData={initialData} />
+            </CollapsibleCard>
 
-            <Button type="submit" color="primary">
-              Run
-            </Button>
+            <FormGroup>
+              <Button type="submit" color="primary">
+                Run
+              </Button>
+            </FormGroup>
           </Form>
         </Formik>
       </Col>
