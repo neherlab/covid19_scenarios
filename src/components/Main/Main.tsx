@@ -95,19 +95,26 @@ function Main() {
       <Col md={12}>
         <Formik initialValues={allDefaults} onSubmit={handleSubmit}>
           <Form className="form">
-            {Object.entries(mainFieldNames).map(([key, name]) => (
-              <FormGroup key={key}>
-                <label htmlFor={key}>{name}</label>
-                <Field className="form-control" id={key} name={key} />
-              </FormGroup>
-            ))}
+            <Card>
+              <CardHeader>Main parameters</CardHeader>
+              <CardBody>
+                {Object.entries(mainFieldNames).map(([key, name]) => (
+                  <FormGroup key={key}>
+                    <label htmlFor={key}>{name}</label>
+                    <Field className="form-control" id={key} name={key} />
+                  </FormGroup>
+                ))}
+              </CardBody>
+            </Card>
 
             <Card>
               <CardHeader>
                 <Button type="button" color="default" onClick={toggle}>
-                  {collapsed ? <FaPlusCircle /> : <FaMinusCircle />}
+                  <span style={{ marginRight: '5px' }}>
+                    {collapsed ? <FaPlusCircle /> : <FaMinusCircle />}
+                  </span>
+                  <span>Additional parameters</span>
                 </Button>
-                Additional parameters
               </CardHeader>
 
               <Collapse isOpen={!collapsed}>
