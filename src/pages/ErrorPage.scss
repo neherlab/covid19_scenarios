@@ -1,0 +1,23 @@
+@import '../styles/variables';
+
+.h1-error {
+  padding: 2rem;
+  margin-bottom: 0;
+  color: #fff;
+  background-color: #a72a33;
+}
+
+.h3-error {
+  margin-top: 50px;
+}
+
+.error-container-dev {
+  padding: 10px;
+  margin-top: 0;
+}
+
+.error-dev {
+  font-family: $font-family-monospace;
+  color: #ccc;
+  background-color: #222;
+}

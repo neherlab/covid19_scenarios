@@ -1,0 +1,8 @@
+{
+  "name": "__empty-module",
+  "description": "You can link undesired dependencies to this module. For example, you may link known obsolete (json3), or unsafe (letf-pad) or unnecessary (some polyfills) modules and they will resolve to an empty module.",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "private": true
+}

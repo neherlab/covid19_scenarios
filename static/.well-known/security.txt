@@ -1,0 +1,6 @@
+# This is our security contact information.
+# For explanations see: https://securitytxt.org
+
+Contact: security@example.com
+Encryption: https://example.com/pgp-key.txt
+Signature: https://example.com/.well-known/security.txt.sig

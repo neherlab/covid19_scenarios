@@ -1,0 +1,9 @@
+\.build
+\.cache
+\.env
+\.ignore
+\.reports
+3rdparty
+node_modules
+static
+tsconfig.json

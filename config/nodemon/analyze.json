@@ -1,0 +1,34 @@
+{
+  "quiet": true,
+  "legacyWatch": false,
+  "delay": 0.1,
+  "watch": [
+    "../.env",
+    ".browserslistrc",
+    ".editorconfig",
+    ".env",
+    ".eslintignore",
+    ".eslintrc.js",
+    ".prettierignore",
+    ".prettierrc",
+    "babel.config.js",
+    "config",
+    "package.json",
+    "postcss.config.js",
+    "src",
+    "stylelint.config.js",
+    "tsconfig.json",
+    "tslint.json",
+    "webpack.config.js",
+    "yarn.lock"
+  ],
+  "ext": "js,jsx,ts,tsx,json,flow,css,scss,sass,styl,html,ejs,d,txt,yml,sh",
+  "ignore": [
+    ".build",
+    "node_modules",
+    "**/__tests__",
+    "**/*.test.*sx",
+    "**/*.test.*s"
+  ],
+  "exec": "node -e 'console.clear()'; yarn analyze; true"
+}

@@ -1,0 +1,28 @@
+@font-face {
+  font-family: system-sans;
+  font-style: normal;
+  font-weight: 300;
+  src: local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI'),
+    local('Roboto'), local('DroidSans'), local('Oxygen-Sans'), local('Ubuntu'),
+    local('Cantarell'), local('Helvetica Neue'), local('Helvetica'),
+    local('Arial'), local('Tahoma'), local('Noto Sans'), local('sans-serif'),
+    local('Apple Color Emoji'), local('Segoe UI Emoji'),
+    local('Segoe UI Symbol'), local('Noto Color Emoji');
+}
+
+@font-face {
+  font-family: system-serif;
+  font-style: normal;
+  font-weight: 300;
+  src: local('Times New Roman'), local('Palatino Linotype'), local('Palatino'),
+    local('Georgia'), local('Book Antiqua'), local('Times'), local('serif');
+}
+
+@font-face {
+  font-family: system-mono;
+  font-style: normal;
+  font-weight: 300;
+  src: local('SFMono-Regular'), local('Consolas'), local('Liberation Mono'),
+    local('Menlo'), local('Monaco'), local('Courier New'), local('Courier'),
+    local('monospace');
+}

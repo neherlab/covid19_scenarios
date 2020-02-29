@@ -1,0 +1,6 @@
+declare module 'core-js/es/map'
+declare module 'core-js/es/object/assign'
+declare module 'core-js/es/object/define-properties'
+declare module 'core-js/es/object/define-property'
+declare module 'core-js/es/set'
+declare module 'core-js/es/string/starts-with'

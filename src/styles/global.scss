@@ -1,0 +1,51 @@
+@import '~typeface-source-sans-pro/index.css';
+@import './font-family-system';
+
+@import './variables';
+
+@import './bootstrap';
+
+@import './animate';
+
+.container.absolute {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+  padding: 0;
+}
+
+nav {
+  width: 100%;
+  padding: 0;
+}
+
+.progress {
+  @include box-shadow(none);
+  .progress-bar {
+    font-size: 8px;
+    line-height: 8px;
+  }
+}
+
+code {
+  padding: 2px 4px;
+  background-color: #ccc;
+  border: 1px solid #aaaa;
+  border-radius: 2px;
+}
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.blockquote {
+  display: flex;
+  min-height: 80px;
+  padding: 5px 10px;
+  background-color: $blockquote-bg-color;
+
+  > p {
+    margin: auto;
+  }
+}

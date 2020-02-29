@@ -1,0 +1,29 @@
+{
+  "quiet": true,
+  "legacyWatch": false,
+  "delay": 0.1,
+  "watch": [
+    "../.env",
+    ".browserslistrc",
+    ".editorconfig",
+    ".env",
+    ".eslintignore",
+    ".eslintrc.js",
+    ".prettierignore",
+    ".prettierrc",
+    "babel.config.js",
+    "config",
+    "jest.config.js",
+    "package.json",
+    "postcss.config.js",
+    "stylelint.config.js",
+    "src",
+    "tsconfig.json",
+    "tslint.json",
+    "webpack.config.js",
+    "yarn.lock"
+  ],
+  "ext": "js,jsx,ts,tsx,json,flow,css,scss,sass,styl,html,ejs,d,txt,yml,sh",
+  "ignore": [".build", ".cache", "node_modules"],
+  "exec": "node -e 'console.clear()'; yarn eslint && echo '\u2714 OK' || echo '\u274C FAILED'; true"
+}

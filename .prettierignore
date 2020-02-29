@@ -1,0 +1,12 @@
+*.lock
+*.log
+\.build
+\.cache
+\.editorconfig
+\.env
+\.git
+\.gitignore
+\.ignore
+\.prettierignore
+\.reports
+node_modules

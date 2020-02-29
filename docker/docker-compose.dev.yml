@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  covid19_scenarios-dev-web:
+    container_name: covid19_scenarios-dev-web
+    image: covid19_scenarios-dev-web
+    build:
+      context: ./
+      dockerfile: node-git-alpine/Dockerfile
+    command: sh -c "cd /code && yarn install --silent && yarn dev"
+    volumes:
+      - ../:/code
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 3000:3000
+    environment:
+      - COLORTERM=truecolor
+      - TERM=xterm-truecolor
+    restart: 'no'
+    init: true
+    user: '${UID}'
+    tty: true

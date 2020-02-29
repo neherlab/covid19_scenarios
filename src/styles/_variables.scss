@@ -1,0 +1,60 @@
+/* stylelint-disable primer/no-unused-vars */
+
+$font-family-sans-serif: 'Source Sans Pro', system-ui, system-sans !default;
+$font-family-serif: system-serif !default;
+$font-family-monospace: system-mono !default;
+$font-family-default: $font-family-sans-serif;
+$font-family-base: $font-family-default;
+
+$white: #fff !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
+$gray-100: #f8f9fa !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
+$gray-200: #e9ecef !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
+$gray-300: #dee2e6 !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
+
+$enable-gradients: false !default;
+$enable-print-styles: false !default;
+$enable-rounded: false !default;
+$enable-shadows: true !default;
+
+$body-color: $gray-800 !default;
+$headings-font-weight: 300 !default;
+$code-color: #222 !default;
+$code-font-size: 0.75rem !default;
+$blockquote-font-size: 0.9rem !default;
+$blockquote-bg-color: #fff7df !default;
+
+// stylelint-disable-next-line plugin/stylelint-no-indistinguishable-colors
+$navbar-dark-hover-color: rgba($white, 1) !default;
+
+// stylelint-disable-next-line plugin/stylelint-no-indistinguishable-colors
+$navbar-light-hover-color: rgba($black, 0.9) !default;
+
+$alert-border-width: 0 !default;
+$progress-height: 0.5rem !default;
