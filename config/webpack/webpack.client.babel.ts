@@ -280,6 +280,7 @@ export default {
       ? webpackCompression({
           cache: true,
           exclude: [/.*\.map$/],
+          brotli: false,
         })
       : []),
 
