@@ -16,6 +16,7 @@ import SeverityTable, {
   SeverityTableColumn,
   SeverityTableRow,
 } from './SeverityTable'
+
 import { CollapsibleCard } from './CollapsibleCard'
 
 interface MainFields {

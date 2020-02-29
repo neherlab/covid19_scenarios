@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import { Button, Card, CardBody, CardHeader, Collapse } from 'reactstrap'
 import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
+import { Button, Card, CardBody, CardHeader, Collapse } from 'reactstrap'
 
 export interface CollapsibleCardProps {
   title?: React.ReactNode
