@@ -1,7 +1,19 @@
 import React, { useState } from 'react'
 
 import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { Collapse, Button, CardBody, Card } from 'reactstrap'
+
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Collapse,
+  FormGroup,
+  Row,
+} from 'reactstrap'
+
+import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa'
 
 interface MainFields {
   populationServed: number
@@ -79,31 +91,44 @@ function Main() {
   }
 
   return (
-    <div>
-      <Formik initialValues={allDefaults} onSubmit={handleSubmit}>
-        <Form>
-          {Object.entries(mainFieldNames).map(([key, name]) => (
-            <div>
-              <label htmlFor="key">{name}</label>
-              <Field id="key" name="key" />
-            </div>
-          ))}
+    <Row>
+      <Col md={12}>
+        <Formik initialValues={allDefaults} onSubmit={handleSubmit}>
+          <Form className="form">
+            {Object.entries(mainFieldNames).map(([key, name]) => (
+              <FormGroup key={key}>
+                <label htmlFor={key}>{name}</label>
+                <Field className="form-control" id={key} name={key} />
+              </FormGroup>
+            ))}
 
-          <div className="">
-            <Collapse className="collapse" isOpen={!collapsed}>
-              {Object.entries(paramNames).map(([key, name]) => (
-                <div>
-                  <label htmlFor="key">{name}</label>
-                  <Field id="key" name="key" />
-                </div>
-              ))}
-            </Collapse>
-          </div>
+            <Card>
+              <CardHeader>
+                <Button type="button" color="default" onClick={toggle}>
+                  {collapsed ? <FaPlusCircle /> : <FaMinusCircle />}
+                </Button>
+                Additional parameters
+              </CardHeader>
 
-          <button type="submit">Run</button>
-        </Form>
-      </Formik>
-    </div>
+              <Collapse isOpen={!collapsed}>
+                <CardBody>
+                  {Object.entries(paramNames).map(([key, name]) => (
+                    <FormGroup key={key}>
+                      <label htmlFor={key}>{name}</label>
+                      <Field className="form-control" id={key} name={key} />
+                    </FormGroup>
+                  ))}
+                </CardBody>
+              </Collapse>
+            </Card>
+
+            <Button type="submit" color="primary">
+              Run
+            </Button>
+          </Form>
+        </Formik>
+      </Col>
+    </Row>
   )
 }
 

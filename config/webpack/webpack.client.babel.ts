@@ -13,7 +13,7 @@ import LodashWebpackPlugin from 'lodash-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 import PreloadWebpackPlugin from 'preload-webpack-plugin'
-import PurgecssPlugin from 'purgecss-webpack-plugin'
+// import PurgecssPlugin from 'purgecss-webpack-plugin'
 import SizePlugin from 'size-plugin'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
@@ -284,12 +284,12 @@ export default {
         })
       : []),
 
-    new PurgecssPlugin({
-      paths: () => [
-        ...glob.sync(`${path.join(moduleRoot, 'src')}/**/*.{jsx,tsx}`, { nodir: true }), // prettier-ignore
-      ],
-      whitelist: htmlTags,
-    }),
+    // new PurgecssPlugin({
+    //   paths: () => [
+    //     ...glob.sync(`${path.join(moduleRoot, 'src')}/**/*.{jsx,tsx}`, { nodir: true }), // prettier-ignore
+    //   ],
+    //   whitelist: htmlTags,
+    // }),
 
     new LodashWebpackPlugin({
       caching: true,
