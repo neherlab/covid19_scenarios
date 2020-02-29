@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Field, Form, Formik, FormikHelpers } from 'formik'
 
@@ -27,6 +27,9 @@ import {
   MainParams,
   Month,
 } from '../../algorithms/Param.types'
+
+import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
+import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
@@ -58,7 +61,7 @@ const columns: SeverityTableColumn[] = [
   { name: 'fatal', title: 'Fatal' },
 ]
 
-const initialData: SeverityTableRow[] = [
+const severityDefaults: SeverityTableRow[] = [
   { id: 0, ageGroup: 0, mild: 73, severe: 15, critical: 2, fatal: 0 },
   { id: 1, ageGroup: 5, mild: 80, severe: 10, critical: 2, fatal: 0 },
   { id: 2, ageGroup: 10, mild: 85, severe: 12, critical: 1, fatal: 0 },
@@ -78,16 +81,18 @@ const initialData: SeverityTableRow[] = [
   { id: 16, ageGroup: 80, mild: 85, severe: 12, critical: 1, fatal: 0 },
 ]
 
-async function handleSubmit(
-  values: AllParams,
-  { setSubmitting }: FormikHelpers<AllParams>,
-) {
-  const result = await run(values)
-  console.log(JSON.stringify({ result }, null, 2))
-  setSubmitting(false)
-}
-
 function Main() {
+  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
+
+  async function handleSubmit(
+    params: AllParams,
+    { setSubmitting }: FormikHelpers<AllParams>,
+  ) {
+    const result = await run(params, severity, countryAgeDistribution)
+    console.log(JSON.stringify({ result }, null, 2))
+    setSubmitting(false)
+  }
+
   return (
     <Row>
       <Col md={12}>
@@ -115,7 +120,11 @@ function Main() {
             </CollapsibleCard>
 
             <CollapsibleCard title="Severity">
-              <SeverityTable columns={columns} initialData={initialData} />
+              <SeverityTable
+                columns={columns}
+                rows={severity}
+                setRows={setSeverity}
+              />
             </CollapsibleCard>
 
             <FormGroup>

@@ -38,7 +38,8 @@ export type SeverityTableColumn = Column
 
 export interface SeverityTableProps {
   columns: SeverityTableColumn[]
-  initialData: SeverityTableRow[]
+  rows: SeverityTableRow[]
+  setRows(rows: SeverityTableRow[]): void
 }
 
 /**
@@ -47,9 +48,7 @@ export interface SeverityTableProps {
  *
  * Adopted from https://devexpress.github.io/devextreme-reactive/react/grid/docs/guides/editing#inline-cell-editing
  */
-function SeverityTable({ columns, initialData }: SeverityTableProps) {
-  const [rows, setRows] = useState<SeverityTableRow[]>(initialData)
-
+function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
   const commitChanges = ({ added, changed, deleted }: ChangeSet) => {
     let changedRows: SeverityTableRow[] = []
 
