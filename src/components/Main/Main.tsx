@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { Formik, Field, Form, FormikHelpers } from 'formik'
+import { Field, Form, Formik, FormikHelpers } from 'formik'
 
 import {
   Button,
@@ -8,17 +8,15 @@ import {
   CardBody,
   CardHeader,
   Col,
-  Collapse,
   FormGroup,
   Row,
 } from 'reactstrap'
-
-import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa'
 
 import SeverityTable, {
   SeverityTableColumn,
   SeverityTableRow,
 } from './SeverityTable'
+import { CollapsibleCard } from './CollapsibleCard'
 
 interface MainFields {
   populationServed: number
@@ -107,38 +105,6 @@ const initialData: SeverityTableRow[] = [
   { id: 15, ageGroup: 75, mild: 85, severe: 12, critical: 1 },
   { id: 16, ageGroup: 80, mild: 85, severe: 12, critical: 1 },
 ]
-
-export interface CollapsibleCardProps {
-  title?: React.ReactNode
-  children?: React.ReactNode | React.ReactNode[]
-  defaultCollapsed?: boolean
-}
-
-function CollapsibleCard({
-  title,
-  children,
-  defaultCollapsed = true,
-}: CollapsibleCardProps) {
-  const [collapsed, setCollapsed] = useState(defaultCollapsed)
-  const toggle = () => setCollapsed(!collapsed)
-
-  return (
-    <Card>
-      <CardHeader>
-        <Button type="button" color="default" onClick={toggle}>
-          <span style={{ marginRight: '5px' }}>
-            {collapsed ? <FaPlusCircle /> : <FaMinusCircle />}
-          </span>
-          <span>{title}</span>
-        </Button>
-      </CardHeader>
-
-      <Collapse isOpen={!collapsed}>
-        <CardBody>{children}</CardBody>
-      </Collapse>
-    </Card>
-  )
-}
 
 function Main() {
   function handleSubmit(

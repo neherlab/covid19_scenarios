@@ -13,14 +13,7 @@ import {
   Table,
   TableHeaderRow,
   TableInlineCellEditing,
-  Toolbar,
 } from '@devexpress/dx-react-grid-bootstrap4'
-
-import {
-  Plugin,
-  Template,
-  TemplatePlaceholder,
-} from '@devexpress/dx-react-core'
 
 const getRowId = (row: Row) => row.id
 
@@ -95,7 +88,7 @@ function SeverityTable({ columns, initialData }: SeverityTableProps) {
 
         <TableInlineCellEditing
           startEditAction={'click'}
-          selectTextOnEditStart={true}
+          selectTextOnEditStart
         />
       </Grid>
     </div>
