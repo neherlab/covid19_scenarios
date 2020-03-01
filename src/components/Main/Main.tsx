@@ -56,21 +56,20 @@ const allDefaults = Object.entries({
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: 'Age group' },
   { name: 'mild', title: 'Mild [%]' },
-  { name: 'severe', title: 'Severe [%]' },
-  { name: 'critical', title: 'Critical [%]' },
+  { name: 'hospitalized', title: 'Severe [%]' },
   { name: 'fatal', title: 'Fatal [%]' },
 ]
 
 const severityDefaults: SeverityTableRow[] = [
-  { id: 0, ageGroup: 0,  mild: 99, severe: 1, critical: 0, fatal:  0},
-  { id: 2, ageGroup: 10, mild: 97, severe: 2.4, critical: 0.4, fatal:  0.2,},
-  { id: 4, ageGroup: 20, mild: 97, severe: 2.4, critical: 0.4, fatal:  0.2,},
-  { id: 6, ageGroup: 30, mild: 97, severe: 2.4, critical: 0.4, fatal:  0.2,},
-  { id: 8, ageGroup: 40, mild: 94, severe: 4.6, critical: 1, fatal:  0.4,},
-  { id: 10, ageGroup: 50, mild: 90, severe: 6, critical: 2.7, fatal:  1.3,},
-  { id: 12, ageGroup: 60, mild: 75, severe: 14, critical: 7.4, fatal:  3.6,},
-  { id: 14, ageGroup: 70, mild: 50, severe: 30, critical: 12, fatal:  8.0,},
-  { id: 16, ageGroup: 80, mild: 30, severe: 40, critical: 16, fatal:  14},
+  { id: 0, ageGroup: "0-9",  mild: 99, hospitalized: 1, fatal:  0},
+  { id: 2, ageGroup: "10-19", mild: 97, hospitalized: 2.8, fatal:  0.2,},
+  { id: 4, ageGroup: "20-29", mild: 97, hospitalized: 2.8, fatal:  0.2,},
+  { id: 6, ageGroup: "30-39", mild: 97, hospitalized: 2.8, fatal:  0.2,},
+  { id: 8, ageGroup: "40-49", mild: 94, hospitalized: 5.6, fatal:  0.4,},
+  { id: 10, ageGroup: "50-59", mild: 90, hospitalized: 8.7, fatal:  1.3,},
+  { id: 12, ageGroup: "60-69", mild: 75, hospitalized: 21.4, fatal:  3.6,},
+  { id: 14, ageGroup: "70-79", mild: 50, hospitalized: 42, fatal:  8.0,},
+  { id: 16, ageGroup: "80+", mild: 30, hospitalized: 56, fatal:  14},
 ]
 
 

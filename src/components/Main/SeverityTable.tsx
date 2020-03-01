@@ -27,10 +27,9 @@ const FocusableCell = ({ onClick, ...restProps }: FocusableCellProps) => (
 
 export interface SeverityTableRow {
   id: number
-  ageGroup: number
+  ageGroup: string
   mild: number
-  severe: number
-  critical: number
+  hospitalized: number
   fatal: number
 }
 
