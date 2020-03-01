@@ -18,6 +18,7 @@ import SeverityTable, {
 } from './SeverityTable'
 
 import { CollapsibleCard } from './CollapsibleCard'
+import LinePlot from './Plot'
 
 import run from '../../algorithms/run'
 
@@ -30,6 +31,7 @@ import {
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
+import { AlgorithmResult } from '../../algorithms/Result.types'
 
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
@@ -61,27 +63,28 @@ const columns: SeverityTableColumn[] = [
 ]
 
 const severityDefaults: SeverityTableRow[] = [
-  { id: 0, ageGroup: "0-9",  mild: 99, hospitalized: 1, fatal:  0},
-  { id: 2, ageGroup: "10-19", mild: 97, hospitalized: 2.8, fatal:  0.2,},
-  { id: 4, ageGroup: "20-29", mild: 97, hospitalized: 2.8, fatal:  0.2,},
-  { id: 6, ageGroup: "30-39", mild: 97, hospitalized: 2.8, fatal:  0.2,},
-  { id: 8, ageGroup: "40-49", mild: 94, hospitalized: 5.6, fatal:  0.4,},
-  { id: 10, ageGroup: "50-59", mild: 90, hospitalized: 8.7, fatal:  1.3,},
-  { id: 12, ageGroup: "60-69", mild: 75, hospitalized: 21.4, fatal:  3.6,},
-  { id: 14, ageGroup: "70-79", mild: 50, hospitalized: 42, fatal:  8.0,},
-  { id: 16, ageGroup: "80+", mild: 30, hospitalized: 56, fatal:  14},
+  { id: 0, ageGroup: '0-9', mild: 99, hospitalized: 1, fatal: 0 },
+  { id: 2, ageGroup: '10-19', mild: 97, hospitalized: 2.8, fatal: 0.2 },
+  { id: 4, ageGroup: '20-29', mild: 97, hospitalized: 2.8, fatal: 0.2 },
+  { id: 6, ageGroup: '30-39', mild: 97, hospitalized: 2.8, fatal: 0.2 },
+  { id: 8, ageGroup: '40-49', mild: 94, hospitalized: 5.6, fatal: 0.4 },
+  { id: 10, ageGroup: '50-59', mild: 90, hospitalized: 8.7, fatal: 1.3 },
+  { id: 12, ageGroup: '60-69', mild: 75, hospitalized: 21.4, fatal: 3.6 },
+  { id: 14, ageGroup: '70-79', mild: 50, hospitalized: 42, fatal: 8.0 },
+  { id: 16, ageGroup: '80+', mild: 30, hospitalized: 56, fatal: 14 },
 ]
-
 
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
+  const [result, setResult] = useState<AlgorithmResult | undefined>()
 
   async function handleSubmit(
     params: AllParams,
     { setSubmitting }: FormikHelpers<AllParams>,
   ) {
-    const result = await run(params, severity, countryAgeDistribution)
-    console.log(JSON.stringify({ result }, null, 2))
+    const newResult = await run(params, severity, countryAgeDistribution)
+    setResult(newResult)
+    // console.log(JSON.stringify({ result }, null, 2))
     setSubmitting(false)
   }
 
@@ -124,6 +127,17 @@ function Main() {
                 Run
               </Button>
             </FormGroup>
+
+            <Card>
+              <CardHeader>Results</CardHeader>
+              <CardBody>
+                <Row>
+                  <Col>
+                    <LinePlot data={result} />
+                  </Col>
+                </Row>
+              </CardBody>
+            </Card>
           </Form>
         </Formik>
       </Col>
