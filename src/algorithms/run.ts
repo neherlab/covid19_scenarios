@@ -59,13 +59,13 @@ export default async function run(
   // TODO: return the actual result
   //
   //
-  console.log(populationAverageParameters({}, {}));
+  const P = populationAverageParameters(severity, countryAgeDistribution[params["ageDistribution"]]);
 
-  const N=1000000, incubationTime=5, recoveryRate = 0.2, hospitalizationRate = 0.05, R0=2.5;
-  const dischargeRate = 0.1, deathRate = 0.1;
-  const infectionRate = recoveryRate*R0;
+  // const N=1000000, incubationTime=5, recoveryRate = 0.2, hospitalizationRate = 0.05, R0=2.5;
+  // const dischargeRate = 0.1, deathRate = 0.1;
+  // const infectionRate = recoveryRate*R0;
   const time = Date.now();
-  const initialState = {"time":time, "susceptible":N-20, "exposed":10, "infectious":10,
+  const initialState = {"time":time, "susceptible":P.N-20, "exposed":10, "infectious":10,
                      "hospitalized":0,"recovered":0, "dead":0};
   const outbreakTrajectory = [initialState];
   const timeDeltaDays = 0.25
@@ -73,12 +73,12 @@ export default async function run(
   for (let d=0; d<200; d++){
     const prevState = outbreakTrajectory[outbreakTrajectory.length-1];
     const newTime = prevState["time"] + timeDelta;
-    const newCases = prevState['susceptible']*infectionRate*prevState['infectious']*timeDeltaDays/N;
-    const newInfectious = prevState['exposed']*timeDeltaDays/incubationTime;
-    const newRecovered = prevState['infectious']*timeDeltaDays*recoveryRate;
-    const newHospitalized = prevState['infectious']*timeDeltaDays*hospitalizationRate;
-    const newDischarged = prevState['hospitalized']*timeDeltaDays*dischargeRate;
-    const newDead = prevState['hospitalized']*timeDeltaDays*deathRate;
+    const newCases = prevState['susceptible']*P.infectionRate*prevState['infectious']*timeDeltaDays/P.N;
+    const newInfectious = prevState['exposed']*timeDeltaDays/P.incubationTime;
+    const newRecovered = prevState['infectious']*timeDeltaDays*P.recoveryRate;
+    const newHospitalized = prevState['infectious']*timeDeltaDays*P.hospitalizationRate;
+    const newDischarged = prevState['hospitalized']*timeDeltaDays*P.dischargeRate;
+    const newDead = prevState['hospitalized']*timeDeltaDays*P.deathRate;
     const newState = {"time":newTime,
                       "susceptible":prevState["susceptible"]-newCases,
                       "exposed":prevState["exposed"]-newInfectious+newCases,
