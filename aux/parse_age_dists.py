@@ -84,7 +84,15 @@ def compile_distribution(tbl):
             print(f"Could not parse data for country '{cntry}'", file=sys.stderr)
             del ages[cntry]
 
-    return ages, bps
+    return ages, [0] + bps
+
+def canonicalize(ages, bps):
+    data = {}
+    keys = [f"{b}-{bps[i+1]-1}" for i, b in enumerate(bps[:-1])] + [f"{bps[-1]}+"]
+    for cntry, vals in ages.items():
+        data[cntry] = {k:val for k, val in zip(keys, vals)}
+
+    return data
 
 # ---------------------------------------------------------
 # Main point of entry
@@ -105,7 +113,6 @@ if __name__ == "__main__":
         exit(1)
 
     tbl  = parse_table(open(path))
-    ages, bps = compile_distribution(tbl)
-
-    data = {"country" : ages, "bins": [0] + bps}
+    data = canonicalize(*compile_distribution(tbl))
+    # data = {"country" : ages, "bins": [0] + bps}
     json.dump(data, sys.stdout)
