@@ -37,7 +37,7 @@ const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
   ageDistribution: { name: 'Age Distribution', defaultValue: 'Switzerland' },
   suspectedCasesToday: { name: 'Suspected Cases Today', defaultValue: 10 },
-  importsPerDay: { name: 'Imports Per Day', defaultValue: 2 },
+  importsPerDay: { name: 'Imports Per Day', defaultValue: 2 }
 }
 
 const additionalParams: AdditionalParams = {

@@ -1,8 +1,10 @@
+import random from 'random'
 import { CountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
 import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
 import { AlgorithmResult } from './Result.types'
 import { populationAverageParameters, evolve, samplePoisson} from "./model.js"
+
 
 /**
  *
@@ -15,6 +17,7 @@ export default async function run(
   countryAgeDistribution: CountryAgeDistribution,
 ): Promise<AlgorithmResult> {
   console.log(JSON.stringify({ params }, null, 2));
+  const tMax = new Date('2020-12-31');
   // console.log(JSON.stringify({ severity }, null, 2))
   // console.log(JSON.stringify({ countryAgeDistribution }, null, 2))
 
@@ -72,8 +75,9 @@ export default async function run(
 
   const outbreakTrajectory = [initialState];
   const identity = function(x: Number) {return x;}; // Use instead of samplePoisson for a deterministic
+  // const poisson = function(x: Number) {return random.poisson(x);}; // poisson sampling
 
-  for (let d=0; d<200; d++){
+  while (outbreakTrajectory[outbreakTrajectory.length-1].time < tMax){
     const prevState = outbreakTrajectory[outbreakTrajectory.length-1];
     outbreakTrajectory.push(evolve(prevState, modelParams, identity));
   }
