@@ -9,6 +9,10 @@
 
 @import './animate';
 
+html {
+  overflow-y: scroll;
+}
+
 .container.absolute {
   position: absolute;
   top: 100px;
