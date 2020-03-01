@@ -11,8 +11,10 @@ export function populationAverageParameters(params, ageCounts) {
       "dischargeRate": 0,
       "deathRate" : 0,
       "infectionRate" : 0,
-      "timeDelta" : 0
+      "timeDeltaDays" : 0.25,
+      "timeDelta" : 0 
   };
+  pop.timeDelta = 1000*60*60*24*pop.timeDeltaDays;
 
   // Compute age-stratified parameters
   var total = 0; 
@@ -33,14 +35,28 @@ export function populationAverageParameters(params, ageCounts) {
   return pop;
 }
 
-export function evolve(prevState, P) {
+// Implementation of Knuth's algorithm
+export function samplePoisson(lambda) {
+    var L = math.exp(-lambda);
+    var k = 0;
+    var p = 1;
+    do {
+        k += 1;
+        p *= math.random();
+    } while (p > L);
+
+    return k - 1;
+}
+
+// TODO: Allow a sampling function to be passed in as a parameter?
+export function evolve(prevState, P, sample) {
     const newTime  = prevState["time"] + P.timeDelta;
-    const newCases = prevState['susceptible']*P.infectionRate*prevState['infectious']*timeDeltaDays/P.N;
-    const newInfectious = prevState['exposed']*timeDeltaDays/P.incubationTime;
-    const newRecovered  = prevState['infectious']*timeDeltaDays*P.recoveryRate;
-    const newHospitalized = prevState['infectious']*timeDeltaDays*P.hospitalizationRate;
-    const newDischarged   = prevState['hospitalized']*timeDeltaDays*P.dischargeRate;
-    const newDead  = prevState['hospitalized']*timeDeltaDays*P.deathRate;
+    const newCases = sample(prevState['susceptible']*P.infectionRate*prevState['infectious']*P.timeDeltaDays/P.N);
+    const newInfectious = sample(prevState['exposed']*P.timeDeltaDays/P.incubationTime);
+    const newRecovered  = sample(prevState['infectious']*P.timeDeltaDays*P.recoveryRate);
+    const newHospitalized = sample(prevState['infectious']*P.timeDeltaDays*P.hospitalizationRate);
+    const newDischarged   = sample(prevState['hospitalized']*P.timeDeltaDays*P.dischargeRate);
+    const newDead  = sample(prevState['hospitalized']*P.timeDeltaDays*P.deathRate);
     const newState = {"time" : newTime,
                       "susceptible" : prevState["susceptible"]-newCases,
                       "exposed" : prevState["exposed"]-newInfectious+newCases,

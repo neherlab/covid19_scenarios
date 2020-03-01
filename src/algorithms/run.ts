@@ -2,7 +2,7 @@ import { CountryAgeDistribution } from '../assets/data/CountryAgeDistribution.ty
 import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
 import { AlgorithmResult } from './Result.types'
-import { populationAverageParameters, evolve } from "./model.js"
+import { populationAverageParameters, evolve, samplePoisson} from "./model.js"
 
 /**
  *
@@ -71,12 +71,11 @@ export default async function run(
                         "dead" : 0};
 
   const outbreakTrajectory = [initialState];
-  const timeDeltaDays   = 0.25;
-  modelParams.timeDelta = 1000*60*60*24*timeDeltaDays;
+  const identity = function(x: Number) {return x;}; // Use instead of samplePoisson for a deterministic
 
   for (let d=0; d<200; d++){
     const prevState = outbreakTrajectory[outbreakTrajectory.length-1];
-    outbreakTrajectory.push(evolve(prevState, modelParams));
+    outbreakTrajectory.push(evolve(prevState, modelParams, samplePoisson));
   }
 
   return outbreakTrajectory;
