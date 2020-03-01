@@ -17,7 +17,7 @@ export default async function run(
   severity: SeverityTableRow[],
   countryAgeDistribution: CountryAgeDistribution,
 ): Promise<AlgorithmResult> {
-  console.log(JSON.stringify({ params }, null, 2))
+  console.log(JSON.stringify({ params }, null, 2));
   // console.log(JSON.stringify({ severity }, null, 2))
   // console.log(JSON.stringify({ countryAgeDistribution }, null, 2))
 
