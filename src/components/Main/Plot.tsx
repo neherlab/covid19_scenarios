@@ -84,7 +84,7 @@ export default function LinePlot({ data }: LinePlotProps) {
         xaxis: {
           tickmode: 'linear',
           tickformat: '%Y-%m-%d',
-          dtick: 7 * 24 * 60 * 60 * 1000, // milliseconds
+          dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
         },
       }}
     />
