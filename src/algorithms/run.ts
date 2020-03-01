@@ -60,14 +60,14 @@ export default async function run(
   // const N=1000000, incubationTime=5, recoveryRate = 0.2, hospitalizationRate = 0.05, R0=2.5;
   // const dischargeRate = 0.1, deathRate = 0.1;
   // const infectionRate = recoveryRate*R0;
-  const modelParams = populationAverageParameters(severity, countryAgeDistribution[params["ageDistribution"]]);
+  const modelParams = populationAverageParameters(params, severity, countryAgeDistribution[params["ageDistribution"]]);
   const time = Date.now();
-  const initialState = {"time" : time, 
-                        "susceptible" : modelParams.N-20, 
-                        "exposed" : 10, 
-                        "infectious" : 10,
+  const initialState = {"time" : time,
+                        "susceptible" : modelParams.populationServed-modelParams.suspectedCasesToday,
+                        "exposed" : 0,
+                        "infectious" : modelParams.suspectedCasesToday,
                         "hospitalized" : 0,
-                        "recovered" : 0, 
+                        "recovered" : 0,
                         "dead" : 0};
 
   const outbreakTrajectory = [initialState];
@@ -75,7 +75,7 @@ export default async function run(
 
   for (let d=0; d<200; d++){
     const prevState = outbreakTrajectory[outbreakTrajectory.length-1];
-    outbreakTrajectory.push(evolve(prevState, modelParams, samplePoisson));
+    outbreakTrajectory.push(evolve(prevState, modelParams, identity));
   }
 
   return outbreakTrajectory;

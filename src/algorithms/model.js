@@ -1,34 +1,32 @@
 import * as math from 'mathjs'
 import random from 'random'
 
-export function populationAverageParameters(params, ageCounts) {
-  var pop = {
-      "N" : 1000000, 
-      "R0" : 2.5,
-      "incubationTime" : 5, 
-      "recoveryRate" : 0, 
-      "hospitalizationRate" : 0,
-      "dischargeRate": 0,
-      "deathRate" : 0,
-      "infectionRate" : 0,
-      "timeDeltaDays" : 0.25,
-      "timeDelta" : 0 
-  };
+export function populationAverageParameters(params, severity, ageCounts) {
+  var pop = {...params};
+  console.log(ageCounts, params);
+  pop.hospitalizationRate = 0;
+  pop.recoveryRate = 0;
+  pop.dischargeRate = 0;
+  pop.deathRate = 0;
+  pop.infectionRate = 0;
+  pop.timeDeltaDays = 0.25;
   pop.timeDelta = 1000*60*60*24*pop.timeDeltaDays;
 
   // Compute age-stratified parameters
-  var total = 0; 
-  params.forEach(function(d) {total += ageCounts[d.ageGroup]});
+  var total = 0;
+  severity.forEach(function(d) {total += ageCounts[d.ageGroup]});
 
-  params.forEach(function(d) {
+  severity.forEach(function(d) {
       const freq = (1.0*ageCounts[d.ageGroup]/total);
-      pop.hospitalizationRate += freq * d.hospitalized / 100; 
-      pop.deathRate += freq * d.fatal / 100; 
-      pop.recoveryRate += freq * d.mild / 100; 
+      pop.hospitalizationRate += freq * d.hospitalized / 100;
+      pop.deathRate += freq * d.fatal / 100;
+      pop.recoveryRate += freq * d.mild / 100;
   });
-  pop.recoveryRate /= pop.incubationTime;
-  pop.dischargeRate = pop.hospitalizationRate - pop.deathRate;
-  pop.infectionRate = pop.R0 * pop.recoveryRate;
+  pop.recoveryRate /= pop.infectiousPeriod;
+  pop.hospitalizationRate /= pop.infectiousPeriod;
+  pop.dischargeRate = (1-pop.deathRate)/pop.lengthHospitalStay;
+  pop.deathRate = pop.deathRate/pop.lengthHospitalStay;
+  pop.infectionRate = pop.r0 * pop.recoveryRate;
 
   console.log(pop);
 
@@ -51,7 +49,7 @@ export function samplePoisson(lambda) {
 // TODO: Allow a sampling function to be passed in as a parameter?
 export function evolve(prevState, P, sample) {
     const newTime  = prevState["time"] + P.timeDelta;
-    const newCases = sample(prevState['susceptible']*P.infectionRate*prevState['infectious']*P.timeDeltaDays/P.N);
+    const newCases = sample(prevState['susceptible']*P.infectionRate*prevState['infectious']*P.timeDeltaDays/P.populationServed);
     const newInfectious = sample(prevState['exposed']*P.timeDeltaDays/P.incubationTime);
     const newRecovered  = sample(prevState['infectious']*P.timeDeltaDays*P.recoveryRate);
     const newHospitalized = sample(prevState['infectious']*P.timeDeltaDays*P.hospitalizationRate);
@@ -65,6 +63,5 @@ export function evolve(prevState, P, sample) {
                       "hospitalized" : prevState["hospitalized"]+newHospitalized-newDischarged-newDead,
                       "dead" : prevState["dead"]+newDead,
                     };
-
     return newState;
 }

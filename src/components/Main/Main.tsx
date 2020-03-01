@@ -42,7 +42,9 @@ const mainParams: MainParams = {
 
 const additionalParams: AdditionalParams = {
   r0: { name: 'R0', defaultValue: 2.2 },
-  serialInterval: { name: 'Serial Interval', defaultValue: 8 },
+  incubationTime: { name: 'Incubation Time [days]', defaultValue: 5 },
+  infectiousPeriod: { name: 'infectious Period [days]', defaultValue: 3 },
+  lengthHospitalStay: { name: 'Length of Hospital stay [days]', defaultValue: 10 },
   seasonalForcing: { name: 'Seasonal Forcing', defaultValue: 0.2 },
   peakMonth: { name: 'Peak Month', defaultValue: Month.Jan },
 }

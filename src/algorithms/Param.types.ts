@@ -27,7 +27,9 @@ export interface MainParams {
 
 export interface AdditionalParams {
   r0: Param<number>
-  serialInterval: Param<number>
+  incubationTime: Param<number>
+  infectiousPeriod: Param<number>
+  lengthHospitalStay: Param<number>
   seasonalForcing: Param<number>
   peakMonth: Param<Month>
 }

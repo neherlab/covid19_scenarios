@@ -18,21 +18,21 @@ export default function LinePlot({ data }: LinePlotProps) {
   const exposed = data.map(x => x.exposed)
   const infectious = data.map(x => x.infectious)
   const hospitalized = data.map(x => x.hospitalized)
-  // const recovered = data.map(x => x.recovered)
+  const recovered = data.map(x => x.recovered)
   const dead = data.map(x => x.dead)
 
   return (
     <Plot
       data={[
-        {
-          x: time,
-          y: susceptible,
-          type: 'scatter',
-          mode: 'lines+markers',
-          line: { color: '#E2F0CB', width: 2 },
-          marker: { color: '#E2F0CB', size: 3 },
-          name: 'susceptible',
-        },
+        // {
+        //   x: time,
+        //   y: susceptible,
+        //   type: 'scatter',
+        //   mode: 'lines+markers',
+        //   line: { color: '#E2F0CB', width: 2 },
+        //   marker: { color: '#E2F0CB', size: 3 },
+        //   name: 'susceptible',
+        // },
         {
           x: time,
           y: exposed,
@@ -60,15 +60,15 @@ export default function LinePlot({ data }: LinePlotProps) {
           marker: { color: '#FFDAC1', size: 3 },
           name: 'hospitalized',
         },
-        // {
-        //   x: time,
-        //   y: recovered,
-        //   type: 'scatter',
-        //   mode: 'lines+markers',
-        //   line: { color: '#B5EAD7', width: 2 },
-        //   marker: { color: '#B5EAD7', size: 3 },
-        //   name: 'recovered',
-        // },
+        {
+          x: time,
+          y: recovered,
+          type: 'scatter',
+          mode: 'lines+markers',
+          line: { color: '#B5EAD7', width: 2 },
+          marker: { color: '#B5EAD7', size: 3 },
+          name: 'recovered',
+        },
         {
           x: time,
           y: dead,
