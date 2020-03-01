@@ -82,5 +82,5 @@ export default async function run(
     outbreakTrajectory.push(evolve(prevState, modelParams, identity));
   }
 
-  return outbreakTrajectory;
+  return {trajectory: outbreakTrajectory, params:modelParams};
 }
