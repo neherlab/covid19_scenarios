@@ -123,9 +123,11 @@ module.exports = {
     'redux-saga/no-unhandled-errors': 'off',
     'security/detect-non-literal-fs-filename': 'off',
     'security/detect-object-injection': 'off',
+    'unicorn/escape-case': 'off',
     'unicorn/filename-case': 'off',
     'unicorn/new-for-builtins': 'off',
     'unicorn/no-abusive-eslint-disable': 'warn',
+    'unicorn/no-zero-fractions': 'off',
     'unicorn/prefer-query-selector': 'off',
     'unicorn/prevent-abbreviations': 'off',
 
