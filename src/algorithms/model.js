@@ -83,11 +83,11 @@ export function evolve(prevState, P, sample) {
     const newDischarged   = sample(prevState['hospitalized']*P.timeDeltaDays*P.dischargeRate);
     const newDead  = sample(prevState['hospitalized']*P.timeDeltaDays*P.deathRate);
     const newState = {"time" : newTime,
-                      "susceptible" : prevState["susceptible"]-newCases,
-                      "exposed" : prevState["exposed"]-newInfectious+newCases,
-                      "infectious" : prevState["infectious"]+newInfectious-newRecovered,
-                      "recovered" : prevState["recovered"]+newRecovered+newDischarged,
-                      "hospitalized" : prevState["hospitalized"]+newHospitalized-newDischarged-newDead,
+                      "susceptible" : prevState["susceptible"] - newCases,
+                      "exposed" : prevState["exposed"] - newInfectious + newCases,
+                      "infectious" : prevState["infectious"] + newInfectious - newRecovered - newHospitalized,
+                      "recovered" : prevState["recovered"] + newRecovered + newDischarged,
+                      "hospitalized" : prevState["hospitalized"] + newHospitalized - newDischarged - newDead,
                       "dead" : prevState["dead"]+newDead,
                     };
     return newState;
