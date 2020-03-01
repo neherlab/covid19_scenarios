@@ -5,6 +5,7 @@ import { CountryAgeDistribution } from '../assets/data/CountryAgeDistribution.ty
 import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
 import { AlgorithmResult } from './Result.types'
+import { populationAverageParameters } from "./model.js"
 
 /**
  *
@@ -57,6 +58,9 @@ export default async function run(
 
   // TODO: return the actual result
   //
+  //
+  console.log(populationAverageParameters({}, {}));
+
   const N=1000000, incubationTime=5, recoveryRate = 0.2, hospitalizationRate = 0.05, R0=2.5;
   const dischargeRate = 0.1, deathRate = 0.1;
   const infectionRate = recoveryRate*R0;
