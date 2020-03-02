@@ -28,9 +28,7 @@ export default function AgePlot( {data, rates}: SimProps ) {
 
   const totalDeaths = data.trajectory[data.trajectory.length-1].dead;
   const totalSevere = data.trajectory[data.trajectory.length-1].discharged;
-  console.log("Total Deaths", totalDeaths);
-  console.log("Total Severe", totalSevere);
-  console.log("CFR conditional on hospital", totalDeaths/(totalSevere+totalDeaths));
+  console.log("CFR conditional on hospital", totalDeaths/(totalSevere+totalDeaths) * 100);
 
   const ageDeaths = probDeath.map(x => round(totalDeaths * x));
   const ageSevere = probSevere.map(x => round(totalSevere * x));
