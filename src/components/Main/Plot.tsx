@@ -24,15 +24,16 @@ export default function LinePlot({ data }: LinePlotProps) {
   return (
     <Plot
       data={[
-        // {
-        //   x: time,
-        //   y: susceptible,
-        //   type: 'scatter',
-        //   mode: 'lines+markers',
-        //   line: { color: '#E2F0CB', width: 2 },
-        //   marker: { color: '#E2F0CB', size: 3 },
-        //   name: 'susceptible',
-        // },
+        {
+          x: time,
+          y: susceptible,
+          type: 'scatter',
+          mode: 'lines+markers',
+          line: { color: '#E2F0CB', width: 2 },
+          marker: { color: '#E2F0CB', size: 3 },
+          name: 'Susceptible',
+          visible: 'legendonly'
+        },
         {
           x: time,
           y: exposed,
@@ -40,7 +41,8 @@ export default function LinePlot({ data }: LinePlotProps) {
           mode: 'lines+markers',
           line: { color: '#FFB7B2', width: 2 },
           marker: { color: '#FFB7B2', size: 3 },
-          name: 'exposed',
+          name: 'Exposed',
+          visible: 'legendonly'
         },
         {
           x: time,
@@ -49,7 +51,7 @@ export default function LinePlot({ data }: LinePlotProps) {
           mode: 'lines+markers',
           line: { color: '#FF9AA2', width: 2 },
           marker: { color: '#FF9AA2', size: 3 },
-          name: 'infectious',
+          name: 'Cases',
         },
         {
           x: time,
@@ -58,7 +60,7 @@ export default function LinePlot({ data }: LinePlotProps) {
           mode: 'lines+markers',
           line: { color: '#FFDAC1', width: 2 },
           marker: { color: '#FFDAC1', size: 3 },
-          name: 'hospitalized',
+          name: 'Hospitalized',
         },
         {
           x: time,
@@ -67,7 +69,8 @@ export default function LinePlot({ data }: LinePlotProps) {
           mode: 'lines+markers',
           line: { color: '#B5EAD7', width: 2 },
           marker: { color: '#B5EAD7', size: 3 },
-          name: 'recovered',
+          name: 'Recovered (cumulative)',
+          visible: 'legendonly'
         },
         {
           x: time,
@@ -76,7 +79,7 @@ export default function LinePlot({ data }: LinePlotProps) {
           mode: 'lines+markers',
           line: { color: '#C7CEEA', width: 2 },
           marker: { color: '#C7CEEA', size: 3 },
-          name: 'dead',
+          name: 'Deaths (cumulative)',
         },
       ]}
       layout={{
@@ -84,8 +87,13 @@ export default function LinePlot({ data }: LinePlotProps) {
         xaxis: {
           tickmode: 'linear',
           tickformat: '%Y-%m-%d',
-          dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
+          tickmode:'auto',
+          nticks:10
+          // dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
         },
+        yaxis: {
+          type: 'log'
+        }
       }}
     />
   )

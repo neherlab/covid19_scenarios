@@ -23,6 +23,7 @@ export interface MainParams {
   ageDistribution: Param<string>
   suspectedCasesToday: Param<number>
   importsPerDay: Param<number>
+  tMax: Param<string>
 }
 
 export interface AdditionalParams {
@@ -43,4 +44,5 @@ export interface AllParams {
   serialInterval: number
   seasonalForcing: number
   peakMonth: Month
+  tMax: Param<string>
 }
