@@ -22,15 +22,16 @@ export default function AgePlot( {data, rates}: SimProps ) {
   var Z = probDeath.reduce((a,b) => a + b, 0);
   probDeath = probDeath.map((x) => x / Z);
 
-  var probHospitalized = rates.map((x, i) => x.hospitalized * agesFrac[i]);
-  Z = probHospitalized.reduce((a,b) => a + b, 0);
-  probHospitalized = probHospitalized.map((x) => x / Z);
+  var probSevere = rates.map((x, i) => x.severe * agesFrac[i]);
+  Z = probSevere.reduce((a,b) => a + b, 0);
+  probSevere = probSevere.map((x) => x / Z);
 
   const totalDeaths = data.trajectory[data.trajectory.length-1].dead;
-  const totalHospitalized = data.trajectory[data.trajectory.length-1].discharged + totalDeaths;
+  const totalSevere = data.trajectory[data.trajectory.length-1].discharged + totalDeaths;
+  console.log("CFR", totalDeaths/totalSevere);
 
   const ageDeaths = probDeath.map(x => round(totalDeaths * x));
-  const ageHospitalized = probHospitalized.map(x => round(totalHospitalized * x));
+  const ageSevere = probSevere.map(x => round(totalSevere * x));
 
   return (
     <Plot
@@ -55,7 +56,7 @@ export default function AgePlot( {data, rates}: SimProps ) {
         },
         {
           x: ages,
-          y: ageHospitalized,
+          y: ageSevere,
           xaxis: 'x2',
           yaxis: 'y2',
           type: 'bar',

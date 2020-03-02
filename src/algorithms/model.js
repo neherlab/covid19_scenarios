@@ -45,8 +45,8 @@ export function populationAverageParameters(params, severity, ageCounts) {
   severity.forEach(function(d) {
       const freq = (1.0*ageCounts[d.ageGroup]/total);
       pop.ageDistribution[d.ageGroup] = freq;
-      pop.hospitalizationRate += freq * (d.hospitalized + d.fatal) * d.confirmed / 100 / 100;
-      pop.deathRate += freq * d.fatal * d.confirmed / 100 / 100;
+      pop.hospitalizationRate += freq * (d.severe + d.fatal) * d.confirmed / 100 / 100;
+      pop.deathRate += freq * d.fatal / 100;
       pop.recoveryRate += freq * (d.mild / 100 + (1 - d.confirmed/100));
   });
   pop.recoveryRate /= pop.infectiousPeriod;
@@ -79,15 +79,15 @@ export function evolve(pop, P, sample) {
     const newCases = sample((P.importsPerDay + infectionRate(newTime,P)*pop['susceptible']*pop['infectious']/P.populationServed)*P.timeDeltaDays);
     const newInfectious = sample(pop['exposed']*P.timeDeltaDays/P.incubationTime);
     const newRecovered  = sample(pop['infectious']*P.timeDeltaDays*P.recoveryRate);
-    const newHospitalized = sample(pop['infectious']*P.timeDeltaDays*P.hospitalizationRate);
-    const newDischarged   = sample(pop['hospitalized']*P.timeDeltaDays*P.dischargeRate);
-    const newDead = sample(pop['hospitalized']*P.timeDeltaDays*P.deathRate);
+    const newSevere = sample(pop['infectious']*P.timeDeltaDays*P.hospitalizationRate);
+    const newDischarged   = sample(pop['severe']*P.timeDeltaDays*P.dischargeRate);
+    const newDead = sample(pop['severe']*P.timeDeltaDays*P.deathRate);
     const newPop = {"time" : newTime,
                     "susceptible" : pop["susceptible"] - newCases,
                     "exposed" : pop["exposed"] - newInfectious + newCases,
-                    "infectious" : pop["infectious"] + newInfectious - newRecovered - newHospitalized,
+                    "infectious" : pop["infectious"] + newInfectious - newRecovered - newSevere,
                     "recovered" : pop["recovered"] + newRecovered + newDischarged,
-                    "hospitalized" : pop["hospitalized"] + newHospitalized - newDischarged - newDead,
+                    "severe" : pop["severe"] + newSevere - newDischarged - newDead,
                     "discharged" : pop["discharged"] + newDischarged,
                     "dead" : pop["dead"]+newDead,
                     };

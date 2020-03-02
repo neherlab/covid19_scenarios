@@ -29,7 +29,7 @@ export interface SeverityTableRow {
   id: number
   ageGroup: string
   mild: number
-  hospitalized: number
+  severe: number
   fatal: number
   confirmed: number
 }
