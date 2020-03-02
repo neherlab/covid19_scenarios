@@ -63,16 +63,16 @@ const allDefaults = Object.entries({
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: 'Age group' },
   { name: 'confirmed', title: 'Confirmed [% total]' },
-  { name: 'severe', title: 'Severe [% of total]' },
+  { name: 'severe', title: 'Severe [% of confirmed]' },
   { name: 'fatal', title: 'Fatal [% of severe]' },
 ]
 
 const severityDefaults: SeverityTableRow[] = [
   { id: 0, ageGroup: '0-9', confirmed: 100.0, severe: 1.0, fatal: 0.0 },
-  { id: 2, ageGroup: '10-19', confirmed: 30.0, severe: 3.0, fatal: 0.7},
-  { id: 4, ageGroup: '20-29', confirmed: 30.0, severe: 3.0, fatal: 0.7},
-  { id: 6, ageGroup: '30-39', confirmed: 30.0, severe: 3.0, fatal: 0.7},
-  { id: 8, ageGroup: '40-49', confirmed: 40.0, severe: 6.0, fatal: 0.7},
+  { id: 2, ageGroup: '10-19', confirmed: 30.0, severe: 3.0, fatal: 7},
+  { id: 4, ageGroup: '20-29', confirmed: 30.0, severe: 3.0, fatal: 7},
+  { id: 6, ageGroup: '30-39', confirmed: 30.0, severe: 3.0, fatal: 7},
+  { id: 8, ageGroup: '40-49', confirmed: 40.0, severe: 6.0, fatal: 7},
   { id: 10, ageGroup: '50-59', confirmed: 55.0, severe: 10.0, fatal: 13.0},
   { id: 12, ageGroup: '60-69', confirmed: 70.0, severe: 25.0, fatal: 14.4},
   { id: 14, ageGroup: '70-79', confirmed: 80.0, severe: 50.0, fatal: 16.0},

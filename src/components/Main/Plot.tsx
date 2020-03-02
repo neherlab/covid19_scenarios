@@ -69,7 +69,7 @@ export default function LinePlot({ data }: LinePlotProps) {
           mode: 'lines+markers',
           line: { color: '#FFDAC1', width: 2 },
           marker: { color: '#FFDAC1', size: 3 },
-          name: 'Hospitalized',
+          name: 'Severe',
         },
         {
           x: time,
