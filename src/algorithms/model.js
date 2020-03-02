@@ -30,10 +30,8 @@ export function infectionRate(time, params){
 export function populationAverageParameters(params, severity, ageCounts) {
   var pop = {...params};
   console.log(ageCounts, params);
-  pop.hospitalizedRate = 0;
   pop.recoveryRate = 0;
   pop.dischargeRate = 0;
-  pop.deathRate = 0;
   pop.avgInfectionRate = 0;
   pop.timeDeltaDays = 0.25;
   pop.timeDelta = msPerDay*pop.timeDeltaDays;
@@ -42,16 +40,18 @@ export function populationAverageParameters(params, severity, ageCounts) {
   var total = 0;
   severity.forEach(function(d) {total += ageCounts[d.ageGroup];});
   pop.ageDistribution = {};
+  var hospitalizedFrac = 0;
+  var fatalFrac = 0;
   severity.forEach(function(d) {
       const freq = (1.0*ageCounts[d.ageGroup]/total);
       pop.ageDistribution[d.ageGroup] = freq;
-      pop.hospitalizedRate += freq * d.severe / 100;
-      pop.deathRate += freq * d.fatal / 100;
+      hospitalizedFrac += freq * d.severe / 100;
+      fatalFrac += freq * d.fatal / 100;
   });
-  pop.recoveryRate = (1-pop.hospitalizedRate) / pop.infectiousPeriod;
-  pop.hospitalizedRate /= pop.infectiousPeriod;
-  pop.dischargeRate = (1-pop.deathRate) / pop.lengthHospitalStay;
-  pop.deathRate /= pop.lengthHospitalStay;
+  pop.recoveryRate = (1-hospitalizedFrac) / pop.infectiousPeriod;
+  pop.hospitalizedRate = hospitalizedFrac / pop.infectiousPeriod;
+  pop.dischargeRate = (1-fatalFrac) / pop.lengthHospitalStay;
+  pop.deathRate = fatalFrac/pop.lengthHospitalStay;
   pop.avgInfectionRate = pop.r0 / pop.infectiousPeriod;
 
   return pop;
