@@ -74,21 +74,22 @@ export function samplePoisson(lambda) {
 }
 
 // TODO: Allow a sampling function to be passed in as a parameter?
-export function evolve(prevState, P, sample) {
-    const newTime  = prevState["time"] + P.timeDelta;
-    const newCases = sample((P.importsPerDay + infectionRate(newTime,P)*prevState['susceptible']*prevState['infectious']/P.populationServed)*P.timeDeltaDays);
-    const newInfectious = sample(prevState['exposed']*P.timeDeltaDays/P.incubationTime);
-    const newRecovered  = sample(prevState['infectious']*P.timeDeltaDays*P.recoveryRate);
-    const newHospitalized = sample(prevState['infectious']*P.timeDeltaDays*P.hospitalizationRate);
-    const newDischarged   = sample(prevState['hospitalized']*P.timeDeltaDays*P.dischargeRate);
-    const newDead  = sample(prevState['hospitalized']*P.timeDeltaDays*P.deathRate);
-    const newState = {"time" : newTime,
-                      "susceptible" : prevState["susceptible"] - newCases,
-                      "exposed" : prevState["exposed"] - newInfectious + newCases,
-                      "infectious" : prevState["infectious"] + newInfectious - newRecovered - newHospitalized,
-                      "recovered" : prevState["recovered"] + newRecovered + newDischarged,
-                      "hospitalized" : prevState["hospitalized"] + newHospitalized - newDischarged - newDead,
-                      "dead" : prevState["dead"]+newDead,
+export function evolve(pop, P, sample) {
+    const newTime  = pop["time"] + P.timeDelta;
+    const newCases = sample((P.importsPerDay + infectionRate(newTime,P)*pop['susceptible']*pop['infectious']/P.populationServed)*P.timeDeltaDays);
+    const newInfectious = sample(pop['exposed']*P.timeDeltaDays/P.incubationTime);
+    const newRecovered  = sample(pop['infectious']*P.timeDeltaDays*P.recoveryRate);
+    const newHospitalized = sample(pop['infectious']*P.timeDeltaDays*P.hospitalizationRate);
+    const newDischarged   = sample(pop['hospitalized']*P.timeDeltaDays*P.dischargeRate);
+    const newDead = sample(pop['hospitalized']*P.timeDeltaDays*P.deathRate);
+    const newPop = {"time" : newTime,
+                    "susceptible" : pop["susceptible"] - newCases,
+                    "exposed" : pop["exposed"] - newInfectious + newCases,
+                    "infectious" : pop["infectious"] + newInfectious - newRecovered - newHospitalized,
+                    "recovered" : pop["recovered"] + newRecovered + newDischarged,
+                    "hospitalized" : pop["hospitalized"] + newHospitalized - newDischarged - newDead,
+                    "discharged" : pop["discharged"] + newDischarged,
+                    "dead" : pop["dead"]+newDead,
                     };
-    return newState;
+    return newPop;
 }

@@ -70,6 +70,7 @@ export default async function run(
                         "exposed" : 0,
                         "infectious" : initialCases,
                         "hospitalized" : 0,
+                        "discharged" : 0,
                         "recovered" : 0,
                         "dead" : 0};
   console.log("A", initialState);

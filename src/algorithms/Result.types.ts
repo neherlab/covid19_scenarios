@@ -4,6 +4,7 @@ export interface SimulationTimePoint {
   exposed: number,
   infectious: number,
   hospitalized: number,
+  discharged: number,
   dead: number
 };
 

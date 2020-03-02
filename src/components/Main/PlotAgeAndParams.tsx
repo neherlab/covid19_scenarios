@@ -25,10 +25,11 @@ export default function AgePlot( {data, rates}: SimProps ) {
   var probHospitalized = rates.map((x, i) => x.hospitalized * agesFrac[i]);
   Z = probHospitalized.reduce((a,b) => a + b, 0);
   probHospitalized = probHospitalized.map((x) => x / Z);
-  
+  console.log(probHospitalized);
 
   const totalDeaths = data.trajectory[data.trajectory.length-1].dead;
-  const totalHospitalized = data.trajectory.map(d => d.hospitalized).reduce((a,b)=>a+b, 0);
+  const totalHospitalized = data.trajectory[data.trajectory.length-1].discharged + totalDeaths;
+  console.log(totalHospitalized);
 
   const ageDeaths = probDeath.map(x => round(totalDeaths * x));
   const ageHospitalized = probHospitalized.map(x => round(totalHospitalized * x));
@@ -52,7 +53,7 @@ export default function AgePlot( {data, rates}: SimProps ) {
           type: 'bar',
           line: { color: '#C7CEEA', width: 2 },
           marker: { color: '#C7CEEA', size: 3 },
-          name: 'Distribuion of deaths',
+          name: 'Distribution of deaths',
         },
         {
           x: ages,
@@ -62,7 +63,7 @@ export default function AgePlot( {data, rates}: SimProps ) {
           type: 'bar',
           line: { color: '#FFDAC1', width: 2 },
           marker: { color: '#FFDAC1', size: 3 },
-          name: 'Distribuion of hospitalizations',
+          name: 'Distribution of hospitalizations',
         },
       ]}
       layout={{
