@@ -14,17 +14,17 @@ export default function PopTable( {result, rates}: TableProps) {
   const params = result.params;
 
   var deathFrac = 0;
-  var hospitalFrac = 0;
+  var severeFrac = 0;
   rates.forEach(function(d) {
       const freq = params.ageDistribution[d.ageGroup];
-      hospitalFrac += freq * d.hospitalized * d.confirmed / 100/ 100;
+      severeFrac += freq * d.severe * d.confirmed / 100/ 100;
       deathFrac += freq * d.fatal * d.confirmed / 100 / 100;
   });
-  var mildFrac = 1 - hospitalFrac - deathFrac;
+  var mildFrac = 1 - severeFrac - deathFrac;
 
   const forDisplay = ((x: number) => { return Number((100*x).toFixed(2)); });
   deathFrac = forDisplay(deathFrac);
-  hospitalFrac = forDisplay(hospitalFrac);
+  severeFrac = forDisplay(severeFrac);
   mildFrac = forDisplay(mildFrac);
 
   return (
@@ -40,7 +40,7 @@ export default function PopTable( {result, rates}: TableProps) {
             },
             cells: {
                 values: [["Mild", "Severe", "Death"],
-                         [mildFrac, hospitalFrac, deathFrac]],
+                         [mildFrac, severeFrac, deathFrac]],
                 line: {width: 1, color: "black"},
             },
             layout: {
