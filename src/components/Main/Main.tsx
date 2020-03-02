@@ -69,7 +69,7 @@ const columns: SeverityTableColumn[] = [
 ]
 
 const severityDefaults: SeverityTableRow[] = [
-  { id: 0, ageGroup: '0-9', mild: 99, severe: 1, fatal: 0, confirmed: 40 },
+  { id: 0, ageGroup: '0-9', mild: 99, severe: 1, fatal: 0, confirmed: 100 },
   { id: 2, ageGroup: '10-19', mild: 97, severe: 2.8, fatal: 0.2, confirmed: 30 },
   { id: 4, ageGroup: '20-29', mild: 97, severe: 2.8, fatal: 0.2, confirmed: 30 },
   { id: 6, ageGroup: '30-39', mild: 97, severe: 2.8, fatal: 0.2, confirmed: 30 },

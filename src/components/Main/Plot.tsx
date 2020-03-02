@@ -17,7 +17,7 @@ export default function LinePlot({ data }: LinePlotProps) {
   const susceptible = trajectory.map(x => Math.round(x.susceptible))
   const exposed = trajectory.map(x => Math.round(x.exposed))
   const infectious = trajectory.map(x => Math.round(x.infectious))
-  const severe = trajectory.map(x => Math.round(x.severe))
+  const hospitalized = trajectory.map(x => Math.round(x.hospitalized))
   const recovered = trajectory.map(x => Math.round(x.recovered))
   const dead = trajectory.map(x => Math.round(x.dead))
   const nHospitalBeds = data.params.populationServed*4.5/1000;
@@ -64,12 +64,12 @@ export default function LinePlot({ data }: LinePlotProps) {
         },
         {
           x: time,
-          y: severe,
+          y: hospitalized,
           type: 'scatter',
           mode: 'lines+markers',
           line: { color: '#FFDAC1', width: 2 },
           marker: { color: '#FFDAC1', size: 3 },
-          name: 'Severe',
+          name: 'Hospitalized',
         },
         {
           x: time,

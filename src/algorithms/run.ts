@@ -27,7 +27,7 @@ export default async function run(
                         "susceptible" : modelParams.populationServed - initialCases,
                         "exposed" : 0,
                         "infectious" : initialCases,
-                        "severe" : 0,
+                        "hospitalized" : 0,
                         "discharged" : 0,
                         "recovered" : 0,
                         "dead" : 0};

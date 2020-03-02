@@ -27,8 +27,8 @@ export default function AgePlot( {data, rates}: SimProps ) {
   probSevere = probSevere.map((x) => x / Z);
 
   const totalDeaths = data.trajectory[data.trajectory.length-1].dead;
-  const totalSevere = data.trajectory[data.trajectory.length-1].discharged + totalDeaths;
-  console.log("CFR", totalDeaths/totalSevere);
+  const totalSevere = data.trajectory[data.trajectory.length-1].discharged;
+  console.log("CFR", totalDeaths/(totalSevere+totalDeaths));
 
   const ageDeaths = probDeath.map(x => round(totalDeaths * x));
   const ageSevere = probSevere.map(x => round(totalSevere * x));
