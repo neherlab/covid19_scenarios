@@ -23,8 +23,7 @@ export default function AgePlot({ data }: LinePlotProps) {
         {
           x: ages,
           y: agesFrac,
-          type: 'scatter',
-          mode: 'lines+markers',
+          type: 'bar',
           line: { color: '#E2F0CB', width: 2 },
           marker: { color: '#E2F0CB', size: 3 },
           name: 'Age distribution',
