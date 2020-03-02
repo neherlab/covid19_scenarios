@@ -17,10 +17,10 @@ export default function AgePlot( {data, rates}: SimProps ) {
 
   const ages = Object.keys(params.ageDistribution).map(x => x);
   const agesFrac = ages.map(x => params.ageDistribution[x]);
+  const sevFrac = ages.map(x => params.infectionSeverityRatio[x]);
 
-  var probSevere = rates.map((x, i) => x.confirmed / 100 * x.severe / 100 * agesFrac[i]);
-  var Z = probSevere.reduce((a,b) => a + b, 0);
-  probSevere = probSevere.map((x) => x / Z);
+  let Z = sevFrac.reduce((a,b) => a + b, 0);
+  const probSevere = sevFrac.map((x) => x / Z);
 
   var probDeath = rates.map((x, i) => x.fatal / 100 * agesFrac[i]);
   probDeath = probDeath.map((x, i) => (x * probSevere[i]));
@@ -29,10 +29,16 @@ export default function AgePlot( {data, rates}: SimProps ) {
 
   const totalDeaths = data.trajectory[data.trajectory.length-1].dead;
   const totalSevere = data.trajectory[data.trajectory.length-1].discharged;
-  console.log("CFR conditional on hospital", totalDeaths/(totalSevere+totalDeaths) * 100);
+  const peakSevere = Math.max(...(data.trajectory.map( x => x.hospitalized)));
 
+
+  console.log("CFR conditional on hospital", totalDeaths/(totalSevere+totalDeaths) * 100);
+  console.log("peakSevere", peakSevere);
+  console.log(params.infectionSeverityRatio);
+  console.log(probSevere);
   const ageDeaths = probDeath.map(x => round(totalDeaths * x));
   const ageSevere = probSevere.map(x => round(totalSevere * x));
+  const agePeakSevere = probSevere.map(x => round(peakSevere * x));
 
   return (
     <Plot
@@ -53,7 +59,17 @@ export default function AgePlot( {data, rates}: SimProps ) {
           type: 'bar',
           line: { color: '#C7CEEA', width: 2 },
           marker: { color: '#C7CEEA', size: 3 },
-          name: 'Distribution of deaths',
+          name: 'total deaths',
+        },
+        {
+          x: ages,
+          y: agePeakSevere,
+          xaxis: 'x2',
+          yaxis: 'y2',
+          type: 'bar',
+          line: { color: '#DFFAC1', width: 2 },
+          marker: { color: '#DFFAC1', size: 3 },
+          name: 'peak hospitalizations',
         },
         {
           x: ages,
@@ -63,8 +79,8 @@ export default function AgePlot( {data, rates}: SimProps ) {
           type: 'bar',
           line: { color: '#FFDAC1', width: 2 },
           marker: { color: '#FFDAC1', size: 3 },
-          name: 'Distribution of hospitalizations',
-        },
+          name: 'total hospitalizations',
+        }
       ]}
       layout={{
         grid: {

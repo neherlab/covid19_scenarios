@@ -27,6 +27,9 @@ export default function PopTable( {result, rates}: TableProps) {
   deathFrac = forDisplay(deathFrac);
   severeFrac = forDisplay(severeFrac);
   mildFrac = forDisplay(mildFrac);
+  console.log(result);
+  const totalDeath = Math.round(result.trajectory[result.trajectory.length-1].dead);
+  const totalSevere = Math.round(result.trajectory[result.trajectory.length-1].discharged);
 
   return (
     <Plot
@@ -34,14 +37,14 @@ export default function PopTable( {result, rates}: TableProps) {
         {
             type: 'table',
             header: {
-                values: [["<b>Outcome</b>"], ["<b>Fraction of cases [%]</b>"]],
+                values: [["<b>Outcome</b>"], ["<b>Population summary</b>"]],
                 align: "center",
                 line: {width: 1, color: "black"},
                 fill: {color: "#E5E7E9"}
             },
             cells: {
-                values: [["Mild", "Severe", "Death"],
-                         [mildFrac, severeFrac, deathFrac]],
+                values: [["Mild [%]", "Severe [%]", "Death [%]", "Total death", "Total severe"],
+                         [mildFrac, severeFrac, deathFrac, totalDeath, totalSevere]],
                 line: {width: 1, color: "black"},
             },
             layout: {
