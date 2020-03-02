@@ -18,13 +18,14 @@ export default function AgePlot( {data, rates}: SimProps ) {
   const ages = Object.keys(params.ageDistribution).map(x => x);
   const agesFrac = ages.map(x => params.ageDistribution[x]);
 
-  var probSevere = rates.map((x, i) => x.severe * agesFrac[i]);
+  var probSevere = rates.map((x, i) => x.confirmed / 100 * x.severe / 100 * agesFrac[i]);
   var Z = probSevere.reduce((a,b) => a + b, 0);
   probSevere = probSevere.map((x) => x / Z);
 
-  var probDeath = rates.map((x, i) => x.fatal * agesFrac[i]);
+  var probDeath = rates.map((x, i) => x.fatal / 100 * agesFrac[i]);
+  probDeath = probDeath.map((x, i) => (x * probSevere[i]));
   Z = probDeath.reduce((a,b) => a + b, 0);
-  probDeath = probDeath.map((x, i) => (x * probSevere[i]) / Z);
+  probDeath = probDeath.map((x) => x / Z);
 
   const totalDeaths = data.trajectory[data.trajectory.length-1].dead;
   const totalSevere = data.trajectory[data.trajectory.length-1].discharged;
