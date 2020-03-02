@@ -145,7 +145,7 @@ function Main() {
                     <PopTable result={result} rates={severity}/>
                   </Col>
                   <Col>
-                    <AgePlot data={result} />
+                    <AgePlot data={result} rates={severity} />
                   </Col>
                 </Row>
               </CardBody>
