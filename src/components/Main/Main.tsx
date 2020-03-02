@@ -20,6 +20,7 @@ import SeverityTable, {
 import { CollapsibleCard } from './CollapsibleCard'
 import LinePlot from './Plot'
 import AgePlot from './PlotAgeAndParams'
+import PopTable from './PopAvgRates'
 
 import run from '../../algorithms/run'
 
@@ -139,6 +140,9 @@ function Main() {
                 <Row>
                   <Col>
                     <LinePlot data={result} />
+                  </Col>
+                  <Col>
+                    <PopTable result={result} rates={severity}/>
                   </Col>
                   <Col>
                     <AgePlot data={result} />

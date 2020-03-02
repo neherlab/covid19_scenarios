@@ -7,4 +7,18 @@ export interface SimulationTimePoint {
   dead: number
 };
 
-export type AlgorithmResult = SimulationTimePoint[];
+export interface ModelParams {
+  ageDistribution: Record<string, number>,
+  hospitalizationRate: number,
+  recoveryRate: number, 
+  dischargeRate: number, 
+  deathRate: number, 
+  avgInfectionRate: number, 
+  timeDeltaDays: number, 
+  timeDelta: number
+};
+
+export interface AlgorithmResult {
+    trajectory: SimulationTimePoint[],
+    params: ModelParams,
+}
