@@ -14,12 +14,12 @@ export default function LinePlot({ data }: LinePlotProps) {
   }
   const trajectory = data.trajectory;
   const time = trajectory.map(x => new Date(x.time))
-  const susceptible = trajectory.map(x => x.susceptible)
-  const exposed = trajectory.map(x => x.exposed)
-  const infectious = trajectory.map(x => x.infectious)
-  const hospitalized = trajectory.map(x => x.hospitalized)
-  const recovered = trajectory.map(x => x.recovered)
-  const dead = trajectory.map(x => x.dead)
+  const susceptible = trajectory.map(x => Math.round(x.susceptible))
+  const exposed = trajectory.map(x => Math.round(x.exposed))
+  const infectious = trajectory.map(x => Math.round(x.infectious))
+  const hospitalized = trajectory.map(x => Math.round(x.hospitalized))
+  const recovered = trajectory.map(x => Math.round(x.recovered))
+  const dead = trajectory.map(x => Math.round(x.dead))
 
   return (
     <Plot
