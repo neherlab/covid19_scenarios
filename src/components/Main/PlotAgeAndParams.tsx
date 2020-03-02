@@ -25,11 +25,9 @@ export default function AgePlot( {data, rates}: SimProps ) {
   var probHospitalized = rates.map((x, i) => x.hospitalized * agesFrac[i]);
   Z = probHospitalized.reduce((a,b) => a + b, 0);
   probHospitalized = probHospitalized.map((x) => x / Z);
-  console.log(probHospitalized);
 
   const totalDeaths = data.trajectory[data.trajectory.length-1].dead;
   const totalHospitalized = data.trajectory[data.trajectory.length-1].discharged + totalDeaths;
-  console.log(totalHospitalized);
 
   const ageDeaths = probDeath.map(x => round(totalDeaths * x));
   const ageHospitalized = probHospitalized.map(x => round(totalHospitalized * x));

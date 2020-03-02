@@ -45,7 +45,7 @@ export function populationAverageParameters(params, severity, ageCounts) {
   severity.forEach(function(d) {
       const freq = (1.0*ageCounts[d.ageGroup]/total);
       pop.ageDistribution[d.ageGroup] = freq;
-      pop.hospitalizationRate += freq * d.hospitalized * d.confirmed / 100 / 100;
+      pop.hospitalizationRate += freq * (d.hospitalized + d.fatal) * d.confirmed / 100 / 100;
       pop.deathRate += freq * d.fatal * d.confirmed / 100 / 100;
       pop.recoveryRate += freq * (d.mild / 100 + (1 - d.confirmed/100));
   });
@@ -92,4 +92,8 @@ export function evolve(pop, P, sample) {
                     "dead" : pop["dead"]+newDead,
                     };
     return newPop;
+}
+
+export function exportSimulation(trajectory) {
+
 }
