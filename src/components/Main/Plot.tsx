@@ -92,6 +92,25 @@ export default function LinePlot({ data }: LinePlotProps) {
         },
       ]}
       layout={{
+        updatemenus: [{
+            x: 0.1,
+            y: 1.1,
+            yanchor: 'top',
+            xanchor: 'left',
+            pad: {"r": 10, "t": 10},
+            bgcolor: "gray",
+            buttons: [
+            {
+                method: 'relayout',
+                label: "Linear",
+                args: {yaxis: { type: 'linear'} }
+            },
+            {
+                method: 'relayout',
+                label: "Log",
+                args: {yaxis: { type: 'log'} }
+            }]
+        }],
         title: 'Outbreak Trajectory',
         xaxis: {
           tickmode: 'linear',
@@ -101,7 +120,7 @@ export default function LinePlot({ data }: LinePlotProps) {
           // dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
         },
         yaxis: {
-          type: 'log'
+            type: 'log'
         }
       }}
     />

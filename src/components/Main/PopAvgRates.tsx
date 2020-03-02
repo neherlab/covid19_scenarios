@@ -42,6 +42,14 @@ export default function PopTable( {result, rates}: TableProps) {
                 values: [["Mild", "Hospitalized", "Death"],
                          [mildFrac, hospitalFrac, deathFrac]],
                 line: {width: 1, color: "black"},
+            },
+            layout: {
+                margin: {
+                    l: 0,
+                    r: 0,
+                    t: 0,
+                    b: 0
+                }
             }
         }
       ]}
