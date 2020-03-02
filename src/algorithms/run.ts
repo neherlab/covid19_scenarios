@@ -64,14 +64,15 @@ export default async function run(
   // const infectionRate = recoveryRate*R0;
   const modelParams = populationAverageParameters(params, severity, countryAgeDistribution[params["ageDistribution"]]);
   const time = Date.now();
+  const initialCases = parseFloat(params.suspectedCasesToday);
   const initialState = {"time" : time,
-                        "susceptible" : modelParams.populationServed-modelParams.suspectedCasesToday,
+                        "susceptible" : modelParams.populationServed - initialCases,
                         "exposed" : 0,
-                        "infectious" : modelParams.suspectedCasesToday,
+                        "infectious" : initialCases,
                         "hospitalized" : 0,
                         "recovered" : 0,
                         "dead" : 0};
-
+  console.log("A", initialState);
   const outbreakTrajectory = [initialState];
   const identity = function(x: Number) {return x;}; // Use instead of samplePoisson for a deterministic
   // const poisson = function(x: Number) {return random.poisson(x);}; // poisson sampling
