@@ -35,12 +35,11 @@ export default async function run(
   const outbreakTrajectory = [initialState];
   const identity = function(x: Number) {return x;}; // Use instead of samplePoisson for a deterministic
   const poisson = function(x: Number) {return x>0?random.poisson(x)():0;}; // poisson sampling
-  const poisson10 = function(x: Number) {return x>0?random.poisson(x/10)()*10:0;}; // poisson sampling
 
   const tMax = new Date(params.tMax);
   while (outbreakTrajectory[outbreakTrajectory.length-1].time < tMax){
     const prevState = outbreakTrajectory[outbreakTrajectory.length-1];
-    outbreakTrajectory.push(evolve(prevState, modelParams, poisson10));
+    outbreakTrajectory.push(evolve(prevState, modelParams, poisson));
   }
   return {trajectory:outbreakTrajectory, params:modelParams};
 }
