@@ -45,17 +45,14 @@ export function populationAverageParameters(params, severity, ageCounts) {
   severity.forEach(function(d) {
       const freq = (1.0*ageCounts[d.ageGroup]/total);
       pop.ageDistribution[d.ageGroup] = freq;
-      pop.hospitalizedRate += freq * (d.severe + d.fatal) * d.confirmed / 100 / 100;
-      pop.deathRate += freq * (d.fatal) / (d.fatal + d.severe);
-      pop.recoveryRate += freq * ((d.mild / 100) + (1 - d.confirmed/100));
+      pop.hospitalizedRate += freq * d.severe / 100;
+      pop.deathRate += freq * d.fatal / 100;
   });
-  pop.recoveryRate /= pop.infectiousPeriod;
+  pop.recoveryRate = (1-pop.hospitalizedRate) / pop.infectiousPeriod;
   pop.hospitalizedRate /= pop.infectiousPeriod;
-  pop.dischargeRate = (1-pop.deathRate)/pop.lengthHospitalStay;
-  pop.deathRate = pop.deathRate/pop.lengthHospitalStay;
-  pop.avgInfectionRate = pop.r0 * pop.recoveryRate;
-
-  console.log("POP", pop);
+  pop.dischargeRate = (1-pop.deathRate) / pop.lengthHospitalStay;
+  pop.deathRate /= pop.lengthHospitalStay;
+  pop.avgInfectionRate = pop.r0 / pop.infectiousPeriod;
 
   return pop;
 }
