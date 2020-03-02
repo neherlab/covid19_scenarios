@@ -64,7 +64,7 @@ const columns: SeverityTableColumn[] = [
   { name: 'mild', title: 'Mild [% of conf.]' },
   { name: 'hospitalized', title: 'Hospitalized [% of conf.]' },
   { name: 'fatal', title: 'Fatal [% of conf.]' },
-  { name: 'confirmed', title: 'confirmed [% total]' },
+  { name: 'confirmed', title: 'Confirmed [% total]' },
 ]
 
 const severityDefaults: SeverityTableRow[] = [

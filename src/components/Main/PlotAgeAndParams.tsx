@@ -32,8 +32,12 @@ export default function AgePlot({ data }: LinePlotProps) {
       layout={{
         title: 'Age distribution',
         xaxis: {
-          tickmode: 'linear'
+          tickmode: 'linear',
+          title: "Age group"
         },
+        yaxis: {
+            title: "Fraction of population"
+        }
       }}
     />
   )
