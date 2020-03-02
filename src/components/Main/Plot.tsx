@@ -20,10 +20,19 @@ export default function LinePlot({ data }: LinePlotProps) {
   const hospitalized = trajectory.map(x => Math.round(x.hospitalized))
   const recovered = trajectory.map(x => Math.round(x.recovered))
   const dead = trajectory.map(x => Math.round(x.dead))
+  const nHospitalBeds = data.params.populationServed*4.5/1000;
 
   return (
     <Plot
       data={[
+        {
+          x: [time[0], time[time.length -1]],
+          y: [nHospitalBeds, nHospitalBeds],
+          type: 'scatter',
+          mode: 'lines',
+          line: { color: '#CCCCCC', width: 3 },
+          name: 'Hospital Beds (OECD average)',
+        },
         {
           x: time,
           y: susceptible,

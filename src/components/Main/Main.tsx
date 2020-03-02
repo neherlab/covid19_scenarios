@@ -19,6 +19,7 @@ import SeverityTable, {
 
 import { CollapsibleCard } from './CollapsibleCard'
 import LinePlot from './Plot'
+import AgePlot from './PlotAgeAndParams'
 
 import run from '../../algorithms/run'
 
@@ -138,6 +139,9 @@ function Main() {
                 <Row>
                   <Col>
                     <LinePlot data={result} />
+                  </Col>
+                  <Col>
+                    <AgePlot data={result} />
                   </Col>
                 </Row>
               </CardBody>
