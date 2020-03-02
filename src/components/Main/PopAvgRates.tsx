@@ -17,7 +17,7 @@ export default function PopTable( {result, rates}: TableProps) {
   var severeFrac = 0;
   rates.forEach(function(d) {
       const freq = params.ageDistribution[d.ageGroup];
-      severeFrac += freq * d.severe / 100 * d.confirmed / 100;
+      severeFrac += freq * (d.severe / 100);
       deathFrac += freq * (d.fatal / 100);
   });
   deathFrac *= severeFrac;

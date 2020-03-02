@@ -39,6 +39,7 @@ export function populationAverageParameters(params, severity, ageCounts) {
   // Compute age-stratified parameters
   var total = 0;
   severity.forEach(function(d) {total += ageCounts[d.ageGroup];});
+
   pop.ageDistribution = {};
   var hospitalizedFrac = 0;
   var fatalFrac = 0;
