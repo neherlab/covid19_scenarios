@@ -22,16 +22,21 @@ export default function PopTable( {result, rates}: TableProps) {
   });
   var mildFrac = 1 - hospitalFrac - deathFrac;
 
+  const forDisplay = ((x: number) => { return Number((100*x).toFixed(2)); });
+  deathFrac = forDisplay(deathFrac);
+  hospitalFrac = forDisplay(hospitalFrac);
+  mildFrac = forDisplay(mildFrac);
+
   return (
     <Plot
       data={[
         {
             type: 'table',
             header: {
-                values: [["<b>Outcome</b>"], ["<b>Fraction of cases</b>"]],
+                values: [["<b>Outcome</b>"], ["<b>Fraction of cases [%]</b>"]],
                 align: "center",
                 line: {width: 1, color: "black"},
-                fill: {color: "grey"}
+                fill: {color: "#E5E7E9"}
             },
             cells: {
                 values: [["Mild", "Hospitalized", "Death"],
