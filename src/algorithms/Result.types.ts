@@ -11,6 +11,8 @@ export interface SimulationTimePoint {
 
 export interface ModelParams {
   ageDistribution: Record<string, number>,
+  infectionSeverityRatio: Record<string, number>,
+  infectionFatality: Record<string, number>,
   hospitalizedRate: number,
   recoveryRate: number, 
   dischargeRate: number, 
@@ -18,7 +20,7 @@ export interface ModelParams {
   avgInfectionRate: number, 
   timeDeltaDays: number, 
   timeDelta: number,
-  populationServed: number
+  populationServed: number,
 };
 
 export interface AlgorithmResult {
