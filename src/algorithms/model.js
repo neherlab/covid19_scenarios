@@ -29,10 +29,6 @@ export function infectionRate(time, params){
 
 export function populationAverageParameters(params, severity, ageCounts) {
   var pop = {...params};
-  console.log("All Parameters", params);
-  pop.recoveryRate = 0;
-  pop.dischargeRate = 0;
-  pop.avgInfectionRate = 0;
   pop.timeDeltaDays = 0.25;
   pop.timeDelta = msPerDay*pop.timeDeltaDays;
   pop.numberStochasticRuns = params.numberStochasticRuns
@@ -55,6 +51,7 @@ export function populationAverageParameters(params, severity, ageCounts) {
       hospitalizedFrac += freq * pop.infectionSeverityRatio[d.ageGroup];
       fatalFracHospitalized += freq * d.fatal / 100;
   });
+
   pop.recoveryRate = (1-hospitalizedFrac) / pop.infectiousPeriod;
   pop.hospitalizedRate = hospitalizedFrac / pop.infectiousPeriod;
   pop.dischargeRate = (1-fatalFracHospitalized) / pop.lengthHospitalStay;
