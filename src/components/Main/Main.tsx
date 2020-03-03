@@ -153,6 +153,12 @@ function Main() {
               </CardBody>
             </Card>
 
+            <FormGroup>
+              <Button type="button" color="secondary">
+                Export 
+              </Button>
+            </FormGroup>
+
           </Form>
         </Formik>
       </Col>
