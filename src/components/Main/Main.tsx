@@ -34,6 +34,7 @@ import {
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import { AlgorithmResult } from '../../algorithms/Result.types'
+import FormInput from './FormInput'
 
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
@@ -102,20 +103,14 @@ function Main() {
               <CardHeader>Main parameters</CardHeader>
               <CardBody>
                 {Object.entries(mainParams).map(([key, { name }]) => (
-                  <FormGroup key={key}>
-                    <label htmlFor={key}>{name}</label>
-                    <Field className="form-control" id={key} name={key} />
-                  </FormGroup>
+                  <FormInput key={key} id={key} label={name} />
                 ))}
               </CardBody>
             </Card>
 
             <CollapsibleCard title="Additional parameters">
               {Object.entries(additionalParams).map(([key, { name }]) => (
-                <FormGroup key={key}>
-                  <label htmlFor={key}>{name}</label>
-                  <Field className="form-control" id={key} name={key} />
-                </FormGroup>
+                <FormInput key={key} id={key} label={name} />
               ))}
             </CollapsibleCard>
 
