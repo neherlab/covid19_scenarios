@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './About.scss'
+import model from '../assets/img/model_sketch.svg.png'
 
 import LinkExternal from '../components/Router/LinkExternal'
 
@@ -10,41 +11,38 @@ const About: React.FC = () => {
       <h1 className="h1-about">{'About COVID-19 Scenarios'}</h1>
 
       <p>
-        {`In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking). Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.`}
+        {`This web application serves as a plannling tool for COVID-19 outbreaks in communities across the world.
+        It implements a simple SIR model with additional categories for exposed individuals that are not yet infectious,
+        severely sick people in need of hospitalization, and a fatal category.`}
       </p>
 
+      <h2>{'Basic assumptions'}</h2>
       <p>
-        {`Lorem ipsum, or lipsum as it is sometimes known, is dummy text used
-        in laying out print, graphic or web designs. The passage is attributed
-        to an unknown typesetter in the 15th century who is thought to have
-        scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in
-        a type specimen book. It usually begins with:`}
+        {`The model works as follows:`}
       </p>
-
+      <ul>
+        <li> susceptible individuals are exposed/infected through contact with infectious individuals. Each infectious individual causes on average R_<sub>0</sub> secondary infections while they are infectious.
+            Transmissibility of the virus could have seasonal variation which is parameterized with the parameter "seasonal forcing" (amplitude) and "peak month" (month of most efficient transmission).
+          </li>
+        <li> exposed individuals progress to a symptomatic/infectious state after an average incubation time</li>
+        <li> infectious individuals recover or progress to severe disease. The ratio of recovery to severe progression depends on the age distribution in the populations</li>
+        <li> severely sick individuals either recover or die. Again, this depends on the age distribution in the population </li>
+      </ul>
       <p>
-        {`The lorem ipsum text is typically a scrambled section of De finibus bonorum et malorum, a 1st-century BC Latin text by Cicero, with words altered, added, and removed to make it nonsensical, improper Latin.`}
+        The individual parameters of the model can all be changed to allow exploration of different scenari
+        Importantly, the simulation does not explicitly account for future containment measures. This might be added in the future, but for now you can reduce R<sub>0</sub> to explore the effects of infection control.
       </p>
-
+      <img alt="model" src={model} width={"900px"}/>
       <p>
-        {`A variation of the ordinary lorem ipsum text has been used in typesetting since the 1960s or earlier, when it was popularized by advertisements for Letraset transfer sheets. It was introduced to the information age in the mid-1980s by Aldus Corporation, which employed it in graphics and word-processing templates for its desktop publishing program PageMaker. Many popular word processors use this format as a placeholder. Some examples are Pages or Microsoft Word.`}
+        {`COVID-19 is much more severe in the elderly and proportion of elderly in a community is therefore an important determinant of the overall burden on the health care system and the death toll.
+        We collected age distributions for many countries from data provided by the UN and make those available as input parameters.
+        Furthermore, we use data provided by the epidemiology group by the `}
+        <LinkExternal url="http://weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51">{`Chinese CDC`}
+        </LinkExternal>{` to estimate the fraction of severe and fatal cases by age group.`}
       </p>
 
-      <h2>Example text</h2>
+      <h2>{'Team'}</h2>
 
-      <p>{`A common form of lorem ipsum reads:`}</p>
-
-      <blockquote className="blockquote">
-        <p>
-          {`"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."`}
-        </p>
-      </blockquote>
-
-      <p>
-        {'Source: '}
-        <LinkExternal url={'https://en.wikipedia.org/wiki/Lorem_ipsum'}>
-          https://en.wikipedia.org/wiki/Lorem_ipsum
-        </LinkExternal>
-      </p>
     </>
   )
 }
