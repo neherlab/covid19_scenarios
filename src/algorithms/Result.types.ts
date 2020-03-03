@@ -21,6 +21,7 @@ export interface ModelParams {
   timeDeltaDays: number, 
   timeDelta: number,
   populationServed: number,
+  numberStochasticRuns: number,
 };
 
 export interface AlgorithmResult {
