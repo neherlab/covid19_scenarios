@@ -27,9 +27,9 @@ export default function AgePlot( {data, rates}: SimProps ) {
   Z = probDeath.reduce((a,b) => a + b, 0);
   probDeath = probDeath.map((x) => x / Z);
 
-  const totalDeaths = data.trajectory[data.trajectory.length-1].dead;
-  const totalSevere = data.trajectory[data.trajectory.length-1].discharged;
-  const peakSevere = Math.max(...(data.trajectory.map( x => x.hospitalized)));
+  const totalDeaths = data.deterministicTrajectory[data.deterministicTrajectory.length-1].dead;
+  const totalSevere = data.deterministicTrajectory[data.deterministicTrajectory.length-1].discharged;
+  const peakSevere = Math.max(...(data.deterministicTrajectory.map( x => x.hospitalized)));
 
 
   console.log("CFR conditional on hospital", totalDeaths/(totalSevere+totalDeaths) * 100);
@@ -59,7 +59,7 @@ export default function AgePlot( {data, rates}: SimProps ) {
           type: 'bar',
           line: { color: '#C7CEEA', width: 2 },
           marker: { color: '#C7CEEA', size: 3 },
-          name: 'total deaths',
+          name: 'Total deaths',
         },
         {
           x: ages,
@@ -69,7 +69,7 @@ export default function AgePlot( {data, rates}: SimProps ) {
           type: 'bar',
           line: { color: '#DFFAC1', width: 2 },
           marker: { color: '#DFFAC1', size: 3 },
-          name: 'peak hospitalizations',
+          name: 'Peak hospitalizations',
         },
         {
           x: ages,
@@ -79,7 +79,7 @@ export default function AgePlot( {data, rates}: SimProps ) {
           type: 'bar',
           line: { color: '#FFDAC1', width: 2 },
           marker: { color: '#FFDAC1', size: 3 },
-          name: 'total hospitalizations',
+          name: 'Total hospitalizations',
         }
       ]}
       layout={{

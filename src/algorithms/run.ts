@@ -2,7 +2,7 @@ import random from 'random'
 import { CountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
 import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
-import { AlgorithmResult } from './Result.types'
+import { AlgorithmResult, SimulationTimePoint } from './Result.types'
 import { populationAverageParameters, evolve, samplePoisson} from "./model.js"
 
 
@@ -31,15 +31,30 @@ export default async function run(
                         "discharged" : 0,
                         "recovered" : 0,
                         "dead" : 0};
-  console.log("A", initialState);
-  const outbreakTrajectory = [initialState];
-  const identity = function(x: Number) {return x;}; // Use instead of samplePoisson for a deterministic
-  const poisson = function(x: Number) {return x>0?random.poisson(x)():0;}; // poisson sampling
-
   const tMax = new Date(params.tMax);
-  while (outbreakTrajectory[outbreakTrajectory.length-1].time < tMax){
-    const prevState = outbreakTrajectory[outbreakTrajectory.length-1];
-    outbreakTrajectory.push(evolve(prevState, modelParams, poisson));
+  const identity = function(x: number) {return x;}; // Use instead of samplePoisson for a deterministic
+  const poisson = function(x: number) {return x>0?random.poisson(x)():0;}; // poisson sampling
+
+
+  function simulate(initialState: SimulationTimePoint , func: (x: number) => number) {
+      const dynamics = [initialState];
+      while (dynamics[dynamics.length-1].time < tMax) {
+        const pop = dynamics[dynamics.length-1];
+        dynamics.push(evolve(pop, modelParams, func));
+      }
+
+      return dynamics;
   }
-  return {trajectory:outbreakTrajectory, params:modelParams};
+  
+  const sim: AlgorithmResult = {
+      "deterministicTrajectory": simulate(initialState, identity),
+      "stochasticTrajectories": [],
+      "params": modelParams
+  };
+
+  for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
+      sim.stochasticTrajectories.push(simulate(initialState, poisson));
+  }
+
+  return sim 
 }
