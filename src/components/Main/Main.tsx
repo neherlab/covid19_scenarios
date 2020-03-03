@@ -113,112 +113,121 @@ function Main() {
       <Col md={12}>
         <Formik initialValues={allDefaults} onSubmit={handleSubmit}>
           <Form className="form">
-            <Card>
-              <CardHeader>Main parameters</CardHeader>
-              <CardBody>
-                <FormSpinBox
-                  key="populationServed"
-                  id="populationServed"
-                  label="Population Served"
-                  step={1000}
-                />
-                <FormDropdown
-                  key="country"
-                  id="country"
-                  label="Age Distribution"
-                  values={countries}
-                  defaultValue={defaultCountry}
-                  onChange={country => setCountry(country)}
-                />
-                <FormSpinBox
-                  key="suspectedCasesToday"
-                  id="suspectedCasesToday"
-                  label="Suspected Cases Today"
-                  step={1}
-                />
-                <FormSpinBox
-                  key="importsPerDay"
-                  id="importsPerDay"
-                  label="Imports Per Day"
-                  step={1}
-                />
-                <FormInput key="tMax" id="tMax" label="Simulate until" />
-              </CardBody>
-            </Card>
+            <Row>
+              <Col md={4}>
+                <Card>
+                  <CardHeader>Main parameters</CardHeader>
+                  <CardBody>
+                    <FormSpinBox
+                      key="populationServed"
+                      id="populationServed"
+                      label="Population Served"
+                      step={1000}
+                    />
+                    <FormDropdown
+                      key="country"
+                      id="country"
+                      label="Age Distribution"
+                      values={countries}
+                      defaultValue={defaultCountry}
+                      onChange={country => setCountry(country)}
+                    />
+                    <FormSpinBox
+                      key="suspectedCasesToday"
+                      id="suspectedCasesToday"
+                      label="Suspected Cases Today"
+                      step={1}
+                    />
+                    <FormSpinBox
+                      key="importsPerDay"
+                      id="importsPerDay"
+                      label="Imports Per Day"
+                      step={1}
+                    />
+                    <FormInput key="tMax" id="tMax" label="Simulate until" />
+                  </CardBody>
+                </Card>
 
-            <CollapsibleCard title="Additional parameters">
-              <FormSpinBox key="r0" id="r0" label="R0" step={0.1} />
-              <FormSpinBox
-                key="incubationTime"
-                id="incubationTime"
-                label="Incubation Time [days]"
-                step={1}
-                min={0}
-              />
-              <FormSpinBox
-                key="infectiousPeriod"
-                id="infectiousPeriod"
-                label="Infectious Period [days]"
-                step={1}
-                min={0}
-              />
-              <FormSpinBox
-                key="lengthHospitalStay"
-                id="lengthHospitalStay"
-                label="Length of Hospital stay [days]"
-                step={1}
-                min={0}
-              />
-              <FormSpinBox
-                key="seasonalForcing"
-                id="seasonalForcing"
-                label="Seasonal Forcing"
-                step={0.1}
-                min={0}
-              />
-              <FormInput key="peakMonth" id="peakMonth" label="Peak Month" />
-            </CollapsibleCard>
+                <CollapsibleCard title="Additional parameters">
+                  <FormSpinBox key="r0" id="r0" label="R0" step={0.1} />
+                  <FormSpinBox
+                    key="incubationTime"
+                    id="incubationTime"
+                    label="Incubation Time [days]"
+                    step={1}
+                    min={0}
+                  />
+                  <FormSpinBox
+                    key="infectiousPeriod"
+                    id="infectiousPeriod"
+                    label="Infectious Period [days]"
+                    step={1}
+                    min={0}
+                  />
+                  <FormSpinBox
+                    key="lengthHospitalStay"
+                    id="lengthHospitalStay"
+                    label="Length of Hospital stay [days]"
+                    step={1}
+                    min={0}
+                  />
+                  <FormSpinBox
+                    key="seasonalForcing"
+                    id="seasonalForcing"
+                    label="Seasonal Forcing"
+                    step={0.1}
+                    min={0}
+                  />
+                  <FormInput
+                    key="peakMonth"
+                    id="peakMonth"
+                    label="Peak Month"
+                  />
+                </CollapsibleCard>
 
-            <CollapsibleCard title="Severity">
-              <SeverityTable
-                columns={columns}
-                rows={severity}
-                setRows={setSeverity}
-              />
-            </CollapsibleCard>
+                <CollapsibleCard title="Severity">
+                  <SeverityTable
+                    columns={columns}
+                    rows={severity}
+                    setRows={setSeverity}
+                  />
+                </CollapsibleCard>
 
-            <FormGroup>
-              <Button type="submit" color="primary">
-                Run
-              </Button>
-            </FormGroup>
+                <FormGroup>
+                  <Button type="submit" color="primary">
+                    Run
+                  </Button>
+                </FormGroup>
+              </Col>
 
-            <Card>
-              <CardHeader>Results</CardHeader>
-              <CardBody>
-                <Row>
-                  <Col>
-                    <DeterministicLinePlot data={result} />
-                  </Col>
-                  <Col>
-                    <StochasticLinePlot data={result} />
-                  </Col>
-                  <Col>
-                    <PopTable result={result} rates={severity}/>
-                  </Col>
-                  <Col>
-                    <AgePlot data={result} rates={severity} />
-                  </Col>
-                </Row>
-              </CardBody>
-            </Card>
+              <Col md={8}>
+                <Card>
+                  <CardHeader>Results</CardHeader>
+                  <CardBody>
+                    <Row>
+                      <Col>
+                        <DeterministicLinePlot data={result} />
+                      </Col>
+                      <Col>
+                        <StochasticLinePlot data={result} />
+                      </Col>
+                      <Col>
+                        <PopTable result={result} rates={severity} />
+                      </Col>
+                      <Col>
+                        <AgePlot data={result} rates={severity} />
+                      </Col>
+                    </Row>
+                  </CardBody>
+                </Card>
+              </Col>
 
-            <FormGroup>
-              <Button type="button" color="secondary">
-                Export
-              </Button>
-            </FormGroup>
-
+              <FormGroup>
+                <Button type="button" color="secondary">
+                  Export
+                </Button>
+              </FormGroup>
+            </Row>
           </Form>
         </Formik>
       </Col>
