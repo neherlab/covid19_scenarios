@@ -102,16 +102,53 @@ function Main() {
             <Card>
               <CardHeader>Main parameters</CardHeader>
               <CardBody>
-                {Object.entries(mainParams).map(([key, { name }]) => (
-                  <FormInput key={key} id={key} label={name} />
-                ))}
+                <FormInput
+                  key="populationServed"
+                  id="populationServed"
+                  label="Population Served"
+                />
+                <FormInput
+                  key="ageDistribution"
+                  id="ageDistribution"
+                  label="Age Distribution"
+                />
+                <FormInput
+                  key="suspectedCasesToday"
+                  id="suspectedCasesToday"
+                  label="Suspected Cases Today"
+                />
+                <FormInput
+                  key="importsPerDay"
+                  id="importsPerDay"
+                  label="Imports Per Day"
+                />
+                <FormInput key="tMax" id="tMax" label="Simulate until" />
               </CardBody>
             </Card>
 
             <CollapsibleCard title="Additional parameters">
-              {Object.entries(additionalParams).map(([key, { name }]) => (
-                <FormInput key={key} id={key} label={name} />
-              ))}
+              <FormInput key="r0" id="r0" label="R0" />
+              <FormInput
+                key="incubationTime"
+                id="incubationTime"
+                label="Incubation Time [days]"
+              />
+              <FormInput
+                key="infectiousPeriod"
+                id="infectiousPeriod"
+                label="Infectious Period [days]"
+              />
+              <FormInput
+                key="lengthHospitalStay"
+                id="lengthHospitalStay"
+                label="Length of Hospital stay [days]"
+              />
+              <FormInput
+                key="seasonalForcing"
+                id="seasonalForcing"
+                label="Seasonal Forcing"
+              />
+              <FormInput key="peakMonth" id="peakMonth" label="Peak Month" />
             </CollapsibleCard>
 
             <CollapsibleCard title="Severity">
