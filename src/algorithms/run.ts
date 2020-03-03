@@ -51,12 +51,13 @@ export default async function run(
       return dynamics.map(x => unpack(x));
   }
   
+  console.time('run');
   const sim: AlgorithmResult = {
       "deterministicTrajectory": simulate(initialState, poisson),
       "stochasticTrajectories": [],
       "params": modelParams
   };
-  console.log(sim["deterministicTrajectory"]);
+  console.timeEnd('run');
 
   // for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
   //     sim.stochasticTrajectories.push(simulate(initialState, poisson));
