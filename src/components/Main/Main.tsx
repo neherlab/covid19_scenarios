@@ -36,6 +36,7 @@ import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution
 import { AlgorithmResult } from '../../algorithms/Result.types'
 import FormInput from './FormInput'
 import FormDropdown from './FormDropdown'
+import FormSpinBox from './FormSpinBox'
 
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
@@ -115,10 +116,11 @@ function Main() {
             <Card>
               <CardHeader>Main parameters</CardHeader>
               <CardBody>
-                <FormInput
+                <FormSpinBox
                   key="populationServed"
                   id="populationServed"
                   label="Population Served"
+                  step={1000}
                 />
                 <FormDropdown
                   key="country"
@@ -128,41 +130,51 @@ function Main() {
                   defaultValue={defaultCountry}
                   onChange={country => setCountry(country)}
                 />
-                <FormInput
+                <FormSpinBox
                   key="suspectedCasesToday"
                   id="suspectedCasesToday"
                   label="Suspected Cases Today"
+                  step={1}
                 />
-                <FormInput
+                <FormSpinBox
                   key="importsPerDay"
                   id="importsPerDay"
                   label="Imports Per Day"
+                  step={1}
                 />
                 <FormInput key="tMax" id="tMax" label="Simulate until" />
               </CardBody>
             </Card>
 
             <CollapsibleCard title="Additional parameters">
-              <FormInput key="r0" id="r0" label="R0" />
-              <FormInput
+              <FormSpinBox key="r0" id="r0" label="R0" step={0.1} />
+              <FormSpinBox
                 key="incubationTime"
                 id="incubationTime"
                 label="Incubation Time [days]"
+                step={1}
+                min={0}
               />
-              <FormInput
+              <FormSpinBox
                 key="infectiousPeriod"
                 id="infectiousPeriod"
                 label="Infectious Period [days]"
+                step={1}
+                min={0}
               />
-              <FormInput
+              <FormSpinBox
                 key="lengthHospitalStay"
                 id="lengthHospitalStay"
                 label="Length of Hospital stay [days]"
+                step={1}
+                min={0}
               />
-              <FormInput
+              <FormSpinBox
                 key="seasonalForcing"
                 id="seasonalForcing"
                 label="Seasonal Forcing"
+                step={0.1}
+                min={0}
               />
               <FormInput key="peakMonth" id="peakMonth" label="Peak Month" />
             </CollapsibleCard>
