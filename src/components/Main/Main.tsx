@@ -50,6 +50,7 @@ const additionalParams: AdditionalParams = {
   lengthHospitalStay: { name: 'Length of Hospital stay [days]', defaultValue: 10 },
   seasonalForcing: { name: 'Seasonal Forcing', defaultValue: 0.2 },
   peakMonth: { name: 'Peak Month', defaultValue: Month.Jan },
+  numberStochasticRuns: { name: "Number of stochastic runs", defaultValue: 10 },
 }
 
 // Reduce default values into an object { key: defaultValue }

@@ -33,6 +33,7 @@ export interface AdditionalParams {
   lengthHospitalStay: Param<number>
   seasonalForcing: Param<number>
   peakMonth: Param<Month>
+  numberStochasticRuns: Param<number>
 }
 
 export interface AllParams {
