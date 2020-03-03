@@ -34,11 +34,11 @@ export default async function run(
   //                       "discharged" : 0,
   //                       "recovered" : 0,
   //                       "dead" : 0};
-  const initialState = {"time" : time, "state": initialPopulation(countryAgeDistribution)};
+  const initialState = {"time" : time, "state": initialPopulation(ageDistribution, initialCases, params.populationServed)};
 
   const tMax = new Date(params.tMax);
-  const identity = function(x: number) {return x;}; // Use instead of samplePoisson for a deterministic
-  const poisson = function(x: number) {return x>0?random.poisson(x)():0;}; // poisson sampling
+  const identity = function(x: number) {return x;}; 
+  const poisson = function(x: number) {return x>0?random.poisson(x)():0;}; 
 
 
   function simulate(initialState: SimulationTimePoint , func: (x: number) => number) {
@@ -48,14 +48,15 @@ export default async function run(
         dynamics.push(evolveAgent(pop, modelParams, func));
       }
 
-      return dynamics;
+      return dynamics.map(x => unpack(x));
   }
   
   const sim: AlgorithmResult = {
-      "deterministicTrajectory": simulate(initialState, identity),
+      "deterministicTrajectory": simulate(initialState, poisson),
       "stochasticTrajectories": [],
       "params": modelParams
   };
+  console.log(sim["deterministicTrajectory"]);
 
   // for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
   //     sim.stochasticTrajectories.push(simulate(initialState, poisson));
