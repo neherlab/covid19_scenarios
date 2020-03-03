@@ -4,10 +4,10 @@
 }
 
 .form-dropdown-item {
-  list-style: none;
   width: 100%;
-}
+  list-style: none;
 
-.form-dropdown-item.highlighted {
-  background-color: #8db0e6;
+  &.highlighted {
+    background-color: #8db0e6;
+  }
 }
