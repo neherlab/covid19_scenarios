@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Field, Form, Formik, FormikHelpers } from 'formik'
+import { Form, Formik, FormikHelpers } from 'formik'
 
 import {
   Button,
@@ -35,6 +35,7 @@ import countryAgeDistribution from '../../assets/data/country_age_distribution.j
 import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import { AlgorithmResult } from '../../algorithms/Result.types'
 import FormInput from './FormInput'
+import FormDropdown from './FormDropdown'
 
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
@@ -81,15 +82,27 @@ const severityDefaults: SeverityTableRow[] = [
   { id: 16, ageGroup: '80+', confirmed: 90.0, severe: 70.0, fatal: 20.0},
 ]
 
+const countries = Object.keys(countryAgeDistribution)
+
+const defaultCountry = 'Sweden'
+
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
+  const [country, setCountry] = useState<string>(defaultCountry)
 
   async function handleSubmit(
     params: AllParams,
     { setSubmitting }: FormikHelpers<AllParams>,
   ) {
-    const newResult = await run(params, severity, countryAgeDistribution)
+    // TODO: check the presence of the current counry
+    // TODO: type cast the json into something
+    const ageDistribution = countryAgeDistribution[country]
+    const newResult = await run(
+      { ...params, country },
+      severity,
+      ageDistribution,
+    )
     setResult(newResult)
     setSubmitting(false)
   }
@@ -107,10 +120,13 @@ function Main() {
                   id="populationServed"
                   label="Population Served"
                 />
-                <FormInput
-                  key="ageDistribution"
-                  id="ageDistribution"
+                <FormDropdown
+                  key="country"
+                  id="country"
                   label="Age Distribution"
+                  values={countries}
+                  defaultValue={defaultCountry}
+                  onChange={country => setCountry(country)}
                 />
                 <FormInput
                   key="suspectedCasesToday"
@@ -164,7 +180,7 @@ function Main() {
                 Run
               </Button>
             </FormGroup>
-            
+
             <Card>
               <CardHeader>Results</CardHeader>
               <CardBody>
@@ -187,7 +203,7 @@ function Main() {
 
             <FormGroup>
               <Button type="button" color="secondary">
-                Export 
+                Export
               </Button>
             </FormGroup>
 

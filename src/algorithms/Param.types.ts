@@ -38,7 +38,7 @@ export interface AdditionalParams {
 
 export interface AllParams {
   populationServed: number
-  ageDistribution: string
+  country: string
   suspectedCasesToday: number
   importsPerDay: number
   r0: number

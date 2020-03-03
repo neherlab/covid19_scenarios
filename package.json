@@ -51,6 +51,7 @@
     "bootstrap": "4.4.1",
     "connected-react-router": "6.6.1",
     "core-js": "3.6.4",
+    "downshift": "5.0.3",
     "formik": "2.1.4",
     "history": "4.10.1",
     "immer": "5.2.1",

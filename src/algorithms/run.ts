@@ -1,5 +1,5 @@
 import random from 'random'
-import { CountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
+import { CountryAgeDistribution, OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
 import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './Result.types'
@@ -14,13 +14,13 @@ import { populationAverageParameters, evolve, exportSimulation } from "./model.j
 export default async function run(
   params: AllParams,
   severity: SeverityTableRow[],
-  countryAgeDistribution: CountryAgeDistribution,
+  ageDistribution: OneCountryAgeDistribution,
 ): Promise<AlgorithmResult> {
   console.log(JSON.stringify({ params }, null, 2));
   // console.log(JSON.stringify({ severity }, null, 2))
   // console.log(JSON.stringify({ countryAgeDistribution }, null, 2))
 
-  const modelParams = populationAverageParameters(params, severity, countryAgeDistribution[params["ageDistribution"]]);
+  const modelParams = populationAverageParameters(params, severity, ageDistribution);
   const time = Date.now();
   const initialCases = parseFloat(params.suspectedCasesToday);
   const initialState = {"time" : time,
