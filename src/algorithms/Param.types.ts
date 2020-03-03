@@ -45,5 +45,6 @@ export interface AllParams {
   serialInterval: number
   seasonalForcing: number
   peakMonth: Month
+  numberStochasticRuns: number
   tMax: Param<string>
 }
