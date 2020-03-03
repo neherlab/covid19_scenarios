@@ -48,6 +48,10 @@ function newPopulation() {
     return new BigInt64Array(new ArrayBuffer(8 * index.length * 7));
 }
 
+export function initialPopulation(ageDistribution) {
+
+}
+
 // TODO: Implement super spreaders
 // TODO: Implement imports (how to stratify by age?)
 export function evolveAgent(pop, P, sample) {
@@ -84,4 +88,31 @@ export function evolveAgent(pop, P, sample) {
     }
 
     return {"state": newPop, "time": newTime};
+}
+
+export function unpack(pop) {
+    const at = (i, j) => j + index.length*i;
+
+    var summed = {
+        "time": pop["time"],
+        "susceptible": 0,
+        "exposed": 0,
+        "infectious": 0,
+        "recovered": 0,
+        "hospitalized": 0,
+        "discharged": 0,
+        "dead": 0,
+    }
+
+    for (let i = 0; i < index.length; i++) {
+        summed["susceptible"] += pop["state"][at(0, i)];
+        summed["exposed"] += pop["state"][at(1, i)];
+        summed["infectious"] += pop["state"][at(2, i)];
+        summed["recovered"] += pop["state"][at(3, i)];
+        summed["hospitalized"] += pop["state"][at(4, i)];
+        summed["discharged"] += pop["state"][at(5, i)];
+        summed["dead"] += pop["state"][at(6, i)];
+    }
+
+    return summed;
 }

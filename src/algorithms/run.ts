@@ -3,7 +3,8 @@ import { CountryAgeDistribution, OneCountryAgeDistribution } from '../assets/dat
 import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './Result.types'
-import { populationAverageParameters, evolve, exportSimulation } from "./model.js"
+// import { populationAverageParameters, evolve, exportSimulation } from "./model.js"
+import { populationParameters, evolveAgent, unpack} from "./agentmodel.js"
 
 
 /**
@@ -20,7 +21,9 @@ export default async function run(
   // console.log(JSON.stringify({ severity }, null, 2))
   // console.log(JSON.stringify({ countryAgeDistribution }, null, 2))
 
-  const modelParams = populationAverageParameters(params, severity, ageDistribution);
+  // const modelParams = populationAverageParameters(params, severity, countryAgeDistribution[params["ageDistribution"]]);
+    //
+  const modelParams = populationParameters(params, severity);
   const time = Date.now();
   const initialCases = parseFloat(params.suspectedCasesToday);
   const initialState = {"time" : time,
@@ -31,6 +34,7 @@ export default async function run(
                         "discharged" : 0,
                         "recovered" : 0,
                         "dead" : 0};
+
   const tMax = new Date(params.tMax);
   const identity = function(x: number) {return x;}; // Use instead of samplePoisson for a deterministic
   const poisson = function(x: number) {return x>0?random.poisson(x)():0;}; // poisson sampling
@@ -40,7 +44,7 @@ export default async function run(
       const dynamics = [initialState];
       while (dynamics[dynamics.length-1].time < tMax) {
         const pop = dynamics[dynamics.length-1];
-        dynamics.push(evolve(pop, modelParams, func));
+        dynamics.push(evolveAgent(pop, modelParams, func));
       }
 
       return dynamics;
@@ -52,9 +56,9 @@ export default async function run(
       "params": modelParams
   };
 
-  for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
-      sim.stochasticTrajectories.push(simulate(initialState, poisson));
-  }
+  // for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
+  //     sim.stochasticTrajectories.push(simulate(initialState, poisson));
+  // }
 
   return sim 
 }
