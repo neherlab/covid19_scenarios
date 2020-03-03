@@ -79,7 +79,7 @@ export function samplePoisson(lambda) {
 
 export function evolve(pop, P, sample) {
     const newTime  = pop["time"] + P.timeDelta;
-    const newCases = sample(P.importsPerDay) + sample(infectionRate(newTime,P)*pop['susceptible']*pop['infectious']/P.populationServed*P.timeDeltaDays);
+    const newCases = sample(P.importsPerDay*P.timeDeltaDays) + sample(infectionRate(newTime,P)*pop['susceptible']*pop['infectious']/P.populationServed*P.timeDeltaDays);
     const newInfectious = sample(pop['exposed']*P.timeDeltaDays/P.incubationTime);
     const newRecovered  = sample(pop['infectious']*P.timeDeltaDays*P.recoveryRate);
     const newHospitalized = sample(pop['infectious']*P.timeDeltaDays*P.hospitalizedRate);
