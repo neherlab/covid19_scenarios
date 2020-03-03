@@ -43,7 +43,7 @@ export default function PopTable( {result, rates}: TableProps) {
                 fill: {color: "#E5E7E9"}
             },
             cells: {
-                values: [["Mild [%]", "Severe [%]", "Death [%]", "Total death", "Total severe"],
+                values: [["Mild [%]", "Severe [%]", "Death [%]", "Total Dead", "Total severe cases"],
                          [mildFrac, severeFrac, deathFrac, totalDeath, totalSevere]],
                 line: {width: 1, color: "black"},
             },
