@@ -3,7 +3,7 @@ import { CountryAgeDistribution } from '../assets/data/CountryAgeDistribution.ty
 import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './Result.types'
-import { populationAverageParameters, evolve, samplePoisson} from "./model.js"
+import { populationAverageParameters, evolve, exportSimulation } from "./model.js"
 
 
 /**
@@ -51,6 +51,8 @@ export default async function run(
       "stochasticTrajectories": [],
       "params": modelParams
   };
+
+  exportSimulation(sim["deterministicTrajectory"]);
 
   for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
       sim.stochasticTrajectories.push(simulate(initialState, poisson));

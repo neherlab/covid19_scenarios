@@ -148,7 +148,7 @@ export function StochasticLinePlot({ data }: LinePlotProps) {
               x: time,
               y: Y,
               type: 'line',
-              opacity: 0.2,
+              opacity: 0.3,
               line: { color: color, width: 2 },
               marker: { color: color, size: 3 },
               legendgroup: category,

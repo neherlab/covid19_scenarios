@@ -77,7 +77,6 @@ export function samplePoisson(lambda) {
     return k - 1;
 }
 
-// TODO: Allow a sampling function to be passed in as a parameter?
 export function evolve(pop, P, sample) {
     const newTime  = pop["time"] + P.timeDelta;
     const newCases = sample((P.importsPerDay + infectionRate(newTime,P)*pop['susceptible']*pop['infectious']/P.populationServed)*P.timeDeltaDays);
@@ -99,5 +98,30 @@ export function evolve(pop, P, sample) {
 }
 
 export function exportSimulation(trajectory) {
+    // Store parameter values
+    
+    // Down sample trajectory to once a day.
+    // TODO: Make the down sampling interval a parameter
 
+    const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    function stringify(date) {
+        const d = date.getDay();
+        const m = date.getMonth();
+        const y = date.getYear();
+
+        return `${d} ${month[m]} ${y}`;
+    }
+
+    var csv = ["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"]; 
+    trajectory.forEach(function(d) {
+        const t = stringify(new Date(d.time));
+        if (t in pop) { return; }
+        csv.push(
+            `${math.round(d.susceptible)},${math.round(d.exposed)},${math.round(d.infectious)},${math.round(d.recovered)},${math.round(d.hospitalized)},${math.round(d.discharged)},${math.round(d.dead)}`
+        );
+    });
+
+    return csv.join('\n');
 }
