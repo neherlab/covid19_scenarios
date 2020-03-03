@@ -8,7 +8,7 @@ export interface LinePlotProps {
   data?: AlgorithmResult
 }
 
-export default function LinePlot({ data }: LinePlotProps) {
+export function DeterministicLinePlot({ data }: LinePlotProps) {
   if (!data) {
     return null
   }
@@ -111,7 +111,69 @@ export default function LinePlot({ data }: LinePlotProps) {
                 args: {yaxis: { type: 'log'} }
             }]
         }],
-        title: 'Outbreak Trajectory',
+        title: 'Deterministic Outbreak Trajectory',
+        xaxis: {
+          tickmode: 'linear',
+          tickformat: '%Y-%m-%d',
+          tickmode:'auto',
+          nticks:10
+          // dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
+        },
+        yaxis: {
+            type: 'log'
+        }
+      }}
+    />
+  )
+}
+
+export function StochasticLinePlot({ data }: LinePlotProps) {
+  if (!data) {
+    return null;
+  }
+  const trajectory = data.deterministicTrajectory;
+  const time = trajectory.map(x => new Date(x.time))
+  // const infectious = trajectory.map(x => Math.round(x.infectious))
+  // const dead = trajectory.map(x => Math.round(x.dead))
+    
+  // TODO: Explict with types here?
+  var traces = [];
+  var mean = time.map(() => 0);
+  data.stochasticTrajectories.forEach(function(d) {
+      const Y = d.map(x => Math.round(x.infectious));
+      mean = mean.map((x, i) => (x + Y[i]) );
+      traces.push(
+        {
+          x: time,
+          y: Y,
+          type: 'line',
+          opacity: 0.2,
+          line: { color: '#FF9AA2', width: 2 },
+          marker: { color: '#FF9AA2', size: 3 },
+          legendgroup: "Cases",
+          showlegend: false,
+          hoverinfo: 'skip',
+        }
+      );
+  });
+  mean = mean.map((x) => x / data.params.numberStochasticRuns);
+  traces.push(
+    {
+      x: time,
+      y: mean,
+      type: 'line',
+      line: { color: '#FF9AA2', width: 2 },
+      marker: { color: '#FF9AA2', size: 3 },
+      name: "Average number of cases",
+      legendgroup: "Cases",
+    }
+  )
+
+  return (
+    <Plot
+      data={traces}
+      layout={{
+        title: 'Stochastic Outbreak Trajectories',
         xaxis: {
           tickmode: 'linear',
           tickformat: '%Y-%m-%d',

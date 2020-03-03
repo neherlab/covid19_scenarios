@@ -56,5 +56,7 @@ export default async function run(
       sim.stochasticTrajectories.push(simulate(initialState, poisson));
   }
 
+  console.log("Stochastic", sim.stochasticTrajectories);
+
   return sim 
 }

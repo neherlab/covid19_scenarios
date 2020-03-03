@@ -18,7 +18,7 @@ import SeverityTable, {
 } from './SeverityTable'
 
 import { CollapsibleCard } from './CollapsibleCard'
-import LinePlot from './Plot'
+import { DeterministicLinePlot, StochasticLinePlot } from './Plot'
 import AgePlot from './PlotAgeAndParams'
 import PopTable from './PopAvgRates'
 
@@ -139,7 +139,10 @@ function Main() {
               <CardBody>
                 <Row>
                   <Col>
-                    <LinePlot data={result} />
+                    <DeterministicLinePlot data={result} />
+                  </Col>
+                  <Col>
+                    <StochasticLinePlot data={result} />
                   </Col>
                   <Col>
                     <PopTable result={result} rates={severity}/>
