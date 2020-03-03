@@ -4,7 +4,7 @@ import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './Result.types'
 // import { populationAverageParameters, evolve, exportSimulation } from "./model.js"
-import { populationParameters, evolveAgent, unpack} from "./agentmodel.js"
+import { populationParameters, evolveAgent, unpack, initialPopulation} from "./agentmodel.js"
 
 
 /**
@@ -26,14 +26,15 @@ export default async function run(
   const modelParams = populationParameters(params, severity);
   const time = Date.now();
   const initialCases = parseFloat(params.suspectedCasesToday);
-  const initialState = {"time" : time,
-                        "susceptible" : modelParams.populationServed - initialCases,
-                        "exposed" : 0,
-                        "infectious" : initialCases,
-                        "hospitalized" : 0,
-                        "discharged" : 0,
-                        "recovered" : 0,
-                        "dead" : 0};
+  // const initialState = {"time" : time,
+  //                       "susceptible" : modelParams.populationServed - initialCases,
+  //                       "exposed" : 0,
+  //                       "infectious" : initialCases,
+  //                       "hospitalized" : 0,
+  //                       "discharged" : 0,
+  //                       "recovered" : 0,
+  //                       "dead" : 0};
+  const initialState = {"time" : time, "state": initialPopulation(countryAgeDistribution)};
 
   const tMax = new Date(params.tMax);
   const identity = function(x: number) {return x;}; // Use instead of samplePoisson for a deterministic
