@@ -52,8 +52,6 @@ export default async function run(
       "params": modelParams
   };
 
-  exportSimulation(sim["deterministicTrajectory"]);
-
   for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
       sim.stochasticTrajectories.push(simulate(initialState, poisson));
   }

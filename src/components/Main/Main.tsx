@@ -90,7 +90,6 @@ function Main() {
   ) {
     const newResult = await run(params, severity, countryAgeDistribution)
     setResult(newResult)
-    // console.log(JSON.stringify({ result }, null, 2))
     setSubmitting(false)
   }
 
@@ -133,7 +132,7 @@ function Main() {
                 Run
               </Button>
             </FormGroup>
-
+            
             <Card>
               <CardHeader>Results</CardHeader>
               <CardBody>
@@ -153,6 +152,7 @@ function Main() {
                 </Row>
               </CardBody>
             </Card>
+
           </Form>
         </Formik>
       </Col>

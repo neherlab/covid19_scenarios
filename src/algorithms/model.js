@@ -115,9 +115,11 @@ export function exportSimulation(trajectory) {
     }
 
     var csv = ["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"]; 
+    var pop = {};
     trajectory.forEach(function(d) {
         const t = stringify(new Date(d.time));
         if (t in pop) { return; }
+        pop[t] = true;
         csv.push(
             `${math.round(d.susceptible)},${math.round(d.exposed)},${math.round(d.infectious)},${math.round(d.recovered)},${math.round(d.hospitalized)},${math.round(d.discharged)},${math.round(d.dead)}`
         );
