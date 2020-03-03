@@ -138,36 +138,47 @@ export function StochasticLinePlot({ data }: LinePlotProps) {
     
   // TODO: Explict with types here?
   var traces = [];
-  var mean = time.map(() => 0);
-  data.stochasticTrajectories.forEach(function(d) {
-      const Y = d.map(x => Math.round(x.infectious));
-      mean = mean.map((x, i) => (x + Y[i]) );
+  function add(data: AlgorithmResult, category: string, color: string, visible: string | Boolean) {
+      var mean = time.map(() => 0);
+      data.stochasticTrajectories.forEach(function(d) {
+          const Y = d.map(x => Math.round(x[category]));
+          mean = mean.map((x, i) => (x + Y[i]) );
+          traces.push(
+            {
+              x: time,
+              y: Y,
+              type: 'line',
+              opacity: 0.2,
+              line: { color: color, width: 2 },
+              marker: { color: color, size: 3 },
+              legendgroup: category,
+              showlegend: false,
+              hoverinfo: 'skip',
+              visible: visible,
+            }
+          );
+      });
+      mean = mean.map((x) => x / data.params.numberStochasticRuns);
       traces.push(
         {
           x: time,
-          y: Y,
+          y: mean,
           type: 'line',
-          opacity: 0.2,
-          line: { color: '#FF9AA2', width: 2 },
-          marker: { color: '#FF9AA2', size: 3 },
-          legendgroup: "Cases",
-          showlegend: false,
-          hoverinfo: 'skip',
+          line: { color: color, width: 2 },
+          marker: { color: color, size: 3 },
+          name: "Average number of " + category,
+          visible: visible,
+          legendgroup: category,
         }
-      );
-  });
-  mean = mean.map((x) => x / data.params.numberStochasticRuns);
-  traces.push(
-    {
-      x: time,
-      y: mean,
-      type: 'line',
-      line: { color: '#FF9AA2', width: 2 },
-      marker: { color: '#FF9AA2', size: 3 },
-      name: "Average number of cases",
-      legendgroup: "Cases",
-    }
-  )
+      )
+  }
+
+  add(data, "susceptible", "#E2F0CB", "legendonly");
+  add(data, "exposed", "#FFB7B2", "legendonly");
+  add(data, "infectious", "#FF9AA2", true);
+  add(data, "hospitalized", "#FFDAC1", true);
+  add(data, "recovered", "#B5EAD7", "legendonly");
+  add(data, "dead", "#C7CEEA", true);
 
   return (
     <Plot
