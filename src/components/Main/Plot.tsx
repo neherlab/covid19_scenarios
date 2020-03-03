@@ -12,7 +12,7 @@ export default function LinePlot({ data }: LinePlotProps) {
   if (!data) {
     return null
   }
-  const trajectory = data.trajectory;
+  const trajectory = data.deterministicTrajectory;
   const time = trajectory.map(x => new Date(x.time))
   const susceptible = trajectory.map(x => Math.round(x.susceptible))
   const exposed = trajectory.map(x => Math.round(x.exposed))

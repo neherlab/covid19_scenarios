@@ -22,6 +22,7 @@ export interface ModelParams {
 };
 
 export interface AlgorithmResult {
-    trajectory: SimulationTimePoint[],
+    deterministicTrajectory: SimulationTimePoint[],
+    stochasticTrajectories: SimulationTimePoint[][],
     params: ModelParams,
 }

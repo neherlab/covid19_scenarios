@@ -28,8 +28,8 @@ export default function PopTable( {result, rates}: TableProps) {
   severeFrac = forDisplay(severeFrac);
   mildFrac = forDisplay(mildFrac);
 
-  const totalDeath = Math.round(result.trajectory[result.trajectory.length-1].dead);
-  const totalSevere = Math.round(result.trajectory[result.trajectory.length-1].discharged);
+  const totalDeath = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].dead);
+  const totalSevere = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].discharged);
 
   return (
     <Plot
@@ -43,7 +43,7 @@ export default function PopTable( {result, rates}: TableProps) {
                 fill: {color: "#E5E7E9"}
             },
             cells: {
-                values: [["Mild [%]", "Severe [%]", "Death [%]", "Total Dead", "Total severe cases"],
+                values: [["Mild [%]", "Severe [%]", "Death [%]", "Total dead", "Total severe cases"],
                          [mildFrac, severeFrac, deathFrac, totalDeath, totalSevere]],
                 line: {width: 1, color: "black"},
             },
