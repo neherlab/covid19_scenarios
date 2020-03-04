@@ -124,39 +124,33 @@ function Main() {
                       title="Main parameters"
                       defaultCollapsed={false}
                     >
-                      <CardBody>
-                        <FormSpinBox
-                          key="populationServed"
-                          id="populationServed"
-                          label="Population Served"
-                          step={1000}
-                        />
-                        <FormDropdown
-                          key="country"
-                          id="country"
-                          label="Age Distribution"
-                          values={countries}
-                          defaultValue={defaultCountry}
-                          onChange={country => setCountry(country)}
-                        />
-                        <FormSpinBox
-                          key="suspectedCasesToday"
-                          id="suspectedCasesToday"
-                          label="Suspected Cases Today"
-                          step={1}
-                        />
-                        <FormSpinBox
-                          key="importsPerDay"
-                          id="importsPerDay"
-                          label="Imports Per Day"
-                          step={1}
-                        />
-                        <FormInput
-                          key="tMax"
-                          id="tMax"
-                          label="Simulate until"
-                        />
-                      </CardBody>
+                      <FormSpinBox
+                        key="populationServed"
+                        id="populationServed"
+                        label="Population Served"
+                        step={1000}
+                      />
+                      <FormDropdown
+                        key="country"
+                        id="country"
+                        label="Age Distribution"
+                        values={countries}
+                        defaultValue={defaultCountry}
+                        onChange={country => setCountry(country)}
+                      />
+                      <FormSpinBox
+                        key="suspectedCasesToday"
+                        id="suspectedCasesToday"
+                        label="Suspected Cases Today"
+                        step={1}
+                      />
+                      <FormSpinBox
+                        key="importsPerDay"
+                        id="importsPerDay"
+                        label="Imports Per Day"
+                        step={1}
+                      />
+                      <FormInput key="tMax" id="tMax" label="Simulate until" />
                     </CollapsibleCard>
 
                     <CollapsibleCard title="Additional parameters">
@@ -217,22 +211,20 @@ function Main() {
 
               <Col lg={8} xl={6}>
                 <CollapsibleCard title="Results" defaultCollapsed={false}>
-                  <CardBody>
-                    <Row>
-                      <Col>
-                        <DeterministicLinePlot data={result} />
-                      </Col>
-                      <Col>
-                        <StochasticLinePlot data={result} />
-                      </Col>
-                      <Col>
-                        <PopTable result={result} rates={severity} />
-                      </Col>
-                      <Col>
-                        <AgePlot data={result} rates={severity} />
-                      </Col>
-                    </Row>
-                  </CardBody>
+                  <Row>
+                    <Col>
+                      <DeterministicLinePlot data={result} />
+                    </Col>
+                    <Col>
+                      <StochasticLinePlot data={result} />
+                    </Col>
+                    <Col>
+                      <PopTable result={result} rates={severity} />
+                    </Col>
+                    <Col>
+                      <AgePlot data={result} rates={severity} />
+                    </Col>
+                  </Row>
                 </CollapsibleCard>
               </Col>
             </Row>
