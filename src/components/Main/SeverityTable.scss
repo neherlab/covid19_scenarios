@@ -1,0 +1,19 @@
+// HACK: find a way to override these styles without `!important`
+.dx-g-bs4-header-cell {
+  padding: 0 !important;
+  text-wrap: normal !important;
+  max-width: 30px !important;
+  text-align: center;
+}
+
+// HACK: find a way to override these styles without `!important`
+.dx-g-bs4-table-cell {
+  padding: 0 !important;
+  max-width: 30px !important;
+  text-align: right;
+}
+
+.table {
+  //max-width: 30px !important;
+  min-width: 100px !important;
+}

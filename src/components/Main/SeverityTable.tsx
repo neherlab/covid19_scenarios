@@ -15,6 +15,8 @@ import {
   TableInlineCellEditing,
 } from '@devexpress/dx-react-grid-bootstrap4'
 
+import './SeverityTable.scss'
+
 const getRowId = (row: Row) => row.id
 
 export interface FocusableCellProps extends TableBase.DataCellProps {
