@@ -69,9 +69,9 @@ const allDefaults = Object.entries({
 
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: 'Age group' },
-  { name: 'confirmed', title: 'Confirmed\n[% total]' },
-  { name: 'severe', title: 'Severe\n[% of confirmed]' },
-  { name: 'fatal', title: 'Fatal\n[% of severe]' },
+  { name: 'confirmed', title: 'Confirmed\n% total' },
+  { name: 'severe', title: 'Severe\n% of confirmed' },
+  { name: 'fatal', title: 'Fatal\n% of severe' },
 ]
 
 const severityDefaults: SeverityTableRow[] = [

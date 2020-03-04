@@ -24,13 +24,16 @@ export interface HeaderCellProps extends TableBase.DataCellProps {}
 export function HeaderCell({ column, ...restProps }: HeaderCellProps) {
   const { title } = column
   const content = title?.split('\n').map((line, i) => (
-    <p key="line" className={`p-0 m-0 text-center ${i !== 0 ? 'small' : ''}`}>
+    <p
+      key="line"
+      className={`p-0 m-0 text-center text-truncate ${i !== 0 ? 'small' : ''}`}
+    >
       {line}
     </p>
   ))
 
   return (
-    <td className="py-1 text-bold" colSpan={1}>
+    <td className="py-1 text-bold" colSpan={1} title={title}>
       {content}
     </td>
   )
