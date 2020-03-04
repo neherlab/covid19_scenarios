@@ -19,6 +19,23 @@ import './SeverityTable.scss'
 
 const getRowId = (row: Row) => row.id
 
+export interface HeaderCellProps extends TableBase.DataCellProps {}
+
+export function HeaderCell({ column, ...restProps }: HeaderCellProps) {
+  const { title } = column
+  const content = title?.split('\n').map((line, i) => (
+    <p key="line" className={`p-0 m-0 text-center ${i !== 0 ? 'small' : ''}`}>
+      {line}
+    </p>
+  ))
+
+  return (
+    <td className="py-1 text-bold" colSpan={1}>
+      {content}
+    </td>
+  )
+}
+
 export interface FocusableCellProps extends TableBase.DataCellProps {
   onClick?(): void
 }
@@ -85,7 +102,7 @@ function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
 
         <Table cellComponent={FocusableCell} />
 
-        <TableHeaderRow />
+        <TableHeaderRow cellComponent={HeaderCell} />
 
         <TableInlineCellEditing
           startEditAction={'click'}
