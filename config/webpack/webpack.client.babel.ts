@@ -236,7 +236,7 @@ export default {
         dirs: [],
       }),
 
-    !analyze && webpackStylelint(),
+    !disableLint && !analyze && webpackStylelint(),
 
     !disableLint &&
       !analyze &&
