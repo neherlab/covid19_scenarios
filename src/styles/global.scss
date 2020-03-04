@@ -68,3 +68,9 @@ p {
 .card-body {
   padding: 4px 6px;
 }
+
+// Always show spinbox arrows in Chrome
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  opacity: 1;
+}
