@@ -39,13 +39,44 @@ export function HeaderCell({ column, ...restProps }: HeaderCellProps) {
   )
 }
 
-export interface FocusableCellProps extends TableBase.DataCellProps {
+export interface FocusableCellProps extends TableInlineCellEditing.CellProps {
   onClick?(): void
 }
 
-const FocusableCell = ({ onClick, ...restProps }: FocusableCellProps) => (
-  <Table.Cell {...restProps} tabIndex={0} onFocus={onClick} />
-)
+export function FocusableCell({
+  column,
+  value,
+  tableRow,
+  tableColumn,
+  editingEnabled,
+  onValueChange,
+  row,
+  autoFocus,
+  onBlur,
+  onFocus,
+  onKeyDown,
+  ...restProps
+}: FocusableCellProps) {
+  return (
+    <td
+      className="dx-g-bs4-table-cell text-nowrap text-right"
+      {...restProps}
+    >
+      <input
+        type="text"
+        className="dx-g-bs4-table-cell w-100 align-right table-cell-input"
+        // readOnly={!editingEnabled}
+        value={value}
+        onChange={e => onValueChange(e.target.value)}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={autoFocus}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        onKeyDown={onKeyDown}
+      />
+    </td>
+  )
+}
 
 export interface SeverityTableRow {
   id: number
@@ -103,13 +134,14 @@ function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
       <Grid rows={rows} columns={columns} getRowId={getRowId}>
         <EditingState onCommitChanges={commitChanges} />
 
-        <Table cellComponent={FocusableCell} />
+        <Table />
 
         <TableHeaderRow cellComponent={HeaderCell} />
 
         <TableInlineCellEditing
           startEditAction={'click'}
           selectTextOnEditStart
+          cellComponent={FocusableCell}
         />
       </Grid>
     </div>
