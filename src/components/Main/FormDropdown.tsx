@@ -1,95 +1,42 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import Downshift from 'downshift'
+import Select from 'react-select'
 import { FormGroup } from 'reactstrap'
 
-import './FormDropdown.scss'
-
-export interface FormDropdownItem {
+export interface FormDropdownOption {
   value: string
+  label: string
 }
 
 export interface FormDropdownProps {
   id: string
   label: string
-  values: string[]
-  defaultValue: string
+  options: FormDropdownOption[]
+  defaultOption?: FormDropdownOption
   onChange(value: string): void
 }
 
 export default function FormDropdown({
   id,
   label,
-  values,
-  defaultValue,
+  options,
+  defaultOption,
   onChange,
 }: FormDropdownProps) {
-  const items = values.map(value => ({ value }))
-  const initialItem = { value: defaultValue }
-
   return (
-    <Downshift
-      onChange={(item: FormDropdownItem | null) =>
-        onChange(item?.value ?? defaultValue)
-      }
-      itemToString={item => item?.value ?? ''}
-      initialSelectedItem={initialItem}
-    >
-      {({
-        getInputProps,
-        getItemProps,
-        getLabelProps,
-        getMenuProps,
-        isOpen,
-        inputValue,
-        highlightedIndex,
-        selectedItem,
-        getRootProps,
-      }) => {
-        return (
-          <FormGroup>
-            <label {...getLabelProps()} htmlFor={id} className="form-text">
-              {label}
-            </label>
-
-            <div
-              {...getRootProps({}, { suppressRefError: true })}
-              className="form-dropdown-root"
-            >
-              <input
-                className="form-dropdown-input form-control"
-                {...getInputProps()}
-              />
-            </div>
-
-            <ul className="form-dropdown-list" {...getMenuProps()}>
-              {isOpen
-                ? items
-                    .filter(
-                      item => !inputValue || item.value.includes(inputValue),
-                    )
-                    .map((item, index) => {
-                      const highlighted =
-                        highlightedIndex === index ? 'highlighted' : ''
-
-                      return (
-                        <li
-                          {...getItemProps({
-                            key: item.value,
-                            index,
-                            item,
-                          })}
-                          className={`form-dropdown-item ${highlighted}`}
-                        >
-                          {item.value}
-                        </li>
-                      )
-                    })
-                : null}
-            </ul>
-          </FormGroup>
-        )
-      }}
-    </Downshift>
+    <FormGroup>
+      <label htmlFor={id}>{label}</label>
+      <Select
+        id={id}
+        name={id}
+        options={options}
+        defaultValue={defaultOption}
+        theme={theme => ({
+          ...theme,
+          borderRadius: 0,
+        })}
+        onChange={(option: FormDropdownOption) => onChange(option.value)}
+      />
+    </FormGroup>
   )
 }

@@ -87,8 +87,15 @@ const severityDefaults: SeverityTableRow[] = [
 ]
 
 const countries = Object.keys(countryAgeDistribution)
+const countryOptions = countries.map(country => ({
+  value: country,
+  label: country,
+}))
 
-const defaultCountry = 'Sweden'
+const defaultCountry = mainParams.ageDistribution.defaultValue
+const defaultCountryOption = countryOptions.find(
+  option => option.value === defaultCountry,
+)
 
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -134,8 +141,8 @@ function Main() {
                         key="country"
                         id="country"
                         label="Age Distribution"
-                        values={countries}
-                        defaultValue={defaultCountry}
+                        options={countryOptions}
+                        defaultOption={defaultCountryOption}
                         onChange={country => setCountry(country)}
                       />
                       <FormSpinBox

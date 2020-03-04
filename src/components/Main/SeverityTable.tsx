@@ -58,10 +58,7 @@ export function FocusableCell({
   ...restProps
 }: FocusableCellProps) {
   return (
-    <td
-      className="dx-g-bs4-table-cell text-nowrap text-right"
-      {...restProps}
-    >
+    <td className="dx-g-bs4-table-cell text-nowrap text-right" {...restProps}>
       <input
         type="text"
         className="dx-g-bs4-table-cell w-100 align-right table-cell-input"
