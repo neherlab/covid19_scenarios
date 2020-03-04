@@ -28,7 +28,7 @@ interface LayoutProps {
 
 function Layout({ location }: LayoutProps) {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row">
         <NavigationBar navLinks={links} />
       </div>
@@ -40,7 +40,7 @@ function Layout({ location }: LayoutProps) {
             classNames={transitionClassNames}
             timeout={transitionDuration}
           >
-            <main className="container absolute" role="main">
+            <main className="container-fluid absolute" role="main">
               <PageSwitcher
                 location={location}
                 routes={routes}
