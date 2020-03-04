@@ -20,8 +20,13 @@ export function CollapsibleCard({
   return (
     <Card>
       <CardHeader>
-        <Button type="button" color="default" onClick={toggle}>
-          <span style={{ marginRight: '5px' }}>
+        <Button
+          className="w-100 h-100 text-left"
+          type="button"
+          color="default"
+          onClick={toggle}
+        >
+          <span className="mr-2">
             {collapsed ? <FaPlusCircle /> : <FaMinusCircle />}
           </span>
           <span>{title}</span>
