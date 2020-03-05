@@ -23,6 +23,7 @@ import { CollapsibleCard } from './CollapsibleCard'
 import { DeterministicLinePlot, StochasticLinePlot } from './Plot'
 import AgePlot from './PlotAgeAndParams'
 import PopTable from './PopAvgRates'
+import ContainControl from './Containment'
 
 import run from '../../algorithms/run'
 
@@ -287,6 +288,17 @@ function Main() {
                             id="peakMonth"
                             label="Peak Month"
                           />
+                        </CollapsibleCard>
+                      </Col>
+                    </Row>
+
+                    <Row noGutters>
+                      <Col>
+                        <CollapsibleCard
+                          title="Strength of Containment"
+                          defaultCollapsed={true}
+                        >
+                          <ContainControl/>
                         </CollapsibleCard>
                       </Col>
                     </Row>
