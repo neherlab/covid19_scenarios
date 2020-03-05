@@ -84,7 +84,7 @@ const columns: SeverityTableColumn[] = [
 export function updateSeverityTable(severity: SeverityTableRow[]) {
   return severity.map(row => {
     const { confirmed, severe, fatal } = row
-    const totalFatal = (confirmed / 100) * (severe / 100) * (fatal / 100) * 100
+    const totalFatal = confirmed * severe * fatal * 1e-4
     return { ...row, totalFatal }
   })
 }
