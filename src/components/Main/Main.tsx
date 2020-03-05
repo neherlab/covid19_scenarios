@@ -238,8 +238,13 @@ function Main() {
                             label="Simulate until"
                           />
                         </CollapsibleCard>
+                      </Col>
 
-                        <CollapsibleCard title="Additional parameters">
+                      <Col xl={6}>
+                        <CollapsibleCard
+                          title="Additional parameters"
+                          defaultCollapsed={false}
+                        >
                           <FormSpinBox key="r0" id="r0" label="R0" step={0.1} />
                           <FormSpinBox
                             key="incubationTime"
@@ -284,8 +289,10 @@ function Main() {
                           />
                         </CollapsibleCard>
                       </Col>
+                    </Row>
 
-                      <Col xl={6}>
+                    <Row noGutters>
+                      <Col>
                         <CollapsibleCard
                           title="Severity"
                           defaultCollapsed={false}
