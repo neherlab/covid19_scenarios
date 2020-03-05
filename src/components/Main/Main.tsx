@@ -57,7 +57,7 @@ const additionalParams: AdditionalParams = {
     name: 'Length of Hospital stay [days]',
     defaultValue: 10,
   },
-  seasonalForcing: { name: 'Seasonal Forcing', defaultValue: 0.2 },
+  seasonalForcing: { name: 'Seasonal Forcing', defaultValue: 0.4 },
   peakMonth: { name: 'Peak Month', defaultValue: Month.Jan },
   numberStochasticRuns: { name: 'Number of stochastic runs', defaultValue: 10 },
 }
@@ -78,15 +78,15 @@ const columns: SeverityTableColumn[] = [
 ]
 
 const severityDefaults: SeverityTableRow[] = [
-  { id: 0, ageGroup: '0-9', confirmed: 100.0, severe: 1.0, fatal: 0.0 },
+  { id: 0, ageGroup: '0-9', confirmed: 30.0, severe: 1.0, fatal: 0.0 },
   { id: 2, ageGroup: '10-19', confirmed: 30.0, severe: 3.0, fatal: 7 },
   { id: 4, ageGroup: '20-29', confirmed: 30.0, severe: 3.0, fatal: 7 },
   { id: 6, ageGroup: '30-39', confirmed: 30.0, severe: 3.0, fatal: 7 },
   { id: 8, ageGroup: '40-49', confirmed: 40.0, severe: 6.0, fatal: 7 },
   { id: 10, ageGroup: '50-59', confirmed: 55.0, severe: 10.0, fatal: 13.0 },
   { id: 12, ageGroup: '60-69', confirmed: 70.0, severe: 25.0, fatal: 14.4 },
-  { id: 14, ageGroup: '70-79', confirmed: 80.0, severe: 50.0, fatal: 16.0 },
-  { id: 16, ageGroup: '80+', confirmed: 90.0, severe: 70.0, fatal: 20.0 },
+  { id: 14, ageGroup: '70-79', confirmed: 80.0, severe: 35.0, fatal: 20.0 },
+  { id: 16, ageGroup: '80+', confirmed: 90.0, severe: 50.0, fatal: 26.0 },
 ]
 
 const countries = Object.keys(countryAgeDistribution)
@@ -327,12 +327,6 @@ function Main() {
                     </CollapsibleCard>
                   </Col>
                 </Row>
-
-                <FormGroup>
-                  <Button type="button" color="secondary">
-                    Export
-                  </Button>
-                </FormGroup>
               </Form>
             )
           }}

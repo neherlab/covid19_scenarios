@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Field } from 'formik'
-import { FormGroup } from 'reactstrap'
+import { FormGroup, Col, Row } from 'reactstrap'
 
 export interface FormInputProps {
   id: string
@@ -11,8 +11,14 @@ export interface FormInputProps {
 export default function FormInput({ id, label }: FormInputProps) {
   return (
     <FormGroup>
+      <Row>
+      <Col xl={7}>
       <label htmlFor={id}>{label}</label>
+      </Col>
+      <Col xl={5}>
       <Field className="form-control" id={id} name={id} />
+      </Col>
+      </Row>
     </FormGroup>
   )
 }

@@ -33,31 +33,37 @@ export default function PopTable( {result, rates}: TableProps) {
   const peakSevere = Math.round(Math.max(...result.deterministicTrajectory.map( x => x.hospitalized )));
 
   return (
-    <Plot
-      data={[
-        {
-            type: 'table',
-            header: {
-                values: [["<b>Outcome</b>"], ["<b>Population summary</b>"]],
-                align: "center",
-                line: {width: 1, color: "black"},
-                fill: {color: "#E5E7E9"}
-            },
-            cells: {
-                values: [["Mild [%]", "Severe [%]", "Death [%]", "Total death", "Total severe cases", "Peak severe cases"],
-                         [mildFrac, severeFrac, deathFrac, totalDeath, totalSevere, peakSevere]],
-                line: {width: 1, color: "black"},
-            },
-            layout: {
-                margin: {
-                    l: 0,
-                    r: 0,
-                    t: 0,
-                    b: 0
-                }
-            }
-        }
-      ]}
-    />
+    <>
+    <table>
+    <tr>
+      <th>Outcome or Value &emsp; </th>
+      <th>Population average</th>
+    </tr>
+    <tr>
+      <td>Mild [%]: </td>
+      <td>{mildFrac}</td>
+    </tr>
+    <tr>
+      <td>severe [%]: </td>
+      <td>{severeFrac}</td>
+    </tr>
+    <tr>
+      <td>Fatal [%]: </td>
+      <td>{deathFrac}</td>
+    </tr>
+    <tr>
+      <td>Total death: </td>
+      <td>{totalDeath}</td>
+    </tr>
+    <tr>
+      <td>Total severe: </td>
+      <td>{totalSevere}</td>
+    </tr>
+    <tr>
+      <td>Peak severe: </td>
+      <td>{peakSevere}</td>
+    </tr>
+    </table>
+    </>
   )
 }

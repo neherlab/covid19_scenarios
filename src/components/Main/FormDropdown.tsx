@@ -1,7 +1,8 @@
 import React from 'react'
 
 import Select from 'react-select'
-import { FormGroup } from 'reactstrap'
+import Downshift from 'downshift'
+import { FormGroup, Col, Row } from 'reactstrap'
 
 export interface FormDropdownOption {
   value: string
@@ -25,7 +26,11 @@ export default function FormDropdown({
 }: FormDropdownProps) {
   return (
     <FormGroup>
+      <Row>
+      <Col xl={7}>
       <label htmlFor={id}>{label}</label>
+      </Col>
+      <Col xl={5}>
       <Select
         id={id}
         name={id}
@@ -37,6 +42,8 @@ export default function FormDropdown({
         })}
         onChange={(option: FormDropdownOption) => onChange(option.value)}
       />
+      </Col>
+      </Row>
     </FormGroup>
   )
 }

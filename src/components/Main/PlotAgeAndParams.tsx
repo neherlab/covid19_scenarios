@@ -92,7 +92,8 @@ export default function AgePlot( {data, rates}: SimProps ) {
           tickmode: 'linear',
         },
         yaxis: {
-            title: "Fraction of population"
+            title: "Fraction of population",
+            ymax: 0.25
         },
         xaxis2: {
             tickmode: 'linear',
