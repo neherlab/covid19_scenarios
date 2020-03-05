@@ -25,7 +25,7 @@ export function HeaderCell({ column, ...restProps }: HeaderCellProps) {
   const { title } = column
   const content = title?.split('\n').map((line, i) => (
     <p
-      key="line"
+      key={`line ${i}: ${line}`}
       className={`p-0 m-0 text-center text-truncate ${i !== 0 ? 'small' : ''}`}
     >
       {line}
