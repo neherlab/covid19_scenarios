@@ -115,6 +115,8 @@ const defaultCountryOption = countryOptions.find(
   option => option.value === defaultCountry,
 )
 
+const defaultMaxTime = mainParams.tMax.defaultValue;
+
 const schema = yup.object().shape({
   ageDistribution: yup
     .string()
@@ -164,6 +166,10 @@ function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [country, setCountry] = useState<string>(defaultCountry)
   const [logScale, setLogScale] = useState<boolean>(true)
+  const [maxTime, setMaxTime] = useState<string>(defaultMaxTime)
+
+  const now = new Date(Date.now());
+  const nowTime = now.getUTCFullYear() + "-" + String(now.getMonth()+1).padStart(2, "0") + "-" + String(now.getDate()).padStart(2, "0");
 
   async function handleSubmit(
     params: AllParams,
@@ -237,6 +243,7 @@ function Main() {
                             key="tMax"
                             id="tMax"
                             label="Simulate until"
+                            onChange={maxTime => setMaxTime(maxTime)}
                           />
                         </CollapsibleCard>
                       </Col>
@@ -298,7 +305,7 @@ function Main() {
                           title="Strength of Containment"
                           defaultCollapsed={true}
                         >
-                          <ContainControl/>
+                          <ContainControl nowTime={nowTime} maxTime={maxTime} />
                         </CollapsibleCard>
                       </Col>
                     </Row>

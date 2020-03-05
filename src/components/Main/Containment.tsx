@@ -11,11 +11,29 @@ var n = 10;
 // *****************************************************
 
 class Graph extends React.Component {
+  constructor(props) {
+      super(props);
+
+      this.state = {
+          now: new Date(props.nowTime),
+          max: new Date(props.maxTime),
+          data: {}
+      };
+
+      console.log("Building graph with state", this.state);
+  }
+
   componentDidMount() {
-      var data = d3.range(n).map(function(_) { return {"y": d3.randomUniform(1)() } });
+      var margin = {top: 50, right: 50, bottom: 75, left: 50}
 
-      var margin = {top: 50, right: 50, bottom: 50, left: 50}
+      var tScale = d3.scaleTime()
+                     .domain([this.state.now, this.state.max])
+                     .range([0, width-margin.right-margin.left]);
 
+      const d = (this.state.max-this.state.now)/(n);
+      var dates = d3.range(Number(this.state.now), Number(this.state.max) + d, d);
+      dates = dates.map((d) => new Date(d));
+                
       var xScale = d3.scaleLinear()
                      .domain([0, n-1]) 
                      .range([0, width-margin.right-margin.left]);
@@ -24,7 +42,9 @@ class Graph extends React.Component {
                      .domain([0, 1])
                      .range([height-margin.top-margin.bottom, 0]);
 
-      console.log(ReactDOM.findDOMNode(this.refs.graph));
+      var data = d3.range(n).map(function(_, i) { return {"y": d3.randomUniform(1)(), "t": dates[i]} });
+      console.log("Data", data);
+
       this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph))
                        .attr("width", width)
                        .attr("height", height)
@@ -33,7 +53,7 @@ class Graph extends React.Component {
 
 
       var drawLine = d3.line()
-                       .x(function(_, i) { return xScale(i); })
+                       .x(function(d) { return tScale(d.t); })
                        .y(function(d) { return yScale(d.y); })
                        .curve(d3.curveMonotoneX);
 
@@ -72,15 +92,22 @@ class Graph extends React.Component {
       this.d3Graph.append("g")
           .attr("class", "x-axis")
           .attr("transform", "translate(0," + (height - margin.bottom - margin.top) + ")")
-          .call(d3.axisBottom(xScale)); 
+          .call(d3.axisBottom(tScale)
+                  .tickFormat(d3.timeFormat("%Y-%m-%d"))
+          ) 
+          .selectAll("text")	
+          .style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", "rotate(-65)");
 
       // text label for the x axis
-      this.d3Graph.append("text")             
-          .attr("transform",
-            "translate(" + (width/2-50) + " ," + 
-                           (height - margin.top - margin.bottom + 35) + ")")
-          .style("text-anchor", "middle")
-          .text("Date");
+      // this.d3Graph.append("text")             
+      //     .attr("transform",
+      //       "translate(" + (width/2-50) + " ," + 
+      //                      (height - margin.top - margin.bottom + 35) + ")")
+      //     .style("text-anchor", "middle")
+      //     .text("Date");
     
      // Y axis
      this.d3Graph.append("g")
@@ -100,7 +127,7 @@ class Graph extends React.Component {
           .data(data)
           .enter().append("circle") 
           .attr("class", "dot")
-          .attr("cx", function(_, i) { return xScale(i); })
+          .attr("cx", function(d) { return tScale(d.t); })
           .attr("cy", function(d) { return yScale(d.y); })
           .attr("r", 5);
 
@@ -111,14 +138,14 @@ class Graph extends React.Component {
                     .attr("fill", "#ffab00")
                     .attr("r", 7);
                 Root.append("path")
-                    .datum([{y: 0}, {y: height}])
+                    .datum([{y: 0, t: d.t}, {y: height, t: d.t}])
                     .attr("class", "temp-line")
                     .attr("stroke", "black")
                     .attr("stroke-width", 2)
                     .attr("opacity", .2)
                     .style("stroke-dasharray", ("3, 3"))
                     .attr("d", d3.line()
-                                 .x(function() {return xScale(i); })
+                                 .x(function(d) {return tScale(d.t); })
                                  .y(function(d) {return yScale(d.y);})
                                  .curve(d3.curveMonotoneX)
                     );
@@ -130,7 +157,7 @@ class Graph extends React.Component {
                 Root.select(".temp-line").remove();
          })
         .call(d3.drag()
-              .subject((d, i) => ({x: xScale(i), y:yScale(d.y)}))
+              .subject((d) => ({x: tScale(d.t), y:yScale(d.y)}))
               .on('start', started)
               .on('drag', dragged)
               .on('end', ended)
@@ -150,7 +177,7 @@ export default class ContainControl extends React.Component {
   render() {
     return (
         <div>
-            <Graph/>
+            <Graph nowTime={this.props.nowTime} maxTime={this.props.maxTime}/>
         </div>
     );
   }
