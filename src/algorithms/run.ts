@@ -6,6 +6,13 @@ import { AlgorithmResult, SimulationTimePoint } from './Result.types'
 import { populationAverageParameters, evolve, exportSimulation } from "./model.js"
 
 
+interface timePoint {
+    t: Date,
+    y: number,
+}
+
+type timeSeries = timePoint[];
+
 /**
  *
  * Entry point for the algorithm
@@ -15,10 +22,13 @@ export default async function run(
   params: AllParams,
   severity: SeverityTableRow[],
   ageDistribution: OneCountryAgeDistribution,
+  containment: timeSeries,
 ): Promise<AlgorithmResult> {
   console.log(JSON.stringify({ params }, null, 2));
   // console.log(JSON.stringify({ severity }, null, 2))
   // console.log(JSON.stringify({ countryAgeDistribution }, null, 2))
+
+  console.log("Containment", containment);
 
   const modelParams = populationAverageParameters(params, severity, ageDistribution);
   const time = Date.now();

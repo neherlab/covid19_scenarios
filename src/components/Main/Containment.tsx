@@ -14,11 +14,22 @@ class Graph extends React.Component {
   constructor(props) {
       super(props);
 
+
       this.state = {
           now: new Date(props.nowTime),
           max: new Date(props.maxTime),
-          data: {}
+          data: this.props.data,
       };
+
+      console.log(props.data);
+
+      const d = (this.state.max-this.state.now)/(n);
+      var dates = d3.range(Number(this.state.now), Number(this.state.max) + d, d);
+      dates = dates.map((d) => new Date(d));
+
+      for (let i = 0; i < n; i++) {
+          this.state.data.push({"y": 0, "t": dates[i]});
+      }
 
       console.log("Building graph with state", this.state);
   }
@@ -30,20 +41,9 @@ class Graph extends React.Component {
                      .domain([this.state.now, this.state.max])
                      .range([0, width-margin.right-margin.left]);
 
-      const d = (this.state.max-this.state.now)/(n);
-      var dates = d3.range(Number(this.state.now), Number(this.state.max) + d, d);
-      dates = dates.map((d) => new Date(d));
-                
-      var xScale = d3.scaleLinear()
-                     .domain([0, n-1]) 
-                     .range([0, width-margin.right-margin.left]);
-
       var yScale = d3.scaleLinear()
                      .domain([0, 1])
                      .range([height-margin.top-margin.bottom, 0]);
-
-      var data = d3.range(n).map(function(_, i) { return {"y": d3.randomUniform(1)(), "t": dates[i]} });
-      console.log("Data", data);
 
       this.d3Graph = d3.select(ReactDOM.findDOMNode(this.refs.graph))
                        .attr("width", width)
@@ -70,7 +70,7 @@ class Graph extends React.Component {
 
           d3.select(n[i]).attr("cy", yScale(d.y));
 
-          data[i].y = d.y;
+          this.state.data[i].y = d.y;
           d3.select(ReactDOM.findDOMNode(this.refs.graph))
              .select(".line-graph")
              .attr("d", drawLine);
@@ -81,7 +81,7 @@ class Graph extends React.Component {
       }
 
      this.d3Graph.append("path")
-         .datum(data)
+         .datum(this.state.data)
          .attr("class", "line-graph")
          .attr("fill", "none")
          .attr("stroke", "#ffab00")
@@ -124,7 +124,7 @@ class Graph extends React.Component {
           .text("Containment effect");
 
     this.d3Graph.selectAll(".dot")
-          .data(data)
+          .data(this.state.data)
           .enter().append("circle") 
           .attr("class", "dot")
           .attr("cx", function(d) { return tScale(d.t); })
@@ -177,7 +177,7 @@ export default class ContainControl extends React.Component {
   render() {
     return (
         <div>
-            <Graph nowTime={this.props.nowTime} maxTime={this.props.maxTime}/>
+            <Graph data={this.props.data} nowTime={this.props.nowTime} maxTime={this.props.maxTime} />
         </div>
     );
   }

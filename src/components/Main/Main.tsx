@@ -161,6 +161,8 @@ const schema = yup.object().shape({
   // tMax: yup.string().required('Required'),
 })
 
+var d3Ptr = [];
+
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
@@ -182,6 +184,7 @@ function Main() {
       { ...params, country },
       severity,
       ageDistribution,
+      d3Ptr,
     )
 
     setResult(newResult)
@@ -305,7 +308,7 @@ function Main() {
                           title="Strength of Containment"
                           defaultCollapsed={true}
                         >
-                          <ContainControl nowTime={nowTime} maxTime={maxTime} />
+                        <ContainControl data={d3Ptr} nowTime={nowTime} maxTime={maxTime}/>
                         </CollapsibleCard>
                       </Col>
                     </Row>
