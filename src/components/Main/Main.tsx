@@ -158,9 +158,9 @@ const severityDefaults: SeverityTableRow[] = updateSeverityTable([
   { id: 6, ageGroup: '30-39', confirmed: 30.0, severe: 3.0,  critical: 15, fatal: 30 },
   { id: 8, ageGroup: '40-49', confirmed: 40.0, severe: 6.0,  critical: 20, fatal: 30 },
   { id: 10, ageGroup: '50-59', confirmed: 55.0,severe: 10.0, critical: 25, fatal: 40 },
-  { id: 12, ageGroup: '60-69', confirmed: 70.0,severe: 25.0, critical: 30, fatal: 40 },
-  { id: 14, ageGroup: '70-79', confirmed: 80.0,severe: 35.0, critical: 40, fatal: 50 },
-  { id: 16, ageGroup: '80+', confirmed: 90.0,  severe: 50.0, critical: 50, fatal: 50 },
+  { id: 12, ageGroup: '60-69', confirmed: 70.0,severe: 25.0, critical: 35, fatal: 40 },
+  { id: 14, ageGroup: '70-79', confirmed: 80.0,severe: 35.0, critical: 45, fatal: 50 },
+  { id: 16, ageGroup: '80+', confirmed: 90.0,  severe: 50.0, critical: 55, fatal: 50 },
 ])
 
 const countries = Object.keys(countryAgeDistribution)
