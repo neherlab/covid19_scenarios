@@ -89,7 +89,7 @@ export function updateSeverityTable(severity: SeverityTableRow[]) {
   })
 }
 
-const severityDefaults: SeverityTableRow[] = [
+const severityDefaults: SeverityTableRow[] = updateSeverityTable([
   { id: 0, ageGroup: '0-9', confirmed: 30.0, severe: 1.0, fatal: 0.0 },
   { id: 2, ageGroup: '10-19', confirmed: 30.0, severe: 3.0, fatal: 7 },
   { id: 4, ageGroup: '20-29', confirmed: 30.0, severe: 3.0, fatal: 7 },
@@ -99,7 +99,7 @@ const severityDefaults: SeverityTableRow[] = [
   { id: 12, ageGroup: '60-69', confirmed: 70.0, severe: 25.0, fatal: 14.4 },
   { id: 14, ageGroup: '70-79', confirmed: 80.0, severe: 35.0, fatal: 20.0 },
   { id: 16, ageGroup: '80+', confirmed: 90.0, severe: 50.0, fatal: 26.0 },
-]
+])
 
 const countries = Object.keys(countryAgeDistribution)
 const countryOptions = countries.map(country => ({
