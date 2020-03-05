@@ -15,6 +15,8 @@ import {
   TableInlineCellEditing,
 } from '@devexpress/dx-react-grid-bootstrap4'
 
+import { format as d3format } from 'd3-format'
+
 import './SeverityTable.scss'
 
 const getRowId = (row: Row) => row.id
@@ -109,13 +111,21 @@ export function Cell({
     ? 'text-left'
     : 'text-right'
 
+  // Computed values may sometimes have way too many decimal digits
+  // so we format them here in order to display something more reasonable
+  const computedColumns = ['totalFatal']
+  let formattedValue = value
+  if (computedColumns.includes(column.name)) {
+    formattedValue = d3format('.2')(parseFloat(value))
+  }
+
   return (
     <td
       className={`dx-g-bs4-table-cell text-nowrap ${textRight}`}
       {...restProps}
       onClick={onClick}
     >
-      {children ?? value}
+      {children ?? formattedValue}
     </td>
   )
 }
