@@ -6,9 +6,10 @@ import { AlgorithmResult } from '../../algorithms/Result.types'
 
 export interface LinePlotProps {
   data?: AlgorithmResult
+  logScale?: boolean
 }
 
-export function DeterministicLinePlot({ data }: LinePlotProps) {
+export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
   if (!data) {
     return null
   }
@@ -120,14 +121,14 @@ export function DeterministicLinePlot({ data }: LinePlotProps) {
           // dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
         },
         yaxis: {
-            type: 'log'
+            type: logScale ? 'log' : undefined
         }
       }}
     />
   )
 }
 
-export function StochasticLinePlot({ data }: LinePlotProps) {
+export function StochasticLinePlot({ data, logScale }: LinePlotProps) {
   if (!data) {
     return null;
   }
@@ -135,7 +136,7 @@ export function StochasticLinePlot({ data }: LinePlotProps) {
   const time = trajectory.map(x => new Date(x.time))
   // const infectious = trajectory.map(x => Math.round(x.infectious))
   // const dead = trajectory.map(x => Math.round(x.dead))
-    
+
   // TODO: Explict with types here?
   var traces = [];
   function add(data: AlgorithmResult, category: string, color: string, visible: string | Boolean) {
@@ -193,7 +194,7 @@ export function StochasticLinePlot({ data }: LinePlotProps) {
           // dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
         },
         yaxis: {
-            type: 'log'
+            type: logScale ? 'log' : undefined
         }
       }}
     />

@@ -39,6 +39,7 @@ import { AlgorithmResult } from '../../algorithms/Result.types'
 import FormInput from './FormInput'
 import FormDropdown from './FormDropdown'
 import FormSpinBox from './FormSpinBox'
+import FormSwitch from './FormSwitch'
 
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
@@ -147,6 +148,7 @@ function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [country, setCountry] = useState<string>(defaultCountry)
+  const [logScale, setLogScale] = useState<boolean>(true)
 
   async function handleSubmit(
     params: AllParams,
@@ -294,10 +296,26 @@ function Main() {
                     <CollapsibleCard title="Results" defaultCollapsed={false}>
                       <Row>
                         <Col>
-                          <DeterministicLinePlot data={result} />
+                          <FormSwitch
+                            id="logScale"
+                            label="Log scale"
+                            checked={logScale}
+                            onChange={checked => setLogScale(checked)}
+                          />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
+                          <DeterministicLinePlot
+                            data={result}
+                            logScale={logScale}
+                          />
                         </Col>
                         <Col>
-                          <StochasticLinePlot data={result} />
+                          <StochasticLinePlot
+                            data={result}
+                            logScale={logScale}
+                          />
                         </Col>
                         <Col>
                           <PopTable result={result} rates={severity} />
