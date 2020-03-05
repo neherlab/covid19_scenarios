@@ -189,7 +189,7 @@ function Main() {
           validationSchema={schema}
           onSubmit={handleSubmit}
         >
-          {({ errors, touched }) => {
+          {({ errors, touched, isValid }) => {
             return (
               <Form className="form">
                 <Row noGutters>
@@ -309,7 +309,7 @@ function Main() {
                     </Row>
 
                     <FormGroup>
-                      <Button type="submit" color="primary">
+                      <Button type="submit" color="primary" disabled={!isValid}>
                         Run
                       </Button>
                     </FormGroup>
