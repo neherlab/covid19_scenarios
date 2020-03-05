@@ -37,14 +37,18 @@ export interface AdditionalParams {
 }
 
 export interface AllParams {
-  populationServed: number
+  ageDistribution: string
   country: string
-  suspectedCasesToday: number
   importsPerDay: number
-  r0: number
-  serialInterval: number
-  seasonalForcing: number
-  peakMonth: Month
+  incubationTime: number
+  infectiousPeriod: number
+  lengthHospitalStay: number
   numberStochasticRuns: number
-  tMax: Param<string>
+  peakMonth: Month
+  populationServed: number
+  r0: number
+  seasonalForcing: number
+  serialInterval: number
+  suspectedCasesToday: number
+  tMax: string
 }
