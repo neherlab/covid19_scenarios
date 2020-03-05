@@ -77,7 +77,8 @@ const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: 'Age group' },
   { name: 'confirmed', title: 'Confirmed\n% total' },
   { name: 'severe', title: 'Severe\n% of confirmed' },
-  { name: 'fatal', title: 'Fatal\n% of severe' },
+  { name: 'critical', title: 'critical\n% of severe' },
+  { name: 'fatal', title: 'Fatal\n% of critical' },
   { name: 'totalFatal', title: 'Fatal\n% of total' },
 ]
 
@@ -118,13 +119,15 @@ export function updateSeverityTable(
   return severity.map(row => {
     const { value: confirmed, errors: confirmedErrors } = validatePercentage(row.confirmed) // prettier-ignore
     const { value: severe, errors: severeErrors } = validatePercentage(row.severe) // prettier-ignore
+    const { value: critical, errors: criticalErrors } = validatePercentage(row.critical) // prettier-ignore
     const { value: fatal, errors: fatalErrors } = validatePercentage(row.fatal) // prettier-ignore
 
-    const totalFatal = confirmed * severe * fatal * 1e-4
+    const totalFatal = confirmed * severe * critical * fatal * 1e-6
 
     const errors = {
       confirmed: confirmedErrors,
       severe: severeErrors,
+      critical: criticalErrors,
       fatal: fatalErrors,
     }
 
@@ -132,6 +135,7 @@ export function updateSeverityTable(
       ...row,
       confirmed,
       severe,
+      critical,
       fatal,
       totalFatal,
       errors,
@@ -148,15 +152,15 @@ export function severityErrors(severity: SeverityTableRow[]) {
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable([
-  { id: 0, ageGroup: '0-9', confirmed: 30.0, severe: 1.0, fatal: 0.0 },
-  { id: 2, ageGroup: '10-19', confirmed: 30.0, severe: 3.0, fatal: 7 },
-  { id: 4, ageGroup: '20-29', confirmed: 30.0, severe: 3.0, fatal: 7 },
-  { id: 6, ageGroup: '30-39', confirmed: 30.0, severe: 3.0, fatal: 7 },
-  { id: 8, ageGroup: '40-49', confirmed: 40.0, severe: 6.0, fatal: 7 },
-  { id: 10, ageGroup: '50-59', confirmed: 55.0, severe: 10.0, fatal: 13.0 },
-  { id: 12, ageGroup: '60-69', confirmed: 70.0, severe: 25.0, fatal: 14.4 },
-  { id: 14, ageGroup: '70-79', confirmed: 80.0, severe: 35.0, fatal: 20.0 },
-  { id: 16, ageGroup: '80+', confirmed: 90.0, severe: 50.0, fatal: 26.0 },
+  { id: 0, ageGroup: '0-9', confirmed: 30.0,   severe: 1.0,  critical: 5,  fatal: 30 },
+  { id: 2, ageGroup: '10-19', confirmed: 30.0, severe: 3.0,  critical: 10, fatal: 30 },
+  { id: 4, ageGroup: '20-29', confirmed: 30.0, severe: 3.0,  critical: 10, fatal: 30 },
+  { id: 6, ageGroup: '30-39', confirmed: 30.0, severe: 3.0,  critical: 15, fatal: 30 },
+  { id: 8, ageGroup: '40-49', confirmed: 40.0, severe: 6.0,  critical: 20, fatal: 30 },
+  { id: 10, ageGroup: '50-59', confirmed: 55.0,severe: 10.0, critical: 25, fatal: 40 },
+  { id: 12, ageGroup: '60-69', confirmed: 70.0,severe: 25.0, critical: 30, fatal: 40 },
+  { id: 14, ageGroup: '70-79', confirmed: 80.0,severe: 35.0, critical: 40, fatal: 50 },
+  { id: 16, ageGroup: '80+', confirmed: 90.0,  severe: 50.0, critical: 50, fatal: 50 },
 ])
 
 const countries = Object.keys(countryAgeDistribution)

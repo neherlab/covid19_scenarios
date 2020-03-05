@@ -143,11 +143,13 @@ export interface SeverityTableRow {
   ageGroup: string
   confirmed: number
   severe: number
+  critical: number
   fatal: number
   totalFatal?: number
   errors?: {
     confirmed?: string
     severe?: string
+    critical?: string
     fatal?: string
   }
 }
@@ -222,7 +224,7 @@ function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
               return null
             }
 
-            const editableColumns = ['confirmed', 'severe', 'fatal']
+            const editableColumns = ['confirmed', 'severe', 'critical', 'fatal']
             return editableColumns.map((column: string) => {
               const message = _.get(errors, column)
               if (!message) {
