@@ -18,7 +18,7 @@ export function CollapsibleCard({
   const toggle = () => setCollapsed(!collapsed)
 
   return (
-    <Card>
+    <Card className="h-100">
       <CardHeader>
         <Button
           className="w-100 h-100 text-left"
