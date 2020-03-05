@@ -379,21 +379,22 @@ function Main() {
                         </CollapsibleCard>
                       </Col>
                     </Row>
-
-                    <FormGroup>
-                      <Button
-                        type="submit"
-                        color="primary"
-                        disabled={!isValid || !severityTableIsValid(severity)}
-                      >
-                        Run
-                      </Button>
-                    </FormGroup>
                   </Col>
 
                   <Col lg={8} xl={6}>
                     <CollapsibleCard title="Results" defaultCollapsed={false}>
                       <Row>
+                        <Col>
+                          <FormGroup>
+                            <Button
+                              type="submit"
+                              color="primary"
+                              disabled={!isValid || !severityTableIsValid(severity)}
+                            >
+                              Run
+                            </Button>
+                          </FormGroup>
+                        </Col>
                         <Col>
                           <FormSwitch
                             id="logScale"
