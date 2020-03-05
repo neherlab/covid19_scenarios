@@ -39,11 +39,11 @@ export function HeaderCell({ column, ...restProps }: HeaderCellProps) {
   )
 }
 
-export interface FocusableCellProps extends TableInlineCellEditing.CellProps {
+export interface EditableCellProps extends TableInlineCellEditing.CellProps {
   onClick?(): void
 }
 
-export function FocusableCell({
+export function EditableCell({
   column,
   value,
   tableRow,
@@ -56,7 +56,22 @@ export function FocusableCell({
   onFocus,
   onKeyDown,
   ...restProps
-}: FocusableCellProps) {
+}: EditableCellProps) {
+  const readOnlyColumns = ['ageGroup', 'totalFatal']
+
+  if (readOnlyColumns.includes(column.name)) {
+    return (
+      <Cell
+        value={value}
+        column={column}
+        row={row}
+        tableColumn={tableColumn}
+        tableRow={tableRow}
+        {...restProps}
+      />
+    )
+  }
+
   return (
     <td className="dx-g-bs4-table-cell text-nowrap text-right" {...restProps}>
       <input
@@ -75,12 +90,43 @@ export function FocusableCell({
   )
 }
 
+export interface CellProps extends TableBase.DataCellProps {
+  onClick?(): void
+}
+
+export function Cell({
+  value,
+  children,
+  column,
+  row,
+  tableColumn,
+  tableRow,
+  onClick,
+  ...restProps
+}: CellProps) {
+  const nonNumericColumns = ['ageGroup']
+  const textRight = nonNumericColumns.includes(column.name)
+    ? 'text-left'
+    : 'text-right'
+
+  return (
+    <td
+      className={`dx-g-bs4-table-cell text-nowrap ${textRight}`}
+      {...restProps}
+      onClick={onClick}
+    >
+      {children ?? value}
+    </td>
+  )
+}
+
 export interface SeverityTableRow {
   id: number
   ageGroup: string
   confirmed: number
   severe: number
   fatal: number
+  totalFatal?: number
 }
 
 export type SeverityTableColumn = Column
@@ -131,14 +177,14 @@ function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
       <Grid rows={rows} columns={columns} getRowId={getRowId}>
         <EditingState onCommitChanges={commitChanges} />
 
-        <Table />
+        <Table cellComponent={Cell} />
 
         <TableHeaderRow cellComponent={HeaderCell} />
 
         <TableInlineCellEditing
           startEditAction={'click'}
           selectTextOnEditStart
-          cellComponent={FocusableCell}
+          cellComponent={EditableCell}
         />
       </Grid>
     </div>

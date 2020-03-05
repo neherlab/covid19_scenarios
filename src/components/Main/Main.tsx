@@ -75,7 +75,19 @@ const columns: SeverityTableColumn[] = [
   { name: 'confirmed', title: 'Confirmed\n% total' },
   { name: 'severe', title: 'Severe\n% of confirmed' },
   { name: 'fatal', title: 'Fatal\n% of severe' },
+  { name: 'totalFatal', title: 'Fatal\n% of total' },
 ]
+
+/**
+ * Updates computable columns in severity table
+ */
+export function updateSeverityTable(severity: SeverityTableRow[]) {
+  return severity.map(row => {
+    const { confirmed, severe, fatal } = row
+    const totalFatal = (confirmed / 100) * (severe / 100) * (fatal / 100) * 100
+    return { ...row, totalFatal }
+  })
+}
 
 const severityDefaults: SeverityTableRow[] = [
   { id: 0, ageGroup: '0-9', confirmed: 30.0, severe: 1.0, fatal: 0.0 },
@@ -279,7 +291,9 @@ function Main() {
                           <SeverityTable
                             columns={columns}
                             rows={severity}
-                            setRows={setSeverity}
+                            setRows={severity =>
+                              setSeverity(updateSeverityTable(severity))
+                            }
                           />
                         </CollapsibleCard>
                       </Col>
