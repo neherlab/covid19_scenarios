@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 
+import _ from 'lodash'
+
+import { Card, Col, Row } from 'reactstrap'
+
 import {
   ChangeSet,
   Column,
   EditingState,
-  Row,
+  Row as TableRow,
   Table as TableBase,
 } from '@devexpress/dx-react-grid'
 
@@ -15,11 +19,15 @@ import {
   TableInlineCellEditing,
 } from '@devexpress/dx-react-grid-bootstrap4'
 
+import * as yup from 'yup'
+
 import { format as d3format } from 'd3-format'
 
 import './SeverityTable.scss'
+import { ValidationError } from 'yup'
+import { updateSeverityTable } from './Main'
 
-const getRowId = (row: Row) => row.id
+const getRowId = (row: TableRow) => row.id
 
 export interface HeaderCellProps extends TableBase.DataCellProps {}
 
@@ -137,6 +145,11 @@ export interface SeverityTableRow {
   severe: number
   fatal: number
   totalFatal?: number
+  errors?: {
+    confirmed?: string
+    severe?: string
+    fatal?: string
+  }
 }
 
 export type SeverityTableColumn = Column
@@ -179,25 +192,53 @@ function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
       changedRows = rows.filter(row => !deletedSet.has(row.id))
     }
 
-    setRows(changedRows)
+    setRows(updateSeverityTable(changedRows))
   }
 
   return (
-    <div className="card">
-      <Grid rows={rows} columns={columns} getRowId={getRowId}>
-        <EditingState onCommitChanges={commitChanges} />
+    <>
+      <Row noGutters>
+        <Col>
+          <Grid rows={rows} columns={columns} getRowId={getRowId}>
+            <EditingState onCommitChanges={commitChanges} />
 
-        <Table cellComponent={Cell} />
+            <Table cellComponent={Cell} />
 
-        <TableHeaderRow cellComponent={HeaderCell} />
+            <TableHeaderRow cellComponent={HeaderCell} />
 
-        <TableInlineCellEditing
-          startEditAction={'click'}
-          selectTextOnEditStart
-          cellComponent={EditableCell}
-        />
-      </Grid>
-    </div>
+            <TableInlineCellEditing
+              startEditAction={'click'}
+              selectTextOnEditStart
+              cellComponent={EditableCell}
+            />
+          </Grid>
+        </Col>
+      </Row>
+
+      <Row noGutters>
+        <Col>
+          {rows.map(({ id, ageGroup, errors }) => {
+            if (!errors || _.isEmpty(errors)) {
+              return null
+            }
+
+            const editableColumns = ['confirmed', 'severe', 'fatal']
+            return editableColumns.map((column: string) => {
+              const message = _.get(errors, column)
+              if (!message) {
+                return null
+              }
+
+              return (
+                <div key={`row-${id}-${column}`} className="text-danger">
+                  {`Error in column "${ageGroup}", row "${column}": ${message}`}
+                </div>
+              )
+            })
+          })}
+        </Col>
+      </Row>
+    </>
   )
 }
 

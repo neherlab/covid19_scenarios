@@ -17,6 +17,7 @@ import * as yup from 'yup'
 import SeverityTable, {
   SeverityTableColumn,
   SeverityTableRow,
+  SeverityTableRowErrors,
 } from './SeverityTable'
 
 import { CollapsibleCard } from './CollapsibleCard'
@@ -40,6 +41,8 @@ import FormInput from './FormInput'
 import FormDropdown from './FormDropdown'
 import FormSpinBox from './FormSpinBox'
 import FormSwitch from './FormSwitch'
+import _ from 'lodash'
+import { ValidationError } from 'yup'
 
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
@@ -79,16 +82,69 @@ const columns: SeverityTableColumn[] = [
 ]
 
 /**
+ * Checks that a given value is a valid percentage number and if not, attempts
+ * to cast it as such. If unsuccesful, returns a NaN and an error message.
+ */
+export function validatePercentage(
+  value: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+): { value: number; errors?: string } {
+  const percentageSchema = yup
+    .number()
+    .typeError('Percentage should be a number')
+    .required('Required')
+    .min(0, 'Percentage should be non-negative')
+    .max(100, 'Percentage cannot be greater than 100')
+
+  try {
+    const castedValue = percentageSchema.validateSync(value)
+    return { value: castedValue, errors: undefined }
+  } catch (valError) {
+    const validationError = valError as ValidationError
+    try {
+      const castedValue = percentageSchema.cast(value)
+      return { value: castedValue, errors: validationError.message }
+    } catch (typeError) {
+      return { value: NaN, errors: validationError.message }
+    }
+  }
+}
+
+/**
  * Updates computable columns in severity table
  */
 export function updateSeverityTable(
   severity: SeverityTableRow[],
 ): SeverityTableRow[] {
   return severity.map(row => {
-    const { confirmed, severe, fatal } = row
+    const { value: confirmed, errors: confirmedErrors } = validatePercentage(row.confirmed) // prettier-ignore
+    const { value: severe, errors: severeErrors } = validatePercentage(row.severe) // prettier-ignore
+    const { value: fatal, errors: fatalErrors } = validatePercentage(row.fatal) // prettier-ignore
+
     const totalFatal = confirmed * severe * fatal * 1e-4
-    return { ...row, totalFatal }
+
+    const errors = {
+      confirmed: confirmedErrors,
+      severe: severeErrors,
+      fatal: fatalErrors,
+    }
+
+    return {
+      ...row,
+      confirmed,
+      severe,
+      fatal,
+      totalFatal,
+      errors,
+    }
   })
+}
+
+export function severityTableIsValid(severity: SeverityTableRow[]) {
+  return !severity.some(row => _.values(row?.errors).some(x => x !== undefined))
+}
+
+export function severityErrors(severity: SeverityTableRow[]) {
+  return severity.map(row => row?.errors)
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable([
@@ -309,7 +365,11 @@ function Main() {
                     </Row>
 
                     <FormGroup>
-                      <Button type="submit" color="primary" disabled={!isValid}>
+                      <Button
+                        type="submit"
+                        color="primary"
+                        disabled={!isValid || !severityTableIsValid(severity)}
+                      >
                         Run
                       </Button>
                     </FormGroup>
