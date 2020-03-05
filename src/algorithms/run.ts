@@ -28,6 +28,7 @@ export default async function run(
                         "exposed" : 0,
                         "infectious" : initialCases,
                         "hospitalized" : 0,
+                        "critical" : 0,
                         "discharged" : 0,
                         "recovered" : 0,
                         "dead" : 0};
@@ -45,7 +46,7 @@ export default async function run(
 
       return dynamics;
   }
-  
+
   const sim: AlgorithmResult = {
       "deterministicTrajectory": simulate(initialState, identity),
       "stochasticTrajectories": [],
@@ -56,5 +57,5 @@ export default async function run(
       sim.stochasticTrajectories.push(simulate(initialState, poisson));
   }
 
-  return sim 
+  return sim
 }

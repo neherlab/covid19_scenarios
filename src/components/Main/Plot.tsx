@@ -19,6 +19,7 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
   const exposed = trajectory.map(x => Math.round(x.exposed))
   const infectious = trajectory.map(x => Math.round(x.infectious))
   const hospitalized = trajectory.map(x => Math.round(x.hospitalized))
+  const critical = trajectory.map(x => Math.round(x.critical))
   const recovered = trajectory.map(x => Math.round(x.recovered))
   const dead = trajectory.map(x => Math.round(x.dead))
   const nHospitalBeds = data.params.populationServed*4.5/1000;
@@ -71,6 +72,15 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
           line: { color: '#FFDAC1', width: 2 },
           marker: { color: '#FFDAC1', size: 3 },
           name: 'Severe',
+        },
+        {
+          x: time,
+          y: critical,
+          type: 'scatter',
+          mode: 'lines+markers',
+          line: { color: '#FFDAC1', width: 2 },
+          marker: { color: '#FFDAC1', size: 3 },
+          name: 'Critical',
         },
         {
           x: time,

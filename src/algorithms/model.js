@@ -44,21 +44,27 @@ export function populationAverageParameters(params, severity, ageCounts) {
   pop.ageDistribution = {};
   pop.infectionSeverityRatio = {};
   pop.infectionFatality = {};
+  pop.infectionCritical = {};
 
   var hospitalizedFrac = 0;
-  var fatalFracHospitalized = 0;
+  var criticalFracHospitalized = 0;
+  var fatalFracCritical = 0;
   severity.forEach(function(d) {
       const freq = (1.0*ageCounts[d.ageGroup]/total);
       pop.ageDistribution[d.ageGroup] = freq;
       pop.infectionSeverityRatio[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100);
-      pop.infectionFatality[d.ageGroup] = (d.fatal / 100) * (d.severe / 100) * (d.confirmed / 100);
+      pop.infectionCritical[d.ageGroup] = (d.critical / 100) * (d.severe / 100) * (d.confirmed / 100);
+      pop.infectionFatality[d.ageGroup] = (d.fatal / 100) * (d.critical / 100) * (d.severe / 100) * (d.confirmed / 100);
       hospitalizedFrac += freq * pop.infectionSeverityRatio[d.ageGroup];
-      fatalFracHospitalized += freq * d.fatal / 100;
+      criticalFracHospitalized += freq * d.critical / 100;
+      fatalFracCritical += freq * d.fatal / 100;
   });
   pop.recoveryRate = (1-hospitalizedFrac) / pop.infectiousPeriod;
   pop.hospitalizedRate = hospitalizedFrac / pop.infectiousPeriod;
-  pop.dischargeRate = (1-fatalFracHospitalized) / pop.lengthHospitalStay;
-  pop.deathRate = fatalFracHospitalized/pop.lengthHospitalStay;
+  pop.dischargeRate = (1-criticalFracHospitalized) / pop.lengthHospitalStay;
+  pop.criticalRate = criticalFracHospitalized / pop.lengthHospitalStay;
+  pop.deathRate = fatalFracCritical/pop.lengthHospitalStay;
+  pop.stabilizationRate = (1-fatalFracCritical) / pop.lengthHospitalStay;
   pop.avgInfectionRate = pop.r0 / pop.infectiousPeriod;
 
   return pop;
@@ -84,13 +90,16 @@ export function evolve(pop, P, sample) {
     const newRecovered  = sample(pop['infectious']*P.timeDeltaDays*P.recoveryRate);
     const newHospitalized = sample(pop['infectious']*P.timeDeltaDays*P.hospitalizedRate);
     const newDischarged   = sample(pop['hospitalized']*P.timeDeltaDays*P.dischargeRate);
-    const newDead = sample(pop['hospitalized']*P.timeDeltaDays*P.deathRate);
+    const newCritical = sample(pop['hospitalized']*P.timeDeltaDays*P.criticalRate);
+    const newStabilized = sample(pop['critical']*P.timeDeltaDays*P.stabilizationRate);
+    const newDead = sample(pop['critical']*P.timeDeltaDays*P.deathRate);
     const newPop = {"time" : newTime,
                     "susceptible" : pop["susceptible"] - newCases,
                     "exposed" : pop["exposed"] - newInfectious + newCases,
                     "infectious" : pop["infectious"] + newInfectious - newRecovered - newHospitalized,
                     "recovered" : pop["recovered"] + newRecovered + newDischarged,
-                    "hospitalized" : pop["hospitalized"] + newHospitalized - newDischarged - newDead,
+                    "hospitalized" : pop["hospitalized"] + newHospitalized - newDischarged - newCritical,
+                    "critical" : pop["critical"] + newCritical - newStabilized - newDead,
                     "discharged" : pop["discharged"] + newDischarged,
                     "dead" : pop["dead"]+newDead,
                     };
@@ -99,11 +108,11 @@ export function evolve(pop, P, sample) {
 
 export function exportSimulation(trajectory) {
     // Store parameter values
-    
+
     // Down sample trajectory to once a day.
     // TODO: Make the down sampling interval a parameter
 
-    const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+    const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     function stringify(date) {
@@ -114,7 +123,7 @@ export function exportSimulation(trajectory) {
         return `${d} ${month[m]} ${y}`;
     }
 
-    var csv = ["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"]; 
+    var csv = ["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"];
     var pop = {};
     trajectory.forEach(function(d) {
         const t = stringify(new Date(d.time));

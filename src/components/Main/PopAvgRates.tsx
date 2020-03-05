@@ -15,13 +15,16 @@ export default function PopTable( {result, rates}: TableProps) {
 
   var deathFrac = 0;
   var severeFrac = 0;
+  var criticalFrac = 0;
   rates.forEach(function(d) {
       const freq = params.ageDistribution[d.ageGroup];
       severeFrac += freq * params.infectionSeverityRatio[d.ageGroup];
+      criticalFrac += freq * (d.critical / 100);
       deathFrac += freq * (d.fatal / 100);
   });
-  deathFrac *= severeFrac;
-  var mildFrac = 1 - severeFrac - deathFrac;
+  criticalFrac *= severeFrac;
+  deathFrac *= criticalFrac;
+  var mildFrac = 1 - severeFrac - criticalFrac - deathFrac;
 
   const forDisplay = ((x: number) => { return Number((100*x).toFixed(2)); });
   deathFrac = forDisplay(deathFrac);
@@ -31,6 +34,7 @@ export default function PopTable( {result, rates}: TableProps) {
   const totalDeath = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].dead);
   const totalSevere = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].discharged);
   const peakSevere = Math.round(Math.max(...result.deterministicTrajectory.map( x => x.hospitalized )));
+  const peakCritical = Math.round(Math.max(...result.deterministicTrajectory.map( x => x.critical )));
 
   return (
     <>
@@ -62,6 +66,10 @@ export default function PopTable( {result, rates}: TableProps) {
     <tr>
       <td>Peak severe: </td>
       <td>{peakSevere}</td>
+    </tr>
+    <tr>
+      <td>Peak critical: </td>
+      <td>{peakCritical}</td>
     </tr>
     </table>
     </>
