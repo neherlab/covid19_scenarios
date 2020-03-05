@@ -131,15 +131,16 @@ const schema = yup.object().shape({
 
   seasonalForcing: yup.number().required('Required'),
 
-  serialInterval: yup.number().required('Required'),
-
   suspectedCasesToday: yup
     .number()
     .required('Required')
     .min(0, 'Should be non-negative'),
 
-  // numberStochasticRuns
-  // tMax
+  // serialInterval: yup.number().required('Required'),
+
+  // numberStochasticRuns: yup.number().required('Required'),
+
+  // tMax: yup.string().required('Required'),
 })
 
 function Main() {
@@ -159,6 +160,7 @@ function Main() {
       severity,
       ageDistribution,
     )
+
     setResult(newResult)
     setSubmitting(false)
   }
@@ -171,149 +173,151 @@ function Main() {
           validationSchema={schema}
           onSubmit={handleSubmit}
         >
-          {({ errors, touched }) => (
-            <Form className="form">
-              <Row noGutters>
-                <Col lg={4} xl={6}>
-                  <Row noGutters>
-                    <Col xl={6}>
-                      <CollapsibleCard
-                        title="Main parameters"
-                        defaultCollapsed={false}
-                      >
-                        <FormSpinBox
-                          key="populationServed"
-                          id="populationServed"
-                          label="Population Served"
-                          step={1000}
-                          errors={errors}
-                          touched={touched}
-                        />
-                        <FormDropdown
-                          key="country"
-                          id="country"
-                          label="Age Distribution"
-                          options={countryOptions}
-                          defaultOption={defaultCountryOption}
-                          onChange={country => setCountry(country)}
-                        />
-                        <FormSpinBox
-                          key="suspectedCasesToday"
-                          id="suspectedCasesToday"
-                          label="Suspected Cases Today"
-                          step={1}
-                          errors={errors}
-                          touched={touched}
-                        />
-                        <FormSpinBox
-                          key="importsPerDay"
-                          id="importsPerDay"
-                          label="Imports Per Day"
-                          step={1}
-                          errors={errors}
-                          touched={touched}
-                        />
-                        <FormInput
-                          key="tMax"
-                          id="tMax"
-                          label="Simulate until"
-                        />
-                      </CollapsibleCard>
+          {({ errors, touched }) => {
+            return (
+              <Form className="form">
+                <Row noGutters>
+                  <Col lg={4} xl={6}>
+                    <Row noGutters>
+                      <Col xl={6}>
+                        <CollapsibleCard
+                          title="Main parameters"
+                          defaultCollapsed={false}
+                        >
+                          <FormSpinBox
+                            key="populationServed"
+                            id="populationServed"
+                            label="Population Served"
+                            step={1000}
+                            errors={errors}
+                            touched={touched}
+                          />
+                          <FormDropdown
+                            key="country"
+                            id="country"
+                            label="Age Distribution"
+                            options={countryOptions}
+                            defaultOption={defaultCountryOption}
+                            onChange={country => setCountry(country)}
+                          />
+                          <FormSpinBox
+                            key="suspectedCasesToday"
+                            id="suspectedCasesToday"
+                            label="Suspected Cases Today"
+                            step={1}
+                            errors={errors}
+                            touched={touched}
+                          />
+                          <FormSpinBox
+                            key="importsPerDay"
+                            id="importsPerDay"
+                            label="Imports Per Day"
+                            step={1}
+                            errors={errors}
+                            touched={touched}
+                          />
+                          <FormInput
+                            key="tMax"
+                            id="tMax"
+                            label="Simulate until"
+                          />
+                        </CollapsibleCard>
 
-                      <CollapsibleCard title="Additional parameters">
-                        <FormSpinBox key="r0" id="r0" label="R0" step={0.1} />
-                        <FormSpinBox
-                          key="incubationTime"
-                          id="incubationTime"
-                          label="Incubation Time [days]"
-                          step={1}
-                          min={0}
-                          errors={errors}
-                          touched={touched}
-                        />
-                        <FormSpinBox
-                          key="infectiousPeriod"
-                          id="infectiousPeriod"
-                          label="Infectious Period [days]"
-                          step={1}
-                          min={0}
-                          errors={errors}
-                          touched={touched}
-                        />
-                        <FormSpinBox
-                          key="lengthHospitalStay"
-                          id="lengthHospitalStay"
-                          label="Length of Hospital stay [days]"
-                          step={1}
-                          min={0}
-                          errors={errors}
-                          touched={touched}
-                        />
-                        <FormSpinBox
-                          key="seasonalForcing"
-                          id="seasonalForcing"
-                          label="Seasonal Forcing"
-                          step={0.1}
-                          min={0}
-                          errors={errors}
-                          touched={touched}
-                        />
-                        <FormInput
-                          key="peakMonth"
-                          id="peakMonth"
-                          label="Peak Month"
-                        />
-                      </CollapsibleCard>
-                    </Col>
-
-                    <Col xl={6}>
-                      <CollapsibleCard
-                        title="Severity"
-                        defaultCollapsed={false}
-                      >
-                        <SeverityTable
-                          columns={columns}
-                          rows={severity}
-                          setRows={setSeverity}
-                        />
-                      </CollapsibleCard>
-                    </Col>
-                  </Row>
-
-                  <FormGroup>
-                    <Button type="submit" color="primary">
-                      Run
-                    </Button>
-                  </FormGroup>
-                </Col>
-
-                <Col lg={8} xl={6}>
-                  <CollapsibleCard title="Results" defaultCollapsed={false}>
-                    <Row>
-                      <Col>
-                        <DeterministicLinePlot data={result} />
+                        <CollapsibleCard title="Additional parameters">
+                          <FormSpinBox key="r0" id="r0" label="R0" step={0.1} />
+                          <FormSpinBox
+                            key="incubationTime"
+                            id="incubationTime"
+                            label="Incubation Time [days]"
+                            step={1}
+                            min={0}
+                            errors={errors}
+                            touched={touched}
+                          />
+                          <FormSpinBox
+                            key="infectiousPeriod"
+                            id="infectiousPeriod"
+                            label="Infectious Period [days]"
+                            step={1}
+                            min={0}
+                            errors={errors}
+                            touched={touched}
+                          />
+                          <FormSpinBox
+                            key="lengthHospitalStay"
+                            id="lengthHospitalStay"
+                            label="Length of Hospital stay [days]"
+                            step={1}
+                            min={0}
+                            errors={errors}
+                            touched={touched}
+                          />
+                          <FormSpinBox
+                            key="seasonalForcing"
+                            id="seasonalForcing"
+                            label="Seasonal Forcing"
+                            step={0.1}
+                            min={0}
+                            errors={errors}
+                            touched={touched}
+                          />
+                          <FormInput
+                            key="peakMonth"
+                            id="peakMonth"
+                            label="Peak Month"
+                          />
+                        </CollapsibleCard>
                       </Col>
-                      <Col>
-                        <StochasticLinePlot data={result} />
-                      </Col>
-                      <Col>
-                        <PopTable result={result} rates={severity} />
-                      </Col>
-                      <Col>
-                        <AgePlot data={result} rates={severity} />
+
+                      <Col xl={6}>
+                        <CollapsibleCard
+                          title="Severity"
+                          defaultCollapsed={false}
+                        >
+                          <SeverityTable
+                            columns={columns}
+                            rows={severity}
+                            setRows={setSeverity}
+                          />
+                        </CollapsibleCard>
                       </Col>
                     </Row>
-                  </CollapsibleCard>
-                </Col>
-              </Row>
 
-              <FormGroup>
-                <Button type="button" color="secondary">
-                  Export
-                </Button>
-              </FormGroup>
-            </Form>
-          )}
+                    <FormGroup>
+                      <Button type="submit" color="primary">
+                        Run
+                      </Button>
+                    </FormGroup>
+                  </Col>
+
+                  <Col lg={8} xl={6}>
+                    <CollapsibleCard title="Results" defaultCollapsed={false}>
+                      <Row>
+                        <Col>
+                          <DeterministicLinePlot data={result} />
+                        </Col>
+                        <Col>
+                          <StochasticLinePlot data={result} />
+                        </Col>
+                        <Col>
+                          <PopTable result={result} rates={severity} />
+                        </Col>
+                        <Col>
+                          <AgePlot data={result} rates={severity} />
+                        </Col>
+                      </Row>
+                    </CollapsibleCard>
+                  </Col>
+                </Row>
+
+                <FormGroup>
+                  <Button type="button" color="secondary">
+                    Export
+                  </Button>
+                </FormGroup>
+              </Form>
+            )
+          }}
         </Formik>
       </Col>
     </Row>
