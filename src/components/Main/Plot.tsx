@@ -139,7 +139,7 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
 }
 
 export function StochasticLinePlot({ data, logScale }: LinePlotProps) {
-  if (!data) {
+  if ((!data)||data.stochasticTrajectories.length==0) {
     return null;
   }
   const trajectory = data.deterministicTrajectory;

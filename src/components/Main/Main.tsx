@@ -213,7 +213,11 @@ const schema = yup.object().shape({
 
   // serialInterval: yup.number().required('Required'),
 
-  // numberStochasticRuns: yup.number().required('Required'),
+  numberStochasticRuns: yup
+    .number()
+    .required('Required')
+    .min(0, 'Should be non-negative')
+    .max(100, 'too many stochastic trajectories will slow things down'),
 
   // tMax: yup.string().required('Required'),
 })
@@ -296,6 +300,14 @@ function Main() {
                             key="tMax"
                             id="tMax"
                             label="Simulate until"
+                          />
+                          <FormSpinBox
+                            key="numberStochasticRuns"
+                            id="numberStochasticRuns"
+                            label="Stochastic Runs"
+                            step={1}
+                            errors={errors}
+                            touched={touched}
                           />
                         </CollapsibleCard>
                       </Col>
