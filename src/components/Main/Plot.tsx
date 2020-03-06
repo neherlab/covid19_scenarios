@@ -10,7 +10,7 @@ export interface LinePlotProps {
 }
 
 export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
-  if (!data) {
+  if ((!data)||data.stochasticTrajectories.length>0) {
     return null
   }
   const trajectory = data.deterministicTrajectory;
@@ -103,37 +103,28 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
         },
       ]}
       layout={{
-        updatemenus: [{
-            x: 0.1,
-            y: 1.1,
-            yanchor: 'top',
-            xanchor: 'left',
-            pad: {"r": 10, "t": 10},
-            bgcolor: "gray",
-            buttons: [
-            {
-                method: 'relayout',
-                label: "Linear",
-                args: {yaxis: { type: 'linear'} }
-            },
-            {
-                method: 'relayout',
-                label: "Log",
-                args: {yaxis: { type: 'log'} }
-            }]
-        }],
-        title: 'Deterministic Outbreak Trajectory',
+        // title: 'Deterministic Outbreak Trajectory',
         xaxis: {
           tickmode: 'linear',
           tickformat: '%Y-%m-%d',
           tickmode:'auto',
-          nticks:10
+          nticks:10,
+          automargin: true
           // dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
         },
         yaxis: {
-            type: logScale ? 'log' : undefined
-        }
-      }}
+            type: logScale ? 'log' : undefined,
+            automargin: true
+        },
+        autosize: false,
+        margin: {
+            l: 10,
+            r: 10,
+            b: 10,
+            t: 10,
+            pad: 4
+          },
+        }}
     />
   )
 }
@@ -175,7 +166,7 @@ export function StochasticLinePlot({ data, logScale }: LinePlotProps) {
           x: time,
           y: mean,
           type: 'line',
-          line: { color: color, width: 2 },
+          line: { color: color, width: 3 },
           marker: { color: color, size: 3 },
           name: "Average number of " + category,
           visible: visible,
@@ -186,8 +177,9 @@ export function StochasticLinePlot({ data, logScale }: LinePlotProps) {
 
   add(data, "susceptible", "#E2F0CB", "legendonly");
   add(data, "exposed", "#FFB7B2", "legendonly");
-  add(data, "infectious", "#FF9AA2", true);
-  add(data, "hospitalized", "#FFDAC1", true);
+  add(data, "infectious", "#FFDAC1", true);
+  add(data, "hospitalized", "#FF9AA2", true);
+  add(data, "critical", "#F03B20", true);
   add(data, "recovered", "#B5EAD7", "legendonly");
   add(data, "dead", "#C7CEEA", true);
 
@@ -195,18 +187,29 @@ export function StochasticLinePlot({ data, logScale }: LinePlotProps) {
     <Plot
       data={traces}
       layout={{
-        title: 'Stochastic Outbreak Trajectories',
+        // title: 'Stochastic Outbreak Trajectories',
         xaxis: {
           tickmode: 'linear',
           tickformat: '%Y-%m-%d',
           tickmode:'auto',
-          nticks:10
+          nticks:10,
+          automargin:true
           // dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
         },
         yaxis: {
-            type: logScale ? 'log' : undefined
-        }
+            type: logScale ? 'log' : undefined,
+            automargin:true
+        },
+        autosize: false,
+        margin: {
+            l: 10,
+            r: 10,
+            b: 10,
+            t: 10,
+            pad: 4
+          },
       }}
+      config={{displayModeBar:false}}
     />
   )
 }
