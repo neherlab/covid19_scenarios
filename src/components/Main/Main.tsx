@@ -65,7 +65,7 @@ const additionalParams: AdditionalParams = {
   },
   seasonalForcing: { name: 'Seasonal Forcing', defaultValue: 0.4 },
   peakMonth: { name: 'Peak Month', defaultValue: Month.Jan },
-  numberStochasticRuns: { name: 'Number of stochastic runs', defaultValue: 10 },
+  numberStochasticRuns: { name: 'Number of stochastic runs', defaultValue: 0 },
 }
 
 // Reduce default values into an object { key: defaultValue }
@@ -310,14 +310,6 @@ function Main() {
                             onEndDateChange={setTMax}
                             label="Simulation time range"
                           />
-                          <FormSpinBox
-                            key="numberStochasticRuns"
-                            id="numberStochasticRuns"
-                            label="Stochastic Runs"
-                            step={1}
-                            errors={errors}
-                            touched={touched}
-                          />
                         </CollapsibleCard>
                       </Col>
 
@@ -367,6 +359,14 @@ function Main() {
                             key="peakMonth"
                             id="peakMonth"
                             label="Peak Month"
+                          />
+                          <FormSpinBox
+                            key="numberStochasticRuns"
+                            id="numberStochasticRuns"
+                            label="Stochastic Runs"
+                            step={1}
+                            errors={errors}
+                            touched={touched}
                           />
                         </CollapsibleCard>
                       </Col>
