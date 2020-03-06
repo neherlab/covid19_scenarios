@@ -39,7 +39,7 @@ const About: React.FC = () => {
         The individual parameters of the model can all be changed to allow exploration of different scenari
         Importantly, the simulation does not explicitly account for future containment measures. This might be added in the future, but for now you can reduce R<sub>0</sub> to explore the effects of infection control.
       </p>
-      <img alt="model" src={model} width={"900px"}/>
+      <img alt="model" src={model} width={"100%"}/>
       <p>
         {`COVID-19 is much more severe in the elderly and proportion of elderly in a community is therefore an important determinant of the overall burden on the health care system and the death toll.
         We collected age distributions for many countries from data provided by the UN and make those available as input parameters.
