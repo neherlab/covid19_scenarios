@@ -15,13 +15,13 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
   }
   const trajectory = data.deterministicTrajectory;
   const time = trajectory.map(x => new Date(x.time))
-  const susceptible = trajectory.map(x => Math.round(x.susceptible))
-  const exposed = trajectory.map(x => Math.round(x.exposed))
-  const infectious = trajectory.map(x => Math.round(x.infectious))
-  const hospitalized = trajectory.map(x => Math.round(x.hospitalized))
-  const critical = trajectory.map(x => Math.round(x.critical))
-  const recovered = trajectory.map(x => Math.round(x.recovered))
-  const dead = trajectory.map(x => Math.round(x.dead))
+  const susceptible = trajectory.map(x => Math.round(x.susceptible["total"]))
+  const exposed = trajectory.map(x => Math.round(x.exposed["total"]))
+  const infectious = trajectory.map(x => Math.round(x.infectious["total"]))
+  const hospitalized = trajectory.map(x => Math.round(x.hospitalized["total"]))
+  const critical = trajectory.map(x => Math.round(x.critical["total"]))
+  const recovered = trajectory.map(x => Math.round(x.recovered["total"]))
+  const dead = trajectory.map(x => Math.round(x.dead["total"]))
   const nHospitalBeds = data.params.populationServed*4.5/1000;
 
   return (
@@ -143,7 +143,7 @@ export function StochasticLinePlot({ data, logScale }: LinePlotProps) {
   function add(data: AlgorithmResult, category: string, color: string, visible: string | Boolean) {
       var mean = time.map(() => 0);
       data.stochasticTrajectories.forEach(function(d) {
-          const Y = d.map(x => Math.round(x[category]));
+          const Y = d.map(x => Math.round(x[category]["total"]));
           mean = mean.map((x, i) => (x + Y[i]) );
           traces.push(
             {

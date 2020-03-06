@@ -3,7 +3,7 @@ import random from 'random'
 
 const msPerDay = 1000*60*60*24;
 
-const monthToDay = (m) => {return m*30+15; };
+const monthToDay = (m) => {return m*30+15;};
 
 const jan2020 = new Date("2020-01-01");
 
@@ -17,7 +17,6 @@ export function infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing
 export function populationAverageParameters(params, severity, ageCounts, containment) {
   var pop = {...params};
 
-  pop.avgInfectionRate = 0;
   pop.timeDeltaDays = 0.25;
   pop.timeDelta = msPerDay*pop.timeDeltaDays;
   pop.numberStochasticRuns = params.numberStochasticRuns
@@ -30,6 +29,14 @@ export function populationAverageParameters(params, severity, ageCounts, contain
   pop.infectionSeverityRatio = {};
   pop.infectionFatality = {};
   pop.infectionCritical = {};
+  pop.recoveryRate = {};
+  pop.hospitalizedRate = {};
+  pop.dischargeRate = {};
+  pop.criticalRate = {};
+  pop.deathRate = {};
+  pop.stabilizationRate = {};
+  pop.importsPerDay = {};
+  pop.importsPerDay["total"] = params.importsPerDay;
 
   var hospitalizedFrac = 0;
   var criticalFracHospitalized = 0;
@@ -44,12 +51,12 @@ export function populationAverageParameters(params, severity, ageCounts, contain
       criticalFracHospitalized += freq * d.critical / 100;
       fatalFracCritical += freq * d.fatal / 100;
   });
-  pop.recoveryRate = (1-hospitalizedFrac) / pop.infectiousPeriod;
-  pop.hospitalizedRate = hospitalizedFrac / pop.infectiousPeriod;
-  pop.dischargeRate = (1-criticalFracHospitalized) / pop.lengthHospitalStay;
-  pop.criticalRate = criticalFracHospitalized / pop.lengthHospitalStay;
-  pop.deathRate = fatalFracCritical/pop.lengthHospitalStay;
-  pop.stabilizationRate = (1-fatalFracCritical) / pop.lengthHospitalStay;
+  pop.recoveryRate["total"] = (1-hospitalizedFrac) / pop.infectiousPeriod;
+  pop.hospitalizedRate["total"] = hospitalizedFrac / pop.infectiousPeriod;
+  pop.dischargeRate["total"] = (1-criticalFracHospitalized) / pop.lengthHospitalStay;
+  pop.criticalRate["total"] = criticalFracHospitalized / pop.lengthHospitalStay;
+  pop.deathRate["total"] = fatalFracCritical/pop.lengthHospitalStay;
+  pop.stabilizationRate["total"] = (1-fatalFracCritical) / pop.lengthHospitalStay;
   pop.avgInfectionRate = pop.r0 / pop.infectiousPeriod;
   pop.infectionRate = function(time) { return (1-containment(time)) * infectionRate(time, pop.avgInfectionRate, pop.peakMonth, pop.seasonalForcing); };
 
@@ -69,26 +76,63 @@ export function samplePoisson(lambda) {
     return k - 1;
 }
 
+export function initializePopulation(N, numCases, t0) {
+        const put = (x) => {return {"total": x};};
+        return {
+            "time" : t0,
+            "susceptible" : put(N - numCases),
+            "exposed" : put(0),
+            "infectious" : put(numCases),
+            "hospitalized" : put(0),
+            "critical" : put(0),
+            "discharged" : put(0),
+            "recovered" : put(0),
+            "dead" : put(0)
+        };
+}
+
+// NOTE: Assumes all subfields corresponding to populations have the same set of keys
 export function evolve(pop, P, sample) {
-    const newTime  = pop["time"] + P.timeDelta;
-    const newCases = sample(P.importsPerDay*P.timeDeltaDays) + sample(P.infectionRate(newTime)*pop['susceptible']*pop['infectious']/P.populationServed*P.timeDeltaDays);
-    const newInfectious = sample(pop['exposed']*P.timeDeltaDays/P.incubationTime);
-    const newRecovered  = sample(pop['infectious']*P.timeDeltaDays*P.recoveryRate);
-    const newHospitalized = sample(pop['infectious']*P.timeDeltaDays*P.hospitalizedRate);
-    const newDischarged   = sample(pop['hospitalized']*P.timeDeltaDays*P.dischargeRate);
-    const newCritical = sample(pop['hospitalized']*P.timeDeltaDays*P.criticalRate);
-    const newStabilized = sample(pop['critical']*P.timeDeltaDays*P.stabilizationRate);
-    const newDead = sample(pop['critical']*P.timeDeltaDays*P.deathRate);
-    const newPop = {"time" : newTime,
-                    "susceptible" : pop["susceptible"] - newCases,
-                    "exposed" : pop["exposed"] - newInfectious + newCases,
-                    "infectious" : pop["infectious"] + newInfectious - newRecovered - newHospitalized,
-                    "recovered" : pop["recovered"] + newRecovered + newDischarged,
-                    "hospitalized" : pop["hospitalized"] + newHospitalized - newDischarged - newCritical,
-                    "critical" : pop["critical"] + newCritical - newStabilized - newDead,
-                    "discharged" : pop["discharged"] + newDischarged,
-                    "dead" : pop["dead"]+newDead,
-                    };
+    const fracInfected = Object.values(pop['infectious']).reduce((a, b) => a + b, 0)/P.populationServed;
+
+    const newTime = pop["time"] + P.timeDelta;
+    const newPop = {
+                       "time" : newTime,
+                       "susceptible" : {},
+                       "exposed" : {},
+                       "infectious" : {},
+                       "recovered" : {},
+                       "hospitalized" : {},
+                       "critical" : {},
+                       "discharged" : {},
+                       "dead" : {},
+                   };
+
+    var push = (sub, age, delta) => {
+        newPop[sub][age] = pop[sub][age] + delta;
+    };
+
+    Object.keys(pop['infectious']).forEach((age) => {
+        const newCases        = sample(P.importsPerDay[age]*P.timeDeltaDays) + 
+                                sample(P.infectionRate(newTime)*pop['susceptible'][age]*fracInfected*P.timeDeltaDays);
+        const newInfectious   = sample(pop['exposed'][age]*P.timeDeltaDays/P.incubationTime);
+        const newRecovered    = sample(pop['infectious'][age]*P.timeDeltaDays*P.recoveryRate[age]);
+        const newHospitalized = sample(pop['infectious'][age]*P.timeDeltaDays*P.hospitalizedRate[age]);
+        const newDischarged   = sample(pop['hospitalized'][age]*P.timeDeltaDays*P.dischargeRate[age]);
+        const newCritical     = sample(pop['hospitalized'][age]*P.timeDeltaDays*P.criticalRate[age]);
+        const newStabilized   = sample(pop['critical'][age]*P.timeDeltaDays*P.stabilizationRate[age]);
+        const newDead         = sample(pop['critical'][age]*P.timeDeltaDays*P.deathRate[age]);
+
+        push("susceptible", age, -newCases);
+        push("exposed", age, newCases - newInfectious);
+        push("infectious", age, newInfectious-newRecovered-newHospitalized);
+        push("recovered", age, newRecovered+newDischarged);
+        push("hospitalized", age, newHospitalized-newDischarged-newCritical);
+        push("critical", age, newCritical-newStabilized-newDead);
+        push("discharged", age, newDischarged);
+        push("dead", age, newDead);
+     });
+
     return newPop;
 }
 

@@ -3,7 +3,10 @@ import { CountryAgeDistribution, OneCountryAgeDistribution } from '../assets/dat
 import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './Result.types'
-import { populationAverageParameters, evolve, exportSimulation } from "./model.js"
+import { populationAverageParameters, 
+         initializePopulation,
+         evolve
+       } from "./model.js"
 
 
 interface TimePoint {
@@ -59,15 +62,7 @@ export default async function run(
   const modelParams = populationAverageParameters(params, severity, ageDistribution, interpolate(containment));
   const tMin: number = params.tMin.getTime()
   const initialCases = parseFloat(params.suspectedCasesToday);
-  const initialState = {"time" : tMin,
-                        "susceptible" : modelParams.populationServed - initialCases,
-                        "exposed" : 0,
-                        "infectious" : initialCases,
-                        "hospitalized" : 0,
-                        "critical" : 0,
-                        "discharged" : 0,
-                        "recovered" : 0,
-                        "dead" : 0};
+  const initialState = initializePopulation(modelParams.populationServed, initialCases, tMin);
   const tMax: number = params.tMax.getTime()
   const identity = function(x: number) {return x;}; // Use instead of samplePoisson for a deterministic
   const poisson = function(x: number) {return x>0?random.poisson(x)():0;}; // poisson sampling

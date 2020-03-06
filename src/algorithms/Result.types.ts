@@ -1,13 +1,13 @@
 export interface SimulationTimePoint {
   time: number,
-  susceptible: number,
-  exposed: number,
-  infectious: number,
-  hospitalized: number,
-  recovered: number,
-  discharged: number,
-  critical: number,
-  dead: number
+  susceptible: Record<string, number>,
+  exposed: Record<string, number>,
+  infectious: Record<string, number>,
+  hospitalized: Record<string, number>,
+  recovered: Record<string, number>,
+  discharged: Record<string, number>,
+  critical: Record<string, number>,
+  dead: Record<string, number>
 };
 
 export interface ModelParams {
@@ -15,12 +15,12 @@ export interface ModelParams {
   infectionSeverityRatio: Record<string, number>,
   infectionFatality: Record<string, number>,
   infectionCritical: Record<string, number>,
-  hospitalizedRate: number,
-  recoveryRate: number,
-  dischargeRate: number,
-  stabilizationRate: number,
-  criticalRate: number,
-  deathRate: number,
+  hospitalizedRate: Record<string, number>,
+  recoveryRate: Record<string, number>,
+  dischargeRate: Record<string, number>,
+  stabilizationRate: Record<string, number>,
+  criticalRate: Record<string, number>,
+  deathRate: Record<string, number>,
   avgInfectionRate: number,
   timeDeltaDays: number,
   infectionRate: (t: Date) => number,
