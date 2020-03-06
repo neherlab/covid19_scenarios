@@ -1,48 +1,49 @@
 import React from 'react'
 
 import Select from 'react-select'
-import Downshift from 'downshift'
-import { FormGroup, Col, Row } from 'reactstrap'
+import { Col, FormGroup, Row } from 'reactstrap'
 
-export interface FormDropdownOption {
-  value: string
+export interface FormDropdownOption<ValueType extends string | number> {
+  value: ValueType
   label: string
 }
 
-export interface FormDropdownProps {
+export interface FormDropdownProps<ValueType extends string | number> {
   id: string
   label: string
-  options: FormDropdownOption[]
-  defaultOption?: FormDropdownOption
-  onChange(value: string): void
+  options: FormDropdownOption<ValueType>[]
+  defaultOption?: FormDropdownOption<ValueType>
+  onValueChange(value: ValueType): void
 }
 
-export default function FormDropdown({
+export default function FormDropdown<ValueType extends string | number>({
   id,
   label,
   options,
   defaultOption,
-  onChange,
-}: FormDropdownProps) {
+  onValueChange,
+}: FormDropdownProps<ValueType>) {
   return (
     <FormGroup>
       <Row>
-      <Col xl={7}>
-      <label htmlFor={id}>{label}</label>
-      </Col>
-      <Col xl={5}>
-      <Select
-        id={id}
-        name={id}
-        options={options}
-        defaultValue={defaultOption}
-        theme={theme => ({
-          ...theme,
-          borderRadius: 0,
-        })}
-        onChange={(option: FormDropdownOption) => onChange(option.value)}
-      />
-      </Col>
+        <Col xl={7}>
+          <label htmlFor={id}>{label}</label>
+        </Col>
+        <Col xl={5}>
+          <Select
+            id={id}
+            name={id}
+            options={options}
+            defaultValue={defaultOption}
+            theme={theme => ({
+              ...theme,
+              borderRadius: 0,
+            })}
+            onChange={(option: FormDropdownOption<ValueType>) =>
+              onValueChange(option.value)
+            }
+          />
+        </Col>
       </Row>
     </FormGroup>
   )

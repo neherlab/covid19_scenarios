@@ -33,7 +33,6 @@ import {
   AdditionalParams,
   AllParams,
   MainParams,
-  Month,
 } from '../../algorithms/Param.types'
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
@@ -65,7 +64,7 @@ const additionalParams: AdditionalParams = {
     defaultValue: 10,
   },
   seasonalForcing: { name: 'Seasonal Forcing', defaultValue: 0.4 },
-  peakMonth: { name: 'Peak Month', defaultValue: Month.Jan },
+  peakMonth: { name: 'Peak Month', defaultValue: 0 },
   numberStochasticRuns: { name: 'Number of stochastic runs', defaultValue: 0 },
 }
 
@@ -156,15 +155,78 @@ export function severityErrors(severity: SeverityTableRow[]) {
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable([
-  { id: 0, ageGroup: '0-9', confirmed: 30.0,   severe: 1.0,  critical: 5,  fatal: 30 },
-  { id: 2, ageGroup: '10-19', confirmed: 30.0, severe: 3.0,  critical: 10, fatal: 30 },
-  { id: 4, ageGroup: '20-29', confirmed: 30.0, severe: 3.0,  critical: 10, fatal: 30 },
-  { id: 6, ageGroup: '30-39', confirmed: 30.0, severe: 3.0,  critical: 15, fatal: 30 },
-  { id: 8, ageGroup: '40-49', confirmed: 40.0, severe: 6.0,  critical: 20, fatal: 30 },
-  { id: 10, ageGroup: '50-59', confirmed: 55.0,severe: 10.0, critical: 25, fatal: 40 },
-  { id: 12, ageGroup: '60-69', confirmed: 70.0,severe: 25.0, critical: 35, fatal: 40 },
-  { id: 14, ageGroup: '70-79', confirmed: 80.0,severe: 35.0, critical: 45, fatal: 50 },
-  { id: 16, ageGroup: '80+', confirmed: 90.0,  severe: 50.0, critical: 55, fatal: 50 },
+  {
+    id: 0,
+    ageGroup: '0-9',
+    confirmed: 30.0,
+    severe: 1.0,
+    critical: 5,
+    fatal: 30,
+  },
+  {
+    id: 2,
+    ageGroup: '10-19',
+    confirmed: 30.0,
+    severe: 3.0,
+    critical: 10,
+    fatal: 30,
+  },
+  {
+    id: 4,
+    ageGroup: '20-29',
+    confirmed: 30.0,
+    severe: 3.0,
+    critical: 10,
+    fatal: 30,
+  },
+  {
+    id: 6,
+    ageGroup: '30-39',
+    confirmed: 30.0,
+    severe: 3.0,
+    critical: 15,
+    fatal: 30,
+  },
+  {
+    id: 8,
+    ageGroup: '40-49',
+    confirmed: 40.0,
+    severe: 6.0,
+    critical: 20,
+    fatal: 30,
+  },
+  {
+    id: 10,
+    ageGroup: '50-59',
+    confirmed: 55.0,
+    severe: 10.0,
+    critical: 25,
+    fatal: 40,
+  },
+  {
+    id: 12,
+    ageGroup: '60-69',
+    confirmed: 70.0,
+    severe: 25.0,
+    critical: 35,
+    fatal: 40,
+  },
+  {
+    id: 14,
+    ageGroup: '70-79',
+    confirmed: 80.0,
+    severe: 35.0,
+    critical: 45,
+    fatal: 50,
+  },
+  {
+    id: 16,
+    ageGroup: '80+',
+    confirmed: 90.0,
+    severe: 50.0,
+    critical: 55,
+    fatal: 50,
+  },
 ])
 
 const countries = Object.keys(countryAgeDistribution)
@@ -178,7 +240,16 @@ const defaultCountryOption = countryOptions.find(
   option => option.value === defaultCountry,
 )
 
-const defaultMaxTime = mainParams.tMax.defaultValue;
+const months = moment.months()
+const monthOptions = months.map((month, i) => ({
+  value: i,
+  label: month,
+}))
+
+const defaultMonth = additionalParams.peakMonth.defaultValue
+const defaultMonthOption = monthOptions.find(
+  option => option.value === defaultMonth,
+)
 
 const schema = yup.object().shape({
   ageDistribution: yup
@@ -228,7 +299,7 @@ const schema = yup.object().shape({
   // tMax: yup.string().required('Required'),
 })
 
-var d3Ptr = [];
+var d3Ptr = []
 
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -237,6 +308,7 @@ function Main() {
   const [logScale, setLogScale] = useState<boolean>(true)
   const [tMin, setTMin] = useState<Date>(mainParams.tMin.defaultValue)
   const [tMax, setTMax] = useState<Date>(mainParams.tMax.defaultValue)
+  const [peakMonth, setPeakMonth] = useState<number>(defaultMonth)
 
   async function handleSubmit(
     params: AllParams,
@@ -246,7 +318,7 @@ function Main() {
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[country]
     const newResult = await run(
-      { ...params, tMin, tMax, country, ageDistribution: country },
+      { ...params, tMin, tMax, country, ageDistribution: country, peakMonth },
       severity,
       ageDistribution,
       d3Ptr,
@@ -361,10 +433,13 @@ function Main() {
                             errors={errors}
                             touched={touched}
                           />
-                          <FormInput
+                          <FormDropdown
                             key="peakMonth"
                             id="peakMonth"
                             label="Peak Month"
+                            options={monthOptions}
+                            defaultOption={defaultMonthOption}
+                            onValueChange={setPeakMonth}
                           />
                           <FormSpinBox
                             key="numberStochasticRuns"
@@ -384,7 +459,11 @@ function Main() {
                           title="Reduction in Transmission"
                           defaultCollapsed={true}
                         >
-                        <ContainControl data={d3Ptr} minTime={tMin} maxTime={tMax}/>
+                          <ContainControl
+                            data={d3Ptr}
+                            minTime={tMin}
+                            maxTime={tMax}
+                          />
                         </CollapsibleCard>
                       </Col>
                     </Row>
@@ -415,7 +494,9 @@ function Main() {
                             <Button
                               type="submit"
                               color="primary"
-                              disabled={!isValid || !severityTableIsValid(severity)}
+                              disabled={
+                                !isValid || !severityTableIsValid(severity)
+                              }
                             >
                               Run
                             </Button>

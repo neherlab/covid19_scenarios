@@ -1,18 +1,3 @@
-export enum Month {
-  Jan = 'Jan',
-  Feb = 'Feb',
-  Mar = 'Mar',
-  Apr = 'Apr',
-  May = 'May',
-  Jun = 'Jun',
-  Jul = 'Jul',
-  Aug = 'Aug',
-  Sep = 'Sep',
-  Oct = 'Oct',
-  Nov = 'Nov',
-  Dec = 'Dec',
-}
-
 export interface Param<ValueType> {
   name: string
   defaultValue: ValueType
@@ -33,7 +18,7 @@ export interface AdditionalParams {
   infectiousPeriod: Param<number>
   lengthHospitalStay: Param<number>
   seasonalForcing: Param<number>
-  peakMonth: Param<Month>
+  peakMonth: Param<number>
   numberStochasticRuns: Param<number>
 }
 
@@ -45,7 +30,7 @@ export interface AllParams {
   infectiousPeriod: number
   lengthHospitalStay: number
   numberStochasticRuns: number
-  peakMonth: Month
+  peakMonth: number
   populationServed: number
   r0: number
   seasonalForcing: number
