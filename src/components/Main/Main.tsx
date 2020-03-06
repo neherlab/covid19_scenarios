@@ -25,6 +25,7 @@ import { CollapsibleCard } from './CollapsibleCard'
 import { DeterministicLinePlot, StochasticLinePlot } from './Plot'
 import AgePlot from './PlotAgeAndParams'
 import PopTable from './PopAvgRates'
+import ContainControl from './Containment'
 
 import run from '../../algorithms/run'
 
@@ -177,6 +178,8 @@ const defaultCountryOption = countryOptions.find(
   option => option.value === defaultCountry,
 )
 
+const defaultMaxTime = mainParams.tMax.defaultValue;
+
 const schema = yup.object().shape({
   ageDistribution: yup
     .string()
@@ -225,6 +228,8 @@ const schema = yup.object().shape({
   // tMax: yup.string().required('Required'),
 })
 
+var d3Ptr = [];
+
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
@@ -244,6 +249,7 @@ function Main() {
       { ...params, tMin, tMax, country },
       severity,
       ageDistribution,
+      d3Ptr,
     )
 
     setResult(newResult)
@@ -368,6 +374,17 @@ function Main() {
                             errors={errors}
                             touched={touched}
                           />
+                        </CollapsibleCard>
+                      </Col>
+                    </Row>
+
+                    <Row noGutters>
+                      <Col>
+                        <CollapsibleCard
+                          title="Strength of Containment"
+                          defaultCollapsed={true}
+                        >
+                        <ContainControl data={d3Ptr} nowTime={nowTime} maxTime={maxTime}/>
                         </CollapsibleCard>
                       </Col>
                     </Row>

@@ -23,6 +23,7 @@ export interface ModelParams {
   deathRate: number,
   avgInfectionRate: number,
   timeDeltaDays: number,
+  infectionRate: (t: Date) => number,
   timeDelta: number,
   populationServed: number,
   numberStochasticRuns: number,

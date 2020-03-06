@@ -20,18 +20,16 @@ const monthToDay = {
 
 const jan2020 = new Date("2020-01-01");
 
-export function infectionRate(time, params){
+export function infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing){
     //this is super hacky
-    const phase = ((time-jan2020)/msPerDay/365-monthToDay[params.peakMonth]/365)*2*math.pi;
-    return params.avgInfectionRate*(1+params.seasonalForcing*Math.cos(phase));
+    const phase = ((time-jan2020)/msPerDay/365-monthToDay[peakMonth]/365)*2*math.pi;
+    return avgInfectionRate*(1+seasonalForcing*Math.cos(phase));
 }
 
 
-export function populationAverageParameters(params, severity, ageCounts) {
+export function populationAverageParameters(params, severity, ageCounts, containment) {
   var pop = {...params};
-  console.log("All Parameters", params);
-  pop.recoveryRate = 0;
-  pop.dischargeRate = 0;
+
   pop.avgInfectionRate = 0;
   pop.timeDeltaDays = 0.25;
   pop.timeDelta = msPerDay*pop.timeDeltaDays;
@@ -66,6 +64,7 @@ export function populationAverageParameters(params, severity, ageCounts) {
   pop.deathRate = fatalFracCritical/pop.lengthHospitalStay;
   pop.stabilizationRate = (1-fatalFracCritical) / pop.lengthHospitalStay;
   pop.avgInfectionRate = pop.r0 / pop.infectiousPeriod;
+  pop.infectionRate = function(time) { return (1-containment(time)) * infectionRate(time, pop.avgInfectionRate, pop.peakMonth, pop.seasonalForcing); };
 
   return pop;
 }
@@ -85,7 +84,7 @@ export function samplePoisson(lambda) {
 
 export function evolve(pop, P, sample) {
     const newTime  = pop["time"] + P.timeDelta;
-    const newCases = sample(P.importsPerDay*P.timeDeltaDays) + sample(infectionRate(newTime,P)*pop['susceptible']*pop['infectious']/P.populationServed*P.timeDeltaDays);
+    const newCases = sample(P.importsPerDay*P.timeDeltaDays) + sample(P.infectionRate(newTime)*pop['susceptible']*pop['infectious']/P.populationServed*P.timeDeltaDays);
     const newInfectious = sample(pop['exposed']*P.timeDeltaDays/P.incubationTime);
     const newRecovered  = sample(pop['infectious']*P.timeDeltaDays*P.recoveryRate);
     const newHospitalized = sample(pop['infectious']*P.timeDeltaDays*P.hospitalizedRate);

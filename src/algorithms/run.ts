@@ -6,6 +6,43 @@ import { AlgorithmResult, SimulationTimePoint } from './Result.types'
 import { populationAverageParameters, evolve, exportSimulation } from "./model.js"
 
 
+interface TimePoint {
+    t: Date,
+    y: number,
+}
+
+type TimeSeries = TimePoint[];
+
+// NOTE: Assumes containment is sorted ascending in time.
+function interpolate(containment: TimeSeries): (t: Date) => number {
+    // If user hasn't touched containment, this vector is empty
+    if (containment.length == 0) {
+        return (t: Date) => {
+            return 0;
+        }
+    }
+
+    return (t: Date) => { 
+        const index = containment.findIndex(
+            (d) => (Number(t) < Number(d.t))
+        );
+
+        // Deal with extrapolation 
+        // i.e. the time given exceeds the containment series.
+        if (index <= 0) {
+            return 0;
+        }
+
+        const deltaY = (containment[index].y - containment[index-1].y);
+        const deltaT = (Number(containment[index].t) - Number(containment[index-1].t));
+
+        const dS = deltaY / deltaT;
+        const dT = Number(t) - Number(containment[index-1].t);
+
+        return containment[index-1].y + (dS * dT);
+    };
+}
+
 /**
  *
  * Entry point for the algorithm
@@ -15,12 +52,11 @@ export default async function run(
   params: AllParams,
   severity: SeverityTableRow[],
   ageDistribution: OneCountryAgeDistribution,
+  containment: TimeSeries,
 ): Promise<AlgorithmResult> {
   console.log(JSON.stringify({ params }, null, 2));
-  // console.log(JSON.stringify({ severity }, null, 2))
-  // console.log(JSON.stringify({ countryAgeDistribution }, null, 2))
 
-  const modelParams = populationAverageParameters(params, severity, ageDistribution);
+  const modelParams = populationAverageParameters(params, severity, ageDistribution, interpolate(containment));
   const tMin: number = params.tMin.getTime()
   const initialCases = parseFloat(params.suspectedCasesToday);
   const initialState = {"time" : tMin,
