@@ -45,4 +45,6 @@ TODO
 
 ### License
 
-MIT
+[MIT License](LICENSE)
+
+Copyright (c) 2020 neherlab
