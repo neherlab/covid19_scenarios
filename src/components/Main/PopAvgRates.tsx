@@ -51,7 +51,7 @@ export default function PopTable( {result, rates}: TableProps) {
       <td>{mildFrac}</td>
     </tr>
     <tr>
-      <td>Severe [%]: </td>
+      <td>severe [%]: </td>
       <td>{severeFrac}</td>
     </tr>
     <tr>
