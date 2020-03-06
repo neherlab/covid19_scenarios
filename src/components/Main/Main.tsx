@@ -246,7 +246,7 @@ function Main() {
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[country]
     const newResult = await run(
-      { ...params, tMin, tMax, country },
+      { ...params, tMin, tMax, country, ageDistribution: country },
       severity,
       ageDistribution,
       d3Ptr,
