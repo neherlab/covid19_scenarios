@@ -3,30 +3,16 @@ import random from 'random'
 
 const msPerDay = 1000*60*60*24;
 
-const monthToDay = [ 
-    0*30+15,
-    1*30+15,
-    2*30+15,
-    3*30+15,
-    4*30+15,
-    5*30+15,
-    6*30+15,
-    7*30+15,
-    8*30+15,
-    9*30+15,
-    10*30+15,
-    11*30+15,
-];
+const monthToDay = (m) => {return m*30+15; };
 
 const jan2020 = new Date("2020-01-01");
 
 export function infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing){
     //this is super hacky
     console.log(peakMonth);
-    const phase = ((time-jan2020)/msPerDay/365-monthToDay[peakMonth]/365)*2*math.pi;
+    const phase = ((time-jan2020)/msPerDay/365-monthToDay(peakMonth)/365)*2*math.pi;
     return avgInfectionRate*(1+seasonalForcing*Math.cos(phase));
 }
-
 
 export function populationAverageParameters(params, severity, ageCounts, containment) {
   var pop = {...params};
