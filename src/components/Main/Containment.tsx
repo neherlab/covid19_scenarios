@@ -8,7 +8,7 @@ const ASPECT_RATIO = 16 / 9
 
 var n = 10
 
-function uniformDates(min, max) {
+function uniformDatesBetween(min, max) {
     const d = (max - min) / (n-1);
     var dates = d3.range(Number(min), Number(max) + d, d)
     return dates.map(d => new Date(d))
@@ -30,7 +30,7 @@ class Graph extends React.Component {
   draw() {
     const { width, height } = this.props
 
-    const dates = uniformDates(this.props.minTime, this.props.maxTime);
+    const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime);
     if (this.props.data.length == 0) {
         for (let i = 0; i < n; i++) {
           this.props.data.push({ y: 0, t: dates[i] })

@@ -32,10 +32,10 @@ export default function AgePlot( {data, rates}: SimProps ) {
   const peakSevere = Math.max(...(data.deterministicTrajectory.map( x => x.hospitalized)));
 
 
-  console.log("CFR conditional on hospital", totalDeaths/(totalSevere+totalDeaths) * 100);
-  console.log("peakSevere", peakSevere);
-  console.log(params.infectionSeverityRatio);
-  console.log(probSevere);
+  // console.log("CFR conditional on hospital", totalDeaths/(totalSevere+totalDeaths) * 100);
+  // console.log("peakSevere", peakSevere);
+  // console.log(params.infectionSeverityRatio);
+  // console.log(probSevere);
   const ageDeaths = probDeath.map(x => round(totalDeaths * x));
   const ageSevere = probSevere.map(x => round(totalSevere * x));
   const agePeakSevere = probSevere.map(x => round(peakSevere * x));
