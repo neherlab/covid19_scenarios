@@ -8,60 +8,44 @@ const ASPECT_RATIO = 16 / 9
 
 var n = 10
 
+function uniformDates(min, max) {
+    const d = (max - min) / (n-1);
+    var dates = d3.range(Number(min), Number(max) + d, d)
+    return dates.map(d => new Date(d))
+}
+
 // *****************************************************
 // ** Graph and App components
 // *****************************************************
 
 class Graph extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      min: new Date(props.minTime),
-      max: new Date(props.maxTime),
-      data: this.props.data,
-    }
-
-    console.log(props.data)
-
-    const d = (this.state.max - this.state.min) / (n-1);
-    var dates = d3.range(Number(this.state.min), Number(this.state.max) + d, d)
-    dates = dates.map(d => new Date(d))
-
-    for (let i = 0; i < n; i++) {
-      this.state.data.push({ y: 0, t: dates[i] })
-    }
-
-    console.log('Building graph with state', this.state)
-  }
-
   componentDidMount(): void {
     this.draw()
   }
 
   componentDidUpdate(): void {
-    console.log("Need to update");
-    this.state.min = this.props.minTime;
-    this.state.max = this.props.maxTime;
-
-    const d = (this.state.max - this.state.min) / (n-1);
-    var dates = d3.range(Number(this.state.min), Number(this.state.max) + d, d)
-    dates = dates.map(d => new Date(d))
-    for (let i = 0; i < n; i++) {
-        this.state.data[i].t = dates[i];
-    }
-
     this.draw()
   }
 
   draw() {
     const { width, height } = this.props
 
+    const dates = uniformDates(this.props.minTime, this.props.maxTime);
+    if (this.props.data.length == 0) {
+        for (let i = 0; i < n; i++) {
+          this.props.data.push({ y: 0, t: dates[i] })
+        }
+    } else {
+        for (let i = 0; i < n; i++) {
+            this.props.data[i].t = dates[i];
+        }
+    }
+
     var margin = { top: 50, right: 50, bottom: 75, left: 50 }
 
     var tScale = d3
       .scaleTime()
-      .domain([this.state.min, this.state.max])
+      .domain([this.props.minTime, this.props.maxTime])
       .range([0, width - margin.right - margin.left])
 
     var yScale = d3
@@ -103,7 +87,7 @@ class Graph extends React.Component {
 
       d3.select(n[i]).attr('cy', yScale(d.y))
 
-      this.state.data[i].y = d.y
+      this.props.data[i].y = d.y
       d3.select(ReactDOM.findDOMNode(this.refs.graph))
         .select('.line-graph')
         .attr('d', drawLine)
@@ -115,7 +99,7 @@ class Graph extends React.Component {
 
     this.d3Graph
       .append('path')
-      .datum(this.state.data)
+      .datum(this.props.data)
       .attr('class', 'line-graph')
       .attr('fill', 'none')
       .attr('stroke', '#ffab00')
@@ -156,14 +140,14 @@ class Graph extends React.Component {
       .append('text')
       .attr('dy', '1em')
       .attr('y', -margin.left)
-      .attr('x', -height / 2 + 50)
+      .attr('x', -height / 2 + 60)
       .style('text-anchor', 'middle')
       .attr('transform', 'rotate(-90)')
-      .text('Containment effect')
+      .text('Transmission Reduction')
 
     this.d3Graph
       .selectAll('.dot')
-      .data(this.state.data)
+      .data(this.props.data)
       .enter()
       .append('circle')
       .attr('class', 'dot')
