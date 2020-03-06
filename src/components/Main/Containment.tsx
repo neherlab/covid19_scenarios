@@ -45,7 +45,6 @@ class Graph extends React.Component {
 
   draw() {
     const { width, height } = this.props
-    console.log('cdm', { width, height })
 
     var margin = { top: 50, right: 50, bottom: 75, left: 50 }
 
@@ -213,7 +212,6 @@ class Graph extends React.Component {
 
   render() {
     const { width, height } = this.props
-    console.log('render', { width, height })
     if (!width || !height) {
       return null
     }
