@@ -384,7 +384,7 @@ function Main() {
                           title="Strength of Containment"
                           defaultCollapsed={true}
                         >
-                        <ContainControl data={d3Ptr} nowTime={nowTime} maxTime={maxTime}/>
+                        <ContainControl data={d3Ptr} minTime={tMin} maxTime={tMax}/>
                         </CollapsibleCard>
                       </Col>
                     </Row>

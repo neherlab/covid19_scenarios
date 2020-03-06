@@ -17,15 +17,15 @@ class Graph extends React.Component {
     super(props)
 
     this.state = {
-      now: new Date(props.nowTime),
+      min: new Date(props.minTime),
       max: new Date(props.maxTime),
       data: this.props.data,
     }
 
     console.log(props.data)
 
-    const d = (this.state.max - this.state.now) / n
-    var dates = d3.range(Number(this.state.now), Number(this.state.max) + d, d)
+    const d = (this.state.max - this.state.min) / n
+    var dates = d3.range(Number(this.state.min), Number(this.state.max) + d, d)
     dates = dates.map(d => new Date(d))
 
     for (let i = 0; i < n; i++) {
@@ -50,7 +50,7 @@ class Graph extends React.Component {
 
     var tScale = d3
       .scaleTime()
-      .domain([this.state.now, this.state.max])
+      .domain([this.state.min, this.state.max])
       .range([0, width - margin.right - margin.left])
 
     var yScale = d3
@@ -239,7 +239,7 @@ export default class ContainControl extends React.Component {
             return (
               <Graph
                 data={this.props.data}
-                nowTime={this.props.nowTime}
+                minTime={this.props.minTime}
                 maxTime={this.props.maxTime}
                 width={width}
                 height={height}
