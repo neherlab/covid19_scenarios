@@ -231,7 +231,7 @@ function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
 
               return (
                 <div key={`row-${id}-${column}`} className="text-danger">
-                  {`Error in column "${ageGroup}", row "${column}": ${message}`}
+                  {`Error in row "${ageGroup}", column "${column}": ${message}`}
                 </div>
               )
             })
