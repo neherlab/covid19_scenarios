@@ -90,19 +90,31 @@ export default function AgePlot( {data, rates}: SimProps ) {
         },
         xaxis: {
           tickmode: 'linear',
+          automargin: true,
         },
         yaxis: {
             title: "Fraction of population",
-            ymax: 0.25
+            ymax: 0.25,
+            automargin: true
         },
         xaxis2: {
             tickmode: 'linear',
-            title: "Age group"
+            title: "Age group",
+            automargin: true
         },
         yaxis2: {
             title: "Number of Individuals",
             type: "log",
-        }
+            automargin: true
+        },
+        autosize: false,
+        margin: {
+            l: 10,
+            r: 10,
+            b: 10,
+            t: 10,
+            pad: 4
+          },
       }}
     />
   )
