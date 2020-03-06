@@ -459,6 +459,10 @@ function Main() {
                           title="Reduction in Transmission"
                           defaultCollapsed={true}
                         >
+                          <p>Drag black dots with the mouse to simulate how infection
+                             control affects the outbreak trajectory. Zero is no infection control,
+                             one is complete prevention of all infections.
+                          </p>
                           <ContainControl
                             data={d3Ptr}
                             minTime={tMin}
@@ -474,6 +478,14 @@ function Main() {
                           title="Severity assumptions based on data from China"
                           defaultCollapsed={false}
                         >
+                          <p>This table summarizes the assumptions on severity which are informed
+                             by epidemiological and clinical observations in China. The first column
+                             reflects our assumption on what fraction of infections are reflected
+                             in the statistics from China, the following columns contain the assumption
+                             on what fraction of the previous category deteriorates to the next.
+                             These fields are editable and can be adjusted to different assumptions.
+                             The last column is the implied infection fatality for different age groups.
+                          </p>
                           <SeverityTable
                             columns={columns}
                             rows={severity}
