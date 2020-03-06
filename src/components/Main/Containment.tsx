@@ -24,7 +24,7 @@ class Graph extends React.Component {
 
     console.log(props.data)
 
-    const d = (this.state.max - this.state.min) / n
+    const d = (this.state.max - this.state.min) / (n-1);
     var dates = d3.range(Number(this.state.min), Number(this.state.max) + d, d)
     dates = dates.map(d => new Date(d))
 
@@ -40,6 +40,17 @@ class Graph extends React.Component {
   }
 
   componentDidUpdate(): void {
+    console.log("Need to update");
+    this.state.min = this.props.minTime;
+    this.state.max = this.props.maxTime;
+
+    const d = (this.state.max - this.state.min) / (n-1);
+    var dates = d3.range(Number(this.state.min), Number(this.state.max) + d, d)
+    dates = dates.map(d => new Date(d))
+    for (let i = 0; i < n; i++) {
+        this.state.data[i].t = dates[i];
+    }
+
     this.draw()
   }
 
