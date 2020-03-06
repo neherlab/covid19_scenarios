@@ -288,7 +288,7 @@ function Main() {
                           <FormSpinBox
                             key="suspectedCasesToday"
                             id="suspectedCasesToday"
-                            label="Suspected Cases Today"
+                            label="Initial suspected Cases"
                             step={1}
                             errors={errors}
                             touched={touched}
@@ -297,7 +297,7 @@ function Main() {
                             key="importsPerDay"
                             id="importsPerDay"
                             label="Imports Per Day"
-                            step={1}
+                            step={0.1}
                             errors={errors}
                             touched={touched}
                           />
