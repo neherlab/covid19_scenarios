@@ -1,4 +1,8 @@
 import React from 'react'
+import {
+  Col,
+  Row,
+} from 'reactstrap'
 
 import './About.scss'
 import model from '../assets/img/model_sketch.svg.png'
@@ -9,11 +13,13 @@ const About: React.FC = () => {
   return (
     <>
       <h1 className="h1-about">{'About COVID-19 Scenarios'}</h1>
-
+      <Row>
+      <Col lg={2}></Col>
+      <Col lg={8}>
       <p>
         {`This web application serves as a plannling tool for COVID-19 outbreaks in communities across the world.
         It implements a simple SIR model with additional categories for exposed individuals that are not yet infectious,
-        severely sick people in need of hospitalization, and a fatal category.`}
+        severely sick people in need of hospitalization, people in critical condition, and a fatal category.`}
       </p>
 
       <h2>{'Basic assumptions'}</h2>
@@ -26,7 +32,8 @@ const About: React.FC = () => {
           </li>
         <li> exposed individuals progress to a symptomatic/infectious state after an average incubation time</li>
         <li> infectious individuals recover or progress to severe disease. The ratio of recovery to severe progression depends on the age distribution in the populations</li>
-        <li> severely sick individuals either recover or die. Again, this depends on the age distribution in the population </li>
+        <li> severely sick individuals either recover or deteriorate and turn critical. Again, this depends on the age distribution in the population </li>
+        <li> critically ill individuals either return to regular hospital or die. Again, this depends on the age distribution in the population </li>
       </ul>
       <p>
         The individual parameters of the model can all be changed to allow exploration of different scenari
@@ -42,7 +49,9 @@ const About: React.FC = () => {
       </p>
 
       <h2>{'Team'}</h2>
-
+      </Col>
+      <Col lg={2}></Col>
+      </Row>
     </>
   )
 }
