@@ -19,26 +19,26 @@ export default function AgePlot( {data, rates}: SimProps ) {
   const agesFrac = ages.map(x => params.ageDistribution[x]);
   const sevFrac = ages.map(x => params.infectionSeverityRatio[x]);
 
-  let Z = sevFrac.reduce((a,b) => a + b, 0);
-  const probSevere = sevFrac.map((x) => x / Z);
+  if (Object.keys(data.deterministicTrajectory[data.deterministicTrajectory.length-1].dead).length == 1) {
+      let Z = sevFrac.reduce((a,b) => a + b, 0);
+      const probSevere = sevFrac.map((x) => x / Z);
+      var probDeath = rates.map((x, i) => x.fatal / 100 * agesFrac[i]);
+      probDeath = probDeath.map((x, i) => (x * probSevere[i]));
+      Z = probDeath.reduce((a,b) => a + b, 0);
+      probDeath = probDeath.map((x) => x / Z);
 
-  var probDeath = rates.map((x, i) => x.fatal / 100 * agesFrac[i]);
-  probDeath = probDeath.map((x, i) => (x * probSevere[i]));
-  Z = probDeath.reduce((a,b) => a + b, 0);
-  probDeath = probDeath.map((x) => x / Z);
+      const totalDeaths = data.deterministicTrajectory[data.deterministicTrajectory.length-1].dead["total"];
+      const totalSevere = data.deterministicTrajectory[data.deterministicTrajectory.length-1].discharged["total"] + totalDeaths;
+      const peakSevere = Math.max(...(data.deterministicTrajectory.map( x => x.hospitalized["total"])));
 
-  const totalDeaths = data.deterministicTrajectory[data.deterministicTrajectory.length-1].dead["total"];
-  const totalSevere = data.deterministicTrajectory[data.deterministicTrajectory.length-1].discharged["total"];
-  const peakSevere = Math.max(...(data.deterministicTrajectory.map( x => x.hospitalized["total"])));
-
-
-  // console.log("CFR conditional on hospital", totalDeaths/(totalSevere+totalDeaths) * 100);
-  // console.log("peakSevere", peakSevere);
-  // console.log(params.infectionSeverityRatio);
-  // console.log(probSevere);
-  const ageDeaths = probDeath.map(x => round(totalDeaths * x));
-  const ageSevere = probSevere.map(x => round(totalSevere * x));
-  const agePeakSevere = probSevere.map(x => round(peakSevere * x));
+      var ageDeaths = probDeath.map(x => round(totalDeaths * x));
+      var ageSevere = probSevere.map(x => round(totalSevere * x));
+      var agePeakSevere = probSevere.map(x => round(peakSevere * x));
+  } else {
+      var ageDeaths = ages.map(x => round(data.deterministicTrajectory[data.deterministicTrajectory.length-1].dead[x]));
+      var ageSevere = ages.map((x,i) => round(data.deterministicTrajectory[data.deterministicTrajectory.length-1].discharged[x]) + ageDeaths[i]);
+      var agePeakSevere = ages.map(k => Math.max(...(data.deterministicTrajectory.map(x => x.hospitalized[k]))));
+  }
 
   return (
     <Plot
