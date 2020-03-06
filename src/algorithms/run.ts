@@ -21,9 +21,9 @@ export default async function run(
   // console.log(JSON.stringify({ countryAgeDistribution }, null, 2))
 
   const modelParams = populationAverageParameters(params, severity, ageDistribution);
-  const time = Date.now();
+  const tMin: number = params.tMin.getTime()
   const initialCases = parseFloat(params.suspectedCasesToday);
-  const initialState = {"time" : time,
+  const initialState = {"time" : tMin,
                         "susceptible" : modelParams.populationServed - initialCases,
                         "exposed" : 0,
                         "infectious" : initialCases,
@@ -31,7 +31,7 @@ export default async function run(
                         "discharged" : 0,
                         "recovered" : 0,
                         "dead" : 0};
-  const tMax = new Date(params.tMax);
+  const tMax: number = params.tMax.getTime()
   const identity = function(x: number) {return x;}; // Use instead of samplePoisson for a deterministic
   const poisson = function(x: number) {return x>0?random.poisson(x)():0;}; // poisson sampling
 
