@@ -381,7 +381,7 @@ function Main() {
                     <Row noGutters>
                       <Col>
                         <CollapsibleCard
-                          title="Strength of Containment"
+                          title="Reduction in Transmission"
                           defaultCollapsed={true}
                         >
                         <ContainControl data={d3Ptr} minTime={tMin} maxTime={tMax}/>
@@ -392,7 +392,7 @@ function Main() {
                     <Row noGutters>
                       <Col>
                         <CollapsibleCard
-                          title="Severity"
+                          title="Severity assumptions based on data from China"
                           defaultCollapsed={false}
                         >
                           <SeverityTable
