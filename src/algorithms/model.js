@@ -217,15 +217,21 @@ export function exportSimulation(trajectory) {
         return `${d} ${month[m]} ${y}`;
     }
 
-    var csv = ["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"];
+    var csv = Object.keys(trajectory[0]); //["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"];
     var pop = {};
     trajectory.forEach(function(d) {
         const t = stringify(new Date(d.time));
         if (t in pop) { return; }
         pop[t] = true;
-        csv.push(
-            `${math.round(d.susceptible)},${math.round(d.exposed)},${math.round(d.infectious)},${math.round(d.recovered)},${math.round(d.hospitalized)},${math.round(d.discharged)},${math.round(d.dead)}`
-        );
+        buf = '';
+        csv[0].forEach((k) => {
+            if (k == "time") {
+                buf += `${k}`;
+            } else {
+                buf += `${math.round(d.susceptible.total)}`;
+            }
+        });
+        csv.push(buf);
     });
 
     return csv.join('\n');
