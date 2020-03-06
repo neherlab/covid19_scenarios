@@ -361,7 +361,7 @@ function Main() {
                             label="Age Distribution"
                             options={countryOptions}
                             defaultOption={defaultCountryOption}
-                            onChange={country => setCountry(country)}
+                            onValueChange={setCountry}
                           />
                           <FormSpinBox
                             key="suspectedCasesToday"
