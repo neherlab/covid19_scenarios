@@ -312,6 +312,20 @@ export default {
       unicode: false,
     }),
 
+    // Setup for `moment` locales
+    new webpack.ContextReplacementPlugin(/^\.\/locale$/, context => {
+      if (!/\/moment\//.test(context.context)) {
+        return
+      }
+      // context needs to be modified in place
+      Object.assign(context, {
+        // include only CJK
+        regExp: /^\.\/(en|de)/,
+        // point to the locale data folder relative to moment's src/lib/locale
+        request: '../../locale',
+      })
+    }),
+
     new webpack.optimize.AggressiveMergingPlugin(),
 
     new ExtraWatchWebpackPlugin({

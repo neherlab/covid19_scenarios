@@ -13,6 +13,7 @@ import {
 } from 'reactstrap'
 
 import * as yup from 'yup'
+import moment from 'moment'
 
 import SeverityTable, {
   SeverityTableColumn,
@@ -43,13 +44,15 @@ import FormSpinBox from './FormSpinBox'
 import FormSwitch from './FormSwitch'
 import _ from 'lodash'
 import { ValidationError } from 'yup'
+import FormDatePicker from './FormDatePicker'
 
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
   ageDistribution: { name: 'Age Distribution', defaultValue: 'Switzerland' },
   suspectedCasesToday: { name: 'Suspected Cases Today', defaultValue: 10 },
   importsPerDay: { name: 'Imports Per Day', defaultValue: 2 },
-  tMax: { name: 'Simulate until', defaultValue: '2021-03-31' },
+  tMin: { name: 'Simulate from', defaultValue: moment().toDate() },
+  tMax: { name: 'Simulate until', defaultValue: moment().add(1, 'year').toDate() } // prettier-ignore
 }
 
 const additionalParams: AdditionalParams = {
@@ -227,6 +230,8 @@ function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [country, setCountry] = useState<string>(defaultCountry)
   const [logScale, setLogScale] = useState<boolean>(true)
+  const [tMin, setTMin] = useState<Date>(mainParams.tMin.defaultValue)
+  const [tMax, setTMax] = useState<Date>(mainParams.tMax.defaultValue)
 
   async function handleSubmit(
     params: AllParams,
@@ -236,7 +241,7 @@ function Main() {
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[country]
     const newResult = await run(
-      { ...params, country },
+      { ...params, tMin, tMax, country },
       severity,
       ageDistribution,
     )
@@ -296,10 +301,14 @@ function Main() {
                             errors={errors}
                             touched={touched}
                           />
-                          <FormInput
-                            key="tMax"
-                            id="tMax"
-                            label="Simulate until"
+                          <FormDatePicker
+                            key="simulationTimeRange"
+                            id="simulationTimeRange"
+                            startDate={tMin}
+                            endDate={tMax}
+                            onStartDateChange={setTMin}
+                            onEndDateChange={setTMax}
+                            label="Simulation time range"
                           />
                           <FormSpinBox
                             key="numberStochasticRuns"
