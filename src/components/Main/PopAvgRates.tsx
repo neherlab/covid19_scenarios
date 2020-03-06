@@ -31,10 +31,10 @@ export default function PopTable( {result, rates}: TableProps) {
   severeFrac = forDisplay(severeFrac);
   mildFrac = forDisplay(mildFrac);
 
-  const totalDeath = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].dead);
-  const totalSevere = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].discharged);
-  const peakSevere = Math.round(Math.max(...result.deterministicTrajectory.map( x => x.hospitalized )));
-  const peakCritical = Math.round(Math.max(...result.deterministicTrajectory.map( x => x.critical )));
+  const totalDeath = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].dead["total"]);
+  const totalSevere = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].discharged["total"]);
+  const peakSevere = Math.round(Math.max(...result.deterministicTrajectory.map( x => x.hospitalized["total"] )));
+  const peakCritical = Math.round(Math.max(...result.deterministicTrajectory.map( x => x.critical["total"] )));
 
   return (
     <>
