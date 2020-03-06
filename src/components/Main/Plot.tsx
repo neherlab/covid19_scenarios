@@ -209,7 +209,6 @@ export function StochasticLinePlot({ data, logScale }: LinePlotProps) {
             pad: 4
           },
       }}
-      config={{displayModeBar:false}}
     />
   )
 }

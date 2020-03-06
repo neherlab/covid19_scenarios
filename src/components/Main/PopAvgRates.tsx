@@ -27,9 +27,10 @@ export default function PopTable( {result, rates}: TableProps) {
   var mildFrac = 1 - severeFrac - criticalFrac - deathFrac;
 
   const forDisplay = ((x: number) => { return Number((100*x).toFixed(2)); });
-  deathFrac = forDisplay(deathFrac);
-  severeFrac = forDisplay(severeFrac);
-  mildFrac = forDisplay(mildFrac);
+  deathFrac    = forDisplay(deathFrac);
+  criticalFrac = forDisplay(criticalFrac);
+  severeFrac   = forDisplay(severeFrac);
+  mildFrac     = forDisplay(mildFrac);
 
   const totalDeath = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].dead["total"]);
   const totalSevere = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length-1].discharged["total"]);
@@ -53,6 +54,10 @@ export default function PopTable( {result, rates}: TableProps) {
     <tr>
       <td>Severe [%]: </td>
       <td>{severeFrac}</td>
+    </tr>
+    <tr>
+      <td>Critical [%]: </td>
+      <td>{criticalFrac}</td>
     </tr>
     <tr>
       <td>Fatal [%]: </td>
