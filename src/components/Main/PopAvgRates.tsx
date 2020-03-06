@@ -39,10 +39,13 @@ export default function PopTable( {result, rates}: TableProps) {
   return (
     <>
     <table>
+    <thead>
     <tr>
       <th>Outcome or Value &emsp; </th>
       <th>Population average</th>
     </tr>
+    </thead>
+    <tbody>
     <tr>
       <td>Mild [%]: </td>
       <td>{mildFrac}</td>
@@ -71,6 +74,7 @@ export default function PopTable( {result, rates}: TableProps) {
       <td>Peak critical: </td>
       <td>{peakCritical}</td>
     </tr>
+    </tbody>
     </table>
     </>
   )
