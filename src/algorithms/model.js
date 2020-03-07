@@ -44,8 +44,8 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
       const freq = (1.0*ageCounts[d.ageGroup]/total);
       pop.ageDistribution[d.ageGroup] = freq;
       pop.infectionSeverityRatio[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100);
-      pop.infectionCritical[d.ageGroup]      = pop.infectionSeverityRatio[d.ageGroup] * (d.critical / 100) 
-      pop.infectionFatality[d.ageGroup]      = pop.infectionCritical[d.ageGroup] * (d.fatal / 100) 
+      pop.infectionCritical[d.ageGroup]      = pop.infectionSeverityRatio[d.ageGroup] * (d.critical / 100)
+      pop.infectionFatality[d.ageGroup]      = pop.infectionCritical[d.ageGroup] * (d.fatal / 100)
 
       const dHospital = pop.infectionSeverityRatio[d.ageGroup];
       const dCritical = d.critical / 100;
@@ -166,7 +166,7 @@ export function evolve(pop, P, sample) {
     };
 
     Object.keys(pop['infectious']).forEach((age) => {
-        const newCases        = sample(P.importsPerDay[age]*P.timeDeltaDays) + 
+        const newCases        = sample(P.importsPerDay[age]*P.timeDeltaDays) +
                                 sample(P.infectionRate(newTime)*pop['susceptible'][age]*fracInfected*P.timeDeltaDays);
         const newInfectious   = sample(pop['exposed'][age]*P.timeDeltaDays/P.incubationTime);
         const newRecovered    = sample(pop['infectious'][age]*P.timeDeltaDays*P.recoveryRate[age]);
@@ -217,18 +217,21 @@ export function exportSimulation(trajectory) {
         return `${d} ${month[m]} ${y}`;
     }
 
-    const csv = Object.keys(trajectory[0]); //["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"];
+    const header = Object.keys(trajectory[0]); //["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"];
+    let csv = [header.join('\t')];
+
     const pop = {};
+    console.log(trajectory[0], trajectory[1]);
     trajectory.forEach(function(d) {
         const t = stringify(new Date(d.time));
         if (t in pop) { return; }
         pop[t] = true;
         let buf = '';
-        csv.forEach((k) => {
+        header.forEach((k) => {
             if (k == "time") {
-                buf += `${k}`;
+                buf += `${d[k]}`;
             } else {
-                buf += `${math.round(d.susceptible.total)}`;
+                buf += `\t${math.round(d[k].total)}`;
             }
         });
         csv.push(buf);
