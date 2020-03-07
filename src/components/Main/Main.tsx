@@ -68,7 +68,7 @@ const mainParams: MainParams = {
 }
 
 const additionalParams: AdditionalParams = {
-  r0: { name: 'R0', defaultValue: epiDefaults.R0 },
+  r0: { name: 'Average R0', defaultValue: epiDefaults.R0 },
   incubationTime: { name: 'Incubation Time [days]', defaultValue: epiDefaults.incubationTime },
   infectiousPeriod: { name: 'Infectious Period [days]', defaultValue: epiDefaults.infectiousPeriod },
   lengthHospitalStay: {
@@ -397,19 +397,19 @@ function Main() {
                     <Row noGutters>
                       <Col>
                         <CollapsibleCard
-                          title="Reduction in Transmission"
-                          defaultCollapsed={true}
+                          title="Reduction in Transmission by Interventions"
+                          defaultCollapsed={false}
                         >
-                          <p>Drag black dots with the mouse to simulate how infection
-                             control affects the outbreak trajectory. Zero is no infection control,
-                             one is complete prevention of all infections.
-                          </p>
                           <ContainControl
                             data={d3Ptr}
                             initialData={containmentDefault.reduction}
                             minTime={tMin}
                             maxTime={tMax}
                           />
+                          <p>Drag black dots with the mouse to simulate how infection
+                             control affects the outbreak trajectory. Zero is no infection control,
+                             one is complete prevention of all infections.
+                          </p>
                         </CollapsibleCard>
                       </Col>
                     </Row>
@@ -418,7 +418,7 @@ function Main() {
                       <Col>
                         <CollapsibleCard
                           title="Severity assumptions based on data from China"
-                          defaultCollapsed={false}
+                          defaultCollapsed={true}
                         >
                           <p>This table summarizes the assumptions on severity which are informed
                              by epidemiological and clinical observations in China. The first column
