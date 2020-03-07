@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import NavigationLink from './NavigationLink'
 
-import logo from '../../assets/img/logo.svg'
+import logo from '../../assets/img/HIVEVO_logo.png'
 import './NavigationBar.scss'
 
 export interface NavLinkMap {
