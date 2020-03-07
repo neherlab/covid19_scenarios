@@ -1,0 +1,12 @@
+$button-width: 100px;
+$button-spacing: 5px;
+
+.run-button {
+  width: $button-width;
+  margin-left: $button-spacing;
+}
+
+.export-button {
+  width: $button-width;
+  margin-left: $button-spacing;
+}

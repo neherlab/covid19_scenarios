@@ -28,6 +28,7 @@ import PopTable from './PopAvgRates'
 import ContainControl from './Containment'
 
 import run from '../../algorithms/run'
+import { exportResult } from '../../algorithms/exportResult'
 
 import {
   AdditionalParams,
@@ -45,6 +46,8 @@ import FormSwitch from './FormSwitch'
 import _ from 'lodash'
 import { ValidationError } from 'yup'
 import FormDatePicker from './FormDatePicker'
+
+import './Main.scss'
 
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: 100_000 },
@@ -310,6 +313,8 @@ function Main() {
   const [tMax, setTMax] = useState<Date>(mainParams.tMax.defaultValue)
   const [peakMonth, setPeakMonth] = useState<number>(defaultMonth)
 
+  const canExport = Boolean(result?.deterministicTrajectory)
+
   async function handleSubmit(
     params: AllParams,
     { setSubmitting }: FormikHelpers<AllParams>,
@@ -504,6 +509,7 @@ function Main() {
                         <Col>
                           <FormGroup>
                             <Button
+                              className="run-button"
                               type="submit"
                               color="primary"
                               disabled={
@@ -511,6 +517,15 @@ function Main() {
                               }
                             >
                               Run
+                            </Button>
+                            <Button
+                              className={`export-button ${canExport ? '' : 'd-none'}`} // prettier-ignore
+                              type="submit"
+                              color="secondary"
+                              disabled={!canExport}
+                              onClick={() => result && exportResult(result)}
+                            >
+                              Export
                             </Button>
                           </FormGroup>
                         </Col>
