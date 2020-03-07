@@ -38,6 +38,7 @@ import {
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
+import containmentScenarios from '../../assets/data/containmentScenarios.json'
 import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import { AlgorithmResult } from '../../algorithms/Result.types'
 import FormInput from './FormInput'
@@ -230,7 +231,7 @@ const schema = yup.object().shape({
   // tMax: yup.string().required('Required'),
 })
 
-var d3Ptr = []
+var d3Ptr = [];
 
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -398,6 +399,7 @@ function Main() {
                           </p>
                           <ContainControl
                             data={d3Ptr}
+                            initialData={containmentScenarios.moderateReduction.reduction}
                             minTime={tMin}
                             maxTime={tMax}
                           />
