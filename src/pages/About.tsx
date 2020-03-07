@@ -5,7 +5,8 @@ import {
 } from 'reactstrap'
 
 import './About.scss'
-import model from '../assets/img/model_sketch.svg.png'
+import model from '../assets/img/model_sketch.svg'
+import seasonalIllustration from '../assets/img/seasonal_illustration.svg'
 
 import LinkExternal from '../components/Router/LinkExternal'
 
@@ -42,9 +43,10 @@ const About: React.FC = () => {
 
       <figure className="figure w-100">
         <img src={model} className="figure-img img-fluid rounded"
-             alt="Short description goes here" />
-        <figcaption className="figure-caption text-center">
-          Figure 1. Caption goes here
+             alt="illustration of the model" />
+        <figcaption className="figure-caption text-left">
+          Figure 1. A schematic illustration of the underlying model. S corresponds to the 'susceptible' compartement,
+             E is 'exposed', I is 'infectious', R 'recovered', H 'severe' (hospitalized), C 'critical' (ICU), and D are fatalities.
         </figcaption>
       </figure>
 
@@ -55,6 +57,24 @@ const About: React.FC = () => {
         <LinkExternal url="http://weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51">{`Chinese CDC`}
         </LinkExternal>{` to estimate the fraction of severe and fatal cases by age group.`}
       </p>
+
+      <h2>{'Seasonality'}</h2>
+      Many respiratory viruses such as influenza, common cold viruses (including rhino- and other coronaviruses)
+      have a pronounced seasonal variation in incidence which is in part driven by climate variation through the
+      year.
+
+      We model this seasonal variation using a cosine with an annual period.
+      <figure className="figure w-100">
+        <img src={seasonalIllustration} className="figure-img img-fluid rounded"
+             alt="illustration of seasonal variation in transmission rate" />
+        <figcaption className="figure-caption text-left">
+          Figure 2. Seasonal variation in transmission rate is modeled by a cosine.
+                    The model allows to specify the average R0,
+                    the amplitude of the cosine (seasonal forcing),
+                    and the month of peak transmission.
+        </figcaption>
+      </figure>
+
 
       <h2>{'Team'}</h2>
       </Col>

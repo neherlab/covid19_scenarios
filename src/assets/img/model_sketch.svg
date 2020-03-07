@@ -27,15 +27,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.16"
-     inkscape:cx="409.90995"
-     inkscape:cy="75.272257"
+     inkscape:cx="531.90069"
+     inkscape:cy="72.957442"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="3840"
-     inkscape:window-height="2118"
-     inkscape:window-x="3840"
-     inkscape:window-y="42"
+     inkscape:window-width="3200"
+     inkscape:window-height="1752"
+     inkscape:window-x="0"
+     inkscape:window-y="48"
      inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -218,7 +218,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -431,40 +431,49 @@
        id="path5132-2"
        d="m 346.71748,106.18221 73.61111,0"
        style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5474-4)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="144.5379"
+       y="93.676468"
+       id="text4305"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="144.5379"
+         y="93.676468"
+         id="tspan4307"><tspan
+           x="144.5379"
+           y="93.676468"
+           id="tspan4309">incubation</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="339.64404"
+       y="93.721733"
+       id="text4299"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="339.64404"
+         y="93.721733"
+         id="tspan4301"><tspan
+           x="339.64404"
+           y="93.721733"
+           id="tspan4303">symptoms</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="741.08179"
+       y="195.86378"
+       id="text4287"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="741.08179"
+         y="195.86378"
+         id="tspan4289"><tspan
+           x="741.08179"
+           y="195.86378"
+           id="tspan4291">recovery</tspan></tspan></text>
     <flowRoot
-       transform="translate(-12.407407,112.28789)"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="flowRoot4991"
-       xml:space="preserve"><flowRegion
-         id="flowRegion4993"><rect
-           y="-34.80938"
-           x="156.94444"
-           height="27.777779"
-           width="112.03704"
-           id="rect4995" /></flowRegion><flowPara
-         id="flowPara4997">incubation</flowPara></flowRoot>    <flowRoot
-       transform="translate(182.69874,112.33315)"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="flowRoot4991-8"
-       xml:space="preserve"><flowRegion
-         id="flowRegion4993-1"><rect
-           y="-34.80938"
-           x="156.94444"
-           height="27.777779"
-           width="112.03704"
-           id="rect4995-9" /></flowRegion><flowPara
-         id="flowPara4997-9">symptoms</flowPara></flowRoot>    <flowRoot
-       transform="translate(584.13649,214.4752)"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="flowRoot4991-8-4"
-       xml:space="preserve"><flowRegion
-         id="flowRegion4993-1-6"><rect
-           y="-34.80938"
-           x="156.94444"
-           height="27.777779"
-           width="112.03704"
-           id="rect4995-9-2" /></flowRegion><flowPara
-         id="flowPara4997-9-8">recovery</flowPara></flowRoot>    <flowRoot
        transform="translate(313.96165,250.33922)"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="flowRoot4991-8-4-7"
@@ -475,29 +484,35 @@
            height="27.777779"
            width="112.03704"
            id="rect4995-9-2-2" /></flowRegion><flowPara
-         id="flowPara4997-9-8-2">deterioration</flowPara></flowRoot>    <flowRoot
-       transform="translate(539.6098,113.76515)"
+         id="flowPara4997-9-8-2">deterioration</flowPara></flowRoot>    <text
+       xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="flowRoot4991-8-4-9"
-       xml:space="preserve"><flowRegion
-         id="flowRegion4993-1-6-0"><rect
-           y="-34.80938"
-           x="156.94444"
-           height="27.777779"
-           width="112.03704"
-           id="rect4995-9-2-24" /></flowRegion><flowPara
-         id="flowPara4997-9-8-7">recovery</flowPara></flowRoot>    <flowRoot
-       transform="translate(730.55424,316.76515)"
+       x="696.55511"
+       y="95.153732"
+       id="text4293"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="696.55511"
+         y="95.153732"
+         id="tspan4295"><tspan
+           x="696.55511"
+           y="95.153732"
+           id="tspan4297">recovery</tspan></tspan></text>
+    <text
+       xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="flowRoot4991-8-4-9-6"
-       xml:space="preserve"><flowRegion
-         id="flowRegion4993-1-6-0-5"><rect
-           y="-34.80938"
-           x="156.94444"
-           height="27.777779"
-           width="112.03704"
-           id="rect4995-9-2-24-7" /></flowRegion><flowPara
-         id="flowPara4997-9-8-7-1">death</flowPara></flowRoot>    <rect
+       x="887.49957"
+       y="298.15372"
+       id="text4281"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="887.49957"
+         y="298.15372"
+         id="tspan4283"><tspan
+           x="887.49957"
+           y="298.15372"
+           id="tspan4285">death</tspan></tspan></text>
+    <rect
        rx="15.277778"
        style="opacity:1;fill:none;fill-opacity:1;stroke:#666666;stroke-width:4.4000001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4136-11-9-5"
