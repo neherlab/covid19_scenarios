@@ -217,14 +217,14 @@ export function exportSimulation(trajectory) {
         return `${d} ${month[m]} ${y}`;
     }
 
-    var csv = Object.keys(trajectory[0]); //["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"];
-    var pop = {};
+    const csv = Object.keys(trajectory[0]); //["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"];
+    const pop = {};
     trajectory.forEach(function(d) {
         const t = stringify(new Date(d.time));
         if (t in pop) { return; }
         pop[t] = true;
-        buf = '';
-        csv[0].forEach((k) => {
+        let buf = '';
+        csv.forEach((k) => {
             if (k == "time") {
                 buf += `${k}`;
             } else {
