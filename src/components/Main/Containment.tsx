@@ -158,6 +158,7 @@ class Graph extends React.Component {
         return yScale(d.y)
       })
       .attr('r', 5)
+      .attr('r', 10)
 
     var Root = this.d3Graph
     this.d3Graph
@@ -165,7 +166,7 @@ class Graph extends React.Component {
       .on('mouseover', function(d, i) {
         d3.select(this)
           .attr('fill', '#ffab00')
-          .attr('r', 7)
+          .attr('r', 10)
         Root.append('path')
           .datum([
             { y: 0, t: d.t },
@@ -192,7 +193,7 @@ class Graph extends React.Component {
       .on('mouseout', function() {
         d3.select(this)
           .attr('fill', 'black')
-          .attr('r', 5)
+          .attr('r', 10)
         Root.select('.temp-line').remove()
       })
       .call(
