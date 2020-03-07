@@ -75,8 +75,10 @@ const About: React.FC = () => {
         </figcaption>
       </figure>
 
-
-      <h2>{'Team'}</h2>
+      <h2>{'Transmission reduction'}</h2>
+      The tool allows to explore temporal variation in the reduction of transmission by infection control measures.
+      This is implemented as a curve through time that can be dragged by the mouse to modifiy the assumed transmission.
+      The curve is read out and used to change transmission relative to the base line parameters for R0 and seasonality.
       </Col>
       <Col lg={2}></Col>
       </Row>
