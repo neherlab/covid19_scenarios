@@ -29,16 +29,19 @@ class Graph extends React.Component {
 
   draw() {
     const { width, height } = this.props
-
     const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime);
-    if (this.props.data.length == 0) {
-        for (let i = 0; i < n; i++) {
-          this.props.data.push({ y: 0, t: dates[i] })
-        }
+    if (this.props.data.length == 0 && this.props.initialData && this.props.initialData.length == n) {
+      for (let i = 0; i < n; i++) {
+        this.props.data.push({ y: this.props.initialData[i], t: dates[i] })
+      }
+    } else if (this.props.data.length == 0){
+      for (let i = 0; i < n; i++) {
+        this.props.data.push({ y: 0, t: dates[i] })
+      }
     } else {
-        for (let i = 0; i < n; i++) {
-            this.props.data[i].t = dates[i];
-        }
+      for (let i = 0; i < n; i++) {
+          this.props.data[i].t = dates[i];
+      }
     }
 
     var margin = { top: 50, right: 50, bottom: 75, left: 50 }
@@ -240,6 +243,7 @@ export default class ContainControl extends React.Component {
             return (
               <Graph
                 data={this.props.data}
+                initialData={this.props.initialData}
                 minTime={this.props.minTime}
                 maxTime={this.props.maxTime}
                 width={width}

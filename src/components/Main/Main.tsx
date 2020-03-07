@@ -38,6 +38,10 @@ import {
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
+import containmentScenarios from '../../assets/data/containmentScenarios.json'
+import epidemiologicalScenarios from '../../assets/data/epidemiologicalScenarios.json'
+import populations from '../../assets/data/populations.json'
+import defaultScenario from '../../assets/data/defaultScenario.json'
 import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import { AlgorithmResult } from '../../algorithms/Result.types'
 import FormInput from './FormInput'
@@ -50,25 +54,29 @@ import FormDatePicker from './FormDatePicker'
 
 import './Main.scss'
 
+const populationDefault = populations[defaultScenario.population];
+const epiDefaults = epidemiologicalScenarios[defaultScenario.epidemiological];
+const containmentDefault = containmentScenarios[defaultScenario.containment];
+
 const mainParams: MainParams = {
-  populationServed: { name: 'Population Served', defaultValue: 100_000 },
-  ageDistribution: { name: 'Age Distribution', defaultValue: 'Switzerland' },
-  suspectedCasesToday: { name: 'Suspected Cases Today', defaultValue: 10 },
-  importsPerDay: { name: 'Imports Per Day', defaultValue: 2 },
+  populationServed: { name: 'Population Served', defaultValue: populationDefault.populationServed },
+  ageDistribution: { name: 'Age Distribution', defaultValue: populationDefault.ageDistribution },
+  suspectedCasesToday: { name: 'Suspected Cases Today', defaultValue: populationDefault.suspectedCasesToday },
+  importsPerDay: { name: 'Imports Per Day', defaultValue: populationDefault.importsPerDay },
   tMin: { name: 'Simulate from', defaultValue: moment().toDate() },
   tMax: { name: 'Simulate until', defaultValue: moment().add(1, 'year').toDate() } // prettier-ignore
 }
 
 const additionalParams: AdditionalParams = {
-  r0: { name: 'R0', defaultValue: 2.2 },
-  incubationTime: { name: 'Incubation Time [days]', defaultValue: 5 },
-  infectiousPeriod: { name: 'Infectious Period [days]', defaultValue: 3 },
+  r0: { name: 'R0', defaultValue: epiDefaults.R0 },
+  incubationTime: { name: 'Incubation Time [days]', defaultValue: epiDefaults.incubationTime },
+  infectiousPeriod: { name: 'Infectious Period [days]', defaultValue: epiDefaults.infectiousPeriod },
   lengthHospitalStay: {
     name: 'Length of Hospital stay [days]',
-    defaultValue: 10,
+    defaultValue: epiDefaults.lengthHospitalStay,
   },
-  seasonalForcing: { name: 'Seasonal Forcing', defaultValue: 0.4 },
-  peakMonth: { name: 'Peak Month', defaultValue: 0 },
+  seasonalForcing: { name: 'Seasonal Forcing', defaultValue: epiDefaults.seasonalForcing },
+  peakMonth: { name: 'Peak Transmission', defaultValue:  epiDefaults.peakMonth },
   numberStochasticRuns: { name: 'Number of stochastic runs', defaultValue: 0 },
 }
 
@@ -230,7 +238,7 @@ const schema = yup.object().shape({
   // tMax: yup.string().required('Required'),
 })
 
-var d3Ptr = []
+var d3Ptr = [];
 
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -398,6 +406,7 @@ function Main() {
                           </p>
                           <ContainControl
                             data={d3Ptr}
+                            initialData={containmentDefault.reduction}
                             minTime={tMin}
                             maxTime={tMax}
                           />
