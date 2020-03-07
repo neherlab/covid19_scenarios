@@ -39,6 +39,8 @@ import {
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 import containmentScenarios from '../../assets/data/containmentScenarios.json'
+import epidemiologicalScenarios from '../../assets/data/epidemiologicalScenarios.json'
+import defaultScenario from '../../assets/data/defaultScenario.json'
 import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import { AlgorithmResult } from '../../algorithms/Result.types'
 import FormInput from './FormInput'
@@ -60,16 +62,19 @@ const mainParams: MainParams = {
   tMax: { name: 'Simulate until', defaultValue: moment().add(1, 'year').toDate() } // prettier-ignore
 }
 
+const epiDefaults = epidemiologicalScenarios[defaultScenario.epidemiological];
+const containmentDefault = containmentScenarios[defaultScenario.containment];
+
 const additionalParams: AdditionalParams = {
-  r0: { name: 'R0', defaultValue: 2.2 },
-  incubationTime: { name: 'Incubation Time [days]', defaultValue: 5 },
-  infectiousPeriod: { name: 'Infectious Period [days]', defaultValue: 3 },
+  r0: { name: 'R0', defaultValue: epiDefaults.R0 },
+  incubationTime: { name: 'Incubation Time [days]', defaultValue: epiDefaults.incubationTime },
+  infectiousPeriod: { name: 'Infectious Period [days]', defaultValue: epiDefaults.infectiousPeriod },
   lengthHospitalStay: {
     name: 'Length of Hospital stay [days]',
-    defaultValue: 10,
+    defaultValue: epiDefaults.lengthHospitalStay,
   },
-  seasonalForcing: { name: 'Seasonal Forcing', defaultValue: 0.4 },
-  peakMonth: { name: 'Peak Month', defaultValue: 0 },
+  seasonalForcing: { name: 'Seasonal Forcing', defaultValue: epiDefaults.seasonalForcing },
+  peakMonth: { name: 'Peak Transmission', defaultValue:  epiDefaults.peakMonth },
   numberStochasticRuns: { name: 'Number of stochastic runs', defaultValue: 0 },
 }
 
@@ -399,7 +404,7 @@ function Main() {
                           </p>
                           <ContainControl
                             data={d3Ptr}
-                            initialData={containmentScenarios.moderateReduction.reduction}
+                            initialData={containmentDefault.reduction}
                             minTime={tMin}
                             maxTime={tMax}
                           />
