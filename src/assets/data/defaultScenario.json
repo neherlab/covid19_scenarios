@@ -1,4 +1,5 @@
 {
-    "containment": "moderateReduction",
-    "epidemiological": "moderateNorthern"
+    "containment": "strongReduction",
+    "epidemiological": "slowNorthern",
+    "population": "Basel"
 }

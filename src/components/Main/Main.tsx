@@ -40,6 +40,7 @@ import countryAgeDistribution from '../../assets/data/country_age_distribution.j
 import severityData from '../../assets/data/severityData.json'
 import containmentScenarios from '../../assets/data/containmentScenarios.json'
 import epidemiologicalScenarios from '../../assets/data/epidemiologicalScenarios.json'
+import populations from '../../assets/data/populations.json'
 import defaultScenario from '../../assets/data/defaultScenario.json'
 import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import { AlgorithmResult } from '../../algorithms/Result.types'
@@ -53,17 +54,18 @@ import FormDatePicker from './FormDatePicker'
 
 import './Main.scss'
 
+const populationDefault = populations[defaultScenario.population];
+const epiDefaults = epidemiologicalScenarios[defaultScenario.epidemiological];
+const containmentDefault = containmentScenarios[defaultScenario.containment];
+
 const mainParams: MainParams = {
-  populationServed: { name: 'Population Served', defaultValue: 100_000 },
-  ageDistribution: { name: 'Age Distribution', defaultValue: 'Switzerland' },
-  suspectedCasesToday: { name: 'Suspected Cases Today', defaultValue: 10 },
-  importsPerDay: { name: 'Imports Per Day', defaultValue: 2 },
+  populationServed: { name: 'Population Served', defaultValue: populationDefault.populationServed },
+  ageDistribution: { name: 'Age Distribution', defaultValue: populationDefault.ageDistribution },
+  suspectedCasesToday: { name: 'Suspected Cases Today', defaultValue: populationDefault.suspectedCasesToday },
+  importsPerDay: { name: 'Imports Per Day', defaultValue: populationDefault.importsPerDay },
   tMin: { name: 'Simulate from', defaultValue: moment().toDate() },
   tMax: { name: 'Simulate until', defaultValue: moment().add(1, 'year').toDate() } // prettier-ignore
 }
-
-const epiDefaults = epidemiologicalScenarios[defaultScenario.epidemiological];
-const containmentDefault = containmentScenarios[defaultScenario.containment];
 
 const additionalParams: AdditionalParams = {
   r0: { name: 'R0', defaultValue: epiDefaults.R0 },
