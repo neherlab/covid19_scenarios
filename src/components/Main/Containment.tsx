@@ -212,7 +212,12 @@ class Graph extends React.Component {
     }
 
     return (
-      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
+      <svg
+        className="noselect"
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+      >
         <g ref="graph" />
       </svg>
     )
