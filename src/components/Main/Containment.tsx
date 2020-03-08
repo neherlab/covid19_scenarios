@@ -95,15 +95,6 @@ class Graph extends React.Component {
       d3.select(n[i]).classed('active', false)
     }
 
-    this.d3Graph
-      .append('path')
-      .datum(this.props.data)
-      .attr('class', 'line-graph')
-      .attr('fill', 'none')
-      .attr('stroke', '#ffab00')
-      .attr('stroke-width', 3)
-      .attr('d', drawLine)
-
     // X axis
     this.d3Graph
       .append('g')
@@ -148,6 +139,30 @@ class Graph extends React.Component {
         .attr("opacity", 0)
         .style('stroke-dasharray', '3, 3');
 
+    // Baseline transmission
+    this.d3Graph
+        .append('line')
+        .attr('id', 'base-line')
+        .attr('x1', 0)
+        .attr('x2', width-margin.left-margin.right)
+        .attr('y1', yScale(1))
+        .attr('y2', yScale(1))
+        .attr('stroke', 'black')
+        .attr('stroke-width', 2)
+        .attr("opacity", 0.5)
+        .style('stroke-dasharray', '4, 2, 1')
+
+    // Line graph
+    this.d3Graph
+      .append('path')
+      .datum(this.props.data)
+      .attr('class', 'line-graph')
+      .attr('fill', 'none')
+      .attr('stroke', '#ffab00')
+      .attr('stroke-width', 3)
+      .attr('d', drawLine)
+
+    // Draggable markers
     this.d3Graph
       .selectAll('.dot')
       .data(this.props.data)
