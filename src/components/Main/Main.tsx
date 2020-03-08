@@ -485,16 +485,20 @@ function Main() {
                             logScale={logScale}
                           />
                         </Col>
+                      </Row>
+                      <Row>
                         <Col>
                           <StochasticLinePlot
                             data={result}
                             logScale={logScale}
                           />
                         </Col>
-                        <Col>
+                      </Row>
+                      <Row>
+                        <Col lg={4}>
                           <PopTable result={result} rates={severity} />
                         </Col>
-                        <Col>
+                        <Col lg={8}>
                           <AgePlot data={result} rates={severity} />
                         </Col>
                       </Row>

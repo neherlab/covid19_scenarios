@@ -37,8 +37,7 @@ const About: React.FC = () => {
         <li> critically ill individuals either return to regular hospital or die. Again, this depends on the age distribution in the population </li>
       </ul>
       <p>
-        The individual parameters of the model can all be changed to allow exploration of different scenari
-        Importantly, the simulation does not explicitly account for future containment measures. This might be added in the future, but for now you can reduce R<sub>0</sub> to explore the effects of infection control.
+        The individual parameters of the model can all be changed to allow exploration of different scenarios.
       </p>
 
       <figure className="figure w-100">
