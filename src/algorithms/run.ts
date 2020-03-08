@@ -63,7 +63,7 @@ export default async function run(
   const modelParams  = getPopulationParams(params, severity, ageDistribution, interpolate(containment));
   const tMin: number = params.tMin.getTime()
   const initialCases = parseFloat(params.suspectedCasesToday);
-  const initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution);
+  let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution);
   const tMax: number = params.tMax.getTime()
   const identity = function(x: number) {return x;}; // Use instead of samplePoisson for a deterministic
   const poisson = function(x: number) {return x>0?random.poisson(x)():0;}; // poisson sampling
@@ -86,6 +86,7 @@ export default async function run(
   };
 
   for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
+      initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution);
       sim.stochasticTrajectories.push(simulate(initialState, poisson));
   }
 
