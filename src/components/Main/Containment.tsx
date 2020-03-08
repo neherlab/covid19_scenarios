@@ -6,6 +6,7 @@ import * as math from 'mathjs'
 import ReactResizeDetector from 'react-resize-detector'
 
 const ASPECT_RATIO = 16 / 9
+const MAX_TRANSMISSION_RATIO = 1.2
 
 function uniformDatesBetween(min, max, n) {
     const d = (max - min) / (n-1);
@@ -48,7 +49,7 @@ class Graph extends React.Component {
 
     var yScale = d3
       .scaleLinear()
-      .domain([0, 1.2])
+      .domain([0, MAX_TRANSMISSION_RATIO])
       .range([height - margin.top - margin.bottom, 0])
 
     this.d3Graph = d3
@@ -77,8 +78,8 @@ class Graph extends React.Component {
 
     let dragged = (d, i, n) => {
       d.y = yScale.invert(d3.event.y)
-      if (d.y > 1) {
-        d.y = 1
+      if (d.y > MAX_TRANSMISSION_RATIO) {
+        d.y = MAX_TRANSMISSION_RATIO
       } else if (d.y < 0) {
         d.y = 0
       }
