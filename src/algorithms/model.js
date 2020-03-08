@@ -56,7 +56,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
       hospitalizedFrac         += freq * dHospital;
       criticalFracHospitalized += freq * dCritical;
       fatalFracCritical        += freq * dFatal;
-      avgIsolatedFrac          += freq * d.isolated/ 100;
+      avgIsolatedFrac          += freq * d.isolated / 100;
 
       // Age specific rates
       pop.isolatedFrac[d.ageGroup]     = d.isolated / 100;
