@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import * as d3 from 'd3'
+import * as math from 'mathjs'
 import ReactResizeDetector from 'react-resize-detector'
 
 const ASPECT_RATIO = 16 / 9
@@ -33,7 +34,12 @@ class Graph extends React.Component {
         this.props.data[i].t = dates[i];
     }
 
-    var margin = { top: 50, right: 50, bottom: 75, left: 50 }
+    const margin = { 
+        top:    math.round(.10*height),
+        right:  math.round(.15*height),
+        left:   math.round(.15*height),
+        bottom: math.round(.20*height),
+    };
 
     var tScale = d3
       .scaleTime()
