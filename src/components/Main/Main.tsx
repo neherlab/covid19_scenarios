@@ -407,8 +407,8 @@ function Main() {
                             maxTime={tMax}
                           />
                           <p>Drag black dots with the mouse to simulate how infection
-                             control affects the outbreak trajectory. Zero is no infection control,
-                             one is complete prevention of all infections.
+                             control affects the outbreak trajectory. One is no infection control,
+                             zero is complete prevention of all transmission.
                           </p>
                         </CollapsibleCard>
                       </Col>
