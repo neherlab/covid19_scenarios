@@ -129,6 +129,19 @@ class Graph extends React.Component {
       .attr('transform', 'rotate(-90)')
       .text('Transmission rel to baseline')
 
+    // Hovering dashed line
+    this.d3Graph
+        .append('line')
+        .attr('id', 'temp-line')
+        .attr('x1', 0)
+        .attr('x2', 0)
+        .attr('y1', 0)
+        .attr('y2', height-margin.top-margin.bottom)
+        .attr('stroke', 'black')
+        .attr('stroke-width', 2)
+        .attr("opacity", 0)
+        .style('stroke-dasharray', '3, 3');
+
     this.d3Graph
       .selectAll('.dot')
       .data(this.props.data)
@@ -141,8 +154,7 @@ class Graph extends React.Component {
       .attr('cy', function(d) {
         return yScale(d.y)
       })
-      .attr('r', 5)
-      .attr('r', 10)
+      .attr('r', 8)
 
     var Root = this.d3Graph
     this.d3Graph
@@ -151,34 +163,17 @@ class Graph extends React.Component {
         d3.select(this)
           .attr('fill', '#ffab00')
           .attr('r', 10)
-        Root.append('path')
-          .datum([
-            { y: 0, t: d.t },
-            { y: height, t: d.t },
-          ])
-          .attr('class', 'temp-line')
-          .attr('stroke', 'black')
-          .attr('stroke-width', 2)
-          .attr('opacity', 0.2)
-          .style('stroke-dasharray', '3, 3')
-          .attr(
-            'd',
-            d3
-              .line()
-              .x(function(d) {
-                return tScale(d.t)
-              })
-              .y(function(d) {
-                return yScale(d.y)
-              })
-              .curve(d3.curveMonotoneX),
-          )
+      Root.select('#temp-line')
+          .attr("opacity", 0.3)
+          .attr("x1", tScale(d.t))
+          .attr("x2", tScale(d.t));
       })
       .on('mouseout', function() {
         d3.select(this)
           .attr('fill', 'black')
-          .attr('r', 10)
-        Root.select('.temp-line').remove()
+          .attr('r', 8)
+      Root.select('#temp-line')
+          .attr("opacity", 0);
       })
       .call(
         d3
