@@ -386,14 +386,6 @@ function Main() {
                             defaultOption={defaultMonthOption}
                             onValueChange={setPeakMonth}
                           />
-                          <FormSpinBox
-                            key="numberStochasticRuns"
-                            id="numberStochasticRuns"
-                            label="Stochastic Runs"
-                            step={1}
-                            errors={errors}
-                            touched={touched}
-                          />
                         </CollapsibleCard>
                       </Col>
                     </Row>
