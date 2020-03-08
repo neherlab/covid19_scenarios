@@ -221,15 +221,14 @@ export function exportSimulation(trajectory) {
     let csv = [header.join('\t')];
 
     const pop = {};
-    console.log(trajectory[0], trajectory[1]);
     trajectory.forEach(function(d) {
-        const t = stringify(new Date(d.time));
-        if (t in pop) { return; }
+        const t = (new Date(d.time)).toISOString().substring(0,10);
+        if (t in pop) { return; } //skip if date is already in table
         pop[t] = true;
         let buf = '';
         header.forEach((k) => {
             if (k == "time") {
-                buf += `${d[k]}`;
+                buf += `${t}`;
             } else {
                 buf += `\t${math.round(d[k].total)}`;
             }
