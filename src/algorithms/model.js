@@ -136,7 +136,8 @@ export function initializePopulation(N, numCases, t0, ages) {
             pop.dead[k] = 0;
             if (i == math.round(Object.keys(ages).length/2)) {
                 pop.susceptible[k] -= numCases;
-                pop.infectious[k] = numCases;
+                pop.infectious[k] = 0.3*numCases;
+                pop.exposed[k] = 0.7*numCases;
             }
         });
 
