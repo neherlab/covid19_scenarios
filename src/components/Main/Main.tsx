@@ -90,6 +90,7 @@ const allDefaults = Object.entries({
 
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: 'Age group' },
+  { name: 'isolated', title: 'Isolated \n% total' },
   { name: 'confirmed', title: 'Confirmed\n% total' },
   { name: 'severe', title: 'Severe\n% of confirmed' },
   { name: 'critical', title: 'Critical\n% of severe' },
@@ -132,6 +133,7 @@ export function updateSeverityTable(
   severity: SeverityTableRow[],
 ): SeverityTableRow[] {
   return severity.map(row => {
+    const { value: isolated, errors: isolatedErrors } = validatePercentage(row.isolated) // prettier-ignore
     const { value: confirmed, errors: confirmedErrors } = validatePercentage(row.confirmed) // prettier-ignore
     const { value: severe, errors: severeErrors } = validatePercentage(row.severe) // prettier-ignore
     const { value: critical, errors: criticalErrors } = validatePercentage(row.critical) // prettier-ignore
@@ -140,6 +142,7 @@ export function updateSeverityTable(
     const totalFatal = confirmed * severe * critical * fatal * 1e-6
 
     const errors = {
+      isolated: isolatedErrors,
       confirmed: confirmedErrors,
       severe: severeErrors,
       critical: criticalErrors,
@@ -148,6 +151,7 @@ export function updateSeverityTable(
 
     return {
       ...row,
+      isolated,
       confirmed,
       severe,
       critical,
