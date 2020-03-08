@@ -1,18 +1,18 @@
 {
     "noReduction":{
-        "reduction": [0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0],
+        "reduction": [1.0,   1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0],
         "name":"No Reduction"
     },
     "weakReduction":{
-        "reduction":[0,     0.1,  0.2,  0.2,  0.2, 0.15,  0.1, 0.15,  0.2,  0.2],
+        "reduction":[1.0,     0.9,  0.8,  0.8,  0.8, 0.8,  0.8, 0.8,  0.8,  0.8],
         "name": "Weak Reduction"
     },
     "moderateReduction": {
-        "reduction":[0,     0.2,  0.4,  0.4,  0.4, 0.3,  0.2, 0.3,  0.4,  0.4],
+        "reduction":[1.0,     0.8,  0.6,  0.6,  0.6, 0.6,  0.6, 0.6,  0.6,  0.6],
         "name": "Moderate Reduction"
     },
     "strongReduction": {
-        "reduction":[0,     0.3,  0.6,  0.6,  0.6, 0.5,  0.55, 0.55,  0.55,  0.55],
+        "reduction":[1.0,     0.7,  0.4,  0.4,  0.4, 0.4,  0.4, 0.4,  0.45,  0.45],
         "name": "Strong Reduction"
     }
 }

@@ -78,7 +78,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
 
   // Infectivity dynamics
   const avgInfectionRate = pop.r0 / pop.infectiousPeriod;
-  pop.infectionRate = function(time) { return (1-containment(time)) * infectionRate(time, avgInfectionRate, pop.peakMonth, pop.seasonalForcing); };
+  pop.infectionRate = function(time) { return containment(time) * infectionRate(time, avgInfectionRate, pop.peakMonth, pop.seasonalForcing); };
 
   return pop;
 }

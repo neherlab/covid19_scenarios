@@ -36,7 +36,7 @@ class Graph extends React.Component {
       }
     } else if (this.props.data.length == 0){
       for (let i = 0; i < n; i++) {
-        this.props.data.push({ y: 0, t: dates[i] })
+        this.props.data.push({ y: 1.0, t: dates[i] })
       }
     } else {
       for (let i = 0; i < n; i++) {
@@ -53,7 +53,7 @@ class Graph extends React.Component {
 
     var yScale = d3
       .scaleLinear()
-      .domain([0, 1])
+      .domain([0, 1.2])
       .range([height - margin.top - margin.bottom, 0])
 
     this.d3Graph = d3
@@ -146,7 +146,7 @@ class Graph extends React.Component {
       .attr('x', -height / 2 + 60)
       .style('text-anchor', 'middle')
       .attr('transform', 'rotate(-90)')
-      .text('Transmission Reduction')
+      .text('Transmission rel to baseline')
 
     this.d3Graph
       .selectAll('.dot')
