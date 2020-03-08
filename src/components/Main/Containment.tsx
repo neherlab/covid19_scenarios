@@ -6,9 +6,7 @@ import ReactResizeDetector from 'react-resize-detector'
 
 const ASPECT_RATIO = 16 / 9
 
-var n = 10
-
-function uniformDatesBetween(min, max) {
+function uniformDatesBetween(min, max, n) {
     const d = (max - min) / (n-1);
     var dates = d3.range(Number(min), Number(max) + d, d)
     return dates.map(d => new Date(d))
@@ -29,19 +27,10 @@ class Graph extends React.Component {
 
   draw() {
     const { width, height } = this.props
-    const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime);
-    if (this.props.data.length == 0 && this.props.initialData && this.props.initialData.length == n) {
-      for (let i = 0; i < n; i++) {
-        this.props.data.push({ y: this.props.initialData[i], t: dates[i] })
-      }
-    } else if (this.props.data.length == 0){
-      for (let i = 0; i < n; i++) {
-        this.props.data.push({ y: 1.0, t: dates[i] })
-      }
-    } else {
-      for (let i = 0; i < n; i++) {
-          this.props.data[i].t = dates[i];
-      }
+    const n = this.props.data.length;
+    const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
+    for (let i = 0; i < n; i++) {
+        this.props.data[i].t = dates[i];
     }
 
     var margin = { top: 50, right: 50, bottom: 75, left: 50 }
@@ -123,14 +112,6 @@ class Graph extends React.Component {
       .attr('dx', '-.8em')
       .attr('dy', '.15em')
       .attr('transform', 'rotate(-65)')
-
-    // text label for the x axis
-    // this.d3Graph.append("text")
-    //     .attr("transform",
-    //       "translate(" + (width/2-50) + " ," +
-    //                      (height - margin.top - margin.bottom + 35) + ")")
-    //     .style("text-anchor", "middle")
-    //     .text("Date");
 
     // Y axis
     this.d3Graph
@@ -243,7 +224,6 @@ export default class ContainControl extends React.Component {
             return (
               <Graph
                 data={this.props.data}
-                initialData={this.props.initialData}
                 minTime={this.props.minTime}
                 maxTime={this.props.maxTime}
                 width={width}

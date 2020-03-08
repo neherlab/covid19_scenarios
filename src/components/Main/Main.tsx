@@ -242,7 +242,7 @@ const schema = yup.object().shape({
   // tMax: yup.string().required('Required'),
 })
 
-var d3Ptr = [];
+var d3Ptr = containmentDefault.reduction.map((y) => {return {"y": y};});
 
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -406,7 +406,6 @@ function Main() {
                         >
                           <ContainControl
                             data={d3Ptr}
-                            initialData={containmentDefault.reduction}
                             minTime={tMin}
                             maxTime={tMax}
                           />
