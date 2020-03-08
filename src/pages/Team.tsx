@@ -15,11 +15,13 @@ const Team: React.FC = () => {
       <Row>
       <Col lg={2}></Col>
       <Col lg={8}>
+      <p>
       This tool was developed at the University of Basel in the
       <LinkExternal url="https://neherlab.org">
         &nbsp;research group&nbsp;
       </LinkExternal>
       of Richard Neher by
+      </p>
       <ul>
       <li>Ivan Aksamentov</li>
       <li>Nicholas Noll</li>

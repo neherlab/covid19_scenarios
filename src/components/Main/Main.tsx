@@ -446,37 +446,41 @@ function Main() {
                   <Col lg={8} xl={6}>
                     <CollapsibleCard title="Results" defaultCollapsed={false}>
                       <Row>
-                        <Col>
-                          <FormGroup>
-                            <Button
-                              className="run-button"
-                              type="submit"
-                              color="primary"
-                              disabled={
-                                !isValid || !severityTableIsValid(severity)
-                              }
-                            >
-                              Run
-                            </Button>
-                            <Button
-                              className={`export-button ${canExport ? '' : 'd-none'}`} // prettier-ignore
-                              type="submit"
-                              color="secondary"
-                              disabled={!canExport}
-                              onClick={() => result && exportResult(result)}
-                            >
-                              Export
-                            </Button>
-                          </FormGroup>
-                        </Col>
-                        <Col>
-                          <FormSwitch
-                            id="logScale"
-                            label="Log scale"
-                            checked={logScale}
-                            onChange={checked => setLogScale(checked)}
-                          />
-                        </Col>
+                            <Col lg={8}>
+                              <p>{`This output of a mathematical model depends on model assumptions and parameter choices.
+                                 We have done our best (in limited time) to check the model implementation is correct.
+                                 Please carefully consider the parameters you choose and interpret the output with caution.`}
+                              </p>
+                            </Col>
+                            <Col lg={4}>
+                            <FormGroup>
+                              <Button
+                                className="run-button"
+                                type="submit"
+                                color="primary"
+                                disabled={
+                                  !isValid || !severityTableIsValid(severity)
+                                }
+                              >
+                                Run
+                              </Button>
+                              <Button
+                                className={`export-button ${canExport ? '' : 'd-none'}`} // prettier-ignore
+                                type="submit"
+                                color="secondary"
+                                disabled={!canExport}
+                                onClick={() => result && exportResult(result)}
+                              >
+                                Export
+                              </Button>
+                              <FormSwitch
+                                id="logScale"
+                                label="Log scale"
+                                checked={logScale}
+                                onChange={checked => setLogScale(checked)}
+                              />
+                              </FormGroup>
+                            </Col>
                       </Row>
                       <Row>
                         <Col>

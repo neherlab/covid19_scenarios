@@ -1,5 +1,5 @@
 const links = {
-  '/': 'Home',
+  '/': 'COVID-19 Scenarios',
   '/about': 'About',
   '/team': 'Team',
 }

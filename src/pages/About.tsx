@@ -23,6 +23,13 @@ const About: React.FC = () => {
         severely sick people in need of hospitalization, people in critical condition, and a fatal category.`}
       </p>
 
+      <p>
+        The source code of this tool is freely available at &nbsp;
+        <LinkExternal url="https://github.com/neherlab/covid19_scenarios">{`github.com/neherlab/covid19_scenarios`}
+        </LinkExternal>
+        &nbsp;and we welcome comments and suggestions.
+      </p>
+
       <h2>{'Basic assumptions'}</h2>
       <p>
         {`The model works as follows:`}
