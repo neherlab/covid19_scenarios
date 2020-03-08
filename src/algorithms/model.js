@@ -24,22 +24,24 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   var total = 0;
   severity.forEach(function(d) {total += ageCounts[d.ageGroup];});
 
-  pop.ageDistribution = {};
+  pop.ageDistribution        = {};
   pop.infectionSeverityRatio = {};
-  pop.infectionFatality = {};
-  pop.infectionCritical = {};
-  pop.recoveryRate = {};
-  pop.hospitalizedRate = {};
-  pop.dischargeRate = {};
-  pop.criticalRate = {};
-  pop.deathRate = {};
-  pop.stabilizationRate = {};
-  pop.importsPerDay = {};
+  pop.infectionFatality      = {};
+  pop.infectionCritical      = {};
+  pop.recoveryRate           = {};
+  pop.hospitalizedRate       = {};
+  pop.dischargeRate          = {};
+  pop.criticalRate           = {};
+  pop.deathRate              = {};
+  pop.stabilizationRate      = {};
+  pop.isolatedFrac           = {};
+  pop.importsPerDay          = {};
   pop.importsPerDay["total"] = params.importsPerDay;
 
   var hospitalizedFrac = 0;
   var criticalFracHospitalized = 0;
   var fatalFracCritical = 0;
+  var avgIsolatedFrac = 0;
   severity.forEach(function(d) {
       const freq = (1.0*ageCounts[d.ageGroup]/total);
       pop.ageDistribution[d.ageGroup] = freq;
@@ -54,8 +56,10 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
       hospitalizedFrac         += freq * dHospital;
       criticalFracHospitalized += freq * dCritical;
       fatalFracCritical        += freq * dFatal;
+      avgIsolatedFrac          += freq * d.isolated/ 100;
 
       // Age specific rates
+      pop.isolatedFrac[d.ageGroup]     = d.isolated / 100;
       pop.recoveryRate[d.ageGroup]     = (1-dHospital) / pop.infectiousPeriod;
       pop.hospitalizedRate[d.ageGroup] = (dHospital) / pop.infectiousPeriod;
       pop.dischargeRate[d.ageGroup]    = (1-dCritical) / pop.lengthHospitalStay;
@@ -75,6 +79,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   pop.criticalRate["total"]      = criticalFracHospitalized / pop.lengthHospitalStay;
   pop.deathRate["total"]         = fatalFracCritical/pop.lengthHospitalStay;
   pop.stabilizationRate["total"] = (1-fatalFracCritical) / pop.lengthHospitalStay;
+  pop.isolatedFrac["total"]      = avgIsolatedFrac;
 
   // Infectivity dynamics
   const avgInfectionRate = pop.r0 / pop.infectiousPeriod;
@@ -168,7 +173,7 @@ export function evolve(pop, P, sample) {
 
     Object.keys(pop['infectious']).forEach((age) => {
         const newCases        = sample(P.importsPerDay[age]*P.timeDeltaDays) +
-                                sample(P.infectionRate(newTime)*pop['susceptible'][age]*fracInfected*P.timeDeltaDays);
+                                sample((1-P.isolatedFrac[age])*P.infectionRate(newTime)*pop['susceptible'][age]*fracInfected*P.timeDeltaDays);
         const newInfectious   = sample(pop['exposed'][age]*P.timeDeltaDays/P.incubationTime);
         const newRecovered    = sample(pop['infectious'][age]*P.timeDeltaDays*P.recoveryRate[age]);
         const newHospitalized = sample(pop['infectious'][age]*P.timeDeltaDays*P.hospitalizedRate[age]);
