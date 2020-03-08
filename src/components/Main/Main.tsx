@@ -64,7 +64,7 @@ const mainParams: MainParams = {
   suspectedCasesToday: { name: 'Suspected Cases Today', defaultValue: populationDefault.suspectedCasesToday },
   importsPerDay: { name: 'Imports Per Day', defaultValue: populationDefault.importsPerDay },
   tMin: { name: 'Simulate from', defaultValue: moment().toDate() },
-  tMax: { name: 'Simulate until', defaultValue: moment().add(1, 'year').toDate() } // prettier-ignore
+  tMax: { name: 'Simulate until', defaultValue: moment().add(0.5, 'year').toDate() } // prettier-ignore
 }
 
 const additionalParams: AdditionalParams = {
@@ -341,7 +341,7 @@ function Main() {
                           title="Additional parameters"
                           defaultCollapsed={false}
                         >
-                          <FormSpinBox key="r0" id="r0" label="R0" step={0.1} />
+                          <FormSpinBox key="r0" id="r0" label="Annual average R0" step={0.1} />
                           <FormSpinBox
                             key="incubationTime"
                             id="incubationTime"

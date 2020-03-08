@@ -8,7 +8,7 @@
         "name": "Weak Reduction"
     },
     "moderateReduction": {
-        "reduction":[1.0,     0.8,  0.6,  0.6,  0.6, 0.6,  0.6, 0.6,  0.6,  0.6],
+        "reduction":[1.0,     0.8,  0.7,  0.6,  0.6, 0.6,  0.6, 0.6,  0.6,  0.6],
         "name": "Moderate Reduction"
     },
     "strongReduction": {

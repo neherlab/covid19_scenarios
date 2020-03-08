@@ -4,7 +4,7 @@
         "incubationTime": 5,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing": 0.5,
+        "seasonalForcing": 0.3,
         "peakMonth": 0
     },
     "moderateNorthern":{
@@ -12,7 +12,7 @@
         "incubationTime": 5,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing": 0.5,
+        "seasonalForcing": 0.3,
         "peakMonth": 0
     },
     "fastNorthern":{
@@ -20,7 +20,7 @@
         "incubationTime": 4,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing" : 0.5,
+        "seasonalForcing" : 0.3,
         "peakMonth": 0
     },
     "slowSouthern":{
@@ -28,7 +28,7 @@
         "incubationTime": 5,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing": 0.3,
+        "seasonalForcing": 0.2,
         "peakMonth": 6
     },
     "moderateSouthern":{
@@ -36,7 +36,7 @@
         "incubationTime": 5,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing": 0.3,
+        "seasonalForcing": 0.2,
         "peakMonth": 6
     },
     "fastSouthern":{
@@ -44,7 +44,7 @@
         "incubationTime": 4,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing": 0.3,
+        "seasonalForcing": 0.2,
         "peakMonth": 6
     },
     "slowTropical":{
@@ -52,7 +52,7 @@
         "incubationTime": 5,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing":0.1,
+        "seasonalForcing":0.0,
         "peakMonth": 6
     },
     "moderateTropical":{
@@ -60,7 +60,7 @@
         "incubationTime": 5,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing":0.1,
+        "seasonalForcing":0.0,
         "peakMonth": 6
     },
     "fastTropical":{
@@ -68,7 +68,7 @@
         "incubationTime": 4,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing": 0.1,
+        "seasonalForcing": 0.0,
         "peakMonth": 6
     }
 }
