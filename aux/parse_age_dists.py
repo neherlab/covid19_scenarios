@@ -125,7 +125,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     tbls = []
     for path in sorted(args.files):
-        print(path)
+        print(f"Analyzing {path}", file=sys.stderr)
         if not path.endswith(".csv"):
             print(f"Input must be a csv formatted file. Recieved {path.split('.')[-1]}", file=sys.stderr)
             exit(1)
