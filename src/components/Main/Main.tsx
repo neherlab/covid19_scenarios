@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import _ from 'lodash'
 
-import { Form, Formik, FormikHelpers, useFormikContext } from 'formik'
+import { Form, Formik, FormikHelpers } from 'formik'
 import moment from 'moment'
 import * as yup from 'yup'
 
@@ -26,11 +26,7 @@ import {
   SimulationParams,
 } from '../../algorithms/Param.types'
 
-import containmentScenarios from '../../assets/data/containmentScenarios.json'
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
-import defaultScenarioData from '../../assets/data/defaultScenario.json'
-import epidemiologicalScenarios from '../../assets/data/epidemiologicalScenarios.json'
-import populations from '../../assets/data/populations.json'
 import severityData from '../../assets/data/severityData.json'
 
 import { AlgorithmResult } from '../../algorithms/Result.types'
@@ -40,49 +36,94 @@ import FormDropdown from './FormDropdown'
 import FormSpinBox from './FormSpinBox'
 import FormSwitch from './FormSwitch'
 
+import containmentScenarios, {
+  Reduction,
+} from '../../assets/data/scenarios/containment'
+import epidemiologicalScenarios from '../../assets/data/scenarios/epidemiological'
+import globalScenarios from '../../assets/data/scenarios/global'
+import populationScenarios from '../../assets/data/scenarios/populations'
+
 import './Main.scss'
 
-const populationDefault = populations[defaultScenarioData.population]
-const epiDefaults =
-  epidemiologicalScenarios[defaultScenarioData.epidemiological]
-const containmentDefault = containmentScenarios[defaultScenarioData.containment]
-
 export function getPopulationParams(scenario: string): PopulationParams {
-  return {
-    populationServed: populationDefault.populationServed,
-    country: populationDefault.country,
-    suspectedCasesToday: populationDefault.suspectedCasesToday,
-    importsPerDay: populationDefault.importsPerDay,
+  const populationParams = populationScenarios.find(s => s.name === scenario)?.populationParams // prettier-ignore
+  if (!populationParams) {
+    throw new Error(`Error: population scenario "${scenario}" not found`)
   }
-}
 
-export function getSimulationParams(scenario: string): SimulationParams {
-  return {
-    tMin: moment().toDate(),
-    tMax: moment().add(0.5, 'year').toDate(), // prettier-ignore
-    numberStochasticRuns: 0,
-  }
+  return populationParams
 }
 
 export function getEpidemiologicalParams(
   scenario: string,
 ): EpidemiologicalParams {
+  const epidemiologicalParams = epidemiologicalScenarios.find(s => s.name === scenario)?.epidemiologicalParams // prettier-ignore
+  if (!epidemiologicalParams) {
+    throw new Error(`Error: epidemiological scenario "${scenario}" not found`)
+  }
+
+  return epidemiologicalParams
+}
+
+export function getSimulationParams(): SimulationParams {
   return {
-    r0: epiDefaults.R0,
-    incubationTime: epiDefaults.incubationTime,
-    infectiousPeriod: epiDefaults.infectiousPeriod,
-    lengthHospitalStay: epiDefaults.lengthHospitalStay,
-    seasonalForcing: epiDefaults.seasonalForcing,
-    peakMonth: epiDefaults.peakMonth,
+    tMin: moment().toDate(),
+    tMax: moment()
+      .add(0.5, 'year')
+      .toDate(),
+    numberStochasticRuns: 0,
   }
 }
 
-export function getAllParams(scenario: string): AllParams {
+export interface ScenarioData {
+  populationScenario: string
+  epidemiologicalScenario: string
+  containmentScenario: string
+  containmentReduction: Reduction
+  allParams: AllParams
+}
+
+export function getScenarioData(scenario: string): ScenarioData {
+  const globalScenario = globalScenarios.find(s => s.name === scenario)
+
+  if (!globalScenario) {
+    throw new Error(`Error: global scenario ${scenario} not found`) // prettier-ignore
+  }
+
+  const {
+    containmentScenario,
+    epidemiologicalScenario,
+    populationScenario,
+  } = globalScenario
+
+  const populationParams = getPopulationParams(populationScenario)
+  const epidemiologicalParams = getEpidemiologicalParams(epidemiologicalScenario) // prettier-ignore
+  const simulationParams = getSimulationParams()
+
+  const containmentReduction = getContainmentScenarioReduction(containmentScenario) // prettier-ignore
+
   return {
-    ...getPopulationParams(scenario),
-    ...getEpidemiologicalParams(scenario),
-    ...getSimulationParams(scenario),
-  } as AllParams
+    populationScenario,
+    epidemiologicalScenario,
+    containmentScenario,
+    containmentReduction,
+    allParams: {
+      ...populationParams,
+      ...epidemiologicalParams,
+      ...simulationParams,
+    },
+  }
+}
+
+function getContainmentScenarioReduction(scenario: string) {
+  const containmentScenarioReduction = // prettier-ignore
+    containmentScenarios.find(s => s.name === scenario)?.reduction // prettier-ignore
+
+  if (!containmentScenarioReduction) {
+    throw new Error(`Error: containment scenario "${scenario}" not found`)
+  }
+
+  return containmentScenarioReduction
 }
 
 const columns: SeverityTableColumn[] = [
@@ -169,14 +210,21 @@ export function severityErrors(severity: SeverityTableRow[]) {
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
-const DEFAULT_SCENARIO_NAME = 'default'
-const CUSTOM_SCENARIO_NAME = 'custom'
-const scenarios = [DEFAULT_SCENARIO_NAME, CUSTOM_SCENARIO_NAME]
+const DEFAULT_GLOBAL_SCENARIO_NAME = 'Default'
+const CUSTOM_GLOBAL_SCENARIO_NAME = 'Custom'
+const scenarios = globalScenarios.map(scenraio => scenraio.name)
 const scenarioOptions = scenarios.map((scenario) => ({ value: scenario, label: scenario })) // prettier-ignore
-const defaultScenario = DEFAULT_SCENARIO_NAME
+const defaultScenario = DEFAULT_GLOBAL_SCENARIO_NAME
 const defaultScenarioOption = scenarioOptions.find(option => option.value === defaultScenario) // prettier-ignore
+const defaultScenarioData = getScenarioData(defaultScenario)
 
-const defaultParams: AllParams = getAllParams(defaultScenario)
+export function toOption(value: string) {
+  return { value, label: value }
+}
+
+const containmentScenarioOptions =  containmentScenarios.map(({name}) => toOption(name)) // prettier-ignore
+const epidemiologicalScenarioOptions = epidemiologicalScenarios.map(({name}) => toOption(name)) // prettier-ignore
+const populationScenarioOptions = populationScenarios.map(({name}) => toOption(name)) // prettier-ignore
 
 const countries = Object.keys(countryAgeDistribution)
 const countryOptions = countries.map(country => ({ value: country, label: country })) // prettier-ignore
@@ -184,14 +232,14 @@ const countryOptions = countries.map(country => ({ value: country, label: countr
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month })) // prettier-ignore
 
-const defaultCountry = defaultParams.country
+const defaultCountry = defaultScenarioData.allParams.country
 const defaultCountryOption = countryOptions.find(option => option.value === defaultCountry) // prettier-ignore
 
-const defaultMonth = defaultParams.peakMonth
+const defaultMonth = defaultScenarioData.allParams.peakMonth
 const defaultMonthOption = monthOptions.find(option => option.value === defaultMonth) // prettier-ignore
 
-const defaultTMin = defaultParams.tMin
-const defaultTMax = defaultParams.tMax
+const defaultTMin = defaultScenarioData.allParams.tMin
+const defaultTMax = defaultScenarioData.allParams.tMax
 
 const schema = yup.object().shape({
   country: yup
@@ -241,28 +289,92 @@ const schema = yup.object().shape({
   // tMax: yup.string().required('Required'),
 })
 
-let d3Ptr = containmentDefault.reduction.map(y => {
-  return { y }
-})
+const d3Ptr = defaultScenarioData.containmentReduction.map(y => ({ y })) // prettier-ignore
 
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [country, setCountry] = useState<string>(defaultCountry)
+  const [country, setCountry] = useState<string>(defaultScenarioData.allParams.country) // prettier-ignore
   const [logScale, setLogScale] = useState<boolean>(true)
-  const [tMin, setTMin] = useState<Date>(defaultTMin)
-  const [tMax, setTMax] = useState<Date>(defaultTMax)
-  const [peakMonth, setPeakMonth] = useState<number>(defaultMonth)
+  const [tMin, setTMin] = useState<Date>(defaultScenarioData.allParams.tMin)
+  const [tMax, setTMax] = useState<Date>(defaultScenarioData.allParams.tMax)
+  const [peakMonth, setPeakMonth] = useState<number>(defaultScenarioData.allParams.peakMonth) // prettier-ignore
   const [scenario, setScenario] = useState<string>(defaultScenario)
+  const [populationScenario, setPopulationScenario] = useState<string>(defaultScenarioData.populationScenario) // prettier-ignore
+  const [epidemiologicalScenario, setEpidemiologicalScenario] = useState<string>(defaultScenarioData.epidemiologicalScenario) // prettier-ignore
+  const [containmentScenario, setContainmentScenario] = useState<string>(defaultScenarioData.containmentScenario) // prettier-ignore
 
-  const params = getAllParams(scenario)
+  // const {
+  //   allParams,
+  //   containmentReduction, // TODO: d3Ptr should be updated with this
+  //   // containmentScenario,
+  //   // epidemiologicalScenario,
+  //   // populationScenario,
+  // }
+
+  const scenarioData = getScenarioData(scenario)
+  const { allParams, containmentReduction } = scenarioData
+  console.log({ scenarioData })
 
   const canExport = Boolean(result?.deterministicTrajectory)
 
-  function setScenarioToCustom(params: AllParams) {
-    // HACK: we use Formik's validate for a side effect.
-    // What is the better way to set the `scenario` field when form changes?
-    setScenario(CUSTOM_SCENARIO_NAME)
+  // // TODO: switch scenario dropdown to custom scenario
+  // // TODO: track subscenarios
+  // function setScenarioToCustom(newParams: AllParams) {
+  //   // HACK: we use Formik's validate for a side effect.
+  //   // What is the better way to set the `scenario` field when form changes?
+  //   // If we switch for custom scenario for the first time,
+  //   // copy current scenario data into it
+  //
+  //   const hasCustomScenario = !!globalScenarios.find(
+  //     s => s.name === CUSTOM_GLOBAL_SCENARIO_NAME,
+  //   )
+  //
+  //   // NOTE: deep object comparison!
+  //   if (!_.isEqual(allParams, newParams)) {
+  //     console.log('setScenario')
+  //     setScenario(CUSTOM_GLOBAL_SCENARIO_NAME)
+  //   }
+  //
+  //   console.log({ hasCustomScenario, scenario })
+  //
+  //   if (scenario === CUSTOM_GLOBAL_SCENARIO_NAME && !hasCustomScenario) {
+  //     console.log('globalScenarios.push')
+  //     globalScenarios.push({
+  //       name: CUSTOM_GLOBAL_SCENARIO_NAME,
+  //       populationScenario: CUSTOM_GLOBAL_SCENARIO_NAME,
+  //       epidemiologicalScenario: CUSTOM_GLOBAL_SCENARIO_NAME,
+  //       containmentScenario: CUSTOM_GLOBAL_SCENARIO_NAME,
+  //     })
+  //   }
+  // }
+
+  function handleChangeScenario(scenario: string) {
+    const {
+      containmentScenario,
+      epidemiologicalScenario,
+      populationScenario,
+    } = getScenarioData(scenario)
+
+    setScenario(scenario)
+    setPopulationScenario(populationScenario)
+    setEpidemiologicalScenario(epidemiologicalScenario)
+    setContainmentScenario(containmentScenario)
+  }
+
+  function handleChangePopulationScenario(scenario: string) {
+    setScenario(CUSTOM_GLOBAL_SCENARIO_NAME)
+    setPopulationScenario(scenario)
+  }
+
+  function handleChangeEpidemiologicalScenario(scenario: string) {
+    setScenario(CUSTOM_GLOBAL_SCENARIO_NAME)
+    setEpidemiologicalScenario(scenario)
+  }
+
+  function handleChangeContainmentScenario(scenario: string) {
+    setScenario(CUSTOM_GLOBAL_SCENARIO_NAME)
+    setContainmentScenario(scenario)
   }
 
   async function handleSubmit(
@@ -288,19 +400,43 @@ function Main() {
       <Col md={12}>
         <FormDropdown<string>
           id="scenario"
-          label="Scenario"
+          label="Global Scenario"
           options={scenarioOptions}
           defaultOption={defaultScenarioOption}
           value={scenarioOptions.find(s => s.label === scenario)}
-          onValueChange={setScenario}
+          onValueChange={handleChangeScenario}
+        />
+
+        <FormDropdown<string>
+          id="populationScenario"
+          label="Population Scenario"
+          options={populationScenarioOptions}
+          value={populationScenarioOptions.find(s => s.label === populationScenario)} // prettier-ignore
+          onValueChange={handleChangePopulationScenario}
+        />
+
+        <FormDropdown<string>
+          id="epidemiologicalScenario"
+          label="Epidemiological Scenario"
+          options={epidemiologicalScenarioOptions}
+          value={epidemiologicalScenarioOptions.find(s => s.label === epidemiologicalScenario)} // prettier-ignore
+          onValueChange={handleChangeEpidemiologicalScenario}
+        />
+
+        <FormDropdown<string>
+          id="containmentScenario"
+          label="Containment Scenario"
+          options={containmentScenarioOptions}
+          value={containmentScenarioOptions.find(s => s.label === containmentScenario)} // prettier-ignore
+          onValueChange={handleChangeContainmentScenario}
         />
 
         <Formik
           enableReinitialize
-          initialValues={params}
+          initialValues={allParams}
           validationSchema={schema}
           onSubmit={handleSubmit}
-          validate={setScenarioToCustom}
+          // validate={setScenarioToCustom}
         >
           {({ errors, touched, isValid }) => {
             return (
