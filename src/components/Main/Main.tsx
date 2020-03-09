@@ -300,7 +300,7 @@ function Main() {
                             errors={errors}
                             touched={touched}
                           />
-                          <FormDropdown
+                          <FormDropdown<string>
                             key="country"
                             id="country"
                             label="Age Distribution"
@@ -378,7 +378,7 @@ function Main() {
                             errors={errors}
                             touched={touched}
                           />
-                          <FormDropdown
+                          <FormDropdown<number>
                             key="peakMonth"
                             id="peakMonth"
                             label="Seasonal Transmission Peak"
