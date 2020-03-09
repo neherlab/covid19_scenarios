@@ -1,8 +1,9 @@
 import React from 'react'
 
 import _ from 'lodash'
+
 import { Field, FormikErrors, FormikTouched } from 'formik'
-import { FormGroup, Col, Row } from 'reactstrap'
+import { Col, FormGroup, Row } from 'reactstrap'
 
 export interface FormSpinBoxProps<T> {
   id: string
@@ -31,25 +32,31 @@ export default function FormSpinBox<T>({
   const borderDanger = showError ? 'border-danger' : ''
 
   return (
-    <FormGroup>
-      <Row>
-      <Col xl={7}>
-      <label htmlFor={id}>{label}</label>
-      </Col>
-      <Col xl={5}>
-      <Field
-        className={`form-control ${borderDanger}`}
-        id={id}
-        name={id}
-        type="number"
-        step={step}
-        min={min}
-        max={max}
-        pattern={pattern}
-      />
-      {showError ? <div className="text-danger">{errorMessage}</div> : null}
-      </Col>
-      </Row>
-    </FormGroup>
+    <Field>
+      {({}) => (
+        <FormGroup>
+          <Row>
+            <Col xl={7}>
+              <label htmlFor={id}>{label}</label>
+            </Col>
+            <Col xl={5}>
+              <Field
+                className={`form-control ${borderDanger}`}
+                id={id}
+                name={id}
+                type="number"
+                step={step}
+                min={min}
+                max={max}
+                pattern={pattern}
+              />
+              {showError ? (
+                <div className="text-danger">{errorMessage}</div>
+              ) : null}
+            </Col>
+          </Row>
+        </FormGroup>
+      )}
+    </Field>
   )
 }
