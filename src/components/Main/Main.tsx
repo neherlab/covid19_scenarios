@@ -293,7 +293,6 @@ function Main() {
                           defaultCollapsed={false}
                         >
                           <FormSpinBox
-                            key="populationServed"
                             id="populationServed"
                             label="Population Served"
                             step={1000}
@@ -301,7 +300,6 @@ function Main() {
                             touched={touched}
                           />
                           <FormDropdown<string>
-                            key="country"
                             id="country"
                             label="Age Distribution"
                             options={countryOptions}
@@ -309,7 +307,6 @@ function Main() {
                             onValueChange={setCountry}
                           />
                           <FormSpinBox
-                            key="suspectedCasesToday"
                             id="suspectedCasesToday"
                             label="Initial suspected Cases"
                             step={1}
@@ -317,7 +314,6 @@ function Main() {
                             touched={touched}
                           />
                           <FormSpinBox
-                            key="importsPerDay"
                             id="importsPerDay"
                             label="Imports per Day"
                             step={0.1}
@@ -325,7 +321,6 @@ function Main() {
                             touched={touched}
                           />
                           <FormDatePicker
-                            key="simulationTimeRange"
                             id="simulationTimeRange"
                             startDate={tMin}
                             endDate={tMax}
@@ -341,9 +336,12 @@ function Main() {
                           title="Baseline epidemiological parameters"
                           defaultCollapsed={false}
                         >
-                          <FormSpinBox key="r0" id="r0" label="Annual average R0" step={0.1} />
                           <FormSpinBox
-                            key="incubationTime"
+                            id="r0"
+                            label="Annual average R0"
+                            step={0.1}
+                          />
+                          <FormSpinBox
                             id="incubationTime"
                             label="Latency [days]"
                             step={1}
@@ -352,7 +350,6 @@ function Main() {
                             touched={touched}
                           />
                           <FormSpinBox
-                            key="infectiousPeriod"
                             id="infectiousPeriod"
                             label="Infectious Period [days]"
                             step={1}
@@ -361,7 +358,6 @@ function Main() {
                             touched={touched}
                           />
                           <FormSpinBox
-                            key="lengthHospitalStay"
                             id="lengthHospitalStay"
                             label="Length of Hospital stay [days]"
                             step={1}
@@ -370,7 +366,6 @@ function Main() {
                             touched={touched}
                           />
                           <FormSpinBox
-                            key="seasonalForcing"
                             id="seasonalForcing"
                             label="Seasonal Forcing"
                             step={0.1}
@@ -379,7 +374,6 @@ function Main() {
                             touched={touched}
                           />
                           <FormDropdown<number>
-                            key="peakMonth"
                             id="peakMonth"
                             label="Seasonal Transmission Peak"
                             options={monthOptions}
