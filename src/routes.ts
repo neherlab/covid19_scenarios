@@ -1,9 +1,9 @@
 import { PageRouteDesc } from './components/PageSwitcher/PageSwitcher'
 
 const routes: PageRouteDesc[] = [
-  { path: '/', page: 'Home' },
-  { path: '/about', page: 'About' },
-  { path: '/team', page: 'Team' },
+  { path: '/covid19-scenarios/', page: 'Home' },
+  { path: '/covid19-scenarios/about', page: 'About' },
+  { path: '/covid19-scenarios/team', page: 'Team' },
 ]
 
 export default routes
