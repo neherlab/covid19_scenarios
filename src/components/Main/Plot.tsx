@@ -43,7 +43,7 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
           line: { color: '#E2F0CB', width: 4 },
           marker: { color: '#E2F0CB', size: 3 },
           name: 'Susceptible',
-          visible: 'legendonly'
+          // visible: 'legendonly'
         },
         {
           x: time,

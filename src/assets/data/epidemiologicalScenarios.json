@@ -4,7 +4,7 @@
         "incubationTime": 5,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing": 0.3,
+        "seasonalForcing": 0.2,
         "peakMonth": 0
     },
     "moderateNorthern":{
@@ -12,7 +12,7 @@
         "incubationTime": 5,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing": 0.3,
+        "seasonalForcing": 0.2,
         "peakMonth": 0
     },
     "fastNorthern":{
@@ -20,7 +20,7 @@
         "incubationTime": 4,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 10,
-        "seasonalForcing" : 0.3,
+        "seasonalForcing" : 0.2,
         "peakMonth": 0
     },
     "slowSouthern":{

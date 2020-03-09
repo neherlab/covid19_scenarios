@@ -69,7 +69,7 @@ const mainParams: MainParams = {
 
 const additionalParams: AdditionalParams = {
   r0: { name: 'Average R0', defaultValue: epiDefaults.R0 },
-  incubationTime: { name: 'Incubation Time [days]', defaultValue: epiDefaults.incubationTime },
+  incubationTime: { name: 'Latency [days]', defaultValue: epiDefaults.incubationTime },
   infectiousPeriod: { name: 'Infectious Period [days]', defaultValue: epiDefaults.infectiousPeriod },
   lengthHospitalStay: {
     name: 'Length of Hospital stay [days]',
@@ -319,7 +319,7 @@ function Main() {
                           <FormSpinBox
                             key="importsPerDay"
                             id="importsPerDay"
-                            label="Imports Per Day"
+                            label="Imports per Day"
                             step={0.1}
                             errors={errors}
                             touched={touched}
@@ -345,7 +345,7 @@ function Main() {
                           <FormSpinBox
                             key="incubationTime"
                             id="incubationTime"
-                            label="Incubation Time [days]"
+                            label="Latency [days]"
                             step={1}
                             min={0}
                             errors={errors}
@@ -381,18 +381,10 @@ function Main() {
                           <FormDropdown
                             key="peakMonth"
                             id="peakMonth"
-                            label="Peak Month"
+                            label="Seasonal Transmission Peak"
                             options={monthOptions}
                             defaultOption={defaultMonthOption}
                             onValueChange={setPeakMonth}
-                          />
-                          <FormSpinBox
-                            key="numberStochasticRuns"
-                            id="numberStochasticRuns"
-                            label="Stochastic Runs"
-                            step={1}
-                            errors={errors}
-                            touched={touched}
                           />
                         </CollapsibleCard>
                       </Col>
