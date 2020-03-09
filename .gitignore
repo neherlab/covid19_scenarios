@@ -4,3 +4,4 @@
 \.output
 \.reports
 node_modules
+aux/data

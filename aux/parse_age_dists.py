@@ -20,6 +20,8 @@ def parse_table(rdr, rowkey="Country or Area"):
     tbl = defaultdict(list)
     hdr.pop(I)
     for line in rdr:
+        if line == '\n' or '"footnoteSeqID"' in line:
+            break
         elts = re.split(r',(?=")', line.strip('\n'))
         key  = elts.pop(I).strip('"')
         tbl[key].append({h:elt for h, elt in zip(hdr, elts)})
@@ -94,25 +96,43 @@ def canonicalize(ages, bps):
 
     return data
 
+def concatenate(*tbls):
+    full_tbl = tbls[0]
+    Ks = set(full_tbl.keys())
+    for tbl in tbls[1:]:
+        for new_cntry in set(tbl.keys()).difference(set(full_tbl.keys())):
+            full_tbl[new_cntry] = tbl[new_cntry]
+
+    return full_tbl
+
 # ---------------------------------------------------------
 # Main point of entry
 
 parser = argparse.ArgumentParser(description="Convert UN age csv into our json format",
-                                 usage='''parse_age_dists.py <path>
+                                 usage='''parse_age_dists.py [<path>, ...]
 
     Outputs json formatted distribution to standard output.
+    If more than one path is given, secondary csv files are concatenated to the first.
                                  ''')
 
-parser.add_argument("file", metavar="[path to file]", type=str, nargs=1, help="path to csv file with UN age distributions")
+parser.add_argument("files",
+        metavar="[path(s) to file]",
+        type=str,
+        nargs='+',
+        help="path to csv file with UN age distributions")
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    path = args.file[0]
-    if not path.endswith(".csv"):
-        print(f"Input must be a csv formatted file. Recieved {path.split('.')[-1]}")
-        exit(1)
+    tbls = []
+    for path in sorted(args.files):
+        print(path)
+        if not path.endswith(".csv"):
+            print(f"Input must be a csv formatted file. Recieved {path.split('.')[-1]}", file=sys.stderr)
+            exit(1)
 
-    tbl  = parse_table(open(path))
+        tbls.append(parse_table(open(path)))
+
+    tbl = concatenate(*tbls)
+    print(f"Number of countries: {len(tbl)}", file=sys.stderr)
     data = canonicalize(*compile_distribution(tbl))
-    # data = {"country" : ages, "bins": [0] + bps}
     json.dump(data, sys.stdout)
