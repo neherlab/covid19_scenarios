@@ -299,13 +299,37 @@ def to_table(data):
         table[country][agegroup] = int(1e3 * float(val))
 
     # Accumulate all ages >= 80 into 80+
-    sum_keys = ["80-84", "85-89", "90-94", "95-99", "100+"]
     for country in table.keys():
         table[country]["80+"] = 0
         for k in sum_keys:
             table[country]["80+"] += table[country].pop(k)
 
     return table
+
+def accumulate(table):
+    cat0 = ["0-4", "5-9"]
+    cat1 = ["10-14", "15-19"]
+    cat2 = ["20-24", "25-29"]
+    cat3 = ["30-34", "35-39"]
+    cat4 = ["40-44", "45-49"]
+    cat5 = ["50-54", "55-59"]
+    cat6 = ["60-64", "65-69"]
+    cat7 = ["70-74", "75-79"]
+
+    def do(db, key, cat):
+        db[key] = 0
+        for k in cat:
+            db[key] += db.pop(k)
+
+    for country in table.keys():
+        do(table[country], "0-9", cat0)
+        do(table[country], "10-19", cat1)
+        do(table[country], "20-29", cat2)
+        do(table[country], "30-39", cat3)
+        do(table[country], "40-49", cat4)
+        do(table[country], "50-59", cat5)
+        do(table[country], "60-69", cat6)
+        do(table[country], "70-79", cat7)
 
 # ------------------------------------------------------------------------
 # Main point of entry
