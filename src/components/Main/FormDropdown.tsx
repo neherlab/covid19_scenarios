@@ -13,6 +13,7 @@ export interface FormDropdownProps<ValueType extends string | number> {
   label: string
   options: FormDropdownOption<ValueType>[]
   defaultOption?: FormDropdownOption<ValueType>
+  value?: FormDropdownOption<ValueType>
   onValueChange(value: ValueType): void
 }
 
@@ -21,6 +22,7 @@ export default function FormDropdown<ValueType extends string | number>({
   label,
   options,
   defaultOption,
+  value,
   onValueChange,
 }: FormDropdownProps<ValueType>) {
   return (
@@ -35,6 +37,7 @@ export default function FormDropdown<ValueType extends string | number>({
             name={id}
             options={options}
             defaultValue={defaultOption}
+            value={value}
             theme={theme => ({
               ...theme,
               borderRadius: 0,

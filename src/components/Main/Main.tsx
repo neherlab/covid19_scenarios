@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import _ from 'lodash'
 
-import { Form, Formik, FormikHelpers } from 'formik'
+import { Form, Formik, FormikHelpers, useFormikContext } from 'formik'
 import moment from 'moment'
 import * as yup from 'yup'
 
@@ -169,9 +169,11 @@ export function severityErrors(severity: SeverityTableRow[]) {
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
-const scenarios = ['default', 'custom']
+const DEFAULT_SCENARIO_NAME = 'default'
+const CUSTOM_SCENARIO_NAME = 'custom'
+const scenarios = [DEFAULT_SCENARIO_NAME, CUSTOM_SCENARIO_NAME]
 const scenarioOptions = scenarios.map((scenario) => ({ value: scenario, label: scenario })) // prettier-ignore
-const defaultScenario = 'default'
+const defaultScenario = DEFAULT_SCENARIO_NAME
 const defaultScenarioOption = scenarioOptions.find(option => option.value === defaultScenario) // prettier-ignore
 
 const defaultParams: AllParams = getAllParams(defaultScenario)
@@ -257,6 +259,12 @@ function Main() {
 
   const canExport = Boolean(result?.deterministicTrajectory)
 
+  function setScenarioToCustom(params: AllParams) {
+    // HACK: we use Formik's validate for a side effect.
+    // What is the better way to set the `scenario` field when form changes?
+    setScenario(CUSTOM_SCENARIO_NAME)
+  }
+
   async function handleSubmit(
     params: AllParams,
     { setSubmitting }: FormikHelpers<AllParams>,
@@ -278,23 +286,25 @@ function Main() {
   return (
     <Row noGutters>
       <Col md={12}>
+        <FormDropdown<string>
+          id="scenario"
+          label="Scenario"
+          options={scenarioOptions}
+          defaultOption={defaultScenarioOption}
+          value={scenarioOptions.find(s => s.label === scenario)}
+          onValueChange={setScenario}
+        />
+
         <Formik
           enableReinitialize
           initialValues={params}
           validationSchema={schema}
           onSubmit={handleSubmit}
+          validate={setScenarioToCustom}
         >
           {({ errors, touched, isValid }) => {
             return (
               <Form className="form">
-                <FormDropdown<string>
-                  id="scenario"
-                  label="Scenario"
-                  options={scenarioOptions}
-                  defaultOption={defaultScenarioOption}
-                  onValueChange={setScenario}
-                />
-
                 <Row noGutters>
                   <Col lg={4} xl={6}>
                     <Row noGutters>
