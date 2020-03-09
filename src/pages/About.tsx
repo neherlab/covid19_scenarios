@@ -38,10 +38,10 @@ const About: React.FC = () => {
         <li> susceptible individuals are exposed/infected through contact with infectious individuals. Each infectious individual causes on average R_<sub>0</sub> secondary infections while they are infectious.
             Transmissibility of the virus could have seasonal variation which is parameterized with the parameter "seasonal forcing" (amplitude) and "peak month" (month of most efficient transmission).
           </li>
-        <li> exposed individuals progress to a symptomatic/infectious state after an average incubation time</li>
-        <li> infectious individuals recover or progress to severe disease. The ratio of recovery to severe progression depends on the age distribution in the populations</li>
-        <li> severely sick individuals either recover or deteriorate and turn critical. Again, this depends on the age distribution in the population </li>
-        <li> critically ill individuals either return to regular hospital or die. Again, this depends on the age distribution in the population </li>
+        <li> exposed individuals progress to a symptomatic/infectious state after an average latency</li>
+        <li> infectious individuals recover or progress to severe disease. The ratio of recovery to severe progression depends on age</li>
+        <li> severely sick individuals either recover or deteriorate and turn critical. Again, this depends on the age </li>
+        <li> critically ill individuals either return to regular hospital or die. Again, this depends on the age </li>
       </ul>
       <p>
         The individual parameters of the model can all be changed to allow exploration of different scenarios.
@@ -51,7 +51,7 @@ const About: React.FC = () => {
         <img src={model} className="figure-img img-fluid rounded"
              alt="illustration of the model" />
         <figcaption className="figure-caption text-left">
-          Figure 1. A schematic illustration of the underlying model. S corresponds to the 'susceptible' compartement,
+          Figure 1. A schematic illustration of the underlying model. S corresponds to the 'susceptible' population,
              E is 'exposed', I is 'infectious', R 'recovered', H 'severe' (hospitalized), C 'critical' (ICU), and D are fatalities.
         </figcaption>
       </figure>
@@ -65,11 +65,12 @@ const About: React.FC = () => {
       </p>
 
       <h2>{'Seasonality'}</h2>
-      Many respiratory viruses such as influenza, common cold viruses (including rhino- and other coronaviruses)
+      Many respiratory viruses such as influenza, common cold viruses (including other coronaviruses)
       have a pronounced seasonal variation in incidence which is in part driven by climate variation through the
       year.
 
       We model this seasonal variation using a cosine with an annual period.
+      This is simplistic way to capture seasonality and we don't know yet how seasonality will affect COVID-19 transmission.
       <figure className="figure w-100">
         <img src={seasonalIllustration} className="figure-img img-fluid rounded"
              alt="illustration of seasonal variation in transmission rate" />
@@ -88,6 +89,7 @@ const About: React.FC = () => {
       </Col>
       <Col lg={2}></Col>
       </Row>
+      <h2>{'---'}</h2>
     </>
   )
 }

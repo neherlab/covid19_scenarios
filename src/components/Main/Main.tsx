@@ -95,7 +95,7 @@ const columns: SeverityTableColumn[] = [
   { name: 'severe', title: 'Severe\n% of confirmed' },
   { name: 'critical', title: 'Critical\n% of severe' },
   { name: 'fatal', title: 'Fatal\n% of critical' },
-  { name: 'totalFatal', title: 'Fatal\n% of total' },
+  { name: 'totalFatal', title: 'Fatal\n% of all infections' },
 ]
 
 /**
@@ -289,7 +289,7 @@ function Main() {
                     <Row noGutters>
                       <Col xl={6}>
                         <CollapsibleCard
-                          title="Main parameters"
+                          title="Population parameters"
                           defaultCollapsed={false}
                         >
                           <FormSpinBox
@@ -338,7 +338,7 @@ function Main() {
 
                       <Col xl={6}>
                         <CollapsibleCard
-                          title="Additional parameters"
+                          title="Baseline epidemiological parameters"
                           defaultCollapsed={false}
                         >
                           <FormSpinBox key="r0" id="r0" label="Annual average R0" step={0.1} />
@@ -441,7 +441,8 @@ function Main() {
                             <Col lg={8}>
                               <p>{`This output of a mathematical model depends on model assumptions and parameter choices.
                                  We have done our best (in limited time) to check the model implementation is correct.
-                                 Please carefully consider the parameters you choose and interpret the output with caution.`}
+                                 Please carefully consider the parameters you choose and interpret the output with caution.
+                                 Click on legend items to show/hide curves.`}
                               </p>
                             </Col>
                             <Col lg={4}>

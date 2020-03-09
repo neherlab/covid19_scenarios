@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="284.25262mm"
-   height="83.173592mm"
-   viewBox="0 0 1007.1943 294.70958"
+   width="284.25259mm"
+   height="100.56542mm"
+   viewBox="0 0 1007.1942 356.33418"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -27,15 +27,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.16"
-     inkscape:cx="531.90069"
-     inkscape:cy="72.957442"
+     inkscape:cx="402.03952"
+     inkscape:cy="72.957419"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="3200"
-     inkscape:window-height="1752"
+     inkscape:window-width="3840"
+     inkscape:window-height="2115"
      inkscape:window-x="0"
-     inkscape:window-y="48"
+     inkscape:window-y="45"
      inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -218,12 +218,12 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-41.41702,-56.732339)"
+     transform="translate(-41.417081,4.8923002)"
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
@@ -434,20 +434,6 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="144.5379"
-       y="93.676468"
-       id="text4305"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         x="144.5379"
-         y="93.676468"
-         id="tspan4307"><tspan
-           x="144.5379"
-           y="93.676468"
-           id="tspan4309">incubation</tspan></tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="339.64404"
        y="93.721733"
        id="text4299"
@@ -551,5 +537,36 @@
            d="m 493.38,440.82 0,0.02 0,0.02 0,0.01 -0.01,0.02 0,0.02 0,0.02 -0.01,0.02 0,0.02 -0.01,0.02 -0.01,0.02 -0.01,0.02 0,0.02 -0.02,0.02 -0.01,0.02 -0.01,0.02 -0.01,0.02 -0.02,0.02 -0.02,0.02 -0.02,0.02 -0.02,0.02 -0.02,0.01 -0.02,0.02 -0.03,0.01 -0.02,0.02 -0.03,0.01 -0.01,0.01 -0.02,0 -0.01,0.01 -0.02,0 -0.02,0.01 -0.01,0 -0.02,0 -0.02,0.01 -0.02,0 -0.02,0 -0.02,0 -0.02,0 -0.02,0 -0.02,0 c -0.14,0 -0.2,-0.04 -0.75,-0.59 l -3.48,-3.84 c -0.44,0.7 -2.74,4.43 -8.27,4.43 -11.11,0 -22.33,-11.01 -22.33,-22.56 0,-8.23 5.89,-13.65 13.52,-13.65 4.33,0 8.11,1.98 10.75,4.28 4.64,4.09 5.48,8.62 5.48,8.76 0,0.5 -0.5,0.5 -0.59,0.5 -0.3,0 -0.55,-0.09 -0.66,-0.5 -0.43,-1.44 -1.59,-4.98 -5.03,-7.87 -3.43,-2.78 -6.58,-3.63 -9.15,-3.63 -4.49,0 -9.77,2.6 -9.77,10.36 0,2.85 1.05,10.91 6.02,16.74 3.04,3.54 7.73,6.03 12.15,6.03 5.1,0 8.03,-3.83 8.03,-9.61 0,-2 -0.15,-2.05 -0.15,-2.55 0,-0.5 0.54,-0.5 0.75,-0.5 0.64,0 0.64,0.11 0.89,1 z"
            inkscape:connector-curvature="0"
            style="fill:#000000;stroke-width:0" /></g>    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:2.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5464)"
+       d="m 482.1577,50.053027 0,-33.333334 -293.05555,0 0,81.481487"
+       id="path4276"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="177.06445"
+       y="7.4538913"
+       id="text4830"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="177.06445"
+         y="7.4538913"
+         id="tspan4832"><tspan
+           x="177.06445"
+           y="7.4538913"
+           id="tspan4834">transmission modulated by interventions</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="470.12067"
+       y="3.293767"
+       id="text4826"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4828"
+         x="470.12067"
+         y="3.293767" /></text>
   </g>
 </svg>
