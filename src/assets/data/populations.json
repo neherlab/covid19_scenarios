@@ -2,8 +2,8 @@
     "Stockholm":{
         "populationServed": 2000000,
         "country": "Sweden",
-        "suspectedCasesToday": 100,
-        "importsPerDay": 0.5
+        "suspectedCasesToday": 500,
+        "importsPerDay": 2
     },
     "Basel":{
         "populationServed": 200000,
