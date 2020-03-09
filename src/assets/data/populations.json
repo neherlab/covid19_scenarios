@@ -1,13 +1,13 @@
 {
     "Stockholm":{
         "populationServed": 2000000,
-        "ageDistribution": "Sweden",
+        "country": "Sweden",
         "suspectedCasesToday": 100,
         "importsPerDay": 0.5
     },
     "Basel":{
         "populationServed": 200000,
-        "ageDistribution": "Switzerland",
+        "country": "Switzerland",
         "suspectedCasesToday": 100,
         "importsPerDay": 0.5
     }
