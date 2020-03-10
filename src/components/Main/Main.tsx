@@ -45,6 +45,7 @@ import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState } from './state/state'
 
 import './Main.scss'
+import FormDropdownStateless from './FormDropdownStateless'
 
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: 'Age group' },
@@ -149,9 +150,6 @@ const countryOptions = countries.map(country => ({ value: country, label: countr
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month })) // prettier-ignore
 
-const defaultCountry = defaultScenarioState.population.data.country
-const defaultCountryOption = countryOptions.find(option => option.value === defaultCountry) // prettier-ignore
-
 const defaultMonth = defaultScenarioState.epidemiological.data.peakMonth
 const defaultMonthOption = monthOptions.find(option => option.value === defaultMonth) // prettier-ignore
 
@@ -164,10 +162,8 @@ function Main() {
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState, /* initDefaultState */) // prettier-ignore
 
   // TODO: These pieces of state should be handled by Formik
-  const [country, setCountry] = useState<string>(defaultCountry) // prettier-ignore
   const [tMin, setTMin] = useState<Date>(defaultTMin)
   const [tMax, setTMax] = useState<Date>(defaultTMax)
-  const [peakMonth, setPeakMonth] = useState<number>(defaultMonth) // prettier-ignore
 
   // TODO: These piece of state should be handled by Formik maybe too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -217,9 +213,10 @@ function Main() {
 
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
-    const ageDistribution = countryAgeDistribution[country]
+
+    const ageDistribution = countryAgeDistribution[params.population.country]
     const newResult = await run(
-      { ...params, tMin, tMax, country, peakMonth },
+      { ...params, tMin, tMax },
       severity,
       ageDistribution,
       d3Ptr,
@@ -237,7 +234,7 @@ function Main() {
   return (
     <Row noGutters>
       <Col md={12}>
-        <FormDropdown<string>
+        <FormDropdownStateless<string>
           id="overallScenario"
           label="Oveall Scenario"
           options={overallScenarioOptions}
@@ -245,7 +242,7 @@ function Main() {
           onValueChange={handleChangeOverallScenario}
         />
 
-        <FormDropdown<string>
+        <FormDropdownStateless<string>
           id="populationScenario"
           label="Population Scenario"
           options={populationScenarioOptions}
@@ -253,7 +250,7 @@ function Main() {
           onValueChange={handleChangePopulationScenario}
         />
 
-        <FormDropdown<string>
+        <FormDropdownStateless<string>
           id="epidemiologicalScenario"
           label="Epidemiological Scenario"
           options={epidemiologicalScenarioOptions}
@@ -261,7 +258,7 @@ function Main() {
           onValueChange={handleChangeEpidemiologicalScenario}
         />
 
-        <FormDropdown<string>
+        <FormDropdownStateless<string>
           id="containmentScenario"
           label="Containment Scenario"
           options={containmentScenarioOptions}
@@ -298,8 +295,6 @@ function Main() {
                             id="population.country"
                             label="Age Distribution"
                             options={countryOptions}
-                            defaultOption={defaultCountryOption}
-                            onValueChange={setCountry}
                           />
                           <FormSpinBox
                             id="population.suspectedCasesToday"
@@ -373,7 +368,6 @@ function Main() {
                             label="Seasonal Transmission Peak"
                             options={monthOptions}
                             defaultOption={defaultMonthOption}
-                            onValueChange={setPeakMonth}
                           />
                         </CollapsibleCard>
                       </Col>
