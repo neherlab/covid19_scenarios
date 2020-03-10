@@ -18,7 +18,7 @@ export default function AgePlot( {data, rates}: SimProps ) {
   const keepSigFigs = (x:number, num:number):number => { return round(x*pow(10, num)) / pow(10, num); };
 
   const ages = Object.keys(params.ageDistribution).map(x => x);
-  const agesFrac = ages.map(x => keepSigFigs(params.ageDistribution[x], 2));
+  const agesFrac = ages.map(x => keepSigFigs(params.ageDistribution[x], 4));
   const sevFrac = ages.map(x => params.infectionSeverityRatio[x]);
 
   if (Object.keys(data.deterministicTrajectory[data.deterministicTrajectory.length-1].dead).length == 1) {
