@@ -1,11 +1,11 @@
-export interface PopulationParams {
+export interface PopulationData {
   populationServed: number
   country: string
   suspectedCasesToday: number
   importsPerDay: number
 }
 
-export interface EpidemiologicalParams {
+export interface EpidemiologicalData {
   r0: number
   incubationTime: number
   infectiousPeriod: number
@@ -14,12 +14,19 @@ export interface EpidemiologicalParams {
   peakMonth: number
 }
 
-export interface SimulationParams {
+export interface ContainmentData {
+  reduction: number[]
+}
+
+// TODO: rename to SimulationData for consistency
+export interface SimulationData {
   tMin: Date
   tMax: Date
   numberStochasticRuns: number
 }
 
-export type AllParams = PopulationParams &
-  SimulationParams &
-  EpidemiologicalParams
+export interface AllParams {
+  population: PopulationData
+  epidemiological: EpidemiologicalData
+  simulation: SimulationData
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 
 import _ from 'lodash'
 
@@ -19,12 +19,7 @@ import SeverityTable, { SeverityTableColumn, SeverityTableRow } from './Severity
 import { exportResult } from '../../algorithms/exportResult'
 import run from '../../algorithms/run'
 
-import {
-  AllParams,
-  EpidemiologicalParams,
-  PopulationParams,
-  SimulationParams,
-} from '../../algorithms/Param.types'
+import { AllParams } from '../../algorithms/Param.types'
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
@@ -32,99 +27,22 @@ import severityData from '../../assets/data/severityData.json'
 import { AlgorithmResult } from '../../algorithms/Result.types'
 
 import FormDatePicker from './FormDatePicker'
-import FormDropdown from './FormDropdown'
+import FormDropdown, { FormDropdownOption } from './FormDropdown'
 import FormSpinBox from './FormSpinBox'
 import FormSwitch from './FormSwitch'
 
-import containmentScenarios, {
-  Reduction,
-} from '../../assets/data/scenarios/containment'
-import epidemiologicalScenarios from '../../assets/data/scenarios/epidemiological'
-import globalScenarios from '../../assets/data/scenarios/global'
-import populationScenarios from '../../assets/data/scenarios/populations'
+import { schema } from './validation/schema'
+
+import {
+  setContainmentScenario,
+  setEpidemiologicalScenario,
+  setOverallScenario,
+  setPopulationScenario,
+} from './state/actions'
+import { scenarioReducer } from './state/reducer'
+import { defaultScenarioState } from './state/state'
 
 import './Main.scss'
-
-export function getPopulationParams(scenario: string): PopulationParams {
-  const populationParams = populationScenarios.find(s => s.name === scenario)?.populationParams // prettier-ignore
-  if (!populationParams) {
-    throw new Error(`Error: population scenario "${scenario}" not found`)
-  }
-
-  return populationParams
-}
-
-export function getEpidemiologicalParams(
-  scenario: string,
-): EpidemiologicalParams {
-  const epidemiologicalParams = epidemiologicalScenarios.find(s => s.name === scenario)?.epidemiologicalParams // prettier-ignore
-  if (!epidemiologicalParams) {
-    throw new Error(`Error: epidemiological scenario "${scenario}" not found`)
-  }
-
-  return epidemiologicalParams
-}
-
-export function getSimulationParams(): SimulationParams {
-  return {
-    tMin: moment().toDate(),
-    tMax: moment()
-      .add(0.5, 'year')
-      .toDate(),
-    numberStochasticRuns: 0,
-  }
-}
-
-export interface ScenarioData {
-  populationScenario: string
-  epidemiologicalScenario: string
-  containmentScenario: string
-  containmentReduction: Reduction
-  allParams: AllParams
-}
-
-export function getScenarioData(scenario: string): ScenarioData {
-  const globalScenario = globalScenarios.find(s => s.name === scenario)
-
-  if (!globalScenario) {
-    throw new Error(`Error: global scenario ${scenario} not found`) // prettier-ignore
-  }
-
-  const {
-    containmentScenario,
-    epidemiologicalScenario,
-    populationScenario,
-  } = globalScenario
-
-  const populationParams = getPopulationParams(populationScenario)
-  const epidemiologicalParams = getEpidemiologicalParams(epidemiologicalScenario) // prettier-ignore
-  const simulationParams = getSimulationParams()
-
-  const containmentReduction = getContainmentScenarioReduction(containmentScenario) // prettier-ignore
-
-  return {
-    populationScenario,
-    epidemiologicalScenario,
-    containmentScenario,
-    containmentReduction,
-    allParams: {
-      ...populationParams,
-      ...epidemiologicalParams,
-      ...simulationParams,
-    },
-  }
-}
-
-function getContainmentScenarioReduction(scenario: string) {
-  const containmentScenarioReduction = // prettier-ignore
-    containmentScenarios.find(s => s.name === scenario)?.reduction // prettier-ignore
-
-  if (!containmentScenarioReduction) {
-    throw new Error(`Error: containment scenario "${scenario}" not found`)
-  }
-
-  return containmentScenarioReduction
-}
 
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: 'Age group' },
@@ -210,21 +128,18 @@ export function severityErrors(severity: SeverityTableRow[]) {
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
-const DEFAULT_GLOBAL_SCENARIO_NAME = 'Default'
-const CUSTOM_GLOBAL_SCENARIO_NAME = 'Custom'
-const scenarios = globalScenarios.map(scenraio => scenraio.name)
-const scenarioOptions = scenarios.map((scenario) => ({ value: scenario, label: scenario })) // prettier-ignore
-const defaultScenario = DEFAULT_GLOBAL_SCENARIO_NAME
-const defaultScenarioOption = scenarioOptions.find(option => option.value === defaultScenario) // prettier-ignore
-const defaultScenarioData = getScenarioData(defaultScenario)
+// const d3Ptr = defaultScenarioState.containment.data.map(y => ({ y })) // prettier-ignore
+const d3Ptr = []
 
-export function toOption(value: string) {
+export function stringToOption(value: string): FormDropdownOption<string> {
   return { value, label: value }
 }
 
-const containmentScenarioOptions =  containmentScenarios.map(({name}) => toOption(name)) // prettier-ignore
-const epidemiologicalScenarioOptions = epidemiologicalScenarios.map(({name}) => toOption(name)) // prettier-ignore
-const populationScenarioOptions = populationScenarios.map(({name}) => toOption(name)) // prettier-ignore
+export function stringsToOptions(
+  values: string[],
+): FormDropdownOption<string>[] {
+  return values.map(stringToOption)
+}
 
 const countries = Object.keys(countryAgeDistribution)
 const countryOptions = countries.map(country => ({ value: country, label: country })) // prettier-ignore
@@ -232,155 +147,67 @@ const countryOptions = countries.map(country => ({ value: country, label: countr
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month })) // prettier-ignore
 
-const defaultCountry = defaultScenarioData.allParams.country
+const defaultCountry = defaultScenarioState.population.data.country
 const defaultCountryOption = countryOptions.find(option => option.value === defaultCountry) // prettier-ignore
 
-const defaultMonth = defaultScenarioData.allParams.peakMonth
+const defaultMonth = defaultScenarioState.epidemiological.data.peakMonth
 const defaultMonthOption = monthOptions.find(option => option.value === defaultMonth) // prettier-ignore
 
-const defaultTMin = defaultScenarioData.allParams.tMin
-const defaultTMax = defaultScenarioData.allParams.tMax
-
-const schema = yup.object().shape({
-  country: yup
-    .string()
-    .required('Required')
-    .oneOf(countries, 'No such country in our data'),
-
-  importsPerDay: yup.number().required('Required'),
-
-  incubationTime: yup
-    .number()
-    .required('Required')
-    .min(0, 'Should be non-negative'),
-
-  infectiousPeriod: yup
-    .number()
-    .required('Required')
-    .min(0, 'Should be non-negative'),
-
-  lengthHospitalStay: yup
-    .number()
-    .required('Required')
-    .min(0, 'Should be non-negative'),
-
-  populationServed: yup
-    .number()
-    .required('Required')
-    .min(0, 'Should be non-negative'),
-
-  r0: yup.number().required('Required'),
-
-  seasonalForcing: yup.number().required('Required'),
-
-  suspectedCasesToday: yup
-    .number()
-    .required('Required')
-    .min(0, 'Should be non-negative'),
-
-  // serialInterval: yup.number().required('Required'),
-
-  numberStochasticRuns: yup
-    .number()
-    .required('Required')
-    .min(0, 'Should be non-negative')
-    .max(100, 'too many stochastic trajectories will slow things down'),
-
-  // tMax: yup.string().required('Required'),
-})
-
-const d3Ptr = defaultScenarioData.containmentReduction.map(y => ({ y })) // prettier-ignore
+const defaultTMax = defaultScenarioState.simulation.data.tMin
+const defaultTMin = defaultScenarioState.simulation.data.tMax
 
 function Main() {
-  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
-  const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [country, setCountry] = useState<string>(defaultScenarioData.allParams.country) // prettier-ignore
   const [logScale, setLogScale] = useState<boolean>(true)
-  const [tMin, setTMin] = useState<Date>(defaultScenarioData.allParams.tMin)
-  const [tMax, setTMax] = useState<Date>(defaultScenarioData.allParams.tMax)
-  const [peakMonth, setPeakMonth] = useState<number>(defaultScenarioData.allParams.peakMonth) // prettier-ignore
-  const [scenario, setScenario] = useState<string>(defaultScenario)
-  const [populationScenario, setPopulationScenario] = useState<string>(defaultScenarioData.populationScenario) // prettier-ignore
-  const [epidemiologicalScenario, setEpidemiologicalScenario] = useState<string>(defaultScenarioData.epidemiologicalScenario) // prettier-ignore
-  const [containmentScenario, setContainmentScenario] = useState<string>(defaultScenarioData.containmentScenario) // prettier-ignore
+  const [result, setResult] = useState<AlgorithmResult | undefined>()
+  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState, /* initDefaultState */) // prettier-ignore
 
-  // const {
-  //   allParams,
-  //   containmentReduction, // TODO: d3Ptr should be updated with this
-  //   // containmentScenario,
-  //   // epidemiologicalScenario,
-  //   // populationScenario,
-  // }
+  // TODO: These pieces of state should be handled by Formik
+  const [country, setCountry] = useState<string>(defaultCountry) // prettier-ignore
+  const [tMin, setTMin] = useState<Date>(defaultTMin)
+  const [tMax, setTMax] = useState<Date>(defaultTMax)
+  const [peakMonth, setPeakMonth] = useState<number>(defaultMonth) // prettier-ignore
 
-  const scenarioData = getScenarioData(scenario)
-  const { allParams, containmentReduction } = scenarioData
-  console.log({ scenarioData })
+  // TODO: These piece of state should be handled by Formik maybe too?
+  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
+
+  const allParams = {
+    population: scenarioState.population.data,
+    epidemiological: scenarioState.epidemiological.data,
+    simulation: scenarioState.simulation.data,
+  }
 
   const canExport = Boolean(result?.deterministicTrajectory)
 
-  // // TODO: switch scenario dropdown to custom scenario
-  // // TODO: track subscenarios
-  // function setScenarioToCustom(newParams: AllParams) {
-  //   // HACK: we use Formik's validate for a side effect.
-  //   // What is the better way to set the `scenario` field when form changes?
-  //   // If we switch for custom scenario for the first time,
-  //   // copy current scenario data into it
-  //
-  //   const hasCustomScenario = !!globalScenarios.find(
-  //     s => s.name === CUSTOM_GLOBAL_SCENARIO_NAME,
-  //   )
-  //
-  //   // NOTE: deep object comparison!
-  //   if (!_.isEqual(allParams, newParams)) {
-  //     console.log('setScenario')
-  //     setScenario(CUSTOM_GLOBAL_SCENARIO_NAME)
-  //   }
-  //
-  //   console.log({ hasCustomScenario, scenario })
-  //
-  //   if (scenario === CUSTOM_GLOBAL_SCENARIO_NAME && !hasCustomScenario) {
-  //     console.log('globalScenarios.push')
-  //     globalScenarios.push({
-  //       name: CUSTOM_GLOBAL_SCENARIO_NAME,
-  //       populationScenario: CUSTOM_GLOBAL_SCENARIO_NAME,
-  //       epidemiologicalScenario: CUSTOM_GLOBAL_SCENARIO_NAME,
-  //       containmentScenario: CUSTOM_GLOBAL_SCENARIO_NAME,
-  //     })
-  //   }
-  // }
-
-  function handleChangeScenario(scenario: string) {
-    const {
-      containmentScenario,
-      epidemiologicalScenario,
-      populationScenario,
-    } = getScenarioData(scenario)
-
-    setScenario(scenario)
-    setPopulationScenario(populationScenario)
-    setEpidemiologicalScenario(epidemiologicalScenario)
-    setContainmentScenario(containmentScenario)
+  function setScenarioToCustom(newParams: AllParams) {
+    // NOTE: deep object comparison!
+    if (!_.isEqual(allParams, newParams)) {
+    }
   }
 
-  function handleChangePopulationScenario(scenario: string) {
-    setScenario(CUSTOM_GLOBAL_SCENARIO_NAME)
-    setPopulationScenario(scenario)
+  function handleChangeOverallScenario(newOverallScenario: string) {
+    scenarioDispatch(setOverallScenario({ scenarioName: newOverallScenario })) // prettier-ignore
   }
 
-  function handleChangeEpidemiologicalScenario(scenario: string) {
-    setScenario(CUSTOM_GLOBAL_SCENARIO_NAME)
-    setEpidemiologicalScenario(scenario)
+  function handleChangePopulationScenario(newPopulationScenario: string) {
+    scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario })) // prettier-ignore
   }
 
-  function handleChangeContainmentScenario(scenario: string) {
-    setScenario(CUSTOM_GLOBAL_SCENARIO_NAME)
-    setContainmentScenario(scenario)
+  function handleChangeEpidemiologicalScenario(
+    newEpidemiologicalScenario: string,
+  ) {
+    scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario })) // prettier-ignore
+  }
+
+  function handleChangeContainmentScenario(newContainmentScenario: string) {
+    scenarioDispatch(setContainmentScenario({ scenarioName: newContainmentScenario })) // prettier-ignore
   }
 
   async function handleSubmit(
     params: AllParams,
     { setSubmitting }: FormikHelpers<AllParams>,
   ) {
+    console.log({ params })
+
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[country]
@@ -395,23 +222,27 @@ function Main() {
     setSubmitting(false)
   }
 
+  const overallScenarioOptions = stringsToOptions(scenarioState.overall.scenarios) // prettier-ignore
+  const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios) // prettier-ignore
+  const epidemiologicalScenarioOptions = stringsToOptions(scenarioState.epidemiological.scenarios) // prettier-ignore
+  const containmentScenarioOptions = stringsToOptions(scenarioState.containment.scenarios) // prettier-ignore
+
   return (
     <Row noGutters>
       <Col md={12}>
         <FormDropdown<string>
-          id="scenario"
-          label="Global Scenario"
-          options={scenarioOptions}
-          defaultOption={defaultScenarioOption}
-          value={scenarioOptions.find(s => s.label === scenario)}
-          onValueChange={handleChangeScenario}
+          id="overallScenario"
+          label="Oveall Scenario"
+          options={overallScenarioOptions}
+          value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)} // prettier-ignore
+          onValueChange={handleChangeOverallScenario}
         />
 
         <FormDropdown<string>
           id="populationScenario"
           label="Population Scenario"
           options={populationScenarioOptions}
-          value={populationScenarioOptions.find(s => s.label === populationScenario)} // prettier-ignore
+          value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)} // prettier-ignore
           onValueChange={handleChangePopulationScenario}
         />
 
@@ -419,7 +250,7 @@ function Main() {
           id="epidemiologicalScenario"
           label="Epidemiological Scenario"
           options={epidemiologicalScenarioOptions}
-          value={epidemiologicalScenarioOptions.find(s => s.label === epidemiologicalScenario)} // prettier-ignore
+          value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)} // prettier-ignore
           onValueChange={handleChangeEpidemiologicalScenario}
         />
 
@@ -427,7 +258,7 @@ function Main() {
           id="containmentScenario"
           label="Containment Scenario"
           options={containmentScenarioOptions}
-          value={containmentScenarioOptions.find(s => s.label === containmentScenario)} // prettier-ignore
+          value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)} // prettier-ignore
           onValueChange={handleChangeContainmentScenario}
         />
 
@@ -450,35 +281,35 @@ function Main() {
                           defaultCollapsed={false}
                         >
                           <FormSpinBox
-                            id="populationServed"
+                            id="population.populationServed"
                             label="Population Served"
                             step={1000}
                             errors={errors}
                             touched={touched}
                           />
                           <FormDropdown<string>
-                            id="country"
+                            id="population.country"
                             label="Age Distribution"
                             options={countryOptions}
                             defaultOption={defaultCountryOption}
                             onValueChange={setCountry}
                           />
                           <FormSpinBox
-                            id="suspectedCasesToday"
+                            id="population.suspectedCasesToday"
                             label="Initial suspected Cases"
                             step={1}
                             errors={errors}
                             touched={touched}
                           />
                           <FormSpinBox
-                            id="importsPerDay"
+                            id="population.importsPerDay"
                             label="Imports per Day"
                             step={0.1}
                             errors={errors}
                             touched={touched}
                           />
                           <FormDatePicker
-                            id="simulationTimeRange"
+                            id="simulation.simulationTimeRange"
                             startDate={tMin}
                             endDate={tMax}
                             onStartDateChange={setTMin}
@@ -494,12 +325,12 @@ function Main() {
                           defaultCollapsed={false}
                         >
                           <FormSpinBox
-                            id="r0"
+                            id="epidemiological.r0"
                             label="Annual average R0"
                             step={0.1}
                           />
                           <FormSpinBox
-                            id="incubationTime"
+                            id="epidemiological.incubationTime"
                             label="Latency [days]"
                             step={1}
                             min={0}
@@ -507,7 +338,7 @@ function Main() {
                             touched={touched}
                           />
                           <FormSpinBox
-                            id="infectiousPeriod"
+                            id="epidemiological.infectiousPeriod"
                             label="Infectious Period [days]"
                             step={1}
                             min={0}
@@ -515,7 +346,7 @@ function Main() {
                             touched={touched}
                           />
                           <FormSpinBox
-                            id="lengthHospitalStay"
+                            id="epidemiological.lengthHospitalStay"
                             label="Length of Hospital stay [days]"
                             step={1}
                             min={0}
@@ -523,7 +354,7 @@ function Main() {
                             touched={touched}
                           />
                           <FormSpinBox
-                            id="seasonalForcing"
+                            id="epidemiological.seasonalForcing"
                             label="Seasonal Forcing"
                             step={0.1}
                             min={0}
@@ -531,7 +362,7 @@ function Main() {
                             touched={touched}
                           />
                           <FormDropdown<number>
-                            id="peakMonth"
+                            id="epidemiological.peakMonth"
                             label="Seasonal Transmission Peak"
                             options={monthOptions}
                             defaultOption={defaultMonthOption}

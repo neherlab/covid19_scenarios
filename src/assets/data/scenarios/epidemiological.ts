@@ -1,14 +1,14 @@
-import { EpidemiologicalParams } from '../../../algorithms/Param.types'
+import { EpidemiologicalData } from '../../../algorithms/Param.types'
 
 export interface EpidemiologicalScenario {
   name: string
-  epidemiologicalParams: EpidemiologicalParams
+  data: EpidemiologicalData
 }
 
 const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Slow Northern',
-    epidemiologicalParams: {
+    data: {
       r0: 1.7,
       incubationTime: 5,
       infectiousPeriod: 3,
@@ -19,7 +19,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   },
   {
     name: 'Moderate Northern',
-    epidemiologicalParams: {
+    data: {
       r0: 2.1,
       incubationTime: 5,
       infectiousPeriod: 3,
@@ -30,7 +30,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   },
   {
     name: 'Fast Northern',
-    epidemiologicalParams: {
+    data: {
       r0: 2.5,
       incubationTime: 4,
       infectiousPeriod: 3,
@@ -41,7 +41,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   },
   {
     name: 'Slow Southern',
-    epidemiologicalParams: {
+    data: {
       r0: 1.7,
       incubationTime: 5,
       infectiousPeriod: 3,
@@ -52,7 +52,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   },
   {
     name: 'Moderate Southern',
-    epidemiologicalParams: {
+    data: {
       r0: 2.1,
       incubationTime: 5,
       infectiousPeriod: 3,
@@ -63,7 +63,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   },
   {
     name: 'Fast Southern',
-    epidemiologicalParams: {
+    data: {
       r0: 2.5,
       incubationTime: 4,
       infectiousPeriod: 3,
@@ -74,7 +74,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   },
   {
     name: 'Slow Tropical',
-    epidemiologicalParams: {
+    data: {
       r0: 1.7,
       incubationTime: 5,
       infectiousPeriod: 3,
@@ -85,7 +85,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   },
   {
     name: 'Moderate Tropical',
-    epidemiologicalParams: {
+    data: {
       r0: 2.1,
       incubationTime: 5,
       infectiousPeriod: 3,
@@ -96,7 +96,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   },
   {
     name: 'Fast Tropical',
-    epidemiologicalParams: {
+    data: {
       r0: 2.5,
       incubationTime: 4,
       infectiousPeriod: 3,

@@ -1,28 +1,26 @@
-import { Tagged } from '../../../helpers/types'
-
-export type Reduction = Tagged<number[], 'Reduction'>
+import { ContainmentData } from '../../../algorithms/Param.types'
 
 export interface ContainmentScenario {
   name: string
-  reduction: Reduction
+  data: ContainmentData
 }
 
 const containmentScenarios: ContainmentScenario[] = [
   {
-    reduction: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] as Reduction,
     name: 'No Reduction',
+    data: { reduction: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] },
   },
   {
-    reduction: [1.0, 0.9, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8] as Reduction,
     name: 'Weak Reduction',
+    data: { reduction: [1.0, 0.9, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8] },
   },
   {
-    reduction: [1.0, 0.8, 0.7, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6] as Reduction,
     name: 'Moderate Reduction',
+    data: { reduction: [1.0, 0.8, 0.7, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6] },
   },
   {
-    reduction: [1.0, 0.7, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.45, 0.45] as Reduction, // prettier-ignore
     name: 'Strong Reduction',
+    data: { reduction: [1.0, 0.7, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.45, 0.45] },
   },
 ]
 

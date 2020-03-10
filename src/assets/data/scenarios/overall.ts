@@ -1,11 +1,11 @@
-export interface GlobalScenario {
+export interface OverallScenario {
   name: string
   containmentScenario: string
   epidemiologicalScenario: string
   populationScenario: string
 }
 
-const globalScenarios: GlobalScenario[] = [
+const globalScenarios: OverallScenario[] = [
   {
     name: 'Default',
     containmentScenario: 'Moderate Reduction',

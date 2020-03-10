@@ -239,7 +239,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.reducer.*', '**/*.reducers.*'],
+      files: ['**/*reducer.*', '**/*reducers.*'],
       rules: {
         'no-param-reassign': [
           'warn',
