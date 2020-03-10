@@ -14,13 +14,49 @@ function uniformDatesBetween(min, max, n) {
     return dates.map(d => new Date(d))
 }
 
+
+interface TimePoint {
+    t: Date,
+    y: number,
+}
+
+export type TimeSeries = TimePoint[];
+
+
 // *****************************************************
 // ** Graph and App components
 // *****************************************************
 
 class Graph extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          minTime: this.props.minTime,
+          maxTime: this.props.maxTime,
+          data: [],
+      }
+      const n     = this.props.data.length;
+      const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
+      for (let i = 0; i < n; i++) {
+          this.state.data.push({"t": dates[i], "y": this.props.data[i].y});
+      }
+  }
+
+  updateState(): void {
+      const n     = this.props.data.length;
+      const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
+      this.state.data.forEach(function(_, i) {
+          this[i].t = dates[i];
+      }, this.state.data);
+
+      this.state.minTime = this.props.minTime;
+      this.state.maxTime = this.props.maxTime;
+  }
+
   componentDidMount(): void {
     this.draw()
+    // NOTE: Ensures the dates are properly populated.
+    this.props.setData(this.state.data); 
   }
 
   componentDidUpdate(): void {
@@ -29,10 +65,11 @@ class Graph extends React.Component {
 
   draw() {
     const { width, height } = this.props
-    const n = this.props.data.length;
-    const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
-    for (let i = 0; i < n; i++) {
-        this.props.data[i].t = dates[i];
+
+    var data: TimeSeries = [];
+    if ((this.props.minTime != this.state.minTime) || (this.props.maxTime != this.state.maxTime)) {
+        this.updateState();
+        this.props.setData(this.state.data);
     }
 
     const margin = { 
@@ -86,13 +123,14 @@ class Graph extends React.Component {
 
       d3.select(n[i]).attr('cy', yScale(d.y))
 
-      this.props.data[i].y = d.y
+      this.state.data[i].y = d.y
       d3.select(ReactDOM.findDOMNode(this.refs.graph))
         .select('.line-graph')
         .attr('d', drawLine)
     }
 
     let ended = (_, i, n) => {
+      this.props.setData(this.state.data);
       d3.select(n[i]).classed('active', false)
     }
 
@@ -156,7 +194,7 @@ class Graph extends React.Component {
     // Line graph
     this.d3Graph
       .append('path')
-      .datum(this.props.data)
+      .datum(this.state.data)
       .attr('class', 'line-graph')
       .attr('fill', 'none')
       .attr('stroke', '#ffab00')
@@ -166,7 +204,7 @@ class Graph extends React.Component {
     // Draggable markers
     this.d3Graph
       .selectAll('.dot')
-      .data(this.props.data)
+      .data(this.state.data)
       .enter()
       .append('circle')
       .attr('class', 'dot')
@@ -198,8 +236,7 @@ class Graph extends React.Component {
           .attr("opacity", 0);
       })
       .call(
-        d3
-          .drag()
+        d3.drag()
           .subject(d => ({ x: tScale(d.t), y: yScale(d.y) }))
           .on('start', started)
           .on('drag', dragged)
@@ -226,7 +263,7 @@ class Graph extends React.Component {
   }
 }
 
-export default class ContainControl extends React.Component {
+export class ContainControl extends React.Component {
   render() {
     return (
       <div className="w-100 h-100">
@@ -241,6 +278,7 @@ export default class ContainControl extends React.Component {
             return (
               <Graph
                 data={this.props.data}
+                setData={this.props.onDataChange}
                 minTime={this.props.minTime}
                 maxTime={this.props.maxTime}
                 width={width}

@@ -25,7 +25,7 @@ import { CollapsibleCard } from './CollapsibleCard'
 import { DeterministicLinePlot, StochasticLinePlot } from './Plot'
 import AgePlot from './PlotAgeAndParams'
 import PopTable from './PopAvgRates'
-import ContainControl from './Containment'
+import { ContainControl, TimeSeries } from './Containment'
 
 import run from '../../algorithms/run'
 import { exportResult } from '../../algorithms/exportResult'
@@ -242,7 +242,7 @@ const schema = yup.object().shape({
   // tMax: yup.string().required('Required'),
 })
 
-var d3Ptr = containmentDefault.reduction.map((y) => {return {"y": y};});
+
 
 function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -252,6 +252,7 @@ function Main() {
   const [tMin, setTMin] = useState<Date>(mainParams.tMin.defaultValue)
   const [tMax, setTMax] = useState<Date>(mainParams.tMax.defaultValue)
   const [peakMonth, setPeakMonth] = useState<number>(defaultMonth)
+  const [containment, setContainment] = useState<TimeSeries>(containmentDefault.reduction.map((y) => {return {"y": y, "t": 0};}))
 
   const canExport = Boolean(result?.deterministicTrajectory)
 
@@ -261,12 +262,13 @@ function Main() {
   ) {
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
+    console.log("Final contain:", containment);
     const ageDistribution = countryAgeDistribution[country]
     const newResult = await run(
       { ...params, tMin, tMax, country, ageDistribution: country, peakMonth },
       severity,
       ageDistribution,
-      d3Ptr,
+      containment,
     )
 
     setResult(newResult)
@@ -391,7 +393,8 @@ function Main() {
                           defaultCollapsed={false}
                         >
                           <ContainControl
-                            data={d3Ptr}
+                            data={containment}
+                            onDataChange={setContainment}
                             minTime={tMin}
                             maxTime={tMax}
                           />

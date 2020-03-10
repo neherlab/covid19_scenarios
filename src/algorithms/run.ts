@@ -3,20 +3,13 @@ import { CountryAgeDistribution, OneCountryAgeDistribution } from '../assets/dat
 import { SeverityTableRow } from '../components/Main/SeverityTable'
 import { AllParams } from './Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './Result.types'
+import { TimeSeries } from '../components/Main/Containment'
 import {
          evolve,
          collectTotals,
          getPopulationParams,
          initializePopulation,
        } from "./model.js"
-
-
-interface TimePoint {
-    t: Date,
-    y: number,
-}
-
-type TimeSeries = TimePoint[];
 
 // NOTE: Assumes containment is sorted ascending in time.
 function interpolate(containment: TimeSeries): (t: Date) => number {
