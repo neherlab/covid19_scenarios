@@ -35,8 +35,10 @@ import { schema } from './validation/schema'
 
 import {
   setContainmentScenario,
+  setEpidemiologicalData,
   setEpidemiologicalScenario,
   setOverallScenario,
+  setPopulationData,
   setPopulationScenario,
 } from './state/actions'
 import { scenarioReducer } from './state/reducer'
@@ -180,7 +182,12 @@ function Main() {
 
   function setScenarioToCustom(newParams: AllParams) {
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams, newParams)) {
+    if (!_.isEqual(allParams.population, newParams.population)) {
+      scenarioDispatch(setPopulationData({ data: newParams.population }))
+    }
+    // NOTE: deep object comparison!
+    if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
+      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological })) // prettier-ignore
     }
   }
 
@@ -267,7 +274,7 @@ function Main() {
           initialValues={allParams}
           validationSchema={schema}
           onSubmit={handleSubmit}
-          // validate={setScenarioToCustom}
+          validate={setScenarioToCustom}
         >
           {({ errors, touched, isValid }) => {
             return (
