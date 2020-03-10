@@ -150,9 +150,6 @@ const countryOptions = countries.map(country => ({ value: country, label: countr
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month })) // prettier-ignore
 
-const defaultMonth = defaultScenarioState.epidemiological.data.peakMonth
-const defaultMonthOption = monthOptions.find(option => option.value === defaultMonth) // prettier-ignore
-
 const defaultTMax = defaultScenarioState.simulation.data.tMin
 const defaultTMin = defaultScenarioState.simulation.data.tMax
 
@@ -367,7 +364,6 @@ function Main() {
                             id="epidemiological.peakMonth"
                             label="Seasonal Transmission Peak"
                             options={monthOptions}
-                            defaultOption={defaultMonthOption}
                           />
                         </CollapsibleCard>
                       </Col>

@@ -22,7 +22,7 @@ export default function FormDropdown<ValueType extends string | number>({
   return (
     <Field name={id}>
       {({
-        field: { value, onChange, onBlur },
+        field: { value, onBlur },
         form: { setFieldValue },
       }: FieldProps<ValueType>) => {
         return (
