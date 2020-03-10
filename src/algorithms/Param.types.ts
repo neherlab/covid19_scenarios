@@ -17,6 +17,7 @@ export interface AdditionalParams {
   incubationTime: Param<number>
   infectiousPeriod: Param<number>
   lengthHospitalStay: Param<number>
+  lengthICUStay: Param<number>
   seasonalForcing: Param<number>
   peakMonth: Param<number>
   numberStochasticRuns: Param<number>
@@ -29,6 +30,7 @@ export interface AllParams {
   incubationTime: number
   infectiousPeriod: number
   lengthHospitalStay: number
+  lengthICUStay: number
   numberStochasticRuns: number
   peakMonth: number
   populationServed: number

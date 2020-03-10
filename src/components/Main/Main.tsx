@@ -58,6 +58,8 @@ const populationDefault = populations[defaultScenario.population];
 const epiDefaults = epidemiologicalScenarios[defaultScenario.epidemiological];
 const containmentDefault = containmentScenarios[defaultScenario.containment];
 
+console.log("Defaults", epiDefaults);
+
 const mainParams: MainParams = {
   populationServed: { name: 'Population Served', defaultValue: populationDefault.populationServed },
   ageDistribution: { name: 'Age Distribution', defaultValue: populationDefault.ageDistribution },
@@ -69,11 +71,21 @@ const mainParams: MainParams = {
 
 const additionalParams: AdditionalParams = {
   r0: { name: 'Average R0', defaultValue: epiDefaults.R0 },
-  incubationTime: { name: 'Latency [days]', defaultValue: epiDefaults.incubationTime },
-  infectiousPeriod: { name: 'Infectious Period [days]', defaultValue: epiDefaults.infectiousPeriod },
+  incubationTime: { 
+    name: 'Latency [days]', 
+    defaultValue: epiDefaults.incubationTime 
+  },
+  infectiousPeriod: { 
+    name: 'Infectious Period [days]', 
+    defaultValue: epiDefaults.infectiousPeriod 
+  },
   lengthHospitalStay: {
-    name: 'Length of Hospital stay [days]',
+    name: 'Length of hospital stay [days]',
     defaultValue: epiDefaults.lengthHospitalStay,
+  },
+  lengthICUStay: {
+      name: 'Length of ICU hospital stay [days]',
+      defaultValue: epiDefaults.lengthICUStay,
   },
   seasonalForcing: { name: 'Seasonal Forcing', defaultValue: epiDefaults.seasonalForcing },
   peakMonth: { name: 'Peak Transmission', defaultValue:  epiDefaults.peakMonth },
@@ -213,6 +225,11 @@ const schema = yup.object().shape({
     .min(0, 'Should be non-negative'),
 
   lengthHospitalStay: yup
+    .number()
+    .required('Required')
+    .min(0, 'Should be non-negative'),
+
+  lengthICUStay: yup
     .number()
     .required('Required')
     .min(0, 'Should be non-negative'),
@@ -359,7 +376,15 @@ function Main() {
                           />
                           <FormSpinBox
                             id="lengthHospitalStay"
-                            label="Length of Hospital stay [days]"
+                            label="Length of hospital stay [days]"
+                            step={1}
+                            min={0}
+                            errors={errors}
+                            touched={touched}
+                          />
+                          <FormSpinBox
+                            id="lengthICUStay"
+                            label="Length of ICU stay [days]"
                             step={1}
                             min={0}
                             errors={errors}
