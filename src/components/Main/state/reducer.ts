@@ -12,6 +12,7 @@ import {
   setOverallScenario,
   setPopulationData,
   setPopulationScenario,
+  setSimulationData,
 } from './actions'
 
 import {
@@ -121,5 +122,11 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.containment.scenarios = maybeAdd(draft.containment.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
       draft.containment.current = CUSTOM_SCENARIO_NAME
       draft.containment.data = data
+    }),
+  )
+
+  .withHandling(
+    immerCase(setSimulationData, (draft, { data }) => {
+      draft.simulation.data = data
     }),
   )

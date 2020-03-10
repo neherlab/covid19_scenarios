@@ -40,6 +40,7 @@ import {
   setOverallScenario,
   setPopulationData,
   setPopulationScenario,
+  setSimulationData,
 } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState } from './state/state'
@@ -150,19 +151,12 @@ const countryOptions = countries.map(country => ({ value: country, label: countr
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month })) // prettier-ignore
 
-const defaultTMax = defaultScenarioState.simulation.data.tMin
-const defaultTMin = defaultScenarioState.simulation.data.tMax
-
 function Main() {
   const [logScale, setLogScale] = useState<boolean>(true)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState, /* initDefaultState */) // prettier-ignore
 
-  // TODO: These pieces of state should be handled by Formik
-  const [tMin, setTMin] = useState<Date>(defaultTMin)
-  const [tMax, setTMax] = useState<Date>(defaultTMax)
-
-  // TODO: These piece of state should be handled by Formik maybe too?
+  // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
 
   const allParams = {
@@ -181,6 +175,10 @@ function Main() {
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
       scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological })) // prettier-ignore
+    }
+    // NOTE: deep object comparison!
+    if (!_.isEqual(allParams.simulation, newParams.simulation)) {
+      scenarioDispatch(setSimulationData({ data: newParams.simulation })) // prettier-ignore
     }
   }
 
@@ -212,12 +210,7 @@ function Main() {
     // TODO: type cast the json into something
 
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const newResult = await run(
-      { ...params, tMin, tMax },
-      severity,
-      ageDistribution,
-      d3Ptr,
-    )
+    const newResult = await run({ ...params }, severity, ageDistribution, d3Ptr)
 
     setResult(newResult)
     setSubmitting(false)
@@ -309,10 +302,6 @@ function Main() {
                           />
                           <FormDatePicker
                             id="simulation.simulationTimeRange"
-                            startDate={tMin}
-                            endDate={tMax}
-                            onStartDateChange={setTMin}
-                            onEndDateChange={setTMax}
                             label="Simulation time range"
                           />
                         </CollapsibleCard>
@@ -377,8 +366,8 @@ function Main() {
                         >
                           <ContainControl
                             data={d3Ptr}
-                            minTime={tMin}
-                            maxTime={tMax}
+                            minTime={scenarioState.simulation.data.tMin}
+                            maxTime={scenarioState.simulation.data.tMax}
                           />
                           <p>
                             Drag black dots with the mouse to simulate how

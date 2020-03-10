@@ -18,10 +18,13 @@ export interface ContainmentData {
   reduction: number[]
 }
 
-// TODO: rename to SimulationData for consistency
-export interface SimulationData {
+export interface DateRange {
   tMin: Date
   tMax: Date
+}
+
+export interface SimulationData {
+  simulationTimeRange: DateRange
   numberStochasticRuns: number
 }
 
