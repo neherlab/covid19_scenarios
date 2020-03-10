@@ -209,8 +209,14 @@ function Main() {
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
 
+    const paramsFlat = {
+      ...params.population,
+      ...params.epidemiological,
+      ...params.simulation,
+    }
+
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const newResult = await run({ ...params }, severity, ageDistribution, d3Ptr)
+    const newResult = await run(paramsFlat, severity, ageDistribution, d3Ptr)
 
     setResult(newResult)
     setSubmitting(false)
@@ -366,8 +372,8 @@ function Main() {
                         >
                           <ContainControl
                             data={d3Ptr}
-                            minTime={scenarioState.simulation.data.tMin}
-                            maxTime={scenarioState.simulation.data.tMax}
+                            minTime={scenarioState.simulation.data.simulationTimeRange.tMin} // prettier-ignore
+                            maxTime={scenarioState.simulation.data.simulationTimeRange.tMax} // prettier-ignore
                           />
                           <p>
                             Drag black dots with the mouse to simulate how

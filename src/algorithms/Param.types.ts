@@ -33,3 +33,7 @@ export interface AllParams {
   epidemiological: EpidemiologicalData
   simulation: SimulationData
 }
+
+export type AllParamsFlat = PopulationData &
+  EpidemiologicalData &
+  SimulationData
