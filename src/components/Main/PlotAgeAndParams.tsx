@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Plot from 'react-plotly.js'
-import {round} from 'mathjs'
+import {round, pow} from 'mathjs'
 
 import { AlgorithmResult } from '../../algorithms/Result.types'
 import { SeverityTableRow } from '../../components/Main/SeverityTable'
@@ -15,8 +15,10 @@ export default function AgePlot( {data, rates}: SimProps ) {
   if (!data|| !rates) { return null; }
   const params = data.params;
 
+  const keepSigFigs = (x:number, num:number):number => { return round(x*pow(10, num)) / pow(10, num); };
+
   const ages = Object.keys(params.ageDistribution).map(x => x);
-  const agesFrac = ages.map(x => params.ageDistribution[x]);
+  const agesFrac = ages.map(x => keepSigFigs(params.ageDistribution[x], 2));
   const sevFrac = ages.map(x => params.infectionSeverityRatio[x]);
 
   if (Object.keys(data.deterministicTrajectory[data.deterministicTrajectory.length-1].dead).length == 1) {
@@ -32,12 +34,12 @@ export default function AgePlot( {data, rates}: SimProps ) {
       const peakSevere = Math.max(...(data.deterministicTrajectory.map( x => x.hospitalized["total"])));
 
       var ageDeaths = probDeath.map(x => round(totalDeaths * x));
-      var ageSevere = probSevere.map(x => round(totalSevere * x));
+      var ageSevere = probSevere.map((x, i) => round(totalSevere * x) + ageDeaths[i]);
       var agePeakSevere = probSevere.map(x => round(peakSevere * x));
   } else {
       var ageDeaths = ages.map(x => round(data.deterministicTrajectory[data.deterministicTrajectory.length-1].dead[x]));
       var ageSevere = ages.map((x,i) => round(data.deterministicTrajectory[data.deterministicTrajectory.length-1].discharged[x]) + ageDeaths[i]);
-      var agePeakSevere = ages.map(k => Math.max(...(data.deterministicTrajectory.map(x => x.hospitalized[k]))));
+      var agePeakSevere = ages.map(k => round(Math.max(...(data.deterministicTrajectory.map(x => x.hospitalized[k])))));
   }
 
   return (
