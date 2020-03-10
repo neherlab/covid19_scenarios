@@ -37,6 +37,7 @@ import { AlgorithmResult } from '../../algorithms/Result.types'
 
 import FormDatePicker from './FormDatePicker'
 import FormDropdown from './FormDropdown'
+import FormDropdownDense from './FormDropdownDense'
 import FormSpinBox from './FormSpinBox'
 import FormSwitch from './FormSwitch'
 
@@ -70,12 +71,12 @@ export function getEpidemiologicalParams(
 ): EpidemiologicalParams {
   console.log("epi",scenario);
   return {
-    r0: epidemiologicalScenarios[scenario].R0,
-    incubationTime: epidemiologicalScenarios[scenario].incubationTime,
-    infectiousPeriod: epidemiologicalScenarios[scenario].infectiousPeriod,
-    lengthHospitalStay: epidemiologicalScenarios[scenario].lengthHospitalStay,
-    seasonalForcing: epidemiologicalScenarios[scenario].seasonalForcing,
-    peakMonth: epidemiologicalScenarios[scenario].peakMonth,
+    r0: epidemiologicalScenarios[scenario].params.R0,
+    incubationTime: epidemiologicalScenarios[scenario].params.incubationTime,
+    infectiousPeriod: epidemiologicalScenarios[scenario].params.infectiousPeriod,
+    lengthHospitalStay: epidemiologicalScenarios[scenario].params.lengthHospitalStay,
+    seasonalForcing: epidemiologicalScenarios[scenario].params.seasonalForcing,
+    peakMonth: epidemiologicalScenarios[scenario].params.peakMonth,
   }
 }
 
@@ -182,15 +183,15 @@ const customScenarios = {'epidemiological':'custom', 'population':'custom', 'con
 // const defaultScenarioOption = scenarioOptions.find(option => option.value === defaultScenario) // prettier-ignore
 
 const popScenarioOptions = Object.keys(populations).map((scenario) => ({ value: scenario, label: scenario })) // prettier-ignore
-popScenarioOptions.push({value:customScenarios.population, label:customScenarios.population});
+// popScenarioOptions.push({value:customScenarios.population, label:customScenarios.population});
 const defaultPopScenarioOption = popScenarioOptions.find(option => option.value === defaultScenarioData.population) // prettier-ignore
 
-const epiScenarioOptions = Object.keys(epidemiologicalScenarios).map((scenario) => ({ value: scenario, label: scenario })) // prettier-ignore
-epiScenarioOptions.push({value:customScenarios.epidemiological, label:customScenarios.epidemiological});
+const epiScenarioOptions = Object.keys(epidemiologicalScenarios).map((scenario) => ({ value: scenario, label: epidemiologicalScenarios[scenario].label })) // prettier-ignore
+// epiScenarioOptions.push({value:customScenarios.epidemiological, label:customScenarios.epidemiological});
 const defaultEpiScenarioOption = epiScenarioOptions.find(option => option.value === defaultScenarioData.epidemiological) // prettier-ignore
 
-const conScenarioOptions = Object.keys(containmentScenarios).map((scenario) => ({ value: scenario, label: scenario })) // prettier-ignore
-conScenarioOptions.push({value:customScenarios.containment, label:customScenarios.containment});
+const conScenarioOptions = Object.keys(containmentScenarios).map((scenario) => ({ value: scenario, label: containmentScenarios[scenario].label })) // prettier-ignore
+// conScenarioOptions.push({value:customScenarios.containment, label:customScenarios.containment});
 const defaultConScenarioOption = conScenarioOptions.find(option => option.value === defaultScenarioData.containment) // prettier-ignore
 
 const defaultParams: AllParams = getAllParams(defaultScenarioData)
@@ -264,7 +265,7 @@ let d3Ptr = containmentDefault.reduction.map(y => {
 
 
 export function setContainment(scenario: string) {
-  console.log("con", scenario);
+  console.log("con", scenario, containmentScenarios[scenario]);
   d3Ptr = containmentScenarios[scenario].reduction.map(y => { return { y }})
 }
 
@@ -304,7 +305,7 @@ function Main() {
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[country]
     const newResult = await run(
-      { ...params, tMin, tMax, country, peakMonth },
+      { ...params, tMin, tMax, country, peakMonth},
       severity,
       ageDistribution,
       d3Ptr,
@@ -319,9 +320,9 @@ function Main() {
       <Col md={12}>
         <Row>
         <Col md={4}>
-        <FormDropdown<string>
+        <FormDropdownDense<string>
           id="popScenario"
-          label="Populatio Settings"
+          label="Population"
           options={popScenarioOptions}
           defaultOption={defaultPopScenarioOption}
           value={popScenarioOptions.find(s => s.label === popScenario)}
@@ -329,9 +330,9 @@ function Main() {
         />
         </Col>
         <Col md={4}>
-        <FormDropdown<string>
+        <FormDropdownDense<string>
           id="epiScenario"
-          label="Epidemiological Scenario"
+          label="Epidemiological preset"
           options={epiScenarioOptions}
           defaultOption={defaultEpiScenarioOption}
           value={epiScenarioOptions.find(s => s.label === epiScenario)}
@@ -339,9 +340,9 @@ function Main() {
         />
         </Col>
         <Col md={4}>
-        <FormDropdown<string>
+        <FormDropdownDense<string>
           id="conScenario"
-          label="Infection control"
+          label="Infection control preset"
           options={conScenarioOptions}
           defaultOption={defaultConScenarioOption}
           value={conScenarioOptions.find(s => s.label === conScenario)}
@@ -355,7 +356,7 @@ function Main() {
           initialValues={params}
           validationSchema={schema}
           onSubmit={handleSubmit}
-          validate={setScenarioToCustom}
+          // validate={setScenarioToCustom}
         >
           {({ errors, touched, isValid }) => {
             return (
