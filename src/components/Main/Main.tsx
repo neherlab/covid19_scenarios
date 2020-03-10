@@ -9,7 +9,7 @@ import * as yup from 'yup'
 import { Button, Col, FormGroup, Row } from 'reactstrap'
 
 import { CollapsibleCard } from './CollapsibleCard'
-import ContainControl from './Containment'
+import { ContainControl, TimeSeries } from './Containment'
 import { DeterministicLinePlot, StochasticLinePlot } from './Plot'
 import AgePlot from './PlotAgeAndParams'
 import PopTable from './PopAvgRates'
@@ -35,6 +35,7 @@ import FormSwitch from './FormSwitch'
 import { schema } from './validation/schema'
 
 import {
+  setContainmentData,
   setContainmentScenario,
   setEpidemiologicalData,
   setEpidemiologicalScenario,
@@ -44,7 +45,7 @@ import {
   setSimulationData,
 } from './state/actions'
 import { scenarioReducer } from './state/reducer'
-import { defaultScenarioState } from './state/state'
+import { defaultScenarioState, State } from './state/state'
 
 import './Main.scss'
 
@@ -132,9 +133,6 @@ export function severityErrors(severity: SeverityTableRow[]) {
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
-// const d3Ptr = defaultScenarioState.containment.data.map(y => ({ y })) // prettier-ignore
-const d3Ptr = []
-
 export function stringToOption(value: string): FormDropdownOption<string> {
   return { value, label: value }
 }
@@ -150,6 +148,14 @@ const countryOptions = countries.map(country => ({ value: country, label: countr
 
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month })) // prettier-ignore
+
+function reductionToTimeSeries(scenarioState: State) {
+  return scenarioState.containment.data.reduction.map(y => ({ y }))
+}
+
+function timeSeriesToReduction(timeSeries: TimeSeries) {
+  return timeSeries.map(timePoint => timePoint.y)
+}
 
 function Main() {
   const [logScale, setLogScale] = useState<boolean>(true)
@@ -200,6 +206,13 @@ function Main() {
     scenarioDispatch(setContainmentScenario({ scenarioName: newContainmentScenario })) // prettier-ignore
   }
 
+  function handleChangeContainmentData(timeSeries: TimeSeries) {
+    const reduction = timeSeriesToReduction(timeSeries)
+    scenarioDispatch(setContainmentData({ data: { reduction } }))
+  }
+
+  const containmentData = reductionToTimeSeries(scenarioState)
+
   async function handleSubmit(
     params: AllParams,
     { setSubmitting }: FormikHelpers<AllParams>,
@@ -216,7 +229,8 @@ function Main() {
     }
 
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const newResult = await run(paramsFlat, severity, ageDistribution, d3Ptr)
+    const containmentData = reductionToTimeSeries(scenarioState)
+    const newResult = await run(paramsFlat, severity, ageDistribution, containmentData) // prettier-ignore
 
     setResult(newResult)
     setSubmitting(false)
@@ -371,7 +385,8 @@ function Main() {
                           defaultCollapsed={false}
                         >
                           <ContainControl
-                            data={d3Ptr}
+                            data={containmentData}
+                            onDataChange={handleChangeContainmentData}
                             minTime={scenarioState.simulation.data.simulationTimeRange.tMin} // prettier-ignore
                             maxTime={scenarioState.simulation.data.simulationTimeRange.tMax} // prettier-ignore
                           />
