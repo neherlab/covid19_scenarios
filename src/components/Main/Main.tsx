@@ -28,6 +28,7 @@ import { AlgorithmResult } from '../../algorithms/Result.types'
 
 import FormDatePicker from './FormDatePicker'
 import FormDropdown, { FormDropdownOption } from './FormDropdown'
+import FormDropdownStateless from './FormDropdownStateless'
 import FormSpinBox from './FormSpinBox'
 import FormSwitch from './FormSwitch'
 
@@ -46,7 +47,6 @@ import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState } from './state/state'
 
 import './Main.scss'
-import FormDropdownStateless from './FormDropdownStateless'
 
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: 'Age group' },
