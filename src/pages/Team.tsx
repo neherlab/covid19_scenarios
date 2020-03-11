@@ -27,7 +27,11 @@ const Team: React.FC = () => {
       <li>Nicholas Noll</li>
       <li>Richard Neher</li>
       </ul>
-      Jan Albert and Robert Dyrdak suggested features and provided parameter estimates.
+      <LinkExternal url="https://ki.se/en/mtc/jan-albert-group">
+      Jan Albert
+      </LinkExternal>
+      &nbsp; at the Karolinska hospital in Stockholm had the initial idea to develop this tool and suggested features and parameters.
+      Jan and Robert Dyrdak provided parameter estimates.
       </Col>
       <Col lg={2}></Col>
       </Row>
