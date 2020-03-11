@@ -211,9 +211,11 @@ function Main() {
     scenarioDispatch(setContainmentData({ data: { reduction } }))
   }
 
-  const containmentData = makeTimeSeries(scenarioState.simulation.data.simulationTimeRange.tMin,
-                                         scenarioState.simulation.data.simulationTimeRange.tMax,
-                                         scenarioState.containment.data.reduction);
+  const containmentData = makeTimeSeries(
+    scenarioState.simulation.data.simulationTimeRange.tMin,
+    scenarioState.simulation.data.simulationTimeRange.tMax,
+    scenarioState.containment.data.reduction,
+  )
 
   async function handleSubmit(
     params: AllParams,
@@ -231,9 +233,11 @@ function Main() {
     }
 
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const containmentData =  makeTimeSeries(scenarioState.simulation.data.simulationTimeRange.tMin,
-                                         scenarioState.simulation.data.simulationTimeRange.tMax,
-                                         scenarioState.containment.data.reduction);
+    const containmentData = makeTimeSeries(
+      scenarioState.simulation.data.simulationTimeRange.tMin,
+      scenarioState.simulation.data.simulationTimeRange.tMax,
+      scenarioState.containment.data.reduction,
+    )
 
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData) // prettier-ignore
 

@@ -9,33 +9,30 @@ const ASPECT_RATIO = 16 / 9
 const MAX_TRANSMISSION_RATIO = 1.2
 
 function uniformDatesBetween(min, max, n) {
-    const d = (max - min) / (n-1);
-    var dates = d3.range(Number(min), Number(max) + d, d)
-    return dates.map(d => new Date(d))
+  const d = (max - min) / (n - 1)
+  var dates = d3.range(Number(min), Number(max) + d, d)
+  return dates.map(d => new Date(d))
 }
-
-
 
 interface TimePoint {
-    t: Date,
-    y: number,
+  t: Date
+  y: number
 }
 
-export type TimeSeries = TimePoint[];
+export type TimeSeries = TimePoint[]
 
 export function makeTimeSeries(
   tMin: Date,
   tMax: Date,
-  values: number[]
+  values: number[],
 ): TimeSeries {
-  const dates = uniformDatesBetween(tMin, tMax, values.length);
-  const tSeries = [];
-  for (let i=0; i<values.length; i++){
-    tSeries.push({t:dates[i], y:values[i]});
+  const dates = uniformDatesBetween(tMin, tMax, values.length)
+  const tSeries = []
+  for (let i = 0; i < values.length; i++) {
+    tSeries.push({ t: dates[i], y: values[i] })
   }
-  return tSeries;
+  return tSeries
 }
-
 
 // *****************************************************
 // ** Graph and App components
@@ -43,35 +40,35 @@ export function makeTimeSeries(
 
 class Graph extends React.Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          minTime: this.props.minTime,
-          maxTime: this.props.maxTime,
-          data: this.props.data
-      }
-      // this.state.data
-      // const n     = this.props.data.length;
-      // const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
-      // for (let i = 0; i < n; i++) {
-      //     this.state.data.push({"t": dates[i], "y": this.props.data[i].y});
-      // }
+    super(props)
+    // this.state = {
+    //   minTime: this.props.minTime,
+    //   maxTime: this.props.maxTime,
+    //   data: this.props.data,
+    // }
+    // newData
+    // const n     = this.props.data.length;
+    // const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
+    // for (let i = 0; i < n; i++) {
+    //     newData.push({"t": dates[i], "y": this.props.data[i].y});
+    // }
   }
 
-  updateState(): void {
-      const n     = this.props.data.length;
-      const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
-      this.state.data.forEach(function(_, i) {
-          this[i].t = dates[i];
-      }, this.state.data);
-
-      this.state.minTime = this.props.minTime;
-      this.state.maxTime = this.props.maxTime;
-  }
+  // updateState(): void {
+  //   const n = this.props.data.length
+  //   const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n)
+  //   newData.forEach(function(_, i) {
+  //     this[i].t = dates[i]
+  //   }, newData)
+  //
+  //   this.state.minTime = this.props.minTime
+  //   this.state.maxTime = this.props.maxTime
+  // }
 
   componentDidMount(): void {
     this.draw()
     // NOTE: Ensures the dates are properly populated.
-    this.props.setData(this.state.data);
+    // this.props.setData(newData)
   }
 
   componentDidUpdate(): void {
@@ -79,24 +76,31 @@ class Graph extends React.Component {
   }
 
   draw() {
-    const { width, height } = this.props
+    const { width, height, data } = this.props
+    console.log({ props: this.props })
 
-    var data: TimeSeries = [];
-    if ((this.props.minTime != this.state.minTime) || (this.props.maxTime != this.state.maxTime)) {
-        this.updateState();
-        this.props.setData(this.state.data);
-    }
+    // if (
+    //   this.props.minTime != this.state.minTime ||
+    //   this.props.maxTime != this.state.maxTime
+    // ) {
+    //   this.updateState()
+    //   this.props.setData(newData)
+    // }
+
+    let newData = data
+    const minTime = data[0].t
+    const maxTime = data[data.length - 1].t
 
     const margin = {
-        top:    math.round(.10*height),
-        right:  math.round(.15*height),
-        left:   math.round(.15*height),
-        bottom: math.round(.20*height),
-    };
+      top: math.round(0.1 * height),
+      right: math.round(0.15 * height),
+      left: math.round(0.15 * height),
+      bottom: math.round(0.2 * height),
+    }
 
     var tScale = d3
       .scaleTime()
-      .domain([this.props.minTime, this.props.maxTime])
+      .domain([minTime, maxTime])
       .range([0, width - margin.right - margin.left])
 
     var yScale = d3
@@ -138,14 +142,14 @@ class Graph extends React.Component {
 
       d3.select(n[i]).attr('cy', yScale(d.y))
 
-      this.state.data[i].y = d.y
+      newData[i].y = d.y
       d3.select(ReactDOM.findDOMNode(this.refs.graph))
         .select('.line-graph')
         .attr('d', drawLine)
     }
 
     let ended = (_, i, n) => {
-      this.props.setData(this.state.data);
+      this.props.setData(newData)
       d3.select(n[i]).classed('active', false)
     }
 
@@ -182,34 +186,34 @@ class Graph extends React.Component {
 
     // Hovering dashed line
     this.d3Graph
-        .append('line')
-        .attr('id', 'temp-line')
-        .attr('x1', 0)
-        .attr('x2', 0)
-        .attr('y1', 0)
-        .attr('y2', height-margin.top-margin.bottom)
-        .attr('stroke', 'black')
-        .attr('stroke-width', 2)
-        .attr("opacity", 0)
-        .style('stroke-dasharray', '3, 3');
+      .append('line')
+      .attr('id', 'temp-line')
+      .attr('x1', 0)
+      .attr('x2', 0)
+      .attr('y1', 0)
+      .attr('y2', height - margin.top - margin.bottom)
+      .attr('stroke', 'black')
+      .attr('stroke-width', 2)
+      .attr('opacity', 0)
+      .style('stroke-dasharray', '3, 3')
 
     // Baseline transmission
     this.d3Graph
-        .append('line')
-        .attr('id', 'base-line')
-        .attr('x1', 0)
-        .attr('x2', width-margin.left-margin.right)
-        .attr('y1', yScale(1))
-        .attr('y2', yScale(1))
-        .attr('stroke', 'black')
-        .attr('stroke-width', 2)
-        .attr("opacity", 0.5)
-        .style('stroke-dasharray', '4, 2, 1')
+      .append('line')
+      .attr('id', 'base-line')
+      .attr('x1', 0)
+      .attr('x2', width - margin.left - margin.right)
+      .attr('y1', yScale(1))
+      .attr('y2', yScale(1))
+      .attr('stroke', 'black')
+      .attr('stroke-width', 2)
+      .attr('opacity', 0.5)
+      .style('stroke-dasharray', '4, 2, 1')
 
     // Line graph
     this.d3Graph
       .append('path')
-      .datum(this.state.data)
+      .datum(newData)
       .attr('class', 'line-graph')
       .attr('fill', 'none')
       .attr('stroke', '#ffab00')
@@ -219,7 +223,7 @@ class Graph extends React.Component {
     // Draggable markers
     this.d3Graph
       .selectAll('.dot')
-      .data(this.state.data)
+      .data(newData)
       .enter()
       .append('circle')
       .attr('class', 'dot')
@@ -238,20 +242,20 @@ class Graph extends React.Component {
         d3.select(this)
           .attr('fill', '#ffab00')
           .attr('r', 10)
-      Root.select('#temp-line')
-          .attr("opacity", 0.3)
-          .attr("x1", tScale(d.t))
-          .attr("x2", tScale(d.t));
+        Root.select('#temp-line')
+          .attr('opacity', 0.3)
+          .attr('x1', tScale(d.t))
+          .attr('x2', tScale(d.t))
       })
       .on('mouseout', function() {
         d3.select(this)
           .attr('fill', 'black')
           .attr('r', 8)
-      Root.select('#temp-line')
-          .attr("opacity", 0);
+        Root.select('#temp-line').attr('opacity', 0)
       })
       .call(
-        d3.drag()
+        d3
+          .drag()
           .subject(d => ({ x: tScale(d.t), y: yScale(d.y) }))
           .on('start', started)
           .on('drag', dragged)
@@ -278,31 +282,41 @@ class Graph extends React.Component {
   }
 }
 
-export class ContainControl extends React.Component {
-  render() {
-    return (
-      <div className="w-100 h-100">
-        <ReactResizeDetector handleWidth handleHeight>
-          {({ width }) => {
-            if (!width) {
-              return <div className="w-100 h-100" />
-            }
+export interface ContainControlProps {
+  data: TimeSeries
+  minTime: Date
+  maxTime: Date
+  onDataChange(timeSeries: TimeSeries): void
+}
 
-            const height = width / ASPECT_RATIO
+export function ContainControl({
+  data,
+  onDataChange,
+  minTime,
+  maxTime,
+}: ContainControlProps) {
+  return (
+    <div className="w-100 h-100">
+      <ReactResizeDetector handleWidth handleHeight>
+        {({ width }) => {
+          if (!width) {
+            return <div className="w-100 h-100" />
+          }
 
-            return (
-              <Graph
-                data={this.props.data}
-                setData={this.props.onDataChange}
-                minTime={this.props.minTime}
-                maxTime={this.props.maxTime}
-                width={width}
-                height={height}
-              />
-            )
-          }}
-        </ReactResizeDetector>
-      </div>
-    )
-  }
+          const height = width / ASPECT_RATIO
+
+          return (
+            <Graph
+              data={data}
+              setData={onDataChange}
+              minTime={minTime}
+              maxTime={maxTime}
+              width={width}
+              height={height}
+            />
+          )
+        }}
+      </ReactResizeDetector>
+    </div>
+  )
 }
