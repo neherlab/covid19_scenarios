@@ -12,8 +12,8 @@ import { CardWithDropdown } from './CardWithDropdown'
 import { CollapsibleCard } from './CollapsibleCard'
 import AgePlot from './PlotAgeBarChart'
 import { ContainControl, makeTimeSeries, TimeSeries } from './Containment'
-import { DeterministicLinePlot } from './PlotRechart'
-import { StochasticLinePlot } from './Plot'
+import { DeterministicLinePlot } from './Plot'
+// import { StochasticLinePlot } from './Plot'
 
 import PopTable from './PopAvgRates'
 
@@ -500,14 +500,6 @@ function Main() {
                       <Row>
                         <Col>
                           <DeterministicLinePlot
-                            data={result}
-                            logScale={logScale}
-                          />
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <StochasticLinePlot
                             data={result}
                             logScale={logScale}
                           />

@@ -1,214 +1,111 @@
-import React from 'react'
-
-import Plot from 'react-plotly.js'
+import React, { PureComponent } from 'react';
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
+} from 'recharts';
+import ReactResizeDetector from 'react-resize-detector'
 
 import { AlgorithmResult } from '../../algorithms/Result.types'
+
+const ASPECT_RATIO = 16 / 9
+
+export const colors = {
+  susceptible: "#a6cee3",
+  infectious: "#fdbf6f",
+  severe: "#fb9a99",
+  critical: "#e31a1c",
+  recovered: "#33a02c",
+  death: "#cab2d6"
+}
 
 export interface LinePlotProps {
   data?: AlgorithmResult
   logScale?: boolean
 }
 
+
+
+function xTickFormatter(tick: Date):string{
+  return new Date(tick).toISOString().substring(0,10);
+}
+
+function tooltipFormatter(value, name, props){
+  if (name!=='time'){
+    return value;
+  }
+}
+
+function labelFormatter(value){
+  return xTickFormatter(value);
+}
+
+
 export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
   if ((!data)||data.stochasticTrajectories.length>0) {
     return null
   }
-  const trajectory = data.deterministicTrajectory;
-  const time = trajectory.map(x => new Date(x.time))
-  const susceptible = trajectory.map(x => Math.round(x.susceptible["total"]))
-  const exposed = trajectory.map(x => Math.round(x.exposed["total"]))
-  const infectious = trajectory.map(x => Math.round(x.infectious["total"]))
-  const hospitalized = trajectory.map(x => Math.round(x.hospitalized["total"]))
-  const critical = trajectory.map(x => Math.round(x.critical["total"]))
-  const recovered = trajectory.map(x => Math.round(x.recovered["total"]))
-  const dead = trajectory.map(x => Math.round(x.dead["total"]))
+
   const nHospitalBeds = data.params.populationServed*4.5/1000;
+  const plotData = data.deterministicTrajectory.map(x => ({
+     time:  x.time,
+     susceptible: Math.round(x.susceptible["total"])||undefined,
+     exposed: Math.round(x.exposed["total"])||undefined,
+     infectious: Math.round(x.infectious["total"])||undefined,
+     hospitalized: Math.round(x.hospitalized["total"])||undefined,
+     critical: Math.round(x.critical["total"])||undefined,
+     recovered: Math.round(x.recovered["total"])||undefined,
+     dead: Math.round(x.dead["total"])||undefined,
+     hospitalBeds: nHospitalBeds
+   }))
 
+  const logScaleString = logScale?"log":"linear";
   return (
-    <Plot
-      data={[
-        {
-          x: [time[0], time[time.length -1]],
-          y: [nHospitalBeds, nHospitalBeds],
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: '#CCCCCC', width: 3 },
-          name: 'Hospital Beds (OECD average)',
-        },
-        {
-          x: time,
-          y: susceptible,
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: '#E2F0CB', width: 4 },
-          marker: { color: '#E2F0CB', size: 3 },
-          name: 'Susceptible',
-          // visible: 'legendonly'
-        },
-        {
-          x: time,
-          y: exposed,
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: '#FFB7B2', width: 4 },
-          marker: { color: '#FFB7B2', size: 3 },
-          name: 'Exposed',
-          visible: 'legendonly'
-        },
-        {
-          x: time,
-          y: infectious,
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: '#FFDAC1', width: 4 },
-          marker: { color: '#FFDAC1', size: 3 },
-          name: 'Cases',
-        },
-        {
-          x: time,
-          y: hospitalized,
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: '#FF9AA2', width: 4 },
-          marker: { color: '#FF9AA2', size: 3 },
-          name: 'Severe',
-        },
-        {
-          x: time,
-          y: critical,
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: '#F03B20', width: 4 },
-          marker: { color: '#F03B20', size: 3 },
-          name: 'Critical',
-        },
-        {
-          x: time,
-          y: recovered,
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: '#B5EAD7', width: 4 },
-          marker: { color: '#B5EAD7', size: 3 },
-          name: 'Recovered (cumulative)',
-          visible: 'legendonly'
-        },
-        {
-          x: time,
-          y: dead,
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: '#C7CEEA', width: 4 },
-          marker: { color: '#C7CEEA', size: 3 },
-          name: 'Deaths (cumulative)',
-        },
-      ]}
-      layout={{
-        // title: 'Deterministic Outbreak Trajectory',
-        xaxis: {
-          tickmode: 'linear',
-          tickformat: '%Y-%m-%d',
-          tickmode:'auto',
-          nticks:10,
-          automargin: true
-          // dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
-        },
-        yaxis: {
-            type: logScale ? 'log' : undefined,
-            automargin: true
-        },
-        autosize: false,
-        margin: {
-            l: 10,
-            r: 10,
-            b: 10,
-            t: 10,
-            pad: 4
-          },
+    <div className="w-100 h-100">
+      <ReactResizeDetector handleWidth handleHeight>
+        {({ width }) => {
+          if (!width) {
+            return <div className="w-100 h-100" />
+          }
+
+          const height = width / ASPECT_RATIO
+
+          return (
+            <>
+            <h3>Cases through time</h3>
+            <LineChart
+              width={width}
+              height={height}
+              data={plotData}
+              margin={{
+                  left: 15,
+                  right: 15,
+                  bottom: 15,
+                  top: 15
+                }}
+              >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="time"
+                tickFormatter={xTickFormatter}
+              />
+              <YAxis scale={logScaleString}
+                     type="number"
+                     domain={[1, 'dataMax']}
+              />
+              <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
+              <Legend verticalAlign="top"/>
+              <Line dot={false} type="monotone" strokeWidth={3} dataKey="susceptible" stroke={colors["susceptible"]} name="Susceptible"/>
+              <Line dot={false} type="monotone" strokeWidth={3} dataKey="infectious" stroke={colors["infectious"]} name="Infectious"/>
+              <Line dot={false} type="monotone" strokeWidth={3} dataKey="hospitalized" stroke={colors["severe"]} name="Severly ill"/>
+              <Line dot={false} type="monotone" strokeWidth={3} dataKey="critical" stroke={colors["critical"]} name="Critically ill"/>
+              <Line dot={false} type="monotone" strokeWidth={3} dataKey="dead" stroke={colors["death"]} name="Cumulative deaths"/>
+              <Line dot={false} type="monotone" strokeWidth={3} dataKey="recovered" stroke={colors["recovered"]} name="Recovered"/>
+              <Line dot={false} type="monotone" strokeWidth={3} dataKey="hospitalBeds" stroke="#aaaaaa" name="Hospital beds (OECD average)"/>
+            </LineChart>
+            </>
+          )
         }}
-    />
+      </ReactResizeDetector>
+    </div>
   )
 }
 
-export function StochasticLinePlot({ data, logScale }: LinePlotProps) {
-  if ((!data)||data.stochasticTrajectories.length==0) {
-    return null;
-  }
-  const trajectory = data.deterministicTrajectory;
-  const time = trajectory.map(x => new Date(x.time))
-  // const infectious = trajectory.map(x => Math.round(x.infectious))
-  // const dead = trajectory.map(x => Math.round(x.dead))
-
-  // TODO: Explict with types here?
-  var traces = [];
-  function add(data: AlgorithmResult, category: string, color: string, visible: string | Boolean) {
-      var mean = time.map(() => 0);
-      data.stochasticTrajectories.forEach(function(d) {
-          const Y = d.map(x => Math.round(x[category]["total"]));
-          mean = mean.map((x, i) => (x + Y[i]) );
-          traces.push(
-            {
-              x: time,
-              y: Y,
-              type: 'line',
-              opacity: 0.3,
-              line: { color: color, width: 2 },
-              marker: { color: color, size: 3 },
-              legendgroup: category,
-              showlegend: false,
-              hoverinfo: 'skip',
-              visible: visible,
-            }
-          );
-      });
-      mean = mean.map((x) => x / data.params.numberStochasticRuns);
-      traces.push(
-        {
-          x: time,
-          y: mean,
-          type: 'line',
-          line: { color: color, width: 3 },
-          marker: { color: color, size: 3 },
-          name: "Average number of " + category,
-          visible: visible,
-          legendgroup: category,
-        }
-      )
-  }
-
-  add(data, "susceptible", "#E2F0CB", "legendonly");
-  add(data, "exposed", "#FFB7B2", "legendonly");
-  add(data, "infectious", "#FFDAC1", true);
-  add(data, "hospitalized", "#FF9AA2", true);
-  add(data, "critical", "#F03B20", true);
-  add(data, "recovered", "#B5EAD7", "legendonly");
-  add(data, "dead", "#C7CEEA", true);
-
-  return (
-    <Plot
-      data={traces}
-      layout={{
-        // title: 'Stochastic Outbreak Trajectories',
-        xaxis: {
-          tickmode: 'linear',
-          tickformat: '%Y-%m-%d',
-          tickmode:'auto',
-          nticks:10,
-          automargin:true
-          // dtick: 14 * 24 * 60 * 60 * 1000, // milliseconds
-        },
-        yaxis: {
-            type: logScale ? 'log' : undefined,
-            automargin:true
-        },
-        autosize: false,
-        margin: {
-            l: 10,
-            r: 10,
-            b: 10,
-            t: 10,
-            pad: 4
-          },
-      }}
-    />
-  )
-}
