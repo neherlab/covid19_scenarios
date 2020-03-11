@@ -79,8 +79,8 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
     pop.hospitalizedRate[d.ageGroup] = dHospital / pop.infectiousPeriod
     pop.dischargeRate[d.ageGroup] = (1 - dCritical) / pop.lengthHospitalStay
     pop.criticalRate[d.ageGroup] = dCritical / pop.lengthHospitalStay
-    pop.stabilizationRate[d.ageGroup] = (1 - dFatal) / pop.lengthHospitalStay
-    pop.deathRate[d.ageGroup] = dFatal / pop.lengthHospitalStay
+    pop.stabilizationRate[d.ageGroup] = (1 - dFatal) / pop.lengthICUStay
+    pop.deathRate[d.ageGroup] = dFatal / pop.lengthICUStay
   })
 
   // Get import rates per age class (assume flat)
@@ -95,9 +95,9 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   pop.dischargeRate['total'] =
     (1 - criticalFracHospitalized) / pop.lengthHospitalStay
   pop.criticalRate['total'] = criticalFracHospitalized / pop.lengthHospitalStay
-  pop.deathRate['total'] = fatalFracCritical / pop.lengthHospitalStay
+  pop.deathRate['total'] = fatalFracCritical / pop.lengthICUStay
   pop.stabilizationRate['total'] =
-    (1 - fatalFracCritical) / pop.lengthHospitalStay
+    (1 - fatalFracCritical) / pop.lengthICUStay
   pop.isolatedFrac['total'] = avgIsolatedFrac
 
   // Infectivity dynamics

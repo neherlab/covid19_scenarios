@@ -364,6 +364,14 @@ function Main() {
                                 touched={touched}
                               />
                               <FormSpinBox
+                                id="epidemiological.lengthICUStay"
+                                label="Length of ICU stay [days]"
+                                step={1}
+                                min={0}
+                                errors={errors}
+                                touched={touched}
+                              />
+                              <FormSpinBox
                                 id="epidemiological.seasonalForcing"
                                 label="Seasonal Forcing"
                                 step={0.1}

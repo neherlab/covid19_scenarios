@@ -10,6 +10,7 @@ export interface EpidemiologicalData {
   incubationTime: number
   infectiousPeriod: number
   lengthHospitalStay: number
+  lengthICUStay: number
   seasonalForcing: number
   peakMonth: number
 }
