@@ -463,8 +463,8 @@ function Main() {
                           <p>
                             {`This output of a mathematical model depends on model assumptions and parameter choices.
                                  We have done our best (in limited time) to check the model implementation is correct.
-                                 Please carefully consider the parameters you choose and interpret the output with caution.
-                                 Click on legend items to show/hide curves.`}
+                                 Please carefully consider the parameters you choose and interpret the output with caution.`
+                            }
                           </p>
                         </Col>
                         <Col lg={4}>
