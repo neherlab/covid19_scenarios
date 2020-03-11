@@ -47,17 +47,16 @@ export default function AgePlot({ data, rates }: SimProps) {
               height={height}
               data={plotData}
               margin={{
-                  l: 10,
-                  r: 10,
-                  b: 10,
-                  t: 10,
-                  pad: 4
+                  left: 15,
+                  right: 15,
+                  bottom: 3,
+                  top: 15
                 }}
               >
               <XAxis dataKey="name" />
               <YAxis label={{value:'Cases', angle:-90, position:'insideLeft'}}/>
               <Tooltip />
-              <Legend />
+              <Legend verticalAlign="top"/>
               <CartesianGrid strokeDasharray="3 3" />
               <Bar dataKey="peakSevere" fill={colors["severe"]} name="peak severe"/>
               <Bar dataKey="peakCritical" fill={colors["critical"]} name="peak critical"/>
@@ -68,14 +67,13 @@ export default function AgePlot({ data, rates }: SimProps) {
               height={height}
               data={plotData}
               margin={{
-                  l: 10,
-                  r: 10,
-                  b: 10,
-                  t: 10,
-                  pad: 4
+                  left: 15,
+                  right: 15,
+                  bottom: 15,
+                  top: 3
                 }}
               >
-              <XAxis dataKey="name" label={{value:"Age", position:"insideBottom", offset:0}}/>
+              <XAxis dataKey="name" label={{value:"Age", position:"insideBottom", offset:-3}}/>
               <YAxis label={{value:'% of total', angle:-90, position:'insideLeft'}} />
               <CartesianGrid strokeDasharray="3 3" />
               <Tooltip />

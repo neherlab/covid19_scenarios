@@ -74,25 +74,23 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
               height={height}
               data={plotData}
               margin={{
-                  l: 10,
-                  r: 10,
-                  b: 10,
-                  t: 10,
-                  pad: 4
+                  left: 15,
+                  right: 15,
+                  bottom: 15,
+                  top: 15
                 }}
               >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="time"
                 tickFormatter={xTickFormatter}
-                tickCount={4}
               />
               <YAxis scale={logScaleString}  type="number" domain={[1, 'dataMax']} />
               <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter}/>
-              <Legend />
+              <Legend verticalAlign="top"/>
               <Line dot={false} type="monotone" strokeWidth={3} dataKey="susceptible" stroke={colors["susceptible"]} name="Susceptible"/>
               <Line dot={false} type="monotone" strokeWidth={3} dataKey="infectious" stroke={colors["infectious"]} name="Infectious"/>
-              <Line dot={false} type="monotone" strokeWidth={3} dataKey="severe" stroke={colors["severe"]} name="Severly ill"/>
+              <Line dot={false} type="monotone" strokeWidth={3} dataKey="hospitalized" stroke={colors["severe"]} name="Severly ill"/>
               <Line dot={false} type="monotone" strokeWidth={3} dataKey="critical" stroke={colors["critical"]} name="Critically ill"/>
               <Line dot={false} type="monotone" strokeWidth={3} dataKey="dead" stroke={colors["death"]} name="Cumulative deaths"/>
               <Line dot={false} type="monotone" strokeWidth={3} dataKey="recovered" stroke={colors["recovered"]} name="Recovered"/>
