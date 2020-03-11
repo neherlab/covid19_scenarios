@@ -400,7 +400,7 @@ function Main() {
                     </Row>
 
                     <Row noGutters>
-                      <Col>
+                      <Col className="py-1 px-1">
                         <CollapsibleCard
                           title="Severity assumptions based on data from China"
                           defaultCollapsed
