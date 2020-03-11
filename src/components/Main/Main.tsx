@@ -289,7 +289,7 @@ function Main() {
                             >
                               <FormSpinBox
                                 id="population.populationServed"
-                                label="Population Served"
+                                label="Population"
                                 step={1000}
                                 errors={errors}
                                 touched={touched}
