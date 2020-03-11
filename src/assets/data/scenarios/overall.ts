@@ -8,14 +8,20 @@ export interface OverallScenario {
 const globalScenarios: OverallScenario[] = [
   {
     name: 'Default',
-    containmentScenario: 'Moderate Reduction',
-    epidemiologicalScenario: 'Moderate Northern',
+    containmentScenario: 'Moderate mitigation',
+    epidemiologicalScenario: 'Moderate/North',
     populationScenario: 'Basel',
   },
   {
-    name: 'Extreme',
-    containmentScenario: 'No Reduction',
-    epidemiologicalScenario: 'Moderate Tropical',
+    name: 'Country - no mitigation',
+    containmentScenario: 'No mitigation',
+    epidemiologicalScenario: 'Moderate/North',
+    populationScenario: 'Germany',
+  },
+  {
+    name: 'City - strong mitigation',
+    containmentScenario: 'Strong mitigation',
+    epidemiologicalScenario: 'Moderate/North',
     populationScenario: 'Stockholm',
   },
 ]
