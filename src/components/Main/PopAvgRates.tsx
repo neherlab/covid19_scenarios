@@ -1,5 +1,6 @@
 import React from 'react'
 import Plot  from 'react-plotly.js'
+import { Col, Row } from 'reactstrap'
 
 import { AlgorithmResult } from '../../algorithms/Result.types'
 import { SeverityTableRow } from '../../components/Main/SeverityTable'
@@ -37,10 +38,13 @@ export default function PopTable( {result, rates}: TableProps) {
 
   return (
     <>
+    <Col lg={1} />
+    <Col lg={5}>
+    <h5>Proportions</h5>
     <table>
     <thead>
     <tr>
-      <th>Outcome or Value &emsp; </th>
+      <th>Outcome &emsp; </th>
       <th>Population average</th>
     </tr>
     </thead>
@@ -61,6 +65,19 @@ export default function PopTable( {result, rates}: TableProps) {
       <td>Fatal [%]: </td>
       <td>{deathFrac}</td>
     </tr>
+    </tbody>
+    </table>
+    </Col>
+    <Col lg={5}>
+    <h5>Totals/Peak</h5>
+    <table>
+    <thead>
+    <tr>
+      <th>Quantity &emsp; </th>
+      <th>peak/total value</th>
+    </tr>
+    </thead>
+    <tbody>
     <tr>
       <td>Total death: </td>
       <td>{totalDeath}</td>
@@ -79,6 +96,7 @@ export default function PopTable( {result, rates}: TableProps) {
     </tr>
     </tbody>
     </table>
+    </Col>
     </>
   )
 }

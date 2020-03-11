@@ -517,11 +517,9 @@ function Main() {
                         <Col lg={12}>
                           <AgePlot data={result} rates={severity} />
                         </Col>
-                     </Row>
+                      </Row>
                       <Row>
-                        <Col lg={4}>
-                          <PopTable result={result} rates={severity} />
-                        </Col>
+                        <PopTable result={result} rates={severity} />
                       </Row>
                     </CollapsibleCard>
                   </Col>
