@@ -221,17 +221,14 @@ function Main() {
     params: AllParams,
     { setSubmitting }: FormikHelpers<AllParams>,
   ) {
-    console.log({ params })
-
-    // TODO: check the presence of the current counry
-    // TODO: type cast the json into something
-
     const paramsFlat = {
       ...params.population,
       ...params.epidemiological,
       ...params.simulation,
     }
 
+    // TODO: check the presence of the current counry
+    // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[params.population.country]
     const containmentData = makeTimeSeries(
       scenarioState.simulation.data.simulationTimeRange.tMin,

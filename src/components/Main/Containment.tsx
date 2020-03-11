@@ -34,41 +34,9 @@ export function makeTimeSeries(
   return tSeries
 }
 
-// *****************************************************
-// ** Graph and App components
-// *****************************************************
-
 class Graph extends React.Component {
-  constructor(props) {
-    super(props)
-    // this.state = {
-    //   minTime: this.props.minTime,
-    //   maxTime: this.props.maxTime,
-    //   data: this.props.data,
-    // }
-    // newData
-    // const n     = this.props.data.length;
-    // const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
-    // for (let i = 0; i < n; i++) {
-    //     newData.push({"t": dates[i], "y": this.props.data[i].y});
-    // }
-  }
-
-  // updateState(): void {
-  //   const n = this.props.data.length
-  //   const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n)
-  //   newData.forEach(function(_, i) {
-  //     this[i].t = dates[i]
-  //   }, newData)
-  //
-  //   this.state.minTime = this.props.minTime
-  //   this.state.maxTime = this.props.maxTime
-  // }
-
   componentDidMount(): void {
     this.draw()
-    // NOTE: Ensures the dates are properly populated.
-    // this.props.setData(newData)
   }
 
   componentDidUpdate(): void {
@@ -77,15 +45,6 @@ class Graph extends React.Component {
 
   draw() {
     const { width, height, data } = this.props
-    console.log({ props: this.props })
-
-    // if (
-    //   this.props.minTime != this.state.minTime ||
-    //   this.props.maxTime != this.state.maxTime
-    // ) {
-    //   this.updateState()
-    //   this.props.setData(newData)
-    // }
 
     let newData = data
     const minTime = data[0].t
