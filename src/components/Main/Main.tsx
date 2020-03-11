@@ -267,7 +267,7 @@ function Main() {
                     <CardWithDropdown
                       id="overallScenario"
                       label={
-                        <h3 className="p-2 m-0 text-truncate">Scenario</h3>
+                        <h3 className="p-0 m-0 text-truncate">Scenario</h3>
                       }
                       options={overallScenarioOptions}
                       value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)} // prettier-ignore
@@ -279,7 +279,7 @@ function Main() {
                             <CardWithDropdown
                               id="populationScenario"
                               label={
-                                <h5 className="p-2 text-truncate">
+                                <h5 className="p-0 text-truncate">
                                   Population
                                 </h5>
                               }
@@ -324,7 +324,7 @@ function Main() {
                             <CardWithDropdown
                               id="epidemiologicalScenario"
                               label={
-                                <h5 className="p-2 text-truncate">
+                                <h5 className="p-0 text-truncate">
                                   Epidemiology
                                 </h5>
                               }
@@ -393,7 +393,7 @@ function Main() {
                             <CardWithDropdown
                               id="containmentScenario"
                               label={
-                                <h5 className="p-2 text-truncate">
+                                <h5 className="p-0 text-truncate">
                                   Mitigation
                                 </h5>
                               }
@@ -463,7 +463,7 @@ function Main() {
 
                   <Col lg={8} xl={6} className="py-1 px-1">
                     <CollapsibleCard
-                      title={<h3 className="p-2 m-0 text-truncate">Results</h3>}
+                      title={<h3 className="p-0 m-0 text-truncate">Results</h3>}
                       defaultCollapsed={false}
                     >
                       <Row>
