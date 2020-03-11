@@ -6,21 +6,29 @@ import { Form, Formik, FormikHelpers } from 'formik'
 import moment from 'moment'
 import * as yup from 'yup'
 
-import { Button, Col, FormGroup, Row } from 'reactstrap'
+import { Button, Col, Row } from 'reactstrap'
+
+import Papa from 'papaparse'
 
 import { CardWithDropdown } from './CardWithDropdown'
 import { CollapsibleCard } from './CollapsibleCard'
 import AgePlot from './PlotAgeBarChart'
+import { ComparisonModalWithButton } from './ComparisonModalWithButton'
 import { ContainControl, makeTimeSeries, TimeSeries } from './Containment'
 import { DeterministicLinePlot } from './Plot'
 // import { StochasticLinePlot } from './Plot'
 
 import PopTable from './PopAvgRates'
 
-import SeverityTable, { SeverityTableColumn, SeverityTableRow } from './SeverityTable' // prettier-ignore
+import SeverityTable, {
+  SeverityTableColumn,
+  SeverityTableRow
+} from './SeverityTable' // prettier-ignore
+import { FileType } from './FileUploadZone'
 
 import { exportResult } from '../../algorithms/exportResult'
 import run from '../../algorithms/run'
+import { readFile } from '../../helpers/readFile'
 
 import { AllParams } from '../../algorithms/Param.types'
 
@@ -162,6 +170,7 @@ function timeSeriesToReduction(timeSeries: TimeSeries) {
 function Main() {
   const [logScale, setLogScale] = useState<boolean>(true)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
+  const [files, setFiles] = useState<Map<FileType, File>>(new Map())
   const [userResult, setUserResult] = useState<AlgorithmResult | undefined>()
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState, /* initDefaultState */) // prettier-ignore
 
@@ -216,7 +225,31 @@ function Main() {
     scenarioDispatch(setContainmentData({ data: { reduction } }))
   }
 
-  function handleClickToCompareButton() {}
+  function handleFileSubmit(files: Map<FileType, File>) {
+    console.log({ files })
+
+    setFiles(files)
+
+    const csvFile: File | undefined = files.get(FileType.CSV)
+    if (!csvFile) {
+      throw new Error(`Error: CSV file is missing"`)
+    }
+
+    readFile(csvFile).then((csvString: string) => {
+      console.log({ csvString })
+
+      const csvParsed = Papa.parse(csvFile, { trimHeaders: false })
+      console.log(csvParsed)
+
+      // TODO: process file contents and return an `AlgorithmResult` or similar
+      // const newUserResult: AlgorithmResult = getUserResult(csv)
+
+      // TODO: update `userResult` state
+      // setUserResult(newUserResult)
+
+      // TODO: use `userResult` state in the plot
+    })
+  }
 
   const containmentData = makeTimeSeries(
     scenarioState.simulation.data.simulationTimeRange.tMin,
@@ -487,7 +520,7 @@ function Main() {
                       <Row noGutters className="mb-4">
                         <Col>
                           <div>
-                            <span className="">
+                            <span>
                               <Button
                                 className="run-button"
                                 type="submit"
@@ -498,16 +531,10 @@ function Main() {
                               </Button>
                             </span>
                             <span>
-                              <Button
-                                className="compare-button"
-                                type="button"
-                                color="success"
-                                onClick={() =>
-                                  hasResult && handleClickToCompareButton()
-                                }
-                              >
-                                Compare
-                              </Button>
+                              <ComparisonModalWithButton
+                                files={files}
+                                onFilesChange={handleFileSubmit}
+                              />
                             </span>
                             <span>
                               <Button

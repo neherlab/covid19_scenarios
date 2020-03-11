@@ -15,6 +15,11 @@ html {
   overflow-y: scroll;
 }
 
+body {
+  // HACK: workaround for bootstrap modal adding padding-right when open
+  padding: 0 !important;
+}
+
 .container.absolute {
   position: absolute;
   top: 100px;
