@@ -1,41 +1,39 @@
-export interface Param<ValueType> {
-  name: string
-  defaultValue: ValueType
-}
-
-export interface MainParams {
-  populationServed: Param<number>
-  ageDistribution: Param<string>
-  suspectedCasesToday: Param<number>
-  importsPerDay: Param<number>
-  tMin: Param<Date>
-  tMax: Param<Date>
-}
-
-export interface AdditionalParams {
-  r0: Param<number>
-  incubationTime: Param<number>
-  infectiousPeriod: Param<number>
-  lengthHospitalStay: Param<number>
-  seasonalForcing: Param<number>
-  peakMonth: Param<number>
-  numberStochasticRuns: Param<number>
-}
-
-export interface AllParams {
-  ageDistribution: string
+export interface PopulationData {
+  populationServed: number
   country: string
+  suspectedCasesToday: number
   importsPerDay: number
+}
+
+export interface EpidemiologicalData {
+  r0: number
   incubationTime: number
   infectiousPeriod: number
   lengthHospitalStay: number
-  numberStochasticRuns: number
-  peakMonth: number
-  populationServed: number
-  r0: number
   seasonalForcing: number
-  serialInterval: number
-  suspectedCasesToday: number
+  peakMonth: number
+}
+
+export interface ContainmentData {
+  reduction: number[]
+}
+
+export interface DateRange {
   tMin: Date
   tMax: Date
 }
+
+export interface SimulationData {
+  simulationTimeRange: DateRange
+  numberStochasticRuns: number
+}
+
+export interface AllParams {
+  population: PopulationData
+  epidemiological: EpidemiologicalData
+  simulation: SimulationData
+}
+
+export type AllParamsFlat = PopulationData &
+  EpidemiologicalData &
+  SimulationData

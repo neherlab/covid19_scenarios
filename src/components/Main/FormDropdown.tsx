@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Select from 'react-select'
-import { Col, FormGroup, Row } from 'reactstrap'
+import { Field, FieldProps } from 'formik'
+import FormDropdownStateless from './FormDropdownStateless'
 
 export interface FormDropdownOption<ValueType extends string | number> {
   value: ValueType
@@ -12,39 +12,35 @@ export interface FormDropdownProps<ValueType extends string | number> {
   id: string
   label: string
   options: FormDropdownOption<ValueType>[]
-  defaultOption?: FormDropdownOption<ValueType>
-  onValueChange(value: ValueType): void
 }
 
 export default function FormDropdown<ValueType extends string | number>({
   id,
   label,
   options,
-  defaultOption,
-  onValueChange,
 }: FormDropdownProps<ValueType>) {
   return (
-    <FormGroup>
-      <Row>
-        <Col xl={7}>
-          <label htmlFor={id}>{label}</label>
-        </Col>
-        <Col xl={5}>
-          <Select
+    <Field name={id}>
+      {({
+        field: { value, onBlur },
+        form: { setFieldValue },
+      }: FieldProps<ValueType>) => {
+        return (
+          <FormDropdownStateless
             id={id}
-            name={id}
+            label={label}
             options={options}
-            defaultValue={defaultOption}
-            theme={theme => ({
-              ...theme,
-              borderRadius: 0,
-            })}
-            onChange={(option: FormDropdownOption<ValueType>) =>
-              onValueChange(option.value)
-            }
+            value={{value, label: options.find(o => o.value === value)?.label ?? '' }} // prettier-ignore
+            onValueChange={value => {
+              setFieldValue?.(id, value)
+            }}
+            onOptionChange={option => {
+              setFieldValue?.(id, option.value)
+            }}
+            onBlur={onBlur}
           />
-        </Col>
-      </Row>
-    </FormGroup>
+        )
+      }}
+    </Field>
   )
 }

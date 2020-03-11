@@ -1,22 +1,15 @@
 import random from 'random'
 import { CountryAgeDistribution, OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
 import { SeverityTableRow } from '../components/Main/SeverityTable'
-import { AllParams } from './Param.types'
+import { AllParamsFlat } from './Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './Result.types'
+import { TimeSeries } from '../components/Main/Containment'
 import {
          evolve,
          collectTotals,
          getPopulationParams,
          initializePopulation,
        } from "./model.js"
-
-
-interface TimePoint {
-    t: Date,
-    y: number,
-}
-
-type TimeSeries = TimePoint[];
 
 // NOTE: Assumes containment is sorted ascending in time.
 function interpolate(containment: TimeSeries): (t: Date) => number {
@@ -53,7 +46,7 @@ function interpolate(containment: TimeSeries): (t: Date) => number {
  *
  */
 export default async function run(
-  params: AllParams,
+  params: AllParamsFlat,
   severity: SeverityTableRow[],
   ageDistribution: OneCountryAgeDistribution,
   containment: TimeSeries,
@@ -61,10 +54,10 @@ export default async function run(
   console.log(JSON.stringify({ params }, null, 2));
 
   const modelParams  = getPopulationParams(params, severity, ageDistribution, interpolate(containment));
-  const tMin: number = params.tMin.getTime()
-  const initialCases = parseFloat(params.suspectedCasesToday);
+  const tMin: number = params.simulationTimeRange.tMin.getTime()
+  const initialCases = params.suspectedCasesToday
   let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution);
-  const tMax: number = params.tMax.getTime()
+  const tMax: number = params.simulationTimeRange.tMax.getTime()
   const identity = function(x: number) {return x;}; // Use instead of samplePoisson for a deterministic
   const poisson = function(x: number) {return x>0?random.poisson(x)():0;}; // poisson sampling
 
