@@ -9,7 +9,7 @@ import * as yup from 'yup'
 import { Button, Col, FormGroup, Row } from 'reactstrap'
 
 import { CollapsibleCard } from './CollapsibleCard'
-import { ContainControl, TimeSeries } from './Containment'
+import { ContainControl, TimeSeries, makeTimeSeries } from './Containment'
 import { DeterministicLinePlot, StochasticLinePlot } from './Plot'
 import AgePlot from './PlotAgeAndParams'
 import PopTable from './PopAvgRates'
@@ -211,7 +211,9 @@ function Main() {
     scenarioDispatch(setContainmentData({ data: { reduction } }))
   }
 
-  const containmentData = reductionToTimeSeries(scenarioState)
+  const containmentData = makeTimeSeries(scenarioState.simulation.data.simulationTimeRange.tMin,
+                                         scenarioState.simulation.data.simulationTimeRange.tMax,
+                                         scenarioState.containment.data.reduction);
 
   async function handleSubmit(
     params: AllParams,
@@ -229,7 +231,10 @@ function Main() {
     }
 
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const containmentData = reductionToTimeSeries(scenarioState)
+    const containmentData =  makeTimeSeries(scenarioState.simulation.data.simulationTimeRange.tMin,
+                                         scenarioState.simulation.data.simulationTimeRange.tMax,
+                                         scenarioState.containment.data.reduction);
+
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData) // prettier-ignore
 
     setResult(newResult)

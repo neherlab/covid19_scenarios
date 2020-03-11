@@ -47,13 +47,14 @@ class Graph extends React.Component {
       this.state = {
           minTime: this.props.minTime,
           maxTime: this.props.maxTime,
-          data: [],
+          data: this.props.data
       }
-      const n     = this.props.data.length;
-      const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
-      for (let i = 0; i < n; i++) {
-          this.state.data.push({"t": dates[i], "y": this.props.data[i].y});
-      }
+      // this.state.data
+      // const n     = this.props.data.length;
+      // const dates = uniformDatesBetween(this.props.minTime, this.props.maxTime, n);
+      // for (let i = 0; i < n; i++) {
+      //     this.state.data.push({"t": dates[i], "y": this.props.data[i].y});
+      // }
   }
 
   updateState(): void {
