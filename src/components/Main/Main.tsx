@@ -355,7 +355,15 @@ function Main() {
                           />
                           <FormSpinBox
                             id="epidemiological.lengthHospitalStay"
-                            label="Length of Hospital stay [days]"
+                            label="Length of hospital stay [days]"
+                            step={1}
+                            min={0}
+                            errors={errors}
+                            touched={touched}
+                          />
+                          <FormSpinBox
+                            id="epidemiological.lengthICUStay"
+                            label="Length of ICU stay [days]"
                             step={1}
                             min={0}
                             errors={errors}
