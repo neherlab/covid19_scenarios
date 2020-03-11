@@ -10,8 +10,10 @@ import { Button, Col, FormGroup, Row } from 'reactstrap'
 
 import { CollapsibleCard } from './CollapsibleCard'
 import { ContainControl, TimeSeries } from './Containment'
-import { DeterministicLinePlot, StochasticLinePlot } from './Plot'
-import AgePlot from './PlotAgeAndParams'
+import { StochasticLinePlot } from './Plot'
+import { DeterministicLinePlot } from './PlotRechart'
+
+import AgePlot from './PlotAgeBarChart'
 import PopTable from './PopAvgRates'
 
 import SeverityTable, { SeverityTableColumn, SeverityTableRow } from './SeverityTable' // prettier-ignore
@@ -489,11 +491,13 @@ function Main() {
                         </Col>
                       </Row>
                       <Row>
+                        <Col lg={12}>
+                          <AgePlot data={result} rates={severity} />
+                        </Col>
+                     </Row>
+                      <Row>
                         <Col lg={4}>
                           <PopTable result={result} rates={severity} />
-                        </Col>
-                        <Col lg={8}>
-                          <AgePlot data={result} rates={severity} />
                         </Col>
                       </Row>
                     </CollapsibleCard>
