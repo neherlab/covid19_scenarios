@@ -356,6 +356,19 @@ function Main() {
                                 touched={touched}
                               />
                               <FormSpinBox
+                                id="epidemiological.seasonalForcing"
+                                label="Seasonal Forcing"
+                                step={0.1}
+                                min={0}
+                                errors={errors}
+                                touched={touched}
+                              />
+                              <FormDropdown<number>
+                                id="epidemiological.peakMonth"
+                                label="Seasonal Transmission Peak"
+                                options={monthOptions}
+                              />
+                              <FormSpinBox
                                 id="epidemiological.lengthHospitalStay"
                                 label="Length of Hospital stay [days]"
                                 step={1}
@@ -370,19 +383,6 @@ function Main() {
                                 min={0}
                                 errors={errors}
                                 touched={touched}
-                              />
-                              <FormSpinBox
-                                id="epidemiological.seasonalForcing"
-                                label="Seasonal Forcing"
-                                step={0.1}
-                                min={0}
-                                errors={errors}
-                                touched={touched}
-                              />
-                              <FormDropdown<number>
-                                id="epidemiological.peakMonth"
-                                label="Seasonal Transmission Peak"
-                                options={monthOptions}
                               />
                             </CardWithDropdown>
                           </Col>
