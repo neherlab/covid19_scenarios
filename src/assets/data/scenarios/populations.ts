@@ -45,7 +45,7 @@ const populationScenarios: PopulationScenario[] = [
   {
     name: 'USA',
     data: {
-      populationServed: 400000000,
+      populationServed: 330000000,
       country: 'United States of America',
       suspectedCasesToday: 100000,
       importsPerDay: 50,
