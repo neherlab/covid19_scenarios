@@ -9,27 +9,29 @@ export interface FormInputProps {
   label: string
   help?: string
   checked: boolean
-  onChange(checked: boolean): void
+  hidden?: boolean
+  onValueChanged(checked: boolean): void
 }
 
 export default function FormSwitch({
   identifier,
   label,
   help,
-  onChange,
+  onValueChanged,
   checked,
+  hidden = false,
+  ...props
 }: FormInputProps) {
   return (
-    <FormGroup className="my-0">
-      <CustomInput
-        type="checkbox"
-        className="form-control custom-switch"
-        id={identifier}
-        name={identifier}
-        label={<FormLabel identifier={identifier} label={label} help={help} />}
-        checked={checked}
-        onChange={e => onChange(e.target.checked)}
-      />
-    </FormGroup>
+    <CustomInput
+      type="checkbox"
+      className="form-control custom-switch"
+      id={identifier}
+      name={identifier}
+      label={<FormLabel identifier={identifier} label={label} help={help} />}
+      checked={checked}
+      onChange={e => onValueChanged(e.target.checked)}
+      {...props}
+    />
   )
 }

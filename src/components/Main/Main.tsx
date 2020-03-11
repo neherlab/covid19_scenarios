@@ -162,6 +162,7 @@ function timeSeriesToReduction(timeSeries: TimeSeries) {
 function Main() {
   const [logScale, setLogScale] = useState<boolean>(true)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
+  const [userResult, setUserResult] = useState<AlgorithmResult | undefined>()
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState, /* initDefaultState */) // prettier-ignore
 
   // TODO: Can this complex state be handled by formik too?
@@ -173,7 +174,9 @@ function Main() {
     simulation: scenarioState.simulation.data,
   }
 
-  const canExport = Boolean(result?.deterministicTrajectory)
+  const hasResult = Boolean(result?.deterministicTrajectory)
+  const hasUserResult = Boolean(userResult?.deterministicTrajectory)
+  const canExport = Boolean(hasResult)
 
   function setScenarioToCustom(newParams: AllParams) {
     // NOTE: deep object comparison!
@@ -212,6 +215,8 @@ function Main() {
     const reduction = timeSeriesToReduction(timeSeries)
     scenarioDispatch(setContainmentData({ data: { reduction } }))
   }
+
+  function handleClickToCompareButton() {}
 
   const containmentData = makeTimeSeries(
     scenarioState.simulation.data.simulationTimeRange.tMin,
@@ -260,6 +265,8 @@ function Main() {
           validate={setScenarioToCustom}
         >
           {({ errors, touched, isValid }) => {
+            const canRun = isValid && severityTableIsValid(severity)
+
             return (
               <Form className="form">
                 <Row noGutters>
@@ -498,48 +505,27 @@ function Main() {
                       help="This section contains simulation results"
                       defaultCollapsed={false}
                     >
-                      <Row>
-                        <Col lg={8}>
+                      <Row noGutters>
+                        <Col>
                           <p>
                             {`This output of a mathematical model depends on model assumptions and parameter choices.
                                  We have done our best (in limited time) to check the model implementation is correct.
                                  Please carefully consider the parameters you choose and interpret the output with caution.`}
                           </p>
                         </Col>
-                        <Col lg={4}>
-                          <FormGroup>
-                            <Button
-                              className="run-button"
-                              type="submit"
-                              color="primary"
-                              disabled={
-                                !isValid || !severityTableIsValid(severity)
-                              }
-                              title="Run the simulation"
-                            >
-                              Run
-                            </Button>
-                            <Button
-                              className={`export-button ${canExport ? '' : 'd-none'}`} // prettier-ignore
-                              type="submit"
-                              color="secondary"
-                              disabled={!canExport}
-                              onClick={() => result && exportResult(result)}
-                              title="Export the parameters and trajectories to file."
-                            >
-                              Export
-                            </Button>
-                            <FormSwitch
-                              identifier="logScale"
-                              label="Log scale"
-                              help="Toggle between logarithmic and linear scale on vertical axis of the plot"
-                              checked={logScale}
-                              onChange={checked => setLogScale(checked)}
-                            />
-                          </FormGroup>
+                      </Row>
+                      <Row noGutters hidden={!result}>
+                        <Col>
+                          <FormSwitch
+                            identifier="logScale"
+                            label="Log scale"
+                            help="Toggle between logarithmic and linear scale on vertical axis of the plot"
+                            checked={logScale}
+                            onValueChanged={checked => setLogScale(checked)}
+                          />
                         </Col>
                       </Row>
-                      <Row>
+                      <Row noGutters>
                         <Col>
                           <DeterministicLinePlot
                             data={result}
