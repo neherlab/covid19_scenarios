@@ -15,12 +15,26 @@ function uniformDatesBetween(min, max, n) {
 }
 
 
+
 interface TimePoint {
     t: Date,
     y: number,
 }
 
 export type TimeSeries = TimePoint[];
+
+export function makeTimeSeries(
+  tMin: Date,
+  tMax: Date,
+  values: number[]
+): TimeSeries {
+  const dates = uniformDatesBetween(tMin, tMax, values.length);
+  const tSeries = [];
+  for (let i=0; i<values.length; i++){
+    tSeries.push({t:dates[i], y:values[i]});
+  }
+  return tSeries;
+}
 
 
 // *****************************************************
@@ -56,7 +70,7 @@ class Graph extends React.Component {
   componentDidMount(): void {
     this.draw()
     // NOTE: Ensures the dates are properly populated.
-    this.props.setData(this.state.data); 
+    this.props.setData(this.state.data);
   }
 
   componentDidUpdate(): void {
@@ -72,7 +86,7 @@ class Graph extends React.Component {
         this.props.setData(this.state.data);
     }
 
-    const margin = { 
+    const margin = {
         top:    math.round(.10*height),
         right:  math.round(.15*height),
         left:   math.round(.15*height),
