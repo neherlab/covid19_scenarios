@@ -45,7 +45,7 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
   }
 
   const nHospitalBeds = data.params.populationServed*4.5/1000;
-  const plotData = data.deterministicTrajectory.map(x => ({
+  const plotData = data.deterministicTrajectory.filter((d,i) => (i%4==0)).map(x => ({
      time:  x.time,
      susceptible: Math.round(x.susceptible["total"])||undefined,
      exposed: Math.round(x.exposed["total"])||undefined,

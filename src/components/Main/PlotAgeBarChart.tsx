@@ -27,7 +27,6 @@ export default function AgePlot({ data, rates }: SimProps) {
     "peakCritical": Math.round(Math.max(...data.deterministicTrajectory.map(x => x.critical[age]))),
     "totalDead": Math.round(lastDataPoint.dead[age]),
     }));
-  console.log("agePlot",plotData);
 
   return (
     <div className="w-100 h-100">
