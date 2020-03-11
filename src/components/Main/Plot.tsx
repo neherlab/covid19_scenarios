@@ -70,7 +70,7 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
 
           return (
             <>
-            <h3>Cases through time</h3>
+            <h5>Cases through time</h5>
             <LineChart
               width={width}
               height={height}

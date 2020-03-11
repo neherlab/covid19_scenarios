@@ -41,7 +41,7 @@ export default function AgePlot({ data, rates }: SimProps) {
 
           return (
             <>
-            <h3>Distribution across age groups</h3>
+            <h5>Distribution across age groups</h5>
             <BarChart
               width={width}
               height={height}
