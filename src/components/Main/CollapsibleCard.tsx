@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { FaMinusCircle, FaPlusCircle } from 'react-icons/fa'
+import { MdArrowDropDown } from 'react-icons/md'
 import { Button, Card, CardBody, CardHeader, Collapse } from 'reactstrap'
 
 export interface CollapsibleCardProps {
@@ -21,15 +21,20 @@ export function CollapsibleCard({
     <Card className="h-100">
       <CardHeader>
         <Button
-          className="w-100 h-100 text-left"
+          className="w-100 h-100 text-left p-0"
           type="button"
           color="default"
           onClick={toggle}
         >
-          <span className="mr-2">
-            {collapsed ? <FaPlusCircle /> : <FaMinusCircle />}
-          </span>
-          <span>{title}</span>
+          <div className="d-flex">
+            <span className="mx-1 my-auto">
+              <MdArrowDropDown
+                size={30}
+                className={`${collapsed ? 'icon-rotate-90' : 'icon-rotate-0'}`}
+              />
+            </span>
+            <span>{title}</span>
+          </div>
         </Button>
       </CardHeader>
 

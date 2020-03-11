@@ -89,3 +89,12 @@ input[type='number']::-webkit-outer-spin-button {
   -ms-user-select: none;
   user-select: none;
 }
+
+.icon-rotate-0 {
+  transition: transform linear 0.25s;
+}
+
+.icon-rotate-90 {
+  transform: rotate(-90deg);
+  transition: transform linear 0.25s;
+}

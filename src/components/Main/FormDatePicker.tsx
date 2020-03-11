@@ -28,8 +28,8 @@ export default function FormDatePicker({
         form: { setFieldValue },
       }: FieldProps<DateRange>) => {
         return (
-          <FormGroup>
-            <Row>
+          <FormGroup className="my-0">
+            <Row noGutters>
               <Col xl={7}>
                 <label htmlFor={id}>{label}</label>
               </Col>

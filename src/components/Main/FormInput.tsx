@@ -10,14 +10,14 @@ export interface FormInputProps {
 
 export default function FormInput({ id, label }: FormInputProps) {
   return (
-    <FormGroup>
-      <Row>
-      <Col xl={7}>
-      <label htmlFor={id}>{label}</label>
-      </Col>
-      <Col xl={5}>
-      <Field className="form-control" id={id} name={id} />
-      </Col>
+    <FormGroup className="my-0">
+      <Row noGutters>
+        <Col xl={7}>
+          <label htmlFor={id}>{label}</label>
+        </Col>
+        <Col xl={5}>
+          <Field className="form-control" id={id} name={id} />
+        </Col>
       </Row>
     </FormGroup>
   )

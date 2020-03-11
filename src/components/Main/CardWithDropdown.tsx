@@ -8,7 +8,7 @@ import FormDropdownStateless, {
 export interface CollapsibleCardProps {
   children?: React.ReactNode | React.ReactNode[]
   id: string
-  label: string
+  label: string | React.ReactNode
   options: FormDropdownOption<string>[]
   defaultOption?: FormDropdownOption<string>
   value?: FormDropdownOption<string>
@@ -30,10 +30,10 @@ export function CardWithDropdown({
 }: CollapsibleCardProps) {
   return (
     <Card className="h-100">
-      <CardHeader>
+      <CardHeader className="p-1">
         <FormDropdownStateless<string>
           id={id}
-          label={<div className="text-truncate">{label}</div>}
+          label={label}
           options={options}
           defaultOption={defaultOption}
           value={value}

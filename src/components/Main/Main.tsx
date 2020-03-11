@@ -10,7 +10,7 @@ import { Button, Col, FormGroup, Row } from 'reactstrap'
 
 import { CardWithDropdown } from './CardWithDropdown'
 import { CollapsibleCard } from './CollapsibleCard'
-import { ContainControl, TimeSeries, makeTimeSeries } from './Containment'
+import { ContainControl, makeTimeSeries, TimeSeries } from './Containment'
 import { DeterministicLinePlot, StochasticLinePlot } from './Plot'
 import AgePlot from './PlotAgeAndParams'
 import PopTable from './PopAvgRates'
@@ -29,7 +29,6 @@ import { AlgorithmResult } from '../../algorithms/Result.types'
 
 import FormDatePicker from './FormDatePicker'
 import FormDropdown, { FormDropdownOption } from './FormDropdown'
-import FormDropdownStateless from './FormDropdownStateless'
 import FormSpinBox from './FormSpinBox'
 import FormSwitch from './FormSwitch'
 
@@ -254,14 +253,6 @@ function Main() {
   return (
     <Row noGutters>
       <Col md={12}>
-        <FormDropdownStateless<string>
-          id="overallScenario"
-          label="Oveall Scenario"
-          options={overallScenarioOptions}
-          value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)} // prettier-ignore
-          onValueChange={handleChangeOverallScenario}
-        />
-
         <Formik
           enableReinitialize
           initialValues={allParams}
@@ -273,165 +264,201 @@ function Main() {
             return (
               <Form className="form">
                 <Row noGutters>
-                  <Col lg={4} xl={6}>
-                    <Row noGutters>
-                      <Col xl={6} className="py-1 px-1">
-                        <CardWithDropdown
-                          id="populationScenario"
-                          label="Population Scenario"
-                          options={populationScenarioOptions}
-                          value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)} // prettier-ignore
-                          onValueChange={handleChangePopulationScenario}
-                        >
-                          <FormSpinBox
-                            id="population.populationServed"
-                            label="Population Served"
-                            step={1000}
-                            errors={errors}
-                            touched={touched}
-                          />
-                          <FormDropdown<string>
-                            id="population.country"
-                            label="Age Distribution"
-                            options={countryOptions}
-                          />
-                          <FormSpinBox
-                            id="population.suspectedCasesToday"
-                            label="Initial suspected Cases"
-                            step={1}
-                            errors={errors}
-                            touched={touched}
-                          />
-                          <FormSpinBox
-                            id="population.importsPerDay"
-                            label="Imports per Day"
-                            step={0.1}
-                            errors={errors}
-                            touched={touched}
-                          />
-                          <FormDatePicker
-                            id="simulation.simulationTimeRange"
-                            label="Simulation time range"
-                          />
-                        </CardWithDropdown>
-                      </Col>
+                  <Col lg={4} xl={6} className="py-1 px-1">
+                    <CardWithDropdown
+                      id="overallScenario"
+                      label={
+                        <h3 className="p-2 m-0 text-truncate">Scenario</h3>
+                      }
+                      options={overallScenarioOptions}
+                      value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)} // prettier-ignore
+                      onValueChange={handleChangeOverallScenario}
+                    >
+                      <>
+                        <Row noGutters>
+                          <Col xl={6} className="py-1 px-1">
+                            <CardWithDropdown
+                              id="populationScenario"
+                              label={
+                                <h5 className="p-2 text-truncate">
+                                  Population
+                                </h5>
+                              }
+                              options={populationScenarioOptions}
+                              value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)} // prettier-ignore
+                              onValueChange={handleChangePopulationScenario}
+                            >
+                              <FormSpinBox
+                                id="population.populationServed"
+                                label="Population Served"
+                                step={1000}
+                                errors={errors}
+                                touched={touched}
+                              />
+                              <FormDropdown<string>
+                                id="population.country"
+                                label="Age Distribution"
+                                options={countryOptions}
+                              />
+                              <FormSpinBox
+                                id="population.suspectedCasesToday"
+                                label="Initial suspected Cases"
+                                step={1}
+                                errors={errors}
+                                touched={touched}
+                              />
+                              <FormSpinBox
+                                id="population.importsPerDay"
+                                label="Imports per Day"
+                                step={0.1}
+                                errors={errors}
+                                touched={touched}
+                              />
+                              <FormDatePicker
+                                id="simulation.simulationTimeRange"
+                                label="Simulation time range"
+                              />
+                            </CardWithDropdown>
+                          </Col>
 
-                      <Col xl={6} className="py-1 px-1">
-                        <CardWithDropdown
-                          id="epidemiologicalScenario"
-                          label="Epidemiological Scenario"
-                          options={epidemiologicalScenarioOptions}
-                          value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)} // prettier-ignore
-                          onValueChange={handleChangeEpidemiologicalScenario}
-                        >
-                          <FormSpinBox
-                            id="epidemiological.r0"
-                            label="Annual average R0"
-                            step={0.1}
-                          />
-                          <FormSpinBox
-                            id="epidemiological.incubationTime"
-                            label="Latency [days]"
-                            step={1}
-                            min={0}
-                            errors={errors}
-                            touched={touched}
-                          />
-                          <FormSpinBox
-                            id="epidemiological.infectiousPeriod"
-                            label="Infectious Period [days]"
-                            step={1}
-                            min={0}
-                            errors={errors}
-                            touched={touched}
-                          />
-                          <FormSpinBox
-                            id="epidemiological.lengthHospitalStay"
-                            label="Length of Hospital stay [days]"
-                            step={1}
-                            min={0}
-                            errors={errors}
-                            touched={touched}
-                          />
-                          <FormSpinBox
-                            id="epidemiological.seasonalForcing"
-                            label="Seasonal Forcing"
-                            step={0.1}
-                            min={0}
-                            errors={errors}
-                            touched={touched}
-                          />
-                          <FormDropdown<number>
-                            id="epidemiological.peakMonth"
-                            label="Seasonal Transmission Peak"
-                            options={monthOptions}
-                          />
-                        </CardWithDropdown>
-                      </Col>
-                    </Row>
+                          <Col xl={6} className="py-1 px-1">
+                            <CardWithDropdown
+                              id="epidemiologicalScenario"
+                              label={
+                                <h5 className="p-2 text-truncate">
+                                  Epidemiology
+                                </h5>
+                              }
+                              options={epidemiologicalScenarioOptions}
+                              value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)} // prettier-ignore
+                              onValueChange={
+                                handleChangeEpidemiologicalScenario
+                              }
+                            >
+                              <FormSpinBox
+                                id="epidemiological.r0"
+                                label="Annual average R0"
+                                step={0.1}
+                              />
+                              <FormSpinBox
+                                id="epidemiological.incubationTime"
+                                label="Latency [days]"
+                                step={1}
+                                min={0}
+                                errors={errors}
+                                touched={touched}
+                              />
+                              <FormSpinBox
+                                id="epidemiological.infectiousPeriod"
+                                label="Infectious Period [days]"
+                                step={1}
+                                min={0}
+                                errors={errors}
+                                touched={touched}
+                              />
+                              <FormSpinBox
+                                id="epidemiological.lengthHospitalStay"
+                                label="Length of Hospital stay [days]"
+                                step={1}
+                                min={0}
+                                errors={errors}
+                                touched={touched}
+                              />
+                              <FormSpinBox
+                                id="epidemiological.seasonalForcing"
+                                label="Seasonal Forcing"
+                                step={0.1}
+                                min={0}
+                                errors={errors}
+                                touched={touched}
+                              />
+                              <FormDropdown<number>
+                                id="epidemiological.peakMonth"
+                                label="Seasonal Transmission Peak"
+                                options={monthOptions}
+                              />
+                            </CardWithDropdown>
+                          </Col>
+                        </Row>
 
-                    <Row noGutters>
-                      <Col className="py-1 px-1">
-                        <CardWithDropdown
-                          id="containmentScenario"
-                          label="Containment Scenario"
-                          options={containmentScenarioOptions}
-                          value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)} // prettier-ignore
-                          onValueChange={handleChangeContainmentScenario}
-                        >
-                          <div className="w-auto">
-                            <ContainControl
-                              data={containmentData}
-                              onDataChange={handleChangeContainmentData}
-                              minTime={scenarioState.simulation.data.simulationTimeRange.tMin} // prettier-ignore
-                              maxTime={scenarioState.simulation.data.simulationTimeRange.tMax} // prettier-ignore
-                            />
-                          </div>
-                          <div>
-                            <p>
-                              Drag black dots with the mouse to simulate how
-                              infection control affects the outbreak trajectory.
-                              One is no infection control, zero is complete
-                              prevention of all transmission.
-                            </p>
-                          </div>
-                        </CardWithDropdown>
-                      </Col>
-                    </Row>
+                        <Row noGutters>
+                          <Col className="py-1 px-1">
+                            <CardWithDropdown
+                              id="containmentScenario"
+                              label={
+                                <h5 className="p-2 text-truncate">
+                                  Containment
+                                </h5>
+                              }
+                              options={containmentScenarioOptions}
+                              value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)} // prettier-ignore
+                              onValueChange={handleChangeContainmentScenario}
+                            >
+                              <div className="w-auto">
+                                <ContainControl
+                                  data={containmentData}
+                                  onDataChange={handleChangeContainmentData}
+                                  minTime={scenarioState.simulation.data.simulationTimeRange.tMin} // prettier-ignore
+                                  maxTime={scenarioState.simulation.data.simulationTimeRange.tMax} // prettier-ignore
+                                />
+                              </div>
+                              <div>
+                                <p>
+                                  Drag black dots with the mouse to simulate how
+                                  infection control affects the outbreak
+                                  trajectory. One is no infection control, zero
+                                  is complete prevention of all transmission.
+                                </p>
+                              </div>
+                            </CardWithDropdown>
+                          </Col>
+                        </Row>
 
-                    <Row noGutters>
-                      <Col className="py-1 px-1">
-                        <CollapsibleCard
-                          title="Severity assumptions based on data from China"
-                          defaultCollapsed
-                        >
-                          <p>
-                            This table summarizes the assumptions on severity
-                            which are informed by epidemiological and clinical
-                            observations in China. The first column reflects our
-                            assumption on what fraction of infections are
-                            reflected in the statistics from China, the
-                            following columns contain the assumption on what
-                            fraction of the previous category deteriorates to
-                            the next. These fields are editable and can be
-                            adjusted to different assumptions. The last column
-                            is the implied infection fatality for different age
-                            groups.
-                          </p>
-                          <SeverityTable
-                            columns={columns}
-                            rows={severity}
-                            setRows={severity =>
-                              setSeverity(updateSeverityTable(severity))
-                            }
-                          />
-                        </CollapsibleCard>
-                      </Col>
-                    </Row>
+                        <Row noGutters>
+                          <Col className="py-1 px-1">
+                            <CollapsibleCard
+                              title={
+                                <>
+                                  <h5 className="my-1">Severity assumptions</h5>
+                                  <p className="my-0">
+                                    based on data from China
+                                  </p>
+                                </>
+                              }
+                              defaultCollapsed
+                            >
+                              <p>
+                                This table summarizes the assumptions on
+                                severity which are informed by epidemiological
+                                and clinical observations in China. The first
+                                column reflects our assumption on what fraction
+                                of infections are reflected in the statistics
+                                from China, the following columns contain the
+                                assumption on what fraction of the previous
+                                category deteriorates to the next. These fields
+                                are editable and can be adjusted to different
+                                assumptions. The last column is the implied
+                                infection fatality for different age groups.
+                              </p>
+                              <SeverityTable
+                                columns={columns}
+                                rows={severity}
+                                setRows={severity =>
+                                  setSeverity(updateSeverityTable(severity))
+                                }
+                              />
+                            </CollapsibleCard>
+                          </Col>
+                        </Row>
+                      </>
+                    </CardWithDropdown>
                   </Col>
 
                   <Col lg={8} xl={6} className="py-1 px-1">
-                    <CollapsibleCard title="Results" defaultCollapsed={false}>
+                    <CollapsibleCard
+                      title={<h3 className="p-2 m-0 text-truncate">Results</h3>}
+                      defaultCollapsed={false}
+                    >
                       <Row>
                         <Col lg={8}>
                           <p>
