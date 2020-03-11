@@ -22,27 +22,29 @@ export interface LinePlotProps {
   logScale?: boolean
 }
 
+
+
+function xTickFormatter(tick: Date):string{
+  return new Date(tick).toISOString().substring(0,10);
+}
+
+function tooltipFormatter(value, name, props){
+  if (name!=='time'){
+    return value;
+  }
+}
+
+function labelFormatter(value){
+  return xTickFormatter(value);
+}
+
+
 export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
   if ((!data)||data.stochasticTrajectories.length>0) {
     return null
   }
 
-
-  function xTickFormatter(tick: Date):string{
-    return new Date(tick).toISOString().substring(0,10);
-  }
-
-  function tooltipFormatter(value, name, props){
-    if (name!=='time'){
-      return value;
-    }
-  }
-
-  function labelFormatter(value){
-    return xTickFormatter(value);
-  }
   const nHospitalBeds = data.params.populationServed*4.5/1000;
-
   const plotData = data.deterministicTrajectory.map(x => ({
      time:  x.time,
      susceptible: Math.round(x.susceptible["total"])||undefined,
@@ -85,8 +87,11 @@ export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
                 dataKey="time"
                 tickFormatter={xTickFormatter}
               />
-              <YAxis scale={logScaleString}  type="number" domain={[1, 'dataMax']} />
-              <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter}/>
+              <YAxis scale={logScaleString}
+                     type="number"
+                     domain={[1, 'dataMax']}
+              />
+              <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
               <Legend verticalAlign="top"/>
               <Line dot={false} type="monotone" strokeWidth={3} dataKey="susceptible" stroke={colors["susceptible"]} name="Susceptible"/>
               <Line dot={false} type="monotone" strokeWidth={3} dataKey="infectious" stroke={colors["infectious"]} name="Infectious"/>
