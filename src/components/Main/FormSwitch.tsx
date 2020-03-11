@@ -16,7 +16,7 @@ export default function FormSwitch({
   checked,
 }: FormInputProps) {
   return (
-    <FormGroup>
+    <FormGroup className="my-0">
       <CustomInput
         type="checkbox"
         className="form-control custom-switch"

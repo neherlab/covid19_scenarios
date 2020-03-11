@@ -10,7 +10,7 @@ export interface FormDropdownOption<ValueType extends string | number> {
 
 export interface FormDropdownProps<ValueType extends string | number> {
   id: string
-  label: string
+  label: string | React.ReactNode
   options: FormDropdownOption<ValueType>[]
   defaultOption?: FormDropdownOption<ValueType>
   value?: FormDropdownOption<ValueType>
@@ -32,8 +32,8 @@ export default function FormDropdownStateless<
   onBlur,
 }: FormDropdownProps<ValueType>) {
   return (
-    <FormGroup>
-      <Row>
+    <FormGroup className="my-0">
+      <Row noGutters>
         <Col xl={7}>
           <label htmlFor={id}>{label}</label>
         </Col>

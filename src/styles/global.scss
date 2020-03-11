@@ -58,8 +58,12 @@ p {
   }
 }
 
+.card {
+  border-radius: 2px;
+}
+
 .card-header {
-  padding: 0;
+  padding: 8px 4px;
 }
 
 .card-header-button {
@@ -84,4 +88,13 @@ input[type='number']::-webkit-outer-spin-button {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.icon-rotate-0 {
+  transition: transform linear 0.25s;
+}
+
+.icon-rotate-90 {
+  transform: rotate(-90deg);
+  transition: transform linear 0.25s;
 }
