@@ -8,6 +8,7 @@ import * as yup from 'yup'
 
 import { Button, Col, FormGroup, Row } from 'reactstrap'
 
+import { CardWithDropdown } from './CardWithDropdown'
 import { CollapsibleCard } from './CollapsibleCard'
 import { ContainControl, TimeSeries, makeTimeSeries } from './Containment'
 import { DeterministicLinePlot, StochasticLinePlot } from './Plot'
@@ -261,30 +262,6 @@ function Main() {
           onValueChange={handleChangeOverallScenario}
         />
 
-        <FormDropdownStateless<string>
-          id="populationScenario"
-          label="Population Scenario"
-          options={populationScenarioOptions}
-          value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)} // prettier-ignore
-          onValueChange={handleChangePopulationScenario}
-        />
-
-        <FormDropdownStateless<string>
-          id="epidemiologicalScenario"
-          label="Epidemiological Scenario"
-          options={epidemiologicalScenarioOptions}
-          value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)} // prettier-ignore
-          onValueChange={handleChangeEpidemiologicalScenario}
-        />
-
-        <FormDropdownStateless<string>
-          id="containmentScenario"
-          label="Containment Scenario"
-          options={containmentScenarioOptions}
-          value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)} // prettier-ignore
-          onValueChange={handleChangeContainmentScenario}
-        />
-
         <Formik
           enableReinitialize
           initialValues={allParams}
@@ -298,10 +275,13 @@ function Main() {
                 <Row noGutters>
                   <Col lg={4} xl={6}>
                     <Row noGutters>
-                      <Col xl={6}>
-                        <CollapsibleCard
-                          title="Population parameters"
-                          defaultCollapsed={false}
+                      <Col xl={6} className="py-1 px-1">
+                        <CardWithDropdown
+                          id="populationScenario"
+                          label="Population Scenario"
+                          options={populationScenarioOptions}
+                          value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)} // prettier-ignore
+                          onValueChange={handleChangePopulationScenario}
                         >
                           <FormSpinBox
                             id="population.populationServed"
@@ -333,13 +313,16 @@ function Main() {
                             id="simulation.simulationTimeRange"
                             label="Simulation time range"
                           />
-                        </CollapsibleCard>
+                        </CardWithDropdown>
                       </Col>
 
-                      <Col xl={6}>
-                        <CollapsibleCard
-                          title="Baseline epidemiological parameters"
-                          defaultCollapsed={false}
+                      <Col xl={6} className="py-1 px-1">
+                        <CardWithDropdown
+                          id="epidemiologicalScenario"
+                          label="Epidemiological Scenario"
+                          options={epidemiologicalScenarioOptions}
+                          value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)} // prettier-ignore
+                          onValueChange={handleChangeEpidemiologicalScenario}
                         >
                           <FormSpinBox
                             id="epidemiological.r0"
@@ -383,29 +366,36 @@ function Main() {
                             label="Seasonal Transmission Peak"
                             options={monthOptions}
                           />
-                        </CollapsibleCard>
+                        </CardWithDropdown>
                       </Col>
                     </Row>
 
                     <Row noGutters>
-                      <Col>
-                        <CollapsibleCard
-                          title="Reduction in Transmission by Interventions"
-                          defaultCollapsed={false}
+                      <Col className="py-1 px-1">
+                        <CardWithDropdown
+                          id="containmentScenario"
+                          label="Containment Scenario"
+                          options={containmentScenarioOptions}
+                          value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)} // prettier-ignore
+                          onValueChange={handleChangeContainmentScenario}
                         >
-                          <ContainControl
-                            data={containmentData}
-                            onDataChange={handleChangeContainmentData}
-                            minTime={scenarioState.simulation.data.simulationTimeRange.tMin} // prettier-ignore
-                            maxTime={scenarioState.simulation.data.simulationTimeRange.tMax} // prettier-ignore
-                          />
-                          <p>
-                            Drag black dots with the mouse to simulate how
-                            infection control affects the outbreak trajectory.
-                            One is no infection control, zero is complete
-                            prevention of all transmission.
-                          </p>
-                        </CollapsibleCard>
+                          <div className="w-auto">
+                            <ContainControl
+                              data={containmentData}
+                              onDataChange={handleChangeContainmentData}
+                              minTime={scenarioState.simulation.data.simulationTimeRange.tMin} // prettier-ignore
+                              maxTime={scenarioState.simulation.data.simulationTimeRange.tMax} // prettier-ignore
+                            />
+                          </div>
+                          <div>
+                            <p>
+                              Drag black dots with the mouse to simulate how
+                              infection control affects the outbreak trajectory.
+                              One is no infection control, zero is complete
+                              prevention of all transmission.
+                            </p>
+                          </div>
+                        </CardWithDropdown>
                       </Col>
                     </Row>
 
@@ -440,7 +430,7 @@ function Main() {
                     </Row>
                   </Col>
 
-                  <Col lg={8} xl={6}>
+                  <Col lg={8} xl={6} className="py-1 px-1">
                     <CollapsibleCard title="Results" defaultCollapsed={false}>
                       <Row>
                         <Col lg={8}>

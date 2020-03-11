@@ -58,8 +58,12 @@ p {
   }
 }
 
+.card {
+  border-radius: 2px;
+}
+
 .card-header {
-  padding: 0;
+  padding: 8px 4px;
 }
 
 .card-header-button {

@@ -10,7 +10,7 @@ export interface FormDropdownOption<ValueType extends string | number> {
 
 export interface FormDropdownProps<ValueType extends string | number> {
   id: string
-  label: string
+  label: string | React.ReactNode
   options: FormDropdownOption<ValueType>[]
   defaultOption?: FormDropdownOption<ValueType>
   value?: FormDropdownOption<ValueType>
