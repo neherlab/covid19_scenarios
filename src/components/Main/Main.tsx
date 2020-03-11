@@ -394,7 +394,7 @@ function Main() {
                               id="containmentScenario"
                               label={
                                 <h5 className="p-2 text-truncate">
-                                  Containment
+                                  Mitigation
                                 </h5>
                               }
                               options={containmentScenarioOptions}
