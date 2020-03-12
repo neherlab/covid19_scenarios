@@ -28,6 +28,7 @@ import { FileType } from './FileUploadZone'
 
 import { exportResult } from '../../algorithms/exportResult'
 import run from '../../algorithms/run'
+import processUserResult from '../../algorithms/userResult'
 import { readFile } from '../../helpers/readFile'
 
 import { AllParams } from '../../algorithms/Param.types'
@@ -35,7 +36,7 @@ import { AllParams } from '../../algorithms/Param.types'
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 
-import { AlgorithmResult } from '../../algorithms/Result.types'
+import { AlgorithmResult, UserResult } from '../../algorithms/Result.types'
 
 import FormDatePicker from './FormDatePicker'
 import FormDropdown, { FormDropdownOption } from './FormDropdown'
@@ -171,7 +172,7 @@ function Main() {
   const [logScale, setLogScale] = useState<boolean>(true)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
-  const [userResult, setUserResult] = useState<AlgorithmResult | undefined>()
+  const [userResult, setUserResult] = useState<UserResult | undefined>()
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState, /* initDefaultState */) // prettier-ignore
 
   // TODO: Can this complex state be handled by formik too?
@@ -184,7 +185,7 @@ function Main() {
   }
 
   const hasResult = Boolean(result?.deterministicTrajectory)
-  const hasUserResult = Boolean(userResult?.deterministicTrajectory)
+  const hasUserResult = Boolean(userResult?.trajectory)
   const canExport = Boolean(hasResult)
 
   function setScenarioToCustom(newParams: AllParams) {
@@ -225,9 +226,7 @@ function Main() {
     scenarioDispatch(setContainmentData({ data: { reduction } }))
   }
 
-  function handleFileSubmit(files: Map<FileType, File>) {
-    console.log({ files })
-
+  async function handleFileSubmit(files: Map<FileType, File>) {
     setFiles(files)
 
     const csvFile: File | undefined = files.get(FileType.CSV)
@@ -235,20 +234,14 @@ function Main() {
       throw new Error(`Error: CSV file is missing"`)
     }
 
-    readFile(csvFile).then((csvString: string) => {
-      console.log({ csvString })
-
-      const csvParsed = Papa.parse(csvFile, { trimHeaders: false })
-      console.log(csvParsed)
-
-      // TODO: process file contents and return an `AlgorithmResult` or similar
-      // const newUserResult: AlgorithmResult = getUserResult(csv)
-
-      // TODO: update `userResult` state
-      // setUserResult(newUserResult)
-
-      // TODO: use `userResult` state in the plot
-    })
+    const csvString: string = await readFile(csvFile)
+    const { data, errors, meta } = Papa.parse(csvString, { trimHeaders: false })
+    if (meta.aborted || errors.length > 0) {
+      // TODO: report this back to the user
+      throw new Error(`Error: CSV file could not be parsed"`)
+    }
+    const newUserResult = processUserResult(data)
+    setUserResult(newUserResult)
   }
 
   const containmentData = makeTimeSeries(
@@ -357,7 +350,10 @@ function Main() {
                                 id="simulation.simulationTimeRange"
                                 label="Simulation time range"
                               />
-                              <p>NOTE: Changing the time range will stretch the mitigation curve</p>
+                              <p>
+                                NOTE: Changing the time range will stretch the
+                                mitigation curve
+                              </p>
                             </CardWithDropdown>
                           </Col>
 
@@ -512,8 +508,7 @@ function Main() {
                           <p>
                             {`This output of a mathematical model depends on model assumptions and parameter choices.
                                  We have done our best (in limited time) to check the model implementation is correct.
-                                 Please carefully consider the parameters you choose and interpret the output with caution.`
-                            }
+                                 Please carefully consider the parameters you choose and interpret the output with caution.`}
                           </p>
                         </Col>
                       </Row>
@@ -566,6 +561,7 @@ function Main() {
                         <Col>
                           <DeterministicLinePlot
                             data={result}
+                            userResult={userResult}
                             logScale={logScale}
                           />
                         </Col>
