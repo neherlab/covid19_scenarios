@@ -29,7 +29,10 @@ export default function FormHelpButton({
         id={safeId(identifier)}
         className="help-button"
         type="button"
-        onClick={e => e.preventDefault()}
+        onClick={e => {
+          e.preventDefault()
+          e.stopPropagation()
+        }}
         onFocus={() => setPopoverOpen(true)}
         onBlur={() => setPopoverOpen(false)}
       >
