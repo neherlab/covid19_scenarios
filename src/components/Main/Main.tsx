@@ -317,6 +317,7 @@ function Main() {
                                 id="simulation.simulationTimeRange"
                                 label="Simulation time range"
                               />
+                              <p>NOTE: Changing the time range will stretch the mitigation curve</p>
                             </CardWithDropdown>
                           </Col>
 
