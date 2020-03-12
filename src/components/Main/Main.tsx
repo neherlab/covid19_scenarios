@@ -271,7 +271,7 @@ function Main() {
                           Scenario
                         </h3>
                       }
-                      help="Global scenario"
+                      help="Combination of population, epidemiology, and mitigation scenarios"
                       options={overallScenarioOptions}
                       value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)} // prettier-ignore
                       onValueChange={handleChangeOverallScenario}
@@ -286,7 +286,7 @@ function Main() {
                                   Population
                                 </h5>
                               }
-                              help="Population scenario"
+                              help="Parameters of the population in the health care system."
                               options={populationScenarioOptions}
                               value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)} // prettier-ignore
                               onValueChange={handleChangePopulationScenario}
@@ -294,7 +294,7 @@ function Main() {
                               <FormSpinBox
                                 identifier="population.populationServed"
                                 label="Population"
-                                help="Number of people served by health care unit"
+                                help="Number of people served by health care system"
                                 step={1000}
                                 errors={errors}
                                 touched={touched}
@@ -340,10 +340,10 @@ function Main() {
                               identifier="epidemiologicalScenario"
                               label={
                                 <h5 className="p-0 d-inline text-truncate">
-                                  {'Epidemiology (speed/region)'}
+                                  {'Epidemiology'}
                                 </h5>
                               }
-                              help="Epidemiological scenario"
+                              help="Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region)."
                               options={epidemiologicalScenarioOptions}
                               value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)} // prettier-ignore
                               onValueChange={
@@ -396,7 +396,7 @@ function Main() {
                               <FormSpinBox
                                 identifier="epidemiological.lengthHospitalStay"
                                 label="Length of Hospital stay [days]"
-                                help="Average number of days a severe case stays in the hospital or a critical case stays in the ICU"
+                                help="Average number of days a severe case stays in regular hospital beds"
                                 step={1}
                                 min={0}
                                 errors={errors}
@@ -405,7 +405,7 @@ function Main() {
                               <FormSpinBox
                                 identifier="epidemiological.lengthICUStay"
                                 label="Length of ICU stay [days]"
-                                help="If greater than zero, the app runs multiple stochastic simulations. Otherwise one deterministic trajectory"
+                                help="Average number of days a critical case stays in the ICU"
                                 step={1}
                                 min={0}
                                 errors={errors}
@@ -424,7 +424,7 @@ function Main() {
                                   Mitigation
                                 </h5>
                               }
-                              help="Mitigation scenario"
+                              help="Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown."
                               options={containmentScenarioOptions}
                               value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)} // prettier-ignore
                               onValueChange={handleChangeContainmentScenario}
@@ -525,14 +525,14 @@ function Main() {
                               color="secondary"
                               disabled={!canExport}
                               onClick={() => result && exportResult(result)}
-                              title="Export results to file"
+                              title="Export the parameters and trajectories to file."
                             >
                               Export
                             </Button>
                             <FormSwitch
                               identifier="logScale"
                               label="Log scale"
-                              help="Enable logarithmic scale on vertical axis of the plot"
+                              help="Toggle between logarithmic and linear scale on vertical axis of the plot"
                               checked={logScale}
                               onChange={checked => setLogScale(checked)}
                             />
