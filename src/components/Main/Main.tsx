@@ -369,7 +369,7 @@ function Main() {
                               />
                               <FormSpinBox
                                 identifier="epidemiological.infectiousPeriod"
-                                label="Infectious Period [days]"
+                                label="Infectious period [days]"
                                 help="Average number of days a person is infectious. Together with the incubation time, this defines the serial interval"
                                 step={1}
                                 min={0}
@@ -387,7 +387,7 @@ function Main() {
                               />
                               <FormDropdown<number>
                                 identifier="epidemiological.peakMonth"
-                                label="Seasonal Transmission Peak"
+                                label="Seasonal Peak"
                                 help="Time of the year with peak transmission"
                                 options={monthOptions}
                                 errors={errors}
@@ -395,7 +395,7 @@ function Main() {
                               />
                               <FormSpinBox
                                 identifier="epidemiological.lengthHospitalStay"
-                                label="Length of Hospital stay [days]"
+                                label="Hospital stay [days]"
                                 help="Average number of days a severe case stays in regular hospital beds"
                                 step={1}
                                 min={0}
@@ -404,7 +404,7 @@ function Main() {
                               />
                               <FormSpinBox
                                 identifier="epidemiological.lengthICUStay"
-                                label="Length of ICU stay [days]"
+                                label="ICU stay [days]"
                                 help="Average number of days a critical case stays in the ICU"
                                 step={1}
                                 min={0}
