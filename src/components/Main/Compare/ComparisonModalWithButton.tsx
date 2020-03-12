@@ -13,7 +13,7 @@ export function ComparisonModalWithButton({
   files,
   onFilesChange,
 }: ButtonForModalProps) {
-  const [modalIsOpen, setModalIsOpen] = useState(true)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
   const toggleModalIsOpen = () => setModalIsOpen(!modalIsOpen)
 
   return (
@@ -23,6 +23,7 @@ export function ComparisonModalWithButton({
         type="button"
         color="success"
         onClick={toggleModalIsOpen}
+        hidden
       >
         {`Compare`}
       </Button>
