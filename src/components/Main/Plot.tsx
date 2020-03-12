@@ -39,10 +39,12 @@ function labelFormatter(value){
 }
 
 
-export function DeterministicLinePlot({ data, logScale }: LinePlotProps) {
+export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotProps) {
   if ((!data)||data.stochasticTrajectories.length>0) {
     return null
   }
+
+  const hasUserResult: boolean = Boolean(userResult?.trajectory)
 
   const nHospitalBeds = data.params.populationServed*4.5/1000;
   const plotData = data.deterministicTrajectory.filter((d,i) => (i%4==0)).map(x => ({
