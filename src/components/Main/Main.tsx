@@ -10,19 +10,19 @@ import { Button, Col, Row } from 'reactstrap'
 
 import Papa from 'papaparse'
 
-import { CardWithDropdown } from './CardWithDropdown'
-import { CollapsibleCard } from './CollapsibleCard'
-import AgePlot from './PlotAgeBarChart'
-import { ComparisonModalWithButton } from './ComparisonModalWithButton'
-import { ContainControl, makeTimeSeries, TimeSeries } from './Containment'
-import { DeterministicLinePlot } from './Plot'
-// import { StochasticLinePlot } from './Plot'
+import { CardWithDropdown } from '../Form/CardWithDropdown'
+import { CollapsibleCard } from '../Form/CollapsibleCard'
+import AgePlot from './Results/PlotAgeBarChart'
+import { ComparisonModalWithButton } from './Compare/ComparisonModalWithButton'
+import { ContainControl, makeTimeSeries, TimeSeries } from './Containment/Containment'
+import { DeterministicLinePlot } from './Results/Plot'
+// import { StochasticLinePlot } from './Results/Plot'
 
-import PopTable from './PopAvgRates'
+import PopTable from './Results/PopAvgRates'
 
-import SeverityTable, { SeverityTableColumn, SeverityTableRow } from './SeverityTable' // prettier-ignore
+import SeverityTable, { SeverityTableColumn, SeverityTableRow } from './Severity/SeverityTable' // prettier-ignore
 
-import { FileType } from './FileUploadZone'
+import { FileType } from './Compare/FileUploadZone'
 
 import { exportResult } from '../../algorithms/exportResult'
 import run from '../../algorithms/run'
@@ -36,10 +36,10 @@ import severityData from '../../assets/data/severityData.json'
 
 import { AlgorithmResult, UserResult } from '../../algorithms/Result.types'
 
-import FormDatePicker from './FormDatePicker'
-import FormDropdown, { FormDropdownOption } from './FormDropdown'
-import FormSpinBox from './FormSpinBox'
-import FormSwitch from './FormSwitch'
+import FormDatePicker from '../Form/FormDatePicker'
+import FormDropdown, { FormDropdownOption } from '../Form/FormDropdown'
+import FormSpinBox from '../Form/FormSpinBox'
+import FormSwitch from '../Form/FormSwitch'
 
 import { schema } from './validation/schema'
 

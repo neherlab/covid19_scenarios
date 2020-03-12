@@ -4,7 +4,7 @@ import {
 } from 'recharts';
 import ReactResizeDetector from 'react-resize-detector'
 
-import { AlgorithmResult, UserResult} from '../../algorithms/Result.types'
+import { AlgorithmResult, UserResult} from '../../../algorithms/Result.types'
 
 const ASPECT_RATIO = 16 / 9
 

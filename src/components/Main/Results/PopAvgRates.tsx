@@ -2,8 +2,8 @@ import React from 'react'
 import Plot  from 'react-plotly.js'
 import { Col, Row } from 'reactstrap'
 
-import { AlgorithmResult } from '../../algorithms/Result.types'
-import { SeverityTableRow } from '../../components/Main/SeverityTable'
+import { AlgorithmResult } from '../../../algorithms/Result.types'
+import { SeverityTableRow } from '../Severity/SeverityTable'
 
 export interface TableProps {
   result?: AlgorithmResult,

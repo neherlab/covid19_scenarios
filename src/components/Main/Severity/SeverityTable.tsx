@@ -25,7 +25,7 @@ import { format as d3format } from 'd3-format'
 
 import './SeverityTable.scss'
 import { ValidationError } from 'yup'
-import { updateSeverityTable } from './Main'
+import { updateSeverityTable } from '../Main'
 
 const getRowId = (row: TableRow) => row.id
 

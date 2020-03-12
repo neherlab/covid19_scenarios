@@ -4,7 +4,7 @@ import {
 } from 'recharts';
 import ReactResizeDetector from 'react-resize-detector'
 
-import { AlgorithmResult } from '../../algorithms/Result.types'
+import { AlgorithmResult } from '../../../algorithms/Result.types'
 import { colors } from './Plot'
 
 const ASPECT_RATIO = 16 / 4
