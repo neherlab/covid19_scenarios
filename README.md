@@ -24,7 +24,7 @@ yarn dev
 ```
 
 This will trigger the development server and build process. Wait for the build
-to finish, then navigate to `http://localhost:3000` in a browser (last 5 version
+to finish, then navigate to `http://localhost:3000/covid19/` in a browser (last 5 version
 of Chrome or Firefox are supported in dev mode)
 
 Hit Ctrl+C in the terminal to shutdown.
