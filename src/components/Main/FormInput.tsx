@@ -1,22 +1,22 @@
 import React from 'react'
 
 import { Field } from 'formik'
-import { FormGroup, Col, Row } from 'reactstrap'
+import { Col, FormGroup, Row } from 'reactstrap'
 
 export interface FormInputProps {
-  id: string
+  identifier: string
   label: string
 }
 
-export default function FormInput({ id, label }: FormInputProps) {
+export default function FormInput({ identifier, label }: FormInputProps) {
   return (
     <FormGroup className="my-0">
       <Row noGutters>
         <Col xl={7}>
-          <label htmlFor={id}>{label}</label>
+          <label htmlFor={identifier}>{label}</label>
         </Col>
         <Col xl={5}>
-          <Field className="form-control" id={id} name={id} />
+          <Field className="form-control" id={identifier} name={identifier} />
         </Col>
       </Row>
     </FormGroup>

@@ -265,10 +265,13 @@ function Main() {
                 <Row noGutters>
                   <Col lg={4} xl={6} className="py-1 px-1">
                     <CardWithDropdown
-                      id="overallScenario"
+                      identifier="overallScenario"
                       label={
-                        <h3 className="p-0 m-0 text-truncate">Scenario</h3>
+                        <h3 className="p-0 m-0 d-inline text-truncate">
+                          Scenario
+                        </h3>
                       }
+                      help="Global scenario"
                       options={overallScenarioOptions}
                       value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)} // prettier-ignore
                       onValueChange={handleChangeOverallScenario}
@@ -277,58 +280,70 @@ function Main() {
                         <Row noGutters>
                           <Col xl={6} className="py-1 px-1">
                             <CardWithDropdown
-                              id="populationScenario"
+                              identifier="populationScenario"
                               label={
-                                <h5 className="p-0 text-truncate">
+                                <h5 className="p-0 m-0 d-inline text-truncate">
                                   Population
                                 </h5>
                               }
+                              help="Population scenario"
                               options={populationScenarioOptions}
                               value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)} // prettier-ignore
                               onValueChange={handleChangePopulationScenario}
                             >
                               <FormSpinBox
-                                id="population.populationServed"
+                                identifier="population.populationServed"
                                 label="Population"
+                                help="Number of people served by health care unit"
                                 step={1000}
                                 errors={errors}
                                 touched={touched}
                               />
                               <FormDropdown<string>
-                                id="population.country"
+                                identifier="population.country"
                                 label="Age Distribution"
+                                help="Country to determine the age distribution in the population"
                                 options={countryOptions}
+                                errors={errors}
+                                touched={touched}
                               />
                               <FormSpinBox
-                                id="population.suspectedCasesToday"
+                                identifier="population.suspectedCasesToday"
                                 label="Initial suspected Cases"
+                                help="Number of cases present at the start of simulation"
                                 step={1}
                                 errors={errors}
                                 touched={touched}
                               />
                               <FormSpinBox
-                                id="population.importsPerDay"
+                                identifier="population.importsPerDay"
                                 label="Imports per Day"
+                                help="Number of cases imported from the outside per day on average"
                                 step={0.1}
                                 errors={errors}
                                 touched={touched}
                               />
                               <FormDatePicker
-                                id="simulation.simulationTimeRange"
+                                identifier="simulation.simulationTimeRange"
                                 label="Simulation time range"
+                                help="Start and end date of the simulation"
                               />
-                              <p>NOTE: Changing the time range will stretch the mitigation curve</p>
+                              <p>
+                                NOTE: Changing the time range will stretch the
+                                mitigation curve
+                              </p>
                             </CardWithDropdown>
                           </Col>
 
                           <Col xl={6} className="py-1 px-1">
                             <CardWithDropdown
-                              id="epidemiologicalScenario"
+                              identifier="epidemiologicalScenario"
                               label={
-                                <h5 className="p-0 text-truncate">
-                                  Epidemiology (speed/region)
+                                <h5 className="p-0 d-inline text-truncate">
+                                  {'Epidemiology (speed/region)'}
                                 </h5>
                               }
+                              help="Epidemiological scenario"
                               options={epidemiologicalScenarioOptions}
                               value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)} // prettier-ignore
                               onValueChange={
@@ -336,50 +351,61 @@ function Main() {
                               }
                             >
                               <FormSpinBox
-                                id="epidemiological.r0"
+                                identifier="epidemiological.r0"
                                 label="Annual average R0"
+                                help="Average number of secondary infections per case"
                                 step={0.1}
+                                errors={errors}
+                                touched={touched}
                               />
                               <FormSpinBox
-                                id="epidemiological.incubationTime"
+                                identifier="epidemiological.incubationTime"
                                 label="Latency [days]"
+                                help="Time from infection to onset of symptoms (here onset of infectiousness)"
                                 step={1}
                                 min={0}
                                 errors={errors}
                                 touched={touched}
                               />
                               <FormSpinBox
-                                id="epidemiological.infectiousPeriod"
+                                identifier="epidemiological.infectiousPeriod"
                                 label="Infectious Period [days]"
+                                help="Average number of days a person is infectious. Together with the incubation time, this defines the serial interval"
                                 step={1}
                                 min={0}
                                 errors={errors}
                                 touched={touched}
                               />
                               <FormSpinBox
-                                id="epidemiological.seasonalForcing"
+                                identifier="epidemiological.seasonalForcing"
                                 label="Seasonal Forcing"
+                                help="Amplitude of seasonal variation in transmission"
                                 step={0.1}
                                 min={0}
                                 errors={errors}
                                 touched={touched}
                               />
                               <FormDropdown<number>
-                                id="epidemiological.peakMonth"
+                                identifier="epidemiological.peakMonth"
                                 label="Seasonal Transmission Peak"
+                                help="Time of the year with peak transmission"
                                 options={monthOptions}
+                                errors={errors}
+                                touched={touched}
                               />
                               <FormSpinBox
-                                id="epidemiological.lengthHospitalStay"
+                                identifier="epidemiological.lengthHospitalStay"
                                 label="Length of Hospital stay [days]"
+                                help="Average number of days a severe case stays in the hospital or a critical case stays in the ICU"
                                 step={1}
                                 min={0}
                                 errors={errors}
                                 touched={touched}
                               />
                               <FormSpinBox
-                                id="epidemiological.lengthICUStay"
+                                identifier="epidemiological.lengthICUStay"
                                 label="Length of ICU stay [days]"
+                                help="If greater than zero, the app runs multiple stochastic simulations. Otherwise one deterministic trajectory"
                                 step={1}
                                 min={0}
                                 errors={errors}
@@ -392,12 +418,13 @@ function Main() {
                         <Row noGutters>
                           <Col className="py-1 px-1">
                             <CardWithDropdown
-                              id="containmentScenario"
+                              identifier="containmentScenario"
                               label={
-                                <h5 className="p-0 text-truncate">
+                                <h5 className="p-0 d-inline text-truncate">
                                   Mitigation
                                 </h5>
                               }
+                              help="Mitigation scenario"
                               options={containmentScenarioOptions}
                               value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)} // prettier-ignore
                               onValueChange={handleChangeContainmentScenario}
@@ -433,6 +460,7 @@ function Main() {
                                   </p>
                                 </>
                               }
+                              help="Assumptions on severity which are informed by epidemiological and clinical observations in China"
                               defaultCollapsed
                             >
                               <p>
@@ -465,6 +493,7 @@ function Main() {
                   <Col lg={8} xl={6} className="py-1 px-1">
                     <CollapsibleCard
                       title={<h3 className="p-0 m-0 text-truncate">Results</h3>}
+                      help=""
                       defaultCollapsed={false}
                     >
                       <Row>
@@ -472,8 +501,7 @@ function Main() {
                           <p>
                             {`This output of a mathematical model depends on model assumptions and parameter choices.
                                  We have done our best (in limited time) to check the model implementation is correct.
-                                 Please carefully consider the parameters you choose and interpret the output with caution.`
-                            }
+                                 Please carefully consider the parameters you choose and interpret the output with caution.`}
                           </p>
                         </Col>
                         <Col lg={4}>
@@ -485,6 +513,7 @@ function Main() {
                               disabled={
                                 !isValid || !severityTableIsValid(severity)
                               }
+                              title="Run the simulation"
                             >
                               Run
                             </Button>
@@ -494,12 +523,14 @@ function Main() {
                               color="secondary"
                               disabled={!canExport}
                               onClick={() => result && exportResult(result)}
+                              title="Export results to file"
                             >
                               Export
                             </Button>
                             <FormSwitch
-                              id="logScale"
+                              identifier="logScale"
                               label="Log scale"
+                              help="Enable logarithmic scale on vertical axis of the plot"
                               checked={logScale}
                               onChange={checked => setLogScale(checked)}
                             />

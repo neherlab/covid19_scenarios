@@ -5,12 +5,14 @@ import { Button, Card, CardBody, CardHeader, Collapse } from 'reactstrap'
 
 export interface CollapsibleCardProps {
   title?: React.ReactNode
+  help?: string | React.ReactNode
   children?: React.ReactNode | React.ReactNode[]
   defaultCollapsed?: boolean
 }
 
 export function CollapsibleCard({
   title,
+  help,
   children,
   defaultCollapsed = true,
 }: CollapsibleCardProps) {

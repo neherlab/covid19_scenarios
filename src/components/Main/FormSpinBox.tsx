@@ -5,9 +5,12 @@ import _ from 'lodash'
 import { Field, FormikErrors, FormikTouched } from 'formik'
 import { Col, FormGroup, Row } from 'reactstrap'
 
+import FormLabel from './FormLabel'
+
 export interface FormSpinBoxProps<T> {
-  id: string
+  identifier: string
   label: string
+  help?: string | React.ReactNode
   step?: number | string
   min?: number | string
   max?: number | string
@@ -17,8 +20,9 @@ export interface FormSpinBoxProps<T> {
 }
 
 export default function FormSpinBox<T>({
-  id,
+  identifier,
   label,
+  help,
   step,
   min,
   max,
@@ -26,24 +30,24 @@ export default function FormSpinBox<T>({
   errors,
   touched,
 }: FormSpinBoxProps<T>) {
-  const isTouched = _.get(touched, id)
-  const errorMessage = _.get(errors, id)
+  const isTouched = _.get(touched, identifier)
+  const errorMessage = _.get(errors, identifier)
   const showError = errorMessage && isTouched
   const borderDanger = showError ? 'border-danger' : ''
 
   return (
     <Field>
-      {({}) => (
+      {() => (
         <FormGroup className="my-0">
           <Row noGutters>
             <Col xl={7}>
-              <label htmlFor={id}>{label}</label>
+              <FormLabel identifier={identifier} label={label} help={help} />
             </Col>
             <Col xl={5}>
               <Field
                 className={`form-control ${borderDanger}`}
-                id={id}
-                name={id}
+                id={identifier}
+                name={identifier}
                 type="number"
                 step={step}
                 min={min}

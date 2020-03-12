@@ -6,23 +6,27 @@ import { DateRangePicker, FocusedInputShape } from 'react-dates'
 import Media from 'react-media'
 import { Col, FormGroup, Row } from 'reactstrap'
 
+import FormLabel from './FormLabel'
+
 import { DateRange } from '../../algorithms/Param.types'
 
 export interface FormInputProps {
-  id: string
+  identifier: string
   label: string
+  help?: string | React.ReactNode
   allowPast?: boolean
 }
 
 export default function FormDatePicker({
-  id,
+  identifier,
   label,
+  help,
   allowPast = true,
 }: FormInputProps) {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape| null>(null) // prettier-ignore
 
   return (
-    <Field name={id}>
+    <Field name={identifier}>
       {({
         field: { value, onChange },
         form: { setFieldValue },
@@ -31,7 +35,7 @@ export default function FormDatePicker({
           <FormGroup className="my-0">
             <Row noGutters>
               <Col xl={7}>
-                <label htmlFor={id}>{label}</label>
+                <FormLabel identifier={identifier} label={label} help={help} />
               </Col>
               <Col xl={5}>
                 <Media
@@ -54,22 +58,22 @@ export default function FormDatePicker({
                     return (
                       <DateRangePicker
                         startDate={moment(tMin)}
-                        startDateId={`${id}_start_date_id`}
+                        startDateId={`${identifier}_start_date_id`}
                         endDate={moment(tMax)}
-                        endDateId={`${id}_end_date_id`}
+                        endDateId={`${identifier}_end_date_id`}
                         onDatesChange={({ startDate, endDate }) => {
                           if (startDate && endDate) {
-                            setFieldValue(id, {
+                            setFieldValue(identifier, {
                               tMin: startDate.toDate(),
                               tMax: endDate.toDate(),
                             })
                           } else if (startDate) {
-                            setFieldValue(id, {
+                            setFieldValue(identifier, {
                               ...value,
                               tMin: startDate.toDate(),
                             })
                           } else if (endDate) {
-                            setFieldValue(id, {
+                            setFieldValue(identifier, {
                               ...value,
                               tMax: endDate.toDate(),
                             })
