@@ -3,12 +3,8 @@ import React from 'react'
 import Select from 'react-select'
 import { Col, FormGroup, Row } from 'reactstrap'
 
+import { FormDropdownOption } from './FormDropdownOption'
 import FormLabel from './FormLabel'
-
-export interface FormDropdownOption<ValueType extends string | number> {
-  value: ValueType
-  label: string
-}
 
 export interface FormDropdownProps<ValueType extends string | number> {
   identifier: string

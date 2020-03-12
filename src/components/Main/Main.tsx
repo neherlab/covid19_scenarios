@@ -6,13 +6,12 @@ import { Form, Formik, FormikHelpers } from 'formik'
 
 import { Col, Row } from 'reactstrap'
 
-import { makeTimeSeries } from './Containment/Containment'
-
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
 import { AllParams } from '../../algorithms/Param.types'
 import { AlgorithmResult } from '../../algorithms/Result.types'
 import run from '../../algorithms/run'
+import { makeTimeSeries } from '../../algorithms/TimeSeries'
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
