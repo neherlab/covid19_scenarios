@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Field, FieldProps } from 'formik'
+import { Field, FieldProps, FormikErrors, FormikTouched } from 'formik'
 import FormDropdownStateless from './FormDropdownStateless'
 
 export interface FormDropdownOption<ValueType extends string | number> {
@@ -9,33 +9,38 @@ export interface FormDropdownOption<ValueType extends string | number> {
 }
 
 export interface FormDropdownProps<ValueType extends string | number> {
-  id: string
+  identifier: string
   label: string
+  help?: string | React.ReactNode
   options: FormDropdownOption<ValueType>[]
+  errors?: FormikErrors<any>
+  touched?: FormikTouched<any>
 }
 
 export default function FormDropdown<ValueType extends string | number>({
-  id,
+  identifier,
   label,
+  help,
   options,
 }: FormDropdownProps<ValueType>) {
   return (
-    <Field name={id}>
+    <Field name={identifier}>
       {({
         field: { value, onBlur },
         form: { setFieldValue },
       }: FieldProps<ValueType>) => {
         return (
           <FormDropdownStateless
-            id={id}
+            identifier={identifier}
             label={label}
+            help={help}
             options={options}
             value={{value, label: options.find(o => o.value === value)?.label ?? '' }} // prettier-ignore
             onValueChange={value => {
-              setFieldValue?.(id, value)
+              setFieldValue?.(identifier, value)
             }}
             onOptionChange={option => {
-              setFieldValue?.(id, option.value)
+              setFieldValue?.(identifier, option.value)
             }}
             onBlur={onBlur}
           />

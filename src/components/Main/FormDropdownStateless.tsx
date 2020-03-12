@@ -3,14 +3,17 @@ import React from 'react'
 import Select from 'react-select'
 import { Col, FormGroup, Row } from 'reactstrap'
 
+import FormLabel from './FormLabel'
+
 export interface FormDropdownOption<ValueType extends string | number> {
   value: ValueType
   label: string
 }
 
 export interface FormDropdownProps<ValueType extends string | number> {
-  id: string
+  identifier: string
   label: string | React.ReactNode
+  help?: string | React.ReactNode
   options: FormDropdownOption<ValueType>[]
   defaultOption?: FormDropdownOption<ValueType>
   value?: FormDropdownOption<ValueType>
@@ -22,8 +25,9 @@ export interface FormDropdownProps<ValueType extends string | number> {
 export default function FormDropdownStateless<
   ValueType extends string | number
 >({
-  id,
+  identifier,
   label,
+  help,
   options,
   defaultOption,
   value,
@@ -35,12 +39,12 @@ export default function FormDropdownStateless<
     <FormGroup className="my-0">
       <Row noGutters>
         <Col xl={7}>
-          <label htmlFor={id}>{label}</label>
+          <FormLabel identifier={identifier} label={label} help={help} />
         </Col>
         <Col xl={5}>
           <Select
-            id={id}
-            name={id}
+            id={identifier}
+            name={identifier}
             options={options}
             defaultValue={defaultOption}
             value={value}

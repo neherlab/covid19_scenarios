@@ -1,0 +1,16 @@
+$radius: 16px;
+$color: #8b9dbe;
+
+.help-button {
+  background-color: $color;
+  border: none;
+  width: $radius;
+  height: $radius;
+  padding: 0;
+  border-radius: $radius / 2;
+  line-height: 0.5; // adjust this if you change the radius
+}
+
+.help-button-icon {
+  font-size: $radius / 2;
+}

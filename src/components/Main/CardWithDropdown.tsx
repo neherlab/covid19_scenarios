@@ -5,10 +5,11 @@ import FormDropdownStateless, {
   FormDropdownOption,
 } from './FormDropdownStateless'
 
-export interface CollapsibleCardProps {
+export interface CardWithDropdownProps {
   children?: React.ReactNode | React.ReactNode[]
-  id: string
+  identifier: string
   label: string | React.ReactNode
+  help?: string | React.ReactNode
   options: FormDropdownOption<string>[]
   defaultOption?: FormDropdownOption<string>
   value?: FormDropdownOption<string>
@@ -19,21 +20,23 @@ export interface CollapsibleCardProps {
 
 export function CardWithDropdown({
   children,
-  id,
+  identifier,
   label,
+  help,
   options,
   defaultOption,
   value,
   onValueChange,
   onOptionChange,
   onBlur,
-}: CollapsibleCardProps) {
+}: CardWithDropdownProps) {
   return (
     <Card className="h-100">
       <CardHeader className="p-1">
         <FormDropdownStateless<string>
-          id={id}
+          identifier={identifier}
           label={label}
+          help={help}
           options={options}
           defaultOption={defaultOption}
           value={value}
