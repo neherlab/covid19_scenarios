@@ -325,7 +325,7 @@ function Main() {
                               id="epidemiologicalScenario"
                               label={
                                 <h5 className="p-0 text-truncate">
-                                  Epidemiology
+                                  Epidemiology (speed/region)
                                 </h5>
                               }
                               options={epidemiologicalScenarioOptions}
