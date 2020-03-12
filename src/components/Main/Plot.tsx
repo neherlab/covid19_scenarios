@@ -4,7 +4,7 @@ import {
 } from 'recharts';
 import ReactResizeDetector from 'react-resize-detector'
 
-import { AlgorithmResult } from '../../algorithms/Result.types'
+import { AlgorithmResult, UserResult} from '../../algorithms/Result.types'
 
 const ASPECT_RATIO = 16 / 9
 
@@ -19,6 +19,7 @@ export const colors = {
 
 export interface LinePlotProps {
   data?: AlgorithmResult
+  userResult?: UserResult
   logScale?: boolean
 }
 
