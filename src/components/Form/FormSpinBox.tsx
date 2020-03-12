@@ -19,7 +19,7 @@ export interface FormSpinBoxProps<T> {
   touched?: FormikTouched<T>
 }
 
-export default function FormSpinBox<T>({
+export function FormSpinBox<T>({
   identifier,
   label,
   help,
