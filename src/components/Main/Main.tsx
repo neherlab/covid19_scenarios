@@ -452,6 +452,7 @@ function Main() {
                         <Row noGutters>
                           <Col className="py-1 px-1">
                             <CollapsibleCard
+                              identifier="severity-card"
                               title={
                                 <>
                                   <h5 className="my-1">Severity assumptions</h5>
@@ -492,8 +493,9 @@ function Main() {
 
                   <Col lg={8} xl={6} className="py-1 px-1">
                     <CollapsibleCard
+                      identifier="results-card"
                       title={<h3 className="p-0 m-0 text-truncate">Results</h3>}
-                      help=""
+                      help="This section contains simulation results"
                       defaultCollapsed={false}
                     >
                       <Row>

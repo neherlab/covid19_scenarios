@@ -1,6 +1,6 @@
 import React from 'react'
 
-import FormHelpButton from './FormHelpButton'
+import HelpLabel from './HelpLabel'
 
 export interface LabelWithHelpButtonProps {
   identifier: string
@@ -15,14 +15,7 @@ export default function FormLabel({
 }: LabelWithHelpButtonProps) {
   return (
     <label htmlFor={identifier} className="d-flex">
-      <span className="my-auto">
-        <FormHelpButton
-          identifier={`${identifier}_help`}
-          label={label}
-          help={help}
-        />
-      </span>
-      <span className="ml-2 my-auto text-truncate">{label}</span>
+      <HelpLabel identifier={identifier} label={label} help={help} />
     </label>
   )
 }

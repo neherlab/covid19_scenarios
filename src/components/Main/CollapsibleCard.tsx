@@ -3,7 +3,10 @@ import React, { useState } from 'react'
 import { MdArrowDropDown } from 'react-icons/md'
 import { Button, Card, CardBody, CardHeader, Collapse } from 'reactstrap'
 
+import HelpLabel from './HelpLabel'
+
 export interface CollapsibleCardProps {
+  identifier: string
   title?: React.ReactNode
   help?: string | React.ReactNode
   children?: React.ReactNode | React.ReactNode[]
@@ -11,6 +14,7 @@ export interface CollapsibleCardProps {
 }
 
 export function CollapsibleCard({
+  identifier,
   title,
   help,
   children,
@@ -35,7 +39,7 @@ export function CollapsibleCard({
                 className={`${collapsed ? 'icon-rotate-90' : 'icon-rotate-0'}`}
               />
             </span>
-            <span>{title}</span>
+            <HelpLabel identifier={identifier} label={title} help={help} />
           </div>
         </Button>
       </CardHeader>
