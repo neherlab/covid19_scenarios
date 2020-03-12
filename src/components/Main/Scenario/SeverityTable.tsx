@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import _ from 'lodash'
 
-import { Card, Col, Row } from 'reactstrap'
+import { Col, Row } from 'reactstrap'
 
 import {
   ChangeSet,
@@ -19,13 +19,21 @@ import {
   TableInlineCellEditing,
 } from '@devexpress/dx-react-grid-bootstrap4'
 
-import * as yup from 'yup'
-
 import { format as d3format } from 'd3-format'
 
+import { updateSeverityTable } from './severityTableUpdate'
+
 import './SeverityTable.scss'
-import { ValidationError } from 'yup'
-import { updateSeverityTable } from './Main'
+
+const columns: SeverityTableColumn[] = [
+  { name: 'ageGroup', title: 'Age group' },
+  { name: 'confirmed', title: 'Confirmed\n% total' },
+  { name: 'severe', title: 'Severe\n% of confirmed' },
+  { name: 'critical', title: 'Critical\n% of severe' },
+  { name: 'fatal', title: 'Fatal\n% of critical' },
+  { name: 'totalFatal', title: 'Fatal\n% of all infections' },
+  { name: 'isolated', title: 'Isolated \n% total' },
+]
 
 const getRowId = (row: TableRow) => row.id
 
@@ -159,9 +167,8 @@ export interface SeverityTableRow {
 export type SeverityTableColumn = Column
 
 export interface SeverityTableProps {
-  columns: SeverityTableColumn[]
-  rows: SeverityTableRow[]
-  setRows(rows: SeverityTableRow[]): void
+  severity: SeverityTableRow[]
+  setSeverity(severity: SeverityTableRow[]): void
 }
 
 /**
@@ -170,14 +177,15 @@ export interface SeverityTableProps {
  *
  * Adopted from https://devexpress.github.io/devextreme-reactive/react/grid/docs/guides/editing#inline-cell-editing
  */
-function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
+function SeverityTable({ severity, setSeverity }: SeverityTableProps) {
   const commitChanges = ({ added, changed, deleted }: ChangeSet) => {
     let changedRows: SeverityTableRow[] = []
 
     if (added) {
-      const startingAddedId = rows.length > 0 ? rows[rows.length - 1].id + 1 : 0
+      const startingAddedId =
+        severity.length > 0 ? severity[severity.length - 1].id + 1 : 0
       changedRows = [
-        ...rows,
+        ...severity,
         ...added.map((row, index) => ({
           id: startingAddedId + index,
           ...row,
@@ -186,24 +194,24 @@ function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
     }
 
     if (changed) {
-      changedRows = rows.map(row =>
+      changedRows = severity.map(row =>
         changed[row.id] ? { ...row, ...changed[row.id] } : row,
       )
     }
 
     if (deleted) {
       const deletedSet = new Set(deleted)
-      changedRows = rows.filter(row => !deletedSet.has(row.id))
+      changedRows = severity.filter(row => !deletedSet.has(row.id))
     }
 
-    setRows(updateSeverityTable(changedRows))
+    setSeverity(updateSeverityTable(changedRows))
   }
 
   return (
     <>
       <Row noGutters>
         <Col>
-          <Grid rows={rows} columns={columns} getRowId={getRowId}>
+          <Grid rows={severity} columns={columns} getRowId={getRowId}>
             <EditingState onCommitChanges={commitChanges} />
 
             <Table cellComponent={Cell} />
@@ -221,7 +229,7 @@ function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
 
       <Row noGutters>
         <Col>
-          {rows.map(({ id, ageGroup, errors }) => {
+          {severity.map(({ id, ageGroup, errors }) => {
             if (!errors || _.isEmpty(errors)) {
               return null
             }
@@ -246,4 +254,4 @@ function SeverityTable({ columns, rows, setRows }: SeverityTableProps) {
   )
 }
 
-export default SeverityTable
+export { SeverityTable }

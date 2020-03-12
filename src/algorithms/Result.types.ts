@@ -34,3 +34,7 @@ export interface AlgorithmResult {
     stochasticTrajectories: SimulationTimePoint[][],
     params: ModelParams,
 }
+
+export interface UserResult {
+  trajectory: SimulationTimePoint[]
+}

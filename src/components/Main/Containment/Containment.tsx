@@ -8,32 +8,6 @@ import ReactResizeDetector from 'react-resize-detector'
 const ASPECT_RATIO = 16 / 9
 const MAX_TRANSMISSION_RATIO = 1.2
 
-function uniformDatesBetween(min, max, n) {
-  const d = (max - min) / (n - 1)
-  var dates = d3.range(Number(min), Number(max) + d, d)
-  return dates.map(d => new Date(d))
-}
-
-interface TimePoint {
-  t: Date
-  y: number
-}
-
-export type TimeSeries = TimePoint[]
-
-export function makeTimeSeries(
-  tMin: Date,
-  tMax: Date,
-  values: number[],
-): TimeSeries {
-  const dates = uniformDatesBetween(tMin, tMax, values.length)
-  const tSeries = []
-  for (let i = 0; i < values.length; i++) {
-    tSeries.push({ t: dates[i], y: values[i] })
-  }
-  return tSeries
-}
-
 class Graph extends React.Component {
   componentDidMount(): void {
     this.draw()

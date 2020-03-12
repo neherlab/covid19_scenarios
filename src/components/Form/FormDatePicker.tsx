@@ -17,7 +17,7 @@ export interface FormInputProps {
   allowPast?: boolean
 }
 
-export default function FormDatePicker({
+export function FormDatePicker({
   identifier,
   label,
   help,

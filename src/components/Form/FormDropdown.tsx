@@ -17,7 +17,7 @@ export interface FormDropdownProps<ValueType extends string | number> {
   touched?: FormikTouched<any>
 }
 
-export default function FormDropdown<ValueType extends string | number>({
+export function FormDropdown<ValueType extends string | number>({
   identifier,
   label,
   help,
