@@ -41,8 +41,7 @@ function ScenarioCardContainment({
   const containmentScenarioOptions = stringsToOptions(scenarioState.containment.scenarios) // prettier-ignore
 
   const containmentData = makeTimeSeries(
-    scenarioState.simulation.data.simulationTimeRange.tMin,
-    scenarioState.simulation.data.simulationTimeRange.tMax,
+    scenarioState.simulation.data.simulationTimeRange,
     scenarioState.containment.data.reduction,
   )
 

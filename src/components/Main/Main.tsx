@@ -84,8 +84,7 @@ function Main() {
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[params.population.country]
     const containmentData = makeTimeSeries(
-      scenarioState.simulation.data.simulationTimeRange.tMin,
-      scenarioState.simulation.data.simulationTimeRange.tMax,
+      scenarioState.simulation.data.simulationTimeRange,
       scenarioState.containment.data.reduction,
     )
 
