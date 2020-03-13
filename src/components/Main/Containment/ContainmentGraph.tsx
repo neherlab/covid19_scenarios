@@ -18,7 +18,9 @@ export interface DrawParams {
 }
 
 function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
-  const newData = [...data] // copy
+  const newData = data.map(d => {
+    return {t:d.t, y:d.y}
+  }) // copy
   const tMin = data[0].t
   const tMax = data[data.length - 1].t
   const svg = d3ref.current
