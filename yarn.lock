@@ -1516,9 +1516,9 @@
     type-detect "4.0.8"
 
 "@testing-library/dom@^7.0.2":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.0.2.tgz#9edc922dfe2644a3f0ff70f256d8c78a525b88c3"
-  integrity sha512-5pqMlPaBC/5bvvFtuNTTcB4/Vg8NjZfs11LQQc08JhpMfx82W85nVw3re4D92A/C5O8zDkxPxyYPWNp8PtnQ/w==
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.0.3.tgz#284815f9995340171a4804819410db7288fd26b3"
+  integrity sha512-zBGQX1Ik+dK3nCdLa9jY5d0DHA4Bx79zaT0Zlv6avOcgop9gf6ff/43Z4rJDDIO2nFsWdoLdoJQY5VQ4TanLsw==
   dependencies:
     "@babel/runtime" "^7.8.4"
     "@types/testing-library__dom" "^6.12.1"
@@ -13803,7 +13803,7 @@ react-transition-group@^2.2.1, react-transition-group@^2.3.1, react-transition-g
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react-with-direction@^1.3.1:
+react-with-direction@1.3.1, react-with-direction@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-with-direction/-/react-with-direction-1.3.1.tgz#9fd414564f0ffe6947e5ff176f6132dd83f8b8df"
   integrity sha512-aGcM21ZzhqeXFvDCfPj0rVNYuaVXfTz5D3Rbn0QMz/unZe+CCiLHthrjQWO7s6qdfXORgYFtmS7OVsRgSk5LXQ==
@@ -14866,10 +14866,10 @@ schema-utils@^2.5.0, schema-utils@^2.6.0, schema-utils@^2.6.1, schema-utils@^2.6
     ajv "^6.12.0"
     ajv-keywords "^3.4.1"
 
-seamless-immutable@6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/seamless-immutable/-/seamless-immutable-6.3.0.tgz#218fd851bc5b989505998325f8c7713d35fafeb8"
-  integrity sha1-IY/YUbxbmJUFmYMl+MdxPTX6/rg=
+seamless-immutable@7.1.4:
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/seamless-immutable/-/seamless-immutable-7.1.4.tgz#6e9536def083ddc4dea0207d722e0e80d0f372f8"
+  integrity sha512-XiUO1QP4ki4E2PHegiGAlu6r82o5A+6tRh7IkGGTVg/h+UoeX4nFBeCGPOhb4CYjvkqsfm/TUtvOMYC1xmV30A==
 
 secure-compare@3.0.1:
   version "3.0.1"
