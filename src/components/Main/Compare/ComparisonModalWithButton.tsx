@@ -9,31 +9,16 @@ export interface ButtonForModalProps {
   onFilesChange(files: Map<FileType, File>): void
 }
 
-export function ComparisonModalWithButton({
-  files,
-  onFilesChange,
-}: ButtonForModalProps) {
+export function ComparisonModalWithButton({ files, onFilesChange }: ButtonForModalProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const toggleModalIsOpen = () => setModalIsOpen(!modalIsOpen)
 
   return (
     <>
-      <Button
-        className="compare-button"
-        type="button"
-        color="success"
-        onClick={toggleModalIsOpen}
-        hidden
-      >
+      <Button className="compare-button" type="button" color="success" onClick={toggleModalIsOpen} hidden>
         {`Compare`}
       </Button>
-      <Modal
-        className="height-fit"
-        centered
-        size="lg"
-        isOpen={modalIsOpen}
-        toggle={toggleModalIsOpen}
-      >
+      <Modal className="height-fit" centered size="lg" isOpen={modalIsOpen} toggle={toggleModalIsOpen}>
         <ModalHeader toggle={toggleModalIsOpen}>Modal title</ModalHeader>
         <ModalBody>
           <FileUploadZone files={files} onFilesChange={onFilesChange} />

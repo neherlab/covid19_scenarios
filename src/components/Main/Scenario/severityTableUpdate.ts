@@ -5,15 +5,13 @@ import { validatePercentage } from './validatePercentage'
 /**
  * Updates computable columns in severity table
  */
-export function updateSeverityTable(
-  severity: SeverityTableRow[],
-): SeverityTableRow[] {
+export function updateSeverityTable(severity: SeverityTableRow[]): SeverityTableRow[] {
   return severity.map(row => {
-    const { value: isolated, errors: isolatedErrors } = validatePercentage(row.isolated) // prettier-ignore
-    const { value: confirmed, errors: confirmedErrors } = validatePercentage(row.confirmed) // prettier-ignore
-    const { value: severe, errors: severeErrors } = validatePercentage(row.severe) // prettier-ignore
-    const { value: critical, errors: criticalErrors } = validatePercentage(row.critical) // prettier-ignore
-    const { value: fatal, errors: fatalErrors } = validatePercentage(row.fatal) // prettier-ignore
+    const { value: isolated, errors: isolatedErrors } = validatePercentage(row.isolated)
+    const { value: confirmed, errors: confirmedErrors } = validatePercentage(row.confirmed)
+    const { value: severe, errors: severeErrors } = validatePercentage(row.severe)
+    const { value: critical, errors: criticalErrors } = validatePercentage(row.critical)
+    const { value: fatal, errors: fatalErrors } = validatePercentage(row.fatal)
 
     const totalFatal = confirmed * severe * critical * fatal * 1e-6
 

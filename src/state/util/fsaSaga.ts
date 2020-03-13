@@ -38,8 +38,7 @@ export default function fsaSaga<Params, Result>(
 
     try {
       // Call worker
-      const response: AxiosResponse<{payload: Result}> =
-        yield call(worker, params) // prettier-ignore
+      const response: AxiosResponse<{ payload: Result }> = yield call(worker, params)
       const result: Result = response.data.payload
 
       // We are still here? All good, dispatch "done" action with results
@@ -56,9 +55,7 @@ export default function fsaSaga<Params, Result>(
       // Check if the saga was cancelled (e.g. manually or as a result of take*)
       if (yield cancelled()) {
         // If it was, dispatch "failed" action with the special error value.
-        yield put(
-          asyncActionCreators.failed({ params, error: { error: 'cancelled' } }),
-        )
+        yield put(asyncActionCreators.failed({ params, error: { error: 'cancelled' } }))
       }
     }
   }

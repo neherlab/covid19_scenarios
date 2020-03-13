@@ -90,10 +90,7 @@ class Graph extends React.Component {
     this.d3Graph
       .append('g')
       .attr('class', 'x-axis')
-      .attr(
-        'transform',
-        'translate(0,' + (height - margin.bottom - margin.top) + ')',
-      )
+      .attr('transform', 'translate(0,' + (height - margin.bottom - margin.top) + ')')
       .call(d3.axisBottom(tScale).tickFormat(d3.timeFormat('%Y-%m-%d')))
       .selectAll('text')
       .style('text-anchor', 'end')
@@ -203,12 +200,7 @@ class Graph extends React.Component {
     }
 
     return (
-      <svg
-        className="noselect"
-        width={width}
-        height={height}
-        viewBox={`0 0 ${width} ${height}`}
-      >
+      <svg className="noselect" width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         <g ref="graph" />
       </svg>
     )
@@ -222,12 +214,7 @@ export interface ContainControlProps {
   onDataChange(timeSeries: TimeSeries): void
 }
 
-export function ContainControl({
-  data,
-  onDataChange,
-  minTime,
-  maxTime,
-}: ContainControlProps) {
+export function ContainControl({ data, onDataChange, minTime, maxTime }: ContainControlProps) {
   return (
     <div className="w-100 h-100">
       <ReactResizeDetector handleWidth handleHeight>

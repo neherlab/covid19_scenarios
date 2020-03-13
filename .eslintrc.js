@@ -113,10 +113,7 @@ module.exports = {
     'prettier/prettier': 'warn',
     'react-redux/prefer-separate-component-file': 'off',
     'react/jsx-curly-brace-presence': 'off',
-    'react/jsx-filename-extension': [
-      'warn',
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
-    ],
+    'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
     'react/state-in-constructor': 'off',
@@ -131,16 +128,9 @@ module.exports = {
     'unicorn/prefer-query-selector': 'off',
     'unicorn/prevent-abbreviations': 'off',
 
-    'lines-between-class-members': [
-      'warn',
-      'always',
-      { exceptAfterSingleLine: true },
-    ],
+    'lines-between-class-members': ['warn', 'always', { exceptAfterSingleLine: true }],
 
-    '@typescript-eslint/tslint/config': [
-      'warn',
-      { lintFile: path.join(__dirname, 'tslint.json') },
-    ],
+    '@typescript-eslint/tslint/config': ['warn', { lintFile: path.join(__dirname, 'tslint.json') }],
 
     'require-await': 'off',
     '@typescript-eslint/require-await': 'off',
@@ -241,10 +231,7 @@ module.exports = {
     {
       files: ['**/*reducer.*', '**/*reducers.*'],
       rules: {
-        'no-param-reassign': [
-          'warn',
-          { ignorePropertyModificationsFor: ['draft'] },
-        ],
+        'no-param-reassign': ['warn', { ignorePropertyModificationsFor: ['draft'] }],
       },
     },
   ],

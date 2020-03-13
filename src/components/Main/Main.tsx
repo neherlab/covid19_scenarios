@@ -18,11 +18,7 @@ import severityData from '../../assets/data/severityData.json'
 
 import { schema } from './validation/schema'
 
-import {
-  setEpidemiologicalData,
-  setPopulationData,
-  setSimulationData,
-} from './state/actions'
+import { setEpidemiologicalData, setPopulationData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState } from './state/state'
 
@@ -44,7 +40,7 @@ const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState, /* initDefaultState */) // prettier-ignore
+  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState /* , initDefaultState */)
 
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -62,18 +58,15 @@ function Main() {
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
-      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological })) // prettier-ignore
+      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.simulation, newParams.simulation)) {
-      scenarioDispatch(setSimulationData({ data: newParams.simulation })) // prettier-ignore
+      scenarioDispatch(setSimulationData({ data: newParams.simulation }))
     }
   }
 
-  async function handleSubmit(
-    params: AllParams,
-    { setSubmitting }: FormikHelpers<AllParams>,
-  ) {
+  async function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
     const paramsFlat = {
       ...params.population,
       ...params.epidemiological,
@@ -88,7 +81,7 @@ function Main() {
       scenarioState.containment.data.reduction,
     )
 
-    const newResult = await run(paramsFlat, severity, ageDistribution, containmentData) // prettier-ignore
+    const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
 
     setResult(newResult)
     setSubmitting(false)
@@ -122,11 +115,7 @@ function Main() {
                   </Col>
 
                   <Col lg={8} xl={6} className="py-1 px-1">
-                    <ResultsCard
-                      canRun={canRun}
-                      severity={severity}
-                      result={result}
-                    />
+                    <ResultsCard canRun={canRun} severity={severity} result={result} />
                   </Col>
                 </Row>
               </Form>

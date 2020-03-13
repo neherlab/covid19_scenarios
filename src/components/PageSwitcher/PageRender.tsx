@@ -13,12 +13,7 @@ interface PageProps {
   match: { path: string; params: object }
 }
 
-function pageRender({
-  page,
-  loadingComponent,
-  forceLoadingMs,
-  timeoutMs,
-}: PageRenderParams) {
+function pageRender({ page, loadingComponent, forceLoadingMs, timeoutMs }: PageRenderParams) {
   function Page(props: PageProps) {
     const {
       match: { path: pathname, params },

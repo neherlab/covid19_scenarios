@@ -18,9 +18,7 @@ export interface FormDropdownProps<ValueType extends string | number> {
   onBlur?<T>(e: React.FocusEvent<T>): void
 }
 
-export default function FormDropdownStateless<
-  ValueType extends string | number
->({
+export default function FormDropdownStateless<ValueType extends string | number>({
   identifier,
   label,
   help,

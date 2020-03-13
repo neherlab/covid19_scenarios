@@ -28,8 +28,7 @@ export default function configureStore({ url }: StoreParams = storeDefaults) {
   ].filter(Boolean)
 
   let enhancer = applyMiddleware(...middlewares)
-  const devToolsCompose = require('redux-devtools-extension')
-    .composeWithDevTools
+  const devToolsCompose = require('redux-devtools-extension').composeWithDevTools
 
   if (debug && devToolsCompose) {
     enhancer = devToolsCompose({

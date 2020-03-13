@@ -20,9 +20,7 @@ export enum FileType {
 
 /* Converts file extension to FileType enum */
 function fileExtToType(ext: string) {
-  const extMap = new Map<string, FileType>(
-    Object.entries({ '.csv': FileType.CSV }),
-  )
+  const extMap = new Map<string, FileType>(Object.entries({ '.csv': FileType.CSV }))
   return extMap.get(ext)
 }
 

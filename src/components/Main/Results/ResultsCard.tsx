@@ -76,20 +76,12 @@ function ResultsCard({ canRun, severity, result }: ResutsCardProps) {
         <Col>
           <div>
             <span>
-              <Button
-                className="run-button"
-                type="submit"
-                color="primary"
-                disabled={!canRun}
-              >
+              <Button className="run-button" type="submit" color="primary" disabled={!canRun}>
                 Run
               </Button>
             </span>
             <span>
-              <ComparisonModalWithButton
-                files={files}
-                onFilesChange={handleFileSubmit}
-              />
+              <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
             </span>
             <span>
               <Button
@@ -119,11 +111,7 @@ function ResultsCard({ canRun, severity, result }: ResutsCardProps) {
       </Row>
       <Row noGutters>
         <Col>
-          <DeterministicLinePlot
-            data={result}
-            userResult={userResult}
-            logScale={logScale}
-          />
+          <DeterministicLinePlot data={result} userResult={userResult} logScale={logScale} />
         </Col>
       </Row>
       <Row>

@@ -24,7 +24,7 @@ export function exportResult(result: AlgorithmResult) {
 
   if (!isBlobApiSupported()) {
     // TODO: Display an error popup
-    console.error('Error: export is not supported in this browser: `Blob()` API is not implemented') // prettier-ignore
+    console.error('Error: export is not supported in this browser: `Blob()` API is not implemented')
     return
   }
 

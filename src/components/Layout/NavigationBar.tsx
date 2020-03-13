@@ -24,14 +24,7 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
 
       <ul className="navbar-nav">
         {Object.entries(navLinks).map(([url, text]) => {
-          return (
-            <NavigationLink
-              key={url}
-              url={url}
-              content={text}
-              active={location.pathname === url}
-            />
-          )
+          return <NavigationLink key={url} url={url} content={text} active={location.pathname === url} />
         })}
       </ul>
     </nav>

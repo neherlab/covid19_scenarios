@@ -26,18 +26,11 @@ export interface ScenarioCardProps {
   scenarioDispatch(action: AnyAction): void
 }
 
-function ScenarioCard({
-  severity,
-  scenarioState,
-  errors,
-  touched,
-  setSeverity,
-  scenarioDispatch,
-}: ScenarioCardProps) {
-  const overallScenarioOptions = stringsToOptions(scenarioState.overall.scenarios) // prettier-ignore
+function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, scenarioDispatch }: ScenarioCardProps) {
+  const overallScenarioOptions = stringsToOptions(scenarioState.overall.scenarios)
 
   function handleChangeOverallScenario(newOverallScenario: string) {
-    scenarioDispatch(setOverallScenario({ scenarioName: newOverallScenario })) // prettier-ignore
+    scenarioDispatch(setOverallScenario({ scenarioName: newOverallScenario }))
   }
 
   return (
@@ -46,7 +39,7 @@ function ScenarioCard({
       label={<h3 className="p-0 m-0 d-inline text-truncate">Scenario</h3>}
       help="Combination of population, epidemiology, and mitigation scenarios"
       options={overallScenarioOptions}
-      value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)} // prettier-ignore
+      value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)}
       onValueChange={handleChangeOverallScenario}
     >
       <>

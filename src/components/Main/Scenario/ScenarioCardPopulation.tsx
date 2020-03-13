@@ -16,7 +16,7 @@ import { setPopulationScenario } from '../state/actions'
 import { State } from '../state/state'
 
 const countries = Object.keys(countryAgeDistribution)
-const countryOptions = countries.map(country => ({ value: country, label: country })) // prettier-ignore
+const countryOptions = countries.map(country => ({ value: country, label: country }))
 
 export interface ScenarioCardPopulationProps {
   scenarioState: State
@@ -25,15 +25,10 @@ export interface ScenarioCardPopulationProps {
   scenarioDispatch(action: AnyAction): void
 }
 
-function ScenarioCardPopulation({
-  scenarioState,
-  errors,
-  touched,
-  scenarioDispatch,
-}: ScenarioCardPopulationProps) {
-  const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios) // prettier-ignore
+function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispatch }: ScenarioCardPopulationProps) {
+  const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
   function handleChangePopulationScenario(newPopulationScenario: string) {
-    scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario })) // prettier-ignore
+    scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario }))
   }
 
   return (
@@ -42,7 +37,7 @@ function ScenarioCardPopulation({
       label={<h5 className="p-0 m-0 d-inline text-truncate">Population</h5>}
       help="Parameters of the population in the health care system."
       options={populationScenarioOptions}
-      value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)} // prettier-ignore
+      value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)}
       onValueChange={handleChangePopulationScenario}
     >
       <FormSpinBox

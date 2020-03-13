@@ -54,9 +54,7 @@ export function FormSpinBox<T>({
                 max={max}
                 pattern={pattern}
               />
-              {showError ? (
-                <div className="text-danger">{errorMessage}</div>
-              ) : null}
+              {showError ? <div className="text-danger">{errorMessage}</div> : null}
             </Col>
           </Row>
         </FormGroup>

@@ -10,12 +10,7 @@ import {
   populationScenarioNames,
 } from './data'
 
-import {
-  ContainmentData,
-  EpidemiologicalData,
-  PopulationData,
-  SimulationData,
-} from '../../../algorithms/Param.types'
+import { ContainmentData, EpidemiologicalData, PopulationData, SimulationData } from '../../../algorithms/Param.types'
 
 export interface State {
   overall: {

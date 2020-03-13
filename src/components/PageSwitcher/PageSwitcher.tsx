@@ -37,14 +37,7 @@ const PageSwitcher: React.FC<PageSwitcherProps> = ({
           forceLoadingMs,
         })
 
-        return (
-          <Route
-            exact={!path.includes(':')}
-            path={path}
-            key={path}
-            render={render}
-          />
-        )
+        return <Route exact={!path.includes(':')} path={path} key={path} render={render} />
       }),
 
       // The last "catch-all" entry defaults to "NotFound" page

@@ -17,20 +17,12 @@ export interface FormInputProps {
   allowPast?: boolean
 }
 
-export function FormDatePicker({
-  identifier,
-  label,
-  help,
-  allowPast = true,
-}: FormInputProps) {
-  const [focusedInput, setFocusedInput] = useState<FocusedInputShape| null>(null) // prettier-ignore
+export function FormDatePicker({ identifier, label, help, allowPast = true }: FormInputProps) {
+  const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(null)
 
   return (
     <Field name={identifier}>
-      {({
-        field: { value, onChange },
-        form: { setFieldValue },
-      }: FieldProps<DateRange>) => {
+      {({ field: { value, onChange }, form: { setFieldValue } }: FieldProps<DateRange>) => {
         return (
           <FormGroup className="my-0">
             <Row noGutters>
@@ -80,9 +72,7 @@ export function FormDatePicker({
                           }
                         }}
                         focusedInput={focusedInput}
-                        onFocusChange={focusedInput =>
-                          setFocusedInput(focusedInput)
-                        }
+                        onFocusChange={focusedInput => setFocusedInput(focusedInput)}
                         isOutsideRange={() => !allowPast}
                         numberOfMonths={numberOfMonths}
                         orientation={orientation}

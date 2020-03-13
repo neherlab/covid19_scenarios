@@ -1,10 +1,6 @@
 import React from 'react'
 
-import {
-  Redirect as RouterRedirect,
-  RedirectProps as RouterRedirectProps,
-  Route,
-} from 'react-router'
+import { Redirect as RouterRedirect, RedirectProps as RouterRedirectProps, Route } from 'react-router'
 
 export interface RedirectProps extends RouterRedirectProps {
   code?: number

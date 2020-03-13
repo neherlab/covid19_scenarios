@@ -4,20 +4,9 @@ import _ from 'lodash'
 
 import { Col, Row } from 'reactstrap'
 
-import {
-  ChangeSet,
-  Column,
-  EditingState,
-  Row as TableRow,
-  Table as TableBase,
-} from '@devexpress/dx-react-grid'
+import { ChangeSet, Column, EditingState, Row as TableRow, Table as TableBase } from '@devexpress/dx-react-grid'
 
-import {
-  Grid,
-  Table,
-  TableHeaderRow,
-  TableInlineCellEditing,
-} from '@devexpress/dx-react-grid-bootstrap4'
+import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress/dx-react-grid-bootstrap4'
 
 import { format as d3format } from 'd3-format'
 
@@ -42,10 +31,7 @@ export interface HeaderCellProps extends TableBase.DataCellProps {}
 export function HeaderCell({ column, ...restProps }: HeaderCellProps) {
   const { title } = column
   const content = title?.split('\n').map((line, i) => (
-    <p
-      key={`line ${i}: ${line}`}
-      className={`p-0 m-0 text-center text-truncate ${i !== 0 ? 'small' : ''}`}
-    >
+    <p key={`line ${i}: ${line}`} className={`p-0 m-0 text-center text-truncate ${i !== 0 ? 'small' : ''}`}>
       {line}
     </p>
   ))
@@ -78,16 +64,7 @@ export function EditableCell({
   const readOnlyColumns = ['ageGroup', 'totalFatal']
 
   if (readOnlyColumns.includes(column.name)) {
-    return (
-      <Cell
-        value={value}
-        column={column}
-        row={row}
-        tableColumn={tableColumn}
-        tableRow={tableRow}
-        {...restProps}
-      />
-    )
+    return <Cell value={value} column={column} row={row} tableColumn={tableColumn} tableRow={tableRow} {...restProps} />
   }
 
   return (
@@ -112,20 +89,9 @@ export interface CellProps extends TableBase.DataCellProps {
   onClick?(): void
 }
 
-export function Cell({
-  value,
-  children,
-  column,
-  row,
-  tableColumn,
-  tableRow,
-  onClick,
-  ...restProps
-}: CellProps) {
+export function Cell({ value, children, column, row, tableColumn, tableRow, onClick, ...restProps }: CellProps) {
   const nonNumericColumns = ['ageGroup']
-  const textRight = nonNumericColumns.includes(column.name)
-    ? 'text-left'
-    : 'text-right'
+  const textRight = nonNumericColumns.includes(column.name) ? 'text-left' : 'text-right'
 
   // Computed values may sometimes have way too many decimal digits
   // so we format them here in order to display something more reasonable
@@ -136,11 +102,7 @@ export function Cell({
   }
 
   return (
-    <td
-      className={`dx-g-bs4-table-cell text-nowrap ${textRight}`}
-      {...restProps}
-      onClick={onClick}
-    >
+    <td className={`dx-g-bs4-table-cell text-nowrap ${textRight}`} {...restProps} onClick={onClick}>
       {children ?? formattedValue}
     </td>
   )
@@ -182,8 +144,7 @@ function SeverityTable({ severity, setSeverity }: SeverityTableProps) {
     let changedRows: SeverityTableRow[] = []
 
     if (added) {
-      const startingAddedId =
-        severity.length > 0 ? severity[severity.length - 1].id + 1 : 0
+      const startingAddedId = severity.length > 0 ? severity[severity.length - 1].id + 1 : 0
       changedRows = [
         ...severity,
         ...added.map((row, index) => ({
@@ -194,9 +155,7 @@ function SeverityTable({ severity, setSeverity }: SeverityTableProps) {
     }
 
     if (changed) {
-      changedRows = severity.map(row =>
-        changed[row.id] ? { ...row, ...changed[row.id] } : row,
-      )
+      changedRows = severity.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row))
     }
 
     if (deleted) {
@@ -218,11 +177,7 @@ function SeverityTable({ severity, setSeverity }: SeverityTableProps) {
 
             <TableHeaderRow cellComponent={HeaderCell} />
 
-            <TableInlineCellEditing
-              startEditAction={'click'}
-              selectTextOnEditStart
-              cellComponent={EditableCell}
-            />
+            <TableInlineCellEditing startEditAction={'click'} selectTextOnEditStart cellComponent={EditableCell} />
           </Grid>
         </Col>
       </Row>

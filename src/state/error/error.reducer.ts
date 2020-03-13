@@ -11,10 +11,7 @@ export const errorDefaultState: ErrorState = {
   error: null,
 }
 
-export function errorReducer(
-  state: ErrorState = errorDefaultState,
-  action: Action,
-) {
+export function errorReducer(state: ErrorState = errorDefaultState, action: Action) {
   if (isType(action, errorAdd)) {
     return { ...state, error: action.payload.error.message }
   }

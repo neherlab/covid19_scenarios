@@ -35,17 +35,9 @@ function Layout({ location }: LayoutProps) {
 
       <div className="row">
         <TransitionGroup component={null}>
-          <CSSTransition
-            key={location.key}
-            classNames={transitionClassNames}
-            timeout={transitionDuration}
-          >
+          <CSSTransition key={location.key} classNames={transitionClassNames} timeout={transitionDuration}>
             <main className="container-fluid absolute" role="main">
-              <PageSwitcher
-                location={location}
-                routes={routes}
-                loadingComponent={<Loading />}
-              />
+              <PageSwitcher location={location} routes={routes} loadingComponent={<Loading />} />
             </main>
           </CSSTransition>
         </TransitionGroup>

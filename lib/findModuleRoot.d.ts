@@ -5,6 +5,4 @@ export interface FindModuleRootResult {
   pkg: JSONSchemaForNPMPackageJsonFiles
 }
 
-export declare function findModuleRoot(
-  maxDepth: number = 10,
-): FindModuleRootResult
+export declare function findModuleRoot(maxDepth: number = 10): FindModuleRootResult

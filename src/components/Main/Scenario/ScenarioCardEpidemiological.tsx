@@ -14,7 +14,7 @@ import { setEpidemiologicalScenario } from '../state/actions'
 import { State } from '../state/state'
 
 const months = moment.months()
-const monthOptions = months.map((month, i) => ({ value: i, label: month })) // prettier-ignore
+const monthOptions = months.map((month, i) => ({ value: i, label: month }))
 
 export interface ScenarioCardEpidemiologicalProps {
   scenarioState: State
@@ -29,11 +29,9 @@ function ScenarioCardEpidemiological({
   touched,
   scenarioDispatch,
 }: ScenarioCardEpidemiologicalProps) {
-  const epidemiologicalScenarioOptions = stringsToOptions(scenarioState.epidemiological.scenarios) // prettier-ignore
-  function handleChangeEpidemiologicalScenario(
-    newEpidemiologicalScenario: string,
-  ) {
-    scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario })) // prettier-ignore
+  const epidemiologicalScenarioOptions = stringsToOptions(scenarioState.epidemiological.scenarios)
+  function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
+    scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))
   }
 
   return (
@@ -42,7 +40,7 @@ function ScenarioCardEpidemiological({
       label={<h5 className="p-0 d-inline text-truncate">{'Epidemiology'}</h5>}
       help="Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region)."
       options={epidemiologicalScenarioOptions}
-      value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)} // prettier-ignore
+      value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)}
       onValueChange={handleChangeEpidemiologicalScenario}
     >
       <FormSpinBox

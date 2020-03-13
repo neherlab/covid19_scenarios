@@ -9,20 +9,13 @@ interface TimePoint {
 
 export type TimeSeries = TimePoint[]
 
-export function uniformDatesBetween(
-  min: number,
-  max: number,
-  n: number,
-): Date[] {
+export function uniformDatesBetween(min: number, max: number, n: number): Date[] {
   const d = (max - min) / (n - 1)
   const dates = d3.range(min, max + d, d)
   return dates.map(d => new Date(d))
 }
 
-export function makeTimeSeries(
-  simulationTimeRange: DateRange,
-  values: number[],
-): TimeSeries {
+export function makeTimeSeries(simulationTimeRange: DateRange, values: number[]): TimeSeries {
   const { tMin, tMax } = simulationTimeRange
   const n = values.length
 

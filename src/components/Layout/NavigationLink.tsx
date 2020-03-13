@@ -8,11 +8,7 @@ export interface NavigationLinkProps<T> {
   url: string
 }
 
-export default function NavigationLink<T>({
-  active,
-  content,
-  url,
-}: NavigationLinkProps<T>) {
+export default function NavigationLink<T>({ active, content, url }: NavigationLinkProps<T>) {
   const activeClass = active ? 'active' : ''
 
   return (

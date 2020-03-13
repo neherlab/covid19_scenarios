@@ -25,17 +25,14 @@ export function FormDropdown<ValueType extends string | number>({
 }: FormDropdownProps<ValueType>) {
   return (
     <Field name={identifier}>
-      {({
-        field: { value, onBlur },
-        form: { setFieldValue },
-      }: FieldProps<ValueType>) => {
+      {({ field: { value, onBlur }, form: { setFieldValue } }: FieldProps<ValueType>) => {
         return (
           <FormDropdownStateless
             identifier={identifier}
             label={label}
             help={help}
             options={options}
-            value={{value, label: options.find(o => o.value === value)?.label ?? '' }} // prettier-ignore
+            value={{ value, label: options.find(o => o.value === value)?.label ?? '' }}
             onValueChange={value => {
               setFieldValue?.(identifier, value)
             }}

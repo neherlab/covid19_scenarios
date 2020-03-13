@@ -15,12 +15,7 @@ import {
   setSimulationData,
 } from './actions'
 
-import {
-  getContainmentScenarioData,
-  getEpidemiologicalData,
-  getOverallScenario,
-  getPopulationData,
-} from './data'
+import { getContainmentScenarioData, getEpidemiologicalData, getOverallScenario, getPopulationData } from './data'
 
 import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './state'
 
@@ -48,20 +43,16 @@ function maybeAdd<T>(where: T[], what: T): T[] {
 export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
     immerCase(setOverallScenario, (draft, { scenarioName }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
       draft.overall.current = scenarioName
-      if (scenarioName !== CUSTOM_SCENARIO_NAME){
-        const {
-          containmentScenario,
-          epidemiologicalScenario,
-          populationScenario,
-        } = getOverallScenario(scenarioName)
+      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
+        const { containmentScenario, epidemiologicalScenario, populationScenario } = getOverallScenario(scenarioName)
 
         draft.population.current = populationScenario
         draft.population.data = getPopulationData(populationScenario)
 
         draft.epidemiological.current = epidemiologicalScenario
-        draft.epidemiological.data = getEpidemiologicalData(epidemiologicalScenario) // prettier-ignore
+        draft.epidemiological.data = getEpidemiologicalData(epidemiologicalScenario)
 
         draft.containment.current = containmentScenario
         draft.containment.data = getContainmentScenarioData(containmentScenario)
@@ -71,10 +62,10 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setPopulationScenario, (draft, { scenarioName }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
       draft.overall.current = CUSTOM_SCENARIO_NAME
       draft.population.current = scenarioName
-      if (scenarioName !== CUSTOM_SCENARIO_NAME){
+      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
         draft.population.data = getPopulationData(scenarioName)
       }
     }),
@@ -82,10 +73,10 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setEpidemiologicalScenario, (draft, { scenarioName }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
       draft.overall.current = CUSTOM_SCENARIO_NAME
       draft.epidemiological.current = scenarioName
-      if (scenarioName !== CUSTOM_SCENARIO_NAME){
+      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
         draft.epidemiological.data = getEpidemiologicalData(scenarioName)
       }
     }),
@@ -93,10 +84,10 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setContainmentScenario, (draft, { scenarioName }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
       draft.overall.current = CUSTOM_SCENARIO_NAME
       draft.containment.current = scenarioName
-      if (scenarioName !== CUSTOM_SCENARIO_NAME){
+      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
         draft.containment.data = getContainmentScenarioData(scenarioName)
       }
     }),
@@ -104,9 +95,9 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setPopulationData, (draft, { data }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
       draft.overall.current = CUSTOM_SCENARIO_NAME
-      draft.population.scenarios = maybeAdd(draft.population.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.population.scenarios = maybeAdd(draft.population.scenarios, CUSTOM_SCENARIO_NAME)
       draft.population.current = CUSTOM_SCENARIO_NAME
       draft.population.data = data
     }),
@@ -114,9 +105,9 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setEpidemiologicalData, (draft, { data }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
       draft.overall.current = CUSTOM_SCENARIO_NAME
-      draft.epidemiological.scenarios = maybeAdd(draft.epidemiological.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.epidemiological.scenarios = maybeAdd(draft.epidemiological.scenarios, CUSTOM_SCENARIO_NAME)
       draft.epidemiological.current = CUSTOM_SCENARIO_NAME
       draft.epidemiological.data = data
     }),
@@ -124,9 +115,9 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setContainmentData, (draft, { data }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
       draft.overall.current = CUSTOM_SCENARIO_NAME
-      draft.containment.scenarios = maybeAdd(draft.containment.scenarios, CUSTOM_SCENARIO_NAME) // prettier-ignore
+      draft.containment.scenarios = maybeAdd(draft.containment.scenarios, CUSTOM_SCENARIO_NAME)
       draft.containment.current = CUSTOM_SCENARIO_NAME
       draft.containment.data = data
     }),

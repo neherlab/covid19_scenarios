@@ -5,10 +5,7 @@ export interface LinkExternalProps<T> {
   url: string
 }
 
-export default function LinkExternal<T>({
-  content,
-  url,
-}: LinkExternalProps<T>) {
+export default function LinkExternal<T>({ content, url }: LinkExternalProps<T>) {
   return (
     <a target="_blank" rel="noopener noreferrer" href={url}>
       {content}

@@ -16,11 +16,7 @@ export interface FormHelpButtonProps {
   help?: string | React.ReactNode
 }
 
-export default function FormHelpButton({
-  identifier,
-  label,
-  help,
-}: FormHelpButtonProps) {
+export default function FormHelpButton({ identifier, label, help }: FormHelpButtonProps) {
   const [popoverOpen, setPopoverOpen] = useState(false)
 
   return (
@@ -38,13 +34,7 @@ export default function FormHelpButton({
       >
         <FaQuestion className="help-button-icon" />
       </Button>
-      <Popover
-        placement="right"
-        target={safeId(identifier)}
-        trigger="focus"
-        hideArrow
-        isOpen={popoverOpen}
-      >
+      <Popover placement="right" target={safeId(identifier)} trigger="focus" hideArrow isOpen={popoverOpen}>
         <Card>
           <CardHeader>{label}</CardHeader>
           <CardBody>{help}</CardBody>

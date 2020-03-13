@@ -9,17 +9,9 @@ const monthToDay = m => {
 
 const jan2020 = new Date('2020-01-01')
 
-export function infectionRate(
-  time,
-  avgInfectionRate,
-  peakMonth,
-  seasonalForcing,
-) {
+export function infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing) {
   //this is super hacky
-  const phase =
-    ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) *
-    2 *
-    math.pi
+  const phase = ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) * 2 * math.pi
   return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
 }
 
@@ -57,12 +49,9 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   severity.forEach(function(d) {
     const freq = (1.0 * ageCounts[d.ageGroup]) / total
     pop.ageDistribution[d.ageGroup] = freq
-    pop.infectionSeverityRatio[d.ageGroup] =
-      (d.severe / 100) * (d.confirmed / 100)
-    pop.infectionCritical[d.ageGroup] =
-      pop.infectionSeverityRatio[d.ageGroup] * (d.critical / 100)
-    pop.infectionFatality[d.ageGroup] =
-      pop.infectionCritical[d.ageGroup] * (d.fatal / 100)
+    pop.infectionSeverityRatio[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
+    pop.infectionCritical[d.ageGroup] = pop.infectionSeverityRatio[d.ageGroup] * (d.critical / 100)
+    pop.infectionFatality[d.ageGroup] = pop.infectionCritical[d.ageGroup] * (d.fatal / 100)
 
     const dHospital = pop.infectionSeverityRatio[d.ageGroup]
     const dCritical = d.critical / 100
@@ -92,21 +81,16 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   // Population average rates
   pop.recoveryRate['total'] = (1 - hospitalizedFrac) / pop.infectiousPeriod
   pop.hospitalizedRate['total'] = hospitalizedFrac / pop.infectiousPeriod
-  pop.dischargeRate['total'] =
-    (1 - criticalFracHospitalized) / pop.lengthHospitalStay
+  pop.dischargeRate['total'] = (1 - criticalFracHospitalized) / pop.lengthHospitalStay
   pop.criticalRate['total'] = criticalFracHospitalized / pop.lengthHospitalStay
   pop.deathRate['total'] = fatalFracCritical / pop.lengthICUStay
-  pop.stabilizationRate['total'] =
-    (1 - fatalFracCritical) / pop.lengthICUStay
+  pop.stabilizationRate['total'] = (1 - fatalFracCritical) / pop.lengthICUStay
   pop.isolatedFrac['total'] = avgIsolatedFrac
 
   // Infectivity dynamics
   const avgInfectionRate = pop.r0 / pop.infectiousPeriod
   pop.infectionRate = function(time) {
-    return (
-      containment(time) *
-      infectionRate(time, avgInfectionRate, pop.peakMonth, pop.seasonalForcing)
-    )
+    return containment(time) * infectionRate(time, avgInfectionRate, pop.peakMonth, pop.seasonalForcing)
   }
 
   return pop
@@ -178,9 +162,7 @@ export function initializePopulation(N, numCases, t0, ages) {
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
 export function evolve(pop, P, sample) {
-  const fracInfected =
-    Object.values(pop['infectious']).reduce((a, b) => a + b, 0) /
-    P.populationServed
+  const fracInfected = Object.values(pop['infectious']).reduce((a, b) => a + b, 0) / P.populationServed
 
   const newTime = pop['time'] + P.timeDelta
   const newPop = {
@@ -203,33 +185,15 @@ export function evolve(pop, P, sample) {
     const newCases =
       sample(P.importsPerDay[age] * P.timeDeltaDays) +
       sample(
-        (1 - P.isolatedFrac[age]) *
-          P.infectionRate(newTime) *
-          pop['susceptible'][age] *
-          fracInfected *
-          P.timeDeltaDays,
+        (1 - P.isolatedFrac[age]) * P.infectionRate(newTime) * pop['susceptible'][age] * fracInfected * P.timeDeltaDays,
       )
-    const newInfectious = sample(
-      (pop['exposed'][age] * P.timeDeltaDays) / P.incubationTime,
-    )
-    const newRecovered = sample(
-      pop['infectious'][age] * P.timeDeltaDays * P.recoveryRate[age],
-    )
-    const newHospitalized = sample(
-      pop['infectious'][age] * P.timeDeltaDays * P.hospitalizedRate[age],
-    )
-    const newDischarged = sample(
-      pop['hospitalized'][age] * P.timeDeltaDays * P.dischargeRate[age],
-    )
-    const newCritical = sample(
-      pop['hospitalized'][age] * P.timeDeltaDays * P.criticalRate[age],
-    )
-    const newStabilized = sample(
-      pop['critical'][age] * P.timeDeltaDays * P.stabilizationRate[age],
-    )
-    const newDead = sample(
-      pop['critical'][age] * P.timeDeltaDays * P.deathRate[age],
-    )
+    const newInfectious = sample((pop['exposed'][age] * P.timeDeltaDays) / P.incubationTime)
+    const newRecovered = sample(pop['infectious'][age] * P.timeDeltaDays * P.recoveryRate[age])
+    const newHospitalized = sample(pop['infectious'][age] * P.timeDeltaDays * P.hospitalizedRate[age])
+    const newDischarged = sample(pop['hospitalized'][age] * P.timeDeltaDays * P.dischargeRate[age])
+    const newCritical = sample(pop['hospitalized'][age] * P.timeDeltaDays * P.criticalRate[age])
+    const newStabilized = sample(pop['critical'][age] * P.timeDeltaDays * P.stabilizationRate[age])
+    const newDead = sample(pop['critical'][age] * P.timeDeltaDays * P.deathRate[age])
 
     push('susceptible', age, -newCases)
     push('exposed', age, newCases - newInfectious)
@@ -263,20 +227,7 @@ export function exportSimulation(trajectory) {
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const month = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
+  const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
   function stringify(date) {
     const d = date.getDay()

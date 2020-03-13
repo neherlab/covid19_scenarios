@@ -12,11 +12,7 @@ interface ErrorProps {
 
 const development = process.env.NODE_ENV === 'development'
 
-export default function ErrorPage({
-  error,
-  componentStack,
-  isDev = development,
-}: ErrorProps) {
+export default function ErrorPage({ error, componentStack, isDev = development }: ErrorProps) {
   const hasDevMessage = !!(isDev && error && error.message)
   const hasDevStack = !!(isDev && componentStack)
 
@@ -32,16 +28,12 @@ export default function ErrorPage({
             </When>
 
             <When condition={hasDevStack}>
-              {componentStack && (
-                <pre className="error-dev small">{componentStack}</pre>
-              )}
+              {componentStack && <pre className="error-dev small">{componentStack}</pre>}
             </When>
           </div>
         </Then>
         <Else>
-          <h3 className="h3-error text-center">
-            {'Oops! Something went wrong'}
-          </h3>
+          <h3 className="h3-error text-center">{'Oops! Something went wrong'}</h3>
         </Else>
       </If>
     </>

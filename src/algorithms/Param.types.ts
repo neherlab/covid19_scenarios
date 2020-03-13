@@ -35,6 +35,4 @@ export interface AllParams {
   simulation: SimulationData
 }
 
-export type AllParamsFlat = PopulationData &
-  EpidemiologicalData &
-  SimulationData
+export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData
