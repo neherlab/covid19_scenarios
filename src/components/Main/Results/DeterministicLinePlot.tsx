@@ -52,6 +52,8 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
   const hasUserResult = Boolean(userResult?.trajectory)
 
   const nHospitalBeds = (data.params.populationServed * 4.5) / 1000
+  // 1000 ICU and 400 ICM (intermediate care) beds for all of switzerland according to SGI
+  const nICUBeds = (data.params.populationServed * 0.163) / 1000
   const plotData = data.deterministicTrajectory
     .filter((d, i) => i % 4 === 0)
     .map(x => ({
@@ -64,6 +66,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
       recovered: Math.round(x.recovered.total) || undefined,
       dead: Math.round(x.dead.total) || undefined,
       hospitalBeds: nHospitalBeds,
+      ICUbeds: nICUBeds,
     }))
 
   const logScaleString = logScale ? 'log' : 'linear'
@@ -150,7 +153,15 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                   strokeWidth={3}
                   dataKey="hospitalBeds"
                   stroke="#aaaaaa"
-                  name="Hospital beds (OECD average)"
+                  name="total hospital beds (OECD average)"
+                />
+                <Line
+                  dot={false}
+                  type="monotone"
+                  strokeWidth={3}
+                  dataKey="ICUbeds"
+                  stroke="#cccccc"
+                  name="total ICU/ICM beds (Swiss average)"
                 />
               </LineChart>
             </>
