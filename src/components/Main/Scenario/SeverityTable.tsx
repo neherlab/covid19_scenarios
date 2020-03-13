@@ -26,7 +26,7 @@ const columns: SeverityTableColumn[] = [
 
 const getRowId = (row: TableRow) => row.id
 
-export interface HeaderCellProps extends TableBase.DataCellProps {}
+export type HeaderCellProps = TableBase.DataCellProps
 
 export function HeaderCell({ column, ...restProps }: HeaderCellProps) {
   const { title } = column

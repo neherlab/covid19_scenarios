@@ -9,18 +9,18 @@ const ASPECT_RATIO = 16 / 9
 const MAX_TRANSMISSION_RATIO = 1.2
 
 class Graph extends React.Component {
-  componentDidMount(): void {
+  public componentDidMount(): void {
     this.draw()
   }
 
-  componentDidUpdate(): void {
+  public componentDidUpdate(): void {
     this.draw()
   }
 
-  draw() {
+  public draw() {
     const { width, height, data } = this.props
 
-    let newData = data
+    const newData = data
     const minTime = data[0].t
     const maxTime = data[data.length - 1].t
 
@@ -31,12 +31,12 @@ class Graph extends React.Component {
       bottom: math.round(0.2 * height),
     }
 
-    var tScale = d3
+    const tScale = d3
       .scaleTime()
       .domain([minTime, maxTime])
       .range([0, width - margin.right - margin.left])
 
-    var yScale = d3
+    const yScale = d3
       .scaleLinear()
       .domain([0, MAX_TRANSMISSION_RATIO])
       .range([height - margin.top - margin.bottom, 0])
@@ -47,9 +47,9 @@ class Graph extends React.Component {
       .attr('width', width)
       .attr('height', height)
       .append('g')
-      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+      .attr('transform', `translate(${margin.left},${margin.top})`)
 
-    var drawLine = d3
+    const drawLine = d3
       .line()
       .x(function(d) {
         return tScale(d.t)
@@ -59,13 +59,13 @@ class Graph extends React.Component {
       })
       .curve(d3.curveMonotoneX)
 
-    let started = (_, i, n) => {
+    const started = (_, i, n) => {
       d3.select(n[i])
         .raise()
         .classed('active', true)
     }
 
-    let dragged = (d, i, n) => {
+    const dragged = (d, i, n) => {
       d.y = yScale.invert(d3.event.y)
       if (d.y > MAX_TRANSMISSION_RATIO) {
         d.y = MAX_TRANSMISSION_RATIO
@@ -81,7 +81,7 @@ class Graph extends React.Component {
         .attr('d', drawLine)
     }
 
-    let ended = (_, i, n) => {
+    const ended = (_, i, n) => {
       this.props.setData(newData)
       d3.select(n[i]).classed('active', false)
     }
@@ -90,7 +90,7 @@ class Graph extends React.Component {
     this.d3Graph
       .append('g')
       .attr('class', 'x-axis')
-      .attr('transform', 'translate(0,' + (height - margin.bottom - margin.top) + ')')
+      .attr('transform', `translate(0,${height - margin.bottom - margin.top})`)
       .call(d3.axisBottom(tScale).tickFormat(d3.timeFormat('%Y-%m-%d')))
       .selectAll('text')
       .style('text-anchor', 'end')
@@ -165,7 +165,7 @@ class Graph extends React.Component {
       })
       .attr('r', 8)
 
-    var Root = this.d3Graph
+    const Root = this.d3Graph
     this.d3Graph
       .selectAll('.dot')
       .on('mouseover', function(d, i) {
@@ -193,7 +193,7 @@ class Graph extends React.Component {
       )
   }
 
-  render() {
+  public render() {
     const { width, height } = this.props
     if (!width || !height) {
       return null

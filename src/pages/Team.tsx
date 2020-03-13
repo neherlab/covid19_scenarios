@@ -10,7 +10,7 @@ const Team: React.FC = () => {
     <>
       <h1 className="h1-about">{'The people behind COVID-19 Scenarios'}</h1>
       <Row>
-        <Col lg={2}></Col>
+        <Col lg={2} />
         <Col lg={8}>
           <p>
             This tool was developed at the University of Basel in the
@@ -26,7 +26,7 @@ const Team: React.FC = () => {
           &nbsp; at the Karolinska hospital in Stockholm had the initial idea to develop this tool and suggested
           features and parameters. Jan and Robert Dyrdak provided parameter estimates.
         </Col>
-        <Col lg={2}></Col>
+        <Col lg={2} />
       </Row>
     </>
   )

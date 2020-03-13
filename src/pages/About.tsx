@@ -1,9 +1,9 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap'
 
-import './About.scss'
 import model from '../assets/img/model_sketch.svg'
 import seasonalIllustration from '../assets/img/seasonal_illustration.svg'
+import './About.scss'
 
 import LinkExternal from '../components/Router/LinkExternal'
 
@@ -12,7 +12,7 @@ const About: React.FC = () => {
     <>
       <h1 className="h1-about">{'About COVID-19 Scenarios'}</h1>
       <Row>
-        <Col lg={2}></Col>
+        <Col lg={2} />
         <Col lg={8}>
           <p>
             {`This web application serves as a plannling tool for COVID-19 outbreaks in communities across the world.
@@ -91,7 +91,7 @@ const About: React.FC = () => {
           transmission. The curve is read out and used to change transmission relative to the base line parameters for
           R0 and seasonality.
         </Col>
-        <Col lg={2}></Col>
+        <Col lg={2} />
       </Row>
       <h2>{'---'}</h2>
     </>

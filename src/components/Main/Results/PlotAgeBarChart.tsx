@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import { BarChart, Bar, CartesianGrid, Tooltip, Legend, XAxis, YAxis } from 'recharts'
 import ReactResizeDetector from 'react-resize-detector'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/Result.types'
 import { colors } from './Plot'
@@ -16,7 +16,7 @@ export default function AgePlot({ data, rates }: SimProps) {
   if (!data || !rates) {
     return null
   }
-  const params = data.params
+  const { params } = data
 
   const ages = Object.keys(data.params.ageDistribution)
   const lastDataPoint = data.deterministicTrajectory[data.deterministicTrajectory.length - 1]
@@ -57,9 +57,9 @@ export default function AgePlot({ data, rates }: SimProps) {
                 <Tooltip />
                 <Legend verticalAlign="top" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors['severe']} name="peak severe" />
-                <Bar dataKey="peakCritical" fill={colors['critical']} name="peak critical" />
-                <Bar dataKey="totalDead" fill={colors['death']} name="total deaths" />
+                <Bar dataKey="peakSevere" fill={colors.severe} name="peak severe" />
+                <Bar dataKey="peakCritical" fill={colors.critical} name="peak critical" />
+                <Bar dataKey="totalDead" fill={colors.death} name="total deaths" />
               </BarChart>
               <BarChart
                 width={width}

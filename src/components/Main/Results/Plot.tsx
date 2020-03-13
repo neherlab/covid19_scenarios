@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
 import ReactResizeDetector from 'react-resize-detector'
+import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
 
@@ -22,7 +22,7 @@ export interface LinePlotProps {
 }
 
 function xTickFormatter(tick: Date): string {
-  return new Date(tick).toISOString().substring(0, 10)
+  return new Date(tick).toISOString().slice(0, 10)
 }
 
 function tooltipFormatter(value, name, props) {
@@ -40,20 +40,20 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
     return null
   }
 
-  const hasUserResult: boolean = Boolean(userResult?.trajectory)
+  const hasUserResult = Boolean(userResult?.trajectory)
 
   const nHospitalBeds = (data.params.populationServed * 4.5) / 1000
   const plotData = data.deterministicTrajectory
     .filter((d, i) => i % 4 == 0)
     .map(x => ({
       time: x.time,
-      susceptible: Math.round(x.susceptible['total']) || undefined,
-      exposed: Math.round(x.exposed['total']) || undefined,
-      infectious: Math.round(x.infectious['total']) || undefined,
-      hospitalized: Math.round(x.hospitalized['total']) || undefined,
-      critical: Math.round(x.critical['total']) || undefined,
-      recovered: Math.round(x.recovered['total']) || undefined,
-      dead: Math.round(x.dead['total']) || undefined,
+      susceptible: Math.round(x.susceptible.total) || undefined,
+      exposed: Math.round(x.exposed.total) || undefined,
+      infectious: Math.round(x.infectious.total) || undefined,
+      hospitalized: Math.round(x.hospitalized.total) || undefined,
+      critical: Math.round(x.critical.total) || undefined,
+      recovered: Math.round(x.recovered.total) || undefined,
+      dead: Math.round(x.dead.total) || undefined,
       hospitalBeds: nHospitalBeds,
     }))
 
@@ -92,7 +92,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                   type="monotone"
                   strokeWidth={3}
                   dataKey="susceptible"
-                  stroke={colors['susceptible']}
+                  stroke={colors.susceptible}
                   name="Susceptible"
                 />
                 <Line
@@ -100,7 +100,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                   type="monotone"
                   strokeWidth={3}
                   dataKey="infectious"
-                  stroke={colors['infectious']}
+                  stroke={colors.infectious}
                   name="Infectious"
                 />
                 <Line
@@ -108,7 +108,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                   type="monotone"
                   strokeWidth={3}
                   dataKey="hospitalized"
-                  stroke={colors['severe']}
+                  stroke={colors.severe}
                   name="Severly ill"
                 />
                 <Line
@@ -116,7 +116,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                   type="monotone"
                   strokeWidth={3}
                   dataKey="critical"
-                  stroke={colors['critical']}
+                  stroke={colors.critical}
                   name="Critically ill"
                 />
                 <Line
@@ -124,7 +124,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                   type="monotone"
                   strokeWidth={3}
                   dataKey="dead"
-                  stroke={colors['death']}
+                  stroke={colors.death}
                   name="Cumulative deaths"
                 />
                 <Line
@@ -132,7 +132,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                   type="monotone"
                   strokeWidth={3}
                   dataKey="recovered"
-                  stroke={colors['recovered']}
+                  stroke={colors.recovered}
                   name="Recovered"
                 />
                 <Line

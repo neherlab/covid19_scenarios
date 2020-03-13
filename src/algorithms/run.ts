@@ -1,10 +1,10 @@
 import random from 'random'
 import { CountryAgeDistribution, OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
+import { TimeSeries } from '../components/Main/Containment'
 import { SeverityTableRow } from '../components/Main/SeverityTable'
+import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model.js'
 import { AllParamsFlat } from './Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './Result.types'
-import { TimeSeries } from '../components/Main/Containment'
-import { evolve, collectTotals, getPopulationParams, initializePopulation } from './model.js'
 
 // NOTE: Assumes containment is sorted ascending in time.
 function interpolate(containment: TimeSeries): (t: Date) => number {
