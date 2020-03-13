@@ -50,8 +50,8 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
 
   // TODO: replace this with the table component (similar to severity table)
   return (
-    <Row noGutters>
-      <Col lg={5}>
+    <Row>
+      <Col lg={6}>
         <h5>Proportions</h5>
         <table>
           <thead>
@@ -80,7 +80,7 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
           </tbody>
         </table>
       </Col>
-      <Col lg={5}>
+      <Col lg={6}>
         <h5>Totals/Peak</h5>
         <table>
           <thead>

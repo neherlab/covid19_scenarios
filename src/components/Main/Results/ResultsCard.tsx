@@ -115,12 +115,14 @@ function ResultsCard({ canRun, severity, result }: ResutsCardProps) {
         </Col>
       </Row>
       <Row>
-        <Col lg={12}>
+        <Col>
           <AgeBarChart data={result} rates={severity} />
         </Col>
       </Row>
       <Row>
-        <OutcomeRatesTable result={result} rates={severity} />
+        <Col>
+          <OutcomeRatesTable result={result} rates={severity} />
+        </Col>
       </Row>
     </CollapsibleCard>
   )
