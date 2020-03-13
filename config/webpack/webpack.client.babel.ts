@@ -15,6 +15,7 @@ import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 import PreloadWebpackPlugin from 'preload-webpack-plugin'
 // import PurgecssPlugin from 'purgecss-webpack-plugin'
 import SizePlugin from 'size-plugin'
+import kill from 'tree-kill'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
@@ -32,6 +33,10 @@ import { getenv } from '../../lib/getenv'
 import htmlTags from './lib/htmlTags'
 
 import babelConfig from '../../babel.config'
+
+process.once('SIGINT', () => {
+  kill(process.pid, 'SIGINT')
+})
 
 const MODE: 'development' | 'production' = getenv('NODE_ENV') === 'development' ? 'development' : 'production' // prettier-ignore
 
