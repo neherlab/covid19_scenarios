@@ -19,6 +19,8 @@ import { getContainmentScenarioData, getEpidemiologicalData, getOverallScenario,
 
 import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './state'
 
+import { updateTimeSeries } from '../../../algorithms/TimeSeries'
+
 function maybeAdd<T>(where: T[], what: T): T[] {
   return _.uniq([...where, what])
 }
@@ -126,5 +128,6 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
     immerCase(setSimulationData, (draft, { data }) => {
       draft.simulation.data = data
+      draft.containment.data.reduction = updateTimeSeries(data.simulationTimeRange, draft.containment.data.reduction)
     }),
   )

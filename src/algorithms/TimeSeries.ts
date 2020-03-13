@@ -1,6 +1,7 @@
 import * as d3 from 'd3'
 
 import { DateRange } from './Param.types'
+import { interpolateTimeSeries } from './run'
 
 interface TimePoint {
   t: Date
@@ -29,6 +30,14 @@ export function makeTimeSeries(simulationTimeRange: DateRange, values: number[])
   return tSeries
 }
 
-export function timeSeriesToReduction(timeSeries: TimeSeries): number[] {
-  return timeSeries.map(timePoint => timePoint.y)
+
+export function updateTimeSeries(simulationTimeRange: DateRange, oldTimeSeries: TimeSeries): TimeSeries {
+  const { tMin, tMax } = simulationTimeRange
+  const n = oldTimeSeries.length
+  const interpolator = interpolateTimeSeries(oldTimeSeries)
+
+  const dates = uniformDatesBetween(tMin.getTime(), tMax.getTime(), n)
+  const newTimeSeries: TimeSeries = dates.map(d => ({t: d, y: interpolator(d)}))
+
+  return newTimeSeries
 }

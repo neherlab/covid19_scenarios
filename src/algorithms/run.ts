@@ -13,7 +13,7 @@ const identity = (x: number) => x
 const poisson = (x: number) => (x > 0 ? random.poisson(x)() : 0)
 
 // NOTE: Assumes containment is sorted ascending in time.
-function interpolate(containment: TimeSeries): (t: Date) => number {
+export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
   // If user hasn't touched containment, this vector is empty
   if (containment.length === 0) {
     return (t: Date) => {
@@ -57,7 +57,7 @@ export default async function run(
   ageDistribution: OneCountryAgeDistribution,
   containment: TimeSeries,
 ): Promise<AlgorithmResult> {
-  const modelParams = getPopulationParams(params, severity, ageDistribution, interpolate(containment))
+  const modelParams = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
   const tMin: number = params.simulationTimeRange.tMin.getTime()
   const initialCases = params.suspectedCasesToday
   let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
