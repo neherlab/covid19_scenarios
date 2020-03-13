@@ -75,7 +75,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       <FormDatePicker
         identifier="simulation.simulationTimeRange"
         label="Simulation time range"
-        help="Start and end date of the simulation"
+        help="Start and end date of the simulation. Changing the time range might affect the result due to resampling of the mitigation curve."
       />
     </CardWithDropdown>
   )
