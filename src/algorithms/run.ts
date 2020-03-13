@@ -13,7 +13,7 @@ const identity = (x: number) => x
 const poisson = (x: number) => (x > 0 ? random.poisson(x)() : 0)
 
 // NOTE: Assumes containment is sorted ascending in time.
-function interpolate(containment: TimeSeries): (t: Date) => number {
+export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
   // If user hasn't touched containment, this vector is empty
   if (containment.length === 0) {
     return (t: Date) => {
@@ -22,20 +22,27 @@ function interpolate(containment: TimeSeries): (t: Date) => number {
   }
 
   return (t: Date) => {
-    const index = containment.findIndex(d => Number(t) < Number(d.t))
+    if (t <= containment[0].t){
+      return containment[0].y
+    } else if (t >= containment[containment.length-1].t) {
+      return containment[containment.length-1].y
+    } else {
+      const index = containment.findIndex(d => Number(t) < Number(d.t))
 
-    // Deal with extrapolation
-    // i.e. the time given exceeds the containment series.
-    if (index <= 0) {
-      return 1.0
+      // Deal with extrapolation
+      // i.e. the time given exceeds the containment series.
+      // should no longer be needed!
+      if (index <= 0) {
+        return 1.0
+      }
+
+      const deltaY = containment[index].y - containment[index - 1].y
+      const deltaT = Number(containment[index].t) - Number(containment[index - 1].t)
+
+      const dS = deltaY / deltaT
+      const dT = Number(t) - Number(containment[index - 1].t)
+      return containment[index - 1].y + dS * dT
     }
-
-    const deltaY = containment[index].y - containment[index - 1].y
-    const deltaT = Number(containment[index].t) - Number(containment[index - 1].t)
-
-    const dS = deltaY / deltaT
-    const dT = Number(t) - Number(containment[index - 1].t)
-    return containment[index - 1].y + dS * dT
   }
 }
 
@@ -50,7 +57,7 @@ export default async function run(
   ageDistribution: OneCountryAgeDistribution,
   containment: TimeSeries,
 ): Promise<AlgorithmResult> {
-  const modelParams = getPopulationParams(params, severity, ageDistribution, interpolate(containment))
+  const modelParams = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
   const tMin: number = params.simulationTimeRange.tMin.getTime()
   const initialCases = params.suspectedCasesToday
   let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)

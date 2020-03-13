@@ -77,7 +77,6 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
         label="Simulation time range"
         help="Start and end date of the simulation"
       />
-      <p>NOTE: Changing the time range will stretch the mitigation curve</p>
     </CardWithDropdown>
   )
 }

@@ -25,16 +25,12 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
   }
 
   function handleChangeContainmentData(timeSeries: TimeSeries) {
-    const reduction = timeSeriesToReduction(timeSeries)
-    scenarioDispatch(setContainmentData({ data: { reduction } }))
+    scenarioDispatch(setContainmentData({ data: { reduction:timeSeries } }))
   }
 
   const containmentScenarioOptions = stringsToOptions(scenarioState.containment.scenarios)
 
-  const containmentData = makeTimeSeries(
-    scenarioState.simulation.data.simulationTimeRange,
-    scenarioState.containment.data.reduction,
-  )
+  const containmentData = scenarioState.containment.data.reduction
 
   return (
     <CardWithDropdown

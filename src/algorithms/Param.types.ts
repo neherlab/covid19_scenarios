@@ -1,3 +1,5 @@
+import { TimeSeries } from './TimeSeries'
+
 export interface PopulationData {
   populationServed: number
   country: string
@@ -16,7 +18,7 @@ export interface EpidemiologicalData {
 }
 
 export interface ContainmentData {
-  reduction: number[]
+  reduction: TimeSeries
 }
 
 export interface DateRange {

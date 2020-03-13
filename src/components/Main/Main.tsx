@@ -76,10 +76,7 @@ function Main() {
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const containmentData = makeTimeSeries(
-      scenarioState.simulation.data.simulationTimeRange,
-      scenarioState.containment.data.reduction,
-    )
+    const containmentData = scenarioState.containment.data.reduction
 
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
 
