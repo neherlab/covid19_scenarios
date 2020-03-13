@@ -1,40 +1,46 @@
 import React from 'react'
-import Plot from 'react-plotly.js'
+
 import { Col, Row } from 'reactstrap'
 
 import { AlgorithmResult } from '../../../algorithms/Result.types'
-import { SeverityTableRow } from '../Severity/SeverityTable'
+
+import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 export interface TableProps {
   result?: AlgorithmResult
   rates?: SeverityTableRow[]
 }
 
-export default function PopTable({ result, rates }: TableProps) {
+// FIXME: Use display format library instead
+const forDisplay = (x: number) => {
+  return Number((100 * x).toFixed(2))
+}
+
+export function OutcomeRatesTable({ result, rates }: TableProps) {
   if (!result || !rates) {
     return null
   }
   const { params } = result
 
+  // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
   let deathFrac = 0
   let severeFrac = 0
   let criticalFrac = 0
-  rates.forEach(function(d) {
+  rates.forEach(d => {
     const freq = params.ageDistribution[d.ageGroup]
     severeFrac += freq * params.infectionSeverityRatio[d.ageGroup]
     criticalFrac += freq * params.infectionSeverityRatio[d.ageGroup] * (d.critical / 100)
     deathFrac += freq * params.infectionSeverityRatio[d.ageGroup] * (d.critical / 100) * (d.fatal / 100)
   })
+
   let mildFrac = 1 - severeFrac - criticalFrac - deathFrac
 
-  const forDisplay = (x: number) => {
-    return Number((100 * x).toFixed(2))
-  }
   deathFrac = forDisplay(deathFrac)
   criticalFrac = forDisplay(criticalFrac)
   severeFrac = forDisplay(severeFrac)
   mildFrac = forDisplay(mildFrac)
 
+  // FIXME: should use display format library instead of rounding
   const totalDeath = Math.round(result.deterministicTrajectory[result.deterministicTrajectory.length - 1].dead.total)
   const totalSevere = Math.round(
     result.deterministicTrajectory[result.deterministicTrajectory.length - 1].discharged.total,
@@ -42,9 +48,9 @@ export default function PopTable({ result, rates }: TableProps) {
   const peakSevere = Math.round(Math.max(...result.deterministicTrajectory.map(x => x.hospitalized.total)))
   const peakCritical = Math.round(Math.max(...result.deterministicTrajectory.map(x => x.critical.total)))
 
+  // TODO: replace this with the table component (similar to severity table)
   return (
-    <>
-      <Col lg={1} />
+    <Row noGutters>
       <Col lg={5}>
         <h5>Proportions</h5>
         <table>
@@ -103,6 +109,6 @@ export default function PopTable({ result, rates }: TableProps) {
           </tbody>
         </table>
       </Col>
-    </>
+    </Row>
   )
 }

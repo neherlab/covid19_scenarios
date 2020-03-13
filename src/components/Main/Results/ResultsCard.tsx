@@ -17,9 +17,9 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { FileType } from '../Compare/FileUploadZone'
 
-import { DeterministicLinePlot } from './Plot'
-import AgePlot from './PlotAgeBarChart'
-import PopTable from './PopAvgRates'
+import { AgeBarChart } from './AgeBarChart'
+import { DeterministicLinePlot } from './DeterministicLinePlot'
+import { OutcomeRatesTable } from './OutcomeRatesTable'
 
 export interface ResutsCardProps {
   canRun: boolean
@@ -116,11 +116,11 @@ function ResultsCard({ canRun, severity, result }: ResutsCardProps) {
       </Row>
       <Row>
         <Col lg={12}>
-          <AgePlot data={result} rates={severity} />
+          <AgeBarChart data={result} rates={severity} />
         </Col>
       </Row>
       <Row>
-        <PopTable result={result} rates={severity} />
+        <OutcomeRatesTable result={result} rates={severity} />
       </Row>
     </CollapsibleCard>
   )

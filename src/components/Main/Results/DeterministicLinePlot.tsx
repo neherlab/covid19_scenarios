@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import ReactResizeDetector from 'react-resize-detector'
-import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
+import { CartesianGrid, Legend, Line, LineChart, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
 
@@ -21,21 +21,30 @@ export interface LinePlotProps {
   logScale?: boolean
 }
 
-function xTickFormatter(tick: Date): string {
+function xTickFormatter(tick: string | number): string {
   return new Date(tick).toISOString().slice(0, 10)
 }
 
-function tooltipFormatter(value, name, props) {
+function tooltipFormatter(
+  value: string | number | Array<string | number>,
+  name: string,
+  entry: TooltipPayload,
+  index: number,
+): React.ReactNode {
   if (name !== 'time') {
     return value
   }
+
+  // FIXME: is this correct?
+  return undefined
 }
 
-function labelFormatter(value) {
+function labelFormatter(value: string | number): React.ReactNode {
   return xTickFormatter(value)
 }
 
 export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotProps) {
+  // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochasticTrajectories.length > 0) {
     return null
   }
@@ -44,7 +53,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
 
   const nHospitalBeds = (data.params.populationServed * 4.5) / 1000
   const plotData = data.deterministicTrajectory
-    .filter((d, i) => i % 4 == 0)
+    .filter((d, i) => i % 4 === 0)
     .map(x => ({
       time: x.time,
       susceptible: Math.round(x.susceptible.total) || undefined,
@@ -61,7 +70,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
   return (
     <div className="w-100 h-100">
       <ReactResizeDetector handleWidth handleHeight>
-        {({ width }) => {
+        {({ width }: { width?: number }) => {
           if (!width) {
             return <div className="w-100 h-100" />
           }

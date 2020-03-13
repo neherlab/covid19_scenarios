@@ -1,9 +1,14 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
+
 import ReactResizeDetector from 'react-resize-detector'
+
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/Result.types'
-import { colors } from './Plot'
+
+import { SeverityTableRow } from '../Scenario/SeverityTable'
+
+import { colors } from './DeterministicLinePlot'
 
 const ASPECT_RATIO = 16 / 4
 
@@ -12,11 +17,10 @@ export interface SimProps {
   rates?: SeverityTableRow[]
 }
 
-export default function AgePlot({ data, rates }: SimProps) {
+export function AgeBarChart({ data, rates }: SimProps) {
   if (!data || !rates) {
     return null
   }
-  const { params } = data
 
   const ages = Object.keys(data.params.ageDistribution)
   const lastDataPoint = data.deterministicTrajectory[data.deterministicTrajectory.length - 1]
@@ -31,7 +35,7 @@ export default function AgePlot({ data, rates }: SimProps) {
   return (
     <div className="w-100 h-100">
       <ReactResizeDetector handleWidth handleHeight>
-        {({ width }) => {
+        {({ width }: { width?: number }) => {
           if (!width) {
             return <div className="w-100 h-100" />
           }

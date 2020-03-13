@@ -152,6 +152,7 @@
     "@types/react-select": "3.0.10",
     "@types/react-transition-group": "4.2.3",
     "@types/reactstrap": "8.4.0",
+    "@types/recharts": "1.8.7",
     "@types/redux-testkit": "1.0.3",
     "@types/sass": "1.16.0",
     "@types/terser-webpack-plugin": "2.2.0",

@@ -1,5 +1,4 @@
 import * as math from 'mathjs'
-import random from 'random'
 
 const msPerDay = 1000 * 60 * 60 * 24
 
@@ -24,7 +23,8 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
 
   // Compute age-stratified parameters
   let total = 0
-  severity.forEach(function(d) {
+  // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
+  severity.forEach(d => {
     total += ageCounts[d.ageGroup]
   })
 
@@ -46,7 +46,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   let criticalFracHospitalized = 0
   let fatalFracCritical = 0
   let avgIsolatedFrac = 0
-  severity.forEach(function(d) {
+  severity.forEach(d => {
     const freq = (1.0 * ageCounts[d.ageGroup]) / total
     pop.ageDistribution[d.ageGroup] = freq
     pop.infectionSeverityRatio[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
@@ -89,28 +89,15 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
 
   // Infectivity dynamics
   const avgInfectionRate = pop.r0 / pop.infectiousPeriod
-  pop.infectionRate = function(time) {
-    return containment(time) * infectionRate(time, avgInfectionRate, pop.peakMonth, pop.seasonalForcing)
-  }
+  pop.infectionRate = time =>
+    containment(time) * infectionRate(time, avgInfectionRate, pop.peakMonth, pop.seasonalForcing)
 
   return pop
 }
 
-// Implementation of Knuth's algorithm
-export function samplePoisson(lambda) {
-  const L = math.exp(-lambda)
-  let k = 0
-  let p = 1
-  do {
-    k += 1
-    p *= math.random()
-  } while (p > L)
-
-  return k - 1
-}
-
 export function initializePopulation(N, numCases, t0, ages) {
-  if (ages == undefined) {
+  // FIXME: Why it can be `undefined`? Can it also be `null`?
+  if (ages === undefined) {
     const put = x => {
       return { total: x }
     }
@@ -149,7 +136,7 @@ export function initializePopulation(N, numCases, t0, ages) {
     pop.discharged[k] = 0
     pop.recovered[k] = 0
     pop.dead[k] = 0
-    if (i == math.round(Object.keys(ages).length / 2)) {
+    if (i === math.round(Object.keys(ages).length / 2)) {
       pop.susceptible[k] -= numCases
       pop.infectious[k] = 0.3 * numCases
       pop.exposed[k] = 0.7 * numCases
@@ -208,9 +195,10 @@ export function evolve(pop, P, sample) {
 }
 
 export function collectTotals(trajectory) {
-  trajectory.forEach(function(d) {
-    Object.keys(d).forEach(function(k) {
-      if (k == 'time' || 'total' in d[k]) {
+  // FIXME: parameter reassign
+  trajectory.forEach(d => {
+    Object.keys(d).forEach(k => {
+      if (k === 'time' || 'total' in d[k]) {
         return
       }
       d[k].total = Object.values(d[k]).reduce((a, b) => a + b)
@@ -226,21 +214,11 @@ export function exportSimulation(trajectory) {
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-
-  function stringify(date) {
-    const d = date.getDay()
-    const m = date.getMonth()
-    const y = date.getYear()
-
-    return `${d} ${month[m]} ${y}`
-  }
-
   const header = Object.keys(trajectory[0]) // ["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"];
   const csv = [header.join('\t')]
 
   const pop = {}
-  trajectory.forEach(function(d) {
+  trajectory.forEach(d => {
     const t = new Date(d.time).toISOString().slice(0, 10)
     if (t in pop) {
       return
@@ -248,7 +226,7 @@ export function exportSimulation(trajectory) {
     pop[t] = true
     let buf = ''
     header.forEach(k => {
-      if (k == 'time') {
+      if (k === 'time') {
         buf += `${t}`
       } else {
         buf += `\t${math.round(d[k].total)}`

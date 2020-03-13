@@ -1,15 +1,21 @@
 import random from 'random'
-import { CountryAgeDistribution, OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
-import { TimeSeries } from '../components/Main/Containment'
-import { SeverityTableRow } from '../components/Main/SeverityTable'
-import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model.js'
+
+import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
+
+import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
+
+import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
 import { AllParamsFlat } from './Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './Result.types'
+import { TimeSeries } from './TimeSeries'
+
+const identity = (x: number) => x
+const poisson = (x: number) => (x > 0 ? random.poisson(x)() : 0)
 
 // NOTE: Assumes containment is sorted ascending in time.
 function interpolate(containment: TimeSeries): (t: Date) => number {
   // If user hasn't touched containment, this vector is empty
-  if (containment.length == 0) {
+  if (containment.length === 0) {
     return (t: Date) => {
       return 1.0
     }
@@ -44,19 +50,11 @@ export default async function run(
   ageDistribution: OneCountryAgeDistribution,
   containment: TimeSeries,
 ): Promise<AlgorithmResult> {
-  console.log(JSON.stringify({ params }, null, 2))
-
   const modelParams = getPopulationParams(params, severity, ageDistribution, interpolate(containment))
   const tMin: number = params.simulationTimeRange.tMin.getTime()
   const initialCases = params.suspectedCasesToday
   let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
   const tMax: number = params.simulationTimeRange.tMax.getTime()
-  const identity = function(x: number) {
-    return x
-  } // Use instead of samplePoisson for a deterministic
-  const poisson = function(x: number) {
-    return x > 0 ? random.poisson(x)() : 0
-  } // poisson sampling
 
   function simulate(initialState: SimulationTimePoint, func: (x: number) => number) {
     const dynamics = [initialState]
