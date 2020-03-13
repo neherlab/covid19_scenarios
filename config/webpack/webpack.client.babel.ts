@@ -159,6 +159,7 @@ export default {
           '@loadable',
           '@redux-saga',
           'delay',
+          'immer',
           'lodash',
           'p-min-delay',
           'react-router',
