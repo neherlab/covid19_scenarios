@@ -50,7 +50,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       />
       <FormDropdown<string>
         identifier="population.country"
-        label="Age Distribution"
+        label="Age distribution"
         help="Country to determine the age distribution in the population"
         options={countryOptions}
         errors={errors}
@@ -58,7 +58,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       />
       <FormSpinBox
         identifier="population.suspectedCasesToday"
-        label="Initial suspected Cases"
+        label="Initial suspected cases"
         help="Number of cases present at the start of simulation"
         step={1}
         errors={errors}
@@ -66,7 +66,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       />
       <FormSpinBox
         identifier="population.importsPerDay"
-        label="Imports per Day"
+        label="Imports per day"
         help="Number of cases imported from the outside per day on average"
         step={0.1}
         errors={errors}

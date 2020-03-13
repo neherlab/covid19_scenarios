@@ -45,7 +45,7 @@ function ScenarioCardEpidemiological({
     >
       <FormSpinBox
         identifier="epidemiological.r0"
-        label="Annual average R0"
+        label={'Annual average R\u2080'}
         help="Average number of secondary infections per case"
         step={0.1}
         errors={errors}
@@ -71,7 +71,7 @@ function ScenarioCardEpidemiological({
       />
       <FormSpinBox
         identifier="epidemiological.seasonalForcing"
-        label="Seasonal Forcing"
+        label="Seasonal forcing"
         help="Amplitude of seasonal variation in transmission"
         step={0.1}
         min={0}
