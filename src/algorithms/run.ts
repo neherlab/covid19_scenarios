@@ -22,20 +22,27 @@ function interpolate(containment: TimeSeries): (t: Date) => number {
   }
 
   return (t: Date) => {
-    const index = containment.findIndex(d => Number(t) < Number(d.t))
+    if (t <= containment[0].t){
+      return containment[0].y
+    } else if (t >= containment[containment.length-1].t) {
+      return containment[containment.length-1].y
+    } else {
+      const index = containment.findIndex(d => Number(t) < Number(d.t))
 
-    // Deal with extrapolation
-    // i.e. the time given exceeds the containment series.
-    if (index <= 0) {
-      return 1.0
+      // Deal with extrapolation
+      // i.e. the time given exceeds the containment series.
+      // should no longer be needed!
+      if (index <= 0) {
+        return 1.0
+      }
+
+      const deltaY = containment[index].y - containment[index - 1].y
+      const deltaT = Number(containment[index].t) - Number(containment[index - 1].t)
+
+      const dS = deltaY / deltaT
+      const dT = Number(t) - Number(containment[index - 1].t)
+      return containment[index - 1].y + dS * dT
     }
-
-    const deltaY = containment[index].y - containment[index - 1].y
-    const deltaT = Number(containment[index].t) - Number(containment[index - 1].t)
-
-    const dS = deltaY / deltaT
-    const dT = Number(t) - Number(containment[index - 1].t)
-    return containment[index - 1].y + dS * dT
   }
 }
 
