@@ -121,7 +121,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                   strokeWidth={3}
                   dataKey="hospitalized"
                   stroke={colors.severe}
-                  name="Severly ill"
+                  name="Severely ill"
                 />
                 <Line
                   dot={false}
