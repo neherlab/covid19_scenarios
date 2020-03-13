@@ -6,7 +6,7 @@ import { AnyAction } from 'typescript-fsa'
 import { makeTimeSeries, TimeSeries, timeSeriesToReduction } from '../../../algorithms/TimeSeries'
 
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
-import { ContainControl } from '../Containment/Containment'
+import { ContainmentGraph } from '../Containment/ContainmentGraph'
 
 import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { setContainmentData, setContainmentScenario } from '../state/actions'
@@ -46,12 +46,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
       onValueChange={handleChangeContainmentScenario}
     >
       <div className="w-auto">
-        <ContainControl
-          data={containmentData}
-          onDataChange={handleChangeContainmentData}
-          minTime={scenarioState.simulation.data.simulationTimeRange.tMin}
-          maxTime={scenarioState.simulation.data.simulationTimeRange.tMax}
-        />
+        <ContainmentGraph data={containmentData} onDataChange={handleChangeContainmentData} />
       </div>
       <div>
         <p>
