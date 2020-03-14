@@ -13,7 +13,7 @@ from datetime import datetime
 CASE_COUNT_URL = "https://covid.ourworldindata.org/data/full_data.csv"
 
 def sorted_date(s):
-    return sorted(s, key=lambda d: datetime.strptime(d["t"], "%Y-%m-%d"))
+    return sorted(s, key=lambda d: datetime.strptime(d["time"], "%Y-%m-%d"))
 
 def stoi(x):
     if x == "":
@@ -25,7 +25,7 @@ def stoi(x):
 # Main point of entry
 
 if __name__ == "__main__":
-    cases = defaultdict(lambda: {"deaths": [], "cases": []})
+    cases = defaultdict(list)
     with urlopen(CASE_COUNT_URL) as res:
         buf = StringIO(res.read().decode(res.headers.get_content_charset()))
         crd = csv.reader(buf)
@@ -33,11 +33,9 @@ if __name__ == "__main__":
         Ix = {elt : i for i, elt in enumerate(next(crd))}
         for row in crd:
             country, date = row[Ix['location']], row[Ix['date']]
-            cases[country]['deaths'].append({"t": date, "y": stoi(row[Ix['total_deaths']])})
-            cases[country]['cases'].append({"t": date, "y": stoi(row[Ix['total_cases']])})
+            cases[country].append({"time": date, "deaths": stoi(row[Ix['total_deaths']]), "death":  stoi(row[Ix['total_cases']])})
 
         for cntry, data in cases.items():
-            cases[cntry]['cases']  = sorted_date(cases[cntry]['cases'])
-            cases[cntry]['deaths'] = sorted_date(cases[cntry]['deaths'])
+            cases[cntry] = sorted_date(cases[cntry])
 
     json.dump(dict(cases), sys.stdout)
