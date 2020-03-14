@@ -33,7 +33,7 @@ if __name__ == "__main__":
         Ix = {elt : i for i, elt in enumerate(next(crd))}
         for row in crd:
             country, date = row[Ix['location']], row[Ix['date']]
-            cases[country].append({"time": date, "deaths": stoi(row[Ix['total_deaths']]), "death":  stoi(row[Ix['total_cases']])})
+            cases[country].append({"time": date, "deaths": stoi(row[Ix['total_deaths']]), "cases":  stoi(row[Ix['total_cases']])})
 
         for cntry, data in cases.items():
             cases[cntry] = sorted_date(cases[cntry])
