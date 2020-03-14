@@ -38,3 +38,12 @@ export interface AllParams {
 }
 
 export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData
+
+interface EmpiricalDatum {
+    time: Date
+    counts: number
+    deaths: number
+}
+
+export type EmpiricalData = EmpiricalDatum[]
+

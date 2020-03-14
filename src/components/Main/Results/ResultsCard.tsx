@@ -9,6 +9,8 @@ import { exportResult } from '../../../algorithms/exportResult'
 import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
 import processUserResult from '../../../algorithms/userResult'
 
+import { EmpiricalData }from '../../../algorithms/Param.types'
+
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import FormSwitch from '../../Form/FormSwitch'
 
@@ -25,9 +27,10 @@ export interface ResutsCardProps {
   canRun: boolean
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
+  caseCounts?: EmpiricalData
 }
 
-function ResultsCard({ canRun, severity, result }: ResutsCardProps) {
+function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) {
   const [logScale, setLogScale] = useState<boolean>(true)
 
   // TODO: shis should probably go into the `Compare/`
@@ -111,7 +114,7 @@ function ResultsCard({ canRun, severity, result }: ResutsCardProps) {
       </Row>
       <Row noGutters>
         <Col>
-          <DeterministicLinePlot data={result} userResult={userResult} logScale={logScale} />
+          <DeterministicLinePlot data={result} userResult={userResult} logScale={logScale} caseCounts={caseCounts} />
         </Col>
       </Row>
       <Row>

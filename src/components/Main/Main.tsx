@@ -13,8 +13,12 @@ import { AlgorithmResult } from '../../algorithms/Result.types'
 import run from '../../algorithms/run'
 import { makeTimeSeries } from '../../algorithms/TimeSeries'
 
+import { EmpiricalData } from '../../algorithms/Param.types'
+
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
+
+import countryCaseCounts from '../../assets/data/case_counts.json'
 
 import { schema } from './validation/schema'
 
@@ -44,6 +48,8 @@ function Main() {
 
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
+
+  const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
   const allParams = {
     population: scenarioState.population.data,
@@ -76,11 +82,13 @@ function Main() {
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[params.population.country]
+    const caseCounts      = countryCaseCounts[params.population.country]
     const containmentData = scenarioState.containment.data.reduction
 
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
 
     setResult(newResult)
+    setEmpiricalCases(caseCounts)
     setSubmitting(false)
   }
 
@@ -112,7 +120,7 @@ function Main() {
                   </Col>
 
                   <Col lg={8} xl={6} className="py-1 px-1">
-                    <ResultsCard canRun={canRun} severity={severity} result={result} />
+                    <ResultsCard canRun={canRun} severity={severity} result={result} caseCounts={empiricalCases}/>
                   </Col>
                 </Row>
               </Form>
