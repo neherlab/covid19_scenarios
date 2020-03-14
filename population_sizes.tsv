@@ -1,4 +1,34 @@
 name	population	ageDistribution	suspectedCasesToday
+Switzerland	8600000	Switzerland	4000
+Germany	83783942	Germany	10000
+France	65273511	France	10000
+Italy	60461826	Italy	200000
+Spain	46754778	Spain	30000
+Poland	37846611	Poland	300
+Romania	19237691	Romania	300
+Netherlands	17134872	Netherlands	3000
+Belgium	11589623	Belgium	2000
+Czech Republic	10708981	Czech Republic	500
+Greece	10423054	Greece	600
+Portugal	10196709	Portugal	400
+Sweden	10099265	Sweden	3000
+Hungary	9660351	Hungary	300
+Austria	9006398	Austria	1500
+Bulgaria	6948445	Bulgaria	300
+Denmark	5792202	Denmark	3000
+Finland	5540720	Finland	500
+Slovakia	5459642	Slovakia	300
+Ireland	4937786	Ireland	400
+Croatia	4105267	Croatia	300
+Lithuania	2722289	Lithuania	300
+Slovenia	2078938	Slovenia	500
+Latvia	1886198	Latvia	200
+Estonia	1326535	Estonia	200
+Cyprus	1207359	Cyprus	200
+Luxembourg	625978	Luxembourg	300
+Malta	441543	Malta	100
+United Kingdom	66000000	United Kingdom of Great Britain and Northern Ireland	3000
+USA	330000000	United States of America	30000
 CH-Zürich	1520968	Switzerland	500
 CH-Bern	1034977	Switzerland	300
 CH-Luzern	409557	Switzerland	60
@@ -41,32 +71,4 @@ DE-Sachsen	4077937	Germany	465
 DE-Sachsen-Anhalt	2208321	Germany	225
 DE-Schleswig-Holstein	2896712	Germany	300
 DE-Thüringen	2143145	Germany	230
-Germany	83783942	Germany	10000
-France	65273511	France	10000
-Italy	60461826	Italy	200000
-Spain	46754778	Spain	30000
-Poland	37846611	Poland	300
-Romania	19237691	Romania	300
-Netherlands	17134872	Netherlands	3000
-Belgium	11589623	Belgium	2000
-Czech Republic	10708981	Czech Republic	500
-Greece	10423054	Greece	600
-Portugal	10196709	Portugal	400
-Sweden	10099265	Sweden	3000
-Hungary	9660351	Hungary	300
-Austria	9006398	Austria	1500
-Bulgaria	6948445	Bulgaria	300
-Denmark	5792202	Denmark	3000
-Finland	5540720	Finland	500
-Slovakia	5459642	Slovakia	300
-Ireland	4937786	Ireland	400
-Croatia	4105267	Croatia	300
-Lithuania	2722289	Lithuania	300
-Slovenia	2078938	Slovenia	500
-Latvia	1886198	Latvia	200
-Estonia	1326535	Estonia	200
-Cyprus	1207359	Cyprus	200
-Luxembourg	625978	Luxembourg	300
-Malta	441543	Malta	100
-USA	330000000	United States of America	30000
 SE-Stockholm	2000000	Sweden	2000

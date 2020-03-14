@@ -3,7 +3,7 @@ import json
 import numpy as np
 
 def getImportsPerDay(pop, cases):
-    return np.maximum(0.1, 0.00001*np.maximum(np.sqrt(pop),10)*np.maximum(cases,1))
+    return np.maximum(0.1, 0.00001*np.maximum(pop**0.3,10)*np.maximum(cases,1))
 
 
 if __name__ == '__main__':
