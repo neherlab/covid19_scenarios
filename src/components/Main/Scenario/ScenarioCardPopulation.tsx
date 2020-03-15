@@ -44,7 +44,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
         identifier="population.populationServed"
         label="Population"
         help="Number of people served by health care system"
-        step={1000}
+        step={1}
         errors={errors}
         touched={touched}
       />
@@ -76,7 +76,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
         identifier="population.hospitalBeds"
         label="Hospital Beds (est.)"
         help="Number of hospital beds available in health care system. Presets are rough estimates."
-        step={10}
+        step={1}
         errors={errors}
         touched={touched}
       />
