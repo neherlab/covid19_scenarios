@@ -21,10 +21,7 @@ def stoi(x):
 
     return int(x)
 
-# -----------------------------------------------------------------------------
-# Main point of entry
-
-if __name__ == "__main__":
+def getCaseCounts():
     cases = defaultdict(list)
     with urlopen(CASE_COUNT_URL) as res:
         buf = StringIO(res.read().decode(res.headers.get_content_charset()))
@@ -38,4 +35,11 @@ if __name__ == "__main__":
         for cntry, data in cases.items():
             cases[cntry] = sorted_date(cases[cntry])
 
-    json.dump(dict(cases), sys.stdout)
+    return dict(cases)
+# -----------------------------------------------------------------------------
+# Main point of entry
+
+if __name__ == "__main__":
+    cases = getCaseCounts()
+
+    json.dump(cases, sys.stdout)
