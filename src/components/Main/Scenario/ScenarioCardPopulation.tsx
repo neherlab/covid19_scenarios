@@ -84,7 +84,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
         identifier="population.ICUBeds"
         label="ICU/Ventilors"
         help="Number of ICU/ventilators available in health care system"
-        step={10}
+        step={1}
         errors={errors}
         touched={touched}
       />
