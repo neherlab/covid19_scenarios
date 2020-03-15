@@ -24,6 +24,8 @@ const populationScenarios: PopulationScenario[] = [
       country: 'Sweden',
       suspectedCasesToday: 500,
       importsPerDay: 2,
+      hospitalBeds:10000,
+      ICUBeds:800
     },
   },
   {
