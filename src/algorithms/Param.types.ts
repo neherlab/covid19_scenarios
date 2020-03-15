@@ -41,7 +41,7 @@ export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationDat
 
 interface EmpiricalDatum {
     time: Date
-    counts: number
+    cases: number
     deaths: number
 }
 

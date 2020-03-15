@@ -20,7 +20,7 @@ export interface LinePlotProps {
   data?: AlgorithmResult
   userResult?: UserResult
   logScale?: boolean
-  caseCounts?: EmpiricalData 
+  caseCounts?: EmpiricalData
 }
 
 function xTickFormatter(tick: string | number): string {
@@ -46,23 +46,21 @@ function labelFormatter(value: string | number): React.ReactNode {
 }
 
 export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
+  console.log('cases', caseCounts);
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochasticTrajectories.length > 0) {
     return null
   }
 
+  let observations = []
   if (caseCounts) {
-      caseCounts.forEach(function(d, i) {
-          caseCounts[i].time = new Date(d.time);
-          caseCounts[i].time = caseCounts[i].time.getTime()
-          if (d.counts == 0) {
-              caseCounts[i].counts = undefined;
-          }
-
-          if (d.deaths == 0) {
-              caseCounts[i].deaths = undefined;
-          }
+    caseCounts.forEach(function(d, i) {
+      observations.push({
+        time: (new Date(d.time)).getTime(),
+        cases: d.cases || undefined,
+        observedDeaths: d.deaths || undefined
       })
+    })
   }
 
   const hasUserResult = Boolean(userResult?.trajectory)
@@ -89,7 +87,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const tMin = plotData[0].time
   const tMax = plotData[plotData.length-1].time
   if (caseCounts) {
-      plotData = plotData.concat(caseCounts.filter((d) => {return d.time >= tMin && d.time <= tMax}))
+      plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
   }
 
   const logScaleString = logScale ? 'log' : 'linear'
@@ -192,7 +190,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                   legendType="none"
                 />
                 <Scatter
-                  dataKey="deaths"
+                  dataKey="observedDeaths"
                   fill={colors.death}
                   legendType="none"
                 />
