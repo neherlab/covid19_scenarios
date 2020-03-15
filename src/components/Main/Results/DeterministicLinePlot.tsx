@@ -46,7 +46,6 @@ function labelFormatter(value: string | number): React.ReactNode {
 }
 
 export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
-  console.log('cases', caseCounts);
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochasticTrajectories.length > 0) {
     return null
@@ -186,11 +185,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                 <Scatter
                   dataKey="cases"
                   fill={colors.infectious}
-                  legendType="none"
-                />
-                <Scatter
-                  dataKey="observedDeaths"
-                  fill={colors.death}
                   legendType="none"
                 />
               </ComposedChart>

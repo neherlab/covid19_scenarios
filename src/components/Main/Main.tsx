@@ -78,11 +78,10 @@ function Main() {
       ...params.epidemiological,
       ...params.simulation,
     }
-
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const caseCounts      = countryCaseCounts[params.population.country]
+    const caseCounts      = countryCaseCounts[scenarioState.population.current] || []
     const containmentData = scenarioState.containment.data.reduction
 
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
