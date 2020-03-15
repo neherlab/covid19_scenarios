@@ -4,8 +4,8 @@ import { SimulationData } from '../../../algorithms/Param.types'
 
 const simulationData: SimulationData = {
   simulationTimeRange: {
-    tMin: moment().toDate(),
-    tMax: moment()
+    tMin: moment('2020-03-01').toDate(),
+    tMax: moment('2020-03-01')
       .add(0.5, 'year')
       .toDate(),
   },
