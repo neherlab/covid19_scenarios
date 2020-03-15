@@ -1,10 +1,10 @@
-import containmentScenarios from '../../../assets/data/scenarios/containment'
-import epidemiologicalScenarios from '../../../assets/data/scenarios/epidemiological'
-import overallScenarios, { OverallScenario } from '../../../assets/data/scenarios/overall'
-import populationScenarios from '../../../assets/data/scenarios/populations'
-import simulationData from '../../../assets/data/scenarios/simulation'
+import containmentScenarios from '../../assets/data/scenarios/containment'
+import epidemiologicalScenarios from '../../assets/data/scenarios/epidemiological'
+import overallScenarios, { OverallScenario } from '../../assets/data/scenarios/overall'
+import populationScenarios from '../../assets/data/scenarios/populations'
+import simulationData from '../../assets/data/scenarios/simulation'
 
-import { EpidemiologicalData, PopulationData, SimulationData } from '../../../algorithms/Param.types'
+import { EpidemiologicalData, PopulationData, SimulationData } from '../../algorithms/Param.types'
 
 export const overallScenarioNames = overallScenarios.map(s => s.name)
 export const populationScenarioNames = populationScenarios.map(s => s.name)

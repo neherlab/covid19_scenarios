@@ -11,9 +11,9 @@ import { FormDropdown } from '../../Form/FormDropdown'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-import { setPopulationScenario } from '../state/actions'
+import { setPopulationScenario } from '../../../state/scenario/scenario.actions'
 
-import { State } from '../state/state'
+import { State } from '../../../state/scenario/scenario.state'
 
 const countries = Object.keys(countryAgeDistribution)
 const countryOptions = countries.map(country => ({ value: country, label: country }))

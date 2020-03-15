@@ -9,8 +9,8 @@ import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { ContainmentGraph } from '../Containment/ContainmentGraph'
 
 import { stringsToOptions } from '../../Form/FormDropdownOption'
-import { setContainmentData, setContainmentScenario } from '../state/actions'
-import { State } from '../state/state'
+import { setContainmentData, setContainmentScenario } from '../../../state/scenario/scenario.actions'
+import { State } from '../../../state/scenario/scenario.state'
 
 export interface ScenarioCardContainmentProps {
   scenarioState: State

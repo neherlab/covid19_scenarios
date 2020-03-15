@@ -10,8 +10,8 @@ import { FormDropdown } from '../../Form/FormDropdown'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-import { setEpidemiologicalScenario } from '../state/actions'
-import { State } from '../state/state'
+import { setEpidemiologicalScenario } from '../../../state/scenario/scenario.actions'
+import { State } from '../../../state/scenario/scenario.state'
 
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month }))

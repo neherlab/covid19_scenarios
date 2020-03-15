@@ -8,8 +8,8 @@ import { AnyAction } from 'typescript-fsa'
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
 
-import { setOverallScenario } from '../state/actions'
-import { State } from '../state/state'
+import { setOverallScenario } from '../../../state/scenario/scenario.actions'
+import { State } from '../../../state/scenario/scenario.state'
 
 import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'

@@ -18,9 +18,9 @@ import severityData from '../../assets/data/severityData.json'
 
 import { schema } from './validation/schema'
 
-import { setEpidemiologicalData, setPopulationData, setSimulationData } from './state/actions'
-import { scenarioReducer } from './state/reducer'
-import { defaultScenarioState } from './state/state'
+import { setEpidemiologicalData, setPopulationData, setSimulationData } from '../../state/scenario/scenario.actions'
+import { scenarioReducer } from '../../state/scenario/scenario.reducer'
+import { defaultScenarioState } from '../../state/scenario/scenario.state'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'

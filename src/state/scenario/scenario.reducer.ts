@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
-import immerCase from '../../../state/util/fsaImmerReducer'
+import immerCase from '../util/fsaImmerReducer'
 
 import {
   setContainmentData,
@@ -19,7 +19,7 @@ import { getContainmentScenarioData, getEpidemiologicalData, getOverallScenario,
 
 import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './scenario.state'
 
-import { updateTimeSeries } from '../../../algorithms/TimeSeries'
+import { updateTimeSeries } from '../../algorithms/TimeSeries'
 
 function maybeAdd<T>(where: T[], what: T): T[] {
   return _.uniq([...where, what])
