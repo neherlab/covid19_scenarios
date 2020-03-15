@@ -8,11 +8,11 @@ import {
   getSimulationData,
   overallScenarioNames,
   populationScenarioNames,
-} from './data'
+} from './scenario.data'
 
 import { ContainmentData, EpidemiologicalData, PopulationData, SimulationData } from '../../../algorithms/Param.types'
 
-export interface State {
+export interface ScenarioState {
   overall: {
     scenarios: string[]
     current: string
@@ -43,7 +43,7 @@ export const CUSTOM_SCENARIO_NAME = 'Custom'
 export const defaultOverallScenarioName = DEFAULT_OVERALL_SCENARIO_NAME
 export const defaultScenario = getOverallScenario(defaultOverallScenarioName)
 
-export const defaultScenarioState: State = {
+export const defaultScenarioState: ScenarioState = {
   overall: {
     scenarios: overallScenarioNames,
     current: defaultOverallScenarioName,

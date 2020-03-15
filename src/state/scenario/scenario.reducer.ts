@@ -13,11 +13,11 @@ import {
   setPopulationData,
   setPopulationScenario,
   setSimulationData,
-} from './actions'
+} from './scenario.actions'
 
-import { getContainmentScenarioData, getEpidemiologicalData, getOverallScenario, getPopulationData } from './data'
+import { getContainmentScenarioData, getEpidemiologicalData, getOverallScenario, getPopulationData } from './scenario.data'
 
-import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './state'
+import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './scenario.state'
 
 import { updateTimeSeries } from '../../../algorithms/TimeSeries'
 
