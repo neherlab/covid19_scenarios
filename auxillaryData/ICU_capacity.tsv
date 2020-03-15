@@ -1,0 +1,33 @@
+country	AcuteCare	AcuteCarPer100k	IMCU	ICU 	CriticalCare	CriticalCarePer100k	percentOfTotal	GDP
+Andorra 	188 	224 	  	  	6 	7.1 	3.2 	482.2
+Austria 	48446 	635 	569 	1264 	1833 	21.8 	3.4 	205.9
+Belgium 	50156 	456 	  	  	1755 	15.9 	3.5 	266.5
+Bulgaria 	57460 	766 	  	  	913 	12.2 	1.6 	52.2
+Croatia 	15629 	353 	  	  	650 	14.7 	4.2 	93.6
+Cyprus 	2813 	350 	9 	83 	92 	11.4 	3.3 	251.9
+Czech Republic 	91068 	865 	  	  	1227 	11.6 	1.3 	156.5
+Denmark 	17124 	308 	  	  	372 	6.7 	2.2 	833.0
+Estonia 	5096 	380 	72 	124 	196 	14.6 	3.8 	98.2
+Finland 	12442 	231 	28 	301 	329 	6.1 	2.6 	727.0
+France 	232821 	358 	3471 	4069 	7540 	11.6 	3.2 	339.9
+Germany 	469791 	575 	  	  	23890 	29.2 	5.1 	137.6
+Greece 	44411 	392 	30 	650 	680 	6.0 	1.5 	449.1
+Hungary 	41574 	416 	  	  	1374 	13.8 	3.3 	94.9
+Iceland 	1169 	367 	  	  	29 	9.1 	2.5 	434.3
+Ireland 	12202 	272 	88 	201 	289 	6.5 	2.4 	716.2
+Italy 	201932 	333 	  	  	7550 	12.5 	3.7 	272.2
+Latvia 	11833 	531 	  	  	217 	9.7 	1.8 	110.7
+Lithuania 	17061 	526 	  	  	502 	15.5 	2.9 	72.5
+Luxembourg 	2511 	204 	27 	100 	127 	24.8 	5.1 	432.7
+Netherlands 	56085 	337 	  	  	1065 	6.4 	1.9 	733.0
+Norway 	13639 	277 	  	  	395 	8.0 	2.9 	1045.5
+Poland 	156662 	410 	  	  	2635 	6.9 	1.7 	178.1
+Portugal 	31722 	298 	  	451  	451 	4.2 	1.4 	508.1
+Romania 	108611 	507 	2574 	2000 	4574 	21.4 	4.2 	35.3
+Slovakia 	32560 	599 	  	  	500 	9.2 	1.5 	174.9
+Slovenia 	7656 	373 	  	  	131 	6.4 	1.7 	364.4
+Spain 	124194 	269 	  	  	4479 	9.7 	3.6 	314.8
+Sweden 	26131 	278 	  	  	550 	5.8 	2.1 	834.0
+Switzerland 	28096 	357 	  	  	1400 	11.0 	3.1 	609.6
+United Kingdom of Great Britain and Northern Ireland 	147809 	237 	1737 	2377 	4114 	6.6 	2.8 	547.0
+CH-Basel-Stadt	1000				80
