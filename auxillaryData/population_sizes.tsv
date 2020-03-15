@@ -1,34 +1,34 @@
 name	population	ageDistribution multiplier
-Switzerland	8600000	Switzerland	10
-Germany	83783942	Germany	10
-France	65273511	France	10
-Italy	60461826	Italy	50
-Spain	46754778	Spain	15
-Poland	37846611	Poland	15
-Romania	19237691	Romania	15
-Netherlands	17134872	Netherlands	10
-Belgium	11589623	Belgium	10
-Czech Republic	10708981	Czech Republic	15
-Greece	10423054	Greece	15
-Portugal	10196709	Portugal	15
-Sweden	10099265	Sweden	10
-Hungary	9660351	Hungary	15
-Austria	9006398	Austria	15
-Bulgaria	6948445	Bulgaria	15
-Denmark	5792202	Denmark	10
-Finland	5540720	Finland	10
-Slovakia	5459642	Slovakia	10
-Ireland	4937786	Ireland	10
-Croatia	4105267	Croatia	15
-Lithuania	2722289	Lithuania	15
-Slovenia	2078938	Slovenia	15
-Latvia	1886198	Latvia	15
-Estonia	1326535	Estonia	15
-Cyprus	1207359	Cyprus	15
-Luxembourg	625978	Luxembourg	10
-Malta	441543	Malta	10
-United Kingdom	66000000	United Kingdom of Great Britain and Northern Ireland	10
-USA	330000000	United States of America	30
+Switzerland	8600000	Switzerland	30
+Germany	83783942	Germany	30
+France	65273511	France	30
+Italy	60461826	Italy	200
+Spain	46754778	Spain	100
+Poland	37846611	Poland	50
+Romania	19237691	Romania	50
+Netherlands	17134872	Netherlands	30
+Belgium	11589623	Belgium	30
+Czech Republic	10708981	Czech Republic	50
+Greece	10423054	Greece	50
+Portugal	10196709	Portugal	50
+Sweden	10099265	Sweden	30
+Hungary	9660351	Hungary	50
+Austria	9006398	Austria	50
+Bulgaria	6948445	Bulgaria	50
+Denmark	5792202	Denmark	30
+Finland	5540720	Finland	30
+Slovakia	5459642	Slovakia	30
+Ireland	4937786	Ireland	30
+Croatia	4105267	Croatia	50
+Lithuania	2722289	Lithuania	50
+Slovenia	2078938	Slovenia	50
+Latvia	1886198	Latvia	50
+Estonia	1326535	Estonia	50
+Cyprus	1207359	Cyprus	50
+Luxembourg	625978	Luxembourg	30
+Malta	441543	Malta	30
+United Kingdom	66000000	United Kingdom of Great Britain and Northern Ireland	30
+United States	330000000	United States of America	100
 CH-Zürich	1520968	Switzerland
 CH-Bern	1034977	Switzerland
 CH-Luzern	409557	Switzerland
