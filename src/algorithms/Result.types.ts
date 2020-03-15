@@ -27,6 +27,8 @@ export interface ModelParams {
   timeDelta: number
   populationServed: number
   numberStochasticRuns: number
+  hospitalBeds: number
+  ICUBeds: number
 }
 
 export interface AlgorithmResult {
