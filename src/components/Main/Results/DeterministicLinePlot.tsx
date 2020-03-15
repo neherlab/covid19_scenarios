@@ -187,6 +187,11 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                   fill={colors.infectious}
                   legendType="none"
                 />
+                <Scatter
+                  dataKey="observedDeaths"
+                  fill={colors.death}
+                  legendType="none"
+                />
               </ComposedChart>
             </>
           )
