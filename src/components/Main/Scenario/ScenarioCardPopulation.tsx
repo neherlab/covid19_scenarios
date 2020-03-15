@@ -44,7 +44,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
         identifier="population.populationServed"
         label="Population"
         help="Number of people served by health care system"
-        step={1000}
+        step={1}
         errors={errors}
         touched={touched}
       />
@@ -72,10 +72,26 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
         errors={errors}
         touched={touched}
       />
+      <FormSpinBox
+        identifier="population.hospitalBeds"
+        label="Hospital Beds (est.)"
+        help="Number of hospital beds available in health care system. Presets are rough estimates."
+        step={1}
+        errors={errors}
+        touched={touched}
+      />
+      <FormSpinBox
+        identifier="population.ICUBeds"
+        label="ICU/ICMU (est.)"
+        help="Number of ICU/ICMUs available in health care system. Presets are rough estimates."
+        step={1}
+        errors={errors}
+        touched={touched}
+      />
       <FormDatePicker
         identifier="simulation.simulationTimeRange"
         label="Simulation time range"
-        help="Start and end date of the simulation"
+        help="Start and end date of the simulation. Changing the time range might affect the result due to resampling of the mitigation curve."
       />
     </CardWithDropdown>
   )
