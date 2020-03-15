@@ -82,8 +82,8 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       />
       <FormSpinBox
         identifier="population.ICUBeds"
-        label="ICU/Ventilors (est.)"
-        help="Number of ICU/ventilators available in health care system. Presets are rough estimates."
+        label="ICU/ICMU (est.)"
+        help="Number of ICU/ICMUs available in health care system. Presets are rough estimates."
         step={1}
         errors={errors}
         touched={touched}
