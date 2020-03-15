@@ -13,6 +13,8 @@ const populationScenarios: PopulationScenario[] = [
       country: 'Switzerland',
       suspectedCasesToday: 100,
       importsPerDay: 0.5,
+      hospitalBeds:1000,
+      ICUBeds:80
     },
   },
   {
@@ -31,6 +33,8 @@ const populationScenarios: PopulationScenario[] = [
       country: 'Switzerland',
       suspectedCasesToday: 1000,
       importsPerDay: 5,
+      hospitalBeds: 38000,
+      ICUBeds: 1400
     },
   },
   {
@@ -40,6 +44,8 @@ const populationScenarios: PopulationScenario[] = [
       country: 'Germany',
       suspectedCasesToday: 10000,
       importsPerDay: 10,
+      hospitalBeds: 640000,
+      ICUBeds: 28000
     },
   },
   {
@@ -49,6 +55,8 @@ const populationScenarios: PopulationScenario[] = [
       country: 'United States of America',
       suspectedCasesToday: 100000,
       importsPerDay: 50,
+      hospitalBeds: 1000000,
+      ICUBeds: 100000
     },
   },
 ]

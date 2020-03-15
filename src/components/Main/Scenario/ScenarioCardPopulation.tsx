@@ -72,6 +72,22 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
         errors={errors}
         touched={touched}
       />
+      <FormSpinBox
+        identifier="population.hospitalBeds"
+        label="Hospital Beds"
+        help="Number of hospital beds available in health care system"
+        step={10}
+        errors={errors}
+        touched={touched}
+      />
+      <FormSpinBox
+        identifier="population.ICUBeds"
+        label="ICU/Ventilors"
+        help="Number of ICU/ventilators available in health care system"
+        step={10}
+        errors={errors}
+        touched={touched}
+      />
       <FormDatePicker
         identifier="simulation.simulationTimeRange"
         label="Simulation time range"
