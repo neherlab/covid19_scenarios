@@ -93,8 +93,8 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       />
       <FormDropdown<string>
         identifier="population.cases"
-        label="Observations"
-        help="Select region for which to plot observed case counts."
+        label="Confirmed cases"
+        help="Select region for which to plot confirmed case and death counts."
         options={caseCountOptions}
         errors={errors}
         touched={touched}
