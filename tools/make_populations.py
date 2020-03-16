@@ -114,6 +114,8 @@ if __name__ == '__main__':
             dd['suspectedCasesToday'] = 5
 
         dd['importsPerDay'] = round(getImportsPerDay(popSize, dd['suspectedCasesToday']),1)
+        dd['importsPerDay'] = round(getImportsPerDay(popSize, dd['suspectedCasesToday']),1)
+        dd['cases'] = d['name'] if d['name'] in cases else 'none'
 
     with open('../src/assets/data/population.json', 'w') as fh:
         json.dump(pops, fh)

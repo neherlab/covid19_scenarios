@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { ActionCreator } from 'typescript-fsa'
 
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
+import countryCaseCounts from '../../../assets/data/case_counts.json'
 
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
@@ -19,6 +20,8 @@ import { selectCurrentScenarioPopulation, selectScenariosPopulation } from '../.
 
 const countries = Object.keys(countryAgeDistribution)
 const countryOptions = countries.map(country => ({ value: country, label: country }))
+const caseCountOptions = Object.keys(countryCaseCounts).map(country => ({ value: country, label: country }))
+caseCountOptions.push({value:'none', label:"None"})
 
 export interface ScenarioCardPopulationProps {
   errors?: FormikErrors<any>
@@ -94,6 +97,14 @@ function ScenarioCardPopulation({
         label="ICU/ICMU (est.)"
         help="Number of ICU/ICMUs available in health care system. Presets are rough estimates."
         step={1}
+        errors={errors}
+        touched={touched}
+      />
+      <FormDropdown<string>
+        identifier="population.cases"
+        label="Confirmed cases"
+        help="Select region for which to plot confirmed case and death counts."
+        options={caseCountOptions}
         errors={errors}
         touched={touched}
       />

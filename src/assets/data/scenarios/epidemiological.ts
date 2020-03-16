@@ -9,7 +9,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Slow/North',
     data: {
-      r0: 1.7,
+      r0: 2.2,
       incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
@@ -21,7 +21,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Moderate/North',
     data: {
-      r0: 2.2,
+      r0: 2.7,
       incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
@@ -33,7 +33,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Fast/North',
     data: {
-      r0: 2.7,
+      r0: 3.2,
       incubationTime: 4,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
@@ -45,7 +45,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Slow/South',
     data: {
-      r0: 1.7,
+      r0: 2.2,
       incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
@@ -57,7 +57,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Moderate/South',
     data: {
-      r0: 2.2,
+      r0: 2.7,
       incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
@@ -69,7 +69,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Fast/South',
     data: {
-      r0: 2.7,
+      r0: 3.2,
       incubationTime: 4,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
@@ -81,7 +81,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Slow/Tropical',
     data: {
-      r0: 1.7,
+      r0: 2.0,
       incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
@@ -93,7 +93,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Moderate/Tropical',
     data: {
-      r0: 2.2,
+      r0: 2.5,
       incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
@@ -105,7 +105,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
     name: 'Fast/Tropical',
     data: {
-      r0: 2.7,
+      r0: 3.0,
       incubationTime: 4,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
