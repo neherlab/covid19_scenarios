@@ -82,6 +82,7 @@ function Main({ scenarioData, setPopulationData, setEpidemiologicalData, setSimu
 
                   <Col lg={8} xl={6} className="py-1 px-1">
                     <ResultsCard canRun={canRun} />
+                    <ResultsCard canRun={canRun} />
                   </Col>
                 </Row>
               </Form>

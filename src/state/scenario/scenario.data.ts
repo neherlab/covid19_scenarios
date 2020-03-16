@@ -4,9 +4,10 @@ import overallScenarios, { OverallScenario } from '../../assets/data/scenarios/o
 import populationScenarios from '../../assets/data/scenarios/populations'
 import simulationData from '../../assets/data/scenarios/simulation'
 
+import empiricalCaseCounts from '../../assets/data/case_counts.json'
 import severityData from '../../assets/data/severityData.json'
 
-import { EpidemiologicalData, PopulationData, SimulationData } from '../../algorithms/Param.types'
+import { EmpiricalData, EpidemiologicalData, PopulationData, SimulationData } from '../../algorithms/Param.types'
 import { updateSeverityTable } from '../../components/Main/Scenario/severityTableUpdate'
 
 export const overallScenarioNames = overallScenarios.map(s => s.name)
@@ -52,4 +53,11 @@ export function getSeverityData() {
 
 export function getSimulationData(): SimulationData {
   return simulationData
+}
+
+export function getEmpiricalCaseCounts(): Record<string, EmpiricalData> {
+  return Object.entries(empiricalCaseCounts).reduce((result, [country, caseCounts]) => {
+    const caseCountsParsed = caseCounts.map(cc => ({ ...cc, time: new Date(cc.time) }))
+    return { ...result, [country]: caseCountsParsed }
+  }, {})
 }

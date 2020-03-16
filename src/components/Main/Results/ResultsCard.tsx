@@ -6,9 +6,9 @@ import { connect } from 'react-redux'
 
 import { readFile } from '../../../helpers/readFile'
 
-import { SeverityData } from '../../../algorithms/Param.types'
-import { exportResult } from '../../../algorithms/exportResult'
+import { EmpiricalData, SeverityData } from '../../../algorithms/Param.types'
 import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
+import { exportResult } from '../../../algorithms/exportResult'
 import processUserResult from '../../../algorithms/userResult'
 
 import { State } from '../../../state/reducer'
@@ -26,7 +26,7 @@ import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { FileType } from '../Compare/FileUploadZone'
 
 import { AgeBarChart } from './AgeBarChart'
-import { DeterministicLinePlot } from './DeterministicLinePlot'
+import DeterministicLinePlot from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 
 export interface ResutsCardProps {

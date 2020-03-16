@@ -9,10 +9,12 @@ import {
   overallScenarioNames,
   populationScenarioNames,
   getSeverityData,
+  getEmpiricalCaseCounts,
 } from './scenario.data'
 
 import {
   ContainmentData,
+  EmpiricalData,
   EpidemiologicalData,
   PopulationData,
   SeverityData,
@@ -44,6 +46,9 @@ export interface ScenarioState {
   }
   simulation: {
     data: SimulationData
+  }
+  empiricalCaseCounts: {
+    data: EmpiricalData
   }
 }
 
@@ -78,5 +83,8 @@ export const defaultScenarioState: ScenarioState = {
   },
   simulation: {
     data: getSimulationData(),
+  },
+  empiricalCaseCounts: {
+    data: getEmpiricalCaseCounts(),
   },
 }

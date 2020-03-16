@@ -1,8 +1,14 @@
 import React from 'react'
+
+import { connect } from 'react-redux'
 import ReactResizeDetector from 'react-resize-detector'
-import { CartesianGrid, Legend, Line, LineChart, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
+import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
+import { EmpiricalData } from '../../../algorithms/Param.types'
+
+import { State } from '../../../state/reducer'
+import { selectEmpiricalCaseCounts } from '../../../state/scenario/scenario.selectors'
 
 const ASPECT_RATIO = 16 / 9
 
@@ -19,6 +25,7 @@ export interface LinePlotProps {
   data: AlgorithmResult | null
   userResult?: UserResult
   logScale?: boolean
+  caseCounts?: EmpiricalData
 }
 
 function xTickFormatter(tick: string | number): string {
@@ -43,17 +50,30 @@ function labelFormatter(value: string | number): React.ReactNode {
   return xTickFormatter(value)
 }
 
-export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotProps) {
+function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochasticTrajectories.length > 0) {
     return null
+  }
+
+  console.log({ caseCounts })
+
+  let observations = []
+  if (caseCounts) {
+    caseCounts.forEach(function(d, i) {
+      observations.push({
+        time: new Date(d.time).getTime(),
+        cases: d.cases || undefined,
+        observedDeaths: d.deaths || undefined,
+      })
+    })
   }
 
   const hasUserResult = Boolean(userResult?.trajectory)
 
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
-  const plotData = data.deterministicTrajectory
+  let plotData = data.deterministicTrajectory
     .filter((d, i) => i % 4 === 0)
     .map(x => ({
       time: x.time,
@@ -67,6 +87,13 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     }))
+
+  // Append empirical data
+  const tMin = plotData[0].time
+  const tMax = plotData[plotData.length - 1].time
+  if (caseCounts) {
+    plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
+  }
 
   const logScaleString = logScale ? 'log' : 'linear'
   return (
@@ -82,7 +109,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
           return (
             <>
               <h5>Cases through time</h5>
-              <LineChart
+              <ComposedChart
                 width={width}
                 height={height}
                 data={plotData}
@@ -94,7 +121,7 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="time" tickFormatter={xTickFormatter} />
+                <XAxis dataKey="time" type="number" tickFormatter={xTickFormatter} domain={[tMin, tMax]} />
                 <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} />
                 <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
                 <Legend verticalAlign="top" />
@@ -162,7 +189,9 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
                   stroke="#cccccc"
                   name="total ICU/ICM beds"
                 />
-              </LineChart>
+                <Scatter dataKey="cases" fill={colors.infectious} legendType="none" />
+                <Scatter dataKey="observedDeaths" fill={colors.death} legendType="none" />
+              </ComposedChart>
             </>
           )
         }}
@@ -170,3 +199,11 @@ export function DeterministicLinePlot({ data, userResult, logScale }: LinePlotPr
     </div>
   )
 }
+
+const mapStateToProps = (state: State) => ({
+  caseCounts: selectEmpiricalCaseCounts(state),
+})
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeterministicLinePlot)

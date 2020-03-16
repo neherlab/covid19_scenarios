@@ -1,12 +1,13 @@
 import { State } from '../reducer'
 
 import {
+  AllParams,
   ContainmentData,
+  EmpiricalData,
   EpidemiologicalData,
   PopulationData,
-  SimulationData,
   SeverityData,
-  AllParams,
+  SimulationData,
 } from '../../algorithms/Param.types'
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
@@ -61,6 +62,13 @@ export function selectDataSimulation(state: State): SimulationData {
 
 export function selectDataSeverity(state: State): SeverityData {
   return state.scenario.severity.data
+}
+
+export function selectEmpiricalCaseCounts(state: State): EmpiricalData {
+  const country = selectCountry(state)
+  const cases = state.scenario.empiricalCaseCounts.data
+  console.log({ cases })
+  return cases[country]
 }
 
 export function selectAllScenarioData(state: State): AllParams {
