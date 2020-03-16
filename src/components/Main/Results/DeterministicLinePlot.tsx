@@ -15,6 +15,7 @@ export const colors = {
   recovered: '#33a02c',
   death: '#cab2d6',
   cumulativeCases: '#aaaaaa',
+  newCases: '#fdbf6f',
   hospitalBeds: '#bbbbbb',
   ICUbeds: '#cccccc'
 }
@@ -59,6 +60,9 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   if (!data || data.stochasticTrajectories.length > 0) {
     return null
   }
+  const hasUserResult = Boolean(userResult?.trajectory)
+  const nHospitalBeds = data.params.hospitalBeds
+  const nICUBeds = data.params.ICUBeds
 
   let observations = []
   if (caseCounts) {
@@ -66,15 +70,14 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       observations.push({
         time: (new Date(d.time)).getTime(),
         cases: d.cases || undefined,
-        observedDeaths: d.deaths || undefined
+        observedDeaths: d.deaths || undefined,
+        newCases: (i>2)?((d.cases - caseCounts[i-3].cases) || undefined):undefined,
+        hospitalBeds: nHospitalBeds,
+        ICUbeds: nICUBeds,
       })
     })
   }
 
-  const hasUserResult = Boolean(userResult?.trajectory)
-
-  const nHospitalBeds = data.params.hospitalBeds
-  const nICUBeds = data.params.ICUBeds
   let plotData = data.deterministicTrajectory
     .filter((d, i) => i % 4 === 0)
     .map(x => ({
@@ -107,11 +110,10 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const tMax = plotData[plotData.length-1].time
   if (observations.length) {
       plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
-      scatterToPlot.push({key:'observedDeaths', 'color':colors.death, name:"Cumulative confirmed deaths"})
-      scatterToPlot.push({key:'cases', 'color':colors.cumulativeCases, name:"Cumulative confirmed cases"})
+      scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
+      scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: "Cumulative confirmed cases"})
+      scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: "Confirmed cases past 3 days"})
   }
-
-  console.log(caseCounts, scatterToPlot);
   const logScaleString = logScale ? 'log' : 'linear'
 
   return (
