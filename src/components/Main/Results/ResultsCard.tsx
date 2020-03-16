@@ -2,17 +2,25 @@ import React, { useState } from 'react'
 
 import Papa from 'papaparse'
 import { Button, Col, Row } from 'reactstrap'
+import { connect } from 'react-redux'
 
 import { readFile } from '../../../helpers/readFile'
 
+import { SeverityData } from '../../../algorithms/Param.types'
 import { exportResult } from '../../../algorithms/exportResult'
 import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
 import processUserResult from '../../../algorithms/userResult'
 
+import { State } from '../../../state/reducer'
+import {
+  selectAlgorithmError,
+  selectAlgorithmIsRunning,
+  selectAlgorithmResult,
+} from '../../../state/algorithm/algorithm.selectors'
+import { selectDataSeverity } from '../../../state/scenario/scenario.selectors'
+
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import FormSwitch from '../../Form/FormSwitch'
-
-import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { FileType } from '../Compare/FileUploadZone'
@@ -23,11 +31,13 @@ import { OutcomeRatesTable } from './OutcomeRatesTable'
 
 export interface ResutsCardProps {
   canRun: boolean
-  severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
-  result?: AlgorithmResult
+  severityData: SeverityData
+  result: AlgorithmResult | null
+  isRunning: boolean
+  error: Error | null
 }
 
-function ResultsCard({ canRun, severity, result }: ResutsCardProps) {
+function ResultsCard({ canRun, severityData, result, isRunning, error }: ResutsCardProps) {
   const [logScale, setLogScale] = useState<boolean>(true)
 
   // TODO: shis should probably go into the `Compare/`
@@ -76,11 +86,6 @@ function ResultsCard({ canRun, severity, result }: ResutsCardProps) {
         <Col>
           <div>
             <span>
-              <Button className="run-button" type="submit" color="primary" disabled={!canRun}>
-                Run
-              </Button>
-            </span>
-            <span>
               <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
             </span>
             <span>
@@ -116,16 +121,25 @@ function ResultsCard({ canRun, severity, result }: ResutsCardProps) {
       </Row>
       <Row>
         <Col>
-          <AgeBarChart data={result} rates={severity} />
+          <AgeBarChart data={result} rates={severityData.severityTable} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <OutcomeRatesTable result={result} rates={severity} />
+          <OutcomeRatesTable result={result} rates={severityData.severityTable} />
         </Col>
       </Row>
     </CollapsibleCard>
   )
 }
 
-export { ResultsCard }
+const mapStateToProps = (state: State) => ({
+  severityData: selectDataSeverity(state),
+  result: selectAlgorithmResult(state),
+  isRunning: selectAlgorithmIsRunning(state),
+  error: selectAlgorithmError(state),
+})
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsCard)

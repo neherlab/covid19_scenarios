@@ -4,7 +4,10 @@ import overallScenarios, { OverallScenario } from '../../assets/data/scenarios/o
 import populationScenarios from '../../assets/data/scenarios/populations'
 import simulationData from '../../assets/data/scenarios/simulation'
 
+import severityData from '../../assets/data/severityData.json'
+
 import { EpidemiologicalData, PopulationData, SimulationData } from '../../algorithms/Param.types'
+import { updateSeverityTable } from '../../components/Main/Scenario/severityTableUpdate'
 
 export const overallScenarioNames = overallScenarios.map(s => s.name)
 export const populationScenarioNames = populationScenarios.map(s => s.name)
@@ -41,6 +44,10 @@ export function getContainmentScenarioData(scenario: string) {
     throw new Error(`Error: containment scenario "${scenario}" not found`)
   }
   return containmentScenarioReduction
+}
+
+export function getSeverityData() {
+  return { severityTable: updateSeverityTable(severityData) }
 }
 
 export function getSimulationData(): SimulationData {

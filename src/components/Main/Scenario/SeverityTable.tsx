@@ -3,12 +3,12 @@ import React from 'react'
 import _ from 'lodash'
 
 import { Col, Row } from 'reactstrap'
+import { format as d3format } from 'd3-format'
 
 import { ChangeSet, Column, EditingState, Row as TableRow, Table as TableBase } from '@devexpress/dx-react-grid'
-
 import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress/dx-react-grid-bootstrap4'
 
-import { format as d3format } from 'd3-format'
+import { SeverityTableData } from '../../../algorithms/Param.types'
 
 import { updateSeverityTable } from './severityTableUpdate'
 
@@ -108,29 +108,11 @@ export function Cell({ value, children, column, row, tableColumn, tableRow, onCl
   )
 }
 
-export interface SeverityTableRow {
-  id: number
-  ageGroup: string
-  confirmed: number
-  severe: number
-  critical: number
-  fatal: number
-  totalFatal?: number
-  isolated?: number
-  errors?: {
-    confirmed?: string
-    severe?: string
-    critical?: string
-    fatal?: string
-    isolated?: string
-  }
-}
-
 export type SeverityTableColumn = Column
 
 export interface SeverityTableProps {
-  severity: SeverityTableRow[]
-  setSeverity(severity: SeverityTableRow[]): void
+  severity: SeverityTableData
+  setSeverity(severity: SeverityTableData): void
 }
 
 /**
@@ -141,7 +123,7 @@ export interface SeverityTableProps {
  */
 function SeverityTable({ severity, setSeverity }: SeverityTableProps) {
   const commitChanges = ({ added, changed, deleted }: ChangeSet) => {
-    let changedRows: SeverityTableRow[] = []
+    let changedRows: SeverityTableData = []
 
     if (added) {
       const startingAddedId = severity.length > 0 ? severity[severity.length - 1].id + 1 : 0

@@ -1,7 +1,9 @@
 import React from 'react'
 
 import { FormikErrors, FormikTouched } from 'formik'
-import { AnyAction } from 'typescript-fsa'
+
+import { connect } from 'react-redux'
+import { ActionCreator } from 'typescript-fsa'
 
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 
@@ -11,24 +13,31 @@ import { FormDropdown } from '../../Form/FormDropdown'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-import { setPopulationScenario } from '../../../state/scenario/scenario.actions'
-
-import { State } from '../../../state/scenario/scenario.state'
+import { setPopulationScenario, SetScenarioParams } from '../../../state/scenario/scenario.actions'
+import { State } from '../../../state/reducer'
+import { selectCurrentScenarioPopulation, selectScenariosPopulation } from '../../../state/scenario/scenario.selectors'
 
 const countries = Object.keys(countryAgeDistribution)
 const countryOptions = countries.map(country => ({ value: country, label: country }))
 
 export interface ScenarioCardPopulationProps {
-  scenarioState: State
   errors?: FormikErrors<any>
   touched?: FormikTouched<any>
-  scenarioDispatch(action: AnyAction): void
+  populationScenario: string
+  populationScenarios: string[]
+  setPopulationScenario: ActionCreator<SetScenarioParams>
 }
 
-function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispatch }: ScenarioCardPopulationProps) {
-  const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
+function ScenarioCardPopulation({
+  errors,
+  touched,
+  populationScenario,
+  populationScenarios,
+  setPopulationScenario,
+}: ScenarioCardPopulationProps) {
+  const populationScenarioOptions = stringsToOptions(populationScenarios)
   function handleChangePopulationScenario(newPopulationScenario: string) {
-    scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario }))
+    setPopulationScenario({ scenarioName: newPopulationScenario })
   }
 
   return (
@@ -37,7 +46,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       label={<h5 className="p-0 m-0 d-inline text-truncate">Population</h5>}
       help="Parameters of the population in the health care system."
       options={populationScenarioOptions}
-      value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)}
+      value={populationScenarioOptions.find(s => s.label === populationScenario)}
       onValueChange={handleChangePopulationScenario}
     >
       <FormSpinBox
@@ -97,4 +106,13 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
   )
 }
 
-export { ScenarioCardPopulation }
+const mapStateToProps = (state: State) => ({
+  populationScenario: selectCurrentScenarioPopulation(state),
+  populationScenarios: selectScenariosPopulation(state),
+})
+
+const mapDispatchToProps = {
+  setPopulationScenario,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScenarioCardPopulation)

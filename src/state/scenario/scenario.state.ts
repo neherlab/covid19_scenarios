@@ -8,9 +8,16 @@ import {
   getSimulationData,
   overallScenarioNames,
   populationScenarioNames,
+  getSeverityData,
 } from './scenario.data'
 
-import { ContainmentData, EpidemiologicalData, PopulationData, SimulationData } from '../../algorithms/Param.types'
+import {
+  ContainmentData,
+  EpidemiologicalData,
+  PopulationData,
+  SeverityData,
+  SimulationData,
+} from '../../algorithms/Param.types'
 
 export interface ScenarioState {
   overall: {
@@ -31,6 +38,9 @@ export interface ScenarioState {
     scenarios: string[]
     current: string
     data: ContainmentData
+  }
+  severity: {
+    data: SeverityData
   }
   simulation: {
     data: SimulationData
@@ -62,6 +72,9 @@ export const defaultScenarioState: ScenarioState = {
     scenarios: containmentScenarioNames,
     current: defaultScenario.containmentScenario,
     data: getContainmentScenarioData(defaultScenario.containmentScenario),
+  },
+  severity: {
+    data: getSeverityData(),
   },
   simulation: {
     data: getSimulationData(),

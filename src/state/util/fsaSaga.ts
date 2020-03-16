@@ -38,8 +38,8 @@ export default function fsaSaga<Params, Result>(
 
     try {
       // Call worker
-      const response: AxiosResponse<{ payload: Result }> = yield call(worker, params)
-      const result: Result = response.data.payload
+      const result: Result = yield worker(params)
+      // console.log(JSON.stringify(result, null, 2))
 
       // We are still here? All good, dispatch "done" action with results
       yield put(asyncActionCreators.done({ params, result }))

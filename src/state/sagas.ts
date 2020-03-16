@@ -3,7 +3,9 @@ import { all, call, put } from 'redux-saga/effects'
 
 import { errorAdd } from './error/error.actions'
 
-const allSagas: any[] = []
+import algorithmSagas from './algorithm/algorithm.sagas'
+
+const allSagas = [...algorithmSagas]
 
 function autoRestart(generator: Saga, handleError: Saga<[Error]>) {
   return function* autoRestarting() {

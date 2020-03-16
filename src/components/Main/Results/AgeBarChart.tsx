@@ -4,17 +4,16 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
+import { SeverityTableData } from '../../../algorithms/Param.types'
 import { AlgorithmResult } from '../../../algorithms/Result.types'
-
-import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { colors } from './DeterministicLinePlot'
 
 const ASPECT_RATIO = 16 / 4
 
 export interface SimProps {
-  data?: AlgorithmResult
-  rates?: SeverityTableRow[]
+  data: AlgorithmResult | null
+  rates?: SeverityTableData
 }
 
 export function AgeBarChart({ data, rates }: SimProps) {

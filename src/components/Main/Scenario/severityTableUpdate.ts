@@ -1,11 +1,11 @@
-import { SeverityTableRow } from './SeverityTable'
+import { SeverityTableData } from '../../../algorithms/Param.types'
 
 import { validatePercentage } from './validatePercentage'
 
 /**
  * Updates computable columns in severity table
  */
-export function updateSeverityTable(severity: SeverityTableRow[]): SeverityTableRow[] {
+export function updateSeverityTable(severity: SeverityTableData): SeverityTableData {
   return severity.map(row => {
     const { value: isolated, errors: isolatedErrors } = validatePercentage(row.isolated)
     const { value: confirmed, errors: confirmedErrors } = validatePercentage(row.confirmed)

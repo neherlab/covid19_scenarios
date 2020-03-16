@@ -6,6 +6,10 @@ import createSagaMiddleware from 'redux-saga'
 import createRootReducer from './reducer'
 import createRootSaga from './sagas'
 
+import { defaultAlgorithmState } from './algorithm/algorithm.state'
+import { triggerAlgorithm } from './algorithm/algorithm.actions'
+import { defaultScenarioState } from './scenario/scenario.state'
+
 const development = process.env.NODE_ENV === 'development'
 const debug = development || process.env.DEBUGGABLE_PROD === '1'
 
@@ -38,9 +42,16 @@ export default function configureStore({ url }: StoreParams = storeDefaults) {
     })(enhancer)
   }
 
-  const store = createStore(createRootReducer(history), {}, enhancer)
+  const defaultState = {
+    algorithm: defaultAlgorithmState,
+    scenario: defaultScenarioState,
+  }
+
+  const store = createStore(createRootReducer(history), defaultState, enhancer)
 
   let rootSagaTask = sagaMiddleware.run(createRootSaga())
+
+  store.dispatch(triggerAlgorithm())
 
   if (module.hot) {
     // Setup hot reloading of root reducer

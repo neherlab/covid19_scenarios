@@ -16,7 +16,7 @@ export const colors = {
 }
 
 export interface LinePlotProps {
-  data?: AlgorithmResult
+  data: AlgorithmResult | null
   userResult?: UserResult
   logScale?: boolean
 }

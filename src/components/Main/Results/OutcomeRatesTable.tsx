@@ -2,13 +2,12 @@ import React from 'react'
 
 import { Col, Row } from 'reactstrap'
 
+import { SeverityTableData } from '../../../algorithms/Param.types'
 import { AlgorithmResult } from '../../../algorithms/Result.types'
 
-import { SeverityTableRow } from '../Scenario/SeverityTable'
-
 export interface TableProps {
-  result?: AlgorithmResult
-  rates?: SeverityTableRow[]
+  result: AlgorithmResult | null
+  rates?: SeverityTableData
 }
 
 // FIXME: Use display format library instead

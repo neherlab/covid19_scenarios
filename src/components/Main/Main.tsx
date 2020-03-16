@@ -1,87 +1,64 @@
-import React, { useReducer, useState } from 'react'
+import React from 'react'
 
 import _ from 'lodash'
 
-import { Form, Formik, FormikHelpers } from 'formik'
-
+import { Form, Formik } from 'formik'
+import { connect } from 'react-redux'
 import { Col, Row } from 'reactstrap'
+import { ActionCreator } from 'typescript-fsa'
 
-import { SeverityTableRow } from './Scenario/SeverityTable'
-
-import { AllParams } from '../../algorithms/Param.types'
-import { AlgorithmResult } from '../../algorithms/Result.types'
-import run from '../../algorithms/run'
-import { makeTimeSeries } from '../../algorithms/TimeSeries'
-
-import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
-import severityData from '../../assets/data/severityData.json'
+import { AllParams, SeverityTableData } from '../../algorithms/Param.types'
 
 import { schema } from './validation/schema'
 
-import { setEpidemiologicalData, setPopulationData, setSimulationData } from '../../state/scenario/scenario.actions'
-import { scenarioReducer } from '../../state/scenario/scenario.reducer'
-import { defaultScenarioState } from '../../state/scenario/scenario.state'
+import { State } from '../../state/reducer'
+import {
+  setEpidemiologicalData,
+  SetEpidemiologicalDataParams,
+  setPopulationData,
+  SetPopulationDataParams,
+  setSeverityData,
+  SetSimulationDataParams,
+  setSimulationData,
+} from '../../state/scenario/scenario.actions'
+import { selectAllScenarioData } from '../../state/scenario/scenario.selectors'
 
-import { ResultsCard } from './Results/ResultsCard'
-import { ScenarioCard } from './Scenario/ScenarioCard'
-import { updateSeverityTable } from './Scenario/severityTableUpdate'
+import ResultsCard from './Results/ResultsCard'
+import ScenarioCard from './Scenario/ScenarioCard'
 
 import './Main.scss'
 
-export function severityTableIsValid(severity: SeverityTableRow[]) {
+export function severityTableIsValid(severity: SeverityTableData) {
   return !severity.some(row => _.values(row?.errors).some(x => x !== undefined))
 }
 
-export function severityErrors(severity: SeverityTableRow[]) {
+export function severityErrors(severity: SeverityTableData) {
   return severity.map(row => row?.errors)
 }
 
-const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
+export interface MainProps {
+  scenarioData: AllParams
+  setPopulationData: ActionCreator<SetPopulationDataParams>
+  setEpidemiologicalData: ActionCreator<SetEpidemiologicalDataParams>
+  setSimulationData: ActionCreator<SetSimulationDataParams>
+}
 
-function Main() {
-  const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState /* , initDefaultState */)
-
-  // TODO: Can this complex state be handled by formik too?
-  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
-
-  const allParams = {
-    population: scenarioState.population.data,
-    epidemiological: scenarioState.epidemiological.data,
-    simulation: scenarioState.simulation.data,
-  }
+function Main({ scenarioData, setPopulationData, setEpidemiologicalData, setSimulationData }: MainProps) {
+  const { severityTable } = scenarioData.severity
 
   function setScenarioToCustom(newParams: AllParams) {
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.population, newParams.population)) {
-      scenarioDispatch(setPopulationData({ data: newParams.population }))
+    if (!_.isEqual(scenarioData.population, newParams.population)) {
+      setPopulationData({ data: newParams.population })
     }
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
-      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
+    if (!_.isEqual(scenarioData.epidemiological, newParams.epidemiological)) {
+      setEpidemiologicalData({ data: newParams.epidemiological })
     }
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.simulation, newParams.simulation)) {
-      scenarioDispatch(setSimulationData({ data: newParams.simulation }))
+    if (!_.isEqual(scenarioData.simulation, newParams.simulation)) {
+      setSimulationData({ data: newParams.simulation })
     }
-  }
-
-  async function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    const paramsFlat = {
-      ...params.population,
-      ...params.epidemiological,
-      ...params.simulation,
-    }
-
-    // TODO: check the presence of the current counry
-    // TODO: type cast the json into something
-    const ageDistribution = countryAgeDistribution[params.population.country]
-    const containmentData = scenarioState.containment.data.reduction
-
-    const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
-
-    setResult(newResult)
-    setSubmitting(false)
   }
 
   return (
@@ -89,30 +66,22 @@ function Main() {
       <Col md={12}>
         <Formik
           enableReinitialize
-          initialValues={allParams}
+          initialValues={scenarioData}
           validationSchema={schema}
-          onSubmit={handleSubmit}
           validate={setScenarioToCustom}
         >
           {({ errors, touched, isValid }) => {
-            const canRun = isValid && severityTableIsValid(severity)
+            const canRun = isValid && severityTableIsValid(severityTable)
 
             return (
               <Form className="form">
                 <Row noGutters>
                   <Col lg={4} xl={6} className="py-1 px-1">
-                    <ScenarioCard
-                      severity={severity}
-                      setSeverity={setSeverity}
-                      scenarioState={scenarioState}
-                      scenarioDispatch={scenarioDispatch}
-                      errors={errors}
-                      touched={touched}
-                    />
+                    <ScenarioCard errors={errors} touched={touched} />
                   </Col>
 
                   <Col lg={8} xl={6} className="py-1 px-1">
-                    <ResultsCard canRun={canRun} severity={severity} result={result} />
+                    <ResultsCard canRun={canRun} />
                   </Col>
                 </Row>
               </Form>
@@ -124,4 +93,15 @@ function Main() {
   )
 }
 
-export default Main
+const mapStateToProps = (state: State) => ({
+  scenarioData: selectAllScenarioData(state),
+})
+
+const mapDispatchToProps = {
+  setPopulationData,
+  setEpidemiologicalData,
+  setSeverityData,
+  setSimulationData,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main)

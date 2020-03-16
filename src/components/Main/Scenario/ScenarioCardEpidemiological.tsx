@@ -3,35 +3,42 @@ import React from 'react'
 import moment from 'moment'
 
 import { FormikErrors, FormikTouched } from 'formik'
-import { AnyAction } from 'typescript-fsa'
+import { ActionCreator } from 'typescript-fsa'
+import { connect } from 'react-redux'
 
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-import { setEpidemiologicalScenario } from '../../../state/scenario/scenario.actions'
-import { State } from '../../../state/scenario/scenario.state'
+import { setEpidemiologicalScenario, SetScenarioParams } from '../../../state/scenario/scenario.actions'
+import { State } from '../../../state/reducer'
+import {
+  selectCurrentScenarioEpidemiological,
+  selectScenariosEpidemiological,
+} from '../../../state/scenario/scenario.selectors'
 
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month }))
 
 export interface ScenarioCardEpidemiologicalProps {
-  scenarioState: State
   errors?: FormikErrors<any>
   touched?: FormikTouched<any>
-  scenarioDispatch(action: AnyAction): void
+  epidemiologicalScenario: string
+  epidemiologicalScenarios: string[]
+  setEpidemiologicalScenario: ActionCreator<SetScenarioParams>
 }
 
 function ScenarioCardEpidemiological({
-  scenarioState,
   errors,
   touched,
-  scenarioDispatch,
+  epidemiologicalScenario,
+  epidemiologicalScenarios,
+  setEpidemiologicalScenario,
 }: ScenarioCardEpidemiologicalProps) {
-  const epidemiologicalScenarioOptions = stringsToOptions(scenarioState.epidemiological.scenarios)
+  const epidemiologicalScenarioOptions = stringsToOptions(epidemiologicalScenarios)
   function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
-    scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))
+    setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario })
   }
 
   return (
@@ -40,7 +47,7 @@ function ScenarioCardEpidemiological({
       label={<h5 className="p-0 d-inline text-truncate">{'Epidemiology'}</h5>}
       help="Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region)."
       options={epidemiologicalScenarioOptions}
-      value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)}
+      value={epidemiologicalScenarioOptions.find(s => s.label === epidemiologicalScenario)}
       onValueChange={handleChangeEpidemiologicalScenario}
     >
       <FormSpinBox
@@ -108,4 +115,13 @@ function ScenarioCardEpidemiological({
   )
 }
 
-export { ScenarioCardEpidemiological }
+const mapStateToProps = (state: State) => ({
+  epidemiologicalScenario: selectCurrentScenarioEpidemiological(state),
+  epidemiologicalScenarios: selectScenariosEpidemiological(state),
+})
+
+const mapDispatchToProps = {
+  setEpidemiologicalScenario,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScenarioCardEpidemiological)

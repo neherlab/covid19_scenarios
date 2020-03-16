@@ -1,15 +1,28 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+import { ActionCreator } from 'typescript-fsa'
+
+import { SeverityTableData, SeverityData } from '../../../algorithms/Param.types'
+
+import { State } from '../../../state/reducer'
+import { selectDataSeverity } from '../../../state/scenario/scenario.selectors'
+import { setSeverityData, SetSeverityDataParams } from '../../../state/scenario/scenario.actions'
+
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 
-import { SeverityTable, SeverityTableRow } from './SeverityTable'
+import { SeverityTable } from './SeverityTable'
 
 export interface SeverityCardProps {
-  severity: SeverityTableRow[]
-  setSeverity(severity: SeverityTableRow[]): void
+  severityData: SeverityData
+  setSeverityData: ActionCreator<SetSeverityDataParams>
 }
 
-function SeverityCard({ severity, setSeverity }: SeverityCardProps) {
+function SeverityCard({ severityData, setSeverityData }: SeverityCardProps) {
+  function handleSetSeverity(severityTable: SeverityTableData) {
+    setSeverityData({ data: { severityTable } })
+  }
+
   return (
     <CollapsibleCard
       identifier="severity-card"
@@ -30,9 +43,17 @@ function SeverityCard({ severity, setSeverity }: SeverityCardProps) {
         last column is the implied infection fatality for different age groups.
       </p>
 
-      <SeverityTable severity={severity} setSeverity={setSeverity} />
+      <SeverityTable severity={severityData.severityTable} setSeverity={handleSetSeverity} />
     </CollapsibleCard>
   )
 }
 
-export { SeverityCard }
+const mapStateToProps = (state: State) => ({
+  severityData: selectDataSeverity(state),
+})
+
+const mapDispatchToProps = {
+  setSeverityData,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SeverityCard)
