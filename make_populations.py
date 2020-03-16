@@ -57,13 +57,13 @@ def getICUBedData(fname, toName):
 
 def dumpPopTable(pops, fname):
     with open(fname, 'w') as fh:
-        fh.write('\t'.join(['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds','\n']))
+        fh.write('\t'.join(['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds'])+'\n')
         for pop in pops:
             fh.write('\t'.join([pop['name'],
                                 str(pop['data']['populationServed']),
                                 pop['data']['country'],
                                 str(pop['data']['hospitalBeds']),
-                                str(pop['data']['ICUBeds']),'\n']))
+                                str(pop['data']['ICUBeds'])])+'\n')
 
 def loadPopTable(fname):
     pops = []
