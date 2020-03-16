@@ -55,12 +55,33 @@ def getICUBedData(fname, toName):
 
     return ICUBeds
 
+def dumpPopTable(pops, fname):
+    with open(fname, 'w') as fh:
+        fh.write('\t'.join(['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds','\n']))
+        for pop in pops:
+            fh.write('\t'.join([pop['name'],
+                                str(pop['data']['populationServed']),
+                                pop['data']['country'],
+                                str(pop['data']['hospitalBeds']),
+                                str(pop['data']['ICUBeds']),'\n']))
 
-if __name__ == '__main__':
+def loadPopTable(fname):
     pops = []
-    targetDate = '2020-03-01'
-    cases = getCaseCounts()
+    with open(fname, 'r') as fh:
+        header = fh.readline().strip().split('\t')
+        for line in fh:
+            entries = line.strip().split('\t')
+            tmp = {'name':entries[0], 'data':{}}
+            tmp['data']['populationServed'] = int(entries[1])
+            tmp['data']['country'] = entries[2]
+            tmp['data']['hospitalBeds'] = int(entries[3])
+            tmp['data']['ICUBeds'] = int(entries[4])
+            pops.append(tmp)
 
+    return pops
+
+def generateTable():
+    pops = []
     toThreeLetter, toName = getCountryAbbreviations()
     hospitalBeds = getHospitalBedData('auxillaryData/hospital_capacity.csv', toName)
     ICUBeds = getICUBedData('auxillaryData/ICU_capacity.tsv', toName)
@@ -83,10 +104,6 @@ if __name__ == '__main__':
                 caseCountMultiplier[tmp['name']] = float(entries[3])
 
     popSizes = {d['name']:d['data']['populationServed'] for d in pops}
-    caseCountsMarch = {}
-    for c in cases:
-        start = [x['cases'] for x in cases[c] if x['time']==targetDate]
-        caseCountsMarch[c] = start[0] if len(start) else cases[c][0]['cases']
 
     for d in pops:
         popSize = d['data']['populationServed']
@@ -105,6 +122,27 @@ if __name__ == '__main__':
             dd['ICUBeds'] = int(ICUBeds[country]*popSize/popSizes[country])
         else:
             dd['ICUBeds'] = int(defaultICUValuePerCapita*popSize)
+
+    return pops, caseCountMultiplier
+
+if __name__ == '__main__':
+
+    pops = loadPopTable("auxillaryData/populationData.tsv")
+    oldPops, caseCountMultiplier = generateTable()
+
+    targetDate = '2020-03-01'
+    cases = getCaseCounts()
+
+    popSizes = {d['name']:d['data']['populationServed'] for d in pops}
+    caseCountsMarch = {}
+    for c in cases:
+        start = [x['cases'] for x in cases[c] if x['time']==targetDate]
+        caseCountsMarch[c] = start[0] if len(start) else cases[c][0]['cases']
+
+    for d in pops:
+        popSize = d['data']['populationServed']
+        dd = d['data']
+        country = dd['country']
 
         if d['name'] in caseCountsMarch:
             dd['suspectedCasesToday'] = int(caseCountsMarch[d['name']]*caseCountMultiplier[d['name']])
