@@ -1,0 +1,126 @@
+import { Container, Col, Row } from 'reactstrap'
+
+import { FaGithub } from 'react-icons/fa'
+
+import model from '../assets/img/model_sketch.svg'
+import seasonalIllustration from '../assets/img/seasonal_illustration.svg'
+
+import LinkExternal from '../components/Router/LinkExternal'
+
+
+<Container>
+<Row>
+<Col>
+
+## Smart formulas
+
+Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following equation.
+$$
+L = \frac{1}{2} \rho v^2 S C_L
+$$
+
+<div className="text-left">
+
+$$
+\frac{dS_{a}(t)}{dt} = - \beta_a(t) S_a(t)\sum_{b}I_b(t)
+$$
+
+$$
+\frac{dE_{a}(t)}{dt} = \beta_a(t) S_a(t)\sum_{b}I_b(t) - E_{a}(t)/t_l
+$$
+
+$$
+\frac{dI_{a}(t)}{dt} = E_{a}(t)/t_l - I_a(t)/t_i
+$$
+
+$$
+\frac{dH_{a}(t)}{dt} = (1-m_a) I_a(t)/t_i + (1-f_a) C_a(t)/t_c - H_a(t)/t_h
+$$
+
+$$
+\frac{dC_{a}(t)}{dt} = c_a H_a(t)/t_h - C_a(t)/t_c
+$$
+
+$$
+\frac{dR_{a}(t)}{dt} = m_a I_a(t)/t_i + (1-c_a)H_a(t)
+$$
+
+$$
+\frac{dD_{a}(t)}{dt} = f_a C_a(t)/t_c
+$$
+
+</div>
+
+# About COVID-19 Scenarios
+
+This web application serves as a plannling tool for COVID-19 outbreaks in communities across the world.
+It implements a simple SIR model with additional categories for exposed individuals that are not yet infectious,
+severely sick people in need of hospitalization, people in critical condition, and a fatal category.
+
+
+The source code of this tool is freely available at <LinkExternal url="https://github.com/neherlab/covid19_scenarios"> github.com/neherlab/covid19_scenarios</LinkExternal> and we welcome contributions in any form: comments, suggestions, help with development.
+
+## Basic assumptions
+
+The model works as follows:
+
+ - susceptible individuals are exposed/infected through contact with infectious individuals. Each infectious
+individual causes on average R_<sub>0</sub> secondary infections while they are infectious.
+Transmissibility of the virus could have seasonal variation which is parameterized with the parameter
+"seasonal forcing" (amplitude) and "peak month" (month of most efficient transmission).
+
+ - exposed individuals progress to a symptomatic/infectious state after an average latency
+
+ - infectious individuals recover or progress to severe disease. The ratio of recovery to severe progression
+depends on age
+
+ - severely sick individuals either recover or deteriorate and turn critical. Again, this depends on the age
+
+ - critically ill individuals either return to regular hospital or die. Again, this depends on the age
+
+
+The individual parameters of the model can all be changed to allow exploration of different scenarios.
+
+<figure className="figure w-100 text-center">
+  <img src={model} className="w-75 figure-img" alt="illustration of the model" />
+  <figcaption className="figure-caption text-center">
+    Figure 1. A schematic illustration of the underlying model. S corresponds to the 'susceptible' population,
+    E is 'exposed', I is 'infectious', R 'recovered', H 'severe' (hospitalized), C 'critical' (ICU), and D are
+    fatalities.
+  </figcaption>
+</figure>
+
+
+COVID-19 is much more severe in the elderly and proportion of elderly in a community is therefore an important determinant of the overall burden on the health care system and the death toll. We collected age distributions for many countries from data provided by the UN and make those available as input parameters. Furthermore, we use data provided by the epidemiology group by the <LinkExternal url="http://weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51">Chinese CDC</LinkExternal> to estimate the fraction of severe and fatal cases by age group.
+
+
+## Seasonality
+
+Many respiratory viruses such as influenza, common cold viruses (including other coronaviruses) have a pronounced seasonal variation in incidence which is in part driven by climate variation through the year. We model this seasonal variation using a cosine with an annual period. This is simplistic way to capture seasonality and we don't know yet how seasonality will affect COVID-19 transmission.
+
+<figure className="figure w-100 text-center">
+  <img
+    src={seasonalIllustration}
+    className="w-75 figure-img img-fluid"
+    alt="illustration of seasonal variation in transmission rate"
+  />
+  <figcaption className="figure-caption text-center">
+    Figure 2. Seasonal variation in transmission rate is modeled by a cosine. The model allows to specify the
+    average R0, the amplitude of the cosine (seasonal forcing), and the month of peak transmission.
+  </figcaption>
+</figure>
+
+
+## Transmission reduction
+
+The tool allows to explore temporal variation in the reduction of transmission by infection control measures.
+This is implemented as a curve through time that can be dragged by the mouse to modifiy the assumed
+transmission. The curve is read out and used to change transmission relative to the base line parameters for
+R0 and seasonality.
+
+
+
+
+</Col>
+</Row>
+</Container>

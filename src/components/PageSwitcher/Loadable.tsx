@@ -18,7 +18,7 @@ const Loadable = loadable((props: LoadableProps) => {
   let pagePromise = import(
     /* webpackMode: "lazy" */
     /* webpackChunkName: "pages/[request]" */
-    /* webpackExclude: /(\.(css|scss)|(\/__tests__\/.*|([.\/])(test|spec))\.[jt]sx?)$/ */
+    /* webpackExclude: /(\.(css|scss)|(\/__tests__\/.*|([.\/])(test|spec))\.(js|ts\md)sx?)$/ */
     `../../pages/${props.page}`
   )
 
