@@ -58,7 +58,6 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
 
   const hasResult = Boolean(result?.deterministicTrajectory)
   const canExport = Boolean(hasResult)
-
   return (
     <CollapsibleCard
       identifier="results-card"

@@ -6,7 +6,8 @@ export interface PopulationData {
   suspectedCasesToday: number
   importsPerDay: number
   hospitalBeds: number
-  ICUBeds: number
+  ICUBeds: number,
+  cases: string
 }
 
 export interface EpidemiologicalData {

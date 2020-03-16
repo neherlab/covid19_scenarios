@@ -4,6 +4,7 @@ import { FormikErrors, FormikTouched } from 'formik'
 import { AnyAction } from 'typescript-fsa'
 
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
+import countryCaseCounts from '../../../assets/data/case_counts.json'
 
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
@@ -17,6 +18,8 @@ import { State } from '../state/state'
 
 const countries = Object.keys(countryAgeDistribution)
 const countryOptions = countries.map(country => ({ value: country, label: country }))
+const caseCountOptions = Object.keys(countryCaseCounts).map(country => ({ value: country, label: country }))
+caseCountOptions.push({value:'none', label:"None"})
 
 export interface ScenarioCardPopulationProps {
   scenarioState: State
@@ -85,6 +88,14 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
         label="ICU/ICMU (est.)"
         help="Number of ICU/ICMUs available in health care system. Presets are rough estimates."
         step={1}
+        errors={errors}
+        touched={touched}
+      />
+      <FormDropdown<string>
+        identifier="population.cases"
+        label="Observations"
+        help="Select region for which to plot observed case counts."
+        options={caseCountOptions}
         errors={errors}
         touched={touched}
       />
