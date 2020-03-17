@@ -12,45 +12,6 @@ import LinkExternal from '../components/Router/LinkExternal'
 <Row>
 <Col>
 
-## Smart formulas
-
-Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following equation.
-$$
-L = \frac{1}{2} \rho v^2 S C_L
-$$
-
-<div className="text-left">
-
-$$
-\frac{dS_{a}(t)}{dt} = - \beta_a(t) S_a(t)\sum_{b}I_b(t)
-$$
-
-$$
-\frac{dE_{a}(t)}{dt} = \beta_a(t) S_a(t)\sum_{b}I_b(t) - E_{a}(t)/t_l
-$$
-
-$$
-\frac{dI_{a}(t)}{dt} = E_{a}(t)/t_l - I_a(t)/t_i
-$$
-
-$$
-\frac{dH_{a}(t)}{dt} = (1-m_a) I_a(t)/t_i + (1-f_a) C_a(t)/t_c - H_a(t)/t_h
-$$
-
-$$
-\frac{dC_{a}(t)}{dt} = c_a H_a(t)/t_h - C_a(t)/t_c
-$$
-
-$$
-\frac{dR_{a}(t)}{dt} = m_a I_a(t)/t_i + (1-c_a)H_a(t)
-$$
-
-$$
-\frac{dD_{a}(t)}{dt} = f_a C_a(t)/t_c
-$$
-
-</div>
-
 # About COVID-19 Scenarios
 
 This web application serves as a plannling tool for COVID-19 outbreaks in communities across the world.
@@ -119,6 +80,50 @@ transmission. The curve is read out and used to change transmission relative to 
 R0 and seasonality.
 
 
+## Details of the model
+Qualitatively we model the epidemic dynamics with the following subpopulations:
+
+  * Susceptible individuals [$S$] are exposed to the virus by contact with an infected individual.
+  * Exposed individuals [$E$] progress towards a symptomatic state on average time $t_l$
+  * Infected individuals [$I$] infect an average of $R_0$ secondary infections. On a time-scale of $t_i$, infected individuals either recover or progress towards hospitalization.
+  * Hospitalized individuals [$H$] either recover or worsen towards a critical state on a time-scale of $t_h$.
+  * Critical individuals [$C$] model ICU usage. They either return to the hospital state or die [$D$] on a time-scale of $t_c$
+  * Recovered individuals [$R$] can not be infected again.
+
+Subpopulations are delineated by age classes, indexed by $a$, to allow for variable transition rates dependent upon age.
+Quantitatively, we solve the following system of equations to estimate hospital usage:
+
+<div class="text-left">
+
+$$
+\begin{aligned}
+\frac{dS_{a}(t)}{dt} & = - \beta_a(t) S_a(t)\sum_{b}I_b(t) \\
+\frac{dE_{a}(t)}{dt} & = \beta_a(t) S_a(t)\sum_{b}I_b(t) - E_{a}(t)/t_l \\
+\frac{dI_{a}(t)}{dt} & = E_{a}(t)/t_l - I_a(t)/t_i \\
+\frac{dH_{a}(t)}{dt} & = (1-m_a) I_a(t)/t_i + (1-f_a) C_a(t)/t_c - H_a(t)/t_h \\
+\frac{dC_{a}(t)}{dt} & = c_a H_a(t)/t_h - C_a(t)/t_c \\
+\frac{dR_{a}(t)}{dt} & = m_a I_a(t)/t_i + (1-c_a)H_a(t) \\
+\frac{dD_{a}(t)}{dt} & = f_a C_a(t)/t_c
+\end{aligned}
+$$
+
+</div>
+
+The parameters of this model fall into three categories: a time dependent infection rate $\beta(t)$ time scales of transition to a different subpopulation $t_l$, $t_i$, $t_h$, $t_c$, and age specific parameters $m_a$, $c_a$ and $f_a$ that determine relative rates of different outcomes.
+The latency time from infection to infectiousness is $t_l$, the time an individual is infectious after which he/she either recovers or falls severely ill is $t_i$, the time a sick person recovers or deteriorates into a critical state is $t_h$, and the time a person remains critical before dying or stabilizing is $t_c$.
+The fraction of infectious that are asymptomatic or mild is $m_a$, the fraction of severe cases that turn critical is $c_a$, and the fraction of critical cases that are fatal is $f_a$.
+
+The transmission rate $\beta_a(t)$ is given by
+
+<div class="text-left">
+
+$$
+  \beta_a(t) = R_0 I_a M(t) (1+\varepsilon \cos(2\pi (t-t_{max})))/t_i
+$$
+
+</div>
+
+where $I_a$ is the degree to which particular age groups are isolated from the rest of the population, $M(t)$ is the time course of mitigation measures, $\varepsilon$ is the amplitude of seasonal variation in transmissibility, and $t_{max}$ is the time of the year of peak transmission.
 
 
 </Col>
