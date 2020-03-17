@@ -69,23 +69,20 @@ def loadPopTable(fname):
 
     return pops
 
-def getCountries():
-    with open('data/case-counts/World.tsv') as fd:
-        fd.readline()
-        countries = set([line.split()[0] for line in fd])
-
-    return countries
+def getRegions():
+    with open('src/assets/data/case_counts.json') as fd:
+        regions = json.load(fd)
+        return set(regions.keys())
 
 if __name__ == '__main__':
 
     pops = loadPopTable("data/populationData.tsv")
     popSizes = {d['name']:d['data']['populationServed'] for d in pops}
 
-    countries = getCountries()
-    print(countries)
+    regions = getRegions()
 
     for d in pops:
-        d['data']['cases'] = d['name'] if d['name'] in countries else 'none'
+        d['data']['cases'] = d['name'] if d['name'] in regions else 'none'
 
     with open('src/assets/data/population.json', 'w') as fh:
         json.dump(pops, fh)
