@@ -11,7 +11,7 @@ Parameters fall into three different categories
 
 Most parameters can be adjust in the tool and for many of them we provide presets.
 The presets for populations can be found in the file [data/populationData.tsv](data/populationData.tsv).
-For administrative divisions below the level of countries, our convention is to prefix the name with the two letter country code as in `CH-Zürich`.
+For administrative divisions below the level of countries, our convention is to prefix the name with the three letter country code as in `CHE-Zürich`.
 
 ### Development
 
