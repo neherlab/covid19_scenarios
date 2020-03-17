@@ -5,7 +5,7 @@ import numpy as np
 from download_case_counts import getCaseCounts
 
 def getImportsPerDay(pop, cases):
-    return np.maximum(0.1, 0.00001*np.maximum(pop**0.3,10)*np.maximum(cases,1))
+    return np.maximum(0.1, 0.00003*np.maximum(pop**0.3,10)*np.maximum(cases,1))
 
 def getCountryAbbreviations():
     toThreeLetter = {}
@@ -57,13 +57,15 @@ def getICUBedData(fname, toName):
 
 def dumpPopTable(pops, fname):
     with open(fname, 'w') as fh:
-        fh.write('\t'.join(['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds'])+'\n')
+        fh.write('\t'.join(['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds', 'suspectedCaseMarch1st', 'importsPerDay'])+'\n')
         for pop in pops:
             fh.write('\t'.join([pop['name'],
                                 str(pop['data']['populationServed']),
                                 pop['data']['country'],
                                 str(pop['data']['hospitalBeds']),
-                                str(pop['data']['ICUBeds'])])+'\n')
+                                str(pop['data']['ICUBeds']),
+                                str(pop['data']['suspectedCasesToday']),
+                                str(pop['data']['importsPerDay'])])+'\n')
 
 def loadPopTable(fname):
     pops = []
@@ -76,6 +78,8 @@ def loadPopTable(fname):
             tmp['data']['country'] = entries[2]
             tmp['data']['hospitalBeds'] = int(entries[3])
             tmp['data']['ICUBeds'] = int(entries[4])
+            tmp['data']['suspectedCasesToday'] = int(entries[5])
+            tmp['data']['importsPerDay'] = float(entries[6])
             pops.append(tmp)
 
     return pops
@@ -128,32 +132,33 @@ def generateTable():
 if __name__ == '__main__':
 
     pops = loadPopTable("auxillaryData/populationData.tsv")
-    oldPops, caseCountMultiplier = generateTable()
-
-    targetDate = '2020-03-01'
-    cases = getCaseCounts()
-
     popSizes = {d['name']:d['data']['populationServed'] for d in pops}
-    caseCountsMarch = {}
-    for c in cases:
-        start = [x['cases'] for x in cases[c] if x['time']==targetDate]
-        caseCountsMarch[c] = start[0] if len(start) else cases[c][0]['cases']
+
+    cases = getCaseCounts()
+    # targetDate = '2020-03-01'
+    # caseCountsMarch = {}
+    # for c in cases:
+    #     start = [x['cases'] for x in cases[c] if x['time']==targetDate]
+    #     caseCountsMarch[c] = start[0] if len(start) else cases[c][0]['cases']
+
+    # for d in pops:
+    #     popSize = d['data']['populationServed']
+    #     dd = d['data']
+    #     country = dd['country']
+
+    #     if d['name'] in caseCountsMarch:
+    #         dd['suspectedCasesToday'] = int(caseCountsMarch[d['name']]*caseCountMultiplier[d['name']])
+    #     elif country in caseCountsMarch and country in popSizes:
+    #         dd['suspectedCasesToday'] = int(caseCountsMarch[country]*caseCountMultiplier[country]*popSize/popSizes[country])
+    #     else:
+    #         dd['suspectedCasesToday'] = 5
+
+    #     dd['importsPerDay'] = round(getImportsPerDay(popSize, dd['suspectedCasesToday']),1)
+    #     dd['importsPerDay'] = round(getImportsPerDay(popSize, dd['suspectedCasesToday']),1)
+
 
     for d in pops:
-        popSize = d['data']['populationServed']
-        dd = d['data']
-        country = dd['country']
-
-        if d['name'] in caseCountsMarch:
-            dd['suspectedCasesToday'] = int(caseCountsMarch[d['name']]*caseCountMultiplier[d['name']])
-        elif country in caseCountsMarch and country in popSizes:
-            dd['suspectedCasesToday'] = int(caseCountsMarch[country]*caseCountMultiplier[country]*popSize/popSizes[country])
-        else:
-            dd['suspectedCasesToday'] = 5
-
-        dd['importsPerDay'] = round(getImportsPerDay(popSize, dd['suspectedCasesToday']),1)
-        dd['importsPerDay'] = round(getImportsPerDay(popSize, dd['suspectedCasesToday']),1)
-        dd['cases'] = d['name'] if d['name'] in cases else 'none'
+        d['data']['cases'] = d['name'] if d['name'] in cases else 'none'
 
     with open('../src/assets/data/population.json', 'w') as fh:
         json.dump(pops, fh)
