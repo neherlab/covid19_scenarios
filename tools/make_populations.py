@@ -17,7 +17,6 @@ from collections import defaultdict
 import csv
 import json
 import numpy as np
-from download_case_counts import getCaseCounts
 
 # obsolete
 def getImportsPerDay(pop, cases):
@@ -70,15 +69,23 @@ def loadPopTable(fname):
 
     return pops
 
+def getCountries():
+    with open('data/case-counts/World.tsv') as fd:
+        fd.readline()
+        countries = set([line.split()[0] for line in fd])
+
+    return countries
+
 if __name__ == '__main__':
 
     pops = loadPopTable("data/populationData.tsv")
     popSizes = {d['name']:d['data']['populationServed'] for d in pops}
 
-    cases = getCaseCounts()
+    countries = getCountries()
+    print(countries)
 
     for d in pops:
-        d['data']['cases'] = d['name'] if d['name'] in cases else 'none'
+        d['data']['cases'] = d['name'] if d['name'] in countries else 'none'
 
     with open('src/assets/data/population.json', 'w') as fh:
         json.dump(pops, fh)
