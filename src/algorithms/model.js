@@ -167,19 +167,39 @@ export function evolve(pop, P, sample) {
     newPop[sub][age] = pop[sub][age] + delta
   }
 
-  Object.keys(pop.infectious).forEach(age => {
+  const totCritical = Object.values(pop.critical).reduce((a,b)=> a+b, 0);
+  const tmp = Object.keys(pop.infectious).sort()
+  const oldestAge = tmp[tmp.length-1]
+  const deathRate = (age) => {
+      if (totCritical <= P.ICUBeds) {
+          return P.deathRate[age];
+      } else {
+          return P.deathRate[age] / (P.deathRate[oldestAge] * P.lengthICUStay);
+      }
+  }
+
+  const stabilizationRate = (age) => {
+      if (totCritical <= P.ICUBeds) {
+          return P.stabilizationRate[age];
+      } else {
+          return (1 - P.deathRate[age] / P.deathRate[oldestAge]) / P.lengthICUStay;
+      }
+  }
+
+
+  Object.keys(pop.infectious).sort().forEach(age => {
     const newCases =
       sample(P.importsPerDay[age] * P.timeDeltaDays) +
       sample(
         (1 - P.isolatedFrac[age]) * P.infectionRate(newTime) * pop.susceptible[age] * fracInfected * P.timeDeltaDays,
       )
-    const newInfectious = sample((pop.exposed[age] * P.timeDeltaDays) / P.incubationTime)
-    const newRecovered = sample(pop.infectious[age] * P.timeDeltaDays * P.recoveryRate[age])
+    const newInfectious   = sample((pop.exposed[age] * P.timeDeltaDays) / P.incubationTime)
+    const newRecovered    = sample(pop.infectious[age] * P.timeDeltaDays * P.recoveryRate[age])
     const newHospitalized = sample(pop.infectious[age] * P.timeDeltaDays * P.hospitalizedRate[age])
-    const newDischarged = sample(pop.hospitalized[age] * P.timeDeltaDays * P.dischargeRate[age])
-    const newCritical = sample(pop.hospitalized[age] * P.timeDeltaDays * P.criticalRate[age])
-    const newStabilized = sample(pop.critical[age] * P.timeDeltaDays * P.stabilizationRate[age])
-    const newDead = sample(pop.critical[age] * P.timeDeltaDays * P.deathRate[age])
+    const newDischarged   = sample(pop.hospitalized[age] * P.timeDeltaDays * P.dischargeRate[age])
+    const newCritical     = sample(pop.hospitalized[age] * P.timeDeltaDays * P.criticalRate[age])
+    const newStabilized   = sample(pop.critical[age] * P.timeDeltaDays * stabilizationRate(age))
+    const newDead         = sample(pop.critical[age] * P.timeDeltaDays * deathRate(age))
 
     push('susceptible', age, -newCases)
     push('exposed', age, newCases - newInfectious)
