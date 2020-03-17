@@ -6,7 +6,7 @@ from collections import defaultdict
 # ------------------------------------------------------------------------
 # Globals
 
-FILE = "tools/auxillaryData/countries.csv"
+FILE = "data/country_codes.csv"
 ROOT = "data/case-counts"
 
 # ------------------------------------------------------------------------
@@ -18,7 +18,7 @@ def get_regions(file):
         rdr = csv.reader(f)
         next(rdr)
         for row in rdr:
-            countries[row[3]][row[5]].append(row[8])
+            countries[row[5]][row[6]].append(row[0])
 
     for key, val in countries.items():
         countries[key] = dict(val)
