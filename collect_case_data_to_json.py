@@ -11,7 +11,7 @@ from collections import defaultdict
 # Globals
 
 DATA_DIR   = "data/case-counts"
-UN_COUNTRY = "tools/auxillaryData/countries.csv"
+UN_COUNTRY = "data/country_codes.csv"
 
 # ------------------------------------------------------------------------
 # Functions
@@ -27,7 +27,7 @@ def get_country_codes(twoletter=False):
     rdr   = csv.reader(open(UN_COUNTRY))
 
     for row in rdr:
-        codes[row[8]] = row[10][0:2] if twoletter else row[10]
+        codes[row[0]] = row[1] if twoletter else row[2]
 
     return codes
 
