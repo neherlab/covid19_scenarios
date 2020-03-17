@@ -65,7 +65,7 @@ export function selectDataSeverity(state: State): SeverityData {
 }
 
 export function selectEmpiricalCaseCounts(state: State): EmpiricalData {
-  const country = selectCountry(state)
+  const country = selectCountryOfEmpiricalData(state)
   const cases = state.scenario.empiricalCaseCounts.data
   return cases[country]
 }
@@ -99,6 +99,11 @@ export function selectAllDataFlat(state: State) {
 export function selectCountry(state: State) {
   const population = selectDataPopulation(state)
   return population.country
+}
+
+export function selectCountryOfEmpiricalData(state: State) {
+  const population = selectDataPopulation(state)
+  return population.cases
 }
 
 export function selectAgeDistribution(state: State) {
