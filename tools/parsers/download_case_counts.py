@@ -5,7 +5,6 @@ this should be run from the top level of the repo.
 Will need to be integrated with other parsers once they become available.
 '''
 import csv
-import json
 
 from io import StringIO
 from urllib.request import urlopen
@@ -16,6 +15,9 @@ from datetime import datetime
 # Globals
 
 CASE_COUNT_URL = "https://covid.ourworldindata.org/data/full_data.csv"
+
+# -----------------------------------------------------------------------------
+# Functions
 
 def sorted_date(s):
     return sorted(s, key=lambda d: datetime.strptime(d["time"], "%Y-%m-%d"))
