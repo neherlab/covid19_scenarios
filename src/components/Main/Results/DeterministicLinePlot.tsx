@@ -69,8 +69,6 @@ function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LineP
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
 
-  console.log({ caseCounts })
-
   let observations = []
   if (caseCounts) {
     caseCounts.forEach(function(d, i) {

@@ -67,7 +67,6 @@ export function selectDataSeverity(state: State): SeverityData {
 export function selectEmpiricalCaseCounts(state: State): EmpiricalData {
   const country = selectCountry(state)
   const cases = state.scenario.empiricalCaseCounts.data
-  console.log({ cases })
   return cases[country]
 }
 

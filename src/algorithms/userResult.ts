@@ -1,7 +1,6 @@
 import { SimulationTimePoint, UserResult } from './Result.types'
 
 export default function processUserResult(rawUserResult: string[]): UserResult {
-  console.log({ rawUserResult })
 
   // These are the columns we got from currently exported files.
   // They my not be present in the user results.
