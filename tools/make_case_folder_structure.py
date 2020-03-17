@@ -6,8 +6,8 @@ from collections import defaultdict
 # ------------------------------------------------------------------------
 # Globals
 
-FILE = "./auxillaryData/countries.csv"
-ROOT = "../data/case-counts"
+FILE = "tools/auxillaryData/countries.csv"
+ROOT = "data/case-counts"
 
 # ------------------------------------------------------------------------
 # Functions

@@ -23,7 +23,7 @@ X = {
 }
 
 URL = "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
-LOC = "../../data/case-counts/Europe/Southern Europe/Italy"
+LOC = "data/case-counts/Europe/Southern Europe/Italy"
 
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
