@@ -22,12 +22,12 @@ def stoi(x):
 
     return int(x)
 
-def get_country_codes():
+def get_country_codes(twoletter=True):
     codes = {}
     rdr   = csv.reader(open(UN_COUNTRY))
 
     for row in rdr:
-        codes[row[8]] = row[10]
+        codes[row[8]] = row[10][0:2] if twoletter else row[10]
 
     return codes
 
