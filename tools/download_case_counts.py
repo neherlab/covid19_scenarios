@@ -1,4 +1,9 @@
-import sys
+'''
+parse country case counts provided by OurWorldInData and write results to json
+this should be run from the top level of the repo.
+
+Will need to be integrated with other parsers once they become available.
+'''
 import csv
 import json
 
@@ -42,4 +47,5 @@ def getCaseCounts():
 if __name__ == "__main__":
     cases = getCaseCounts()
 
-    json.dump(cases, sys.stdout)
+    with open('src/assets/data/case_counts.json', 'w') as fh:
+        json.dump(cases, fh)
