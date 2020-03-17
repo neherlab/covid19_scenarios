@@ -17,7 +17,7 @@ from datetime import datetime
 URL  = "https://covid.ourworldindata.org/data/full_data.csv"
 LOC  = '../../data/case-counts/World.tsv'
 
-cols = ['country', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # -----------------------------------------------------------------------------
 # Functions
