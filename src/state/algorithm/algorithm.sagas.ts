@@ -1,4 +1,4 @@
-import { select, takeLatest, put, take, race, fork, call } from 'redux-saga/effects'
+import { select, put, take, race, fork, call, debounce } from 'redux-saga/effects'
 
 import fsaSaga from '../util/fsaSaga'
 
@@ -19,6 +19,8 @@ import {
   setSeverityData,
   setSimulationData,
 } from '../scenario/scenario.actions'
+
+const DEFAULT_TRIGGER_ALGORITHM_DEBOUNCE_MS = 250
 
 export function* sagaTriggerAlgorithmOnChanges() {
   // eslint-disable-next-line no-loops/no-loops
@@ -45,6 +47,10 @@ function* sagaRunAlgorithm() {
   return yield call(run, paramsFlat, paramsFlat.severityTable, ageDistribution, paramsFlat.reduction)
 }
 
-export const sagaRunAlgorithmOnTrigger = takeLatest(triggerAlgorithm, fsaSaga(runAlgorithmAsync, sagaRunAlgorithm))
+export const sagaRunAlgorithmOnTrigger = debounce(
+  DEFAULT_TRIGGER_ALGORITHM_DEBOUNCE_MS,
+  triggerAlgorithm,
+  fsaSaga(runAlgorithmAsync, sagaRunAlgorithm),
+)
 
 export default [fork(sagaTriggerAlgorithmOnChanges), sagaRunAlgorithmOnTrigger]
