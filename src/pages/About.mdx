@@ -3,6 +3,7 @@ import { Container, Col, Row } from 'reactstrap'
 import { FaGithub } from 'react-icons/fa'
 
 import model from '../assets/img/model_sketch.svg'
+import unibas_logo from '../assets/img/unibas_logo.png'
 import seasonalIllustration from '../assets/img/seasonal_illustration.svg'
 
 import LinkExternal from '../components/Router/LinkExternal'
@@ -76,10 +77,10 @@ Many respiratory viruses such as influenza, common cold viruses (including other
 
 The tool allows to explore temporal variation in the reduction of transmission by infection control measures.
 This is implemented as a curve through time that can be dragged by the mouse to modifiy the assumed
-transmission. The curve is read out and used to change transmission relative to the base line parameters for R0 and seasonality.
+transmission. The curve is read out and used to change transmission relative to the base line parameters for $R_0$ and seasonality.
 Several studies attempt to estimate the effect of different aspects of social distancing and infection control on the rate of transmission.
 A report by [Wang et al](https://www.medrxiv.org/content/10.1101/2020.03.03.20030593v1) estimates a step-wise reduction of $R_0$ from above three to around 1 and then to around 0.3 due to successive measures implemented in Wuhan.
-Other studies investigate the effect of [school closures on influenza transmission](https://www.pnas.org/content/116/27/13174).
+[This study](https://www.pnas.org/content/116/27/13174) investigates the effect of school closures on influenza transmission.
 
 
 ## Details of the model
@@ -135,6 +136,12 @@ where $I_a$ is the degree to which particular age groups are isolated from the r
  In addition, we assume that a substantial fraction of infections, especially in the young, go unreported. This is encoded in the columns "Confirmed [% of total]".
  * Seasonal variation in transmission is common for many respiratory viruses but the strength of seasonal forcing for COVID19 are uncertain. For more information, see a [study by us](https://smw.ch/article/doi/smw.2020.20224) and by [Kissler et al](https://www.medrxiv.org/content/10.1101/2020.03.04.20031112v1).
 
+<figure className="figure w-100 text-center">
+  <img src={unibas_logo} className="w-40 figure-img" alt="University of Basel" />
+  <figcaption className="figure-caption text-center">
+  COVID19-scenarios is developed at the University of Basel.
+  </figcaption>
+</figure>
 </Col>
 </Row>
 </Container>
