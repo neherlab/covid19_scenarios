@@ -10,8 +10,8 @@ from collections import defaultdict
 # ------------------------------------------------------------------------
 # Globals
 
-DATA_DIR   = "../data/case-counts"
-UN_COUNTRY = "auxillaryData/countries.csv"
+DATA_DIR   = "data/case-counts"
+UN_COUNTRY = "tools/auxillaryData/countries.csv"
 
 # ------------------------------------------------------------------------
 # Functions
@@ -109,4 +109,5 @@ if __name__ == "__main__":
     else:
         print(f"Panic: '{region}' incorrectly formatted", file=sys.stderr)
 
-    print(json.dumps(cases), sys.stdout)
+    with open('src/assets/data/case_counts.json', 'w') as fh:
+        json.dump(cases, fh)
