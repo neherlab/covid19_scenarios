@@ -11,13 +11,13 @@ from collections import defaultdict
 
 # For my American brain
 X = {
-        "date" : "data",
+        "time" : "data",
         "state": "stato",
         "region": "denominazione_regione",
         "hospitalized" : "ricoverati_con_sintomi",
         "ICU" : "terapia_intensiva",
         "cases" : "totale_casi",
-        "death" : "deceduti",
+        "deaths" : "deceduti",
         "recovered": "dimessi_guariti",
         "swabs" : "tamponi",
 }
@@ -25,7 +25,7 @@ X = {
 URL = "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
 LOC = "../../data/case-counts/Europe/Southern Europe/Italy"
 
-cols = ['date', 'cases', 'death', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions
