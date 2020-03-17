@@ -11,6 +11,7 @@ import { triggerAlgorithm } from './algorithm/algorithm.actions'
 import { defaultScenarioState } from './scenario/scenario.state'
 
 const development = process.env.NODE_ENV === 'development'
+const useReduxImmutableStateInvariant = process.env.USE_REDUX_IMMUTABLE_STATE_INVARIANT === 'development'
 const debug = development || process.env.DEBUGGABLE_PROD === '1'
 
 interface StoreParams {
@@ -26,7 +27,7 @@ export default function configureStore({ url }: StoreParams = storeDefaults) {
 
   const sagaMiddleware = createSagaMiddleware()
   const middlewares = [
-    debug && require('redux-immutable-state-invariant').default(),
+    useReduxImmutableStateInvariant && require('redux-immutable-state-invariant').default(),
     routerMiddleware(history),
     sagaMiddleware,
   ].filter(Boolean)
