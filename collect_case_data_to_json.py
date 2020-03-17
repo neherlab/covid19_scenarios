@@ -22,7 +22,7 @@ def stoi(x):
 
     return int(x)
 
-def get_country_codes(twoletter=True):
+def get_country_codes(twoletter=False):
     codes = {}
     rdr   = csv.reader(open(UN_COUNTRY))
 
