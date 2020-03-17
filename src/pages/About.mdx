@@ -15,10 +15,9 @@ import LinkExternal from '../components/Router/LinkExternal'
 
 # About COVID-19 Scenarios
 
-This web application serves as a plannling tool for COVID-19 outbreaks in communities across the world.
-It implements a simple SIR model with additional categories for exposed individuals that are not yet infectious,
+This web application serves as a planning tool for COVID-19 outbreaks in communities across the world.
+It implements a simple SIR (Susceptible-Infected-Recovered) model with additional categories for individuals exposed to the virus that are not yet infectious,
 severely sick people in need of hospitalization, people in critical condition, and a fatal category.
-
 
 The source code of this tool is freely available at <LinkExternal url="https://github.com/neherlab/covid19_scenarios"> github.com/neherlab/covid19_scenarios</LinkExternal> and we welcome contributions in any form: comments, suggestions, help with development.
 
@@ -26,22 +25,19 @@ The source code of this tool is freely available at <LinkExternal url="https://g
 
 The model works as follows:
 
- - susceptible individuals are exposed/infected through contact with infectious individuals. Each infectious
-individual causes on average R_<sub>0</sub> secondary infections while they are infectious.
+ - susceptible individuals are exposed/infected through contact with infectious individuals. Each infectious individual causes on average $R_0$ secondary infections while they are infectious.
 Transmissibility of the virus could have seasonal variation which is parameterized with the parameter
 "seasonal forcing" (amplitude) and "peak month" (month of most efficient transmission).
 
  - exposed individuals progress to a symptomatic/infectious state after an average latency
 
- - infectious individuals recover or progress to severe disease. The ratio of recovery to severe progression
-depends on age
+ - infectious individuals recover or progress to severe disease. The ratio of recovery to severe progression depends on age
 
  - severely sick individuals either recover or deteriorate and turn critical. Again, this depends on the age
 
  - critically ill individuals either return to regular hospital or die. Again, this depends on the age
 
-
-The individual parameters of the model can all be changed to allow exploration of different scenarios.
+The individual parameters of the model can be changed to allow exploration of different scenarios.
 
 <figure className="figure w-100 text-center">
   <img src={model} className="w-75 figure-img" alt="illustration of the model" />
@@ -52,13 +48,11 @@ The individual parameters of the model can all be changed to allow exploration o
   </figcaption>
 </figure>
 
-
 COVID-19 is much more severe in the elderly and proportion of elderly in a community is therefore an important determinant of the overall burden on the health care system and the death toll. We collected age distributions for many countries from data provided by the UN and make those available as input parameters. Furthermore, we use data provided by the epidemiology group by the <LinkExternal url="http://weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51">Chinese CDC</LinkExternal> to estimate the fraction of severe and fatal cases by age group.
-
 
 ## Seasonality
 
-Many respiratory viruses such as influenza, common cold viruses (including other coronaviruses) have a pronounced seasonal variation in incidence which is in part driven by climate variation through the year. We model this seasonal variation using a cosine with an annual period. This is simplistic way to capture seasonality and we don't know yet how seasonality will affect COVID-19 transmission.
+Many respiratory viruses such as influenza, common cold viruses (including other coronaviruses) have a pronounced seasonal variation in incidence which is in part driven by climate variation through the year. We model this seasonal variation using a sinusoidal function with an annual period. This is a simplistic way to capture seasonality. Furthermore, we don't know yet how seasonality will affect COVID-19 transmission.
 
 <figure className="figure w-100 text-center">
   <img
@@ -75,13 +69,11 @@ Many respiratory viruses such as influenza, common cold viruses (including other
 
 ## Transmission reduction
 
-The tool allows to explore temporal variation in the reduction of transmission by infection control measures.
-This is implemented as a curve through time that can be dragged by the mouse to modifiy the assumed
-transmission. The curve is read out and used to change transmission relative to the base line parameters for $R_0$ and seasonality.
+The tool allows one to explore temporal variation in the reduction of transmission by infection control measures.
+This is implemented as a curve through time that can be dragged by the mouse to modify the assumed transmission. The curve is read out and used to change the transmission relative to the base line parameters for $R_0$ and seasonality.
 Several studies attempt to estimate the effect of different aspects of social distancing and infection control on the rate of transmission.
 A report by [Wang et al](https://www.medrxiv.org/content/10.1101/2020.03.03.20030593v1) estimates a step-wise reduction of $R_0$ from above three to around 1 and then to around 0.3 due to successive measures implemented in Wuhan.
 [This study](https://www.pnas.org/content/116/27/13174) investigates the effect of school closures on influenza transmission.
-
 
 ## Details of the model
 Qualitatively we model the epidemic dynamics with the following subpopulations:
