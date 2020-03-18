@@ -28,7 +28,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
     name: age,
     fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
     peakSevere: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.hospitalized[age]))),
-    peakCritical: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.critical[age]))),
+    peakCritical: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.critical[age] + x.overflow[age]))),
     totalDead: Math.round(lastDataPoint.dead[age]),
   }))
 
@@ -62,7 +62,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 <Legend verticalAlign="top" />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name="peak severe" />
-                <Bar dataKey="peakCritical" fill={colors.critical} name="peak critical" />
+                <Bar dataKey="peakCritical" fill={colors.critical} name="peak critical (w/ overflow)" />
                 <Bar dataKey="totalDead" fill={colors.death} name="total deaths" />
               </BarChart>
               <BarChart
