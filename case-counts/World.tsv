@@ -1,0 +1,2868 @@
+location	time	cases	deaths	hospitalized	ICU	recovered
+Afghanistan	2020-02-25	1	0			
+Afghanistan	2020-02-26	1	0			
+Afghanistan	2020-02-27	1	0			
+Afghanistan	2020-02-28	1	0			
+Afghanistan	2020-02-29	1	0			
+Afghanistan	2020-03-01	1	0			
+Afghanistan	2020-03-02	1	0			
+Afghanistan	2020-03-03	1	0			
+Afghanistan	2020-03-04	1	0			
+Afghanistan	2020-03-05	1	0			
+Afghanistan	2020-03-06	1	0			
+Afghanistan	2020-03-07	1	0			
+Afghanistan	2020-03-08	4	0			
+Afghanistan	2020-03-09	4	0			
+Afghanistan	2020-03-10	4	0			
+Afghanistan	2020-03-11	4	0			
+Afghanistan	2020-03-12	7	0			
+Afghanistan	2020-03-13	7	0			
+Afghanistan	2020-03-14	7	0			
+Afghanistan	2020-03-15	10	0			
+Afghanistan	2020-03-16	16	0			
+Afghanistan	2020-03-17	21	0			
+Albania	2020-03-09	2	0			
+Albania	2020-03-10	2	0			
+Albania	2020-03-11	10	0			
+Albania	2020-03-12	10	0			
+Albania	2020-03-13	23	0			
+Albania	2020-03-14	33	1			
+Albania	2020-03-15	38	1			
+Albania	2020-03-16	42	1			
+Albania	2020-03-17	51	1			
+Algeria	2020-02-26	1	0			
+Algeria	2020-02-27	1	0			
+Algeria	2020-02-28	1	0			
+Algeria	2020-02-29	1	0			
+Algeria	2020-03-01	1	0			
+Algeria	2020-03-02	1	0			
+Algeria	2020-03-03	5	0			
+Algeria	2020-03-04	5	0			
+Algeria	2020-03-05	12	0			
+Algeria	2020-03-06	12	0			
+Algeria	2020-03-07	17	0			
+Algeria	2020-03-08	17	0			
+Algeria	2020-03-09	20	0			
+Algeria	2020-03-10	20	0			
+Algeria	2020-03-11	20	0			
+Algeria	2020-03-12	25	1			
+Algeria	2020-03-13	25	1			
+Algeria	2020-03-14	26	2			
+Algeria	2020-03-15	37	3			
+Algeria	2020-03-16	49	3			
+Algeria	2020-03-17	60	4			
+Andorra	2020-03-03	1	0			
+Andorra	2020-03-04	1	0			
+Andorra	2020-03-05	1	0			
+Andorra	2020-03-06	1	0			
+Andorra	2020-03-07	1	0			
+Andorra	2020-03-08	1	0			
+Andorra	2020-03-09	1	0			
+Andorra	2020-03-10	1	0			
+Andorra	2020-03-11	1	0			
+Andorra	2020-03-12	1	0			
+Andorra	2020-03-13	1	0			
+Andorra	2020-03-14	2	0			
+Andorra	2020-03-15	2	0			
+Andorra	2020-03-16	2	0			
+Andorra	2020-03-17	14	0			
+Antigua and Barbuda	2020-03-14	1	0			
+Antigua and Barbuda	2020-03-15	1	0			
+Antigua and Barbuda	2020-03-16	1	0			
+Antigua and Barbuda	2020-03-17	1	0			
+Argentina	2020-03-04	1	0			
+Argentina	2020-03-05	1	0			
+Argentina	2020-03-06	1	0			
+Argentina	2020-03-07	2	0			
+Argentina	2020-03-08	9	1			
+Argentina	2020-03-09	12	1			
+Argentina	2020-03-10	12	1			
+Argentina	2020-03-11	17	1			
+Argentina	2020-03-12	19	1			
+Argentina	2020-03-13	31	1			
+Argentina	2020-03-14	34	2			
+Argentina	2020-03-15	45	2			
+Argentina	2020-03-16	56	2			
+Argentina	2020-03-17	65	2			
+Armenia	2020-03-02	1	0			
+Armenia	2020-03-03	1	0			
+Armenia	2020-03-04	1	0			
+Armenia	2020-03-05	1	0			
+Armenia	2020-03-06	1	0			
+Armenia	2020-03-07	1	0			
+Armenia	2020-03-08	1	0			
+Armenia	2020-03-09	1	0			
+Armenia	2020-03-10	1	0			
+Armenia	2020-03-11	1	0			
+Armenia	2020-03-12	1	0			
+Armenia	2020-03-13	1	0			
+Armenia	2020-03-14	8	0			
+Armenia	2020-03-15	8	0			
+Armenia	2020-03-16	26	0			
+Armenia	2020-03-17	52	0			
+Aruba	2020-03-17	2	0			
+Australia	2020-01-25	3	0			
+Australia	2020-01-26	4	0			
+Australia	2020-01-27	4	0			
+Australia	2020-01-28	5	0			
+Australia	2020-01-29	7	0			
+Australia	2020-01-30	7	0			
+Australia	2020-01-31	9	0			
+Australia	2020-02-01	12	0			
+Australia	2020-02-02	12	0			
+Australia	2020-02-03	12	0			
+Australia	2020-02-04	12	0			
+Australia	2020-02-05	13	0			
+Australia	2020-02-06	14	0			
+Australia	2020-02-07	15	0			
+Australia	2020-02-08	15	0			
+Australia	2020-02-09	15	0			
+Australia	2020-02-10	15	0			
+Australia	2020-02-11	15	0			
+Australia	2020-02-12	15	0			
+Australia	2020-02-13	15	0			
+Australia	2020-02-14	15	0			
+Australia	2020-02-15	15	0			
+Australia	2020-02-16	15	0			
+Australia	2020-02-17	15	0			
+Australia	2020-02-18	15	0			
+Australia	2020-02-19	15	0			
+Australia	2020-02-20	15	0			
+Australia	2020-02-21	17	0			
+Australia	2020-02-22	21	0			
+Australia	2020-02-23	22	0			
+Australia	2020-02-24	22	0			
+Australia	2020-02-25	22	0			
+Australia	2020-02-26	23	0			
+Australia	2020-02-27	23	0			
+Australia	2020-02-28	23	0			
+Australia	2020-02-29	24	0			
+Australia	2020-03-01	25	0			
+Australia	2020-03-02	27	1			
+Australia	2020-03-03	33	1			
+Australia	2020-03-04	43	1			
+Australia	2020-03-05	57	1			
+Australia	2020-03-06	57	2			
+Australia	2020-03-07	62	2			
+Australia	2020-03-08	74	3			
+Australia	2020-03-09	77	3			
+Australia	2020-03-10	92	3			
+Australia	2020-03-11	112	3			
+Australia	2020-03-12	122	3			
+Australia	2020-03-13	140	3			
+Australia	2020-03-14	197	3			
+Australia	2020-03-15	249	3			
+Australia	2020-03-16	298	5			
+Australia	2020-03-17	375	5			
+Austria	2020-02-26	2	0			
+Austria	2020-02-27	2	0			
+Austria	2020-02-28	4	0			
+Austria	2020-02-29	5	0			
+Austria	2020-03-01	10	0			
+Austria	2020-03-02	10	0			
+Austria	2020-03-03	18	0			
+Austria	2020-03-04	24	0			
+Austria	2020-03-05	37	0			
+Austria	2020-03-06	47	0			
+Austria	2020-03-07	66	0			
+Austria	2020-03-08	104	0			
+Austria	2020-03-09	112	0			
+Austria	2020-03-10	131	0			
+Austria	2020-03-11	182	0			
+Austria	2020-03-12	302	0			
+Austria	2020-03-13	361	1			
+Austria	2020-03-14	504	1			
+Austria	2020-03-15	800	1			
+Austria	2020-03-16	959	1			
+Austria	2020-03-17	1132	3			
+Azerbaijan	2020-03-01	3	0			
+Azerbaijan	2020-03-02	3	0			
+Azerbaijan	2020-03-03	3	0			
+Azerbaijan	2020-03-04	3	0			
+Azerbaijan	2020-03-05	3	0			
+Azerbaijan	2020-03-06	3	0			
+Azerbaijan	2020-03-07	9	0			
+Azerbaijan	2020-03-08	9	0			
+Azerbaijan	2020-03-09	9	0			
+Azerbaijan	2020-03-10	9	0			
+Azerbaijan	2020-03-11	9	0			
+Azerbaijan	2020-03-12	9	0			
+Azerbaijan	2020-03-13	11	0			
+Azerbaijan	2020-03-14	11	0			
+Azerbaijan	2020-03-15	19	0			
+Azerbaijan	2020-03-16	19	0			
+Azerbaijan	2020-03-17	19	0			
+Bahamas	2020-03-17	1	0			
+Bahrain	2020-02-25	8	0			
+Bahrain	2020-02-26	26	0			
+Bahrain	2020-02-27	33	0			
+Bahrain	2020-02-28	33	0			
+Bahrain	2020-02-29	38	0			
+Bahrain	2020-03-01	40	0			
+Bahrain	2020-03-02	47	0			
+Bahrain	2020-03-03	49	0			
+Bahrain	2020-03-04	49	0			
+Bahrain	2020-03-05	49	0			
+Bahrain	2020-03-06	49	0			
+Bahrain	2020-03-07	49	0			
+Bahrain	2020-03-08	56	0			
+Bahrain	2020-03-09	79	0			
+Bahrain	2020-03-10	109	0			
+Bahrain	2020-03-11	110	0			
+Bahrain	2020-03-12	189	0			
+Bahrain	2020-03-13	195	0			
+Bahrain	2020-03-14	210	0			
+Bahrain	2020-03-15	211	0			
+Bahrain	2020-03-16	221	1			
+Bahrain	2020-03-17	229	1			
+Bangladesh	2020-03-09	3	0			
+Bangladesh	2020-03-10	3	0			
+Bangladesh	2020-03-11	3	0			
+Bangladesh	2020-03-12	3	0			
+Bangladesh	2020-03-13	3	0			
+Bangladesh	2020-03-14	3	0			
+Bangladesh	2020-03-15	3	0			
+Bangladesh	2020-03-16	5	0			
+Bangladesh	2020-03-17	8	0			
+Belarus	2020-02-28	1	0			
+Belarus	2020-02-29	1	0			
+Belarus	2020-03-01	1	0			
+Belarus	2020-03-02	1	0			
+Belarus	2020-03-03	1	0			
+Belarus	2020-03-04	1	0			
+Belarus	2020-03-05	6	0			
+Belarus	2020-03-06	6	0			
+Belarus	2020-03-07	6	0			
+Belarus	2020-03-08	6	0			
+Belarus	2020-03-09	6	0			
+Belarus	2020-03-10	6	0			
+Belarus	2020-03-11	9	0			
+Belarus	2020-03-12	12	0			
+Belarus	2020-03-13	12	0			
+Belarus	2020-03-14	21	0			
+Belarus	2020-03-15	21	0			
+Belarus	2020-03-16	36	0			
+Belarus	2020-03-17	36	0			
+Belgium	2020-02-05	1	0			
+Belgium	2020-02-06	1	0			
+Belgium	2020-02-07	1	0			
+Belgium	2020-02-08	1	0			
+Belgium	2020-02-09	1	0			
+Belgium	2020-02-10	1	0			
+Belgium	2020-02-11	1	0			
+Belgium	2020-02-12	1	0			
+Belgium	2020-02-13	1	0			
+Belgium	2020-02-14	1	0			
+Belgium	2020-02-15	1	0			
+Belgium	2020-02-16	1	0			
+Belgium	2020-02-17	1	0			
+Belgium	2020-02-18	1	0			
+Belgium	2020-02-19	1	0			
+Belgium	2020-02-20	1	0			
+Belgium	2020-02-21	1	0			
+Belgium	2020-02-22	1	0			
+Belgium	2020-02-23	1	0			
+Belgium	2020-02-24	1	0			
+Belgium	2020-02-25	1	0			
+Belgium	2020-02-26	1	0			
+Belgium	2020-02-27	1	0			
+Belgium	2020-02-28	1	0			
+Belgium	2020-02-29	1	0			
+Belgium	2020-03-01	1	0			
+Belgium	2020-03-02	1	0			
+Belgium	2020-03-03	8	0			
+Belgium	2020-03-04	8	0			
+Belgium	2020-03-05	23	0			
+Belgium	2020-03-06	50	0			
+Belgium	2020-03-07	109	0			
+Belgium	2020-03-08	169	0			
+Belgium	2020-03-09	200	0			
+Belgium	2020-03-10	239	0			
+Belgium	2020-03-11	267	0			
+Belgium	2020-03-12	314	0			
+Belgium	2020-03-13	314	0			
+Belgium	2020-03-14	599	0			
+Belgium	2020-03-15	689	0			
+Belgium	2020-03-16	1085	5			
+Belgium	2020-03-17	1085	5			
+Benin	2020-03-17	1	0			
+Bhutan	2020-03-06	1	0			
+Bhutan	2020-03-07	1	0			
+Bhutan	2020-03-08	1	0			
+Bhutan	2020-03-09	1	0			
+Bhutan	2020-03-10	1	0			
+Bhutan	2020-03-11	1	0			
+Bhutan	2020-03-12	1	0			
+Bhutan	2020-03-13	1	0			
+Bhutan	2020-03-14	1	0			
+Bhutan	2020-03-15	1	0			
+Bhutan	2020-03-16	1	0			
+Bhutan	2020-03-17	1	0			
+Bolivia	2020-03-11	2	0			
+Bolivia	2020-03-12	2	0			
+Bolivia	2020-03-13	3	0			
+Bolivia	2020-03-14	3	0			
+Bolivia	2020-03-15	3	0			
+Bolivia	2020-03-16	11	0			
+Bolivia	2020-03-17	11	0			
+Bosnia and Herzegovina	2020-03-05	2	0			
+Bosnia and Herzegovina	2020-03-06	2	0			
+Bosnia and Herzegovina	2020-03-07	2	0			
+Bosnia and Herzegovina	2020-03-08	2	0			
+Bosnia and Herzegovina	2020-03-09	2	0			
+Bosnia and Herzegovina	2020-03-10	2	0			
+Bosnia and Herzegovina	2020-03-11	4	0			
+Bosnia and Herzegovina	2020-03-12	4	0			
+Bosnia and Herzegovina	2020-03-13	4	0			
+Bosnia and Herzegovina	2020-03-14	11	0			
+Bosnia and Herzegovina	2020-03-15	18	0			
+Bosnia and Herzegovina	2020-03-16	18	0			
+Bosnia and Herzegovina	2020-03-17	19	0			
+Brazil	2020-02-27	1	0			
+Brazil	2020-02-28	1	0			
+Brazil	2020-02-29	1	0			
+Brazil	2020-03-01	2	0			
+Brazil	2020-03-02	2	0			
+Brazil	2020-03-03	2	0			
+Brazil	2020-03-04	2	0			
+Brazil	2020-03-05	3	0			
+Brazil	2020-03-06	7	0			
+Brazil	2020-03-07	13	0			
+Brazil	2020-03-08	19	0			
+Brazil	2020-03-09	25	0			
+Brazil	2020-03-10	25	0			
+Brazil	2020-03-11	34	0			
+Brazil	2020-03-12	52	0			
+Brazil	2020-03-13	77	0			
+Brazil	2020-03-14	98	0			
+Brazil	2020-03-15	121	0			
+Brazil	2020-03-16	200	0			
+Brazil	2020-03-17	234	0			
+Brunei	2020-03-10	1	0			
+Brunei	2020-03-11	1	0			
+Brunei	2020-03-12	12	0			
+Brunei	2020-03-13	12	0			
+Brunei	2020-03-14	25	0			
+Brunei	2020-03-15	40	0			
+Brunei	2020-03-16	50	0			
+Brunei	2020-03-17	50	0			
+Bulgaria	2020-03-08	2	0			
+Bulgaria	2020-03-09	4	0			
+Bulgaria	2020-03-10	4	0			
+Bulgaria	2020-03-11	6	0			
+Bulgaria	2020-03-12	7	1			
+Bulgaria	2020-03-13	7	1			
+Bulgaria	2020-03-14	7	1			
+Bulgaria	2020-03-15	43	2			
+Bulgaria	2020-03-16	51	2			
+Bulgaria	2020-03-17	67	2			
+Burkina Faso	2020-03-11	2	0			
+Burkina Faso	2020-03-12	2	0			
+Burkina Faso	2020-03-13	2	0			
+Burkina Faso	2020-03-14	2	0			
+Burkina Faso	2020-03-15	3	0			
+Burkina Faso	2020-03-16	3	0			
+Burkina Faso	2020-03-17	15	0			
+Cambodia	2020-01-28	1	0			
+Cambodia	2020-01-29	1	0			
+Cambodia	2020-01-30	1	0			
+Cambodia	2020-01-31	1	0			
+Cambodia	2020-02-01	1	0			
+Cambodia	2020-02-02	1	0			
+Cambodia	2020-02-03	1	0			
+Cambodia	2020-02-04	1	0			
+Cambodia	2020-02-05	1	0			
+Cambodia	2020-02-06	1	0			
+Cambodia	2020-02-07	1	0			
+Cambodia	2020-02-08	1	0			
+Cambodia	2020-02-09	1	0			
+Cambodia	2020-02-10	1	0			
+Cambodia	2020-02-11	1	0			
+Cambodia	2020-02-12	1	0			
+Cambodia	2020-02-13	1	0			
+Cambodia	2020-02-14	1	0			
+Cambodia	2020-02-15	1	0			
+Cambodia	2020-02-16	1	0			
+Cambodia	2020-02-17	1	0			
+Cambodia	2020-02-18	1	0			
+Cambodia	2020-02-19	1	0			
+Cambodia	2020-02-20	1	0			
+Cambodia	2020-02-21	1	0			
+Cambodia	2020-02-22	1	0			
+Cambodia	2020-02-23	1	0			
+Cambodia	2020-02-24	1	0			
+Cambodia	2020-02-25	1	0			
+Cambodia	2020-02-26	1	0			
+Cambodia	2020-02-27	1	0			
+Cambodia	2020-02-28	1	0			
+Cambodia	2020-02-29	1	0			
+Cambodia	2020-03-01	1	0			
+Cambodia	2020-03-02	1	0			
+Cambodia	2020-03-03	1	0			
+Cambodia	2020-03-04	1	0			
+Cambodia	2020-03-05	1	0			
+Cambodia	2020-03-06	1	0			
+Cambodia	2020-03-07	1	0			
+Cambodia	2020-03-08	2	0			
+Cambodia	2020-03-09	2	0			
+Cambodia	2020-03-10	2	0			
+Cambodia	2020-03-11	3	0			
+Cambodia	2020-03-12	3	0			
+Cambodia	2020-03-13	5	0			
+Cambodia	2020-03-14	7	0			
+Cambodia	2020-03-15	7	0			
+Cambodia	2020-03-16	12	0			
+Cambodia	2020-03-17	24	0			
+Cameroon	2020-03-06	1	0			
+Cameroon	2020-03-07	2	0			
+Cameroon	2020-03-08	2	0			
+Cameroon	2020-03-09	2	0			
+Cameroon	2020-03-10	2	0			
+Cameroon	2020-03-11	2	0			
+Cameroon	2020-03-12	2	0			
+Cameroon	2020-03-13	2	0			
+Cameroon	2020-03-14	2	0			
+Cameroon	2020-03-15	3	0			
+Cameroon	2020-03-16	3	0			
+Cameroon	2020-03-17	5	0			
+Canada	2020-01-27	1	0			
+Canada	2020-01-28	2	0			
+Canada	2020-01-29	3	0			
+Canada	2020-01-30	3	0			
+Canada	2020-01-31	3	0			
+Canada	2020-02-01	4	0			
+Canada	2020-02-02	4	0			
+Canada	2020-02-03	4	0			
+Canada	2020-02-04	4	0			
+Canada	2020-02-05	5	0			
+Canada	2020-02-06	5	0			
+Canada	2020-02-07	7	0			
+Canada	2020-02-08	7	0			
+Canada	2020-02-09	7	0			
+Canada	2020-02-10	7	0			
+Canada	2020-02-11	7	0			
+Canada	2020-02-12	7	0			
+Canada	2020-02-13	7	0			
+Canada	2020-02-14	7	0			
+Canada	2020-02-15	7	0			
+Canada	2020-02-16	7	0			
+Canada	2020-02-17	7	0			
+Canada	2020-02-18	8	0			
+Canada	2020-02-19	8	0			
+Canada	2020-02-20	8	0			
+Canada	2020-02-21	8	0			
+Canada	2020-02-22	8	0			
+Canada	2020-02-23	9	0			
+Canada	2020-02-24	9	0			
+Canada	2020-02-25	10	0			
+Canada	2020-02-26	10	0			
+Canada	2020-02-27	11	0			
+Canada	2020-02-28	11	0			
+Canada	2020-02-29	14	0			
+Canada	2020-03-01	19	0			
+Canada	2020-03-02	19	0			
+Canada	2020-03-03	27	0			
+Canada	2020-03-04	30	0			
+Canada	2020-03-05	30	0			
+Canada	2020-03-06	45	0			
+Canada	2020-03-07	51	0			
+Canada	2020-03-08	57	0			
+Canada	2020-03-09	62	0			
+Canada	2020-03-10	77	0			
+Canada	2020-03-11	93	1			
+Canada	2020-03-12	93	1			
+Canada	2020-03-13	138	1			
+Canada	2020-03-14	176	1			
+Canada	2020-03-15	244	1			
+Canada	2020-03-16	304	1			
+Canada	2020-03-17	424	1			
+Cayman Islands	2020-03-14	1	0			
+Cayman Islands	2020-03-15	1	0			
+Cayman Islands	2020-03-16	1	1			
+Cayman Islands	2020-03-17	1	1			
+Central African Republic	2020-03-15	1	0			
+Central African Republic	2020-03-16	1	0			
+Central African Republic	2020-03-17	1	0			
+Chile	2020-03-04	1	0			
+Chile	2020-03-05	1	0			
+Chile	2020-03-06	1	0			
+Chile	2020-03-07	5	0			
+Chile	2020-03-08	5	0			
+Chile	2020-03-09	10	0			
+Chile	2020-03-10	13	0			
+Chile	2020-03-11	17	0			
+Chile	2020-03-12	23	0			
+Chile	2020-03-13	33	0			
+Chile	2020-03-14	43	0			
+Chile	2020-03-15	61	0			
+Chile	2020-03-16	75	0			
+Chile	2020-03-17	156	0			
+China	2020-01-21	278	6			
+China	2020-01-22	310	6			
+China	2020-01-23	574	17			
+China	2020-01-24	835	25			
+China	2020-01-25	1297	41			
+China	2020-01-26	1985	56			
+China	2020-01-27	2761	80			
+China	2020-01-28	4537	106			
+China	2020-01-29	5997	132			
+China	2020-01-30	7736	170			
+China	2020-01-31	9720	213			
+China	2020-02-01	11821	259			
+China	2020-02-02	14411	304			
+China	2020-02-03	17238	361			
+China	2020-02-04	20471	425			
+China	2020-02-05	24363	491			
+China	2020-02-06	28060	564			
+China	2020-02-07	31211	637			
+China	2020-02-08	34598	723			
+China	2020-02-09	37251	812			
+China	2020-02-10	40235	909			
+China	2020-02-11	42708	1017			
+China	2020-02-12	44730	1114			
+China	2020-02-13	46550	1368			
+China	2020-02-14	48548	1381			
+China	2020-02-15	50054	1524			
+China	2020-02-16	51174	1666			
+China	2020-02-17	70635	1772			
+China	2020-02-18	72528	1870			
+China	2020-02-19	74280	2006			
+China	2020-02-20	74675	2121			
+China	2020-02-21	75569	2239			
+China	2020-02-22	76392	2348			
+China	2020-02-23	77042	2445			
+China	2020-02-24	77262	2595			
+China	2020-02-25	77780	2666			
+China	2020-02-26	78191	2718			
+China	2020-02-27	78630	2747			
+China	2020-02-28	78961	2791			
+China	2020-02-29	79394	2838			
+China	2020-03-01	79968	2873			
+China	2020-03-02	80174	2915			
+China	2020-03-03	80304	2946			
+China	2020-03-04	80422	2984			
+China	2020-03-05	80565	3015			
+China	2020-03-06	80711	3045			
+China	2020-03-07	80813	3073			
+China	2020-03-08	80859	3100			
+China	2020-03-09	80904	3123			
+China	2020-03-10	80924	3140			
+China	2020-03-11	80955	3162			
+China	2020-03-12	80981	3173			
+China	2020-03-13	80991	3180			
+China	2020-03-14	81021	3194			
+China	2020-03-15	81048	3204			
+China	2020-03-16	81077	3218			
+China	2020-03-17	81116	3231			
+Colombia	2020-03-07	1	0			
+Colombia	2020-03-08	1	0			
+Colombia	2020-03-09	1	0			
+Colombia	2020-03-10	3	0			
+Colombia	2020-03-11	3	0			
+Colombia	2020-03-12	9	0			
+Colombia	2020-03-13	9	0			
+Colombia	2020-03-14	16	0			
+Colombia	2020-03-15	24	0			
+Colombia	2020-03-16	24	0			
+Colombia	2020-03-17	45	0			
+Congo	2020-03-15	1	0			
+Congo	2020-03-16	1	0			
+Congo	2020-03-17	1	0			
+Costa Rica	2020-03-08	5	0			
+Costa Rica	2020-03-09	9	0			
+Costa Rica	2020-03-10	9	0			
+Costa Rica	2020-03-11	13	0			
+Costa Rica	2020-03-12	13	0			
+Costa Rica	2020-03-13	22	0			
+Costa Rica	2020-03-14	23	0			
+Costa Rica	2020-03-15	23	0			
+Costa Rica	2020-03-16	23	0			
+Costa Rica	2020-03-17	41	0			
+Croatia	2020-02-26	2	0			
+Croatia	2020-02-27	3	0			
+Croatia	2020-02-28	3	0			
+Croatia	2020-02-29	5	0			
+Croatia	2020-03-01	7	0			
+Croatia	2020-03-02	7	0			
+Croatia	2020-03-03	8	0			
+Croatia	2020-03-04	9	0			
+Croatia	2020-03-05	9	0			
+Croatia	2020-03-06	10	0			
+Croatia	2020-03-07	11	0			
+Croatia	2020-03-08	11	0			
+Croatia	2020-03-09	11	0			
+Croatia	2020-03-10	12	0			
+Croatia	2020-03-11	16	0			
+Croatia	2020-03-12	16	0			
+Croatia	2020-03-13	16	0			
+Croatia	2020-03-14	27	0			
+Croatia	2020-03-15	37	0			
+Croatia	2020-03-16	49	0			
+Croatia	2020-03-17	56	0			
+Cuba	2020-03-13	3	0			
+Cuba	2020-03-14	4	0			
+Cuba	2020-03-15	4	0			
+Cuba	2020-03-16	4	0			
+Cuba	2020-03-17	5	0			
+Curacao	2020-03-15	2	0			
+Curacao	2020-03-16	2	0			
+Curacao	2020-03-17	3	0			
+Cyprus	2020-03-10	2	0			
+Cyprus	2020-03-11	2	0			
+Cyprus	2020-03-12	6	0			
+Cyprus	2020-03-13	6	0			
+Cyprus	2020-03-14	14	0			
+Cyprus	2020-03-15	21	0			
+Cyprus	2020-03-16	33	0			
+Cyprus	2020-03-17	33	0			
+Czech Republic	2020-03-02	3	0			
+Czech Republic	2020-03-03	3	0			
+Czech Republic	2020-03-04	5	0			
+Czech Republic	2020-03-05	5	0			
+Czech Republic	2020-03-06	12	0			
+Czech Republic	2020-03-07	12	0			
+Czech Republic	2020-03-08	26	0			
+Czech Republic	2020-03-09	32	0			
+Czech Republic	2020-03-10	38	0			
+Czech Republic	2020-03-11	61	0			
+Czech Republic	2020-03-12	94	0			
+Czech Republic	2020-03-13	116	0			
+Czech Republic	2020-03-14	150	0			
+Czech Republic	2020-03-15	214	0			
+Czech Republic	2020-03-16	298	0			
+Czech Republic	2020-03-17	383	0			
+Cote d'Ivoire	2020-03-12	1	0			
+Cote d'Ivoire	2020-03-13	1	0			
+Cote d'Ivoire	2020-03-14	1	0			
+Cote d'Ivoire	2020-03-15	3	0			
+Cote d'Ivoire	2020-03-16	3	0			
+Cote d'Ivoire	2020-03-17	6	0			
+Democratic Republic of Congo	2020-03-11	1	0			
+Democratic Republic of Congo	2020-03-12	1	0			
+Democratic Republic of Congo	2020-03-13	1	0			
+Democratic Republic of Congo	2020-03-14	2	0			
+Democratic Republic of Congo	2020-03-15	2	0			
+Democratic Republic of Congo	2020-03-16	2	0			
+Democratic Republic of Congo	2020-03-17	3	0			
+Denmark	2020-02-27	1	0			
+Denmark	2020-02-28	1	0			
+Denmark	2020-02-29	2	0			
+Denmark	2020-03-01	3	0			
+Denmark	2020-03-02	4	0			
+Denmark	2020-03-03	5	0			
+Denmark	2020-03-04	8	0			
+Denmark	2020-03-05	10	0			
+Denmark	2020-03-06	18	0			
+Denmark	2020-03-07	23	0			
+Denmark	2020-03-08	31	0			
+Denmark	2020-03-09	36	0			
+Denmark	2020-03-10	90	0			
+Denmark	2020-03-11	262	0			
+Denmark	2020-03-12	615	0			
+Denmark	2020-03-13	674	0			
+Denmark	2020-03-14	801	0			
+Denmark	2020-03-15	827	0			
+Denmark	2020-03-16	898	1			
+Denmark	2020-03-17	960	4			
+Dominican Republic	2020-03-02	1	0			
+Dominican Republic	2020-03-03	1	0			
+Dominican Republic	2020-03-04	1	0			
+Dominican Republic	2020-03-05	1	0			
+Dominican Republic	2020-03-06	1	0			
+Dominican Republic	2020-03-07	1	0			
+Dominican Republic	2020-03-08	1	0			
+Dominican Republic	2020-03-09	1	0			
+Dominican Republic	2020-03-10	5	0			
+Dominican Republic	2020-03-11	5	0			
+Dominican Republic	2020-03-12	5	0			
+Dominican Republic	2020-03-13	5	0			
+Dominican Republic	2020-03-14	5	0			
+Dominican Republic	2020-03-15	5	0			
+Dominican Republic	2020-03-16	5	0			
+Dominican Republic	2020-03-17	21	1			
+Ecuador	2020-03-01	1	0			
+Ecuador	2020-03-02	1	0			
+Ecuador	2020-03-03	6	0			
+Ecuador	2020-03-04	7	0			
+Ecuador	2020-03-05	7	0			
+Ecuador	2020-03-06	13	0			
+Ecuador	2020-03-07	14	0			
+Ecuador	2020-03-08	14	0			
+Ecuador	2020-03-09	15	0			
+Ecuador	2020-03-10	15	0			
+Ecuador	2020-03-11	15	0			
+Ecuador	2020-03-12	17	0			
+Ecuador	2020-03-13	17	0			
+Ecuador	2020-03-14	23	0			
+Ecuador	2020-03-15	23	0			
+Ecuador	2020-03-16	37	2			
+Ecuador	2020-03-17	58	2			
+Egypt	2020-02-15	1	0			
+Egypt	2020-02-16	1	0			
+Egypt	2020-02-17	1	0			
+Egypt	2020-02-18	1	0			
+Egypt	2020-02-19	1	0			
+Egypt	2020-02-20	1	0			
+Egypt	2020-02-21	1	0			
+Egypt	2020-02-22	1	0			
+Egypt	2020-02-23	1	0			
+Egypt	2020-02-24	1	0			
+Egypt	2020-02-25	1	0			
+Egypt	2020-02-26	1	0			
+Egypt	2020-02-27	1	0			
+Egypt	2020-02-28	1	0			
+Egypt	2020-02-29	1	0			
+Egypt	2020-03-01	1	0			
+Egypt	2020-03-02	2	0			
+Egypt	2020-03-03	2	0			
+Egypt	2020-03-04	2	0			
+Egypt	2020-03-05	2	0			
+Egypt	2020-03-06	3	0			
+Egypt	2020-03-07	3	0			
+Egypt	2020-03-08	48	0			
+Egypt	2020-03-09	55	1			
+Egypt	2020-03-10	59	1			
+Egypt	2020-03-11	59	1			
+Egypt	2020-03-12	67	1			
+Egypt	2020-03-13	67	1			
+Egypt	2020-03-14	93	2			
+Egypt	2020-03-15	93	2			
+Egypt	2020-03-16	126	2			
+Egypt	2020-03-17	166	4			
+Equatorial Guinea	2020-03-15	1	0			
+Equatorial Guinea	2020-03-16	1	0			
+Equatorial Guinea	2020-03-17	1	0			
+Estonia	2020-02-27	1	0			
+Estonia	2020-02-28	1	0			
+Estonia	2020-02-29	1	0			
+Estonia	2020-03-01	1	0			
+Estonia	2020-03-02	1	0			
+Estonia	2020-03-03	1	0			
+Estonia	2020-03-04	2	0			
+Estonia	2020-03-05	2	0			
+Estonia	2020-03-06	3	0			
+Estonia	2020-03-07	10	0			
+Estonia	2020-03-08	10	0			
+Estonia	2020-03-09	10	0			
+Estonia	2020-03-10	10	0			
+Estonia	2020-03-11	13	0			
+Estonia	2020-03-12	13	0			
+Estonia	2020-03-13	13	0			
+Estonia	2020-03-14	79	0			
+Estonia	2020-03-15	79	0			
+Estonia	2020-03-16	205	0			
+Estonia	2020-03-17	205	0			
+Swaziland	2020-03-15	1	0			
+Swaziland	2020-03-16	1	0			
+Swaziland	2020-03-17	1	0			
+Ethiopia	2020-03-14	1	0			
+Ethiopia	2020-03-15	1	0			
+Ethiopia	2020-03-16	1	0			
+Ethiopia	2020-03-17	5	0			
+Faeroe Islands	2020-03-08	1	0			
+Faeroe Islands	2020-03-09	2	0			
+Faeroe Islands	2020-03-10	2	0			
+Faeroe Islands	2020-03-11	2	0			
+Faeroe Islands	2020-03-12	2	0			
+Faeroe Islands	2020-03-13	2	0			
+Faeroe Islands	2020-03-14	3	0			
+Faeroe Islands	2020-03-15	9	0			
+Faeroe Islands	2020-03-16	11	0			
+Faeroe Islands	2020-03-17	47	0			
+Finland	2020-01-30	1	0			
+Finland	2020-01-31	1	0			
+Finland	2020-02-01	1	0			
+Finland	2020-02-02	1	0			
+Finland	2020-02-03	1	0			
+Finland	2020-02-04	1	0			
+Finland	2020-02-05	1	0			
+Finland	2020-02-06	1	0			
+Finland	2020-02-07	1	0			
+Finland	2020-02-08	1	0			
+Finland	2020-02-09	1	0			
+Finland	2020-02-10	1	0			
+Finland	2020-02-11	1	0			
+Finland	2020-02-12	1	0			
+Finland	2020-02-13	1	0			
+Finland	2020-02-14	1	0			
+Finland	2020-02-15	1	0			
+Finland	2020-02-16	1	0			
+Finland	2020-02-17	1	0			
+Finland	2020-02-18	1	0			
+Finland	2020-02-19	1	0			
+Finland	2020-02-20	1	0			
+Finland	2020-02-21	1	0			
+Finland	2020-02-22	1	0			
+Finland	2020-02-23	1	0			
+Finland	2020-02-24	1	0			
+Finland	2020-02-25	1	0			
+Finland	2020-02-26	1	0			
+Finland	2020-02-27	2	0			
+Finland	2020-02-28	2	0			
+Finland	2020-02-29	2	0			
+Finland	2020-03-01	2	0			
+Finland	2020-03-02	6	0			
+Finland	2020-03-03	7	0			
+Finland	2020-03-04	7	0			
+Finland	2020-03-05	7	0			
+Finland	2020-03-06	12	0			
+Finland	2020-03-07	19	0			
+Finland	2020-03-08	19	0			
+Finland	2020-03-09	30	0			
+Finland	2020-03-10	40	0			
+Finland	2020-03-11	40	0			
+Finland	2020-03-12	40	0			
+Finland	2020-03-13	109	0			
+Finland	2020-03-14	109	0			
+Finland	2020-03-15	210	0			
+Finland	2020-03-16	267	0			
+Finland	2020-03-17	272	0			
+France	2020-01-25	3	0			
+France	2020-01-26	3	0			
+France	2020-01-27	3	0			
+France	2020-01-28	3	0			
+France	2020-01-29	4	0			
+France	2020-01-30	5	0			
+France	2020-01-31	6	0			
+France	2020-02-01	6	0			
+France	2020-02-02	6	0			
+France	2020-02-03	6	0			
+France	2020-02-04	6	0			
+France	2020-02-05	6	0			
+France	2020-02-06	6	0			
+France	2020-02-07	6	0			
+France	2020-02-08	6	0			
+France	2020-02-09	11	0			
+France	2020-02-10	11	0			
+France	2020-02-11	11	0			
+France	2020-02-12	11	0			
+France	2020-02-13	11	0			
+France	2020-02-14	11	0			
+France	2020-02-15	11	0			
+France	2020-02-16	12	1			
+France	2020-02-17	12	1			
+France	2020-02-18	12	1			
+France	2020-02-19	12	1			
+France	2020-02-20	12	1			
+France	2020-02-21	12	1			
+France	2020-02-22	12	1			
+France	2020-02-23	12	1			
+France	2020-02-24	12	1			
+France	2020-02-25	12	1			
+France	2020-02-26	12	1			
+France	2020-02-27	18	2			
+France	2020-02-28	38	2			
+France	2020-02-29	57	2			
+France	2020-03-01	100	2			
+France	2020-03-02	100	2			
+France	2020-03-03	191	3			
+France	2020-03-04	212	4			
+France	2020-03-05	282	4			
+France	2020-03-06	420	6			
+France	2020-03-07	613	9			
+France	2020-03-08	706	10			
+France	2020-03-09	1116	19			
+France	2020-03-10	1402	30			
+France	2020-03-11	1774	33			
+France	2020-03-12	2269	48			
+France	2020-03-13	2860	61			
+France	2020-03-14	3640	79			
+France	2020-03-15	4469	91			
+France	2020-03-16	5380	127			
+France	2020-03-17	6573	148			
+French Guiana	2020-03-08	5	0			
+French Guiana	2020-03-09	5	0			
+French Guiana	2020-03-10	5	0			
+French Guiana	2020-03-11	5	0			
+French Guiana	2020-03-12	5	0			
+French Guiana	2020-03-13	6	0			
+French Guiana	2020-03-14	6	0			
+French Guiana	2020-03-15	7	0			
+French Guiana	2020-03-16	7	0			
+French Guiana	2020-03-17	7	0			
+French Polynesia	2020-03-12	1	0			
+French Polynesia	2020-03-13	1	0			
+French Polynesia	2020-03-14	1	0			
+French Polynesia	2020-03-15	3	0			
+French Polynesia	2020-03-16	3	0			
+French Polynesia	2020-03-17	3	0			
+Gabon	2020-03-14	1	0			
+Gabon	2020-03-15	1	0			
+Gabon	2020-03-16	1	0			
+Gabon	2020-03-17	1	0			
+Georgia	2020-02-27	1	0			
+Georgia	2020-02-28	1	0			
+Georgia	2020-02-29	2	0			
+Georgia	2020-03-01	3	0			
+Georgia	2020-03-02	3	0			
+Georgia	2020-03-03	3	0			
+Georgia	2020-03-04	3	0			
+Georgia	2020-03-05	3	0			
+Georgia	2020-03-06	9	0			
+Georgia	2020-03-07	9	0			
+Georgia	2020-03-08	12	0			
+Georgia	2020-03-09	13	0			
+Georgia	2020-03-10	15	0			
+Georgia	2020-03-11	23	0			
+Georgia	2020-03-12	23	0			
+Georgia	2020-03-13	25	0			
+Georgia	2020-03-14	25	0			
+Georgia	2020-03-15	30	0			
+Georgia	2020-03-16	33	0			
+Georgia	2020-03-17	33	0			
+Germany	2020-01-28	1	0			
+Germany	2020-01-29	4	0			
+Germany	2020-01-30	4	0			
+Germany	2020-01-31	5	0			
+Germany	2020-02-01	7	0			
+Germany	2020-02-02	8	0			
+Germany	2020-02-03	10	0			
+Germany	2020-02-04	12	0			
+Germany	2020-02-05	12	0			
+Germany	2020-02-06	12	0			
+Germany	2020-02-07	13	0			
+Germany	2020-02-08	14	0			
+Germany	2020-02-09	14	0			
+Germany	2020-02-10	14	0			
+Germany	2020-02-11	14	0			
+Germany	2020-02-12	16	0			
+Germany	2020-02-13	16	0			
+Germany	2020-02-14	16	0			
+Germany	2020-02-15	16	0			
+Germany	2020-02-16	16	0			
+Germany	2020-02-17	16	0			
+Germany	2020-02-18	16	0			
+Germany	2020-02-19	16	0			
+Germany	2020-02-20	16	0			
+Germany	2020-02-21	16	0			
+Germany	2020-02-22	16	0			
+Germany	2020-02-23	16	0			
+Germany	2020-02-24	16	0			
+Germany	2020-02-25	16	0			
+Germany	2020-02-26	18	0			
+Germany	2020-02-27	21	0			
+Germany	2020-02-28	26	0			
+Germany	2020-02-29	57	0			
+Germany	2020-03-01	57	0			
+Germany	2020-03-02	129	0			
+Germany	2020-03-03	157	0			
+Germany	2020-03-04	196	0			
+Germany	2020-03-05	262	0			
+Germany	2020-03-06	534	0			
+Germany	2020-03-07	639	0			
+Germany	2020-03-08	795	0			
+Germany	2020-03-09	1112	0			
+Germany	2020-03-10	1139	2			
+Germany	2020-03-11	1296	2			
+Germany	2020-03-12	1567	3			
+Germany	2020-03-13	2369	6			
+Germany	2020-03-14	3062	6			
+Germany	2020-03-15	3795	8			
+Germany	2020-03-16	4838	12			
+Germany	2020-03-17	6012	13			
+Ghana	2020-03-14	1	0			
+Ghana	2020-03-15	2	0			
+Ghana	2020-03-16	2	0			
+Ghana	2020-03-17	6	0			
+Gibraltar	2020-03-05	1	0			
+Gibraltar	2020-03-06	1	0			
+Gibraltar	2020-03-07	1	0			
+Gibraltar	2020-03-08	1	0			
+Gibraltar	2020-03-09	1	0			
+Gibraltar	2020-03-10	1	0			
+Gibraltar	2020-03-11	1	0			
+Gibraltar	2020-03-12	1	0			
+Gibraltar	2020-03-13	1	0			
+Gibraltar	2020-03-14	1	0			
+Gibraltar	2020-03-15	1	0			
+Gibraltar	2020-03-16	1	0			
+Gibraltar	2020-03-17	3	0			
+Greece	2020-02-27	1	0			
+Greece	2020-02-28	3	0			
+Greece	2020-02-29	3	0			
+Greece	2020-03-01	3	0			
+Greece	2020-03-02	7	0			
+Greece	2020-03-03	7	0			
+Greece	2020-03-04	7	0			
+Greece	2020-03-05	9	0			
+Greece	2020-03-06	32	0			
+Greece	2020-03-07	32	0			
+Greece	2020-03-08	66	0			
+Greece	2020-03-09	73	0			
+Greece	2020-03-10	73	0			
+Greece	2020-03-11	89	0			
+Greece	2020-03-12	98	1			
+Greece	2020-03-13	98	1			
+Greece	2020-03-14	98	1			
+Greece	2020-03-15	228	2			
+Greece	2020-03-16	331	4			
+Greece	2020-03-17	331	4			
+Guadeloupe	2020-03-14	1	0			
+Guadeloupe	2020-03-15	3	0			
+Guadeloupe	2020-03-16	6	0			
+Guadeloupe	2020-03-17	18	0			
+Guam	2020-03-17	3	0			
+Guatemala	2020-03-16	1	1			
+Guatemala	2020-03-17	1	1			
+Guernsey	2020-03-10	1	0			
+Guernsey	2020-03-11	1	0			
+Guernsey	2020-03-12	1	0			
+Guernsey	2020-03-13	1	0			
+Guernsey	2020-03-14	1	0			
+Guernsey	2020-03-15	1	0			
+Guernsey	2020-03-16	1	0			
+Guernsey	2020-03-17	1	0			
+Guinea	2020-03-14	1	0			
+Guinea	2020-03-15	1	0			
+Guinea	2020-03-16	1	0			
+Guinea	2020-03-17	1	0			
+Guyana	2020-03-13	1	1			
+Guyana	2020-03-14	1	1			
+Guyana	2020-03-15	1	1			
+Guyana	2020-03-16	4	1			
+Guyana	2020-03-17	4	1			
+Vatican	2020-03-07	1	0			
+Vatican	2020-03-08	1	0			
+Vatican	2020-03-09	1	0			
+Vatican	2020-03-10	1	0			
+Vatican	2020-03-11	1	0			
+Vatican	2020-03-12	1	0			
+Vatican	2020-03-13	1	0			
+Vatican	2020-03-14	1	0			
+Vatican	2020-03-15	1	0			
+Vatican	2020-03-16	1	0			
+Vatican	2020-03-17	1	0			
+Honduras	2020-03-12	2	0			
+Honduras	2020-03-13	2	0			
+Honduras	2020-03-14	2	0			
+Honduras	2020-03-15	2	0			
+Honduras	2020-03-16	2	0			
+Honduras	2020-03-17	8	0			
+Hungary	2020-03-05	2	0			
+Hungary	2020-03-06	2	0			
+Hungary	2020-03-07	5	0			
+Hungary	2020-03-08	7	0			
+Hungary	2020-03-09	9	0			
+Hungary	2020-03-10	9	0			
+Hungary	2020-03-11	13	0			
+Hungary	2020-03-12	13	0			
+Hungary	2020-03-13	16	0			
+Hungary	2020-03-14	19	0			
+Hungary	2020-03-15	32	0			
+Hungary	2020-03-16	39	1			
+Hungary	2020-03-17	50	1			
+Iceland	2020-03-02	2	0			
+Iceland	2020-03-03	9	0			
+Iceland	2020-03-04	16	0			
+Iceland	2020-03-05	26	0			
+Iceland	2020-03-06	26	0			
+Iceland	2020-03-07	45	0			
+Iceland	2020-03-08	45	0			
+Iceland	2020-03-09	55	0			
+Iceland	2020-03-10	55	0			
+Iceland	2020-03-11	61	0			
+Iceland	2020-03-12	61	0			
+Iceland	2020-03-13	61	0			
+Iceland	2020-03-14	61	0			
+Iceland	2020-03-15	138	0			
+Iceland	2020-03-16	138	0			
+Iceland	2020-03-17	199	0			
+India	2020-01-30	1	0			
+India	2020-01-31	1	0			
+India	2020-02-01	1	0			
+India	2020-02-02	2	0			
+India	2020-02-03	3	0			
+India	2020-02-04	3	0			
+India	2020-02-05	3	0			
+India	2020-02-06	3	0			
+India	2020-02-07	3	0			
+India	2020-02-08	3	0			
+India	2020-02-09	3	0			
+India	2020-02-10	3	0			
+India	2020-02-11	3	0			
+India	2020-02-12	3	0			
+India	2020-02-13	3	0			
+India	2020-02-14	3	0			
+India	2020-02-15	3	0			
+India	2020-02-16	3	0			
+India	2020-02-17	3	0			
+India	2020-02-18	3	0			
+India	2020-02-19	3	0			
+India	2020-02-20	3	0			
+India	2020-02-21	3	0			
+India	2020-02-22	3	0			
+India	2020-02-23	3	0			
+India	2020-02-24	3	0			
+India	2020-02-25	3	0			
+India	2020-02-26	3	0			
+India	2020-02-27	3	0			
+India	2020-02-28	3	0			
+India	2020-02-29	3	0			
+India	2020-03-01	3	0			
+India	2020-03-02	3	0			
+India	2020-03-03	5	0			
+India	2020-03-04	6	0			
+India	2020-03-05	29	0			
+India	2020-03-06	30	0			
+India	2020-03-07	31	0			
+India	2020-03-08	34	0			
+India	2020-03-09	43	0			
+India	2020-03-10	44	0			
+India	2020-03-11	60	0			
+India	2020-03-12	73	0			
+India	2020-03-13	74	1			
+India	2020-03-14	82	2			
+India	2020-03-15	107	2			
+India	2020-03-16	114	2			
+India	2020-03-17	137	3			
+Indonesia	2020-03-02	2	0			
+Indonesia	2020-03-03	2	0			
+Indonesia	2020-03-04	2	0			
+Indonesia	2020-03-05	2	0			
+Indonesia	2020-03-06	2	0			
+Indonesia	2020-03-07	2	0			
+Indonesia	2020-03-08	6	0			
+Indonesia	2020-03-09	6	0			
+Indonesia	2020-03-10	19	0			
+Indonesia	2020-03-11	27	1			
+Indonesia	2020-03-12	34	1			
+Indonesia	2020-03-13	34	1			
+Indonesia	2020-03-14	69	3			
+Indonesia	2020-03-15	117	4			
+Indonesia	2020-03-16	117	4			
+Indonesia	2020-03-17	172	5			
+International	2020-02-06	20	0			
+International	2020-02-07	61	0			
+International	2020-02-08	64	0			
+International	2020-02-09	64	0			
+International	2020-02-10	70	0			
+International	2020-02-11	135	0			
+International	2020-02-12	175	0			
+International	2020-02-13	174	0			
+International	2020-02-14	218	0			
+International	2020-02-15	218	0			
+International	2020-02-16	355	0			
+International	2020-02-17	454	0			
+International	2020-02-18	454	0			
+International	2020-02-19	542	0			
+International	2020-02-20	621	2			
+International	2020-02-21	634	2			
+International	2020-02-22	634	2			
+International	2020-02-23	634	3			
+International	2020-02-24	695	3			
+International	2020-02-25	691	3			
+International	2020-02-26	691	3			
+International	2020-02-27	705	4			
+International	2020-02-28	705	4			
+International	2020-02-29	705	6			
+International	2020-03-01	705	6			
+International	2020-03-02	706	6			
+International	2020-03-03	706	6			
+International	2020-03-04	706	6			
+International	2020-03-05	706	6			
+International	2020-03-06	696	6			
+International	2020-03-07	696	6			
+International	2020-03-08	696	7			
+International	2020-03-09	696	7			
+International	2020-03-10	696	7			
+International	2020-03-11	696	7			
+International	2020-03-12	696	7			
+International	2020-03-13	696	7			
+International	2020-03-14	697	7			
+International	2020-03-15	697	7			
+International	2020-03-16	712	7			
+International	2020-03-17	712	7			
+Iran	2020-02-20	2	2			
+Iran	2020-02-21	5	2			
+Iran	2020-02-22	18	4			
+Iran	2020-02-23	28	5			
+Iran	2020-02-24	43	8			
+Iran	2020-02-25	61	12			
+Iran	2020-02-26	95	15			
+Iran	2020-02-27	141	22			
+Iran	2020-02-28	245	26			
+Iran	2020-02-29	388	34			
+Iran	2020-03-01	593	43			
+Iran	2020-03-02	978	54			
+Iran	2020-03-03	1501	66			
+Iran	2020-03-04	2336	77			
+Iran	2020-03-05	2922	92			
+Iran	2020-03-06	3513	107			
+Iran	2020-03-07	4747	124			
+Iran	2020-03-08	5823	145			
+Iran	2020-03-09	6566	194			
+Iran	2020-03-10	7161	237			
+Iran	2020-03-11	8042	291			
+Iran	2020-03-12	9000	354			
+Iran	2020-03-13	10075	429			
+Iran	2020-03-14	11364	514			
+Iran	2020-03-15	12729	608			
+Iran	2020-03-16	14991	853			
+Iran	2020-03-17	14991	853			
+Iraq	2020-02-25	1	0			
+Iraq	2020-02-26	5	0			
+Iraq	2020-02-27	6	0			
+Iraq	2020-02-28	7	0			
+Iraq	2020-02-29	8	0			
+Iraq	2020-03-01	13	0			
+Iraq	2020-03-02	19	0			
+Iraq	2020-03-03	26	0			
+Iraq	2020-03-04	31	0			
+Iraq	2020-03-05	36	2			
+Iraq	2020-03-06	36	2			
+Iraq	2020-03-07	44	4			
+Iraq	2020-03-08	54	4			
+Iraq	2020-03-09	60	6			
+Iraq	2020-03-10	61	6			
+Iraq	2020-03-11	61	6			
+Iraq	2020-03-12	70	7			
+Iraq	2020-03-13	70	7			
+Iraq	2020-03-14	93	9			
+Iraq	2020-03-15	93	9			
+Iraq	2020-03-16	124	9			
+Iraq	2020-03-17	124	9			
+Ireland	2020-03-01	1	0			
+Ireland	2020-03-02	1	0			
+Ireland	2020-03-03	1	0			
+Ireland	2020-03-04	2	0			
+Ireland	2020-03-05	2	0			
+Ireland	2020-03-06	14	0			
+Ireland	2020-03-07	18	0			
+Ireland	2020-03-08	19	0			
+Ireland	2020-03-09	21	0			
+Ireland	2020-03-10	24	0			
+Ireland	2020-03-11	34	0			
+Ireland	2020-03-12	43	1			
+Ireland	2020-03-13	70	1			
+Ireland	2020-03-14	90	1			
+Ireland	2020-03-15	129	2			
+Ireland	2020-03-16	169	2			
+Ireland	2020-03-17	223	2			
+Israel	2020-02-22	1	0			
+Israel	2020-02-23	1	0			
+Israel	2020-02-24	1	0			
+Israel	2020-02-25	2	0			
+Israel	2020-02-26	2	0			
+Israel	2020-02-27	2	0			
+Israel	2020-02-28	3	0			
+Israel	2020-02-29	5	0			
+Israel	2020-03-01	7	0			
+Israel	2020-03-02	7	0			
+Israel	2020-03-03	10	0			
+Israel	2020-03-04	12	0			
+Israel	2020-03-05	15	0			
+Israel	2020-03-06	15	0			
+Israel	2020-03-07	19	0			
+Israel	2020-03-08	25	0			
+Israel	2020-03-09	39	0			
+Israel	2020-03-10	39	0			
+Israel	2020-03-11	75	0			
+Israel	2020-03-12	75	0			
+Israel	2020-03-13	75	0			
+Israel	2020-03-14	100	0			
+Israel	2020-03-15	178	0			
+Israel	2020-03-16	200	0			
+Israel	2020-03-17	250	0			
+Italy	2020-01-31	2	0			
+Italy	2020-02-01	2	0			
+Italy	2020-02-02	2	0			
+Italy	2020-02-03	2	0			
+Italy	2020-02-04	2	0			
+Italy	2020-02-05	2	0			
+Italy	2020-02-06	2	0			
+Italy	2020-02-07	3	0			
+Italy	2020-02-08	3	0			
+Italy	2020-02-09	3	0			
+Italy	2020-02-10	3	0			
+Italy	2020-02-11	3	0			
+Italy	2020-02-12	3	0			
+Italy	2020-02-13	3	0			
+Italy	2020-02-14	3	0			
+Italy	2020-02-15	3	0			
+Italy	2020-02-16	3	0			
+Italy	2020-02-17	3	0			
+Italy	2020-02-18	3	0			
+Italy	2020-02-19	3	0			
+Italy	2020-02-20	3	0			
+Italy	2020-02-21	3	0			
+Italy	2020-02-22	9	0			
+Italy	2020-02-23	76	2			
+Italy	2020-02-24	124	2			
+Italy	2020-02-25	229	6			
+Italy	2020-02-26	322	11			
+Italy	2020-02-27	400	12			
+Italy	2020-02-28	650	17			
+Italy	2020-02-29	888	21			
+Italy	2020-03-01	1128	29			
+Italy	2020-03-02	1689	35			
+Italy	2020-03-03	2036	52			
+Italy	2020-03-04	2502	80			
+Italy	2020-03-05	3089	107			
+Italy	2020-03-06	3858	148			
+Italy	2020-03-07	4636	197			
+Italy	2020-03-08	5883	234			
+Italy	2020-03-09	7375	366			
+Italy	2020-03-10	9172	463			
+Italy	2020-03-11	10149	631			
+Italy	2020-03-12	12462	827			
+Italy	2020-03-13	15113	1016			
+Italy	2020-03-14	17660	1268			
+Italy	2020-03-15	21157	1441			
+Italy	2020-03-16	24747	1809			
+Italy	2020-03-17	27980	2503			
+Jamaica	2020-03-11	1	0			
+Jamaica	2020-03-12	1	0			
+Jamaica	2020-03-13	1	0			
+Jamaica	2020-03-14	7	0			
+Jamaica	2020-03-15	8	0			
+Jamaica	2020-03-16	10	0			
+Jamaica	2020-03-17	10	0			
+Japan	2020-01-21	1	0			
+Japan	2020-01-22	1	0			
+Japan	2020-01-23	1	0			
+Japan	2020-01-24	1	0			
+Japan	2020-01-25	3	0			
+Japan	2020-01-26	3	0			
+Japan	2020-01-27	4	0			
+Japan	2020-01-28	6	0			
+Japan	2020-01-29	7	0			
+Japan	2020-01-30	11	0			
+Japan	2020-01-31	14	0			
+Japan	2020-02-01	17	0			
+Japan	2020-02-02	20	0			
+Japan	2020-02-03	20	0			
+Japan	2020-02-04	20	0			
+Japan	2020-02-05	23	0			
+Japan	2020-02-06	25	0			
+Japan	2020-02-07	25	0			
+Japan	2020-02-08	25	0			
+Japan	2020-02-09	26	0			
+Japan	2020-02-10	26	0			
+Japan	2020-02-11	26	0			
+Japan	2020-02-12	28	0			
+Japan	2020-02-13	29	0			
+Japan	2020-02-14	33	1			
+Japan	2020-02-15	41	1			
+Japan	2020-02-16	53	1			
+Japan	2020-02-17	59	1			
+Japan	2020-02-18	65	1			
+Japan	2020-02-19	73	1			
+Japan	2020-02-20	85	1			
+Japan	2020-02-21	93	1			
+Japan	2020-02-22	105	1			
+Japan	2020-02-23	132	1			
+Japan	2020-02-24	144	1			
+Japan	2020-02-25	157	1			
+Japan	2020-02-26	164	1			
+Japan	2020-02-27	186	3			
+Japan	2020-02-28	210	4			
+Japan	2020-02-29	230	5			
+Japan	2020-03-01	239	5			
+Japan	2020-03-02	254	6			
+Japan	2020-03-03	268	6			
+Japan	2020-03-04	284	6			
+Japan	2020-03-05	317	6			
+Japan	2020-03-06	349	6			
+Japan	2020-03-07	408	6			
+Japan	2020-03-08	455	6			
+Japan	2020-03-09	488	7			
+Japan	2020-03-10	514	9			
+Japan	2020-03-11	568	12			
+Japan	2020-03-12	620	15			
+Japan	2020-03-13	675	19			
+Japan	2020-03-14	716	21			
+Japan	2020-03-15	780	22			
+Japan	2020-03-16	814	24			
+Japan	2020-03-17	829	28			
+Jersey	2020-03-13	2	0			
+Jersey	2020-03-14	2	0			
+Jersey	2020-03-15	2	0			
+Jersey	2020-03-16	2	0			
+Jersey	2020-03-17	2	0			
+Jordan	2020-03-03	1	0			
+Jordan	2020-03-04	1	0			
+Jordan	2020-03-05	1	0			
+Jordan	2020-03-06	1	0			
+Jordan	2020-03-07	1	0			
+Jordan	2020-03-08	1	0			
+Jordan	2020-03-09	1	0			
+Jordan	2020-03-10	1	0			
+Jordan	2020-03-11	1	0			
+Jordan	2020-03-12	1	0			
+Jordan	2020-03-13	1	0			
+Jordan	2020-03-14	1	0			
+Jordan	2020-03-15	1	0			
+Jordan	2020-03-16	6	0			
+Jordan	2020-03-17	35	0			
+Kazakhstan	2020-03-15	6	0			
+Kazakhstan	2020-03-16	6	0			
+Kazakhstan	2020-03-17	6	0			
+Kenya	2020-03-14	1	0			
+Kenya	2020-03-15	1	0			
+Kenya	2020-03-16	1	0			
+Kenya	2020-03-17	3	0			
+Kuwait	2020-02-24	3	0			
+Kuwait	2020-02-25	8	0			
+Kuwait	2020-02-26	12	0			
+Kuwait	2020-02-27	43	0			
+Kuwait	2020-02-28	43	0			
+Kuwait	2020-02-29	45	0			
+Kuwait	2020-03-01	45	0			
+Kuwait	2020-03-02	56	0			
+Kuwait	2020-03-03	56	0			
+Kuwait	2020-03-04	56	0			
+Kuwait	2020-03-05	58	0			
+Kuwait	2020-03-06	58	0			
+Kuwait	2020-03-07	58	0			
+Kuwait	2020-03-08	62	0			
+Kuwait	2020-03-09	64	0			
+Kuwait	2020-03-10	65	0			
+Kuwait	2020-03-11	69	0			
+Kuwait	2020-03-12	80	0			
+Kuwait	2020-03-13	80	0			
+Kuwait	2020-03-14	100	0			
+Kuwait	2020-03-15	112	0			
+Kuwait	2020-03-16	112	0			
+Kuwait	2020-03-17	130	0			
+Latvia	2020-03-03	1	0			
+Latvia	2020-03-04	1	0			
+Latvia	2020-03-05	1	0			
+Latvia	2020-03-06	1	0			
+Latvia	2020-03-07	1	0			
+Latvia	2020-03-08	1	0			
+Latvia	2020-03-09	3	0			
+Latvia	2020-03-10	6	0			
+Latvia	2020-03-11	8	0			
+Latvia	2020-03-12	16	0			
+Latvia	2020-03-13	16	0			
+Latvia	2020-03-14	16	0			
+Latvia	2020-03-15	30	0			
+Latvia	2020-03-16	31	0			
+Latvia	2020-03-17	36	0			
+Lebanon	2020-02-22	1	0			
+Lebanon	2020-02-23	1	0			
+Lebanon	2020-02-24	1	0			
+Lebanon	2020-02-25	1	0			
+Lebanon	2020-02-26	1	0			
+Lebanon	2020-02-27	2	0			
+Lebanon	2020-02-28	2	0			
+Lebanon	2020-02-29	2	0			
+Lebanon	2020-03-01	2	0			
+Lebanon	2020-03-02	10	0			
+Lebanon	2020-03-03	13	0			
+Lebanon	2020-03-04	13	0			
+Lebanon	2020-03-05	13	0			
+Lebanon	2020-03-06	16	0			
+Lebanon	2020-03-07	22	0			
+Lebanon	2020-03-08	28	0			
+Lebanon	2020-03-09	32	0			
+Lebanon	2020-03-10	41	0			
+Lebanon	2020-03-11	41	1			
+Lebanon	2020-03-12	66	3			
+Lebanon	2020-03-13	66	3			
+Lebanon	2020-03-14	77	3			
+Lebanon	2020-03-15	93	3			
+Lebanon	2020-03-16	99	3			
+Lebanon	2020-03-17	109	3			
+Liberia	2020-03-17	1	0			
+Liechtenstein	2020-03-05	1	0			
+Liechtenstein	2020-03-06	1	0			
+Liechtenstein	2020-03-07	1	0			
+Liechtenstein	2020-03-08	1	0			
+Liechtenstein	2020-03-09	1	0			
+Liechtenstein	2020-03-10	1	0			
+Liechtenstein	2020-03-11	1	0			
+Liechtenstein	2020-03-12	1	0			
+Liechtenstein	2020-03-13	4	0			
+Liechtenstein	2020-03-14	4	0			
+Liechtenstein	2020-03-15	4	0			
+Liechtenstein	2020-03-16	7	0			
+Liechtenstein	2020-03-17	7	0			
+Lithuania	2020-02-28	1	0			
+Lithuania	2020-02-29	1	0			
+Lithuania	2020-03-01	1	0			
+Lithuania	2020-03-02	1	0			
+Lithuania	2020-03-03	1	0			
+Lithuania	2020-03-04	1	0			
+Lithuania	2020-03-05	1	0			
+Lithuania	2020-03-06	1	0			
+Lithuania	2020-03-07	1	0			
+Lithuania	2020-03-08	1	0			
+Lithuania	2020-03-09	1	0			
+Lithuania	2020-03-10	1	0			
+Lithuania	2020-03-11	1	0			
+Lithuania	2020-03-12	3	0			
+Lithuania	2020-03-13	3	0			
+Lithuania	2020-03-14	6	0			
+Lithuania	2020-03-15	9	0			
+Lithuania	2020-03-16	14	0			
+Lithuania	2020-03-17	17	0			
+Luxembourg	2020-03-02	1	0			
+Luxembourg	2020-03-03	1	0			
+Luxembourg	2020-03-04	1	0			
+Luxembourg	2020-03-05	1	0			
+Luxembourg	2020-03-06	1	0			
+Luxembourg	2020-03-07	2	0			
+Luxembourg	2020-03-08	2	0			
+Luxembourg	2020-03-09	2	0			
+Luxembourg	2020-03-10	5	0			
+Luxembourg	2020-03-11	5	0			
+Luxembourg	2020-03-12	17	0			
+Luxembourg	2020-03-13	17	0			
+Luxembourg	2020-03-14	38	1			
+Luxembourg	2020-03-15	38	1			
+Luxembourg	2020-03-16	38	1			
+Luxembourg	2020-03-17	81	1			
+Malaysia	2020-01-26	3	0			
+Malaysia	2020-01-27	4	0			
+Malaysia	2020-01-28	4	0			
+Malaysia	2020-01-29	4	0			
+Malaysia	2020-01-30	7	0			
+Malaysia	2020-01-31	8	0			
+Malaysia	2020-02-01	8	0			
+Malaysia	2020-02-02	8	0			
+Malaysia	2020-02-03	8	0			
+Malaysia	2020-02-04	10	0			
+Malaysia	2020-02-05	10	0			
+Malaysia	2020-02-06	12	0			
+Malaysia	2020-02-07	14	0			
+Malaysia	2020-02-08	15	0			
+Malaysia	2020-02-09	17	0			
+Malaysia	2020-02-10	18	0			
+Malaysia	2020-02-11	18	0			
+Malaysia	2020-02-12	18	0			
+Malaysia	2020-02-13	18	0			
+Malaysia	2020-02-14	19	0			
+Malaysia	2020-02-15	21	0			
+Malaysia	2020-02-16	22	0			
+Malaysia	2020-02-17	22	0			
+Malaysia	2020-02-18	22	0			
+Malaysia	2020-02-19	22	0			
+Malaysia	2020-02-20	22	0			
+Malaysia	2020-02-21	22	0			
+Malaysia	2020-02-22	22	0			
+Malaysia	2020-02-23	22	0			
+Malaysia	2020-02-24	22	0			
+Malaysia	2020-02-25	22	0			
+Malaysia	2020-02-26	22	0			
+Malaysia	2020-02-27	22	0			
+Malaysia	2020-02-28	24	0			
+Malaysia	2020-02-29	24	0			
+Malaysia	2020-03-01	24	0			
+Malaysia	2020-03-02	24	0			
+Malaysia	2020-03-03	29	0			
+Malaysia	2020-03-04	50	0			
+Malaysia	2020-03-05	50	0			
+Malaysia	2020-03-06	55	0			
+Malaysia	2020-03-07	83	0			
+Malaysia	2020-03-08	93	0			
+Malaysia	2020-03-09	93	0			
+Malaysia	2020-03-10	117	0			
+Malaysia	2020-03-11	129	0			
+Malaysia	2020-03-12	129	0			
+Malaysia	2020-03-13	129	0			
+Malaysia	2020-03-14	197	0			
+Malaysia	2020-03-15	238	0			
+Malaysia	2020-03-16	553	0			
+Malaysia	2020-03-17	553	0			
+Maldives	2020-03-08	2	0			
+Maldives	2020-03-09	4	0			
+Maldives	2020-03-10	4	0			
+Maldives	2020-03-11	8	0			
+Maldives	2020-03-12	8	0			
+Maldives	2020-03-13	8	0			
+Maldives	2020-03-14	9	0			
+Maldives	2020-03-15	10	0			
+Maldives	2020-03-16	13	0			
+Maldives	2020-03-17	13	0			
+Malta	2020-03-08	3	0			
+Malta	2020-03-09	3	0			
+Malta	2020-03-10	4	0			
+Malta	2020-03-11	4	0			
+Malta	2020-03-12	6	0			
+Malta	2020-03-13	9	0			
+Malta	2020-03-14	12	0			
+Malta	2020-03-15	12	0			
+Malta	2020-03-16	21	0			
+Malta	2020-03-17	30	0			
+Martinique	2020-03-08	2	0			
+Martinique	2020-03-09	2	0			
+Martinique	2020-03-10	2	0			
+Martinique	2020-03-11	3	0			
+Martinique	2020-03-12	3	0			
+Martinique	2020-03-13	4	0			
+Martinique	2020-03-14	6	0			
+Martinique	2020-03-15	10	0			
+Martinique	2020-03-16	15	0			
+Martinique	2020-03-17	16	0			
+Mauritania	2020-03-15	1	0			
+Mauritania	2020-03-16	1	0			
+Mauritania	2020-03-17	1	0			
+Mayotte	2020-03-15	1	0			
+Mayotte	2020-03-16	1	0			
+Mayotte	2020-03-17	1	0			
+Mexico	2020-02-29	2	0			
+Mexico	2020-03-01	2	0			
+Mexico	2020-03-02	5	0			
+Mexico	2020-03-03	5	0			
+Mexico	2020-03-04	5	0			
+Mexico	2020-03-05	5	0			
+Mexico	2020-03-06	5	0			
+Mexico	2020-03-07	5	0			
+Mexico	2020-03-08	7	0			
+Mexico	2020-03-09	7	0			
+Mexico	2020-03-10	7	0			
+Mexico	2020-03-11	7	0			
+Mexico	2020-03-12	11	0			
+Mexico	2020-03-13	12	0			
+Mexico	2020-03-14	26	0			
+Mexico	2020-03-15	41	0			
+Mexico	2020-03-16	53	0			
+Mexico	2020-03-17	53	0			
+Monaco	2020-03-01	1	0			
+Monaco	2020-03-02	1	0			
+Monaco	2020-03-03	1	0			
+Monaco	2020-03-04	1	0			
+Monaco	2020-03-05	1	0			
+Monaco	2020-03-06	1	0			
+Monaco	2020-03-07	1	0			
+Monaco	2020-03-08	1	0			
+Monaco	2020-03-09	1	0			
+Monaco	2020-03-10	1	0			
+Monaco	2020-03-11	1	0			
+Monaco	2020-03-12	1	0			
+Monaco	2020-03-13	1	0			
+Monaco	2020-03-14	2	0			
+Monaco	2020-03-15	2	0			
+Monaco	2020-03-16	9	0			
+Monaco	2020-03-17	9	0			
+Mongolia	2020-03-10	1	0			
+Mongolia	2020-03-11	1	0			
+Mongolia	2020-03-12	1	0			
+Mongolia	2020-03-13	1	0			
+Mongolia	2020-03-14	1	0			
+Mongolia	2020-03-15	1	0			
+Mongolia	2020-03-16	1	0			
+Mongolia	2020-03-17	4	0			
+Morocco	2020-03-03	1	0			
+Morocco	2020-03-04	1	0			
+Morocco	2020-03-05	2	0			
+Morocco	2020-03-06	2	0			
+Morocco	2020-03-07	2	0			
+Morocco	2020-03-08	2	0			
+Morocco	2020-03-09	2	0			
+Morocco	2020-03-10	2	0			
+Morocco	2020-03-11	3	1			
+Morocco	2020-03-12	5	1			
+Morocco	2020-03-13	6	1			
+Morocco	2020-03-14	7	1			
+Morocco	2020-03-15	18	1			
+Morocco	2020-03-16	28	1			
+Morocco	2020-03-17	38	2			
+Namibia	2020-03-15	2	0			
+Namibia	2020-03-16	2	0			
+Namibia	2020-03-17	2	0			
+Nepal	2020-01-25	1	0			
+Nepal	2020-01-26	1	0			
+Nepal	2020-01-27	1	0			
+Nepal	2020-01-28	1	0			
+Nepal	2020-01-29	1	0			
+Nepal	2020-01-30	1	0			
+Nepal	2020-01-31	1	0			
+Nepal	2020-02-01	1	0			
+Nepal	2020-02-02	1	0			
+Nepal	2020-02-03	1	0			
+Nepal	2020-02-04	1	0			
+Nepal	2020-02-05	1	0			
+Nepal	2020-02-06	1	0			
+Nepal	2020-02-07	1	0			
+Nepal	2020-02-08	1	0			
+Nepal	2020-02-09	1	0			
+Nepal	2020-02-10	1	0			
+Nepal	2020-02-11	1	0			
+Nepal	2020-02-12	1	0			
+Nepal	2020-02-13	1	0			
+Nepal	2020-02-14	1	0			
+Nepal	2020-02-15	1	0			
+Nepal	2020-02-16	1	0			
+Nepal	2020-02-17	1	0			
+Nepal	2020-02-18	1	0			
+Nepal	2020-02-19	1	0			
+Nepal	2020-02-20	1	0			
+Nepal	2020-02-21	1	0			
+Nepal	2020-02-22	1	0			
+Nepal	2020-02-23	1	0			
+Nepal	2020-02-24	1	0			
+Nepal	2020-02-25	1	0			
+Nepal	2020-02-26	1	0			
+Nepal	2020-02-27	1	0			
+Nepal	2020-02-28	1	0			
+Nepal	2020-02-29	1	0			
+Nepal	2020-03-01	1	0			
+Nepal	2020-03-02	1	0			
+Nepal	2020-03-03	1	0			
+Nepal	2020-03-04	1	0			
+Nepal	2020-03-05	1	0			
+Nepal	2020-03-06	1	0			
+Nepal	2020-03-07	1	0			
+Nepal	2020-03-08	1	0			
+Nepal	2020-03-09	1	0			
+Nepal	2020-03-10	1	0			
+Nepal	2020-03-11	1	0			
+Nepal	2020-03-12	1	0			
+Nepal	2020-03-13	1	0			
+Nepal	2020-03-14	1	0			
+Nepal	2020-03-15	1	0			
+Nepal	2020-03-16	1	0			
+Nepal	2020-03-17	1	0			
+Netherlands	2020-02-28	1	0			
+Netherlands	2020-02-29	2	0			
+Netherlands	2020-03-01	7	0			
+Netherlands	2020-03-02	13	0			
+Netherlands	2020-03-03	18	0			
+Netherlands	2020-03-04	28	0			
+Netherlands	2020-03-05	38	0			
+Netherlands	2020-03-06	82	0			
+Netherlands	2020-03-07	128	1			
+Netherlands	2020-03-08	188	1			
+Netherlands	2020-03-09	265	3			
+Netherlands	2020-03-10	321	3			
+Netherlands	2020-03-11	382	4			
+Netherlands	2020-03-12	503	5			
+Netherlands	2020-03-13	614	5			
+Netherlands	2020-03-14	804	10			
+Netherlands	2020-03-15	959	12			
+Netherlands	2020-03-16	1135	20			
+Netherlands	2020-03-17	1413	24			
+New Zealand	2020-02-28	1	0			
+New Zealand	2020-02-29	1	0			
+New Zealand	2020-03-01	1	0			
+New Zealand	2020-03-02	1	0			
+New Zealand	2020-03-03	2	0			
+New Zealand	2020-03-04	2	0			
+New Zealand	2020-03-05	2	0			
+New Zealand	2020-03-06	4	0			
+New Zealand	2020-03-07	5	0			
+New Zealand	2020-03-08	5	0			
+New Zealand	2020-03-09	5	0			
+New Zealand	2020-03-10	5	0			
+New Zealand	2020-03-11	5	0			
+New Zealand	2020-03-12	5	0			
+New Zealand	2020-03-13	5	0			
+New Zealand	2020-03-14	6	0			
+New Zealand	2020-03-15	6	0			
+New Zealand	2020-03-16	6	0			
+New Zealand	2020-03-17	11	0			
+Nigeria	2020-02-28	1	0			
+Nigeria	2020-02-29	1	0			
+Nigeria	2020-03-01	1	0			
+Nigeria	2020-03-02	1	0			
+Nigeria	2020-03-03	1	0			
+Nigeria	2020-03-04	1	0			
+Nigeria	2020-03-05	1	0			
+Nigeria	2020-03-06	1	0			
+Nigeria	2020-03-07	1	0			
+Nigeria	2020-03-08	1	0			
+Nigeria	2020-03-09	2	0			
+Nigeria	2020-03-10	2	0			
+Nigeria	2020-03-11	2	0			
+Nigeria	2020-03-12	2	0			
+Nigeria	2020-03-13	2	0			
+Nigeria	2020-03-14	2	0			
+Nigeria	2020-03-15	2	0			
+Nigeria	2020-03-16	2	0			
+Nigeria	2020-03-17	2	0			
+Macedonia	2020-02-27	1	0			
+Macedonia	2020-02-28	1	0			
+Macedonia	2020-02-29	1	0			
+Macedonia	2020-03-01	1	0			
+Macedonia	2020-03-02	1	0			
+Macedonia	2020-03-03	1	0			
+Macedonia	2020-03-04	1	0			
+Macedonia	2020-03-05	1	0			
+Macedonia	2020-03-06	1	0			
+Macedonia	2020-03-07	3	0			
+Macedonia	2020-03-08	3	0			
+Macedonia	2020-03-09	3	0			
+Macedonia	2020-03-10	7	0			
+Macedonia	2020-03-11	7	0			
+Macedonia	2020-03-12	7	0			
+Macedonia	2020-03-13	7	0			
+Macedonia	2020-03-14	9	0			
+Macedonia	2020-03-15	13	0			
+Macedonia	2020-03-16	13	0			
+Macedonia	2020-03-17	19	0			
+Norway	2020-02-27	1	0			
+Norway	2020-02-28	4	0			
+Norway	2020-02-29	6	0			
+Norway	2020-03-01	15	0			
+Norway	2020-03-02	19	0			
+Norway	2020-03-03	25	0			
+Norway	2020-03-04	32	0			
+Norway	2020-03-05	56	0			
+Norway	2020-03-06	86	0			
+Norway	2020-03-07	113	0			
+Norway	2020-03-08	147	0			
+Norway	2020-03-09	169	0			
+Norway	2020-03-10	192	0			
+Norway	2020-03-11	277	0			
+Norway	2020-03-12	489	0			
+Norway	2020-03-13	489	1			
+Norway	2020-03-14	750	1			
+Norway	2020-03-15	907	1			
+Norway	2020-03-16	1077	1			
+Norway	2020-03-17	1169	3			
+Palestine	2020-03-05	4	0			
+Palestine	2020-03-06	7	0			
+Palestine	2020-03-07	16	0			
+Palestine	2020-03-08	16	0			
+Palestine	2020-03-09	19	0			
+Palestine	2020-03-10	26	0			
+Palestine	2020-03-11	30	0			
+Palestine	2020-03-12	30	0			
+Palestine	2020-03-13	31	0			
+Palestine	2020-03-14	35	0			
+Palestine	2020-03-15	38	0			
+Palestine	2020-03-16	38	0			
+Palestine	2020-03-17	39	0			
+Oman	2020-02-25	2	0			
+Oman	2020-02-26	4	0			
+Oman	2020-02-27	4	0			
+Oman	2020-02-28	6	0			
+Oman	2020-02-29	6	0			
+Oman	2020-03-01	6	0			
+Oman	2020-03-02	6	0			
+Oman	2020-03-03	6	0			
+Oman	2020-03-04	12	0			
+Oman	2020-03-05	15	0			
+Oman	2020-03-06	16	0			
+Oman	2020-03-07	16	0			
+Oman	2020-03-08	16	0			
+Oman	2020-03-09	16	0			
+Oman	2020-03-10	18	0			
+Oman	2020-03-11	18	0			
+Oman	2020-03-12	18	0			
+Oman	2020-03-13	18	0			
+Oman	2020-03-14	19	0			
+Oman	2020-03-15	20	0			
+Oman	2020-03-16	22	0			
+Oman	2020-03-17	24	0			
+Pakistan	2020-02-27	2	0			
+Pakistan	2020-02-28	2	0			
+Pakistan	2020-02-29	2	0			
+Pakistan	2020-03-01	4	0			
+Pakistan	2020-03-02	4	0			
+Pakistan	2020-03-03	5	0			
+Pakistan	2020-03-04	5	0			
+Pakistan	2020-03-05	5	0			
+Pakistan	2020-03-06	5	0			
+Pakistan	2020-03-07	5	0			
+Pakistan	2020-03-08	5	0			
+Pakistan	2020-03-09	6	0			
+Pakistan	2020-03-10	16	0			
+Pakistan	2020-03-11	16	0			
+Pakistan	2020-03-12	19	0			
+Pakistan	2020-03-13	20	0			
+Pakistan	2020-03-14	21	0			
+Pakistan	2020-03-15	28	0			
+Pakistan	2020-03-16	52	0			
+Pakistan	2020-03-17	187	0			
+Panama	2020-03-10	1	0			
+Panama	2020-03-11	8	1			
+Panama	2020-03-12	10	1			
+Panama	2020-03-13	14	1			
+Panama	2020-03-14	27	1			
+Panama	2020-03-15	27	1			
+Panama	2020-03-16	43	1			
+Panama	2020-03-17	69	1			
+Paraguay	2020-03-09	1	0			
+Paraguay	2020-03-10	1	0			
+Paraguay	2020-03-11	5	0			
+Paraguay	2020-03-12	5	0			
+Paraguay	2020-03-13	5	0			
+Paraguay	2020-03-14	6	0			
+Paraguay	2020-03-15	6	0			
+Paraguay	2020-03-16	8	0			
+Paraguay	2020-03-17	9	0			
+Peru	2020-03-07	1	0			
+Peru	2020-03-08	6	0			
+Peru	2020-03-09	6	0			
+Peru	2020-03-10	9	0			
+Peru	2020-03-11	11	0			
+Peru	2020-03-12	17	0			
+Peru	2020-03-13	22	0			
+Peru	2020-03-14	28	0			
+Peru	2020-03-15	43	0			
+Peru	2020-03-16	71	0			
+Peru	2020-03-17	86	0			
+Philippines	2020-01-30	1	0			
+Philippines	2020-01-31	1	0			
+Philippines	2020-02-01	1	0			
+Philippines	2020-02-02	2	1			
+Philippines	2020-02-03	2	1			
+Philippines	2020-02-04	2	1			
+Philippines	2020-02-05	3	1			
+Philippines	2020-02-06	3	1			
+Philippines	2020-02-07	3	1			
+Philippines	2020-02-08	3	1			
+Philippines	2020-02-09	3	1			
+Philippines	2020-02-10	3	1			
+Philippines	2020-02-11	3	1			
+Philippines	2020-02-12	3	1			
+Philippines	2020-02-13	3	1			
+Philippines	2020-02-14	3	1			
+Philippines	2020-02-15	3	1			
+Philippines	2020-02-16	3	1			
+Philippines	2020-02-17	3	1			
+Philippines	2020-02-18	3	1			
+Philippines	2020-02-19	3	1			
+Philippines	2020-02-20	3	1			
+Philippines	2020-02-21	3	1			
+Philippines	2020-02-22	3	1			
+Philippines	2020-02-23	3	1			
+Philippines	2020-02-24	3	1			
+Philippines	2020-02-25	3	1			
+Philippines	2020-02-26	3	1			
+Philippines	2020-02-27	3	1			
+Philippines	2020-02-28	3	1			
+Philippines	2020-02-29	3	1			
+Philippines	2020-03-01	3	1			
+Philippines	2020-03-02	3	1			
+Philippines	2020-03-03	3	1			
+Philippines	2020-03-04	3	1			
+Philippines	2020-03-05	3	1			
+Philippines	2020-03-06	5	1			
+Philippines	2020-03-07	5	1			
+Philippines	2020-03-08	6	1			
+Philippines	2020-03-09	10	1			
+Philippines	2020-03-10	33	1			
+Philippines	2020-03-11	49	1			
+Philippines	2020-03-12	52	2			
+Philippines	2020-03-13	52	2			
+Philippines	2020-03-14	64	2			
+Philippines	2020-03-15	111	6			
+Philippines	2020-03-16	140	12			
+Philippines	2020-03-17	187	12			
+Poland	2020-03-04	1	0			
+Poland	2020-03-05	1	0			
+Poland	2020-03-06	1	0			
+Poland	2020-03-07	5	0			
+Poland	2020-03-08	6	0			
+Poland	2020-03-09	11	0			
+Poland	2020-03-10	16	0			
+Poland	2020-03-11	22	0			
+Poland	2020-03-12	44	0			
+Poland	2020-03-13	49	1			
+Poland	2020-03-14	64	1			
+Poland	2020-03-15	111	3			
+Poland	2020-03-16	150	3			
+Poland	2020-03-17	150	3			
+Portugal	2020-03-03	2	0			
+Portugal	2020-03-04	2	0			
+Portugal	2020-03-05	7	0			
+Portugal	2020-03-06	9	0			
+Portugal	2020-03-07	13	0			
+Portugal	2020-03-08	21	0			
+Portugal	2020-03-09	30	0			
+Portugal	2020-03-10	30	0			
+Portugal	2020-03-11	41	0			
+Portugal	2020-03-12	41	0			
+Portugal	2020-03-13	41	0			
+Portugal	2020-03-14	112	0			
+Portugal	2020-03-15	112	0			
+Portugal	2020-03-16	245	0			
+Portugal	2020-03-17	331	0			
+Puerto Rico	2020-03-14	3	0			
+Puerto Rico	2020-03-15	3	0			
+Puerto Rico	2020-03-16	3	0			
+Puerto Rico	2020-03-17	3	0			
+Qatar	2020-03-01	1	0			
+Qatar	2020-03-02	3	0			
+Qatar	2020-03-03	7	0			
+Qatar	2020-03-04	8	0			
+Qatar	2020-03-05	8	0			
+Qatar	2020-03-06	8	0			
+Qatar	2020-03-07	11	0			
+Qatar	2020-03-08	12	0			
+Qatar	2020-03-09	15	0			
+Qatar	2020-03-10	18	0			
+Qatar	2020-03-11	24	0			
+Qatar	2020-03-12	262	0			
+Qatar	2020-03-13	262	0			
+Qatar	2020-03-14	262	0			
+Qatar	2020-03-15	337	0			
+Qatar	2020-03-16	401	0			
+Qatar	2020-03-17	439	0			
+South Korea	2020-01-21	1	0			
+South Korea	2020-01-22	1	0			
+South Korea	2020-01-23	1	0			
+South Korea	2020-01-24	2	0			
+South Korea	2020-01-25	2	0			
+South Korea	2020-01-26	2	0			
+South Korea	2020-01-27	4	0			
+South Korea	2020-01-28	4	0			
+South Korea	2020-01-29	4	0			
+South Korea	2020-01-30	4	0			
+South Korea	2020-01-31	11	0			
+South Korea	2020-02-01	12	0			
+South Korea	2020-02-02	15	0			
+South Korea	2020-02-03	15	0			
+South Korea	2020-02-04	16	0			
+South Korea	2020-02-05	18	0			
+South Korea	2020-02-06	23	0			
+South Korea	2020-02-07	24	0			
+South Korea	2020-02-08	24	0			
+South Korea	2020-02-09	27	0			
+South Korea	2020-02-10	27	0			
+South Korea	2020-02-11	28	0			
+South Korea	2020-02-12	28	0			
+South Korea	2020-02-13	28	0			
+South Korea	2020-02-14	28	0			
+South Korea	2020-02-15	28	0			
+South Korea	2020-02-16	29	0			
+South Korea	2020-02-17	30	0			
+South Korea	2020-02-18	31	0			
+South Korea	2020-02-19	51	0			
+South Korea	2020-02-20	104	1			
+South Korea	2020-02-21	204	1			
+South Korea	2020-02-22	346	2			
+South Korea	2020-02-23	602	5			
+South Korea	2020-02-24	763	7			
+South Korea	2020-02-25	977	10			
+South Korea	2020-02-26	1261	12			
+South Korea	2020-02-27	1766	13			
+South Korea	2020-02-28	2337	13			
+South Korea	2020-02-29	3150	17			
+South Korea	2020-03-01	3736	18			
+South Korea	2020-03-02	4212	22			
+South Korea	2020-03-03	4812	28			
+South Korea	2020-03-04	5328	32			
+South Korea	2020-03-05	5766	35			
+South Korea	2020-03-06	6284	42			
+South Korea	2020-03-07	6767	44			
+South Korea	2020-03-08	7134	50			
+South Korea	2020-03-09	7382	51			
+South Korea	2020-03-10	7513	54			
+South Korea	2020-03-11	7755	60			
+South Korea	2020-03-12	7869	66			
+South Korea	2020-03-13	7979	66			
+South Korea	2020-03-14	8086	72			
+South Korea	2020-03-15	8162	75			
+South Korea	2020-03-16	8236	75			
+South Korea	2020-03-17	8320	81			
+Moldova	2020-03-08	1	0			
+Moldova	2020-03-09	1	0			
+Moldova	2020-03-10	1	0			
+Moldova	2020-03-11	3	0			
+Moldova	2020-03-12	4	0			
+Moldova	2020-03-13	4	0			
+Moldova	2020-03-14	8	0			
+Moldova	2020-03-15	12	0			
+Moldova	2020-03-16	23	0			
+Moldova	2020-03-17	29	0			
+Romania	2020-02-27	1	0			
+Romania	2020-02-28	1	0			
+Romania	2020-02-29	3	0			
+Romania	2020-03-01	3	0			
+Romania	2020-03-02	3	0			
+Romania	2020-03-03	3	0			
+Romania	2020-03-04	4	0			
+Romania	2020-03-05	4	0			
+Romania	2020-03-06	6	0			
+Romania	2020-03-07	7	0			
+Romania	2020-03-08	13	0			
+Romania	2020-03-09	15	0			
+Romania	2020-03-10	15	0			
+Romania	2020-03-11	25	0			
+Romania	2020-03-12	48	0			
+Romania	2020-03-13	48	0			
+Romania	2020-03-14	64	0			
+Romania	2020-03-15	123	0			
+Romania	2020-03-16	158	0			
+Romania	2020-03-17	158	0			
+Russia	2020-02-01	2	0			
+Russia	2020-02-02	2	0			
+Russia	2020-02-03	2	0			
+Russia	2020-02-04	2	0			
+Russia	2020-02-05	2	0			
+Russia	2020-02-06	2	0			
+Russia	2020-02-07	2	0			
+Russia	2020-02-08	2	0			
+Russia	2020-02-09	2	0			
+Russia	2020-02-10	2	0			
+Russia	2020-02-11	2	0			
+Russia	2020-02-12	2	0			
+Russia	2020-02-13	2	0			
+Russia	2020-02-14	2	0			
+Russia	2020-02-15	2	0			
+Russia	2020-02-16	2	0			
+Russia	2020-02-17	2	0			
+Russia	2020-02-18	2	0			
+Russia	2020-02-19	2	0			
+Russia	2020-02-20	2	0			
+Russia	2020-02-21	2	0			
+Russia	2020-02-22	2	0			
+Russia	2020-02-23	2	0			
+Russia	2020-02-24	2	0			
+Russia	2020-02-25	2	0			
+Russia	2020-02-26	2	0			
+Russia	2020-02-27	2	0			
+Russia	2020-02-28	2	0			
+Russia	2020-02-29	2	0			
+Russia	2020-03-01	2	0			
+Russia	2020-03-02	2	0			
+Russia	2020-03-03	3	0			
+Russia	2020-03-04	3	0			
+Russia	2020-03-05	3	0			
+Russia	2020-03-06	4	0			
+Russia	2020-03-07	7	0			
+Russia	2020-03-08	7	0			
+Russia	2020-03-09	7	0			
+Russia	2020-03-10	7	0			
+Russia	2020-03-11	7	0			
+Russia	2020-03-12	20	0			
+Russia	2020-03-13	34	0			
+Russia	2020-03-14	34	0			
+Russia	2020-03-15	34	0			
+Russia	2020-03-16	63	0			
+Russia	2020-03-17	93	0			
+Rwanda	2020-03-16	5	0			
+Rwanda	2020-03-17	7	0			
+Reunion	2020-03-13	3	0			
+Reunion	2020-03-14	5	0			
+Reunion	2020-03-15	6	0			
+Reunion	2020-03-16	9	0			
+Reunion	2020-03-17	9	0			
+Saint Barthlemy	2020-03-05	1	0			
+Saint Barthlemy	2020-03-06	1	0			
+Saint Barthlemy	2020-03-07	1	0			
+Saint Barthlemy	2020-03-08	1	0			
+Saint Barthlemy	2020-03-09	1	0			
+Saint Barthlemy	2020-03-10	1	0			
+Saint Barthlemy	2020-03-11	1	0			
+Saint Barthlemy	2020-03-12	1	0			
+Saint Barthlemy	2020-03-13	1	0			
+Saint Barthlemy	2020-03-14	1	0			
+Saint Barthlemy	2020-03-15	1	0			
+Saint Barthlemy	2020-03-16	3	0			
+Saint Barthlemy	2020-03-17	3	0			
+Saint Lucia	2020-03-16	1	0			
+Saint Lucia	2020-03-17	2	0			
+Saint Martin (French part)	2020-03-05	2	0			
+Saint Martin (French part)	2020-03-06	2	0			
+Saint Martin (French part)	2020-03-07	2	0			
+Saint Martin (French part)	2020-03-08	2	0			
+Saint Martin (French part)	2020-03-09	2	0			
+Saint Martin (French part)	2020-03-10	2	0			
+Saint Martin (French part)	2020-03-11	2	0			
+Saint Martin (French part)	2020-03-12	2	0			
+Saint Martin (French part)	2020-03-13	2	0			
+Saint Martin (French part)	2020-03-14	2	0			
+Saint Martin (French part)	2020-03-15	2	0			
+Saint Martin (French part)	2020-03-16	2	0			
+Saint Martin (French part)	2020-03-17	2	0			
+Saint Vincent and the Grenadines	2020-03-13	1	0			
+Saint Vincent and the Grenadines	2020-03-14	1	0			
+Saint Vincent and the Grenadines	2020-03-15	1	0			
+Saint Vincent and the Grenadines	2020-03-16	1	0			
+Saint Vincent and the Grenadines	2020-03-17	1	0			
+San Marino	2020-02-29	1	0			
+San Marino	2020-03-01	1	0			
+San Marino	2020-03-02	1	0			
+San Marino	2020-03-03	8	0			
+San Marino	2020-03-04	8	0			
+San Marino	2020-03-05	16	0			
+San Marino	2020-03-06	21	0			
+San Marino	2020-03-07	24	0			
+San Marino	2020-03-08	27	1			
+San Marino	2020-03-09	37	1			
+San Marino	2020-03-10	49	2			
+San Marino	2020-03-11	63	2			
+San Marino	2020-03-12	63	2			
+San Marino	2020-03-13	63	2			
+San Marino	2020-03-14	66	2			
+San Marino	2020-03-15	92	5			
+San Marino	2020-03-16	92	5			
+San Marino	2020-03-17	102	9			
+Saudi Arabia	2020-03-03	1	0			
+Saudi Arabia	2020-03-04	1	0			
+Saudi Arabia	2020-03-05	2	0			
+Saudi Arabia	2020-03-06	8	0			
+Saudi Arabia	2020-03-07	8	0			
+Saudi Arabia	2020-03-08	11	0			
+Saudi Arabia	2020-03-09	15	0			
+Saudi Arabia	2020-03-10	15	0			
+Saudi Arabia	2020-03-11	20	0			
+Saudi Arabia	2020-03-12	21	0			
+Saudi Arabia	2020-03-13	21	0			
+Saudi Arabia	2020-03-14	62	0			
+Saudi Arabia	2020-03-15	103	0			
+Saudi Arabia	2020-03-16	103	0			
+Saudi Arabia	2020-03-17	133	0			
+Senegal	2020-03-03	1	0			
+Senegal	2020-03-04	1	0			
+Senegal	2020-03-05	4	0			
+Senegal	2020-03-06	4	0			
+Senegal	2020-03-07	4	0			
+Senegal	2020-03-08	4	0			
+Senegal	2020-03-09	4	0			
+Senegal	2020-03-10	4	0			
+Senegal	2020-03-11	4	0			
+Senegal	2020-03-12	4	0			
+Senegal	2020-03-13	10	0			
+Senegal	2020-03-14	10	0			
+Senegal	2020-03-15	21	0			
+Senegal	2020-03-16	26	0			
+Senegal	2020-03-17	27	0			
+Serbia	2020-03-06	1	0			
+Serbia	2020-03-07	1	0			
+Serbia	2020-03-08	1	0			
+Serbia	2020-03-09	1	0			
+Serbia	2020-03-10	1	0			
+Serbia	2020-03-11	12	0			
+Serbia	2020-03-12	19	0			
+Serbia	2020-03-13	19	0			
+Serbia	2020-03-14	31	0			
+Serbia	2020-03-15	41	0			
+Serbia	2020-03-16	41	0			
+Serbia	2020-03-17	70	0			
+Seychelles	2020-03-16	2	0			
+Seychelles	2020-03-17	4	0			
+Singapore	2020-01-24	1	0			
+Singapore	2020-01-25	3	0			
+Singapore	2020-01-26	4	0			
+Singapore	2020-01-27	4	0			
+Singapore	2020-01-28	7	0			
+Singapore	2020-01-29	7	0			
+Singapore	2020-01-30	10	0			
+Singapore	2020-01-31	13	0			
+Singapore	2020-02-01	16	0			
+Singapore	2020-02-02	18	0			
+Singapore	2020-02-03	18	0			
+Singapore	2020-02-04	18	0			
+Singapore	2020-02-05	24	0			
+Singapore	2020-02-06	28	0			
+Singapore	2020-02-07	30	0			
+Singapore	2020-02-08	33	0			
+Singapore	2020-02-09	40	0			
+Singapore	2020-02-10	43	0			
+Singapore	2020-02-11	45	0			
+Singapore	2020-02-12	47	0			
+Singapore	2020-02-13	50	0			
+Singapore	2020-02-14	58	0			
+Singapore	2020-02-15	67	0			
+Singapore	2020-02-16	72	0			
+Singapore	2020-02-17	75	0			
+Singapore	2020-02-18	77	0			
+Singapore	2020-02-19	81	0			
+Singapore	2020-02-20	84	0			
+Singapore	2020-02-21	85	0			
+Singapore	2020-02-22	86	0			
+Singapore	2020-02-23	89	0			
+Singapore	2020-02-24	89	0			
+Singapore	2020-02-25	90	0			
+Singapore	2020-02-26	91	0			
+Singapore	2020-02-27	93	0			
+Singapore	2020-02-28	96	0			
+Singapore	2020-02-29	98	0			
+Singapore	2020-03-01	102	0			
+Singapore	2020-03-02	106	0			
+Singapore	2020-03-03	108	0			
+Singapore	2020-03-04	110	0			
+Singapore	2020-03-05	110	0			
+Singapore	2020-03-06	117	0			
+Singapore	2020-03-07	130	0			
+Singapore	2020-03-08	138	0			
+Singapore	2020-03-09	150	0			
+Singapore	2020-03-10	160	0			
+Singapore	2020-03-11	166	0			
+Singapore	2020-03-12	178	0			
+Singapore	2020-03-13	187	0			
+Singapore	2020-03-14	200	0			
+Singapore	2020-03-15	212	0			
+Singapore	2020-03-16	243	0			
+Singapore	2020-03-17	243	0			
+Slovakia	2020-03-07	1	0			
+Slovakia	2020-03-08	3	0			
+Slovakia	2020-03-09	5	0			
+Slovakia	2020-03-10	7	0			
+Slovakia	2020-03-11	7	0			
+Slovakia	2020-03-12	10	0			
+Slovakia	2020-03-13	21	0			
+Slovakia	2020-03-14	30	0			
+Slovakia	2020-03-15	44	0			
+Slovakia	2020-03-16	61	0			
+Slovakia	2020-03-17	72	0			
+Slovenia	2020-03-05	1	0			
+Slovenia	2020-03-06	6	0			
+Slovenia	2020-03-07	9	0			
+Slovenia	2020-03-08	12	0			
+Slovenia	2020-03-09	16	0			
+Slovenia	2020-03-10	23	0			
+Slovenia	2020-03-11	31	0			
+Slovenia	2020-03-12	57	0			
+Slovenia	2020-03-13	57	0			
+Slovenia	2020-03-14	141	0			
+Slovenia	2020-03-15	141	0			
+Slovenia	2020-03-16	219	0			
+Slovenia	2020-03-17	253	0			
+Somalia	2020-03-17	1	0			
+South Africa	2020-03-06	1	0			
+South Africa	2020-03-07	1	0			
+South Africa	2020-03-08	2	0			
+South Africa	2020-03-09	3	0			
+South Africa	2020-03-10	7	0			
+South Africa	2020-03-11	7	0			
+South Africa	2020-03-12	13	0			
+South Africa	2020-03-13	17	0			
+South Africa	2020-03-14	17	0			
+South Africa	2020-03-15	38	0			
+South Africa	2020-03-16	51	0			
+South Africa	2020-03-17	62	0			
+Spain	2020-02-01	1	0			
+Spain	2020-02-02	1	0			
+Spain	2020-02-03	1	0			
+Spain	2020-02-04	1	0			
+Spain	2020-02-05	1	0			
+Spain	2020-02-06	1	0			
+Spain	2020-02-07	1	0			
+Spain	2020-02-08	1	0			
+Spain	2020-02-09	1	0			
+Spain	2020-02-10	2	0			
+Spain	2020-02-11	2	0			
+Spain	2020-02-12	2	0			
+Spain	2020-02-13	2	0			
+Spain	2020-02-14	2	0			
+Spain	2020-02-15	2	0			
+Spain	2020-02-16	2	0			
+Spain	2020-02-17	2	0			
+Spain	2020-02-18	2	0			
+Spain	2020-02-19	2	0			
+Spain	2020-02-20	2	0			
+Spain	2020-02-21	2	0			
+Spain	2020-02-22	2	0			
+Spain	2020-02-23	2	0			
+Spain	2020-02-24	2	0			
+Spain	2020-02-25	2	0			
+Spain	2020-02-26	2	0			
+Spain	2020-02-27	12	0			
+Spain	2020-02-28	25	0			
+Spain	2020-02-29	32	0			
+Spain	2020-03-01	45	0			
+Spain	2020-03-02	45	0			
+Spain	2020-03-03	114	0			
+Spain	2020-03-04	151	0			
+Spain	2020-03-05	198	1			
+Spain	2020-03-06	257	3			
+Spain	2020-03-07	374	5			
+Spain	2020-03-08	430	5			
+Spain	2020-03-09	589	10			
+Spain	2020-03-10	1024	28			
+Spain	2020-03-11	1639	36			
+Spain	2020-03-12	2140	48			
+Spain	2020-03-13	2965	84			
+Spain	2020-03-14	4231	120			
+Spain	2020-03-15	5753	136			
+Spain	2020-03-16	7753	288			
+Spain	2020-03-17	9191	309			
+Sri Lanka	2020-01-28	1	0			
+Sri Lanka	2020-01-29	1	0			
+Sri Lanka	2020-01-30	1	0			
+Sri Lanka	2020-01-31	1	0			
+Sri Lanka	2020-02-01	1	0			
+Sri Lanka	2020-02-02	1	0			
+Sri Lanka	2020-02-03	1	0			
+Sri Lanka	2020-02-04	1	0			
+Sri Lanka	2020-02-05	1	0			
+Sri Lanka	2020-02-06	1	0			
+Sri Lanka	2020-02-07	1	0			
+Sri Lanka	2020-02-08	1	0			
+Sri Lanka	2020-02-09	1	0			
+Sri Lanka	2020-02-10	1	0			
+Sri Lanka	2020-02-11	1	0			
+Sri Lanka	2020-02-12	1	0			
+Sri Lanka	2020-02-13	1	0			
+Sri Lanka	2020-02-14	1	0			
+Sri Lanka	2020-02-15	1	0			
+Sri Lanka	2020-02-16	1	0			
+Sri Lanka	2020-02-17	1	0			
+Sri Lanka	2020-02-18	1	0			
+Sri Lanka	2020-02-19	1	0			
+Sri Lanka	2020-02-20	1	0			
+Sri Lanka	2020-02-21	1	0			
+Sri Lanka	2020-02-22	1	0			
+Sri Lanka	2020-02-23	1	0			
+Sri Lanka	2020-02-24	1	0			
+Sri Lanka	2020-02-25	1	0			
+Sri Lanka	2020-02-26	1	0			
+Sri Lanka	2020-02-27	1	0			
+Sri Lanka	2020-02-28	1	0			
+Sri Lanka	2020-02-29	1	0			
+Sri Lanka	2020-03-01	1	0			
+Sri Lanka	2020-03-02	1	0			
+Sri Lanka	2020-03-03	1	0			
+Sri Lanka	2020-03-04	1	0			
+Sri Lanka	2020-03-05	1	0			
+Sri Lanka	2020-03-06	1	0			
+Sri Lanka	2020-03-07	1	0			
+Sri Lanka	2020-03-08	1	0			
+Sri Lanka	2020-03-09	1	0			
+Sri Lanka	2020-03-10	1	0			
+Sri Lanka	2020-03-11	1	0			
+Sri Lanka	2020-03-12	2	0			
+Sri Lanka	2020-03-13	3	0			
+Sri Lanka	2020-03-14	6	0			
+Sri Lanka	2020-03-15	11	0			
+Sri Lanka	2020-03-16	19	0			
+Sri Lanka	2020-03-17	29	0			
+Sudan	2020-03-14	1	0			
+Sudan	2020-03-15	1	0			
+Sudan	2020-03-16	1	1			
+Sudan	2020-03-17	2	1			
+Suriname	2020-03-16	1	0			
+Suriname	2020-03-17	1	0			
+Sweden	2020-02-01	1	0			
+Sweden	2020-02-02	1	0			
+Sweden	2020-02-03	1	0			
+Sweden	2020-02-04	1	0			
+Sweden	2020-02-05	1	0			
+Sweden	2020-02-06	1	0			
+Sweden	2020-02-07	1	0			
+Sweden	2020-02-08	1	0			
+Sweden	2020-02-09	1	0			
+Sweden	2020-02-10	1	0			
+Sweden	2020-02-11	1	0			
+Sweden	2020-02-12	1	0			
+Sweden	2020-02-13	1	0			
+Sweden	2020-02-14	1	0			
+Sweden	2020-02-15	1	0			
+Sweden	2020-02-16	1	0			
+Sweden	2020-02-17	1	0			
+Sweden	2020-02-18	1	0			
+Sweden	2020-02-19	1	0			
+Sweden	2020-02-20	1	0			
+Sweden	2020-02-21	1	0			
+Sweden	2020-02-22	1	0			
+Sweden	2020-02-23	1	0			
+Sweden	2020-02-24	1	0			
+Sweden	2020-02-25	1	0			
+Sweden	2020-02-26	1	0			
+Sweden	2020-02-27	2	0			
+Sweden	2020-02-28	7	0			
+Sweden	2020-02-29	12	0			
+Sweden	2020-03-01	13	0			
+Sweden	2020-03-02	14	0			
+Sweden	2020-03-03	15	0			
+Sweden	2020-03-04	24	0			
+Sweden	2020-03-05	35	0			
+Sweden	2020-03-06	61	0			
+Sweden	2020-03-07	137	0			
+Sweden	2020-03-08	161	0			
+Sweden	2020-03-09	203	0			
+Sweden	2020-03-10	248	0			
+Sweden	2020-03-11	326	0			
+Sweden	2020-03-12	461	0			
+Sweden	2020-03-13	620	0			
+Sweden	2020-03-14	775	0			
+Sweden	2020-03-15	924	0			
+Sweden	2020-03-16	992	3			
+Sweden	2020-03-17	1059	3			
+Switzerland	2020-02-26	1	0			
+Switzerland	2020-02-27	1	0			
+Switzerland	2020-02-28	6	0			
+Switzerland	2020-02-29	10	0			
+Switzerland	2020-03-01	18	0			
+Switzerland	2020-03-02	24	0			
+Switzerland	2020-03-03	30	0			
+Switzerland	2020-03-04	37	0			
+Switzerland	2020-03-05	56	0			
+Switzerland	2020-03-06	86	1			
+Switzerland	2020-03-07	209	1			
+Switzerland	2020-03-08	264	2			
+Switzerland	2020-03-09	332	2			
+Switzerland	2020-03-10	332	2			
+Switzerland	2020-03-11	491	3			
+Switzerland	2020-03-12	645	4			
+Switzerland	2020-03-13	858	6			
+Switzerland	2020-03-14	1125	6			
+Switzerland	2020-03-15	1359	11			
+Switzerland	2020-03-16	2200	13			
+Switzerland	2020-03-17	2200	14			
+Thailand	2020-01-21	2	0			
+Thailand	2020-01-22	2	0			
+Thailand	2020-01-23	4	0			
+Thailand	2020-01-24	4	0			
+Thailand	2020-01-25	4	0			
+Thailand	2020-01-26	5	0			
+Thailand	2020-01-27	5	0			
+Thailand	2020-01-28	14	0			
+Thailand	2020-01-29	14	0			
+Thailand	2020-01-30	14	0			
+Thailand	2020-01-31	14	0			
+Thailand	2020-02-01	19	0			
+Thailand	2020-02-02	19	0			
+Thailand	2020-02-03	19	0			
+Thailand	2020-02-04	19	0			
+Thailand	2020-02-05	25	0			
+Thailand	2020-02-06	25	0			
+Thailand	2020-02-07	25	0			
+Thailand	2020-02-08	32	0			
+Thailand	2020-02-09	32	0			
+Thailand	2020-02-10	32	0			
+Thailand	2020-02-11	33	0			
+Thailand	2020-02-12	33	0			
+Thailand	2020-02-13	33	0			
+Thailand	2020-02-14	33	0			
+Thailand	2020-02-15	34	0			
+Thailand	2020-02-16	34	0			
+Thailand	2020-02-17	35	0			
+Thailand	2020-02-18	35	0			
+Thailand	2020-02-19	35	0			
+Thailand	2020-02-20	35	0			
+Thailand	2020-02-21	35	0			
+Thailand	2020-02-22	35	0			
+Thailand	2020-02-23	35	0			
+Thailand	2020-02-24	35	0			
+Thailand	2020-02-25	37	0			
+Thailand	2020-02-26	40	0			
+Thailand	2020-02-27	40	0			
+Thailand	2020-02-28	40	0			
+Thailand	2020-02-29	42	0			
+Thailand	2020-03-01	42	0			
+Thailand	2020-03-02	42	1			
+Thailand	2020-03-03	43	1			
+Thailand	2020-03-04	43	1			
+Thailand	2020-03-05	47	1			
+Thailand	2020-03-06	47	1			
+Thailand	2020-03-07	48	1			
+Thailand	2020-03-08	50	1			
+Thailand	2020-03-09	50	1			
+Thailand	2020-03-10	53	1			
+Thailand	2020-03-11	59	1			
+Thailand	2020-03-12	70	1			
+Thailand	2020-03-13	75	1			
+Thailand	2020-03-14	75	1			
+Thailand	2020-03-15	75	1			
+Thailand	2020-03-16	114	1			
+Thailand	2020-03-17	147	1			
+United Kingdom	2020-02-01	2	0			
+United Kingdom	2020-02-02	2	0			
+United Kingdom	2020-02-03	2	0			
+United Kingdom	2020-02-04	2	0			
+United Kingdom	2020-02-05	2	0			
+United Kingdom	2020-02-06	2	0			
+United Kingdom	2020-02-07	3	0			
+United Kingdom	2020-02-08	3	0			
+United Kingdom	2020-02-09	3	0			
+United Kingdom	2020-02-10	4	0			
+United Kingdom	2020-02-11	8	0			
+United Kingdom	2020-02-12	8	0			
+United Kingdom	2020-02-13	9	0			
+United Kingdom	2020-02-14	9	0			
+United Kingdom	2020-02-15	9	0			
+United Kingdom	2020-02-16	9	0			
+United Kingdom	2020-02-17	9	0			
+United Kingdom	2020-02-18	9	0			
+United Kingdom	2020-02-19	9	0			
+United Kingdom	2020-02-20	9	0			
+United Kingdom	2020-02-21	9	0			
+United Kingdom	2020-02-22	9	0			
+United Kingdom	2020-02-23	9	0			
+United Kingdom	2020-02-24	9	0			
+United Kingdom	2020-02-25	13	0			
+United Kingdom	2020-02-26	13	0			
+United Kingdom	2020-02-27	13	0			
+United Kingdom	2020-02-28	16	0			
+United Kingdom	2020-02-29	20	0			
+United Kingdom	2020-03-01	23	0			
+United Kingdom	2020-03-02	36	0			
+United Kingdom	2020-03-03	39	0			
+United Kingdom	2020-03-04	51	0			
+United Kingdom	2020-03-05	89	0			
+United Kingdom	2020-03-06	118	0			
+United Kingdom	2020-03-07	167	1			
+United Kingdom	2020-03-08	210	2			
+United Kingdom	2020-03-09	277	2			
+United Kingdom	2020-03-10	323	3			
+United Kingdom	2020-03-11	373	6			
+United Kingdom	2020-03-12	460	6			
+United Kingdom	2020-03-13	594	8			
+United Kingdom	2020-03-14	802	10			
+United Kingdom	2020-03-15	1144	21			
+United Kingdom	2020-03-16	1395	35			
+United Kingdom	2020-03-17	1547	55			
+Togo	2020-03-07	1	0			
+Togo	2020-03-08	1	0			
+Togo	2020-03-09	1	0			
+Togo	2020-03-10	1	0			
+Togo	2020-03-11	1	0			
+Togo	2020-03-12	1	0			
+Togo	2020-03-13	1	0			
+Togo	2020-03-14	1	0			
+Togo	2020-03-15	1	0			
+Togo	2020-03-16	1	0			
+Togo	2020-03-17	1	0			
+Trinidad and Tobago	2020-03-14	1	0			
+Trinidad and Tobago	2020-03-15	1	0			
+Trinidad and Tobago	2020-03-16	2	0			
+Trinidad and Tobago	2020-03-17	5	0			
+Tunisia	2020-03-03	1	0			
+Tunisia	2020-03-04	1	0			
+Tunisia	2020-03-05	1	0			
+Tunisia	2020-03-06	1	0			
+Tunisia	2020-03-07	1	0			
+Tunisia	2020-03-08	1	0			
+Tunisia	2020-03-09	2	0			
+Tunisia	2020-03-10	2	0			
+Tunisia	2020-03-11	6	0			
+Tunisia	2020-03-12	6	0			
+Tunisia	2020-03-13	7	0			
+Tunisia	2020-03-14	16	0			
+Tunisia	2020-03-15	16	0			
+Tunisia	2020-03-16	18	0			
+Tunisia	2020-03-17	20	0			
+Turkey	2020-03-12	1	0			
+Turkey	2020-03-13	1	0			
+Turkey	2020-03-14	5	0			
+Turkey	2020-03-15	5	0			
+Turkey	2020-03-16	5	0			
+Turkey	2020-03-17	47	0			
+Ukraine	2020-03-04	1	0			
+Ukraine	2020-03-05	1	0			
+Ukraine	2020-03-06	1	0			
+Ukraine	2020-03-07	1	0			
+Ukraine	2020-03-08	1	0			
+Ukraine	2020-03-09	1	0			
+Ukraine	2020-03-10	1	0			
+Ukraine	2020-03-11	1	0			
+Ukraine	2020-03-12	1	0			
+Ukraine	2020-03-13	3	0			
+Ukraine	2020-03-14	3	1			
+Ukraine	2020-03-15	3	1			
+Ukraine	2020-03-16	3	1			
+Ukraine	2020-03-17	7	1			
+United Arab Emirates	2020-01-29	4	0			
+United Arab Emirates	2020-01-30	4	0			
+United Arab Emirates	2020-01-31	4	0			
+United Arab Emirates	2020-02-01	4	0			
+United Arab Emirates	2020-02-02	5	0			
+United Arab Emirates	2020-02-03	5	0			
+United Arab Emirates	2020-02-04	5	0			
+United Arab Emirates	2020-02-05	5	0			
+United Arab Emirates	2020-02-06	5	0			
+United Arab Emirates	2020-02-07	5	0			
+United Arab Emirates	2020-02-08	7	0			
+United Arab Emirates	2020-02-09	7	0			
+United Arab Emirates	2020-02-10	7	0			
+United Arab Emirates	2020-02-11	8	0			
+United Arab Emirates	2020-02-12	8	0			
+United Arab Emirates	2020-02-13	8	0			
+United Arab Emirates	2020-02-14	8	0			
+United Arab Emirates	2020-02-15	8	0			
+United Arab Emirates	2020-02-16	8	0			
+United Arab Emirates	2020-02-17	9	0			
+United Arab Emirates	2020-02-18	9	0			
+United Arab Emirates	2020-02-19	9	0			
+United Arab Emirates	2020-02-20	9	0			
+United Arab Emirates	2020-02-21	9	0			
+United Arab Emirates	2020-02-22	11	0			
+United Arab Emirates	2020-02-23	13	0			
+United Arab Emirates	2020-02-24	13	0			
+United Arab Emirates	2020-02-25	13	0			
+United Arab Emirates	2020-02-26	13	0			
+United Arab Emirates	2020-02-27	13	0			
+United Arab Emirates	2020-02-28	19	0			
+United Arab Emirates	2020-02-29	19	0			
+United Arab Emirates	2020-03-01	19	0			
+United Arab Emirates	2020-03-02	21	0			
+United Arab Emirates	2020-03-03	21	0			
+United Arab Emirates	2020-03-04	27	0			
+United Arab Emirates	2020-03-05	27	0			
+United Arab Emirates	2020-03-06	27	0			
+United Arab Emirates	2020-03-07	45	0			
+United Arab Emirates	2020-03-08	45	0			
+United Arab Emirates	2020-03-09	45	0			
+United Arab Emirates	2020-03-10	59	0			
+United Arab Emirates	2020-03-11	74	0			
+United Arab Emirates	2020-03-12	74	0			
+United Arab Emirates	2020-03-13	85	0			
+United Arab Emirates	2020-03-14	85	0			
+United Arab Emirates	2020-03-15	85	0			
+United Arab Emirates	2020-03-16	98	0			
+United Arab Emirates	2020-03-17	98	0			
+Tanzania	2020-03-17	1	0			
+United States Virgin Islands	2020-03-17	2	0			
+United States	2020-01-23	1	0			
+United States	2020-01-24	1	0			
+United States	2020-01-25	2	0			
+United States	2020-01-26	2	0			
+United States	2020-01-27	5	0			
+United States	2020-01-28	5	0			
+United States	2020-01-29	5	0			
+United States	2020-01-30	5	0			
+United States	2020-01-31	6	0			
+United States	2020-02-01	7	0			
+United States	2020-02-02	8	0			
+United States	2020-02-03	11	0			
+United States	2020-02-04	11	0			
+United States	2020-02-05	11	0			
+United States	2020-02-06	12	0			
+United States	2020-02-07	12	0			
+United States	2020-02-08	12	0			
+United States	2020-02-09	12	0			
+United States	2020-02-10	12	0			
+United States	2020-02-11	13	0			
+United States	2020-02-12	13	0			
+United States	2020-02-13	14	0			
+United States	2020-02-14	15	0			
+United States	2020-02-15	15	0			
+United States	2020-02-16	15	0			
+United States	2020-02-17	15	0			
+United States	2020-02-18	15	0			
+United States	2020-02-19	15	0			
+United States	2020-02-20	15	0			
+United States	2020-02-21	15	0			
+United States	2020-02-22	35	0			
+United States	2020-02-23	35	0			
+United States	2020-02-24	35	0			
+United States	2020-02-25	53	0			
+United States	2020-02-26	53	0			
+United States	2020-02-27	59	0			
+United States	2020-02-28	59	0			
+United States	2020-02-29	62	0			
+United States	2020-03-01	62	0			
+United States	2020-03-02	62	0			
+United States	2020-03-03	64	2			
+United States	2020-03-04	108	6			
+United States	2020-03-05	129	9			
+United States	2020-03-06	148	10			
+United States	2020-03-07	213	11			
+United States	2020-03-08	213	11			
+United States	2020-03-09	213	11			
+United States	2020-03-10	472	19			
+United States	2020-03-11	696	25			
+United States	2020-03-12	987	29			
+United States	2020-03-13	1264	36			
+United States	2020-03-14	1678	41			
+United States	2020-03-15	1678	41			
+United States	2020-03-16	1678	41			
+United States	2020-03-17	3503	58			
+Uruguay	2020-03-16	4	0			
+Uruguay	2020-03-17	6	0			
+Uzbekistan	2020-03-16	4	0			
+Uzbekistan	2020-03-17	4	0			
+Venezuela	2020-03-14	2	0			
+Venezuela	2020-03-15	2	0			
+Venezuela	2020-03-16	2	0			
+Venezuela	2020-03-17	33	0			
+Vietnam	2020-01-24	2	0			
+Vietnam	2020-01-25	2	0			
+Vietnam	2020-01-26	2	0			
+Vietnam	2020-01-27	2	0			
+Vietnam	2020-01-28	2	0			
+Vietnam	2020-01-29	2	0			
+Vietnam	2020-01-30	2	0			
+Vietnam	2020-01-31	5	0			
+Vietnam	2020-02-01	6	0			
+Vietnam	2020-02-02	7	0			
+Vietnam	2020-02-03	8	0			
+Vietnam	2020-02-04	9	0			
+Vietnam	2020-02-05	10	0			
+Vietnam	2020-02-06	10	0			
+Vietnam	2020-02-07	12	0			
+Vietnam	2020-02-08	13	0			
+Vietnam	2020-02-09	14	0			
+Vietnam	2020-02-10	14	0			
+Vietnam	2020-02-11	15	0			
+Vietnam	2020-02-12	15	0			
+Vietnam	2020-02-13	16	0			
+Vietnam	2020-02-14	16	0			
+Vietnam	2020-02-15	16	0			
+Vietnam	2020-02-16	16	0			
+Vietnam	2020-02-17	16	0			
+Vietnam	2020-02-18	16	0			
+Vietnam	2020-02-19	16	0			
+Vietnam	2020-02-20	16	0			
+Vietnam	2020-02-21	16	0			
+Vietnam	2020-02-22	16	0			
+Vietnam	2020-02-23	16	0			
+Vietnam	2020-02-24	16	0			
+Vietnam	2020-02-25	16	0			
+Vietnam	2020-02-26	16	0			
+Vietnam	2020-02-27	16	0			
+Vietnam	2020-02-28	16	0			
+Vietnam	2020-02-29	16	0			
+Vietnam	2020-03-01	16	0			
+Vietnam	2020-03-02	16	0			
+Vietnam	2020-03-03	16	0			
+Vietnam	2020-03-04	16	0			
+Vietnam	2020-03-05	16	0			
+Vietnam	2020-03-06	16	0			
+Vietnam	2020-03-07	17	0			
+Vietnam	2020-03-08	21	0			
+Vietnam	2020-03-09	30	0			
+Vietnam	2020-03-10	31	0			
+Vietnam	2020-03-11	35	0			
+Vietnam	2020-03-12	39	0			
+Vietnam	2020-03-13	39	0			
+Vietnam	2020-03-14	48	0			
+Vietnam	2020-03-15	53	0			
+Vietnam	2020-03-16	57	0			
+Vietnam	2020-03-17	61	0			
+World	2020-01-21	282	6			
+World	2020-01-22	314	6			
+World	2020-01-23	581	17			
+World	2020-01-24	846	25			
+World	2020-01-25	1320	41			
+World	2020-01-26	2014	56			
+World	2020-01-27	2798	80			
+World	2020-01-28	4593	106			
+World	2020-01-29	6065	132			
+World	2020-01-30	7818	170			
+World	2020-01-31	9826	213			
+World	2020-02-01	11953	259			
+World	2020-02-02	14557	305			
+World	2020-02-03	17391	362			
+World	2020-02-04	20630	426			
+World	2020-02-05	24544	492			
+World	2020-02-06	28276	565			
+World	2020-02-07	31481	638			
+World	2020-02-08	34886	724			
+World	2020-02-09	37558	813			
+World	2020-02-10	40554	910			
+World	2020-02-11	43103	1018			
+World	2020-02-12	45171	1115			
+World	2020-02-13	46997	1369			
+World	2020-02-14	49053	1383			
+World	2020-02-15	50580	1526			
+World	2020-02-16	51857	1669			
+World	2020-02-17	71429	1775			
+World	2020-02-18	73332	1873			
+World	2020-02-19	75204	2009			
+World	2020-02-20	75748	2129			
+World	2020-02-21	76769	2247			
+World	2020-02-22	77794	2359			
+World	2020-02-23	78811	2463			
+World	2020-02-24	79331	2618			
+World	2020-02-25	80239	2700			
+World	2020-02-26	81109	2762			
+World	2020-02-27	82294	2804			
+World	2020-02-28	83652	2858			
+World	2020-02-29	85403	2924			
+World	2020-03-01	87137	2977			
+World	2020-03-02	88948	3043			
+World	2020-03-03	90869	3112			
+World	2020-03-04	93090	3198			
+World	2020-03-05	95324	3280			
+World	2020-03-06	98192	3380			
+World	2020-03-07	101927	3486			
+World	2020-03-08	105592	3584			
+World	2020-03-09	109577	3809			
+World	2020-03-10	113702	4012			
+World	2020-03-11	118319	4292			
+World	2020-03-12	125260	4613			
+World	2020-03-13	132758	4956			
+World	2020-03-14	142534	5392			
+World	2020-03-15	153517	5735			
+World	2020-03-16	167506	6606			
+World	2020-03-17	179112	7426			
