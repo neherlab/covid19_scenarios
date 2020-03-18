@@ -18,7 +18,7 @@ cantonal_codes = {
    "SO": "Solothurn",
    "BS": "Basel-Stadt",
    "BL": "Basel-Landschaft",
-   "SH": "Scaffhausen",
+   "SH": "Schaffhausen",
    "AR": "Appenzell Ausserrhoden",
    "AI": "Appenzell Innerrhoden",
    "SG": "St. Gallen",
@@ -33,7 +33,7 @@ cantonal_codes = {
    "JU": "Jura",
 }
 
-PATH = "/home/nolln/Downloads/Tabelle_Faelle_Todesfaelle_2020-03-17.csv"
+PATH = "raw_data/CHE-Tabelle_Faelle_Todesfaelle_2020-03-17.csv"
 LOC  = "data/case-counts/Europe/Western Europe/Switzerland"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 

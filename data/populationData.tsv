@@ -49,11 +49,11 @@ CHE-St. Gallen	508000	Switzerland	1819	82	31	0.1
 CHE-Graubünden	198000	Switzerland	709	32	12	0.1
 CHE-Aargau	677000	Switzerland	2424	110	42	0.1
 CHE-Thurgau	276000	Switzerland	988	44	17	0.1
-CHE-Tessin	353000	Switzerland	1264	57	22	0.1
-CHE-Waadt	799000	Switzerland	2861	130	50	0.1
-CHE-Wallis	344000	Switzerland	1231	56	21	0.1
-CHE-Neuenburg	177000	Switzerland	633	28	11	0.1
-CHE-Genf	499000	Switzerland	1787	81	31	0.1
+CHE-Ticino	353000	Switzerland	1264	57	22	0.1
+CHE-Vaud	799000	Switzerland	2861	130	50	0.1
+CHE-Valais	344000	Switzerland	1231	56	21	0.1
+CHE-Neuchâtel	177000	Switzerland	633	28	11	0.1
+CHE-Geneva	499000	Switzerland	1787	81	31	0.1
 CHE-Jura	73000	Switzerland	261	11	4	0.1
 DEU-Baden-Württemberg	11070000	Germany	66152	3156	225	0.9
 DEU-Bayern	13077000	Germany	78146	3728	266	1.1
@@ -76,7 +76,7 @@ ITA-Piemonte	4356406	Italy	14826	320	490	5
 ITA-Valle d’Aosta	125666	Italy	449	0	10	5
 ITA-Lombardia	10060574	Italy	34473	1067	20000	5
 ITA-TrentinoAltoAdige	1072276	Italy	3763	75	100	5
-ITA-Veneto	4905854	Italy	15857	300	10000	5
+ITA-Veneto	4905854	Italy	15857	300	3000	5
 ITA-Friuli Venezia Giulia	1215220	Italy	3899	825	600	5
 ITA-Liguria	1550640	Italy	5085	75	2500	5
 ITA-Emilia Romagna	4459477	Italy	16304	650	15000	5
