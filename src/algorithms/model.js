@@ -241,6 +241,10 @@ export function evolve(pop, P, sample) {
       }
   }
 
+  // NOTE: For debug purposes only.
+  // const popSum = sum(newPop.susceptible) + sum(newPop.exposed) + sum(newPop.infectious) + sum(newPop.recovered) + sum(newPop.hospitalized) + sum(newPop.critical) + sum(newPop.overflow) + sum(newPop.dead);
+  // console.log(math.abs(popSum - P.populationServed));
+
   return newPop
 }
 
