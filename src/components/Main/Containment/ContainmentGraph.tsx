@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
 import * as d3 from 'd3'
-import * as math from 'mathjs'
 import ReactResizeDetector from 'react-resize-detector'
 
 import { TimeSeries } from '../../../algorithms/TimeSeries'
@@ -19,17 +18,17 @@ export interface DrawParams {
 
 function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
   const newData = data.map(d => {
-    return {t:d.t, y:d.y}
+    return { t: d.t, y: d.y }
   }) // copy
   const tMin = data[0].t
   const tMax = data[data.length - 1].t
   const svg = d3ref.current
 
   const margin = {
-    top: math.round(0.1 * height),
-    right: math.round(0.15 * height),
-    left: math.round(0.15 * height),
-    bottom: math.round(0.2 * height),
+    top: Math.round(0.1 * height),
+    right: Math.round(0.15 * height),
+    left: Math.round(0.15 * height),
+    bottom: Math.round(0.2 * height),
   }
 
   const tScale = d3
