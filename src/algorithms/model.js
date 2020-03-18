@@ -185,7 +185,7 @@ export function evolve(pop, P, sample) {
     push('exposed', age, newCases - newInfectious)
     push('infectious', age, newInfectious - newRecovered - newHospitalized)
     push('recovered', age, newRecovered + newDischarged)
-    push('hospitalized', age, newHospitalized - newDischarged - newCritical)
+    push('hospitalized', age, newHospitalized + newStabilized - newDischarged - newCritical)
     push('critical', age, newCritical - newStabilized - newDead)
     push('discharged', age, newDischarged)
     push('dead', age, newDead)
