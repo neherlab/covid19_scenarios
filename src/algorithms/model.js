@@ -67,7 +67,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
     pop.criticalRate[d.ageGroup] = dCritical / pop.lengthHospitalStay
     pop.stabilizationRate[d.ageGroup] = (1 - dFatal) / pop.lengthICUStay
     pop.deathRate[d.ageGroup] = dFatal / pop.lengthICUStay
-    pop.overflowDeathRate[d.ageGroup] = (pop.overflowSeverity*dFatal) / pop.lengthICUStay
+    pop.overflowDeathRate[d.ageGroup] = pop.overflowSeverity*pop.deathRate[d.ageGroup];
   })
 
   // Get import rates per age class (assume flat)
@@ -226,8 +226,7 @@ export function evolve(pop, P, sample) {
 
   // If any overflow patients are left AND there are free beds, move them back.
   // Again, move w/ lower age as priority.
-  let i = 0;
-  while (freeICUBeds > 0 && i < Keys.length) {
+  for (let i = 0; freeICUBeds > 0 && i < Keys.length; i++) {
       const age = Keys[i];
       if (newPop.overflow[age] < freeICUBeds) {
           newPop.critical[age] += newPop.overflow[age];
@@ -238,8 +237,11 @@ export function evolve(pop, P, sample) {
           newPop.overflow[age] -= freeICUBeds;
           freeICUBeds = 0;
       }
-      i += 1;
   }
+
+  // NOTE: For debug purposes only.
+  const popSum = sum(newPop.susceptible) + sum(newPop.exposed) + sum(newPop.infectious) + sum(newPop.recovered) + sum(newPop.hospitalized) + sum(newPop.critical) + sum(newPop.overflow) + sum(newPop.dead);
+  console.log(math.abs(popSum - P.populationServed));
 
   return newPop
 }
