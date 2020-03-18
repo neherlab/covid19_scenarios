@@ -122,6 +122,9 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     .attr('opacity', 0)
     .style('stroke-dasharray', '3, 3')
 
+  // Tool-tip
+  const tooltip = graph.append('g');
+
   // Baseline transmission
   graph
     .append('line')
@@ -156,6 +159,37 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     .attr('cy', d => yScale(d.y))
     .attr('r', 8)
 
+  const callout = (g, value) => {
+      if (!value) return g.style("display", "none");
+
+      g.style("display", null)
+       .style("pointer-events", "none")
+       .style("font", "10px sans-serif");
+
+      const path = g.selectAll("path")
+        .data([null])
+        .join("path")
+          .attr("fill", "white")
+          .attr("stroke", "black");
+
+      const text = g.selectAll("text")
+        .data([null])
+        .join("text")
+        .call(text => text
+          .selectAll("tspan")
+          .data((value + "").split(/\n/))
+          .join("tspan")
+            .attr("x", 0)
+            .attr("y", (d, i) => `${i * 1.1}em`)
+            .style("font-weight", (_, i) => i ? null : "bold")
+            .text(d => d));
+
+      const {x, y, width: w, height: h} = text.node().getBBox();
+
+      text.attr("transform", `translate(${-w / 2},${15 - y})`);
+      path.attr("d", `M${-w / 2 - 5},5H-5l5,-5l5,5H${w / 2 + 5}v${h + 20}h-${w + 10}z`);
+  }
+
   const Root = graph
   graph
     .selectAll('.dot')
@@ -167,12 +201,18 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
         .attr('opacity', 0.3)
         .attr('x1', tScale(d.t))
         .attr('x2', tScale(d.t))
+      tooltip.attr("transform", `translate(${tScale(d.t)},${yScale(d.y)})`)
+        .call(callout, `${d.t.toLocaleString(undefined, {month: "short", day: "numeric", year: "numeric"})}: ${d.y}`);
     })
     .on('mouseout', function onMouseOut() {
       d3.select(this)
         .attr('fill', 'black')
         .attr('r', 8)
       Root.select('#temp-line').attr('opacity', 0)
+      Root.select("#tooltip")
+          .transition(200)
+          .attr('opacity', 0.0);
+      tooltip.call(callout, null);
     })
     .call(
       d3
