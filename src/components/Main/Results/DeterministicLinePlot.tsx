@@ -96,16 +96,16 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     }))
   const scatterToPlot: LineProps[] = []
   const linesToPlot: LineProps[] = [
+      {key:'hospitalBeds', color: colors.hospitalBeds, name:'Total hospital beds'},
+      {key:'ICUbeds', color: colors.ICUbeds, name:'Total ICU/ICM beds'},
       {key:'susceptible', color: colors.susceptible, name:'Susceptible'},
       //{key:'exposed', color: colors.exposed, name:''},
       {key:'infectious', color: colors.infectious, name:'Infectious'},
       {key:'hospitalized', color: colors.severe, name:'Severely ill'},
-      {key:'critical', color: colors.critical, name:'Critically ill'},
+      {key:'critical', color: colors.critical, name:'Patients in ICU'},
       {key:'overflow', color: colors.overflow, name:'ICU overflow'},
       {key:'recovered', color: colors.recovered, name:'Recovered'},
       {key:'dead', color: colors.death, name:'Cumulative deaths'},
-      {key:'hospitalBeds', color: colors.hospitalBeds, name:'Total hospital beds'},
-      {key:'ICUbeds', color: colors.ICUbeds, name:'Total ICU/ICM beds'},
   ]
 
   // Append empirical data
