@@ -5,3 +5,12 @@
 \.reports
 node_modules
 aux/data
+
+# Ignore compiled python
+*.pyc
+
+# Ignore vim temporary files
+*.swp
+
+# Ignore VSCode configuration files
+.vscode/
