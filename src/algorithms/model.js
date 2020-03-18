@@ -24,8 +24,6 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   // Compute age-stratified parameters
   const total = severity.map(d => d.ageGroup).reduce((a,b)=>a+ageCounts[b], 0);
   // TODO: Make this a form-adjustable factor
-  const overflowSeverity = 2;
-
   pop.ageDistribution = {}
   pop.infectionSeverityRatio = {}
   pop.infectionFatality = {}
@@ -69,7 +67,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
     pop.criticalRate[d.ageGroup] = dCritical / pop.lengthHospitalStay
     pop.stabilizationRate[d.ageGroup] = (1 - dFatal) / pop.lengthICUStay
     pop.deathRate[d.ageGroup] = dFatal / pop.lengthICUStay
-    pop.overflowDeathRate[d.ageGroup] = (overflowSeverity*dFatal) / pop.lengthICUStay
+    pop.overflowDeathRate[d.ageGroup] = (pop.overflowSeverity*dFatal) / pop.lengthICUStay
   })
 
   // Get import rates per age class (assume flat)
@@ -85,7 +83,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   pop.criticalRate.total = criticalFracHospitalized / pop.lengthHospitalStay
   pop.deathRate.total = fatalFracCritical / pop.lengthICUStay
   pop.stabilizationRate.total = (1 - fatalFracCritical) / pop.lengthICUStay
-  pop.overflowDeathRate.total = overflowSeverity*fatalFracCritical / pop.lengthICUStay
+  pop.overflowDeathRate.total = pop.overflowSeverity*fatalFracCritical / pop.lengthICUStay
   pop.isolatedFrac.total = avgIsolatedFrac
 
   // Infectivity dynamics

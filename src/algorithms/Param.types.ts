@@ -18,6 +18,7 @@ export interface EpidemiologicalData {
   lengthICUStay: number
   seasonalForcing: number
   peakMonth: number
+  overflowSeverity: number
 }
 
 export interface ContainmentData {
