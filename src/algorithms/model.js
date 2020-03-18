@@ -226,9 +226,8 @@ export function evolve(pop, P, sample) {
           push('critical', age, - newStabilized[age] - newICUDead[age])
           push('overflow', age, newCritical[age] - newOverflowDead[age])
       }
-
-      console.log("free beds", freeICUBeds);
   });
+
 
   return newPop
 }
