@@ -23,6 +23,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
 
   // Compute age-stratified parameters
   const total = severity.map(d => d.ageGroup).reduce((a,b)=>a+ageCounts[b], 0);
+  // TODO: Make this a form-adjustable factor
   const overflowSeverity = 2;
 
   pop.ageDistribution = {}
@@ -212,22 +213,35 @@ export function evolve(pop, P, sample) {
   Keys.forEach(age => {
       if (freeICUBeds > newCritical[age]) {
           freeICUBeds -= newCritical[age];
-
           push('critical', age, newCritical[age] - newStabilized[age] - newICUDead[age])
           push('overflow', age,  -newOverflowDead[age])
       } else if (freeICUBeds > 0) {
           let newOverflow = newCritical[age] - freeICUBeds;
-
           push('critical', age, freeICUBeds - newStabilized[age] - newICUDead[age])
           push('overflow', age, newOverflow - newOverflowDead[age])
-
           freeICUBeds = 0;
       } else {
-          push('critical', age, - newStabilized[age] - newICUDead[age])
+          push('critical', age, -newStabilized[age] - newICUDead[age])
           push('overflow', age, newCritical[age] - newOverflowDead[age])
       }
   });
 
+  // If any overflow patients are left AND there are free beds, move them back.
+  // Again, move w/ lower age as priority.
+  let i = 0;
+  while (freeICUBeds > 0 && i < Keys.length) {
+      const age = Keys[i];
+      if (newPop.overflow[age] < freeICUBeds) {
+          newPop.critical[age] += newPop.overflow[age];
+          freeICUBeds -= newPop.overflow[age];
+          newPop.overflow[age] = 0;
+      } else {
+          newPop.critical[age] += freeICUBeds;
+          newPop.overflow[age] -= freeICUBeds;
+          freeICUBeds = 0;
+      }
+      i += 1;
+  }
 
   return newPop
 }
