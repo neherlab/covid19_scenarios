@@ -1,0 +1,74 @@
+name	populationServed	ageDistribution	hospitalBeds	ICUBeds	suspectedCaseMarch1st	importsPerDay
+Switzerland	8600000	Switzerland	30799	1400	540	4
+Germany	83784000	Germany	500680	23890	1710	12.2
+France	65274000	France	274462	7540	3000	19.9
+Italy	60462000	Italy	165384	7550	225600	10
+Spain	46755000	Spain	110346	4479	4500	27.0
+Poland	37847000	Poland	188342	2635	50	0.3
+Romania	19238000	Romania	90024	4574	150	0.7
+Netherlands	17135000	Netherlands	55690	1065	210	0.9
+Belgium	11590000	Belgium	63692	1755	30	0.1
+Czech Republic	10709000	Czech Republic	48190	1227	150	0.6
+Greece	10423000	Greece	38090	680	150	0.6
+Portugal	10197000	Portugal	33821	451	100	0.4
+Sweden	10099000	Sweden	22754	550	390	1.5
+Hungary	9660000	Hungary	42413	1374	100	0.4
+Austria	9006000	Austria	49395	1833	500	1.8
+Bulgaria	6948000	Bulgaria	42851	913	100	0.3
+Denmark	5792000	Denmark	13962	372	90	0.3
+Finland	5541000	Finland	16852	329	60	0.2
+Slovakia	5460000	Slovakia	26642	500	30	0.1
+Ireland	4938000	Ireland	11241	289	30	0.1
+Croatia	4105000	Croatia	16974	650	350	1.0
+Lithuania	2722000	Lithuania	18504	502	50	0.1
+Slovenia	2079000	Slovenia	8740	131	50	0.1
+Latvia	1886000	Latvia	6748	217	50	0.1
+Estonia	1327000	Estonia	4824	196	50	0.1
+Cyprus	1207000	Cyprus	2912	92	100	0.2
+Luxembourg	626000	Luxembourg	2332	127	30	0.1
+Malta	442000	Malta	1400	66	90	0.1
+United Kingdom	66000000	United Kingdom of Great Britain and Northern Ireland	297000	9900	690	4.6
+United States	330000000	United States of America	1485000	49499	6200	20
+CH-Zürich	1521000	Switzerland	5447	247	95	0.2
+CH-Bern	1035000	Switzerland	3706	168	64	0.1
+CH-Luzern	410000	Switzerland	1468	66	25	0.1
+CH-Uri	36000	Switzerland	128	5	2	0.1
+CH-Schwyz	159000	Switzerland	569	25	9	0.1
+CH-Obwalden	38000	Switzerland	136	6	2	0.1
+CH-Nidwalden	43000	Switzerland	153	7	2	0.1
+CH-Glarus	40000	Switzerland	143	6	2	0.1
+CH-Zug	127000	Switzerland	454	20	7	0.1
+CH-Freiburg	319000	Switzerland	1142	51	20	0.1
+CH-Solothurn	273000	Switzerland	977	44	17	0.1
+CH-Basel-Stadt	195000	Switzerland	698	80	12	0.1
+CH-Basel-Landschaft	288000	Switzerland	1031	46	18	0.1
+CH-Schaffhausen	82000	Switzerland	293	13	5	0.1
+CH-Appenzell Ausserrhoden	55000	Switzerland	196	8	3	0.1
+CH-Appenzell Innerrhoden	16000	Switzerland	57	2	1	0.1
+CH-St. Gallen	508000	Switzerland	1819	82	31	0.1
+CH-Graubünden	198000	Switzerland	709	32	12	0.1
+CH-Aargau	677000	Switzerland	2424	110	42	0.1
+CH-Thurgau	276000	Switzerland	988	44	17	0.1
+CH-Tessin	353000	Switzerland	1264	57	22	0.1
+CH-Waadt	799000	Switzerland	2861	130	50	0.1
+CH-Wallis	344000	Switzerland	1231	56	21	0.1
+CH-Neuenburg	177000	Switzerland	633	28	11	0.1
+CH-Genf	499000	Switzerland	1787	81	31	0.1
+CH-Jura	73000	Switzerland	261	11	4	0.1
+DE-Baden-Württemberg	11070000	Germany	66152	3156	225	0.9
+DE-Bayern	13077000	Germany	78146	3728	266	1.1
+DE-Berlin	3645000	Germany	21781	1039	74	0.2
+DE-Bremen	683000	Germany	4081	194	13	0.1
+DE-Brandenburg	2512000	Germany	15011	716	51	0.1
+DE-Hamburg	1841000	Germany	11001	524	37	0.1
+DE-Hessen	6266000	Germany	37444	1786	127	0.4
+DE-Mecklenburg-Vorpommern	1610000	Germany	9621	459	32	0.1
+DE-Niedersachsen	7982000	Germany	47699	2275	162	0.6
+DE-Nordrhein-Westfalen	17933000	Germany	107164	5113	366	1.6
+DE-Rheinland-Pfalz	4085000	Germany	24411	1164	83	0.2
+DE-Saarland	991000	Germany	5922	282	20	0.1
+DE-Sachsen	4078000	Germany	24369	1162	83	0.2
+DE-Sachsen-Anhalt	2208000	Germany	13194	629	45	0.1
+DE-Schleswig-Holstein	2897000	Germany	17312	826	59	0.2
+DE-Thüringen	2143000	Germany	12806	611	43	0.1
+SE-Stockholm	2000000	Sweden	4506	108	77	0.2

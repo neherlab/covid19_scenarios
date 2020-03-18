@@ -92,5 +92,28 @@ export default function webpackLoadJavaScript({
         },
       ],
     },
+    {
+      test: /\.(mdx?)$/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            ...babelConfig,
+            compact: false,
+            cacheDirectory: true,
+            cacheCompression: false,
+            sourceMaps,
+            ...options,
+          },
+        },
+        {
+          loader: '@mdx-js/loader',
+          options: {
+            remarkPlugins: [require('remark-images'), require('remark-math')],
+            rehypePlugins: [require('rehype-katex')],
+          },
+        },
+      ],
+    },
   ].filter(Boolean)
 }
