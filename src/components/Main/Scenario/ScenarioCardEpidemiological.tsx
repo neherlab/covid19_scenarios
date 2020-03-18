@@ -108,7 +108,7 @@ function ScenarioCardEpidemiological({
         identifier="epidemiological.overflowSeverity"
         label="Severity of ICU overflow"
         help="A multiplicative factor to death rate to patients that require but do not have access to an ICU bed relative to those who do."
-        step={1}
+        step={0.1}
         min={1}
         errors={errors}
         touched={touched}
