@@ -47,6 +47,7 @@ interface EmpiricalDatum {
     time: Date
     cases: number
     deaths: number
+    ICU: number
 }
 
 export type EmpiricalData = EmpiricalDatum[]

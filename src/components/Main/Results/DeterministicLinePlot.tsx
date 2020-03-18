@@ -66,12 +66,18 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const nICUBeds = data.params.ICUBeds
 
   let observations = []
+  const count_observations = {cases:0, ICU:0, observedDeaths:0, newCases:0}
   if (caseCounts) {
     caseCounts.forEach(function(d, i) {
+      if (d.cases) {count_observations.cases += 1}
+      if (d.deaths) {count_observations.observedDeaths += 1}
+      if (d.ICU) {count_observations.ICU += 1}
+      if (i>2 && d.cases && caseCounts[i-3].cases) {count_observations.newCases += 1}
       observations.push({
         time: (new Date(d.time)).getTime(),
         cases: d.cases || undefined,
         observedDeaths: d.deaths || undefined,
+        ICU: d.ICU || undefined,
         newCases: (i>2)?((d.cases - caseCounts[i-3].cases) || undefined):undefined,
         hospitalBeds: nHospitalBeds,
         ICUbeds: nICUBeds,
@@ -113,9 +119,18 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const tMax = plotData[plotData.length-1].time
   if (observations.length) {
       plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
-      scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
-      scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: "Cumulative confirmed cases"})
-      scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: "Confirmed cases past 3 days"})
+      if (count_observations.observedDeaths){
+           scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
+      }
+      if (count_observations.cases){
+        scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: "Cumulative confirmed cases"})
+      }
+      if (count_observations.ICU){
+        scatterToPlot.push({key:'ICU', 'color': colors.critical, name: "patients in ICU"})
+      }
+      if (count_observations.newCases){
+        scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: "Confirmed cases past 3 days"})
+      }
   }
   const logScaleString = logScale ? 'log' : 'linear'
 

@@ -5,7 +5,6 @@ this should be run from the top level of the repo.
 Will need to be integrated with other parsers once they become available.
 '''
 import csv
-import json
 
 from io import StringIO
 from urllib.request import urlopen
@@ -15,7 +14,13 @@ from datetime import datetime
 # -----------------------------------------------------------------------------
 # Globals
 
-CASE_COUNT_URL = "https://covid.ourworldindata.org/data/full_data.csv"
+URL  = "https://covid.ourworldindata.org/data/full_data.csv"
+LOC  = 'data/case-counts/World.tsv'
+
+cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+
+# -----------------------------------------------------------------------------
+# Functions
 
 def sorted_date(s):
     return sorted(s, key=lambda d: datetime.strptime(d["time"], "%Y-%m-%d"))
@@ -26,9 +31,9 @@ def stoi(x):
 
     return int(x)
 
-def getCaseCounts():
+def retrieve_case_data():
     cases = defaultdict(list)
-    with urlopen(CASE_COUNT_URL) as res:
+    with urlopen(URL) as res:
         buf = StringIO(res.read().decode(res.headers.get_content_charset()))
         crd = csv.reader(buf)
 
@@ -41,11 +46,23 @@ def getCaseCounts():
             cases[cntry] = sorted_date(cases[cntry])
 
     return dict(cases)
+
+def flatten(cases):
+    rows = []
+    for cntry, data in cases.items():
+        for datum in data:
+            rows.append([cntry, datum['time'], datum['cases'], datum['deaths'], None, None, None])
+
+    return rows
+
 # -----------------------------------------------------------------------------
 # Main point of entry
 
 if __name__ == "__main__":
-    cases = getCaseCounts()
+    cases = retrieve_case_data()
+    cases = flatten(cases)
 
-    with open('src/assets/data/case_counts.json', 'w') as fh:
-        json.dump(cases, fh)
+    with open(LOC, 'w+') as fd:
+        wtr = csv.writer(fd, delimiter="\t")
+        wtr.writerow(cols)
+        wtr.writerows(cases)
