@@ -19,6 +19,7 @@ import {
   setSeverityData,
   setSimulationData,
 } from '../scenario/scenario.actions'
+import { selectAlgorithmsCanRun } from './algorithm.selectors'
 
 const DEFAULT_TRIGGER_ALGORITHM_DEBOUNCE_MS = 250
 
@@ -37,7 +38,10 @@ export function* sagaTriggerAlgorithmOnChanges() {
       take(setSimulationData),
     ])
 
-    yield put(triggerAlgorithm())
+    const canRun: boolean = yield select(selectAlgorithmsCanRun)
+    if (canRun) {
+      yield put(triggerAlgorithm())
+    }
   }
 }
 

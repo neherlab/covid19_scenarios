@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import { readFile } from '../../../helpers/readFile'
 
-import { EmpiricalData, SeverityData } from '../../../algorithms/Param.types'
+import { SeverityData } from '../../../algorithms/Param.types'
 import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
 import { exportResult } from '../../../algorithms/exportResult'
 import processUserResult from '../../../algorithms/userResult'
@@ -39,6 +39,11 @@ export interface ResutsCardProps {
 
 function ResultsCard({ canRun, severityData, result, isRunning, error }: ResutsCardProps) {
   const [logScale, setLogScale] = useState<boolean>(true)
+  const [autorun, setAutorun] = useState<boolean>(true)
+
+  function handleRun() {
+    return
+  }
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
@@ -86,6 +91,11 @@ function ResultsCard({ canRun, severityData, result, isRunning, error }: ResutsC
         <Col>
           <div>
             <span>
+              <Button className="run-button" type="button" color="primary" disabled={!canRun} onClick={handleRun}>
+                {autorun ? 'Refresh' : 'Run'}
+              </Button>
+            </span>
+            <span>
               <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
             </span>
             <span>
@@ -101,6 +111,16 @@ function ResultsCard({ canRun, severityData, result, isRunning, error }: ResutsC
             </span>
           </div>
         </Col>
+      </Row>
+
+      <Row noGutters>
+        <FormSwitch
+          identifier="autorun"
+          label="Update automatically"
+          help={'Whether to update results on parameter changes automatically. If not, click "Run" button'}
+          checked={autorun}
+          onValueChanged={setAutorun}
+        />
       </Row>
 
       <Row noGutters hidden={!result}>

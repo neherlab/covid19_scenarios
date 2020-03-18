@@ -12,6 +12,7 @@ import { AllParams, SeverityTableData } from '../../algorithms/Param.types'
 import { schema } from './validation/schema'
 
 import { State } from '../../state/reducer'
+import { setCanRun, SetCanRunParams } from '../../state/algorithm/algorithm.actions'
 import {
   setEpidemiologicalData,
   SetEpidemiologicalDataParams,
@@ -41,9 +42,10 @@ export interface MainProps {
   setPopulationData: ActionCreator<SetPopulationDataParams>
   setEpidemiologicalData: ActionCreator<SetEpidemiologicalDataParams>
   setSimulationData: ActionCreator<SetSimulationDataParams>
+  setCanRun: ActionCreator<SetCanRunParams>
 }
 
-function Main({ scenarioData, setPopulationData, setEpidemiologicalData, setSimulationData }: MainProps) {
+function Main({ scenarioData, setPopulationData, setEpidemiologicalData, setSimulationData, setCanRun }: MainProps) {
   const { severityTable } = scenarioData.severity
 
   function setScenarioToCustom(newParams: AllParams) {
@@ -66,12 +68,16 @@ function Main({ scenarioData, setPopulationData, setEpidemiologicalData, setSimu
       <Col md={12}>
         <Formik
           enableReinitialize
+          validateOnChange
+          validateOnBlur
+          validateOnMount
           initialValues={scenarioData}
           validationSchema={schema}
           validate={setScenarioToCustom}
         >
           {({ errors, touched, isValid }) => {
             const canRun = isValid && severityTableIsValid(severityTable)
+            setCanRun({ canRun })
 
             return (
               <Form className="form">
@@ -102,6 +108,7 @@ const mapDispatchToProps = {
   setEpidemiologicalData,
   setSeverityData,
   setSimulationData,
+  setCanRun,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

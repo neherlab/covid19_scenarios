@@ -1,5 +1,9 @@
 import { State } from '../reducer'
 
+export function selectAlgorithmsCanRun(state: State) {
+  return state.algorithm.canRun
+}
+
 export function selectAlgorithmResult(state: State) {
   return state.algorithm.result
 }
