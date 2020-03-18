@@ -1,0 +1,10 @@
+language: node_js
+
+before_install:
+  - cp .env.example .env
+
+install:
+  - yarn install
+
+script:
+  - yarn test
