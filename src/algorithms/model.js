@@ -166,6 +166,7 @@ export function evolve(pop, P, sample) {
     critical: {},
     overflow: {},
     discharged: {},
+    intensive: {},
     dead: {},
   }
 
