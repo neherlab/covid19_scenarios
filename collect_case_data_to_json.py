@@ -81,6 +81,11 @@ def parse_world(tsv):
 
     return data, True
 
+
+def filter_tsv(fname):
+    with open(fname) as fh:
+        return filter(lambda row:row[0]!='#', fh.readlines())
+
 # ------------------------------------------------------------------------
 # Main point of entry
 
@@ -95,13 +100,13 @@ if __name__ == "__main__":
             country = os.path.basename(root)
             region = os.path.basename(tsv)[:-4]
             region = f"{codes[country]}-{region}"
-            db, ok = parse(open(f"{root}/{tsv}"))
+            db, ok = parse(filter_tsv(f"{root}/{tsv}"))
             if ok:
                 cases[region] = db
             else:
                 print(f"Region '{region}' incorrectly formatted", file=sys.stderr)
 
-    world_cases, ok = parse_world(open(f"{DATA_DIR}/World.tsv"))
+    world_cases, ok = parse_world(filter_tsv(f"{DATA_DIR}/World.tsv"))
     if ok:
         for country, data in world_cases.items():
             if country not in cases:
