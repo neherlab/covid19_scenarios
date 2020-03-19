@@ -5,7 +5,7 @@ import requests
 import numpy as np
 
 from collections import defaultdict
-from header import getHeader
+from .utils import write_tsv
 
 # ------------------------------------------------------------------------
 # Globals
@@ -23,25 +23,14 @@ X = {
         "swabs" : "tamponi",
 }
 
-URL = "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
-LOC = "case-counts/Europe/Southern Europe/Italy"
-
+URL  = "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
+LOC  = "case-counts/Europe/Southern Europe/Italy"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
-
-# ------------------------------------------------------------------------
-# Functions
-
-def write_tsv(path, rows):
-    with open(path, 'w+') as fd:
-        fd.write(getHeader('italy'))
-        wtr = csv.writer(fd, delimiter='\t')
-        wtr.writerow(cols)
-        wtr.writerows(rows)
 
 # ------------------------------------------------------------------------
 # Main point of entry
 
-if __name__ == "__main__":
+def parse():
     r  = requests.get(URL)
     if not r.ok:
         print(f"Failed to fetch {URL}", file=sys.stderr)
@@ -69,4 +58,4 @@ if __name__ == "__main__":
         regions["Italy"].append([date] + [int(c) for c in counts])
 
     for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", data)
+        write_tsv(f"{LOC}/{region}.tsv", cols, data, "italy")

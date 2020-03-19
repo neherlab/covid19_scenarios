@@ -9,14 +9,13 @@ from io import StringIO
 from urllib.request import urlopen
 from collections import defaultdict
 from datetime import datetime
-from header import getHeader
+from .utils import write_tsv
 
 # -----------------------------------------------------------------------------
 # Globals
 
 URL  = "https://covid.ourworldindata.org/data/full_data.csv"
-LOC  = 'case-counts/World.tsv'
-
+LOC  = 'case-counts'
 cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # -----------------------------------------------------------------------------
@@ -58,12 +57,8 @@ def flatten(cases):
 # -----------------------------------------------------------------------------
 # Main point of entry
 
-if __name__ == "__main__":
+def parse():
     cases = retrieve_case_data()
     cases = flatten(cases)
 
-    with open(LOC, 'w+') as fd:
-        fd.write(getHeader('world'))
-        wtr = csv.writer(fd, delimiter="\t")
-        wtr.writerow(cols)
-        wtr.writerows(cases)
+    write_tsv(f"{LOC}/World.tsv", cols, cases, "world")

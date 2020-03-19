@@ -1,6 +1,6 @@
 import csv
 from collections import defaultdict
-from header import getHeader
+from .utils import write_tsv
 
 # ------------------------------------------------------------------------
 # Globals
@@ -34,25 +34,14 @@ cantonal_codes = {
    "JU": "Jura",
 }
 
-PATH = "raw_data/CHE-Tabelle.csv"
+PATH = "../raw_data/CHE-Tabelle_Faelle_Todesfaelle_2020-03-17.csv"
 LOC  = "case-counts/Europe/Western Europe/Switzerland"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # ------------------------------------------------------------------------
-# Functions
-
-# TODO: Pull out into a utils file
-def write_tsv(path, rows):
-    with open(path, 'w+') as fd:
-        fd.write(getHeader('switzerland'))
-        wtr = csv.writer(fd, delimiter='\t')
-        wtr.writerow(cols)
-        wtr.writerows(rows)
-
-# ------------------------------------------------------------------------
 # Main point of entry
 
-if __name__ == "__main__":
+def parse():
     regions = defaultdict(list)
     with open(PATH) as fd:
         rdr = csv.reader(fd)
@@ -66,4 +55,4 @@ if __name__ == "__main__":
             regions[canton].append([date, int(row[4]), int(row[5]), None, None, None])
 
     for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", data)
+        write_tsv(f"{LOC}/{region}.tsv", cols, data, "switzerland")
