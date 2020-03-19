@@ -109,6 +109,7 @@ export function initializePopulation(N, numCases, t0, ages) {
       critical: put(0),
       discharged: put(0),
       recovered: put(0),
+      intensive: put(0),
       dead: put(0),
     }
   }
@@ -122,6 +123,7 @@ export function initializePopulation(N, numCases, t0, ages) {
     critical: {},
     overflow: {},
     discharged: {},
+    intensive: {},
     recovered: {},
     dead: {},
   }
