@@ -27,7 +27,7 @@ We are actively looking for people to supply data to be used for our modeling!
 
 ## Contributing and curating data:
 
-### Adding data for a new region:
+### Adding case count data for a new region:
   Steps:
 
  - Identify a source for case counts data that is updated frequently (at least daily) as outbreak evolves.
@@ -52,7 +52,7 @@ We are actively looking for people to supply data to be used for our modeling!
         - dataProvenance = The organization behind the data collection
         - license = The license governing the usage of data
 
-### Updating/editing data for the existing region:
+### Updating/editing case count data for the existing region:
   We note that this option is not preferred relative to a script that automatically updates as outlined above.
   However, if there is no accessible data sources, one can manually enter the data. To do so
 
@@ -61,6 +61,22 @@ We are actively looking for people to supply data to be used for our modeling!
     - Region and Sub-Region are designated as per the U.N. 
     - U.N. designations are found within country_codes.csv
     - Please use only the U.N. designated name for the country, region, and sub-region.
+
+### Adding/editing population data for a country and/or region:
+  As of now all data used to initialize scenarios used by our model is found within populationData.tsv
+  It has the following form:
+    ```
+    name    populationServed    ageDistribution hospitalBeds    ICUBeds suspectedCaseMarch1st   importsPerDay
+    Switzerland ...
+    ```
+  - Names: the U.N. designated name found within country_codes.csv
+      * For a sub-region/city, please prefix the name with the three letter country code of the containing country. See country_codes.csv for the correct letters.
+  - populationServed: a number with the population size
+  - ageDistribution: name of the country the region is within. Must be U.N. designated name
+  - hospitalBeds: number of hospital beds within the region
+  - ICUBeds: number of ICU beds
+  - suspectedCaseMarch1st: The number of cases thought to be within the region on March 1st.
+  - importsPerDay: number of suspected import cases per day
 
 ## License
 
