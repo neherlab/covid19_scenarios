@@ -109,6 +109,7 @@ export function initializePopulation(N, numCases, t0, ages) {
       critical: put(0),
       discharged: put(0),
       recovered: put(0),
+      intensive: put(0),
       dead: put(0),
     }
   }
@@ -122,6 +123,7 @@ export function initializePopulation(N, numCases, t0, ages) {
     critical: {},
     overflow: {},
     discharged: {},
+    intensive: {},
     recovered: {},
     dead: {},
   }
@@ -136,6 +138,7 @@ export function initializePopulation(N, numCases, t0, ages) {
     pop.overflow[k] = 0
     pop.discharged[k] = 0
     pop.recovered[k] = 0
+    pop.intensive[k] = 0
     pop.dead[k] = 0
     if (i === math.round(Object.keys(ages).length / 2)) {
       pop.susceptible[k] -= numCases
@@ -163,6 +166,7 @@ export function evolve(pop, P, sample) {
     critical: {},
     overflow: {},
     discharged: {},
+    intensive: {},
     dead: {},
   }
 
@@ -202,8 +206,10 @@ export function evolve(pop, P, sample) {
     push('susceptible', age, -newCases[age])
     push('exposed', age, newCases[age] - newInfectious[age])
     push('infectious', age, newInfectious[age] - newRecovered[age] - newHospitalized[age])
-    push('recovered', age, newRecovered[age] + newDischarged[age])
     push('hospitalized', age, newHospitalized[age] + newStabilized[age] + newOverflowStabilized[age] - newDischarged[age] - newCritical[age])
+    // Cumulative categories
+    push('recovered', age, newRecovered[age] + newDischarged[age])
+    push('intensive', age, newCritical[age])
     push('discharged', age, newDischarged[age])
     push('dead', age, newICUDead[age] + newOverflowDead[age])
   })
@@ -270,7 +276,7 @@ export function exportSimulation(trajectory) {
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const header = Object.keys(trajectory[0]) // ["susceptible,exposed,infectious,recovered,hospitalized,discharged,dead"];
+  const header = Object.keys(trajectory[0])
   const csv = [header.join('\t')]
 
   const pop = {}
