@@ -9,6 +9,11 @@
     "dataProvenance": "OpenZH",
     "license": "none specified"
   },
+  "unitedstates": {
+    "primarySource": "https://covidtracking.com/api/states/daily",
+    "dataProvenance": "The COVID Tracking Project",
+    "license": "Apache License 2.0"
+  },
   "world": {
     "primarySource": "https://covid.ourworldindata.org/data/full_data.csv",
     "dataProvenance": "WHO via OurWorldInData",

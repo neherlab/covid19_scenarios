@@ -1,0 +1,19 @@
+# Data source: https://covidtracking.com/api/states/daily
+# Data provenance: The COVID Tracking Project
+# License: Apache License 2.0
+time	cases	deaths	hospitalized	ICU	recovered
+2020-03-19	742	9			
+2020-03-18	427	5			
+2020-03-17	267	3			
+2020-03-16	178	2			
+2020-03-15	98	2			
+2020-03-14	50	1			
+2020-03-13	50	1			
+2020-03-12	30	1			
+2020-03-11	24	1			
+2020-03-10	15				
+2020-03-09	11				
+2020-03-08	6				
+2020-03-07	4				
+2020-03-06	1				
+2020-03-05	1				
