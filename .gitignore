@@ -5,3 +5,4 @@
 \.reports
 node_modules
 aux/data
+size-plugin.json
