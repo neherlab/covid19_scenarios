@@ -38,6 +38,7 @@ We are actively looking for people to supply data to be used for our modeling!
         - If data is missing, please leave the entry empty
     * Place the script into the parsers directory
         - The name should correspond to the region name desired in the scenario.
+        - There *must* be a function parse() defined that outputs the TSV into the correct directory.
     * Commit the produced TSV file into the correct directory
         - The structure of the directory is Region/Sub-Region/Country/
         - Region and Sub-Region are designated as per the U.N. 
