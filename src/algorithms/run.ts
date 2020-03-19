@@ -59,9 +59,9 @@ export default async function run(
 ): Promise<AlgorithmResult> {
   const modelParams = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
   const tMin: number = params.simulationTimeRange.tMin.getTime()
+  const tMax: number = params.simulationTimeRange.tMax.getTime()
   const initialCases = params.suspectedCasesToday
   let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
-  const tMax: number = params.simulationTimeRange.tMax.getTime()
 
   function simulate(initialState: SimulationTimePoint, func: (x: number) => number) {
     const dynamics = [initialState]

@@ -24,6 +24,16 @@ const columns: SeverityTableColumn[] = [
   { name: 'isolated', title: 'Isolated \n% total' },
 ]
 
+const readOnlyColumns = ['ageGroup', 'totalFatal']
+
+const columnColors = {
+  confirmed: '#fdbf6f55',
+  severe: '#fb9a9955',
+  critical: '#e31a1c55',
+  fatal: '#cab2d655',
+  isolated: '#a6cee355',
+}
+
 const getRowId = (row: TableRow) => row.id
 
 export type HeaderCellProps = TableBase.DataCellProps
@@ -61,26 +71,26 @@ export function EditableCell({
   onKeyDown,
   ...restProps
 }: EditableCellProps) {
-  const readOnlyColumns = ['ageGroup', 'totalFatal']
-
-  if (readOnlyColumns.includes(column.name)) {
-    return <Cell value={value} column={column} row={row} tableColumn={tableColumn} tableRow={tableRow} {...restProps} />
-  }
+  const isReadOnly = readOnlyColumns.includes(column.name)
+  const color = _.get(columnColors, column.name)
 
   return (
-    <td className="dx-g-bs4-table-cell text-nowrap text-right" {...restProps}>
-      <input
-        type="text"
-        className="dx-g-bs4-table-cell w-100 align-right table-cell-input"
-        // readOnly={!editingEnabled}
-        value={value}
-        onChange={e => onValueChange(e.target.value)}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus={autoFocus}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        onKeyDown={onKeyDown}
-      />
+    <td className="dx-g-bs4-table-cell text-nowrap" {...restProps}>
+      <div style={{ backgroundColor: color }} className="w-100 h-100">
+        <input
+          type="number"
+          className="table-cell-editable-input text-center"
+          // readOnly={!editingEnabled}
+          value={value}
+          onChange={e => onValueChange && onValueChange(e.target.value)}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus={autoFocus}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onKeyDown={onKeyDown}
+          readOnly={isReadOnly}
+        />
+      </div>
     </td>
   )
 }
@@ -90,8 +100,8 @@ export interface CellProps extends TableBase.DataCellProps {
 }
 
 export function Cell({ value, children, column, row, tableColumn, tableRow, onClick, ...restProps }: CellProps) {
-  const nonNumericColumns = ['ageGroup']
-  const textRight = nonNumericColumns.includes(column.name) ? 'text-left' : 'text-right'
+  const isReadOnly = readOnlyColumns.includes(column.name)
+  const color = _.get(columnColors, column.name)
 
   // Computed values may sometimes have way too many decimal digits
   // so we format them here in order to display something more reasonable
@@ -101,9 +111,12 @@ export function Cell({ value, children, column, row, tableColumn, tableRow, onCl
     formattedValue = d3format('.2')(parseFloat(value))
   }
 
+  const editableClass = isReadOnly ? '' : 'table-cell-editable'
   return (
-    <td className={`dx-g-bs4-table-cell text-nowrap ${textRight}`} {...restProps} onClick={onClick}>
-      {children ?? formattedValue}
+    <td className="dx-g-bs4-table-cell text-nowrap text-center" {...restProps} onClick={onClick}>
+      <div style={{ backgroundColor: color }} className="w-100 h-100">
+        <div className={`mx-auto align-center ${editableClass}`}>{children ?? formattedValue}</div>
+      </div>
     </td>
   )
 }
@@ -175,9 +188,9 @@ function SeverityTable({ severity, setSeverity }: SeverityTableProps) {
 
             <Table cellComponent={Cell} />
 
-            <TableHeaderRow cellComponent={HeaderCell} />
-
             <TableInlineCellEditing startEditAction={'click'} selectTextOnEditStart cellComponent={EditableCell} />
+
+            <TableHeaderRow cellComponent={HeaderCell} />
           </Grid>
         </Col>
       </Row>

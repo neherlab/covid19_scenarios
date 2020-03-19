@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 // HACK: find a way to override these styles without `!important`
 .dx-g-bs4-header-cell {
   padding: 0 !important;
@@ -18,7 +20,21 @@
   min-width: 100px !important;
 }
 
-.table-cell-input {
-  border: none;
+.table-cell-editable {
+  border: 1px solid $gray-300;
+  width: 75%;
+  min-width: 50px;
+  max-width: unset !important;
+
+  &:focus {
+    border: 1px solid $info;
+  }
+}
+
+.table-cell-editable-input {
+  padding: auto 1px;
   outline: none;
+  border: 1px solid $gray-300;
+  width: 75%;
+  min-width: 50px;
 }
