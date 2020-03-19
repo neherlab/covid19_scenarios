@@ -97,7 +97,7 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
           <thead>
             <tr>
               <th>Quantity &emsp; </th>
-              <th>peak/total value</th>
+              <th>Peak/total value</th>
             </tr>
           </thead>
           <tbody>
