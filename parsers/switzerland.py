@@ -42,6 +42,7 @@ cantonal_codes = {
 
 URL  = "https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv"
 LOC  = "case-counts/Europe/Western Europe/Switzerland"
+LOC2 = "case-counts/Europe/Western Europe/Liechtenstein"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # ------------------------------------------------------------------------
@@ -74,4 +75,7 @@ def parse():
         regions[canton].append([date, to_int(row[2]), to_int(row[5]), to_int(row[6]), None, to_int(row[7])])
 
     for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", cols, data, "switzerland")
+        if region != "Liechtenstein":
+            write_tsv(f"{LOC}/{region}.tsv", cols, data, "switzerland")
+        else:
+            write_tsv(f"{LOC2}/{region}.tsv", cols, data, "switzerland")
