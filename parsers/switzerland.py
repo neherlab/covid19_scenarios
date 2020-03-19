@@ -1,6 +1,9 @@
+import requests
 import csv
+import io
+
 from collections import defaultdict
-from .utils import write_tsv
+# from .utils import write_tsv
 
 # ------------------------------------------------------------------------
 # Globals
@@ -32,27 +35,44 @@ cantonal_codes = {
    "NE": "Neuchâtel",
    "GE": "Geneva",
    "JU": "Jura",
+   "FL": "Liechtenstein",
+   "CH": "Switzerland",
 }
 
-PATH = "../raw_data/CHE-Tabelle_Faelle_Todesfaelle_2020-03-17.csv"
+URL  = "https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv"
 LOC  = "case-counts/Europe/Western Europe/Switzerland"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+
+# ------------------------------------------------------------------------
+# Functions
+
+def to_int(x):
+    if x == "NA" or x == "":
+        return None
+    else:
+        return int(x)
 
 # ------------------------------------------------------------------------
 # Main point of entry
 
 def parse():
+    r  = requests.get(URL)
+    if not r.ok:
+        print(f"Failed to fetch {URL}", file=sys.stderr)
+        exit(1)
+        r.close()
+
     regions = defaultdict(list)
-    with open(PATH) as fd:
-        rdr = csv.reader(fd)
-        hdr = next(rdr)
+    fd  = io.StringIO(r.text)
+    print(r.text)
+    rdr = csv.reader(fd)
+    hdr = next(rdr)
 
-        for row in rdr:
-            if row[1] == "FL":
-                continue
-            date   = row[0]
-            canton = cantonal_codes[row[1]]
-            regions[canton].append([date, int(row[4]), int(row[5]), None, None, None])
+    for row in rdr:
+        date   = row[0]
+        canton = cantonal_codes[row[1]]
+        regions[canton].append([date, to_int(row[2]), to_int(row[5]), to_int(row[6]), None, to_int(row[7])])
 
-    for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", cols, data, "switzerland")
+    print(regions)
+    # for region, data in regions.items():
+    #     write_tsv(f"{LOC}/{region}.tsv", cols, data, "switzerland")
