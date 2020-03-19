@@ -1,0 +1,17 @@
+{
+  "italy": {
+    "primarySource": "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json",
+    "dataProvenance": "Dipartimento della Protezione Civile",
+    "license": "CC-BY-4.0"
+  },
+  "switzerland": {
+    "primarySource": "email",
+    "dataProvenance": "Bundesamt fuer Gesundheit",
+    "license": "none specified"
+  },
+  "world": {
+    "primarySource": "https://covid.ourworldindata.org/data/full_data.csv",
+    "dataProvenance": "WHO via OurWorldInData",
+    "license": "CC-BY-4.0"
+  }
+}
