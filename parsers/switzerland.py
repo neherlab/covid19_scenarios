@@ -1,5 +1,6 @@
 import csv
 from collections import defaultdict
+from header import getHeader
 
 # ------------------------------------------------------------------------
 # Globals
@@ -43,6 +44,7 @@ cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 # TODO: Pull out into a utils file
 def write_tsv(path, rows):
     with open(path, 'w+') as fd:
+        fd.write(getHeader('switzerland'))
         wtr = csv.writer(fd, delimiter='\t')
         wtr.writerow(cols)
         wtr.writerows(rows)

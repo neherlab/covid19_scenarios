@@ -5,6 +5,7 @@ import requests
 import numpy as np
 
 from collections import defaultdict
+from header import getHeader
 
 # ------------------------------------------------------------------------
 # Globals
@@ -32,6 +33,7 @@ cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 def write_tsv(path, rows):
     with open(path, 'w+') as fd:
+        fd.write(getHeader('italy'))
         wtr = csv.writer(fd, delimiter='\t')
         wtr.writerow(cols)
         wtr.writerows(rows)

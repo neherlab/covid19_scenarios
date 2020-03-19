@@ -5,11 +5,11 @@ this should be run from the top level of the repo.
 Will need to be integrated with other parsers once they become available.
 '''
 import csv
-
 from io import StringIO
 from urllib.request import urlopen
 from collections import defaultdict
 from datetime import datetime
+from header import getHeader
 
 # -----------------------------------------------------------------------------
 # Globals
@@ -63,6 +63,7 @@ if __name__ == "__main__":
     cases = flatten(cases)
 
     with open(LOC, 'w+') as fd:
+        fd.write(getHeader('world'))
         wtr = csv.writer(fd, delimiter="\t")
         wtr.writerow(cols)
         wtr.writerows(cases)
