@@ -1,3 +1,6 @@
+# Data source: email
+# Data provenance: Bundesamt fuer Gesundheit
+# License: none specified
 time	cases	deaths	hospitalized	ICU	recovered
 2020-02-26	1	0			
 2020-03-03	2	0			

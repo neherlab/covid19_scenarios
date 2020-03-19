@@ -1,3 +1,6 @@
+# Data source: https://covid.ourworldindata.org/data/full_data.csv
+# Data provenance: WHO via OurWorldInData
+# License: CC-BY-4.0
 location	time	cases	deaths	hospitalized	ICU	recovered
 Afghanistan	2020-02-25	1	0			
 Afghanistan	2020-02-26	1	0			
