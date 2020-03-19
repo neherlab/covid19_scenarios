@@ -1,9 +1,10 @@
+import sys
 import requests
 import csv
 import io
 
 from collections import defaultdict
-# from .utils import write_tsv
+from .utils import write_tsv
 
 # ------------------------------------------------------------------------
 # Globals
@@ -64,7 +65,6 @@ def parse():
 
     regions = defaultdict(list)
     fd  = io.StringIO(r.text)
-    print(r.text)
     rdr = csv.reader(fd)
     hdr = next(rdr)
 
@@ -73,6 +73,5 @@ def parse():
         canton = cantonal_codes[row[1]]
         regions[canton].append([date, to_int(row[2]), to_int(row[5]), to_int(row[6]), None, to_int(row[7])])
 
-    print(regions)
-    # for region, data in regions.items():
-    #     write_tsv(f"{LOC}/{region}.tsv", cols, data, "switzerland")
+    for region, data in regions.items():
+        write_tsv(f"{LOC}/{region}.tsv", cols, data, "switzerland")

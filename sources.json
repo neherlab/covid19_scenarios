@@ -5,8 +5,8 @@
     "license": "CC-BY-4.0"
   },
   "switzerland": {
-    "primarySource": "email",
-    "dataProvenance": "Bundesamt fuer Gesundheit",
+    "primarySource": "https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv",
+    "dataProvenance": "OpenZH",
     "license": "none specified"
   },
   "world": {
