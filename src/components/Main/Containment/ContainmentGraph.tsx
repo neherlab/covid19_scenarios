@@ -156,7 +156,35 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     .attr('cy', d => yScale(d.y))
     .attr('r', 8)
 
+  const tooltip = graph.append('g');
+
+  const callout = (g, value) => {
+      if (!value) return g.style("display", "none");
+
+      g.style("display", null)
+       .style("pointer-events", "none")
+       .style("font", "12px sans-serif");
+
+      const text = g.selectAll("text")
+        .data([null])
+        .join("text")
+        .call(text => text
+          .selectAll("tspan")
+          .data((value + "").split(/\n/))
+          .join("tspan")
+            .attr("x", 0)
+            .attr("y", (d, i) => `${i * 1.1}em`)
+            .style("font-weight", (_, i) => i ? null : "bold")
+            .text(d => d));
+
+      const {x, y, width: w, height: h} = text.node().getBBox();
+
+      text.attr("transform", `translate(${-w / 2}, ${15 - y})`);
+  }
+
   const Root = graph
+  const fmt  = x => {return Math.round(100*x)/100;};
+
   graph
     .selectAll('.dot')
     .on('mouseover', function onMouseover(d, i) {
@@ -167,12 +195,15 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
         .attr('opacity', 0.3)
         .attr('x1', tScale(d.t))
         .attr('x2', tScale(d.t))
+      tooltip.attr("transform", `translate(${tScale(d.t)},${yScale(d.y)})`)
+        .call(callout, `${d.t.toLocaleString(undefined, {month: "short", day: "numeric", year: "numeric"})}\n${fmt(d.y)}`);
     })
     .on('mouseout', function onMouseOut() {
       d3.select(this)
         .attr('fill', 'black')
         .attr('r', 8)
       Root.select('#temp-line').attr('opacity', 0)
+      tooltip.call(callout, null);
     })
     .call(
       d3
