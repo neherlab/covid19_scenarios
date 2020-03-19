@@ -46,6 +46,11 @@ We are actively looking for people to supply data to be used for our modeling!
         - Please use only the U.N. designated name for the country, region, and sub-region.
     * All TSV files will be bundled into a json database into the app on next build
         - The case counts should be displayed as data-points onto the associated scenario
+ - Update the *sources.json* file to contain all relevant metadata.
+    * The three fields are:
+        - primarySource = The URL/path to the raw data
+        - dataProvenance = The organization behind the data collection
+        - license = The license governing the usage of data
 
 ### Updating/editing data for the existing region:
   We note that this option is not preferred relative to a script that automatically updates as outlined above.
