@@ -42,9 +42,15 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
 
   // FIXME: should use display format library instead of rounding
   const totalDeath    = Math.round(endResult.dead.total)
-  const totalSevere   = Math.round(endResult.discharged.total),
-  const totalCritical = Math.round(endResult.intensive.total),
-  const totalCases    = Math.round(endResult.recovered.total) + totalDeath;
+  const totalSevere   = Math.round(endResult.discharged.total)
+  const totalCritical = Math.round(endResult.intensive.total)
+  const totalCases    = Math.round(endResult.recovered.total) + totalDeath
+
+  let severeFrac   = 1.0*totalSevere / totalCases
+  let criticalFrac = 1.0*totalCritical / totalCases
+  let deathFrac    = 1.0*totalDeath / totalCases
+  let mildFrac     = 1 - severeFrac - criticalFrac - deathFrac
+
   const peakSevere   = Math.round(Math.max(...result.deterministicTrajectory.map(x => x.hospitalized.total)))
   const peakCritical = Math.round(Math.max(...result.deterministicTrajectory.map(x => x.critical.total + x.overflow.total)))
 
