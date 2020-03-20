@@ -41,21 +41,21 @@ CHE-Glarus	40000	Switzerland	143	6	2	0.1
 CHE-Zug	127000	Switzerland	454	20	7	0.1
 CHE-Freiburg	319000	Switzerland	1142	51	20	0.1
 CHE-Solothurn	273000	Switzerland	977	44	17	0.1
-CHE-Basel-Stadt	195000	Switzerland	698	80	12	0.1
-CHE-Basel-Landschaft	288000	Switzerland	1031	46	18	0.1
+CHE-Basel-Stadt	195000	Switzerland	698	80	100	0.1
+CHE-Basel-Landschaft	288000	Switzerland	1031	46	50	0.1
 CHE-Schaffhausen	82000	Switzerland	293	13	5	0.1
 CHE-Appenzell Ausserrhoden	55000	Switzerland	196	8	3	0.1
 CHE-Appenzell Innerrhoden	16000	Switzerland	57	2	1	0.1
 CHE-St. Gallen	508000	Switzerland	1819	82	31	0.1
-CHE-Graubünden	198000	Switzerland	709	32	12	0.1
+CHE-Graubünden	198000	Switzerland	709	32	50	0.1
 CHE-Aargau	677000	Switzerland	2424	110	42	0.1
 CHE-Thurgau	276000	Switzerland	988	44	17	0.1
-CHE-Ticino	353000	Switzerland	1264	57	22	0.1
-CHE-Vaud	799000	Switzerland	2861	130	50	0.1
-CHE-Valais	344000	Switzerland	1231	56	21	0.1
+CHE-Ticino	353000	Switzerland	1264	57	100	0.1
+CHE-Vaud	799000	Switzerland	2861	130	100	0.1
+CHE-Valais	344000	Switzerland	1231	56	50	0.1
 CHE-Neuchâtel	177000	Switzerland	633	28	11	0.1
-CHE-Geneva	499000	Switzerland	1787	81	31	0.1
-CHE-Jura	73000	Switzerland	261	11	4	0.1
+CHE-Geneva	499000	Switzerland	1787	81	100	0.1
+CHE-Jura	73000	Switzerland	261	11	10	0.1
 DEU-Baden-Württemberg	11070000	Germany	66152	3156	225	0.9
 DEU-Bayern	13077000	Germany	78146	3728	266	1.1
 DEU-Berlin	3645000	Germany	21781	1039	74	0.2
