@@ -32,6 +32,7 @@ interface LineProps {
   key: string,
   name: string,
   color: string
+  legendType?: string
 }
 
 function xTickFormatter(tick: string | number): string {
@@ -105,16 +106,16 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     }))
   const scatterToPlot: LineProps[] = []
   const linesToPlot: LineProps[] = [
-      {key:'hospitalBeds', color: colors.hospitalBeds, name:'Total hospital beds'},
-      {key:'ICUbeds', color: colors.ICUbeds, name:'Total ICU/ICM beds'},
-      {key:'susceptible', color: colors.susceptible, name:'Susceptible'},
-      //{key:'exposed', color: colors.exposed, name:''},
-      {key:'infectious', color: colors.infectious, name:'Infectious'},
-      {key:'hospitalized', color: colors.severe, name:'Severely ill'},
-      {key:'critical', color: colors.critical, name:'Patients in ICU'},
-      {key:'overflow', color: colors.overflow, name:'ICU overflow'},
-      {key:'recovered', color: colors.recovered, name:'Recovered'},
-      {key:'dead', color: colors.death, name:'Cumulative deaths'},
+      {key:'hospitalBeds', color: colors.hospitalBeds, name:'Total hospital beds', legendType:"none"},
+      {key:'ICUbeds', color: colors.ICUbeds, name:'Total ICU/ICM beds', legendType:"none"},
+      {key:'susceptible', color: colors.susceptible, name:'Susceptible', legendType:"line"},
+      //{key:'exposed', color: colors.exposed, name:'', legendType:"line"},
+      {key:'infectious', color: colors.infectious, name:'Infectious', legendType:"line"},
+      // {key:'hospitalized', color: colors.severe, name:'Severely ill', legendType:"line"},
+      {key:'critical', color: colors.critical, name:'Patients in ICU', legendType:"line"},
+      {key:'overflow', color: colors.overflow, name:'ICU overflow', legendType:"line"},
+      {key:'recovered', color: colors.recovered, name:'Recovered', legendType:"line"},
+      {key:'dead', color: colors.death, name:'Cumulative deaths', legendType:"line"},
   ]
 
   let tMin = plotData[0].time;
@@ -176,11 +177,13 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                     return (
                       <Line
                         dot={false}
+                        isAnimationActive={false}
                         type='monotone'
                         strokeWidth={3}
                         dataKey={d.key}
                         stroke={d.color}
                         name={d.name}
+                        legendType={d.legendType}
                       />
                     )
                     })
