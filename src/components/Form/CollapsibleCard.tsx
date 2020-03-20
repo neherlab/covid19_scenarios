@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { MdArrowDropDown } from 'react-icons/md'
-import { Button, Card, CardBody, CardHeader, Collapse } from 'reactstrap'
+import { Card, CardBody, CardHeader, Collapse } from 'reactstrap'
 
 import HelpLabel from './HelpLabel'
 
@@ -19,15 +19,15 @@ export function CollapsibleCard({ identifier, title, help, children, defaultColl
 
   return (
     <Card className="h-100">
-      <CardHeader>
-        <Button className="w-100 h-100 text-left p-0" type="button" color="default" onClick={toggle}>
+      <CardHeader onClick={toggle}>
+        <div className="w-100 h-100 text-left p-0" color="default">
           <div className="d-flex">
             <span className="mx-1 my-auto">
               <MdArrowDropDown size={30} className={`${collapsed ? 'icon-rotate-90' : 'icon-rotate-0'}`} />
             </span>
             <HelpLabel identifier={identifier} label={title} help={help} />
           </div>
-        </Button>
+        </div>
       </CardHeader>
 
       <Collapse isOpen={!collapsed}>
