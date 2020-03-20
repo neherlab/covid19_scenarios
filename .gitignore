@@ -5,3 +5,7 @@
 \.reports
 node_modules
 aux/data
+
+tools/__pycache__
+
+*log
