@@ -91,9 +91,10 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.containment.current = scenarioName
       if (scenarioName !== CUSTOM_SCENARIO_NAME) {
         draft.containment.data = getContainmentScenarioData(scenarioName)
-        if (draft.simulation.data.simulationTimeRange != defaultScenarioState.simulation.data.simulationTimeRange) {
-            draft.containment.data.reduction = updateTimeSeries(draft.simulation.data.simulationTimeRange, draft.containment.data.reduction);
-        }
+        draft.containment.data.reduction = updateTimeSeries(
+          draft.simulation.data.simulationTimeRange,
+          draft.containment.data.reduction,
+        )
       }
     }),
   )
