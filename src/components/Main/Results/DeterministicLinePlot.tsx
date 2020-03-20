@@ -145,7 +145,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
             return <div className="w-100 h-100" />
           }
 
-          const height = width / ASPECT_RATIO
+          const height = Math.max(500, width / ASPECT_RATIO)
 
           return (
             <>
