@@ -15,5 +15,5 @@ code. Unacceptable behavior won't be tolerated.
 ## Reporting Bugs
 
 When you are creating a bug report, please include as many details as possible. Fill out
-[the required template](https://github.com/atom/.github/blob/master/.github/ISSUE_TEMPLATE/bug_report.md), 
+[the required template](https://github.com/neherlab/covid19_scenarios/blob/master/.github/ISSUE_TEMPLATE/bug_report.md), 
 the information it asks for helps us resolve issues faster.
