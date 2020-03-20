@@ -11,8 +11,8 @@ interface TimePoint {
 export type TimeSeries = TimePoint[]
 
 export function uniformDatesBetween(min: number, max: number, n: number): Date[] {
-  const d = (max - min) / (n - 1)
-  const dates = d3.range(min, max + d, d)
+  const d     = (max - min) / (n - 1)
+  const dates = d3.range(min, max + d, d).filter((_, i) => i < n);
   return dates.map(d => new Date(d))
 }
 

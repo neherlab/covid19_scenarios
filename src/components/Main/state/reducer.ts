@@ -58,7 +58,6 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
         draft.containment.current = containmentScenario
         const data = getContainmentScenarioData(containmentScenario);
-        console.log("REDUCTION", data.reduction);
         draft.containment.data = { reduction: 
             updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, data.numberPoints),
             numberPoints: data.numberPoints
@@ -96,8 +95,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.containment.current = scenarioName
       if (scenarioName !== CUSTOM_SCENARIO_NAME) {
         const data = getContainmentScenarioData(scenarioName);
-        draft.containment.data = { reduction: updateTimeSeries(
-            draft.simulation.data.simulationTimeRange, data.reduction, 10),
+        draft.containment.data = { 
+          reduction: updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, 10),
           numberPoints: data.numberPoints,
         }
       }
@@ -130,6 +129,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.overall.current = CUSTOM_SCENARIO_NAME
       draft.containment.scenarios = maybeAdd(draft.containment.scenarios, CUSTOM_SCENARIO_NAME)
       draft.containment.current = CUSTOM_SCENARIO_NAME
+      console.log("NUMBER OF POINTS", data.numberPoints);
+      console.log("DATA LENGTH BEFORE", data.reduction.length);
       draft.containment.data = {
           reduction: updateTimeSeries(
               draft.simulation.data.simulationTimeRange,
@@ -138,11 +139,13 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
           ), 
           numberPoints: data.numberPoints
       }
+      console.log("DATA LENGTH AFTER", draft.containment.data.reduction.length);
     }),
   )
 
   .withHandling(
     immerCase(setSimulationData, (draft, { data }) => {
+      console.log("SET SIMULATION");
       draft.simulation.data = data
       draft.containment.data.reduction = updateTimeSeries(
           data.simulationTimeRange, 
