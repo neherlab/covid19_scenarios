@@ -15,6 +15,7 @@
     "config",
     "package.json",
     "postcss.config.js",
+    "infra/lambda-at-edge/modifyOutgoingHeaders.lambda.js",
     "src",
     "static",
     "stylelint.config.js",
