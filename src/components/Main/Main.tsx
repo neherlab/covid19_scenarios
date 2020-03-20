@@ -57,6 +57,7 @@ function Main() {
     population: scenarioState.population.data,
     epidemiological: scenarioState.epidemiological.data,
     simulation: scenarioState.simulation.data,
+    containment: scenarioState.containment.data,
   }
 
   function setScenarioToCustom(newParams: AllParams) {
