@@ -63,7 +63,7 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
   }
 
   const dragged = (d, i, n) => {
-    d.y = yScale.invert(d3.mouse(svg)[1])
+    d.y = yScale.invert(d3.mouse(svg)[1]-margin.top)
     if (d.y > MAX_TRANSMISSION_RATIO) {
       d.y = MAX_TRANSMISSION_RATIO
     } else if (d.y < 0) {
