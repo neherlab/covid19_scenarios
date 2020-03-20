@@ -14,7 +14,7 @@ List of countries associated to regions, subregions, and three letter codes supp
 List of settings used by the default scenario by COVID-19 epidemic simulation for different regions of interest.
 
 ### Case count data
-Within the directory ./case-counts is a structured set of tsv files containing aggregated data for select country and subregion/city.
+Within the directory `./case-counts` is a structured set of tsv files containing aggregated data for select country and subregion/city.
 We welcome contributions to keep this data up to date.
 The format chosen is:
 
