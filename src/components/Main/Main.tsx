@@ -22,7 +22,7 @@ import countryCaseCounts from '../../assets/data/case_counts.json'
 
 import { schema } from './validation/schema'
 
-import { setEpidemiologicalData, setPopulationData, setSimulationData } from './state/actions'
+import { setEpidemiologicalData, setPopulationData, setSimulationData, setContainmentData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState } from './state/state'
 
@@ -72,6 +72,10 @@ function Main() {
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.simulation, newParams.simulation)) {
       scenarioDispatch(setSimulationData({ data: newParams.simulation }))
+    }
+    // NOTE: deep object comparison!
+    if (!_.isEqual(allParams.containment, newParams.containment)) {
+      scenarioDispatch(setContainmentData({ data: newParams.containment }))
     }
   }
 

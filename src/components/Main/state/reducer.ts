@@ -133,7 +133,14 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.overall.current = CUSTOM_SCENARIO_NAME
       draft.containment.scenarios = maybeAdd(draft.containment.scenarios, CUSTOM_SCENARIO_NAME)
       draft.containment.current = CUSTOM_SCENARIO_NAME
-      draft.containment.data = data
+      draft.containment.data = {
+          reduction: updateTimeSeries(
+              draft.simulation.data.simulationTimeRange,
+              data.reduction,
+              data.numberPoints
+          ), 
+          numberPoints: data.numberPoints
+      }
     }),
   )
 
@@ -143,7 +150,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.containment.data.reduction = updateTimeSeries(
           data.simulationTimeRange, 
           draft.containment.data.reduction,
-          draft.containment.data.reduction.length,
+          draft.containment.data.numberPoints,
       )
     }),
   )
