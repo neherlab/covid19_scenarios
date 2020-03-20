@@ -58,6 +58,10 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
         draft.containment.current = containmentScenario
         draft.containment.data = getContainmentScenarioData(containmentScenario)
+        draft.containment.data.reduction = updateTimeSeries(
+          draft.simulation.data.simulationTimeRange,
+          draft.containment.data.reduction,
+        )
       }
     }),
   )
