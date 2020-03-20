@@ -95,7 +95,7 @@ ITA-Sicilia	4999891	Italy	13642	441	300	5
 ITA-Sardegna	1639591	Italy	4960	244	10	5
 USA-Wyoming	567025	United States of America	1985	66	2	1
 USA-Vermont	628061	United States of America	1319	44	2	1
-USA-District of Columbia	720687	United States of America	3171	106	2	1
+USA-District of Columbia	720687	United States of America	3171	106	20	1
 USA-Alaska	734002	United States of America	1615	54	2	1
 USA-North Dakota	761723	United States of America	3275	109	2	1
 USA-South Dakota	903027	United States of America	4335	145	2	1
@@ -130,18 +130,18 @@ USA-Maryland	6083116	United States of America	11558	385	2	2
 USA-Missouri	6169270	United States of America	19125	638	2	2
 USA-Indiana	6745354	United States of America	18212	607	2	2
 USA-Tennessee	6897576	United States of America	20003	667	2	2
-USA-Massachusetts	6976597	United States of America	16046	535	2	2
-USA-Arizona	7378494	United States of America	14019	467	2	2
+USA-Massachusetts	6976597	United States of America	16046	535	100	2
+USA-Arizona	7378494	United States of America	14019	467	20	2
 USA-Washington	7797095	United States of America	13255	442	200	2
-USA-Virginia	8626207	United States of America	18115	604	2	2
-USA-New Jersey	8936574	United States of America	21448	715	20	5
-USA-Michigan	10045029	United States of America	25113	837	2	5
-USA-North Carolina	10611862	United States of America	22285	743	2	5
-USA-Georgia	10736059	United States of America	25767	859	2	5
-USA-Ohio	11747694	United States of America	32894	1096	2	5
-USA-Illinois	12659682	United States of America	31649	1055	10	5
-USA-Pennsylvania	12820878	United States of America	37181	1239	10	5
-USA-New York	19440469	United States of America	52489	1750	100	10
-USA-Florida	21992985	United States of America	57182	1906	20	10
-USA-Texas	29472295	United States of America	67786	2260	30	10
-USA-California	39937489	United States of America	71887	2396	100	10
+USA-Virginia	8626207	United States of America	18115	604	20	2
+USA-New Jersey	8936574	United States of America	21448	715	500	5
+USA-Michigan	10045029	United States of America	25113	837	20	5
+USA-North Carolina	10611862	United States of America	22285	743	20	5
+USA-Georgia	10736059	United States of America	25767	859	20	5
+USA-Ohio	11747694	United States of America	32894	1096	20	5
+USA-Illinois	12659682	United States of America	31649	1055	100	5
+USA-Pennsylvania	12820878	United States of America	37181	1239	100	5
+USA-New York	19440469	United States of America	52489	1750	1000	10
+USA-Florida	21992985	United States of America	57182	1906	300	10
+USA-Texas	29472295	United States of America	67786	2260	200	10
+USA-California	39937489	United States of America	71887	2396	1000	10
