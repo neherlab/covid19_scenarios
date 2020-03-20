@@ -22,7 +22,6 @@ export interface ScenarioCardContainmentProps {
 
 function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispatch }: ScenarioCardContainmentProps) {
   function handleChangeContainmentScenario(newContainmentScenario: string) {
-    console.log("CHANGING THE SCENARIO")
     scenarioDispatch(setContainmentScenario({ scenarioName: newContainmentScenario }))
   }
 
