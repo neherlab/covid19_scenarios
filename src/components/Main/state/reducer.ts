@@ -61,6 +61,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
         draft.containment.data.reduction = updateTimeSeries(
           draft.simulation.data.simulationTimeRange,
           draft.containment.data.reduction,
+          draft.containment.data.reduction.length,
         )
       }
     }),
@@ -98,6 +99,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
         draft.containment.data.reduction = updateTimeSeries(
           draft.simulation.data.simulationTimeRange,
           draft.containment.data.reduction,
+          draft.containment.data.reduction.length,
         )
       }
     }),
@@ -136,6 +138,10 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
     immerCase(setSimulationData, (draft, { data }) => {
       draft.simulation.data = data
-      draft.containment.data.reduction = updateTimeSeries(data.simulationTimeRange, draft.containment.data.reduction)
+      draft.containment.data.reduction = updateTimeSeries(
+          data.simulationTimeRange, 
+          draft.containment.data.reduction,
+          draft.containment.data.reduction.length,
+      )
     }),
   )

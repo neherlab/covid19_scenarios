@@ -30,6 +30,7 @@ export interface State {
   containment: {
     scenarios: string[]
     current: string
+    numberPoints: number
     data: ContainmentData
   }
   simulation: {
@@ -62,6 +63,7 @@ export const defaultScenarioState: State = {
     scenarios: containmentScenarioNames,
     current: defaultScenario.containmentScenario,
     data: getContainmentScenarioData(defaultScenario.containmentScenario),
+    numberPoints: getContainmentScenarioData(defaultScenario.containmentScenario).reduction.length,
   },
   simulation: {
     data: getSimulationData(),

@@ -32,6 +32,7 @@ export interface DateRange {
 
 export interface SimulationData {
   simulationTimeRange: DateRange
+  numberMitigationPoints: number
   numberStochasticRuns: number
 }
 
