@@ -20,11 +20,13 @@ import expressStaticGzip from 'express-static-gzip'
 
 import { findModuleRoot } from '../../lib/findModuleRoot'
 
+import { NEW_HEADERS } from '../../infra/lambda-at-edge/modifyOutgoingHeaders.lambda'
+
 import routes from '../routes'
 
 const { moduleRoot } = findModuleRoot()
 
-const buildDir = path.join(moduleRoot, '..', '.build', 'production', 'web')
+const buildDir = path.join(moduleRoot, '.build', 'production', 'web')
 const assetsDir = path.join(buildDir, 'assets')
 const contentDir = path.join(buildDir, 'content')
 const sourcemapDir = path.join(buildDir, '..', 'sourcemaps')
@@ -46,6 +48,16 @@ function main() {
     ...expressStaticGzipOptions,
     serveStatic: { maxAge: '31556952000', immutable: true },
   }
+
+  app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+    Object.entries(NEW_HEADERS).forEach(([header, value]) => {
+      if (header.toLowerCase() === 'strict-transport-security') {
+        return
+      }
+      res.set({ [header.toLowerCase()]: value })
+    })
+    next()
+  })
 
   app.use(allowMethods(['GET', 'HEAD']))
   app.use(history())

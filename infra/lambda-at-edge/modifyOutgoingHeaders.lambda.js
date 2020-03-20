@@ -91,3 +91,4 @@ exports.handler = (event, context, callback) => {
   callback(null, response)
 }
 
+exports.NEW_HEADERS = NEW_HEADERS
