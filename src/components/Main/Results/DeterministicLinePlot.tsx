@@ -66,18 +66,20 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const nICUBeds = data.params.ICUBeds
 
   let observations = []
-  const count_observations = {cases:0, ICU:0, observedDeaths:0, newCases:0}
+  const count_observations = {cases:0, ICU:0, observedDeaths:0, newCases:0, hospitalized:0}
   if (caseCounts) {
     caseCounts.sort(function(a,b){ return (a.time>b.time)?1:-1});
     caseCounts.forEach(function(d, i) {
       if (d.cases) {count_observations.cases += 1}
       if (d.deaths) {count_observations.observedDeaths += 1}
+      if (d.hospitalized) {count_observations.hospitalized += 1}
       if (d.ICU) {count_observations.ICU += 1}
       if (i>2 && d.cases && caseCounts[i-3].cases) {count_observations.newCases += 1}
       observations.push({
         time: (new Date(d.time)).getTime(),
         cases: d.cases || undefined,
         observedDeaths: d.deaths || undefined,
+        currentHospitalized: d.hospitalized || undefined,
         ICU: d.ICU || undefined,
         newCases: (i>2)?((d.cases - caseCounts[i-3].cases) || undefined):undefined,
         hospitalBeds: nHospitalBeds,
@@ -128,8 +130,11 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       if (count_observations.cases){
         scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: "Cumulative confirmed cases"})
       }
+      if (count_observations.hospitalized){
+        scatterToPlot.push({key:'currentHospitalized', 'color': colors.severe, name: "Patients in hospital"})
+      }
       if (count_observations.ICU){
-        scatterToPlot.push({key:'ICU', 'color': colors.critical, name: "patients in ICU"})
+        scatterToPlot.push({key:'ICU', 'color': colors.critical, name: "Patients in ICU"})
       }
       if (count_observations.newCases){
         scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: "Confirmed cases past 3 days"})
