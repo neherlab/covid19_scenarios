@@ -47,6 +47,7 @@ interface EmpiricalDatum {
     time: Date
     cases: number
     deaths: number
+    hospitalized: number
     ICU: number
 }
 
