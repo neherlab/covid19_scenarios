@@ -25,7 +25,6 @@ script:
   - yarn test
 
 before_deploy:
-  - yarn global add travis-ci-cloudfront-invalidation@1.1.0
   - yarn prod
 
 deploy:
@@ -60,6 +59,7 @@ deploy:
       branch: release
 
 after_deploy:
+  - yarn global add travis-ci-cloudfront-invalidation@1.1.0
   - >
     #!/usr/bin/env bash
 
