@@ -115,10 +115,12 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       {key:'dead', color: colors.death, name:'Cumulative deaths'},
   ]
 
-  const tMin = plotData[0].time;
-  const tMax = plotData[plotData.length-1].time;
+  let tMin = plotData[0].time;
+  let tMax = plotData[plotData.length-1].time;
   // Append empirical data
   if (observations.length) {
+      tMin = Math.min(tMin, observations[0].time);
+      tMax = Math.max(tMax, observations[observations.length-1].time);
       plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
       if (count_observations.observedDeaths){
            scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
@@ -160,7 +162,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="time" type="number" tickFormatter={xTickFormatter} domain={[tMin, tMax]} />
+                <XAxis dataKey="time" type="number" tickFormatter={xTickFormatter} domain={[tMin, tMax]} tickCount={7}/>
                 <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} />
                 <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
                 <Legend verticalAlign="top" />
