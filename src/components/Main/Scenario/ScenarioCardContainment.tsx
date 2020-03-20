@@ -27,7 +27,6 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
   }
 
   function handleChangeContainmentData(timeSeries: TimeSeries) {
-    console.log("CHANGING THE DATA", timeSeries)
     scenarioDispatch(setContainmentData({ data: { reduction:timeSeries, numberPoints: timeSeries.length } }))
   }
 

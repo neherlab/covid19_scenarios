@@ -21,6 +21,7 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
   const newData = data.map(d => {
     return {t:d.t, y:d.y}
   }) // copy
+  console.log("INITIAL", newData)
   const tMin = data[0].t
   const tMax = data[data.length - 1].t
   const svg = d3ref.current
@@ -58,10 +59,12 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     d3.select(n[i])
       .raise()
       .classed('active', true)
+
+    newData[i].y = data[i].y;
   }
 
   const dragged = (d, i, n) => {
-    d.y = yScale.invert(d3.event.y)
+    d.y = yScale.invert(d3.mouse(svg)[1])
     if (d.y > MAX_TRANSMISSION_RATIO) {
       d.y = MAX_TRANSMISSION_RATIO
     } else if (d.y < 0) {
@@ -77,6 +80,7 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
   }
 
   const ended = (_, i, n) => {
+    console.log("FINISH DATA", newData)
     onDataChange(newData)
     d3.select(n[i]).classed('active', false)
   }
@@ -206,8 +210,7 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
       tooltip.call(callout, null);
     })
     .call(
-      d3
-        .drag()
+      d3.drag()
         .subject(d => ({ x: tScale(d.t), y: yScale(d.y) }))
         .on('start', started)
         .on('drag', dragged)
