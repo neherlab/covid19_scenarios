@@ -35,7 +35,13 @@ import htmlTags from './lib/htmlTags'
 import babelConfig from '../../babel.config'
 
 process.once('SIGINT', () => {
-  kill(process.pid, 'SIGINT')
+  kill(process.pid, 'SIGTERM')
+  process.exit(0)
+})
+
+process.once('SIGTERM', () => {
+  kill(process.pid, 'SIGTERM')
+  process.exit(0)
 })
 
 const MODE: 'development' | 'production' = getenv('NODE_ENV') === 'development' ? 'development' : 'production' // prettier-ignore
