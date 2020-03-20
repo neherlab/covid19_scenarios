@@ -68,6 +68,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   let observations = []
   const count_observations = {cases:0, ICU:0, observedDeaths:0, newCases:0}
   if (caseCounts) {
+    caseCounts.sort(function(a,b){ return (a.time>b.time)?1:-1});
     caseCounts.forEach(function(d, i) {
       if (d.cases) {count_observations.cases += 1}
       if (d.deaths) {count_observations.observedDeaths += 1}
@@ -114,9 +115,9 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       {key:'dead', color: colors.death, name:'Cumulative deaths'},
   ]
 
+  const tMin = plotData[0].time;
+  const tMax = plotData[plotData.length-1].time;
   // Append empirical data
-  const tMin = plotData[0].time
-  const tMax = plotData[plotData.length-1].time
   if (observations.length) {
       plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
       if (count_observations.observedDeaths){
