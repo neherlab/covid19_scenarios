@@ -19,10 +19,14 @@ module.exports = {
       },
     },
   },
+  transform: {
+    '^.+\\.(js|jsx)?$': 'babel-jest',
+  },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
     '<rootDir>/src/**/*.(spec|test).{js,jsx,ts,tsx}',
   ],
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
   moduleNameMapper: {
     '\\.(eot|otf|webp|ttf|woff\\d?|svg|png|jpe?g|gif)$':
       '<rootDir>/src/__mocks__/fileMock.js',

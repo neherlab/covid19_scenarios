@@ -9,9 +9,10 @@ Parameters fall into three different categories
   * epidemiological parameters
   * clinical parameters
 
-Most parameters can be adjust in the tool and for many of them we provide presets.
-The presets for populations can be found in the file [data/populationData.tsv](data/populationData.tsv).
-For administrative divisions below the level of countries, our convention is to prefix the name with the three letter country code as in `CHE-Zürich`.
+Most parameters can be adjusted in the tool and for many of them we provide presets.
+
+Input data for the tool and the basic parameters of the populations are collected in a separate repository [neherlab/covid19_scenarios_data](https://github.com/neherlab/covid19_scenarios_data). 
+Please add data on populations and parsers of publicly available case count data there. 
 
 ### Development
 
@@ -35,7 +36,7 @@ yarn dev
 ```
 
 This will trigger the development server and build process. Wait for the build
-to finish, then navigate to `http://localhost:3000/covid19/` in a browser (last 5 version
+to finish, then navigate to `http://localhost:3000` in a browser (last 5 version
 of Chrome or Firefox are supported in dev mode)
 
 Hit Ctrl+C in the terminal to shutdown.
