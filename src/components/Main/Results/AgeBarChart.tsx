@@ -41,7 +41,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
             return <div className="w-100 h-100" />
           }
 
-          const height = width / ASPECT_RATIO
+          const height = Math.max(250, width / ASPECT_RATIO)
 
           return (
             <>
@@ -60,7 +60,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 <XAxis dataKey="name" />
                 <YAxis label={{ value: 'Cases', angle: -90, position: 'insideLeft' }} />
                 <Tooltip />
-                <Legend verticalAlign="top" />
+                <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name="peak severe" />
                 <Bar dataKey="peakCritical" fill={colors.critical} name="peak critical" />

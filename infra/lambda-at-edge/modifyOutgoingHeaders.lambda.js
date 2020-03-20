@@ -35,7 +35,7 @@ function generateFeaturePolicyHeader(featurePoicyObject) {
 }
 
 const NEW_HEADERS = {
-  'Content-Security-Policy': "default-src 'self'",
+  'Content-Security-Policy': "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:",
   'Referrer-Policy': 'no-referrer',
   'Strict-Transport-Security': 'max-age=15768000; includeSubDomains; preload',
   'X-Content-Type-Options': 'nosniff',
@@ -91,3 +91,4 @@ exports.handler = (event, context, callback) => {
   callback(null, response)
 }
 
+exports.NEW_HEADERS = NEW_HEADERS
