@@ -69,17 +69,17 @@ after_deploy:
     trap "exit" INT
 
     if [ "$TRAVIS_BRANCH" == "release" ]; then
-      travis-ci-cloudfront-invalidation
-        -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST
-        -a $AWS_ACCESS_KEY_ID_PRODUCTION
-        -s $AWS_SECRET_ACCESS_KEY_PRODUCTION
-        -c $AWS_CLOUDFRONT_DISTRIBUTION_ID_PRODUCTION
+      travis-ci-cloudfront-invalidation \
+        -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST \
+        -a $AWS_ACCESS_KEY_ID_PRODUCTION \
+        -s $AWS_SECRET_ACCESS_KEY_PRODUCTION \
+        -c $AWS_CLOUDFRONT_DISTRIBUTION_ID_PRODUCTION \
         -i '/*'
     elif [ "$TRAVIS_BRANCH" == "master" ]; then
-      travis-ci-cloudfront-invalidation
-      -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST
-      -a $AWS_ACCESS_KEY_ID_STAGING
-      -s $AWS_SECRET_ACCESS_KEY_STAGING
-      -c $AWS_CLOUDFRONT_DISTRIBUTION_ID_STAGING
-      -i '/*'
+      travis-ci-cloudfront-invalidation \
+        -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST \
+        -a $AWS_ACCESS_KEY_ID_STAGING \
+        -s $AWS_SECRET_ACCESS_KEY_STAGING \
+        -c $AWS_CLOUDFRONT_DISTRIBUTION_ID_STAGING \
+        -i '/*'
     fi
