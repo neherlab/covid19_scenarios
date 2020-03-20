@@ -1,10 +1,12 @@
 import React from 'react'
 
-import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
 
 import NavigationLink from './NavigationLink'
 
 import logo from '../../assets/img/HIVEVO_logo.png'
+import { HomePath } from '../../routes'
+
 import './NavigationBar.scss'
 
 export interface NavLinkMap {
@@ -18,9 +20,9 @@ export interface NavigationBarProps extends RouteComponentProps<{}> {
 function NavigationBar({ navLinks, location }: NavigationBarProps) {
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark" role="navigation">
-      <a className="navbar-brand" href="/">
+      <Link className="navbar-brand" to={HomePath}>
         <img className="navbar-brand-image" alt="logo" src={logo} />
-      </a>
+      </Link>
 
       <ul className="navbar-nav">
         {Object.entries(navLinks).map(([url, text]) => {
