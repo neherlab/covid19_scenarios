@@ -31,9 +31,8 @@ export function makeTimeSeries(simulationTimeRange: DateRange, values: number[])
 }
 
 
-export function updateTimeSeries(simulationTimeRange: DateRange, oldTimeSeries: TimeSeries): TimeSeries {
+export function updateTimeSeries(simulationTimeRange: DateRange, oldTimeSeries: TimeSeries, n: number): TimeSeries {
   const { tMin, tMax } = simulationTimeRange
-  const n = oldTimeSeries.length
   const interpolator = interpolateTimeSeries(oldTimeSeries)
 
   const dates = uniformDatesBetween(tMin.getTime(), tMax.getTime(), n)

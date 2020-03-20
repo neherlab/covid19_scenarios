@@ -63,6 +63,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
           draft.containment.data.reduction,
           draft.containment.data.reduction.length,
         )
+        draft.containment.data.numberPoints = draft.containment.data.reduction.length
       }
     }),
   )
@@ -101,6 +102,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
           draft.containment.data.reduction,
           draft.containment.data.reduction.length,
         )
+        draft.containment.data.numberPoints = draft.containment.data.reduction.length
       }
     }),
   )

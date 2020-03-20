@@ -46,6 +46,8 @@ function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState /* , initDefaultState */)
 
+  console.log("STATE", scenarioState)
+
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
 
