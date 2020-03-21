@@ -5,7 +5,7 @@ import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
 import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
 import { AllParamsFlat } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './types/Result.types'
-import { TimeSeries } from './utils/TimeSeries'
+import { TimeSeries } from './types/TimeSeries.types'
 
 const identity = (x: number) => x
 const poisson = (x: number) => {

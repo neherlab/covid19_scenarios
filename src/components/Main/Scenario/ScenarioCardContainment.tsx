@@ -3,8 +3,6 @@ import React from 'react'
 import { FormikErrors, FormikTouched } from 'formik'
 import { AnyAction } from 'typescript-fsa'
 
-import { TimeSeries } from '../../../algorithms/utils/TimeSeries'
-
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 import { ContainmentGraph } from '../Containment/ContainmentGraph'
@@ -12,6 +10,7 @@ import { ContainmentGraph } from '../Containment/ContainmentGraph'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { setContainmentData, setContainmentScenario } from '../state/actions'
 import { State } from '../state/state'
+import { TimeSeries } from '../../../algorithms/types/TimeSeries.types'
 
 export interface ScenarioCardContainmentProps {
   scenarioState: State

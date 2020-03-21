@@ -1,4 +1,4 @@
-import { TimeSeries } from '../utils/TimeSeries'
+import { TimeSeries } from './TimeSeries.types'
 
 export interface PopulationData {
   populationServed: number
