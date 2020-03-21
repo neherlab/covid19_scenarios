@@ -2,6 +2,7 @@
 # Data provenance: The COVID Tracking Project
 # License: Apache License 2.0
 time	cases	deaths	hospitalized	ICU	recovered
+2020-03-20	47	1			
 2020-03-19	24	1			
 2020-03-18	13	0			
 2020-03-17	8	0			
