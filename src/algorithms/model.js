@@ -8,7 +8,7 @@ const jan2020 = new Date('2020-01-01')
 
 /**
  *
- * @param {number} time - epoch time in ms
+ * @param {number} time - point in time, until which simulation runs, as epoch time
  * @param {number} avgInfectionRate
  * @param {number} peakMonth - counting number in range of 0-11
  * @param {number} seasonalForcing -  seasonal variation in transmission. Usually a decimal number, e. g. 0.2
