@@ -2,8 +2,8 @@ import React from 'react'
 import ReactResizeDetector from 'react-resize-detector'
 import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
 
-import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
-import { EmpiricalData } from '../../../algorithms/Param.types'
+import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
+import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
 const ASPECT_RATIO = 16 / 9
 

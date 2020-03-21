@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 import ReactResizeDetector from 'react-resize-detector'
 
-import { TimeSeries } from '../../../algorithms/TimeSeries'
+import { TimeSeries } from '../../../algorithms/types/TimeSeries.types'
 
 const ASPECT_RATIO = 16 / 9
 const MAX_TRANSMISSION_RATIO = 1.2

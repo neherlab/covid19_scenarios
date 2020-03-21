@@ -19,7 +19,7 @@ import { getContainmentScenarioData, getEpidemiologicalData, getOverallScenario,
 
 import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './state'
 
-import { updateTimeSeries } from '../../../algorithms/TimeSeries'
+import { updateTimeSeries } from '../../../algorithms/utils/TimeSeries'
 
 function maybeAdd<T>(where: T[], what: T): T[] {
   return _.uniq([...where, what])
@@ -58,7 +58,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
         draft.containment.current = containmentScenario
         const data = getContainmentScenarioData(containmentScenario);
-        draft.containment.data = { reduction: 
+        draft.containment.data = { reduction:
             updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, data.numberPoints),
             numberPoints: data.numberPoints
         }
@@ -95,7 +95,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.containment.current = scenarioName
       if (scenarioName !== CUSTOM_SCENARIO_NAME) {
         const data = getContainmentScenarioData(scenarioName);
-        draft.containment.data = { 
+        draft.containment.data = {
           reduction: updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, 10),
           numberPoints: data.numberPoints,
         }
@@ -134,7 +134,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
               draft.simulation.data.simulationTimeRange,
               data.reduction,
               data.numberPoints
-          ), 
+          ),
           numberPoints: data.numberPoints
       }
     }),
@@ -144,7 +144,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
     immerCase(setSimulationData, (draft, { data }) => {
       draft.simulation.data = data
       draft.containment.data.reduction = updateTimeSeries(
-          data.simulationTimeRange, 
+          data.simulationTimeRange,
           draft.containment.data.reduction,
           draft.containment.data.numberPoints,
       )

@@ -1,4 +1,4 @@
-import { SimulationTimePoint, UserResult } from './Result.types'
+import { SimulationTimePoint, UserResult } from '../types/Result.types'
 
 export default function processUserResult(rawUserResult: string[]): UserResult {
   console.log({ rawUserResult })
