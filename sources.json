@@ -1,4 +1,9 @@
 {
+  "france": {
+    "primarySource": "https://github.com/opencovid19-fr/data/raw/master/dist/chiffres-cles.csv",
+    "dataProvenance": "Données nationales concernant l'épidémie de COVID19",
+    "license": "Etalab Open License 2.0"
+  },
   "italy": {
     "primarySource": "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json",
     "dataProvenance": "Dipartimento della Protezione Civile",
