@@ -78,22 +78,24 @@ describe('run()', () => {
     const results: Record<string, any> = {}
 
     for (let country of countries) {
-      try {
-        const countryAgeDistributionWithType = countryAgeDistribution as Record<string, any>
-        const result = await run(
-          {
-            ...populationScenarios.filter(p => p.name === country)[0].data,
-            ...epidemiologicalScenarios[1].data,
-            ...simulationData,
-          },
-          severityData,
-          countryAgeDistributionWithType[country],
-          containmentScenarios[3].data.reduction,
-        )
-        results[country] = result
-      } catch (e) {
-        console.error(e)
-      }
+      const countryAgeDistributionWithType = countryAgeDistribution as Record<string, any>
+      const populationScenario = populationScenarios.find(p => p.name === country);
+
+      // Confirm that the populationScenario is defined, because
+      // then we can safely apply the "! - Non-null assertion operator"
+      expect(populationScenario).toBeDefined()
+
+      const result = await run(
+        {
+          ...populationScenario!.data,
+          ...epidemiologicalScenarios[1].data,
+          ...simulationData,
+        },
+        severityData,
+        countryAgeDistributionWithType[populationScenario!.data.country],
+        containmentScenarios[3].data.reduction,
+      )
+      results[country] = result
     }
     let attributes = [...countries, 'deterministicTrajectory', 'time', 'total', 'infectious']
   })

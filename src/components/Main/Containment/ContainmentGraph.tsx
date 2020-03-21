@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
 import * as d3 from 'd3'
-import * as math from 'mathjs'
 import ReactResizeDetector from 'react-resize-detector'
 
 import { TimeSeries } from '../../../algorithms/TimeSeries'
@@ -19,17 +18,17 @@ export interface DrawParams {
 
 function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
   const newData = data.map(d => {
-    return {t:d.t, y:d.y}
+    return { t: d.t, y: d.y }
   }) // copy
   const tMin = data[0].t
   const tMax = data[data.length - 1].t
   const svg = d3ref.current
 
   const margin = {
-    top: math.round(0.1 * height),
-    right: math.round(0.15 * height),
-    left: math.round(0.15 * height),
-    bottom: math.round(0.2 * height),
+    top: Math.round(0.1 * height),
+    right: Math.round(0.15 * height),
+    left: Math.round(0.15 * height),
+    bottom: Math.round(0.2 * height),
   }
 
   const tScale = d3
@@ -58,10 +57,12 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     d3.select(n[i])
       .raise()
       .classed('active', true)
+
+    newData[i].y = data[i].y;
   }
 
   const dragged = (d, i, n) => {
-    d.y = yScale.invert(d3.event.y)
+    d.y = yScale.invert(d3.mouse(svg)[1]-margin.top)
     if (d.y > MAX_TRANSMISSION_RATIO) {
       d.y = MAX_TRANSMISSION_RATIO
     } else if (d.y < 0) {
@@ -156,7 +157,35 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     .attr('cy', d => yScale(d.y))
     .attr('r', 8)
 
+  const tooltip = graph.append('g');
+
+  const callout = (g, value) => {
+      if (!value) return g.style("display", "none");
+
+      g.style("display", null)
+       .style("pointer-events", "none")
+       .style("font", "12px sans-serif");
+
+      const text = g.selectAll("text")
+        .data([null])
+        .join("text")
+        .call(text => text
+          .selectAll("tspan")
+          .data((value + "").split(/\n/))
+          .join("tspan")
+            .attr("x", 0)
+            .attr("y", (d, i) => `${i * 1.1}em`)
+            .style("font-weight", (_, i) => i ? null : "bold")
+            .text(d => d));
+
+      const {x, y, width: w, height: h} = text.node().getBBox();
+
+      text.attr("transform", `translate(${-w / 2}, ${15 - y})`);
+  }
+
   const Root = graph
+  const fmt  = x => {return Math.round(100*x)/100;};
+
   graph
     .selectAll('.dot')
     .on('mouseover', function onMouseover(d, i) {
@@ -167,16 +196,18 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
         .attr('opacity', 0.3)
         .attr('x1', tScale(d.t))
         .attr('x2', tScale(d.t))
+      tooltip.attr("transform", `translate(${tScale(d.t)},${yScale(d.y)})`)
+        .call(callout, `${d.t.toLocaleString(undefined, {month: "short", day: "numeric", year: "numeric"})}\n${fmt(d.y)}`);
     })
     .on('mouseout', function onMouseOut() {
       d3.select(this)
         .attr('fill', 'black')
         .attr('r', 8)
       Root.select('#temp-line').attr('opacity', 0)
+      tooltip.call(callout, null);
     })
     .call(
-      d3
-        .drag()
+      d3.drag()
         .subject(d => ({ x: tScale(d.t), y: yScale(d.y) }))
         .on('start', started)
         .on('drag', dragged)
