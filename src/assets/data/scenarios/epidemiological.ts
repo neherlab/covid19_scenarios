@@ -16,6 +16,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
       lengthICUStay: 14,
       seasonalForcing: 0.2,
       peakMonth: 0,
+      overflowSeverity: 2,
     },
   },
   {
@@ -28,6 +29,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
       lengthICUStay: 14,
       seasonalForcing: 0.2,
       peakMonth: 0,
+      overflowSeverity: 2,
     },
   },
   {
@@ -40,6 +42,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
       lengthICUStay: 14,
       seasonalForcing: 0.1,
       peakMonth: 0,
+      overflowSeverity: 2,
     },
   },
   {
@@ -52,6 +55,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
       lengthICUStay: 14,
       seasonalForcing: 0.1,
       peakMonth: 6,
+      overflowSeverity: 2,
     },
   },
   {
@@ -64,6 +68,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
       lengthICUStay: 14,
       seasonalForcing: 0.1,
       peakMonth: 6,
+      overflowSeverity: 2,
     },
   },
   {
@@ -76,6 +81,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
       lengthICUStay: 14,
       seasonalForcing: 0.2,
       peakMonth: 6,
+      overflowSeverity: 2,
     },
   },
   {
@@ -88,6 +94,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
       lengthICUStay: 14,
       seasonalForcing: 0.0,
       peakMonth: 6,
+      overflowSeverity: 2,
     },
   },
   {
@@ -100,6 +107,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
       lengthICUStay: 14,
       seasonalForcing: 0.0,
       peakMonth: 6,
+      overflowSeverity: 2,
     },
   },
   {
@@ -112,6 +120,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
       lengthICUStay: 14,
       seasonalForcing: 0.0,
       peakMonth: 6,
+      overflowSeverity: 2,
     },
   },
 ]

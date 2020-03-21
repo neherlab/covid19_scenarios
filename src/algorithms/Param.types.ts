@@ -18,6 +18,7 @@ export interface EpidemiologicalData {
   lengthICUStay: number
   seasonalForcing: number
   peakMonth: number
+  overflowSeverity: number
 }
 
 export interface ContainmentData {
@@ -46,6 +47,8 @@ interface EmpiricalDatum {
     time: Date
     cases: number
     deaths: number
+    hospitalized: number
+    ICU: number
 }
 
 export type EmpiricalData = EmpiricalDatum[]

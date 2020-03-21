@@ -1,12 +1,16 @@
 export interface SimulationTimePoint {
   time: number
+  // Instantaneous categories
   susceptible: Record<string, number>
   exposed: Record<string, number>
   infectious: Record<string, number>
   hospitalized: Record<string, number>
+  critical: Record<string, number>
+  overflow: Recrod<string, number>
+  // Cumulative categories
   recovered: Record<string, number>
   discharged: Record<string, number>
-  critical: Record<string, number>
+  intensive: Record<string, number>
   dead: Record<string, number>
 }
 

@@ -29,6 +29,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
     fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
     peakSevere: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.hospitalized[age]))),
     peakCritical: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.critical[age]))),
+    peakOverflow: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.overflow[age]))),
     totalDead: Math.round(lastDataPoint.dead[age]),
   }))
 
@@ -40,7 +41,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
             return <div className="w-100 h-100" />
           }
 
-          const height = width / ASPECT_RATIO
+          const height = Math.max(250, width / ASPECT_RATIO)
 
           return (
             <>
@@ -59,10 +60,11 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 <XAxis dataKey="name" />
                 <YAxis label={{ value: 'Cases', angle: -90, position: 'insideLeft' }} />
                 <Tooltip />
-                <Legend verticalAlign="top" />
+                <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name="peak severe" />
                 <Bar dataKey="peakCritical" fill={colors.critical} name="peak critical" />
+                <Bar dataKey="peakOverflow" fill={colors.overflow} name="peak overflow" />
                 <Bar dataKey="totalDead" fill={colors.death} name="total deaths" />
               </BarChart>
               <BarChart

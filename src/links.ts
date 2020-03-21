@@ -1,7 +1,7 @@
 const links = {
-  '/covid19/': 'COVID-19 Scenarios',
-  '/covid19/about': 'About',
-  '/covid19/team': 'Team',
+  '/': 'COVID-19 Scenarios',
+  '/about': 'About',
+  '/team': 'Team',
 }
 
 export default links

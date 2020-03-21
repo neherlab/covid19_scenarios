@@ -12,6 +12,7 @@ export const colors = {
   infectious: '#fdbf6f',
   severe: '#fb9a99',
   critical: '#e31a1c',
+  overflow: '#660033',
   recovered: '#33a02c',
   death: '#cab2d6',
   cumulativeCases: '#aaaaaa',
@@ -31,6 +32,7 @@ interface LineProps {
   key: string,
   name: string,
   color: string
+  legendType?: string
 }
 
 function xTickFormatter(tick: string | number): string {
@@ -65,12 +67,21 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const nICUBeds = data.params.ICUBeds
 
   let observations = []
+  const count_observations = {cases:0, ICU:0, observedDeaths:0, newCases:0, hospitalized:0}
   if (caseCounts) {
+    caseCounts.sort(function(a,b){ return (a.time>b.time)?1:-1});
     caseCounts.forEach(function(d, i) {
+      if (d.cases) {count_observations.cases += 1}
+      if (d.deaths) {count_observations.observedDeaths += 1}
+      if (d.hospitalized) {count_observations.hospitalized += 1}
+      if (d.ICU) {count_observations.ICU += 1}
+      if (i>2 && d.cases && caseCounts[i-3].cases) {count_observations.newCases += 1}
       observations.push({
         time: (new Date(d.time)).getTime(),
         cases: d.cases || undefined,
         observedDeaths: d.deaths || undefined,
+        currentHospitalized: d.hospitalized || undefined,
+        ICU: d.ICU || undefined,
         newCases: (i>2)?((d.cases - caseCounts[i-3].cases) || undefined):undefined,
         hospitalBeds: nHospitalBeds,
         ICUbeds: nICUBeds,
@@ -87,6 +98,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       infectious: Math.round(x.infectious.total) || undefined,
       hospitalized: Math.round(x.hospitalized.total) || undefined,
       critical: Math.round(x.critical.total) || undefined,
+      overflow: Math.round(x.overflow.total) || undefined,
       recovered: Math.round(x.recovered.total) || undefined,
       dead: Math.round(x.dead.total) || undefined,
       hospitalBeds: nHospitalBeds,
@@ -94,25 +106,40 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     }))
   const scatterToPlot: LineProps[] = []
   const linesToPlot: LineProps[] = [
-      {key:'susceptible', color: colors.susceptible, name:'Susceptible'},
-      //{key:'exposed', color: colors.exposed, name:''},
-      {key:'infectious', color: colors.infectious, name:'Infectious'},
-      {key:'hospitalized', color: colors.severe, name:'Severely ill'},
-      {key:'critical', color: colors.critical, name:'Critically ill'},
-      {key:'recovered', color: colors.recovered, name:'Recovered'},
-      {key:'dead', color: colors.death, name:'Cumulative deaths'},
-      {key:'hospitalBeds', color: colors.hospitalBeds, name:'Total hospital beds'},
-      {key:'ICUbeds', color: colors.ICUbeds, name:'Total ICU/ICM beds'},
+      {key:'hospitalBeds', color: colors.hospitalBeds, name:'Total hospital beds', legendType:"none"},
+      {key:'ICUbeds', color: colors.ICUbeds, name:'Total ICU/ICM beds', legendType:"none"},
+      {key:'susceptible', color: colors.susceptible, name:'Susceptible', legendType:"line"},
+      //{key:'exposed', color: colors.exposed, name:'', legendType:"line"},
+      {key:'infectious', color: colors.infectious, name:'Infectious', legendType:"line"},
+      // {key:'hospitalized', color: colors.severe, name:'Severely ill', legendType:"line"},
+      {key:'critical', color: colors.critical, name:'Patients in ICU', legendType:"line"},
+      {key:'overflow', color: colors.overflow, name:'ICU overflow', legendType:"line"},
+      {key:'recovered', color: colors.recovered, name:'Recovered', legendType:"line"},
+      {key:'dead', color: colors.death, name:'Cumulative deaths', legendType:"line"},
   ]
 
+  let tMin = plotData[0].time;
+  let tMax = plotData[plotData.length-1].time;
   // Append empirical data
-  const tMin = plotData[0].time
-  const tMax = plotData[plotData.length-1].time
   if (observations.length) {
+      tMin = Math.min(tMin, observations[0].time);
+      tMax = Math.max(tMax, observations[observations.length-1].time);
       plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
-      scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
-      scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: "Cumulative confirmed cases"})
-      scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: "Confirmed cases past 3 days"})
+      if (count_observations.observedDeaths){
+           scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
+      }
+      if (count_observations.cases){
+        scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: "Cumulative confirmed cases"})
+      }
+      if (count_observations.hospitalized){
+        scatterToPlot.push({key:'currentHospitalized', 'color': colors.severe, name: "Patients in hospital"})
+      }
+      if (count_observations.ICU){
+        scatterToPlot.push({key:'ICU', 'color': colors.critical, name: "Patients in ICU"})
+      }
+      if (count_observations.newCases){
+        scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: "Confirmed cases past 3 days"})
+      }
   }
   const logScaleString = logScale ? 'log' : 'linear'
 
@@ -124,7 +151,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
             return <div className="w-100 h-100" />
           }
 
-          const height = width / ASPECT_RATIO
+          const height = Math.max(500, width / ASPECT_RATIO)
 
           return (
             <>
@@ -141,7 +168,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="time" type="number" tickFormatter={xTickFormatter} domain={[tMin, tMax]} />
+                <XAxis dataKey="time" type="number" tickFormatter={xTickFormatter} domain={[tMin, tMax]} tickCount={7}/>
                 <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} />
                 <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
                 <Legend verticalAlign="top" />
@@ -150,11 +177,13 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                     return (
                       <Line
                         dot={false}
+                        isAnimationActive={false}
                         type='monotone'
                         strokeWidth={3}
                         dataKey={d.key}
                         stroke={d.color}
                         name={d.name}
+                        legendType={d.legendType}
                       />
                     )
                     })
