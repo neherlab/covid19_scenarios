@@ -17,6 +17,9 @@ export interface DrawParams {
 }
 
 function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
+  if (d3ref.current === null) {
+    return
+  }
   const newData = data.map(d => {
     return { t: d.t, y: d.y }
   }) // copy
@@ -225,8 +228,7 @@ export interface ContainmentGraphImplProps {
 export function ContainmentGraphImpl({ data, onDataChange, width, height }: ContainmentGraphImplProps) {
   const d3ref = useRef<SVGSVGElement>(null)
 
-  // FIXME: can we avoid some of the re-rendering? Add array of dependencies. Ensure proper cleanups.
-  useEffect(() => draw({ data, onDataChange, width, height, d3ref }))
+  useEffect(() => draw({ data, onDataChange, width, height, d3ref }), [data, width, height, d3ref.current])
 
   return (
     <div className="w-100 h-100">
