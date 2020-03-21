@@ -3,6 +3,8 @@
 
 All formatted data used by [covid19_scenarios](https://github.com/neherlab/covid19_scenarios).
 
+For discussion of suitable data sources, please join our [channel at spectrum](https://spectrum.chat/covid19-scenarios/data-sources).
+
 ## Contents
 
 ### Country codes
@@ -42,7 +44,7 @@ The steps to follow are:
       - There **must** be a function parse() defined that outputs the TSV into the correct directory.
   * Commit the produced ``.tsv`` file into the correct directory
       - The structure of the directory is Region/Sub-Region/Country/
-      - Region and Sub-Region are designated as per the U.N. 
+      - Region and Sub-Region are designated as per the U.N.
       - U.N. designations are found within country_codes.csv
       - Please use only the U.N. designated name for the country, region, and sub-region.
   * All TSV files will be bundled into a json database into the app on next build
@@ -59,7 +61,7 @@ The steps to follow are:
 
 ##### Commit a manually entered file into the correct directory
  - The structure of the directory is Region/Sub-Region/Country/
- - Region and Sub-Region are designated as per the U.N. 
+ - Region and Sub-Region are designated as per the U.N.
  - U.N. designations are found within country_codes.csv
  - Please use only the U.N. designated name for the country, region, and sub-region.
 
