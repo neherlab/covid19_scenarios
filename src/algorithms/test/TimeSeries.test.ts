@@ -1,7 +1,7 @@
-import { uniformDatesBetween } from './TimeSeries'
-import { makeTimeSeries } from './TimeSeries'
-import { updateTimeSeries } from './TimeSeries'
-import { interpolateTimeSeries } from './run'
+import { uniformDatesBetween } from '../utils/TimeSeries'
+import { makeTimeSeries } from '../utils/TimeSeries'
+import { updateTimeSeries } from '../utils/TimeSeries'
+import { interpolateTimeSeries } from '../run'
 
 describe('TimeSeries', () => {
   const tMin = new Date('1970-10-01T00:00:00.000Z')
