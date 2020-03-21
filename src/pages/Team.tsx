@@ -1,14 +1,17 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
 
 import './About.scss'
 
 import LinkExternal from '../components/Router/LinkExternal'
 
 const Team: React.FC = () => {
+  const { t } = useTranslation()
+
   return (
     <>
-      <h1 className="h1-about">{'The people behind COVID-19 Scenarios'}</h1>
+      <h1 className="h1-about">{t('The people behind COVID-19 Scenarios')}</h1>
       <Row>
         <Col lg={2} />
         <Col lg={8}>

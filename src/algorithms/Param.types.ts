@@ -23,6 +23,7 @@ export interface EpidemiologicalData {
 
 export interface ContainmentData {
   reduction: TimeSeries
+  numberPoints: number
 }
 
 export interface DateRange {
@@ -39,6 +40,7 @@ export interface AllParams {
   population: PopulationData
   epidemiological: EpidemiologicalData
   simulation: SimulationData
+  containment: ContainmentData
 }
 
 export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData

@@ -1,5 +1,3 @@
-import * as math from 'mathjs'
-
 const msPerDay = 1000 * 60 * 60 * 24
 
 const monthToDay = m => {
@@ -10,7 +8,7 @@ const jan2020 = new Date('2020-01-01')
 
 export function infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing) {
   // this is super hacky
-  const phase = ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) * 2 * math.pi
+  const phase = ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) * 2 * Math.PI
   return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
 }
 
@@ -129,7 +127,7 @@ export function initializePopulation(N, numCases, t0, ages) {
   }
   // TODO: Ensure the sum is equal to N!
   Object.keys(ages).forEach((k, i) => {
-    const n = math.round((ages[k] / Z) * N)
+    const n = Math.round((ages[k] / Z) * N)
     pop.susceptible[k] = n
     pop.exposed[k] = 0
     pop.infectious[k] = 0
@@ -140,7 +138,7 @@ export function initializePopulation(N, numCases, t0, ages) {
     pop.recovered[k] = 0
     pop.intensive[k] = 0
     pop.dead[k] = 0
-    if (i === math.round(Object.keys(ages).length / 2)) {
+    if (i === Math.round(Object.keys(ages).length / 2)) {
       pop.susceptible[k] -= numCases
       pop.infectious[k] = 0.3 * numCases
       pop.exposed[k] = 0.7 * numCases
@@ -291,7 +289,7 @@ export function exportSimulation(trajectory) {
       if (k === 'time') {
         buf += `${t}`
       } else {
-        buf += `\t${math.round(d[k].total)}`
+        buf += `\t${Math.round(d[k].total)}`
       }
     })
     csv.push(buf)

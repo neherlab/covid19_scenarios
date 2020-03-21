@@ -1,11 +1,11 @@
+*.pyc
+*.swp
+*log
 \.build
 \.cache
 \.env
 \.output
 \.reports
+\.vscode
 node_modules
-aux/data
-
 tools/__pycache__
-
-*log
