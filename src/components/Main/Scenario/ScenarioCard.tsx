@@ -17,6 +17,8 @@ import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
 import { SeverityTableRow } from './SeverityTable'
 
+import { useTranslation } from 'react-i18next'
+
 export interface ScenarioCardProps {
   severity: SeverityTableRow[]
   scenarioState: State
@@ -27,6 +29,7 @@ export interface ScenarioCardProps {
 }
 
 function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, scenarioDispatch }: ScenarioCardProps) {
+  const { t } = useTranslation()
   const overallScenarioOptions = stringsToOptions(scenarioState.overall.scenarios)
 
   function handleChangeOverallScenario(newOverallScenario: string) {
@@ -36,8 +39,8 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
   return (
     <CardWithDropdown
       identifier="overallScenario"
-      label={<h3 className="p-0 m-0 d-inline text-truncate">Scenario</h3>}
-      help="Combination of population, epidemiology, and mitigation scenarios"
+      label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h3>}
+      help={t('Combination-of-population-epidemiology-and-mitigation-scenarios')}
       options={overallScenarioOptions}
       value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)}
       onValueChange={handleChangeOverallScenario}
