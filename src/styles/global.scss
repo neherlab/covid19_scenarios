@@ -85,6 +85,10 @@ p {
 // Always show spinbox arrows in Chrome
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
+  position: relative;
+  right: -28px;
+  width: 40px;
+  height: 40px;
   opacity: 1;
 }
 
