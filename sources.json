@@ -14,9 +14,14 @@
     "dataProvenance": "The COVID Tracking Project",
     "license": "Apache License 2.0"
   },
-  "world": {
-    "primarySource": "https://covid.ourworldindata.org/data/full_data.csv",
-    "dataProvenance": "WHO via OurWorldInData",
-    "license": "CC-BY-4.0"
+  "ecdc": {
+    "primarySource": "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-<DATE>-xlsx",
+    "dataProvenance": "European Centre for Disease Prevention and Control",
+    "license": "The downloadable data file is updated daily and contains the latest available public data on COVID-19. Public-use data files allows users to manipulate the data in a format appropriate for their analyses. Users of ECDC public-use data files must comply with data use restrictions to ensure that the information will be used solely for statistical analysis or reporting purposes."
+  },
+  "cds": {
+    "primarySource": "https://coronadatascraper.com/timeseries-byLocation.json",
+    "dataProvenance": "Coronadatascraper.com",
+    "license": "Scraped from many sources, no clear license"
   }
 }
