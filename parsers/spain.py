@@ -67,4 +67,7 @@ def parse():
                                          x[1].get("recovered", None)] for x in dps]
 
     for region, data in region_tables.items():
-        write_tsv(f"{LOC}/{region}.tsv", cols, data, "spain")
+        if region == "Total":
+            write_tsv(f"{LOC}/Spain.tsv", cols, data, "spain")
+        else:
+            write_tsv(f"{LOC}/{region}.tsv", cols, data, "spain")
