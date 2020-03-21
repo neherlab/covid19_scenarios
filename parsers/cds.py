@@ -16,7 +16,6 @@ from .utils import write_tsv
 # Globals
 
 URL  = 'https://coronadatascraper.com/timeseries-byLocation.json'
-LOC  = 'case-counts'
 cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # -----------------------------------------------------------------------------
@@ -50,26 +49,25 @@ def retrieve_case_data():
 
     with urlopen(URL) as url:
         data = json.loads(url.read().decode())
-
-    # example structure
-    #  "THA": {
-    #    "dates": {
-    #      "2020-1-22": {
-    #        "cases": 2,
-    #        "deaths": 0,
-    #        "recovered": 0,
-    #        "active": 2
     
     for c in data:
-
         # replace country name if we have the "official" one in country_codes.csv
         if c in countries:
             country = countries[c]
         else:
-            print('Error: %s not in country_code.csv, skipping'%c)
-            continue
+            try:
+                # the order of county, region, county needs to be inverted
+                split = [x.strip() for x in c.split(',')]
+                if split[0] in countries:
+                    split[0] = countries[split[0]]                
+                country = "-".join(split[::-1])
+            except:
+                print("Error during country parsing "+c)
+                continue
+        
         for d in data[c]['dates']:
-            vals = {'time': d, 'cases': '0', 'deaths': "0"}
+            #vals = {'time': d, 'cases': '0', 'deaths': "0"}
+            vals = {'time': d, 'cases': "", 'deaths': ""}
             for k in ['deaths', 'cases', 'recovered']:
                 if k in data[c]['dates'][d]:
                     vals[k] = str(data[c]['dates'][d][k])                
@@ -94,9 +92,11 @@ def flatten(cases):
 
 def parse():
     cases = retrieve_case_data()
+    with open('case_counts.json', 'w') as fh:
+        json.dump(cases, fh)    
     cases = flatten(cases)
 
-    write_tsv(f"{LOC}/cds.tsv", cols, cases, "cds")
+    write_tsv(f"case-counts/cds.tsv", cols, cases, "cds")
 
 if __name__ == "__main__":
     # for debugging
