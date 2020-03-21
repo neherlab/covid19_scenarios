@@ -5,6 +5,7 @@ this should be run from the top level of the repo.
 Will need to be integrated with other parsers once they become available.
 '''
 import xlrd
+import csv
 from urllib.request import urlretrieve
 
 from collections import defaultdict
@@ -30,7 +31,21 @@ def stoi(x):
 
     return int(x)
 
+def parse_countries():
+    # read the country_codes.csv for official country names
+    country_names = {}
+    file = "country_codes.csv"    
+    countries = defaultdict(lambda: defaultdict(list))
+    with open(file) as f:
+        rdr = csv.reader(f)
+        next(rdr)
+        for row in rdr:
+            countries[row[1]] = row[0]
+    return countries
+
 def retrieve_case_data():
+    countries = parse_countries()
+    
     cases = defaultdict(list)
 
     # For now, always get the data from yesterday. We could make fancier check if today's data is already available
@@ -50,7 +65,16 @@ def retrieve_case_data():
         i += 1
     for row_index in range(1, worksheet.nrows):
         row = worksheet.row_values(row_index)
-        country, date = row[Ix['Countries and territories']].replace("_"," "), "-".join([str(int(row[Ix['Year']])), str(int(row[Ix['Month']])), str(int(row[Ix['Day']]))])
+
+        country = row[Ix['Countries and territories']].replace("_"," ")
+
+        # replace country name if we have the "official" one in country_codes.csv
+        geoID = row[Ix['GeoId']]
+        if geoID in countries:
+            country = countries[geoID]        
+        
+        date = "-".join([str(int(row[Ix['Year']])), str(int(row[Ix['Month']])), str(int(row[Ix['Day']]))])
+        
         # note: Cases are per day, not cumulative. We need to aggregate later
         cases[country].append({"time": date, "deaths": stoi(row[Ix['Deaths']]), "cases":  stoi(row[Ix['Cases']])})
 
