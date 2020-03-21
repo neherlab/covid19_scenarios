@@ -1,8 +1,11 @@
+*.pyc
+*.swp
+*log
 \.build
 \.cache
 \.env
 \.output
 \.reports
+\.vscode
 node_modules
-aux/data
-size-plugin.json
+tools/__pycache__

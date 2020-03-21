@@ -1,0 +1,53 @@
+version: ~> 1.0
+
+os: linux
+dist: bionic
+
+branches:
+  only:
+    - master
+    - release
+
+language: node_js
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+install:
+  - yarn install --frozen-lockfile
+
+before_script:
+  - cp .env.example .env
+
+script:
+  - yarn test
+
+before_deploy:
+  - yarn prod
+
+deploy:
+  - provider: s3
+    edge: true
+    detect_encoding: true
+    dot_match: true
+    local_dir: .build/production/web
+    region: $AWS_DEFAULT_REGION
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $AWS_S3_BUCKET
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH =~ ^(master|release)$
+
+after_deploy:
+  - yarn global add travis-ci-cloudfront-invalidation@1.1.0
+  - >
+    travis-ci-cloudfront-invalidation \
+      -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST \
+      -a $AWS_ACCESS_KEY_ID \
+      -s $AWS_SECRET_ACCESS_KEY \
+      -c $AWS_CLOUDFRONT_DISTRIBUTION_ID \
+      -i '/*' \
+      -o 'master,release'

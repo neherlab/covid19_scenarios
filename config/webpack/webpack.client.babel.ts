@@ -35,7 +35,13 @@ import htmlTags from './lib/htmlTags'
 import babelConfig from '../../babel.config'
 
 process.once('SIGINT', () => {
-  kill(process.pid, 'SIGINT')
+  kill(process.pid, 'SIGTERM')
+  process.exit(0)
+})
+
+process.once('SIGTERM', () => {
+  kill(process.pid, 'SIGTERM')
+  process.exit(0)
 })
 
 const MODE: 'development' | 'production' = getenv('NODE_ENV') === 'development' ? 'development' : 'production' // prettier-ignore
@@ -123,7 +129,7 @@ export default {
     path: buildPath,
     filename: outputFilename(development),
     chunkFilename: outputFilename(development),
-    publicPath: '/covid19/',
+    publicPath: '/',
     hashDigest: 'hex',
     hashDigestLength: 16,
     hashFunction: 'sha256',
@@ -147,7 +153,7 @@ export default {
       errors: true,
     },
     port: devServerPort,
-    publicPath: '/covid19/',
+    publicPath: '/',
     quiet: false,
     logLevel: 'info',
     clientLogLevel: 'warning',

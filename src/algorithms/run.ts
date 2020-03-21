@@ -1,5 +1,3 @@
-import random from 'random'
-
 import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
 
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
@@ -10,7 +8,9 @@ import { AlgorithmResult, SimulationTimePoint } from './Result.types'
 import { TimeSeries } from './TimeSeries'
 
 const identity = (x: number) => x
-const poisson = (x: number) => (x > 0 ? random.poisson(x)() : 0)
+const poisson = (x: number) => {
+  throw new Error('We removed dependency on `random` package. Currently `poisson` is not implemented')
+}
 
 // NOTE: Assumes containment is sorted ascending in time.
 export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
@@ -59,9 +59,9 @@ export default async function run(
 ): Promise<AlgorithmResult> {
   const modelParams = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
   const tMin: number = params.simulationTimeRange.tMin.getTime()
+  const tMax: number = params.simulationTimeRange.tMax.getTime()
   const initialCases = params.suspectedCasesToday
   let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
-  const tMax: number = params.simulationTimeRange.tMax.getTime()
 
   function simulate(initialState: SimulationTimePoint, func: (x: number) => number) {
     const dynamics = [initialState]
