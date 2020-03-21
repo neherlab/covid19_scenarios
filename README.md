@@ -225,6 +225,4 @@ The steps to follow are:
 
 ## License
 
-[MIT License](LICENSE)
-
-Copyright (c) 2020 neherlab
+[Mixed](LICENSE)
