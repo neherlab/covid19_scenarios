@@ -1,4 +1,9 @@
 {
+  "germany": {
+    "primarySource": "https://github.com/chriswien/COVID19_CaseNumberDE/COVID19_Cases_Bundeslaender_DE.csv",
+    "dataProvenance": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
+    "license": "none specified"
+  },
   "italy": {
     "primarySource": "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json",
     "dataProvenance": "Dipartimento della Protezione Civile",
