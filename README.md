@@ -196,6 +196,8 @@ The steps to follow are:
       - primarySource = The URL/path to the raw data
       - dataProvenance = The organization behind the data collection
       - license = The license governing the usage of data
+##### Add populations data for the additional regions/states.
+   Case count data is most useful when tied to data on the population it refers to. To ensure new case counts are correctly included in the population presets, add a line to the `populationData.tsv` for each new region (see [Adding/editing population data for a country and/or region](#adding/editing-population-data-for-a-country-and/or-region) below).
 
 ### Updating/editing case count data for the existing region:
   We note that this option is not preferred relative to a script that automatically updates as outlined above.
