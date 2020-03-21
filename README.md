@@ -75,6 +75,9 @@
 </p>
 
 <p align="center">
+  <a href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a">
+    <img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
+  </a>
   <a href="https://github.com/neherlab/covid19_scenarios/issues">
     <img src="https://img.shields.io/badge/contributions-are%20welcome-%234295f5.svg" alt="Contributions: welcome" />
   </a>
@@ -104,6 +107,87 @@ The primary purpose of the tool is to explore the dynamics of COVID19 cases and 
 The outbreak is influenced by infection control measures such as school closures, lock-down etc.
 The effect of such measures can be included in the simulation by adjusting the mitigation parameters.
 Analogously, you can explore the effect of isolation on specific age groups in the column "Isolated" in the table on severity assumptions and age specific isolation.
+
+
+
+
+
+<h2 align="center">
+Got questions or suggestions?
+</h2>
+
+<p align="center">
+  <a
+    alt="Link to join the chat"
+    src="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a"
+  >
+    <img
+      src="https://user-images.githubusercontent.com/9403403/77233069-5b137880-6ba5-11ea-8bd3-9b071b6b5411.png"
+      alt="Image for the link to join the chat"
+    />
+  </a>
+</p>
+
+
+
+<h2 align="center">
+Discover
+</h2>
+
+
+<p align="center" width="99%">
+<table width="100%">
+
+<thead>
+<tr>
+<th>    </th>
+<th>Simulator</th>
+<th>Source code repository</th>
+<th>Data repository</th>
+<th>Updates</th>
+<th>    </th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+
+<td></td>
+
+<td>
+<a alt="Link to the app" src="https://neherlab.org/covid19/">
+<img src="https://user-images.githubusercontent.com/9403403/77234435-b433da00-6bae-11ea-954e-b1778e58821d.png" alt="Image with app logo and text 'Try'"/>
+</a>
+</td>
+
+<td>
+<a alt="Link to the main repo" src="https://github.com/neherlab/covid19_scenarios">
+<img src="https://user-images.githubusercontent.com/9403403/77233070-5cdd3c00-6ba5-11ea-805c-d7050bd198bf.png" alt="Image with GutHub logo and text 'Get Involved'"/>
+</a>
+</td>
+
+<td>
+<a alt="Link to the data repo" src="https://github.com/neherlab/covid19_scenarios_data">
+<img src="https://user-images.githubusercontent.com/9403403/77233071-5e0e6900-6ba5-11ea-99f5-fe3305524db7.png" alt="Image with GutHub logo and text 'Add Data'"/>
+</a>
+</td>
+
+<td>
+<a alt="Link to Twitter" src="https://twitter.com/richardneher">
+<img src="https://user-images.githubusercontent.com/9403403/77234437-b85ff780-6bae-11ea-9b15-50b85ae45caa.png" alt="Image with Twitter logo and text 'Follow'"/>
+</a>
+</td>
+
+<td></td>
+
+</tr>
+
+</tbody>
+
+</table>
+</p>
+
 
 
 ### Parameters
