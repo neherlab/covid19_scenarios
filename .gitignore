@@ -1,19 +1,11 @@
+*.pyc
+*.swp
+*log
 \.build
 \.cache
 \.env
 \.output
 \.reports
+\.vscode
 node_modules
-
-# Ignore compiled python
-*.pyc
 tools/__pycache__
-
-# Ignore vim temporary files
-*.swp
-
-# Ignore VSCode configuration files
-.vscode/
-
-# Ignore log files
-*log
