@@ -6,6 +6,7 @@ import ReactResizeDetector from 'react-resize-detector'
 import { TimeSeries } from '../../../algorithms/TimeSeries'
 
 const ASPECT_RATIO = 16 / 9
+const MOBILE_ASPECT_RATIO = 4 / 5
 const MAX_TRANSMISSION_RATIO = 1.2
 
 export interface DrawParams {
@@ -236,7 +237,7 @@ export function ContainmentGraphImpl({ data, onDataChange, width, height }: Cont
             return <div className="w-100 h-100" />
           }
 
-          const height = width / ASPECT_RATIO
+          const height = width < 500 ? width / MOBILE_ASPECT_RATIO : width / ASPECT_RATIO
 
           return (
             <svg className="noselect" width={width} height={height} viewBox={`0 0 ${width} ${height}`} ref={d3ref} />
@@ -261,7 +262,7 @@ export function ContainmentGraph({ data, onDataChange }: ContainmentGraphProps) 
             return <div className="w-100 h-100" />
           }
 
-          const height = width / ASPECT_RATIO
+          const height = width < 500 ? width / MOBILE_ASPECT_RATIO : width / ASPECT_RATIO
 
           return <ContainmentGraphImpl data={data} onDataChange={onDataChange} width={width} height={height} />
         }}
