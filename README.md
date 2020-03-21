@@ -222,8 +222,10 @@ The steps to follow are:
   - ageDistribution: name of the country the region is within. Must be U.N. designated name
   - hospitalBeds: number of hospital beds within the region
   - ICUBeds: number of ICU beds
-  - suspectedCaseMarch1st: The number of cases thought to be within the region on March 1st.
+  - suspectedCasesMarch1st: The number of cases thought to be within the region on March 1st.
   - importsPerDay: number of suspected import cases per day
+  
+ At least one of `suspectedCasesMarch1st` and `importsPerDay` needs to be non-zero. Otherwise there is no outbreak (good news in principle, but not useful for exploring scenarios).
 
 ## License
 
