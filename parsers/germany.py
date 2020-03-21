@@ -28,7 +28,7 @@ bundesland_codes = {
    "TH": "Thüringen",
 }
 
-URL  = "https://github.com/chriswien/COVID19_CaseNumberDE/COVID19_Cases_Bundeslaender_DE.csv"
+URL  = "https://raw.githubusercontent.com/chriswien/COVID19_CaseNumberDE/master/COVID19_Cases_Bundeslaender_DE.csv"
 LOC  = "case-counts/Europe/Western Europe/Germany"
 cols = ['time', 'bundesland', 'cases', 'deceased']
 
@@ -62,6 +62,4 @@ def parse():
         regions[bundesland].append([date, to_int(row[2]), to_int(row[3]), None, None, None])
 
     for region, data in regions.items():
-#        if region != "Liechtenstein":
         write_tsv(f"{LOC}/{region}.tsv", cols, data, "germany")
-#        else:
