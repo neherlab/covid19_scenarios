@@ -75,6 +75,9 @@
 </p>
 
 <p align="center">
+  <a href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a">
+    <img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
+  </a>
   <a href="https://github.com/neherlab/covid19_scenarios/issues">
     <img src="https://img.shields.io/badge/contributions-are%20welcome-%234295f5.svg" alt="Contributions: welcome" />
   </a>
@@ -91,6 +94,97 @@
     <img src="https://img.shields.io/twitter/follow/richardneher?style=social" alt="Twitter Follow" />
   </a>
 </p>
+
+
+
+<h2 align="center">
+Got questions or suggestions?
+</h2>
+
+<p align="center">
+  <a
+    alt="Link to join the chat"
+    href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a"
+  >
+    <img
+      alt="Image for the link to join the chat"
+      src="https://user-images.githubusercontent.com/9403403/77235704-691ec480-6bb8-11ea-985d-82ec87cfdcdf.png"
+    />
+  </a>
+</p>
+
+
+
+<h2 align="center">
+Discover
+</h2>
+
+
+<p align="center" width="99%">
+<table width="100%">
+
+<thead>
+<tr>
+<th>    </th>
+<th>Simulator</th>
+<th>Source code repository</th>
+<th>Data repository</th>
+<th>Updates</th>
+<th>    </th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+
+<td></td>
+
+<td>
+<a alt="Link to the app" href="https://neherlab.org/covid19/">
+<img 
+  alt="Image with app logo and text 'Try'"
+  src="https://user-images.githubusercontent.com/9403403/77235707-6ae88800-6bb8-11ea-90ff-22db107b6045.png"
+/>
+</a>
+</td>
+
+<td>
+<a alt="Link to the main repo" href="https://github.com/neherlab/covid19_scenarios">
+<img 
+  alt="Image with GutHub logo and text 'Get Involved'"
+  src="https://user-images.githubusercontent.com/9403403/77235706-6a4ff180-6bb8-11ea-8390-99b100d8035c.png" 
+/>
+</a>
+</td>
+
+<td>
+<a alt="Link to the data repo" href="https://github.com/neherlab/covid19_scenarios_data">
+<img 
+  alt="Image with GutHub logo and text 'Add Data'"
+  src="https://user-images.githubusercontent.com/9403403/77235705-69b75b00-6bb8-11ea-8b21-f4aaf0ec60e7.png"
+/>
+</a>
+</td>
+
+<td>
+<a alt="Link to Twitter" href="https://twitter.com/richardneher">
+<img
+  alt="Image with Twitter logo and text 'Follow'"
+  src="https://user-images.githubusercontent.com/9403403/77235708-6b811e80-6bb8-11ea-80db-ecbc2185fb8b.png"
+/>
+</a>
+</td>
+
+<td></td>
+
+</tr>
+
+</tbody>
+
+</table>
+</p>
+
 
 ### Overview
 This tool is based on an SIR model (see about page for details) that simulates a COVID19 outbreak.

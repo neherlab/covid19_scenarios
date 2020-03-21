@@ -1,14 +1,14 @@
-import { AllParamsFlat } from './Param.types'
+import { AllParamsFlat } from '../types/Param.types'
 
-import countryAgeDistribution from '../assets/data/country_age_distribution.json'
-import countryCaseCounts from '../assets/data/case_counts.json'
-import severityData from '../assets/data/severityData.json'
-import populationScenarios from '../assets/data/scenarios/populations'
-import epidemiologicalScenarios from '../assets/data/scenarios/epidemiological'
-import simulationData from '../assets/data/scenarios/simulation'
-import containmentScenarios from '../assets/data/scenarios/containment'
+import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
+import countryCaseCounts from '../../assets/data/case_counts.json'
+import severityData from '../../assets/data/severityData.json'
+import populationScenarios from '../../assets/data/scenarios/populations'
+import epidemiologicalScenarios from '../../assets/data/scenarios/epidemiological'
+import simulationData from '../../assets/data/scenarios/simulation'
+import containmentScenarios from '../../assets/data/scenarios/containment'
 
-import run from './run'
+import run from '../run'
 
 const defaultParams: AllParamsFlat = {
   ...populationScenarios[0].data,

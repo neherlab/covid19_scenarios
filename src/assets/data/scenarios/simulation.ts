@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-import { SimulationData } from '../../../algorithms/Param.types'
+import { SimulationData } from '../../../algorithms/types/Param.types'
 
 const simulationData: SimulationData = {
   simulationTimeRange: {
