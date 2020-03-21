@@ -107,7 +107,7 @@ def parse():
     cases = retrieve_case_data()
     cases = flatten(cases)
 
-    write_tsv(f"{LOC}/ecdcWorld.tsv", cols, cases, "ecdc")
+    write_tsv(f"{LOC}/World.tsv", cols, cases, "ecdc")
 
 if __name__ == "__main__":
     # for debugging

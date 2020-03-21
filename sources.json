@@ -14,11 +14,6 @@
     "dataProvenance": "The COVID Tracking Project",
     "license": "Apache License 2.0"
   },
-  "world": {
-    "primarySource": "https://covid.ourworldindata.org/data/full_data.csv",
-    "dataProvenance": "WHO via OurWorldInData",
-    "license": "CC-BY-4.0"
-  },
   "ecdc": {
     "primarySource": "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-<DATE>-xlsx",
     "dataProvenance": "European Centre for Disease Prevention and Control",
