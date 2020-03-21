@@ -8,7 +8,7 @@ import { Col, FormGroup, Row } from 'reactstrap'
 
 import FormLabel from './FormLabel'
 
-import { DateRange } from '../../algorithms/Param.types'
+import { DateRange } from '../../algorithms/types/Param.types'
 
 export interface FormInputProps {
   identifier: string

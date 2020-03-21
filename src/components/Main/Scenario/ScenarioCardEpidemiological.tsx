@@ -46,7 +46,7 @@ function ScenarioCardEpidemiological({
       <FormSpinBox
         identifier="epidemiological.r0"
         label={'Annual average R\u2080'}
-        help="Average number of secondary infections per case"
+        help="Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0."
         step={0.1}
         errors={errors}
         touched={touched}
@@ -63,7 +63,7 @@ function ScenarioCardEpidemiological({
       <FormSpinBox
         identifier="epidemiological.infectiousPeriod"
         label="Infectious period [days]"
-        help="Average number of days a person is infectious. Together with the incubation time, this defines the serial interval"
+        help="Average number of days a person is infectious. Over this time, R0 infections happen on average. Together with the latency time, this defines the serial interval. The longer the serial interval, the slower the outbreak."
         step={1}
         min={0}
         errors={errors}

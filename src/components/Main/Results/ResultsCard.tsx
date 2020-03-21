@@ -5,11 +5,11 @@ import { Button, Col, Row } from 'reactstrap'
 
 import { readFile } from '../../../helpers/readFile'
 
-import { exportResult } from '../../../algorithms/exportResult'
-import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
-import processUserResult from '../../../algorithms/userResult'
+import { exportResult } from '../../../algorithms/utils/exportResult'
+import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
+import processUserResult from '../../../algorithms/utils/userResult'
 
-import { EmpiricalData }from '../../../algorithms/Param.types'
+import { EmpiricalData }from '../../../algorithms/types/Param.types'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import FormSwitch from '../../Form/FormSwitch'

@@ -4,7 +4,7 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
-import { AlgorithmResult } from '../../../algorithms/Result.types'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
