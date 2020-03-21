@@ -107,8 +107,8 @@ Got questions or suggestions?
     href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a"
   >
     <img
-      src="https://user-images.githubusercontent.com/9403403/77233069-5b137880-6ba5-11ea-8bd3-9b071b6b5411.png"
       alt="Image for the link to join the chat"
+      src="https://user-images.githubusercontent.com/9403403/77235704-691ec480-6bb8-11ea-985d-82ec87cfdcdf.png"
     />
   </a>
 </p>
@@ -142,25 +142,37 @@ Discover
 
 <td>
 <a alt="Link to the app" href="https://neherlab.org/covid19/">
-<img src="https://user-images.githubusercontent.com/9403403/77234435-b433da00-6bae-11ea-954e-b1778e58821d.png" alt="Image with app logo and text 'Try'"/>
+<img 
+  alt="Image with app logo and text 'Try'"
+  src="https://user-images.githubusercontent.com/9403403/77235707-6ae88800-6bb8-11ea-90ff-22db107b6045.png"
+/>
 </a>
 </td>
 
 <td>
 <a alt="Link to the main repo" href="https://github.com/neherlab/covid19_scenarios">
-<img src="https://user-images.githubusercontent.com/9403403/77233070-5cdd3c00-6ba5-11ea-805c-d7050bd198bf.png" alt="Image with GutHub logo and text 'Get Involved'"/>
+<img 
+  alt="Image with GutHub logo and text 'Get Involved'"
+  src="https://user-images.githubusercontent.com/9403403/77235706-6a4ff180-6bb8-11ea-8390-99b100d8035c.png" 
+/>
 </a>
 </td>
 
 <td>
 <a alt="Link to the data repo" href="https://github.com/neherlab/covid19_scenarios_data">
-<img src="https://user-images.githubusercontent.com/9403403/77233071-5e0e6900-6ba5-11ea-99f5-fe3305524db7.png" alt="Image with GutHub logo and text 'Add Data'"/>
+<img 
+  alt="Image with GutHub logo and text 'Add Data'"
+  src="https://user-images.githubusercontent.com/9403403/77235705-69b75b00-6bb8-11ea-8b21-f4aaf0ec60e7.png"
+/>
 </a>
 </td>
 
 <td>
 <a alt="Link to Twitter" href="https://twitter.com/richardneher">
-<img src="https://user-images.githubusercontent.com/9403403/77234437-b85ff780-6bae-11ea-9b15-50b85ae45caa.png" alt="Image with Twitter logo and text 'Follow'"/>
+<img
+  alt="Image with Twitter logo and text 'Follow'"
+  src="https://user-images.githubusercontent.com/9403403/77235708-6b811e80-6bb8-11ea-80db-ecbc2185fb8b.png"
+/>
 </a>
 </td>
 
