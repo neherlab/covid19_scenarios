@@ -4,7 +4,7 @@
       width="100%"
       height="auto"
       src="https://user-images.githubusercontent.com/9403403/77125848-710b2700-6a47-11ea-84c3-19016d16e9dd.gif"
-      alt="neherlab.org/covid19/"
+      alt="An animated screenshot of the application, showcasing the user interface on main page"
     />
   </a>
 </p>
@@ -14,7 +14,7 @@
 </h1>
 
 <p align="center">
-  <a href="neherlab.org/covid19/">
+  <a href="https://neherlab.org/covid19/">
     🌐 neherlab.org/covid19/
   </a>
 </p>
@@ -61,7 +61,7 @@
 
   <a href="https://github.com/neherlab/covid19_scenarios/commits">
     <img
-      src="https://img.shields.io/github/commit-activity/m/neherlab/covid19_scenarios?logo=github"
+      src="https://img.shields.io/github/commit-activity/m/neherlab/covid19_scenarios"
       alt="GitHub commit activity"
     />
   </a>
