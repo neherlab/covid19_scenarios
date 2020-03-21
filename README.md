@@ -1,9 +1,151 @@
-# COVID-19 Data
-> Curated data of the SARS-COV2 pandemic
+<h1 align="center">
+  COVID-19 Scenarios Data
+</h1>
 
-All formatted data used by [covid19_scenarios](https://github.com/neherlab/covid19_scenarios).
+<blockquote>
+  <p align="center">
+    Data preprocessing scripts and preprocessed data storage for 
+    <a href="https://github.com/neherlab/covid19_scenarios">COVID-19 Scenarios</a> project
+  </p>
+</blockquote>
 
-For discussion of suitable data sources, please join our [channel at spectrum](https://spectrum.chat/covid19-scenarios/data-sources).
+<h1 align="center" />
+
+<p align="center">
+  <a href="https://github.com/neherlab/covid19_scenarios_data/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-mixed-yellow.svg" alt="License" />
+  </a>
+
+  <a href="https://github.com/neherlab/covid19_scenarios_data/commits">
+    <img
+      src="https://img.shields.io/github/commit-activity/m/neherlab/covid19_scenarios_data"
+      alt="GitHub commit activity"
+    />
+  </a>
+
+  <a href="https://github.com/neherlab/covid19_scenarios/graphs/contributors">
+    <img
+      src="https://img.shields.io/github/contributors/neherlab/covid19_scenarios_data?logo=github&label=data%20contributors"
+      alt="GitHub contributors"
+    />
+  </a>
+
+  <a href="https://github.com/neherlab/covid19_scenarios_data/commits">
+    <img
+      src="https://img.shields.io/github/last-commit/neherlab/covid19_scenarios_data?logo=github"
+      alt="GitHub last commit"
+    />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a">
+    <img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
+  </a>
+  <a href="https://github.com/neherlab/covid19_scenarios_data/issues">
+    <img src="https://img.shields.io/badge/contributions-are%20welcome-%234295f5.svg" alt="Contributions: welcome" />
+  </a>
+  <a href="https://github.com/neherlab/covid19_scenarios/issues/18">
+    <img
+      src="https://img.shields.io/badge/questions%20and%20discussions-in%20issue%20%2318-%235bd9b1.svg"
+      alt="Discuss: in issue 18"
+    />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://twitter.com/richardneher">
+    <img src="https://img.shields.io/twitter/follow/richardneher?style=social" alt="Twitter Follow" />
+  </a>
+</p>
+
+<h2 align="center">
+Got questions or suggestions?
+</h2>
+
+<p align="center">
+  <a
+    alt="Link to join the chat"
+    href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a"
+  >
+    <img
+      alt="Image for the link to join the chat"
+      src="https://user-images.githubusercontent.com/9403403/77235704-691ec480-6bb8-11ea-985d-82ec87cfdcdf.png"
+    />
+  </a>
+</p>
+
+<h2 align="center">
+Discover
+</h2>
+
+
+<p align="center" width="99%">
+<table width="100%">
+
+<thead>
+<tr>
+<th>    </th>
+<th>Simulator</th>
+<th>Source code repository</th>
+<th>Data repository</th>
+<th>Updates</th>
+<th>    </th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+
+<td></td>
+
+<td>
+<a alt="Link to the app" href="https://neherlab.org/covid19/">
+<img 
+  alt="Image with app logo and text 'Try'"
+  src="https://user-images.githubusercontent.com/9403403/77235707-6ae88800-6bb8-11ea-90ff-22db107b6045.png"
+/>
+</a>
+</td>
+
+<td>
+<a alt="Link to the main repo" href="https://github.com/neherlab/covid19_scenarios">
+<img 
+  alt="Image with GutHub logo and text 'Get Involved'"
+  src="https://user-images.githubusercontent.com/9403403/77235706-6a4ff180-6bb8-11ea-8390-99b100d8035c.png" 
+/>
+</a>
+</td>
+
+<td>
+<a alt="Link to the data repo" href="https://github.com/neherlab/covid19_scenarios_data">
+<img 
+  alt="Image with GutHub logo and text 'Add Data'"
+  src="https://user-images.githubusercontent.com/9403403/77235705-69b75b00-6bb8-11ea-8b21-f4aaf0ec60e7.png"
+/>
+</a>
+</td>
+
+<td>
+<a alt="Link to Twitter" href="https://twitter.com/richardneher">
+<img
+  alt="Image with Twitter logo and text 'Follow'"
+  src="https://user-images.githubusercontent.com/9403403/77235708-6b811e80-6bb8-11ea-80db-ecbc2185fb8b.png"
+/>
+</a>
+</td>
+
+<td></td>
+
+</tr>
+
+</tbody>
+
+</table>
+</p>
+
+
 
 ## Contents
 
