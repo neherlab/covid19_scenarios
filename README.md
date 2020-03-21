@@ -23,7 +23,7 @@
     />
   </a>
 
-  <a href="https://github.com/neherlab/covid19_scenarios/graphs/contributors">
+  <a href="https://github.com/neherlab/covid19_scenarios_data/graphs/contributors">
     <img
       src="https://img.shields.io/github/contributors/neherlab/covid19_scenarios_data?logo=github&label=data%20contributors"
       alt="GitHub contributors"
