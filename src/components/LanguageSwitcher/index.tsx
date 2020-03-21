@@ -60,7 +60,7 @@ export default function LanguageSwitcher() {
       <DropdownMenu>
         {Object.keys(langs).map(key => (
           <DropdownItem
-            key="lang"
+            key={key}
             onClick={() => {
               i18next.changeLanguage(langs[key].lang, () => {
                 localStorage.setItem('lang', langs[key].lang)
