@@ -5,6 +5,7 @@ import requests
 import numpy as np
 
 from collections import defaultdict
+from datetime import datetime
 from .utils import write_tsv
 
 # ------------------------------------------------------------------------
@@ -77,6 +78,12 @@ LOC  = "case-counts/Americas/Northern America/United States of America"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # ------------------------------------------------------------------------
+# Functions
+
+def sorted_date(s):
+    return sorted(s, key=lambda d: datetime.strptime(d[cols.index('time')], "%Y-%m-%d"))
+
+# ------------------------------------------------------------------------
 # Main point of entry
 
 def parse():
@@ -97,6 +104,9 @@ def parse():
         elt  = [ date, row["positive"], row["death"], None, None, None ]
         regions[acronyms[row["state"]]].append(elt)
     regions = dict(regions)
+
+    for cntry, data in regions.items():
+        regions[cntry] = sorted_date(regions[cntry])
 
     for region, data in regions.items():
         write_tsv(f"{LOC}/{region}.tsv", cols, data, "unitedstates")

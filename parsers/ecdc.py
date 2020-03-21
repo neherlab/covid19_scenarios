@@ -34,7 +34,7 @@ def stoi(x):
 def parse_countries():
     # read the country_codes.csv for official country names
     country_names = {}
-    file = "country_codes.csv"    
+    file = "country_codes.csv"
     countries = defaultdict(lambda: defaultdict(list))
     with open(file) as f:
         rdr = csv.reader(f)
@@ -45,13 +45,13 @@ def parse_countries():
 
 def retrieve_case_data():
     countries = parse_countries()
-    
+
     cases = defaultdict(list)
 
     # For now, always get the data from yesterday. We could make fancier check if today's data is already available
     yesterday = datetime.today() - timedelta(days=1)
     date = yesterday.strftime("%Y-%m-%d")
-    
+
     file_name, headers = urlretrieve(URL+date+".xlsx")
     workbook = xlrd.open_workbook(file_name)
 
@@ -75,7 +75,6 @@ def retrieve_case_data():
 
         # date = "-".join([str(int(row[Ix['Year']])), str(int(row[Ix['Month']])), str(int(row[Ix['Day']]))])
         date = f"{int(row[Ix['Year']]):04d}-{int(row[Ix['Month']]):02d}-{int(row[Ix['Day']]):02d}"
-        print(date)
 
         # note: Cases are per day, not cumulative. We need to aggregate later
         cases[country].append({"time": date, "deaths": stoi(row[Ix['Deaths']]), "cases":  stoi(row[Ix['Cases']])})
@@ -90,7 +89,7 @@ def retrieve_case_data():
             total += d['cases']
             d['cases'] = total
         cases[cntry] = data
-        
+
     return dict(cases)
 
 
