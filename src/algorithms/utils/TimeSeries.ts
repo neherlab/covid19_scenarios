@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 
-import { DateRange } from './Param.types'
-import { interpolateTimeSeries } from './run'
+import { DateRange } from '../types/Param.types'
+import { interpolateTimeSeries } from '../run'
 
 interface TimePoint {
   t: Date

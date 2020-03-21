@@ -1,4 +1,4 @@
-import { EpidemiologicalData } from '../../../algorithms/Param.types'
+import { EpidemiologicalData } from '../../../algorithms/types/Param.types'
 
 export interface EpidemiologicalScenario {
   name: string

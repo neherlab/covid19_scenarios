@@ -6,6 +6,14 @@ const monthToDay = m => {
 
 const jan2020 = new Date('2020-01-01')
 
+/**
+ *
+ * @param {number} time - epoch time in ms
+ * @param {number} avgInfectionRate
+ * @param {number} peakMonth - counting number in range of 0-11
+ * @param {number} seasonalForcing -  seasonal variation in transmission. Usually a decimal number, e. g. 0.2
+ * @returns {number}
+ */
 export function infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing) {
   // this is super hacky
   const phase = ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) * 2 * Math.PI

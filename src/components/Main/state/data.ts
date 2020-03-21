@@ -4,7 +4,7 @@ import overallScenarios, { OverallScenario } from '../../../assets/data/scenario
 import populationScenarios from '../../../assets/data/scenarios/populations'
 import simulationData from '../../../assets/data/scenarios/simulation'
 
-import { EpidemiologicalData, PopulationData, SimulationData } from '../../../algorithms/Param.types'
+import { EpidemiologicalData, PopulationData, SimulationData } from '../../../algorithms/types/Param.types'
 
 export const overallScenarioNames = overallScenarios.map(s => s.name)
 export const populationScenarioNames = populationScenarios.map(s => s.name)

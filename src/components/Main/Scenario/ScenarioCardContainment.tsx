@@ -3,7 +3,7 @@ import React from 'react'
 import { FormikErrors, FormikTouched } from 'formik'
 import { AnyAction } from 'typescript-fsa'
 
-import { TimeSeries } from '../../../algorithms/TimeSeries'
+import { TimeSeries } from '../../../algorithms/utils/TimeSeries'
 
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'

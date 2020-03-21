@@ -3,9 +3,9 @@ import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
 
 import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
-import { AllParamsFlat } from './Param.types'
-import { AlgorithmResult, SimulationTimePoint } from './Result.types'
-import { TimeSeries } from './TimeSeries'
+import { AllParamsFlat } from './types/Param.types'
+import { AlgorithmResult, SimulationTimePoint } from './types/Result.types'
+import { TimeSeries } from './utils/TimeSeries'
 
 const identity = (x: number) => x
 const poisson = (x: number) => {
