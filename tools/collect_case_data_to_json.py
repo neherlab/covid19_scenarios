@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
     for root, dir, files in os.walk(f"{DATA_DIR}"):
         for tsv in fnmatch.filter(files, "*.tsv"):
-            if tsv == "World.tsv":
+            if tsv == "World.tsv" or tsv == "cds.tsv":
                 continue
             country = os.path.basename(root)
             region = os.path.basename(tsv)[:-4]

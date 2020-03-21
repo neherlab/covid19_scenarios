@@ -15,7 +15,7 @@ function SeverityCard({ severity, setSeverity }: SeverityCardProps) {
       identifier="severity-card"
       title={
         <>
-          <h5 className="my-1">Severity assumptions</h5>
+          <h5 className="my-1">Severity assumptions and age-specific isolation</h5>
           <p className="my-0">based on data from China</p>
         </>
       }

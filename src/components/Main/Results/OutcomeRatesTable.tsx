@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Col, Row } from 'reactstrap'
 
-import { AlgorithmResult } from '../../../algorithms/Result.types'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
@@ -37,7 +37,7 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
 
   let mildFrac = 1 - severeFrac - criticalFrac - deathFrac
   */
-  
+
   const endResult = result.deterministicTrajectory[result.deterministicTrajectory.length-1];
 
   // FIXME: should use display format library instead of rounding
