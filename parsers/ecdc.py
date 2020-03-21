@@ -82,12 +82,15 @@ def retrieve_case_data():
     for cntry, data in cases.items():
         cases[cntry] = sorted_date(cases[cntry])
 
-    # aggregate cases here after sorting
+    # aggregate cases/deaths here after sorting
     for cntry, data in cases.items():
-        total = 0
+        total_cases  = 0
+        total_deaths = 0
         for d in data:
-            total += d['cases']
-            d['cases'] = total
+            total_cases += d['cases']
+            total_deaths += d['deaths']
+            d['cases'] = total_cases
+            d['deaths'] = total_deaths
         cases[cntry] = data
 
     return dict(cases)
