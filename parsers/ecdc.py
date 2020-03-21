@@ -50,7 +50,7 @@ def retrieve_case_data():
         i += 1
     for row_index in range(1, worksheet.nrows):
         row = worksheet.row_values(row_index)
-        country, date = row[Ix['Countries and territories']], "-".join([str(int(row[Ix['Year']])), str(int(row[Ix['Month']])), str(int(row[Ix['Day']]))])
+        country, date = row[Ix['Countries and territories']].replace("_"," "), "-".join([str(int(row[Ix['Year']])), str(int(row[Ix['Month']])), str(int(row[Ix['Day']]))])
         # note: Cases are per day, not cumulative. We need to aggregate later
         cases[country].append({"time": date, "deaths": stoi(row[Ix['Deaths']]), "cases":  stoi(row[Ix['Cases']])})
 
