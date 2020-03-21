@@ -28,47 +28,48 @@ We are actively looking for people to supply data to be used for our modeling!
 ## Contributing and curating data:
 
 ### Adding case count data for a new region:
-  Steps:
+The steps to follow are:
 
- - Identify a source for case counts data that is updated frequently (at least daily) as outbreak evolves.
-    * Write a script that downloads and converts raw data into TSV format
-        - Columns: [time, cases, deaths, hospitalized, ICU, recovered]
-        - The time column must be a string formatted as "YYYY-MM-DD"
-        - Try to keep the same order of columns for hygiene, although it should ultimately matter
-        - If data is missing, please leave the entry empty
-    * Place the script into the parsers directory
-        - The name should correspond to the region name desired in the scenario.
-        - There *must* be a function parse() defined that outputs the TSV into the correct directory.
-    * Commit the produced TSV file into the correct directory
-        - The structure of the directory is Region/Sub-Region/Country/
-        - Region and Sub-Region are designated as per the U.N. 
-        - U.N. designations are found within country_codes.csv
-        - Please use only the U.N. designated name for the country, region, and sub-region.
-    * All TSV files will be bundled into a json database into the app on next build
-        - The case counts should be displayed as data-points onto the associated scenario
- - Update the *sources.json* file to contain all relevant metadata.
-    * The three fields are:
-        - primarySource = The URL/path to the raw data
-        - dataProvenance = The organization behind the data collection
-        - license = The license governing the usage of data
+##### Identify a source for case counts data that is updated frequently (at least daily) as outbreak evolves.
+  * Write a script that downloads and converts raw data into TSV format
+      - Columns: [time, cases, deaths, hospitalized, ICU, recovered]
+      - **Important:** all columns must be cumulative data.
+      - The time column **must** be a string formatted as ``YYYY-MM-DD``
+      - Try to keep the same order of columns for hygiene, although it should not ultimately matter
+      - If data is missing, please leave the entry empty
+  * Place the script into the parsers directory
+      - The name should correspond to the region name desired in the scenario.
+      - There **must** be a function parse() defined that outputs the TSV into the correct directory.
+  * Commit the produced ``.tsv`` file into the correct directory
+      - The structure of the directory is Region/Sub-Region/Country/
+      - Region and Sub-Region are designated as per the U.N. 
+      - U.N. designations are found within country_codes.csv
+      - Please use only the U.N. designated name for the country, region, and sub-region.
+  * All TSV files will be bundled into a json database into the app on next build
+      - The case counts should be displayed as data-points onto the associated scenario
+##### Update the *sources.json* file to contain all relevant metadata.
+  * The three fields are:
+      - primarySource = The URL/path to the raw data
+      - dataProvenance = The organization behind the data collection
+      - license = The license governing the usage of data
 
 ### Updating/editing case count data for the existing region:
   We note that this option is not preferred relative to a script that automatically updates as outlined above.
   However, if there is no accessible data sources, one can manually enter the data. To do so
 
-* Commit a manually entered TSV file into the correct directory
-    - The structure of the directory is Region/Sub-Region/Country/
-    - Region and Sub-Region are designated as per the U.N. 
-    - U.N. designations are found within country_codes.csv
-    - Please use only the U.N. designated name for the country, region, and sub-region.
+##### Commit a manually entered file into the correct directory
+ - The structure of the directory is Region/Sub-Region/Country/
+ - Region and Sub-Region are designated as per the U.N. 
+ - U.N. designations are found within country_codes.csv
+ - Please use only the U.N. designated name for the country, region, and sub-region.
 
 ### Adding/editing population data for a country and/or region:
   As of now all data used to initialize scenarios used by our model is found within populationData.tsv
   It has the following form:
-    ```
+
     name    populationServed    ageDistribution hospitalBeds    ICUBeds suspectedCaseMarch1st   importsPerDay
     Switzerland ...
-    ```
+
   - Names: the U.N. designated name found within country_codes.csv
       * For a sub-region/city, please prefix the name with the three letter country code of the containing country. See country_codes.csv for the correct letters.
   - populationServed: a number with the population size
