@@ -33,20 +33,30 @@ def parse():
 
     dbindia = json.loads(r.text)['data']
     r.close()
-    
+
     # Convert to ready made TSVs
     states = defaultdict(list)
     for row in dbindia:
         dates = row["day"]
         for i in row['regional']:
-            confirmedCases = i["confirmedCasesIndian"] + i["confirmedCasesForeign"]
+            confirmedCases = 0
+            if i["confirmedCasesIndian"]:
+                confirmedCases += i["confirmedCasesIndian"]
+            if i["confirmedCasesForeign"]:
+                confirmedCases += i["confirmedCasesForeign"]
+
             deaths = i["deaths"]
             locations = i['loc']
             elt  = [ dates, confirmedCases, deaths, None, None, None ]
             states[locations].append(elt)
 
-      for cntry, data in states.items():
+    for cntry, data in states.items():
         states[cntry] = sorted_date(states[cntry])
-        
+
     for state, data in states.items():
-        write_tsv(f"{LOC}/{state}.tsv", cols, data, "india")
+        try:
+            write_tsv(f"{LOC}/{state}.tsv", cols, data, "india")
+        except FileNotFoundError as e:
+            print(f"dumping data for '{state}' failed.")
+            raise e
+
