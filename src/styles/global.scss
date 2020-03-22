@@ -86,6 +86,17 @@ p {
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   opacity: 1;
+  
+}
+
+.form-group {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    position: relative;
+    right: -28px;
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .noselect {
