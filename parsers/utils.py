@@ -1,8 +1,8 @@
 import csv
 import json
 import functools
-
-from datetime import datetime 
+import os
+from datetime import datetime
 from collections import defaultdict
 
 # ------------------------------------------------------------------------
@@ -48,7 +48,7 @@ def parse_countries(index=1):
     # index=1 is the alpha2
     # index=2 is the alpha3
     country_names = {}
-    file = "country_codes.csv"    
+    file = "country_codes.csv"
     countries = defaultdict(lambda: defaultdict(list))
     with open(file) as f:
         rdr = csv.reader(f)
@@ -84,7 +84,7 @@ def merge_cases(oldcases, newcases):
         else:
             #print('Found old and new data for ',c)
             # join both lists and sort. Then, check for duplicates and merge them
-            try: 
+            try:
                 joinedDays = sorted(res[c]+newcases[c], key=functools.cmp_to_key(compare_day))
             except:
                 print('problem with ',c,res[c], newcases[c])
@@ -116,7 +116,7 @@ def list_to_dict(regions, cols):
                 if cols[i] == 'time':
                     nd[cols[i]] = d[i]
                 elif d[i]:
-                    nd[cols[i]] = int(d[i])                    
+                    nd[cols[i]] = int(d[i])
                 else:
                     nd[cols[i]] = None
                 i += 1
@@ -125,11 +125,16 @@ def list_to_dict(regions, cols):
     return res
 
 def store_json(newdata):
-    with open('case-counts/case_counts.json', 'r') as fh:
-        oldcases = json.load(fh)
+    json_file = 'case-counts/case_counts.json'
+    if os.path.isfile(json_file):
+        with open(json_file, 'r') as fh:
+            oldcases = json.load(fh)
+    else:
+        oldcases = {}
+
     mergedCases = merge_cases(oldcases, newdata)
-    with open('case-counts/case_counts.json', 'w') as fh:
+    with open(json_file, 'w') as fh:
         json.dump(mergedCases, fh)
-    
+
     #print('first layer keys are %s'%mergedCases.keys())
     print('Stored data for %d regions to json'%len(mergedCases))

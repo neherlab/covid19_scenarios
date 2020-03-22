@@ -4,7 +4,7 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import write_tsv
+from .utils import write_tsv, store_json, list_to_dict
 
 # ------------------------------------------------------------------------
 # Globals
@@ -64,3 +64,11 @@ def parse():
 
     for region, data in regions.items():
         write_tsv(f"{LOC}/{region}.tsv", cols, data, "germany")
+
+    # prepare dict for json
+    regions2 = {}
+    for region, data in regions.items():
+        regions2["DEU-"+region] = data
+
+    regions3 = list_to_dict(regions2, cols)
+    store_json(regions3)
