@@ -354,7 +354,7 @@ export default {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore: BUG: This parameter is missing in @types/webpack declarations
       fileContext: 'web/content/sourcemaps',
-      noSources: true,
+      noSources: production,
     }),
 
     analyze &&
