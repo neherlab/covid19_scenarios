@@ -4,6 +4,11 @@
     "dataProvenance": "Dipartimento della Protezione Civile",
     "license": "CC-BY-4.0"
   },
+  "spain": {
+    "primarySource": "https://github.com/datadista/datasets/tree/master/COVID%2019",
+    "dataProvenance": "http://www.datadista.com",
+    "license": "unclear"
+  },
   "switzerland": {
     "primarySource": "https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv",
     "dataProvenance": "OpenZH",
@@ -24,9 +29,14 @@
     "dataProvenance": "Coronadatascraper.com",
     "license": "Scraped from many sources, no clear license"
   },
+  "india": {
+    "primarySource": "https://api.rootnet.in/covid19-in/stats/daily",
+    "dataProvenance": "https://github.com/amodm/api-covid19-in",
+    "license": "Scraped from Ministry of Health and Family Welfare plus other sources, no clear license"
+  },
   "tsv": {
     "primarySource": "Manually maintained .tsv files in case-counts/ folder",
     "dataProvenance": "Manually maintained by contributors",
     "license": "no clear license, multiple sources"
-  }
+    
 }
