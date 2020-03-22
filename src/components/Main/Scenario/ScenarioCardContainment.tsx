@@ -47,6 +47,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
         help="Number of controllable points on the mitigation curve"
         step={1}
         min={2}
+        max={100}
         errors={errors}
         touched={touched}
       />

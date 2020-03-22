@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactResizeDetector from 'react-resize-detector'
 import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
+import type { LineProps as RechartsLineProps } from 'recharts'
 
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
@@ -32,7 +33,7 @@ interface LineProps {
   key: string,
   name: string,
   color: string
-  legendType?: string
+  legendType?: RechartsLineProps['legendType']
 }
 
 function xTickFormatter(tick: string | number): string {
@@ -126,7 +127,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       tMax = Math.max(tMax, observations[observations.length-1].time);
       plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
       if (count_observations.observedDeaths){
-           scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
+        scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
       }
       if (count_observations.cases){
         scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: "Cumulative confirmed cases"})
