@@ -95,6 +95,7 @@
     "typeface-source-sans-pro": "1.1.5",
     "typescript-fsa": "3.0.0",
     "typescript-fsa-reducers": "1.2.1",
+    "use-onclickoutside": "0.3.1",
     "yup": "0.28.3"
   },
   "devDependencies": {

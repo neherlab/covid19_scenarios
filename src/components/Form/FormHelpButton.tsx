@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { useOnClickOutside } from 'usehooks'
+import React, { useState, useRef } from 'react'
 import { Card, CardBody, CardHeader, Popover } from 'reactstrap'
 import { FaQuestion } from 'react-icons/fa'
+import useOnClickOutside from 'use-onclickoutside'
 
 import './FormHelpButton.scss'
 
@@ -17,23 +17,22 @@ export interface FormHelpButtonProps {
 
 export default function FormHelpButton({ identifier, label, help }: FormHelpButtonProps) {
   const [popoverOpen, setPopoverOpen] = useState(false)
+  const iconRef = useRef(null)
+  useOnClickOutside(iconRef, () => setPopoverOpen(false))
 
-  const toggle = () => setPopoverOpen(!popoverOpen)
+  const toggle = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setPopoverOpen(!popoverOpen)
+  }
 
   return (
     <>
-      <div id={safeId(identifier)} />
+      <div ref={iconRef} role="button" onClick={toggle} onKeyDown={() => setPopoverOpen(!popoverOpen)} tabIndex={0}>
+        <FaQuestion id={safeId(identifier)} className="help-button help-button-icon" />
+      </div>
 
-      <FaQuestion className="help-button help-button-icon" onClick={toggle} onFocus={toggle} onBlur={toggle} />
-
-      <Popover
-        placement="auto"
-        target={safeId(identifier)}
-        trigger="focus"
-        hideArrow
-        isOpen={popoverOpen}
-        toggle={toggle}
-      >
+      <Popover placement="auto" target={safeId(identifier)} trigger="click legacy" hideArrow isOpen={popoverOpen}>
         <Card>
           <CardHeader>{label}</CardHeader>
           <CardBody>{help}</CardBody>

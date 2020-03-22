@@ -5,8 +5,9 @@ $color: #8b9dbe;
   background-color: $color;
   border: none;
   width: $radius;
-  height: $radius;
-  padding: 0;
+  height: auto;
+  color: white;
+  padding: 0.2rem;
   border-radius: $radius / 2;
   line-height: 0.5; // adjust this if you change the radius
 }

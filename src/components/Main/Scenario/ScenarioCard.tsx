@@ -36,7 +36,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
   return (
     <CardWithDropdown
       identifier="overallScenario"
-      label={<h3 className="p-0 m-0 d-inline text-truncate">Scenario</h3>}
+      label={<h3 className="mb-0">Scenario</h3>}
       help="Combination of population, epidemiology, and mitigation scenarios"
       options={overallScenarioOptions}
       value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)}

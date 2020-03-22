@@ -25,7 +25,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
   }
 
   function handleChangeContainmentData(timeSeries: TimeSeries) {
-    scenarioDispatch(setContainmentData({ data: { reduction:timeSeries, numberPoints: timeSeries.length } }))
+    scenarioDispatch(setContainmentData({ data: { reduction: timeSeries, numberPoints: timeSeries.length } }))
   }
 
   const containmentScenarioOptions = stringsToOptions(scenarioState.containment.scenarios)
@@ -35,7 +35,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
   return (
     <CardWithDropdown
       identifier="containmentScenario"
-      label={<h5 className="p-0 d-inline text-truncate">Mitigation</h5>}
+      label={<h5 className="mb-0">Mitigation</h5>}
       help="Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown."
       options={containmentScenarioOptions}
       value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)}

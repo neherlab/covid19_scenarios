@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { Card, CardBody, CardHeader } from 'reactstrap'
-import FormDropdownStateless, { FormDropdownOption } from './FormDropdownStateless'
+import FormDropdownStateless from './FormDropdownStateless'
+import { FormDropdownOption } from './FormDropdownOption'
 
 export interface CardWithDropdownProps {
   children?: React.ReactNode | React.ReactNode[]

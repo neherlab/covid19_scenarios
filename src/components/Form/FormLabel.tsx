@@ -10,7 +10,7 @@ export interface LabelWithHelpButtonProps {
 
 export default function FormLabel({ identifier, label, help }: LabelWithHelpButtonProps) {
   return (
-    <label htmlFor={identifier} className="d-flex align-items-center">
+    <label htmlFor={identifier} className="d-flex h-100 align-items-center">
       <HelpLabel identifier={identifier} label={label} help={help} />
     </label>
   )

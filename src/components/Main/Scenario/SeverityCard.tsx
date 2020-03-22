@@ -13,12 +13,8 @@ function SeverityCard({ severity, setSeverity }: SeverityCardProps) {
   return (
     <CollapsibleCard
       identifier="severity-card"
-      title={
-        <>
-          <h5 className="my-1">Severity assumptions and age-specific isolation</h5>
-          <p className="my-0">based on data from China</p>
-        </>
-      }
+      title={<h5 className="mb-1">Severity assumptions and age-specific isolation</h5>}
+      subtitle={<span>based on data from China</span>}
       help="Assumptions on severity which are informed by epidemiological and clinical observations in China"
       defaultCollapsed
     >
