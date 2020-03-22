@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactResizeDetector from 'react-resize-detector'
 import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
+import type { LineProps as RechartsLineProps } from 'recharts'
 
 import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
 import { EmpiricalData } from '../../../algorithms/Param.types'
@@ -32,7 +33,7 @@ interface LineProps {
   key: string,
   name: string,
   color: string
-  legendType?: import('recharts').LineProps['legendType']
+  legendType?: RechartsLineProps['legendType']
 }
 
 function xTickFormatter(tick: string | number): string {
