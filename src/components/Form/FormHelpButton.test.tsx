@@ -2,24 +2,6 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import FormHelpButton from './FormHelpButton'
 
-// mock popper.js (reactstrap dependency via react-popper)
-// see: https://github.com/popperjs/popper-core/issues/478#issuecomment-341494703
-
-jest.mock('popper.js', () => {
-  const PopperJS = jest.requireActual('popper.js')
-
-  return class {
-    static placements = PopperJS.placements
-
-    constructor() {
-      return {
-        destroy: () => null,
-        scheduleUpdate: () => null,
-      }
-    }
-  }
-})
-
 describe('FormHelpButton', () => {
   it('renders', () => {
     const { getByLabelText } = render(<FormHelpButton identifier="abc" label="def" />)
