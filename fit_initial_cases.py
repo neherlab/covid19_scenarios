@@ -8,6 +8,7 @@ fixed_slope = np.log(2)/doubling_time
 march1st = datetime(2020,3,1).toordinal()
 under_reporting = 5
 delay = 18
+fatalit_rate = 0.02
 
 def fit_cumulative_trajectory(t, y):
     good_ind = (y>3)&(y<500)
@@ -30,9 +31,8 @@ def fit_population(pop):
 
     data_array = np.array(data_array)
     fit_on_deaths = fit_cumulative_trajectory(data_array[:,0], data_array[:,2])
-    print(fit_on_deaths)
     if fit_on_deaths:
-        val_on_march1st = np.exp(delay*fit_on_deaths["slope"])*np.exp(march1st*fit_on_deaths["slope"] + fit_on_deaths["intercept"])
+        val_on_march1st = np.exp(delay*fit_on_deaths["slope"])*np.exp(march1st*fit_on_deaths["slope"] + fit_on_deaths["intercept"])/fatalit_rate
         return val_on_march1st
     else:
         fit_on_cases = fit_cumulative_trajectory(data_array[:,0], data_array[:,1])
@@ -46,8 +46,22 @@ if __name__ == '__main__':
     with open("case-counts/case_counts.json") as fh:
         case_counts = json.load(fh)
 
-    for pop in case_counts:
-        if pop[:3]=='ITA':
-            initialCases = fit_population(case_counts[pop])
+    data = []
+    with open("populationData.tsv") as fh:
+        header = fh.readline().strip().split('\t')
+        for line in fh:
+            data.append(line.strip().split('\t'))
+
+    updated_data = []
+    initialCasesIndex = header.index('suspectedCaseMarch1st')
+    for d in data:
+        if d[0] in case_counts and d[0][:3]!='ITA' and d[0]!='Italy':
+            initialCases = fit_population(case_counts[d[0]])
             if initialCases:
-                print(pop, initialCases)
+                d[initialCasesIndex] = str(int(initialCases))
+        updated_data.append(d)
+
+    with open("populationData.tsv", 'w') as fh:
+        fh.write('\t'.join(header)+'\n')
+        for d in updated_data:
+            fh.write('\t'.join(d)+'\n')
