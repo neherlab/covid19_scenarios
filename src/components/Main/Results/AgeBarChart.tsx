@@ -63,7 +63,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name="peak severe" />
-                <Bar dataKey="peakCritical" fill={colors.critical} name="peak critical" />
+                <Bar dataKey="peakCritical" fill={colors.critical} name="peak ICU" />
                 <Bar dataKey="peakOverflow" fill={colors.overflow} name="peak overflow" />
                 <Bar dataKey="totalDead" fill={colors.death} name="total deaths" />
               </BarChart>
