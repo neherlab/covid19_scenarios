@@ -70,57 +70,47 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
 
-  const observations = []
-  const count_observations = { cases: 0, ICU: 0, observedDeaths: 0, newCases: 0, hospitalized: 0 }
-  if (caseCounts) {
-    caseCounts.sort(function (a, b) {
-      return a.time > b.time ? 1 : -1
-    })
-    caseCounts.forEach(function (d, i) {
-      if (d.cases) {
-        count_observations.cases += 1
-      }
-      if (d.deaths) {
-        count_observations.observedDeaths += 1
-      }
-      if (d.hospitalized) {
-        count_observations.hospitalized += 1
-      }
-      if (d.ICU) {
-        count_observations.ICU += 1
-      }
-      if (i > 2 && d.cases && caseCounts[i - 3].cases) {
-        count_observations.newCases += 1
-      }
-      observations.push({
-        time: new Date(d.time).getTime(),
-        cases: d.cases || undefined,
-        observedDeaths: d.deaths || undefined,
-        currentHospitalized: d.hospitalized || undefined,
-        ICU: d.ICU || undefined,
-        newCases: i > 2 ? d.cases - caseCounts[i - 3].cases || undefined : undefined,
-        hospitalBeds: nHospitalBeds,
-        ICUbeds: nICUBeds,
-      })
-    })
+  caseCounts?.sort((a, b) => (a.time > b.time ? 1 : -1))
+
+  const count_observations = {
+    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
+    ICU: caseCounts?.filter((d) => d.ICU).length ?? 0,
+    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
+    newCases: caseCounts?.filter((d, i) => i > 2 && d.cases && caseCounts[i - 3].cases).length ?? 0,
+    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
-  let plotData = data.deterministicTrajectory
-    .filter((d, i) => i % 4 === 0)
-    .map((x) => ({
-      time: x.time,
-      susceptible: Math.round(x.susceptible.total) || undefined,
-      exposed: Math.round(x.exposed.total) || undefined,
-      infectious: Math.round(x.infectious.total) || undefined,
-      hospitalized: Math.round(x.hospitalized.total) || undefined,
-      critical: Math.round(x.critical.total) || undefined,
-      overflow: Math.round(x.overflow.total) || undefined,
-      recovered: Math.round(x.recovered.total) || undefined,
-      dead: Math.round(x.dead.total) || undefined,
+  const observations =
+    caseCounts?.map((d, i) => ({
+      time: new Date(d.time).getTime(),
+      cases: d.cases || undefined,
+      observedDeaths: d.deaths || undefined,
+      currentHospitalized: d.hospitalized || undefined,
+      ICU: d.ICU || undefined,
+      newCases: i > 2 ? d.cases - caseCounts[i - 3].cases || undefined : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
-    }))
-  const scatterToPlot: LineProps[] = []
+    })) ?? []
+
+  const plotData = [
+    ...data.deterministicTrajectory
+      .filter((d, i) => i % 4 === 0)
+      .map((x) => ({
+        time: x.time,
+        susceptible: Math.round(x.susceptible.total) || undefined,
+        exposed: Math.round(x.exposed.total) || undefined,
+        infectious: Math.round(x.infectious.total) || undefined,
+        hospitalized: Math.round(x.hospitalized.total) || undefined,
+        critical: Math.round(x.critical.total) || undefined,
+        overflow: Math.round(x.overflow.total) || undefined,
+        recovered: Math.round(x.recovered.total) || undefined,
+        dead: Math.round(x.dead.total) || undefined,
+        hospitalBeds: nHospitalBeds,
+        ICUbeds: nICUBeds,
+      })),
+    ...observations,
+  ] //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
+
   const linesToPlot: LineProps[] = [
     { key: 'hospitalBeds', color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
     { key: 'ICUbeds', color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
@@ -134,29 +124,30 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     { key: 'dead', color: colors.death, name: t('Cumulative deaths'), legendType: 'line' },
   ]
 
-  let tMin = plotData[0].time
-  let tMax = plotData[plotData.length - 1].time
-  // Append empirical data
-  if (observations.length) {
-    tMin = Math.min(tMin, observations[0].time)
-    tMax = Math.max(tMax, observations[observations.length - 1].time)
-    plotData = plotData.concat(observations) // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
-    if (count_observations.observedDeaths) {
-      scatterToPlot.push({ key: 'observedDeaths', color: colors.death, name: t('Cumulative confirmed deaths') })
-    }
-    if (count_observations.cases) {
-      scatterToPlot.push({ key: 'cases', color: colors.cumulativeCases, name: t('Cumulative confirmed cases') })
-    }
-    if (count_observations.hospitalized) {
-      scatterToPlot.push({ key: 'currentHospitalized', color: colors.severe, name: t('Patients in hospital') })
-    }
-    if (count_observations.ICU) {
-      scatterToPlot.push({ key: 'ICU', color: colors.critical, name: t('Patients in ICU') })
-    }
-    if (count_observations.newCases) {
-      scatterToPlot.push({ key: 'newCases', color: colors.newCases, name: t('Confirmed cases past 3 days') })
-    }
-  }
+  const tMin = observations.length ? Math.min(plotData[0].time, observations[0].time) : plotData[0].time
+  const tMax = observations.length
+    ? Math.max(plotData[plotData.length - 1].time, observations[observations.length - 1].time)
+    : plotData[plotData.length - 1].time
+
+  const scatterToPlot: LineProps[] = observations.length
+    ? [
+        // Append empirical data
+        ...(count_observations.observedDeaths
+          ? [{ key: 'observedDeaths', color: colors.death, name: t('Cumulative confirmed deaths') }]
+          : []),
+        ...(count_observations.cases
+          ? [{ key: 'cases', color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
+          : []),
+        ...(count_observations.hospitalized
+          ? [{ key: 'currentHospitalized', color: colors.severe, name: t('Patients in hospital') }]
+          : []),
+        ...(count_observations.ICU ? [{ key: 'ICU', color: colors.critical, name: t('Patients in ICU') }] : []),
+        ...(count_observations.newCases
+          ? [{ key: 'newCases', color: colors.newCases, name: t('Confirmed cases past 3 days') }]
+          : []),
+      ]
+    : []
+
   const logScaleString: YAxisProps['scale'] = logScale ? t('log') : t('linear')
 
   return (
@@ -199,24 +190,22 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                 />
                 <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
                 <Legend verticalAlign="top" />
-                {linesToPlot.map((d) => {
-                  return (
-                    <Line
-                      key={d.key}
-                      dot={false}
-                      isAnimationActive={false}
-                      type="monotone"
-                      strokeWidth={3}
-                      dataKey={d.key}
-                      stroke={d.color}
-                      name={d.name}
-                      legendType={d.legendType}
-                    />
-                  )
-                })}
-                {scatterToPlot.map((d) => {
-                  return <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
-                })}
+                {linesToPlot.map((d) => (
+                  <Line
+                    key={d.key}
+                    dot={false}
+                    isAnimationActive={false}
+                    type="monotone"
+                    strokeWidth={3}
+                    dataKey={d.key}
+                    stroke={d.color}
+                    name={d.name}
+                    legendType={d.legendType}
+                  />
+                ))}
+                {scatterToPlot.map((d) => (
+                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                ))}
               </ComposedChart>
             </>
           )
