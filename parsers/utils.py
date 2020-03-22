@@ -90,6 +90,9 @@ def merge_cases(oldcases, newcases):
                 print('problem with ',c,res[c], newcases[c])
             prevDay = joinedDays[0]
             for d in joinedDays[1:]:
+                # fix dates here if required
+                d['time'] = datetime.strptime(d['time'], '%Y-%m-%d').strftime('%Y-%m-%d')
+                prevDay['time'] = datetime.strptime(prevDay['time'], '%Y-%m-%d').strftime('%Y-%m-%d')
                 if d['time'] == prevDay['time']:
                     # merging will only add new keys (not replace old values), and remove the duplicate day afterwards
                     for k in d:
