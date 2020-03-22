@@ -17,11 +17,15 @@ __Q:__ Is the model fit to observations?
 __A:__ *No, currently we don't fit the model to observations. This is planned and we hopefully get it done soon. Instead, we use epidemiological parameters estimated from data from China and guess the initial size of the COVID19 outbreak in different populations.*
 
 ---
+
 __Q:__ My country/region/town is missing!
 
 __A:__ *If you have suggestions on additional regions that should be covered, head over to https://github.com/neherlab/covid19_scenarios_data and make a PR!*
 
 ---
+
 __Q:__ What is ICU overflow?
 
 __A:__ *In places that have seen severe COVID19 outbreak, the capacity of intensive care facilities is quickly exhausted. Patients that need ventilation but can't get ventilation due to shortage will die faster. "ICU overflow" is  our label for critically ill patients that should be ventilated but are not since no ventilators are available. These patients will die faster. The degree to which they die faster is specified by the `Severity of ICU overflow` parameter.*
+
+
