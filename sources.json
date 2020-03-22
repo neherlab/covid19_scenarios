@@ -28,5 +28,10 @@
     "primarySource": "https://coronadatascraper.com/timeseries-byLocation.json",
     "dataProvenance": "Coronadatascraper.com",
     "license": "Scraped from many sources, no clear license"
+  },
+  "india": {
+    "primarySource": "https://api.rootnet.in/covid19-in/stats/daily",
+    "dataProvenance": "https://github.com/amodm/api-covid19-in",
+    "license": "Scraped from Ministry of Health and Family Welfare plus other sources, no clear license"
   }
 }
