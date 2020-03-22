@@ -32,5 +32,5 @@
     "**/*.test.*sx",
     "**/*.test.*s"
   ],
-  "exec": "node -e 'console.clear()'; yarn prod:clean; yarn install && yarn prod && yarn prod:serve; true"
+  "exec": "yarn prod && yarn prod:serve"
 }
