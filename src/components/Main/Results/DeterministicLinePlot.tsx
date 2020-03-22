@@ -176,6 +176,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                   linesToPlot.map(d => {
                     return (
                       <Line
+                        key={d.key}
                         dot={false}
                         isAnimationActive={false}
                         type='monotone'
@@ -192,6 +193,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                   scatterToPlot.map(d => {
                     return (
                       <Scatter
+                        key={d.key}
                         dataKey={d.key}
                         fill={d.color}
                         name={d.name}
