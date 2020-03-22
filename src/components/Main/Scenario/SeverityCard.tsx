@@ -18,7 +18,7 @@ function SeverityCard({ severity, setSeverity }: SeverityCardProps) {
       identifier="severity-card"
       title={
         <>
-          <h5 className="my-1 text-wrap"">{t('Severity assumptions and age-specific isolation')}</h5>
+          <h5 className="my-1 text-wrap">{t('Severity assumptions and age-specific isolation')}</h5>
           <p className="my-0">{t('based on data from')} {t('China')}</p>
         </>
       }
