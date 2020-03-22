@@ -44,11 +44,10 @@ def retrieve_case_data():
                 continue
         
         for d in data[c]['dates']:
-            #vals = {'time': d, 'cases': '0', 'deaths': "0"}
-            vals = {'time': d, 'cases': "", 'deaths': ""}
+            vals = {'time': d, 'cases': None, 'deaths': None}
             for k in ['deaths', 'cases', 'recovered']:
                 if k in data[c]['dates'][d]:
-                    vals[k] = str(int(data[c]['dates'][d][k])) 
+                    vals[k] = int(data[c]['dates'][d][k]) 
             cases[country].append(vals)
 
     for cntry, data in cases.items():
