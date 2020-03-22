@@ -2,6 +2,8 @@ import * as yup from 'yup'
 
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 
+import i18next from 'i18next'
+
 const countries = Object.keys(countryAgeDistribution)
 
 const MSG_REQUIRED = 'Required'
@@ -17,7 +19,7 @@ export const schema = yup.object().shape({
     country: yup
       .string()
       .required(MSG_REQUIRED)
-      .oneOf(countries, 'No such country in our data'),
+      .oneOf(countries, i18next.t('No such country in our data')),
 
     suspectedCasesToday: yup
       .number()
@@ -59,7 +61,7 @@ export const schema = yup.object().shape({
       .number()
       // .required(MSG_REQUIRED)
       .min(0, MSG_NON_NEGATIVE)
-      .max(100, 'too many stochastic trajectories will slow things down'),
+      .max(100, i18next.t('too many stochastic trajectories will slow things down')),
 
     tMin: yup.date(),
     // .required(MSG_REQUIRED),

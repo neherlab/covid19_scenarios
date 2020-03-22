@@ -10,6 +10,8 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { colors } from './DeterministicLinePlot'
 
+import { useTranslation } from 'react-i18next'
+
 const ASPECT_RATIO = 16 / 4
 
 export interface SimProps {
@@ -22,6 +24,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
     return null
   }
 
+  const { t } = useTranslation()
   const ages = Object.keys(data.params.ageDistribution)
   const lastDataPoint = data.deterministicTrajectory[data.deterministicTrajectory.length - 1]
   const plotData = ages.map(age => ({
@@ -58,7 +61,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 }}
               >
                 <XAxis dataKey="name" />
-                <YAxis label={{ value: 'Cases', angle: -90, position: 'insideLeft' }} />
+                <YAxis label={{value:t('Cases'), angle: -90, position: 'insideLeft' }} />
                 <Tooltip />
                 <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -78,17 +81,17 @@ export function AgeBarChart({ data, rates }: SimProps) {
                   top: 3,
                 }}
               >
-                <XAxis dataKey="name" label={{ value: 'Age', position: 'insideBottom', offset: -3 }} />
+                <XAxis dataKey="name" label={{ value: t('Age'), position: 'insideBottom', offset: -3 }} />
                 <YAxis
                   label={{
-                    value: '% of total',
+                    value: t('percent of total'),
                     angle: -90,
                     position: 'insideLeft',
                   }}
                 />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Tooltip />
-                <Bar dataKey="fraction" fill="#aaaaaa" name="% of total" />
+                <Bar dataKey="fraction" fill="#aaaaaa" name={t('percent of total')} />
               </BarChart>
             </>
           )

@@ -12,6 +12,8 @@ import { setContainmentData, setContainmentScenario } from '../state/actions'
 import { State } from '../state/state'
 import { TimeSeries } from '../../../algorithms/types/TimeSeries.types'
 
+import { useTranslation } from 'react-i18next'
+
 export interface ScenarioCardContainmentProps {
   scenarioState: State
   errors?: FormikErrors<any>
@@ -20,6 +22,7 @@ export interface ScenarioCardContainmentProps {
 }
 
 function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispatch }: ScenarioCardContainmentProps) {
+  const { t } = useTranslation()
   function handleChangeContainmentScenario(newContainmentScenario: string) {
     scenarioDispatch(setContainmentScenario({ scenarioName: newContainmentScenario }))
   }
@@ -35,16 +38,16 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
   return (
     <CardWithDropdown
       identifier="containmentScenario"
-      label={<h5 className="p-0 d-inline text-truncate">Mitigation</h5>}
-      help="Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown."
+      label={<h5 className="p-0 d-inline text-truncate">{t('Mitigation')}</h5>}
+      help={t('reduction of transmission through mitigation measures over time different presets with variable degree of reduction can be selected from the dropdown')}
       options={containmentScenarioOptions}
       value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)}
       onValueChange={handleChangeContainmentScenario}
     >
       <FormSpinBox
         identifier="containment.numberPoints"
-        label="Number of points"
-        help="Number of controllable points on the mitigation curve"
+        label={t('Number of points')}
+        help={t('Number of controllable points on the mitigation curve')}
         step={1}
         min={2}
         max={100}
@@ -56,8 +59,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
       </div>
       <div>
         <p>
-          Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no
-          infection control, zero is complete prevention of all transmission.
+          {t('Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory')}
         </p>
       </div>
     </CardWithDropdown>

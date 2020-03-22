@@ -4,6 +4,8 @@ import { Else, If, Then, When } from 'react-if'
 
 import './ErrorPage.scss'
 
+import { useTranslation } from 'react-i18next'
+
 interface ErrorProps {
   error?: Error
   componentStack?: string
@@ -13,6 +15,7 @@ interface ErrorProps {
 const development = process.env.NODE_ENV === 'development'
 
 export default function ErrorPage({ error, componentStack, isDev = development }: ErrorProps) {
+  const { t } = useTranslation() 
   const hasDevMessage = !!(isDev && error && error.message)
   const hasDevStack = !!(isDev && componentStack)
 
@@ -33,7 +36,7 @@ export default function ErrorPage({ error, componentStack, isDev = development }
           </div>
         </Then>
         <Else>
-          <h3 className="h3-error text-center">{'Oops! Something went wrong'}</h3>
+          <h3 className="h3-error text-center">{t('oops something went wrong')}</h3>
         </Else>
       </If>
     </>
