@@ -1,7 +1,18 @@
 import React from 'react'
 import ReactResizeDetector from 'react-resize-detector'
-import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
-import type { LineProps as RechartsLineProps } from 'recharts'
+import {
+  LineProps as RechartsLineProps,
+  CartesianGrid,
+  Legend,
+  Line,
+  ComposedChart,
+  Scatter,
+  Tooltip,
+  TooltipPayload,
+  XAxis,
+  YAxis,
+} from 'recharts'
+import { useTranslation } from 'react-i18next'
 
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
@@ -19,7 +30,7 @@ export const colors = {
   cumulativeCases: '#aaaaaa',
   newCases: '#fdbf6f',
   hospitalBeds: '#bbbbbb',
-  ICUbeds: '#cccccc'
+  ICUbeds: '#cccccc',
 }
 
 export interface LinePlotProps {
@@ -30,8 +41,8 @@ export interface LinePlotProps {
 }
 
 interface LineProps {
-  key: string,
-  name: string,
+  key: string
+  name: string
   color: string
   legendType?: RechartsLineProps['legendType']
 }
@@ -59,31 +70,46 @@ function labelFormatter(value: string | number): React.ReactNode {
 }
 
 export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
+  const { t } = useTranslation()
+
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochasticTrajectories.length > 0) {
     return null
   }
+
   const hasUserResult = Boolean(userResult?.trajectory)
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
 
-  let observations = []
-  const count_observations = {cases:0, ICU:0, observedDeaths:0, newCases:0, hospitalized:0}
+  const observations = []
+  const count_observations = { cases: 0, ICU: 0, observedDeaths: 0, newCases: 0, hospitalized: 0 }
   if (caseCounts) {
-    caseCounts.sort(function(a,b){ return (a.time>b.time)?1:-1});
+    caseCounts.sort(function(a, b) {
+      return a.time > b.time ? 1 : -1
+    })
     caseCounts.forEach(function(d, i) {
-      if (d.cases) {count_observations.cases += 1}
-      if (d.deaths) {count_observations.observedDeaths += 1}
-      if (d.hospitalized) {count_observations.hospitalized += 1}
-      if (d.ICU) {count_observations.ICU += 1}
-      if (i>2 && d.cases && caseCounts[i-3].cases) {count_observations.newCases += 1}
+      if (d.cases) {
+        count_observations.cases += 1
+      }
+      if (d.deaths) {
+        count_observations.observedDeaths += 1
+      }
+      if (d.hospitalized) {
+        count_observations.hospitalized += 1
+      }
+      if (d.ICU) {
+        count_observations.ICU += 1
+      }
+      if (i > 2 && d.cases && caseCounts[i - 3].cases) {
+        count_observations.newCases += 1
+      }
       observations.push({
-        time: (new Date(d.time)).getTime(),
+        time: new Date(d.time).getTime(),
         cases: d.cases || undefined,
         observedDeaths: d.deaths || undefined,
         currentHospitalized: d.hospitalized || undefined,
         ICU: d.ICU || undefined,
-        newCases: (i>2)?((d.cases - caseCounts[i-3].cases) || undefined):undefined,
+        newCases: i > 2 ? d.cases - caseCounts[i - 3].cases || undefined : undefined,
         hospitalBeds: nHospitalBeds,
         ICUbeds: nICUBeds,
       })
@@ -107,40 +133,40 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     }))
   const scatterToPlot: LineProps[] = []
   const linesToPlot: LineProps[] = [
-      {key:'hospitalBeds', color: colors.hospitalBeds, name:'Total hospital beds', legendType:"none"},
-      {key:'ICUbeds', color: colors.ICUbeds, name:'Total ICU/ICM beds', legendType:"none"},
-      {key:'susceptible', color: colors.susceptible, name:'Susceptible', legendType:"line"},
-      //{key:'exposed', color: colors.exposed, name:'', legendType:"line"},
-      {key:'infectious', color: colors.infectious, name:'Infectious', legendType:"line"},
-      // {key:'hospitalized', color: colors.severe, name:'Severely ill', legendType:"line"},
-      {key:'critical', color: colors.critical, name:'Patients in ICU', legendType:"line"},
-      {key:'overflow', color: colors.overflow, name:'ICU overflow', legendType:"line"},
-      {key:'recovered', color: colors.recovered, name:'Recovered', legendType:"line"},
-      {key:'dead', color: colors.death, name:'Cumulative deaths', legendType:"line"},
+    { key: 'hospitalBeds', color: colors.hospitalBeds, name: 'Total hospital beds', legendType: 'none' },
+    { key: 'ICUbeds', color: colors.ICUbeds, name: 'Total ICU/ICM beds', legendType: 'none' },
+    { key: 'susceptible', color: colors.susceptible, name: 'Susceptible', legendType: 'line' },
+    // {key:'exposed', color: colors.exposed, name:'', legendType:"line"},
+    { key: 'infectious', color: colors.infectious, name: 'Infectious', legendType: 'line' },
+    // {key:'hospitalized', color: colors.severe, name:'Severely ill', legendType:"line"},
+    { key: 'critical', color: colors.critical, name: 'Patients in ICU', legendType: 'line' },
+    { key: 'overflow', color: colors.overflow, name: 'ICU overflow', legendType: 'line' },
+    { key: 'recovered', color: colors.recovered, name: 'Recovered', legendType: 'line' },
+    { key: 'dead', color: colors.death, name: 'Cumulative deaths', legendType: 'line' },
   ]
 
-  let tMin = plotData[0].time;
-  let tMax = plotData[plotData.length-1].time;
+  let tMin = plotData[0].time
+  let tMax = plotData[plotData.length - 1].time
   // Append empirical data
   if (observations.length) {
-      tMin = Math.min(tMin, observations[0].time);
-      tMax = Math.max(tMax, observations[observations.length-1].time);
-      plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
-      if (count_observations.observedDeaths){
-        scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
-      }
-      if (count_observations.cases){
-        scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: "Cumulative confirmed cases"})
-      }
-      if (count_observations.hospitalized){
-        scatterToPlot.push({key:'currentHospitalized', 'color': colors.severe, name: "Patients in hospital"})
-      }
-      if (count_observations.ICU){
-        scatterToPlot.push({key:'ICU', 'color': colors.critical, name: "Patients in ICU"})
-      }
-      if (count_observations.newCases){
-        scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: "Confirmed cases past 3 days"})
-      }
+    tMin = Math.min(tMin, observations[0].time)
+    tMax = Math.max(tMax, observations[observations.length - 1].time)
+    plotData = plotData.concat(observations) // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
+    if (count_observations.observedDeaths) {
+      scatterToPlot.push({ key: 'observedDeaths', color: colors.death, name: 'Cumulative confirmed deaths' })
+    }
+    if (count_observations.cases) {
+      scatterToPlot.push({ key: 'cases', color: colors.cumulativeCases, name: 'Cumulative confirmed cases' })
+    }
+    if (count_observations.hospitalized) {
+      scatterToPlot.push({ key: 'currentHospitalized', color: colors.severe, name: 'Patients in hospital' })
+    }
+    if (count_observations.ICU) {
+      scatterToPlot.push({ key: 'ICU', color: colors.critical, name: 'Patients in ICU' })
+    }
+    if (count_observations.newCases) {
+      scatterToPlot.push({ key: 'newCases', color: colors.newCases, name: 'Confirmed cases past 3 days' })
+    }
   }
   const logScaleString = logScale ? 'log' : 'linear'
 
@@ -169,39 +195,39 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="time" type="number" tickFormatter={xTickFormatter} domain={[tMin, tMax]} tickCount={7}/>
-                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} />
+                <XAxis
+                  dataKey="time"
+                  type="number"
+                  tickFormatter={xTickFormatter}
+                  domain={[tMin, tMax]}
+                  tickCount={7}
+                />
+                <YAxis
+                  scale={logScaleString}
+                  type="number"
+                  domain={[1, 'dataMax']}
+                  tickFormatter={tick => t('localizedNumber', { value: tick })}
+                />
                 <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
                 <Legend verticalAlign="top" />
-                {
-                  linesToPlot.map(d => {
-                    return (
-                      <Line
-                        key={d.key}
-                        dot={false}
-                        isAnimationActive={false}
-                        type='monotone'
-                        strokeWidth={3}
-                        dataKey={d.key}
-                        stroke={d.color}
-                        name={d.name}
-                        legendType={d.legendType}
-                      />
-                    )
-                    })
-                }
-                {
-                  scatterToPlot.map(d => {
-                    return (
-                      <Scatter
-                        key={d.key}
-                        dataKey={d.key}
-                        fill={d.color}
-                        name={d.name}
-                      />
-                    )
-                    })
-                }
+                {linesToPlot.map(d => {
+                  return (
+                    <Line
+                      key={d.key}
+                      dot={false}
+                      isAnimationActive={false}
+                      type="monotone"
+                      strokeWidth={3}
+                      dataKey={d.key}
+                      stroke={d.color}
+                      name={d.name}
+                      legendType={d.legendType}
+                    />
+                  )
+                })}
+                {scatterToPlot.map(d => {
+                  return <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                })}
               </ComposedChart>
             </>
           )
