@@ -30,7 +30,7 @@ bundesland_codes = {
 
 URL  = "https://raw.githubusercontent.com/chriswien/COVID19_CaseNumberDE/master/COVID19_Cases_Bundeslaender_DE.csv"
 LOC  = "case-counts/Europe/Western Europe/Germany"
-cols = ['time', 'bundesland', 'cases', 'deceased']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions
@@ -58,8 +58,9 @@ def parse():
 
     for row in rdr:
         date   = row[0]
-        bundesland = bundesland_codes[row[1]]
-        regions[bundesland].append([date, to_int(row[2]), to_int(row[3]), None, None, None])
+        if row[1] in bundesland_codes:
+            bundesland = bundesland_codes[row[1]]
+            regions[bundesland].append([date, to_int(row[2]), to_int(row[3]), None, None, None])
 
     for region, data in regions.items():
         write_tsv(f"{LOC}/{region}.tsv", cols, data, "germany")
