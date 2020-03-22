@@ -145,7 +145,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const logScaleString = logScale ? 'log' : 'linear'
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
         {({ width }: { width?: number }) => {
           if (!width) {

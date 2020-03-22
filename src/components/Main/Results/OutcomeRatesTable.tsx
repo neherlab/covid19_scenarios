@@ -61,7 +61,7 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
 
   // TODO: replace this with the table component (similar to severity table)
   return (
-    <Row>
+    <Row data-testid="OutcomeRatesTable">
       <Col lg={6}>
         <h5>Proportions</h5>
         <table>

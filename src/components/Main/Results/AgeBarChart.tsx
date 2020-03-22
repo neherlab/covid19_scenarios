@@ -34,7 +34,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
   }))
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100 h-100" data-testid="AgeBarChart">
       <ReactResizeDetector handleWidth handleHeight>
         {({ width }: { width?: number }) => {
           if (!width) {
