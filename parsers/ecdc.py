@@ -69,10 +69,10 @@ def retrieve_case_data():
         for d in data:
             if d['cases']:
                 total_cases += d['cases']
-                d['cases'] = total_cases
+            d['cases'] = total_cases
             if d['deaths']:
                 total_deaths += d['deaths']
-                d['deaths'] = total_deaths
+            d['deaths'] = total_deaths
         cases[cntry] = data
 
     return dict(cases)
