@@ -6,6 +6,8 @@ import type { LineProps as RechartsLineProps } from 'recharts'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
+import { useTranslation } from 'react-i18next'
+
 const ASPECT_RATIO = 16 / 9
 
 export const colors = {
@@ -63,6 +65,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   if (!data || data.stochasticTrajectories.length > 0) {
     return null
   }
+  const { t } = useTranslation()
   const hasUserResult = Boolean(userResult?.trajectory)
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
@@ -107,16 +110,16 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     }))
   const scatterToPlot: LineProps[] = []
   const linesToPlot: LineProps[] = [
-      {key:'hospitalBeds', color: colors.hospitalBeds, name:'Total hospital beds', legendType:"none"},
-      {key:'ICUbeds', color: colors.ICUbeds, name:'Total ICU/ICM beds', legendType:"none"},
-      {key:'susceptible', color: colors.susceptible, name:'Susceptible', legendType:"line"},
+      {key:'hospitalBeds', color: colors.hospitalBeds, name:t('Total hospital beds'), legendType:"none"},
+      {key:'ICUbeds', color: colors.ICUbeds, name:t('Total ICU/ICM beds'), legendType:"none"},
+      {key:'susceptible', color: colors.susceptible, name:t('Susceptible'), legendType:"line"},
       //{key:'exposed', color: colors.exposed, name:'', legendType:"line"},
-      {key:'infectious', color: colors.infectious, name:'Infectious', legendType:"line"},
+      {key:'infectious', color: colors.infectious, name:t('Infectious'), legendType:"line"},
       // {key:'hospitalized', color: colors.severe, name:'Severely ill', legendType:"line"},
-      {key:'critical', color: colors.critical, name:'Patients in ICU', legendType:"line"},
-      {key:'overflow', color: colors.overflow, name:'ICU overflow', legendType:"line"},
-      {key:'recovered', color: colors.recovered, name:'Recovered', legendType:"line"},
-      {key:'dead', color: colors.death, name:'Cumulative deaths', legendType:"line"},
+      {key:'critical', color: colors.critical, name:t('Patients in ICU'), legendType:"line"},
+      {key:'overflow', color: colors.overflow, name:t('ICU overflow'), legendType:"line"},
+      {key:'recovered', color: colors.recovered, name:t('Recovered'), legendType:"line"},
+      {key:'dead', color: colors.death, name:t('Cumulative deaths'), legendType:"line"},
   ]
 
   let tMin = plotData[0].time;
@@ -127,22 +130,22 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       tMax = Math.max(tMax, observations[observations.length-1].time);
       plotData = plotData.concat(observations) //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
       if (count_observations.observedDeaths){
-        scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: "Cumulative confirmed deaths"})
+        scatterToPlot.push({key:'observedDeaths', 'color': colors.death, name: t('Cumulative confirmed deaths')})
       }
       if (count_observations.cases){
-        scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: "Cumulative confirmed cases"})
+        scatterToPlot.push({key:'cases', 'color': colors.cumulativeCases, name: t('Cumulative confirmed cases')})
       }
       if (count_observations.hospitalized){
-        scatterToPlot.push({key:'currentHospitalized', 'color': colors.severe, name: "Patients in hospital"})
+        scatterToPlot.push({key:'currentHospitalized', 'color': colors.severe, name: t('Patients in hospital')})
       }
       if (count_observations.ICU){
-        scatterToPlot.push({key:'ICU', 'color': colors.critical, name: "Patients in ICU"})
+        scatterToPlot.push({key:'ICU', 'color': colors.critical, name: t('Patients in ICU')})
       }
       if (count_observations.newCases){
-        scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: "Confirmed cases past 3 days"})
+        scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: t('Confirmed cases past 3 days')})
       }
   }
-  const logScaleString = logScale ? 'log' : 'linear'
+  const logScaleString = logScale ? t('log') : t('linear')
 
   return (
     <div className="w-100 h-100">
@@ -156,7 +159,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
 
           return (
             <>
-              <h5>Cases through time</h5>
+              <h5>{t('Cases through time')}</h5>
               <ComposedChart
                 width={width}
                 height={height}

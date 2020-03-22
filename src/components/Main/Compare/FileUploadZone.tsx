@@ -4,6 +4,8 @@ import React, { useCallback } from 'react'
 
 import { useDropzone } from 'react-dropzone'
 
+import { useTranslation } from 'react-i18next'
+
 /* Adds relevant files to a Map to be dispatched */
 function reduceDroppedFiles(files: Map<FileType, File>, file: File) {
   const ext = path.extname(file.name)
@@ -39,15 +41,15 @@ function FileUploadZone({ files, onFilesChange }: FileUploadZoneProps) {
   )
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
-
+  const { t } = useTranslation()
   return (
     <div>
       <div {...getRootProps()}>
         <input type="file" {...getInputProps()} />
         {isDragActive ? (
-          <p>{'Drop the files here ...'}</p>
+          <p>{t('Drop the files here ...')}</p>
         ) : (
-          <p>{`Drag 'n' drop some files here, or click to select files`}</p>
+          <p>{t("Drag n' drop some files here, or click to select files")}</p>
         )}
         <ul>
           {[...files.values()].map(({ name }: File) => (
