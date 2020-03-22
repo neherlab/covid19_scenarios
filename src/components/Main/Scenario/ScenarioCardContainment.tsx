@@ -42,15 +42,6 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
       value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)}
       onValueChange={handleChangeContainmentScenario}
     >
-      <FormSpinBox
-        identifier="containment.numberPoints"
-        label="Number of points"
-        help="Number of controllable points on the mitigation curve"
-        step={1}
-        min={2}
-        errors={errors}
-        touched={touched}
-      />
       <div className="w-auto">
         <ContainmentGraph data={containmentData} onDataChange={handleChangeContainmentData} />
       </div>
