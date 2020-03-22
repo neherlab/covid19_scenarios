@@ -60,11 +60,12 @@ function labelFormatter(value: string | number): React.ReactNode {
 }
 
 export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
+  const { t } = useTranslation()
+
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochasticTrajectories.length > 0) {
     return null
   }
-  const { t } = useTranslation()
   const hasUserResult = Boolean(userResult?.trajectory)
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
@@ -190,7 +191,12 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                   domain={[tMin, tMax]}
                   tickCount={7}
                 />
-                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} />
+                <YAxis
+                  scale={logScaleString}
+                  type="number"
+                  domain={[1, 'dataMax']}
+                  tickFormatter={(tick) => t('localized:number', { value: tick })}
+                />
                 <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
                 <Legend verticalAlign="top" />
                 {linesToPlot.map((d) => {
