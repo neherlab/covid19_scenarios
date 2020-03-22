@@ -15,7 +15,7 @@ with open("sources.json") as fh:
 # Functions
 
 def stoi(x):
-    if not x:
+    if x is None:
         return None
     if x == "":
         return 0
@@ -115,7 +115,7 @@ def list_to_dict(regions, cols):
                 # cols is likely ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
                 if cols[i] == 'time':
                     nd[cols[i]] = d[i]
-                elif d[i]:
+                elif d[i] is not None:
                     nd[cols[i]] = int(d[i])
                 else:
                     nd[cols[i]] = None
