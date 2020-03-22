@@ -36,7 +36,7 @@ const columnColors = {
 
 const getRowId = (row: TableRow) => row.id
 
-export type HeaderCellProps = TableBase.DataCellProps
+export type HeaderCellProps = Partial<TableBase.DataCellProps> & TableHeaderRow.CellProps
 
 export function HeaderCell({ column, ...restProps }: HeaderCellProps) {
   const { title } = column
