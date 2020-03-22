@@ -100,14 +100,23 @@ Got questions or suggestions?
 </h2>
 
 <p align="center">
-  <a href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a">
-    <img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
+  <a
+    alt="Link to join the chat"
+    href="hhttps://spectrum.chat/covid19-scenarios"
+  >
+    <img
+      alt="Image for the link to join the chat"
+      src="https://user-images.githubusercontent.com/9403403/77235704-691ec480-6bb8-11ea-985d-82ec87cfdcdf.png"
+    />
   </a>
 </p>
+
+
 
 <h2 align="center">
 Discover
 </h2>
+
 
 <p align="center" width="99%">
 <table width="100%">
