@@ -92,13 +92,14 @@ function Main() {
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const caseCounts      = countryCaseCounts[scenarioState.population.data.cases] || []
+    const caseCounts: typeof empiricalCases = countryCaseCounts[scenarioState.population.data.cases] || []
     const containmentData = scenarioState.containment.data.reduction
 
     serializeScenarioToURL(scenarioState, params)
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
 
     setResult(newResult)
+    caseCounts?.sort((a, b) => (a.time > b.time ? 1 : -1))
     setEmpiricalCases(caseCounts)
     setSubmitting(false)
   }

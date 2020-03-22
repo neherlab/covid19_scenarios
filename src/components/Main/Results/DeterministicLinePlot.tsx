@@ -70,8 +70,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
 
-  caseCounts?.sort((a, b) => (a.time > b.time ? 1 : -1))
-
   const count_observations = {
     cases: caseCounts?.filter((d) => d.cases).length ?? 0,
     ICU: caseCounts?.filter((d) => d.ICU).length ?? 0,
