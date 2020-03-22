@@ -5,7 +5,7 @@ import io
 from datetime import datetime
 
 from collections import defaultdict
-from .utils import write_tsv
+from .utils import write_tsv, list_to_dict, store_json
 
 # ------------------------------------------------------------------------
 # Globals
@@ -71,3 +71,14 @@ def parse():
             write_tsv(f"{LOC}/Spain.tsv", cols, data, "spain")
         else:
             write_tsv(f"{LOC}/{region}.tsv", cols, data, "spain")
+
+    # prepare dict for json
+    regions2 = {}
+    for region, data in region_tables.items():
+        if not (region == "Spain"):
+            regions2["ESP-"+region] = data
+        else:
+            regions2[region] = data
+
+    regions3 = list_to_dict(regions2, cols)
+    store_json(regions3)
