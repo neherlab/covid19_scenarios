@@ -28,9 +28,11 @@ export interface ResutsCardProps {
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
+  autorun: boolean
+  setAutorun: (autorun: boolean) => void
 }
 
-function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) {
+function ResultsCard({ canRun, severity, result, caseCounts, autorun, setAutorun }: ResutsCardProps) {
   const [logScale, setLogScale] = useState<boolean>(true)
 
   // TODO: shis should probably go into the `Compare/`
@@ -98,6 +100,16 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
             </span>
           </div>
         </Col>
+      </Row>
+
+      <Row noGutters>
+        <FormSwitch
+          identifier="autorun"
+          label="Update automatically"
+          help={'Whether to update results on parameter changes automatically. If not, click "Run" button'}
+          checked={autorun}
+          onValueChanged={setAutorun}
+        />
       </Row>
 
       <Row noGutters hidden={!result}>

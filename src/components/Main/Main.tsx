@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react'
+import React, { useReducer, useState, useRef } from 'react'
 
 import _ from 'lodash'
 
@@ -43,6 +43,7 @@ export function severityErrors(severity: SeverityTableRow[]) {
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
 function Main() {
+  const formikRef = useRef(null)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState /* , initDefaultState */)
 
@@ -58,22 +59,39 @@ function Main() {
     containment: scenarioState.containment.data,
   }
 
+  const [autorun, setAutorun] = useState<boolean>(true)
+  const [initialSubmit, setInitialSubmit] = useState<boolean>(true)
+
   function setScenarioToCustom(newParams: AllParams) {
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.population, newParams.population)) {
+    const equalPopulation = _.isEqual(allParams.population, newParams.population)
+    if (!equalPopulation) {
       scenarioDispatch(setPopulationData({ data: newParams.population }))
     }
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
+    const equalEpidemiological = _.isEqual(allParams.epidemiological, newParams.epidemiological)
+    if (!equalEpidemiological) {
       scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
     }
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.simulation, newParams.simulation)) {
+    const equalSimulation = _.isEqual(allParams.simulation, newParams.simulation)
+    if (!equalSimulation) {
       scenarioDispatch(setSimulationData({ data: newParams.simulation }))
     }
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.containment, newParams.containment)) {
+    const equalContainment = _.isEqual(allParams.containment, newParams.containment)
+    if (!equalContainment) {
       scenarioDispatch(setContainmentData({ data: newParams.containment }))
+    }
+
+    const isValuesChanged = !(equalPopulation && equalEpidemiological && equalSimulation && equalContainment)
+    if ((isValuesChanged || initialSubmit) && formikRef.current) {
+      const canRun = severityTableIsValid(severity)
+      const { isValid, setSubmitting } = formikRef.current
+      if (canRun && autorun && isValid) {
+        handleSubmit(newParams, { setSubmitting })
+        setInitialSubmit(false)
+      }
     }
   }
 
@@ -86,7 +104,7 @@ function Main() {
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const caseCounts      = countryCaseCounts[scenarioState.population.data.cases] || []
+    const caseCounts = countryCaseCounts[scenarioState.population.data.cases] || []
     const containmentData = scenarioState.containment.data.reduction
 
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
@@ -105,6 +123,10 @@ function Main() {
           validationSchema={schema}
           onSubmit={handleSubmit}
           validate={setScenarioToCustom}
+          validateOnMount
+          validateOnChange
+          validateOnBlur={false}
+          innerRef={formikRef}
         >
           {({ errors, touched, isValid }) => {
             const canRun = isValid && severityTableIsValid(severity)
@@ -124,7 +146,14 @@ function Main() {
                   </Col>
 
                   <Col lg={8} xl={6} className="py-1 px-1">
-                    <ResultsCard canRun={canRun} severity={severity} result={result} caseCounts={empiricalCases}/>
+                    <ResultsCard
+                      canRun={canRun}
+                      severity={severity}
+                      result={result}
+                      caseCounts={empiricalCases}
+                      autorun={autorun}
+                      setAutorun={setAutorun}
+                    />
                   </Col>
                 </Row>
               </Form>
