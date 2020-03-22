@@ -1,4 +1,4 @@
-import { AllParams } from '../../../algorithms/Param.types'
+import type { AllParams } from '../../../algorithms/types/Param.types'
 import { State } from './state'
 
 /*
