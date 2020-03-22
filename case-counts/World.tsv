@@ -73,6 +73,7 @@ Afghanistan	2020-03-17	21	0
 Afghanistan	2020-03-18	22	0			
 Afghanistan	2020-03-19	22	0			
 Afghanistan	2020-03-20	22	0			
+Afghanistan	2020-03-21	24	0			
 Albania	2020-03-09	2	0			
 Albania	2020-03-10	6	0			
 Albania	2020-03-11	10	0			
@@ -85,6 +86,7 @@ Albania	2020-03-17	51	1
 Albania	2020-03-18	55	1			
 Albania	2020-03-19	59	2			
 Albania	2020-03-20	70	2			
+Albania	2020-03-21	70	2			
 Algeria	2019-12-31	0	0			
 Algeria	2020-01-01	0	0			
 Algeria	2020-01-02	0	0			
@@ -161,6 +163,7 @@ Algeria	2020-03-17	60	4
 Algeria	2020-03-18	60	5			
 Algeria	2020-03-19	73	6			
 Algeria	2020-03-20	82	7			
+Algeria	2020-03-21	94	10			
 Andorra	2020-03-03	1	0			
 Andorra	2020-03-14	2	0			
 Andorra	2020-03-16	5	0			
@@ -168,7 +171,9 @@ Andorra	2020-03-17	14	0
 Andorra	2020-03-18	14	0			
 Andorra	2020-03-19	53	0			
 Andorra	2020-03-20	75	0			
+Andorra	2020-03-21	75	0			
 Antigua and Barbuda	2020-03-15	1	0			
+Antigua and Barbuda	2020-03-21	1	0			
 Argentina	2020-03-04	1	0			
 Argentina	2020-03-06	2	0			
 Argentina	2020-03-07	8	0			
@@ -183,6 +188,7 @@ Argentina	2020-03-17	65	2
 Argentina	2020-03-18	79	2			
 Argentina	2020-03-19	97	2			
 Argentina	2020-03-20	128	3			
+Argentina	2020-03-21	158	3			
 Armenia	2019-12-31	0	0			
 Armenia	2020-01-01	0	0			
 Armenia	2020-01-02	0	0			
@@ -255,6 +261,7 @@ Armenia	2020-03-17	52	0
 Armenia	2020-03-18	78	0			
 Armenia	2020-03-19	115	0			
 Armenia	2020-03-20	122	0			
+Armenia	2020-03-21	136	0			
 Australia	2019-12-31	0	0			
 Australia	2020-01-01	0	0			
 Australia	2020-01-02	0	0			
@@ -336,6 +343,7 @@ Australia	2020-03-17	375	5
 Australia	2020-03-18	454	5			
 Australia	2020-03-19	565	6			
 Australia	2020-03-20	709	6			
+Australia	2020-03-21	874	7			
 Austria	2019-12-31	0	0			
 Austria	2020-01-01	0	0			
 Austria	2020-01-02	0	0			
@@ -417,6 +425,7 @@ Austria	2020-03-17	1016	3
 Austria	2020-03-18	1332	3			
 Austria	2020-03-19	1646	4			
 Austria	2020-03-20	2196	6			
+Austria	2020-03-21	2649	6			
 Azerbaijan	2019-12-31	0	0			
 Azerbaijan	2020-01-01	0	0			
 Azerbaijan	2020-01-02	0	0			
@@ -491,9 +500,11 @@ Azerbaijan	2020-03-17	19	0
 Azerbaijan	2020-03-18	28	0			
 Azerbaijan	2020-03-19	34	0			
 Azerbaijan	2020-03-20	44	0			
+Azerbaijan	2020-03-21	44	1			
 Bahamas	2020-03-16	1	0			
 Bahamas	2020-03-17	1	0			
 Bahamas	2020-03-20	3	0			
+Bahamas	2020-03-21	4	0			
 Bahrain	2019-12-31	0	0			
 Bahrain	2020-01-01	0	0			
 Bahrain	2020-01-02	0	0			
@@ -574,15 +585,18 @@ Bahrain	2020-03-17	221	1
 Bahrain	2020-03-18	237	1			
 Bahrain	2020-03-19	256	1			
 Bahrain	2020-03-20	269	1			
+Bahrain	2020-03-21	285	1			
 Bangladesh	2020-03-09	3	0			
 Bangladesh	2020-03-15	3	0			
 Bangladesh	2020-03-17	5	0			
 Bangladesh	2020-03-18	8	0			
 Bangladesh	2020-03-19	10	0			
 Bangladesh	2020-03-20	10	0			
+Bangladesh	2020-03-21	17	0			
 Barbados	2020-03-18	1	0			
 Barbados	2020-03-19	1	0			
 Barbados	2020-03-20	2	0			
+Barbados	2020-03-21	6	0			
 Belarus	2019-12-31	0	0			
 Belarus	2020-01-01	0	0			
 Belarus	2020-01-02	0	0			
@@ -656,6 +670,7 @@ Belarus	2020-03-17	36	0
 Belarus	2020-03-18	36	0			
 Belarus	2020-03-19	46	0			
 Belarus	2020-03-20	57	0			
+Belarus	2020-03-21	57	0			
 Belgium	2019-12-31	0	0			
 Belgium	2020-01-01	0	0			
 Belgium	2020-01-02	0	0			
@@ -737,11 +752,14 @@ Belgium	2020-03-17	1085	5
 Belgium	2020-03-18	1243	5			
 Belgium	2020-03-19	1486	14			
 Belgium	2020-03-20	1795	21			
+Belgium	2020-03-21	2257	37			
 Benin	2020-03-17	1	0			
 Benin	2020-03-18	1	0			
 Benin	2020-03-19	1	0			
 Benin	2020-03-20	2	0			
+Benin	2020-03-21	2	0			
 Bermuda	2020-03-20	2	0			
+Bermuda	2020-03-21	2	0			
 Bhutan	2020-03-06	1	0			
 Bhutan	2020-03-13	1	0			
 Bhutan	2020-03-15	1	0			
@@ -749,6 +767,7 @@ Bhutan	2020-03-17	1	0
 Bhutan	2020-03-18	1	0			
 Bhutan	2020-03-19	1	0			
 Bhutan	2020-03-20	1	0			
+Bhutan	2020-03-21	2	0			
 Bolivia (Plurinational State of)	2020-03-12	2	0			
 Bolivia (Plurinational State of)	2020-03-13	3	0			
 Bolivia (Plurinational State of)	2020-03-14	10	0			
@@ -757,6 +776,7 @@ Bolivia (Plurinational State of)	2020-03-17	11	0
 Bolivia (Plurinational State of)	2020-03-18	12	0			
 Bolivia (Plurinational State of)	2020-03-19	12	0			
 Bolivia (Plurinational State of)	2020-03-20	15	0			
+Bolivia (Plurinational State of)	2020-03-21	19	0			
 Bosnia and Herzegovina	2020-03-06	2	0			
 Bosnia and Herzegovina	2020-03-12	3	0			
 Bosnia and Herzegovina	2020-03-13	3	0			
@@ -765,6 +785,7 @@ Bosnia and Herzegovina	2020-03-17	21	0
 Bosnia and Herzegovina	2020-03-18	21	0			
 Bosnia and Herzegovina	2020-03-19	36	0			
 Bosnia and Herzegovina	2020-03-20	44	0			
+Bosnia and Herzegovina	2020-03-21	44	0			
 Brazil	2019-12-31	0	0			
 Brazil	2020-01-01	0	0			
 Brazil	2020-01-02	0	0			
@@ -843,6 +864,7 @@ Brazil	2020-03-17	234	0
 Brazil	2020-03-18	291	1			
 Brazil	2020-03-19	428	4			
 Brazil	2020-03-20	621	6			
+Brazil	2020-03-21	904	11			
 Brunei Darussalam	2020-03-10	1	0			
 Brunei Darussalam	2020-03-12	11	0			
 Brunei Darussalam	2020-03-13	25	0			
@@ -853,6 +875,7 @@ Brunei Darussalam	2020-03-17	54	0
 Brunei Darussalam	2020-03-18	56	0			
 Brunei Darussalam	2020-03-19	68	0			
 Brunei Darussalam	2020-03-20	73	0			
+Brunei Darussalam	2020-03-21	78	0			
 Bulgaria	2020-03-08	2	0			
 Bulgaria	2020-03-09	4	0			
 Bulgaria	2020-03-12	7	1			
@@ -864,6 +887,7 @@ Bulgaria	2020-03-17	62	2
 Bulgaria	2020-03-18	81	2			
 Bulgaria	2020-03-19	92	2			
 Bulgaria	2020-03-20	105	3			
+Bulgaria	2020-03-21	127	3			
 Burkina Faso	2020-03-11	2	0			
 Burkina Faso	2020-03-12	2	0			
 Burkina Faso	2020-03-15	3	0			
@@ -872,6 +896,7 @@ Burkina Faso	2020-03-17	20	0
 Burkina Faso	2020-03-18	20	0			
 Burkina Faso	2020-03-19	26	1			
 Burkina Faso	2020-03-20	33	1			
+Burkina Faso	2020-03-21	40	1			
 Cambodia	2019-12-31	0	0			
 Cambodia	2020-01-01	0	0			
 Cambodia	2020-01-02	0	0			
@@ -944,6 +969,7 @@ Cambodia	2020-03-17	24	0
 Cambodia	2020-03-18	24	0			
 Cambodia	2020-03-19	24	0			
 Cambodia	2020-03-20	24	0			
+Cambodia	2020-03-21	47	0			
 Cameroon	2020-03-07	1	0			
 Cameroon	2020-03-09	2	0			
 Cameroon	2020-03-15	3	0			
@@ -952,6 +978,7 @@ Cameroon	2020-03-17	4	0
 Cameroon	2020-03-18	10	0			
 Cameroon	2020-03-19	10	0			
 Cameroon	2020-03-20	14	0			
+Cameroon	2020-03-21	27	0			
 Canada	2019-12-31	0	0			
 Canada	2020-01-01	0	0			
 Canada	2020-01-02	0	0			
@@ -1033,6 +1060,8 @@ Canada	2020-03-17	424	4
 Canada	2020-03-18	569	8			
 Canada	2020-03-19	690	9			
 Canada	2020-03-20	846	10			
+Canada	2020-03-21	971	12			
+Cabo Verde	2020-03-21	2	0			
 Cases on an international conveyance Japan	2019-12-31	0	0			
 Cases on an international conveyance Japan	2020-01-01	0	0			
 Cases on an international conveyance Japan	2020-01-02	0	0			
@@ -1098,12 +1127,15 @@ Cases on an international conveyance Japan	2020-03-01	705	6
 Cases on an international conveyance Japan	2020-03-02	705	6			
 Cases on an international conveyance Japan	2020-03-10	696	7			
 Cayman Islands	2020-03-20	1	0			
+Cayman Islands	2020-03-21	3	1			
 Central African Republic	2020-03-16	1	0			
 Central African Republic	2020-03-17	1	0			
 Central African Republic	2020-03-18	1	0			
 Central African Republic	2020-03-19	1	0			
 Central African Republic	2020-03-20	1	0			
+Central African Republic	2020-03-21	1	0			
 Chad	2020-03-20	1	0			
+Chad	2020-03-21	1	0			
 Chile	2020-03-04	1	0			
 Chile	2020-03-05	3	0			
 Chile	2020-03-06	4	0			
@@ -1120,6 +1152,7 @@ Chile	2020-03-17	156	0
 Chile	2020-03-18	201	0			
 Chile	2020-03-19	238	0			
 Chile	2020-03-20	342	0			
+Chile	2020-03-21	434	0			
 China	2019-12-31	27	0			
 China	2020-01-01	27	0			
 China	2020-01-02	27	0			
@@ -1201,6 +1234,7 @@ China	2020-03-17	81130	3226
 China	2020-03-18	81163	3242			
 China	2020-03-19	81238	3250			
 China	2020-03-20	81337	3254			
+China	2020-03-21	81416	3261			
 Colombia	2020-03-07	1	0			
 Colombia	2020-03-10	3	0			
 Colombia	2020-03-12	9	0			
@@ -1211,11 +1245,13 @@ Colombia	2020-03-17	57	0
 Colombia	2020-03-18	65	0			
 Colombia	2020-03-19	102	0			
 Colombia	2020-03-20	128	0			
+Colombia	2020-03-21	158	0			
 Congo	2020-03-16	1	0			
 Congo	2020-03-17	1	0			
 Congo	2020-03-18	1	0			
 Congo	2020-03-19	3	0			
 Congo	2020-03-20	3	0			
+Congo	2020-03-21	3	0			
 Costa Rica	2020-03-07	1	0			
 Costa Rica	2020-03-09	5	0			
 Costa Rica	2020-03-10	9	0			
@@ -1229,6 +1265,7 @@ Costa Rica	2020-03-17	41	0
 Costa Rica	2020-03-18	50	0			
 Costa Rica	2020-03-19	69	1			
 Costa Rica	2020-03-20	87	1			
+Costa Rica	2020-03-21	113	2			
 Côte d'Ivoire	2020-03-12	1	0			
 Côte d'Ivoire	2020-03-15	4	0			
 Côte d'Ivoire	2020-03-16	4	0			
@@ -1236,6 +1273,7 @@ Côte d'Ivoire	2020-03-17	5	0
 Côte d'Ivoire	2020-03-18	5	0			
 Côte d'Ivoire	2020-03-19	6	0			
 Côte d'Ivoire	2020-03-20	9	0			
+Côte d'Ivoire	2020-03-21	14	0			
 Croatia	2019-12-31	0	0			
 Croatia	2020-01-01	0	0			
 Croatia	2020-01-02	0	0			
@@ -1314,12 +1352,14 @@ Croatia	2020-03-17	56	0
 Croatia	2020-03-18	69	0			
 Croatia	2020-03-19	81	0			
 Croatia	2020-03-20	104	1			
+Croatia	2020-03-21	126	1			
 Cuba	2020-03-12	3	0			
 Cuba	2020-03-14	4	0			
 Cuba	2020-03-15	4	0			
 Cuba	2020-03-18	7	0			
 Cuba	2020-03-19	11	1			
 Cuba	2020-03-20	16	1			
+Cuba	2020-03-21	21	1			
 Cyprus	2020-03-10	2	0			
 Cyprus	2020-03-12	6	0			
 Cyprus	2020-03-14	14	0			
@@ -1329,6 +1369,7 @@ Cyprus	2020-03-17	40	0
 Cyprus	2020-03-18	40	0			
 Cyprus	2020-03-19	58	0			
 Cyprus	2020-03-20	58	0			
+Cyprus	2020-03-21	67	0			
 Czechia	2019-12-31	0	0			
 Czechia	2020-01-01	0	0			
 Czechia	2020-01-02	0	0			
@@ -1410,6 +1451,7 @@ Czechia	2020-03-17	344	0
 Czechia	2020-03-18	434	0			
 Czechia	2020-03-19	522	0			
 Czechia	2020-03-20	694	0			
+Czechia	2020-03-21	904	0			
 Congo, Democratic Republic of the	2020-03-11	1	0			
 Congo, Democratic Republic of the	2020-03-14	2	0			
 Congo, Democratic Republic of the	2020-03-15	2	0			
@@ -1418,6 +1460,7 @@ Congo, Democratic Republic of the	2020-03-17	3	0
 Congo, Democratic Republic of the	2020-03-18	3	0			
 Congo, Democratic Republic of the	2020-03-19	14	0			
 Congo, Democratic Republic of the	2020-03-20	14	0			
+Congo, Democratic Republic of the	2020-03-21	14	0			
 Denmark	2019-12-31	0	0			
 Denmark	2020-01-01	0	0			
 Denmark	2020-01-02	0	0			
@@ -1499,8 +1542,10 @@ Denmark	2020-03-17	932	1
 Denmark	2020-03-18	1024	4			
 Denmark	2020-03-19	1115	4			
 Denmark	2020-03-20	1151	6			
+Denmark	2020-03-21	1255	9			
 Djibouti	2020-03-19	1	0			
 Djibouti	2020-03-20	1	0			
+Djibouti	2020-03-21	1	0			
 Dominican Republic	2019-12-31	0	0			
 Dominican Republic	2020-01-01	0	0			
 Dominican Republic	2020-01-02	0	0			
@@ -1573,6 +1618,7 @@ Dominican Republic	2020-03-17	11	0
 Dominican Republic	2020-03-18	11	0			
 Dominican Republic	2020-03-19	21	0			
 Dominican Republic	2020-03-20	21	0			
+Dominican Republic	2020-03-21	34	2			
 Ecuador	2019-12-31	0	0			
 Ecuador	2020-01-01	0	0			
 Ecuador	2020-01-02	0	0			
@@ -1649,6 +1695,7 @@ Ecuador	2020-03-17	58	2
 Ecuador	2020-03-18	111	2			
 Ecuador	2020-03-19	168	3			
 Ecuador	2020-03-20	199	3			
+Ecuador	2020-03-21	426	7			
 Egypt	2019-12-31	0	0			
 Egypt	2020-01-01	0	0			
 Egypt	2020-01-02	0	0			
@@ -1726,14 +1773,17 @@ Egypt	2020-03-17	126	2
 Egypt	2020-03-18	166	4			
 Egypt	2020-03-19	196	6			
 Egypt	2020-03-20	210	6			
+Egypt	2020-03-21	256	7			
 El Salvador	2020-03-19	1	0			
 El Salvador	2020-03-20	1	0			
+El Salvador	2020-03-21	3	0			
 Equatorial Guinea	2020-03-15	1	0			
 Equatorial Guinea	2020-03-16	1	0			
 Equatorial Guinea	2020-03-17	1	0			
 Equatorial Guinea	2020-03-18	1	0			
 Equatorial Guinea	2020-03-19	3	0			
 Equatorial Guinea	2020-03-20	4	0			
+Equatorial Guinea	2020-03-21	4	0			
 Estonia	2019-12-31	0	0			
 Estonia	2020-01-01	0	0			
 Estonia	2020-01-02	0	0			
@@ -1810,12 +1860,14 @@ Estonia	2020-03-17	205	0
 Estonia	2020-03-18	225	0			
 Estonia	2020-03-19	258	0			
 Estonia	2020-03-20	267	0			
+Estonia	2020-03-21	283	0			
 Eswatini	2020-03-15	1	0			
 Eswatini	2020-03-16	1	0			
 Eswatini	2020-03-17	1	0			
 Eswatini	2020-03-18	1	0			
 Eswatini	2020-03-19	1	0			
 Eswatini	2020-03-20	1	0			
+Eswatini	2020-03-21	1	0			
 Ethiopia	2020-03-14	1	0			
 Ethiopia	2020-03-15	1	0			
 Ethiopia	2020-03-16	4	0			
@@ -1823,8 +1875,11 @@ Ethiopia	2020-03-17	5	0
 Ethiopia	2020-03-18	5	0			
 Ethiopia	2020-03-19	6	0			
 Ethiopia	2020-03-20	7	0			
+Ethiopia	2020-03-21	9	0			
 Faroe Islands	2020-03-20	72	0			
+Faroe Islands	2020-03-21	80	0			
 Fiji	2020-03-20	1	0			
+Fiji	2020-03-21	1	0			
 Finland	2019-12-31	0	0			
 Finland	2020-01-01	0	0			
 Finland	2020-01-02	0	0			
@@ -1901,6 +1956,7 @@ Finland	2020-03-17	272	0
 Finland	2020-03-18	319	0			
 Finland	2020-03-19	369	0			
 Finland	2020-03-20	400	0			
+Finland	2020-03-21	450	0			
 France	2019-12-31	0	0			
 France	2020-01-01	0	0			
 France	2020-01-02	0	0			
@@ -1982,8 +2038,10 @@ France	2020-03-17	6633	148
 France	2020-03-18	7730	175			
 France	2020-03-19	9134	244			
 France	2020-03-20	10995	372			
+France	2020-03-21	12612	450			
 French Polynesia	2020-03-19	3	0			
 French Polynesia	2020-03-20	3	0			
+French Polynesia	2020-03-21	15	0			
 Gabon	2020-03-13	1	0			
 Gabon	2020-03-15	1	0			
 Gabon	2020-03-16	1	0			
@@ -1991,9 +2049,11 @@ Gabon	2020-03-17	1	0
 Gabon	2020-03-18	1	0			
 Gabon	2020-03-19	3	0			
 Gabon	2020-03-20	3	0			
+Gabon	2020-03-21	3	1			
 Gambia	2020-03-18	1	0			
 Gambia	2020-03-19	1	0			
 Gambia	2020-03-20	1	0			
+Gambia	2020-03-21	1	0			
 Georgia	2019-12-31	0	0			
 Georgia	2020-01-01	0	0			
 Georgia	2020-01-02	0	0			
@@ -2072,6 +2132,7 @@ Georgia	2020-03-17	33	0
 Georgia	2020-03-18	34	0			
 Georgia	2020-03-19	34	0			
 Georgia	2020-03-20	40	0			
+Georgia	2020-03-21	43	0			
 Germany	2019-12-31	0	0			
 Germany	2020-01-01	0	0			
 Germany	2020-01-02	0	0			
@@ -2153,6 +2214,7 @@ Germany	2020-03-17	6012	13
 Germany	2020-03-18	7156	13			
 Germany	2020-03-19	8198	13			
 Germany	2020-03-20	14138	43			
+Germany	2020-03-21	18323	45			
 Ghana	2020-03-13	2	0			
 Ghana	2020-03-15	2	0			
 Ghana	2020-03-16	2	0			
@@ -2160,7 +2222,9 @@ Ghana	2020-03-17	6	0
 Ghana	2020-03-18	6	0			
 Ghana	2020-03-19	7	0			
 Ghana	2020-03-20	11	0			
+Ghana	2020-03-21	16	0			
 Gibraltar	2020-03-20	10	0			
+Gibraltar	2020-03-21	10	0			
 Greece	2019-12-31	0	0			
 Greece	2020-01-01	0	0			
 Greece	2020-01-02	0	0			
@@ -2240,36 +2304,44 @@ Greece	2020-03-17	352	4
 Greece	2020-03-18	387	5			
 Greece	2020-03-19	418	5			
 Greece	2020-03-20	464	5			
+Greece	2020-03-21	495	8			
 Greenland	2020-03-20	2	0			
+Greenland	2020-03-21	2	0			
 Guam	2020-03-19	3	0			
-Guam	2020-03-20	-6	0			
-Guam	2020-03-20	3	0			
+Guam	2020-03-20	12	0			
+Guam	2020-03-21	14	0			
 Guatemala	2020-03-15	1	0			
 Guatemala	2020-03-16	1	1			
 Guatemala	2020-03-17	6	1			
 Guatemala	2020-03-18	6	1			
 Guatemala	2020-03-19	8	1			
 Guatemala	2020-03-20	9	1			
+Guatemala	2020-03-21	13	1			
 Guernsey	2020-03-20	1	0			
+Guernsey	2020-03-21	1	0			
 Guinea	2020-03-14	1	0			
 Guinea	2020-03-15	1	0			
 Guinea	2020-03-17	1	0			
 Guinea	2020-03-18	1	0			
 Guinea	2020-03-19	1	0			
 Guinea	2020-03-20	1	0			
+Guinea	2020-03-21	2	0			
 Guyana	2020-03-13	1	1			
 Guyana	2020-03-16	4	1			
 Guyana	2020-03-17	4	1			
 Guyana	2020-03-18	4	1			
 Guyana	2020-03-19	5	1			
 Guyana	2020-03-20	5	1			
+Guyana	2020-03-21	5	1			
 Haiti	2020-03-20	2	0			
+Haiti	2020-03-21	2	0			
 Holy See	2020-03-07	1	0			
 Holy See	2020-03-16	1	0			
 Holy See	2020-03-17	1	0			
 Holy See	2020-03-18	1	0			
 Holy See	2020-03-19	1	0			
-Holy See	2020-03-20	13	0			
+Holy See	2020-03-20	1	0			
+Holy See	2020-03-21	1	0			
 Honduras	2020-03-12	2	0			
 Honduras	2020-03-14	3	0			
 Honduras	2020-03-16	6	0			
@@ -2277,6 +2349,7 @@ Honduras	2020-03-17	8	0
 Honduras	2020-03-18	9	0			
 Honduras	2020-03-19	12	0			
 Honduras	2020-03-20	24	0			
+Honduras	2020-03-21	24	0			
 Hungary	2020-03-05	2	0			
 Hungary	2020-03-07	4	0			
 Hungary	2020-03-08	7	0			
@@ -2292,6 +2365,7 @@ Hungary	2020-03-17	50	1
 Hungary	2020-03-18	50	1			
 Hungary	2020-03-19	73	1			
 Hungary	2020-03-20	85	1			
+Hungary	2020-03-21	85	4			
 Iceland	2019-12-31	0	0			
 Iceland	2020-01-01	0	0			
 Iceland	2020-01-02	0	0			
@@ -2373,6 +2447,7 @@ Iceland	2020-03-17	199	0
 Iceland	2020-03-18	247	0			
 Iceland	2020-03-19	250	0			
 Iceland	2020-03-20	330	1			
+Iceland	2020-03-21	409	1			
 India	2019-12-31	0	0			
 India	2020-01-01	0	0			
 India	2020-01-02	0	0			
@@ -2453,6 +2528,7 @@ India	2020-03-17	125	3
 India	2020-03-18	137	3			
 India	2020-03-19	165	3			
 India	2020-03-20	191	4			
+India	2020-03-21	231	4			
 Indonesia	2019-12-31	0	0			
 Indonesia	2020-01-01	0	0			
 Indonesia	2020-01-02	0	0			
@@ -2527,6 +2603,7 @@ Indonesia	2020-03-17	134	5
 Indonesia	2020-03-18	172	5			
 Indonesia	2020-03-19	172	5			
 Indonesia	2020-03-20	227	19			
+Indonesia	2020-03-21	309	25			
 Iran (Islamic Republic of)	2019-12-31	0	0			
 Iran (Islamic Republic of)	2020-01-01	0	0			
 Iran (Islamic Republic of)	2020-01-02	0	0			
@@ -2608,6 +2685,7 @@ Iran (Islamic Republic of)	2020-03-17	14991	853
 Iran (Islamic Republic of)	2020-03-18	16169	988			
 Iran (Islamic Republic of)	2020-03-19	17361	1135			
 Iran (Islamic Republic of)	2020-03-20	18407	1284			
+Iran (Islamic Republic of)	2020-03-21	19644	1433			
 Iraq	2019-12-31	0	0			
 Iraq	2020-01-01	0	0			
 Iraq	2020-01-02	0	0			
@@ -2687,6 +2765,7 @@ Iraq	2020-03-17	124	9
 Iraq	2020-03-18	154	11			
 Iraq	2020-03-19	164	12			
 Iraq	2020-03-20	177	12			
+Iraq	2020-03-21	193	14			
 Ireland	2019-12-31	0	0			
 Ireland	2020-01-01	0	0			
 Ireland	2020-01-02	0	0			
@@ -2766,6 +2845,8 @@ Ireland	2020-03-17	223	2
 Ireland	2020-03-18	292	2			
 Ireland	2020-03-19	366	2			
 Ireland	2020-03-20	557	3			
+Ireland	2020-03-21	683	3			
+Isle of Man	2020-03-21	1	0			
 Israel	2019-12-31	0	0			
 Israel	2020-01-01	0	0			
 Israel	2020-01-02	0	0			
@@ -2844,6 +2925,7 @@ Israel	2020-03-17	260	0
 Israel	2020-03-18	427	0			
 Israel	2020-03-19	433	0			
 Israel	2020-03-20	677	0			
+Israel	2020-03-21	712	1			
 Italy	2019-12-31	0	0			
 Italy	2020-01-01	0	0			
 Italy	2020-01-02	0	0			
@@ -2925,6 +3007,7 @@ Italy	2020-03-17	27980	2158
 Italy	2020-03-18	31506	2505			
 Italy	2020-03-19	35713	2978			
 Italy	2020-03-20	41035	3407			
+Italy	2020-03-21	47021	4032			
 Jamaica	2020-03-12	2	0			
 Jamaica	2020-03-13	6	0			
 Jamaica	2020-03-14	8	0			
@@ -2933,6 +3016,7 @@ Jamaica	2020-03-17	10	0
 Jamaica	2020-03-18	13	0			
 Jamaica	2020-03-19	15	0			
 Jamaica	2020-03-20	16	0			
+Jamaica	2020-03-21	19	0			
 Japan	2019-12-31	0	0			
 Japan	2020-01-01	0	0			
 Japan	2020-01-02	0	0			
@@ -3014,7 +3098,9 @@ Japan	2020-03-17	824	28
 Japan	2020-03-18	829	28			
 Japan	2020-03-19	873	29			
 Japan	2020-03-20	950	33			
+Japan	2020-03-21	1007	35			
 Jersey	2020-03-20	5	0			
+Jersey	2020-03-21	12	0			
 Jordan	2020-03-03	1	0			
 Jordan	2020-03-08	1	0			
 Jordan	2020-03-15	1	0			
@@ -3023,12 +3109,14 @@ Jordan	2020-03-17	16	0
 Jordan	2020-03-18	35	0			
 Jordan	2020-03-19	52	0			
 Jordan	2020-03-20	56	0			
+Jordan	2020-03-21	69	0			
 Kazakhstan	2020-03-15	6	0			
 Kazakhstan	2020-03-16	9	0			
 Kazakhstan	2020-03-17	11	0			
 Kazakhstan	2020-03-18	33	0			
 Kazakhstan	2020-03-19	37	0			
 Kazakhstan	2020-03-20	49	0			
+Kazakhstan	2020-03-21	53	0			
 Kenya	2020-03-14	1	0			
 Kenya	2020-03-15	1	0			
 Kenya	2020-03-16	3	0			
@@ -3036,11 +3124,13 @@ Kenya	2020-03-17	3	0
 Kenya	2020-03-18	4	0			
 Kenya	2020-03-19	7	0			
 Kenya	2020-03-20	7	0			
+Kenya	2020-03-21	7	0			
 Kosovo	2020-03-16	2	0			
 Kosovo	2020-03-17	2	0			
 Kosovo	2020-03-18	19	0			
 Kosovo	2020-03-19	19	0			
 Kosovo	2020-03-20	21	0			
+Kosovo	2020-03-21	24	0			
 Kuwait	2019-12-31	0	0			
 Kuwait	2020-01-01	0	0			
 Kuwait	2020-01-02	0	0			
@@ -3119,8 +3209,10 @@ Kuwait	2020-03-17	123	0
 Kuwait	2020-03-18	130	0			
 Kuwait	2020-03-19	142	0			
 Kuwait	2020-03-20	148	0			
+Kuwait	2020-03-21	159	0			
 Kyrgyzstan	2020-03-19	3	0			
 Kyrgyzstan	2020-03-20	6	0			
+Kyrgyzstan	2020-03-21	6	0			
 Latvia	2020-03-03	1	0			
 Latvia	2020-03-08	2	0			
 Latvia	2020-03-09	3	0			
@@ -3135,6 +3227,7 @@ Latvia	2020-03-17	36	0
 Latvia	2020-03-18	61	0			
 Latvia	2020-03-19	71	0			
 Latvia	2020-03-20	86	0			
+Latvia	2020-03-21	111	0			
 Lebanon	2019-12-31	0	0			
 Lebanon	2020-01-01	0	0			
 Lebanon	2020-01-02	0	0			
@@ -3212,10 +3305,12 @@ Lebanon	2020-03-17	120	3
 Lebanon	2020-03-18	120	3			
 Lebanon	2020-03-19	133	4			
 Lebanon	2020-03-20	149	4			
+Lebanon	2020-03-21	163	4			
 Liberia	2020-03-17	1	0			
 Liberia	2020-03-18	2	0			
 Liberia	2020-03-19	2	0			
 Liberia	2020-03-20	2	0			
+Liberia	2020-03-21	2	0			
 Liechtenstein	2020-03-05	1	0			
 Liechtenstein	2020-03-12	3	0			
 Liechtenstein	2020-03-13	4	0			
@@ -3226,6 +3321,7 @@ Liechtenstein	2020-03-17	7	0
 Liechtenstein	2020-03-18	7	0			
 Liechtenstein	2020-03-19	25	0			
 Liechtenstein	2020-03-20	25	0			
+Liechtenstein	2020-03-21	34	0			
 Lithuania	2019-12-31	0	0			
 Lithuania	2020-01-01	0	0			
 Lithuania	2020-01-02	0	0			
@@ -3298,6 +3394,7 @@ Lithuania	2020-03-17	17	0
 Lithuania	2020-03-18	25	0			
 Lithuania	2020-03-19	33	0			
 Lithuania	2020-03-20	48	0			
+Lithuania	2020-03-21	69	1			
 Luxembourg	2019-12-31	0	0			
 Luxembourg	2020-01-01	0	0			
 Luxembourg	2020-01-02	0	0			
@@ -3372,6 +3469,8 @@ Luxembourg	2020-03-17	81	1
 Luxembourg	2020-03-18	140	1			
 Luxembourg	2020-03-19	210	2			
 Luxembourg	2020-03-20	345	4			
+Luxembourg	2020-03-21	484	5			
+Madagascar	2020-03-21	3	0			
 Malaysia	2019-12-31	0	0			
 Malaysia	2020-01-01	0	0			
 Malaysia	2020-01-02	0	0			
@@ -3452,6 +3551,7 @@ Malaysia	2020-03-17	553	0
 Malaysia	2020-03-18	673	2			
 Malaysia	2020-03-19	790	2			
 Malaysia	2020-03-20	900	2			
+Malaysia	2020-03-21	1030	2			
 Maldives	2020-03-08	2	0			
 Maldives	2020-03-09	4	0			
 Maldives	2020-03-11	6	0			
@@ -3463,6 +3563,7 @@ Maldives	2020-03-17	13	0
 Maldives	2020-03-18	13	0			
 Maldives	2020-03-19	13	0			
 Maldives	2020-03-20	13	0			
+Maldives	2020-03-21	13	0			
 Malta	2020-03-08	3	0			
 Malta	2020-03-10	4	0			
 Malta	2020-03-12	6	0			
@@ -3474,13 +3575,16 @@ Malta	2020-03-17	30	0
 Malta	2020-03-18	38	0			
 Malta	2020-03-19	48	0			
 Malta	2020-03-20	53	0			
+Malta	2020-03-21	64	0			
 Mauritania	2020-03-15	1	0			
 Mauritania	2020-03-16	1	0			
 Mauritania	2020-03-17	1	0			
 Mauritania	2020-03-18	1	0			
 Mauritania	2020-03-19	1	0			
 Mauritania	2020-03-20	2	0			
+Mauritania	2020-03-21	2	0			
 Mauritius	2020-03-20	3	0			
+Mauritius	2020-03-21	12	0			
 Mexico	2019-12-31	0	0			
 Mexico	2020-01-01	0	0			
 Mexico	2020-01-02	0	0			
@@ -3554,6 +3658,7 @@ Mexico	2020-03-17	82	0
 Mexico	2020-03-18	93	0			
 Mexico	2020-03-19	118	0			
 Mexico	2020-03-20	164	0			
+Mexico	2020-03-21	203	2			
 Moldova, Republic of	2020-03-08	1	0			
 Moldova, Republic of	2020-03-11	3	0			
 Moldova, Republic of	2020-03-12	4	0			
@@ -3565,6 +3670,7 @@ Moldova, Republic of	2020-03-17	29	0
 Moldova, Republic of	2020-03-18	30	0			
 Moldova, Republic of	2020-03-19	36	1			
 Moldova, Republic of	2020-03-20	49	1			
+Moldova, Republic of	2020-03-21	66	1			
 Monaco	2019-12-31	0	0			
 Monaco	2020-01-01	0	0			
 Monaco	2020-01-02	0	0			
@@ -3634,14 +3740,18 @@ Monaco	2020-03-17	9	0
 Monaco	2020-03-18	9	0			
 Monaco	2020-03-19	9	0			
 Monaco	2020-03-20	11	0			
+Monaco	2020-03-21	12	0			
 Mongolia	2020-03-10	1	0			
 Mongolia	2020-03-15	1	0			
 Mongolia	2020-03-18	4	0			
 Mongolia	2020-03-19	5	0			
 Mongolia	2020-03-20	5	0			
+Mongolia	2020-03-21	6	0			
 Montenegro	2020-03-18	2	0			
 Montenegro	2020-03-19	8	0			
 Montenegro	2020-03-20	13	0			
+Montenegro	2020-03-21	14	0			
+Montserrat	2020-03-21	1	0			
 Morocco	2020-03-03	1	0			
 Morocco	2020-03-06	2	0			
 Morocco	2020-03-12	5	1			
@@ -3653,6 +3763,7 @@ Morocco	2020-03-17	37	1
 Morocco	2020-03-18	44	2			
 Morocco	2020-03-19	54	2			
 Morocco	2020-03-20	63	2			
+Morocco	2020-03-21	86	3			
 Myanmar	2020-03-17	0	0			
 Namibia	2020-03-15	2	0			
 Namibia	2020-03-16	2	0			
@@ -3660,6 +3771,7 @@ Namibia	2020-03-17	2	0
 Namibia	2020-03-18	2	0			
 Namibia	2020-03-19	2	0			
 Namibia	2020-03-20	2	0			
+Namibia	2020-03-21	3	0			
 Nepal	2019-12-31	0	0			
 Nepal	2020-01-01	0	0			
 Nepal	2020-01-02	0	0			
@@ -3728,6 +3840,7 @@ Nepal	2020-03-17	1	0
 Nepal	2020-03-18	1	0			
 Nepal	2020-03-19	1	0			
 Nepal	2020-03-20	1	0			
+Nepal	2020-03-21	1	0			
 Netherlands	2019-12-31	0	0			
 Netherlands	2020-01-01	0	0			
 Netherlands	2020-01-02	0	0			
@@ -3809,7 +3922,10 @@ Netherlands	2020-03-17	1413	24
 Netherlands	2020-03-18	1705	24			
 Netherlands	2020-03-19	2051	58			
 Netherlands	2020-03-20	2460	76			
+Netherlands	2020-03-21	2994	106			
 Netherlands Antilles	2020-03-20	9	0			
+Netherlands Antilles	2020-03-21	13	0			
+New Caledonia	2020-03-21	2	0			
 New Zealand	2019-12-31	0	0			
 New Zealand	2020-01-01	0	0			
 New Zealand	2020-01-02	0	0			
@@ -3882,8 +3998,11 @@ New Zealand	2020-03-15	8	0
 New Zealand	2020-03-18	20	0			
 New Zealand	2020-03-19	28	0			
 New Zealand	2020-03-20	39	0			
+New Zealand	2020-03-21	53	0			
 Nicaragua	2020-03-19	1	0			
 Nicaragua	2020-03-20	1	0			
+Nicaragua	2020-03-21	1	0			
+Niger	2020-03-21	1	0			
 Nigeria	2019-12-31	0	0			
 Nigeria	2020-01-01	0	0			
 Nigeria	2020-01-02	0	0			
@@ -3954,6 +4073,7 @@ Nigeria	2020-03-17	2	0
 Nigeria	2020-03-18	3	0			
 Nigeria	2020-03-19	8	0			
 Nigeria	2020-03-20	8	0			
+Nigeria	2020-03-21	12	0			
 North Macedonia	2019-12-31	0	0			
 North Macedonia	2020-01-01	0	0			
 North Macedonia	2020-01-02	0	0			
@@ -4026,6 +4146,7 @@ North Macedonia	2020-03-17	19	0
 North Macedonia	2020-03-18	31	0			
 North Macedonia	2020-03-19	42	0			
 North Macedonia	2020-03-20	48	0			
+North Macedonia	2020-03-21	70	0			
 Norway	2019-12-31	0	0			
 Norway	2020-01-01	0	0			
 Norway	2020-01-02	0	0			
@@ -4107,6 +4228,7 @@ Norway	2020-03-17	1169	3
 Norway	2020-03-18	1308	3			
 Norway	2020-03-19	1423	3			
 Norway	2020-03-20	1552	6			
+Norway	2020-03-21	1742	7			
 Oman	2019-12-31	0	0			
 Oman	2020-01-01	0	0			
 Oman	2020-01-02	0	0			
@@ -4182,6 +4304,7 @@ Oman	2020-03-17	24	0
 Oman	2020-03-18	24	0			
 Oman	2020-03-19	39	0			
 Oman	2020-03-20	39	0			
+Oman	2020-03-21	48	0			
 Pakistan	2019-12-31	0	0			
 Pakistan	2020-01-01	0	0			
 Pakistan	2020-01-02	0	0			
@@ -4258,6 +4381,7 @@ Pakistan	2020-03-17	187	0
 Pakistan	2020-03-18	187	0			
 Pakistan	2020-03-19	302	0			
 Pakistan	2020-03-20	478	2			
+Pakistan	2020-03-21	495	3			
 Palestine, State of	2020-03-06	7	0			
 Palestine, State of	2020-03-07	16	0			
 Palestine, State of	2020-03-08	19	0			
@@ -4271,6 +4395,7 @@ Palestine, State of	2020-03-17	39	0
 Palestine, State of	2020-03-18	41	0			
 Palestine, State of	2020-03-19	44	0			
 Palestine, State of	2020-03-20	47	0			
+Palestine, State of	2020-03-21	48	0			
 Panama	2020-03-10	1	0			
 Panama	2020-03-11	7	1			
 Panama	2020-03-12	14	1			
@@ -4282,6 +4407,8 @@ Panama	2020-03-17	69	1
 Panama	2020-03-18	86	1			
 Panama	2020-03-19	109	1			
 Panama	2020-03-20	137	1			
+Panama	2020-03-21	200	1			
+Papua New Guinea	2020-03-21	1	0			
 Paraguay	2020-03-08	1	0			
 Paraguay	2020-03-11	5	0			
 Paraguay	2020-03-13	6	0			
@@ -4291,6 +4418,7 @@ Paraguay	2020-03-17	9	0
 Paraguay	2020-03-18	11	0			
 Paraguay	2020-03-19	11	0			
 Paraguay	2020-03-20	13	0			
+Paraguay	2020-03-21	18	1			
 Peru	2020-03-07	1	0			
 Peru	2020-03-09	7	0			
 Peru	2020-03-10	9	0			
@@ -4304,6 +4432,7 @@ Peru	2020-03-17	86	0
 Peru	2020-03-18	117	0			
 Peru	2020-03-19	145	0			
 Peru	2020-03-20	234	2			
+Peru	2020-03-21	263	3			
 Philippines	2019-12-31	0	0			
 Philippines	2020-01-01	0	0			
 Philippines	2020-01-02	0	0			
@@ -4381,6 +4510,7 @@ Philippines	2020-03-17	142	12
 Philippines	2020-03-18	187	14			
 Philippines	2020-03-19	202	17			
 Philippines	2020-03-20	230	18			
+Philippines	2020-03-21	230	18			
 Poland	2020-03-04	1	0			
 Poland	2020-03-07	5	0			
 Poland	2020-03-08	6	0			
@@ -4396,6 +4526,7 @@ Poland	2020-03-17	177	4
 Poland	2020-03-18	238	5			
 Poland	2020-03-19	287	5			
 Poland	2020-03-20	355	5			
+Poland	2020-03-21	425	5			
 Portugal	2020-03-03	2	0			
 Portugal	2020-03-04	4	0			
 Portugal	2020-03-05	5	0			
@@ -4414,6 +4545,7 @@ Portugal	2020-03-17	331	0
 Portugal	2020-03-18	448	1			
 Portugal	2020-03-19	642	2			
 Portugal	2020-03-20	785	3			
+Portugal	2020-03-21	1020	6			
 Qatar	2019-12-31	0	0			
 Qatar	2020-01-01	0	0			
 Qatar	2020-01-02	0	0			
@@ -4491,6 +4623,7 @@ Qatar	2020-03-17	439	0
 Qatar	2020-03-18	442	0			
 Qatar	2020-03-19	452	0			
 Qatar	2020-03-20	460	0			
+Qatar	2020-03-21	470	0			
 Romania	2019-12-31	0	0			
 Romania	2020-01-01	0	0			
 Romania	2020-01-02	0	0			
@@ -4570,6 +4703,7 @@ Romania	2020-03-17	184	0
 Romania	2020-03-18	217	0			
 Romania	2020-03-19	260	0			
 Romania	2020-03-20	277	0			
+Romania	2020-03-21	308	0			
 Russian Federation	2019-12-31	0	0			
 Russian Federation	2020-01-01	0	0			
 Russian Federation	2020-01-02	0	0			
@@ -4646,18 +4780,21 @@ Russian Federation	2020-03-17	93	0
 Russian Federation	2020-03-18	114	0			
 Russian Federation	2020-03-19	147	0			
 Russian Federation	2020-03-20	199	0			
+Russian Federation	2020-03-21	253	0			
 Rwanda	2020-03-15	1	0			
 Rwanda	2020-03-16	5	0			
 Rwanda	2020-03-17	5	0			
 Rwanda	2020-03-18	7	0			
 Rwanda	2020-03-19	11	0			
 Rwanda	2020-03-20	11	0			
+Rwanda	2020-03-21	17	0			
 Saint Lucia	2020-03-15	2	0			
 Saint Lucia	2020-03-16	2	0			
 Saint Lucia	2020-03-17	2	0			
 Saint Lucia	2020-03-18	2	0			
 Saint Lucia	2020-03-19	2	0			
 Saint Lucia	2020-03-20	2	0			
+Saint Lucia	2020-03-21	2	0			
 Saint Vincent and the Grenadines	2020-03-13	1	0			
 San Marino	2019-12-31	0	0			
 San Marino	2020-01-01	0	0			
@@ -4739,6 +4876,7 @@ San Marino	2020-03-17	102	9
 San Marino	2020-03-18	104	11			
 San Marino	2020-03-19	109	14			
 San Marino	2020-03-20	126	14			
+San Marino	2020-03-21	151	14			
 Saudi Arabia	2020-03-03	1	0			
 Saudi Arabia	2020-03-06	5	0			
 Saudi Arabia	2020-03-08	7	0			
@@ -4754,6 +4892,7 @@ Saudi Arabia	2020-03-17	133	0
 Saudi Arabia	2020-03-18	133	0			
 Saudi Arabia	2020-03-19	171	0			
 Saudi Arabia	2020-03-20	238	0			
+Saudi Arabia	2020-03-21	274	0			
 Senegal	2020-03-03	1	0			
 Senegal	2020-03-05	3	0			
 Senegal	2020-03-06	4	0			
@@ -4765,6 +4904,7 @@ Senegal	2020-03-17	27	0
 Senegal	2020-03-18	31	0			
 Senegal	2020-03-19	36	0			
 Senegal	2020-03-20	36	0			
+Senegal	2020-03-21	47	0			
 Serbia	2020-03-07	1	0			
 Serbia	2020-03-11	5	0			
 Serbia	2020-03-12	18	0			
@@ -4776,12 +4916,14 @@ Serbia	2020-03-17	57	0
 Serbia	2020-03-18	72	0			
 Serbia	2020-03-19	94	0			
 Serbia	2020-03-20	126	0			
+Serbia	2020-03-21	135	1			
 Seychelles	2020-03-15	2	0			
 Seychelles	2020-03-16	3	0			
 Seychelles	2020-03-17	4	0			
 Seychelles	2020-03-18	4	0			
 Seychelles	2020-03-19	6	0			
 Seychelles	2020-03-20	6	0			
+Seychelles	2020-03-21	7	0			
 Singapore	2019-12-31	0	0			
 Singapore	2020-01-01	0	0			
 Singapore	2020-01-02	0	0			
@@ -4863,6 +5005,7 @@ Singapore	2020-03-17	243	0
 Singapore	2020-03-18	266	0			
 Singapore	2020-03-19	313	0			
 Singapore	2020-03-20	345	0			
+Singapore	2020-03-21	385	0			
 Slovakia	2020-03-07	1	0			
 Slovakia	2020-03-08	3	0			
 Slovakia	2020-03-09	5	0			
@@ -4876,6 +5019,7 @@ Slovakia	2020-03-17	84	0
 Slovakia	2020-03-18	97	0			
 Slovakia	2020-03-19	107	0			
 Slovakia	2020-03-20	123	0			
+Slovakia	2020-03-21	137	0			
 Slovenia	2020-03-05	1	0			
 Slovenia	2020-03-06	6	0			
 Slovenia	2020-03-07	9	0			
@@ -4891,10 +5035,12 @@ Slovenia	2020-03-17	253	0
 Slovenia	2020-03-18	275	1			
 Slovenia	2020-03-19	286	1			
 Slovenia	2020-03-20	319	1			
+Slovenia	2020-03-21	341	1			
 Somalia	2020-03-17	1	0			
 Somalia	2020-03-18	1	0			
 Somalia	2020-03-19	1	0			
 Somalia	2020-03-20	1	0			
+Somalia	2020-03-21	1	0			
 South Africa	2020-03-06	1	0			
 South Africa	2020-03-08	2	0			
 South Africa	2020-03-09	3	0			
@@ -4908,6 +5054,7 @@ South Africa	2020-03-17	62	0
 South Africa	2020-03-18	85	0			
 South Africa	2020-03-19	116	0			
 South Africa	2020-03-20	150	0			
+South Africa	2020-03-21	205	0			
 Korea, Republic of	2019-12-31	0	0			
 Korea, Republic of	2020-01-01	0	0			
 Korea, Republic of	2020-01-02	0	0			
@@ -4989,6 +5136,7 @@ Korea, Republic of	2020-03-17	8320	81
 Korea, Republic of	2020-03-18	8413	86			
 Korea, Republic of	2020-03-19	8565	91			
 Korea, Republic of	2020-03-20	8652	100			
+Korea, Republic of	2020-03-21	8799	103			
 Spain	2019-12-31	0	0			
 Spain	2020-01-01	0	0			
 Spain	2020-01-02	0	0			
@@ -5070,6 +5218,7 @@ Spain	2020-03-17	9191	309
 Spain	2020-03-18	11178	491			
 Spain	2020-03-19	13716	598			
 Spain	2020-03-20	17147	767			
+Spain	2020-03-21	19980	1002			
 Sri Lanka	2019-12-31	0	0			
 Sri Lanka	2020-01-01	0	0			
 Sri Lanka	2020-01-02	0	0			
@@ -5142,6 +5291,7 @@ Sri Lanka	2020-03-17	29	0
 Sri Lanka	2020-03-18	42	0			
 Sri Lanka	2020-03-19	42	0			
 Sri Lanka	2020-03-20	53	0			
+Sri Lanka	2020-03-21	66	0			
 Sudan	2020-03-14	1	0			
 Sudan	2020-03-15	1	1			
 Sudan	2020-03-16	1	1			
@@ -5149,7 +5299,9 @@ Sudan	2020-03-17	1	1
 Sudan	2020-03-18	1	1			
 Sudan	2020-03-19	2	1			
 Sudan	2020-03-20	2	1			
+Sudan	2020-03-21	2	1			
 Suriname	2020-03-15	1	0			
+Suriname	2020-03-21	1	0			
 Sweden	2019-12-31	0	0			
 Sweden	2020-01-01	0	0			
 Sweden	2020-01-02	0	0			
@@ -5231,6 +5383,7 @@ Sweden	2020-03-17	1121	7
 Sweden	2020-03-18	1167	8			
 Sweden	2020-03-19	1301	10			
 Sweden	2020-03-20	1423	10			
+Sweden	2020-03-21	1623	16			
 Switzerland	2019-12-31	0	0			
 Switzerland	2020-01-01	0	0			
 Switzerland	2020-01-02	0	0			
@@ -5312,6 +5465,7 @@ Switzerland	2020-03-17	2200	14
 Switzerland	2020-03-18	2650	19			
 Switzerland	2020-03-19	3010	21			
 Switzerland	2020-03-20	3888	33			
+Switzerland	2020-03-21	4840	43			
 Taiwan, Province of China	2019-12-31	0	0			
 Taiwan, Province of China	2020-01-01	0	0			
 Taiwan, Province of China	2020-01-02	0	0			
@@ -5391,6 +5545,7 @@ Taiwan, Province of China	2020-03-17	67	1
 Taiwan, Province of China	2020-03-18	77	1			
 Taiwan, Province of China	2020-03-19	108	1			
 Taiwan, Province of China	2020-03-20	108	1			
+Taiwan, Province of China	2020-03-21	135	2			
 Thailand	2019-12-31	0	0			
 Thailand	2020-01-01	0	0			
 Thailand	2020-01-02	0	0			
@@ -5465,6 +5620,7 @@ Thailand	2020-03-17	177	1
 Thailand	2020-03-18	177	1			
 Thailand	2020-03-19	177	1			
 Thailand	2020-03-20	212	1			
+Thailand	2020-03-21	366	1			
 Togo	2020-03-07	1	0			
 Togo	2020-03-15	1	0			
 Togo	2020-03-16	1	0			
@@ -5472,6 +5628,7 @@ Togo	2020-03-17	1	0
 Togo	2020-03-18	1	0			
 Togo	2020-03-19	1	0			
 Togo	2020-03-20	1	0			
+Togo	2020-03-21	9	0			
 Trinidad and Tobago	2020-03-13	1	0			
 Trinidad and Tobago	2020-03-14	2	0			
 Trinidad and Tobago	2020-03-15	2	0			
@@ -5480,6 +5637,7 @@ Trinidad and Tobago	2020-03-17	5	0
 Trinidad and Tobago	2020-03-18	7	0			
 Trinidad and Tobago	2020-03-19	9	0			
 Trinidad and Tobago	2020-03-20	9	0			
+Trinidad and Tobago	2020-03-21	9	0			
 Tunisia	2020-03-03	1	0			
 Tunisia	2020-03-10	2	0			
 Tunisia	2020-03-11	5	0			
@@ -5492,6 +5650,7 @@ Tunisia	2020-03-17	20	0
 Tunisia	2020-03-18	24	0			
 Tunisia	2020-03-19	29	0			
 Tunisia	2020-03-20	39	0			
+Tunisia	2020-03-21	54	1			
 Turkey	2020-03-12	1	0			
 Turkey	2020-03-13	2	0			
 Turkey	2020-03-16	18	0			
@@ -5499,6 +5658,7 @@ Turkey	2020-03-17	47	0
 Turkey	2020-03-18	98	0			
 Turkey	2020-03-19	191	1			
 Turkey	2020-03-20	359	4			
+Turkey	2020-03-21	670	9			
 Ukraine	2020-03-04	1	0			
 Ukraine	2020-03-13	3	0			
 Ukraine	2020-03-16	3	0			
@@ -5506,6 +5666,7 @@ Ukraine	2020-03-17	5	0
 Ukraine	2020-03-18	14	0			
 Ukraine	2020-03-19	19	2			
 Ukraine	2020-03-20	26	2			
+Ukraine	2020-03-21	26	3			
 United Arab Emirates	2019-12-31	0	0			
 United Arab Emirates	2020-01-01	0	0			
 United Arab Emirates	2020-01-02	0	0			
@@ -5581,6 +5742,7 @@ United Arab Emirates	2020-03-17	98	0
 United Arab Emirates	2020-03-18	113	0			
 United Arab Emirates	2020-03-19	113	0			
 United Arab Emirates	2020-03-20	140	0			
+United Arab Emirates	2020-03-21	140	0			
 United Kingdom	2019-12-31	0	0			
 United Kingdom	2020-01-01	0	0			
 United Kingdom	2020-01-02	0	0			
@@ -5662,10 +5824,12 @@ United Kingdom	2020-03-17	1543	55
 United Kingdom	2020-03-18	1950	60			
 United Kingdom	2020-03-19	2630	103			
 United Kingdom	2020-03-20	3277	144			
+United Kingdom	2020-03-21	3983	177			
 Tanzania, United Republic of	2020-03-17	1	0			
 Tanzania, United Republic of	2020-03-18	1	0			
 Tanzania, United Republic of	2020-03-19	3	0			
 Tanzania, United Republic of	2020-03-20	3	0			
+Tanzania, United Republic of	2020-03-21	3	0			
 United States of America	2019-12-31	0	0			
 United States of America	2020-01-01	0	0			
 United States of America	2020-01-02	0	0			
@@ -5747,23 +5911,27 @@ United States of America	2020-03-17	4661	85
 United States of America	2020-03-18	6427	108			
 United States of America	2020-03-19	9415	150			
 United States of America	2020-03-20	14250	150			
+United States of America	2020-03-21	19624	260			
 Uruguay	2020-03-15	6	0			
 Uruguay	2020-03-16	8	0			
 Uruguay	2020-03-17	29	0			
 Uruguay	2020-03-18	50	0			
 Uruguay	2020-03-19	79	0			
 Uruguay	2020-03-20	94	0			
+Uruguay	2020-03-21	110	0			
 Uzbekistan	2020-03-16	6	0			
 Uzbekistan	2020-03-17	8	0			
 Uzbekistan	2020-03-18	16	0			
 Uzbekistan	2020-03-19	23	0			
 Uzbekistan	2020-03-20	23	0			
+Uzbekistan	2020-03-21	33	0			
 Venezuela (Bolivarian Republic of)	2020-03-15	10	0			
 Venezuela (Bolivarian Republic of)	2020-03-16	15	0			
 Venezuela (Bolivarian Republic of)	2020-03-17	33	0			
 Venezuela (Bolivarian Republic of)	2020-03-18	33	0			
 Venezuela (Bolivarian Republic of)	2020-03-19	33	0			
 Venezuela (Bolivarian Republic of)	2020-03-20	33	0			
+Venezuela (Bolivarian Republic of)	2020-03-21	36	0			
 Viet Nam	2019-12-31	0	0			
 Viet Nam	2020-01-01	0	0			
 Viet Nam	2020-01-02	0	0			
@@ -5841,5 +6009,8 @@ Viet Nam	2020-03-17	61	0
 Viet Nam	2020-03-18	61	0			
 Viet Nam	2020-03-19	76	0			
 Viet Nam	2020-03-20	85	0			
+Viet Nam	2020-03-21	87	0			
 Zambia	2020-03-19	2	0			
 Zambia	2020-03-20	2	0			
+Zambia	2020-03-21	2	0			
+Zimbabwe	2020-03-21	1	0			
