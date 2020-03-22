@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactResizeDetector from 'react-resize-detector'
 import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
-import type { LineProps as RechartsLineProps } from 'recharts'
+import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
@@ -157,7 +157,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       scatterToPlot.push({ key: 'newCases', color: colors.newCases, name: t('Confirmed cases past 3 days') })
     }
   }
-  const logScaleString = logScale ? t('log') : t('linear')
+  const logScaleString: YAxisProps['scale'] = logScale ? t('log') : t('linear')
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
