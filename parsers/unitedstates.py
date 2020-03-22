@@ -3,10 +3,11 @@ import csv
 import json
 import requests
 import numpy as np
+import json
 
 from collections import defaultdict
 from datetime import datetime
-from .utils import write_tsv
+from .utils import write_tsv, store_json, list_to_dict
 
 # ------------------------------------------------------------------------
 # Globals
@@ -110,3 +111,14 @@ def parse():
 
     for region, data in regions.items():
         write_tsv(f"{LOC}/{region}.tsv", cols, data, "unitedstates")
+
+    # prepare dict for json
+    regions2 = {}
+    for region, data in regions.items():
+        if not (region == "USA"):
+            regions2["USA-"+region] = data
+        else:
+            regions2[region] = data
+
+    regions3 = list_to_dict(regions2, cols)
+    store_json(regions3)

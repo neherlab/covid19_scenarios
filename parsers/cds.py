@@ -10,7 +10,7 @@ from urllib.request import urlopen
 
 from collections import defaultdict
 from datetime import datetime, timedelta
-from .utils import write_tsv
+from .utils import write_tsv, flatten, parse_countries, stoi, merge_cases, sorted_date, store_json
 
 # -----------------------------------------------------------------------------
 # Globals
@@ -21,30 +21,8 @@ cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered
 # -----------------------------------------------------------------------------
 # Functions
 
-def sorted_date(s):
-    return sorted(s, key=lambda d: datetime.strptime(d["time"], "%Y-%m-%d"))
-
-def stoi(x):
-    if x == "":
-        return 0
-
-    return int(x)
-
-def parse_countries():
-    # read the country_codes.csv for official country names
-    country_names = {}
-    file = "country_codes.csv"    
-    countries = defaultdict(lambda: defaultdict(list))
-    with open(file) as f:
-        rdr = csv.reader(f)
-        next(rdr)
-        for row in rdr:
-            countries[row[2]] = row[0]
-    return countries
-
 def retrieve_case_data():
-    countries = parse_countries()
-    
+    countries = parse_countries(2)    
     cases = defaultdict(list)
 
     with urlopen(URL) as url:
@@ -78,24 +56,15 @@ def retrieve_case_data():
         
     return dict(cases)
 
-
-def flatten(cases):
-    rows = []
-    for cntry, data in cases.items():
-        for datum in data:
-            rows.append([cntry, datum['time'], datum['cases'], datum['deaths'], None, None, None])
-
-    return rows
-
 # -----------------------------------------------------------------------------
 # Main point of entry
 
 def parse():
     cases = retrieve_case_data()
-    with open('case_counts.json', 'w') as fh:
-        json.dump(cases, fh)    
+    store_json(cases)
+    
+    # for legacy support
     cases = flatten(cases)
-
     write_tsv(f"case-counts/cds.tsv", cols, cases, "cds")
 
 if __name__ == "__main__":
