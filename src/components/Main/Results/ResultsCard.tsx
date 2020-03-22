@@ -92,11 +92,12 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
         <Col>
           <div>
             <span>
-              <Button 
-                className="run-button" 
-                type="submit" 
-                color="primary" 
+              <Button
+                className="run-button"
+                type="submit"
+                color="primary"
                 disabled={!canRun}
+                data-testid="RunResults"
                 onClick={scrollToViewGraphs.bind(this, result)}
               >
                 {t('Run')}
@@ -121,7 +122,7 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
       </Row>
 
       <Row noGutters hidden={!result}>
-        <Col>
+        <Col data-testid="LogScaleSwitch">
           <FormSwitch
             identifier="logScale"
             label={t('Log scale')}
