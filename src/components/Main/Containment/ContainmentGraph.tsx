@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 import ReactResizeDetector from 'react-resize-detector'
 
-import { TimeSeries } from '../../../algorithms/types/TimeSeries.types'
+import { TimeSeries, TimePoint } from '../../../algorithms/types/TimeSeries.types'
 
 const ASPECT_RATIO = 16 / 9
 const MOBILE_ASPECT_RATIO = 4 / 5
@@ -21,9 +21,7 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
   if (d3ref.current === null) {
     return
   }
-  const newData = data.map(d => {
-    return { t: d.t, y: d.y }
-  }) // copy
+  const newData = data.map((d): TimePoint => ({ t: d.t, y: d.y })) // copy
 
   const tMin = data[0] && data[0].t
   const tMax = data[0] && data[data.length - 1].t
@@ -53,21 +51,21 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     .attr('transform', `translate(${margin.left},${margin.top})`)
 
   const drawLine = d3
-    .line()
+    .line<TimePoint>()
     .x(d => tScale(d.t))
     .y(d => yScale(d.y))
     .curve(d3.curveMonotoneX)
 
-  const started = (_, i, n) => {
+  const started: d3.ValueFn<SVGCircleElement, TimePoint, void> = (_, i, n) => {
     d3.select(n[i])
       .raise()
       .classed('active', true)
 
-    newData[i].y = data[i].y;
+    newData[i].y = data[i].y
   }
 
-  const dragged = (d, i, n) => {
-    d.y = yScale.invert(d3.mouse(svg)[1]-margin.top)
+  const dragged: d3.ValueFn<SVGCircleElement, TimePoint, void> = (d, i, n) => {
+    d.y = yScale.invert(d3.mouse(svg)[1] - margin.top)
     if (d.y > MAX_TRANSMISSION_RATIO) {
       d.y = MAX_TRANSMISSION_RATIO
     } else if (d.y < 0) {
@@ -77,12 +75,12 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     d3.select(n[i]).attr('cy', yScale(d.y))
 
     newData[i].y = d.y
-    d3.select(svg)
-      .select('.line-graph')
+    d3.select<SVGSVGElement, TimePoint[]>(svg)
+      .select<SVGPathElement>('.line-graph')
       .attr('d', drawLine)
   }
 
-  const ended = (_, i, n) => {
+  const ended: d3.ValueFn<SVGCircleElement, TimePoint, void> = (_, i, n) => {
     onDataChange(newData)
     d3.select(n[i]).classed('active', false)
   }
@@ -92,7 +90,7 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     .append('g')
     .attr('class', 'x-axis')
     .attr('transform', `translate(0,${height - margin.bottom - margin.top})`)
-    .call(d3.axisBottom(tScale).tickFormat(d3.timeFormat('%Y-%m-%d')))
+    .call(d3.axisBottom<Date>(tScale).tickFormat(d3.timeFormat('%Y-%m-%d')))
     .selectAll('text')
     .style('text-anchor', 'end')
     .attr('dx', '-.8em')
@@ -162,38 +160,47 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     .attr('cy', d => yScale(d.y))
     .attr('r', 8)
 
-  const tooltip = graph.append('g');
+  const tooltip = graph.append('g')
 
-  const callout = (g, value) => {
-      if (!value) return g.style("display", "none");
+  const callout = (g: d3.Selection<SVGGElement, unknown, null, undefined>, value: string | null) => {
+    if (!value) return g.style('display', 'none')
 
-      g.style("display", null)
-       .style("pointer-events", "none")
-       .style("font", "12px sans-serif");
+    g.style('display', null)
+      .style('pointer-events', 'none')
+      .style('font', '12px sans-serif')
 
-      const text = g.selectAll("text")
-        .data([null])
-        .join("text")
-        .call(text => text
-          .selectAll("tspan")
-          .data((value + "").split(/\n/))
-          .join("tspan")
-            .attr("x", 0)
-            .attr("y", (d, i) => `${i * 1.1}em`)
-            .style("font-weight", (_, i) => i ? null : "bold")
-            .text(d => d));
+    const text = g
+      .selectAll<SVGTextElement, TimePoint>('text')
+      .data([null])
+      .join('text')
+      .call(text =>
+        text
+          .selectAll('tspan')
+          .data(value.split(/\n/))
+          .join('tspan')
+          .attr('x', 0)
+          .attr('y', (d, i) => `${i * 1.1}em`)
+          .style('font-weight', (_, i) => (i ? null : 'bold'))
+          .text(d => d),
+      )
 
-      const {x, y, width: w, height: h} = text.node().getBBox();
+    const node = text.node()
+    if (!node) {
+      throw Error('BUG: Invalid selection. Node not found.')
+    }
 
-      text.attr("transform", `translate(${-w / 2}, ${15 - y})`);
+    const { y, width: w } = node.getBBox()
+    text.attr('transform', `translate(${-w / 2}, ${15 - y})`)
   }
 
   const Root = graph
-  const fmt  = x => {return Math.round(100*x)/100;};
+  const fmt = (x: number) => {
+    return Math.round(100 * x) / 100
+  }
 
   graph
-    .selectAll('.dot')
-    .on('mouseover', function onMouseover(d, i) {
+    .selectAll<SVGCircleElement, TimePoint>('.dot')
+    .on('mouseover', function onMouseover(d) {
       d3.select(this)
         .attr('fill', '#ffab00')
         .attr('r', 10)
@@ -201,18 +208,23 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
         .attr('opacity', 0.3)
         .attr('x1', tScale(d.t))
         .attr('x2', tScale(d.t))
-      tooltip.attr("transform", `translate(${tScale(d.t)},${yScale(d.y)})`)
-        .call(callout, `${d.t.toLocaleString(undefined, {month: "short", day: "numeric", year: "numeric"})}\n${fmt(d.y)}`);
+      tooltip
+        .attr('transform', `translate(${tScale(d.t)},${yScale(d.y)})`)
+        .call(
+          callout,
+          `${d.t.toLocaleString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}\n${fmt(d.y)}`,
+        )
     })
     .on('mouseout', function onMouseOut() {
       d3.select(this)
         .attr('fill', 'black')
         .attr('r', 8)
       Root.select('#temp-line').attr('opacity', 0)
-      tooltip.call(callout, null);
+      tooltip.call(callout, null)
     })
     .call(
-      d3.drag()
+      d3
+        .drag<SVGCircleElement, TimePoint>()
         .subject(d => ({ x: tScale(d.t), y: yScale(d.y) }))
         .on('start', started)
         .on('drag', dragged)
