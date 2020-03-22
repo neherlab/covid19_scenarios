@@ -1,5 +1,5 @@
-import { ContainmentData } from '../../../algorithms/Param.types'
-import { makeTimeSeries } from '../../../algorithms/TimeSeries'
+import { ContainmentData } from '../../../algorithms/types/Param.types'
+import { makeTimeSeries } from '../../../algorithms/utils/TimeSeries'
 import simulationData from './simulation'
 
 export interface ContainmentScenario {

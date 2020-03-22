@@ -2,8 +2,8 @@ import React from 'react'
 import ReactResizeDetector from 'react-resize-detector'
 import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
 
-import { AlgorithmResult, UserResult } from '../../../algorithms/Result.types'
-import { EmpiricalData } from '../../../algorithms/Param.types'
+import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
+import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
 const ASPECT_RATIO = 16 / 9
 
@@ -176,6 +176,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                   linesToPlot.map(d => {
                     return (
                       <Line
+                        key={d.key}
                         dot={false}
                         isAnimationActive={false}
                         type='monotone'
@@ -192,6 +193,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                   scatterToPlot.map(d => {
                     return (
                       <Scatter
+                        key={d.key}
                         dataKey={d.key}
                         fill={d.color}
                         name={d.name}

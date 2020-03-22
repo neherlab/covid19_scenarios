@@ -1,4 +1,4 @@
-import { PopulationData } from '../../../algorithms/Param.types'
+import { PopulationData } from '../../../algorithms/types/Param.types'
 import populationDataPreset from '../population.json'
 
 interface PopulationScenario {

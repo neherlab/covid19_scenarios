@@ -1,8 +1,8 @@
 import { saveAs } from 'file-saver'
 
-import { exportSimulation } from './model'
+import { exportSimulation } from '../model'
 
-import { AlgorithmResult } from './Result.types'
+import { AlgorithmResult } from '../types/Result.types'
 
 export function isBlobApiSupported() {
   try {

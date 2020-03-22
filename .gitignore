@@ -9,3 +9,4 @@
 \.vscode
 node_modules
 tools/__pycache__
+cypress/videos/
