@@ -96,7 +96,7 @@ def merge_cases(oldcases, newcases):
                 if d['time'] == prevDay['time']:
                     # merging will only add new keys (not replace old values), and remove the duplicate day afterwards
                     for k in d:
-                        if not k in prevDay:
+                        if (not k in prevDay) or (not prevDay[k]):
                             prevDay[k] = d[k]
                     joinedDays.remove(d)
                 else:
