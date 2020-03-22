@@ -55,19 +55,18 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
 
   // TODO: shis should probably go into the `Compare/`
   async function handleFileSubmit(files: Map<FileType, File>) {
-    
     setFiles(files)
 
     const csvFile: File | undefined = files.get(FileType.CSV)
     if (!csvFile) {
-      throw new Error(`t('Error'): t('Csv file is missing')`)
+      throw new Error(`t('Error'): t('CSV file is missing')`)
     }
 
     const csvString: string = await readFile(csvFile)
     const { data, errors, meta } = Papa.parse(csvString, { trimHeaders: false })
     if (meta.aborted || errors.length > 0) {
       // TODO: have to report this back to the user
-      throw new Error(`t('Error'): t('Csv file could not be parsed')`)
+      throw new Error(`t('Error'): t('CSV file could not be parsed')`)
     }
     const newUserResult = processUserResult(data)
     setUserResult(newUserResult)
@@ -85,7 +84,7 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
       <Row noGutters>
         <Col>
           <p>
-            {t('Results disclaimer')}
+            {t('This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution')}
           </p>
         </Col>
       </Row>

@@ -17,7 +17,7 @@ import './SeverityTable.scss'
 import i18next from 'i18next'
 
 const columns: SeverityTableColumn[] = [
-  { name: 'ageGroup', title: i18next.t('Age-group') },
+  { name: 'ageGroup', title: i18next.t('Age group') },
   { name: 'confirmed', title: `${i18next.t('Confirmed')}\n% ${i18next.t('total')}`},
   { name: 'severe', title: `${i18next.t('Severe')}\n% ${i18next.t('of confirmed')}`},
   { name: 'critical', title: `${i18next.t('Critical')}\n% ${i18next.t('of severe')}`},

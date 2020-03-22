@@ -111,13 +111,13 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const scatterToPlot: LineProps[] = []
   const linesToPlot: LineProps[] = [
       {key:'hospitalBeds', color: colors.hospitalBeds, name:t('Total hospital beds'), legendType:"none"},
-      {key:'ICUbeds', color: colors.ICUbeds, name:t('Total icu icm beds'), legendType:"none"},
+      {key:'ICUbeds', color: colors.ICUbeds, name:t('Total ICU/ICM beds'), legendType:"none"},
       {key:'susceptible', color: colors.susceptible, name:t('Susceptible'), legendType:"line"},
       //{key:'exposed', color: colors.exposed, name:'', legendType:"line"},
       {key:'infectious', color: colors.infectious, name:t('Infectious'), legendType:"line"},
       // {key:'hospitalized', color: colors.severe, name:'Severely ill', legendType:"line"},
-      {key:'critical', color: colors.critical, name:t('Patients in icu'), legendType:"line"},
-      {key:'overflow', color: colors.overflow, name:t('Icu overflow'), legendType:"line"},
+      {key:'critical', color: colors.critical, name:t('Patients in ICU'), legendType:"line"},
+      {key:'overflow', color: colors.overflow, name:t('ICU overflow'), legendType:"line"},
       {key:'recovered', color: colors.recovered, name:t('Recovered'), legendType:"line"},
       {key:'dead', color: colors.death, name:t('Cumulative deaths'), legendType:"line"},
   ]
@@ -139,7 +139,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
         scatterToPlot.push({key:'currentHospitalized', 'color': colors.severe, name: t('Patients in hospital')})
       }
       if (count_observations.ICU){
-        scatterToPlot.push({key:'ICU', 'color': colors.critical, name: t('Patients in icu')})
+        scatterToPlot.push({key:'ICU', 'color': colors.critical, name: t('Patients in ICU')})
       }
       if (count_observations.newCases){
         scatterToPlot.push({key:'newCases', 'color': colors.newCases, name: t('Confirmed cases past 3 days')})

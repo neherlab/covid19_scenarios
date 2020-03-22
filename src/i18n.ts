@@ -15,6 +15,7 @@ i18n
     lng: lang,
     fallbackLng: 'en',
     debug: true,
+    keySeparator: false, // Disable dots as key separators as we use dots in keys
 
     interpolation: {
       escapeValue: false,

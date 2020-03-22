@@ -16,9 +16,9 @@ const Team: React.FC = () => {
         <Col lg={2} />
         <Col lg={8}>
           <p>
-            {t('This tool was developed at the university of basel in the')}
+            {t('This tool was developed at the University of Basel in the')}
             <LinkExternal url="https://neherlab.org">&nbsp;{t('Research group')}&nbsp;</LinkExternal>
-            {t('Of richard neher by')}
+            {t('of Richard Neher by')}
           </p>
           <ul>
             <li>Ivan Aksamentov</li>
@@ -26,7 +26,7 @@ const Team: React.FC = () => {
             <li>Richard Neher</li>
           </ul>
           <LinkExternal url="https://ki.se/en/mtc/jan-albert-group">Jan Albert</LinkExternal>
-          &nbsp; {t('at the karolinska hospital in stockholm had the initial idea to develop this tool and suggested features and parameters')} Jan {t('and')} Robert Dyrdak {t('provided parameter estimates')}
+          &nbsp; {t('at the Karolinska hospital in Stockholm had the initial idea to develop this tool and suggested features and parameters.')} Jan {t('and')} Robert Dyrdak {t('provided parameter estimates.')}
         </Col>
         <Col lg={2} />
       </Row>

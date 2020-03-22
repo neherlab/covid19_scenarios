@@ -49,7 +49,7 @@ function FileUploadZone({ files, onFilesChange }: FileUploadZoneProps) {
         {isDragActive ? (
           <p>{t('Drop the files here ...')}</p>
         ) : (
-          <p>{t('Drag n drop some files here, or click to select files')}</p>
+          <p>{t("Drag n' drop some files here, or click to select files")}</p>
         )}
         <ul>
           {[...files.values()].map(({ name }: File) => (

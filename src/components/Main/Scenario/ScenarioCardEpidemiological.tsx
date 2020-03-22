@@ -41,7 +41,7 @@ function ScenarioCardEpidemiological({
     <CardWithDropdown
       identifier="epidemiologicalScenario"
       label={<h5 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h5>}
-      help={t('Epidemiological parameters specifing growth rate')}
+      help={t('Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).')}
       options={epidemiologicalScenarioOptions}
       value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)}
       onValueChange={handleChangeEpidemiologicalScenario}
@@ -49,7 +49,7 @@ function ScenarioCardEpidemiological({
       <FormSpinBox
         identifier="epidemiological.r0"
         label={`${t('Annual average')} R\u2080`}
-        help={t('Average number of secondary infections per case')}
+        help={t('Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.')}
         step={0.1}
         errors={errors}
         touched={touched}
@@ -57,7 +57,7 @@ function ScenarioCardEpidemiological({
       <FormSpinBox
         identifier="epidemiological.incubationTime"
         label={`${t('Latency')} [${t('days')}]`}
-        help={t('Time from infection to onset of symptoms here onset of infectiousness')}
+        help={t('Time from infection to onset of symptoms (here onset of infectiousness)')}
         step={1}
         min={0}
         errors={errors}
@@ -66,7 +66,7 @@ function ScenarioCardEpidemiological({
       <FormSpinBox
         identifier="epidemiological.infectiousPeriod"
         label={`${t('Infectious period')} [${t('days')}]`}
-        help={t('Average number of days a person is infectious together with the incubation time this defines the serial interval')}
+        help={t('Average number of days a person is infectious. Over this time, R0 infections happen on average. Together with the latency time, this defines the serial interval. The longer the serial interval, the slower the outbreak.')}
         step={1}
         min={0}
         errors={errors}
@@ -100,8 +100,8 @@ function ScenarioCardEpidemiological({
       />
       <FormSpinBox
         identifier="epidemiological.lengthICUStay"
-        label={`${t('Icu stay')} [${t('days')}]`}
-        help={t('Average number of days a critical case stays in the icu')}
+        label={`${t('ICU stay')} [${t('days')}]`}
+        help={t('Average number of days a critical case stays in the ICU')}
         step={1}
         min={0}
         errors={errors}
@@ -109,8 +109,8 @@ function ScenarioCardEpidemiological({
       />
       <FormSpinBox
         identifier="epidemiological.overflowSeverity"
-        label={t('Severity of icu overflow')}
-        help={t('A multiplicative factor to death rate to patients that require but do not have access to an icu bed relative to those who do')}
+        label={t('Severity of ICU overflow')}
+        help={t('A multiplicative factor to death rate to patients that require but do not have access to an ICU bed relative to those who do.')}
         step={0.1}
         min={1}
         errors={errors}

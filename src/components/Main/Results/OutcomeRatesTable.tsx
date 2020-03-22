@@ -95,12 +95,12 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
         </table>
       </Col>
       <Col lg={6}>
-        <h5>{t('Totals')}/{t('Peak')}</h5>
+        <h5>{t('Totals/Peak')}</h5>
         <table>
           <thead>
             <tr>
               <th>{t('Quantity')} &emsp; </th>
-              <th>{t('Peak total value')}</th>
+              <th>{t('Peak/total value')}</th>
             </tr>
           </thead>
           <tbody>

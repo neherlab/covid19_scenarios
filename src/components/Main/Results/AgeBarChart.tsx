@@ -48,7 +48,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
 
           return (
             <>
-              <h5>Distribution across age groups</h5>
+              <h5>{t('Distribution across age groups')}</h5>
               <BarChart
                 width={width}
                 height={height}
@@ -65,10 +65,10 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 <Tooltip />
                 <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name="peak severe" />
-                <Bar dataKey="peakCritical" fill={colors.critical} name="peak critical" />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name="peak overflow" />
-                <Bar dataKey="totalDead" fill={colors.death} name="total deaths" />
+                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
+                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
+                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
+                <Bar dataKey="totalDead" fill={colors.death} name={t('total deaths')} />
               </BarChart>
               <BarChart
                 width={width}
@@ -84,14 +84,14 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 <XAxis dataKey="name" label={{ value: t('Age'), position: 'insideBottom', offset: -3 }} />
                 <YAxis
                   label={{
-                    value: t('percent of total'),
+                    value: t('% of total'),
                     angle: -90,
                     position: 'insideLeft',
                   }}
                 />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Tooltip />
-                <Bar dataKey="fraction" fill="#aaaaaa" name={t('percent of total')} />
+                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
               </BarChart>
             </>
           )

@@ -12,7 +12,7 @@ export function validatePercentage(
     .number()
     .typeError(i18next.t('Percentage should be a number'))
     .required(i18next.t('Required'))
-    .min(0, i18next.t('Percentage should be non negative'))
+    .min(0, i18next.t('Percentage should be non-negative'))
     .max(100, i18next.t('Percentage cannot be greater than 100'))
 
   try {
