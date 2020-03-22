@@ -72,6 +72,7 @@ DEU-Sachsen	4078000	Germany	24369	1162	83	0.2
 DEU-Sachsen-Anhalt	2208000	Germany	13194	629	45	0.1
 DEU-Schleswig-Holstein	2897000	Germany	17312	826	59	0.2
 DEU-Thüringen	2143000	Germany	12806	611	43	0.1
+DEU-NI-RegionGöttingen	600000	Germany	6000	300	10	0.1
 SWE-Stockholm	2000000	Sweden	4506	108	77	0.2
 ITA-Piemonte	4356406	Italy	14826	320	490	5
 ITA-Valle d’Aosta	125666	Italy	449	0	10	5
@@ -146,7 +147,7 @@ USA-Florida	21992985	United States of America	57182	1906	300	10
 USA-Texas	29472295	United States of America	67786	2260	200	10
 USA-California	39937489	United States of America	71887	2396	1000	10
 India	1380004385	India	1376013	70000	5	40
-India-Andhra Pradesh	52883163	India	23138	2278	0	2
+IND-Andhra Pradesh	52883163	India	23138	2278	0	2
 IND-Arunachal Pradesh	1528296	India	2404	236	0	0.1
 IND-Assam	34586234	India	17142	1688	0	1
 IND-Bihar	119461013	India	12019	1183	0	1
