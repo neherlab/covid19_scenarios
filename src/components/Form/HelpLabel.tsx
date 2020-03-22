@@ -10,11 +10,9 @@ export interface HelpLabelProps {
 
 export default function HelpLabel({ identifier, label, help }: HelpLabelProps) {
   return (
-    <div className="d-flex">
-      <span className="my-auto">
-        <FormHelpButton identifier={`${identifier}_help`} label={label} help={help} />
-      </span>
-      <span className="ml-2 my-auto text-truncate">{label}</span>
-    </div>
+    <>
+      <FormHelpButton identifier={`${identifier}_help`} label={label} help={help} />
+      <span className="ml-2 text-truncate">{label}</span>
+    </>
   )
 }
