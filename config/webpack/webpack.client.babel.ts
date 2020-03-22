@@ -145,7 +145,7 @@ export default {
     compress: true,
     disableHostCheck: true,
     historyApiFallback: true,
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     hot: true,
     lazy: false,
     overlay: {
@@ -360,7 +360,7 @@ export default {
     analyze &&
       new BundleAnalyzerPlugin({
         analyzerMode: 'server',
-        analyzerHost: '0.0.0.0',
+        analyzerHost: '127.0.0.1',
         analyzerPort,
         openAnalyzer: false,
         defaultSizes: 'gzip',
