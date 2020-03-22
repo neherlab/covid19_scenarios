@@ -31,6 +31,7 @@ export default function FormHelpButton({ identifier, label, help }: FormHelpButt
         }}
         onFocus={() => setPopoverOpen(true)}
         onBlur={() => setPopoverOpen(false)}
+        aria-label="help"
       >
         <FaQuestion className="help-button-icon" />
       </Button>
