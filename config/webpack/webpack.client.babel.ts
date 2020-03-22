@@ -187,7 +187,7 @@ export default {
       ...webpackLoadAssets({
         isDev: development,
         inlineSmallerThan: 0,
-        subdirectory: 'assets',
+        subdirectory: 'assets/',
       }),
     ],
   },
