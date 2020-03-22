@@ -102,7 +102,7 @@ Got questions or suggestions?
 <p align="center">
   <a
     alt="Link to join the chat"
-    href="hhttps://spectrum.chat/covid19-scenarios"
+    href="https://spectrum.chat/covid19-scenarios"
   >
     <img
       alt="Image for the link to join the chat"
