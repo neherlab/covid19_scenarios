@@ -3,22 +3,12 @@
   "legacyWatch": false,
   "delay": 0.1,
   "watch": [
-    "../.env",
-    ".browserslistrc",
-    ".editorconfig",
     ".env",
-    ".eslintignore",
-    ".eslintrc.js",
-    ".prettierignore",
-    ".prettierrc",
     "babel.config.js",
-    "config",
     "package.json",
-    "postcss.config.js",
-    "stylelint.config.js",
+    "infra/lambda-at-edge/modifyOutgoingHeaders.lambda.js",
+    "src/server",
     "tsconfig.json",
-    "tslint.json",
-    "webpack.config.js",
     "yarn.lock"
   ],
   "ext": "js,jsx,ts,tsx,json,flow,css,scss,sass,styl,html,ejs,d,txt,yml,sh",
@@ -29,5 +19,5 @@
     "**/*.test.*sx",
     "**/*.test.*s"
   ],
-  "exec": "node -e 'console.clear()' ; yarn dev:clean ; yarn install && yarn dev:nowatch || cd ."
+  "exec": "yarn prod:serve:nowatch || cd ."
 }
