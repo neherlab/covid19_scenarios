@@ -25,19 +25,6 @@ import { OutcomeRatesTable } from './OutcomeRatesTable'
 
 import { useTranslation } from 'react-i18next'
 
-function scrollToViewGraphs(result: object) {
-  // Should run only in mobile and also only if result is not found.
-  if (result || window.screen.width > 600) return
-  // Time taken to render the graphs depends on deterministicTrajectory and 0.8s second seems like a fair waittime. Also, top: 550 is a temporary fix..
-  setTimeout(() => {
-    window.scrollBy({
-      top: 550,
-      left: 0,
-      behavior: 'smooth'
-    })
-  }, 800)
-}
-
 export interface ResutsCardProps {
   canRun: boolean
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
@@ -98,7 +85,6 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
                 color="primary"
                 disabled={!canRun}
                 data-testid="RunResults"
-                onClick={scrollToViewGraphs.bind(this, result)}
               >
                 {t('Run')}
               </Button>
