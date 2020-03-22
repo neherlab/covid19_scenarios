@@ -1,5 +1,6 @@
 import * as yup from 'yup'
 
+import i18next from 'i18next'
 /**
  * Checks that a given value is a valid percentage number and if not, attempts
  * to cast it as such. If unsuccesful, returns a NaN and an error message.
@@ -9,10 +10,10 @@ export function validatePercentage(
 ): { value: number; errors?: string } {
   const percentageSchema = yup
     .number()
-    .typeError('Percentage should be a number')
-    .required('Required')
-    .min(0, 'Percentage should be non-negative')
-    .max(100, 'Percentage cannot be greater than 100')
+    .typeError(i18next.t('Percentage should be a number'))
+    .required(i18next.t('Required'))
+    .min(0, i18next.t('Percentage should be non-negative'))
+    .max(100, i18next.t('Percentage cannot be greater than 100'))
 
   try {
     const castedValue = percentageSchema.validateSync(value)
