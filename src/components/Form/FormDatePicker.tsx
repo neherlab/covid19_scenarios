@@ -10,6 +10,15 @@ import FormLabel from './FormLabel'
 
 import { DateRange } from '../../algorithms/types/Param.types'
 
+
+// Function to determine number of months to display on the datepicker.
+function getNumberOfMonthsCount(media: object) {
+  const { tiny, small, medium } = media
+  if (tiny) return 1
+  if (small) return 2
+  if (medium) return 3
+  return 4
+}
 export interface FormInputProps {
   identifier: string
   label: string
@@ -39,9 +48,9 @@ export function FormDatePicker({ identifier, label, help, allowPast = true }: Fo
                   }}
                 >
                   {media => {
-                    const { small, medium, large } = media
+                    const { small } = media
 
-                    const numberOfMonths = small ? 2 : medium ? 3 : 4
+                    const numberOfMonths = getNumberOfMonthsCount(media)
                     const orientation = small ? 'vertical' : 'horizontal'
                     const withPortal = small
 

@@ -25,6 +25,7 @@ import { schema } from './validation/schema'
 import { setEpidemiologicalData, setPopulationData, setSimulationData, setContainmentData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState } from './state/state'
+import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
@@ -45,7 +46,11 @@ const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 function Main() {
   const formikRef = useRef(null)
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState /* , initDefaultState */)
+  const [scenarioState, scenarioDispatch] = useReducer(
+    scenarioReducer,
+    defaultScenarioState,
+    deserializeScenarioFromURL,
+  )
 
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -107,6 +112,7 @@ function Main() {
     const caseCounts = countryCaseCounts[scenarioState.population.data.cases] || []
     const containmentData = scenarioState.containment.data.reduction
 
+    serializeScenarioToURL(scenarioState, params)
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
 
     setResult(newResult)

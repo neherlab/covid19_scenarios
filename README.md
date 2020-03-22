@@ -1,3 +1,7 @@
+<h1 align="center">
+  COVID-19 Scenarios
+</h1>
+
 <p align="center">
   <a href="https://neherlab.org/covid19/">
     <img
@@ -8,10 +12,6 @@
     />
   </a>
 </p>
-
-<h1 align="center">
-  COVID-19 Scenarios
-</h1>
 
 <p align="center">
   <a href="https://neherlab.org/covid19/">
@@ -95,8 +95,6 @@
   </a>
 </p>
 
-
-
 <h2 align="center">
 Got questions or suggestions?
 </h2>
@@ -104,7 +102,7 @@ Got questions or suggestions?
 <p align="center">
   <a
     alt="Link to join the chat"
-    href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a"
+    href="https://spectrum.chat/covid19-scenarios"
   >
     <img
       alt="Image for the link to join the chat"
@@ -185,32 +183,32 @@ Discover
 </table>
 </p>
 
-
 ### Overview
-This tool is based on an SIR model (see about page for details) that simulates a COVID19 outbreak.
-The population is initially mostly susceptible (other than for initial cases).
-Individuals that recover from COVID19 are subsequently immune.
-Currently, the parameters of the model are *not* fit to data but are simply defaults.
-These might fit better for some localities than others.
-In particular the initial cases counts are often only rough estimates.
 
-The primary purpose of the tool is to explore the dynamics of COVID19 cases and the associated strain on the health care system in the near future.
-The outbreak is influenced by infection control measures such as school closures, lock-down etc.
-The effect of such measures can be included in the simulation by adjusting the mitigation parameters.
-Analogously, you can explore the effect of isolation on specific age groups in the column "Isolated" in the table on severity assumptions and age specific isolation.
+This tool is based on an SIR model (see about page for details) that simulates a COVID19 outbreak. The population is
+initially mostly susceptible (other than for initial cases). Individuals that recover from COVID19 are subsequently
+immune. Currently, the parameters of the model are _not_ fit to data but are simply defaults. These might fit better for
+some localities than others. In particular the initial cases counts are often only rough estimates.
 
+The primary purpose of the tool is to explore the dynamics of COVID19 cases and the associated strain on the health care
+system in the near future. The outbreak is influenced by infection control measures such as school closures, lock-down
+etc. The effect of such measures can be included in the simulation by adjusting the mitigation parameters. Analogously,
+you can explore the effect of isolation on specific age groups in the column "Isolated" in the table on severity
+assumptions and age specific isolation.
 
 ### Parameters
+
 Parameters fall into three different categories
 
-  * population parameters
-  * epidemiological parameters
-  * clinical parameters
+- population parameters
+- epidemiological parameters
+- clinical parameters
 
 Most parameters can be adjusted in the tool and for many of them we provide presets.
 
-Input data for the tool and the basic parameters of the populations are collected in a separate repository [neherlab/covid19_scenarios_data](https://github.com/neherlab/covid19_scenarios_data).
-Please add data on populations and parsers of publicly available case count data there.
+Input data for the tool and the basic parameters of the populations are collected in a separate repository
+[neherlab/covid19_scenarios_data](https://github.com/neherlab/covid19_scenarios_data). Please add data on populations
+and parsers of publicly available case count data there.
 
 ### Development
 
@@ -224,18 +222,15 @@ Please add data on populations and parsers of publicly available case count data
 This will run the application in development mode (with hot reloading):
 
 ```bash
-
 git clone https://github.com/neherlab/covid19_scenarios
 cd covid19_scenarios/
 cp .env.example .env
 yarn install
 yarn dev
-
 ```
 
-This will trigger the development server and build process. Wait for the build
-to finish, then navigate to `http://localhost:3000` in a browser (last 5 version
-of Chrome or Firefox are supported in dev mode)
+This will trigger the development server and build process. Wait for the build to finish, then navigate to
+`http://localhost:3000` in a browser (last 5 version of Chrome or Firefox are supported in dev mode)
 
 Hit Ctrl+C in the terminal to shutdown.
 

@@ -39,6 +39,7 @@ module.exports = {
     'jest-axe/extend-expect',
     '@testing-library/jest-dom/extend-expect',
   ],
+  setupFiles: ['<rootDir>/config/jest/mockPopperJS.js'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
