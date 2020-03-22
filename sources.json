@@ -23,5 +23,10 @@
     "primarySource": "https://coronadatascraper.com/timeseries-byLocation.json",
     "dataProvenance": "Coronadatascraper.com",
     "license": "Scraped from many sources, no clear license"
+  },
+  "tsv": {
+    "primarySource": "Manually maintained .tsv files in case-counts/ folder",
+    "dataProvenance": "Manually maintained by contributors",
+    "license": "no clear license, multiple sources"
   }
 }
