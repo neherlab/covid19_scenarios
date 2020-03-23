@@ -66,4 +66,6 @@ def parse():
                                          x[1].get("ICU", None),
                                          x[1].get("recovered", None)] for x in dps]
 
+    region_tables['Spain'] = region_tables['Total']
+    del region_tables['Total']
     store_data(region_tables, { 'default': LOC, 'Spain': LOC}, 'spain', 'ESP', cols)
