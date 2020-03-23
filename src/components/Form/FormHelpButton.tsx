@@ -26,6 +26,9 @@ export default function FormHelpButton({ identifier, label, help }: FormHelpButt
         className="help-button"
         type="button"
         onClick={e => {
+          if (!popoverOpen) {
+            e.currentTarget.focus()
+          }
           e.preventDefault()
           e.stopPropagation()
         }}
