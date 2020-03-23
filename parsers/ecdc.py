@@ -11,7 +11,7 @@ import json
 from urllib.request import urlretrieve
 from collections import defaultdict
 from datetime import datetime, timedelta
-from .utils import write_tsv, sorted_date, flatten, parse_countries, stoi, store_json
+from .utils import sorted_date, parse_countries, stoi, store_data
 
 # -----------------------------------------------------------------------------
 # Globals
@@ -82,12 +82,7 @@ def retrieve_case_data():
 
 def parse():
     cases = retrieve_case_data()
-    store_json(cases)
-
-
-    # for legacy support
-    cases = flatten(cases)
-    write_tsv(f"{LOC}/World.tsv", cols, cases, "ecdc")
+    store_data(cases, {'default': LOC+'/World.tsv'}, 'ecdc')
     
 
 

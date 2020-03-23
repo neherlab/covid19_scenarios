@@ -2,6 +2,8 @@ import csv
 import json
 import functools
 import os
+import re
+
 from datetime import datetime
 from collections import defaultdict
 
@@ -11,6 +13,9 @@ from collections import defaultdict
 with open("sources.json") as fh:
     sources = json.load(fh)
 
+default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+
+    
 # ------------------------------------------------------------------------
 # Functions
 
@@ -36,11 +41,19 @@ def get_header(source):
             f"# License: {d.get('license','not specified')}\n")
 
 def flatten(cases):
+    # Expects a dict of lists of dicts {'USA': [{'cases': 0, 'time': '2020-03-20'}, ..., ] }
+    # Converts to list of lists [['USA', '2020-03-20', 0, ...]]
+    # This is mostly required for World.tsv and similar
     rows = []
     for cntry, data in cases.items():
         for datum in data:
-            rows.append([cntry, datum['time'], datum['cases'], datum['deaths'], None, None, None])
-
+            row = [cntry]
+            for c in default_cols:
+                if c in datum:
+                    row.append(datum[c])
+                else:
+                    row.append(None)
+            rows.append(row)
     return rows
 
 def parse_countries(index=1):
@@ -104,7 +117,22 @@ def merge_cases(oldcases, newcases):
             res[c] = joinedDays
     return res
 
+def store_tsv(regions, exceptions, source, cols):
+    for region, data in regions.items():
+        # region is API provided and should be sanitized before using it to construct paths for security reasons
+        region = sanitize(region)
+        
+        # If we only want to store one .tsv in the root, we signal this with exceptions['default': 'FOO.tsv']
+        if  '.tsv' in exceptions['default']:
+            write_tsv(exceptions['default'], ['location']+cols, flatten(regions), source)
+        # For normal .tsv storage in individual regions' tsv
+        elif region not in exceptions:
+            write_tsv(f"{exceptions['default']}/{region}.tsv", cols, data, source)
+        else:
+            write_tsv(f"{exceptions[region]}/{region}.tsv", cols, data, source)
+
 def list_to_dict(regions, cols):
+    # transform a a dict of lists of lists {'USA':[['2020-03-01', 1, 2,...],..]} into a dict of lists of dicts {'USA': [{'time': '2020-03-01', 'cases': 1, ...},...]}
     res = {}
     for k in regions:
         nk = []
@@ -138,3 +166,40 @@ def store_json(newdata):
 
     #print('first layer keys are %s'%mergedCases.keys())
     print('Stored data for %d regions to json'%len(mergedCases))
+
+def sanitize(fname):
+    # we sanitize to ASCII alphabetic here
+    #fname2 = re.sub('[^a-zA-Z ]+', '_', fname)
+    # lets not discard possible UTF8 alphabetic, for now just removing .\/~
+    fname2 = re.sub('[\\\\\/\~]+(\.\.)+', '_', fname)
+    if not fname2==fname:
+        print(f'Filename sanitized: was {fname}, now {fname2}')
+    return fname2
+    
+    
+def store_data(regions, exceptions, source, code='', cols=[]):
+    # check if we have a dict of list of list, or dict of list of dicts
+
+    if isinstance(regions, dict):
+        cd1 = list(regions.values())[0]
+        if isinstance(cd1, list): 
+            cd2 = cd1[0]           
+            if isinstance(cd2, list):
+                store_tsv(regions, exceptions, source, cols)
+                if not cols==[]:
+                    regions2 = {}
+                    for region, data in regions.items():
+                        if not region in exceptions:
+                            regions2[code+"-"+region] = data
+                        else:
+                            regions2[region] = data                
+                    store_json(list_to_dict(regions2, cols))
+                else:
+                    print(f'ERROR: You need to provide cols to store_data for the format you use. cols will indicate type of values in your inner lists. No data was stored to .tsv now!', file=sys.stderr)
+                    return
+            elif isinstance(cd2, dict):
+                store_json(regions)
+                # most likely, in this case exceptions['default': 'case-counts/SOMENAME.tsv'], to store in one .tsv file
+                store_tsv(regions, exceptions, source, default_cols)
+            else:
+                print(f'ERROR: unable to parse {regions}', file=sys.stderr)

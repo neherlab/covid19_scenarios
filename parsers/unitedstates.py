@@ -7,7 +7,7 @@ import json
 
 from collections import defaultdict
 from datetime import datetime
-from .utils import write_tsv, store_json, list_to_dict, stoi
+from .utils import store_data, stoi
 
 # ------------------------------------------------------------------------
 # Globals
@@ -109,16 +109,4 @@ def parse():
     for cntry, data in regions.items():
         regions[cntry] = sorted_date(regions[cntry])
 
-    for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", cols, data, "unitedstates")
-
-    # prepare dict for json
-    regions2 = {}
-    for region, data in regions.items():
-        if not (region == "USA"):
-            regions2["USA-"+region] = data
-        else:
-            regions2[region] = data
-
-    regions3 = list_to_dict(regions2, cols)
-    store_json(regions3)
+    store_data(regions, { 'default': LOC}, 'unitedstates', 'USA', cols)

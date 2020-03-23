@@ -5,7 +5,7 @@ import requests
 import numpy as np
 
 from collections import defaultdict
-from .utils import write_tsv, store_json, list_to_dict
+from .utils import store_data
 
 # ------------------------------------------------------------------------
 # Globals
@@ -57,16 +57,4 @@ def parse():
     for date, counts in dates.items():
         regions["Italy"].append([date] + [int(c) for c in counts])
 
-    for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", cols, data, "italy")
-
-    # prepare dict for json
-    regions2 = {}
-    for region, data in regions.items():
-        if not region == "Italy":
-            regions2["ITA-"+region] = data
-        else:
-            regions2[region] = data
-    regions3 = list_to_dict(regions2, cols)
-    store_json(regions3)
-
+    store_data(regions, { 'default': LOC}, 'italy', 'ITA', cols)
