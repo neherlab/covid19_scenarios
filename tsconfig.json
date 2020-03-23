@@ -26,6 +26,26 @@
     "sourceMap": true,
     "strict": true
   },
-  "exclude": [".build", ".cache", ".ignore", ".reports", "3rdparty", "node_modules", "static", "tsconfig.json"],
-  "include": ["./.js", "./.jsx", "./.ts", "./.tsx", "./**/*.js", "./**/*.json", "./**/*.jsx", "./**/*.ts", "./**/*.tsx"]
+  "include": [
+    "./.js",
+    "./.jsx",
+    "./.ts",
+    "./.tsx",
+    "./**/*.js",
+    "./**/*.json",
+    "./**/*.jsx",
+    "./**/*.ts",
+    "./**/*.tsx"
+  ],
+  "exclude": [
+    ".build",
+    ".cache",
+    ".ignore",
+    ".reports",
+    "3rdparty",
+    "node_modules",
+    "static",
+    "tsconfig.json",
+    "cypress"
+  ]
 }
