@@ -19,6 +19,8 @@ const forDisplay = (x: number) => {
 }
 
 export function OutcomeRatesTable({ result, rates }: TableProps) {
+  const { t } = useTranslation()
+
   if (!result || !rates) {
     return null
   }

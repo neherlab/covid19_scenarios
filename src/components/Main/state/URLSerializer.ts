@@ -1,10 +1,10 @@
-import type { AllParams } from '../../../algorithms/types/Param.types'
+import { AllParams } from '../../../algorithms/types/Param.types'
 
 import { State } from './state'
 
 /*
 
-Quick and dirty helper to serialize/deserialize parameters within the URL, 
+Quick and dirty helper to serialize/deserialize parameters within the URL,
 so people can share/save it and keep their parameters
 
 This could have been done inside a redux middleware, but with some refacto.
@@ -34,7 +34,7 @@ export function deserializeScenarioFromURL(initState: State) {
   if (window.location.search) {
     try {
       /*
-        We deserialise the URL by removing the first char ('?'), and applying JSON.parse 
+        We deserialise the URL by removing the first char ('?'), and applying JSON.parse
       */
       const obj = JSON.parse(decodeURIComponent(window.location.search.slice(1)))
 

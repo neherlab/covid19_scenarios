@@ -52,7 +52,7 @@ function FileUploadZone({ files, onFilesChange }: FileUploadZoneProps) {
           <p>{t("Drag n' drop some files here, or click to select files")}</p>
         )}
         <ul>
-          {[...files.values()].map(({ name }: File) => (
+          {Array.from(files.values()).map(({ name }: File) => (
             <li key={name}>{name}</li>
           ))}
         </ul>

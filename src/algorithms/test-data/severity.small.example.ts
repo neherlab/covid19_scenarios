@@ -1,6 +1,6 @@
-import { SeverityTableRow } from '../../components/Main/SeverityTable'
+import { SeverityTableRow } from '../../components/Main/Scenario/SeverityTable'
 
-const severity: SeverityTableRow[] = [
+const severity: Partial<SeverityTableRow>[] = [
   {
     id: 0,
     ageGroup: 0,

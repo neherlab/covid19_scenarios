@@ -20,11 +20,12 @@ export interface SimProps {
 }
 
 export function AgeBarChart({ data, rates }: SimProps) {
+  const { t: unsafeT } = useTranslation()
+
   if (!data || !rates) {
     return null
   }
 
-  const { t: unsafeT } = useTranslation()
   const t = (...args: Parameters<typeof unsafeT>) => {
     const translation = unsafeT(...args)
     if (typeof translation === 'string' || typeof translation === 'undefined') {

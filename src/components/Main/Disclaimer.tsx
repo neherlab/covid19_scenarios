@@ -64,7 +64,7 @@ export default function DisclaimerProps() {
               className="form-check-input"
               onChange={toggleChecked}
               checked={suppressShowAgain}
-              ariaChecked={suppressShowAgain}
+              // ariaChecked={suppressShowAgain}
             />
             Don't show again
           </label>

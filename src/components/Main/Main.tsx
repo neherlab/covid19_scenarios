@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 
-import _ from 'lodash'
+import { values, isEqual, get } from 'lodash'
 
 import { Form, Formik, FormikHelpers } from 'formik'
 
@@ -33,7 +33,7 @@ import './Main.scss'
 import { useScrollIntoView } from '../../helpers/hooks'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
-  return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
+  return !severity.some(row => values(row?.errors).some(x => x !== undefined))
 }
 
 export function severityErrors(severity: SeverityTableRow[]) {
@@ -48,7 +48,7 @@ function Main() {
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,
-    deserializeScenarioFromURL,
+    deserializeScenarioFromURL as any,
   )
 
   // TODO: Can this complex state be handled by formik too?
@@ -99,19 +99,19 @@ function Main() {
 
   const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.population, newParams.population)) {
+    if (!isEqual(allParams.population, newParams.population)) {
       scenarioDispatch(setPopulationData({ data: newParams.population }))
     }
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
+    if (!isEqual(allParams.epidemiological, newParams.epidemiological)) {
       scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
     }
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.simulation, newParams.simulation)) {
+    if (!isEqual(allParams.simulation, newParams.simulation)) {
       scenarioDispatch(setSimulationData({ data: newParams.simulation }))
     }
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.containment, newParams.containment)) {
+    if (!isEqual(allParams.containment, newParams.containment)) {
       scenarioDispatch(setContainmentData({ data: newParams.containment }))
     }
   }, 1000)
@@ -143,7 +143,8 @@ function Main() {
              *
              * only `scrollIntoView` when `isSubmitting` goes from `true` -> `false`
              */
-            const refOfElementToScrollIntoView = useScrollIntoView<HTMLDivElement>(!isSubmitting && vw < 992)
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const refOfElementToScrollIntoView = useScrollIntoView<HTMLDivElement>(!isSubmitting && (vw < 992))
 
             const canRun = isValid && severityTableIsValid(severity)
 

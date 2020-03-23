@@ -46,7 +46,7 @@ export default function FormDropdownStateless<ValueType extends string | number>
               ...theme,
               borderRadius: 0,
             })}
-            onChange={(option: FormDropdownOption<ValueType>) => {
+            onChange={(option: any) => {
               onValueChange?.(option.value)
               onOptionChange?.(option)
             }}

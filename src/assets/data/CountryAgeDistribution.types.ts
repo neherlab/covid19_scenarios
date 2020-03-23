@@ -1,3 +1,6 @@
-export type OneCountryAgeDistribution = Record<string, number>
+export type OneCountryAgeDistribution = Record<string, number[]>
 
-export type CountryAgeDistribution = Record<string, OneCountryAgeDistribution>
+export interface CountryAgeDistribution {
+  country: OneCountryAgeDistribution;
+  bins: number[];
+}

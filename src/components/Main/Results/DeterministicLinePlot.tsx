@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ReactResizeDetector from 'react-resize-detector'
 import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
-import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
+import { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'

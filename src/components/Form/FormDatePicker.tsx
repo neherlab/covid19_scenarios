@@ -18,6 +18,7 @@ function getNumberOfMonthsCount(media: { tiny: boolean; small: boolean; medium: 
   if (medium) return 3
   return 4
 }
+
 export interface FormDatePickerProps {
   identifier: string
   label: string
