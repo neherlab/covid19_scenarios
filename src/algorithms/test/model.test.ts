@@ -1,6 +1,5 @@
 import { infectionRate, getPopulationParams, initializePopulation, evolve } from '../model'
 import { interpolateTimeSeries } from '../run'
-import { TimePoint } from '../../algorithms/types/TimeSeries.types'
 
 // The input and output of getPopulationParams with the default settings
 import getPopulationParamsInput from '../../assets/data/test/getPopulationParams.input.default.json'
@@ -15,15 +14,22 @@ import initializePopulationOutput from '../../assets/data/test/initializePopulat
 
 // The output after the 5th generation using default settings
 // This is a snapshot of the output that is being used as baseline
-import evolveOutput5 from '../../assets/data/test/evolve.output.5th.json'
+import evolveOutput5 from '../../assets/data/test/evolve.output.5th.default.json'
+import { AllParamsFlat } from '../../algorithms/types/Param.types'
 
 const containmentWithDate = containment.map(value => ({ y: value.y, t: new Date(value.t) }))
 const containmentFunction = interpolateTimeSeries(containmentWithDate)
 
-const getInfectionRateFunction = (params: any) => {
-  const avgInfectionRate = params.r0 / params.infectiousPeriod
-  return (o: TimePoint) =>
-    containmentFunction(o.t) * infectionRate(o.t, avgInfectionRate, params.peakMonth, params.seasonalForcing)
+// The snapshot we load has the dates loaded as strings
+// This just overwrites the simulationTimeRange field with the correct object types
+const processParams = (params: typeof getPopulationParamsInput.params): AllParamsFlat => {
+  return {
+    ...params,
+    simulationTimeRange: {
+      tMin: new Date(params.simulationTimeRange.tMin),
+      tMax: new Date(params.simulationTimeRange.tMax),
+    },
+  }
 }
 
 describe('model', () => {
@@ -60,8 +66,9 @@ describe('model', () => {
 
   describe('getPopulationParams', () => {
     it('produces the expected output in the default scenario', () => {
+      const inputParams = processParams(getPopulationParamsInput.params)
       const params = getPopulationParams(
-        getPopulationParamsInput.params,
+        inputParams,
         getPopulationParamsInput.severity,
         getPopulationParamsInput.ageCounts,
         containmentFunction,
@@ -71,9 +78,21 @@ describe('model', () => {
       delete params.infectionRate
       expect(params).toEqual(getPopulationParamsOutput)
 
-      const infectionRateFunction = getInfectionRateFunction(params)
-      containmentWithDate.forEach(o => {
-        expect(paramsInfectionRate(o.t)).toEqual(infectionRateFunction(o))
+      const infectionRateSnapshot = [
+        1.0282794619390596,
+        0.7815218936243379,
+        0.6412716928585847,
+        0.5119976633870834,
+        0.4777650045046975,
+        0.45115800505877796,
+        0.43543682301649544,
+        0.43252777618729166,
+        0.44278731033335716,
+        0.4649583238392415,
+      ]
+
+      containmentWithDate.forEach((o, i) => {
+        expect(paramsInfectionRate(o.t)).toEqual(infectionRateSnapshot[i])
       })
     })
   })
@@ -95,7 +114,7 @@ describe('model', () => {
   describe('evolve', () => {
     it('produces the expected output in the default scenario after 5 evolutions', () => {
       const params = getPopulationParams(
-        getPopulationParamsInput.params,
+        processParams(getPopulationParamsInput.params),
         getPopulationParamsInput.severity,
         getPopulationParamsInput.ageCounts,
         containmentFunction,
@@ -109,7 +128,6 @@ describe('model', () => {
       )
 
       for (let i = 0; i <= 4; i++) {
-        console.log(i)
         input = evolve(input, params, identity)
       }
 

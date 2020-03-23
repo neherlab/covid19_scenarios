@@ -1,55 +1,76 @@
+import { AllParamsFlat } from '../algorithms/types/Param.types'
+import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
+import { ModelParams, SimulationTimePoint } from '../algorithms/types/Result.types'
+
 const msPerDay = 1000 * 60 * 60 * 24
 
-const monthToDay = (m: any) => {
+const monthToDay = (m: number) => {
   return m * 30 + 15
 }
 
-const jan2020: any = new Date('2020-01-01')
+const jan2020 = new Date('2020-01-01').valueOf() // time in ms
 
 /**
  *
- * @param {number} time - point in time, until which simulation runs, as epoch time
- * @param {number} avgInfectionRate
- * @param {number} peakMonth - counting number in range of 0-11
- * @param {number} seasonalForcing -  seasonal variation in transmission. Usually a decimal number, e. g. 0.2
- * @returns {number}
+ * @param time - point in time, until which simulation runs, as epoch time
+ * @param avgInfectionRate
+ * @param peakMonth - counting number in range of 0-11
+ * @param seasonalForcing -  seasonal variation in transmission. Usually a decimal number, e. g. 0.2
+ * @returns
  */
-export function infectionRate(time: any, avgInfectionRate: any, peakMonth: any, seasonalForcing: any) {
+export function infectionRate(
+  time: number,
+  avgInfectionRate: number,
+  peakMonth: number,
+  seasonalForcing: number,
+): number {
   // this is super hacky
   const phase = ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) * 2 * Math.PI
   return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
 }
 
-export function getPopulationParams(params: any, severity: any, ageCounts: any, containment: any) {
-  const pop = { ...params }
+export function getPopulationParams(
+  params: AllParamsFlat,
+  severity: SeverityTableRow[],
+  ageCounts: Record<string, number>,
+  containment: (t: Date) => number,
+): ModelParams {
+  const timeDeltaDays = 0.25
 
-  pop.timeDeltaDays = 0.25
-  pop.timeDelta = msPerDay * pop.timeDeltaDays
-  pop.numberStochasticRuns = params.numberStochasticRuns
+  // TODO: Make this a form-adjustable factor
+  const pop: ModelParams = {
+    ageDistribution: {},
+    infectionSeverityRatio: {},
+    infectionFatality: {},
+    infectionCritical: {},
+    hospitalizedRate: {},
+    recoveryRate: {},
+    dischargeRate: {},
+    stabilizationRate: {},
+    criticalRate: {},
+    deathRate: {},
+    overflowDeathRate: {},
+    isolatedFrac: {},
+    importsPerDay: { total: params.importsPerDay },
+    timeDeltaDays,
+    // Dummy infectionRate function. This is set below.
+    infectionRate: () => -Infinity,
+    timeDelta: msPerDay * timeDeltaDays,
+    incubationTime: params.incubationTime,
+    populationServed: params.populationServed,
+    numberStochasticRuns: params.numberStochasticRuns,
+    hospitalBeds: params.hospitalBeds,
+    ICUBeds: params.ICUBeds,
+  }
 
   // Compute age-stratified parameters
-  const total = severity.map((d: any) => d.ageGroup).reduce((a: any, b: any) => a + ageCounts[b], 0)
-  // TODO: Make this a form-adjustable factor
-  pop.ageDistribution = {}
-  pop.infectionSeverityRatio = {}
-  pop.infectionFatality = {}
-  pop.infectionCritical = {}
-  pop.recoveryRate = {}
-  pop.hospitalizedRate = {}
-  pop.dischargeRate = {}
-  pop.criticalRate = {}
-  pop.deathRate = {}
-  pop.overflowDeathRate = {}
-  pop.stabilizationRate = {}
-  pop.isolatedFrac = {}
-  pop.importsPerDay = {}
-  pop.importsPerDay.total = params.importsPerDay
+  const total = severity.map(d => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
 
   let hospitalizedFrac = 0
   let criticalFracHospitalized = 0
   let fatalFracCritical = 0
   let avgIsolatedFrac = 0
-  severity.forEach((d: any) => {
+  severity.forEach(d => {
     const freq = (1.0 * ageCounts[d.ageGroup]) / total
     pop.ageDistribution[d.ageGroup] = freq
     pop.infectionSeverityRatio[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
@@ -60,20 +81,22 @@ export function getPopulationParams(params: any, severity: any, ageCounts: any, 
     const dCritical = d.critical / 100
     const dFatal = d.fatal / 100
 
+    // d.isolated is possible undefined
+    const isolated = d.isolated ?? 0
     hospitalizedFrac += freq * dHospital
     criticalFracHospitalized += freq * dCritical
     fatalFracCritical += freq * dFatal
-    avgIsolatedFrac += (freq * d.isolated) / 100
+    avgIsolatedFrac += (freq * isolated) / 100
 
     // Age specific rates
-    pop.isolatedFrac[d.ageGroup] = d.isolated / 100
-    pop.recoveryRate[d.ageGroup] = (1 - dHospital) / pop.infectiousPeriod
-    pop.hospitalizedRate[d.ageGroup] = dHospital / pop.infectiousPeriod
-    pop.dischargeRate[d.ageGroup] = (1 - dCritical) / pop.lengthHospitalStay
-    pop.criticalRate[d.ageGroup] = dCritical / pop.lengthHospitalStay
-    pop.stabilizationRate[d.ageGroup] = (1 - dFatal) / pop.lengthICUStay
-    pop.deathRate[d.ageGroup] = dFatal / pop.lengthICUStay
-    pop.overflowDeathRate[d.ageGroup] = pop.overflowSeverity * pop.deathRate[d.ageGroup]
+    pop.isolatedFrac[d.ageGroup] = isolated / 100
+    pop.recoveryRate[d.ageGroup] = (1 - dHospital) / params.infectiousPeriod
+    pop.hospitalizedRate[d.ageGroup] = dHospital / params.infectiousPeriod
+    pop.dischargeRate[d.ageGroup] = (1 - dCritical) / params.lengthHospitalStay
+    pop.criticalRate[d.ageGroup] = dCritical / params.lengthHospitalStay
+    pop.stabilizationRate[d.ageGroup] = (1 - dFatal) / params.lengthICUStay
+    pop.deathRate[d.ageGroup] = dFatal / params.lengthICUStay
+    pop.overflowDeathRate[d.ageGroup] = params.overflowSeverity * pop.deathRate[d.ageGroup]
   })
 
   // Get import rates per age class (assume flat)
@@ -83,27 +106,32 @@ export function getPopulationParams(params: any, severity: any, ageCounts: any, 
   })
 
   // Population average rates
-  pop.recoveryRate.total = (1 - hospitalizedFrac) / pop.infectiousPeriod
-  pop.hospitalizedRate.total = hospitalizedFrac / pop.infectiousPeriod
-  pop.dischargeRate.total = (1 - criticalFracHospitalized) / pop.lengthHospitalStay
-  pop.criticalRate.total = criticalFracHospitalized / pop.lengthHospitalStay
-  pop.deathRate.total = fatalFracCritical / pop.lengthICUStay
-  pop.stabilizationRate.total = (1 - fatalFracCritical) / pop.lengthICUStay
-  pop.overflowDeathRate.total = (pop.overflowSeverity * fatalFracCritical) / pop.lengthICUStay
+  pop.recoveryRate.total = (1 - hospitalizedFrac) / params.infectiousPeriod
+  pop.hospitalizedRate.total = hospitalizedFrac / params.infectiousPeriod
+  pop.dischargeRate.total = (1 - criticalFracHospitalized) / params.lengthHospitalStay
+  pop.criticalRate.total = criticalFracHospitalized / params.lengthHospitalStay
+  pop.deathRate.total = fatalFracCritical / params.lengthICUStay
+  pop.stabilizationRate.total = (1 - fatalFracCritical) / params.lengthICUStay
+  pop.overflowDeathRate.total = (params.overflowSeverity * fatalFracCritical) / params.lengthICUStay
   pop.isolatedFrac.total = avgIsolatedFrac
 
   // Infectivity dynamics
-  const avgInfectionRate = pop.r0 / pop.infectiousPeriod
-  pop.infectionRate = (time: any) =>
-    containment(time) * infectionRate(time, avgInfectionRate, pop.peakMonth, pop.seasonalForcing)
+  const avgInfectionRate = params.r0 / params.infectiousPeriod
+  pop.infectionRate = (time: Date) =>
+    containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
 
   return pop
 }
 
-export function initializePopulation(N: any, numCases: any, t0: any, ages: any) {
+export function initializePopulation(
+  N: number,
+  numCases: number,
+  t0: number,
+  ages: Record<string, number>,
+): SimulationTimePoint {
   // FIXME: Why it can be `undefined`? Can it also be `null`?
   if (ages === undefined) {
-    const put = (x: any) => {
+    const put = (x: number) => {
       return { total: x }
     }
     return {
@@ -117,10 +145,11 @@ export function initializePopulation(N: any, numCases: any, t0: any, ages: any) 
       recovered: put(0),
       intensive: put(0),
       dead: put(0),
+      overflow: put(0),
     }
   }
-  const Z: any = Object.values(ages).reduce((a: any, b: any) => a + b)
-  const pop: any = {
+  const Z = Object.values(ages).reduce((a, b) => a + b)
+  const pop: SimulationTimePoint = {
     time: t0,
     susceptible: {},
     exposed: {},
@@ -156,16 +185,19 @@ export function initializePopulation(N: any, numCases: any, t0: any, ages: any) 
   return pop
 }
 
+// Grabs all keys which index into a Record<string, number> object
+type NumberRecordKeys<T> = { [K in keyof T]: Record<string, number> extends T[K] ? K : never }[keyof T]
+
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
-export function evolve(pop: any, P: any, sample: any) {
-  const sum = (dict: any): any => {
-    return Object.values(dict).reduce((a: any, b) => a + b, 0)
+export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: number) => number): SimulationTimePoint {
+  const sum = (dict: Record<string, number>): number => {
+    return Object.values(dict).reduce((a, b) => a + b, 0)
   }
   const fracInfected = sum(pop.infectious) / P.populationServed
 
-  const newTime = pop.time + P.timeDelta
-  const newPop: any = {
-    time: newTime,
+  const newTime = new Date(pop.time + P.timeDelta)
+  const newPop: SimulationTimePoint = {
+    time: newTime.valueOf(),
     susceptible: {},
     exposed: {},
     infectious: {},
@@ -178,20 +210,23 @@ export function evolve(pop: any, P: any, sample: any) {
     dead: {},
   }
 
-  const push = (sub: any, age: any, delta: any) => {
-    newPop[sub][age] = pop[sub][age] + delta
+  const push = <Sub extends NumberRecordKeys<SimulationTimePoint>>(sub: Sub, age: string, delta: number) => {
+    // To get TS to type check this function, we need first assign newPop[sub] to Record<string, number>
+    // There is possibly a better solution
+    const record: Record<string, number> = newPop[sub]
+    record[age] = pop[sub][age] + delta
   }
 
-  const newCases: any = {}
-  const newInfectious: any = {}
-  const newRecovered: any = {}
-  const newHospitalized: any = {}
-  const newDischarged: any = {}
-  const newCritical: any = {}
-  const newStabilized: any = {}
-  const newICUDead: any = {}
-  const newOverflowStabilized: any = {}
-  const newOverflowDead: any = {}
+  const newCases: Record<string, number> = {}
+  const newInfectious: Record<string, number> = {}
+  const newRecovered: Record<string, number> = {}
+  const newHospitalized: Record<string, number> = {}
+  const newDischarged: Record<string, number> = {}
+  const newCritical: Record<string, number> = {}
+  const newStabilized: Record<string, number> = {}
+  const newICUDead: Record<string, number> = {}
+  const newOverflowStabilized: Record<string, number> = {}
+  const newOverflowDead: Record<string, number> = {}
 
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
   const Keys = Object.keys(pop.infectious).sort()
@@ -292,31 +327,35 @@ export function evolve(pop: any, P: any, sample: any) {
   return newPop
 }
 
-export function collectTotals(trajectory: any) {
+const keys = <T>(o: T): Array<keyof T & string> => {
+  return Object.keys(o) as Array<keyof T & string>
+}
+
+export function collectTotals(trajectory: SimulationTimePoint[]) {
   // FIXME: parameter reassign
-  trajectory.forEach((d: any) => {
-    Object.keys(d).forEach(k => {
+  trajectory.forEach(d => {
+    keys(d).forEach(k => {
       if (k === 'time' || 'total' in d[k]) {
         return
       }
-      d[k].total = Object.values(d[k]).reduce((a: any, b) => a + b)
+      d[k].total = Object.values(d[k]).reduce((a, b) => a + b)
     })
   })
 
   return trajectory
 }
 
-export function exportSimulation(trajectory: any) {
+export function exportSimulation(trajectory: SimulationTimePoint[]) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const header = Object.keys(trajectory[0])
+  const header = keys(trajectory[0])
   const csv = [header.join('\t')]
 
-  const pop: any = {}
-  trajectory.forEach((d: any) => {
+  const pop: Record<string, boolean> = {}
+  trajectory.forEach(d => {
     const t = new Date(d.time).toISOString().slice(0, 10)
     if (t in pop) {
       return
