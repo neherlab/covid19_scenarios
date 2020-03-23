@@ -14,10 +14,9 @@ const ASPECT_RATIO = 16 / 9
 const DATA_POINTS = {
   /* Computed */
   Exposed: 'exposed',
-  Hospitalized: 'hospitalized',
   Susceptible: 'susceptible',
   Infectious: 'infectious',
-  Severe: 'severe',
+  Severe: 'hospitalized',
   Critical: 'critical',
   Overflow: 'overflow',
   Recovered: 'recovered',
@@ -130,9 +129,9 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       .map((x) => ({
         time: x.time,
         susceptible: enabledPlots.indexOf(DATA_POINTS.Susceptible) !== -1 ? Math.round(x.susceptible.total) || undefined : undefined,
-        exposed: Math.round(x.exposed.total) || undefined,
+        // exposed: Math.round(x.exposed.total) || undefined,
         infectious: enabledPlots.indexOf(DATA_POINTS.Infectious) !== -1 ? Math.round(x.infectious.total) || undefined : undefined,
-        hospitalized: Math.round(x.hospitalized.total) || undefined,
+        hospitalized: enabledPlots.indexOf(DATA_POINTS.Severe) !== -1 ? Math.round(x.hospitalized.total) || undefined : undefined,
         critical: enabledPlots.indexOf(DATA_POINTS.Critical) !== -1 ? Math.round(x.critical.total) || undefined : undefined,
         overflow: enabledPlots.indexOf(DATA_POINTS.Overflow) !== -1 ? Math.round(x.overflow.total) || undefined : undefined,
         recovered: enabledPlots.indexOf(DATA_POINTS.Recovered) !== -1 ? Math.round(x.recovered.total) || undefined : undefined,
@@ -149,7 +148,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
     // {key: DATA_POINTS.Exposed, color: colors.exposed, name:'', legendType:"line"},
     { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
-    // {key: DATA_POINTS.Hospitalized, color: colors.severe, name:'Severely ill', legendType:"line"},
+    { key: DATA_POINTS.Severe, color: colors.hospitalized, name:'Severely ill', legendType:"line"},
     { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
     { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
     { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
@@ -171,7 +170,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
           ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
           : []),
         ...(count_observations.hospitalized
-          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital') }]
+          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.hospitalized, name: t('Patients in hospital') }]
           : []),
         ...(count_observations.ICU ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }] : []),
         ...(count_observations.newCases
