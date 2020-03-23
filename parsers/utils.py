@@ -178,8 +178,17 @@ def sanitize(fname):
     
     
 def store_data(regions, exceptions, source, code='', cols=[]):
-    # check if we have a dict of list of list, or dict of list of dicts
+    """ Store data to .tsv and .json files
 
+    Keyword arguments:
+    regions -- a dict of lists of lists {'USA': [['2020-03-20', 0, ...], ...]}, or a dict of lists of dicts {'USA': [{'cases': 0, 'time': '2020-03-20'}, ... ] }
+    exceptions -- a dict that provides the path for .tsv files. Needs at least a {'default': LOC} entry. If region and total data is available, this typically looks like {'default': LOC, 'Spain': LOC}
+    source --  the string identifyig the source in sources.json
+    code -- the three letter code for the country from country_codes.csv
+    cols -- the colum headers that were used to prepare the innermost list
+    """    
+    
+    # check if we have a dict of list of list, or dict of list of dicts
     if isinstance(regions, dict):
         cd1 = list(regions.values())[0]
         if isinstance(cd1, list): 
