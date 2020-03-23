@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
-import { AlgorithmResult } from '../../../algorithms/Result.types'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
@@ -57,7 +57,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
   }))
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100 h-100" data-testid="AgeBarChart">
       <ReactResizeDetector handleWidth handleHeight>
         {({ width }: { width?: number }) => {
           if (!width) {
@@ -96,10 +96,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 />
                 <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name="peak severe" />
-                <Bar dataKey="peakCritical" fill={colors.critical} name="peak critical" />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name="peak overflow" />
-                <Bar dataKey="totalDead" fill={colors.death} name="total deaths" />
+                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
+                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
+                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
+                <Bar dataKey="totalDead" fill={colors.death} name={t('total deaths')} />
               </BarChart>
               
               <div ref={secondRef} />
@@ -115,10 +115,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   top: 3,
                 }}
               >
-                <XAxis dataKey="name" label={{ value: 'Age', position: 'insideBottom', offset: -3 }} />
+                <XAxis dataKey="name" label={{ value: t('Age'), position: 'insideBottom', offset: -3 }} />
                 <YAxis
                   label={{
-                    value: '% of total',
+                    value: t('% of total'),
                     angle: -90,
                     position: 'insideLeft',
                   }}
