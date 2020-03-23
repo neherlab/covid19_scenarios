@@ -49,9 +49,9 @@ export default function DisclaimerProps() {
           DEALINGS IN THE SOFTWARE.
           <br />
           <br />
-          This tool uses theoretical mathematics to model a variety of COVID-19 outcomes based on user defined
-          parameters. This tool is not a medical predictor, and should be used for informative and research purposes
-          only; please use the simulated results responsibly.
+          This tool uses a mathematical model to simulate a variety of COVID-19 outcomes based on user-defined parameters.
+          This tool is not a medical predictor, and should be used for informative and research purposes only;
+          please use the simulated results responsibly.
           <br />
           <br />
           <strong>GDPR disclaimer:</strong> This tool writes small amounts of data to your device's local storage to
