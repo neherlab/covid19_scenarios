@@ -10,10 +10,10 @@ branches:
 
 language: node_js
 
-cache:
-  yarn: true
-  directories:
-    - node_modules
+cache: false
+#  yarn: true
+#  directories:
+#    - node_modules
 
 install:
   - yarn install --frozen-lockfile
