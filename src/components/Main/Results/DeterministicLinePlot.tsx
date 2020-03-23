@@ -8,6 +8,8 @@ import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.ty
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
+import { calculateYPosition } from './tooltipCalculator'
+
 import './DeterministicLinePlot.scss'
 
 const ASPECT_RATIO = 16 / 9
@@ -206,6 +208,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
           }
 
           const height = Math.max(500, width / ASPECT_RATIO)
+          const tooltipPosition = calculateYPosition(width, height)
 
           return (
             <>
