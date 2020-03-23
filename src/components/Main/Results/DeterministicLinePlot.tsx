@@ -84,13 +84,9 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
   const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
 
-<<<<<<< HEAD
-  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
-=======
   const chartRef = React.useRef(null)
 
   const [ enabledPlots, setEnabledPlots ] = useState(Object.values(DATA_POINTS));
->>>>>>> Improvement: Scroll to top of chart when clicking it on mobile.
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
