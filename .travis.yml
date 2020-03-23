@@ -30,7 +30,7 @@ before_deploy:
 deploy:
   - provider: s3
     edge: true
-    detect_encoding: true
+    detect_encoding: false
     dot_match: true
     local_dir: .build/production/web
     region: $AWS_DEFAULT_REGION
