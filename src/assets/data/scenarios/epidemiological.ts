@@ -1,5 +1,7 @@
 import { EpidemiologicalData } from '../../../algorithms/types/Param.types'
 
+import i18next from 'i18next'
+
 export interface EpidemiologicalScenario {
   name: string
   data: EpidemiologicalData
@@ -7,7 +9,7 @@ export interface EpidemiologicalScenario {
 
 const epidemiologicalScenarios: EpidemiologicalScenario[] = [
   {
-    name: 'Slow/North',
+    name: i18next.t('Slow/North'),
     data: {
       r0: 2.2,
       incubationTime: 5,
@@ -20,7 +22,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     },
   },
   {
-    name: 'Moderate/North',
+    name: i18next.t('Moderate/North'),
     data: {
       r0: 2.7,
       incubationTime: 5,
@@ -33,7 +35,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     },
   },
   {
-    name: 'Fast/North',
+    name: i18next.t('Fast/North'),
     data: {
       r0: 3.2,
       incubationTime: 4,
@@ -46,7 +48,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     },
   },
   {
-    name: 'Slow/South',
+    name: i18next.t('Slow/South'),
     data: {
       r0: 2.2,
       incubationTime: 5,
@@ -59,7 +61,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     },
   },
   {
-    name: 'Moderate/South',
+    name: i18next.t('Moderate/South'),
     data: {
       r0: 2.7,
       incubationTime: 5,
@@ -72,7 +74,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     },
   },
   {
-    name: 'Fast/South',
+    name: i18next.t('Fast/South'),
     data: {
       r0: 3.2,
       incubationTime: 4,
@@ -85,7 +87,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     },
   },
   {
-    name: 'Slow/Tropical',
+    name: i18next.t('Slow/Tropical'),
     data: {
       r0: 2.0,
       incubationTime: 5,
@@ -98,7 +100,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     },
   },
   {
-    name: 'Moderate/Tropical',
+    name: i18next.t('Moderate/Tropical'),
     data: {
       r0: 2.5,
       incubationTime: 5,
@@ -111,7 +113,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     },
   },
   {
-    name: 'Fast/Tropical',
+    name: i18next.t('Fast/Tropical'),
     data: {
       r0: 3.0,
       incubationTime: 4,
