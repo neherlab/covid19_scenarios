@@ -121,22 +121,64 @@ describe('TimeSeries', () => {
   })
 
   describe('updateTimeSeries()', () => {
-    it('interpolates an existing TimeSeries to a new resolution', () => {
+    it('interpolates an existing TimeSeries with a new "y" vector.', () => {
       const simulationTimeRange = { tMin, tMax }
-      const timeSeries = makeTimeSeries(simulationTimeRange, [3, 7, 11])
+      const yVector = [3, 7, 11]
+      const timeSeries = makeTimeSeries(simulationTimeRange, yVector)
       const n = 5
 
+      /* Update the time series using the new 'n' value with same TimeRange. */
       const result = updateTimeSeries(simulationTimeRange, timeSeries, n)
 
+      expect(result.length).toBe(n)
+
       const expected = [
-        { t: tMin, y: 3 },
+        { t: tMin, y: yVector[0] },
         { t: new Date('1970-10-31T18:00:00.000Z'), y: 5 },
         { t: new Date('1970-12-01T12:00:00.000Z'), y: 7 },
         { t: new Date('1971-01-01T06:00:00.000Z'), y: 9 },
-        { t: tMax, y: 11 },
+        { t: tMax, y: yVector[2] },
       ]
 
-      expect(result).toStrictEqual(expected)
+      for (let i = 0; i < yVector.length; i++) {
+        const { t: result_t, y: result_y } = result[i]
+        const { t: expected_t, y: expected_y } = result[i]
+        expect(expected_t).toStrictEqual(result_t)
+        expect(expected_y).toBeCloseTo(expected_y)
+      }
+    })
+
+    it('interpolates an existing TimeSeries with a new TimeRange.', () => {
+      const simulationTimeRange = { tMin, tMax }
+      const yVector = [3, 7, 11]
+      const timeSeries = makeTimeSeries(simulationTimeRange, yVector)
+
+      /* Add/remove 5 days from tMin and tMax, respectively,
+       * resulting in a TimeRange smaller by 10 days.
+       */
+      const new_tMin = new Date(Number(tMin))
+      new_tMin.setDate(new_tMin.getDate() + 5)
+      const new_tMax = new Date(Number(tMax))
+      new_tMax.setDate(new_tMax.getDate() - 5)
+      const newSimulationTimeRange = { tMin: new_tMin, tMax: new_tMax }
+
+      /* Update the time series using the new TimeRange with same 'n' value */
+      const result = updateTimeSeries(newSimulationTimeRange, timeSeries, yVector.length)
+
+      expect(result.length).toBe(yVector.length)
+
+      const expected = [
+        { t: new Date('1970-10-06T00:00:00.000Z'), y: 3.3252032520325203 },
+        { t: new Date('1970-12-01T12:00:00.000Z'), y: 7 },
+        { t: new Date('1971-01-27T00:00:00.000Z'), y: 10.67479674796748 },
+      ]
+
+      for (let i = 0; i < yVector.length; i++) {
+        const { t: result_t, y: result_y } = result[i]
+        const { t: expected_t, y: expected_y } = result[i]
+        expect(expected_t).toStrictEqual(result_t)
+        expect(expected_y).toBeCloseTo(expected_y)
+      }
     })
   })
 })
