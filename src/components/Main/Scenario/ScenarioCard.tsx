@@ -5,6 +5,7 @@ import { FormikErrors, FormikTouched } from 'formik'
 import { Col, Row } from 'reactstrap'
 import { AnyAction } from 'typescript-fsa'
 
+import { useTranslation } from 'react-i18next'
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
 
@@ -27,6 +28,7 @@ export interface ScenarioCardProps {
 }
 
 function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, scenarioDispatch }: ScenarioCardProps) {
+  const { t } = useTranslation()
   const overallScenarioOptions = stringsToOptions(scenarioState.overall.scenarios)
 
   function handleChangeOverallScenario(newOverallScenario: string) {
@@ -36,8 +38,8 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
   return (
     <CardWithDropdown
       identifier="overallScenario"
-      label={<h3 className="mb-0">Scenario</h3>}
-      help="Combination of population, epidemiology, and mitigation scenarios"
+      label={<h3 className="mb-0">{t('Scenario')}</h3>}
+      help={t('Combination of population, epidemiology, and mitigation scenarios')}
       options={overallScenarioOptions}
       value={overallScenarioOptions.find(s => s.label === scenarioState.overall.current)}
       onValueChange={handleChangeOverallScenario}

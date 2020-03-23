@@ -6,6 +6,8 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
+import { useTranslation } from 'react-i18next'
+
 export interface TableProps {
   result?: AlgorithmResult
   rates?: SeverityTableRow[]
@@ -20,6 +22,7 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
   if (!result || !rates) {
     return null
   }
+  const { t } = useTranslation()
   const { params } = result
 
   /*
@@ -61,60 +64,60 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
 
   // TODO: replace this with the table component (similar to severity table)
   return (
-    <Row>
+    <Row data-testid="OutcomeRatesTable">
       <Col lg={6}>
-        <h5>Proportions</h5>
+        <h5>{t('Proportions')}</h5>
         <table>
           <thead>
             <tr>
-              <th>Outcome &emsp; </th>
-              <th>Population average</th>
+              <th>{t('Outcome')} &emsp; </th>
+              <th>{t('Population average')}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Mild [%]: </td>
+              <td>{t('Mild')} [%]: </td>
               <td>{mildFrac}</td>
             </tr>
             <tr>
-              <td>Severe [%]: </td>
+              <td>{t('Severe')} [%]: </td>
               <td>{severeFrac}</td>
             </tr>
             <tr>
-              <td>Critical [%]: </td>
+              <td>{t('Critical')} [%]: </td>
               <td>{criticalFrac}</td>
             </tr>
             <tr>
-              <td>Fatal [%]: </td>
+              <td>{t('Fatal')} [%]: </td>
               <td>{deathFrac}</td>
             </tr>
           </tbody>
         </table>
       </Col>
       <Col lg={6}>
-        <h5>Totals/Peak</h5>
+        <h5>{t('Totals/Peak')}</h5>
         <table>
           <thead>
             <tr>
-              <th>Quantity &emsp; </th>
-              <th>Peak/total value</th>
+              <th>{t('Quantity')} &emsp; </th>
+              <th>{t('Peak/total value')}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Total death: </td>
+              <td>{t('Total death')}: </td>
               <td>{totalDeath}</td>
             </tr>
             <tr>
-              <td>Total severe: </td>
+              <td>{t('Total severe')}: </td>
               <td>{totalSevere}</td>
             </tr>
             <tr>
-              <td>Peak severe: </td>
+              <td>{t('Peak severe')}: </td>
               <td>{peakSevere}</td>
             </tr>
             <tr>
-              <td>Peak critical: </td>
+              <td>{t('Peak critical')}: </td>
               <td>{peakCritical}</td>
             </tr>
           </tbody>

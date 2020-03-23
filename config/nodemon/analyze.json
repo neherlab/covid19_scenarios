@@ -30,5 +30,5 @@
     "**/*.test.*sx",
     "**/*.test.*s"
   ],
-  "exec": "node -e 'console.clear()'; yarn install && yarn analyze; true"
+  "exec": "node -e 'console.clear()' ; yarn install && yarn analyze || cd ."
 }
