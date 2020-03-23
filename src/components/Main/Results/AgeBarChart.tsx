@@ -24,7 +24,16 @@ export function AgeBarChart({ data, rates }: SimProps) {
     return null
   }
 
-  const { t } = useTranslation()
+  const { t: unsafeT } = useTranslation()
+  const t = (...args: Parameters<typeof unsafeT>) => {
+    const translation = unsafeT(...args)
+    if (typeof translation === 'string' || typeof translation === 'undefined') {
+      return translation
+    }
+
+    (process.env.NODE_ENV !== 'production') && console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    return String(translation)
+  }
   const ages = Object.keys(data.params.ageDistribution)
   const lastDataPoint = data.deterministicTrajectory[data.deterministicTrajectory.length - 1]
   const plotData = ages.map(age => ({
