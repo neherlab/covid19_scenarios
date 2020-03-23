@@ -1,7 +1,7 @@
 import { AllParamsFlat } from '../types/Param.types'
+import { AlgorithmResult } from '../types/Result.types'
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
-import countryCaseCounts from '../../assets/data/case_counts.json'
 import severityData from '../../assets/data/severityData.json'
 import populationScenarios from '../../assets/data/scenarios/populations'
 import epidemiologicalScenarios from '../../assets/data/scenarios/epidemiological'
@@ -75,17 +75,15 @@ describe('run()', () => {
       'United States',
     ]
 
-    const results: Record<string, any> = {}
-
-    for (let country of countries) {
+    const results: Array<Promise<AlgorithmResult>> = countries.map((country) => {
       const countryAgeDistributionWithType = countryAgeDistribution as Record<string, any>
-      const populationScenario = populationScenarios.find(p => p.name === country);
+      const populationScenario = populationScenarios.find((p) => p.name === country)
 
       // Confirm that the populationScenario is defined, because
       // then we can safely apply the "! - Non-null assertion operator"
       expect(populationScenario).toBeDefined()
 
-      const result = await run(
+      return run(
         {
           ...populationScenario!.data,
           ...epidemiologicalScenarios[1].data,
@@ -95,8 +93,8 @@ describe('run()', () => {
         countryAgeDistributionWithType[populationScenario!.data.country],
         containmentScenarios[3].data.reduction,
       )
-      results[country] = result
-    }
-    let attributes = [...countries, 'deterministicTrajectory', 'time', 'total', 'infectious']
+    })
+
+    await Promise.all(results)
   })
 })
