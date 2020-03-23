@@ -1,6 +1,4 @@
-import { uniformDatesBetween } from '../utils/TimeSeries'
-import { makeTimeSeries } from '../utils/TimeSeries'
-import { updateTimeSeries } from '../utils/TimeSeries'
+import { uniformDatesBetween, makeTimeSeries, updateTimeSeries } from '../utils/TimeSeries'
 import { interpolateTimeSeries } from '../run'
 
 describe('TimeSeries', () => {
@@ -91,12 +89,12 @@ describe('TimeSeries', () => {
 
       const intervalCount = 10
       const intervalSize = 15
-      const result = []
-      for (let i = 0; i < intervalCount; i++) {
+
+      const result = [...new Array(intervalCount)].map((_, index) => {
         const date = new Date(Number(tMin))
-        date.setDate(date.getDate() + intervalSize * i)
-        result.push(interpolator(date))
-      }
+        date.setDate(date.getDate() + intervalSize * index)
+        return interpolator(date)
+      })
 
       /* Compare the interpolated values to the expected values. */
       const expected = [
@@ -112,11 +110,11 @@ describe('TimeSeries', () => {
         10,
       ]
 
-      expect(result.length).toBe(intervalCount)
+      expect(result).toHaveLength(intervalCount)
 
-      for (let i = 0; i < intervalCount; i++) {
-        expect(result[i]).toBeCloseTo(expected[i])
-      }
+      expected.forEach((value, index) => {
+        expect(value).toBeCloseTo(result[index])
+      })
     })
   })
 
@@ -130,7 +128,7 @@ describe('TimeSeries', () => {
       /* Update the time series using the new 'n' value with same TimeRange. */
       const result = updateTimeSeries(simulationTimeRange, timeSeries, n)
 
-      expect(result.length).toBe(n)
+      expect(result).toHaveLength(n)
 
       const expected = [
         { t: tMin, y: yVector[0] },
@@ -140,12 +138,11 @@ describe('TimeSeries', () => {
         { t: tMax, y: yVector[2] },
       ]
 
-      for (let i = 0; i < yVector.length; i++) {
-        const { t: result_t, y: result_y } = result[i]
-        const { t: expected_t, y: expected_y } = result[i]
-        expect(expected_t).toStrictEqual(result_t)
-        expect(expected_y).toBeCloseTo(expected_y)
-      }
+      expected.forEach(({ t, y }, index) => {
+        const { t: resultT, y: resultY } = result[index]
+        expect(t).toStrictEqual(resultT)
+        expect(y).toBeCloseTo(resultY)
+      })
     })
 
     it('interpolates an existing TimeSeries with a new TimeRange.', () => {
@@ -156,16 +153,16 @@ describe('TimeSeries', () => {
       /* Add/remove 5 days from tMin and tMax, respectively,
        * resulting in a TimeRange smaller by 10 days.
        */
-      const new_tMin = new Date(Number(tMin))
-      new_tMin.setDate(new_tMin.getDate() + 5)
-      const new_tMax = new Date(Number(tMax))
-      new_tMax.setDate(new_tMax.getDate() - 5)
-      const newSimulationTimeRange = { tMin: new_tMin, tMax: new_tMax }
+      const newTMin = new Date(Number(tMin))
+      newTMin.setDate(newTMin.getDate() + 5)
+      const newTMax = new Date(Number(tMax))
+      newTMax.setDate(newTMax.getDate() - 5)
+      const newSimulationTimeRange = { tMin: newTMin, tMax: newTMax }
 
       /* Update the time series using the new TimeRange with same 'n' value */
       const result = updateTimeSeries(newSimulationTimeRange, timeSeries, yVector.length)
 
-      expect(result.length).toBe(yVector.length)
+      expect(result).toHaveLength(yVector.length)
 
       const expected = [
         { t: new Date('1970-10-06T00:00:00.000Z'), y: 3.3252032520325203 },
@@ -173,12 +170,11 @@ describe('TimeSeries', () => {
         { t: new Date('1971-01-27T00:00:00.000Z'), y: 10.67479674796748 },
       ]
 
-      for (let i = 0; i < yVector.length; i++) {
-        const { t: result_t, y: result_y } = result[i]
-        const { t: expected_t, y: expected_y } = result[i]
-        expect(expected_t).toStrictEqual(result_t)
-        expect(expected_y).toBeCloseTo(expected_y)
-      }
+      expected.forEach(({ t, y }, index) => {
+        const { t: resultT, y: resultY } = result[index]
+        expect(t).toStrictEqual(resultT)
+        expect(y).toBeCloseTo(resultY)
+      })
     })
   })
 })
