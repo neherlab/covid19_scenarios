@@ -4,11 +4,14 @@ import Status from '../components/Router/Status'
 
 import './NotFound.scss'
 
+import { useTranslation } from 'react-i18next'
+
 function NotFound() {
+  const { t } = useTranslation()
   return (
     <Status code={404}>
-      <h1 className="h1-notfound">{'Not found'}</h1>
-      <h3 className="text-center h3-notfound">{'Ooops! This page does not exist'}</h3>
+      <h1 className="h1-notfound">{t('Not found')}</h1>
+      <h3 className="text-center h3-notfound">{t('Ooops! This page does not exist')}</h3>
     </Status>
   )
 }

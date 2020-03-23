@@ -13,10 +13,8 @@ export default function webpackLoadAssets({
   subdirectory = '',
   publicPath,
 }: WebpackLoadAssetsParams) {
-  const name = path.join(
-    subdirectory,
-    isDev ? '[name].[ext]' : '[name].[hash:7].[ext]',
-  )
+  const filename = isDev ? '[name].[ext]' : '[name].[hash:7].[ext]'
+  const name = `${subdirectory}/${filename}`
 
   return [
     {
