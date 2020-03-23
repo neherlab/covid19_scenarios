@@ -1,10 +1,10 @@
 const msPerDay = 1000 * 60 * 60 * 24
 
-const monthToDay = m => {
+const monthToDay = (m: any) => {
   return m * 30 + 15
 }
 
-const jan2020 = new Date('2020-01-01')
+const jan2020: any = new Date('2020-01-01')
 
 /**
  *
@@ -14,13 +14,13 @@ const jan2020 = new Date('2020-01-01')
  * @param {number} seasonalForcing -  seasonal variation in transmission. Usually a decimal number, e. g. 0.2
  * @returns {number}
  */
-export function infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing) {
+export function infectionRate(time: any, avgInfectionRate: any, peakMonth: any, seasonalForcing: any) {
   // this is super hacky
   const phase = ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) * 2 * Math.PI
   return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
 }
 
-export function getPopulationParams(params, severity, ageCounts, containment) {
+export function getPopulationParams(params: any, severity: any, ageCounts: any, containment: any) {
   const pop = { ...params }
 
   pop.timeDeltaDays = 0.25
@@ -28,7 +28,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   pop.numberStochasticRuns = params.numberStochasticRuns
 
   // Compute age-stratified parameters
-  const total = severity.map(d => d.ageGroup).reduce((a,b)=>a+ageCounts[b], 0);
+  const total = severity.map((d: any) => d.ageGroup).reduce((a: any ,b: any)=>a+ageCounts[b], 0);
   // TODO: Make this a form-adjustable factor
   pop.ageDistribution = {}
   pop.infectionSeverityRatio = {}
@@ -49,7 +49,7 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
   let criticalFracHospitalized = 0
   let fatalFracCritical = 0
   let avgIsolatedFrac = 0
-  severity.forEach(d => {
+  severity.forEach((d: any) => {
     const freq = (1.0 * ageCounts[d.ageGroup]) / total
     pop.ageDistribution[d.ageGroup] = freq
     pop.infectionSeverityRatio[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
@@ -94,16 +94,16 @@ export function getPopulationParams(params, severity, ageCounts, containment) {
 
   // Infectivity dynamics
   const avgInfectionRate = pop.r0 / pop.infectiousPeriod
-  pop.infectionRate = time =>
+  pop.infectionRate = (time: any) =>
     containment(time) * infectionRate(time, avgInfectionRate, pop.peakMonth, pop.seasonalForcing)
 
   return pop
 }
 
-export function initializePopulation(N, numCases, t0, ages) {
+export function initializePopulation(N: any, numCases: any, t0: any, ages: any) {
   // FIXME: Why it can be `undefined`? Can it also be `null`?
   if (ages === undefined) {
-    const put = x => {
+    const put = (x: any) => {
       return { total: x }
     }
     return {
@@ -119,8 +119,8 @@ export function initializePopulation(N, numCases, t0, ages) {
       dead: put(0),
     }
   }
-  const Z = Object.values(ages).reduce((a, b) => a + b)
-  const pop = {
+  const Z: any = Object.values(ages).reduce((a: any, b: any) => a + b)
+  const pop: any = {
     time: t0,
     susceptible: {},
     exposed: {},
@@ -157,12 +157,12 @@ export function initializePopulation(N, numCases, t0, ages) {
 }
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
-export function evolve(pop, P, sample) {
-  const sum = (dict) => { return Object.values(dict).reduce((a, b) => a + b, 0); }
+export function evolve(pop: any, P: any, sample: any) {
+  const sum = (dict: any): any => { return Object.values(dict).reduce((a: any, b) => a + b, 0); }
   const fracInfected = sum(pop.infectious) / P.populationServed
 
   const newTime = pop.time + P.timeDelta
-  const newPop = {
+  const newPop: any = {
     time: newTime,
     susceptible: {},
     exposed: {},
@@ -176,20 +176,20 @@ export function evolve(pop, P, sample) {
     dead: {},
   }
 
-  const push = (sub, age, delta) => {
+  const push = (sub: any, age: any, delta: any) => {
     newPop[sub][age] = pop[sub][age] + delta
   }
 
-  const newCases        = {};
-  const newInfectious   = {};
-  const newRecovered    = {};
-  const newHospitalized = {};
-  const newDischarged   = {};
-  const newCritical     = {};
-  const newStabilized   = {};
-  const newICUDead      = {};
-  const newOverflowStabilized = {};
-  const newOverflowDead = {};
+  const newCases: any        = {};
+  const newInfectious: any   = {};
+  const newRecovered: any    = {};
+  const newHospitalized: any = {};
+  const newDischarged: any   = {};
+  const newCritical: any     = {};
+  const newStabilized: any   = {};
+  const newICUDead: any      = {};
+  const newOverflowStabilized: any = {};
+  const newOverflowDead: any = {};
 
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
   const Keys = Object.keys(pop.infectious).sort();
@@ -262,21 +262,21 @@ export function evolve(pop, P, sample) {
   return newPop
 }
 
-export function collectTotals(trajectory) {
+export function collectTotals(trajectory: any) {
   // FIXME: parameter reassign
-  trajectory.forEach(d => {
+  trajectory.forEach((d: any) => {
     Object.keys(d).forEach(k => {
       if (k === 'time' || 'total' in d[k]) {
         return
       }
-      d[k].total = Object.values(d[k]).reduce((a, b) => a + b)
+      d[k].total = Object.values(d[k]).reduce((a: any, b) => a + b)
     })
   })
 
   return trajectory
 }
 
-export function exportSimulation(trajectory) {
+export function exportSimulation(trajectory: any) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
@@ -285,8 +285,8 @@ export function exportSimulation(trajectory) {
   const header = Object.keys(trajectory[0])
   const csv = [header.join('\t')]
 
-  const pop = {}
-  trajectory.forEach(d => {
+  const pop: any = {}
+  trajectory.forEach((d: any) => {
     const t = new Date(d.time).toISOString().slice(0, 10)
     if (t in pop) {
       return
