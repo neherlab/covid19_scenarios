@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactResizeDetector from 'react-resize-detector'
 import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
 import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
@@ -7,20 +7,45 @@ import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
+import './DeterministicLinePlot.scss'
+
 const ASPECT_RATIO = 16 / 9
 
+const DATA_POINTS = {
+  /* Computed */
+  Exposed: 'exposed',
+  Hospitalized: 'hospitalized',
+  Susceptible: 'susceptible',
+  Infectious: 'infectious',
+  Severe: 'severe',
+  Critical: 'critical',
+  Overflow: 'overflow',
+  Recovered: 'recovered',
+  Death: 'death',
+  CumulativeCases: 'cumulativeCases',
+  NewCases: 'newCases',
+  HospitalBeds: 'hospitalBeds',
+  ICUbeds: 'ICUbeds',
+  /* Observed */
+  ObservedDeaths: 'observedDeaths',
+  ObservedCases: 'cases',
+  ObservedHospitalized: 'currentHospitalized',
+  ObservedICU: 'ICU',
+  ObservedNewCases: 'newCases'
+}
+
 export const colors = {
-  susceptible: '#a6cee3',
-  infectious: '#fdbf6f',
-  severe: '#fb9a99',
-  critical: '#e31a1c',
-  overflow: '#660033',
-  recovered: '#33a02c',
-  death: '#cab2d6',
-  cumulativeCases: '#aaaaaa',
-  newCases: '#fdbf6f',
-  hospitalBeds: '#bbbbbb',
-  ICUbeds: '#cccccc',
+  [DATA_POINTS.Susceptible]: '#a6cee3',
+  [DATA_POINTS.Infectious]: '#fdbf6f',
+  [DATA_POINTS.Severe]: '#fb9a99',
+  [DATA_POINTS.Critical]: '#e31a1c',
+  [DATA_POINTS.Overflow]: '#660033',
+  [DATA_POINTS.Recovered]: '#33a02c',
+  [DATA_POINTS.Death]: '#cab2d6',
+  [DATA_POINTS.CumulativeCases]: '#aaaaaa',
+  [DATA_POINTS.NewCases]: '#fdbf6f',
+  [DATA_POINTS.HospitalBeds]: '#bbbbbb',
+  [DATA_POINTS.ICUbeds]: '#cccccc',
 }
 
 export interface LinePlotProps {
@@ -59,13 +84,22 @@ function labelFormatter(value: string | number): React.ReactNode {
   return xTickFormatter(value)
 }
 
+function legendFormatter(enabledPlots: string[], value: string, entry: any)
+{ 
+  const activeClassName = enabledPlots.indexOf(entry.dataKey) !== -1 ? "legend" : "legend-inactive";
+  return <span className={activeClassName}>{value}</span>;
+}
+
 export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
   const { t } = useTranslation()
+
+  const [ enabledPlots, setEnabledPlots ] = useState(Object.values(DATA_POINTS));
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochasticTrajectories.length > 0) {
     return null
   }
+
   const hasUserResult = Boolean(userResult?.trajectory)
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
@@ -81,11 +115,11 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const observations =
     caseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
-      cases: d.cases || undefined,
-      observedDeaths: d.deaths || undefined,
-      currentHospitalized: d.hospitalized || undefined,
-      ICU: d.ICU || undefined,
-      newCases: i > 2 ? d.cases - caseCounts[i - 3].cases || undefined : undefined,
+      cases: enabledPlots.indexOf(DATA_POINTS.ObservedCases) !== -1 ? d.cases || undefined : undefined,
+      observedDeaths: enabledPlots.indexOf(DATA_POINTS.ObservedDeaths) !== -1 ?  d.deaths || undefined : undefined,
+      currentHospitalized: enabledPlots.indexOf(DATA_POINTS.ObservedHospitalized) !== -1 ? d.hospitalized || undefined : undefined,
+      ICU: enabledPlots.indexOf(DATA_POINTS.ObservedICU) !== -1 ? d.ICU || undefined : undefined,
+      newCases: enabledPlots.indexOf(DATA_POINTS.ObservedNewCases) !== -1 ?  i > 2 ? d.cases - caseCounts[i - 3].cases || undefined : undefined : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
@@ -95,14 +129,14 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       .filter((d, i) => i % 4 === 0)
       .map((x) => ({
         time: x.time,
-        susceptible: Math.round(x.susceptible.total) || undefined,
+        susceptible: enabledPlots.indexOf(DATA_POINTS.Susceptible) !== -1 ? Math.round(x.susceptible.total) || undefined : undefined,
         exposed: Math.round(x.exposed.total) || undefined,
-        infectious: Math.round(x.infectious.total) || undefined,
+        infectious: enabledPlots.indexOf(DATA_POINTS.Infectious) !== -1 ? Math.round(x.infectious.total) || undefined : undefined,
         hospitalized: Math.round(x.hospitalized.total) || undefined,
-        critical: Math.round(x.critical.total) || undefined,
-        overflow: Math.round(x.overflow.total) || undefined,
-        recovered: Math.round(x.recovered.total) || undefined,
-        dead: Math.round(x.dead.total) || undefined,
+        critical: enabledPlots.indexOf(DATA_POINTS.Critical) !== -1 ? Math.round(x.critical.total) || undefined : undefined,
+        overflow: enabledPlots.indexOf(DATA_POINTS.Overflow) !== -1 ? Math.round(x.overflow.total) || undefined : undefined,
+        recovered: enabledPlots.indexOf(DATA_POINTS.Recovered) !== -1 ? Math.round(x.recovered.total) || undefined : undefined,
+        dead: enabledPlots.indexOf(DATA_POINTS.Death) !== -1 ? Math.round(x.dead.total) || undefined : undefined,
         hospitalBeds: nHospitalBeds,
         ICUbeds: nICUBeds,
       })),
@@ -110,16 +144,16 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   ] //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
 
   const linesToPlot: LineProps[] = [
-    { key: 'hospitalBeds', color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
-    { key: 'ICUbeds', color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
-    { key: 'susceptible', color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
-    // {key:'exposed', color: colors.exposed, name:'', legendType:"line"},
-    { key: 'infectious', color: colors.infectious, name: t('Infectious'), legendType: 'line' },
-    // {key:'hospitalized', color: colors.severe, name:'Severely ill', legendType:"line"},
-    { key: 'critical', color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
-    { key: 'overflow', color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
-    { key: 'recovered', color: colors.recovered, name: t('Recovered'), legendType: 'line' },
-    { key: 'dead', color: colors.death, name: t('Cumulative deaths'), legendType: 'line' },
+    { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
+    { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
+    { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
+    // {key: DATA_POINTS.Exposed, color: colors.exposed, name:'', legendType:"line"},
+    { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
+    // {key: DATA_POINTS.Hospitalized, color: colors.severe, name:'Severely ill', legendType:"line"},
+    { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
+    { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
+    { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
+    { key: DATA_POINTS.Death, color: colors.death, name: t('Cumulative deaths'), legendType: 'line' },
   ]
 
   const tMin = observations.length ? Math.min(plotData[0].time, observations[0].time) : plotData[0].time
@@ -131,17 +165,17 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     ? [
         // Append empirical data
         ...(count_observations.observedDeaths
-          ? [{ key: 'observedDeaths', color: colors.death, name: t('Cumulative confirmed deaths') }]
+          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.death, name: t('Cumulative confirmed deaths') }]
           : []),
         ...(count_observations.cases
-          ? [{ key: 'cases', color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
+          ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
           : []),
         ...(count_observations.hospitalized
-          ? [{ key: 'currentHospitalized', color: colors.severe, name: t('Patients in hospital') }]
+          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital') }]
           : []),
-        ...(count_observations.ICU ? [{ key: 'ICU', color: colors.critical, name: t('Patients in ICU') }] : []),
+        ...(count_observations.ICU ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }] : []),
         ...(count_observations.newCases
-          ? [{ key: 'newCases', color: colors.newCases, name: t('Confirmed cases past 3 days') }]
+          ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Confirmed cases past 3 days') }]
           : []),
       ]
     : []
@@ -187,7 +221,14 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                   tickFormatter={(tick) => t('localized:number', { value: tick })}
                 />
                 <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
-                <Legend verticalAlign="top" />
+                <Legend
+                  verticalAlign="top" 
+                  formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
+                  onClick={e => {
+                    const plots = enabledPlots.slice(0);
+                    enabledPlots.indexOf(e.dataKey) !== -1 ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey);
+                    setEnabledPlots(plots)
+                  }} />
                 {linesToPlot.map((d) => (
                   <Line
                     key={d.key}
