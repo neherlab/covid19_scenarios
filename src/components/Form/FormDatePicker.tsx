@@ -10,23 +10,22 @@ import FormLabel from './FormLabel'
 
 import { DateRange } from '../../algorithms/types/Param.types'
 
-
 // Function to determine number of months to display on the datepicker.
-function getNumberOfMonthsCount(media: object) {
+function getNumberOfMonthsCount(media: { tiny: boolean; small: boolean; medium: boolean }) {
   const { tiny, small, medium } = media
   if (tiny) return 1
   if (small) return 2
   if (medium) return 3
   return 4
 }
-export interface FormInputProps {
+export interface FormDatePickerProps {
   identifier: string
   label: string
   help?: string | React.ReactNode
   allowPast?: boolean
 }
 
-export function FormDatePicker({ identifier, label, help, allowPast = true }: FormInputProps) {
+export function FormDatePicker({ identifier, label, help, allowPast = true }: FormDatePickerProps) {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(null)
 
   return (
@@ -47,7 +46,7 @@ export function FormDatePicker({ identifier, label, help, allowPast = true }: Fo
                     large: { minWidth: 1500 },
                   }}
                 >
-                  {media => {
+                  {(media) => {
                     const { small } = media
 
                     const numberOfMonths = getNumberOfMonthsCount(media)
@@ -81,7 +80,7 @@ export function FormDatePicker({ identifier, label, help, allowPast = true }: Fo
                           }
                         }}
                         focusedInput={focusedInput}
-                        onFocusChange={focusedInput => setFocusedInput(focusedInput)}
+                        onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
                         isOutsideRange={() => !allowPast}
                         numberOfMonths={numberOfMonths}
                         orientation={orientation}
