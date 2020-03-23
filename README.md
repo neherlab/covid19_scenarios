@@ -181,16 +181,15 @@ The steps to follow are:
       - The time column **must** be a string formatted as ``YYYY-MM-DD``
       - Try to keep the same order of columns for hygiene, although it should not ultimately matter
       - If data is missing, please leave the entry empty
+      - Use the store_data() function in utils to store the data into .tsv and .json files automatically
   * Place the script into the parsers directory
       - The name should correspond to the region name desired in the scenario.
-      - There **must** be a function parse() defined that outputs the TSV into the correct directory.
-  * Commit the produced ``.tsv`` file into the correct directory
+      - There **must** be a function parse() defined that calls store_data() from utils
+  * Ensure that the path provided to store_data() is well formatted
       - The structure of the directory is Region/Sub-Region/Country/
       - Region and Sub-Region are designated as per the U.N.
       - U.N. designations are found within country_codes.csv
       - Please use only the U.N. designated name for the country, region, and sub-region.
-  * All TSV files will be bundled into a json database into the app on next build
-      - The case counts should be displayed as data-points onto the associated scenario
 ##### Update the *sources.json* file to contain all relevant metadata.
   * The three fields are:
       - primarySource = The URL/path to the raw data
