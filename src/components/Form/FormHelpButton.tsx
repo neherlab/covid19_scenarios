@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { Button, Card, CardBody, CardHeader, Popover } from 'reactstrap'
+import { Button, Card, CardBody, CardHeader, UncontrolledPopover } from 'reactstrap'
 
 import { FaQuestion } from 'react-icons/fa'
 
@@ -17,14 +17,13 @@ export interface FormHelpButtonProps {
 }
 
 export default function FormHelpButton({ identifier, label, help }: FormHelpButtonProps) {
-  const [popoverOpen, setPopoverOpen] = useState(false)
-
   return (
     <>
       <Button
         id={safeId(identifier)}
         className="help-button"
         type="button"
+        aria-label="help"
         onClick={e => {
           if (!popoverOpen) {
             e.currentTarget.focus()
@@ -32,18 +31,15 @@ export default function FormHelpButton({ identifier, label, help }: FormHelpButt
           e.preventDefault()
           e.stopPropagation()
         }}
-        onFocus={() => setPopoverOpen(true)}
-        onBlur={() => setPopoverOpen(false)}
-        aria-label="help"
       >
         <FaQuestion className="help-button-icon" />
       </Button>
-      <Popover placement="right" target={safeId(identifier)} trigger="focus" hideArrow isOpen={popoverOpen}>
+      <UncontrolledPopover placement="right" target={safeId(identifier)} trigger="legacy" hideArrow>
         <Card>
           <CardHeader>{label}</CardHeader>
           <CardBody>{help}</CardBody>
         </Card>
-      </Popover>
+      </UncontrolledPopover>
     </>
   )
 }
