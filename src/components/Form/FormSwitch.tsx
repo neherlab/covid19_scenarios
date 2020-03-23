@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { CustomInput, FormGroup } from 'reactstrap'
+import { CustomInput } from 'reactstrap'
 
 import FormLabel from './FormLabel'
 
-export interface FormInputProps {
+export interface FormSwitchProps {
   identifier: string
   label: string
   help?: string
@@ -21,7 +21,7 @@ export default function FormSwitch({
   checked,
   hidden = false,
   ...props
-}: FormInputProps) {
+}: FormSwitchProps) {
   return (
     <CustomInput
       type="checkbox"
@@ -30,7 +30,7 @@ export default function FormSwitch({
       name={identifier}
       label={<FormLabel identifier={identifier} label={label} help={help} />}
       checked={checked}
-      onChange={e => onValueChanged(e.target.checked)}
+      onChange={(e) => onValueChanged(e.target.checked)}
       {...props}
     />
   )

@@ -42,7 +42,7 @@ export default function FormDropdownStateless<ValueType extends string | number>
             options={options}
             defaultValue={defaultOption}
             value={value}
-            theme={theme => ({
+            theme={(theme) => ({
               ...theme,
               borderRadius: 0,
             })}
