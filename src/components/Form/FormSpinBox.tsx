@@ -37,7 +37,7 @@ export function FormSpinBox<T>({
 
   function validate(value: number) {
     let error
-    if (min !== undefined && value < min) {
+    if (min && value < min) {
       error = `The input cannot be less than ${min}`
     } else if (max && value > max) {
       error = `The input cannot be greater than ${max}`
