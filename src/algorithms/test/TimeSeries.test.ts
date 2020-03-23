@@ -1,6 +1,4 @@
-import { uniformDatesBetween } from '../utils/TimeSeries'
-import { makeTimeSeries } from '../utils/TimeSeries'
-import { updateTimeSeries } from '../utils/TimeSeries'
+import { uniformDatesBetween, makeTimeSeries, updateTimeSeries } from '../utils/TimeSeries'
 import { interpolateTimeSeries } from '../run'
 
 describe('TimeSeries', () => {
@@ -91,12 +89,12 @@ describe('TimeSeries', () => {
 
       const intervalCount = 10
       const intervalSize = 15
-      const result = []
-      for (let i = 0; i < intervalCount; i++) {
+
+      const result = [...new Array(intervalCount)].map((_, index) => {
         const date = new Date(Number(tMin))
-        date.setDate(date.getDate() + intervalSize * i)
-        result.push(interpolator(date))
-      }
+        date.setDate(date.getDate() + intervalSize * index)
+        return interpolator(date)
+      })
 
       /* Compare the interpolated values to the expected values. */
       const expected = [
@@ -112,31 +110,71 @@ describe('TimeSeries', () => {
         10,
       ]
 
-      expect(result.length).toBe(intervalCount)
+      expect(result).toHaveLength(intervalCount)
 
-      for (let i = 0; i < intervalCount; i++) {
-        expect(result[i]).toBeCloseTo(expected[i])
-      }
+      expected.forEach((value, index) => {
+        expect(value).toBeCloseTo(result[index])
+      })
     })
   })
 
   describe('updateTimeSeries()', () => {
-    it('interpolates an existing TimeSeries to a new resolution', () => {
+    it('interpolates an existing TimeSeries with a new "y" vector.', () => {
       const simulationTimeRange = { tMin, tMax }
-      const timeSeries = makeTimeSeries(simulationTimeRange, [3, 7, 11])
+      const yVector = [3, 7, 11]
+      const timeSeries = makeTimeSeries(simulationTimeRange, yVector)
       const n = 5
 
+      /* Update the time series using the new 'n' value with same TimeRange. */
       const result = updateTimeSeries(simulationTimeRange, timeSeries, n)
 
+      expect(result).toHaveLength(n)
+
       const expected = [
-        { t: tMin, y: 3 },
+        { t: tMin, y: yVector[0] },
         { t: new Date('1970-10-31T18:00:00.000Z'), y: 5 },
         { t: new Date('1970-12-01T12:00:00.000Z'), y: 7 },
         { t: new Date('1971-01-01T06:00:00.000Z'), y: 9 },
-        { t: tMax, y: 11 },
+        { t: tMax, y: yVector[2] },
       ]
 
-      expect(result).toStrictEqual(expected)
+      expected.forEach(({ t, y }, index) => {
+        const { t: resultT, y: resultY } = result[index]
+        expect(t).toStrictEqual(resultT)
+        expect(y).toBeCloseTo(resultY)
+      })
+    })
+
+    it('interpolates an existing TimeSeries with a new TimeRange.', () => {
+      const simulationTimeRange = { tMin, tMax }
+      const yVector = [3, 7, 11]
+      const timeSeries = makeTimeSeries(simulationTimeRange, yVector)
+
+      /* Add/remove 5 days from tMin and tMax, respectively,
+       * resulting in a TimeRange smaller by 10 days.
+       */
+      const newTMin = new Date(Number(tMin))
+      newTMin.setDate(newTMin.getDate() + 5)
+      const newTMax = new Date(Number(tMax))
+      newTMax.setDate(newTMax.getDate() - 5)
+      const newSimulationTimeRange = { tMin: newTMin, tMax: newTMax }
+
+      /* Update the time series using the new TimeRange with same 'n' value */
+      const result = updateTimeSeries(newSimulationTimeRange, timeSeries, yVector.length)
+
+      expect(result).toHaveLength(yVector.length)
+
+      const expected = [
+        { t: new Date('1970-10-06T00:00:00.000Z'), y: 3.3252032520325203 },
+        { t: new Date('1970-12-01T12:00:00.000Z'), y: 7 },
+        { t: new Date('1971-01-27T00:00:00.000Z'), y: 10.67479674796748 },
+      ]
+
+      expected.forEach(({ t, y }, index) => {
+        const { t: resultT, y: resultY } = result[index]
+        expect(t).toStrictEqual(resultT)
+        expect(y).toBeCloseTo(resultY)
+      })
     })
   })
 })

@@ -32,6 +32,7 @@ import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
 import './Main.scss'
+import { useScrollIntoView } from '../../helpers/hooks'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some(row => _.values(row?.errors).some(x => x !== undefined))
@@ -91,13 +92,14 @@ function Main() {
     // TODO: check the presence of the current counry
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const caseCounts      = countryCaseCounts[scenarioState.population.data.cases] || []
+    const caseCounts: typeof empiricalCases = countryCaseCounts[scenarioState.population.data.cases] || []
     const containmentData = scenarioState.containment.data.reduction
 
     serializeScenarioToURL(scenarioState, params)
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
 
     setResult(newResult)
+    caseCounts?.sort((a, b) => (a.time > b.time ? 1 : -1))
     setEmpiricalCases(caseCounts)
     setSubmitting(false)
   }
@@ -112,7 +114,20 @@ function Main() {
           onSubmit={handleSubmit}
           validate={setScenarioToCustom}
         >
-          {({ errors, touched, isValid }) => {
+          {({ errors, touched, isValid, isSubmitting }) => {
+            /**
+             * viewport width - we only want to scroll the ResultsCard into view if viewing on mobile devices, where the layout is only a single column
+             * @see {@link https://stackoverflow.com/a/8876069/3942699}
+             */
+            const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+            /**
+             * 992 is the width at which the layout collapses into a single column
+             * @see {@tutorial https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints}
+             * 
+             * only `scrollIntoView` when `isSubmitting` goes from `true` -> `false`
+             */
+            const refOfElementToScrollIntoView = useScrollIntoView<HTMLDivElement>(!isSubmitting && (vw < 992))
+
             const canRun = isValid && severityTableIsValid(severity)
 
             return (
@@ -130,7 +145,9 @@ function Main() {
                   </Col>
 
                   <Col lg={8} xl={6} className="py-1 px-1">
-                    <ResultsCard canRun={canRun} severity={severity} result={result} caseCounts={empiricalCases}/>
+                    <div ref={refOfElementToScrollIntoView}>
+                      <ResultsCard canRun={canRun} severity={severity} result={result} caseCounts={empiricalCases}/>
+                    </div>
                   </Col>
                 </Row>
               </Form>

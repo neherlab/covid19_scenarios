@@ -12,6 +12,8 @@ import {
 
 import { ContainmentData, EpidemiologicalData, PopulationData, SimulationData } from '../../../algorithms/types/Param.types'
 
+import i18next from 'i18next'
+
 export interface State {
   overall: {
     scenarios: string[]
@@ -37,8 +39,8 @@ export interface State {
   }
 }
 
-export const DEFAULT_OVERALL_SCENARIO_NAME = 'Default'
-export const CUSTOM_SCENARIO_NAME = 'Custom'
+export const DEFAULT_OVERALL_SCENARIO_NAME = i18next.t('Default')
+export const CUSTOM_SCENARIO_NAME = i18next.t('Custom')
 
 export const defaultOverallScenarioName = DEFAULT_OVERALL_SCENARIO_NAME
 export const defaultScenario = getOverallScenario(defaultOverallScenarioName)
