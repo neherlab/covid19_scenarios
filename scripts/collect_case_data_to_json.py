@@ -1,3 +1,8 @@
+'''
+Intended to run at the top level - i.e.
+python scripts/collect_case_data_to_json.py
+'''
+
 import os
 import sys
 import csv
@@ -10,8 +15,8 @@ from collections import defaultdict
 # ------------------------------------------------------------------------
 # Globals
 
-DATA_DIR   = "data/case-counts"
-UN_COUNTRY = "data/country_codes.csv"
+DATA_DIR   = "case-counts"
+UN_COUNTRY = "country_codes.csv"
 
 # ------------------------------------------------------------------------
 # Functions
@@ -114,5 +119,5 @@ if __name__ == "__main__":
     else:
         print(f"Panic: '{region}' incorrectly formatted", file=sys.stderr)
 
-    with open('src/assets/data/case_counts.json', 'w') as fh:
+    with open('../src/assets/data/case_counts.json', 'w') as fh:
         json.dump(cases, fh)
