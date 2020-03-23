@@ -4,11 +4,13 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
-import { AlgorithmResult } from '../../../algorithms/Result.types'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { colors } from './DeterministicLinePlot'
+
+import { useTranslation } from 'react-i18next' 
 
 import { calculateYPosition } from './tooltipCalculator'
 
@@ -24,6 +26,17 @@ export function AgeBarChart({ data, rates }: SimProps) {
     return null
   }
 
+  const { t: unsafeT } = useTranslation()
+  const t = (...args: Parameters<typeof unsafeT>) => {
+    const translation = unsafeT(...args)
+    if (typeof translation === 'string' || typeof translation === 'undefined') {
+      return translation
+    }
+
+    (process.env.NODE_ENV !== 'production') && console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    return String(translation)
+  }
+
   const ages = Object.keys(data.params.ageDistribution)
   const lastDataPoint = data.deterministicTrajectory[data.deterministicTrajectory.length - 1]
   const plotData = ages.map(age => ({
@@ -36,19 +49,19 @@ export function AgeBarChart({ data, rates }: SimProps) {
   }))
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100 h-100" data-testid="AgeBarChart">
       <ReactResizeDetector handleWidth handleHeight>
         {({ width }: { width?: number }) => {
           if (!width) {
             return <div className="w-100 h-100" />
           }
 
-          const height = width / ASPECT_RATIO
+          const height = Math.max(250, width / ASPECT_RATIO)
           const tooltipPosition = calculateYPosition(width, height)
 
           return (
             <>
-              <h5>Distribution across age groups</h5>
+              <h5>{t('Distribution across age groups')}</h5>
               <BarChart
                 width={width}
                 height={height}
@@ -61,14 +74,14 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 }}
               >
                 <XAxis dataKey="name" />
-                <YAxis label={{ value: 'Cases', angle: -90, position: 'insideLeft' }} />
-                <Tooltip  position={{ y: tooltipPosition }} />
-                <Legend verticalAlign="top" />
+                <YAxis label={{value:t('Cases'), angle: -90, position: 'insideLeft' }} />
+                <Tooltip position={{ y: tooltipPosition }} />
+                <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name="peak severe" />
-                <Bar dataKey="peakCritical" fill={colors.critical} name="peak critical" />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name="peak overflow" />
-                <Bar dataKey="totalDead" fill={colors.death} name="total deaths" />
+                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
+                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
+                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
+                <Bar dataKey="totalDead" fill={colors.death} name={t('total deaths')} />
               </BarChart>
               <BarChart
                 width={width}
@@ -81,17 +94,17 @@ export function AgeBarChart({ data, rates }: SimProps) {
                   top: 3,
                 }}
               >
-                <XAxis dataKey="name" label={{ value: 'Age', position: 'insideBottom', offset: -3 }} />
+                <XAxis dataKey="name" label={{ value: t('Age'), position: 'insideBottom', offset: -3 }} />
                 <YAxis
                   label={{
-                    value: '% of total',
+                    value: t('% of total'),
                     angle: -90,
                     position: 'insideLeft',
                   }}
                 />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Tooltip position={{ y: tooltipPosition }} />
-                <Bar dataKey="fraction" fill="#aaaaaa" name="% of total" />
+                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
               </BarChart>
             </>
           )
