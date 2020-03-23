@@ -1,0 +1,62 @@
+@import '../../styles/variables';
+
+.landing-page {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 2fr 1fr;
+  min-height: 100vh;
+  background-color: $landing-page-background;
+}
+
+.landing-page__hero-section {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr auto 1fr;
+  overflow: hidden;
+  position: relative;
+  color: $white;
+  background: linear-gradient(180deg, #1f6cbf 0%, rgba(255, 255, 255, 0) 100%), #007bff;
+  padding: 84px 0 10vw 84px;
+}
+
+.landing-page__heading {
+  font-weight: 900;
+  font-size: 3.5rem;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.landing-page__simulate-button {
+  align-self: end;
+  justify-self: center;
+  border: none;
+  border-radius: 500px;
+  padding: 18px 60px;
+  font-weight: 700;
+  font-size: 16px;
+  background-color: white;
+}
+
+.landing-page__promo-image {
+  width: 100%;
+  margin-right: -50px;
+  margin-top: -42px;
+  align-self: start;
+  justify-self: end;
+}
+
+.landing-page__wave {
+  pointer-events: none;
+  background: transparent;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scaleX(6);
+  color: $landing-page-background;
+}
+
+.landing-page__content-section {
+  margin-top: -6vw;
+  z-index: 2;
+}
