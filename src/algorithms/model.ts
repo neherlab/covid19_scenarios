@@ -28,7 +28,7 @@ export function getPopulationParams(params: any, severity: any, ageCounts: any, 
   pop.numberStochasticRuns = params.numberStochasticRuns
 
   // Compute age-stratified parameters
-  const total = severity.map((d: any) => d.ageGroup).reduce((a: any ,b: any)=>a+ageCounts[b], 0);
+  const total = severity.map((d: any) => d.ageGroup).reduce((a: any, b: any) => a + ageCounts[b], 0)
   // TODO: Make this a form-adjustable factor
   pop.ageDistribution = {}
   pop.infectionSeverityRatio = {}
@@ -73,7 +73,7 @@ export function getPopulationParams(params: any, severity: any, ageCounts: any, 
     pop.criticalRate[d.ageGroup] = dCritical / pop.lengthHospitalStay
     pop.stabilizationRate[d.ageGroup] = (1 - dFatal) / pop.lengthICUStay
     pop.deathRate[d.ageGroup] = dFatal / pop.lengthICUStay
-    pop.overflowDeathRate[d.ageGroup] = pop.overflowSeverity*pop.deathRate[d.ageGroup];
+    pop.overflowDeathRate[d.ageGroup] = pop.overflowSeverity * pop.deathRate[d.ageGroup]
   })
 
   // Get import rates per age class (assume flat)
@@ -89,7 +89,7 @@ export function getPopulationParams(params: any, severity: any, ageCounts: any, 
   pop.criticalRate.total = criticalFracHospitalized / pop.lengthHospitalStay
   pop.deathRate.total = fatalFracCritical / pop.lengthICUStay
   pop.stabilizationRate.total = (1 - fatalFracCritical) / pop.lengthICUStay
-  pop.overflowDeathRate.total = pop.overflowSeverity*fatalFracCritical / pop.lengthICUStay
+  pop.overflowDeathRate.total = (pop.overflowSeverity * fatalFracCritical) / pop.lengthICUStay
   pop.isolatedFrac.total = avgIsolatedFrac
 
   // Infectivity dynamics
@@ -158,7 +158,9 @@ export function initializePopulation(N: any, numCases: any, t0: any, ages: any) 
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
 export function evolve(pop: any, P: any, sample: any) {
-  const sum = (dict: any): any => { return Object.values(dict).reduce((a: any, b) => a + b, 0); }
+  const sum = (dict: any): any => {
+    return Object.values(dict).reduce((a: any, b) => a + b, 0)
+  }
   const fracInfected = sum(pop.infectious) / P.populationServed
 
   const newTime = pop.time + P.timeDelta
@@ -180,39 +182,67 @@ export function evolve(pop: any, P: any, sample: any) {
     newPop[sub][age] = pop[sub][age] + delta
   }
 
-  const newCases: any        = {};
-  const newInfectious: any   = {};
-  const newRecovered: any    = {};
-  const newHospitalized: any = {};
-  const newDischarged: any   = {};
-  const newCritical: any     = {};
-  const newStabilized: any   = {};
-  const newICUDead: any      = {};
-  const newOverflowStabilized: any = {};
-  const newOverflowDead: any = {};
+  const newCases: any = {}
+  const newInfectious: any = {}
+  const newRecovered: any = {}
+  const newHospitalized: any = {}
+  const newDischarged: any = {}
+  const newCritical: any = {}
+  const newStabilized: any = {}
+  const newICUDead: any = {}
+  const newOverflowStabilized: any = {}
+  const newOverflowDead: any = {}
 
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
-  const Keys = Object.keys(pop.infectious).sort();
+  const Keys = Object.keys(pop.infectious).sort()
   Keys.forEach(age => {
     newCases[age] =
       sample(P.importsPerDay[age] * P.timeDeltaDays) +
       sample(
         (1 - P.isolatedFrac[age]) * P.infectionRate(newTime) * pop.susceptible[age] * fracInfected * P.timeDeltaDays,
       )
-    newInfectious[age]         = Math.min(pop.exposed[age], sample(pop.exposed[age] * P.timeDeltaDays / P.incubationTime))
-    newRecovered[age]          = Math.min(pop.infectious[age], sample(pop.infectious[age] * P.timeDeltaDays * P.recoveryRate[age]))
-    newHospitalized[age]       = Math.min(pop.infectious[age] - newRecovered[age], sample(pop.infectious[age] * P.timeDeltaDays * P.hospitalizedRate[age]))
-    newDischarged[age]         = Math.min(pop.hospitalized[age], sample(pop.hospitalized[age] * P.timeDeltaDays * P.dischargeRate[age]))
-    newCritical[age]           = Math.min(pop.hospitalized[age] - newDischarged[age], sample(pop.hospitalized[age] * P.timeDeltaDays * P.criticalRate[age]))
-    newStabilized[age]         = Math.min(pop.critical[age], sample(pop.critical[age] * P.timeDeltaDays * P.stabilizationRate[age]))
-    newICUDead[age]            = Math.min(pop.critical[age] - newStabilized[age], sample(pop.critical[age] * P.timeDeltaDays * P.deathRate[age]))
-    newOverflowStabilized[age] = Math.min(pop.overflow[age], sample(pop.overflow[age] * P.timeDeltaDays * P.stabilizationRate[age]))
-    newOverflowDead[age]       = Math.min(pop.overflow[age] - newOverflowStabilized[age], sample(pop.overflow[age] * P.timeDeltaDays * P.overflowDeathRate[age]))
+    newInfectious[age] = Math.min(pop.exposed[age], sample((pop.exposed[age] * P.timeDeltaDays) / P.incubationTime))
+    newRecovered[age] = Math.min(
+      pop.infectious[age],
+      sample(pop.infectious[age] * P.timeDeltaDays * P.recoveryRate[age]),
+    )
+    newHospitalized[age] = Math.min(
+      pop.infectious[age] - newRecovered[age],
+      sample(pop.infectious[age] * P.timeDeltaDays * P.hospitalizedRate[age]),
+    )
+    newDischarged[age] = Math.min(
+      pop.hospitalized[age],
+      sample(pop.hospitalized[age] * P.timeDeltaDays * P.dischargeRate[age]),
+    )
+    newCritical[age] = Math.min(
+      pop.hospitalized[age] - newDischarged[age],
+      sample(pop.hospitalized[age] * P.timeDeltaDays * P.criticalRate[age]),
+    )
+    newStabilized[age] = Math.min(
+      pop.critical[age],
+      sample(pop.critical[age] * P.timeDeltaDays * P.stabilizationRate[age]),
+    )
+    newICUDead[age] = Math.min(
+      pop.critical[age] - newStabilized[age],
+      sample(pop.critical[age] * P.timeDeltaDays * P.deathRate[age]),
+    )
+    newOverflowStabilized[age] = Math.min(
+      pop.overflow[age],
+      sample(pop.overflow[age] * P.timeDeltaDays * P.stabilizationRate[age]),
+    )
+    newOverflowDead[age] = Math.min(
+      pop.overflow[age] - newOverflowStabilized[age],
+      sample(pop.overflow[age] * P.timeDeltaDays * P.overflowDeathRate[age]),
+    )
 
     push('susceptible', age, -newCases[age])
     push('exposed', age, newCases[age] - newInfectious[age])
     push('infectious', age, newInfectious[age] - newRecovered[age] - newHospitalized[age])
-    push('hospitalized', age, newHospitalized[age] + newStabilized[age] + newOverflowStabilized[age] - newDischarged[age] - newCritical[age])
+    push(
+      'hospitalized',
+      age,
+      newHospitalized[age] + newStabilized[age] + newOverflowStabilized[age] - newDischarged[age] - newCritical[age],
+    )
     // Cumulative categories
     push('recovered', age, newRecovered[age] + newDischarged[age])
     push('intensive', age, newCritical[age])
@@ -221,36 +251,36 @@ export function evolve(pop: any, P: any, sample: any) {
   })
 
   // Move hospitalized patients according to constrained resources
-  let freeICUBeds = P.ICUBeds - (sum(pop.critical) - sum(newStabilized) - sum(newICUDead));
+  let freeICUBeds = P.ICUBeds - (sum(pop.critical) - sum(newStabilized) - sum(newICUDead))
   Keys.forEach(age => {
-      if (freeICUBeds > newCritical[age]) {
-          freeICUBeds -= newCritical[age];
-          push('critical', age, newCritical[age] - newStabilized[age] - newICUDead[age])
-          push('overflow', age,  - newOverflowDead[age] - newOverflowStabilized[age])
-      } else if (freeICUBeds > 0) {
-          let newOverflow = newCritical[age] - freeICUBeds;
-          push('critical', age, freeICUBeds - newStabilized[age] - newICUDead[age])
-          push('overflow', age, newOverflow - newOverflowDead[age] - newOverflowStabilized[age])
-          freeICUBeds = 0;
-      } else {
-          push('critical', age, -newStabilized[age] - newICUDead[age])
-          push('overflow', age, newCritical[age] - newOverflowDead[age] - newOverflowStabilized[age])
-      }
-  });
+    if (freeICUBeds > newCritical[age]) {
+      freeICUBeds -= newCritical[age]
+      push('critical', age, newCritical[age] - newStabilized[age] - newICUDead[age])
+      push('overflow', age, -newOverflowDead[age] - newOverflowStabilized[age])
+    } else if (freeICUBeds > 0) {
+      const newOverflow = newCritical[age] - freeICUBeds
+      push('critical', age, freeICUBeds - newStabilized[age] - newICUDead[age])
+      push('overflow', age, newOverflow - newOverflowDead[age] - newOverflowStabilized[age])
+      freeICUBeds = 0
+    } else {
+      push('critical', age, -newStabilized[age] - newICUDead[age])
+      push('overflow', age, newCritical[age] - newOverflowDead[age] - newOverflowStabilized[age])
+    }
+  })
 
   // If any overflow patients are left AND there are free beds, move them back.
   // Again, move w/ lower age as priority.
   for (let i = 0; freeICUBeds > 0 && i < Keys.length; i++) {
-      const age = Keys[i];
-      if (newPop.overflow[age] < freeICUBeds) {
-          newPop.critical[age] += newPop.overflow[age];
-          freeICUBeds -= newPop.overflow[age];
-          newPop.overflow[age] = 0;
-      } else {
-          newPop.critical[age] += freeICUBeds;
-          newPop.overflow[age] -= freeICUBeds;
-          freeICUBeds = 0;
-      }
+    const age = Keys[i]
+    if (newPop.overflow[age] < freeICUBeds) {
+      newPop.critical[age] += newPop.overflow[age]
+      freeICUBeds -= newPop.overflow[age]
+      newPop.overflow[age] = 0
+    } else {
+      newPop.critical[age] += freeICUBeds
+      newPop.overflow[age] -= freeICUBeds
+      freeICUBeds = 0
+    }
   }
 
   // NOTE: For debug purposes only.
