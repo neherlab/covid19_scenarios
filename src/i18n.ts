@@ -19,6 +19,12 @@ i18n
 
     interpolation: {
       escapeValue: false,
+      format(value, format, lng) {
+        if (format === 'localizedNumber') {
+          return new Intl.NumberFormat(lng).format(value)
+        }
+        return value
+      },
     },
 
     react: {
