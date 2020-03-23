@@ -51,14 +51,14 @@ describe('FormHelpButton', () => {
     const { getByLabelText, findByText, getByText, queryByText } = render(
       <div>
         <FormHelpButton identifier="abc" label="def" />
-        <span>click here</span>
+        <span>click outside</span>
       </div>,
     )
     fireEvent.click(getByLabelText('help'))
     await findByText('def')
     expect(queryByText('def')).not.toBeNull()
 
-    fireEvent.click(getByText('click here'))
+    fireEvent.click(getByText('click outside'))
 
     await waitForElementToBeRemoved(() => queryByText('def'))
     expect(queryByText('def')).toBeNull()
