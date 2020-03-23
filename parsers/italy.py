@@ -5,7 +5,7 @@ import requests
 import numpy as np
 
 from collections import defaultdict
-from .utils import write_tsv
+from .utils import store_data
 
 # ------------------------------------------------------------------------
 # Globals
@@ -57,5 +57,4 @@ def parse():
     for date, counts in dates.items():
         regions["Italy"].append([date] + [int(c) for c in counts])
 
-    for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", cols, data, "italy")
+    store_data(regions, { 'default': LOC}, 'italy', 'ITA', cols)

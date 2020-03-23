@@ -4,6 +4,11 @@
     "dataProvenance": "Données nationales concernant l'épidémie de COVID19",
     "license": "Etalab Open License 2.0"
   },
+  "germany": {
+    "primarySource": "https://raw.githubusercontent.com/chriswien/COVID19_CaseNumberDE/master/COVID19_Cases_Bundeslaender_DE.csv",
+    "dataProvenance": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
+    "license": "none specified"
+  },
   "italy": {
     "primarySource": "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json",
     "dataProvenance": "Dipartimento della Protezione Civile",
@@ -33,5 +38,15 @@
     "primarySource": "https://coronadatascraper.com/timeseries-byLocation.json",
     "dataProvenance": "Coronadatascraper.com",
     "license": "Scraped from many sources, no clear license"
+  },
+  "india": {
+    "primarySource": "https://api.rootnet.in/covid19-in/stats/daily",
+    "dataProvenance": "https://github.com/amodm/api-covid19-in",
+    "license": "Scraped from Ministry of Health and Family Welfare plus other sources, no clear license"
+  },
+  "tsv": {
+    "primarySource": "Manually maintained .tsv files in case-counts/ folder",
+    "dataProvenance": "Manually maintained by contributors",
+    "license": "no clear license, multiple sources"
   }
 }

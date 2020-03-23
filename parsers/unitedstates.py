@@ -3,10 +3,11 @@ import csv
 import json
 import requests
 import numpy as np
+import json
 
 from collections import defaultdict
 from datetime import datetime
-from .utils import write_tsv
+from .utils import store_data, stoi
 
 # ------------------------------------------------------------------------
 # Globals
@@ -101,12 +102,11 @@ def parse():
     for row in db:
         date = str(row["date"])
         date = f"{date[0:4]}-{date[4:6]}-{date[6:8]}"
-        elt  = [ date, row["positive"], row["death"], None, None, None ]
+        elt  = [ date, stoi(row["positive"]), stoi(row["death"]), None, None, None ]
         regions[acronyms[row["state"]]].append(elt)
     regions = dict(regions)
 
     for cntry, data in regions.items():
         regions[cntry] = sorted_date(regions[cntry])
 
-    for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", cols, data, "unitedstates")
+    store_data(regions, { 'default': LOC}, 'unitedstates', 'USA', cols)

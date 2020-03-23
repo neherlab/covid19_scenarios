@@ -1,0 +1,33 @@
+# Data source: https://raw.githubusercontent.com/chriswien/COVID19_CaseNumberDE/master/COVID19_Cases_Bundeslaender_DE.csv
+# Data provenance: https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html
+# License: none specified
+time	cases	deaths	hospitalized	ICU	recovered
+2020-02-24	0	0			
+2020-02-25	0	0			
+2020-02-26	0	0			
+2020-02-27	0	0			
+2020-02-28	0	0			
+2020-02-29	0	0			
+2020-03-01	1	0			
+2020-03-02	1	0			
+2020-03-03	1	0			
+2020-03-04	4	0			
+2020-03-05	18	0			
+2020-03-06	18	0			
+2020-03-07	19	0			
+2020-03-08	21	0			
+2020-03-09	38	0			
+2020-03-10	49	0			
+2020-03-11	75	0			
+2020-03-12	129	0			
+2020-03-13	230	0			
+2020-03-14	253	0			
+2020-03-15	287	0			
+2020-03-16	391	0			
+2020-03-17	325	0			
+2020-03-18	478	0			
+2020-03-19	669	0			
+2020-03-20	803	0			
+2020-03-21	1023	0			
+2020-03-22	1306	1			
+2020-03-23	1483	4			

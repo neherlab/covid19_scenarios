@@ -4,7 +4,7 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import write_tsv
+from .utils import store_data
 
 # ------------------------------------------------------------------------
 # Globals
@@ -74,8 +74,4 @@ def parse():
         canton = cantonal_codes[row[1]]
         regions[canton].append([date, to_int(row[2]), to_int(row[5]), to_int(row[6]), None, to_int(row[7])])
 
-    for region, data in regions.items():
-        if region != "Liechtenstein":
-            write_tsv(f"{LOC}/{region}.tsv", cols, data, "switzerland")
-        else:
-            write_tsv(f"{LOC2}/{region}.tsv", cols, data, "switzerland")
+    store_data(regions, { 'default': LOC, 'Liechtenstein': LOC2, 'Switzerland': LOC}, 'switzerland','CHE', cols)

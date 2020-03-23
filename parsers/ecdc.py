@@ -6,11 +6,12 @@ Will need to be integrated with other parsers once they become available.
 '''
 import xlrd
 import csv
-from urllib.request import urlretrieve
+import json
 
+from urllib.request import urlretrieve
 from collections import defaultdict
 from datetime import datetime, timedelta
-from .utils import write_tsv
+from .utils import sorted_date, parse_countries, stoi, store_data
 
 # -----------------------------------------------------------------------------
 # Globals
@@ -22,29 +23,8 @@ cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered
 # -----------------------------------------------------------------------------
 # Functions
 
-def sorted_date(s):
-    return sorted(s, key=lambda d: datetime.strptime(d["time"], "%Y-%m-%d"))
-
-def stoi(x):
-    if x == "":
-        return 0
-
-    return int(x)
-
-def parse_countries():
-    # read the country_codes.csv for official country names
-    country_names = {}
-    file = "country_codes.csv"
-    countries = defaultdict(lambda: defaultdict(list))
-    with open(file) as f:
-        rdr = csv.reader(f)
-        next(rdr)
-        for row in rdr:
-            countries[row[1]] = row[0]
-    return countries
-
 def retrieve_case_data():
-    countries = parse_countries()
+    countries = parse_countries(1)
 
     cases = defaultdict(list)
 
@@ -87,31 +67,25 @@ def retrieve_case_data():
         total_cases  = 0
         total_deaths = 0
         for d in data:
-            total_cases += d['cases']
-            total_deaths += d['deaths']
+            if d['cases']:
+                total_cases += d['cases']
             d['cases'] = total_cases
+            if d['deaths']:
+                total_deaths += d['deaths']
             d['deaths'] = total_deaths
         cases[cntry] = data
 
     return dict(cases)
-
-
-def flatten(cases):
-    rows = []
-    for cntry, data in cases.items():
-        for datum in data:
-            rows.append([cntry, datum['time'], datum['cases'], datum['deaths'], None, None, None])
-
-    return rows
 
 # -----------------------------------------------------------------------------
 # Main point of entry
 
 def parse():
     cases = retrieve_case_data()
-    cases = flatten(cases)
+    store_data(cases, {'default': LOC+'/World.tsv'}, 'ecdc')
+    
 
-    write_tsv(f"{LOC}/World.tsv", cols, cases, "ecdc")
+
 
 if __name__ == "__main__":
     # for debugging
