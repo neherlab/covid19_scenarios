@@ -16,15 +16,24 @@ Please test using the latest version of the application to make sure the issue h
 
 <!--- Provide a general summary of the issue here -->
 
-## 🤔 Expected Behavior
+## How to reproduce
 
-<!--- Tell us what should happen -->
+Steps to reproduce the issue:
+
+ 1. Open the application in a browser
+
+ 2.
+
+ 3.
 
 ## 😯 Current Behavior
 
-<!--- Tell us what happens instead of the expected behavior -->
-
+<!--- Tell us what happens currently -->
 <!--- If you are seeing an error, please include the full error message and stack trace -->
+
+## 🤔 Expected Behavior
+
+<!--- Tell us what should happen -->
 
 ## 💁 Possible Solution
 
@@ -33,7 +42,6 @@ Please test using the latest version of the application to make sure the issue h
 ## 🔦 Context
 
 <!--- How has this issue affected you? What are you trying to accomplish? -->
-
 <!--- Providing context helps us come up with a solution that is most useful in the real world -->
 
 ## 💻 Code Sample
@@ -48,4 +56,4 @@ Please test using the latest version of the application to make sure the issue h
 | ---------------- | ---------- |
 | Browser          |
 | Operating System |
-| NPM/Node/Yarn    |
+|                  |
