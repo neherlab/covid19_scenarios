@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, waitForElementToBeRemoved } from '@testing-library/react'
 import FormHelpButton from './FormHelpButton'
 
 describe('FormHelpButton', () => {
@@ -15,28 +15,52 @@ describe('FormHelpButton', () => {
     expect(queryByText('def')).toBeNull()
   })
 
-  it('opens', () => {
-    const { getByLabelText, queryByText } = render(<FormHelpButton identifier="abc" label="def" />)
+  it('opens', async () => {
+    const { getByLabelText, findByText, queryByText } = render(<FormHelpButton identifier="abc" label="def" />)
 
-    fireEvent.focus(getByLabelText('help'))
+    fireEvent.click(getByLabelText('help'))
 
+    await findByText('def')
     expect(queryByText('def')).not.toBeNull()
   })
 
-  it('displays help', () => {
-    const { getByLabelText, getByText } = render(<FormHelpButton identifier="abc" label="def" help="some help" />)
+  it('displays help', async () => {
+    const { getByLabelText, findByText, queryByText } = render(
+      <FormHelpButton identifier="abc" label="def" help="some help" />,
+    )
 
-    fireEvent.focus(getByLabelText('help'))
+    fireEvent.click(getByLabelText('help'))
 
-    expect(getByText('some help')).toBeTruthy()
+    await findByText('some help')
+    expect(queryByText('some help')).toBeTruthy()
   })
 
-  it('closes', () => {
-    const { getByLabelText, queryByText } = render(<FormHelpButton identifier="abc" label="def" />)
+  it('closes inside', async () => {
+    const { getByLabelText, findByText, queryByText } = render(<FormHelpButton identifier="abc" label="def" />)
+    fireEvent.click(getByLabelText('help'))
+    await findByText('def')
+    expect(queryByText('def')).not.toBeNull()
 
-    fireEvent.focus(getByLabelText('help'))
-    fireEvent.blur(getByLabelText('help'))
+    fireEvent.click(getByLabelText('help'))
 
+    await waitForElementToBeRemoved(() => queryByText('def'))
+    expect(queryByText('def')).toBeNull()
+  })
+
+  it('closes outside', async () => {
+    const { getByLabelText, findByText, getByText, queryByText } = render(
+      <div>
+        <FormHelpButton identifier="abc" label="def" />
+        <span>click outside</span>
+      </div>,
+    )
+    fireEvent.click(getByLabelText('help'))
+    await findByText('def')
+    expect(queryByText('def')).not.toBeNull()
+
+    fireEvent.click(getByText('click outside'))
+
+    await waitForElementToBeRemoved(() => queryByText('def'))
     expect(queryByText('def')).toBeNull()
   })
 })
