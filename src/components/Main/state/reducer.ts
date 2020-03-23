@@ -15,7 +15,7 @@ import {
   setSimulationData,
 } from './actions'
 
-import { getContainmentScenarioData, getEpidemiologicalData, getOverallScenario, getPopulationData } from './data'
+import { getContainmentScenarioData, getEpidemiologicalData, getOverallScenario, getPopulationData, getSimulationData } from './data'
 
 import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './state'
 
@@ -56,6 +56,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
         draft.epidemiological.current = epidemiologicalScenario
         draft.epidemiological.data = getEpidemiologicalData(epidemiologicalScenario)
 
+        draft.simulation.data = getSimulationData(populationScenario)
+
         draft.containment.current = containmentScenario
         const data = getContainmentScenarioData(containmentScenario);
         draft.containment.data = { reduction:
@@ -73,6 +75,15 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.population.current = scenarioName
       if (scenarioName !== CUSTOM_SCENARIO_NAME) {
         draft.population.data = getPopulationData(scenarioName)
+      }
+      draft.simulation.data = getSimulationData(scenarioName)
+      draft.containment.data = {
+          reduction: updateTimeSeries(
+              draft.simulation.data.simulationTimeRange,
+              draft.containment.data.reduction,
+              draft.containment.data.numberPoints
+          ),
+          numberPoints: draft.containment.data.numberPoints
       }
     }),
   )

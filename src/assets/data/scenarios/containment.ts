@@ -28,7 +28,7 @@ const reductions = [
 ]
 
 const containmentScenarios: ContainmentScenario[] = reductions.map(d => {
-  return {name: d.name, data: {reduction: makeTimeSeries(simulationData.simulationTimeRange, d.reduction), numberPoints: d.reduction.length}}
+  return {name: d.name, data: {reduction: makeTimeSeries(simulationData.default.simulationTimeRange, d.reduction), numberPoints: d.reduction.length}}
 })
 
 export default containmentScenarios

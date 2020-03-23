@@ -43,6 +43,6 @@ export function getContainmentScenarioData(scenario: string) {
   return containmentScenarioReduction
 }
 
-export function getSimulationData(): SimulationData {
-  return simulationData
+export function getSimulationData(population: string): SimulationData {
+  return simulationData[population || 'default'] || simulationData['default']
 }

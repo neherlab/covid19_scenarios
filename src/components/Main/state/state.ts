@@ -66,6 +66,6 @@ export const defaultScenarioState: State = {
     data: getContainmentScenarioData(defaultScenario.containmentScenario),
   },
   simulation: {
-    data: getSimulationData(),
+    data: getSimulationData(defaultScenario.populationScenario),
   },
 }

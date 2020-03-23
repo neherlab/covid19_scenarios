@@ -13,7 +13,7 @@ import run from '../run'
 const defaultParams: AllParamsFlat = {
   ...populationScenarios[0].data,
   ...epidemiologicalScenarios[1].data,
-  ...simulationData,
+  ...simulationData[populationScenarios[0].name],
 }
 
 describe('run()', () => {
@@ -87,7 +87,7 @@ describe('run()', () => {
         {
           ...populationScenario!.data,
           ...epidemiologicalScenarios[1].data,
-          ...simulationData,
+          ...simulationData[populationScenario.data],
         },
         severityData,
         countryAgeDistributionWithType[populationScenario!.data.country],

@@ -63,11 +63,25 @@ def loadPopTable(fname):
             tmp['data']['country'] = entries[2]
             tmp['data']['hospitalBeds'] = int(entries[3])
             tmp['data']['ICUBeds'] = int(entries[4])
-            tmp['data']['suspectedCasesToday'] = int(entries[5])
             tmp['data']['importsPerDay'] = float(entries[6])
             pops.append(tmp)
 
     return pops
+
+def loadInitialConditionTable(fname):
+    pops = {}
+    with open(fname, 'r') as fh:
+        header = fh.readline().strip().split('\t')
+        for line in fh:
+            entries = line.strip().split('\t')
+            tmp = {'name':entries[0], 'data':{}}
+            tmp['data']['suspectedCasesToday'] = int(entries[1])
+            tmp['data']['tMin'] = entries[2]
+            tmp['data']['tMax'] = entries[3]
+            pops[entries[0]] = tmp
+
+    return pops
+
 
 def getRegions():
     with open('src/assets/data/case_counts.json') as fd:
@@ -77,12 +91,28 @@ def getRegions():
 if __name__ == '__main__':
 
     pops = loadPopTable("data/populationData.tsv")
+    IC = loadInitialConditionTable("data/initialCondition.tsv")
     popSizes = {d['name']:d['data']['populationServed'] for d in pops}
 
     regions = getRegions()
 
     for d in pops:
         d['data']['cases'] = d['name'] if d['name'] in regions else 'none'
+        if  d['name'] in IC:
+            for key in ['suspectedCasesToday']:
+                d['data'][key] = IC[d['name']]['data'][key]
+
+    sims = []
+    for d in IC:
+        sims.append({'name': IC[d]['name'], 'data': {
+            'tMin': IC[d]['data']['tMin'],
+            'tMax': IC[d]['data']['tMax'],
+            'numberStochasticRuns': 0,
+            }})
+
 
     with open('src/assets/data/population.json', 'w') as fh:
         json.dump(pops, fh)
+
+    with open('src/assets/data/simulation.json', 'w') as fh:
+        json.dump(sims, fh)
