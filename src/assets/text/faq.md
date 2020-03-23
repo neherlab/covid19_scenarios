@@ -28,4 +28,15 @@ __Q:__ What is ICU overflow?
 
 __A:__ *In places that have seen severe COVID19 outbreak, the capacity of intensive care facilities is quickly exhausted. Patients that need ventilation but can't get ventilation due to shortage will die faster. "ICU overflow" is  our label for critically ill patients that should be ventilated but are not since no ventilators are available. These patients will die faster. The degree to which they die faster is specified by the `Severity of ICU overflow` parameter.*
 
+---
+
+__Q:__ Wouldn't it be a good idea to model isolation of specific age-groups?
+
+__A:__ Yes! This is indeed possible on covid-scenarios. Expand the card `Severity assumptions and age-specific isolation`. The last column allows you to specify the to what extent individual age groups are isolated from the rest of the population.
+
+---
+
+__Q:__ How does your model compare to the one by Imperial College London?
+__A:__ You are probably referring to the [March 16 report by Neil Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf). Like us, Ferguson et al model the effect of interventions on the spread of COVID19 using a computational model. Their model is individual based, meaning their program represents a large number of individuals among which the virus is spreading. Our model is breaks the population into age-groups and different categories corresponding to susceptible, infected, dead, recovered, etc. This allows for faster simulations, but looses some realism. The faster simulation allows exploration of parameters.
+
 
