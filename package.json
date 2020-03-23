@@ -96,6 +96,7 @@
     "typeface-source-sans-pro": "1.1.5",
     "typescript-fsa": "3.0.0",
     "typescript-fsa-reducers": "1.2.1",
+    "url-join": "4.0.1",
     "yup": "0.28.3"
   },
   "devDependencies": {
@@ -161,6 +162,7 @@
     "@types/sass": "1.16.0",
     "@types/terser-webpack-plugin": "2.2.0",
     "@types/testing-library__cypress": "5.0.3",
+    "@types/url-join": "4.0.0",
     "@types/webpack": "4.41.7",
     "@types/webpack-bundle-analyzer": "2.13.3",
     "@types/webpackbar": "2.6.0",
