@@ -55,7 +55,7 @@ The individual parameters of the model can be changed to allow exploration of di
   </figcaption>
 </figure>
 
-COVID-19 is much more severe in the elderly and proportion of elderly in a community is therefore an important determinant of the overall burden on the health care system and the death toll. We collected age distributions for many countries from data provided by the UN and make those available as input parameters. Furthermore, we use data provided by the epidemiology group by the <LinkExternal url="http://weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51">Chinese CDC</LinkExternal> to estimate the fraction of severe and fatal cases by age group.
+COVID-19 is much more severe in the elderly and proportion of elderly in a community is therefore an important determinant of the overall burden on the health care system and the death toll. We collected age distributions for many countries from data provided by the UN and make those available as input parameters. Furthermore, we use data provided by the epidemiology group by the <LinkExternal url="http://weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51">Chinese CDC</LinkExternal> (<LinkExternal url="https://web.archive.org/web/20200320025420/weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51">alternative link</LinkExternal>) to estimate the fraction of severe and fatal cases by age group.
 
 ## Seasonality
 
@@ -120,12 +120,12 @@ The transmission rate $\beta_a(t)$ is given by
 <div class="text-left">
 
 $$
-  \beta_a(t) = R_0 I_a M(t) (1+\varepsilon \cos(2\pi (t-t_{max})))/t_i
+  \beta_a(t) = R_0 \zeta_a M(t) (1+\varepsilon \cos(2\pi (t-t_{max})))/t_i
 $$
 
 </div>
 
-where $I_a$ is the degree to which particular age groups are isolated from the rest of the population, $M(t)$ is the time course of mitigation measures, $\varepsilon$ is the amplitude of seasonal variation in transmissibility, and $t_{max}$ is the time of the year of peak transmission.
+where $\zeta_a$ is the degree to which particular age groups are isolated from the rest of the population, $M(t)$ is the time course of mitigation measures, $\varepsilon$ is the amplitude of seasonal variation in transmissibility, and $t_{max}$ is the time of the year of peak transmission.
 
 ## Parameters
 

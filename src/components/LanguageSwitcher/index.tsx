@@ -23,6 +23,10 @@ const langs: { [key: string]: Lang } = {
     lang: 'pt',
     name: 'português',
   },
+  de: {
+    lang: 'de',
+    name: 'deutsch',
+  },
 }
 
 /**

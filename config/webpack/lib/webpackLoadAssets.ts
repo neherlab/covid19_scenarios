@@ -1,4 +1,4 @@
-import path from 'path'
+import urljoin from 'url-join'
 
 export interface WebpackLoadAssetsParams {
   isDev: boolean
@@ -13,10 +13,11 @@ export default function webpackLoadAssets({
   subdirectory = '',
   publicPath,
 }: WebpackLoadAssetsParams) {
-  const name = path.join(
-    subdirectory,
-    isDev ? '[name].[ext]' : '[name].[hash:7].[ext]',
-  )
+  const filename = isDev ? '[name].[ext]' : '[name].[hash:7].[ext]'
+  let name = filename
+  if (subdirectory?.length > 0) {
+    name = urljoin(subdirectory, name)
+  }
 
   return [
     {

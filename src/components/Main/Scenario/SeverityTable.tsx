@@ -14,14 +14,16 @@ import { updateSeverityTable } from './severityTableUpdate'
 
 import './SeverityTable.scss'
 
+import i18next from 'i18next'
+
 const columns: SeverityTableColumn[] = [
-  { name: 'ageGroup', title: 'Age group' },
-  { name: 'confirmed', title: 'Confirmed\n% total' },
-  { name: 'severe', title: 'Severe\n% of confirmed' },
-  { name: 'critical', title: 'Critical\n% of severe' },
-  { name: 'fatal', title: 'Fatal\n% of critical' },
-  { name: 'totalFatal', title: 'Fatal\n% of all infections' },
-  { name: 'isolated', title: 'Isolated \n% total' },
+  { name: 'ageGroup', title: i18next.t('Age group') },
+  { name: 'confirmed', title: `${i18next.t('Confirmed')}\n% ${i18next.t('total')}`},
+  { name: 'severe', title: `${i18next.t('Severe')}\n% ${i18next.t('of confirmed')}`},
+  { name: 'critical', title: `${i18next.t('Critical')}\n% ${i18next.t('of severe')}`},
+  { name: 'fatal', title: `${i18next.t('Fatal')}\n% ${i18next.t('of critical')}`},
+  { name: 'totalFatal', title: `${i18next.t('Fatal')}\n% ${i18next.t('of all infections')}`},
+  { name: 'isolated', title: `${i18next.t('Isolated')}\n% ${i18next.t('total')}`},
 ]
 
 const readOnlyColumns = ['ageGroup', 'totalFatal']
@@ -36,7 +38,7 @@ const columnColors = {
 
 const getRowId = (row: TableRow) => row.id
 
-export type HeaderCellProps = TableBase.DataCellProps
+export type HeaderCellProps = Partial<TableBase.DataCellProps> & TableHeaderRow.CellProps
 
 export function HeaderCell({ column, ...restProps }: HeaderCellProps) {
   const { title } = column

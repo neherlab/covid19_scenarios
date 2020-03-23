@@ -1,4 +1,4 @@
-interface TimePoint {
+export interface TimePoint {
   t: Date
   y: number
 }

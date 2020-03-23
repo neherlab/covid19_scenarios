@@ -10,10 +10,10 @@ branches:
 
 language: node_js
 
-cache:
-  yarn: true
-  directories:
-    - node_modules
+cache: false
+#  yarn: true
+#  directories:
+#    - node_modules
 
 install:
   - yarn install --frozen-lockfile
@@ -30,7 +30,7 @@ before_deploy:
 deploy:
   - provider: s3
     edge: true
-    detect_encoding: true
+    detect_encoding: false
     dot_match: true
     local_dir: .build/production/web
     region: $AWS_DEFAULT_REGION
