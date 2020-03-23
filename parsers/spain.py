@@ -5,7 +5,7 @@ import io
 from datetime import datetime
 
 from collections import defaultdict
-from .utils import write_tsv, list_to_dict, store_json
+from .utils import store_data
 
 # ------------------------------------------------------------------------
 # Globals
@@ -66,19 +66,6 @@ def parse():
                                          x[1].get("ICU", None),
                                          x[1].get("recovered", None)] for x in dps]
 
-    for region, data in region_tables.items():
-        if region == "Total":
-            write_tsv(f"{LOC}/Spain.tsv", cols, data, "spain")
-        else:
-            write_tsv(f"{LOC}/{region}.tsv", cols, data, "spain")
-
-    # prepare dict for json
-    regions2 = {}
-    for region, data in region_tables.items():
-        if not (region == "Spain"):
-            regions2["ESP-"+region] = data
-        else:
-            regions2[region] = data
-
-    regions3 = list_to_dict(regions2, cols)
-    store_json(regions3)
+    region_tables['Spain'] = region_tables['Total']
+    del region_tables['Total']
+    store_data(region_tables, { 'default': LOC, 'Spain': LOC}, 'spain', 'ESP', cols)

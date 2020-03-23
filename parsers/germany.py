@@ -4,7 +4,7 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import write_tsv, store_json, list_to_dict
+from .utils import store_data
 
 # ------------------------------------------------------------------------
 # Globals
@@ -62,13 +62,4 @@ def parse():
             bundesland = bundesland_codes[row[1]]
             regions[bundesland].append([date, to_int(row[2]), to_int(row[3]), None, None, None])
 
-    for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", cols, data, "germany")
-
-    # prepare dict for json
-    regions2 = {}
-    for region, data in regions.items():
-        regions2["DEU-"+region] = data
-
-    regions3 = list_to_dict(regions2, cols)
-    store_json(regions3)
+    store_data(regions, { 'default': LOC}, 'germany', 'DEU', cols)

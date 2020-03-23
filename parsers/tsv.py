@@ -2,6 +2,7 @@
 parse all manually maintained .tsv files in the case-counts/ folder
 this should be run from the top level of the repo.
 '''
+import sys
 import csv
 import os
 import json
@@ -61,7 +62,7 @@ def parse_world(tsv):
         try:
             idx[col] = hdr.index(col)
         except:
-            print(col, hdr)
+            print(col, cols, hdr)
             return None, False
 
     data = defaultdict(list)
