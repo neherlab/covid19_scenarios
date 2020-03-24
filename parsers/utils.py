@@ -70,8 +70,11 @@ def parse_countries(index=1):
             countries[row[index]] = row[0]
     return countries
 
-def sorted_date(s):
-    return sorted(s, key=lambda d: datetime.strptime(d["time"], "%Y-%m-%d"))
+def sorted_date(s, array_index=None):
+    if array_index is None:
+        return sorted(s, key=lambda d: datetime.strptime(d["time"], "%Y-%m-%d"))
+    else:
+        return sorted(s, key=lambda d: datetime.strptime(d[array_index], "%Y-%m-%d"))
 
 def compare_day(day1, day2):
     try:
@@ -121,7 +124,7 @@ def store_tsv(regions, exceptions, source, cols):
     for region, data in regions.items():
         # region is API provided and should be sanitized before using it to construct paths for security reasons
         region = sanitize(region)
-        
+
         # If we only want to store one .tsv in the root, we signal this with exceptions['default': 'FOO.tsv']
         if  '.tsv' in exceptions['default']:
             # TODO this is actually creating the World.tsv n times at the moment (open(,'w='), not what we really want.)
