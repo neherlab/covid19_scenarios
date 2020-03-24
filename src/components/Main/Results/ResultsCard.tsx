@@ -25,14 +25,16 @@ import { OutcomeRatesTable } from './OutcomeRatesTable'
 
 import { useTranslation } from 'react-i18next'
 
-interface ResultsCardProps {
+interface ResutsCardProps {
+  autorunSimulation: boolean
+  toggleAutorun: () => void
   canRun: boolean
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
 }
 
-function ResultsCardFunction({ canRun, severity, result, caseCounts }: ResultsCardProps) {
+function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResutsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState<boolean>(true)
 
@@ -77,11 +79,29 @@ function ResultsCardFunction({ canRun, severity, result, caseCounts }: ResultsCa
           </p>
         </Col>
       </Row>
+      <Row noGutters className="mb-4 pl-4">
+        <label className="form-check-label">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              onChange={toggleAutorun}
+              checked={autorunSimulation}
+              aria-checked={autorunSimulation}
+            />
+            Autorun Simulation on scenario parameter change
+          </label>
+      </Row>
       <Row noGutters className="mb-4">
         <Col>
           <div>
             <span>
-              <Button className="run-button" type="submit" color="primary" disabled={!canRun} data-testid="RunResults">
+              <Button
+                className="run-button"
+                type="submit"
+                color="primary"
+                disabled={!canRun || autorunSimulation}
+                data-testid="RunResults"
+              >
                 {t('Run')}
               </Button>
             </span>

@@ -1,4 +1,5 @@
-import React, { useReducer, useState } from 'react'
+import React, { useReducer, useState, useEffect } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 
 import _ from 'lodash'
 
@@ -46,6 +47,7 @@ const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
+  const [autorunSimulation, setAutorunSimulation] = useState(false)
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,
@@ -57,14 +59,48 @@ function Main() {
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
-  const allParams = {
+  const toggleAutorun = () => setAutorunSimulation(!autorunSimulation)
+
+  const allParams: AllParams = {
     population: scenarioState.population.data,
     epidemiological: scenarioState.epidemiological.data,
     simulation: scenarioState.simulation.data,
     containment: scenarioState.containment.data,
   }
 
-  function setScenarioToCustom(newParams: AllParams) {
+  async function runSimulation(params: AllParams) {
+    const paramsFlat = {
+      ...params.population,
+      ...params.epidemiological,
+      ...params.simulation,
+    }
+    // TODO: check the presence of the current country
+    // TODO: type cast the json into something
+    const ageDistribution = countryAgeDistribution[params.population.country]
+    const caseCounts: EmpiricalData = countryCaseCounts[params.population.cases] || []
+    const containmentData = params.containment.reduction
+
+    serializeScenarioToURL(scenarioState, params)
+    const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
+    setResult(newResult)
+    caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
+    setEmpiricalCases(caseCounts)
+  }
+
+  const [debouncedRun] = useDebouncedCallback((params: AllParams) => runSimulation(params), 2000)
+
+  useEffect(() => {
+    if (autorunSimulation) {
+      debouncedRun({
+        population: scenarioState.population.data,
+        epidemiological: scenarioState.epidemiological.data,
+        simulation: scenarioState.simulation.data,
+        containment: scenarioState.containment.data,
+      })
+    }
+  }, [autorunSimulation, debouncedRun, scenarioState])
+
+  const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.population, newParams.population)) {
       scenarioDispatch(setPopulationData({ data: newParams.population }))
@@ -81,26 +117,10 @@ function Main() {
     if (!_.isEqual(allParams.containment, newParams.containment)) {
       scenarioDispatch(setContainmentData({ data: newParams.containment }))
     }
-  }
+  }, 1000)
 
-  async function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    const paramsFlat = {
-      ...params.population,
-      ...params.epidemiological,
-      ...params.simulation,
-    }
-    // TODO: check the presence of the current counry
-    // TODO: type cast the json into something
-    const ageDistribution = countryAgeDistribution[params.population.country]
-    const caseCounts: typeof empiricalCases = countryCaseCounts[scenarioState.population.data.cases] || []
-    const containmentData = scenarioState.containment.data.reduction
-
-    serializeScenarioToURL(scenarioState, params)
-    const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
-
-    setResult(newResult)
-    caseCounts?.sort((a, b) => (a.time > b.time ? 1 : -1))
-    setEmpiricalCases(caseCounts)
+  function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
+    runSimulation(params)
     setSubmitting(false)
   }
 
@@ -146,7 +166,14 @@ function Main() {
 
                   <Col lg={8} xl={6} className="py-1 px-1">
                     <div ref={refOfElementToScrollIntoView}>
-                      <ResultsCard canRun={canRun} severity={severity} result={result} caseCounts={empiricalCases} />
+                      <ResultsCard
+                        canRun={canRun}
+                        autorunSimulation={autorunSimulation}
+                        toggleAutorun={toggleAutorun}
+                        severity={severity}
+                        result={result}
+                        caseCounts={empiricalCases}
+                      />
                     </div>
                   </Col>
                 </Row>
