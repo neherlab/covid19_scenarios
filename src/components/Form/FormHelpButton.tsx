@@ -24,7 +24,7 @@ export default function FormHelpButton({ identifier, label, help }: FormHelpButt
         className="help-button"
         type="button"
         aria-label="help"
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault()
           e.stopPropagation()
         }}
