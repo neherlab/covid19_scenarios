@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 
 import FileUploadZone, { FileType } from './FileUploadZone'
-
-import { useTranslation } from 'react-i18next'
 
 export interface ButtonForModalProps {
   files: Map<FileType, File>

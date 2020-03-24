@@ -8,12 +8,9 @@ import { Col, Row } from 'reactstrap'
 
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
-import { AllParams } from '../../algorithms/types/Param.types'
+import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import run from '../../algorithms/run'
-import { makeTimeSeries } from '../../algorithms/utils/TimeSeries'
-
-import { EmpiricalData } from '../../algorithms/types/Param.types'
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
@@ -35,11 +32,11 @@ import './Main.scss'
 import { useScrollIntoView } from '../../helpers/hooks'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
-  return !severity.some(row => _.values(row?.errors).some(x => x !== undefined))
+  return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
 }
 
 export function severityErrors(severity: SeverityTableRow[]) {
-  return severity.map(row => row?.errors)
+  return severity.map((row) => row?.errors)
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
@@ -126,7 +123,7 @@ function Main() {
              * 
              * only `scrollIntoView` when `isSubmitting` goes from `true` -> `false`
              */
-            const refOfElementToScrollIntoView = useScrollIntoView<HTMLDivElement>(!isSubmitting && (vw < 992))
+            const refOfElementToScrollIntoView = useScrollIntoView<HTMLDivElement>(!isSubmitting && vw < 992)
 
             const canRun = isValid && severityTableIsValid(severity)
 
@@ -146,7 +143,7 @@ function Main() {
 
                   <Col lg={8} xl={6} className="py-1 px-1">
                     <div ref={refOfElementToScrollIntoView}>
-                      <ResultsCard canRun={canRun} severity={severity} result={result} caseCounts={empiricalCases}/>
+                      <ResultsCard canRun={canRun} severity={severity} result={result} caseCounts={empiricalCases} />
                     </div>
                   </Col>
                 </Row>
