@@ -10,8 +10,6 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
-import { numberFormatter } from '../../../helpers/numberFormat'
-
 import { colors } from './DeterministicLinePlot'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
