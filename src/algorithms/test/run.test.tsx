@@ -1,6 +1,7 @@
 import { AllParamsFlat } from '../types/Param.types'
 import { AlgorithmResult } from '../types/Result.types'
 
+import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 import populationScenarios from '../../assets/data/scenarios/populations'
@@ -75,8 +76,9 @@ describe('run()', () => {
       'United States',
     ]
 
+    const countryAgeDistributionWithType = countryAgeDistribution as CountryAgeDistribution
+
     const results: Array<Promise<AlgorithmResult>> = countries.map((country) => {
-      const countryAgeDistributionWithType = countryAgeDistribution as Record<string, any>
       const populationScenario = populationScenarios.find((p) => p.name === country)
 
       // Confirm that the populationScenario is defined, because
