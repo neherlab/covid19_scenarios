@@ -4,7 +4,7 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import store_data
+from .utils import store_data, sorted_date
 
 # ------------------------------------------------------------------------
 # Globals
@@ -40,7 +40,7 @@ state_codes = {
 }
 
 URL  = "https://brasil.io/dataset/covid19/caso?format=csv"
-LOC  = "case-counts/Americas/Latin America and the Caribbean/South America/Brazil"
+LOC  = "case-counts/Americas/Latin America and the Caribbean/Brazil"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # ------------------------------------------------------------------------
@@ -75,5 +75,9 @@ def parse():
         cases = to_int(row[4])
         deaths = to_int(row[5])
         regions[state].append([date, cases, deaths, None, None, None])
+
+    for state, data in regions.items():
+        print(data)
+        regions[state] = sorted_date(data, array_index=0)
 
     store_data(regions, { 'default': LOC}, 'brazil', 'BRA', cols)
