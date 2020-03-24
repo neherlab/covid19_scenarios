@@ -15,7 +15,7 @@ with open("sources.json") as fh:
 
 default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
-    
+
 # ------------------------------------------------------------------------
 # Functions
 
@@ -121,7 +121,7 @@ def store_tsv(regions, exceptions, source, cols):
     for region, data in regions.items():
         # region is API provided and should be sanitized before using it to construct paths for security reasons
         region = sanitize(region)
-        
+
         # If we only want to store one .tsv in the root, we signal this with exceptions['default': 'FOO.tsv']
         if  '.tsv' in exceptions['default']:
             write_tsv(exceptions['default'], ['location']+cols, flatten(regions), source)
@@ -153,7 +153,7 @@ def list_to_dict(regions, cols):
     return res
 
 def store_json(newdata):
-    json_file = 'case-counts/case_counts.json'
+    json_file = 'assets/case_counts.json'
     if os.path.isfile(json_file):
         with open(json_file, 'r') as fh:
             oldcases = json.load(fh)
@@ -175,8 +175,8 @@ def sanitize(fname):
     if not fname2==fname:
         print(f'Filename sanitized: was {fname}, now {fname2}')
     return fname2
-    
-    
+
+
 def store_data(regions, exceptions, source, code='', cols=[]):
     """ Store data to .tsv and .json files
 
@@ -186,13 +186,13 @@ def store_data(regions, exceptions, source, code='', cols=[]):
     source --  the string identifyig the source in sources.json
     code -- the three letter code for the country from country_codes.csv
     cols -- the colum headers that were used to prepare the innermost list
-    """    
-    
+    """
+
     # check if we have a dict of list of list, or dict of list of dicts
     if isinstance(regions, dict):
         cd1 = list(regions.values())[0]
-        if isinstance(cd1, list): 
-            cd2 = cd1[0]           
+        if isinstance(cd1, list):
+            cd2 = cd1[0]
             if isinstance(cd2, list):
                 store_tsv(regions, exceptions, source, cols)
                 if not cols==[]:
@@ -201,7 +201,7 @@ def store_data(regions, exceptions, source, code='', cols=[]):
                         if not region in exceptions:
                             regions2[code+"-"+region] = data
                         else:
-                            regions2[region] = data                
+                            regions2[region] = data
                     store_json(list_to_dict(regions2, cols))
                 else:
                     print(f'ERROR: You need to provide cols to store_data for the format you use. cols will indicate type of values in your inner lists. No data was stored to .tsv now!', file=sys.stderr)

@@ -70,7 +70,7 @@ def loadPopTable(fname):
     return pops
 
 def getRegions():
-    with open('src/assets/data/case_counts.json') as fd:
+    with open('assets/case_counts.json') as fd:
         regions = json.load(fd)
         return set(regions.keys())
 
@@ -84,5 +84,6 @@ if __name__ == '__main__':
     for d in pops:
         d['data']['cases'] = d['name'] if d['name'] in regions else 'none'
 
-    with open('../src/assets/data/population.json', 'w') as fh:
+    with open('assets/population.json', 'w') as fh:
         json.dump(pops, fh)
+

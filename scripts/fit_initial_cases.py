@@ -43,7 +43,7 @@ def fit_population(pop):
             return None
 
 if __name__ == '__main__':
-    with open("case-counts/case_counts.json") as fh:
+    with open("assets/case_counts.json") as fh:
         case_counts = json.load(fh)
 
     data = []
