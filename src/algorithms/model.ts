@@ -134,10 +134,14 @@ export function initializePopulation(
     const put = (x: number) => {
       return { total: x }
     }
+    const putarr = (x: number) => {
+      return { total: [x, x, x] }
+    }
+
     return {
       time: t0,
       susceptible: put(N - numCases),
-      exposed: put(0),
+      exposed: putarr(0),
       infectious: put(numCases),
       hospitalized: put(0),
       critical: put(0),
@@ -166,7 +170,7 @@ export function initializePopulation(
   Object.keys(ages).forEach((k, i) => {
     const n = Math.round((ages[k] / Z) * N)
     pop.susceptible[k] = n
-    pop.exposed[k] = 0
+    pop.exposed[k] = [0, 0, 0]
     pop.infectious[k] = 0
     pop.hospitalized[k] = 0
     pop.critical[k] = 0
@@ -178,7 +182,7 @@ export function initializePopulation(
     if (i === Math.round(Object.keys(ages).length / 2)) {
       pop.susceptible[k] -= numCases
       pop.infectious[k] = 0.3 * numCases
-      pop.exposed[k] = 0.7 * numCases
+      pop.exposed[k] = [0.7 * numCases, 0, 0]
     }
   })
 
@@ -187,6 +191,7 @@ export function initializePopulation(
 
 // Grabs all keys which index into a Record<string, number> object
 type NumberRecordKeys<T> = { [K in keyof T]: Record<string, number> extends T[K] ? K : never }[keyof T]
+type NumberArrayRecordKeys<T> = { [K in keyof T]: Record<string, number[]> extends T[K] ? K : never }[keyof T]
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
 export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: number) => number): SimulationTimePoint {
@@ -217,8 +222,15 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
     record[age] = pop[sub][age] + delta
   }
 
+  const pushAt = <Sub extends NumberArrayRecordKeys<SimulationTimePoint>>(sub: Sub, age: string, delta: number, index: number) => {
+    // To get TS to type check this function, we need first assign newPop[sub] to Record<string, number[]>
+    // There is possibly a better solution
+    const record: Record<string, number[]> = newPop[sub]
+    record[age][index] = pop[sub][age][index] + delta
+  }
+
   const newCases: Record<string, number> = {}
-  const newInfectious: Record<string, number> = {}
+  const newInfectious: Record<string, number[]> = {}
   const newRecovered: Record<string, number> = {}
   const newHospitalized: Record<string, number> = {}
   const newDischarged: Record<string, number> = {}
@@ -231,12 +243,22 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
   const Keys = Object.keys(pop.infectious).sort()
   Keys.forEach((age) => {
+      // Initialize all states with internal arrays
+    newInfectious[age]  = []
+    newPop.exposed[age] = []
+
     newCases[age] =
       sample(P.importsPerDay[age] * P.timeDeltaDays) +
       sample(
         (1 - P.isolatedFrac[age]) * P.infectionRate(newTime) * pop.susceptible[age] * fracInfected * P.timeDeltaDays,
       )
-    newInfectious[age] = Math.min(pop.exposed[age], sample((pop.exposed[age] * P.timeDeltaDays) / P.incubationTime))
+    // NOTE: Propagate individuals through internal exposed states
+    for (let i = 0; i < pop.exposed[age].length; i++) {
+        newInfectious[age][i] = Math.min(
+            pop.exposed[age][i],
+            sample((pop.exposed[age][i] * P.timeDeltaDays) / (P.incubationTime / pop.exposed[age].length))
+        )
+    }
     newRecovered[age] = Math.min(
       pop.infectious[age],
       sample(pop.infectious[age] * P.timeDeltaDays * P.recoveryRate[age]),
@@ -271,8 +293,12 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
     )
 
     push('susceptible', age, -newCases[age])
-    push('exposed', age, newCases[age] - newInfectious[age])
-    push('infectious', age, newInfectious[age] - newRecovered[age] - newHospitalized[age])
+    let fluxIn = newCases[age];
+    for (let i = 0; i < 3; i++) {
+        pushAt('exposed', age, fluxIn - newInfectious[age][i], i)
+        fluxIn = newInfectious[age][i];
+    }
+    push('infectious', age, fluxIn - newRecovered[age] - newHospitalized[age])
     push(
       'hospitalized',
       age,
@@ -333,12 +359,18 @@ const keys = <T>(o: T): Array<keyof T & string> => {
 
 export function collectTotals(trajectory: SimulationTimePoint[]) {
   // FIXME: parameter reassign
+  const sum = arr => arr.reduce((a,b) => a + b, 0);
   trajectory.forEach((d) => {
     keys(d).forEach((k) => {
       if (k === 'time' || 'total' in d[k]) {
         return
       }
-      d[k].total = Object.values(d[k]).reduce((a, b) => a + b)
+      if (k == 'exposed') {
+          // TODO: This is a violation of our type contract right now.
+          d[k].total = Object.values(d[k]).reduce((a, b) => a + sum(b))
+      } else {
+          d[k].total = Object.values(d[k]).reduce((a, b) => a + b)
+      }
     })
   })
 
