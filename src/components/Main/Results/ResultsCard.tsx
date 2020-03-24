@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 
 import Papa from 'papaparse'
+
+import { useTranslation } from 'react-i18next'
+
 import { Button, Col, Row } from 'reactstrap'
 
 import { readFile } from '../../../helpers/readFile'
@@ -23,9 +26,7 @@ import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 
-import { useTranslation } from 'react-i18next'
-
-interface ResutsCardProps {
+interface ResultsCardProps {
   autorunSimulation: boolean
   toggleAutorun: () => void
   canRun: boolean
@@ -34,7 +35,7 @@ interface ResutsCardProps {
   caseCounts?: EmpiricalData
 }
 
-function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResutsCardProps) {
+function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState<boolean>(true)
 

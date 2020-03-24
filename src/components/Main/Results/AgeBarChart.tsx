@@ -2,6 +2,8 @@ import React from 'react'
 
 import ReactResizeDetector from 'react-resize-detector'
 
+import { useTranslation } from 'react-i18next'
+
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -9,8 +11,6 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { colors } from './DeterministicLinePlot'
-
-import { useTranslation } from 'react-i18next'
 
 const ASPECT_RATIO = 16 / 4
 
@@ -36,7 +36,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
   }
   const ages = Object.keys(data.params.ageDistribution)
   const lastDataPoint = data.deterministicTrajectory[data.deterministicTrajectory.length - 1]
-  const plotData = ages.map(age => ({
+  const plotData = ages.map((age) => ({
     name: age,
     fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
     peakSevere: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.hospitalized[age]))),
@@ -70,7 +70,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 }}
               >
                 <XAxis dataKey="name" />
-                <YAxis label={{value:t('Cases'), angle: -90, position: 'insideLeft' }} />
+                <YAxis label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }} />
                 <Tooltip />
                 <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
