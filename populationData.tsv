@@ -205,7 +205,7 @@ IND-Puducherry	1375592	India	3569	351	0	0.1
 FRA-Auvergne-Rhône-Alpes	8026685	France	16641	555	45	1
 FRA-Bourgogne-Franche-Comté	2795301	France	7095	121	12	1
 FRA-Bretagne	3329395	France	7361	109	14	1
-FRA-Centre-Val de Loire	2566759	France	4984	170	0	1
+FRA-Centre-Val-de-Loire	2566759	France	4984	170	0	1
 FRA-Corse	339178	France	756	71	0	1
 FRA-Grand-Est	5518188	France	13548	465	9	1
 FRA-Hauts-de-France	5978266	France	13872	438	56	1
@@ -213,10 +213,10 @@ FRA-Ile-de-France	12213364	France	22792	1147	43	1
 FRA-Normandie	3319067	France	7645	294	3	1
 FRA-Nouvelle-Aquitaine	5987014	France	12491	449	10	1
 FRA-Occitanie	5892817	France	9851	466	7	1
-FRA-Pays de la Loire	3786545	France	6570	181	6	1
-FRA-Provence-Alpes-Côte d'Azur	5059473	France	9909	460	9	1
+FRA-Pays-de-la-Loire	3786545	France	6570	181	6	1
+FRA-Provence-Alpes-Côte-dAzur	5059473	France	9909	460	9	1
 FRA-Guadeloupe	382704	France	735	20	0	1
 FRA-Guyane	296711	France	383	15	0	1
-FRA-La Réunion	866506	France	1260	60	0	1
+FRA-La-Réunion	866506	France	1260	60	0	1
 FRA-Martinique	364354	France	882	20	0	1
 FRA-Mayotte	270372	France	300	15	0	1
