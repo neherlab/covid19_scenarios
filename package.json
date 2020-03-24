@@ -172,6 +172,7 @@
     "@typescript-eslint/eslint-plugin-tslint": "2.23.0",
     "@typescript-eslint/parser": "2.23.0",
     "@typescript-eslint/typescript-estree": "2.23.0",
+    "all-contributors-cli": "6.14.0",
     "allow-methods": "2.0.0",
     "babel-eslint": "10.1.0",
     "babel-jest": "25.1.0",
