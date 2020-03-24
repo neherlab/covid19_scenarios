@@ -1,5 +1,5 @@
-import React, { useReducer, useState, useCallback, useEffect } from 'react'
-import { useDebounce, useDebouncedCallback } from 'use-debounce';
+import React, { useReducer, useState, useEffect } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 
 import _ from 'lodash'
 
@@ -23,7 +23,7 @@ import countryCaseCounts from '../../assets/data/case_counts.json'
 
 import { schema } from './validation/schema'
 
-import { setEpidemiologicalData, setPopulationData, setSimulationData, setContainmentData, SetContainmentDataParams } from './state/actions';
+import { setEpidemiologicalData, setPopulationData, setSimulationData, setContainmentData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState } from './state/state'
 import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
@@ -77,13 +77,13 @@ function Main() {
     // TODO: check the presence of the current country
     // TODO: type cast the json into something
     const ageDistribution = countryAgeDistribution[params.population.country]
-    const caseCounts: typeof empiricalCases = countryCaseCounts[params.population.cases] || []
+    const caseCounts: EmpiricalData = countryCaseCounts[params.population.cases] || []
     const containmentData = params.containment.reduction
 
     serializeScenarioToURL(scenarioState, params)
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
     setResult(newResult)
-    caseCounts?.sort((a, b) => (a.time > b.time ? 1 : -1))
+    caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
     setEmpiricalCases(caseCounts)
   }
 
