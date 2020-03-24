@@ -1,3 +1,8 @@
+"""
+Intended to be run from the top level
+python scripts/make_case_folder_structure.py
+"""
+
 import os
 import csv
 
