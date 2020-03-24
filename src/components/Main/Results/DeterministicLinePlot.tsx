@@ -8,7 +8,7 @@ import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.ty
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
-import { calculateYPosition } from './tooltipCalculator'
+import { calculateYPosition, scrollToRef } from './chartHelper'
 
 import './DeterministicLinePlot.scss'
 
@@ -83,7 +83,13 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
   const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
 
+<<<<<<< HEAD
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+=======
+  const chartRef = React.useRef(null)
+
+  const [ enabledPlots, setEnabledPlots ] = useState(Object.values(DATA_POINTS));
+>>>>>>> Improvement: Scroll to top of chart when clicking it on mobile.
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
@@ -213,7 +219,9 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
           return (
             <>
               <h5>{t('Cases through time')}</h5>
+              <div ref={chartRef} />
               <ComposedChart
+                onClick={() => scrollToRef(chartRef)}
                 width={width}
                 height={height}
                 data={plotData}

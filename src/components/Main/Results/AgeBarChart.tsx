@@ -13,7 +13,7 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { colors } from './DeterministicLinePlot'
-import { calculateYPosition } from './tooltipCalculator'
+import { calculateYPosition, scrollToRef } from './chartHelper'
 
 const ASPECT_RATIO = 16 / 4
 
@@ -31,6 +31,9 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
   }
 
   const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
+
+  const firstRef = React.useRef(null)
+  const secondRef = React.useRef(null)
 
   const t = (...args: Parameters<typeof unsafeT>) => {
     const translation = unsafeT(...args)
@@ -76,7 +79,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
           return (
             <>
               <h5>{t('Distribution across age groups')}</h5>
-              <BarChart
+                
+              <div ref={firstRef} />
+              <BarChart 
+                onClick={() => scrollToRef(firstRef)} 
                 width={width}
                 height={height}
                 data={plotData}
@@ -97,7 +103,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
                 <Bar dataKey="totalDead" fill={colors.death} name={t('total deaths')} />
               </BarChart>
+              
+              <div ref={secondRef} />
               <BarChart
+                onClick={() => scrollToRef(secondRef)} 
                 width={width}
                 height={height}
                 data={plotData}
