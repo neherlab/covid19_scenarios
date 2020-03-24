@@ -47,7 +47,7 @@ const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [autorunSimulation, setAutorunSimulation] = useState(true)
+  const [autorunSimulation, setAutorunSimulation] = useState(false)
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,
