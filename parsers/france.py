@@ -4,7 +4,7 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import write_tsv
+from .utils import store_data
 
 # ------------------------------------------------------------------------
 # Globals
@@ -37,12 +37,17 @@ def parse():
     rdr = csv.reader(fd)
     hdr = next(rdr)
 
+    last_deaths=defaultdict(int)
+    last_cases=defaultdict(int)
+    last_hospitalized=defaultdict(int)
     for row in rdr:
         if row[1] == 'region':
             date   = row[0]
             region = row[3]
-            regions[region].append([date, to_int(row[4]), to_int(row[5]), None, None, None])
+            last_cases[region] = max(int(row[4]), last_cases[region]) if row[4] else last_cases[region]
+            last_deaths[region] = max(int(row[5]), last_deaths[region]) if row[5] else last_deaths[region]
+            last_hospitalized[region] = max(int(row[7]), last_hospitalized[region]) if row[7] else last_hospitalized[region]
+            regions[region].append([date, last_cases[region], last_deaths[region], last_hospitalized[region], None, None])
 
 
-    for region, data in regions.items():
-        write_tsv(f"{LOC}/{region}.tsv", cols, data, "france")
+    store_data(regions, { 'default': LOC}, 'france', 'FRA', cols)
