@@ -2,8 +2,9 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": "../node_modules",
-    "target": "es5",
-    "lib": ["es5", "dom"],
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
     "types": ["cypress", "@types/testing-library__cypress"]
   },
   "include": [

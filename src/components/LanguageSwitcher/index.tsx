@@ -2,36 +2,9 @@ import React, { useState } from 'react'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import i18next from 'i18next'
 
+import langs from '../../langs'
+
 import './LanguageSwitcher.scss'
-
-type Lang = {
-  lang: string
-  name: string
-}
-
-// TODO: better way of retrieving the languages available.
-const langs: { [key: string]: Lang } = {
-  en: {
-    lang: 'en',
-    name: 'english',
-  },
-  fr: {
-    lang: 'fr',
-    name: 'français',
-  },
-  pt: {
-    lang: 'pt',
-    name: 'português',
-  },
-  de: {
-    lang: 'de',
-    name: 'deutsch',
-  },
-  es: {
-    lang: 'es',
-    name: 'español',
-  },
-}
 
 /**
  * Returns our active lang loaded from localstorage
@@ -61,7 +34,7 @@ export default function LanguageSwitcher() {
   const selectedLang = getCurrentLang()
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle} className="pull-right">
+    <Dropdown isOpen={dropdownOpen} toggle={toggle} className="pull-right" data-testid="LanguageSwitcher">
       <DropdownToggle caret>
         <Lang lang={langs[selectedLang]} />
       </DropdownToggle>

@@ -16,7 +16,7 @@ context('The navigation bar', () => {
       .should('have.length', navLinks.length)
   })
 
-  navLinks.forEach(([url, _]) => {
+  navLinks.forEach(([url, _]: [string, any]) => {
     describe(`Clicking on "${url}" link`, () => {
       it(`should open the ${url} page correctly`, () => {
         cy.findByTestId('NavigationBar')
