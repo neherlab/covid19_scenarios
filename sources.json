@@ -1,4 +1,9 @@
 {
+  "brazil": {
+    "primarySource": "https://brasil.io/api/dataset/covid19/caso/data",
+    "dataProvenance": "https://brasil.io/dataset/covid19/caso",
+    "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+  },
   "france": {
     "primarySource": "https://github.com/opencovid19-fr/data/raw/master/dist/chiffres-cles.csv",
     "dataProvenance": "Données nationales concernant l'épidémie de COVID19",
