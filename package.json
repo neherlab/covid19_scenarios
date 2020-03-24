@@ -152,6 +152,7 @@
     "@types/webpack-bundle-analyzer": "2.13.3",
     "@types/webpackbar": "2.6.0",
     "@types/yup": "0.26.33",
+    "jest-extended": "0.11.5",
     "node-sass": "4.13.1",
     "tslint": "6.1.0"
   }

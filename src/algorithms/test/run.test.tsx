@@ -1,3 +1,4 @@
+import 'jest-extended'
 import { AllParamsFlat } from '../types/Param.types'
 import { AlgorithmResult } from '../types/Result.types'
 

@@ -3,6 +3,17 @@ import { render, fireEvent, waitForElementToBeRemoved } from '@testing-library/r
 import FormHelpButton from './FormHelpButton'
 
 describe('FormHelpButton', () => {
+  beforeAll(() => {
+    (global as any).document.createRange = () => ({
+      setStart: () => {},
+      setEnd: () => {},
+      commonAncestorContainer: {
+        nodeName: 'BODY',
+        ownerDocument: document,
+      },
+    })
+  })
+
   it('renders', () => {
     const { getByLabelText } = render(<FormHelpButton identifier="abc" label="def" />)
 
