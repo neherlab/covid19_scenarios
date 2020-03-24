@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
-import { calculateYPosition } from './tooltipCalculator'
+import { calculateYPosition, scrollToRef } from './chartHelper'
 
 import './DeterministicLinePlot.scss'
 
@@ -93,6 +93,8 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any)
 
 export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
   const { t } = useTranslation()
+
+  const chartRef = React.useRef(null)
 
   const [ enabledPlots, setEnabledPlots ] = useState(Object.values(DATA_POINTS));
 
@@ -197,7 +199,9 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
           return (
             <>
               <h5>{t('Cases through time')}</h5>
+              <div ref={chartRef} />
               <ComposedChart
+                onClick={() => scrollToRef(chartRef)}
                 width={width}
                 height={height}
                 data={plotData}
