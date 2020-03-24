@@ -13,6 +13,8 @@ import routes from '../../routes'
 
 import { State } from '../../state/reducer'
 
+import './Layout.scss'
+
 const transitionClassNames = {
   enter: 'animated',
   enterActive: 'fadeIn',
