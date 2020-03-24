@@ -24,6 +24,11 @@
     "dataProvenance": "OpenZH",
     "license": "none specified"
   },
+  "canada": {
+    "primarySource": "https://github.com/ishaberry/Covid19Canada",
+    "dataProvenance": "Offical government data",
+    "license": "none specified"
+  },
   "unitedstates": {
     "primarySource": "https://covidtracking.com/api/states/daily",
     "dataProvenance": "The COVID Tracking Project",
