@@ -25,8 +25,11 @@ export interface ModelParams {
   stabilizationRate: Record<string, number>
   criticalRate: Record<string, number>
   deathRate: Record<string, number>
-  avgInfectionRate: number
+  overflowDeathRate: Record<string, number>
+  isolatedFrac: Record<string, number>
+  importsPerDay: Record<string, number>
   timeDeltaDays: number
+  incubationTime: number
   infectionRate: (t: Date) => number
   timeDelta: number
   populationServed: number

@@ -2,12 +2,12 @@ import { useEffect, useRef } from "react";
 
 /** @see {@tutorial https://stackoverflow.com/questions/53446020/how-to-compare-oldvalues-and-newvalues-on-react-hooks-useeffect} */
 export const usePrevious = <T>(value: T) => {
-  const ref = useRef<T>();
+  const ref = useRef<T>()
   useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
+    ref.current = value
+  })
+  return ref.current
+}
 
 export const useScrollIntoView = <T extends HTMLElement = any>(trigger: any) => {
   const refOfElementToScrollIntoView = useRef<T>(null)

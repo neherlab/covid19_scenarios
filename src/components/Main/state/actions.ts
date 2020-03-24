@@ -1,6 +1,11 @@
 import actionCreatorFactory from 'typescript-fsa'
 
-import { ContainmentData, EpidemiologicalData, PopulationData, SimulationData } from '../../../algorithms/types/Param.types'
+import {
+  ContainmentData,
+  EpidemiologicalData,
+  PopulationData,
+  SimulationData,
+} from '../../../algorithms/types/Param.types'
 
 const action = actionCreatorFactory('SCENARIO')
 

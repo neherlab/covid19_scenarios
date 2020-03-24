@@ -26,14 +26,16 @@ import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 
-export interface ResutsCardProps {
+interface ResultsCardProps {
+  autorunSimulation: boolean
+  toggleAutorun: () => void
   canRun: boolean
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
 }
 
-function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) {
+function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState<boolean>(true)
 
@@ -72,9 +74,23 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
       <Row noGutters>
         <Col>
           <p>
-            {t('This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution')}
+            {t(
+              'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution',
+            )}
           </p>
         </Col>
+      </Row>
+      <Row noGutters className="mb-4 pl-4">
+        <label className="form-check-label">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              onChange={toggleAutorun}
+              checked={autorunSimulation}
+              aria-checked={autorunSimulation}
+            />
+            Autorun Simulation on scenario parameter change
+          </label>
       </Row>
       <Row noGutters className="mb-4">
         <Col>
@@ -84,7 +100,7 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
                 className="run-button"
                 type="submit"
                 color="primary"
-                disabled={!canRun}
+                disabled={!canRun || autorunSimulation}
                 data-testid="RunResults"
               >
                 {t('Run')}
@@ -138,4 +154,4 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
   )
 }
 
-export { ResultsCard }
+export const ResultsCard = React.memo(ResultsCardFunction)

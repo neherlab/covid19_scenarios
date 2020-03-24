@@ -31,7 +31,7 @@ const assetsDir = path.join(buildDir, 'assets')
 const contentDir = path.join(buildDir, 'content')
 const sourcemapDir = path.join(buildDir, '..', 'sourcemaps')
 
-const pages = routes.map(route => route.path)
+const pages = routes.map((route) => route.path)
 
 function main() {
   const app = express()

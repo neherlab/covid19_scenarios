@@ -57,7 +57,7 @@ function Lang({ lang }: { lang: Lang }) {
 
 export default function LanguageSwitcher() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
-  const toggle = () => setDropdownOpen(prevState => !prevState)
+  const toggle = () => setDropdownOpen((prevState) => !prevState)
   const selectedLang = getCurrentLang()
 
   return (
@@ -66,7 +66,7 @@ export default function LanguageSwitcher() {
         <Lang lang={langs[selectedLang]} />
       </DropdownToggle>
       <DropdownMenu>
-        {Object.keys(langs).map(key => (
+        {Object.keys(langs).map((key) => (
           <DropdownItem
             key={key}
             onClick={() => {
