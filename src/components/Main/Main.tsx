@@ -13,7 +13,8 @@ import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import run from '../../algorithms/run'
 
-import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
+import {CountryAgeDistribution} from '../../assets/data/CountryAgeDistribution.types'
+import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 
 import countryCaseCounts from '../../assets/data/case_counts.json'
@@ -73,6 +74,7 @@ function Main() {
     }
     // TODO: check the presence of the current country
     // TODO: type cast the json into something
+    const countryAgeDistribution = countryAgeDistributionData as CountryAgeDistribution
     const ageDistribution = countryAgeDistribution[params.population.country]
     const caseCounts: EmpiricalData = countryCaseCounts[params.population.cases] || []
     const containmentData = params.containment.reduction
