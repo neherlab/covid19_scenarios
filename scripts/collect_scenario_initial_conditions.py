@@ -8,7 +8,7 @@ from scipy.stats import linregress
 # Globals
 
 SCENARIO_POPS = "static_scenario_data.tsv"
-OUTPUT_JSON   = "scenario_defaults.json"
+OUTPUT_JSON   = "assets/scenario_defaults.json"
 FIT_CASE_DATA = {}
 
 # ------------------------------------------------------------------------
