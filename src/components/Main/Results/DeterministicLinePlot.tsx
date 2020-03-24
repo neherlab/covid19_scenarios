@@ -30,7 +30,7 @@ const DATA_POINTS = {
   ObservedCases: 'cases',
   ObservedHospitalized: 'currentHospitalized',
   ObservedICU: 'ICU',
-  ObservedNewCases: 'newCases'
+  ObservedNewCases: 'newCases',
 }
 
 export const colors = {
@@ -86,7 +86,7 @@ function labelFormatter(value: string | number): React.ReactNode {
 function legendFormatter(enabledPlots: string[], value: string, entry: any)
 {
   const activeClassName = enabledPlots.indexOf(entry.dataKey) !== -1 ? "legend" : "legend-inactive";
-  return <span className={activeClassName}>{value}</span>;
+  return <span className={activeClassName}>{value}</span>
 }
 
 export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
@@ -140,7 +140,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
         ICUbeds: nICUBeds,
       })),
     ...observations,
-  ] //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
+  ] // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
 
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
@@ -227,7 +227,8 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                     const plots = enabledPlots.slice(0);
                     enabledPlots.indexOf(e.dataKey) !== -1 ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey);
                     setEnabledPlots(plots)
-                  }} />
+                  }}
+                />
                 {linesToPlot.map((d) => (
                   <Line
                     key={d.key}

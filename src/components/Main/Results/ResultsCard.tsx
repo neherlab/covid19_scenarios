@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 
 import Papa from 'papaparse'
+
+import { useTranslation } from 'react-i18next'
+
 import { Button, Col, Row } from 'reactstrap'
 
 import { readFile } from '../../../helpers/readFile'
@@ -9,7 +12,7 @@ import { exportResult } from '../../../algorithms/utils/exportResult'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import processUserResult from '../../../algorithms/utils/userResult'
 
-import { EmpiricalData }from '../../../algorithms/types/Param.types'
+import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import FormSwitch from '../../Form/FormSwitch'
@@ -22,8 +25,6 @@ import { FileType } from '../Compare/FileUploadZone'
 import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
-
-import { useTranslation } from 'react-i18next'
 
 export interface ResutsCardProps {
   canRun: boolean
