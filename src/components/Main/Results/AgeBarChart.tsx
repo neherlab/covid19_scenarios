@@ -13,7 +13,6 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { colors } from './DeterministicLinePlot'
-
 import { calculateYPosition } from './tooltipCalculator'
 
 const ASPECT_RATIO = 16 / 4
