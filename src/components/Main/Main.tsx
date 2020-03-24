@@ -35,11 +35,11 @@ import './Main.scss'
 import { useScrollIntoView } from '../../helpers/hooks'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
-  return !severity.some(row => _.values(row?.errors).some(x => x !== undefined))
+  return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
 }
 
 export function severityErrors(severity: SeverityTableRow[]) {
-  return severity.map(row => row?.errors)
+  return severity.map((row) => row?.errors)
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
@@ -123,10 +123,10 @@ function Main() {
             /**
              * 992 is the width at which the layout collapses into a single column
              * @see {@tutorial https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints}
-             * 
+             *
              * only `scrollIntoView` when `isSubmitting` goes from `true` -> `false`
              */
-            const refOfElementToScrollIntoView = useScrollIntoView<HTMLDivElement>(!isSubmitting && (vw < 992))
+            const refOfElementToScrollIntoView = useScrollIntoView<HTMLDivElement>(!isSubmitting && vw < 992)
 
             const canRun = isValid && severityTableIsValid(severity)
 
@@ -146,7 +146,7 @@ function Main() {
 
                   <Col lg={8} xl={6} className="py-1 px-1">
                     <div ref={refOfElementToScrollIntoView}>
-                      <ResultsCard canRun={canRun} severity={severity} result={result} caseCounts={empiricalCases}/>
+                      <ResultsCard canRun={canRun} severity={severity} result={result} caseCounts={empiricalCases} />
                     </div>
                   </Col>
                 </Row>
