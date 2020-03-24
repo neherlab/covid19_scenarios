@@ -1,4 +1,9 @@
 {
+  "france": {
+    "primarySource": "https://github.com/opencovid19-fr/data/raw/master/dist/chiffres-cles.csv",
+    "dataProvenance": "Données nationales concernant l'épidémie de COVID19",
+    "license": "Etalab Open License 2.0"
+  },
   "germany": {
     "primarySource": "https://raw.githubusercontent.com/chriswien/COVID19_CaseNumberDE/master/COVID19_Cases_Bundeslaender_DE.csv",
     "dataProvenance": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
