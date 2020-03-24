@@ -15,7 +15,7 @@ interface ErrorProps {
 const development = process.env.NODE_ENV === 'development'
 
 export default function ErrorPage({ error, componentStack, isDev = development }: ErrorProps) {
-  const { t } = useTranslation() 
+  const { t } = useTranslation()
   const hasDevMessage = !!(isDev && error && error.message)
   const hasDevStack = !!(isDev && componentStack)
 

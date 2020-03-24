@@ -32,7 +32,7 @@ const DATA_POINTS = {
   ObservedCases: 'cases',
   ObservedHospitalized: 'currentHospitalized',
   ObservedICU: 'ICU',
-  ObservedNewCases: 'newCases'
+  ObservedNewCases: 'newCases',
 }
 
 export const colors = {
@@ -86,9 +86,9 @@ function labelFormatter(value: string | number): React.ReactNode {
 }
 
 function legendFormatter(enabledPlots: string[], value: string, entry: any)
-{ 
+{
   const activeClassName = enabledPlots.indexOf(entry.dataKey) !== -1 ? "legend" : "legend-inactive";
-  return <span className={activeClassName}>{value}</span>;
+  return <span className={activeClassName}>{value}</span>
 }
 
 export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
@@ -137,12 +137,12 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
         critical: enabledPlots.indexOf(DATA_POINTS.Critical) !== -1 ? Math.round(x.critical.total) || undefined : undefined,
         overflow: enabledPlots.indexOf(DATA_POINTS.Overflow) !== -1 ? Math.round(x.overflow.total) || undefined : undefined,
         recovered: enabledPlots.indexOf(DATA_POINTS.Recovered) !== -1 ? Math.round(x.recovered.total) || undefined : undefined,
-        dead: enabledPlots.indexOf(DATA_POINTS.Death) !== -1 ? Math.round(x.dead.total) || undefined : undefined,
+        death: enabledPlots.indexOf(DATA_POINTS.Death) !== -1 ? Math.round(x.dead.total) || undefined : undefined,
         hospitalBeds: nHospitalBeds,
         ICUbeds: nICUBeds,
       })),
     ...observations,
-  ] //.filter((d) => {return d.time >= tMin && d.time <= tMax}))
+  ] // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
 
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
@@ -224,13 +224,14 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                 />
                 <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} position={{ y: tooltipPosition }} />
                 <Legend
-                  verticalAlign="top" 
+                  verticalAlign="top"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
                   onClick={e => {
                     const plots = enabledPlots.slice(0);
                     enabledPlots.indexOf(e.dataKey) !== -1 ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey);
                     setEnabledPlots(plots)
-                  }} />
+                  }}
+                />
                 {linesToPlot.map((d) => (
                   <Line
                     key={d.key}

@@ -2,6 +2,8 @@ import React from 'react'
 
 import ReactResizeDetector from 'react-resize-detector'
 
+import { useTranslation } from 'react-i18next'
+
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -10,10 +12,13 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { colors } from './DeterministicLinePlot'
 
+<<<<<<< HEAD
 import { useTranslation } from 'react-i18next' 
 
 import { calculateYPosition } from './tooltipCalculator'
 
+=======
+>>>>>>> master
 const ASPECT_RATIO = 16 / 4
 
 export interface SimProps {
@@ -39,7 +44,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
 
   const ages = Object.keys(data.params.ageDistribution)
   const lastDataPoint = data.deterministicTrajectory[data.deterministicTrajectory.length - 1]
-  const plotData = ages.map(age => ({
+  const plotData = ages.map((age) => ({
     name: age,
     fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
     peakSevere: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.hospitalized[age]))),

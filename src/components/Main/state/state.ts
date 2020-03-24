@@ -1,3 +1,5 @@
+import i18next from 'i18next'
+
 import {
   containmentScenarioNames,
   epidemiologicalScenarioNames,
@@ -10,9 +12,12 @@ import {
   populationScenarioNames,
 } from './data'
 
-import { ContainmentData, EpidemiologicalData, PopulationData, SimulationData } from '../../../algorithms/types/Param.types'
-
-import i18next from 'i18next'
+import {
+  ContainmentData,
+  EpidemiologicalData,
+  PopulationData,
+  SimulationData,
+} from '../../../algorithms/types/Param.types'
 
 export interface State {
   overall: {

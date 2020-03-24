@@ -2,6 +2,7 @@
   COVID-19 Scenarios
 </h1>
 
+
 <p align="center">
   <a href="https://neherlab.org/covid19/">
     <img
@@ -19,11 +20,7 @@
   </a>
 </p>
 
-<blockquote>
-  <p align="center">
-    Tool that models hospital demand during COVID-19 outbreak
-  </p>
-</blockquote>
+
 
 <h1 align="center" />
 
@@ -210,7 +207,40 @@ Input data for the tool and the basic parameters of the populations are collecte
 [neherlab/covid19_scenarios_data](https://github.com/neherlab/covid19_scenarios_data). Please add data on populations
 and parsers of publicly available case count data there.
 
+### User Guide 
+
+The online application provides a friendly user interface with drop downs to choose model parameters, run the model, and export results in CSV format. A detailed process is below. 
+
+#### Population Parameters 
+
+Select the population drop down and select a country/region to auto-populate the model's parameters with respective UN population data. These parameters can be indivdually updated manually if necessary. 
+
+#### Epidemiology Parameters 
+
+The preset epidemiology parameters are a combination of speed and region - specifying growth rate, seasonal variation, and duration of hospital stay. To choose a preset distribution, select one of the options from the epidemiology drop down to auto-populate the model's parameters with the selected parameters. 
+
+#### Mitigation Parameters 
+
+Mitigation parameters represent the reduction of transmission through mitigation measures over time. To select a preset, click on the mitigation dropdown and select one of the options. Otherwise, the points on the graph can be dragged and moved with the mouse. The parameter ranges from one (no infection control) to zero (complete prevention of all transmission).
+
+#### Running the Model
+
+Once the correct parameters are inputted, select the run button located in the Results section of the application. The model output will be displayed in 2 graphs: Cases through time and Distribution across groups and 2 tables: Populations and Totals/Peak.
+
+#### Exporting Results
+
+The model's results can be exported in CSV format by clicking the "export" button in the right hand corner. 
+
+
 ### Development
+
+#### Code Stack
+
+TODO
+
+#### Code Examples
+
+TODO
 
 #### Install requirements
 

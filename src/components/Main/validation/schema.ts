@@ -1,8 +1,8 @@
 import * as yup from 'yup'
 
-import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
-
 import i18next from 'i18next'
+
+import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 
 const countries = Object.keys(countryAgeDistribution)
 

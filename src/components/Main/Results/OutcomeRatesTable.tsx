@@ -1,12 +1,12 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 import { Col, Row } from 'reactstrap'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
-
-import { useTranslation } from 'react-i18next'
 
 export interface TableProps {
   result?: AlgorithmResult
@@ -23,13 +23,14 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
     return null
   }
   const { t } = useTranslation()
-  const { params } = result
 
   /*
   // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
   let deathFrac    = 0
   let severeFrac   = 0
   let criticalFrac = 0
+
+  const { params } = result
 
   rates.forEach(d => {
     const freq    = params.ageDistribution[d.ageGroup]
@@ -54,8 +55,8 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
   let deathFrac    = 1.0*totalDeath / totalCases
   let mildFrac     = 1 - severeFrac - criticalFrac - deathFrac
 
-  const peakSevere   = Math.round(Math.max(...result.deterministicTrajectory.map(x => x.hospitalized.total)))
-  const peakCritical = Math.round(Math.max(...result.deterministicTrajectory.map(x => x.critical.total + x.overflow.total)))
+  const peakSevere   = Math.round(Math.max(...result.deterministicTrajectory.map((x) => x.hospitalized.total)))
+  const peakCritical = Math.round(Math.max(...result.deterministicTrajectory.map((x) => x.critical.total + x.overflow.total)))
 
   deathFrac    = forDisplay(deathFrac)
   criticalFrac = forDisplay(criticalFrac)

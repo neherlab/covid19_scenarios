@@ -1,6 +1,7 @@
 import { AllParamsFlat } from '../types/Param.types'
 import { AlgorithmResult } from '../types/Result.types'
 
+import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 import populationScenarios from '../../assets/data/scenarios/populations'
@@ -41,60 +42,23 @@ describe('run()', () => {
   })
 
   it('should work for a lot of countries', async () => {
-    const countries = [
-      'Switzerland',
-      'Germany',
-      'France',
-      'Italy',
-      'Spain',
-      'Poland',
-      'Romania',
-      'Netherlands',
-      'Belgium',
-      'Czechia',
-      'Greece',
-      'Portugal',
-      'Sweden',
-      'Hungary',
-      'Austria',
-      'Bulgaria',
-      'Denmark',
-      'Finland',
-      'Slovakia',
-      'Ireland',
-      'Croatia',
-      'Lithuania',
-      'Slovenia',
-      'Latvia',
-      'Estonia',
-      'Cyprus',
-      'Luxembourg',
-      'Malta',
-      'Canada',
-      'United Kingdom',
-      'United States',
-    ]
+    const countryAgeDistributionWithType = countryAgeDistribution as CountryAgeDistribution
 
-    const results: Array<Promise<AlgorithmResult>> = countries.map((country) => {
-      const countryAgeDistributionWithType = countryAgeDistribution as Record<string, any>
-      const populationScenario = populationScenarios.find((p) => p.name === country)
-
-      // Confirm that the populationScenario is defined, because
-      // then we can safely apply the "! - Non-null assertion operator"
-      expect(populationScenario).toBeDefined()
-
+    const results: Array<Promise<AlgorithmResult>> = populationScenarios.map((populationScenario) => {
       return run(
         {
-          ...populationScenario!.data,
+          ...populationScenario.data,
           ...epidemiologicalScenarios[1].data,
           ...simulationData,
         },
         severityData,
-        countryAgeDistributionWithType[populationScenario!.data.country],
+        countryAgeDistributionWithType[populationScenario.data.country],
         containmentScenarios[3].data.reduction,
       )
     })
 
-    await Promise.all(results)
+    const finished = await Promise.all(results)
+
+    expect(finished).toHaveLength(results.length)
   })
 })
