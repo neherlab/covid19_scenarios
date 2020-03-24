@@ -85,6 +85,7 @@
     "react-i18next": "11.3.4",
     "react-icons": "3.9.0",
     "react-if": "3.4.3",
+    "react-katex": "2.0.2",
     "react-media": "1.10.0",
     "react-redux": "7.2.0",
     "react-resize-detector": "4.2.1",

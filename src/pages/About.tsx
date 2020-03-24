@@ -1,18 +1,14 @@
-import { importMDX } from 'mdx.macro';
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component } from 'react';
 import { Col, Container, Row } from 'reactstrap';
+import { AboutComponent } from '../components/About';
 
-const Content = lazy(() => importMDX('../assets/text/about.md'));
-
-class Faq extends Component {
+class About extends Component {
   render() {
     return (
       <Container>
         <Row>
           <Col>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Content />
-            </Suspense>
+            <AboutComponent />
           </Col>
         </Row>
       </Container>
@@ -20,4 +16,4 @@ class Faq extends Component {
   }
 }
 
-export default Faq
+export default About
