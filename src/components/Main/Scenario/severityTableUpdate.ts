@@ -6,7 +6,7 @@ import { validatePercentage } from './validatePercentage'
  * Updates computable columns in severity table
  */
 export function updateSeverityTable(severity: SeverityTableRow[]): SeverityTableRow[] {
-  return severity.map(row => {
+  return severity.map((row) => {
     const { value: isolated, errors: isolatedErrors } = validatePercentage(row.isolated)
     const { value: confirmed, errors: confirmedErrors } = validatePercentage(row.confirmed)
     const { value: severe, errors: severeErrors } = validatePercentage(row.severe)
