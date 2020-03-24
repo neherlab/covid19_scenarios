@@ -1,11 +1,73 @@
 import csv
 import json
 
+from datetime import datetime
+from scipy.stats import linregress
+
 # ------------------------------------------------------------------------
 # Globals
 
 SCENARIO_POPS = "static_scenario_data.tsv"
 OUTPUT_JSON   = "scenario_defaults.json"
+FIT_CASE_DATA = {}
+
+# ------------------------------------------------------------------------
+# Data fitter
+
+class Fitter:
+    doubling_time   = 3.0
+    fixed_slope     = np.log(2)/doubling_time
+    cases_on_tMin   = 10
+    under_reporting = 5
+    delay           = 18
+    fatality_rate   = 0.02
+
+    def fit(pop):
+        # ----------------------------------
+        # Internal functions
+
+        def fit_cumulative(t, y):
+            good_ind    = (y > 3) & (y < 500)
+            t_subset    = t[good_ind]
+            logy_subset = np.log(y[good_ind])
+            num_data    = good_ind.sum()
+
+            if num_data > 10:
+                res = linregress(t_subset, logy_subset)
+                return {"intercept" : res.intercept,
+                        "slope"     : res.slope,
+                        'rvalue'    : res.rvalue}
+            elif num_data > 4:
+                intercept = logy_subset.mean() - t_subset.mean()*fixed_slope
+                return {"intercept" : intercept,
+                        "slope"     : 1.0*fixed_slope,
+                        'rvalue'    : np.nan}
+            else:
+                return None
+
+        def to_ms(time):
+            return datetime.strptime(time, "%Y-%m-%d").toordinal()
+
+        def from_ms(time):
+            d = datetime.fromordinal(time)
+            return f"{d.year:04d}-{d.month:02d}-{d.day:02d}"
+
+        # ----------------------------------
+        # Body
+
+        data = np.array([ ([to_ms(dp['time']), dp['cases'] or np.nan, dp['deaths'] or np.nan]) for dp in pop ])
+
+        p = fit_cumulative(data[:,0], data[:,2])
+        if p:
+            tMin = (np.log(self.cases_on_tMin * self.fatality_rate) - p["intercept"]) / p["slope"]
+            return tMin, self.cases_on_tMin, p["slope"]
+        else:
+            p = fit_cumulative(data[:,0], data[:,1])
+            if p:
+                tMin = (np.log(self.cases_on_tMin) - p["intercept"]) / p["slope"]
+                return tMin, self.cases_on_tMin, p["slope"]
+
+        return None
 
 # ------------------------------------------------------------------------
 # Parameter classes
@@ -21,15 +83,14 @@ class PopulationParams(Object):
     def __init__(self, region, country, population, beds, icus):
         self.populationServed    = int(population)
         self.country             = country
-        self.suspectedCasesToday = 10
+        self.suspectedCasesToday = 10 # NOTE: This defines tMin
         self.importsPerDay       = .01 * float(population)
         self.hospitalBeds        = int(beds)
         self.ICUBeds             = int(icus)
         self.cases               = region
 
 class EpidemiologicalParams(Object):
-    def __init__(self):
-        self.r0                 = 2.7
+    def __init__(self, region):
         self.incubationTime     = 5
         self.infectiousPeriod   = 3
         self.lengthHospitalStay = 4
@@ -37,10 +98,14 @@ class EpidemiologicalParams(Object):
         self.seasonalForcing    = 0.2
         self.peakMonth          = "January"
         self.overflowSeverity   = 2
+        if region in FIT_CASE_DATA:
+            self.r0 = FIT_CASE_DATA[region]['r0']
+        else:
+            self.r0 = 2.7
 
 class ContainmentParams(Object):
     def __init__(self):
-        self.reduction = [1.0, 0.8, 0.7, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6]
+        self.reduction    = [1.0, 0.8, 0.7, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6]
         self.numberPoints = len(self.reduction)
 
 class DateRange(Object):
@@ -49,11 +114,14 @@ class DateRange(Object):
         self.tMax = max
 
 class SimulationParams(Object):
-    def __init__(self):
-        self.simulationTimeRange  = DateRange("2020-03-01", "2020-09-01")
-        self.numberStochasticRuns = 10
+    def __init__(self, region):
+        tMin = FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01"
+        tMax = "2020-09-01"
+        self.simulationTimeRange  = DateRange(tMin, tMax)
+        self.numberStochasticRuns = 0
 
 # TODO: Region and country provide redudant information
+#       Condense the information into one field.
 class AllParams(Object):
     def __init__(self, region, country, population, beds, icus):
         self.population      = PopulationParams(region, country, population, beds, icus)
@@ -66,6 +134,13 @@ class AllParams(Object):
 
 def marshalJSON(obj, wtr):
     return json.dump(obj, wtr, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+
+def fit_all_case_data():
+    Params = Fitter()
+    with open("case-counts/case_counts.json") as fh:
+        case_counts = json.load(fh)
+        for region, data in case_counts.items():
+            FIT_CASE_DATA[region] = Params.fit(data)
 
 # ------------------------------------------------------------------------
 # Main point of entry
