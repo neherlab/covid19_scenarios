@@ -11,7 +11,6 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { colors } from './DeterministicLinePlot'
-
 import { calculateYPosition } from './tooltipCalculator'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
