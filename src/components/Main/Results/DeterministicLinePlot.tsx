@@ -192,7 +192,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
           }
 
           const height = Math.max(500, width / ASPECT_RATIO)
-          const tooltipPosition = calculateYPosition(width, height)
+          const tooltipPosition = calculateYPosition(height)
 
           return (
             <>

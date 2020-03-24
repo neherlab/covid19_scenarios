@@ -57,7 +57,7 @@ export function AgeBarChart({ data, rates }: SimProps) {
           }
 
           const height = Math.max(250, width / ASPECT_RATIO)
-          const tooltipPosition = calculateYPosition(width, height)
+          const tooltipPosition = calculateYPosition(height)
 
           return (
             <>
