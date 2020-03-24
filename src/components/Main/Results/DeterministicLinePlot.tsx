@@ -8,8 +8,12 @@ import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.ty
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
+<<<<<<< HEAD
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
+=======
+import { calculateYPosition, scrollToRef } from './chartHelper'
+>>>>>>> Improvement: Scroll to top of chart when clicking it on mobile.
 
 import './DeterministicLinePlot.scss'
 
