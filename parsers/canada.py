@@ -4,7 +4,7 @@ from datetime import datetime
 
 from urllib.request import urlretrieve
 from collections import defaultdict
-from .utils import store_data
+from .utils import store_data, sorted_date
 
 # ------------------------------------------------------------------------
 # Globals
@@ -48,34 +48,47 @@ def parse():
 
             state = row[Ix['province']]
             # Hack: recovered currently has no county-level data.            
-            if  k=='recovered':
-                county = None
-            else:
-                county = state+'-'+row[Ix['health_region']]
+            county = None
+            # county-level removed as requested in https://github.com/neherlab/covid19_scenarios_data/pull/42#issuecomment-603427339
+            #if  k=='recovered':
+            #    county = None
+            #else:
+            #    county = state+'-'+row[Ix['health_region']]
             time =  xlrd.xldate_as_datetime(row[Ix[dcols[k]]], workbook.datemode).strftime('%Y-%m-%d')
             # add this row to both state and county-level data
             for p in [state, county]:
-                if not county:
+                if not p:
                     continue
                 if not p in cases:
                     cases[p] = []
                 try:
                     od = next(x for x in cases[p] if x['time']==time)
                     # we found prior data, update it. There should only be one match here
-                    if k in od:
-                        od[k] += 1
+                    # recovered is cumulative, and the other two are just 1 item per row
+                    if k=='recovered':
+                        if k in od and not row[Ix['cumulative_recovered']] == 'NA':
+                            od[k] += int(row[Ix['cumulative_recovered']])
+                        elif not row[Ix['cumulative_recovered']] == 'NA':
+                            od[k] = int(row[Ix['cumulative_recovered']])
                     else:
-                        od[k] = 1
+                        if k in od:
+                            od[k] += 1
+                        else:
+                            od[k] = 1
                 except (StopIteration, KeyError) as e:
                     # first observation for that date and
                     cases[p].append({'time': time, k: 1})
+
+    for cntry, data in cases.items():
+        cases[cntry] = sorted_date(cases[cntry])
 
     # aggregate cases/deaths here after sorting
     for cntry, data in cases.items():
         total = {}
         total['cases']  = 0
         total['deaths'] = 0
-        total['recovered'] = 0
+        # recovered seems to be cumulative already
+        #total['recovered'] = 0
         for k in total:        
             for d in data:
                 if k in d and d[k]:
