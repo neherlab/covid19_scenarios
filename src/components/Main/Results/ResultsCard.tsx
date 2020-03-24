@@ -9,7 +9,7 @@ import { exportResult } from '../../../algorithms/utils/exportResult'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import processUserResult from '../../../algorithms/utils/userResult'
 
-import { EmpiricalData }from '../../../algorithms/types/Param.types'
+import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import FormSwitch from '../../Form/FormSwitch'
@@ -25,7 +25,7 @@ import { OutcomeRatesTable } from './OutcomeRatesTable'
 
 import { useTranslation } from 'react-i18next'
 
-export interface ResutsCardProps {
+interface ResutsCardProps {
   autorunSimulation: boolean
   toggleAutorun: () => void
   canRun: boolean
@@ -34,7 +34,7 @@ export interface ResutsCardProps {
   caseCounts?: EmpiricalData
 }
 
-function ResultsCard({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResutsCardProps) {
+function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResutsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState<boolean>(true)
 
@@ -73,7 +73,9 @@ function ResultsCard({ canRun, autorunSimulation, toggleAutorun, severity, resul
       <Row noGutters>
         <Col>
           <p>
-            {t('This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution')}
+            {t(
+              'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution',
+            )}
           </p>
         </Col>
       </Row>
@@ -151,4 +153,4 @@ function ResultsCard({ canRun, autorunSimulation, toggleAutorun, severity, resul
   )
 }
 
-export { ResultsCard }
+export const ResultsCard = React.memo(ResultsCardFunction)
