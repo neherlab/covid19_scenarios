@@ -38,16 +38,10 @@ def parse():
         i = 0
         Ix = {}
         worksheet = data[k]
-        # dynamically build a dictionary of row headers
-        # column headers are in row 3 or 4
-        if 'province' in worksheet.row_values(2):
-            for c in worksheet.row_values(2):
-                Ix[c] = i
-                i += 1
-        elif 'province' in worksheet.row_values(3):
-            for c in worksheet.row_values(3):
-                Ix[c] = i
-                i += 1
+        # dynamically build a dictionary of row headers, should be fixed to row 4 now
+        for c in worksheet.row_values(3):
+            Ix[c] = i
+            i += 1
         # add each entry
         for row_index in range(4, worksheet.nrows):
             row = worksheet.row_values(row_index)
