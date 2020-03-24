@@ -19,3 +19,7 @@ participating, you are expected to uphold this code. Unacceptable behavior won't
 When you are creating a bug report, please include as many details as possible. Fill out
 [the required template](https://github.com/neherlab/covid19_scenarios/blob/master/.github/ISSUE_TEMPLATE/bug_report.md),
 the information it asks for helps us resolve issues faster.
+
+## Acknowledging contributions
+
+You can add yourself or others to the table of contributors by follwing the [all-contributors bot usage instructions](https://allcontributors.org/docs/en/bot/usage)
