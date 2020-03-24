@@ -42,23 +42,23 @@ describe('run()', () => {
   })
 
   it('should work for a lot of countries', async () => {
-
     const countryAgeDistributionWithType = countryAgeDistribution as CountryAgeDistribution
 
     const results: Array<Promise<AlgorithmResult>> = populationScenarios.map((populationScenario) => {
-
       return run(
         {
-          ...populationScenario!.data,
+          ...populationScenario.data,
           ...epidemiologicalScenarios[1].data,
           ...simulationData,
         },
         severityData,
-        countryAgeDistributionWithType[populationScenario!.data.country],
+        countryAgeDistributionWithType[populationScenario.data.country],
         containmentScenarios[3].data.reduction,
       )
     })
 
-    await Promise.all(results)
+    const finished = await Promise.all(results)
+
+    expect(finished).toHaveLength(results.length)
   })
 })
