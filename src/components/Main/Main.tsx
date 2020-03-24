@@ -84,7 +84,7 @@ function Main() {
     setEmpiricalCases(caseCounts)
   }
 
-  const [debouncedRun] = useDebouncedCallback((params: AllParams) => runSimulation(params), 2000)
+  const [debouncedRun] = useDebouncedCallback((params: AllParams) => runSimulation(params), 500)
 
   useEffect(() => {
     if (autorunSimulation) {
