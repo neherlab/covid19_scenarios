@@ -30,8 +30,6 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     return null
   }
 
-  const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
-
   const firstRef = React.useRef(null)
   const secondRef = React.useRef(null)
 
