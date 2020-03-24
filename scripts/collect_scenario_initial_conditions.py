@@ -1,6 +1,6 @@
 import csv
 import json
-
+import numpy as np
 from datetime import datetime
 from scipy.stats import linregress
 
@@ -16,13 +16,17 @@ FIT_CASE_DATA = {}
 
 class Fitter:
     doubling_time   = 3.0
+    serial_interval = 7.5
     fixed_slope     = np.log(2)/doubling_time
     cases_on_tMin   = 10
     under_reporting = 5
     delay           = 18
     fatality_rate   = 0.02
 
-    def fit(pop):
+    def slope_to_r0(self,slope):
+        return 1 + slope*self.serial_interval
+
+    def fit(self, pop):
         # ----------------------------------
         # Internal functions
 
@@ -38,9 +42,9 @@ class Fitter:
                         "slope"     : res.slope,
                         'rvalue'    : res.rvalue}
             elif num_data > 4:
-                intercept = logy_subset.mean() - t_subset.mean()*fixed_slope
+                intercept = logy_subset.mean() - t_subset.mean()*self.fixed_slope
                 return {"intercept" : intercept,
-                        "slope"     : 1.0*fixed_slope,
+                        "slope"     : 1.0*self.fixed_slope,
                         'rvalue'    : np.nan}
             else:
                 return None
@@ -57,15 +61,16 @@ class Fitter:
 
         data = np.array([ ([to_ms(dp['time']), dp['cases'] or np.nan, dp['deaths'] or np.nan]) for dp in pop ])
 
+        # fit on death
         p = fit_cumulative(data[:,0], data[:,2])
         if p:
-            tMin = (np.log(self.cases_on_tMin * self.fatality_rate) - p["intercept"]) / p["slope"]
-            return tMin, self.cases_on_tMin, p["slope"]
-        else:
+            tMin = (np.log(self.cases_on_tMin * self.fatality_rate) - p["intercept"]) / p["slope"] - self.delay
+            return {'tMin': tMin, 'initialCases': self.cases_on_tMin, 'r0':self.slope_to_r0(p["slope"])}
+        else: # fit on case counts
             p = fit_cumulative(data[:,0], data[:,1])
             if p:
-                tMin = (np.log(self.cases_on_tMin) - p["intercept"]) / p["slope"]
-                return tMin, self.cases_on_tMin, p["slope"]
+                tMin = (np.log(self.cases_on_tMin)/self.under_reporting - p["intercept"]) / p["slope"]
+                return {'tMin': tMin, 'initialCases': self.cases_on_tMin, 'r0':self.slope_to_r0(p["slope"])}
 
         return None
 
@@ -109,13 +114,13 @@ class ContainmentParams(Object):
         self.numberPoints = len(self.reduction)
 
 class DateRange(Object):
-    def __init__(self, min, max):
-        self.tMin = min
-        self.tMax = max
+    def __init__(self, tMin, tMax):
+        self.tMin = tMin
+        self.tMax = tMax
 
 class SimulationParams(Object):
     def __init__(self, region):
-        tMin = FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01"
+        tMin = datetime.strftime(datetime.fromordinal(int(FIT_CASE_DATA[region]['tMin'])), '%Y-%m-%d') if region in FIT_CASE_DATA else "2020-03-01"
         tMax = "2020-09-01"
         self.simulationTimeRange  = DateRange(tMin, tMax)
         self.numberStochasticRuns = 0
@@ -125,8 +130,8 @@ class SimulationParams(Object):
 class AllParams(Object):
     def __init__(self, region, country, population, beds, icus):
         self.population      = PopulationParams(region, country, population, beds, icus)
-        self.epidemiological = EpidemiologicalParams()
-        self.simulation      = SimulationParams()
+        self.epidemiological = EpidemiologicalParams(region)
+        self.simulation      = SimulationParams(region)
         self.containment     = ContainmentParams()
 
 # ------------------------------------------------------------------------
@@ -137,16 +142,20 @@ def marshalJSON(obj, wtr):
 
 def fit_all_case_data():
     Params = Fitter()
-    with open("case-counts/case_counts.json") as fh:
+    with open("assets/case_counts.json") as fh:
         case_counts = json.load(fh)
         for region, data in case_counts.items():
-            FIT_CASE_DATA[region] = Params.fit(data)
+            fit = Params.fit(data)
+            if fit:
+                FIT_CASE_DATA[region] = fit
 
 # ------------------------------------------------------------------------
 # Main point of entry
 
 if __name__ == "__main__":
     scenario = {}
+    fit_all_case_data()
+
     with open(SCENARIO_POPS, 'r') as fd:
         rdr = csv.reader(fd, delimiter='\t')
         hdr = next(rdr)
