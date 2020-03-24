@@ -12,13 +12,8 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { colors } from './DeterministicLinePlot'
 
-<<<<<<< HEAD
-import { useTranslation } from 'react-i18next' 
-
 import { calculateYPosition } from './tooltipCalculator'
 
-=======
->>>>>>> master
 const ASPECT_RATIO = 16 / 4
 
 export interface SimProps {
