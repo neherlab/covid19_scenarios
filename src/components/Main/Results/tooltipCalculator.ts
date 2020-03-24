@@ -1,4 +1,4 @@
-export function calculateYPosition(width: number, height: number) {
-  const yPosition = width < 800 ? height - (height * 0.15) : 0
+export function calculateYPosition(height: number) {
+  const yPosition = window.innerWidth < 992 ? height - 20 : 0
   return yPosition
 }
