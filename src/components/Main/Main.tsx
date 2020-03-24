@@ -9,12 +9,9 @@ import { Col, Row } from 'reactstrap'
 
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
-import { AllParams } from '../../algorithms/types/Param.types'
+import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import run from '../../algorithms/run'
-import { makeTimeSeries } from '../../algorithms/utils/TimeSeries'
-
-import { EmpiricalData } from '../../algorithms/types/Param.types'
 
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'

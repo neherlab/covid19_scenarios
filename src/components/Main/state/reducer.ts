@@ -57,10 +57,10 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
         draft.epidemiological.data = getEpidemiologicalData(epidemiologicalScenario)
 
         draft.containment.current = containmentScenario
-        const data = getContainmentScenarioData(containmentScenario);
-        draft.containment.data = { reduction:
-            updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, data.numberPoints),
-            numberPoints: data.numberPoints
+        const data = getContainmentScenarioData(containmentScenario)
+        draft.containment.data = {
+          reduction: updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, data.numberPoints),
+          numberPoints: data.numberPoints,
         }
       }
     }),
@@ -94,7 +94,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.overall.current = CUSTOM_SCENARIO_NAME
       draft.containment.current = scenarioName
       if (scenarioName !== CUSTOM_SCENARIO_NAME) {
-        const data = getContainmentScenarioData(scenarioName);
+        const data = getContainmentScenarioData(scenarioName)
         draft.containment.data = {
           reduction: updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, 10),
           numberPoints: data.numberPoints,
@@ -130,12 +130,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.containment.scenarios = maybeAdd(draft.containment.scenarios, CUSTOM_SCENARIO_NAME)
       draft.containment.current = CUSTOM_SCENARIO_NAME
       draft.containment.data = {
-          reduction: updateTimeSeries(
-              draft.simulation.data.simulationTimeRange,
-              data.reduction,
-              data.numberPoints
-          ),
-          numberPoints: data.numberPoints
+        reduction: updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, data.numberPoints),
+        numberPoints: data.numberPoints,
       }
     }),
   )
@@ -144,9 +140,9 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
     immerCase(setSimulationData, (draft, { data }) => {
       draft.simulation.data = data
       draft.containment.data.reduction = updateTimeSeries(
-          data.simulationTimeRange,
-          draft.containment.data.reduction,
-          draft.containment.data.numberPoints,
+        data.simulationTimeRange,
+        draft.containment.data.reduction,
+        draft.containment.data.numberPoints,
       )
     }),
   )
