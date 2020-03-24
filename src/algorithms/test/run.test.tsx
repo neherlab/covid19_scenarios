@@ -42,48 +42,10 @@ describe('run()', () => {
   })
 
   it('should work for a lot of countries', async () => {
-    const countries = [
-      'Switzerland',
-      'Germany',
-      'France',
-      'Italy',
-      'Spain',
-      'Poland',
-      'Romania',
-      'Netherlands',
-      'Belgium',
-      'Czechia',
-      'Greece',
-      'Portugal',
-      'Sweden',
-      'Hungary',
-      'Austria',
-      'Bulgaria',
-      'Denmark',
-      'Finland',
-      'Slovakia',
-      'Ireland',
-      'Croatia',
-      'Lithuania',
-      'Slovenia',
-      'Latvia',
-      'Estonia',
-      'Cyprus',
-      'Luxembourg',
-      'Malta',
-      'Canada',
-      'United Kingdom',
-      'United States',
-    ]
 
     const countryAgeDistributionWithType = countryAgeDistribution as CountryAgeDistribution
 
-    const results: Array<Promise<AlgorithmResult>> = countries.map((country) => {
-      const populationScenario = populationScenarios.find((p) => p.name === country)
-
-      // Confirm that the populationScenario is defined, because
-      // then we can safely apply the "! - Non-null assertion operator"
-      expect(populationScenario).toBeDefined()
+    const results: Array<Promise<AlgorithmResult>> = populationScenarios.map((populationScenario) => {
 
       return run(
         {
