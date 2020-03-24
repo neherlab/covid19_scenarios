@@ -27,4 +27,4 @@ export default Promise.all(
   ].filter(Boolean),
 )
   .then(() => require('./index'))
-  .catch(error => console.error(error))
+  .catch((error) => console.error(error))
