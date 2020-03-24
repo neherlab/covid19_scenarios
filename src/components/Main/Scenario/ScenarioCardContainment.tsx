@@ -3,6 +3,8 @@ import React from 'react'
 import { FormikErrors, FormikTouched } from 'formik'
 import { AnyAction } from 'typescript-fsa'
 
+import { useTranslation } from 'react-i18next'
+
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 import { ContainmentGraph } from '../Containment/ContainmentGraph'
@@ -11,8 +13,6 @@ import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { setContainmentData, setContainmentScenario } from '../state/actions'
 import { State } from '../state/state'
 import { TimeSeries } from '../../../algorithms/types/TimeSeries.types'
-
-import { useTranslation } from 'react-i18next'
 
 export interface ScenarioCardContainmentProps {
   scenarioState: State
@@ -28,7 +28,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
   }
 
   function handleChangeContainmentData(timeSeries: TimeSeries) {
-    scenarioDispatch(setContainmentData({ data: { reduction:timeSeries, numberPoints: timeSeries.length } }))
+    scenarioDispatch(setContainmentData({ data: { reduction: timeSeries, numberPoints: timeSeries.length } }))
   }
 
   const containmentScenarioOptions = stringsToOptions(scenarioState.containment.scenarios)
@@ -41,7 +41,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
       label={<h5 className="p-0 d-inline text-truncate">{t('Mitigation')}</h5>}
       help={t('Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.')}
       options={containmentScenarioOptions}
-      value={containmentScenarioOptions.find(s => s.label === scenarioState.containment.current)}
+      value={containmentScenarioOptions.find((s) => s.label === scenarioState.containment.current)}
       onValueChange={handleChangeContainmentScenario}
     >
       <FormSpinBox

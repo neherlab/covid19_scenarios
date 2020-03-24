@@ -6,6 +6,8 @@ import { AnyAction } from 'typescript-fsa'
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 import countryCaseCounts from '../../../assets/data/case_counts.json'
 
+import { useTranslation } from 'react-i18next'
+
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
@@ -16,12 +18,10 @@ import { setPopulationScenario } from '../state/actions'
 
 import { State } from '../state/state'
 
-import { useTranslation } from 'react-i18next'
-
 const countries = Object.keys(countryAgeDistribution)
-const countryOptions = countries.map(country => ({ value: country, label: country }))
-const caseCountOptions = Object.keys(countryCaseCounts).map(country => ({ value: country, label: country }))
-caseCountOptions.push({value:'none', label:"None"})
+const countryOptions = countries.map((country) => ({ value: country, label: country }))
+const caseCountOptions = Object.keys(countryCaseCounts).map((country) => ({ value: country, label: country }))
+caseCountOptions.push({ value: 'none', label: 'None' })
 
 export interface ScenarioCardPopulationProps {
   scenarioState: State
@@ -35,7 +35,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
   const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
   function handleChangePopulationScenario(newPopulationScenario: string) {
     scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario }))
-  }  
+  }
 
   return (
     <CardWithDropdown
@@ -43,7 +43,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       label={<h5 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h5>}
       help={t('Parameters of the population in the health care system.')}
       options={populationScenarioOptions}
-      value={populationScenarioOptions.find(s => s.label === scenarioState.population.current)}
+      value={populationScenarioOptions.find((s) => s.label === scenarioState.population.current)}
       onValueChange={handleChangePopulationScenario}
     >
       <FormSpinBox
