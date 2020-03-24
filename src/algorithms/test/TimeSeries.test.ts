@@ -1,6 +1,16 @@
 import { uniformDatesBetween, makeTimeSeries, updateTimeSeries } from '../utils/TimeSeries'
 import { interpolateTimeSeries } from '../run'
 
+function compareTimeSeries(expected: { t: Date; y: number }[], result: { t: Date; y: number }[]) {
+  expect(result).toHaveLength(expected.length)
+
+  expected.forEach(({ t, y }, index) => {
+    const { t: resultT, y: resultY } = result[index]
+    expect(resultT).toStrictEqual(t)
+    expect(resultY).toBeCloseTo(y)
+  })
+}
+
 describe('TimeSeries', () => {
   const tMin = new Date('1970-10-01T00:00:00.000Z')
   const tMax = new Date('1971-02-01T00:00:00.000Z')
@@ -138,11 +148,7 @@ describe('TimeSeries', () => {
         { t: tMax, y: yVector[2] },
       ]
 
-      expected.forEach(({ t, y }, index) => {
-        const { t: resultT, y: resultY } = result[index]
-        expect(t).toStrictEqual(resultT)
-        expect(y).toBeCloseTo(resultY)
-      })
+      compareTimeSeries(expected, result)
     })
 
     it('interpolates an existing TimeSeries with a new TimeRange.', () => {
@@ -170,11 +176,7 @@ describe('TimeSeries', () => {
         { t: new Date('1971-01-27T00:00:00.000Z'), y: 10.67479674796748 },
       ]
 
-      expected.forEach(({ t, y }, index) => {
-        const { t: resultT, y: resultY } = result[index]
-        expect(t).toStrictEqual(resultT)
-        expect(y).toBeCloseTo(resultY)
-      })
+      compareTimeSeries(expected, result)
     })
   })
 })
