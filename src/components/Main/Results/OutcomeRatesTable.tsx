@@ -24,7 +24,6 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
   if (!result || !rates) {
     return null
   }
-  const { t } = useTranslation()
 
   /*
   // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?

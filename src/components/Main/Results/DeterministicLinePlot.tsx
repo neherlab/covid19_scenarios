@@ -99,7 +99,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     return null
   }
 
-  const hasUserResult = Boolean(userResult?.trajectory)
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
 

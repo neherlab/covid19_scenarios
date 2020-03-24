@@ -73,8 +73,10 @@ function Main() {
     }
     // TODO: check the presence of the current country
     // TODO: type cast the json into something
-    const ageDistribution = countryAgeDistribution[params.population.country]
-    const caseCounts: EmpiricalData = countryCaseCounts[params.population.cases] || []
+    const { population: { country, cases } } = params;
+    const ageDistribution = get(countryAgeDistribution, country);
+    const caseCounts: EmpiricalData = get(countryCaseCounts, cases, []);
+
     const containmentData = params.containment.reduction
 
     serializeScenarioToURL(scenarioState, params)
