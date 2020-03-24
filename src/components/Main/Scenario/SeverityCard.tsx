@@ -1,10 +1,10 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 
 import { SeverityTable, SeverityTableRow } from './SeverityTable'
-
-import { useTranslation } from 'react-i18next'
 
 export interface SeverityCardProps {
   severity: SeverityTableRow[]

@@ -2,6 +2,8 @@ import React from 'react'
 
 import _ from 'lodash'
 
+import i18next from 'i18next'
+
 import { Col, Row } from 'reactstrap'
 
 import { ChangeSet, Column, EditingState, Row as TableRow, Table as TableBase } from '@devexpress/dx-react-grid'
@@ -13,8 +15,6 @@ import { format as d3format } from 'd3-format'
 import { updateSeverityTable } from './severityTableUpdate'
 
 import './SeverityTable.scss'
-
-import i18next from 'i18next'
 
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: i18next.t('Age group') },
@@ -170,12 +170,12 @@ function SeverityTable({ severity, setSeverity }: SeverityTableProps) {
     }
 
     if (changed) {
-      changedRows = severity.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row))
+      changedRows = severity.map((row) => (changed[row.id] ? { ...row, ...changed[row.id] } : row))
     }
 
     if (deleted) {
       const deletedSet = new Set(deleted)
-      changedRows = severity.filter(row => !deletedSet.has(row.id))
+      changedRows = severity.filter((row) => !deletedSet.has(row.id))
     }
 
     setSeverity(updateSeverityTable(changedRows))

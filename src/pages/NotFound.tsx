@@ -1,10 +1,10 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next'
+
 import Status from '../components/Router/Status'
 
 import './NotFound.scss'
-
-import { useTranslation } from 'react-i18next'
 
 function NotFound() {
   const { t } = useTranslation()

@@ -97,6 +97,7 @@
     "typescript-fsa": "3.0.0",
     "typescript-fsa-reducers": "1.2.1",
     "url-join": "4.0.1",
+    "use-debounce": "3.4.0",
     "yup": "0.28.3"
   },
   "devDependencies": {
