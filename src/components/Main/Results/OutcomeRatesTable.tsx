@@ -27,7 +27,7 @@ export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) 
     return null
   }
 
-  const formatNumber = numberFormatter(i18n.language, !!showHumanized, true)
+  const formatNumber = numberFormatter(i18n.language, !!showHumanized, !showHumanized)
 
   /*
   // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
