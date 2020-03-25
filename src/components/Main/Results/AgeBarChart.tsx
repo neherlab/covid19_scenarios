@@ -10,7 +10,7 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
-import * as d3 from 'd3'
+import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { colors } from './DeterministicLinePlot'
 
@@ -22,14 +22,14 @@ export interface SimProps {
   rates?: SeverityTableRow[]
 }
 
-const humanizeFormatter = d3.format('.5~s')
-
 export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
-  const { t: unsafeT } = useTranslation()
+  const { t: unsafeT, i18n } = useTranslation()
 
   if (!data || !rates) {
     return null
   }
+
+  const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
 
   const t = (...args: Parameters<typeof unsafeT>) => {
     const translation = unsafeT(...args)
@@ -57,9 +57,9 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     name: string,
     entry: TooltipPayload,
     index: number,
-  ) => <span>{showHumanized ? humanizeFormatter(Number(value)) : value}</span>
+  ) => <span>{formatNumber(Number(value))}</span>
 
-  const tickFormatter = (value: number) => (showHumanized ? humanizeFormatter(value) : value)
+  const tickFormatter = (value: number) => formatNumber(value)
 
   return (
     <div className="w-100 h-100" data-testid="AgeBarChart">

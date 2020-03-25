@@ -6,8 +6,7 @@ import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
-
-import * as d3 from 'd3'
+import { numberFormatter } from '../../../helpers/numberFormat'
 
 import './DeterministicLinePlot.scss'
 
@@ -64,8 +63,6 @@ interface LineProps {
   legendType?: RechartsLineProps['legendType']
 }
 
-const humanizeFormatter = d3.format('.5~s')
-
 function xTickFormatter(tick: string | number): string {
   return new Date(tick).toISOString().slice(0, 10)
 }
@@ -80,7 +77,9 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
 }
 
 export function DeterministicLinePlot({ data, userResult, logScale, showHumanized, caseCounts }: LinePlotProps) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
+  const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
 
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
@@ -100,6 +99,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     newCases: caseCounts?.filter((d, i) => i > 2 && d.cases && caseCounts[i - 3].cases).length ?? 0,
     hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
+
 
   const observations =
     caseCounts?.map((d, i) => ({
@@ -164,6 +164,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     ? Math.max(plotData[plotData.length - 1].time, observations[observations.length - 1].time)
     : plotData[plotData.length - 1].time
 
+
   const scatterToPlot: LineProps[] = observations.length
     ? [
         // Append empirical data
@@ -185,16 +186,16 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
       ]
     : []
 
-  const logScaleString: YAxisProps['scale'] = logScale ? t('log') : t('linear')
+  const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
   const tooltipFormatter = (
     value: string | number | Array<string | number>,
     name: string,
     entry: TooltipPayload,
     index: number,
-  ): React.ReactNode => <span>{showHumanized ? humanizeFormatter(Number(value)) : value}</span>
+  ): React.ReactNode => <span>{formatNumber(Number(value))}</span>
 
-  const yTickFormatter = (value: number) => (showHumanized ? humanizeFormatter(value) : value)
+  const yTickFormatter = (value: number) => formatNumber(value)
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
