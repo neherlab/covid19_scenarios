@@ -18,6 +18,7 @@ html {
 }
 
 body {
+  background-color: #eeeeee;
   // HACK: workaround for bootstrap modal adding padding-right when open
   padding: 0 !important;
 }
@@ -85,11 +86,15 @@ p {
   }
 }
 
+// STRUCTURE ELEMENTS
 .card {
-  border-radius: 2px;
+  background-color: transparent;
+  border: 1px solid $black;
+  // margin-top: 15px;
 }
 
 .card-header {
+  background-color: $black;
   padding: 8px 4px;
 }
 
@@ -99,7 +104,33 @@ p {
 }
 
 .card-body {
-  padding: 4px 6px;
+  padding: 1rem;
+}
+
+.card--main {
+  border: none;
+  margin-top: 30px;
+
+  & > .card-header {
+    background-color: transparent;
+    border-bottom: 3px solid $black;
+  }
+
+  & > .card-body,
+  & > .collapse > .card-body {
+    margin-top: 10px;
+    padding: 0;
+  }
+}
+
+.card--results {
+  & > .card-body,
+  & > .collapse > .card-body {
+    background-color: $white;
+    border: 1px solid $black;
+    margin-top: 20px;
+    padding: 1rem;
+  }
 }
 
 // Always show spinbox arrows in Chrome

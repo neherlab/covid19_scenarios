@@ -63,6 +63,7 @@ function ResultsCard({ canRun, severity, result, caseCounts }: ResutsCardProps) 
   const canExport = Boolean(hasResult)
   return (
     <CollapsibleCard
+      className="card--main card--results"
       identifier="results-card"
       title={<h2 className="p-0 m-0 text-truncate">{t('Results')}</h2>}
       help={t('This section contains simulation results')}
