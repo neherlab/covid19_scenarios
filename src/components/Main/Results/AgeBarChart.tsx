@@ -13,6 +13,8 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 import { colors } from './DeterministicLinePlot'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
+import { colors } from './DeterministicLinePlot'
+
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
 
