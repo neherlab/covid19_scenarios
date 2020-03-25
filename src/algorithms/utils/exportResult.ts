@@ -28,7 +28,7 @@ export function exportResult(result: AlgorithmResult) {
     return
   }
 
-  const { deterministicTrajectory, stochasticTrajectories, params } = result
+  const { deterministicTrajectory, _, params } = result
 
   if (deterministicTrajectory) {
     const csvString: string = exportSimulation(deterministicTrajectory)

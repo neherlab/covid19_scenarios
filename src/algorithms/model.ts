@@ -1,6 +1,6 @@
 import { AllParamsFlat } from '../algorithms/types/Param.types'
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
-import { ModelParams, SimulationTimePoint } from '../algorithms/types/Result.types'
+import { ModelParams, SimulationTimePoint, UserResult, ExportedTimePoint } from '../algorithms/types/Result.types'
 
 const msPerDay = 1000 * 60 * 60 * 24
 
@@ -358,37 +358,65 @@ const keys = <T>(o: T): Array<keyof T & string> => {
   return Object.keys(o) as Array<keyof T & string>
 }
 
-export function collectTotals(trajectory: SimulationTimePoint[]) {
+export function collectTotals(trajectory: SimulationTimePoint[]) : UserResult {
   // FIXME: parameter reassign
-  const sum = arr => arr.reduce((a,b) => a + b, 0);
+  const sum = arr => arr.reduce((a, b) => a + b, 0);
+
+  const res: UserResult = { 'trajectory': [] }
+
   trajectory.forEach(d => {
+    const tp : ExportedTimePoint = {
+        "time": d["time"],
+        "susceptible": {},
+        "exposed": {},
+        "dead": {},
+        "overflow": {},
+        "critical": {},
+        "recovered": {},
+        "hospitalized": {},
+        "infectious": {},
+        "discharged": {},
+        "intensive": {}
+    };
     keys(d).forEach(k => {
-      if (k === 'time' || 'total' in d[k]) {
-        return
-      }
-      if (k == 'exposed') {
-          // TODO: This is a violation of our type contract right now.
-          d[k].total = Object.values(d[k]).reduce((a, b) => a + sum(b))
-      } else {
-          d[k].total = Object.values(d[k]).reduce((a, b) => a + b)
+      switch (k)  {
+        case 'time': 
+          return
+
+        case 'exposed':
+          tp[k].total = 0
+          Object.values(d[k]).forEach((x) => { 
+              x.forEach((y) => {tp[k].total += y
+              })
+          })
+          Object.keys(d[k]).forEach((a) => {
+              tp[k][a] = d[k][a].reduce((a, b) => a + b, 0)
+          })
+          break
+
+        default:
+          tp[k] = d[k]
+          tp[k].total = Object.values(d[k]).reduce((a, b) => a + b)
       }
     })
+
+    res.trajectory.push(tp)
   })
 
-  return trajectory
+  return res
 }
 
-export function exportSimulation(trajectory: SimulationTimePoint[]) {
+export function exportSimulation(result: UserResult) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const header = keys(trajectory[0])
+  const header = keys(result.trajectory[0])
   const csv = [header.join('\t')]
 
   const pop: Record<string, boolean> = {}
-  trajectory.forEach(d => {
+  result.trajectory.forEach(d => {
     const t = new Date(d.time).toISOString().slice(0, 10)
     if (t in pop) {
       return
