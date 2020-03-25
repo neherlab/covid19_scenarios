@@ -53,15 +53,6 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     totalDead: Math.round(lastDataPoint.dead[age]),
   }))
 
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ) => <span>{formatNumber(Number(value))}</span>
-
-  const tickFormatter = (value: number) => formatNumber(value)
-
   return (
     <div className="w-100 h-100" data-testid="AgeBarChart">
       <ReactResizeDetector handleWidth handleHeight>

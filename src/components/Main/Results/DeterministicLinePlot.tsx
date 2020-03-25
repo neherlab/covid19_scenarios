@@ -70,10 +70,6 @@ function xTickFormatter(tick: string | number): string {
   return new Date(tick).toISOString().slice(0, 10)
 }
 
-function labelFormatter(value: string | number): React.ReactNode {
-  return xTickFormatter(value)
-}
-
 function legendFormatter(enabledPlots: string[], value: string, entry: any) {
   const activeClassName = enabledPlots.includes(entry.dataKey) ? 'legend' : 'legend-inactive'
   return <span className={activeClassName}>{value}</span>
@@ -193,15 +189,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ): React.ReactNode => <span>{formatNumber(Number(value))}</span>
-
-  const yTickFormatter = (value: number) => formatNumber(value)
-
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
@@ -245,8 +232,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 />
                 
                 <Tooltip 
-                  formatter={tooltipFormatter} 
-                  labelFormatter={labelFormatter} 
                   position={tooltipPosition} 
                   content={ResponsiveTooltipContent}
                 />
