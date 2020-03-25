@@ -4,46 +4,62 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { useTranslation } from 'react-i18next'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
+
+import * as d3 from 'd3'
 
 import { colors } from './DeterministicLinePlot'
 
 const ASPECT_RATIO = 16 / 4
 
 export interface SimProps {
+  showHumanized?: boolean
   data?: AlgorithmResult
   rates?: SeverityTableRow[]
 }
 
-export function AgeBarChart({ data, rates }: SimProps) {
+const humanizeFormatter = d3.format('.5~s')
+
+export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
+  const { t: unsafeT } = useTranslation()
+
   if (!data || !rates) {
     return null
   }
 
-  const { t: unsafeT } = useTranslation()
   const t = (...args: Parameters<typeof unsafeT>) => {
     const translation = unsafeT(...args)
     if (typeof translation === 'string' || typeof translation === 'undefined') {
       return translation
     }
 
-    (process.env.NODE_ENV !== 'production') && console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    process.env.NODE_ENV !== 'production' && console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
     return String(translation)
   }
+
   const ages = Object.keys(data.params.ageDistribution)
   const lastDataPoint = data.deterministicTrajectory[data.deterministicTrajectory.length - 1]
   const plotData = ages.map((age) => ({
     name: age,
     fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
-    peakSevere: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.hospitalized[age]))),
-    peakCritical: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.critical[age]))),
-    peakOverflow: Math.round(Math.max(...data.deterministicTrajectory.map(x => x.overflow[age]))),
+    peakSevere: Math.round(Math.max(...data.deterministicTrajectory.map((x) => x.hospitalized[age]))),
+    peakCritical: Math.round(Math.max(...data.deterministicTrajectory.map((x) => x.critical[age]))),
+    peakOverflow: Math.round(Math.max(...data.deterministicTrajectory.map((x) => x.overflow[age]))),
     totalDead: Math.round(lastDataPoint.dead[age]),
   }))
+
+  const tooltipFormatter = (
+    value: string | number | Array<string | number>,
+    name: string,
+    entry: TooltipPayload,
+    index: number,
+  ) => <span>{showHumanized ? humanizeFormatter(Number(value)) : value}</span>
+
+  const tickFormatter = (value: number) => (showHumanized ? humanizeFormatter(value) : value)
 
   return (
     <div className="w-100 h-100" data-testid="AgeBarChart">
@@ -52,7 +68,6 @@ export function AgeBarChart({ data, rates }: SimProps) {
           if (!width) {
             return <div className="w-100 h-100" />
           }
-
           const height = Math.max(250, width / ASPECT_RATIO)
 
           return (
@@ -70,9 +85,12 @@ export function AgeBarChart({ data, rates }: SimProps) {
                 }}
               >
                 <XAxis dataKey="name" />
-                <YAxis label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }} />
-                <Tooltip />
-                <Legend verticalAlign="top"/>
+                <YAxis
+                  label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }}
+                  tickFormatter={tickFormatter}
+                />
+                <Tooltip formatter={tooltipFormatter} />
+                <Legend verticalAlign="top" />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
                 <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />

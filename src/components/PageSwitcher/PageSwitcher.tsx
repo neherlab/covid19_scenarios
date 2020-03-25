@@ -24,7 +24,7 @@ const PageSwitcher: React.FC<PageSwitcherProps> = ({
   location,
   routes,
   loadingComponent,
-  forceLoadingMs = 100,
+  forceLoadingMs = 0,
   timeoutMs = 20000,
 }) => (
   <Switch location={location}>
