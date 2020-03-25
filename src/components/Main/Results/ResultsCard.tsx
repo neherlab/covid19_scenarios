@@ -40,8 +40,6 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
   const [logScale, setLogScale] = useState(true)
   const [showHumanized, setShowHumanized] = useState(true)
 
-  const toggleShowHumanized = () => setShowHumanized(!showHumanized)
-
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
   const [userResult, setUserResult] = useState<UserResult | undefined>()
