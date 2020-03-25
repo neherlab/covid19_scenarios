@@ -44,10 +44,11 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
       options={overallScenarioOptions}
       value={overallScenarioOptions.find((s) => s.label === scenarioState.overall.current)}
       onValueChange={handleChangeOverallScenario}
+      className="card--main"
     >
       <>
-        <Row noGutters>
-          <Col xl={6} className="py-1 px-1">
+        <Row>
+          <Col xl={6} className="my-2">
             <ScenarioCardPopulation
               scenarioState={scenarioState}
               errors={errors}
@@ -56,7 +57,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
             />
           </Col>
 
-          <Col xl={6} className="py-1 px-1">
+          <Col xl={6} className="my-2">
             <ScenarioCardEpidemiological
               scenarioState={scenarioState}
               errors={errors}
@@ -67,7 +68,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
         </Row>
 
         <Row noGutters>
-          <Col className="py-1 px-1">
+          <Col className="my-2">
             <ScenarioCardContainment
               scenarioState={scenarioState}
               errors={errors}
@@ -78,7 +79,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
         </Row>
 
         <Row noGutters>
-          <Col className="py-1 px-1">
+          <Col className="my-2">
             <SeverityCard severity={severity} setSeverity={setSeverity} />
           </Col>
         </Row>

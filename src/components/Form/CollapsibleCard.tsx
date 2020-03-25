@@ -11,14 +11,22 @@ export interface CollapsibleCardProps {
   help?: string | React.ReactNode
   children?: React.ReactNode | React.ReactNode[]
   defaultCollapsed?: boolean
+  className?: string
 }
 
-export function CollapsibleCard({ identifier, title, help, children, defaultCollapsed = true }: CollapsibleCardProps) {
+export function CollapsibleCard({
+  className,
+  identifier,
+  title,
+  help,
+  children,
+  defaultCollapsed = true,
+}: CollapsibleCardProps) {
   const [collapsed, setCollapsed] = useState(defaultCollapsed)
   const toggle = () => setCollapsed(!collapsed)
 
   return (
-    <Card className="h-100">
+    <Card className={`h-100 ${className || ''}`}>
       <CardHeader onClick={toggle}>
         <div className="w-100 h-100 text-left p-0" color="default">
           <div className="d-flex">
