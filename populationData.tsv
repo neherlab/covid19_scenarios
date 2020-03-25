@@ -31,16 +31,16 @@ Canada	37600000	Canada	73000	4800	404	4
 United Kingdom	66000000	United Kingdom of Great Britain and Northern Ireland	297000	9900	4617	4.6
 United States of America	330000000	United States of America	1485000	49499	6638	20
 CAN-Alberta	4413146	Canada	5819	700	10	1
-CAN-BC	5110917	Canada	6074	680	10	1
+CAN-British Columbia	5110917	Canada	6074	680	10	1
 CAN-Manitoba	1377517	Canada	2885	246	10	1
 CAN-New Brunswick	779993	Canada	1448	144	10	1
-CAN-NL	521356	Canada	1090	121	10	1
+CAN-Newfoundland and Labrador	521356	Canada	1090	121	10	1
 CAN-Nova Scotia	977457	Canada	1896	128	10	1
 CAN-Nunavut	39097	Canada	30	4	10	1
 CAN-Ontario	14711827	Canada	15485	1723	10	1
-CAN-PEI	158158	Canada	295	24	10	1
+CAN-Prince Edward Island	158158	Canada	295	24	10	1
 CAN-Saskatchwan	1181666	Canada	2198	106	10	1
-CAN-Yukon	41078	Canada	106	0	10	1
+CAN-Yukon	41078	Canada	106	1	10	1
 CHE-Zürich	1521000	Switzerland	5447	247	33	0.2
 CHE-Bern	1035000	Switzerland	3706	168	24	0.1
 CHE-Luzern	410000	Switzerland	1468	66	4	0.1
