@@ -61,12 +61,12 @@ class Fitter:
 
         data = np.array([ ([to_ms(dp['time']), dp['cases'] or np.nan, dp['deaths'] or np.nan]) for dp in pop ])
 
-        # fit on death
+        # Try to fit on death
         p = fit_cumulative(data[:,0], data[:,2])
         if p:
             tMin = (np.log(self.cases_on_tMin * self.fatality_rate) - p["intercept"]) / p["slope"] - self.delay
             return {'tMin': tMin, 'initialCases': self.cases_on_tMin, 'r0':self.slope_to_r0(p["slope"])}
-        else: # fit on case counts
+        else: # If no death, fit on case counts
             p = fit_cumulative(data[:,0], data[:,1])
             if p:
                 tMin = (np.log(self.cases_on_tMin)/self.under_reporting - p["intercept"]) / p["slope"]
@@ -88,7 +88,7 @@ class PopulationParams(Object):
     def __init__(self, region, country, population, beds, icus):
         self.populationServed    = int(population)
         self.country             = country
-        self.suspectedCasesToday = 10 # NOTE: This defines tMin
+        self.suspectedCasesToday = Fitter.cases_on_tMin
         self.importsPerDay       = .01 * float(population)
         self.hospitalBeds        = int(beds)
         self.ICUBeds             = int(icus)
