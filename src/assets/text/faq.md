@@ -33,7 +33,6 @@ https://github.com/neherlab/covid19_scenarios_data and make a PR!_
 
 **Q:** What is ICU overflow?
 
-
 **A:** _In places that have seen severe COVID19 outbreak, the capacity of intensive care facilities is quickly
 exhausted. Patients that need ventilation but can't get ventilation due to shortage will die faster. "ICU overflow" is
 our label for critically ill patients that should be ventilated but are not since no ventilators are available. These
@@ -50,6 +49,7 @@ age groups are isolated from the rest of the population._
 ---
 
 **Q:** How does your model compare to the one by Imperial College London?
+
 **A:** _You are probably referring to the
 [March 16 report by Neil Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf).
 Like us, Ferguson et al model the effect of interventions on the spread of COVID19 using a computational model.
