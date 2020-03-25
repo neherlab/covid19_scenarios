@@ -3,6 +3,7 @@ import json
 import functools
 import os
 import re
+import sys
 
 from datetime import datetime
 from collections import defaultdict
@@ -70,11 +71,14 @@ def parse_countries(index=1):
             countries[row[index]] = row[0]
     return countries
 
-def sorted_date(s, array_index=None):
-    if array_index is None:
+def sorted_date(s, cols=None):
+    # if you provide a list of  lists, you need to provide your cols vector
+    if isinstance(s[0], list) and cols:
+        return sorted(s, key=lambda d: datetime.strptime(d[cols.index('time')], "%Y-%m-%d"))
+    elif isinstance(s[0], dict):
         return sorted(s, key=lambda d: datetime.strptime(d["time"], "%Y-%m-%d"))
     else:
-        return sorted(s, key=lambda d: datetime.strptime(d[array_index], "%Y-%m-%d"))
+        print('sorted_data: if you provide a list of lists, you need to provide your cols vector', file=sys.stderr)
 
 def compare_day(day1, day2):
     try:
@@ -224,8 +228,9 @@ def store_data(regions, exceptions, source, code='', cols=[]):
     code -- the three letter code for the country from country_codes.csv
     cols -- the colum headers that were used to prepare the innermost list
     """    
-    
+
     # check if we have a dict of list of list, or dict of list of dicts
+
     if isinstance(regions, dict):
         cd1 = list(regions.values())[0]
         if isinstance(cd1, list): 
@@ -255,3 +260,5 @@ def store_data(regions, exceptions, source, code='', cols=[]):
                 
             else:
                 print(f'ERROR: unable to parse {regions}', file=sys.stderr)
+        else:
+            print(f'ERROR: unable to parse {regions}', file=sys.stderr)
