@@ -37,7 +37,8 @@ interface ResultsCardProps {
 
 function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResultsCardProps) {
   const { t } = useTranslation()
-  const [logScale, setLogScale] = useState<boolean>(true)
+  const [logScale, setLogScale] = useState(true)
+  const [showHumanized, setShowHumanized] = useState(true)
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
@@ -134,20 +135,35 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
             onValueChanged={setLogScale}
           />
         </Col>
+        <Col data-testid="HumanizedValuesSwitch">
+          <FormSwitch
+            identifier="showHumanized"
+            label={t('Show humanized results')}
+            help={t('Show numerical results in a human friendly format')}
+            checked={showHumanized}
+            onValueChanged={setShowHumanized}
+          />
+        </Col>
       </Row>
       <Row noGutters>
         <Col>
-          <DeterministicLinePlot data={result} userResult={userResult} logScale={logScale} caseCounts={caseCounts} />
+          <DeterministicLinePlot
+            data={result}
+            userResult={userResult}
+            logScale={logScale}
+            showHumanized={showHumanized}
+            caseCounts={caseCounts}
+          />
         </Col>
       </Row>
       <Row>
         <Col>
-          <AgeBarChart data={result} rates={severity} />
+          <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <OutcomeRatesTable result={result} rates={severity} />
+          <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
         </Col>
       </Row>
     </CollapsibleCard>
