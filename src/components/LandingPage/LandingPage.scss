@@ -3,7 +3,6 @@
 .landing-page {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 1fr auto;
   min-height: 100vh;
   background-color: $landing-page-background;
 }
@@ -18,6 +17,7 @@
   background: linear-gradient(180deg, #1f6cbf 0%, rgba(255, 255, 255, 0) 100%), #007bff;
   padding: 84px 84px 10vw;
   min-height: 400px;
+  max-height: 60vh;
 }
 
 .landing-page__hero-section::after {
@@ -83,6 +83,20 @@
 
 .landing-page__content-section {
   padding: 0 84px 20px;
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-gap: 20px;
+  justify-content: center;
+  align-items: center;
+  // put on top of svg wave
+  z-index: 2;
+  // move closer to the wave. Based on screen width.
+  // This prevents excessive white space.
+  margin-top: -3vw;
+}
+
+.landing-page__content-section-text {
+  width: 400px;
 }
 
 @media (max-width: 768px) {
