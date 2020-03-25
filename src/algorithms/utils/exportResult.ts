@@ -28,11 +28,11 @@ export function exportResult(result: AlgorithmResult) {
     return
   }
 
-  const { deterministicTrajectory, params } = result
+  const { deterministic, params } = result
 
-  if (deterministicTrajectory) {
-    const tsvString: string = exportSimulation(deterministicTrajectory)
-    saveFile(tsvString, 'covid.results.deterministic.tsv')
+  if (deterministic) {
+    const csvString: string = exportSimulation(deterministic)
+    saveFile(csvString, 'covid.results.deterministic.csv')
   }
 
   if (params) {
