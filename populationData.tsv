@@ -37,7 +37,8 @@ CAN-Manitoba	1377517	Canada	2885	246	6	1
 CAN-New Brunswick	779993	Canada	1448	144	0	1
 CAN-Newfoundland and Labrador	521356	Canada	1090	121	10	1
 CAN-Nova Scotia	977457	Canada	1896	128	0	1
-CAN-Nunavut	39097	Canada	30	4	10	1
+CAN-Nunavut	39097	Canada	30	4	0	0.1
+CAN-NWT	44904	Canada	156	4	0	0.1
 CAN-Ontario	14711827	Canada	15485	1723	21	1
 CAN-Prince Edward Island	158158	Canada	295	24	10	1
 CAN-Saskatchwan	1181666	Canada	2198	106	10	1
