@@ -182,7 +182,8 @@ export function initializePopulation(
     if (i === Math.round(Object.keys(ages).length / 2)) {
       pop.susceptible[k] -= numCases
       pop.infectious[k] = 0.3 * numCases
-      pop.exposed[k] = [0.7 * numCases / 3, 0.7 * numCases / 3, 0.7 * numCases / 3]
+      const e           = 0.7 * numCases / pop.exposed[k].length;
+      pop.exposed[k]    = [e, e, e];
     }
   })
 
