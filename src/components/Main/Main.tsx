@@ -165,14 +165,16 @@ function Main() {
                   </Col>
 
                   <Col lg={8} xl={6} className="py-1">
-                    <ResultsCard
-                      canRun={canRun}
-                      autorunSimulation={autorunSimulation}
-                      toggleAutorun={toggleAutorun}
-                      severity={severity}
-                      result={result}
-                      caseCounts={empiricalCases}
-                    />
+                    <div ref={refOfElementToScrollIntoView}>
+                      <ResultsCard
+                        canRun={canRun}
+                        autorunSimulation={autorunSimulation}
+                        toggleAutorun={toggleAutorun}
+                        severity={severity}
+                        result={result}
+                        caseCounts={empiricalCases}
+                        />
+                    </div>
                   </Col>
                 </Row>
               </Form>
