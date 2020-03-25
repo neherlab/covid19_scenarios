@@ -140,7 +140,7 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
         <Col data-testid="HumanizedValuesSwitch">
           <FormSwitch
             identifier="showHumanized"
-            label={t('Show humanized')}
+            label={t('Show humanized results')}
             help={t('Show numerical results in a human friendly format')}
             checked={showHumanized}
             onValueChanged={setShowHumanized}
