@@ -24,8 +24,6 @@ export interface SimProps {
 }
 
 export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
-  const { t: unsafeT, i18n } = useTranslation()
-
   if (!data || !rates) {
     return null
   }
