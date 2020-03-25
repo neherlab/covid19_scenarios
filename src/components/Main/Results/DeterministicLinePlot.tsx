@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
+import * as d3 from 'd3'
+
 import './DeterministicLinePlot.scss'
 
 const ASPECT_RATIO = 16 / 9
@@ -51,6 +53,7 @@ export interface LinePlotProps {
   data?: AlgorithmResult
   userResult?: UserResult
   logScale?: boolean
+  showHumanized?: boolean
   caseCounts?: EmpiricalData
 }
 
@@ -61,38 +64,25 @@ interface LineProps {
   legendType?: RechartsLineProps['legendType']
 }
 
+const humanizeFormatter = d3.format('.5~s')
+
 function xTickFormatter(tick: string | number): string {
   return new Date(tick).toISOString().slice(0, 10)
-}
-
-function tooltipFormatter(
-  value: string | number | Array<string | number>,
-  name: string,
-  entry: TooltipPayload,
-  index: number,
-): React.ReactNode {
-  if (name !== 'time') {
-    return value
-  }
-
-  // FIXME: is this correct?
-  return undefined
 }
 
 function labelFormatter(value: string | number): React.ReactNode {
   return xTickFormatter(value)
 }
 
-function legendFormatter(enabledPlots: string[], value: string, entry: any)
-{
-  const activeClassName = enabledPlots.indexOf(entry.dataKey) !== -1 ? "legend" : "legend-inactive";
+function legendFormatter(enabledPlots: string[], value: string, entry: any) {
+  const activeClassName = enabledPlots.includes(entry.dataKey) ? 'legend' : 'legend-inactive'
   return <span className={activeClassName}>{value}</span>
 }
 
-export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }: LinePlotProps) {
+export function DeterministicLinePlot({ data, userResult, logScale, showHumanized, caseCounts }: LinePlotProps) {
   const { t } = useTranslation()
 
-  const [ enabledPlots, setEnabledPlots ] = useState(Object.values(DATA_POINTS));
+  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
@@ -114,11 +104,17 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
   const observations =
     caseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
-      cases: enabledPlots.indexOf(DATA_POINTS.ObservedCases) !== -1 ? d.cases || undefined : undefined,
-      observedDeaths: enabledPlots.indexOf(DATA_POINTS.ObservedDeaths) !== -1 ?  d.deaths || undefined : undefined,
-      currentHospitalized: enabledPlots.indexOf(DATA_POINTS.ObservedHospitalized) !== -1 ? d.hospitalized || undefined : undefined,
-      ICU: enabledPlots.indexOf(DATA_POINTS.ObservedICU) !== -1 ? d.ICU || undefined : undefined,
-      newCases: enabledPlots.indexOf(DATA_POINTS.ObservedNewCases) !== -1 ?  i > 2 ? d.cases - caseCounts[i - 3].cases || undefined : undefined : undefined,
+      cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
+      observedDeaths: enabledPlots.includes(DATA_POINTS.ObservedDeaths) ? d.deaths || undefined : undefined,
+      currentHospitalized: enabledPlots.includes(DATA_POINTS.ObservedHospitalized)
+        ? d.hospitalized || undefined
+        : undefined,
+      ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.ICU || undefined : undefined,
+      newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases)
+        ? i > 2
+          ? d.cases - caseCounts[i - 3].cases || undefined
+          : undefined
+        : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
@@ -128,14 +124,22 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
       .filter((d, i) => i % 4 === 0)
       .map((x) => ({
         time: x.time,
-        susceptible: enabledPlots.indexOf(DATA_POINTS.Susceptible) !== -1 ? Math.round(x.susceptible.total) || undefined : undefined,
+        susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
+          ? Math.round(x.susceptible.total) || undefined
+          : undefined,
         // exposed: Math.round(x.exposed.total) || undefined,
-        infectious: enabledPlots.indexOf(DATA_POINTS.Infectious) !== -1 ? Math.round(x.infectious.total) || undefined : undefined,
-        hospitalized: enabledPlots.indexOf(DATA_POINTS.Severe) !== -1 ? Math.round(x.hospitalized.total) || undefined : undefined,
-        critical: enabledPlots.indexOf(DATA_POINTS.Critical) !== -1 ? Math.round(x.critical.total) || undefined : undefined,
-        overflow: enabledPlots.indexOf(DATA_POINTS.Overflow) !== -1 ? Math.round(x.overflow.total) || undefined : undefined,
-        recovered: enabledPlots.indexOf(DATA_POINTS.Recovered) !== -1 ? Math.round(x.recovered.total) || undefined : undefined,
-        death: enabledPlots.indexOf(DATA_POINTS.Death) !== -1 ? Math.round(x.dead.total) || undefined : undefined,
+        infectious: enabledPlots.includes(DATA_POINTS.Infectious)
+          ? Math.round(x.infectious.total) || undefined
+          : undefined,
+        hospitalized: enabledPlots.includes(DATA_POINTS.Severe)
+          ? Math.round(x.hospitalized.total) || undefined
+          : undefined,
+        critical: enabledPlots.includes(DATA_POINTS.Critical) ? Math.round(x.critical.total) || undefined : undefined,
+        overflow: enabledPlots.includes(DATA_POINTS.Overflow) ? Math.round(x.overflow.total) || undefined : undefined,
+        recovered: enabledPlots.includes(DATA_POINTS.Recovered)
+          ? Math.round(x.recovered.total) || undefined
+          : undefined,
+        death: enabledPlots.includes(DATA_POINTS.Death) ? Math.round(x.dead.total) || undefined : undefined,
         hospitalBeds: nHospitalBeds,
         ICUbeds: nICUBeds,
       })),
@@ -148,7 +152,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
     // {key: DATA_POINTS.Exposed, color: colors.exposed, name:'', legendType:"line"},
     { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
-    { key: DATA_POINTS.Severe, color: colors.hospitalized, name:'Severely ill', legendType:"line"},
+    { key: DATA_POINTS.Severe, color: colors.hospitalized, name: 'Severely ill', legendType: 'line' },
     { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
     { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
     { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
@@ -172,7 +176,9 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
         ...(count_observations.hospitalized
           ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.hospitalized, name: t('Patients in hospital') }]
           : []),
-        ...(count_observations.ICU ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }] : []),
+        ...(count_observations.ICU
+          ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }]
+          : []),
         ...(count_observations.newCases
           ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Confirmed cases past 3 days') }]
           : []),
@@ -180,6 +186,15 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
     : []
 
   const logScaleString: YAxisProps['scale'] = logScale ? t('log') : t('linear')
+
+  const tooltipFormatter = (
+    value: string | number | Array<string | number>,
+    name: string,
+    entry: TooltipPayload,
+    index: number,
+  ): React.ReactNode => <span>{showHumanized ? humanizeFormatter(Number(value)) : value}</span>
+
+  const yTickFormatter = (value: number) => (showHumanized ? humanizeFormatter(value) : value)
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
@@ -213,19 +228,14 @@ export function DeterministicLinePlot({ data, userResult, logScale, caseCounts }
                   domain={[tMin, tMax]}
                   tickCount={7}
                 />
-                <YAxis
-                  scale={logScaleString}
-                  type="number"
-                  domain={[1, 'dataMax']}
-                  tickFormatter={(tick) => t('localized:number', { value: tick })}
-                />
+                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
                 <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
                 <Legend
                   verticalAlign="top"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
-                  onClick={e => {
-                    const plots = enabledPlots.slice(0);
-                    enabledPlots.indexOf(e.dataKey) !== -1 ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey);
+                  onClick={(e) => {
+                    const plots = enabledPlots.slice(0)
+                    enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)
                     setEnabledPlots(plots)
                   }}
                 />

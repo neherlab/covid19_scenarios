@@ -1,4 +1,4 @@
-import { AllParamsFlat } from '../algorithms/types/Param.types'
+import { AllParamsFlat } from './types/Param.types'
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
 import { ModelParams, SimulationTimePoint, UserResult, ExportedTimePoint } from '../algorithms/types/Result.types'
 
@@ -64,13 +64,13 @@ export function getPopulationParams(
   }
 
   // Compute age-stratified parameters
-  const total = severity.map(d => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
+  const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
 
   let hospitalizedFrac = 0
   let criticalFracHospitalized = 0
   let fatalFracCritical = 0
   let avgIsolatedFrac = 0
-  severity.forEach(d => {
+  severity.forEach((d) => {
     const freq = (1.0 * ageCounts[d.ageGroup]) / total
     pop.ageDistribution[d.ageGroup] = freq
     pop.infectionSeverityRatio[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
@@ -101,7 +101,7 @@ export function getPopulationParams(
 
   // Get import rates per age class (assume flat)
   const L = Object.keys(pop.recoveryRate).length
-  Object.keys(pop.recoveryRate).forEach(k => {
+  Object.keys(pop.recoveryRate).forEach((k) => {
     pop.importsPerDay[k] = params.importsPerDay / L
   })
 
@@ -243,7 +243,6 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
   const Keys = Object.keys(pop.infectious).sort()
   Keys.forEach(age => {
-
     // Initialize all multi-faceted states with internal arrays
     newInfectious[age]  = []
     newPop.exposed[age] = []
@@ -314,7 +313,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
 
   // Move hospitalized patients according to constrained resources
   let freeICUBeds = P.ICUBeds - (sum(pop.critical) - sum(newStabilized) - sum(newICUDead))
-  Keys.forEach(age => {
+  Keys.forEach((age) => {
     if (freeICUBeds > newCritical[age]) {
       freeICUBeds -= newCritical[age]
       push('critical', age, newCritical[age] - newStabilized[age] - newICUDead[age])
@@ -421,7 +420,7 @@ export function exportSimulation(result: UserResult) {
     } // skip if date is already in table
     pop[t] = true
     let buf = ''
-    header.forEach(k => {
+    header.forEach((k) => {
       if (k === 'time') {
         buf += `${t}`
       } else {

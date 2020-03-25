@@ -5,6 +5,7 @@ const resultsCharts = ['DeterministicLinePlot', 'AgeBarChart', 'OutcomeRatesTabl
 context('The results card', () => {
   beforeEach(() => {
     cy.visit(Cypress.env('BASE_URL'))
+    cy.closeDisclaimer()
   })
 
   describe('RunResults', () => {

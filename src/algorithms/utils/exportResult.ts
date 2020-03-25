@@ -28,12 +28,11 @@ export function exportResult(result: AlgorithmResult) {
     return
   }
 
-  console.log("result", result)
   const { deterministic, params } = result
 
   if (deterministic) {
-    const csvString: string = exportSimulation(deterministic)
-    saveFile(csvString, 'covid.results.deterministic.csv')
+    const tsvString: string = exportSimulation(deterministic)
+    saveFile(tsvString, 'covid.results.deterministic.tsv')
   }
 
   if (params) {
