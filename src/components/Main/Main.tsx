@@ -79,7 +79,6 @@ function Main() {
 
     serializeScenarioToURL(scenarioState, params)
     const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
-    console.log("new result", newResult)
     setResult(newResult)
     caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
     setEmpiricalCases(caseCounts)
