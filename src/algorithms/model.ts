@@ -1,6 +1,6 @@
 import { AllParamsFlat } from './types/Param.types'
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
-import { ModelParams, SimulationTimePoint } from './types/Result.types'
+import { ModelParams, SimulationTimePoint, UserResult, ExportedTimePoint } from './types/Result.types'
 
 const msPerDay = 1000 * 60 * 60 * 24
 
@@ -243,8 +243,8 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
   const Keys = Object.keys(pop.infectious).sort()
   Keys.forEach((age) => {
-      // Initialize all states with internal arrays
-    newInfectious[age]  = []
+    // Initialize all states with internal arrays
+    newInfectious[age] = []
     newPop.exposed[age] = []
 
     newCases[age] =
@@ -254,10 +254,10 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
       )
     // NOTE: Propagate individuals through internal exposed states
     for (let i = 0; i < pop.exposed[age].length; i++) {
-        newInfectious[age][i] = Math.min(
-            pop.exposed[age][i],
-            sample((pop.exposed[age][i] * P.timeDeltaDays) / (P.incubationTime / pop.exposed[age].length))
-        )
+      newInfectious[age][i] = Math.min(
+        pop.exposed[age][i],
+        sample((pop.exposed[age][i] * P.timeDeltaDays) / (P.incubationTime / pop.exposed[age].length))
+      )
     }
     newRecovered[age] = Math.min(
       pop.infectious[age],
@@ -293,10 +293,10 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
     )
 
     push('susceptible', age, -newCases[age])
-    let fluxIn = newCases[age];
+    let fluxIn = newCases[age]
     for (let i = 0; i < 3; i++) {
-        pushAt('exposed', age, fluxIn - newInfectious[age][i], i)
-        fluxIn = newInfectious[age][i];
+      pushAt('exposed', age, fluxIn - newInfectious[age][i], i)
+      fluxIn = newInfectious[age][i]
     }
     push('infectious', age, fluxIn - newRecovered[age] - newHospitalized[age])
     push(
@@ -357,37 +357,65 @@ const keys = <T>(o: T): Array<keyof T & string> => {
   return Object.keys(o) as Array<keyof T & string>
 }
 
-export function collectTotals(trajectory: SimulationTimePoint[]) {
+export function collectTotals(trajectory: SimulationTimePoint[]) : UserResult {
   // FIXME: parameter reassign
-  const sum = arr => arr.reduce((a,b) => a + b, 0);
-  trajectory.forEach((d) => {
-    keys(d).forEach((k) => {
-      if (k === 'time' || 'total' in d[k]) {
-        return
-      }
-      if (k == 'exposed') {
-          // TODO: This is a violation of our type contract right now.
-          d[k].total = Object.values(d[k]).reduce((a, b) => a + sum(b))
-      } else {
-          d[k].total = Object.values(d[k]).reduce((a, b) => a + b)
+  const sum = arr => arr.reduce((a, b) => a + b, 0);
+
+  const res: UserResult = { 'trajectory': [] }
+
+  trajectory.forEach(d => {
+    const tp : ExportedTimePoint = {
+      "time": d["time"],
+      "susceptible": {},
+      "exposed": {},
+      "dead": {},
+      "overflow": {},
+      "critical": {},
+      "recovered": {},
+      "hospitalized": {},
+      "infectious": {},
+      "discharged": {},
+      "intensive": {}
+    };
+    keys(d).forEach(k => {
+      switch (k)  {
+        case 'time':
+          return
+
+        case 'exposed':
+          tp[k].total = 0
+          Object.values(d[k]).forEach((x) => {
+            x.forEach((y) => {tp[k].total += y
+            })
+          })
+          Object.keys(d[k]).forEach((a) => {
+            tp[k][a] = d[k][a].reduce((a, b) => a + b, 0)
+          })
+          break
+
+        default:
+          tp[k] = d[k]
+          tp[k].total = Object.values(d[k]).reduce((a, b) => a + b)
       }
     })
+
+    res.trajectory.push(tp)
   })
 
-  return trajectory
+  return res
 }
 
-export function exportSimulation(trajectory: SimulationTimePoint[]) {
+export function exportSimulation(result: UserResult) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const header = keys(trajectory[0])
+  const header = keys(result.trajectory[0])
   const csv = [header.join('\t')]
 
   const pop: Record<string, boolean> = {}
-  trajectory.forEach((d) => {
+  result.trajectory.forEach((d) => {
     const t = new Date(d.time).toISOString().slice(0, 10)
     if (t in pop) {
       return
