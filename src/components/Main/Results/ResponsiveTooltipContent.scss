@@ -1,10 +1,13 @@
-.responsive-tooltip-content {
-  display: flex;
-  flex-direction: column;
+.responsive-tooltip-content-base {
   padding: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.5);
   z-index: 999;
   background-color: white;
+}
+
+.responsive-tooltip-content {
+  display: flex;
+  flex-direction: column;
 }
 
 .responsive-tooltip-content-item {
