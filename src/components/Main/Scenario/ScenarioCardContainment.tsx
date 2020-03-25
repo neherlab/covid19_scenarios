@@ -32,7 +32,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
   return (
     <CardWithoutDropdown
       identifier="containmentScenario"
-      label={<h5 className="p-0 d-inline text-truncate">{t('Mitigation')}</h5>}
+      label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}
       help={t(
         'Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.',
       )}
