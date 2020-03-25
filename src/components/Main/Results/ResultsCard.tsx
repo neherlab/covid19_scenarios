@@ -68,7 +68,7 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
   useEffect( () => {
-    if (result && result.deterministicTrajectory) {
+    if (result && result.deterministic) {
       setHasResult(true);
       setCanExport(true);
 
