@@ -13,6 +13,8 @@ import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import run from '../../algorithms/run'
 
+import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
+
 import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 
@@ -63,7 +65,15 @@ function Main() {
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
-  const toggleAutorun = () => setAutorunSimulation(!autorunSimulation)
+  const togglePersistAutorun = () => {
+    LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
+    setAutorunSimulation(!autorunSimulation)
+  }
+
+  useEffect(() => {
+    const autorun = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
+    setAutorunSimulation(autorun ?? false)
+  }, [])
 
   const allParams: AllParams = {
     population: scenarioState.population.data,
@@ -168,7 +178,7 @@ function Main() {
                     <ResultsCard
                       canRun={canRun}
                       autorunSimulation={autorunSimulation}
-                      toggleAutorun={toggleAutorun}
+                      toggleAutorun={togglePersistAutorun}
                       severity={severity}
                       result={result}
                       caseCounts={empiricalCases}

@@ -25,6 +25,10 @@ import { FileType } from '../Compare/FileUploadZone'
 import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
+import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
+
+const LOG_SCALE_DEFAULT = true
+const SHOW_HUMANIZED_DEFAULT = true
 
 interface ResultsCardProps {
   autorunSimulation: boolean
@@ -37,12 +41,30 @@ interface ResultsCardProps {
 
 function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResultsCardProps) {
   const { t } = useTranslation()
-  const [logScale, setLogScale] = useState(true)
-  const [showHumanized, setShowHumanized] = useState(true)
+  const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
+  const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
   const [userResult, setUserResult] = useState<UserResult | undefined>()
+
+  useEffect(() => {
+    const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
+    setLogScale(persistedLogScale ?? LOG_SCALE_DEFAULT)
+
+    const persistedShowHumanized = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS)
+    setShowHumanized(persistedShowHumanized ?? SHOW_HUMANIZED_DEFAULT)
+  }, [])
+
+  const setPersistLogScale = (value: boolean) => {
+    LocalStorage.set(LOCAL_STORAGE_KEYS.LOG_SCALE, value)
+    setLogScale(value)
+  }
+
+  const setPersistShowHumanized = (value: boolean) => {
+    LocalStorage.set(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS, value)
+    setShowHumanized(value)
+  }
 
   // TODO: shis should probably go into the `Compare/`
   async function handleFileSubmit(files: Map<FileType, File>) {
@@ -155,7 +177,7 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
             label={t('Log scale')}
             help={t('Toggle between logarithmic and linear scale on vertical axis of the plot')}
             checked={logScale}
-            onValueChanged={setLogScale}
+            onValueChanged={setPersistLogScale}
           />
         </Col>
         <Col data-testid="HumanizedValuesSwitch">
@@ -164,7 +186,7 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
             label={t('Show humanized results')}
             help={t('Show numerical results in a human friendly format')}
             checked={showHumanized}
-            onValueChanged={setShowHumanized}
+            onValueChanged={setPersistShowHumanized}
           />
         </Col>
       </Row>

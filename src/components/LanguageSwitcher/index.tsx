@@ -4,19 +4,18 @@ import i18next from 'i18next'
 
 import langs from '../../langs'
 
+import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
+
 import './LanguageSwitcher.scss'
+
+const DEFAULT_LANG = 'en'
 
 /**
  * Returns our active lang loaded from localstorage
  */
 export function getCurrentLang(): string {
-  let selectedLang = 'en' // default
-  const storedLang = localStorage.getItem('lang')
-
-  if (storedLang) {
-    selectedLang = storedLang
-  }
-  return selectedLang
+  const storedLang = LocalStorage.get<string>(LOCAL_STORAGE_KEYS.LANG)
+  return storedLang ?? DEFAULT_LANG
 }
 
 /**
@@ -44,7 +43,7 @@ export default function LanguageSwitcher() {
             key={key}
             onClick={() => {
               i18next.changeLanguage(langs[key].lang, () => {
-                localStorage.setItem('lang', langs[key].lang)
+                LocalStorage.set(LOCAL_STORAGE_KEYS.LANG, langs[key].lang)
               })
             }}
           >
