@@ -100,6 +100,7 @@ function ResultsCardFunction({
       <span ref={scrollTargetRef} />
       <CollapsibleCard
         identifier="results-card"
+        className="card--main card--results"
         title={
           <h2 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">
             {t('Results')}

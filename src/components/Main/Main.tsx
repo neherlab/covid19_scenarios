@@ -164,7 +164,7 @@ function Main() {
   }
 
   return (
-    <Row noGutters>
+    <Row>
       <Col md={12}>
         <Formik
           enableReinitialize
@@ -178,8 +178,8 @@ function Main() {
 
             return (
               <Form className="form">
-                <Row noGutters>
-                  <Col lg={4} xl={6} className="py-1 px-1">
+                <Row>
+                  <Col lg={4} xl={6} className="py-1">
                     <ScenarioCard
                       severity={severity}
                       setSeverity={setSeverity}
@@ -190,7 +190,7 @@ function Main() {
                     />
                   </Col>
 
-                  <Col lg={8} xl={6} className="py-1 px-1">
+                  <Col lg={8} xl={6} className="py-1">
                     <ResultsCard
                       canRun={canRun}
                       autorunSimulation={autorunSimulation}
