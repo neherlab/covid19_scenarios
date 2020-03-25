@@ -106,7 +106,11 @@ def parse():
         for row in rdr:
             date   = row[0]
             assert canton==row[2]
-            canton_data.append([date, to_int(row[cases_idx]),
+            cases = to_int(row[cases_idx])
+            if cases is None and len(canton_data)>0:
+                cases = canton_data[-1][1]
+
+            canton_data.append([date, cases,
                                 to_int(row[deaths_idx]),
                                 to_int(row[hospitalized_idx]),
                                 to_int(row[ICU_idx]),
