@@ -8,21 +8,24 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
+import * as d3 from 'd3'
+
 export interface TableProps {
+  showHumanized?: boolean
   result?: AlgorithmResult
   rates?: SeverityTableRow[]
 }
 
-// FIXME: Use display format library instead
-const forDisplay = (x: number) => {
-  return Number((100 * x).toFixed(2))
-}
+const percentageFormatter = (v: number) => d3.format('.2f')(v * 100)
+const humanizeFormatter = d3.format('.5s')
+const decimalFormatter = d3.format('d')
 
-export function OutcomeRatesTable({ result, rates }: TableProps) {
+export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) {
+  const { t } = useTranslation()
+
   if (!result || !rates) {
     return null
   }
-  const { t } = useTranslation()
 
   /*
   // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
@@ -42,26 +45,24 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
   let mildFrac = 1 - severeFrac - criticalFrac - deathFrac
   */
 
-  const endResult = result.deterministicTrajectory[result.deterministicTrajectory.length-1];
+  const endResult = result.deterministicTrajectory[result.deterministicTrajectory.length - 1]
 
-  // FIXME: should use display format library instead of rounding
-  const totalDeath    = Math.round(endResult.dead.total)
-  const totalSevere   = Math.round(endResult.discharged.total)
-  const totalCritical = Math.round(endResult.intensive.total)
-  const totalCases    = Math.round(endResult.recovered.total) + totalDeath
+  const totalDeath = endResult.dead.total
+  const totalSevere = endResult.discharged.total
+  const totalCritical = endResult.intensive.total
+  const totalCases = endResult.recovered.total + totalDeath
 
-  let severeFrac   = 1.0*totalSevere / totalCases
-  let criticalFrac = 1.0*totalCritical / totalCases
-  let deathFrac    = 1.0*totalDeath / totalCases
-  let mildFrac     = 1 - severeFrac - criticalFrac - deathFrac
+  const severeFrac = (1.0 * totalSevere) / totalCases
+  const criticalFrac = (1.0 * totalCritical) / totalCases
+  const deathFrac = (1.0 * totalDeath) / totalCases
+  const mildFrac = 1 - severeFrac - criticalFrac - deathFrac
 
-  const peakSevere   = Math.round(Math.max(...result.deterministicTrajectory.map((x) => x.hospitalized.total)))
-  const peakCritical = Math.round(Math.max(...result.deterministicTrajectory.map((x) => x.critical.total + x.overflow.total)))
+  const peakSevere = Math.round(Math.max(...result.deterministicTrajectory.map((x) => x.hospitalized.total)))
+  const peakCritical = Math.round(
+    Math.max(...result.deterministicTrajectory.map((x) => x.critical.total + x.overflow.total)),
+  )
 
-  deathFrac    = forDisplay(deathFrac)
-  criticalFrac = forDisplay(criticalFrac)
-  severeFrac   = forDisplay(severeFrac)
-  mildFrac     = forDisplay(mildFrac)
+  const totalFormatter = (value: number) => (showHumanized ? humanizeFormatter(value) : decimalFormatter(value))
 
   // TODO: replace this with the table component (similar to severity table)
   return (
@@ -78,19 +79,19 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
           <tbody>
             <tr>
               <td>{t('Mild')} [%]: </td>
-              <td>{mildFrac}</td>
+              <td>{percentageFormatter(mildFrac)}</td>
             </tr>
             <tr>
               <td>{t('Severe')} [%]: </td>
-              <td>{severeFrac}</td>
+              <td>{percentageFormatter(severeFrac)}</td>
             </tr>
             <tr>
               <td>{t('Critical')} [%]: </td>
-              <td>{criticalFrac}</td>
+              <td>{percentageFormatter(criticalFrac)}</td>
             </tr>
             <tr>
               <td>{t('Fatal')} [%]: </td>
-              <td>{deathFrac}</td>
+              <td>{percentageFormatter(deathFrac)}</td>
             </tr>
           </tbody>
         </table>
@@ -107,19 +108,19 @@ export function OutcomeRatesTable({ result, rates }: TableProps) {
           <tbody>
             <tr>
               <td>{t('Total death')}: </td>
-              <td>{totalDeath}</td>
+              <td>{totalFormatter(totalDeath)}</td>
             </tr>
             <tr>
               <td>{t('Total severe')}: </td>
-              <td>{totalSevere}</td>
+              <td>{totalFormatter(totalSevere)}</td>
             </tr>
             <tr>
               <td>{t('Peak severe')}: </td>
-              <td>{peakSevere}</td>
+              <td>{totalFormatter(peakSevere)}</td>
             </tr>
             <tr>
               <td>{t('Peak critical')}: </td>
-              <td>{peakCritical}</td>
+              <td>{totalFormatter(peakCritical)}</td>
             </tr>
           </tbody>
         </table>
