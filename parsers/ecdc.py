@@ -64,16 +64,15 @@ def retrieve_case_data():
 
     # aggregate cases/deaths here after sorting
     for cntry, data in cases.items():
-        total_cases  = 0
-        total_deaths = 0
-        for d in data:
-            if d['cases']:
-                total_cases += d['cases']
-            d['cases'] = total_cases
-            if d['deaths']:
-                total_deaths += d['deaths']
-            d['deaths'] = total_deaths
-        cases[cntry] = data
+        total = {}
+        total['cases']  = 0
+        total['deaths'] = 0
+        total['recovered'] = 0
+        for k in total:        
+            for d in data:
+                if k in d and d[k]:
+                    total[k] += d[k]
+                d[k] = total[k]
 
     return dict(cases)
 
