@@ -28,6 +28,13 @@ export function updateTimeSeries(simulationTimeRange: DateRange, oldTimeSeries: 
   const { tMin, tMax } = simulationTimeRange
   const interpolator = interpolateTimeSeries(oldTimeSeries)
 
-  const dates = uniformDatesBetween(tMin.getTime(), tMax.getTime(), n)
-  return dates.map(d => ({ t: d, y: interpolator(d) }))
+  const dates  = uniformDatesBetween(tMin.getTime(), tMax.getTime(), n)
+  return dates.map(function(d) {
+      const yval = interpolator(d)
+      if (yval > 0) {
+          return { t: d, y: interpolator(d) }
+      } else {
+          return { t: d, y: 0 }
+      }
+  })
 }
