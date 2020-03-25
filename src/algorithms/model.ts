@@ -360,8 +360,6 @@ const keys = <T>(o: T): Array<keyof T & string> => {
 
 export function collectTotals(trajectory: SimulationTimePoint[]) : UserResult {
   // FIXME: parameter reassign
-  const sum = arr => arr.reduce((a, b) => a + b, 0);
-
   const res: UserResult = { 'trajectory': [] }
 
   trajectory.forEach(d => {
