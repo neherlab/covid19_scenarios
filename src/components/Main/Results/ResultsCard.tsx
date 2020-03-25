@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 
 import Papa from 'papaparse'
 
@@ -63,9 +63,32 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
     setUserResult(newUserResult)
   }
 
-  const hasResult = Boolean(result?.deterministicTrajectory)
-  const canExport = Boolean(hasResult)
+  const [hasResult, setHasResult] = useState<boolean>(false)
+  const [canExport, setCanExport] = useState<boolean>(false)
+  const scrollTargetRef = createRef<HTMLSpanElement>()
+
+  useEffect( () => {
+    if (result && result.deterministicTrajectory) {
+      setHasResult(true);
+      setCanExport(true);
+
+      const scrollTarget = scrollTargetRef.current
+      if (scrollTarget) {
+        scrollTarget.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        })
+      }
+    } else {
+      setHasResult(false);
+      setCanExport(false);
+    }
+  }, [result, scrollTargetRef.current])
+
   return (
+    <>
+    <span ref={scrollTargetRef}></span>
     <CollapsibleCard
       identifier="results-card"
       title={<h3 className="p-0 m-0 text-truncate">{t('Results')}</h3>}
@@ -167,6 +190,7 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
         </Col>
       </Row>
     </CollapsibleCard>
+    </>
   )
 }
 

@@ -31,7 +31,6 @@ import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
 import './Main.scss'
-import { useScrollIntoView } from '../../helpers/hooks'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -134,18 +133,6 @@ function Main() {
           validate={setScenarioToCustom}
         >
           {({ errors, touched, isValid, isSubmitting }) => {
-            /**
-             * viewport width - we only want to scroll the ResultsCard into view if viewing on mobile devices, where the layout is only a single column
-             * @see {@link https://stackoverflow.com/a/8876069/3942699}
-             */
-            const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-            /**
-             * 992 is the width at which the layout collapses into a single column
-             * @see {@tutorial https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints}
-             *
-             * only `scrollIntoView` when `isSubmitting` goes from `true` -> `false`
-             */
-            const refOfElementToScrollIntoView = useScrollIntoView<HTMLDivElement>(!isSubmitting && vw < 992)
 
             const canRun = isValid && severityTableIsValid(severity)
 
@@ -164,16 +151,14 @@ function Main() {
                   </Col>
 
                   <Col lg={8} xl={6} className="py-1 px-1">
-                    <div ref={refOfElementToScrollIntoView}>
-                      <ResultsCard
-                        canRun={canRun}
-                        autorunSimulation={autorunSimulation}
-                        toggleAutorun={toggleAutorun}
-                        severity={severity}
-                        result={result}
-                        caseCounts={empiricalCases}
-                      />
-                    </div>
+                    <ResultsCard
+                      canRun={canRun}
+                      autorunSimulation={autorunSimulation}
+                      toggleAutorun={toggleAutorun}
+                      severity={severity}
+                      result={result}
+                      caseCounts={empiricalCases}
+                    />
                   </Col>
                 </Row>
               </Form>
