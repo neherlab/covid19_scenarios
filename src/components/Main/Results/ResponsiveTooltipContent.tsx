@@ -8,7 +8,8 @@ interface TooltipItem {
 }
 
 interface TooltipContentProps {
-  active: boolean
+  active: boolean,
+  label: string | number
   payload: TooltipItem[]
 } 
 
@@ -22,7 +23,9 @@ function ToolTipContentItem({ name, value, color}: TooltipItem) {
   )
 }
 
-export function ResponsiveTooltipContent({ active, payload }: TooltipContentProps) {
+export function ResponsiveTooltipContent({ active, payload, label }: TooltipContentProps) {
+  const formattedLabel = Number(label) > 10000 ? new Date(label).toISOString().slice(0, 10) : label
+
   const essentialPayload = payload.map(payloadItem => ({
     name: payloadItem.name,
     color: payloadItem.color || '#bbbbbb',
@@ -34,6 +37,8 @@ export function ResponsiveTooltipContent({ active, payload }: TooltipContentProp
 
   if (active) {
     return (
+      <div className="responsive-tooltip-content-base">
+        <strong>{formattedLabel}</strong>
         <div className="responsive-tooltip-content">
           <div>
             {left.map((item, idx) => <ToolTipContentItem key={idx} name={item.name} value={item.value} color={item.color} />)}
@@ -42,6 +47,7 @@ export function ResponsiveTooltipContent({ active, payload }: TooltipContentProp
             {right.map((item, idx) => <ToolTipContentItem key={idx} name={item.name} value={item.value} color={item.color} />)}
           </div>
         </div>
+      </div>
     )
   }
 
