@@ -10,8 +10,6 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
-import { numberFormatter } from '../../../helpers/numberFormat'
-
 import { colors } from './DeterministicLinePlot'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
@@ -26,8 +24,6 @@ export interface SimProps {
 }
 
 export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
-  const { t: unsafeT, i18n } = useTranslation()
-
   if (!data || !rates) {
     return null
   }
@@ -35,6 +31,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
   const firstRef = React.useRef(null)
   const secondRef = React.useRef(null)
 
+  const { t: unsafeT } = useTranslation()
   const t = (...args: Parameters<typeof unsafeT>) => {
     const translation = unsafeT(...args)
     if (typeof translation === 'string' || typeof translation === 'undefined') {
