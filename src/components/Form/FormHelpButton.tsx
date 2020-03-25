@@ -21,7 +21,7 @@ export default function FormHelpButton({ identifier, label, help }: FormHelpButt
     <>
       <Button
         id={safeId(identifier)}
-        className="help-button"
+        className="help-button ml-2"
         type="button"
         aria-label="help"
         onClick={e => {
