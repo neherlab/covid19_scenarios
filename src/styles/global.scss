@@ -22,6 +22,26 @@ body {
   padding: 0 !important;
 }
 
+// TYPOGRAPHY
+h2,
+h3 {
+  font-family: $font-family-sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: $black;
+  font-size: 28px;
+  letter-spacing: 0.49em;
+}
+
+h3 {
+  color: $white;
+  font-size: 20px;
+}
+
 .container.absolute {
   position: absolute;
   top: 100px;

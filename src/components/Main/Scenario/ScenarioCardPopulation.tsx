@@ -39,7 +39,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
   return (
     <CardWithoutDropdown
       identifier="populationScenario"
-      label={<h5 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h5>}
+      label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
       help={t('Parameters of the population in the health care system.')}
     >
       <FormSpinBox
