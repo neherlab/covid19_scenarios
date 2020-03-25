@@ -8,7 +8,7 @@
         "importsPerDay": 0.1,
         "cases": "CHE-Basel-Stadt",
         "r0": 2.7,
-        "latencyTime": 5,
+        "incubationTime": 5,
         "infectiousPeriod": 3,
         "lengthHospitalStay": 4,
         "lengthICUStay": 14,

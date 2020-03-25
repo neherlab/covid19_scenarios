@@ -12,7 +12,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     name: i18next.t('Slow/North'),
     data: {
       r0: 2.2,
-      latencyTime: 5,
+      incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
       lengthICUStay: 14,
@@ -25,7 +25,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     name: i18next.t('Moderate/North'),
     data: {
       r0: 2.7,
-      latencyTime: 5,
+      incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
       lengthICUStay: 14,
@@ -38,7 +38,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     name: i18next.t('Fast/North'),
     data: {
       r0: 3.2,
-      latencyTime: 4,
+      incubationTime: 4,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
       lengthICUStay: 14,
@@ -51,7 +51,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     name: i18next.t('Slow/South'),
     data: {
       r0: 2.2,
-      latencyTime: 5,
+      incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
       lengthICUStay: 14,
@@ -64,7 +64,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     name: i18next.t('Moderate/South'),
     data: {
       r0: 2.7,
-      latencyTime: 5,
+      incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
       lengthICUStay: 14,
@@ -77,7 +77,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     name: i18next.t('Fast/South'),
     data: {
       r0: 3.2,
-      latencyTime: 4,
+      incubationTime: 4,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
       lengthICUStay: 14,
@@ -90,7 +90,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     name: i18next.t('Slow/Tropical'),
     data: {
       r0: 2.0,
-      latencyTime: 5,
+      incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
       lengthICUStay: 14,
@@ -103,7 +103,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     name: i18next.t('Moderate/Tropical'),
     data: {
       r0: 2.5,
-      latencyTime: 5,
+      incubationTime: 5,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
       lengthICUStay: 14,
@@ -116,7 +116,7 @@ const epidemiologicalScenarios: EpidemiologicalScenario[] = [
     name: i18next.t('Fast/Tropical'),
     data: {
       r0: 3.0,
-      latencyTime: 4,
+      incubationTime: 4,
       infectiousPeriod: 3,
       lengthHospitalStay: 4,
       lengthICUStay: 14,

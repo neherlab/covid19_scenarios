@@ -55,7 +55,7 @@ function ScenarioCardEpidemiological({
         touched={touched}
       />
       <FormSpinBox
-        identifier="epidemiological.latencyTime"
+        identifier="epidemiological.incubationTime"
         label={`${t('Latency')} [${t('days')}]`}
         help={t('Time from infection to onset of symptoms (here onset of infectiousness)')}
         step={1}

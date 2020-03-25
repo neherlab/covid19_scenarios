@@ -12,7 +12,7 @@ export interface PopulationData {
 
 export interface EpidemiologicalData {
   r0: number // Average number of people who will catch a disease from one contagious person. Usually specified as a decimal, e. g. 2.7
-  latencyTime: number
+  incubationTime: number
   infectiousPeriod: number
   lengthHospitalStay: number
   lengthICUStay: number

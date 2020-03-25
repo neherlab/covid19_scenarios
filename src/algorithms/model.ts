@@ -56,7 +56,7 @@ export function getPopulationParams(
     // Dummy infectionRate function. This is set below.
     infectionRate: () => -Infinity,
     timeDelta: msPerDay * timeDeltaDays,
-    latencyTime: params.latencyTime,
+    incubationTime: params.incubationTime,
     populationServed: params.populationServed,
     numberStochasticRuns: params.numberStochasticRuns,
     hospitalBeds: params.hospitalBeds,
@@ -257,7 +257,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
     for (let i = 0; i < pop.exposed[age].length; i++) {
         newExposedFlux[age][i] = Math.min(
             pop.exposed[age][i], 
-            sample((pop.exposed[age][i] * P.timeDeltaDays) / (P.latencyTime / pop.exposed[age].length))
+            sample((pop.exposed[age][i] * P.timeDeltaDays) / (P.incubationTime / pop.exposed[age].length))
         )
     }
     newRecovered[age] = Math.min(

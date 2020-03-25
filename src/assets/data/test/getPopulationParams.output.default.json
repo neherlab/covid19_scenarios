@@ -14,7 +14,7 @@
         "70-79": 0.011111111111111112,
         "80+": 0.011111111111111112
     },
-    "latencyTime": 5,
+    "incubationTime": 5,
     "numberStochasticRuns": 0,
     "timeDeltaDays": 0.25,
     "timeDelta": 21600000,
