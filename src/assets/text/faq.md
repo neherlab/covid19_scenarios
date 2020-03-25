@@ -43,17 +43,17 @@ patients will die faster. The degree to which they die faster is specified by th
 
 **Q:** Wouldn't it be a good idea to model isolation of specific age-groups?
 
-**A:** Yes! This is indeed possible on covid-scenarios. Expand the card
+**A:** _Yes! This is indeed possible on covid-scenarios. Expand the card
 `Severity assumptions and age-specific isolation`. The last column allows you to specify the to what extent individual
-age groups are isolated from the rest of the population.
+age groups are isolated from the rest of the population._
 
 ---
 
 **Q:** How does your model compare to the one by Imperial College London?
-**A:** You are probably referring to the
+**A:** _You are probably referring to the
 [March 16 report by Neil Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf).
 Like us, Ferguson et al model the effect of interventions on the spread of COVID19 using a computational model.
 Their model is individual based, meaning their program represents a large number of individuals among which
 the virus is spreading. Our model is breaks the population into age-groups and different categories corresponding
 to susceptible, infected, dead, recovered, etc. This allows for faster simulations, but looses some realism.
-The faster simulation allows exploration of parameters.
+The faster simulation allows exploration of parameters._
