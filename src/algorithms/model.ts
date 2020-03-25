@@ -182,7 +182,7 @@ export function initializePopulation(
     if (i === Math.round(Object.keys(ages).length / 2)) {
       pop.susceptible[k] -= numCases
       pop.infectious[k] = 0.3 * numCases
-      pop.exposed[k] = [0.7 * numCases, 0, 0]
+      pop.exposed[k] = [0.7 * numCases / 3, 0.7 * numCases / 3, 0.7 * numCases / 3]
     }
   })
 
@@ -244,7 +244,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   const Keys = Object.keys(pop.infectious).sort()
   Keys.forEach(age => {
 
-    // Initialize all states with internal arrays
+    // Initialize all multi-faceted states with internal arrays
     newInfectious[age]  = []
     newPop.exposed[age] = []
 
