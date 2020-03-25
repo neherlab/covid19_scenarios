@@ -101,6 +101,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
+
   const observations =
     caseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
@@ -164,6 +165,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     ? Math.max(plotData[plotData.length - 1].time, observations[observations.length - 1].time)
     : plotData[plotData.length - 1].time
 
+
   const scatterToPlot: LineProps[] = observations.length
     ? [
         // Append empirical data
@@ -185,7 +187,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
       ]
     : []
 
-  const logScaleString: YAxisProps['scale'] = logScale ? t('log') : t('linear')
+  const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
   const tooltipFormatter = (
     value: string | number | Array<string | number>,
