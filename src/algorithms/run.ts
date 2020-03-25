@@ -14,13 +14,6 @@ const poisson = (x: number) => {
 
 // NOTE: Assumes containment is sorted ascending in time.
 export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
-  // If user hasn't touched containment, this vector is empty
-  if (containment.length === 0) {
-    return (t: Date) => {
-      return 1.0
-    }
-  }
-
   return (t: Date) => {
     if (t <= containment[0].t){
       return containment[0].y
