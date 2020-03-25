@@ -101,9 +101,9 @@ function ResultsCardFunction({
       <CollapsibleCard
         identifier="results-card"
         title={
-          <h3 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">
+          <h2 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">
             {t('Results')}
-          </h3>
+          </h2>
         }
         help={t('This section contains simulation results')}
         defaultCollapsed={false}
