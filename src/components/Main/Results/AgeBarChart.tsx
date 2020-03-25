@@ -13,7 +13,8 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { colors } from './DeterministicLinePlot'
-import { calculateYPosition, scrollToRef } from './chartHelper'
+import { calculatePosition, scrollToRef } from './chartHelper'
+import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
 
 const ASPECT_RATIO = 16 / 4
 
@@ -74,7 +75,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
           }
 
           const height = Math.max(250, width / ASPECT_RATIO)
-          const tooltipPosition = calculateYPosition(height)
+          const tooltipPosition = calculatePosition(height)
 
           return (
             <>
@@ -95,7 +96,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
               >
                 <XAxis dataKey="name" />
                 <YAxis label={{value:t('Cases'), angle: -90, position: 'insideLeft' }} />
-                <Tooltip position={{ y: tooltipPosition }} />
+                <Tooltip 
+                  position={tooltipPosition} 
+                  content={ResponsiveTooltipContent}
+                />
                 <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
@@ -126,7 +130,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   }}
                 />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip position={{ y: tooltipPosition }} />
+                <Tooltip 
+                  position={tooltipPosition} 
+                  content={ResponsiveTooltipContent}
+                />
                 <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
               </BarChart>
             </>
