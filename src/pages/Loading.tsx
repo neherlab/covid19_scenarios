@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { Container, Row, Col } from 'reactstrap'
+
 import './Loading.scss'
 
 import { useTranslation } from 'react-i18next'

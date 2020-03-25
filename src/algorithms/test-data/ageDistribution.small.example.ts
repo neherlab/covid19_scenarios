@@ -1,6 +1,4 @@
-import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
-
-const countryAgeDistribution: CountryAgeDistribution = {
+const countryAgeDistribution = {
   country: {
     'Germany': [
       3846778,

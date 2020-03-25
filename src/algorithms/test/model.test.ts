@@ -15,9 +15,9 @@ import initializePopulationOutput from '../../assets/data/test/initializePopulat
 // The output after the 5th generation using default settings
 // This is a snapshot of the output that is being used as baseline
 import evolveOutput5 from '../../assets/data/test/evolve.output.5th.default.json'
-import { AllParamsFlat } from '../../algorithms/types/Param.types'
+import { AllParamsFlat } from '../types/Param.types'
 
-const containmentWithDate = containment.map(value => ({ y: value.y, t: new Date(value.t) }))
+const containmentWithDate = containment.map((value) => ({ y: value.y, t: new Date(value.t) }))
 const containmentFunction = interpolateTimeSeries(containmentWithDate)
 
 // The snapshot we load has the dates loaded as strings
@@ -31,6 +31,8 @@ const processParams = (params: typeof getPopulationParamsInput.params): AllParam
     },
   }
 }
+
+const identity = (x: number) => x
 
 describe('model', () => {
   describe('infectionRate', () => {
@@ -109,8 +111,6 @@ describe('model', () => {
     })
   })
 
-  const identity = (x: number) => x
-
   describe('evolve', () => {
     it('produces the expected output in the default scenario after 5 evolutions', () => {
       const params = getPopulationParams(
@@ -120,19 +120,19 @@ describe('model', () => {
         containmentFunction,
       )
 
-      let input = initializePopulation(
+      const input = initializePopulation(
         initializePopulationInput.N,
         initializePopulationInput.numCases,
         initializePopulationInput.t0,
         initializePopulationInput.ages,
       )
 
-      for (let i = 0; i <= 4; i++) {
-        input = evolve(input, params, identity)
-      }
+      const result = [...new Array(5)].reduce((acc) => {
+        return evolve(acc, params, identity)
+      }, input)
 
       // evolveOutput5 is the output after the 5th iteration with default parameters
-      expect(input).toEqual(evolveOutput5)
+      expect(result).toEqual(evolveOutput5)
     })
   })
 })
