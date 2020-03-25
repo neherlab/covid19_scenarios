@@ -16,7 +16,7 @@ with open("sources.json") as fh:
 
 default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
-    
+
 # ------------------------------------------------------------------------
 # Functions
 
@@ -82,8 +82,8 @@ def sorted_date(s, cols=None):
 
 def compare_day(day1, day2):
     try:
-        time1 = datetime.strptime(day1['time'], "%Y-%m-%d")
-        time2 = datetime.strptime(day2['time'], "%Y-%m-%d")
+        time1 = datetime.strptime(day1['time'][:10], "%Y-%m-%d")
+        time2 = datetime.strptime(day2['time'][:10], "%Y-%m-%d")
     except:
         print('Problems in parsing ', day1, day2)
     if time1 < time2:
@@ -111,8 +111,8 @@ def merge_cases(oldcases, newcases):
             prevDay = joinedDays[0]
             for d in joinedDays[1:]:
                 # fix dates here if required
-                d['time'] = datetime.strptime(d['time'], '%Y-%m-%d').strftime('%Y-%m-%d')
-                prevDay['time'] = datetime.strptime(prevDay['time'], '%Y-%m-%d').strftime('%Y-%m-%d')
+                d['time'] = datetime.strptime(d['time'][:10], '%Y-%m-%d').strftime('%Y-%m-%d')
+                prevDay['time'] = datetime.strptime(prevDay['time'][:10], '%Y-%m-%d').strftime('%Y-%m-%d')
                 if d['time'] == prevDay['time']:
                     # merging will only add new keys (not replace old values), and remove the duplicate day afterwards
                     for k in d:
@@ -161,7 +161,7 @@ def list_to_dict(regions, cols):
     return res
 
 def dict_to_list(regions, cols):
-    # transform a dict of lists of dicts {'USA': [{'time': '2020-03-01', 'cases': 1, ...},...]} into a dict of lists of lists {'USA':[['2020-03-01', 1, 2,...],..]} 
+    # transform a dict of lists of dicts {'USA': [{'time': '2020-03-01', 'cases': 1, ...},...]} into a dict of lists of lists {'USA':[['2020-03-01', 1, 2,...],..]}
     res = {}
     for k in regions:
         nk = []
@@ -177,7 +177,7 @@ def dict_to_list(regions, cols):
     return res
 
 def remove_country_code(regions, code):
-    # Assumes that the keys of this dict have a three letter country code prepended, and removes it. 
+    # Assumes that the keys of this dict have a three letter country code prepended, and removes it.
     res = {}
     for k in regions:
         if code+'-' in k:
@@ -216,8 +216,8 @@ def sanitize(fname):
     if not fname2==fname:
         print(f'Filename sanitized: was {fname}, now {fname2}')
     return fname2
-    
-    
+
+
 def store_data(regions, exceptions, source, code='', cols=[]):
     """ Store data to .tsv and .json files
 
@@ -227,14 +227,14 @@ def store_data(regions, exceptions, source, code='', cols=[]):
     source --  the string identifyig the source in sources.json
     code -- the three letter code for the country from country_codes.csv
     cols -- the colum headers that were used to prepare the innermost list
-    """    
+    """
 
     # check if we have a dict of list of list, or dict of list of dicts
 
     if isinstance(regions, dict):
         cd1 = list(regions.values())[0]
-        if isinstance(cd1, list): 
-            cd2 = cd1[0]           
+        if isinstance(cd1, list):
+            cd2 = cd1[0]
             if isinstance(cd2, list):
                 store_tsv(regions, exceptions, source, cols)
                 if not cols==[]:
@@ -243,7 +243,7 @@ def store_data(regions, exceptions, source, code='', cols=[]):
                         if not region in exceptions:
                             regions2[code+"-"+region] = data
                         else:
-                            regions2[region] = data                
+                            regions2[region] = data
                     store_json(list_to_dict(regions2, cols))
                 else:
                     print(f'ERROR: You need to provide cols to store_data for the format you use. cols will indicate type of values in your inner lists. No data was stored to .tsv now!', file=sys.stderr)
@@ -255,9 +255,9 @@ def store_data(regions, exceptions, source, code='', cols=[]):
                 store_tsv(regions, exceptions, source, default_cols)
                 # for non-World data we need to add country code for json
                 if not '.tsv' in exceptions['default']:
-                    regions = add_country_code(regions, exceptions, code)                
+                    regions = add_country_code(regions, exceptions, code)
                 store_json(regions)
-                
+
             else:
                 print(f'ERROR: unable to parse {regions}', file=sys.stderr)
         else:
