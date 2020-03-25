@@ -57,16 +57,8 @@ export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) 
   const deathFrac = (1.0 * totalDeath) / totalCases
   const mildFrac = 1 - severeFrac - criticalFrac - deathFrac
 
-<<<<<<< HEAD
   const peakSevere   = Math.round(Math.max(...result.deterministic.trajectory.map((x) => x.hospitalized.total)))
   const peakCritical = Math.round(Math.max(...result.deterministic.trajectory.map((x) => x.critical.total + x.overflow.total)))
-=======
-  const peakSevere = Math.round(Math.max(...result.deterministicTrajectory.map((x) => x.hospitalized.total)))
-  const peakCritical = Math.round(
-    Math.max(...result.deterministicTrajectory.map((x) => x.critical.total + x.overflow.total)),
-  )
->>>>>>> master
-
   const totalFormatter = (value: number) => (showHumanized ? humanizeFormatter(value) : decimalFormatter(value))
 
   // TODO: replace this with the table component (similar to severity table)
