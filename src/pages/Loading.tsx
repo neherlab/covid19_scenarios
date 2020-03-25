@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Col, Row } from 'reactstrap'
+
+import { Container, Row, Col } from 'reactstrap'
 
 import './Loading.scss'
 
@@ -11,7 +12,11 @@ function Loading() {
     <Container>
       <Row>
         <Col>
-          <h1 className="h1-loading">{t('Loading...')}</h1>
+          <div className="loading-page d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">{t('Loading...')}</span>
+            </div>
+          </div>
         </Col>
       </Row>
     </Container>
