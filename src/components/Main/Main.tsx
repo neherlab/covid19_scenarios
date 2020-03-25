@@ -42,6 +42,14 @@ export function severityErrors(severity: SeverityTableRow[]) {
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
+const isCountry = (country: string): country is keyof typeof countryAgeDistribution => {
+  return countryAgeDistribution.hasOwnProperty(country)
+}
+
+const isRegion = (region: string): region is keyof typeof countryCaseCounts => {
+  return countryCaseCounts.hasOwnProperty(region)
+}
+
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
@@ -71,8 +79,17 @@ function Main() {
       ...params.epidemiological,
       ...params.simulation,
     }
-    // TODO: check the presence of the current country
-    // TODO: type cast the json into something
+
+    if (!isCountry(params.population.country)) {
+      console.error(`The given country is invalid: ${params.population.country}`)
+      return
+    }
+
+    if (!isRegion(params.population.cases)) {
+      console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
+      return
+    }
+
     const ageDistribution = countryAgeDistribution[params.population.country]
     const caseCounts: EmpiricalData = countryCaseCounts[params.population.cases] || []
     const containmentData = params.containment.reduction

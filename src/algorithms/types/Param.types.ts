@@ -6,7 +6,7 @@ export interface PopulationData {
   suspectedCasesToday: number
   importsPerDay: number
   hospitalBeds: number
-  ICUBeds: number,
+  ICUBeds: number
   cases: string
 }
 
@@ -46,12 +46,11 @@ export interface AllParams {
 export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData
 
 interface EmpiricalDatum {
-    time: Date
-    cases: number
-    deaths: number
-    hospitalized: number
-    ICU: number
+  time: Date
+  cases: number
+  deaths: number
+  hospitalized: number
+  ICU: number
 }
 
 export type EmpiricalData = EmpiricalDatum[]
-
