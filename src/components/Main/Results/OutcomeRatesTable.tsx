@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next'
 
 import { Col, Row } from 'reactstrap'
 
+import * as d3 from 'd3'
+
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
-
-import * as d3 from 'd3'
 
 export interface TableProps {
   showHumanized?: boolean

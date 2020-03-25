@@ -3,10 +3,10 @@ import React from 'react'
 import { FormikErrors, FormikTouched } from 'formik'
 import { AnyAction } from 'typescript-fsa'
 
+import { useTranslation } from 'react-i18next'
+
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 import countryCaseCounts from '../../../assets/data/case_counts.json'
-
-import { useTranslation } from 'react-i18next'
 
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
