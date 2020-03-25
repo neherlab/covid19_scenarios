@@ -91,7 +91,7 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
     <span ref={scrollTargetRef}></span>
     <CollapsibleCard
       identifier="results-card"
-      title={<h3 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">{t('Results')}</h3>}
+      title={<h2 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">{t('Results')}</h2>}
       help={t('This section contains simulation results')}
       defaultCollapsed={false}
     >
