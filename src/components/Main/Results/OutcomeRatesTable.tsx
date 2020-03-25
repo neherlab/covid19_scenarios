@@ -10,8 +10,6 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
-import { numberFormatter } from '../../../helpers/numberFormat'
-
 export interface TableProps {
   showHumanized?: boolean
   result?: AlgorithmResult
@@ -19,15 +17,15 @@ export interface TableProps {
 }
 
 const percentageFormatter = (v: number) => d3.format('.2f')(v * 100)
+const humanizeFormatter = d3.format('.5s')
+const decimalFormatter = d3.format('d')
 
 export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   if (!result || !rates) {
     return null
   }
-
-  const formatNumber = numberFormatter(i18n.language, !!showHumanized, true)
 
   /*
   // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
