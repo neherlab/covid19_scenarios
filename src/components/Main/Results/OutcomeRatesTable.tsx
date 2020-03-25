@@ -19,6 +19,8 @@ export interface TableProps {
 }
 
 const percentageFormatter = (v: number) => d3.format('.2f')(v * 100)
+const humanizeFormatter = d3.format('.5s')
+const decimalFormatter = d3.format('d')
 
 export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) {
   const { t, i18n } = useTranslation()
