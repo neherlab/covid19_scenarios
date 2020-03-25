@@ -4,7 +4,7 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { useTranslation } from 'react-i18next'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
