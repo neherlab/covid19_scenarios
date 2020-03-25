@@ -2,9 +2,11 @@ import { MutableRefObject } from 'react'
 
 const singleColumnThreshold = 992
 
-export function calculateYPosition(height: number) {
-  const yPosition = window.innerWidth < singleColumnThreshold ? height - 20 : 0
-  return yPosition
+export function calculatePosition(height: number) {
+  const yPosition = window.innerWidth < singleColumnThreshold ? height - 20 : null
+
+  if (window.innerWidth < singleColumnThreshold) return { x: 0, y: yPosition }
+  else return { y: yPosition }
 }
 
 export function scrollToRef(ref: MutableRefObject<any>) {

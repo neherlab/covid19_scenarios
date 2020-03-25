@@ -8,7 +8,8 @@ import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.ty
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
-import { calculateYPosition, scrollToRef } from './chartHelper'
+import { calculatePosition, scrollToRef } from './chartHelper'
+import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
 
 import './DeterministicLinePlot.scss'
 
@@ -210,7 +211,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
           }
 
           const height = Math.max(500, width / ASPECT_RATIO)
-          const tooltipPosition = calculateYPosition(height)
+          const tooltipPosition = calculatePosition(height)
 
           return (
             <>
@@ -236,8 +237,19 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                   domain={[tMin, tMax]}
                   tickCount={7}
                 />
-                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
-                <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
+                <YAxis
+                  scale={logScaleString}
+                  type="number"
+                  domain={[1, 'dataMax']}
+                  tickFormatter={(tick) => t('localized:number', { value: tick })}
+                />
+                
+                <Tooltip 
+                  formatter={tooltipFormatter} 
+                  labelFormatter={labelFormatter} 
+                  position={tooltipPosition} 
+                  content={ResponsiveTooltipContent}
+                />
                 <Legend
                   verticalAlign="top"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
