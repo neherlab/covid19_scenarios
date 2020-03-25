@@ -13,7 +13,7 @@ import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import run from '../../algorithms/run'
 
-import {CountryAgeDistribution} from '../../assets/data/CountryAgeDistribution.types'
+import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 
@@ -43,7 +43,7 @@ export function severityErrors(severity: SeverityTableRow[]) {
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
 const isCountry = (country: string): country is keyof typeof countryAgeDistribution => {
-  return countryAgeDistribution.hasOwnProperty(country)
+  return countryAgeDistributionData.hasOwnProperty(country)
 }
 
 const isRegion = (region: string): region is keyof typeof countryCaseCounts => {
@@ -90,7 +90,7 @@ function Main() {
       return
     }
 
-    const ageDistribution = countryAgeDistribution[params.population.country]
+    const ageDistribution = countryAgeDistributionData[params.population.country]
     const caseCounts: EmpiricalData = countryCaseCounts[params.population.cases] || []
     const containmentData = params.containment.reduction
 
