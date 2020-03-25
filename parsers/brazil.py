@@ -75,8 +75,7 @@ def parse():
         cases = to_int(row[4])
         deaths = to_int(row[5])
         regions[state].append([date, cases, deaths, None, None, None])
-
     for state, data in regions.items():
-        regions[state] = sorted_date(data, array_index=0)
+        regions[state] = sorted_date(data, cols)
 
     store_data(regions, { 'default': LOC}, 'brazil', 'BRA', cols)
