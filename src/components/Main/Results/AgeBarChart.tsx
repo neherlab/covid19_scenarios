@@ -11,6 +11,7 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { colors } from './DeterministicLinePlot'
+import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
@@ -83,6 +84,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
               >
                 <XAxis dataKey="name" />
                 <YAxis label={{value:t('Cases'), angle: -90, position: 'insideLeft' }} />
+                <Tooltip 
+                  position={tooltipPosition} 
+                  content={ResponsiveTooltipContent}
+                />
                 <Tooltip 
                   position={tooltipPosition} 
                   content={ResponsiveTooltipContent}

@@ -232,6 +232,8 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 />
                 
                 <Tooltip 
+                  formatter={tooltipFormatter} 
+                  labelFormatter={labelFormatter} 
                   position={tooltipPosition} 
                   content={ResponsiveTooltipContent}
                 />
