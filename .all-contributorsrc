@@ -1,0 +1,15 @@
+{
+  "projectName": "covid19_scenarios",
+  "projectOwner": "neherlab",
+  "files": [
+    "README.md",
+    "src/assets/text/contributors-generated.md"
+  ],
+  "imageSize": 100,
+  "contributors": [],
+  "repoType": "github",
+  "contributorsPerLine": 7,
+  "repoHost": "https://github.com",
+  "commitConvention": "angular",
+  "skipCi": true
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 
 import Papa from 'papaparse'
 
@@ -37,7 +37,8 @@ interface ResultsCardProps {
 
 function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResultsCardProps) {
   const { t } = useTranslation()
-  const [logScale, setLogScale] = useState<boolean>(true)
+  const [logScale, setLogScale] = useState(true)
+  const [showHumanized, setShowHumanized] = useState(true)
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
@@ -62,12 +63,35 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
     setUserResult(newUserResult)
   }
 
-  const hasResult = Boolean(result?.deterministicTrajectory)
-  const canExport = Boolean(hasResult)
+  const [hasResult, setHasResult] = useState<boolean>(false)
+  const [canExport, setCanExport] = useState<boolean>(false)
+  const scrollTargetRef = createRef<HTMLSpanElement>()
+
+  useEffect( () => {
+    if (result && result.deterministicTrajectory) {
+      setHasResult(true);
+      setCanExport(true);
+
+      const scrollTarget = scrollTargetRef.current
+      if (scrollTarget) {
+        scrollTarget.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        })
+      }
+    } else {
+      setHasResult(false);
+      setCanExport(false);
+    }
+  }, [result, scrollTargetRef.current])
+
   return (
+    <>
+    <span ref={scrollTargetRef}></span>
     <CollapsibleCard
       identifier="results-card"
-      title={<h3 className="p-0 m-0 text-truncate">{t('Results')}</h3>}
+      title={<h3 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">{t('Results')}</h3>}
       help={t('This section contains simulation results')}
       defaultCollapsed={false}
     >
@@ -134,23 +158,39 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
             onValueChanged={setLogScale}
           />
         </Col>
+        <Col data-testid="HumanizedValuesSwitch">
+          <FormSwitch
+            identifier="showHumanized"
+            label={t('Show humanized results')}
+            help={t('Show numerical results in a human friendly format')}
+            checked={showHumanized}
+            onValueChanged={setShowHumanized}
+          />
+        </Col>
       </Row>
       <Row noGutters>
         <Col>
-          <DeterministicLinePlot data={result} userResult={userResult} logScale={logScale} caseCounts={caseCounts} />
+          <DeterministicLinePlot
+            data={result}
+            userResult={userResult}
+            logScale={logScale}
+            showHumanized={showHumanized}
+            caseCounts={caseCounts}
+          />
         </Col>
       </Row>
       <Row>
         <Col>
-          <AgeBarChart data={result} rates={severity} />
+          <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <OutcomeRatesTable result={result} rates={severity} />
+          <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
         </Col>
       </Row>
     </CollapsibleCard>
+    </>
   )
 }
 

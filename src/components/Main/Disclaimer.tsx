@@ -71,9 +71,9 @@ export default function DisclaimerProps() {
         </div>
       </ModalBody>
       <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Accept
-          </Button>
+        <Button color="primary" onClick={toggle}>
+          Accept
+        </Button>
       </ModalFooter>
     </Modal>
   )

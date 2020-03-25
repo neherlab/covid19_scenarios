@@ -15,6 +15,13 @@ describe('TimeSeries', () => {
   const tMin = new Date('1970-10-01T00:00:00.000Z')
   const tMax = new Date('1971-02-01T00:00:00.000Z')
 
+  // These are the expected values from uniformDatesBetween(tMin,tMax)
+  const tBetween = [
+    new Date('1970-10-31T18:00:00.000Z'),
+    new Date('1970-12-01T12:00:00.000Z'),
+    new Date('1971-01-01T06:00:00.000Z'),
+  ]
+
   describe('uniformDatesBetween()', () => {
     it('returns an array of "n" uniformly spaced dates between "min" and "max", inclusive.', () => {
       const n = 5
@@ -23,13 +30,7 @@ describe('TimeSeries', () => {
 
       expect(result).toBeArray()
 
-      expect(result).toStrictEqual([
-        tMin,
-        new Date('1970-10-31T18:00:00.000Z'),
-        new Date('1970-12-01T12:00:00.000Z'),
-        new Date('1971-01-01T06:00:00.000Z'),
-        tMax,
-      ])
+      expect(result).toStrictEqual([tMin, ...tBetween, tMax])
     })
   })
 
@@ -43,9 +44,9 @@ describe('TimeSeries', () => {
 
       expect(result).toStrictEqual([
         { t: tMin, y: 1 },
-        { t: new Date('1970-10-31T18:00:00.000Z'), y: 2 },
-        { t: new Date('1970-12-01T12:00:00.000Z'), y: 3 },
-        { t: new Date('1971-01-01T06:00:00.000Z'), y: 4 },
+        { t: tBetween[0], y: 2 },
+        { t: tBetween[1], y: 3 },
+        { t: tBetween[2], y: 4 },
         { t: tMax, y: 5 },
       ])
     })
@@ -142,9 +143,9 @@ describe('TimeSeries', () => {
 
       const expected = [
         { t: tMin, y: yVector[0] },
-        { t: new Date('1970-10-31T18:00:00.000Z'), y: 5 },
-        { t: new Date('1970-12-01T12:00:00.000Z'), y: 7 },
-        { t: new Date('1971-01-01T06:00:00.000Z'), y: 9 },
+        { t: tBetween[0], y: 5 },
+        { t: tBetween[1], y: 7 },
+        { t: tBetween[2], y: 9 },
         { t: tMax, y: yVector[2] },
       ]
 
