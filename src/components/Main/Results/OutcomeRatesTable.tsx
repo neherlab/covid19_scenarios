@@ -29,8 +29,6 @@ export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) 
     return null
   }
 
-  const formatNumber = numberFormatter(i18n.language, !!showHumanized, true)
-
   /*
   // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
   let deathFrac    = 0
