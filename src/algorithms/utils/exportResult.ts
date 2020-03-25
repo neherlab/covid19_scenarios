@@ -28,7 +28,8 @@ export function exportResult(result: AlgorithmResult) {
     return
   }
 
-  const { deterministic, _, params } = result
+  console.log("result", result)
+  const { deterministic, params } = result
 
   if (deterministic) {
     const csvString: string = exportSimulation(deterministic)

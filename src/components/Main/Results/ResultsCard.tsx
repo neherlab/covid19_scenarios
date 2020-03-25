@@ -62,7 +62,7 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
     setUserResult(newUserResult)
   }
 
-  const hasResult = Boolean(result?.deterministicTrajectory)
+  const hasResult = Boolean(result?.deterministic)
   const canExport = Boolean(hasResult)
   return (
     <CollapsibleCard
