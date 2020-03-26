@@ -4,13 +4,11 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { useTranslation } from 'react-i18next'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
-
-import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { colors } from './DeterministicLinePlot'
 import { numberFormatter } from '../../../helpers/numberFormat'
@@ -34,8 +32,8 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
   const { t: unsafeT, i18n } = useTranslation()
 
   const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
-  const firstRef = React.useRef(null)
-  const secondRef = React.useRef(null)
+  const casesChartRef = React.useRef(null)
+  const percentageChartRef = React.useRef(null)
 
   const t = (...args: Parameters<typeof unsafeT>) => {
     const translation = unsafeT(...args)
@@ -58,6 +56,13 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     totalDead: Math.round(lastDataPoint.dead[age]),
   }))
 
+  const tooltipFormatter = (
+    value: string | number | Array<string | number>,
+    name: string,
+    entry: TooltipPayload,
+    index: number,
+  ) => <span>{formatNumber(Number(value))}</span>
+
   const tickFormatter = (value: number) => formatNumber(value)
 
   return (
@@ -75,9 +80,9 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
             <>
               <h5>{t('Distribution across age groups')}</h5>
                 
-              <div ref={firstRef} />
+              <div ref={casesChartRef} />
               <BarChart 
-                onClick={() => scrollToRef(firstRef)} 
+                onClick={() => scrollToRef(casesChartRef)} 
                 width={width}
                 height={height}
                 data={plotData}
@@ -95,10 +100,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <Tooltip 
                   position={tooltipPosition} 
                   content={ResponsiveTooltipContent}
-                />
-                <Tooltip 
-                  position={tooltipPosition} 
-                  content={ResponsiveTooltipContent}
+                  formatter={tooltipFormatter}
                 />
                 <Legend verticalAlign="top"/>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -108,9 +110,9 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <Bar dataKey="totalDead" fill={colors.death} name={t('total deaths')} />
               </BarChart>
               
-              <div ref={secondRef} />
+              <div ref={percentageChartRef} />
               <BarChart
-                onClick={() => scrollToRef(secondRef)} 
+                onClick={() => scrollToRef(percentageChartRef)} 
                 width={width}
                 height={height}
                 data={plotData}
@@ -133,6 +135,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <Tooltip 
                   position={tooltipPosition} 
                   content={ResponsiveTooltipContent}
+                  formatter={tooltipFormatter}
                 />
                 <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
               </BarChart>

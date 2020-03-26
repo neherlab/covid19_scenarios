@@ -147,6 +147,19 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     ...observations,
   ] // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
 
+  const tooltipFormatter = (
+    value: string | number | Array<string | number>,
+    name: string,
+    entry: TooltipPayload,
+    index: number,
+  ): React.ReactNode => <span>{formatNumber(Number(value))}</span>
+  
+  function labelFormatter(value: string | number): React.ReactNode {
+    return xTickFormatter(value)
+  }
+
+  const yTickFormatter = (value: number) => formatNumber(value)
+
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
     { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
@@ -232,6 +245,8 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 />
                 
                 <Tooltip 
+                  formatter={tooltipFormatter} 
+                  labelFormatter={labelFormatter}
                   position={tooltipPosition} 
                   content={ResponsiveTooltipContent}
                 />
