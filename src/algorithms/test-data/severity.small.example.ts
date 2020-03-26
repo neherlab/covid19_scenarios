@@ -1,4 +1,4 @@
-import { SeverityTableRow } from '../../components/Main/SeverityTable'
+import { SeverityTableRow } from '../../components/Main/Scenario/SeverityTable'
 
 const severity: SeverityTableRow[] = [
   {

@@ -13,6 +13,7 @@ import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import run from '../../algorithms/run'
 
+import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 
@@ -76,7 +77,7 @@ async function runSimulation(
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
-const isCountry = (country: string): country is keyof typeof countryAgeDistribution => {
+const isCountry = (country: string): country is keyof CountryAgeDistribution => {
   return countryAgeDistributionData.hasOwnProperty(country)
 }
 
