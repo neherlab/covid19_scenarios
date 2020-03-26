@@ -5,7 +5,7 @@ import { ScenarioData } from '../../../algorithms/types/Param.types'
 const action = actionCreatorFactory('SCENARIO')
 
 export interface SetScenarioParams {
-  scenarioName: string
+  name: string
 }
 
 export const setScenario = action<SetScenarioParams>('SET_SCENARIO')
