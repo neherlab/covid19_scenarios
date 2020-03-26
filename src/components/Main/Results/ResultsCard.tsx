@@ -17,6 +17,8 @@ import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
+import './ResultsCard.scss'
+
 interface ResultsCardProps {
   autorunSimulation: boolean
   toggleAutorun: () => void
@@ -66,29 +68,13 @@ function ResultsCardFunction({
 
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
-  const toggleShowExportModal = () => setShowExportModal(!showExportModal)
-
   useEffect(() => {
-    if (result && result.deterministic) {
-      setCanExport(true)
-
-      const scrollTarget = scrollTargetRef.current
-      if (scrollTarget) {
-        scrollTarget.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest',
-        })
-      }
-    } else {
-      setCanExport(false)
-      setShowExportModal(false)
-    }
-  }, [result, scrollTargetRef])
+    setCanExport((result && !!result.deterministic) || false)
+  }, [result])
 
   return (
     <>
-      <span ref={scrollTargetRef} />
+      <span ref={scrollTargetRef}/>
       <CollapsibleCard
         identifier="results-card"
         title={
@@ -194,6 +180,22 @@ function ResultsCardFunction({
           </Col>
         </Row>
       </CollapsibleCard>
+      {result ? (
+        <Button
+          className="goToResultsBtn"
+          color="primary"
+          onClick={() =>
+            scrollTargetRef.current &&
+            scrollTargetRef.current.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest',
+            })
+          }
+        >
+          {t('Go to results')}
+        </Button>
+      ) : undefined}
       <ExportSimulationDialog
         showModal={showExportModal}
         toggleShowModal={toggleShowExportModal}
