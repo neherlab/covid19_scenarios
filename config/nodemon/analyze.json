@@ -29,6 +29,6 @@
     "**/__tests__",
     "**/*.test.*sx",
     "**/*.test.*s"
-  ],  
-  "exec": "run-s -c clear analyze:start"
+  ],
+  "exec": "yarn clear && yarn install && yarn analyze || cd ."
 }
