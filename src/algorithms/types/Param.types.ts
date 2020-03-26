@@ -36,6 +36,13 @@ export interface SimulationData {
   numberStochasticRuns: number
 }
 
+export interface ScenarioData {
+  population: PopulationData
+  epidemiological: EpidemiologicalData
+  containment: ContainmentData
+  simulation: SimulationData
+}
+
 export interface AllParams {
   population: PopulationData
   epidemiological: EpidemiologicalData
