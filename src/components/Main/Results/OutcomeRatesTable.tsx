@@ -19,8 +19,6 @@ export interface TableProps {
 }
 
 const percentageFormatter = (v: number) => d3.format('.2f')(v * 100)
-const humanizeFormatter = d3.format('.5s')
-const decimalFormatter = d3.format('d')
 
 export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) {
   const { t, i18n } = useTranslation()
@@ -28,6 +26,8 @@ export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) 
   if (!result || !rates) {
     return null
   }
+
+  const formatNumber = numberFormatter(i18n.language, !!showHumanized, true)
 
   /*
   // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
@@ -61,7 +61,8 @@ export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) 
 
   const peakSevere   = Math.round(Math.max(...result.deterministic.trajectory.map((x) => x.hospitalized.total)))
   const peakCritical = Math.round(Math.max(...result.deterministic.trajectory.map((x) => x.critical.total + x.overflow.total)))
-  const totalFormatter = (value: number) => (showHumanized ? humanizeFormatter(value) : decimalFormatter(value))
+
+  const totalFormatter = (value: number) => formatNumber(value)
 
   // TODO: replace this with the table component (similar to severity table)
   return (
