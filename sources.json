@@ -19,6 +19,11 @@
     "dataProvenance": "Dipartimento della Protezione Civile",
     "license": "CC-BY-4.0"
   },
+  "israel": {
+    "primarySource": "https://raw.githubusercontent.com/idandrd/israel-covid19-data/master/IsraelCOVID19.csv",
+    "dataProvenance": "https://github.com/idandrd/israel-covid19-data",
+    "license": "none specified"
+  },
   "spain": {
     "primarySource": "https://github.com/datadista/datasets/tree/master/COVID%2019",
     "dataProvenance": "http://www.datadista.com",
