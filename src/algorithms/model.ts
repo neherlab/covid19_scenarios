@@ -195,7 +195,7 @@ export function initializePopulation(
       pop.current.susceptible[k] -= numCases
       pop.current.infectious[k] = 0.3 * numCases
       const e = (0.7 * numCases) / pop.current.exposed[k].length
-      pop.current.exposed[k] = [e, e, e]
+      pop.current.exposed[k] = pop.current.exposed[k].map(_ => e)
     }
   })
 
@@ -225,7 +225,6 @@ interface StateFlux {
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
 export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: number) => number): SimulationTimePoint {
-  console.log('PARAMS', P)
   const sum = (dict: Record<string, number>): number => {
     return Object.values(dict).reduce((a, b) => a + b, 0)
   }
