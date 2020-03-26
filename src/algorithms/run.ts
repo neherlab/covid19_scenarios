@@ -20,8 +20,8 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
     throw new Error('Containment cannot be empty')
   }
 
-  const Ys = containment.map((d) => d.y)
-  const Ts = containment.map((d) => Number(d.t))
+  const Ys = containment.map(d => d.y)
+  const Ts = containment.map(d => Number(d.t))
 
   /* All needed linear algebra functions */
   type Vector = number[]
@@ -73,7 +73,7 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
     } else if (t >= containment[containment.length - 1].t) {
       return containment[containment.length - 1].y
     } else {
-      const i = containment.findIndex((d) => Number(t) < Number(d.t))
+      const i = containment.findIndex(d => Number(t) < Number(d.t))
 
       // Eval spline will return the function value @ t, fit to a spline
       // Requires the containment strengths (ys) and derivatives (yps) and times (ts)
