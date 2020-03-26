@@ -100,12 +100,12 @@ class PopulationParams(Object):
 
 class EpidemiologicalParams(Object):
     def __init__(self, region):
-        self.incubationTime     = 5
+        self.latencyTime     = 5
         self.infectiousPeriod   = 3
         self.lengthHospitalStay = 4
         self.lengthICUStay      = 14
         self.seasonalForcing    = 0.2
-        self.peakMonth          = "January"
+        self.peakMonth          = 0
         self.overflowSeverity   = 2
         if region in FIT_CASE_DATA:
             self.r0 = round(FIT_CASE_DATA[region]['r0'],2)
