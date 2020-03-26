@@ -5,7 +5,7 @@
   "module": "src/index.tsx",
   "license": "MIT",
   "scripts": {
-    "clear": "node -e console.clear()",
+    "clear": "node -e \"console.clear()\"",
     "dev": "nodemon --config config/nodemon/dev.json",
     "dev:start": "yarn install && yarn dev:nowatch || cd .",
     "dev:nowatch": "cross-env NODE_ENV=development BABEL_ENV=development webpack-dev-server --config config/webpack/webpack.client.babel.ts",
