@@ -4,7 +4,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
 import immerCase from '../../../state/util/fsaImmerReducer'
 
-import { setScenarioData, setScenario } from './actions'
+import { setScenarioData, setContainmentData, setScenario } from './actions'
 
 import { getScenarioData } from './data'
 
@@ -55,12 +55,23 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
     immerCase(setScenarioData, (draft, { data }) => {
       // draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = CUSTOM_SCENARIO_NAME
+      // draft.current = CUSTOM_SCENARIO_NAME
       draft.data = {
         population: data.population,
         epidemiological: data.epidemiological,
         containment: data.containment,
         simulation: data.simulation,
+      }
+    }),
+  )
+
+  .withHandling(
+    immerCase(setContainmentData, (draft, { data }) => {
+      // draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      // draft.current = CUSTOM_SCENARIO_NAME
+      draft.data.containment = {
+        reduction: updateTimeSeries(draft.data.simulation.simulationTimeRange, data.reduction, data.numberPoints),
+        numberPoints: data.numberPoints,
       }
     }),
   )

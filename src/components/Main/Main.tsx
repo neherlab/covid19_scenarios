@@ -20,7 +20,7 @@ import countryCaseCountData from '../../assets/data/case_counts.json'
 
 import { schema } from './validation/schema'
 
-// import { setEpidemiologicalData, setPopulationData, setSimulationData, setContainmentData } from './state/actions'
+import { setContainmentData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
 import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
@@ -142,7 +142,7 @@ function Main() {
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.containment, newParams.containment)) {
-      // scenarioDispatch(setContainmentData({ data: newParams.containment }))
+      scenarioDispatch(setContainmentData({ data: newParams.containment }))
     }
   }, 1000)
 
