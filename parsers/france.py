@@ -32,7 +32,7 @@ def parse():
         exit(1)
         r.close()
 
-    regions = defaultdict(list)
+    regions = {}
     fd  = io.StringIO(r.text)
     rdr = csv.reader(fd)
     hdr = next(rdr)
@@ -43,11 +43,26 @@ def parse():
     for row in rdr:
         if row[1] == 'region':
             date   = row[0]
-            region = row[3]
-            last_cases[region] = max(int(row[4]), last_cases[region]) if row[4] else last_cases[region]
-            last_deaths[region] = max(int(row[5]), last_deaths[region]) if row[5] else last_deaths[region]
-            last_hospitalized[region] = max(int(row[7]), last_hospitalized[region]) if row[7] else last_hospitalized[region]
-            regions[region].append([date, last_cases[region], last_deaths[region], last_hospitalized[region], None, None])
+            region = row[3].replace(" ", "-").replace("Î", "I").replace("'", "").replace("’", "")
+            cases = to_int(row[4])
+            death = to_int(row[5])
 
+            if region not in regions:
+                regions[region] = {}
 
-    store_data(regions, { 'default': LOC}, 'france', 'FRA', cols)
+            if date not in regions[region]:
+                regions[region][date] = [date, cases, death, None, None, None]
+                continue
+
+            # If data from another source is bigger, we take it
+            if cases is not None and (regions[region][date][1] is None or cases > regions[region][date][1]):
+                regions[region][date][1] = cases
+
+            if death is not None and (regions[region][date][2] is None or death > regions[region][date][2]):
+                regions[region][date][2] = death
+
+    regions2 = {}
+    for reg, d in regions.items():
+        regions2[reg] = [d[day] for day in sorted(d.keys())]
+
+    store_data(regions2, { 'default': LOC}, 'france', 'FRA', cols)

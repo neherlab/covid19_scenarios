@@ -6,10 +6,12 @@ import sys
 import csv
 import os
 import json
+sys.path.append('..')
 
 from collections import defaultdict
 from datetime import datetime, timedelta
 from .utils import write_tsv, flatten, parse_countries, stoi, merge_cases, sorted_date, store_json
+from paths import BASE_PATH
 
 # -----------------------------------------------------------------------------
 # Globals
@@ -80,21 +82,21 @@ def filter_tsv(fname):
 # Main point of entry
 
 def parse():
-    
-    countries = parse_countries(2)    
+
+    countries = parse_countries(2)
     cases = defaultdict(list)
 
-    files = [entry.name for entry in os.scandir('case-counts/') if entry.is_file() and os.path.splitext(entry.name)[1] == '.tsv']
+    files = [entry.name for entry in os.scandir(os.path.join(BASE_PATH, 'case-counts/')) if entry.is_file() and os.path.splitext(entry.name)[1] == '.tsv']
 
     for f in files:
         print('now parsing',f)
-        data, ok = parse_world(filter_tsv(f"case-counts/"+f))
+        data, ok = parse_world(filter_tsv(os.path.join(BASE_PATH, 'case-counts', f)))
         if ok:
             store_json(data)
         else:
             print(f"Panic: '{f}' incorrectly formatted", file=sys.stderr)
-        
 
 
 
-    
+
+

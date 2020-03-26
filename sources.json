@@ -1,4 +1,9 @@
 {
+  "brazil": {
+    "primarySource": "https://brasil.io/api/dataset/covid19/caso/data",
+    "dataProvenance": "https://brasil.io/dataset/covid19/caso",
+    "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+  },
   "france": {
     "primarySource": "https://github.com/opencovid19-fr/data/raw/master/dist/chiffres-cles.csv",
     "dataProvenance": "Données nationales concernant l'épidémie de COVID19",
@@ -24,10 +29,20 @@
     "dataProvenance": "OpenZH",
     "license": "none specified"
   },
+  "canada": {
+    "primarySource": "https://github.com/ishaberry/Covid19Canada",
+    "dataProvenance": "Offical government data",
+    "license": "none specified"
+  },
   "unitedstates": {
     "primarySource": "https://covidtracking.com/api/states/daily",
     "dataProvenance": "The COVID Tracking Project",
     "license": "Apache License 2.0"
+  },
+  "netherlands": {
+    "primarySource": "https://github.com/J535D165/CoronaWatchNL/blob/master/data, https://www.stichting-nice.nl/covid-19/public/intake-cumulative",
+    "dataProvenance": "CoronaWatchNL, Stichting NICE",
+    "license": "CC0 (CoronaWatchNL), none specified (Stichting NICE)"
   },
   "ecdc": {
     "primarySource": "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-<DATE>-xlsx",

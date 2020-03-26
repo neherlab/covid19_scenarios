@@ -4,7 +4,7 @@
 
 <blockquote>
   <p align="center">
-    Data preprocessing scripts and preprocessed data storage for 
+    Data preprocessing scripts and preprocessed data storage for
     <a href="https://github.com/neherlab/covid19_scenarios">COVID-19 Scenarios</a> project
   </p>
 </blockquote>
@@ -102,7 +102,7 @@ Discover
 
 <td>
 <a alt="Link to the app" href="https://neherlab.org/covid19/">
-<img 
+<img
   alt="Image with app logo and text 'Try'"
   src="https://user-images.githubusercontent.com/9403403/77235707-6ae88800-6bb8-11ea-90ff-22db107b6045.png"
 />
@@ -111,16 +111,16 @@ Discover
 
 <td>
 <a alt="Link to the main repo" href="https://github.com/neherlab/covid19_scenarios">
-<img 
+<img
   alt="Image with GutHub logo and text 'Get Involved'"
-  src="https://user-images.githubusercontent.com/9403403/77235706-6a4ff180-6bb8-11ea-8390-99b100d8035c.png" 
+  src="https://user-images.githubusercontent.com/9403403/77235706-6a4ff180-6bb8-11ea-8390-99b100d8035c.png"
 />
 </a>
 </td>
 
 <td>
 <a alt="Link to the data repo" href="https://github.com/neherlab/covid19_scenarios_data">
-<img 
+<img
   alt="Image with GutHub logo and text 'Add Data'"
   src="https://user-images.githubusercontent.com/9403403/77235705-69b75b00-6bb8-11ea-8b21-f4aaf0ec60e7.png"
 />
@@ -146,6 +146,31 @@ Discover
 </p>
 
 
+## Overview
+This repository serves as the source of observational data for [covid19_scenarios](https://neherlab.org/covid19/).
+It ingests data from a variety of sources listed in [sources.json](sources.json).
+For each source there is a parser written in python in the directory `parsers`.
+The data is stored as `tsv` files (tab separated values) for each location or country.
+These tabular files are mainly meant to enable data curation and storage, while the web application needs json files as input.
+
+The following commands assume that you have clones this repository as `covid19_scenarios_data` and run these commands from **outside** this repository.
+To run the parsers, call
+```shell
+python3 covid19_scenarios_data/parse_all.py --fetch
+```
+This will update the tables and generate new jsons in the `assets` folder.
+
+To only run specific parsers, run
+```shell
+python3 covid19_scenarios_data/parse_all.py --fetch --parsers netherlands switzerland
+```
+
+To copy the output jsons to a specific place (e.g. to deploy to an app), run
+```shell
+python3 covid19_scenarios_data/parse_all.py --fetch \
+        --output-cases path/case-counts.json  \
+        --output-population path/population.json
+```
 
 ## Contents
 
@@ -223,7 +248,7 @@ The steps to follow are:
   - ICUBeds: number of ICU beds
   - suspectedCasesMarch1st: The number of cases thought to be within the region on March 1st.
   - importsPerDay: number of suspected import cases per day
-  
+
  At least one of `suspectedCasesMarch1st` and `importsPerDay` needs to be non-zero. Otherwise there is no outbreak (good news in principle, but not useful for exploring scenarios).
 
 ## License
