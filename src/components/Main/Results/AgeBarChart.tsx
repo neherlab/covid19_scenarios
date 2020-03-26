@@ -23,13 +23,13 @@ export interface SimProps {
 }
 
 export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
-  const { t: unsafeT, i18n } = useTranslation()
+  const { t: unsafeT } = useTranslation()
 
   if (!data || !rates) {
     return null
   }
 
-  const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
+  const formatNumber = numberFormatter(!!showHumanized, !showHumanized)
 
   const t = (...args: Parameters<typeof unsafeT>) => {
     const translation = unsafeT(...args)

@@ -77,9 +77,9 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
 }
 
 export function DeterministicLinePlot({ data, userResult, logScale, showHumanized, caseCounts }: LinePlotProps) {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
-  const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
+  const formatNumber = numberFormatter(!!showHumanized, !showHumanized)
 
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
@@ -99,7 +99,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     newCases: caseCounts?.filter((d, i) => i > 2 && d.cases && caseCounts[i - 3].cases).length ?? 0,
     hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
-
 
   const observations =
     caseCounts?.map((d, i) => ({
@@ -163,7 +162,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const tMax = observations.length
     ? Math.max(plotData[plotData.length - 1].time, observations[observations.length - 1].time)
     : plotData[plotData.length - 1].time
-
 
   const scatterToPlot: LineProps[] = observations.length
     ? [

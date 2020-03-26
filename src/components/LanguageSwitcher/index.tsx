@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import i18next from 'i18next'
+import * as d3 from 'd3'
 
 import langs, { Lang as LangType } from '../../langs'
 
@@ -46,6 +47,7 @@ export default function LanguageSwitcher() {
               i18next.changeLanguage(langs[key].lang, () => {
                 localStorage.setItem('lang', langs[key].lang)
               })
+              d3.formatDefaultLocale(langs[key].d3Locale)
             }}
           >
             <Lang lang={langs[key]} />
