@@ -96,7 +96,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
                 <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
                 <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
-                <Bar dataKey="totalDead" fill={colors.death} name={t('total deaths')} />
+                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} />
               </BarChart>
               <BarChart
                 width={width}
