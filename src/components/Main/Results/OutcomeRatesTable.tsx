@@ -47,7 +47,7 @@ export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) 
   let mildFrac = 1 - severeFrac - criticalFrac - deathFrac
   */
 
-  const endResult = result.deterministicTrajectory[result.deterministicTrajectory.length - 1]
+  const endResult = result.deterministic.trajectory[result.deterministic.trajectory.length - 1]
 
   const totalDeath = endResult.dead.total
   const totalSevere = endResult.discharged.total
@@ -57,12 +57,10 @@ export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) 
   const severeFrac = (1.0 * totalSevere) / totalCases
   const criticalFrac = (1.0 * totalCritical) / totalCases
   const deathFrac = (1.0 * totalDeath) / totalCases
-  const mildFrac = 1 - severeFrac - criticalFrac - deathFrac
+  const mildFrac = 1.0 - severeFrac
 
-  const peakSevere = Math.round(Math.max(...result.deterministicTrajectory.map((x) => x.hospitalized.total)))
-  const peakCritical = Math.round(
-    Math.max(...result.deterministicTrajectory.map((x) => x.critical.total + x.overflow.total)),
-  )
+  const peakSevere = Math.round(Math.max(...result.deterministic.trajectory.map(x => x.hospitalized.total)))
+  const peakCritical = Math.round(Math.max(...result.deterministic.trajectory.map((x) => x.critical.total + x.overflow.total))) // prettier-ignore
 
   const totalFormatter = (value: number) => formatNumber(value)
 

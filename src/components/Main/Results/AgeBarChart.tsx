@@ -42,13 +42,13 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
   }
 
   const ages = Object.keys(data.params.ageDistribution)
-  const lastDataPoint = data.deterministicTrajectory[data.deterministicTrajectory.length - 1]
+  const lastDataPoint = data.deterministic.trajectory[data.deterministic.trajectory.length - 1]
   const plotData = ages.map((age) => ({
     name: age,
     fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
-    peakSevere: Math.round(Math.max(...data.deterministicTrajectory.map((x) => x.hospitalized[age]))),
-    peakCritical: Math.round(Math.max(...data.deterministicTrajectory.map((x) => x.critical[age]))),
-    peakOverflow: Math.round(Math.max(...data.deterministicTrajectory.map((x) => x.overflow[age]))),
+    peakSevere: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.hospitalized[age]))),
+    peakCritical: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.critical[age]))),
+    peakOverflow: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.overflow[age]))),
     totalDead: Math.round(lastDataPoint.dead[age]),
   }))
 
@@ -68,6 +68,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
           if (!width) {
             return <div className="w-100 h-100" />
           }
+
           const height = Math.max(250, width / ASPECT_RATIO)
 
           return (
