@@ -423,37 +423,38 @@ export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
   trajectory.forEach(d => {
     const tp: ExportedTimePoint = {
       time: d['time'],
-      susceptible: {},
-      exposed: {},
-      dead: {},
-      overflow: {},
-      critical: {},
-      recovered: {},
-      hospitalized: {},
-      infectious: {},
-      discharged: {},
-      intensive: {},
+      current: {
+        susceptible: {},
+        severe: {},
+        exposed: {},
+        overflow: {},
+        critical: {},
+        infectious: {},
+      },
+      cumulative: {
+        recovered: {},
+        hospitalized: {},
+        critical: {},
+        fatality: {},
+      },
     }
-    keys(d).forEach(k => {
+    keys(d.current).forEach(k => {
       switch (k) {
-        case 'time':
-          return
-
         case 'exposed':
-          tp[k].total = 0
-          Object.values(d[k]).forEach(x => {
+          tp.current.exposed.total = 0
+          Object.values(d.current[k]).forEach(x => {
             x.forEach(y => {
-              tp[k].total += y
+              tp.current[k].total += y
             })
           })
-          Object.keys(d[k]).forEach(a => {
-            tp[k][a] = d[k][a].reduce((a, b) => a + b, 0)
+          Object.keys(d.current[k]).forEach(a => {
+            tp.current[k][a] = d.current[k][a].reduce((a, b) => a + b, 0)
           })
           break
 
         default:
-          tp[k] = Object.assign({}, d[k])
-          tp[k].total = Object.values(d[k]).reduce((a, b) => a + b)
+          tp.current[k] = Object.assign({}, d.current[k])
+          tp.current[k].total = Object.values(d.current[k]).reduce((a, b) => a + b)
       }
     })
 
@@ -469,8 +470,8 @@ export function exportSimulation(result: UserResult) {
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const header = keys(result.trajectory[0])
-  const csv = [header.join('\t')]
+  const header = keys(result.trajectory[0].current)
+  const tsv = [header.join('\t')]
 
   const pop: Record<string, boolean> = {}
   result.trajectory.forEach(d => {
@@ -479,16 +480,12 @@ export function exportSimulation(result: UserResult) {
       return
     } // skip if date is already in table
     pop[t] = true
-    let buf = ''
+    let buf = '${d.time}'
     header.forEach(k => {
-      if (k === 'time') {
-        buf += `${t}`
-      } else {
-        buf += `\t${Math.round(d[k].total)}`
-      }
+      buf += `\t${Math.round(d.current[k].total)}`
     })
-    csv.push(buf)
+    tsv.push(buf)
   })
 
-  return csv.join('\n')
+  return tsv.join('\n')
 }
