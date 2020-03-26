@@ -132,7 +132,7 @@ describe('model', () => {
       }, input)
 
       // evolveOutput5 is the output after the 5th iteration with default parameters
-      expect(result).toEqual(evolveOutput5)
+      expect(result).toMatchSnapshot()
     })
   })
 })
