@@ -1,6 +1,5 @@
-export function numberFormatter(language: string | undefined, humanize: boolean, round: boolean) {
-  return new Intl.NumberFormat(language, {
-    ...(humanize ? { notation: 'compact', compactDisplay: 'short' } : {}),
-    ...(round ? { maximumFractionDigits: 0 } : {}),
-  }).format
+import { numeral } from '../i18n'
+
+export function numberFormatter(humanize: boolean, round: boolean) {
+  return (value: number) => numeral(value).format(`0${!round ? '.[000]' : ''}${humanize ? 'a' : ''}`)
 }
