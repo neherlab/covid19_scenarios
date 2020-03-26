@@ -26,6 +26,8 @@ import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 
+import './ResultsCard.scss'
+
 interface ResultsCardProps {
   autorunSimulation: boolean
   toggleAutorun: () => void
@@ -35,7 +37,14 @@ interface ResultsCardProps {
   caseCounts?: EmpiricalData
 }
 
-function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severity, result, caseCounts }: ResultsCardProps) {
+function ResultsCardFunction({
+  canRun,
+  autorunSimulation,
+  toggleAutorun,
+  severity,
+  result,
+  caseCounts,
+}: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(true)
   const [showHumanized, setShowHumanized] = useState(true)
@@ -63,49 +72,37 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
     setUserResult(newUserResult)
   }
 
-  const [hasResult, setHasResult] = useState<boolean>(false)
   const [canExport, setCanExport] = useState<boolean>(false)
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
-  useEffect( () => {
-    if (result && result.deterministic) {
-      setHasResult(true);
-      setCanExport(true);
-
-      const scrollTarget = scrollTargetRef.current
-      if (scrollTarget) {
-        scrollTarget.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest'
-        })
-      }
-    } else {
-      setHasResult(false);
-      setCanExport(false);
-    }
-  }, [result, scrollTargetRef.current])
+  useEffect(() => {
+    setCanExport((result && !!result.deterministic) || false)
+  }, [result])
 
   return (
     <>
-    <span ref={scrollTargetRef}></span>
-    <CollapsibleCard
-      identifier="results-card"
-      title={<h3 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">{t('Results')}</h3>}
-      help={t('This section contains simulation results')}
-      defaultCollapsed={false}
-    >
-      <Row noGutters>
-        <Col>
-          <p>
-            {t(
-              'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution',
-            )}
-          </p>
-        </Col>
-      </Row>
-      <Row noGutters className="mb-4 pl-4">
-        <label className="form-check-label">
+      <span ref={scrollTargetRef}/>
+      <CollapsibleCard
+        identifier="results-card"
+        title={
+          <h3 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">
+            {t('Results')}
+          </h3>
+        }
+        help={t('This section contains simulation results')}
+        defaultCollapsed={false}
+      >
+        <Row noGutters>
+          <Col>
+            <p>
+              {t(
+                'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution',
+              )}
+            </p>
+          </Col>
+        </Row>
+        <Row noGutters className="mb-4 pl-4">
+          <label className="form-check-label">
             <input
               type="checkbox"
               className="form-check-input"
@@ -115,81 +112,97 @@ function ResultsCardFunction({ canRun, autorunSimulation, toggleAutorun, severit
             />
             Autorun Simulation on scenario parameter change
           </label>
-      </Row>
-      <Row noGutters className="mb-4">
-        <Col>
-          <div>
-            <span>
-              <Button
-                className="run-button"
-                type="submit"
-                color="primary"
-                disabled={!canRun || autorunSimulation}
-                data-testid="RunResults"
-              >
-                {t('Run')}
-              </Button>
-            </span>
-            <span>
-              <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
-            </span>
-            <span>
-              <Button
-                className="export-button"
-                type="button"
-                color="secondary"
-                disabled={!canExport}
-                onClick={() => canExport && result && exportResult(result)}
-              >
-                {t('Export')}
-              </Button>
-            </span>
-          </div>
-        </Col>
-      </Row>
+        </Row>
+        <Row noGutters className="mb-4">
+          <Col>
+            <div>
+              <span>
+                <Button
+                  className="run-button"
+                  type="submit"
+                  color="primary"
+                  disabled={!canRun || autorunSimulation}
+                  data-testid="RunResults"
+                >
+                  {t('Run')}
+                </Button>
+              </span>
+              <span>
+                <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
+              </span>
+              <span>
+                <Button
+                  className="export-button"
+                  type="button"
+                  color="secondary"
+                  disabled={!canExport}
+                  onClick={() => canExport && result && exportResult(result)}
+                >
+                  {t('Export')}
+                </Button>
+              </span>
+            </div>
+          </Col>
+        </Row>
 
-      <Row noGutters hidden={!result}>
-        <Col data-testid="LogScaleSwitch">
-          <FormSwitch
-            identifier="logScale"
-            label={t('Log scale')}
-            help={t('Toggle between logarithmic and linear scale on vertical axis of the plot')}
-            checked={logScale}
-            onValueChanged={setLogScale}
-          />
-        </Col>
-        <Col data-testid="HumanizedValuesSwitch">
-          <FormSwitch
-            identifier="showHumanized"
-            label={t('Show humanized results')}
-            help={t('Show numerical results in a human friendly format')}
-            checked={showHumanized}
-            onValueChanged={setShowHumanized}
-          />
-        </Col>
-      </Row>
-      <Row noGutters>
-        <Col>
-          <DeterministicLinePlot
-            data={result}
-            userResult={userResult}
-            logScale={logScale}
-            showHumanized={showHumanized}
-            caseCounts={caseCounts}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
-        </Col>
-      </Row>
-    </CollapsibleCard>
+        <Row noGutters hidden={!result}>
+          <Col data-testid="LogScaleSwitch">
+            <FormSwitch
+              identifier="logScale"
+              label={t('Log scale')}
+              help={t('Toggle between logarithmic and linear scale on vertical axis of the plot')}
+              checked={logScale}
+              onValueChanged={setLogScale}
+            />
+          </Col>
+          <Col data-testid="HumanizedValuesSwitch">
+            <FormSwitch
+              identifier="showHumanized"
+              label={t('Show humanized results')}
+              help={t('Show numerical results in a human friendly format')}
+              checked={showHumanized}
+              onValueChanged={setShowHumanized}
+            />
+          </Col>
+        </Row>
+        <Row noGutters>
+          <Col>
+            <DeterministicLinePlot
+              data={result}
+              userResult={userResult}
+              logScale={logScale}
+              showHumanized={showHumanized}
+              caseCounts={caseCounts}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
+          </Col>
+        </Row>
+      </CollapsibleCard>
+      {result ? (
+        <Button
+          className="goToResultsBtn"
+          color="primary"
+          onClick={() =>
+            scrollTargetRef.current &&
+            scrollTargetRef.current.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest',
+            })
+          }
+        >
+          {t('Go to results')}
+        </Button>
+      ) : undefined}
     </>
   )
 }
