@@ -3,10 +3,10 @@ import React from 'react'
 import { FormikErrors, FormikTouched } from 'formik'
 import { AnyAction } from 'typescript-fsa'
 
+import { useTranslation } from 'react-i18next'
+
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 import countryCaseCounts from '../../../assets/data/case_counts.json'
-
-import { useTranslation } from 'react-i18next'
 
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
@@ -81,7 +81,9 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       <FormSpinBox
         identifier="population.hospitalBeds"
         label={`${t('Hospital Beds')} (${t('est.')})`}
-        help={t('Number of hospital beds available in health care system. Presets are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.')}
+        help={t(
+          'Number of hospital beds available in health care system. Presets are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
+        )}
         step={1}
         errors={errors}
         touched={touched}
@@ -89,7 +91,9 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       <FormSpinBox
         identifier="population.ICUBeds"
         label={`${t('ICU/ICMU')} (${t('est.')})`}
-        help={t('Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.')}
+        help={t(
+          'Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
+        )}
         step={1}
         errors={errors}
         touched={touched}
@@ -105,7 +109,9 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       <FormDatePicker
         identifier="simulation.simulationTimeRange"
         label={t('Simulation time range')}
-        help={t('Start and end date of the simulation. Changing the time range might affect the result due to resampling of the mitigation curve.')}
+        help={t(
+          'Start and end date of the simulation. Changing the time range might affect the result due to resampling of the mitigation curve.',
+        )}
       />
     </CardWithDropdown>
   )

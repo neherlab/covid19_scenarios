@@ -16,6 +16,13 @@ describe('TimeSeries', () => {
   const tMin = new Date('1970-10-01T00:00:00.000Z')
   const tMax = new Date('1971-02-01T00:00:00.000Z')
 
+  // These are the expected values from uniformDatesBetween(tMin,tMax)
+  const tBetween = [
+    new Date('1970-10-31T18:00:00.000Z'),
+    new Date('1970-12-01T12:00:00.000Z'),
+    new Date('1971-01-01T06:00:00.000Z'),
+  ]
+
   describe('uniformDatesBetween()', () => {
     it('returns an array of "n" uniformly spaced dates between "min" and "max", inclusive.', () => {
       const n = 5
@@ -24,13 +31,7 @@ describe('TimeSeries', () => {
 
       expect(result).toBeArray()
 
-      expect(result).toStrictEqual([
-        tMin,
-        new Date('1970-10-31T18:00:00.000Z'),
-        new Date('1970-12-01T12:00:00.000Z'),
-        new Date('1971-01-01T06:00:00.000Z'),
-        tMax,
-      ])
+      expect(result).toStrictEqual([tMin, ...tBetween, tMax])
     })
   })
 
@@ -44,23 +45,17 @@ describe('TimeSeries', () => {
 
       expect(result).toStrictEqual([
         { t: tMin, y: 1 },
-        { t: new Date('1970-10-31T18:00:00.000Z'), y: 2 },
-        { t: new Date('1970-12-01T12:00:00.000Z'), y: 3 },
-        { t: new Date('1971-01-01T06:00:00.000Z'), y: 4 },
+        { t: tBetween[0], y: 2 },
+        { t: tBetween[1], y: 3 },
+        { t: tBetween[2], y: 4 },
         { t: tMax, y: 5 },
       ])
     })
   })
 
   describe('interpolateTimeSeries()', () => {
-    it('if created using an empty vector, the interpolation function must always yield 1.0', () => {
-      const result = interpolateTimeSeries([])
-
-      expect(result).toBeFunction()
-
-      expect(result(tMin)).toBeCloseTo(1.0)
-
-      expect(result(tMax)).toBeCloseTo(1.0)
+    it('if created using an empty vector, the interpolation function must throw', () => {
+      expect(() => interpolateTimeSeries([])).toThrow()
     })
 
     it('if given a time less than tMin, the interpolation function returns the earliest timeseries "y" value.', () => {
@@ -107,25 +102,7 @@ describe('TimeSeries', () => {
         return interpolator(date)
       })
 
-      /* Compare the interpolated values to the expected values. */
-      const expected = [
-        1,
-        2.4634146341463414,
-        3.930894308943089,
-        5.39430894308943,
-        6.857723577235772,
-        7.6605691056910565,
-        8.392276422764228,
-        9.1239837398374,
-        9.855691056910569,
-        10,
-      ]
-
-      expect(result).toHaveLength(intervalCount)
-
-      expected.forEach((value, index) => {
-        expect(value).toBeCloseTo(result[index])
-      })
+      expect(result).toBeArrayOfSize(intervalCount).toMatchSnapshot()
     })
   })
 
@@ -138,18 +115,7 @@ describe('TimeSeries', () => {
 
       /* Update the time series using the new 'n' value with same TimeRange. */
       const result = updateTimeSeries(simulationTimeRange, timeSeries, n)
-
-      expect(result).toHaveLength(n)
-
-      const expected = [
-        { t: tMin, y: yVector[0] },
-        { t: new Date('1970-10-31T18:00:00.000Z'), y: 5 },
-        { t: new Date('1970-12-01T12:00:00.000Z'), y: 7 },
-        { t: new Date('1971-01-01T06:00:00.000Z'), y: 9 },
-        { t: tMax, y: yVector[2] },
-      ]
-
-      compareTimeSeries(expected, result)
+      expect(result).toBeArrayOfSize(n).toMatchSnapshot()
     })
 
     it('interpolates an existing TimeSeries with a new TimeRange.', () => {
@@ -169,15 +135,7 @@ describe('TimeSeries', () => {
       /* Update the time series using the new TimeRange with same 'n' value */
       const result = updateTimeSeries(newSimulationTimeRange, timeSeries, yVector.length)
 
-      expect(result).toHaveLength(yVector.length)
-
-      const expected = [
-        { t: new Date('1970-10-06T00:00:00.000Z'), y: 3.3252032520325203 },
-        { t: new Date('1970-12-01T12:00:00.000Z'), y: 7 },
-        { t: new Date('1971-01-27T00:00:00.000Z'), y: 10.67479674796748 },
-      ]
-
-      compareTimeSeries(expected, result)
+      expect(result).toBeArrayOfSize(yVector.length).toMatchSnapshot()
     })
   })
 })

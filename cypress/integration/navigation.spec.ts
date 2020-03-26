@@ -6,7 +6,8 @@ context('The navigation bar', () => {
   const navLinks = Object.entries(links)
 
   beforeEach(() => {
-    cy.visit(Cypress.env('BASE_URL'));
+    cy.visit(Cypress.env('BASE_URL'))
+    cy.closeDisclaimer()
   })
 
   it(`should have ${navLinks.length} links`, () => {
@@ -15,12 +16,13 @@ context('The navigation bar', () => {
       .should('have.length', navLinks.length)
   })
 
-  navLinks.forEach(([url, text]) => {
-    describe(`Clicking on "${text}" link`, () => {
+  navLinks.forEach(([url, _]: [string, any]) => {
+    describe(`Clicking on "${url}" link`, () => {
       it(`should open the ${url} page correctly`, () => {
         cy.findByTestId('NavigationBar')
-          .findByText(text)
+          .get(`[href="${url}"]`).first()
           .click()
+
         cy.location('pathname')
           .should('include', url)
       })

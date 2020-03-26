@@ -20,8 +20,17 @@ const webpack = require('@cypress/webpack-preprocessor')
 module.exports = (on, config) => {
   const options = {
     webpackOptions: {
+      module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            use: 'babel-loader',
+            exclude: /node_modules/
+          }
+        ]
+      },
       resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.tsx', '.js']
       }
     },
     watchOptions: {}

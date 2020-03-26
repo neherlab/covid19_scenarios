@@ -1,4 +1,5 @@
 {
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "build": {
     "env": {
       "WEB_APP_NAME_FRIENDLY": "COVID-19 Scenarios",

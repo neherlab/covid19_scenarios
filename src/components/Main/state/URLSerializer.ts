@@ -30,7 +30,7 @@ export async function serializeScenarioToURL(scenarioState: State, params: AllPa
   window.history.pushState('', '', `?${encodeURIComponent(JSON.stringify(toSave))}`)
 }
 
-export function deserializeScenarioFromURL(initState: State) {
+export function deserializeScenarioFromURL(initState: State): State {
   if (window.location.search) {
     try {
       /*
@@ -48,6 +48,7 @@ export function deserializeScenarioFromURL(initState: State) {
         y: c.y,
         t: new Date(c.t),
       }))
+
       return {
         ...initState,
         overall: { ...initState.overall, current: obj.current.overall },
@@ -60,7 +61,10 @@ export function deserializeScenarioFromURL(initState: State) {
         containment: {
           ...initState.containment,
           current: obj.current.containment,
-          data: { reduction: containmentDataReduction },
+          data: {
+            reduction: containmentDataReduction,
+            numberPoints: initState.containment.data.numberPoints,
+          },
         },
         simulation: { ...initState.simulation, data: obj.simulation },
       }
