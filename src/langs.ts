@@ -1,4 +1,4 @@
-type Lang = {
+export type Lang = {
   lang: string
   name: string
 }
