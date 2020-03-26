@@ -42,7 +42,7 @@ if __name__ == "__main__":
     # copy jsons to app if requested
     if args.deploy:
         shutil.copy(os.path.join(BASE_PATH, JSON_DIR, TMP_CASES),
-                     os.path.join(APP_PATH, 'case-counts.json'))
+                     os.path.join(APP_PATH, 'case_counts.json'))
 
         shutil.copy(os.path.join(BASE_PATH, JSON_DIR, TMP_POPULATION),
-                     os.path.join(APP_PATH, 'populations.json'))
+                     os.path.join(APP_PATH, 'population.json'))
