@@ -21,13 +21,13 @@ export interface TableProps {
 const percentageFormatter = (v: number) => d3.format('.2f')(v * 100)
 
 export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   if (!result || !rates) {
     return null
   }
 
-  const formatNumber = numberFormatter(i18n.language, !!showHumanized, true)
+  const formatNumber = numberFormatter(!!showHumanized, false)
 
   /*
   // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
