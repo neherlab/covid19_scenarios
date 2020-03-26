@@ -1,12 +1,37 @@
 {
+  "brazil": {
+    "primarySource": "https://brasil.io/api/dataset/covid19/caso/data",
+    "dataProvenance": "https://brasil.io/dataset/covid19/caso",
+    "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+  },
+  "france": {
+    "primarySource": "https://github.com/opencovid19-fr/data/raw/master/dist/chiffres-cles.csv",
+    "dataProvenance": "Données nationales concernant l'épidémie de COVID19",
+    "license": "Etalab Open License 2.0"
+  },
+  "germany": {
+    "primarySource": "https://raw.githubusercontent.com/chriswien/COVID19_CaseNumberDE/master/COVID19_Cases_Bundeslaender_DE.csv",
+    "dataProvenance": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
+    "license": "none specified"
+  },
   "italy": {
     "primarySource": "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json",
     "dataProvenance": "Dipartimento della Protezione Civile",
     "license": "CC-BY-4.0"
   },
+  "spain": {
+    "primarySource": "https://github.com/datadista/datasets/tree/master/COVID%2019",
+    "dataProvenance": "http://www.datadista.com",
+    "license": "unclear"
+  },
   "switzerland": {
     "primarySource": "https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv",
     "dataProvenance": "OpenZH",
+    "license": "none specified"
+  },
+  "canada": {
+    "primarySource": "https://github.com/ishaberry/Covid19Canada",
+    "dataProvenance": "Offical government data",
     "license": "none specified"
   },
   "unitedstates": {
@@ -14,9 +39,29 @@
     "dataProvenance": "The COVID Tracking Project",
     "license": "Apache License 2.0"
   },
-  "world": {
-    "primarySource": "https://covid.ourworldindata.org/data/full_data.csv",
-    "dataProvenance": "WHO via OurWorldInData",
-    "license": "CC-BY-4.0"
+  "netherlands": {
+    "primarySource": "https://github.com/J535D165/CoronaWatchNL/blob/master/data, https://www.stichting-nice.nl/covid-19/public/intake-cumulative",
+    "dataProvenance": "CoronaWatchNL, Stichting NICE",
+    "license": "CC0 (CoronaWatchNL), none specified (Stichting NICE)"
+  },
+  "ecdc": {
+    "primarySource": "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-<DATE>-xlsx",
+    "dataProvenance": "European Centre for Disease Prevention and Control",
+    "license": "The downloadable data file is updated daily and contains the latest available public data on COVID-19. Public-use data files allows users to manipulate the data in a format appropriate for their analyses. Users of ECDC public-use data files must comply with data use restrictions to ensure that the information will be used solely for statistical analysis or reporting purposes."
+  },
+  "cds": {
+    "primarySource": "https://coronadatascraper.com/timeseries-byLocation.json",
+    "dataProvenance": "Coronadatascraper.com",
+    "license": "Scraped from many sources, no clear license"
+  },
+  "india": {
+    "primarySource": "https://api.rootnet.in/covid19-in/stats/daily",
+    "dataProvenance": "https://github.com/amodm/api-covid19-in",
+    "license": "Scraped from Ministry of Health and Family Welfare plus other sources, no clear license"
+  },
+  "tsv": {
+    "primarySource": "Manually maintained .tsv files in case-counts/ folder",
+    "dataProvenance": "Manually maintained by contributors",
+    "license": "no clear license, multiple sources"
   }
 }
