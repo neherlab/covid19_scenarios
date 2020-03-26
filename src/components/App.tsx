@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { useSelector } from 'react-redux'
 import { withErrorBoundary } from 'react-error-boundary'
 import { Switch, Route, Redirect } from 'react-router'
 import ErrorPage from '../pages/ErrorPage'
@@ -8,9 +9,10 @@ import Layout from './Layout/Layout'
 import LandingPage from './LandingPage/LandingPage'
 
 import '../styles/global.scss'
+import { State } from '../state/reducer'
 
 function App() {
-  const skipLandingPage = localStorage.getItem('skip-landing-page')
+  const skipLandingPage = useSelector(({ ui }: State) => ui.skipLandingPage)
   return (
     <Switch>
       {!skipLandingPage && <Redirect exact from="/" to="/start" />}
