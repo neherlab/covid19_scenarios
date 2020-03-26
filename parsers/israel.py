@@ -31,13 +31,13 @@ def parse():
         print(f"Failed to fetch {URL}", file=sys.stderr)
         exit(1)
         r.close()
-    il_data = dict(ISR=[])
+    il_data = dict(Israel=[])
     fd  = io.StringIO(r.text)
     rdr = csv.reader(fd)
     hdr = next(rdr)
     for row in rdr:
         date_str = datetime.strptime(row[0], r"%d/%m/%Y").strftime(r"%Y-%m-%d")
         num_cases = to_int(row[1])
-        il_data["ISR"].append([date_str, num_cases])
+        il_data["Israel"].append([date_str, num_cases])
 
     store_data(il_data, {'default': LOC}, 'israel', 'ISR', cols=cols[:2])
