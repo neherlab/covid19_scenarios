@@ -76,7 +76,7 @@ def getRegions():
 
 if __name__ == '__main__':
 
-    pops = loadPopTable("populationData.tsv")
+    pops = loadPopTable("data/populationData.tsv")
     popSizes = {d['name']:d['data']['populationServed'] for d in pops}
 
     regions = getRegions()
@@ -84,5 +84,5 @@ if __name__ == '__main__':
     for d in pops:
         d['data']['cases'] = d['name'] if d['name'] in regions else 'none'
 
-    with open('../src/assets/data/population.json', 'w') as fh:
+    with open('src/assets/data/population.json', 'w') as fh:
         json.dump(pops, fh)

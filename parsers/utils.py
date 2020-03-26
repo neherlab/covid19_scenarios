@@ -11,7 +11,7 @@ from collections import defaultdict
 # ------------------------------------------------------------------------
 # Globals
 
-with open("sources.json") as fh:
+with open("data/sources.json") as fh:
     sources = json.load(fh)
 
 default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
@@ -194,7 +194,7 @@ def add_country_code(regions, exceptions, code):
 
 
 def store_json(newdata):
-    json_file = 'case-counts/case_counts.json'
+    json_file = 'data/tmp_case_counts.json'
     if os.path.isfile(json_file):
         with open(json_file, 'r') as fh:
             oldcases = json.load(fh)

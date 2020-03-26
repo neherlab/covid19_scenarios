@@ -6,7 +6,7 @@ SOURCES = "./sources.json"
 
 if __name__ == "__main__":
     # initialize empty json
-    with open('case-counts/case_counts.json', 'w') as fh:
+    with open('data/tmp_case_counts.json', 'w') as fh:
         fh.write("{}")
 
     srcs = list(json.load(open(SOURCES)).keys())
@@ -16,3 +16,5 @@ if __name__ == "__main__":
             print(f"Running {src}", file=sys.stderr)
             country = importlib.import_module(f"parsers.{src}")
             country.parse()
+
+
