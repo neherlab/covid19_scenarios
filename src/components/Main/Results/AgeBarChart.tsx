@@ -35,6 +35,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
   const casesChartRef = React.useRef(null)
   const percentageChartRef = React.useRef(null)
 
+  const { t: unsafeT } = useTranslation()
   const t = (...args: Parameters<typeof unsafeT>) => {
     const translation = unsafeT(...args)
     if (typeof translation === 'string' || typeof translation === 'undefined') {
@@ -55,15 +56,6 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     peakOverflow: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.overflow[age]))),
     totalDead: Math.round(lastDataPoint.dead[age]),
   }))
-
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ) => <span>{formatNumber(Number(value))}</span>
-
-  const tickFormatter = (value: number) => formatNumber(value)
 
   return (
     <div className="w-100 h-100" data-testid="AgeBarChart">

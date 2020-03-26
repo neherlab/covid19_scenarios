@@ -153,7 +153,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     entry: TooltipPayload,
     index: number,
   ): React.ReactNode => <span>{formatNumber(Number(value))}</span>
-  
+
   function labelFormatter(value: string | number): React.ReactNode {
     return xTickFormatter(value)
   }
