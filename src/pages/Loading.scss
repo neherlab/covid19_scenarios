@@ -1,5 +1,9 @@
-.h1-loading {
-  padding: 2rem;
-  color: #fff;
-  background-color: #aaa;
+.loading-page {
+  margin-top: 1rem;
+}
+
+.loading-page > div.spinner-border {
+  width: 6rem;
+  height: 6rem;
+  animation-duration: 1.5s;
 }

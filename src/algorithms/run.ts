@@ -121,14 +121,14 @@ export default async function run(
   }
 
   const sim: AlgorithmResult = {
-    deterministicTrajectory: simulate(initialState, identity),
-    stochasticTrajectories: [],
+    deterministic: simulate(initialState, identity),
+    stochastic: [],
     params: modelParams,
   }
 
   for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
     initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
-    sim.stochasticTrajectories.push(simulate(initialState, poisson))
+    sim.stochastic.push(simulate(initialState, poisson))
   }
 
   return sim

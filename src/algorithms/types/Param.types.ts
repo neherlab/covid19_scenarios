@@ -6,13 +6,13 @@ export interface PopulationData {
   suspectedCasesToday: number
   importsPerDay: number
   hospitalBeds: number
-  ICUBeds: number,
+  ICUBeds: number
   cases: string
 }
 
 export interface EpidemiologicalData {
   r0: number // Average number of people who will catch a disease from one contagious person. Usually specified as a decimal, e. g. 2.7
-  incubationTime: number
+  latencyTime: number
   infectiousPeriod: number
   lengthHospitalStay: number
   lengthICUStay: number
@@ -46,12 +46,11 @@ export interface AllParams {
 export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData
 
 interface EmpiricalDatum {
-    time: Date
-    cases: number
-    deaths: number
-    hospitalized: number
-    ICU: number
+  time: Date
+  cases: number
+  deaths: number
+  hospitalized: number
+  ICU: number
 }
 
 export type EmpiricalData = EmpiricalDatum[]
-

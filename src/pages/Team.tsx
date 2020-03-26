@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Row } from 'reactstrap'
+import { Container, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
 import './About.scss'
@@ -10,11 +10,10 @@ const Team: React.FC = () => {
   const { t } = useTranslation()
 
   return (
-    <>
-      <h1 className="h1-about">{t('The people behind COVID-19 Scenarios')}</h1>
+    <Container>
       <Row>
-        <Col lg={2} />
-        <Col lg={8}>
+        <Col>
+          <h1 className="h1-about">{t('The people behind COVID-19 Scenarios')}</h1>
           <p>
             {t('This tool was developed at the University of Basel in the')}
             <LinkExternal url="https://neherlab.org">&nbsp;{t('Research group')}&nbsp;</LinkExternal>
@@ -26,11 +25,14 @@ const Team: React.FC = () => {
             <li>Richard Neher</li>
           </ul>
           <LinkExternal url="https://ki.se/en/mtc/jan-albert-group">Jan Albert</LinkExternal>
-          &nbsp; {t('at the Karolinska hospital in Stockholm had the initial idea to develop this tool and suggested features and parameters.')} Jan {t('and')} Robert Dyrdak {t('provided parameter estimates.')}
+          &nbsp;{' '}
+          {t(
+            'at the Karolinska hospital in Stockholm had the initial idea to develop this tool and suggested features and parameters.',
+          )}{' '}
+          Jan {t('and')} Robert Dyrdak {t('provided parameter estimates.')}
         </Col>
-        <Col lg={2} />
       </Row>
-    </>
+    </Container>
   )
 }
 

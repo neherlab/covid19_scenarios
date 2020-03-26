@@ -25,3 +25,13 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 import '@testing-library/cypress/add-commands';
+
+Cypress.Commands.add('closeDisclaimer', () => {
+  cy.findByText('COVID-19 Scenario Disclaimer')
+    .should('exist')
+    .next()
+    .click()
+
+  cy.findByText('COVID-19 Scenario Disclaimer')
+    .should('not.exist')
+});
