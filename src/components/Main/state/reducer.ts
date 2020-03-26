@@ -4,18 +4,9 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
 import immerCase from '../../../state/util/fsaImmerReducer'
 
-import {
-  setContainmentData,
-  setContainmentScenario,
-  setEpidemiologicalData,
-  setEpidemiologicalScenario,
-  setOverallScenario,
-  setPopulationData,
-  setPopulationScenario,
-  setSimulationData,
-} from './actions'
+import { setData, setScenario } from './actions'
 
-import { getContainmentScenarioData, getEpidemiologicalData, getOverallScenario, getPopulationData } from './data'
+import { getScenarioData } from './data'
 
 import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './state'
 
@@ -42,111 +33,20 @@ function maybeAdd<T>(where: T[], what: T): T[] {
  * blocks (per action type) and to enforce typing.
  *
  */
-export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
-  .withHandling(
-    immerCase(setOverallScenario, (draft, { scenarioName }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.overall.current = scenarioName
-      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
-        const { containmentScenario, epidemiologicalScenario, populationScenario } = getOverallScenario(scenarioName)
-
-        draft.population.current = populationScenario
-        draft.population.data = getPopulationData(populationScenario)
-
-        draft.epidemiological.current = epidemiologicalScenario
-        draft.epidemiological.data = getEpidemiologicalData(epidemiologicalScenario)
-
-        draft.containment.current = containmentScenario
-        const data = getContainmentScenarioData(containmentScenario)
-        draft.containment.data = {
-          reduction: updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, data.numberPoints),
-          numberPoints: data.numberPoints,
-        }
-      }
-    }),
-  )
-
-  .withHandling(
-    immerCase(setPopulationScenario, (draft, { scenarioName }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.overall.current = CUSTOM_SCENARIO_NAME
-      draft.population.current = scenarioName
-      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
-        draft.population.data = getPopulationData(scenarioName)
-      }
-    }),
-  )
-
-  .withHandling(
-    immerCase(setEpidemiologicalScenario, (draft, { scenarioName }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.overall.current = CUSTOM_SCENARIO_NAME
-      draft.epidemiological.current = scenarioName
-      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
-        draft.epidemiological.data = getEpidemiologicalData(scenarioName)
-      }
-    }),
-  )
-
-  .withHandling(
-    immerCase(setContainmentScenario, (draft, { scenarioName }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.overall.current = CUSTOM_SCENARIO_NAME
-      draft.containment.current = scenarioName
-      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
-        const data = getContainmentScenarioData(scenarioName)
-        draft.containment.data = {
-          reduction: updateTimeSeries(draft.simulation.data.simulationTimeRange, data.reduction, 10),
-          numberPoints: data.numberPoints,
-        }
-      }
-    }),
-  )
-
-  .withHandling(
-    immerCase(setPopulationData, (draft, { data }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.overall.current = CUSTOM_SCENARIO_NAME
-      draft.population.scenarios = maybeAdd(draft.population.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.population.current = CUSTOM_SCENARIO_NAME
-      draft.population.data = data
-    }),
-  )
-
-  .withHandling(
-    immerCase(setEpidemiologicalData, (draft, { data }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.overall.current = CUSTOM_SCENARIO_NAME
-      draft.epidemiological.scenarios = maybeAdd(draft.epidemiological.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.epidemiological.current = CUSTOM_SCENARIO_NAME
-      draft.epidemiological.data = data
-    }),
-  )
-
-  .withHandling(
-    immerCase(setContainmentData, (draft, { data }) => {
-      draft.overall.scenarios = maybeAdd(draft.overall.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.overall.current = CUSTOM_SCENARIO_NAME
-      draft.containment.scenarios = maybeAdd(draft.containment.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.containment.current = CUSTOM_SCENARIO_NAME
-      draft.containment.data = {
+export const scenarioReducer = reducerWithInitialState(defaultScenarioState).withHandling(
+  immerCase(setScenario, (draft, { scenarioName }) => {
+    draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+    draft.current = scenarioName
+    if (scenarioName !== CUSTOM_SCENARIO_NAME) {
+      draft.data = getScenarioData(scenarioName)
+      draft.data.containment = {
         reduction: updateTimeSeries(
-            draft.simulation.data.simulationTimeRange, 
-            data.reduction, 
-            data.numberPoints
+          draft.data.simulation.simulationTimeRange,
+          draft.data.containment.reduction,
+          draft.data.containment.numberPoints,
         ),
-        numberPoints: data.numberPoints,
+        numberPoints: draft.data.containment.numberPoints,
       }
-    }),
-  )
-
-  .withHandling(
-    immerCase(setSimulationData, (draft, { data }) => {
-      draft.simulation.data = data
-      draft.containment.data.reduction = updateTimeSeries(
-        data.simulationTimeRange,
-        draft.containment.data.reduction,
-        draft.containment.data.numberPoints,
-      )
-    }),
-  )
+    }
+  }),
+)
