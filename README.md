@@ -153,12 +153,24 @@ For each source there is a parser written in python in the directory `parsers`.
 The data is stored as `tsv` files (tab separated values) for each location or country.
 These tabular files are mainly meant to enable data curation and storage, while the web application needs json files as input.
 
+The following commands assume that you have clones this repository as `covid19_scenarios_data` and run these commands from **outside** this repository.
 To run the parsers, call
 ```shell
 python3 covid19_scenarios_data/parse_all.py --fetch
 ```
-from **outside** this repository.
 This will update the tables and generate new jsons in the `assets` folder.
+
+To only run specific parsers, run
+```shell
+python3 covid19_scenarios_data/parse_all.py --fetch --parsers netherlands switzerland
+```
+
+To copy the output jsons to a specific place (e.g. to deploy to an app), run
+```shell
+python3 covid19_scenarios_data/parse_all.py --fetch \
+        --output-cases path/case-counts.json  \
+        --output-population path/population.json
+```
 
 ## Contents
 
