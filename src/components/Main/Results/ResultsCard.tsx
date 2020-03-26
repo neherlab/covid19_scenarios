@@ -1,30 +1,21 @@
-import React, { useState, useEffect, createRef } from 'react'
-
 import Papa from 'papaparse'
-
+import React, { createRef, useEffect, useState } from 'react'
+import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-import { Button, Col, Row } from 'reactstrap'
-
-import { readFile } from '../../../helpers/readFile'
-
-import { exportResult } from '../../../algorithms/utils/exportResult'
-import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
-import processUserResult from '../../../algorithms/utils/userResult'
-
-import { EmpiricalData } from '../../../algorithms/types/Param.types'
-
-import { CollapsibleCard } from '../../Form/CollapsibleCard'
+import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
-
-import { SeverityTableRow } from '../Scenario/SeverityTable'
-
-import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
-import { FileType } from '../Compare/FileUploadZone'
-
+import processUserResult from '../../../algorithms/utils/userResult'
 import { AgeBarChart } from './AgeBarChart'
+import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
+import { CollapsibleCard } from '../../Form/CollapsibleCard'
+import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
+import { EmpiricalData } from '../../../algorithms/types/Param.types'
+import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
+import { readFile } from '../../../helpers/readFile'
+import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import './ResultsCard.scss'
 
@@ -73,6 +64,8 @@ function ResultsCardFunction({
   }
 
   const [canExport, setCanExport] = useState<boolean>(false)
+  const [showExportModal, setShowExportModal] = useState<boolean>(false)
+
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
   useEffect(() => {
@@ -136,7 +129,7 @@ function ResultsCardFunction({
                   type="button"
                   color="secondary"
                   disabled={!canExport}
-                  onClick={() => canExport && result && exportResult(result)}
+                  onClick={(_) => setShowExportModal(true)}
                 >
                   {t('Export')}
                 </Button>
@@ -203,6 +196,12 @@ function ResultsCardFunction({
           {t('Go to results')}
         </Button>
       ) : undefined}
+      <ExportSimulationDialog
+        showModal={showExportModal}
+        toggleShowModal={toggleShowExportModal}
+        canExport={canExport}
+        result={result}
+      />
     </>
   )
 }
