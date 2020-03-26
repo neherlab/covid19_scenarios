@@ -70,10 +70,6 @@ function xTickFormatter(tick: string | number): string {
   return new Date(tick).toISOString().slice(0, 10)
 }
 
-function labelFormatter(value: string | number): React.ReactNode {
-  return xTickFormatter(value)
-}
-
 function legendFormatter(enabledPlots: string[], value: string, entry: any) {
   const activeClassName = enabledPlots.includes(entry.dataKey) ? 'legend' : 'legend-inactive'
   return <span className={activeClassName}>{value}</span>
@@ -246,7 +242,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 
                 <Tooltip 
                   formatter={tooltipFormatter} 
-                  labelFormatter={labelFormatter}
                   position={tooltipPosition} 
                   content={ResponsiveTooltipContent}
                 />
