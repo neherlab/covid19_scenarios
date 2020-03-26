@@ -36,7 +36,7 @@ function maybeAdd<T>(where: T[], what: T): T[] {
 export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
     immerCase(setScenario, (draft, { name }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      // draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = name
       if (name !== CUSTOM_SCENARIO_NAME) {
         draft.data = getScenarioData(name)
@@ -54,7 +54,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setScenarioData, (draft, { data }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      // draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data = {
         population: data.population,
