@@ -101,7 +101,24 @@ describe('TimeSeries', () => {
         return interpolator(date)
       })
 
-      expect(result).toBeArrayOfSize(intervalCount).toMatchSnapshot()
+      expect(result).toBeArrayOfSize(intervalCount)
+
+      const expected = [
+        1,
+        2.6354594390679185,
+        4.209836664611696,
+        5.648965995858905,
+        6.892037521792783,
+        7.889772449043392,
+        8.678773876200733,
+        9.32431394905387,
+        9.891684813683101,
+        10,
+      ]
+
+      result.forEach((y, index) => {
+        expect(y).toBeCloseTo(expected[index])
+      })
     })
   })
 
