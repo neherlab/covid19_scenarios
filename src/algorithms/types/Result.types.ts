@@ -47,7 +47,7 @@ export interface ModelParams {
   isolatedFrac: Record<string, number>
   importsPerDay: Record<string, number>
   timeDeltaDays: number
-  incubationTime: number
+  latencyTime: number
   infectionRate: (t: Date) => number
   timeDelta: number
   populationServed: number
