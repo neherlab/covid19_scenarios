@@ -225,6 +225,7 @@ interface StateFlux {
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
 export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: number) => number): SimulationTimePoint {
+  console.log('PARAMS', P)
   const sum = (dict: Record<string, number>): number => {
     return Object.values(dict).reduce((a, b) => a + b, 0)
   }
@@ -306,13 +307,16 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
           fracInfected *
           P.timeDeltaDays,
       )
+
     // NOTE: Propagate individuals through internal exposed states
     for (let i = 0; i < pop.current.exposed[age].length; i++) {
       flux.exposed[age][i] = Math.min(
         pop.current.exposed[age][i],
-        sample((P.rate.latency * (pop.current.exposed[age][i] * P.timeDeltaDays)) / pop.current.exposed[age].length),
+        sample(P.rate.latency * (pop.current.exposed[age][i] * P.timeDeltaDays) * pop.current.exposed[age].length),
       )
     }
+
+    // Infectious -> Recovered/Critical
     flux.infectious.recovered[age] = Math.min(
       pop.current.infectious[age],
       sample(pop.current.infectious[age] * P.timeDeltaDays * P.rate.recovery[age]),
@@ -321,11 +325,12 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
       pop.current.infectious[age] - flux.infectious.recovered[age],
       sample(pop.current.infectious[age] * P.timeDeltaDays * P.rate.severe[age]),
     )
+
+    // Severe -> Recovered/Critical
     flux.severe.recovered[age] = Math.min(
       pop.current.severe[age],
       sample(pop.current.severe[age] * P.timeDeltaDays * P.rate.discharge[age]),
     )
-
     flux.severe.critical[age] = Math.min(
       pop.current.severe[age] - flux.severe.recovered[age],
       sample(pop.current.severe[age] * P.timeDeltaDays * P.rate.critical[age]),

@@ -21,7 +21,7 @@ const DATA_POINTS = {
   Critical: 'critical',
   Overflow: 'overflow',
   Recovered: 'recovered',
-  Death: 'death',
+  Fatalities: 'fatality',
   CumulativeCases: 'cumulativeCases',
   NewCases: 'newCases',
   HospitalBeds: 'hospitalBeds',
@@ -41,7 +41,7 @@ export const colors = {
   [DATA_POINTS.Critical]: '#e31a1c',
   [DATA_POINTS.Overflow]: '#660033',
   [DATA_POINTS.Recovered]: '#33a02c',
-  [DATA_POINTS.Death]: '#cab2d6',
+  [DATA_POINTS.Fatalities]: '#cab2d6',
   [DATA_POINTS.CumulativeCases]: '#aaaaaa',
   [DATA_POINTS.NewCases]: '#fdbf6f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
@@ -118,9 +118,10 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
       ICUbeds: nICUBeds,
     })) ?? []
 
+  console.log(data.deterministic.trajectory)
   const plotData = [
     ...data.deterministic.trajectory
-      .filter((d, i) => i % 4 === 0)
+      .filter((_, i) => i % 4 === 0)
       .map(x => ({
         time: x.time,
         susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
@@ -130,9 +131,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
         infectious: enabledPlots.includes(DATA_POINTS.Infectious)
           ? Math.round(x.current.infectious.total) || undefined
           : undefined,
-        hospitalized: enabledPlots.includes(DATA_POINTS.Severe)
-          ? Math.round(x.current.severe.total) || undefined
-          : undefined,
+        severe: enabledPlots.includes(DATA_POINTS.Severe) ? Math.round(x.current.severe.total) || undefined : undefined,
         critical: enabledPlots.includes(DATA_POINTS.Critical)
           ? Math.round(x.current.critical.total) || undefined
           : undefined,
@@ -142,7 +141,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
         recovered: enabledPlots.includes(DATA_POINTS.Recovered)
           ? Math.round(x.cumulative.recovered.total) || undefined
           : undefined,
-        death: enabledPlots.includes(DATA_POINTS.Death)
+        death: enabledPlots.includes(DATA_POINTS.Fatalities)
           ? Math.round(x.cumulative.fatality.total) || undefined
           : undefined,
         hospitalBeds: nHospitalBeds,
@@ -157,11 +156,11 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
     // {key: DATA_POINTS.Exposed, color: colors.exposed, name:'', legendType:"line"},
     { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
-    { key: DATA_POINTS.Severe, color: colors.hospitalized, name: 'Severely ill', legendType: 'line' },
+    { key: DATA_POINTS.Severe, color: colors.severe, name: 'Severely ill', legendType: 'line' },
     { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
     { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
     { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
-    { key: DATA_POINTS.Death, color: colors.death, name: t('Cumulative deaths'), legendType: 'line' },
+    { key: DATA_POINTS.Fatalities, color: colors.death, name: t('Cumulative deaths'), legendType: 'line' },
   ]
 
   const tMin = observations.length ? Math.min(plotData[0].time, observations[0].time) : plotData[0].time
@@ -173,13 +172,13 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     ? [
         // Append empirical data
         ...(count_observations.observedDeaths
-          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.death, name: t('Cumulative confirmed deaths') }]
+          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative confirmed deaths') }]
           : []),
         ...(count_observations.cases
           ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
           : []),
         ...(count_observations.hospitalized
-          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.hospitalized, name: t('Patients in hospital') }]
+          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital') }]
           : []),
         ...(count_observations.ICU
           ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }]
