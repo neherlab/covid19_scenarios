@@ -68,6 +68,8 @@ function ResultsCardFunction({
 
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
+  const toggleShowExportModal = () => setShowExportModal(!showExportModal)
+
   useEffect(() => {
     setCanExport((result && !!result.deterministic) || false)
   }, [result])
