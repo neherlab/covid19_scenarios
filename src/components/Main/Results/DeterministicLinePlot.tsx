@@ -118,7 +118,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
       ICUbeds: nICUBeds,
     })) ?? []
 
-  console.log(data.deterministic.trajectory)
   const plotData = [
     ...data.deterministic.trajectory
       .filter((_, i) => i % 4 === 0)
@@ -141,7 +140,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
         recovered: enabledPlots.includes(DATA_POINTS.Recovered)
           ? Math.round(x.cumulative.recovered.total) || undefined
           : undefined,
-        death: enabledPlots.includes(DATA_POINTS.Fatalities)
+        fatality: enabledPlots.includes(DATA_POINTS.Fatalities)
           ? Math.round(x.cumulative.fatality.total) || undefined
           : undefined,
         hospitalBeds: nHospitalBeds,
@@ -160,7 +159,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
     { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
     { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
-    { key: DATA_POINTS.Fatalities, color: colors.death, name: t('Cumulative deaths'), legendType: 'line' },
+    { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'line' },
   ]
 
   const tMin = observations.length ? Math.min(plotData[0].time, observations[0].time) : plotData[0].time
