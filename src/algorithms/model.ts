@@ -202,7 +202,7 @@ export function initializePopulation(
   return pop
 }
 
-export interface StateFlux {
+interface StateFlux {
   susceptible: Record<string, number>
   exposed: Record<string, number[]>
   infectious: {
@@ -252,19 +252,19 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   // NOTE: Regression on type checking
   // update touches the current data
   // push touches the cumulative data
-  const update = (sub: string, age: string, delta: number, index?: number) => {
-    if (!index) {
-      newPop.current[age] = pop.current[sub][age] + delta
-    } else {
-      newPop.current[age][index] = pop.current[sub][age][index] + delta
-    }
+  const update = (sub: string, age: string, delta: number) => {
+    newPop.current[sub][age] = pop.current[sub][age] + delta
+  }
+
+  const updateAt = (sub: string, age: string, delta: number, index: number) => {
+    newPop.current[sub][age][index] = pop.current[sub][age][index] + delta
   }
 
   const push = (sub: string, age: string, delta: number, index?: number) => {
     if (!index) {
-      newPop.cumulative[age] = pop.cumulative[sub][age] + delta
+      newPop.cumulative[sub][age] = pop.cumulative[sub][age] + delta
     } else {
-      newPop.cumulative[age][index] = pop.cumulative[sub][age][index] + delta
+      newPop.cumulative[sub][age][index] = pop.cumulative[sub][age][index] + delta
     }
   }
 
@@ -294,8 +294,8 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   const Keys = Object.keys(pop.current.infectious).sort()
   Keys.forEach(age => {
     // Initialize all multi-faceted states with internal arrays
-    flux.exposed[age] = []
-    newPop.current.exposed[age] = []
+    flux.exposed[age] = Array(pop.current.exposed[age].length)
+    newPop.current.exposed[age] = Array(flux.exposed[age].length)
 
     flux.susceptible[age] =
       sample(P.importsPerDay[age] * P.timeDeltaDays) +
@@ -349,8 +349,8 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
 
     update('susceptible', age, -flux.susceptible[age])
     let fluxIn = flux.susceptible[age]
-    for (let i = 0; i < flux.exposed[age].length; i++) {
-      update('exposed', age, fluxIn - flux.exposed[age][i], i)
+    for (let i: number = 0; i < flux.exposed[age].length; i++) {
+      updateAt('exposed', age, fluxIn - flux.exposed[age][i], i)
       fluxIn = flux.exposed[age][i]
     }
     update('infectious', age, fluxIn - flux.infectious.severe[age] - flux.infectious.recovered[age])
@@ -441,15 +441,15 @@ export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
     keys(d.current).forEach(k => {
       switch (k) {
         case 'exposed':
-          tp.current.exposed.total = 0
-          Object.values(d.current[k]).forEach(x => {
-            x.forEach(y => {
-              tp.current[k].total += y
-            })
-          })
-          Object.keys(d.current[k]).forEach(a => {
-            tp.current[k][a] = d.current[k][a].reduce((a, b) => a + b, 0)
-          })
+          // tp.current[k].total = 0
+          // Object.values(d.current[k]).forEach(x => {
+          //   x.forEach(y => {
+          //     tp.current[k].total += y
+          //   })
+          // })
+          // Object.keys(d.current[k]).forEach(a => {
+          //   tp.current[k][a] = d.current[k][a].reduce((a, b) => a + b, 0)
+          // })
           break
 
         default:
