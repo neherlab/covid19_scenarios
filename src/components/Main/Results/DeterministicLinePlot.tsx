@@ -17,7 +17,7 @@ const DATA_POINTS = {
   Exposed: 'exposed',
   Susceptible: 'susceptible',
   Infectious: 'infectious',
-  Severe: 'hospitalized',
+  Severe: 'severe',
   Critical: 'critical',
   Overflow: 'overflow',
   Recovered: 'recovered',
@@ -93,13 +93,12 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const nICUBeds = data.params.ICUBeds
 
   const count_observations = {
-    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: caseCounts?.filter((d) => d.ICU).length ?? 0,
-    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
+    cases: caseCounts?.filter(d => d.cases).length ?? 0,
+    ICU: caseCounts?.filter(d => d.ICU).length ?? 0,
+    observedDeaths: caseCounts?.filter(d => d.deaths).length ?? 0,
     newCases: caseCounts?.filter((d, i) => i > 2 && d.cases && caseCounts[i - 3].cases).length ?? 0,
-    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
+    hospitalized: caseCounts?.filter(d => d.hospitalized).length ?? 0,
   }
-
 
   const observations =
     caseCounts?.map((d, i) => ({
@@ -122,24 +121,30 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const plotData = [
     ...data.deterministic.trajectory
       .filter((d, i) => i % 4 === 0)
-      .map((x) => ({
+      .map(x => ({
         time: x.time,
         susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
-          ? Math.round(x.susceptible.total) || undefined
+          ? Math.round(x.current.susceptible.total) || undefined
           : undefined,
         // exposed: Math.round(x.exposed.total) || undefined,
         infectious: enabledPlots.includes(DATA_POINTS.Infectious)
-          ? Math.round(x.infectious.total) || undefined
+          ? Math.round(x.current.infectious.total) || undefined
           : undefined,
         hospitalized: enabledPlots.includes(DATA_POINTS.Severe)
-          ? Math.round(x.hospitalized.total) || undefined
+          ? Math.round(x.current.severe.total) || undefined
           : undefined,
-        critical: enabledPlots.includes(DATA_POINTS.Critical) ? Math.round(x.critical.total) || undefined : undefined,
-        overflow: enabledPlots.includes(DATA_POINTS.Overflow) ? Math.round(x.overflow.total) || undefined : undefined,
+        critical: enabledPlots.includes(DATA_POINTS.Critical)
+          ? Math.round(x.current.critical.total) || undefined
+          : undefined,
+        overflow: enabledPlots.includes(DATA_POINTS.Overflow)
+          ? Math.round(x.current.overflow.total) || undefined
+          : undefined,
         recovered: enabledPlots.includes(DATA_POINTS.Recovered)
-          ? Math.round(x.recovered.total) || undefined
+          ? Math.round(x.cumulative.recovered.total) || undefined
           : undefined,
-        death: enabledPlots.includes(DATA_POINTS.Death) ? Math.round(x.dead.total) || undefined : undefined,
+        death: enabledPlots.includes(DATA_POINTS.Death)
+          ? Math.round(x.cumulative.fatality.total) || undefined
+          : undefined,
         hospitalBeds: nHospitalBeds,
         ICUbeds: nICUBeds,
       })),
@@ -163,7 +168,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const tMax = observations.length
     ? Math.max(plotData[plotData.length - 1].time, observations[observations.length - 1].time)
     : plotData[plotData.length - 1].time
-
 
   const scatterToPlot: LineProps[] = observations.length
     ? [
@@ -235,13 +239,13 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 <Legend
                   verticalAlign="top"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
-                  onClick={(e) => {
+                  onClick={e => {
                     const plots = enabledPlots.slice(0)
                     enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)
                     setEnabledPlots(plots)
                   }}
                 />
-                {linesToPlot.map((d) => (
+                {linesToPlot.map(d => (
                   <Line
                     key={d.key}
                     dot={false}
@@ -254,7 +258,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                     legendType={d.legendType}
                   />
                 ))}
-                {scatterToPlot.map((d) => (
+                {scatterToPlot.map(d => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}
               </ComposedChart>
