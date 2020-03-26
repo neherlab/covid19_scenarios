@@ -172,6 +172,15 @@ python3 covid19_scenarios_data/parse_all.py --fetch \
         --output-population path/population.json
 ```
 
+To generate the integrated scenario json, run
+```shell
+python3 covid19_scenarios_data/parse_all.py --fetch \
+        --output-cases path/case-counts.json  \
+        --output-scenarios path/scenarios.json
+```
+
+
+
 ## Contents
 
 ### Country codes
