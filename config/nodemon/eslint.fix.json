@@ -24,6 +24,6 @@
     "yarn.lock"
   ],
   "ext": "js,jsx,ts,tsx,json,flow,css,scss,sass,styl,html,ejs,d,txt,yml,sh",
-  "ignore": [".build", ".cache", "node_modules"],
-  "exec": "node -e 'console.clear()' ; yarn eslint:fix && echo '\u2714 OK' || echo '\u274C FAILED' || cd ."
+  "ignore": [".build", ".cache", "node_modules"],  
+  "exec": "run-s -c clear eslint:fix:start"
 }

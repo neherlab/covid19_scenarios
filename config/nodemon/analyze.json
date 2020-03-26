@@ -29,6 +29,6 @@
     "**/__tests__",
     "**/*.test.*sx",
     "**/*.test.*s"
-  ],
-  "exec": "node -e 'console.clear()' ; yarn install && yarn analyze || cd ."
+  ],  
+  "exec": "run-s -c clear analyze:start"
 }
