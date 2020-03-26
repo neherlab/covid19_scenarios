@@ -34,7 +34,7 @@
 
 @media (max-width: 1685px) {
   .landing-page__hero-section::after {
-    background-size: 101%;
+    background-size: 103%;
     background-position: bottom;
   }
 }
@@ -46,15 +46,24 @@
   line-height: 1;
 }
 
-.landing-page__simulate-button {
+.landing-page__simulate-link {
   align-self: end;
   justify-self: center;
-  border: none;
+  color: $black;
   border-radius: 500px;
   padding: 18px 60px;
   font-weight: 700;
   font-size: 16px;
-  background-color: white;
+  background-color: $white;
+}
+.landing-page__simulate-link:hover,
+.landing-page__simulate-link:focus {
+  text-decoration: none;
+  color: $black;
+  transform: scale(1.1);
+}
+.landing-page__simulate-link:active {
+  transform: scale(0.99);
 }
 
 .landing-page__wave {
@@ -83,10 +92,8 @@
 
 .landing-page__content-section {
   padding: 0 84px 20px;
-  display: grid;
-  grid-auto-rows: min-content;
-  grid-gap: 20px;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   // put on top of svg wave
   z-index: 2;
@@ -96,7 +103,13 @@
 }
 
 .landing-page__content-section-text {
+  flex: 1;
   width: 400px;
+}
+
+.skip-landing-page-label {
+  font-size: 12px;
+  margin-left: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -115,6 +128,7 @@
     position: unset;
     display: block;
     width: 100%;
+    margin-bottom: 20px;
   }
 
   .landing-page__content-section {
