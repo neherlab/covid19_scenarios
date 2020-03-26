@@ -230,7 +230,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   }
 
   const newCases: Record<string, number> = {}
-  const newInfectious: Record<string, number[]> = {}
+  const newExposedFlux: Record<string, number[]> = {}
   const newRecovered: Record<string, number> = {}
   const newHospitalized: Record<string, number> = {}
   const newDischarged: Record<string, number> = {}
@@ -243,9 +243,8 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
   const Keys = Object.keys(pop.infectious).sort()
   Keys.forEach((age) => {
-
     // Initialize all multi-faceted states with internal arrays
-    newInfectious[age]  = []
+    newExposedFlux[age] = []
     newPop.exposed[age] = []
 
     newCases[age] =
@@ -255,10 +254,10 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
       )
     // NOTE: Propagate individuals through internal exposed states
     for (let i = 0; i < pop.exposed[age].length; i++) {
-        newInfectious[age][i] = Math.min(
-            pop.exposed[age][i],
-            sample((pop.exposed[age][i] * P.timeDeltaDays) / (P.incubationTime / pop.exposed[age].length))
-        )
+      newExposedFlux[age][i] = Math.min(
+        pop.exposed[age][i],
+        sample((pop.exposed[age][i] * P.timeDeltaDays) / (P.incubationTime / pop.exposed[age].length))
+      )
     }
     newRecovered[age] = Math.min(
       pop.infectious[age],
@@ -295,9 +294,9 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
 
     push('susceptible', age, -newCases[age])
     let fluxIn = newCases[age]
-    for (let i = 0; i < 3; i++) {
-        pushAt('exposed', age, fluxIn - newInfectious[age][i], i)
-        fluxIn = newInfectious[age][i]
+    for (let i = 0; i < newExposedFlux[age].length; i++) {
+      pushAt('exposed', age, fluxIn - newExposedFlux[age][i], i)
+      fluxIn = newExposedFlux[age][i]
     }
     push('infectious', age, fluxIn - newRecovered[age] - newHospitalized[age])
     push(
@@ -375,9 +374,9 @@ export function collectTotals(trajectory: SimulationTimePoint[]) : UserResult {
       "infectious": {},
       "discharged": {},
       "intensive": {}
-    };
+    }
     keys(d).forEach(k => {
-      switch (k)  {
+      switch (k) {
         case 'time':
           return
 
