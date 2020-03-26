@@ -1,6 +1,6 @@
 import actionCreatorFactory from 'typescript-fsa'
 
-import { ScenarioData } from '../../../algorithms/types/Param.types'
+import { ScenarioData, ContainmentData } from '../../../algorithms/types/Param.types'
 
 const action = actionCreatorFactory('SCENARIO')
 
@@ -14,4 +14,9 @@ export interface SetScenarioDataParams {
   data: ScenarioData
 }
 
+export interface SetContainmentDataParams {
+  data: ContainmentData
+}
+
 export const setScenarioData = action<SetScenarioDataParams>('SET_SCENARIO_DATA')
+export const setContainmentData = action<SetContainmentDataParams>('SET_CONTAINMENT_DATA')

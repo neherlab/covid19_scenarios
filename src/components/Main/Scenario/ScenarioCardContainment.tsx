@@ -24,7 +24,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
   const { t } = useTranslation()
 
   function handleChangeContainmentData(timeSeries: TimeSeries) {
-    // scenarioDispatch(setContainmentData({ data: { reduction: timeSeries, numberPoints: timeSeries.length } }))
+    scenarioDispatch(setContainmentData({ data: { reduction: timeSeries, numberPoints: timeSeries.length } }))
   }
 
   const containmentData = scenarioState.data.containment.reduction
@@ -42,7 +42,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
         label={t('Number of points')}
         help={t('Number of controllable points on the mitigation curve')}
         step={1}
-        min={2}
+        min={5}
         max={100}
         errors={errors}
         touched={touched}
