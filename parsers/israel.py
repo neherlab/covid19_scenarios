@@ -38,6 +38,6 @@ def parse():
     for row in rdr:
         date_str = datetime.strptime(row[0], r"%d/%m/%Y").strftime(r"%Y-%m-%d")
         num_cases = to_int(row[1])
-        il_data["Israel"].append([date_str, num_cases])
+        il_data["Israel"].append([date_str, num_cases, None, None, None, None, None])
 
-    store_data(il_data, {'default': LOC}, 'israel', 'ISR', cols=cols[:2])
+    store_data(il_data, {'default': LOC}, 'israel', 'ISR', cols=cols)
