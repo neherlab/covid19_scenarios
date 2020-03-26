@@ -293,6 +293,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
     flux.exposed[age] = Array(pop.current.exposed[age].length)
     newPop.current.exposed[age] = Array(flux.exposed[age].length)
 
+    // Susceptible -> Exposed
     flux.susceptible[age] =
       sample(P.importsPerDay[age] * P.timeDeltaDays) +
       sample(
@@ -303,7 +304,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
           P.timeDeltaDays,
       )
 
-    // NOTE: Propagate individuals through internal exposed states
+    // Exposed -> Internal -> Infectious
     for (let i = 0; i < pop.current.exposed[age].length; i++) {
       flux.exposed[age][i] = Math.min(
         pop.current.exposed[age][i],
@@ -320,7 +321,6 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
       pop.current.infectious[age] - flux.infectious.recovered[age],
       sample(pop.current.infectious[age] * P.timeDeltaDays * P.rate.severe[age]),
     )
-
     // Severe -> Recovered/Critical
     flux.severe.recovered[age] = Math.min(
       pop.current.severe[age],
@@ -330,6 +330,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
       pop.current.severe[age] - flux.severe.recovered[age],
       sample(pop.current.severe[age] * P.timeDeltaDays * P.rate.critical[age]),
     )
+    // Critical -> Severe/Fatality
     flux.critical.severe[age] = Math.min(
       pop.current.critical[age],
       sample(pop.current.critical[age] * P.timeDeltaDays * P.rate.stabilize[age]),
@@ -338,6 +339,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
       pop.current.critical[age] - flux.critical.severe[age],
       sample(pop.current.critical[age] * P.timeDeltaDays * P.rate.fatality[age]),
     )
+    // Overflow -> Severe/Fatality
     flux.overflow.severe[age] = Math.min(
       pop.current.overflow[age],
       sample(pop.current.overflow[age] * P.timeDeltaDays * P.rate.stabilize[age]),
