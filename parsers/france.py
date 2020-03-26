@@ -63,6 +63,6 @@ def parse():
 
     regions2 = {}
     for reg, d in regions.items():
-        regions2[reg] = [d[day] for day in sorted(d.keys())]
+        regions2[reg] = [d[day] for day in sorted(d.keys()) if d[day][1]]
 
     store_data(regions2, { 'default': LOC}, 'france', 'FRA', cols)
