@@ -33,7 +33,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
   const scenarioOptions = stringsToOptions(scenarioState.scenarios)
 
   function handleChangeScenario(newScenario: string) {
-    scenarioDispatch(setScenario({ scenarioName: newScenario }))
+    scenarioDispatch(setScenario({ name: newScenario }))
   }
 
   return (

@@ -35,10 +35,11 @@ function maybeAdd<T>(where: T[], what: T): T[] {
  */
 export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
-    immerCase(setScenario, (draft, { scenarioName }) => {
+    immerCase(setScenario, (draft, { name }) => {
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
-        draft.data = getScenarioData(scenarioName)
+      draft.current = name
+      if (name !== CUSTOM_SCENARIO_NAME) {
+        draft.data = getScenarioData(name)
         draft.data.containment = {
           reduction: updateTimeSeries(
             draft.data.simulation.simulationTimeRange,
