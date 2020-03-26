@@ -1,14 +1,18 @@
 import csv
+import os
 import json
 import numpy as np
 from datetime import datetime
 from scipy.stats import linregress
+import sys
+sys.path.append('..')
+from paths import TMP_CASES, BASE_PATH, JSON_DIR
 
 # ------------------------------------------------------------------------
 # Globals
 
-SCENARIO_POPS = "static_scenario_data.tsv"
-OUTPUT_JSON   = "assets/scenario_defaults.json"
+SCENARIO_POPS = os.path.join(BASE_PATH, "static_scenario_data.tsv")
+CASE_COUNTS = os.path.join(BASE_PATH, JSON_DIR, TMP_CASES)
 FIT_CASE_DATA = {}
 
 # ------------------------------------------------------------------------
@@ -50,7 +54,7 @@ class Fitter:
                 return None
 
         def to_ms(time):
-            return datetime.strptime(time, "%Y-%m-%d").toordinal()
+            return datetime.strptime(time[:10], "%Y-%m-%d").toordinal()
 
         def from_ms(time):
             d = datetime.fromordinal(time)
@@ -104,7 +108,7 @@ class EpidemiologicalParams(Object):
         self.peakMonth          = "January"
         self.overflowSeverity   = 2
         if region in FIT_CASE_DATA:
-            self.r0 = FIT_CASE_DATA[region]['r0']
+            self.r0 = round(FIT_CASE_DATA[region]['r0'],2)
         else:
             self.r0 = 2.7
 
@@ -142,7 +146,7 @@ def marshalJSON(obj, wtr):
 
 def fit_all_case_data():
     Params = Fitter()
-    with open("assets/case_counts.json") as fh:
+    with open(CASE_COUNTS) as fh:
         case_counts = json.load(fh)
         for region, data in case_counts.items():
             fit = Params.fit(data)
@@ -151,8 +155,7 @@ def fit_all_case_data():
 
 # ------------------------------------------------------------------------
 # Main point of entry
-
-if __name__ == "__main__":
+def generate(OUTPUT_JSON):
     scenario = {}
     fit_all_case_data()
 
@@ -174,3 +177,7 @@ if __name__ == "__main__":
 
     with open(OUTPUT_JSON, "w+") as fd:
         marshalJSON(scenario, fd)
+
+
+if __name__ == '__main__':
+    generate()
