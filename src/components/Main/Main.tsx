@@ -63,7 +63,7 @@ async function runSimulation(
     return
   }
 
-  const ageDistribution = countryAgeDistributionData[params.population.country]
+  const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[params.population.country]
   const caseCounts: EmpiricalData = countryCaseCounts[params.population.cases] || []
   const containmentData = params.containment.reduction
 
