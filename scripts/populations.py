@@ -7,9 +7,9 @@ This script generates the json with the population presets that contain
  * hospital beds
  * ICU beds
 
-It should be run at the toplevel as
+It should be run from outside the repo as
 
-  python3 scripts/make_populations.py
+  python3 covid19_scenarios_data/scripts/make_populations.py
 
 '''
 
@@ -17,6 +17,10 @@ from collections import defaultdict
 import csv
 import json
 import numpy as np
+import os
+import sys
+sys.path.append('..')
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, TMP_POPULATION
 
 # obsolete
 def getImportsPerDay(pop, cases):
@@ -26,7 +30,7 @@ def getImportsPerDay(pop, cases):
 def getCountryAbbreviations():
     toThreeLetter = {}
     toName = {}
-    with open('data/country_codes.csv') as fh:
+    with open(os.path.join(BASE_PATH, 'country_codes.csv')) as fh:
         header = [x.strip('"') for x in fh.readline().strip().split(',')]
         name_index = header.index('name')
         three_letter_index = header.index('alpha-3')
@@ -70,13 +74,12 @@ def loadPopTable(fname):
     return pops
 
 def getRegions():
-    with open('src/assets/data/case_counts.json') as fd:
+    with open(os.path.join(BASE_PATH, JSON_DIR,TMP_CASES)) as fd:
         regions = json.load(fd)
         return set(regions.keys())
 
-if __name__ == '__main__':
-
-    pops = loadPopTable("data/populationData.tsv")
+def parse():
+    pops = loadPopTable(os.path.join(BASE_PATH,"populationData.tsv"))
     popSizes = {d['name']:d['data']['populationServed'] for d in pops}
 
     regions = getRegions()
@@ -84,5 +87,9 @@ if __name__ == '__main__':
     for d in pops:
         d['data']['cases'] = d['name'] if d['name'] in regions else 'none'
 
-    with open('src/assets/data/population.json', 'w') as fh:
+    with open(os.path.join(BASE_PATH, JSON_DIR,TMP_POPULATION), 'w') as fh:
         json.dump(pops, fh)
+
+
+if __name__ == '__main__':
+    parse()

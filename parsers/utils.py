@@ -4,14 +4,15 @@ import functools
 import os
 import re
 import sys
+sys.path.append('..')
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE
 
 from datetime import datetime
 from collections import defaultdict
 
 # ------------------------------------------------------------------------
 # Globals
-
-with open("data/sources.json") as fh:
+with open(os.path.join(BASE_PATH, SOURCES_FILE)) as fh:
     sources = json.load(fh)
 
 default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
@@ -62,7 +63,7 @@ def parse_countries(index=1):
     # index=1 is the alpha2
     # index=2 is the alpha3
     country_names = {}
-    file = "country_codes.csv"
+    file = os.path.join(BASE_PATH, "country_codes.csv")
     countries = defaultdict(lambda: defaultdict(list))
     with open(file) as f:
         rdr = csv.reader(f)
@@ -132,12 +133,12 @@ def store_tsv(regions, exceptions, source, cols):
         # If we only want to store one .tsv in the root, we signal this with exceptions['default': 'FOO.tsv']
         if  '.tsv' in exceptions['default']:
             # TODO this is actually creating the World.tsv n times at the moment (open(,'w='), not what we really want.)
-            write_tsv(exceptions['default'], ['location']+cols, flatten(regions), source)
+            write_tsv(os.path.join(BASE_PATH, exceptions['default']), ['location']+cols, flatten(regions), source)
         # For normal .tsv storage in individual regions' tsv
         elif region not in exceptions:
-            write_tsv(f"{exceptions['default']}/{region}.tsv", cols, data, source)
+            write_tsv(f"{BASE_PATH}/{exceptions['default']}/{region}.tsv", cols, data, source)
         else:
-            write_tsv(f"{exceptions[region]}/{region}.tsv", cols, data, source)
+            write_tsv(f"{BASE_PATH}/{exceptions[region]}/{region}.tsv", cols, data, source)
 
 def list_to_dict(regions, cols):
     # transform a a dict of lists of lists {'USA':[['2020-03-01', 1, 2,...],..]} into a dict of lists of dicts {'USA': [{'time': '2020-03-01', 'cases': 1, ...},...]}
@@ -194,7 +195,7 @@ def add_country_code(regions, exceptions, code):
 
 
 def store_json(newdata):
-    json_file = 'data/tmp_case_counts.json'
+    json_file = os.path.join(BASE_PATH,JSON_DIR, TMP_CASES)
     if os.path.isfile(json_file):
         with open(json_file, 'r') as fh:
             oldcases = json.load(fh)
