@@ -8,19 +8,19 @@ import { useTranslation } from 'react-i18next'
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 import countryCaseCounts from '../../../assets/data/case_counts.json'
 
-import { CardWithDropdown } from '../../Form/CardWithDropdown'
+import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-import { setPopulationScenario } from '../state/actions'
+// import { setPopulationScenario } from '../state/actions'
 
 import { State } from '../state/state'
 
 const countries = Object.keys(countryAgeDistribution)
-const countryOptions = countries.map((country) => ({ value: country, label: country }))
-const caseCountOptions = Object.keys(countryCaseCounts).map((country) => ({ value: country, label: country }))
+const countryOptions = countries.map(country => ({ value: country, label: country }))
+const caseCountOptions = Object.keys(countryCaseCounts).map(country => ({ value: country, label: country }))
 caseCountOptions.push({ value: 'none', label: 'None' })
 
 export interface ScenarioCardPopulationProps {
@@ -32,19 +32,16 @@ export interface ScenarioCardPopulationProps {
 
 function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispatch }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
-  const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
-  function handleChangePopulationScenario(newPopulationScenario: string) {
-    scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario }))
-  }
+  // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
+  // function handleChangePopulationScenario(newPopulationScenario: string) {
+  //   scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario }))
+  // }
 
   return (
-    <CardWithDropdown
+    <CardWithoutDropdown
       identifier="populationScenario"
       label={<h5 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h5>}
       help={t('Parameters of the population in the health care system.')}
-      options={populationScenarioOptions}
-      value={populationScenarioOptions.find((s) => s.label === scenarioState.population.current)}
-      onValueChange={handleChangePopulationScenario}
     >
       <FormSpinBox
         identifier="population.populationServed"
@@ -113,7 +110,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
           'Start and end date of the simulation. Changing the time range might affect the result due to resampling of the mitigation curve.',
         )}
       />
-    </CardWithDropdown>
+    </CardWithoutDropdown>
   )
 }
 

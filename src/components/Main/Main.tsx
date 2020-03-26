@@ -20,7 +20,7 @@ import countryCaseCountData from '../../assets/data/case_counts.json'
 
 import { schema } from './validation/schema'
 
-import { setEpidemiologicalData, setPopulationData, setSimulationData, setContainmentData } from './state/actions'
+// import { setEpidemiologicalData, setPopulationData, setSimulationData, setContainmentData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
 import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
@@ -32,11 +32,11 @@ import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import './Main.scss'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
-  return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
+  return !severity.some(row => _.values(row?.errors).some(x => x !== undefined))
 }
 
 export function severityErrors(severity: SeverityTableRow[]) {
-  return severity.map((row) => row?.errors)
+  return severity.map(row => row?.errors)
 }
 
 async function runSimulation(
@@ -101,10 +101,10 @@ function Main() {
   const toggleAutorun = () => setAutorunSimulation(!autorunSimulation)
 
   const allParams: AllParams = {
-    population: scenarioState.population.data,
-    epidemiological: scenarioState.epidemiological.data,
-    simulation: scenarioState.simulation.data,
-    containment: scenarioState.containment.data,
+    population: scenarioState.data.population,
+    epidemiological: scenarioState.data.epidemiological,
+    simulation: scenarioState.data.simulation,
+    containment: scenarioState.data.containment,
   }
 
   const [debouncedRun] = useDebouncedCallback(
@@ -117,10 +117,10 @@ function Main() {
     if (autorunSimulation) {
       debouncedRun(
         {
-          population: scenarioState.population.data,
-          epidemiological: scenarioState.epidemiological.data,
-          simulation: scenarioState.simulation.data,
-          containment: scenarioState.containment.data,
+          population: scenarioState.data.population,
+          epidemiological: scenarioState.data.epidemiological,
+          simulation: scenarioState.data.simulation,
+          containment: scenarioState.data.containment,
         },
         severity,
       )
@@ -130,19 +130,19 @@ function Main() {
   const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.population, newParams.population)) {
-      scenarioDispatch(setPopulationData({ data: newParams.population }))
+      // scenarioDispatch(setPopulationData({ data: newParams.population }))
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
-      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
+      // scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.simulation, newParams.simulation)) {
-      scenarioDispatch(setSimulationData({ data: newParams.simulation }))
+      // scenarioDispatch(setSimulationData({ data: newParams.simulation }))
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.containment, newParams.containment)) {
-      scenarioDispatch(setContainmentData({ data: newParams.containment }))
+      // scenarioDispatch(setContainmentData({ data: newParams.containment }))
     }
   }, 1000)
 

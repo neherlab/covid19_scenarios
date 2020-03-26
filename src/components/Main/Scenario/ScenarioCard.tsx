@@ -38,7 +38,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
 
   return (
     <CardWithDropdown
-      identifier="overallScenario"
+      identifier="scenarioName"
       label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h3>}
       help={t('Combination of population, epidemiology, and mitigation scenarios')}
       options={scenarioOptions}

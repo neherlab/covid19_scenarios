@@ -5,12 +5,11 @@ import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
 
-import { CardWithDropdown } from '../../Form/CardWithDropdown'
+import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 import { ContainmentGraph } from '../Containment/ContainmentGraph'
 
-import { stringsToOptions } from '../../Form/FormDropdownOption'
-import { setContainmentData, setContainmentScenario } from '../state/actions'
+import { setContainmentData } from '../state/actions'
 import { State } from '../state/state'
 import { TimeSeries } from '../../../algorithms/types/TimeSeries.types'
 
@@ -23,26 +22,20 @@ export interface ScenarioCardContainmentProps {
 
 function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispatch }: ScenarioCardContainmentProps) {
   const { t } = useTranslation()
-  function handleChangeContainmentScenario(newContainmentScenario: string) {
-    scenarioDispatch(setContainmentScenario({ scenarioName: newContainmentScenario }))
-  }
 
   function handleChangeContainmentData(timeSeries: TimeSeries) {
-    scenarioDispatch(setContainmentData({ data: { reduction: timeSeries, numberPoints: timeSeries.length } }))
+    // scenarioDispatch(setContainmentData({ data: { reduction: timeSeries, numberPoints: timeSeries.length } }))
   }
 
-  const containmentScenarioOptions = stringsToOptions(scenarioState.containment.scenarios)
-
-  const containmentData = scenarioState.containment.data.reduction
+  const containmentData = scenarioState.data.containment.reduction
 
   return (
-    <CardWithDropdown
+    <CardWithoutDropdown
       identifier="containmentScenario"
       label={<h5 className="p-0 d-inline text-truncate">{t('Mitigation')}</h5>}
-      help={t('Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.')}
-      options={containmentScenarioOptions}
-      value={containmentScenarioOptions.find((s) => s.label === scenarioState.containment.current)}
-      onValueChange={handleChangeContainmentScenario}
+      help={t(
+        'Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.',
+      )}
     >
       <FormSpinBox
         identifier="containment.numberPoints"
@@ -59,10 +52,12 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
       </div>
       <div>
         <p>
-          {t('Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no infection control, zero is complete prevention of all transmission.')}
+          {t(
+            'Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no infection control, zero is complete prevention of all transmission.',
+          )}
         </p>
       </div>
-    </CardWithDropdown>
+    </CardWithoutDropdown>
   )
 }
 
