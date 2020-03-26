@@ -16,6 +16,10 @@ const poisson = (x: number) => {
 
 // NOTE: Assumes containment is sorted ascending in time.
 export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
+  if (containment.length === 0) {
+    throw new Error('Containment cannot be empty')
+  }
+
   const Ys = containment.map((d) => d.y)
   const Ts = containment.map((d) => Number(d.t))
 
