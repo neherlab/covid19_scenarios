@@ -15,6 +15,7 @@ if __name__ == "__main__":
     parser.add_argument('--parsers', nargs='+', help='parsers to run')
     parser.add_argument('--output-cases', type=str, default=None, help='path to case-counts file')
     parser.add_argument('--output-population', type=str, default=None, help='path to population file')
+    parser.add_argument('--output-scenarios', type=str, default=None, help='path to scenarios file')
     args = parser.parse_args()
 
     if not os.path.isdir(BASE_PATH):
@@ -55,3 +56,8 @@ if __name__ == "__main__":
         population_file = os.path.join(BASE_PATH, JSON_DIR, TMP_POPULATION)
         print(f"Copying {population_file} to {args.output_population}")
         shutil.copy(population_file, args.output_population)
+
+    if args.output_scenarios:
+        print(f"Generating scenario json")
+        scenario = importlib.import_module(f"scripts.collect_scenario_initial_conditions")
+        scenario.generate(args.output_scenarios)
