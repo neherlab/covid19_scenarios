@@ -79,7 +79,8 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
 export function DeterministicLinePlot({ data, userResult, logScale, showHumanized, caseCounts }: LinePlotProps) {
   const { t, i18n } = useTranslation()
 
-  const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
+  const formatNumber = numberFormatter(!!showHumanized, false)
+  const formatNumberRounded = numberFormatter(!!showHumanized, true)
 
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
@@ -195,7 +196,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     index: number,
   ): React.ReactNode => <span>{formatNumber(Number(value))}</span>
 
-  const yTickFormatter = (value: number) => formatNumber(value)
+  const yTickFormatter = (value: number) => formatNumberRounded(value)
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
