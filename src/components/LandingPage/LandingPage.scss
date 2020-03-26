@@ -14,7 +14,8 @@
   overflow: hidden;
   position: relative;
   color: $white;
-  background: linear-gradient(180deg, #1f6cbf 0%, rgba(255, 255, 255, 0) 100%), #007bff;
+  background: linear-gradient(180deg, #206bbd 2%, rgba(249, 252, 255, 0) 80%),
+    linear-gradient(180deg, #007bff00 5%, #007bff 80%);
   padding: 84px 84px 10vw;
   min-height: 450px;
   max-height: 60vh;
