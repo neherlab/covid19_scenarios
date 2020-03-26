@@ -181,8 +181,8 @@ export function initializePopulation(
     pop.dead[k] = 0
     if (i === Math.round(Object.keys(ages).length / 2)) {
       pop.susceptible[k] -= numCases
-      pop.infectious[k] = 0.3 * numCases
-      const e           = 0.7 * numCases / pop.exposed[k].length;
+      pop.infectious[k] = (0.3 * numCases)
+      const e           = (0.7 * numCases) / pop.exposed[k].length;
       pop.exposed[k]    = [e, e, e];
     }
   })
@@ -393,7 +393,7 @@ export function collectTotals(trajectory: SimulationTimePoint[]) : UserResult {
           break
 
         default:
-          tp[k] = d[k]
+          tp[k] = Object.assign({}, d[k]);
           tp[k].total = Object.values(d[k]).reduce((a, b) => a + b)
       }
     })

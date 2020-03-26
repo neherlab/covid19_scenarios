@@ -126,10 +126,11 @@ describe('model', () => {
         initializePopulationInput.t0,
         initializePopulationInput.ages,
       )
-
+      
       const result = [...new Array(5)].reduce((acc) => {
         return evolve(acc, params, identity)
       }, input)
+      console.log(result)
 
       // evolveOutput5 is the output after the 5th iteration with default parameters
       expect(result).toEqual(evolveOutput5)
