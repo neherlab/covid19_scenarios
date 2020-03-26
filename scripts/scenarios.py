@@ -93,7 +93,7 @@ class PopulationParams(Object):
         self.populationServed    = int(population)
         self.country             = country
         self.suspectedCasesToday = Fitter.cases_on_tMin
-        self.importsPerDay       = .01 * float(population)
+        self.importsPerDay       = max(.00001 * float(population), .1)
         self.hospitalBeds        = int(beds)
         self.ICUBeds             = int(icus)
         self.cases               = region
