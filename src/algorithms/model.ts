@@ -261,12 +261,8 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
     newPop.current[sub][age][index] = pop.current[sub][age][index] + delta
   }
 
-  const push = (sub: string, age: string, delta: number, index?: number) => {
-    if (!index) {
-      newPop.cumulative[sub][age] = pop.cumulative[sub][age] + delta
-    } else {
-      newPop.cumulative[sub][age][index] = pop.cumulative[sub][age][index] + delta
-    }
+  const push = (sub: string, age: string, delta: number) => {
+    newPop.cumulative[sub][age] = pop.cumulative[sub][age] + delta
   }
 
   // Convention: flux is labelled by the state
@@ -443,24 +439,30 @@ export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
         fatality: {},
       },
     }
+
     keys(d.current).forEach(k => {
       switch (k) {
         case 'exposed':
-          // tp.current[k].total = 0
-          // Object.values(d.current[k]).forEach(x => {
-          //   x.forEach(y => {
-          //     tp.current[k].total += y
-          //   })
-          // })
-          // Object.keys(d.current[k]).forEach(a => {
-          //   tp.current[k][a] = d.current[k][a].reduce((a, b) => a + b, 0)
-          // })
+          tp.current[k].total = 0
+          Object.values(d.current[k]).forEach(x => {
+            x.forEach(y => {
+              tp.current[k].total += y
+            })
+          })
+          Object.keys(d.current[k]).forEach(a => {
+            tp.current[k][a] = d.current[k][a].reduce((a, b) => a + b, 0)
+          })
           break
 
         default:
           tp.current[k] = Object.assign({}, d.current[k])
           tp.current[k].total = Object.values(d.current[k]).reduce((a, b) => a + b)
       }
+    })
+
+    keys(d.cumulative).forEach(k => {
+      tp.cumulative[k] = Object.assign({}, d.cumulative[k])
+      tp.cumulative[k].total = Object.values(d.cumulative[k]).reduce((a, b) => a + b)
     })
 
     res.trajectory.push(tp)
