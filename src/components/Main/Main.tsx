@@ -10,6 +10,8 @@ import { Col, Row } from 'reactstrap'
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
 import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
+import { toEmpiricalData } from '../../algorithms/types/JsonToTypes'
+
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import run from '../../algorithms/run'
 
@@ -63,7 +65,7 @@ async function runSimulation(
   }
 
   const ageDistribution = countryAgeDistributionData[params.population.country]
-  const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
+  const caseCounts: EmpiricalData = toEmpiricalData(countryCaseCountData[params.population.cases] || [])
   const containmentData = params.containment.reduction
 
   serializeScenarioToURL(scenarioState, params)

@@ -45,7 +45,7 @@ export interface AllParams {
 
 export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData
 
-interface EmpiricalDatum {
+export interface EmpiricalDatum {
   time: Date
   cases: number
   deaths: number
