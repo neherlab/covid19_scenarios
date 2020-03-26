@@ -23,5 +23,5 @@
   ],
   "ext": "js,jsx,ts,tsx,json,flow,css,scss,sass,styl,html,ejs,d,txt,yml,sh",
   "ignore": [".build", "node_modules"],
-  "exec": "node -e 'console.clear()' ; yarn lint:fix && echo '\u2714 OK' || echo '\u274C FAILED' || cd ."
+  "exec": "run-s -c clear lint:fix:start"
 }
