@@ -76,7 +76,7 @@ function ResultsCardFunction({
 
   return (
     <>
-      <span ref={scrollTargetRef}/>
+      <span ref={scrollTargetRef} />
       <CollapsibleCard
         identifier="results-card"
         title={
@@ -131,7 +131,7 @@ function ResultsCardFunction({
                   type="button"
                   color="secondary"
                   disabled={!canExport}
-                  onClick={(_) => setShowExportModal(true)}
+                  onClick={_ => setShowExportModal(true)}
                 >
                   {t('Export')}
                 </Button>
