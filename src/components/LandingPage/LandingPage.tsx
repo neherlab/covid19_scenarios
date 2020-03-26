@@ -10,7 +10,7 @@ import { State } from '../../state/reducer'
 
 function LandingPage() {
   const [isSkipLandingChecked, setSkipLandingChecked] = useState(false)
-  const skipLandingPage = useSelector(({ ui }: State) => ui.skipLandingPage)
+  const showSkipCheckbox = useSelector(({ ui }: State) => !ui.skipLandingPage)
   const dispatch = useDispatch()
   return (
     <>
@@ -44,7 +44,7 @@ function LandingPage() {
               explore the effect of isolation on specific age groups.
             </p>
           </div>
-          {!skipLandingPage && (
+          {showSkipCheckbox && (
             <div>
               <input
                 onChange={(e) => {

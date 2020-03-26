@@ -12,10 +12,10 @@ import '../styles/global.scss'
 import { State } from '../state/reducer'
 
 function App() {
-  const skipLandingPage = useSelector(({ ui }: State) => ui.skipLandingPage)
+  const shouldGoToLandingPage = useSelector(({ ui }: State) => !ui.skipLandingPage)
   return (
     <Switch>
-      {!skipLandingPage && <Redirect exact from="/" to="/start" />}
+      {shouldGoToLandingPage && <Redirect exact from="/" to="/start" />}
       <Route exact path="/start">
         <LandingPage />
       </Route>
