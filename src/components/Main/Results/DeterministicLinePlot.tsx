@@ -214,6 +214,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 width={width}
                 height={height}
                 data={plotData}
+                throttleDelay={75}
                 margin={{
                   left: 15,
                   right: 15,
