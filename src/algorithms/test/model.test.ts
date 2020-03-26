@@ -14,7 +14,6 @@ import initializePopulationOutput from '../../assets/data/test/initializePopulat
 
 // The output after the 5th generation using default settings
 // This is a snapshot of the output that is being used as baseline
-import evolveOutput5 from '../../assets/data/test/evolve.output.5th.default.json'
 import { AllParamsFlat } from '../types/Param.types'
 
 const containmentWithDate = containment.map((value) => ({ y: value.y, t: new Date(value.t) }))
@@ -132,7 +131,7 @@ describe('model', () => {
       }, input)
 
       // evolveOutput5 is the output after the 5th iteration with default parameters
-      expect(result).toEqual(evolveOutput5)
+      expect(result).toMatchSnapshot()
     })
   })
 })
