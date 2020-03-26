@@ -18,7 +18,7 @@ function LandingPage() {
         <div className="landing-page__hero-section">
           <div className="landing-page__header">
             <h1 className="landing-page__heading">COVID-19 Scenarios</h1>
-            <p>Tool that models COVID-19 outbreak and hospital demand</p>
+            <p className="landing-page__sub-heading">Tool that models COVID-19 outbreak and hospital demand</p>
           </div>
           <Link
             onClick={() => {
@@ -36,11 +36,12 @@ function LandingPage() {
         <div className="landing-page__content-section">
           <img className="landing-page__promo-image" src={promoImage} alt="Simulator showing results" />
           <div className="landing-page__content-section-text">
-            <h1>Section</h1>
+            <h1>Simulate Outbreaks</h1>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus reiciendis culpa fuga mollitia officiis
-              velit tempore eum nobis, eligendi debitis distinctio neque non labore placeat laudantium minima ut quos?
-              Molestiae!
+              This tool simulates a COVID19 outbreak. The primary purpose of the tool is to explore the dynamics of
+              COVID19 cases and the associated strain on the health care system in the near future. The outbreak is
+              influenced by infection control measures such as school closures, lock-down etc. Analogously, you can
+              explore the effect of isolation on specific age groups.
             </p>
           </div>
           {!skipLandingPage && (
