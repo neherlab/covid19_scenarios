@@ -4,7 +4,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
 import immerCase from '../../../state/util/fsaImmerReducer'
 
-import { setData, setScenario } from './actions'
+import { setScenarioData, setScenario } from './actions'
 
 import { getScenarioData } from './data'
 
@@ -33,20 +33,34 @@ function maybeAdd<T>(where: T[], what: T): T[] {
  * blocks (per action type) and to enforce typing.
  *
  */
-export const scenarioReducer = reducerWithInitialState(defaultScenarioState).withHandling(
-  immerCase(setScenario, (draft, { scenarioName }) => {
-    draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-    draft.current = scenarioName
-    if (scenarioName !== CUSTOM_SCENARIO_NAME) {
-      draft.data = getScenarioData(scenarioName)
-      draft.data.containment = {
-        reduction: updateTimeSeries(
-          draft.data.simulation.simulationTimeRange,
-          draft.data.containment.reduction,
-          draft.data.containment.numberPoints,
-        ),
-        numberPoints: draft.data.containment.numberPoints,
+export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
+  .withHandling(
+    immerCase(setScenario, (draft, { scenarioName }) => {
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.current = scenarioName
+      if (scenarioName !== CUSTOM_SCENARIO_NAME) {
+        draft.data = getScenarioData(scenarioName)
+        draft.data.containment = {
+          reduction: updateTimeSeries(
+            draft.data.simulation.simulationTimeRange,
+            draft.data.containment.reduction,
+            draft.data.containment.numberPoints,
+          ),
+          numberPoints: draft.data.containment.numberPoints,
+        }
       }
-    }
-  }),
-)
+    }),
+  )
+
+  .withHandling(
+    immerCase(setScenarioData, (draft, { data }) => {
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.current = CUSTOM_SCENARIO_NAME
+      draft.data = {
+        population: data.population,
+        epidemiological: data.epidemiological,
+        containment: data.containment,
+        simulation: data.simulation,
+      }
+    }),
+  )

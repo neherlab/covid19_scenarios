@@ -14,4 +14,4 @@ export interface SetScenarioDataParams {
   data: ScenarioData
 }
 
-export const setData = action<SetScenarioDataParams>('SET_SCENARIO_DATA')
+export const setScenarioData = action<SetScenarioDataParams>('SET_SCENARIO_DATA')
