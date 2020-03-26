@@ -37,7 +37,6 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
     immerCase(setScenario, (draft, { scenarioName }) => {
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = scenarioName
       if (scenarioName !== CUSTOM_SCENARIO_NAME) {
         draft.data = getScenarioData(scenarioName)
         draft.data.containment = {
