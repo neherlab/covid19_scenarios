@@ -59,5 +59,5 @@ if __name__ == "__main__":
 
     if args.output_scenarios:
         print(f"Generating scenario json")
-        scenario = importlib.import_module(f"scripts.collect_scenario_initial_conditions")
-        scenario.generate(args.output_scenarios)
+        scenarios = importlib.import_module(f"scripts.scenarios")
+        scenarios.generate(args.output_scenarios)
