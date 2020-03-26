@@ -28,6 +28,7 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
   }
 
   const containmentData = scenarioState.data.containment.reduction
+  console.log('CONTAIN', containmentData)
 
   return (
     <CardWithoutDropdown
