@@ -95,7 +95,7 @@ class PopulationParams(Object):
         self.populationServed    = int(population)
         self.country             = country
         self.suspectedCasesToday = Fitter.cases_on_tMin
-        self.importsPerDay       = max(.00001 * float(population), .1)
+        self.importsPerDay       = round(max(3e-4 * float(population)**0.5, .1),1)
         self.hospitalBeds        = int(beds)
         self.ICUBeds             = int(icus)
         self.cases               = region
@@ -110,13 +110,14 @@ class EpidemiologicalParams(Object):
         self.peakMonth          = 0
         self.overflowSeverity   = 2
         if region in FIT_CASE_DATA:
-            self.r0 = round(FIT_CASE_DATA[region]['r0'],2)
+            self.r0 = round(FIT_CASE_DATA[region]['r0'],1)
         else:
             self.r0 = 2.7
 
 class ContainmentParams(Object):
     def __init__(self):
-        self.reduction    = [1.0, 0.8, 0.7, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6]
+        self.reduction    = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        # self.reduction    = [1.0, 0.8, 0.7, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6]
         self.numberPoints = len(self.reduction)
 
 class DateRange(Object):
