@@ -26,7 +26,7 @@ module.exports = {
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
     '<rootDir>/src/**/*.(spec|test).{js,jsx,ts,tsx}',
   ],
-  transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  transformIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/cypress'],
   moduleNameMapper: {
     '\\.(eot|otf|webp|ttf|woff\\d?|svg|png|jpe?g|gif)$':
       '<rootDir>/src/__mocks__/fileMock.js',
