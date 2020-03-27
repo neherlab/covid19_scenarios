@@ -234,20 +234,12 @@ The model's results can be exported in CSV format by clicking the "export" butto
 
 ### Development
 
-#### Code Stack
-
-TODO
-
-#### Code Examples
-
-TODO
-
-#### Install requirements
+#### Install Requirements 
 
 - Node >= 10
 - Yarn 1.x
 
-#### Run
+#### Quick Start 
 
 This will run the application in development mode (with hot reloading):
 
@@ -265,6 +257,58 @@ This will trigger the development server and build process. Wait for the build t
 Hit Ctrl+C in the terminal to shutdown.
 
 > ℹ️ Hint: type "rs<Enter>" in terminal to restart the build
+  
+#### Architecture
+
+TODO
+
+#### Directory Structure 
+
+As a developer you are most likely interested in the actual source code in src/. The structure of /src is shown below. 
+
+| File or directory |  Contents                                                                          |
+| ----------------- | --------------------------------------------------------------------------------- |
+| 📁__mocks__/      |                                                     |
+| 📁algorithims/    |  Contains the algorithm implementation code |
+| ├📁test-data/           |  Contains algorithm test data                                             |
+| ├📁test/           |                                                  |
+| ├📁utils/           |                                                |
+| ├📄model.ts/           | Model implementation                                              |
+| ├📄run.ts/           |                                         |
+| 📁assets/       |       Contains model data, application image, and text files     |
+| 📁components/         |   Application React components           |
+| ├📁Form/           |                                                |
+| ├📁LanguageSwitcher/           |                                                 |
+| ├📁Layout/           |                                               |
+| ├📁Links/           |                                                 |
+| ├📁Main/           |                                                 |
+| ├├📁Compare/           |                                                 |
+| ├├📁Containment/           |                                                 |
+| ├├📁Results/           |                                                 |
+| ├├📁Scenario/           |                                                 |
+| ├├📁state/           |                                                |
+| ├├📁validation/           |                                                |
+| ├├📄Disclaimer.tsx/           |                                               |
+| ├├📄Main.scss/           |                                                 |
+| ├├📄Main.tsx/           |   Main react component                                              |
+| ├📁PageSwitcher/           |                                                 |
+| ├📁Router/           |                                                 |
+| ├📄App.tsx/           |                                                 |
+| 📁helpers/           |                                                             |
+| 📁locales/       |                                                         |
+| 📁pages/       |         Application website page implementations                                                     |
+| 📁server/       |         Server that serves production build artifacts                 |                                
+| 📁state/       |                                                              |
+| 📁styles/       |         CSS style files                                                      |
+| 📁types/       |                                                          |
+| 📄i8n.ts         |                            |
+| 📄index.ejs   |                                                    |
+| 📄index.polyfilled.ts   |  Entry point                          |
+| 📄index.tsx     |                                                                    |
+| 📄langs.ts     |                                                                        |
+| 📄links.ts     |                                                                            |
+| 📄routes.ts     |                                                                         |
+
 
 ### Production build
 
@@ -277,6 +321,42 @@ TODO
 ### Continuous integration and deployment
 
 TODO
+
+
+### Getting Started 
+
+For new contributers, follow the guide below to learn how to fork & clone, install required software, and submit changes using a pull request.   
+
+#### 🍴 Forking the Repo 
+Click the Fork button on the upper right-hand side of the repository’s page.
+
+#### 👯 Clone Forked Repository 
+Clone this repo to your local machine using https://github.com/neherlab/covid19_scenarios.git
+
+#### ✨ Installing Required Software
+1. Node.js can be installed using nvm on [Mac/Linux](https://gist.github.com/d2s/372b5943bce17b964a79) and nvm-windows on [Windows](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-windows).
+2. Yarn can be globally installed following [these steps](https://classic.yarnpkg.com/en/docs/install/#mac-stable)
+
+#### 🔨 Start coding! 
+
+#### 💻 Updating the Forked Repository
+To ensure that the forked code stays updated,  you’ll need to add a Git remote pointing back to the original repository and create a local branch. 
+
+``` 
+git remote add upstream https://github.com/openvswitch/openvswitch.github.io.git
+```
+
+To create and checkout a branch, 
+  1. Create and checkout a branch
+  ```
+  git checkout -b <new branch name>
+  ```
+  2. Make changes to the files
+  3. Commit your changes to the branch using ```git add``` and then ```git commit```
+
+#### 💪 Submitting changes using a Pull Request 
+
+To submit your code to the repository, you can [submit a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
 ## Acknowledgements
 
