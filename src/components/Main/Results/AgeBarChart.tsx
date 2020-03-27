@@ -93,10 +93,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <Tooltip formatter={tooltipFormatter} />
                 <Legend verticalAlign="top" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
-                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
-                <Bar dataKey="totalDead" fill={colors.death} name={t('total deaths')} />
+                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} isAnimationActive={false} />
+                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} isAnimationActive={false} />
+                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} isAnimationActive={false} />
+                <Bar dataKey="totalDead" fill={colors.death} name={t('total deaths')} isAnimationActive={false} />
               </BarChart>
               <BarChart
                 width={width}
@@ -119,7 +119,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Tooltip />
-                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
+                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} isAnimationActive={false} />
               </BarChart>
             </>
           )
