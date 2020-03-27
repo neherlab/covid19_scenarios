@@ -29,7 +29,7 @@ export async function exportAll(result: AlgorithmResult) {
   }
 
   const zip = new JSZip()
-  
+
   if (!params) {
     console.error('Error: the params of the simulation cannot be exported because they are null')
   } else {
