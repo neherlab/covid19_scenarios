@@ -105,7 +105,7 @@ function ResultsCardFunction({
               checked={autorunSimulation}
               aria-checked={autorunSimulation}
             />
-            Autorun Simulation on scenario parameter change
+            {t('Autorun simulation on scenario parameter change')}
           </label>
         </Row>
         <Row noGutters className="mb-4">
