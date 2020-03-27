@@ -11,12 +11,14 @@ from paths import TMP_CASES, BASE_PATH, JSON_DIR
 # ------------------------------------------------------------------------
 # Globals
 
-SCENARIO_POPS = os.path.join(BASE_PATH, "static_scenario_data.tsv")
+SCENARIO_POPS = os.path.join(BASE_PATH, "populationData.tsv")
 CASE_COUNTS = os.path.join(BASE_PATH, JSON_DIR, TMP_CASES)
 FIT_CASE_DATA = {}
 
 # ------------------------------------------------------------------------
 # Data fitter
+
+ms_in_day = 1000*60*60*24
 
 class Fitter:
     doubling_time   = 3.0
@@ -27,7 +29,7 @@ class Fitter:
     delay           = 18
     fatality_rate   = 0.02
 
-    def slope_to_r0(self,slope):
+    def slope_to_r0(self, slope):
         return 1 + slope*self.serial_interval
 
     def fit(self, pop):
@@ -57,7 +59,7 @@ class Fitter:
             return datetime.strptime(time[:10], "%Y-%m-%d").toordinal()
 
         def from_ms(time):
-            d = datetime.fromordinal(time)
+            d = datetime.fromordinal(int(time))
             return f"{d.year:04d}-{d.month:02d}-{d.day:02d}"
 
         # ----------------------------------
@@ -67,14 +69,14 @@ class Fitter:
 
         # Try to fit on death
         p = fit_cumulative(data[:,0], data[:,2])
-        if p:
+        if p and p["slope"] > 0:
             tMin = (np.log(self.cases_on_tMin * self.fatality_rate) - p["intercept"]) / p["slope"] - self.delay
-            return {'tMin': tMin, 'initialCases': self.cases_on_tMin, 'r0':self.slope_to_r0(p["slope"])}
+            return {'tMin': from_ms(tMin), 'initialCases': self.cases_on_tMin, 'r0':self.slope_to_r0(p["slope"])}
         else: # If no death, fit on case counts
             p = fit_cumulative(data[:,0], data[:,1])
-            if p:
+            if p and p["slope"] > 0:
                 tMin = (np.log(self.cases_on_tMin)/self.under_reporting - p["intercept"]) / p["slope"]
-                return {'tMin': tMin, 'initialCases': self.cases_on_tMin, 'r0':self.slope_to_r0(p["slope"])}
+                return {'tMin': from_ms(tMin), 'initialCases': self.cases_on_tMin, 'r0':self.slope_to_r0(p["slope"])}
 
         return None
 
@@ -124,7 +126,7 @@ class DateRange(Object):
 
 class SimulationParams(Object):
     def __init__(self, region):
-        tMin = datetime.strftime(datetime.fromordinal(int(FIT_CASE_DATA[region]['tMin'])), '%Y-%m-%d') if region in FIT_CASE_DATA else "2020-03-01"
+        tMin = FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01"
         tMax = "2020-09-01"
         self.simulationTimeRange  = DateRange(tMin, tMax)
         self.numberStochasticRuns = 0
@@ -155,6 +157,7 @@ def fit_all_case_data():
 
 # ------------------------------------------------------------------------
 # Main point of entry
+
 def generate(OUTPUT_JSON):
     scenario = {}
     fit_all_case_data()
@@ -170,14 +173,11 @@ def generate(OUTPUT_JSON):
 
         args = ['name', 'ages', 'size', 'beds', 'icus']
         for region in rdr:
-            if len(region) != len(args):
-                continue
             entry = [region[idx[arg]] for arg in args]
             scenario[region[idx['name']]] = AllParams(*entry)
 
     with open(OUTPUT_JSON, "w+") as fd:
         marshalJSON(scenario, fd)
-
 
 if __name__ == '__main__':
     generate()
