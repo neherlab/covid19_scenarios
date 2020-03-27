@@ -1,4 +1,5 @@
 import React from 'react'
+
 import './ResponsiveTooltipContent.scss'
 
 interface TooltipItem {
@@ -11,6 +12,7 @@ interface TooltipContentProps {
   active: boolean,
   label: string | number
   payload: TooltipItem[]
+  formatter?: any
 } 
 
 function ToolTipContentItem({ name, value, color}: TooltipItem) {
@@ -23,13 +25,14 @@ function ToolTipContentItem({ name, value, color}: TooltipItem) {
   )
 }
 
-export function ResponsiveTooltipContent({ active, payload, label }: TooltipContentProps) {
+export function ResponsiveTooltipContent({ active, payload, label, formatter }: TooltipContentProps) {
   const formattedLabel = Number(label) > 10000 ? new Date(label).toISOString().slice(0, 10) : label
+  const formatNumber = formatter
 
   const essentialPayload = payload.map(payloadItem => ({
     name: payloadItem.name,
     color: payloadItem.color || '#bbbbbb',
-    value: payloadItem.value
+    value: formatter ? formatNumber(payloadItem.value, '', '', 0) : payloadItem.value
   }))
 
   const left = payload.length > 1 ? essentialPayload.slice(0, Math.floor(payload.length / 2)) : payload
