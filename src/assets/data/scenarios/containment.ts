@@ -1,7 +1,7 @@
+import i18next from 'i18next'
 import { ContainmentData } from '../../../algorithms/types/Param.types'
 import { makeTimeSeries } from '../../../algorithms/utils/TimeSeries'
 import simulationData from './simulation'
-import i18next from 'i18next'
 
 export interface ContainmentScenario {
   name: string
@@ -27,8 +27,14 @@ const reductions = [
   },
 ]
 
-const containmentScenarios: ContainmentScenario[] = reductions.map(d => {
-  return {name: d.name, data: {reduction: makeTimeSeries(simulationData.simulationTimeRange, d.reduction), numberPoints: d.reduction.length}}
+const containmentScenarios: ContainmentScenario[] = reductions.map((d) => {
+  return {
+    name: d.name,
+    data: {
+      reduction: makeTimeSeries(simulationData.simulationTimeRange, d.reduction),
+      numberPoints: d.reduction.length,
+    },
+  }
 })
 
 export default containmentScenarios
