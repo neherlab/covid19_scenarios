@@ -207,7 +207,7 @@ def store_json(newdata):
         json.dump(mergedCases, fh)
 
     #print('first layer keys are %s'%mergedCases.keys())
-    print('Stored data for %d regions to json'%len(mergedCases))
+    print(f'Stored data for {len(mergedCases)} regions to {json_file}')
 
 def sanitize(fname):
     # we sanitize to ASCII alphabetic here

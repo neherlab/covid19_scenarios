@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
         srcs = list(json.load(open(os.path.join(BASE_PATH, SOURCES_FILE))).keys())
         for src in srcs:
-            # Allow running this as `python parse_all.py netherlands` to filter sources (debug mode)
+            # Allow running this as `python3 covid19_scenarios_data/generate_data.py --fetch --parsers netherlands` to filter sources (debug mode)
             if (args.parsers is None) or src in args.parsers:
                 print(f"Running {src}", file=sys.stderr)
                 country = importlib.import_module(f"parsers.{src}")
