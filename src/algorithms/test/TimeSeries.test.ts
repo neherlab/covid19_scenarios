@@ -1,4 +1,5 @@
 import 'jest-extended'
+import 'jest-chain'
 import { uniformDatesBetween, makeTimeSeries, updateTimeSeries } from '../utils/TimeSeries'
 import { interpolateTimeSeries } from '../run'
 

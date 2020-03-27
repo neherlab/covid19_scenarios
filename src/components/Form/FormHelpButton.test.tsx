@@ -4,6 +4,12 @@ import FormHelpButton from './FormHelpButton'
 
 describe('FormHelpButton', () => {
   beforeAll(() => {
+    (global as any).MutationObserver = class {
+      constructor(callback) {}
+      disconnect() {}
+      observe(element, initObject) {}
+    };
+
     (global as any).document.createRange = () => ({
       setStart: () => {},
       setEnd: () => {},

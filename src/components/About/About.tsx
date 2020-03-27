@@ -1,14 +1,14 @@
-import { importMDX } from 'mdx.macro';
+// import { importMDX } from 'mdx.macro';
 import React, { Component, lazy, Suspense } from 'react';
 import { BlockMath, InlineMath } from 'react-katex';
 
-const AboutMD = lazy(() => importMDX('../../assets/text/about.md'));
+// const AboutMD = lazy(() => importMDX('../../assets/text/about.md'));
 
 export class AboutComponent extends Component {
   render() {
     return (
       <Suspense fallback={<div>Loading...</div>}>
-        <AboutMD />
+        {/* <AboutMD /> */}
 
         <h2>Details of the model</h2>
         <p>Qualitatively we model the epidemic dynamics with the following subpopulations:</p>

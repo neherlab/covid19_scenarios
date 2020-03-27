@@ -1,4 +1,4 @@
-import { SimulationTimePoint, UserResult } from '../types/Result.types'
+import { ExportedTimePoint, UserResult } from '../types/Result.types'
 
 export default function processUserResult(rawUserResult: string[]): UserResult {
   console.log({ rawUserResult })
@@ -18,7 +18,7 @@ export default function processUserResult(rawUserResult: string[]): UserResult {
   ]
 
   // TODO: Parse trajectores, `throw` on errors
-  const trajectory: SimulationTimePoint[] = []
+  const trajectory: ExportedTimePoint[] = []
 
   return { trajectory }
 }

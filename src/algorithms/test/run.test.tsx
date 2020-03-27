@@ -43,8 +43,6 @@ describe('run()', () => {
   })
 
   it('should work for a lot of countries', async () => {
-    const countryAgeDistributionWithType = countryAgeDistribution as CountryAgeDistribution
-
     const results: Array<Promise<AlgorithmResult>> = populationScenarios.map((populationScenario) => {
       return run(
         {
@@ -53,7 +51,9 @@ describe('run()', () => {
           ...simulationData,
         },
         severityData,
-        countryAgeDistributionWithType[populationScenario.data.country],
+        // TODO: Remove this compilation failure
+        // @ts-ignore
+        countryAgeDistribution[populationScenario.data.country],
         containmentScenarios[3].data.reduction,
       )
     })

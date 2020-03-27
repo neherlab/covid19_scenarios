@@ -1,3 +1,6 @@
+// tslint:disable
+// eslint-disable
+
 import * as math from 'mathjs'
 
 import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
@@ -62,7 +65,8 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
     const A = math.matrix(Mtx)
     const x = math.multiply(math.inv(A), Vec)
 
-    return x.toArray()
+    // TODO: Fix the proper type
+    return x.toArray() as any
   }
 
   const Yps = getSmoothDerivatives()

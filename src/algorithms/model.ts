@@ -64,14 +64,14 @@ export function getPopulationParams(
   }
 
   // Compute age-stratified parameters
-  const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
+  const total = severity.map((d) => d.ageGroup).reduce((a, b) => +a + ageCounts[b], 0)
 
   let hospitalizedFrac = 0
   let criticalFracHospitalized = 0
   let fatalFracCritical = 0
   let avgIsolatedFrac = 0
   severity.forEach((d) => {
-    const freq = (1.0 * ageCounts[d.ageGroup]) / total
+    const freq = (1.0 * ageCounts[d.ageGroup]) / +total
     pop.ageDistribution[d.ageGroup] = freq
     pop.infectionSeverityRatio[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
     pop.infectionCritical[d.ageGroup] = pop.infectionSeverityRatio[d.ageGroup] * (d.critical / 100)

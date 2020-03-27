@@ -24,7 +24,7 @@ export function getCurrentLang(): string {
  * Flag next?
  * @param lang
  */
-function Lang({ lang }: { lang: Lang }) {
+function Lang({ lang }: { lang: { name: string } }) {
   return <span className="language-switcher-lang">{lang.name}</span>
 }
 

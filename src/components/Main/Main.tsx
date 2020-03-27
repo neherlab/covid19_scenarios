@@ -63,12 +63,14 @@ async function runSimulation(
   }
 
   const ageDistribution = countryAgeDistributionData[params.population.country]
+  // TODO: Remove this compilation failure
+  // @ts-ignore
   const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
   const containmentData = params.containment.reduction
 
   serializeScenarioToURL(scenarioState, params)
 
-  const newResult = await run(paramsFlat, severity, ageDistribution as any, containmentData)
+  const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)

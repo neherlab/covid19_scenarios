@@ -2,6 +2,7 @@
 *.swp
 *log
 \.build
+build
 \.cache
 \.env
 \.output
