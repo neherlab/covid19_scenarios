@@ -18,12 +18,12 @@ import './SeverityTable.scss'
 
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: i18next.t('Age group') },
-  { name: 'confirmed', title: `${i18next.t('Confirmed')}\n% ${i18next.t('total')}`},
-  { name: 'severe', title: `${i18next.t('Severe')}\n% ${i18next.t('of confirmed')}`},
-  { name: 'critical', title: `${i18next.t('Critical')}\n% ${i18next.t('of severe')}`},
-  { name: 'fatal', title: `${i18next.t('Fatal')}\n% ${i18next.t('of critical')}`},
-  { name: 'totalFatal', title: `${i18next.t('Fatal')}\n% ${i18next.t('of all infections')}`},
-  { name: 'isolated', title: `${i18next.t('Isolated')}\n% ${i18next.t('total')}`},
+  { name: 'confirmed', title: `${i18next.t('Confirmed')}\n% ${i18next.t('total')}` },
+  { name: 'severe', title: `${i18next.t('Severe')}\n% ${i18next.t('of confirmed')}` },
+  { name: 'critical', title: `${i18next.t('Critical')}\n% ${i18next.t('of severe')}` },
+  { name: 'fatal', title: `${i18next.t('Fatal')}\n% ${i18next.t('of critical')}` },
+  { name: 'totalFatal', title: `${i18next.t('Fatal')}\n% ${i18next.t('of all infections')}` },
+  { name: 'isolated', title: `${i18next.t('Isolated')}\n% ${i18next.t('total')}` },
 ]
 
 const readOnlyColumns = ['ageGroup', 'totalFatal']
@@ -84,7 +84,7 @@ export function EditableCell({
           className="table-cell-editable-input text-center"
           // readOnly={!editingEnabled}
           value={value}
-          onChange={e => onValueChange && onValueChange(e.target.value)}
+          onChange={(e) => onValueChange && onValueChange(e.target.value)}
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={autoFocus}
           onBlur={onBlur}
