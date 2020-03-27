@@ -35,7 +35,7 @@ function tsCheckerFormatter(
 
     frame = codeFrameColumns(source, location, { highlightCode: useColors })
       .split('\n')
-      .map(str => `  ${str}`)
+      .map((str) => `  ${str}`)
       .join(os.EOL)
   }
 
