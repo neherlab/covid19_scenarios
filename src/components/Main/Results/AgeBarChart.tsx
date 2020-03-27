@@ -43,13 +43,13 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
 
   const ages = Object.keys(data.params.ageDistribution)
   const lastDataPoint = data.deterministic.trajectory[data.deterministic.trajectory.length - 1]
-  const plotData = ages.map((age) => ({
+  const plotData = ages.map(age => ({
     name: age,
     fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
-    peakSevere: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.hospitalized[age]))),
-    peakCritical: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.critical[age]))),
-    peakOverflow: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.overflow[age]))),
-    totalDead: Math.round(lastDataPoint.dead[age]),
+    peakSevere: Math.round(Math.max(...data.deterministic.trajectory.map(x => x.current.severe[age]))),
+    peakCritical: Math.round(Math.max(...data.deterministic.trajectory.map(x => x.current.critical[age]))),
+    peakOverflow: Math.round(Math.max(...data.deterministic.trajectory.map(x => x.current.overflow[age]))),
+    totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
   }))
 
   const tooltipFormatter = (
@@ -96,7 +96,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
                 <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
                 <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
-                <Bar dataKey="totalDead" fill={colors.death} name={t('total deaths')} />
+                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} />
               </BarChart>
               <BarChart
                 width={width}
