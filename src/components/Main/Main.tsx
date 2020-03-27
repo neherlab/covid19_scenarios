@@ -18,13 +18,13 @@ import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 
-import countryCaseCounts from '../../assets/data/case_counts.json'
+import countryCaseCountData from '../../assets/data/case_counts.json'
 
 import { schema } from './validation/schema'
 
 import { setEpidemiologicalData, setPopulationData, setSimulationData, setContainmentData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
-import { defaultScenarioState } from './state/state'
+import { defaultScenarioState, State } from './state/state'
 import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
@@ -41,14 +41,49 @@ export function severityErrors(severity: SeverityTableRow[]) {
   return severity.map((row) => row?.errors)
 }
 
+async function runSimulation(
+  scenarioState: State,
+  params: AllParams,
+  severity: SeverityTableRow[],
+  setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
+  setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
+) {
+  const paramsFlat = {
+    ...params.population,
+    ...params.epidemiological,
+    ...params.simulation,
+  }
+
+  if (!isCountry(params.population.country)) {
+    console.error(`The given country is invalid: ${params.population.country}`)
+    return
+  }
+
+  if (!isRegion(params.population.cases)) {
+    console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
+    return
+  }
+
+  const ageDistribution = countryAgeDistributionData[params.population.country]
+  const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
+  const containmentData = params.containment.reduction
+
+  serializeScenarioToURL(scenarioState, params)
+
+  const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
+  setResult(newResult)
+  caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
+  setEmpiricalCases(caseCounts)
+}
+
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
-const isCountry = (country: string): country is keyof typeof countryAgeDistribution => {
+const isCountry = (country: string): country is keyof typeof countryAgeDistributionData => {
   return countryAgeDistributionData.hasOwnProperty(country)
 }
 
-const isRegion = (region: string): region is keyof typeof countryCaseCounts => {
-  return countryCaseCounts.hasOwnProperty(region)
+const isRegion = (region: string): region is keyof typeof countryCaseCountData => {
+  return countryCaseCountData.hasOwnProperty(region)
 }
 
 function Main() {
@@ -82,46 +117,25 @@ function Main() {
     containment: scenarioState.containment.data,
   }
 
-  async function runSimulation(params: AllParams) {
-    const paramsFlat = {
-      ...params.population,
-      ...params.epidemiological,
-      ...params.simulation,
-    }
-
-    if (!isCountry(params.population.country)) {
-      console.error(`The given country is invalid: ${params.population.country}`)
-      return
-    }
-
-    if (!isRegion(params.population.cases)) {
-      console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
-      return
-    }
-
-    const ageDistribution = countryAgeDistributionData[params.population.country]
-    const caseCounts: EmpiricalData = countryCaseCounts[params.population.cases] || []
-    const containmentData = params.containment.reduction
-
-    serializeScenarioToURL(scenarioState, params)
-    const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
-    setResult(newResult)
-    caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
-    setEmpiricalCases(caseCounts)
-  }
-
-  const [debouncedRun] = useDebouncedCallback((params: AllParams) => runSimulation(params), 500)
+  const [debouncedRun] = useDebouncedCallback(
+    (params: AllParams, severity: SeverityTableRow[]) =>
+      runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases),
+    500,
+  )
 
   useEffect(() => {
     if (autorunSimulation) {
-      debouncedRun({
-        population: scenarioState.population.data,
-        epidemiological: scenarioState.epidemiological.data,
-        simulation: scenarioState.simulation.data,
-        containment: scenarioState.containment.data,
-      })
+      debouncedRun(
+        {
+          population: scenarioState.population.data,
+          epidemiological: scenarioState.epidemiological.data,
+          simulation: scenarioState.simulation.data,
+          containment: scenarioState.containment.data,
+        },
+        severity,
+      )
     }
-  }, [autorunSimulation, debouncedRun, scenarioState])
+  }, [autorunSimulation, debouncedRun, scenarioState, severity])
 
   const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
@@ -143,7 +157,7 @@ function Main() {
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    runSimulation(params)
+    runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases)
     setSubmitting(false)
   }
 

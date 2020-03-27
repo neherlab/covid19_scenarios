@@ -1,3 +1,5 @@
+import * as math from 'mathjs'
+
 import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
 
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
@@ -14,34 +16,88 @@ const poisson = (x: number) => {
 
 // NOTE: Assumes containment is sorted ascending in time.
 export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
-  // If user hasn't touched containment, this vector is empty
   if (containment.length === 0) {
-    return (t: Date) => {
-      return 1.0
-    }
+    throw new Error('Containment cannot be empty')
   }
 
-  return (t: Date) => {
-    if (t <= containment[0].t){
-      return containment[0].y
-    } else if (t >= containment[containment.length-1].t) {
-      return containment[containment.length-1].y
-    } else {
-      const index = containment.findIndex(d => Number(t) < Number(d.t))
+  const Ys = containment.map((d) => d.y)
+  const Ts = containment.map((d) => Number(d.t))
 
-      // Deal with extrapolation
-      // i.e. the time given exceeds the containment series.
-      // should no longer be needed!
-      if (index <= 0) {
-        return 1.0
+  /* All needed linear algebra functions */
+  type Vector = number[]
+  type Matrix = number[][]
+
+  const getSmoothDerivatives = function (): Vector {
+    // Solve for the derivatives that lead to "smoothest" interpolator
+    let Mtx: Matrix = []
+    let Vec: Vector = []
+    for (let i = 0; i < Ys.length; i++) {
+      Mtx.push([])
+      for (let j = 0; j < Ys.length; j++) {
+        Mtx[i].push(0)
+      }
+      Vec.push(0)
+    }
+
+    const n = Mtx.length
+
+    for (let i = 1; i < n - 1; i++) {
+      Mtx[i][i - 1] = 1 / (Ts[i] - Ts[i - 1])
+      Mtx[i][i] = 2 * (1 / (Ts[i] - Ts[i - 1]) + 1 / (Ts[i + 1] - Ts[i]))
+      Mtx[i][i + 1] = 1 / (Ts[i + 1] - Ts[i])
+      Vec[i] =
+        3 *
+        ((Ys[i] - Ys[i - 1]) / ((Ts[i] - Ts[i - 1]) * (Ts[i] - Ts[i - 1])) +
+          (Ys[i + 1] - Ys[i]) / ((Ts[i + 1] - Ts[i]) * (Ts[i + 1] - Ts[i])))
+    }
+
+    Mtx[0][0] = 2 / (Ts[1] - Ts[0])
+    Mtx[0][1] = 1 / (Ts[1] - Ts[0])
+    Vec[0] = (3 * (Ys[1] - Ys[0])) / ((Ts[1] - Ts[0]) * (Ts[1] - Ts[0]))
+
+    Mtx[n - 1][n - 2] = 1 / (Ts[n - 1] - Ts[n - 2])
+    Mtx[n - 1][n - 1] = 2 / (Ts[n - 1] - Ts[n - 2])
+    Vec[n - 1] = (3 * (Ys[n - 1] - Ys[n - 2])) / ((Ts[n - 1] - Ts[n - 2]) * (Ts[n - 1] - Ts[n - 2]))
+
+    const A = math.matrix(Mtx)
+    const x = math.multiply(math.inv(A), Vec)
+
+    return x.toArray()
+  }
+
+  const Yps = getSmoothDerivatives()
+
+  return (t: Date) => {
+    if (t <= containment[0].t) {
+      return containment[0].y
+    } else if (t >= containment[containment.length - 1].t) {
+      return containment[containment.length - 1].y
+    } else {
+      const i = containment.findIndex((d) => Number(t) < Number(d.t))
+
+      // Eval spline will return the function value @ t, fit to a spline
+      // Requires the containment strengths (ys) and derivatives (yps) and times (ts)
+      const eval_spline = (t: number) => {
+        const f = (t - Ts[i - 1]) / (Ts[i] - Ts[i - 1])
+        const a = +Yps[i - 1] * (Ts[i] - Ts[i - 1]) - (Ys[i] - Ys[i - 1])
+        const b = -Yps[i] * (Ts[i] - Ts[i - 1]) + (Ys[i] - Ys[i - 1])
+        const q = (1 - f) * Ys[i - 1] + f * Ys[i] + f * (1 - f) * (a * (1 - f) + b * f)
+
+        return q
       }
 
-      const deltaY = containment[index].y - containment[index - 1].y
-      const deltaT = Number(containment[index].t) - Number(containment[index - 1].t)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const eval_linear = (t: number) => {
+        const deltaY = Ys[i] - Ys[i - 1]
+        const deltaT = Ts[i] - Ts[i - 1]
 
-      const dS = deltaY / deltaT
-      const dT = Number(t) - Number(containment[index - 1].t)
-      return containment[index - 1].y + dS * dT
+        const dS = deltaY / deltaT
+        const dT = t - Ts[i - 1]
+
+        return Ys[i - 1] + dS * dT
+      }
+
+      return eval_spline(Number(t))
     }
   }
 }
@@ -74,14 +130,14 @@ export default async function run(
   }
 
   const sim: AlgorithmResult = {
-    deterministicTrajectory: simulate(initialState, identity),
-    stochasticTrajectories: [],
+    deterministic: simulate(initialState, identity),
+    stochastic: [],
     params: modelParams,
   }
 
   for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
     initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
-    sim.stochasticTrajectories.push(simulate(initialState, poisson))
+    sim.stochastic.push(simulate(initialState, poisson))
   }
 
   return sim

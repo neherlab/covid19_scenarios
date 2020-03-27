@@ -84,7 +84,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
-  if (!data || data.stochasticTrajectories.length > 0) {
+  if (!data || data.stochastic.length > 0) {
     return null
   }
 
@@ -120,7 +120,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     })) ?? []
 
   const plotData = [
-    ...data.deterministicTrajectory
+    ...data.deterministic.trajectory
       .filter((d, i) => i % 4 === 0)
       .map((x) => ({
         time: x.time,
@@ -214,6 +214,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 width={width}
                 height={height}
                 data={plotData}
+                throttleDelay={75}
                 margin={{
                   left: 15,
                   right: 15,
