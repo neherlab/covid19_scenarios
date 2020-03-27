@@ -484,7 +484,7 @@ export function exportSimulation(result: UserResult) {
   const header_cumulative = keys(result.trajectory[0].cumulative)
   const tsv_header_cumulative = header_cumulative.map(x => "cumulative_"+x)
 
-  const tsv = [tsv_header.concat(tsv_header_cumulative).join('\t')]
+  const tsv = ['time\t' + tsv_header.concat(tsv_header_cumulative).join('\t')]
 
   const pop: Record<string, boolean> = {}
   result.trajectory.forEach(d => {
