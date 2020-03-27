@@ -1,5 +1,4 @@
-/* eslint-disable only-ascii/only-ascii */
-export type Lang = {
+export type LangType = {
   lang: string
   name: string
 }

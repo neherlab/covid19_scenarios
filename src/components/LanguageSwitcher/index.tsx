@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import i18next from 'i18next'
 
-import langs, { Lang as LangType } from '../../langs'
+import langs, { LangType } from '../../langs'
 
 import './LanguageSwitcher.scss'
 
