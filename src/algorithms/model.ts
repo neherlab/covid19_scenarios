@@ -1,6 +1,13 @@
 import { AllParamsFlat } from './types/Param.types'
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
-import { ModelParams, SimulationTimePoint, UserResult, ExportedTimePoint } from './types/Result.types'
+import {
+  ModelParams,
+  SimulationTimePoint,
+  InternalCurrentData,
+  CumulativeData,
+  UserResult,
+  ExportedTimePoint,
+} from './types/Result.types'
 
 const msPerDay = 1000 * 60 * 60 * 24
 
@@ -252,15 +259,15 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   // NOTE: Regression on type checking
   // update touches the current data
   // push touches the cumulative data
-  const update = (sub: string, age: string, delta: number) => {
+  const update = (sub: keyof InternalCurrentData, age: string, delta: number) => {
     newPop.current[sub][age] = pop.current[sub][age] + delta
   }
 
-  const updateAt = (sub: string, age: string, delta: number, index: number) => {
+  const updateAt = (sub: keyof InternalCurrentData, age: string, delta: number, index: number) => {
     newPop.current[sub][age][index] = pop.current[sub][age][index] + delta
   }
 
-  const push = (sub: string, age: string, delta: number) => {
+  const push = (sub: keyof CumulativeData, age: string, delta: number) => {
     newPop.cumulative[sub][age] = pop.cumulative[sub][age] + delta
   }
 
