@@ -4,7 +4,14 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
 import immerCase from '../../../state/util/fsaImmerReducer'
 
-import { setScenarioData, setContainmentData, setScenario } from './actions'
+import {
+  setScenarioData,
+  setPopulationData,
+  setEpidemiologicalData,
+  setContainmentData,
+  setSimulationData,
+  setScenario,
+} from './actions'
 
 import { getScenarioData } from './data'
 
@@ -36,7 +43,7 @@ function maybeAdd<T>(where: T[], what: T): T[] {
 export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
     immerCase(setScenario, (draft, { name }) => {
-      // draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = name
       if (name !== CUSTOM_SCENARIO_NAME) {
         draft.data = getScenarioData(name)
@@ -54,8 +61,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setScenarioData, (draft, { data }) => {
-      // draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      // draft.current = CUSTOM_SCENARIO_NAME
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.current = CUSTOM_SCENARIO_NAME
       draft.data = {
         population: data.population,
         epidemiological: data.epidemiological,
@@ -66,12 +73,45 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   )
 
   .withHandling(
+    immerCase(setPopulationData, (draft, { data }) => {
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.current = CUSTOM_SCENARIO_NAME
+      draft.data.population = data
+    }),
+  )
+
+  .withHandling(
+    immerCase(setEpidemiologicalData, (draft, { data }) => {
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.current = CUSTOM_SCENARIO_NAME
+      draft.data.epidemiological = data
+    }),
+  )
+
+  .withHandling(
     immerCase(setContainmentData, (draft, { data }) => {
-      // draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      // draft.current = CUSTOM_SCENARIO_NAME
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.current = CUSTOM_SCENARIO_NAME
       draft.data.containment = {
         reduction: updateTimeSeries(draft.data.simulation.simulationTimeRange, data.reduction, data.numberPoints),
         numberPoints: data.numberPoints,
+      }
+    }),
+  )
+
+  .withHandling(
+    immerCase(setSimulationData, (draft, { data }) => {
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.current = CUSTOM_SCENARIO_NAME
+      draft.data.simulation = data
+      console.log('TIME', data.simulationTimeRange)
+      draft.data.containment = {
+        reduction: updateTimeSeries(
+          data.simulationTimeRange,
+          draft.data.containment.reduction,
+          draft.data.containment.numberPoints,
+        ),
+        numberPoints: draft.data.containment.numberPoints,
       }
     }),
   )

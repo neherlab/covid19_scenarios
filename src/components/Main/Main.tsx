@@ -20,7 +20,7 @@ import countryCaseCountData from '../../assets/data/case_counts.json'
 
 import { schema } from './validation/schema'
 
-import { setContainmentData } from './state/actions'
+import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
 import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
@@ -130,15 +130,15 @@ function Main() {
   const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.population, newParams.population)) {
-      // scenarioDispatch(setPopulationData({ data: newParams.population }))
+      scenarioDispatch(setPopulationData({ data: newParams.population }))
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
-      // scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
+      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.simulation, newParams.simulation)) {
-      // scenarioDispatch(setSimulationData({ data: newParams.simulation }))
+      scenarioDispatch(setSimulationData({ data: newParams.simulation }))
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.containment, newParams.containment)) {

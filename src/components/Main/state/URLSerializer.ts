@@ -54,7 +54,7 @@ export function deserializeScenarioFromURL(initState: State): State {
             numberPoints: containmentDataReduction.length,
           },
           epidemiological: initState.data.epidemiological,
-          simulation: initState.data.simulation,
+          simulation: obj.simulation,
         },
       }
     } catch (error) {
