@@ -76,7 +76,7 @@ function ResultsCardFunction({
 
   return (
     <>
-      <span ref={scrollTargetRef}/>
+      <span ref={scrollTargetRef} />
       <CollapsibleCard
         identifier="results-card"
         title={
