@@ -1,10 +1,9 @@
-/* eslint-disable only-ascii/only-ascii */
-type Lang = {
+export type LangType = {
   lang: string
   name: string
 }
 
-const langs: { [key: string]: Lang } = {
+const langs: { [key: string]: LangType } = {
   en: {
     lang: 'en',
     name: 'english',

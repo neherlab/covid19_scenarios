@@ -2,7 +2,6 @@ import 'jest-extended'
 import { AllParamsFlat } from '../types/Param.types'
 import { AlgorithmResult } from '../types/Result.types'
 
-import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistribution from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 import populationScenarios from '../../assets/data/scenarios/populations'
