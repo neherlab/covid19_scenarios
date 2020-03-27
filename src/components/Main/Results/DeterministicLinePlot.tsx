@@ -100,7 +100,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
-
   const observations =
     caseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
