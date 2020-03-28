@@ -1,10 +1,9 @@
 import React from 'react'
 
 import Main from '../Main/Main'
-import { ModelParams } from '../../algorithms/types/Result.types'
 
-function onScenarioSave(name: string, params?: ModelParams) {
-  console.log(name, params)
+function onScenarioSave(name: string, serializeScenario: string) {
+  console.log(name, serializeScenario)
 }
 
 export default function MultipleScenarios() {

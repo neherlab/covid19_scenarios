@@ -27,6 +27,7 @@ import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimul
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
 import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
+import { serializeScenario } from './state/serialize'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
@@ -204,7 +205,9 @@ function Main({ onScenarioSave }: MainProps) {
                       severity={severity}
                       result={result}
                       caseCounts={empiricalCases}
-                      onScenarioSave={onScenarioSave}
+                      onScenarioSave={(name: string) => {
+                        onScenarioSave(name, serializeScenario(scenarioState, allParams, severity))
+                      }}
                     />
                   </Col>
                 </Row>
