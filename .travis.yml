@@ -23,6 +23,7 @@ before_script:
 
 script:
   - yarn test:nowatch
+  - yarn eslint --max-warnings 113
 
 before_deploy:
   - yarn prod
