@@ -1,3 +1,4 @@
+import csv
 import json
 from enum import IntEnum
 
@@ -9,6 +10,10 @@ import matplotlib.pylab as plt
 # ------------------------------------------------------------------------
 # Globals
 
+PATH_UN_AGES   = "covid19_scenarios/src/assets/data/country_age_distribution.json"
+PATH_UN_CODES  = "covid19_scenarios_data/country_codes.csv"
+PATH_CASE_DATA = "covid19_scenarios/src/assets/data/case_counts.json"
+
 def load_distribution(path):
     db  = {}
     with open(path, 'r') as fd:
@@ -19,9 +24,20 @@ def load_distribution(path):
 
     return db
 
-N    = 100000
-AGES = load_distribution("covid19_scenarios/src/assets/data/country_age_distribution.json")
+def load_country_codes(path):
+    db = {}
+    with open(path, 'r') as fd:
+        rdr = csv.reader(fd)
+        for entry in rdr:
+            db[entry[0]] = entry[2]
+
+    return db
+
+N     = 100000
+AGES  = load_distribution(PATH_UN_AGES)
+CODES = load_country_codes(PATH_UN_CODES)
 COUNTRY = "United States of America"
+REGION  = "California"
 
 # ------------------------------------------------------------------------
 # Indexing enums
@@ -83,11 +99,13 @@ RateFields   = [ f for f in dir(DefaultRates) \
 RateFields.remove('infectivity')
 
 # ------------------------------------------------------------------------
-# Main functions
+# Functions
 
 def at(i, j):
     return i + Sub.NUM*j
 
+# ------------------------------------------
+# Modeling
 def make_evolve(params):
     # Equations for coupled ODEs
     def evolve(t, pop):
@@ -166,6 +184,8 @@ def trace_ages(solution):
 
     return total
 
+# ------------------------------------------
+# Parameter estimation
 def assess_model(params, data):
     model = trace_ages(solve_ode(params, init_pop(params.ages, params.size, 1)))
 
@@ -177,6 +197,7 @@ def assess_model(params, data):
 
     return lsq
 
+# Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(country, data, guess):
     params_to_fit = {key : i for i, key in enumerate(sorted(guess.keys()))}
 
@@ -199,6 +220,37 @@ def fit_params(country, data, guess):
 
     return fit_param
 
+# ------------------------------------------
+# Data loading
+
+def make_key(country, region):
+    if region is None:
+        return country
+    else:
+        return f"{CODES[country]}-{region}"
+
+# TODO: Better data filtering criteria needed!
+# TODO: Take hospitalization and ICU data
+def load_data(country, region):
+    data = [[] if i == Sub.D else None for i in range(Sub.NUM)]
+    day0 = "2020-03-01"
+
+    key = make_key(country, region)
+
+    with open(PATH_CASE_DATA, 'r') as fd:
+        db = json.load(fd)
+        ts = db[country]
+
+        day0 = ts[0]['time']
+        for tp in ts:
+            print(f"Deaths: {tp['deaths']}")
+
+    return data, day0
+
+
+# ------------------------------------------------------------------------
+# Testing entry
+
 if __name__ == "__main__":
     rates = DefaultRates
     times = TimeRange(0, 100)
@@ -207,5 +259,6 @@ if __name__ == "__main__":
     model = solve_ode(param, init_pop(param.ages, param.size, 1))
     data  = trace_ages(model)
 
-    guess = { "R0": 3.2 }
-    fit   = fit_params(COUNTRY, data, guess)
+    load_data(COUNTRY, REGION)
+    # guess = { "R0": 3.2 }
+    # fit   = fit_params(COUNTRY, data, guess)
