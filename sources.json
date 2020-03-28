@@ -14,6 +14,11 @@
     "dataProvenance": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
     "license": "none specified"
   },
+  "iceland": {
+    "primarySource": "https://raw.githubusercontent.com/tryggvigy/CoronaWatchIS/master/data/covid_in_is.cvs",
+    "dataProvenance": "https://github.com/tryggvigy/CoronaWatchIS",
+    "license": "none specified"
+  },
   "italy": {
     "primarySource": "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json",
     "dataProvenance": "Dipartimento della Protezione Civile",
