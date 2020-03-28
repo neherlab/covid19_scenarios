@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
+import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 const disclaimerVersion = 0
-const SUPPRESS_DISCLAIMER_ID = 'suppress-disclaimer'
 
 interface SuppressShowAgain {
   version: number
@@ -10,12 +10,10 @@ interface SuppressShowAgain {
 }
 
 function onDialogClosed(suppressShowAgain: boolean) {
-  const persist: SuppressShowAgain = {
+  LocalStorage.set(LOCAL_STORAGE_KEYS.SUPPRESS_DISCLAIMER, {
     version: disclaimerVersion,
     suppressShowAgain,
-  }
-
-  localStorage.setItem(SUPPRESS_DISCLAIMER_ID, JSON.stringify(persist))
+  })
 }
 
 export default function DisclaimerProps() {
@@ -23,12 +21,13 @@ export default function DisclaimerProps() {
   const [suppressShowAgain, setsuppressShowAgain] = useState(false)
 
   useEffect(() => {
-    const localStorageItem = localStorage.getItem(SUPPRESS_DISCLAIMER_ID)
+    const persistedSuppressShowAgain = LocalStorage.get<SuppressShowAgain>(LOCAL_STORAGE_KEYS.SUPPRESS_DISCLAIMER)
 
-    if (localStorageItem) {
-      const suppressItem: SuppressShowAgain = JSON.parse(localStorageItem)
-      setsuppressShowAgain(suppressItem.suppressShowAgain)
-      setShowModal(!suppressItem.suppressShowAgain || suppressItem.version < disclaimerVersion)
+    if (persistedSuppressShowAgain !== null) {
+      setsuppressShowAgain(persistedSuppressShowAgain.suppressShowAgain)
+      setShowModal(
+        !persistedSuppressShowAgain.suppressShowAgain || persistedSuppressShowAgain.version < disclaimerVersion,
+      )
     } else {
       setShowModal(true)
     }
