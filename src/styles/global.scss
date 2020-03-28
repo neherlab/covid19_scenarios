@@ -102,10 +102,11 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .icon-rotate-90 {
-  transform: rotate(-90deg);
   transition: transform linear 0.25s;
+  transform: rotate(-90deg);
 }
 
-.btn.disabled, .btn:disabled {
+.btn.disabled,
+.btn:disabled {
   cursor: not-allowed;
 }

@@ -484,12 +484,12 @@ export function exportSimulation(result: UserResult) {
   // TODO: Make the down sampling interval a parameter
 
   const header = keys(result.trajectory[0].current)
-  const tsvHeader: string[] = header.map((x) => (x === 'critical' ? 'ICU' : x))
+  const tsvHeader: string[] = header.map((x) => (x == 'critical' ? 'ICU' : x))
 
   const headerCumulative = keys(result.trajectory[0].cumulative)
   const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
 
-  const tsv = [`time\t${tsvHeader.concat(tsvHeaderCumulative).join('\t')}`]
+  const tsv = [`time\t${tsv_header.concat(tsvHeaderCumulative).join('\t')}`]
 
   const pop: Record<string, boolean> = {}
   result.trajectory.forEach((d) => {
@@ -502,6 +502,7 @@ export function exportSimulation(result: UserResult) {
     header.forEach((k) => {
       buf += `\t${Math.round(d.current[k].total)}`
     })
+
     headerCumulative.forEach((k) => {
       buf += `\t${Math.round(d.cumulative[k].total)}`
     })

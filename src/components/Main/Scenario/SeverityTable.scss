@@ -2,16 +2,16 @@
 
 // HACK: find a way to override these styles without `!important`
 .dx-g-bs4-header-cell {
-  padding: 0 !important;
-  text-wrap: normal !important;
   max-width: 30px !important;
+  padding: 0 !important;
   text-align: center;
+  text-wrap: normal !important;
 }
 
 // HACK: find a way to override these styles without `!important`
 .dx-g-bs4-table-cell {
-  padding: 0 !important;
   max-width: 30px !important;
+  padding: 0 !important;
   text-align: center !important;
 }
 
@@ -21,10 +21,10 @@
 }
 
 .table-cell-editable {
-  border: 1px solid $gray-300;
   width: 75%;
   min-width: 50px;
   max-width: unset !important;
+  border: 1px solid $gray-300;
 
   &:focus {
     border: 1px solid $info;
@@ -32,9 +32,9 @@
 }
 
 .table-cell-editable-input {
-  padding: auto 1px;
-  outline: none;
-  border: 1px solid $gray-300;
   width: 75%;
   min-width: 50px;
+  padding: auto 1px;
+  border: 1px solid $gray-300;
+  outline: none;
 }

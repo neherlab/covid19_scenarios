@@ -2,9 +2,9 @@ import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
+import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 import processUserResult from '../../../algorithms/utils/userResult'
 import { AgeBarChart } from './AgeBarChart'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
@@ -18,6 +18,9 @@ import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import './ResultsCard.scss'
+
+const LOG_SCALE_DEFAULT = true
+const SHOW_HUMANIZED_DEFAULT = true
 
 interface ResultsCardProps {
   autorunSimulation: boolean
@@ -37,12 +40,30 @@ function ResultsCardFunction({
   caseCounts,
 }: ResultsCardProps) {
   const { t } = useTranslation()
-  const [logScale, setLogScale] = useState(true)
-  const [showHumanized, setShowHumanized] = useState(true)
+  const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
+  const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
   const [userResult, setUserResult] = useState<UserResult | undefined>()
+
+  useEffect(() => {
+    const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
+    setLogScale(persistedLogScale ?? LOG_SCALE_DEFAULT)
+
+    const persistedShowHumanized = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS)
+    setShowHumanized(persistedShowHumanized ?? SHOW_HUMANIZED_DEFAULT)
+  }, [])
+
+  const setPersistLogScale = (value: boolean) => {
+    LocalStorage.set(LOCAL_STORAGE_KEYS.LOG_SCALE, value)
+    setLogScale(value)
+  }
+
+  const setPersistShowHumanized = (value: boolean) => {
+    LocalStorage.set(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS, value)
+    setShowHumanized(value)
+  }
 
   // TODO: shis should probably go into the `Compare/`
   async function handleFileSubmit(files: Map<FileType, File>) {
@@ -105,7 +126,7 @@ function ResultsCardFunction({
               checked={autorunSimulation}
               aria-checked={autorunSimulation}
             />
-            {t('Autorun simulation on scenario parameter change')}
+            {t('Autorun Simulation on scenario parameter change')}
           </label>
         </Row>
         <Row noGutters className="mb-4">
@@ -139,7 +160,6 @@ function ResultsCardFunction({
             </div>
           </Col>
         </Row>
-
         <Row noGutters hidden={!result}>
           <Col data-testid="LogScaleSwitch">
             <FormSwitch
@@ -147,7 +167,7 @@ function ResultsCardFunction({
               label={t('Log scale')}
               help={t('Toggle between logarithmic and linear scale on vertical axis of the plot')}
               checked={logScale}
-              onValueChanged={setLogScale}
+              onValueChanged={setPersistLogScale}
             />
           </Col>
           <Col data-testid="HumanizedValuesSwitch">
@@ -156,7 +176,7 @@ function ResultsCardFunction({
               label={t('Show humanized results')}
               help={t('Show numerical results in a human friendly format')}
               checked={showHumanized}
-              onValueChanged={setShowHumanized}
+              onValueChanged={setPersistShowHumanized}
             />
           </Col>
         </Row>
