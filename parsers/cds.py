@@ -68,8 +68,8 @@ def parse():
     store_json(cases)
 
     # for legacy support
-    cases = flatten(cases)
-    write_tsv(os.path.join(BASE_PATH,"case-counts/cds.tsv"), cols, cases, "cds")
+    #cases = flatten(cases)
+    #write_tsv(os.path.join(BASE_PATH,"case-counts/cds.tsv"), cols, cases, "cds")
 
 if __name__ == "__main__":
     # for debugging
