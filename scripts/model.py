@@ -42,7 +42,7 @@ REGION  = "California"
 # ------------------------------------------------------------------------
 # Indexing enums
 
-compartments = ['S', 'E1', 'E2', 'E3', 'I', 'H', 'C', 'D', 'R', 'NUM']
+compartments = ['S', 'E1', 'E2', 'E3', 'I', 'H', 'C', 'D', 'R', 'T', 'NUM']
 Sub = IntEnum('Sub', compartments, start=0)
 
 groups = ['_0', '_1', '_2', '_3', '_4', '_5', '_6', '_7', '_8', 'NUM']
@@ -75,6 +75,9 @@ class Fracs(object):
     discharge = 1 - critical
     stabilize = 1 - fatality
 
+    def __init__(self, reported=1/30):
+        self.reported = reported
+
 class TimeRange(object):
     def __init__(self, start, end, delta=1):
         self.start = start
@@ -82,10 +85,10 @@ class TimeRange(object):
         self.delta = delta
 
 class Params(object):
-    def __init__(self, ages, rates, size, times):
+    def __init__(self, ages, size, times, rates, fracs):
         self.ages  = ages
         self.rates = rates
-        self.fracs = Fracs()
+        self.fracs = fracs
         self.size  = size
         self.time  = times
 
@@ -94,8 +97,8 @@ class Params(object):
 
 DefaultRates = Rates(latency=1/5, R0=3, infection=1/3, hospital=1/3, critical=1/14, imports=1)
 RateFields   = [ f for f in dir(DefaultRates) \
-                 if not callable(getattr(DefaultRates, f)) \
-                 and not f.startswith("__") ]
+                    if not callable(getattr(DefaultRates, f)) \
+                    and not f.startswith("__") ]
 RateFields.remove('infectivity')
 
 # ------------------------------------------------------------------------
@@ -136,6 +139,7 @@ def make_evolve(params):
             dpop[at(Sub.C, age)]  = +flux_H_C - flux_C_D - flux_C_H
             dpop[at(Sub.R, age)]  = +flux_H_R + flux_I_R
             dpop[at(Sub.D, age)]  = +flux_C_D
+            dpop[at(Sub.T, age)]  = +flux_E3*params.fracs.reported
 
         return dpop
 
@@ -199,22 +203,22 @@ def assess_model(params, data):
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(country, data, guess):
-    params_to_fit = {key : i for i, key in enumerate(sorted(guess.keys()))}
-
-    def unpack(x):
-        return np.array([guess[key] for key in params_to_fit.keys()])
+    params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
     def pack(x):
-        vals = { f: (x[params_to_fit[f]] if f in guess else getattr(DefaultRates, f)) for f in RateFields }
-        return Rates(**vals)
+        return np.array([guess[key] for key in params_to_fit.keys()])
 
-    times = TimeRange(0, max(len(datum)-1 for datum in data))
+    def unpack(x):
+        vals = { f: (x[params_to_fit[f]] if f in guess else getattr(DefaultRates, f)) for f in RateFields }
+        return Rates(**vals), Fracs(x[params_to_fit['reported']]) if 'reported' in params_to_fit else Fracs()
+
+    times = TimeRange(0, max(len(datum)-1 if datum is not None else 0 for datum in data))
 
     def fit(x):
-        param = Params(AGES[country], pack(x), N, times)
+        param = Params(AGES[country], N, times, *unpack(x))
         return assess_model(param, data)
 
-    fit_param = opt.minimize(fit, unpack(guess), method='Nelder-Mead')
+    fit_param = opt.minimize(fit, pack(guess), method='Nelder-Mead')
 
     # TODO: repack parameters
 
@@ -232,7 +236,7 @@ def make_key(country, region):
 # TODO: Better data filtering criteria needed!
 # TODO: Take hospitalization and ICU data
 def load_data(country, region):
-    data = [[] if i == Sub.D else None for i in range(Sub.NUM)]
+    data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
     day0 = "2020-03-01"
 
     key = make_key(country, region)
@@ -243,7 +247,10 @@ def load_data(country, region):
 
         day0 = ts[0]['time']
         for tp in ts:
-            print(f"Deaths: {tp['deaths']}")
+            data[Sub.T].append(tp['cases'])
+            data[Sub.D].append(tp['deaths'])
+
+    data = [ np.array(d) if d is not None else d for d in data]
 
     return data, day0
 
@@ -252,13 +259,13 @@ def load_data(country, region):
 # Testing entry
 
 if __name__ == "__main__":
+    # NOTE: For debugging purposes only
     rates = DefaultRates
+    fracs = Fracs()
     times = TimeRange(0, 100)
-    param = Params(AGES[COUNTRY], rates, N, times)
+    param = Params(AGES[COUNTRY], N, times, rates, fracs)
+    model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
-    model = solve_ode(param, init_pop(param.ages, param.size, 1))
-    data  = trace_ages(model)
-
-    load_data(COUNTRY, REGION)
-    # guess = { "R0": 3.2 }
+    # data, day0 = load_data(COUNTRY, REGION)
+    # guess = { "R0": 3.2, "reported" : 1/10 }
     # fit   = fit_params(COUNTRY, data, guess)
