@@ -252,6 +252,10 @@ def load_data(country, region):
 
     data = [ np.array(d) if d is not None else d for d in data]
 
+    good_idx = data[Sub.T] >= 1
+    data[Sub.D] = data[Sub.D][good_idx]
+    data[Sub.T] = data[Sub.T][good_idx]
+
     return data, day0
 
 
@@ -266,6 +270,6 @@ if __name__ == "__main__":
     param = Params(AGES[COUNTRY], N, times, rates, fracs)
     model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
-    # data, day0 = load_data(COUNTRY, REGION)
+    data, day0 = load_data(COUNTRY, REGION)
     # guess = { "R0": 3.2, "reported" : 1/10 }
     # fit   = fit_params(COUNTRY, data, guess)
