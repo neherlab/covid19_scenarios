@@ -15,7 +15,7 @@ We realize this can be confusing, but in this evolving situation, this is diffic
 We try to summarize most significant model changes below.
 
 
-## 2020-03-26: Modification of the model to allow for more realistic latency distributions
+### 2020-03-26: Modification of the model to allow for more realistic latency distributions
 
 In this update, we replaced the single exposed category with a sequence of three exposed categories.
 The single category implicitly assumes that individuals spend an exponentially distributed time in the "exposed but not yet infectious" state.
@@ -23,7 +23,7 @@ The peak of the exponential distribution is at zero implying that many individua
 In reality, it will take at least 2-3 days before the virus has grown to sufficient numbers before somebody is infectious.
 Multiple exposed categories effectively generate an [Erlang distribution](https://en.wikipedia.org/wiki/Erlang_distribution) (a special case of a Gamma distribution) with a peak away from zero.
 
-## 2020-03-18: Take available hospital beds into account
+### 2020-03-18: Take available hospital beds into account
 
 Early version of our model used the number of available hospital beds only as a guide to the eye -- exceeding the ICU capacity did not results in an increased fatality rate.
 We changed this by adding an additional category "overflow" which models patients that are critically ill but don't get the treatment they need because no ICUs are available.
