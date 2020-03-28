@@ -113,9 +113,8 @@ def assess_model(params, data):
     for i, datum in enumerate(data):
         if datum is None:
             continue
-        lsq += np.sqrt(np.sum(np.power(model[:, i] - datum, 2)))
+        lsq += np.sum(np.power(model[:, i] - datum, 2))
 
-    print(f"diff: {lsq}")
     return lsq
 
 def fit_params(data, guess):
@@ -131,7 +130,7 @@ def fit_params(data, guess):
         param = Params(rates, N, times)
         return assess_model(param, data)
 
-    fit_param = opt.minimize(fit, unpack(guess), tol=1e-3)
+    fit_param = opt.minimize(fit, unpack(guess), method='Nelder-Mead', tol=1e-3)
 
     return fit_param
 
@@ -142,5 +141,5 @@ if __name__ == "__main__":
 
     model = [x for x in solve_ode(param, init_pop(param.size, 1)).T]
 
-    guess = {"beta": 4, "gamma": 2}
+    guess = {"beta": 10, "gamma": 5}
     fit   = fit_params(model, guess)
