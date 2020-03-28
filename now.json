@@ -9,7 +9,7 @@
       "DEV_FANCY_CONSOLE": "1",
       "DEV_FANCY_CLEAR_CONSOLE": "0",
       "DEV_DISABLE_LINT": "1",
-      "WEB_PROD_HOST": "neherlab.org/cov19"
+      "WEB_PROD_HOST": "neherlab.org/covid19"
     }
   }
 }
