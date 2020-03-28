@@ -1,3 +1,4 @@
+import json
 from enum import IntEnum
 
 import numpy as np
@@ -8,8 +9,19 @@ import matplotlib.pylab as plt
 # ------------------------------------------------------------------------
 # Globals
 
+def load_distribution(path):
+    db  = {}
+    with open(path, 'r') as fd:
+        db = json.load(fd)
+        for key, data in db.items():
+            db[key] = np.array([data[k] for k in sorted(data.keys())])
+            db[key] = db[key]/np.sum(db[key])
+
+    return db
+
 N    = 100000
-AGES = np.ones(9) / 9
+AGES = load_distribution("covid19_scenarios/src/assets/data/country_age_distribution.json")
+COUNTRY = "United States of America"
 
 # ------------------------------------------------------------------------
 # Indexing enums
@@ -178,7 +190,7 @@ def fit_params(country, data, guess):
     times = TimeRange(0, max(len(datum)-1 for datum in data))
 
     def fit(x):
-        param = Params(AGES, pack(x), N, times)
+        param = Params(AGES[country], pack(x), N, times)
         return assess_model(param, data)
 
     fit_param = opt.minimize(fit, unpack(guess), method='Nelder-Mead')
@@ -190,10 +202,10 @@ def fit_params(country, data, guess):
 if __name__ == "__main__":
     rates = DefaultRates
     times = TimeRange(0, 100)
-    param = Params(AGES, rates, N, times)
+    param = Params(AGES[COUNTRY], rates, N, times)
 
     model = solve_ode(param, init_pop(param.ages, param.size, 1))
     data  = trace_ages(model)
 
     guess = { "R0": 3.2 }
-    fit   = fit_params(None, data, guess)
+    fit   = fit_params(COUNTRY, data, guess)
