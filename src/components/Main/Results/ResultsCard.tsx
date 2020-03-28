@@ -131,7 +131,7 @@ function ResultsCardFunction({
                   type="button"
                   color="secondary"
                   disabled={!canExport}
-                  onClick={_ => setShowExportModal(true)}
+                  onClick={(_) => setShowExportModal(true)}
                 >
                   {t('Export')}
                 </Button>

@@ -33,11 +33,11 @@ import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import './Main.scss'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
-  return !severity.some(row => _.values(row?.errors).some(x => x !== undefined))
+  return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
 }
 
 export function severityErrors(severity: SeverityTableRow[]) {
-  return severity.map(row => row?.errors)
+  return severity.map((row) => row?.errors)
 }
 
 async function runSimulation(

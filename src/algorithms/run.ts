@@ -20,8 +20,8 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
     throw new Error('Containment cannot be empty')
   }
 
-  const Ys = containment.map(d => d.y)
-  const Ts = containment.map(d => Number(d.t))
+  const Ys = containment.map((d) => d.y)
+  const Ts = containment.map((d) => Number(d.t))
 
   /* All needed linear algebra functions */
   type Vector = number[]

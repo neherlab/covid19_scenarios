@@ -19,8 +19,8 @@ import { FormSpinBox } from '../../Form/FormSpinBox'
 import { State } from '../state/state'
 
 const countries = Object.keys(countryAgeDistribution)
-const countryOptions = countries.map(country => ({ value: country, label: country }))
-const caseCountOptions = Object.keys(countryCaseCounts).map(country => ({ value: country, label: country }))
+const countryOptions = countries.map((country) => ({ value: country, label: country }))
+const caseCountOptions = Object.keys(countryCaseCounts).map((country) => ({ value: country, label: country }))
 caseCountOptions.push({ value: 'none', label: 'None' })
 
 export interface ScenarioCardPopulationProps {
