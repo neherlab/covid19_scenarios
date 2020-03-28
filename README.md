@@ -2,6 +2,16 @@
   COVID-19 Scenarios
 </h1>
 
+<blockquote align="center">
+Models of COVID-19 outbreak trajectories and hospital demand
+</blockquote>
+
+<p align="center">
+  <a href="https://neherlab.org/covid19/">
+    🌐 neherlab.org/covid19/
+  </a>
+</p>
+
 
 <p align="center">
   <a href="https://neherlab.org/covid19/">
@@ -13,13 +23,6 @@
     />
   </a>
 </p>
-
-<p align="center">
-  <a href="https://neherlab.org/covid19/">
-    🌐 neherlab.org/covid19/
-  </a>
-</p>
-
 
 
 <h1 align="center" />
