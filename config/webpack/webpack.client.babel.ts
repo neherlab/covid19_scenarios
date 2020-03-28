@@ -233,6 +233,7 @@ export default {
       template: path.join(moduleRoot, 'src', 'index.ejs'),
       vars: {
         title: getenv('WEB_APP_NAME_FRIENDLY'),
+        host: MODE === 'production' ? getenv('WEB_PROD_HOST') : `localhost:${devServerPort}`
       },
     }),
 
