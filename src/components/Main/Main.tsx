@@ -15,6 +15,7 @@ import run from '../../algorithms/run'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
+import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 
@@ -64,8 +65,9 @@ async function runSimulation(
     return
   }
 
-  const ageDistribution = countryAgeDistributionData[params.population.country]
+  const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[params.population.country]
   const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
+
   const containmentData = params.containment.reduction
 
   serializeScenarioToURL(scenarioState, params)
@@ -78,7 +80,7 @@ async function runSimulation(
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
-const isCountry = (country: string): country is keyof typeof countryAgeDistributionData => {
+const isCountry = (country: string): country is keyof CountryAgeDistribution => {
   return countryAgeDistributionData.hasOwnProperty(country)
 }
 

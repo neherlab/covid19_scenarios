@@ -3,14 +3,12 @@ import { interpolateTimeSeries } from '../run'
 
 // The input and output of getPopulationParams with the default settings
 import getPopulationParamsInput from '../../assets/data/test/getPopulationParams.input.default.json'
-import getPopulationParamsOutput from '../../assets/data/test/getPopulationParams.output.default.json'
 
 // The containment information with default settings
 import { containment } from '../../assets/data/test/containment.default.json'
 
 // The input and output to initializePopulation with default settings
 import initializePopulationInput from '../../assets/data/test/initializePopulation.input.default.json'
-import initializePopulationOutput from '../../assets/data/test/initializePopulation.output.default.json'
 
 // The output after the 5th generation using default settings
 // This is a snapshot of the output that is being used as baseline
@@ -75,25 +73,9 @@ describe('model', () => {
         containmentFunction,
       )
 
-      const paramsInfectionRate = params.infectionRate
-      delete params.infectionRate
-      expect(params).toEqual(getPopulationParamsOutput)
-
-      const infectionRateSnapshot = [
-        1.0282794619390596,
-        0.7815218936243379,
-        0.6412716928585847,
-        0.5119976633870834,
-        0.4777650045046975,
-        0.45115800505877796,
-        0.43543682301649544,
-        0.43252777618729166,
-        0.44278731033335716,
-        0.4649583238392415,
-      ]
-
-      containmentWithDate.forEach((o, i) => {
-        expect(paramsInfectionRate(o.t)).toEqual(infectionRateSnapshot[i])
+      expect(params).toMatchSnapshot()
+      containmentWithDate.forEach((o) => {
+        expect(params.rate.infection(o.t)).toMatchSnapshot()
       })
     })
   })
@@ -106,7 +88,7 @@ describe('model', () => {
         initializePopulationInput.t0,
         initializePopulationInput.ages,
       )
-      expect(result.susceptible).toEqual(initializePopulationOutput.susceptible)
+      expect(result.current.susceptible).toMatchSnapshot()
     })
   })
 

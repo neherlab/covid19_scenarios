@@ -325,7 +325,7 @@ export default {
     }),
 
     // Setup for `moment` locales
-    new webpack.ContextReplacementPlugin(/^\.\/locale$/, context => {
+    new webpack.ContextReplacementPlugin(/^\.\/locale$/, (context) => {
       if (!context.context.includes('/moment/')) {
         return
       }

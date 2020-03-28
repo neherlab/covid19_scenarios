@@ -1,7 +1,16 @@
-<h1 align="center">
+<h1 id="covid19_scenarios" align="center">
   COVID-19 Scenarios
 </h1>
 
+<blockquote align="center">
+Models of COVID-19 outbreak trajectories and hospital demand
+</blockquote>
+
+<p align="center">
+  <a href="https://neherlab.org/covid19/">
+    🌐 neherlab.org/covid19/
+  </a>
+</p>
 
 <p align="center">
   <a href="https://neherlab.org/covid19/">
@@ -13,14 +22,6 @@
     />
   </a>
 </p>
-
-<p align="center">
-  <a href="https://neherlab.org/covid19/">
-    🌐 neherlab.org/covid19/
-  </a>
-</p>
-
-
 
 <h1 align="center" />
 
@@ -72,16 +73,13 @@
 </p>
 
 <p align="center">
-  <a href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a">
-    <img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
-  </a>
   <a href="https://github.com/neherlab/covid19_scenarios/issues">
     <img src="https://img.shields.io/badge/contributions-are%20welcome-%234295f5.svg" alt="Contributions: welcome" />
   </a>
-  <a href="https://github.com/neherlab/covid19_scenarios/issues/18">
+  <a href="https://github.com/neherlab/covid19_scenarios/discussions">
     <img
-      src="https://img.shields.io/badge/questions%20and%20discussions-in%20issue%20%2318-%235bd9b1.svg"
-      alt="Discuss: in issue 18"
+      src="https://img.shields.io/badge/questions%20and%20discussions-are%20here-%235bd9b1.svg"
+      alt="Discussions are here"
     />
   </a>
 </p>
@@ -92,28 +90,26 @@
   </a>
 </p>
 
-<h2 align="center">
+<h1 align="center" />
+
+<h2 id="questions_suggestions" align="center">
 Got questions or suggestions?
 </h2>
 
 <p align="center">
-  <a
-    alt="Link to join the chat"
-    href="https://spectrum.chat/covid19-scenarios"
-  >
-    <img
-      alt="Image for the link to join the chat"
-      src="https://user-images.githubusercontent.com/9403403/77235704-691ec480-6bb8-11ea-985d-82ec87cfdcdf.png"
+  <a href="https://github.com/neherlab/covid19_scenarios/discussions">
+    <img height="50px"
+      src="https://img.shields.io/badge/Join%20-our%20Discussions-%235bd9b1.svg"
+      alt="Discussions are here"
     />
   </a>
 </p>
 
+<h1 align="center" />
 
-
-<h2 align="center">
-Discover
+<h2 id="discover" align="center">
+🔍 Discover
 </h2>
-
 
 <p align="center" width="99%">
 <table width="100%">
@@ -180,7 +176,11 @@ Discover
 </table>
 </p>
 
-### Overview
+<h1 align="center" />
+
+<h2 id="overview" align="center">
+👀 Overview
+</h2>
 
 This tool is based on an SIR model (see about page for details) that simulates a COVID19 outbreak. The population is
 initially mostly susceptible (other than for initial cases). Individuals that recover from COVID19 are subsequently
@@ -193,92 +193,214 @@ etc. The effect of such measures can be included in the simulation by adjusting 
 you can explore the effect of isolation on specific age groups in the column "Isolated" in the table on severity
 assumptions and age specific isolation.
 
-### Parameters
-
-Parameters fall into three different categories
-
-- population parameters
-- epidemiological parameters
-- clinical parameters
-
-Most parameters can be adjusted in the tool and for many of them we provide presets.
+Most parameters can be adjusted in the tool and for many of them we provide presets (scenarios).
 
 Input data for the tool and the basic parameters of the populations are collected in a separate repository
 [neherlab/covid19_scenarios_data](https://github.com/neherlab/covid19_scenarios_data). Please add data on populations
 and parsers of publicly available case count data there.
 
-### User Guide 
+<h1 align="center" />
 
-The online application provides a friendly user interface with drop downs to choose model parameters, run the model, and export results in CSV format. A detailed process is below. 
+<h2 id="users_guide" align="center">
+📕 User's Guide 
+</h2>
 
-#### Population Parameters 
+The online application provides a friendly user interface with drop downs to choose model parameters, run the model, and
+export results in CSV format. A detailed process is below.
 
-Select the population drop down and select a country/region to auto-populate the model's parameters with respective UN population data. These parameters can be indivdually updated manually if necessary. 
+### Parameters: population
 
-#### Epidemiology Parameters 
+Select the population drop down and select a country/region to auto-populate the model's parameters with respective UN
+population data. These parameters can be indivdually updated manually if necessary.
 
-The preset epidemiology parameters are a combination of speed and region - specifying growth rate, seasonal variation, and duration of hospital stay. To choose a preset distribution, select one of the options from the epidemiology drop down to auto-populate the model's parameters with the selected parameters. 
+### Parameters: epidemiology
 
-#### Mitigation Parameters 
+The epidemiology parameters are a combination of speed and region - specifying growth rate, seasonal variation, and
+duration of hospital stay. To choose a preset distribution, select one of the options from the epidemiology drop down to
+auto-populate the model's parameters with the selected parameters.
 
-Mitigation parameters represent the reduction of transmission through mitigation measures over time. To select a preset, click on the mitigation dropdown and select one of the options. Otherwise, the points on the graph can be dragged and moved with the mouse. The parameter ranges from one (no infection control) to zero (complete prevention of all transmission).
+### Parameters: mitigation
 
-#### Running the Model
+Mitigation parameters represent the reduction of transmission through mitigation (infection control) measures over time.
+To select a preset, click on the mitigation dropdown and select one of the options. Otherwise, the points on the graph
+can be dragged and moved with the mouse. The parameter ranges from one (no infection control) to zero (complete
+prevention of all transmission).
 
-Once the correct parameters are inputted, select the run button located in the Results section of the application. The model output will be displayed in 2 graphs: Cases through time and Distribution across groups and 2 tables: Populations and Totals/Peak.
+### Running the Model
 
-#### Exporting Results
+Once the correct parameters are inputted, select the run button located in the Results section of the application. The
+model output will be displayed in 2 graphs: Cases through time and Distribution across groups and 2 tables: Populations
+and Totals/Peak.
 
-The model's results can be exported in CSV format by clicking the "export" button in the right hand corner. 
+### Exporting Results
 
+The model's results can be exported in CSV format by clicking the "export" button in the right hand corner.
 
-### Development
+<h1 align="center" />
 
-#### Code Stack
+<h2 id="developers_guide" align="center">
+🖥️ Developer's guide
+</h2>
 
-TODO
+### Quick Start
 
-#### Code Examples
+#### Run natively
 
-TODO
+Install the requirements:
 
-#### Install requirements
+- git >= 2.0
+- node.js >= 10
+- 1.0 < yarn < 2.0
 
-- Node >= 10
-- Yarn 1.x
-
-#### Run
-
-This will run the application in development mode (with hot reloading):
+Then in your terminal type:
 
 ```bash
-git clone https://github.com/neherlab/covid19_scenarios
+git clone --recursive https://github.com/neherlab/covid19_scenarios
 cd covid19_scenarios/
 cp .env.example .env
 yarn install
 yarn dev
+
 ```
 
-This will trigger the development server and build process. Wait for the build to finish, then navigate to
-`http://localhost:3000` in a browser (last 5 version of Chrome or Firefox are supported in dev mode)
+(on Windows, substitute `cp` with `copy`)
 
-Hit Ctrl+C in the terminal to shutdown.
+This will trigger the development server and build process. Wait for the build to finish, then navigate to
+`http://localhost:3000` in a browser (last 5 versions of Chrome or Firefox are supported in development mode).
 
 > ℹ️ Hint: type "rs<Enter>" in terminal to restart the build
 
+> ℹ️ Hit Ctrl+C in to shutdown the server
+
+#### Run in docker container
+
+Install the requirements:
+
+- Docker > 19.0
+- docker-compose >= 1.25
+
+Run docker-compose with `docker/docker-compose.dev.yml` file:
+
+```
+UID=$(id -u) docker-compose -f docker/docker-compose.dev.yml up --build
+
+```
+
+Variable `UID` should be set to your Unix user ID. On single-user setups these are usually 1000 on Linux and 523 on Mac.
+
+### Directory Structure
+
+As a developer you are most likely interested in the actual source code in `src/` directory.
+
+| File or directory      | Contents                                      |
+| ---------------------- | --------------------------------------------- |
+| 📁algorithims/         | Algorithm's implementation                    |
+| ├📄model.ts/           | Model's implementation                        |
+| ├📄run.ts/             | Algorithm's entry point                       |
+| 📁assets/              | Input data, images, and text assets           |
+| 📁components/          | React components                              |
+| ├📁Form/               | Form components                               |
+| ├📁Main/               | Simulator's UI main component implementation  |
+| &#124; ├📁Containment/ | Containment widget                            |
+| &#124; ├📁Results/     | Results panel                                 |
+| &#124; ├📁Scenario/    | Scenario panel                                |
+| &#124; ├📁state/       | Main component's state management (hooks)     |
+| &#124; ├📁validation/  | Form validation                               |
+| &#124; ├📄Main.scss/   |                                               |
+| &#124; ├📄Main.tsx/    | Simulator's UI main component entry point     |
+| ├📄App.tsx/            | App main component                            |
+| 📁locales/             | Locales for translation                       |
+| 📁pages/               | Application's pages                           |
+| 📁server/              | Server that serves production build artifacts |
+| 📁state/               | App state management (Redux and sagas)        |
+| 📁styles/              | Stylesheets                                   |
+| 📁types/               | Typescript typings                            |
+| 📄index.ejs            | HTML template                                 |
+| 📄index.polyfilled.ts  | Entry point wrapper with polyfills            |
+| 📄index.tsx            | Real entry point                              |
+| 📄links.ts             | Navbar links                                  |
+| 📄routes.ts            | Routes (URL-to-page mapping)                  |
+
 ### Production build
 
+In order to replicate the production build locally, use this command:
+
+```bash
+
+yarn prod:watch
+
+```
+
+This should build the application in production mode and to start static server that will serve the app on
+`http://localhost:8080` (by default)
+
+### Release ccycle, continuous integration and deployment
+
 TODO
 
-### Release Build
+### Getting Started
 
-TODO
+For new contributers, follow the guide below to learn how to install required software, fork & clone, and submit changes
+using a pull request.
 
-### Continuous integration and deployment
+#### ✨ Installing Required Software
 
-TODO
+1. Install Git by following GitHub's instructions
+   [here](https://help.github.com/en/github/getting-started-with-github/set-up-git)
 
-## Acknowledgements
+2. Node.js can be installed using nvm on [Mac/Linux](https://gist.github.com/d2s/372b5943bce17b964a79) and nvm-windows
+   on [Windows](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-windows).
+
+3. Yarn can be globally installed following [these steps](https://classic.yarnpkg.com/en/docs/install/#mac-stable)
+
+#### 🍴 Forking the Repo
+
+Click the Fork button on the upper right-hand side of the repository’s page.
+
+#### 👯 Clone Forked Repository
+
+Clone this repository recursively (including submodules) to your local machine. You can use the URL of your repo inside
+git command, for example:
+
+```bash
+git clone --recursive https://github.com/<YOUR_GITHUB_USERNAME>/covid19_scenarios
+
+```
+
+#### 🔨 Start coding!
+
+<img src="https://i.giphy.com/media/3oriO7A7bt1wsEP4cw/giphy.webp" />
+
+#### 💻 Updating the Forked Repository
+
+To ensure that the forked code stays updated, you’ll need to add a Git remote pointing back to the original repository
+and create a local branch.
+
+```
+git remote add upstream https://github.com/neherlab/covid19_scenarios
+```
+
+To create and checkout a branch,
+
+1. Create and checkout a branch
+
+```
+git checkout -b <new branch name>
+```
+
+2. Make changes to the files
+3. Commit your changes to the branch using `git add` and then `git commit`
+
+#### 💪 Submitting changes using a Pull Request
+
+To submit your code to the repository, you can
+[submit a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+<h1 align="center" />
+
+<h2 id="acknowledgements" align="center">
+🙏 Acknowledgements
+</h2>
 
 ### Initial development
 
@@ -404,6 +526,7 @@ otherwise. Thanks goes to these wonderful people ([emoji key](https://allcontrib
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import i18next from 'i18next'
 
-import langs from '../../langs'
+import langs, { Lang as LangType } from '../../langs'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
@@ -23,7 +23,7 @@ export function getCurrentLang(): string {
  * Flag next?
  * @param lang
  */
-function Lang({ lang }: { lang: Lang }) {
+function Lang({ lang }: { lang: LangType }) {
   return <span className="language-switcher-lang">{lang.name}</span>
 }
 

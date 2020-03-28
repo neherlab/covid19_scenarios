@@ -39,7 +39,9 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
     <CardWithDropdown
       identifier="containmentScenario"
       label={<h5 className="p-0 d-inline text-truncate">{t('Mitigation')}</h5>}
-      help={t('Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.')}
+      help={t(
+        'Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.',
+      )}
       options={containmentScenarioOptions}
       value={containmentScenarioOptions.find((s) => s.label === scenarioState.containment.current)}
       onValueChange={handleChangeContainmentScenario}
@@ -59,7 +61,9 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
       </div>
       <div>
         <p>
-          {t('Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no infection control, zero is complete prevention of all transmission.')}
+          {t(
+            'Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no infection control, zero is complete prevention of all transmission.',
+          )}
         </p>
       </div>
     </CardWithDropdown>

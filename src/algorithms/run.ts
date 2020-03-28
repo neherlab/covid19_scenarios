@@ -29,8 +29,8 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
 
   const getSmoothDerivatives = function (): Vector {
     // Solve for the derivatives that lead to "smoothest" interpolator
-    let Mtx: Matrix = []
-    let Vec: Vector = []
+    const Mtx: Matrix = []
+    const Vec: Vector = []
     for (let i = 0; i < Ys.length; i++) {
       Mtx.push([])
       for (let j = 0; j < Ys.length; j++) {
@@ -70,35 +70,33 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
   return (t: Date) => {
     if (t <= containment[0].t) {
       return containment[0].y
-    } else if (t >= containment[containment.length - 1].t) {
-      return containment[containment.length - 1].y
-    } else {
-      const i = containment.findIndex((d) => Number(t) < Number(d.t))
-
-      // Eval spline will return the function value @ t, fit to a spline
-      // Requires the containment strengths (ys) and derivatives (yps) and times (ts)
-      const eval_spline = (t: number) => {
-        const f = (t - Ts[i - 1]) / (Ts[i] - Ts[i - 1])
-        const a = +Yps[i - 1] * (Ts[i] - Ts[i - 1]) - (Ys[i] - Ys[i - 1])
-        const b = -Yps[i] * (Ts[i] - Ts[i - 1]) + (Ys[i] - Ys[i - 1])
-        const q = (1 - f) * Ys[i - 1] + f * Ys[i] + f * (1 - f) * (a * (1 - f) + b * f)
-
-        return q
-      }
-
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const eval_linear = (t: number) => {
-        const deltaY = Ys[i] - Ys[i - 1]
-        const deltaT = Ts[i] - Ts[i - 1]
-
-        const dS = deltaY / deltaT
-        const dT = t - Ts[i - 1]
-
-        return Ys[i - 1] + dS * dT
-      }
-
-      return eval_spline(Number(t))
     }
+    if (t >= containment[containment.length - 1].t) {
+      return containment[containment.length - 1].y
+    }
+    const i = containment.findIndex((d) => Number(t) < Number(d.t))
+
+    // Eval spline will return the function value @ t, fit to a spline
+    // Requires the containment strengths (ys) and derivatives (yps) and times (ts)
+    const eval_spline = (t: number) => {
+      const f = (t - Ts[i - 1]) / (Ts[i] - Ts[i - 1])
+      const a = +Yps[i - 1] * (Ts[i] - Ts[i - 1]) - (Ys[i] - Ys[i - 1])
+      const b = -Yps[i] * (Ts[i] - Ts[i - 1]) + (Ys[i] - Ys[i - 1])
+      return (1 - f) * Ys[i - 1] + f * Ys[i] + f * (1 - f) * (a * (1 - f) + b * f)
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const eval_linear = (t: number) => {
+      const deltaY = Ys[i] - Ys[i - 1]
+      const deltaT = Ts[i] - Ts[i - 1]
+
+      const dS = deltaY / deltaT
+      const dT = t - Ts[i - 1]
+
+      return Ys[i - 1] + dS * dT
+    }
+
+    return eval_spline(Number(t))
   }
 }
 

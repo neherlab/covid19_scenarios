@@ -1,59 +1,72 @@
-// This defines the internal data structure
-export interface SimulationTimePoint {
-  time: number
-  // Instantaneous categories
+export interface InternalCurrentData {
   susceptible: Record<string, number>
   exposed: Record<string, number[]>
   infectious: Record<string, number>
-  hospitalized: Record<string, number>
+  severe: Record<string, number>
   critical: Record<string, number>
   overflow: Record<string, number>
-  // Cumulative categories
+}
+
+export interface ExposedCurrentData {
+  susceptible: Record<string, number>
+  exposed: Record<string, number>
+  infectious: Record<string, number>
+  severe: Record<string, number>
+  critical: Record<string, number>
+  overflow: Record<string, number>
+}
+
+export interface CumulativeData {
   recovered: Record<string, number>
-  discharged: Record<string, number>
-  intensive: Record<string, number>
-  dead: Record<string, number>
+  hospitalized: Record<string, number>
+  critical: Record<string, number>
+  fatality: Record<string, number>
+}
+
+// This defines the internal data structure
+export interface SimulationTimePoint {
+  time: number
+  current: InternalCurrentData
+  cumulative: CumulativeData
 }
 
 // This defines the user-facing data structure
 export interface ExportedTimePoint {
   time: number
-  // Instantaneous categories
-  susceptible: Record<string, number>
-  exposed: Record<string, number>
-  infectious: Record<string, number>
-  hospitalized: Record<string, number>
+  current: ExposedCurrentData
+  cumulative: CumulativeData
+}
+
+export interface ModelFracs {
+  severe: Record<string, number>
   critical: Record<string, number>
-  overflow: Record<string, number>
-  // Cumulative categories
-  recovered: Record<string, number>
-  discharged: Record<string, number>
-  intensive: Record<string, number>
-  dead: Record<string, number>
+  fatal: Record<string, number>
+  isolated: Record<string, number>
+}
+
+export interface ModelRates {
+  latency: number
+  infection: (t: Date) => number
+  recovery: Record<string, number>
+  severe: Record<string, number>
+  discharge: Record<string, number>
+  critical: Record<string, number>
+  stabilize: Record<string, number>
+  fatality: Record<string, number>
+  overflowFatality: Record<string, number>
 }
 
 export interface ModelParams {
   ageDistribution: Record<string, number>
-  infectionSeverityRatio: Record<string, number>
-  infectionFatality: Record<string, number>
-  infectionCritical: Record<string, number>
-  hospitalizedRate: Record<string, number>
-  recoveryRate: Record<string, number>
-  dischargeRate: Record<string, number>
-  stabilizationRate: Record<string, number>
-  criticalRate: Record<string, number>
-  deathRate: Record<string, number>
-  overflowDeathRate: Record<string, number>
-  isolatedFrac: Record<string, number>
   importsPerDay: Record<string, number>
-  timeDeltaDays: number
-  latencyTime: number
-  infectionRate: (t: Date) => number
   timeDelta: number
+  timeDeltaDays: number
   populationServed: number
   numberStochasticRuns: number
   hospitalBeds: number
   ICUBeds: number
+  frac: ModelFracs
+  rate: ModelRates
 }
 
 export interface UserResult {
