@@ -1,4 +1,14 @@
-.navbar-brand-image {
-  width: 22px;
-  padding: 0;
+.navbar {
+  .lab-name {
+    color: #cd5c5c;
+    display: inline;
+  }
+  .navbar-brand-image {
+    height: 50px;
+    padding: 0;
+  }
+
+  .navbar-nav {
+    margin-left: auto;
+  }
 }
