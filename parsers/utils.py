@@ -190,7 +190,9 @@ def add_country_code(regions, exceptions, code):
     res = {}
     for k in regions:
         if not k in exceptions:
-            k = '-'.join([code,k])
+           res['-'.join([code,k])] = regions[k]
+        else:
+            res[k] = regions[k]
     return res
 
 
