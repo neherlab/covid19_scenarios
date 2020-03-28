@@ -1,4 +1,4 @@
-interface InternalCurrentData {
+export interface InternalCurrentData {
   susceptible: Record<string, number>
   exposed: Record<string, number[]>
   infectious: Record<string, number>

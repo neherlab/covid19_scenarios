@@ -93,11 +93,11 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const nICUBeds = data.params.ICUBeds
 
   const count_observations = {
-    cases: caseCounts?.filter(d => d.cases).length ?? 0,
-    ICU: caseCounts?.filter(d => d.ICU).length ?? 0,
-    observedDeaths: caseCounts?.filter(d => d.deaths).length ?? 0,
+    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
+    ICU: caseCounts?.filter((d) => d.ICU).length ?? 0,
+    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
     newCases: caseCounts?.filter((d, i) => i > 2 && d.cases && caseCounts[i - 3].cases).length ?? 0,
-    hospitalized: caseCounts?.filter(d => d.hospitalized).length ?? 0,
+    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
   const observations =
@@ -121,7 +121,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const plotData = [
     ...data.deterministic.trajectory
       .filter((_, i) => i % 4 === 0)
-      .map(x => ({
+      .map((x) => ({
         time: x.time,
         susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
           ? Math.round(x.current.susceptible.total) || undefined
@@ -155,7 +155,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
     // {key: DATA_POINTS.Exposed, color: colors.exposed, name:'', legendType:"line"},
     { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
-    { key: DATA_POINTS.Severe, color: colors.severe, name: 'Severely ill', legendType: 'line' },
+    { key: DATA_POINTS.Severe, color: colors.severe, name: t('Severely ill'), legendType: 'line' },
     { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
     { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
     { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
@@ -237,13 +237,13 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 <Legend
                   verticalAlign="top"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
-                  onClick={e => {
+                  onClick={(e) => {
                     const plots = enabledPlots.slice(0)
                     enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)
                     setEnabledPlots(plots)
                   }}
                 />
-                {linesToPlot.map(d => (
+                {linesToPlot.map((d) => (
                   <Line
                     key={d.key}
                     dot={false}
@@ -256,7 +256,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                     legendType={d.legendType}
                   />
                 ))}
-                {scatterToPlot.map(d => (
+                {scatterToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}
               </ComposedChart>

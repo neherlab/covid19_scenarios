@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 
 import { FormikErrors, FormikTouched } from 'formik'
@@ -11,8 +11,6 @@ import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
 import { State } from '../state/state'
-
-import { useTranslation } from 'react-i18next'
 
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month }))
