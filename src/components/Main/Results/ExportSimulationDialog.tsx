@@ -44,9 +44,9 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               </td>
             </tr>
             <tr>
-              <td>covid.results.deterministic.csv</td>
+              <td>covid.results.deterministic.tsv</td>
               <td>{t('The deterministic results of the simulation')}</td>
-              <td>CSV</td>
+              <td>TSV</td>
               <td>
                 <Button
                   disabled={!(result?.deterministic ?? null)}
