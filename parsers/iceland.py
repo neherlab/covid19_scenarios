@@ -50,7 +50,10 @@ def parse_csv(regions_date, url, col_index, output_column):
 
     for row in rdr:
         date_string = parse_date(row[0])
-        regions_date["Iceland"][date_string][output_column] = row[col_index]
+        if row[col_index] == '':
+            regions_date["Iceland"][date_string][output_column] = None
+        else:
+            regions_date["Iceland"][date_string][output_column] = row[col_index]
 
 
 def parse_cases(regions_date):
