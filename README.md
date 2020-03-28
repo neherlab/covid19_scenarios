@@ -301,13 +301,13 @@ As a developer you are most likely interested in the actual source code in `src/
 | 📁components/         | React components                              |
 | ├📁Form/              | Form components                               |
 | ├📁Main/              | Simulator's UI main component implementation  |
-| |├📁Containment/      | Containment widget                            |
-| |├📁Results/          | Results panel                                 |
-| |├📁Scenario/         | Scenario panel                                |
-| |├📁state/            | Main component's state management (hooks)     |
-| |├📁validation/       | Form validation                               |
-| |├📄Main.scss/        |                                               |
-| |├📄Main.tsx/         | Simulator's UI main component entry point     |
+|  ├📁Containment/      | Containment widget                            |
+|  ├📁Results/          | Results panel                                 |
+|  ├📁Scenario/         | Scenario panel                                |
+|  ├📁state/            | Main component's state management (hooks)     |
+|  ├📁validation/       | Form validation                               |
+|  ├📄Main.scss/        |                                               |
+|  ├📄Main.tsx/         | Simulator's UI main component entry point     |
 | ├📄App.tsx/           | App main component                            |
 | 📁locales/            | Locales for translation                       |
 | 📁pages/              | Application's pages                           |
