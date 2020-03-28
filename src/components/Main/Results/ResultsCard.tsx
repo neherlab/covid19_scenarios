@@ -118,13 +118,15 @@ function ResultsCardFunction({
           </Col>
         </Row>
         <Row noGutters className="mb-4 pl-4">
-          <label className="form-check-label">
+          <label className="form-check-label" htmlFor="autorunToggle">
             <input
+              id="autorunToggle"
               type="checkbox"
               className="form-check-input"
               onChange={toggleAutorun}
               checked={autorunSimulation}
               aria-checked={autorunSimulation}
+              value={autorunSimulation ? 'auto run' : undefined}
             />
             {t('Autorun Simulation on scenario parameter change')}
           </label>
