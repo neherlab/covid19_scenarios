@@ -87,6 +87,8 @@ function ResultsCardFunction({
   const [canExport, setCanExport] = useState<boolean>(false)
   const [showExportModal, setShowExportModal] = useState<boolean>(false)
 
+  const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
+
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
@@ -140,6 +142,7 @@ function ResultsCardFunction({
             <Button type="button" color="secondary" disabled={!canExport} onClick={(_) => setShowExportModal(true)}>
               {t('Export')}
             </Button>
+            <Button onClick={(_) => setShowSaveModal(true)}>{t('Save')}</Button>
           </Col>
         </Row>
         <Row noGutters hidden={!result}>
@@ -206,6 +209,7 @@ function ResultsCardFunction({
         canExport={canExport}
         result={result}
       />
+      {showSaveModal && <span>SAVE!</span>}
     </>
   )
 }
