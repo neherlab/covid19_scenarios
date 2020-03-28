@@ -98,8 +98,6 @@ function ResultsCardFunction({
     setCanExport((result && !!result.deterministic) || false)
   }, [result])
 
-  console.log('rendered')
-
   return (
     <>
       <span ref={scrollTargetRef} />
@@ -212,7 +210,9 @@ function ResultsCardFunction({
         canExport={canExport}
         result={result}
       />
-      {showSaveModal && <SaveScenarioDialog onCloseDialog={() => setShowSaveModal(false)} />}
+      {showSaveModal && (
+        <SaveScenarioDialog onSave={(name) => console.log(name)} onCloseDialog={() => setShowSaveModal(false)} />
+      )}
     </>
   )
 }
