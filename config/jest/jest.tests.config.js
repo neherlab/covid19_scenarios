@@ -14,7 +14,7 @@ module.exports = {
     'ts-jest': {
       babelConfig: true,
       diagnostics: {
-        pathRegex: /(\/__tests__\/.*|([./])(test|spec))\.[jt]sx?$/,
+        pathRegex: /(\/__tests?__\/.*|([./])(test|spec))\.[jt]sx?$/,
         warnOnly: true,
       },
     },
@@ -23,8 +23,11 @@ module.exports = {
     '^.+\\.(js|jsx)?$': 'babel-jest',
   },
   testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
     '<rootDir>/src/**/*.(spec|test).{js,jsx,ts,tsx}',
+    '<rootDir>/src/**/__test__/**/*.{js,jsx,ts,tsx}',
+    '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
+    '<rootDir>/src/**/test/**/*.{js,jsx,ts,tsx}',
+    '<rootDir>/src/**/tests/**/*.{js,jsx,ts,tsx}',
   ],
   transformIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/cypress'],
   moduleNameMapper: {

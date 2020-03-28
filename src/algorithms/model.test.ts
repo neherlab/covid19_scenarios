@@ -1,18 +1,18 @@
-import { infectionRate, getPopulationParams, initializePopulation, evolve } from '../model'
-import { interpolateTimeSeries } from '../run'
+import { infectionRate, getPopulationParams, initializePopulation, evolve } from './model'
+import { interpolateTimeSeries } from './run'
 
 // The input and output of getPopulationParams with the default settings
-import getPopulationParamsInput from '../../assets/data/test/getPopulationParams.input.default.json'
+import getPopulationParamsInput from './__test_data__/getPopulationParams.input.default.json'
 
 // The containment information with default settings
-import { containment } from '../../assets/data/test/containment.default.json'
+import { containment } from './__test_data__/containment.default.json'
 
 // The input and output to initializePopulation with default settings
-import initializePopulationInput from '../../assets/data/test/initializePopulation.input.default.json'
+import initializePopulationInput from './__test_data__/initializePopulation.input.default.json'
 
 // The output after the 5th generation using default settings
 // This is a snapshot of the output that is being used as baseline
-import { AllParamsFlat } from '../types/Param.types'
+import { AllParamsFlat } from './types/Param.types'
 
 const containmentWithDate = containment.map((value) => ({ y: value.y, t: new Date(value.t) }))
 const containmentFunction = interpolateTimeSeries(containmentWithDate)

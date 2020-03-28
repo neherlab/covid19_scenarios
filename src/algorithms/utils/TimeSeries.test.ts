@@ -1,15 +1,5 @@
-import { uniformDatesBetween, makeTimeSeries, updateTimeSeries } from '../utils/TimeSeries'
+import { uniformDatesBetween, makeTimeSeries, updateTimeSeries } from './TimeSeries'
 import { interpolateTimeSeries } from '../run'
-
-function compareTimeSeries(expected: { t: Date; y: number }[], result: { t: Date; y: number }[]) {
-  expect(result).toHaveLength(expected.length)
-
-  expected.forEach(({ t, y }, index) => {
-    const { t: resultT, y: resultY } = result[index]
-    expect(resultT).toStrictEqual(t)
-    expect(resultY).toBeCloseTo(y)
-  })
-}
 
 describe('TimeSeries', () => {
   const tMin = new Date('1970-10-01T00:00:00.000Z')
@@ -101,24 +91,7 @@ describe('TimeSeries', () => {
         return interpolator(date)
       })
 
-      expect(result).toBeArrayOfSize(intervalCount)
-
-      const expected = [
-        1,
-        2.6354594390679185,
-        4.209836664611696,
-        5.648965995858905,
-        6.892037521792783,
-        7.889772449043392,
-        8.678773876200733,
-        9.32431394905387,
-        9.891684813683101,
-        10,
-      ]
-
-      result.forEach((y, index) => {
-        expect(y).toBeCloseTo(expected[index])
-      })
+      expect(result).toBeArrayOfSize(intervalCount).toMatchSnapshot()
     })
   })
 

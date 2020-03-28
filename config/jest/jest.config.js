@@ -16,7 +16,7 @@ module.exports = {
     shouldRunEslint && require('./jest.eslint.config.js'),
   ].filter(Boolean),
 
-  coverageDirectory: path.join(moduleRoot, '..', '.reports', 'coverage'),
+  coverageDirectory: path.join(moduleRoot, '.reports', 'coverage'),
 
   collectCoverageFrom: [
     '!<rootDir>/**/*.d.ts',
