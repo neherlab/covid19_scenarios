@@ -1,0 +1,29 @@
+name: 'Update Submodule and Jsons'
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  sync_submodules:
+    steps:
+      - name: Checkout submodule
+        uses: srt32/git-actions@v0.0.3
+        with:
+          args: git submodule update --init --recursive
+      - name: Update jsons
+        run: |
+          python covid19_scenarios_data/parse_all.py --fetch \
+          --output-cases path/case-counts.json \
+          --output-population path/population.json
+      - name: Commit files
+        run: |
+          git config --local user.email "<authors email here>"
+          git config --local user.name "<authors name here> Action"
+          git add .
+          git commit -m "Update submodule and jsons"
+        continue-on-error: true
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
