@@ -8,6 +8,9 @@ import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.ty
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
+import { calculatePosition, scrollToRef } from './chartHelper'
+import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
+
 import './DeterministicLinePlot.scss'
 
 const ASPECT_RATIO = 16 / 9
@@ -81,6 +84,8 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
   const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
+
+  const chartRef = React.useRef(null)
 
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
@@ -209,11 +214,15 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
           }
 
           const height = Math.max(500, width / ASPECT_RATIO)
+          const tooltipPosition = calculatePosition(height)
 
           return (
             <>
               <h5>{t('Cases through time')}</h5>
+              
+              <div ref={chartRef} />
               <ComposedChart
+                onClick={() => scrollToRef(chartRef)}
                 width={width}
                 height={height}
                 data={plotData}
@@ -234,7 +243,12 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                   tickCount={7}
                 />
                 <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
-                <Tooltip formatter={tooltipFormatter} labelFormatter={labelFormatter} />
+                <Tooltip 
+                  formatter={tooltipFormatter} 
+                  labelFormatter={labelFormatter}
+                  position={tooltipPosition} 
+                  content={ResponsiveTooltipContent}
+                />
                 <Legend
                   verticalAlign="top"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
