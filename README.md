@@ -244,10 +244,12 @@ The model's results can be exported in CSV format by clicking the "export" butto
 
 ### Quick Start
 
-#### Install Requirements
+#### Run natively
 
-- Git 2.0+
-- Node >= 10+
+Install the requirements:
+
+- Git >= 2.0
+- Node >= 10
 - Yarn 1.x
 
 Then in your terminal type:
@@ -269,6 +271,22 @@ This will trigger the development server and build process. Wait for the build t
 > ℹ️ Hint: type "rs<Enter>" in terminal to restart the build
 
 > ℹ️ Hit Ctrl+C in to shutdown the server
+
+#### Run in docker container
+
+Install the requirements:
+
+- Docker 19+
+- docker-compose >= 1.25
+
+Run docker-compose with `docker/docker-compose.dev.yml` file:
+
+```
+UID=$(id -u) docker-compose -f docker/docker-compose.dev.yml up --build
+
+```
+
+Variable `UID` should be set to your Unix user ID. On single-user setups these are usually 1000 on Linux and 523 on Mac.
 
 ### Directory Structure
 
