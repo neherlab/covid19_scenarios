@@ -27,6 +27,7 @@ def parse():
         print(f"Failed to fetch {URL}", file=sys.stderr)
         exit(1)
     cases  = {}
+    aggregates = {} # aggregate per state and use later if no direct state-level data available
     dates = {}
     fd  = io.StringIO(r.text)
     rdr = csv.reader(fd)
@@ -54,33 +55,24 @@ def parse():
             index['cases'] = hdr.index('province_confirmedCount')
             index['deaths'] = hdr.index('province_deadCount')
             index['recovered'] = hdr.index('province_curedCount')
+            mycases = cases
         elif county == '':
             # we have state data
             index['cases'] = hdr.index('province_confirmedCount')
             index['deaths'] = hdr.index('province_deadCount')
             index['recovered'] = hdr.index('province_curedCount')
-            #try:
-            #    code = list(countries.keys())[list(countries.values()).index(country)]
-            #except:
-            #    print(f'No code for country {country}')
-            #    continue
-            #country = '-'.join([code,state])
             country = state
+            mycases = cases
         else:
             # we have county data
-            continue
             index['cases'] = hdr.index('city_confirmedCount')
             index['deaths'] = hdr.index('city_deadCount')
             index['recovered'] = hdr.index('city_curedCount')
-            try:
-                code = list(countries.keys())[list(countries.values()).index(country)]
-            except:
-                print(f'No code for country {country}')
-                continue
-            country = '-'.join([code,state,county])
+            mycases = aggregates
+            country = '-'.join([state,county])
 
-        if not country in cases:
-            cases[country] = []
+        if not country in mycases:
+            mycases[country] = []
             dates[country] = {}
         if not date_str in dates[country]:
             dates[country][date_str] = True
@@ -93,36 +85,48 @@ def parse():
                         d[i] = None
                 else:
                     d[i] = None
-            cases[country].append(d)
+            mycases[country].append(d)
         else:
             #print(f'we actually have double data per date for {country} for date {date_str} {row}')
             continue
 
-    # now we need to merge county data?
-
-            # check if we already have data, likely from another county in this state, if available. In that case, we need to add
-            #try:
-            #    od = next(x for x in cases[codeState] if x['time']==date_str)
-            #    d = {'time': date_str}
-            #    for i in cols[1:]:
-            #        if i in index:
-            #            if len(row[index[i]])>0:
-            #                if not i in od:
-            #                    od[i] = int(float(row[index[i]]))
-            #                else:
-            #                    od[i] += int(float(row[index[i]]))
-            #except (StopIteration, KeyError) as e:
-            #    # first observation for that date and
-            #    d = {'time': date_str}
-            #    for i in cols[1:]:
-            #        if i in index:
-            #            if len(row[index[i]])>0:
-            #                d[i] = int(float(row[index[i]]))
-            #    cases[codeState].append(d)
+    # add up county numbers to province numbers
+    aggregates2 = {}
+    for cntry, data in cases.items():        
+        # for each state, pull all counties
+        for c in [value for key, value in aggregates.items() if cntry in key]:
+            # we now have a list of dicts for the county
+            if not cntry in aggregates2:
+                aggregates2[cntry] = []
+            for d in c: # each day for the counties
+                try:
+                    # check if we have data for that day already
+                    od = next(x for x in aggregates2[cntry] if x['time']==d['time'])
+                    # we found prior data, update it. There should only be one match here
+                    for k in cols[1:]:
+                        if (k in od) and (od[k]) and (k in d):
+                            if d[k]:
+                                od[k] += d[k]
+                        elif k in d:
+                            od[k] = d[k]
+                except (StopIteration, KeyError) as e:
+                    # first observation for that date and
+                    aggregates2[cntry].append(d)
+                
+    # now update cases if we don't have values for a specific day
+    for cntry, data in aggregates2.items():        
+        # for each state, pull all counties
+        for d in data: # each day, a dict
+            try:
+                # check if we have data for that day already
+                od = next(x for x in cases[cntry] if x['time']==d['time'])
+                # we found prior data, don't do anything
+            except (StopIteration, KeyError) as e:
+                # first observation for that date and
+                cases[cntry].append(d)
 
     # sort chronologically
     for cntry, data in cases.items():
-        cases[cntry] = sorted_date(cases[cntry])
-    #import json
-    #print(json.dumps(cases))
+        cases[cntry] = sorted_date(data)
+
     store_data(cases, {'default': LOC, 'China': LOC}, 'china', 'CHN', cols=cols)
