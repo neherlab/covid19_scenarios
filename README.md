@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 id="covid19_scenarios" align="center">
   COVID-19 Scenarios
 </h1>
 
@@ -90,9 +90,9 @@ Models of COVID-19 outbreak trajectories and hospital demand
   </a>
 </p>
 
----
+<h1 align="center" />
 
-<h2 align="center">
+<h2 id="questions_suggestions" align="center">
 Got questions or suggestions?
 </h2>
 
@@ -105,9 +105,9 @@ Got questions or suggestions?
   </a>
 </p>
 
----
+<h1 align="center" />
 
-<h2 align="center">
+<h2 id="discover" align="center">
 🔍 Discover
 </h2>
 
@@ -176,9 +176,9 @@ Got questions or suggestions?
 </table>
 </p>
 
----
+<h1 align="center" />
 
-<h2 align="center">
+<h2 id="overview" align="center">
 👀 Overview
 </h2>
 
@@ -199,9 +199,9 @@ Input data for the tool and the basic parameters of the populations are collecte
 [neherlab/covid19_scenarios_data](https://github.com/neherlab/covid19_scenarios_data). Please add data on populations
 and parsers of publicly available case count data there.
 
----
+<h1 align="center" />
 
-<h2 align="center">
+<h2 id="users_guide" align="center">
 📕 User's Guide 
 </h2>
 
@@ -236,10 +236,10 @@ and Totals/Peak.
 
 The model's results can be exported in CSV format by clicking the "export" button in the right hand corner.
 
----
+<h1 align="center" />
 
-<h2 align="center">
-🖥️ Development
+<h2 id="developers_guide" align="center">
+🖥️ Developer's guide
 </h2>
 
 ### Quick Start
@@ -392,9 +392,9 @@ git checkout -b <new branch name>
 To submit your code to the repository, you can
 [submit a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
----
+<h1 align="center" />
 
-<h2 align="center">
+<h2 id="acknowledgements" align="center">
 🙏 Acknowledgements
 </h2>
 
