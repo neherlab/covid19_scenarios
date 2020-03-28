@@ -3,7 +3,7 @@ import { isType } from 'typescript-fsa'
 
 import { setShouldSkipLandingPage } from './ui.actions'
 
-export const SKIP_LANDING_PAGE_KEY = 'skip-landing-page';
+export const SKIP_LANDING_PAGE_KEY = 'skip-landing-page'
 
 export interface UiState {
   skipLandingPage: boolean
