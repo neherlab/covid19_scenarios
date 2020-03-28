@@ -8,7 +8,8 @@ const languageMap: {[key: string]: string} = {
   fr: 'Resultats',
   pt: 'Resultados',
   de: 'Ergebnisse',
-  es: 'Resultados'
+  es: 'Resultados',
+  pl: 'Wyniki',
 }
 
 context('Language switcher', () => {
