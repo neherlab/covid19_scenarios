@@ -12,7 +12,8 @@ interface TooltipContentProps {
   active: boolean,
   label: string | number
   payload: TooltipItem[]
-  formatter?: any
+  formatter?: Function
+  labelFormatter?: Function
 } 
 
 function ToolTipContentItem({ name, value, color}: TooltipItem) {
@@ -25,8 +26,8 @@ function ToolTipContentItem({ name, value, color}: TooltipItem) {
   )
 }
 
-export function ResponsiveTooltipContent({ active, payload, label, formatter }: TooltipContentProps) {
-  const formattedLabel = Number(label) > 10000 ? new Date(label).toISOString().slice(0, 10) : label
+export function ResponsiveTooltipContent({ active, payload, label, formatter, labelFormatter }: TooltipContentProps) {
+  const formattedLabel = labelFormatter && label ? labelFormatter(label) : label
   const formatNumber = formatter
 
   const essentialPayload = payload.map(payloadItem => ({
