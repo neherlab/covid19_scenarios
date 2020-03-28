@@ -292,34 +292,34 @@ Variable `UID` should be set to your Unix user ID. On single-user setups these a
 
 As a developer you are most likely interested in the actual source code in `src/` directory.
 
-| File or directory     | Contents                                      |
-| --------------------- | --------------------------------------------- |
-| 📁algorithims/        | Algorithm's implementation                    |
-| ├📄model.ts/          | Model's implementation                        |
-| ├📄run.ts/            | Algorithm's entry point                       |
-| 📁assets/             | Input data, images, and text assets           |
-| 📁components/         | React components                              |
-| ├📁Form/              | Form components                               |
-| ├📁Main/              | Simulator's UI main component implementation  |
-|  ├📁Containment/      | Containment widget                            |
-|  ├📁Results/          | Results panel                                 |
-|  ├📁Scenario/         | Scenario panel                                |
-|  ├📁state/            | Main component's state management (hooks)     |
-|  ├📁validation/       | Form validation                               |
-|  ├📄Main.scss/        |                                               |
-|  ├📄Main.tsx/         | Simulator's UI main component entry point     |
-| ├📄App.tsx/           | App main component                            |
-| 📁locales/            | Locales for translation                       |
-| 📁pages/              | Application's pages                           |
-| 📁server/             | Server that serves production build artifacts |
-| 📁state/              | App state management (Redux and sagas)        |
-| 📁styles/             | Stylesheets                                   |
-| 📁types/              | Typescript typings                            |
-| 📄index.ejs           | HTML template                                 |
-| 📄index.polyfilled.ts | Entry point wrapper with polyfills            |
-| 📄index.tsx           | Real entry point                              |
-| 📄links.ts            | Navbar links                                  |
-| 📄routes.ts           | Routes (URL-to-page mapping)                  |
+| File or directory      | Contents                                      |
+| ---------------------- | --------------------------------------------- |
+| 📁algorithims/         | Algorithm's implementation                    |
+| ├📄model.ts/           | Model's implementation                        |
+| ├📄run.ts/             | Algorithm's entry point                       |
+| 📁assets/              | Input data, images, and text assets           |
+| 📁components/          | React components                              |
+| ├📁Form/               | Form components                               |
+| ├📁Main/               | Simulator's UI main component implementation  |
+| &#124; ├📁Containment/ | Containment widget                            |
+| &#124; ├📁Results/     | Results panel                                 |
+| &#124; ├📁Scenario/    | Scenario panel                                |
+| &#124; ├📁state/       | Main component's state management (hooks)     |
+| &#124; ├📁validation/  | Form validation                               |
+| &#124; ├📄Main.scss/   |                                               |
+| &#124; ├📄Main.tsx/    | Simulator's UI main component entry point     |
+| ├📄App.tsx/            | App main component                            |
+| 📁locales/             | Locales for translation                       |
+| 📁pages/               | Application's pages                           |
+| 📁server/              | Server that serves production build artifacts |
+| 📁state/               | App state management (Redux and sagas)        |
+| 📁styles/              | Stylesheets                                   |
+| 📁types/               | Typescript typings                            |
+| 📄index.ejs            | HTML template                                 |
+| 📄index.polyfilled.ts  | Entry point wrapper with polyfills            |
+| 📄index.tsx            | Real entry point                              |
+| 📄links.ts             | Navbar links                                  |
+| 📄routes.ts            | Routes (URL-to-page mapping)                  |
 
 ### Production build
 
