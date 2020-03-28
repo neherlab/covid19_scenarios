@@ -41,6 +41,9 @@ def retrieve_case_data():
             try:
                 # the order of county, region, county needs to be inverted
                 split = [x.strip() for x in c.split(',')]
+                if len(split)>2:
+                    #print(f'county detected: {split}, skipping')
+                    continue
                 if split[0] in countries:
                     split[0] = countries[split[0]]
                 country = "-".join(split[::-1])
