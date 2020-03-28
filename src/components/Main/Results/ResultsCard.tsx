@@ -17,6 +17,7 @@ import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
+import type { SaveScenario } from '../../MultipleScenarios'
 
 import './ResultsCard.scss'
 
@@ -28,6 +29,7 @@ interface ResultsCardProps {
   toggleAutorun: () => void
   canRun: boolean
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
+  onScenarioSave: SaveScenario
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
 }
@@ -37,6 +39,7 @@ function ResultsCardFunction({
   autorunSimulation,
   toggleAutorun,
   severity,
+  onScenarioSave,
   result,
   caseCounts,
 }: ResultsCardProps) {
@@ -211,7 +214,13 @@ function ResultsCardFunction({
         result={result}
       />
       {showSaveModal && (
-        <SaveScenarioDialog onSave={(name) => console.log(name)} onCloseDialog={() => setShowSaveModal(false)} />
+        <SaveScenarioDialog
+          onSave={(name: string) => {
+            onScenarioSave(name, result && result.params)
+            setShowSaveModal(false)
+          }}
+          onCloseDialog={() => setShowSaveModal(false)}
+        />
       )}
     </>
   )

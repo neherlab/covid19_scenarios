@@ -32,6 +32,8 @@ import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
+import { SaveScenario } from '../MultipleScenarios'
+
 import './Main.scss'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
@@ -88,7 +90,11 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
   return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
 }
 
-function Main() {
+interface MainProps {
+  onScenarioSave: SaveScenario
+}
+
+function Main({ onScenarioSave }: MainProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
   const [scenarioState, scenarioDispatch] = useReducer(
@@ -198,6 +204,7 @@ function Main() {
                       severity={severity}
                       result={result}
                       caseCounts={empiricalCases}
+                      onScenarioSave={onScenarioSave}
                     />
                   </Col>
                 </Row>
