@@ -1,9 +1,10 @@
 $button-width: 100px;
 $button-spacing: 5px;
 
-.compare-button,
-.export-button,
-.run-button {
-  width: $button-width;
-  margin-left: $button-spacing;
+.controls button:not(:last-child) {
+  margin-right: $button-spacing;
+}
+
+.controls button {
+  min-width: $button-width;
 }

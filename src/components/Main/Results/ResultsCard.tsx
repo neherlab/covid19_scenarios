@@ -131,35 +131,15 @@ function ResultsCardFunction({
             {t('Autorun Simulation on scenario parameter change')}
           </label>
         </Row>
-        <Row noGutters className="mb-4">
+        <Row noGutters className="mb-4 controls">
           <Col>
-            <div>
-              <span>
-                <Button
-                  className="run-button"
-                  type="submit"
-                  color="primary"
-                  disabled={!canRun || autorunSimulation}
-                  data-testid="RunResults"
-                >
-                  {t('Run')}
-                </Button>
-              </span>
-              <span>
-                <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
-              </span>
-              <span>
-                <Button
-                  className="export-button"
-                  type="button"
-                  color="secondary"
-                  disabled={!canExport}
-                  onClick={(_) => setShowExportModal(true)}
-                >
-                  {t('Export')}
-                </Button>
-              </span>
-            </div>
+            <Button type="submit" color="primary" disabled={!canRun || autorunSimulation} data-testid="RunResults">
+              {t('Run')}
+            </Button>
+            <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
+            <Button type="button" color="secondary" disabled={!canExport} onClick={(_) => setShowExportModal(true)}>
+              {t('Export')}
+            </Button>
           </Col>
         </Row>
         <Row noGutters hidden={!result}>
