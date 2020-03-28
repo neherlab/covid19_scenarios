@@ -81,11 +81,11 @@ async function runSimulation(
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
 const isCountry = (country: string): country is keyof CountryAgeDistribution => {
-  return countryAgeDistributionData.hasOwnProperty(country)
+  return Object.prototype.hasOwnProperty.call(countryAgeDistributionData, country)
 }
 
 const isRegion = (region: string): region is keyof typeof countryCaseCountData => {
-  return countryCaseCountData.hasOwnProperty(region)
+  return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
 }
 
 function Main() {
