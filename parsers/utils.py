@@ -108,7 +108,7 @@ def merge_cases(oldcases, newcases):
             try:
                 joinedDays = sorted(res[c]+newcases[c], key=functools.cmp_to_key(compare_day))
             except:
-                print('problem with ',c,res[c], newcases[c])
+                print(f'problem with {c}:\nRes: {res[c]}\n\n {newcases[c]}')
             prevDay = joinedDays[0]
             for d in joinedDays[1:]:
                 # fix dates here if required
@@ -203,13 +203,13 @@ def store_json(newdata):
             oldcases = json.load(fh)
     else:
         oldcases = {}
-
+    
     mergedCases = merge_cases(oldcases, newdata)
     with open(json_file, 'w') as fh:
         json.dump(mergedCases, fh)
 
     #print('first layer keys are %s'%mergedCases.keys())
-    print(f'Stored data for {len(mergedCases)} regions to {json_file}')
+    print(f'Stored data for {list(newdata.keys())[0]}: {len(mergedCases)} regions to {json_file}')
 
 def sanitize(fname):
     # we sanitize to ASCII alphabetic here
@@ -254,8 +254,9 @@ def store_data(regions, exceptions, source, code='', cols=[]):
             elif isinstance(cd2, dict):
                 # catch the World.tsv case
                 if not '.tsv' in exceptions['default']:
-                    regions = dict_to_list(regions, default_cols)
-                store_tsv(regions, exceptions, source, default_cols)
+                    store_tsv(dict_to_list(regions, default_cols), exceptions, source, default_cols)
+                else:
+                    store_tsv(regions, exceptions, source, default_cols)
                 # for non-World data we need to add country code for json
                 if not '.tsv' in exceptions['default']:
                     regions = add_country_code(regions, exceptions, code)
