@@ -3,6 +3,7 @@ import React, { createRef, useEffect, useState } from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import ExportSimulationDialog from './ExportSimulationDialog'
+import SaveScenarioDialog from './SaveScenarioDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 import processUserResult from '../../../algorithms/utils/userResult'
@@ -96,6 +97,8 @@ function ResultsCardFunction({
   useEffect(() => {
     setCanExport((result && !!result.deterministic) || false)
   }, [result])
+
+  console.log('rendered')
 
   return (
     <>
@@ -209,7 +212,7 @@ function ResultsCardFunction({
         canExport={canExport}
         result={result}
       />
-      {showSaveModal && <span>SAVE!</span>}
+      {showSaveModal && <SaveScenarioDialog onCloseDialog={() => setShowSaveModal(false)} />}
     </>
   )
 }
