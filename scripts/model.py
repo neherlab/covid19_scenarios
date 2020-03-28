@@ -13,17 +13,17 @@ import matplotlib.pylab as plt
 PATH_UN_AGES   = "covid19_scenarios/src/assets/data/country_age_distribution.json"
 PATH_UN_CODES  = "covid19_scenarios_data/country_codes.csv"
 PATH_CASE_DATA = "covid19_scenarios/src/assets/data/case_counts.json"
+PATH_POP_DATA  = "covid19_scenarios_data/population.tsv"
 
 def load_distribution(path):
-    dists, ages = {}, {}
+    dist = {}
     with open(path, 'r') as fd:
         db = json.load(fd)
         for key, data in db.items():
             dist[key] = np.array([data[k] for k in sorted(data.keys())])
-            ages[key] = np.sum(dist[key])
-            dist[key] = dist[key]/ages[key]
+            dist[key] = dist[key]/np.sum(dist[key])
 
-    return dists, ages
+    return dist
 
 def load_country_codes(path):
     db = {}
@@ -34,7 +34,17 @@ def load_country_codes(path):
 
     return db
 
-SIZES, AGES = load_distribution(PATH_UN_AGES)
+def load_population_data(path):
+    db = {}
+    with open(path, 'r') as fd:
+        rdr = csv.reader(fd, delimiter='\t')
+        for entry in rdr:
+            db[entry[0]] = entry[1]
+
+    return db
+
+AGES  = load_distribution(PATH_UN_AGES)
+SIZES = load_population_data(PATH_POP_DATA)
 CODES = load_country_codes(PATH_UN_CODES)
 COUNTRY = "United States of America"
 REGION  = "California"
@@ -206,7 +216,8 @@ def assess_model(params, data):
     return lsq
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
-def fit_params(country, data, guess):
+def fit_params(country, region, data, guess):
+    key = make_key(country, region)
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
     def pack(x):
@@ -219,7 +230,7 @@ def fit_params(country, data, guess):
     times = TimeRange(0, max(len(datum)-1 if datum is not None else 0 for datum in data))
 
     def fit(x):
-        param = Params(AGES[country], SIZES[country], times, *unpack(x))
+        param = Params(AGES[country], SIZES[key], times, *unpack(x))
         return assess_model(param, data)
 
     fit_param = opt.minimize(fit, pack(guess), method='Nelder-Mead')
@@ -272,9 +283,9 @@ if __name__ == "__main__":
     rates = DefaultRates
     fracs = Fracs()
     times = TimeRange(0, 100)
-    param = Params(AGES[COUNTRY], SIZES[COUNTRY], times, rates, fracs)
+    param = Params(AGES[COUNTRY], SIZES[make_key(COUNTRY, REGION)], times, rates, fracs)
     model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
     data, day0 = load_data(COUNTRY, REGION)
-    # guess = { "R0": 3.2, "reported" : 1/30 }
-    # fit   = fit_params(COUNTRY, model, guess)
+    guess = { "R0": 3.2, "reported" : 1/30 }
+    # fit   = fit_params(COUNTRY, REGION, model, guess)
