@@ -111,7 +111,7 @@ class Params(Data):
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/5, R0=3, infection=1/3, hospital=1/3, critical=1/14, imports=1)
+DefaultRates = Rates(latency=1/5, R0=2.7, infection=1/3, hospital=1/4, critical=1/14, imports=1)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
@@ -130,7 +130,7 @@ def make_evolve(params):
     def evolve(t, pop):
         dpop = np.zeros_like(pop)
 
-        fracI = sum(pop[at(Sub.S, age)] for age in range(Age.NUM)) / params.size
+        fracI = sum(pop[at(Sub.I, age)] for age in range(Age.NUM)) / params.size
         for age in range(Age.NUM):
             # Fluxes
             # TODO: Multiply out fracs and rates outside of hot loop
