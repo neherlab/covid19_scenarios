@@ -1,6 +1,5 @@
-import { EpidemiologicalData } from '../../../algorithms/types/Param.types'
-
 import i18next from 'i18next'
+import { EpidemiologicalData } from '../../../algorithms/types/Param.types'
 
 export interface EpidemiologicalScenario {
   name: string

@@ -25,6 +25,10 @@ const langs: { [key: string]: Lang } = {
     lang: 'es',
     name: 'español',
   },
+  pl: {
+    lang: 'pl',
+    name: 'polski',
+  },
 }
 
 export default langs

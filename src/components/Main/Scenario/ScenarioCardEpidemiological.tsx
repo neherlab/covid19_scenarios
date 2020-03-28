@@ -5,6 +5,7 @@ import moment from 'moment'
 import { FormikErrors, FormikTouched } from 'formik'
 import { AnyAction } from 'typescript-fsa'
 
+import { useTranslation } from 'react-i18next'
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
@@ -12,8 +13,6 @@ import { FormSpinBox } from '../../Form/FormSpinBox'
 
 import { setEpidemiologicalScenario } from '../state/actions'
 import { State } from '../state/state'
-
-import { useTranslation } from 'react-i18next'
 
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month }))
@@ -41,15 +40,19 @@ function ScenarioCardEpidemiological({
     <CardWithDropdown
       identifier="epidemiologicalScenario"
       label={<h5 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h5>}
-      help={t('Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).')}
+      help={t(
+        'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).',
+      )}
       options={epidemiologicalScenarioOptions}
-      value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)}
+      value={epidemiologicalScenarioOptions.find((s) => s.label === scenarioState.epidemiological.current)}
       onValueChange={handleChangeEpidemiologicalScenario}
     >
       <FormSpinBox
         identifier="epidemiological.r0"
         label={`${t('Annual average')} R\u2080`}
-        help={t('Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.')}
+        help={t(
+          'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
+        )}
         step={0.1}
         errors={errors}
         touched={touched}
@@ -66,7 +69,9 @@ function ScenarioCardEpidemiological({
       <FormSpinBox
         identifier="epidemiological.infectiousPeriod"
         label={`${t('Infectious period')} [${t('days')}]`}
-        help={t('Average number of days a person is infectious. Over this time, R0 infections happen on average. Together with the latency time, this defines the serial interval. The longer the serial interval, the slower the outbreak.')}
+        help={t(
+          'Average number of days a person is infectious. Over this time, R0 infections happen on average. Together with the latency time, this defines the serial interval. The longer the serial interval, the slower the outbreak.',
+        )}
         step={1}
         min={0}
         errors={errors}
@@ -110,7 +115,9 @@ function ScenarioCardEpidemiological({
       <FormSpinBox
         identifier="epidemiological.overflowSeverity"
         label={t('Severity of ICU overflow')}
-        help={t('A multiplicative factor to death rate to patients that require but do not have access to an ICU bed relative to those who do.')}
+        help={t(
+          'A multiplicative factor to death rate to patients that require but do not have access to an ICU bed relative to those who do.',
+        )}
         step={0.1}
         min={1}
         errors={errors}

@@ -1,4 +1,5 @@
 import i18next from 'i18next'
+
 export interface OverallScenario {
   name: string
   containmentScenario: string

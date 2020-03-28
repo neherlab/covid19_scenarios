@@ -14,7 +14,7 @@ const analyze = process.env.ANALYZE === '1'
 const debuggableProd = process.env.DEBUGGABLE_PROD === '1'
 const loose = true
 
-module.exports = api => {
+module.exports = (api) => {
   const web = api.caller(isWebTarget)
   const webpack = api.caller(isWebpack)
 

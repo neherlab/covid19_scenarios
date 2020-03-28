@@ -52,14 +52,12 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
 
   const drawLine = d3
     .line<TimePoint>()
-    .x(d => tScale(d.t))
-    .y(d => yScale(d.y))
+    .x((d) => tScale(d.t))
+    .y((d) => yScale(d.y))
     .curve(d3.curveMonotoneX)
 
   const started: d3.ValueFn<SVGCircleElement, TimePoint, void> = (_, i, n) => {
-    d3.select(n[i])
-      .raise()
-      .classed('active', true)
+    d3.select(n[i]).raise().classed('active', true)
 
     newData[i].y = data[i].y
   }
@@ -75,9 +73,7 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     d3.select(n[i]).attr('cy', yScale(d.y))
 
     newData[i].y = d.y
-    d3.select<SVGSVGElement, TimePoint[]>(svg)
-      .select<SVGPathElement>('.line-graph')
-      .attr('d', drawLine)
+    d3.select<SVGSVGElement, TimePoint[]>(svg).select<SVGPathElement>('.line-graph').attr('d', drawLine)
   }
 
   const ended: d3.ValueFn<SVGCircleElement, TimePoint, void> = (_, i, n) => {
@@ -98,10 +94,7 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     .attr('transform', 'rotate(-65)')
 
   // Y axis
-  graph
-    .append('g')
-    .attr('class', 'y-axis')
-    .call(d3.axisLeft(yScale))
+  graph.append('g').attr('class', 'y-axis').call(d3.axisLeft(yScale))
 
   // text label for the y axis
   graph
@@ -156,8 +149,8 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
     .enter()
     .append('circle')
     .attr('class', 'dot')
-    .attr('cx', d => tScale(d.t))
-    .attr('cy', d => yScale(d.y))
+    .attr('cx', (d) => tScale(d.t))
+    .attr('cy', (d) => yScale(d.y))
     .attr('r', 8)
 
   const tooltip = graph.append('g')
@@ -165,15 +158,13 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
   const callout = (g: d3.Selection<SVGGElement, unknown, null, undefined>, value: string | null) => {
     if (!value) return g.style('display', 'none')
 
-    g.style('display', null)
-      .style('pointer-events', 'none')
-      .style('font', '12px sans-serif')
+    g.style('display', null).style('pointer-events', 'none').style('font', '12px sans-serif')
 
     const text = g
       .selectAll<SVGTextElement, TimePoint>('text')
       .data([null])
       .join('text')
-      .call(text =>
+      .call((text) =>
         text
           .selectAll('tspan')
           .data(value.split(/\n/))
@@ -181,12 +172,12 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
           .attr('x', 0)
           .attr('y', (d, i) => `${i * 1.1}em`)
           .style('font-weight', (_, i) => (i ? null : 'bold'))
-          .text(d => d),
+          .text((d) => d),
       )
 
     const node = text.node()
     if (!node) {
-      throw Error('BUG: Invalid selection. Node not found.')
+      throw new Error('BUG: Invalid selection. Node not found.')
     }
 
     const { y, width: w } = node.getBBox()
@@ -201,13 +192,8 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
   graph
     .selectAll<SVGCircleElement, TimePoint>('.dot')
     .on('mouseover', function onMouseover(d) {
-      d3.select(this)
-        .attr('fill', '#ffab00')
-        .attr('r', 10)
-      Root.select('#temp-line')
-        .attr('opacity', 0.3)
-        .attr('x1', tScale(d.t))
-        .attr('x2', tScale(d.t))
+      d3.select(this).attr('fill', '#ffab00').attr('r', 10)
+      Root.select('#temp-line').attr('opacity', 0.3).attr('x1', tScale(d.t)).attr('x2', tScale(d.t))
       tooltip
         .attr('transform', `translate(${tScale(d.t)},${yScale(d.y)})`)
         .call(
@@ -216,16 +202,14 @@ function draw({ data, width, height, onDataChange, d3ref }: DrawParams) {
         )
     })
     .on('mouseout', function onMouseOut() {
-      d3.select(this)
-        .attr('fill', 'black')
-        .attr('r', 8)
+      d3.select(this).attr('fill', 'black').attr('r', 8)
       Root.select('#temp-line').attr('opacity', 0)
       tooltip.call(callout, null)
     })
     .call(
       d3
         .drag<SVGCircleElement, TimePoint>()
-        .subject(d => ({ x: tScale(d.t), y: yScale(d.y) }))
+        .subject((d) => ({ x: tScale(d.t), y: yScale(d.y) }))
         .on('start', started)
         .on('drag', dragged)
         .on('end', ended),
