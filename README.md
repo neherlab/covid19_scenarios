@@ -78,10 +78,10 @@
   <a href="https://github.com/neherlab/covid19_scenarios/issues">
     <img src="https://img.shields.io/badge/contributions-are%20welcome-%234295f5.svg" alt="Contributions: welcome" />
   </a>
-  <a href="https://github.com/neherlab/covid19_scenarios/issues/18">
+  <a href="https://github.com/neherlab/covid19_scenarios/discussions">
     <img
-      src="https://img.shields.io/badge/questions%20and%20discussions-in%20issue%20%2318-%235bd9b1.svg"
-      alt="Discuss: in issue 18"
+      src="https://img.shields.io/badge/questions%20and%20discussions-are%20here-%235bd9b1.svg"
+      alt="Discussions are here"
     />
   </a>
 </p>
@@ -97,23 +97,18 @@ Got questions or suggestions?
 </h2>
 
 <p align="center">
-  <a
-    alt="Link to join the chat"
-    href="https://spectrum.chat/covid19-scenarios"
-  >
-    <img
-      alt="Image for the link to join the chat"
-      src="https://user-images.githubusercontent.com/9403403/77235704-691ec480-6bb8-11ea-985d-82ec87cfdcdf.png"
+  <a href="https://github.com/neherlab/covid19_scenarios/discussions">
+    <img height="50px"
+      src="https://img.shields.io/badge/Join%20-our%20Discussions-%235bd9b1.svg"
+      alt="Discussions are here"
     />
   </a>
 </p>
 
 
-
 <h2 align="center">
 Discover
 </h2>
-
 
 <p align="center" width="99%">
 <table width="100%">
