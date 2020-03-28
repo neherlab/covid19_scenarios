@@ -7,7 +7,6 @@ import { AnyAction } from 'typescript-fsa'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
-import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
 import { State } from '../state/state'

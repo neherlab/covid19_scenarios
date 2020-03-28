@@ -11,7 +11,6 @@ import countryCaseCounts from '../../../assets/data/case_counts.json'
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
-import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
 // import { setPopulationScenario } from '../state/actions'
