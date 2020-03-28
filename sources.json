@@ -54,6 +54,11 @@
     "dataProvenance": "CoronaWatchNL, Stichting NICE",
     "license": "CC0 (CoronaWatchNL), none specified (Stichting NICE)"
   },
+  "china": {
+    "primarySource": "https://github.com/BlankerL/DXY-COVID-19-Data/raw/master/csv/DXYOverall.csv",
+    "dataProvenance": "https://github.com/BlankerL/DXY-COVID-19-Data",
+    "license": "MIT"
+  },
   "ecdc": {
     "primarySource": "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-<DATE>-xlsx",
     "dataProvenance": "European Centre for Disease Prevention and Control",
