@@ -101,13 +101,26 @@ class PopulationParams(Object):
         self.cases               = region
 
 class EpidemiologicalParams(Object):
-    def __init__(self, region):
+    def __init__(self, region, hemisphere):
         self.latencyTime     = 5
         self.infectiousPeriod   = 3
         self.lengthHospitalStay = 4
         self.lengthICUStay      = 14
-        self.seasonalForcing    = 0.2
-        self.peakMonth          = 0
+        if hemisphere:
+            if hemisphere == 'Northern':
+                self.seasonalForcing    = 0.2
+                self.peakMonth          = 0
+            elif hemisphere == 'Southern':
+                self.seasonalForcing    = 0.2
+                self.peakMonth          = 6
+            elif hemisphere == 'Tropical':
+                self.seasonalForcing    = 0
+                self.peakMonth          = 6
+            else:
+                print(f'Error: Could not parse hemisphere for {region} in scenarios.py')
+        else:
+            self.seasonalForcing    = 0.2
+            self.peakMonth          = 0
         self.overflowSeverity   = 2
         if region in FIT_CASE_DATA:
             self.r0 = round(FIT_CASE_DATA[region]['r0'],1)
@@ -135,9 +148,9 @@ class SimulationParams(Object):
 # TODO: Region and country provide redudant information
 #       Condense the information into one field.
 class AllParams(Object):
-    def __init__(self, region, country, population, beds, icus):
+    def __init__(self, region, country, population, beds, icus, hemisphere):
         self.population      = PopulationParams(region, country, population, beds, icus)
-        self.epidemiological = EpidemiologicalParams(region)
+        self.epidemiological = EpidemiologicalParams(region, hemisphere)
         self.simulation      = SimulationParams(region)
         self.containment     = ContainmentParams()
 
@@ -170,9 +183,11 @@ def generate(OUTPUT_JSON):
                'size' : hdr.index('populationServed'),
                'ages' : hdr.index('ageDistribution'),
                'beds' : hdr.index('hospitalBeds'),
-               'icus' : hdr.index('ICUBeds')}
+               'icus' : hdr.index('ICUBeds'),
+               'hemisphere' : hdr.index('hemisphere')}
 
-        args = ['name', 'ages', 'size', 'beds', 'icus']
+        
+        args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere']
         for region in rdr:
             entry = [region[idx[arg]] for arg in args]
             scenario[region[idx['name']]] = AllParams(*entry)
