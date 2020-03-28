@@ -250,7 +250,7 @@ Install the requirements:
 
 - git >= 2.0
 - node.js >= 10
-- 1.0 < yarn < 2.0 
+- 1.0 < yarn < 2.0
 
 Then in your terminal type:
 
@@ -292,48 +292,34 @@ Variable `UID` should be set to your Unix user ID. On single-user setups these a
 
 As a developer you are most likely interested in the actual source code in `src/` directory.
 
-| File or directory     | Contents                                               |
-| --------------------- | ------------------------------------------------------ |
-| 📁**mocks**/          |                                                        |
-| 📁algorithims/        | Contains the algorithm implementation code             |
-| ├📁test-data/         | Contains algorithm test data                           |
-| ├📁test/              |                                                        |
-| ├📁utils/             |                                                        |
-| ├📄model.ts/          | Model implementation                                   |
-| ├📄run.ts/            |                                                        |
-| 📁assets/             | Contains model data, application image, and text files |
-| 📁components/         | Application React components                           |
-| ├📁Form/              |                                                        |
-| ├📁LanguageSwitcher/  |                                                        |
-| ├📁Layout/            |                                                        |
-| ├📁Links/             |                                                        |
-| ├📁Main/              |                                                        |
-| ├├📁Compare/          |                                                        |
-| ├├📁Containment/      |                                                        |
-| ├├📁Results/          |                                                        |
-| ├├📁Scenario/         |                                                        |
-| ├├📁state/            |                                                        |
-| ├├📁validation/       |                                                        |
-| ├├📄Disclaimer.tsx/   |                                                        |
-| ├├📄Main.scss/        |                                                        |
-| ├├📄Main.tsx/         | Main react component                                   |
-| ├📁PageSwitcher/      |                                                        |
-| ├📁Router/            |                                                        |
-| ├📄App.tsx/           |                                                        |
-| 📁helpers/            |                                                        |
-| 📁locales/            |                                                        |
-| 📁pages/              | Application website page implementations               |
-| 📁server/             | Server that serves production build artifacts          |
-| 📁state/              |                                                        |
-| 📁styles/             | CSS style files                                        |
-| 📁types/              |                                                        |
-| 📄i8n.ts              |                                                        |
-| 📄index.ejs           |                                                        |
-| 📄index.polyfilled.ts | Entry point                                            |
-| 📄index.tsx           |                                                        |
-| 📄langs.ts            |                                                        |
-| 📄links.ts            |                                                        |
-| 📄routes.ts           |                                                        |
+| File or directory     | Contents                                      |
+| --------------------- | --------------------------------------------- |
+| 📁algorithims/        | Algorithm's implementation                    |
+| ├📄model.ts/          | Model's implementation                        |
+| ├📄run.ts/            | Algorithm's entry point                       |
+| 📁assets/             | Input data, images, and text assets           |
+| 📁components/         | React components                              |
+| ├📁Form/              | Form components                               |
+| ├📁Main/              | Simulator's UI main component implementation  |
+| ├├📁Containment/      | Containment widget                            |
+| ├├📁Results/          | Results panel                                 |
+| ├├📁Scenario/         | Scenario panel                                |
+| ├├📁state/            | Main component's state management (hooks)     |
+| ├├📁validation/       | Form validation                               |
+| ├├📄Main.scss/        |                                               |
+| ├├📄Main.tsx/         | Simulator's UI main component entry point     |
+| ├📄App.tsx/           | App main component                            |
+| 📁locales/            | Locales for translation                       |
+| 📁pages/              | Application's pages                           |
+| 📁server/             | Server that serves production build artifacts |
+| 📁state/              | App state management (Redux and sagas)        |
+| 📁styles/             | Stylesheets                                   |
+| 📁types/              | Typescript typings                            |
+| 📄index.ejs           | HTML template                                 |
+| 📄index.polyfilled.ts | Entry point wrapper with polyfills            |
+| 📄index.tsx           | Real entry point                              |
+| 📄links.ts            | Navbar links                                  |
+| 📄routes.ts           | Routes (URL-to-page mapping)                  |
 
 ### Production build
 
