@@ -13,7 +13,7 @@ import matplotlib.pylab as plt
 PATH_UN_AGES   = "covid19_scenarios/src/assets/data/country_age_distribution.json"
 PATH_UN_CODES  = "covid19_scenarios_data/country_codes.csv"
 PATH_CASE_DATA = "covid19_scenarios/src/assets/data/case_counts.json"
-PATH_POP_DATA  = "covid19_scenarios_data/population.tsv"
+PATH_POP_DATA  = "covid19_scenarios_data/populationData.tsv"
 
 def load_distribution(path):
     dist = {}
@@ -29,6 +29,7 @@ def load_country_codes(path):
     db = {}
     with open(path, 'r') as fd:
         rdr = csv.reader(fd)
+        next(rdr)
         for entry in rdr:
             db[entry[0]] = entry[2]
 
@@ -38,8 +39,9 @@ def load_population_data(path):
     db = {}
     with open(path, 'r') as fd:
         rdr = csv.reader(fd, delimiter='\t')
+        next(rdr)
         for entry in rdr:
-            db[entry[0]] = entry[1]
+            db[entry[0]] = int(entry[1])
 
     return db
 
