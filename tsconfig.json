@@ -43,9 +43,10 @@
     ".ignore",
     ".reports",
     "3rdparty",
+    "covid19_scenarios_data",
+    "cypress",
     "node_modules",
     "static",
     "tsconfig.json",
-    "cypress"
   ]
 }

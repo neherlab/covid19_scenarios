@@ -58,6 +58,8 @@ export default function webpackTerser({
   }
 
   return new TerserPlugin({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     terserOptions: node ? beautify : minify,
     parallel: true,
     cache: true,

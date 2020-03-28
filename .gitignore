@@ -7,6 +7,6 @@
 \.output
 \.reports
 \.vscode
+cypress/screenshots
+cypress/videos
 node_modules
-tools/__pycache__
-cypress/videos/
