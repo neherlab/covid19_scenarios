@@ -1,11 +1,9 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
-
 import _ from 'lodash'
-
 import { Form, Formik, FormikHelpers } from 'formik'
-
 import { Col, Row } from 'reactstrap'
+import createPersistedState from 'use-persisted-state'
 
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
@@ -86,9 +84,11 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
   return countryCaseCountData.hasOwnProperty(region)
 }
 
+const useAutorunSimulationState = createPersistedState('autorunSimulation')
+
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [autorunSimulation, setAutorunSimulation] = useState(false)
+  const [autorunSimulation, setAutorunSimulation] = useAutorunSimulationState(false)
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,

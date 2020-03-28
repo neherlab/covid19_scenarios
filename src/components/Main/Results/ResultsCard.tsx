@@ -2,6 +2,7 @@ import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import createPersistedState from 'use-persisted-state'
 
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
@@ -16,6 +17,9 @@ import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
+
+const useLogScaleState = createPersistedState('logScale')
+const useShowHumanizedState = createPersistedState('showHumanized')
 
 import './ResultsCard.scss'
 
@@ -37,8 +41,8 @@ function ResultsCardFunction({
   caseCounts,
 }: ResultsCardProps) {
   const { t } = useTranslation()
-  const [logScale, setLogScale] = useState(true)
-  const [showHumanized, setShowHumanized] = useState(true)
+  const [logScale, setLogScale] = useLogScaleState(true)
+  const [showHumanized, setShowHumanized] = useShowHumanizedState(true)
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
