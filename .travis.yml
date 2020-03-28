@@ -22,7 +22,7 @@ before_script:
   - cp .env.example .env
 
 script:
-  - yarn test
+  - yarn test:nowatch
 
 before_deploy:
   - yarn prod
