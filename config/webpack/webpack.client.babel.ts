@@ -57,7 +57,7 @@ const analyzerPort = parseInt(getenv('WEB_DEV_BUNDLE_ANALYZER_PORT', '8888'), 10
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
 const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
-const webProdHost = getenv('WEB_PROD_HOST', 'neherlab.org/cov19')
+const webProdHost = getenv('WEB_PROD_HOST')
 const webDevHost = `localhost:${devServerPort}`
 
 const { moduleRoot, pkg } = findModuleRoot()
