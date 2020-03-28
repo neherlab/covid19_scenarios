@@ -51,7 +51,11 @@ Age = IntEnum('Age', groups , start=0)
 # ------------------------------------------------------------------------
 # Organizational classes
 
-class Rates(object):
+class Data(object):
+    def __str__(self):
+        return str({k : str(v) for k, v in self.__dict__.items()})
+
+class Rates(Data):
     def __init__(self, latency, R0, infection, hospital, critical, imports):
         self.latency     = latency
         self.R0          = R0
@@ -65,7 +69,7 @@ class Rates(object):
 #       Keep in sync!
 # TODO: Allow custom values?
 
-class Fracs(object):
+class Fracs(Data):
     confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
     severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
     critical  = np.array([5, 10, 10, 15, 20, 25, 35, 45, 55]) / 100
@@ -78,13 +82,13 @@ class Fracs(object):
     def __init__(self, reported=1/30):
         self.reported = reported
 
-class TimeRange(object):
+class TimeRange(Data):
     def __init__(self, start, end, delta=1):
         self.start = start
         self.end   = end
         self.delta = delta
 
-class Params(object):
+class Params(Data):
     def __init__(self, ages, size, times, rates, fracs):
         self.ages  = ages
         self.rates = rates
@@ -237,7 +241,7 @@ def make_key(country, region):
 # TODO: Take hospitalization and ICU data
 def load_data(country, region):
     data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
-    day0 = "2020-03-01"
+    days = []
 
     key = make_key(country, region)
 
@@ -245,19 +249,20 @@ def load_data(country, region):
         db = json.load(fd)
         ts = db[country]
 
-        day0 = ts[0]['time']
+        days = [d['time'] for d in ts]
         for tp in ts:
             data[Sub.T].append(tp['cases'])
             data[Sub.D].append(tp['deaths'])
 
     data = [ np.array(d) if d is not None else d for d in data]
 
-    good_idx = data[Sub.T] >= 1
+    # Filter points
+    good_idx = 1 <= data[Sub.T]
     data[Sub.D] = data[Sub.D][good_idx]
     data[Sub.T] = data[Sub.T][good_idx]
 
-    return data, day0
-
+    idx = max(np.where(good_idx)[0][0]-5, 0)
+    return data, days[idx]
 
 # ------------------------------------------------------------------------
 # Testing entry
@@ -271,5 +276,5 @@ if __name__ == "__main__":
     model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
     data, day0 = load_data(COUNTRY, REGION)
-    # guess = { "R0": 3.2, "reported" : 1/10 }
-    # fit   = fit_params(COUNTRY, data, guess)
+    guess = { "R0": 3.2, "reported" : 1/30 }
+    fit   = fit_params(COUNTRY, model, guess)
