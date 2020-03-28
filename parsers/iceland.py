@@ -14,7 +14,7 @@ from .utils import store_data
 URL_CASES_CUM = "https://raw.githubusercontent.com/tryggvigy/CoronaWatchIS/master/data/covid_in_is.cvs"
 URL_HOSPITALIZED_CUM = "https://raw.githubusercontent.com/tryggvigy/CoronaWatchIS/master/data/covid_in_is_hosp.cvs"
 
-LOC = "case-counts/Europe/Western Europe/Iceland"
+LOC = "case-counts/Europe/Northern Europe/Iceland"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # ------------------------------------------------------------------------
@@ -22,8 +22,11 @@ cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 def parse_date(s):
     try:
+      # URL_CASES_CUM date formats are 03-26-2020. Convert them to 2020-03-26
       return datetime.strftime(datetime.strptime(s,'%m-%d-%Y'),'%Y-%m-%d')
     except ValueError:
+        # If the conversion fails, then assume s is a date in URL_HOSPITALIZED_CUM
+        # and already of the expected format 2020-03-26
         return s
 
 def sorted_date(s):
@@ -60,7 +63,7 @@ def parse_hospitalized(regions_date):
     parse_csv(regions_date, URL_HOSPITALIZED_CUM, 4, 'hospitalized')
 
 def parse_icu(regions_date):
-    parse_csv(regions_date, URL_HOSPITALIZED_CUM, 2, 'hospitalized')
+    parse_csv(regions_date, URL_HOSPITALIZED_CUM, 2, 'ICU')
 
 # ------------------------------------------------------------------------
 # Main point of entry
