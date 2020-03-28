@@ -1,20 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TimeSeries interpolateTimeSeries() interpolation within the timerange occurs as expected. 1`] = `
-Array [
-  1,
-  2.6354594390679185,
-  4.205626732055542,
-  5.645209732882576,
-  6.888916295468725,
-  7.8873202652312076,
-  8.676811131585438,
-  9.322659276563021,
-  9.89015684624425,
-  10,
-]
-`;
-
 exports[`TimeSeries updateTimeSeries() interpolates an existing TimeSeries with a new "y" vector. 1`] = `
 Array [
   Object {
