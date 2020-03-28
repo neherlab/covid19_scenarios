@@ -26,6 +26,7 @@ Age = IntEnum('Age', groups , start=0)
 class Rates(object):
     def __init__(self, latency, R0, infection, hospital, critical, imports):
         self.latency     = latency
+        self.R0          = R0
         self.infectivity = R0 * infection
         self.infection   = infection
         self.hospital    = hospital
@@ -35,6 +36,7 @@ class Rates(object):
 # NOTE: Pulled from default severe table on neherlab.org/covid19
 #       Keep in sync!
 # TODO: Allow custom values?
+
 class Fracs(object):
     confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
     severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
@@ -60,6 +62,15 @@ class Params(object):
         self.time  = times
 
 # ------------------------------------------------------------------------
+# Default parameters
+
+DefaultRates = Rates(latency=1/5, R0=3, infection=1/3, hospital=1/3, critical=1/14, imports=1)
+RateFields   = [ f for f in dir(DefaultRates) \
+                 if not callable(getattr(DefaultRates, f)) \
+                 and not f.startswith("__") ]
+RateFields.remove('infectivity')
+
+# ------------------------------------------------------------------------
 # Main functions
 
 def at(i, j):
@@ -73,6 +84,7 @@ def make_evolve(params):
         fracI = sum(pop[at(Sub.S, age)] for age in range(Age.NUM)) / params.size
         for age in range(Age.NUM):
             # Fluxes
+            # TODO: Multiply out fracs and rates outside of hot loop
             flux_S   = params.rates.infectivity*fracI*pop[at(Sub.S, age)]
             flux_E1  = params.rates.latency*pop[at(Sub.E1, age)]*3
             flux_E2  = params.rates.latency*pop[at(Sub.E2, age)]*3
@@ -132,39 +144,56 @@ def solve_ode(params, init_pop):
 
     return solution
 
+def trace_ages(solution):
+    total = [np.zeros(solution.shape[0]) for _ in range(Sub.NUM)]
+
+    # Sum over age compartments
+    for age in range(Age.NUM):
+        for pop in range(Sub.NUM):
+            total[pop] += solution[:, at(pop, age)]
+
+    return total
+
 def assess_model(params, data):
-    model = solve_ode(params, init_pop(params.ages, params.size, 1))
+    model = trace_ages(solve_ode(params, init_pop(params.ages, params.size, 1)))
+
     lsq   = 0
     for i, datum in enumerate(data):
         if datum is None:
             continue
-        lsq += np.sum(np.power(model[:, i] - datum, 2))
+        lsq += np.sum(np.power(model[i] - datum, 2))
 
     return lsq
 
-def fit_params(data, guess):
-    params_to_fit = {"beta": 0, "gamma": 1}
+def fit_params(country, data, guess):
+    params_to_fit = {key : i for i, key in enumerate(sorted(guess.keys()))}
 
     def unpack(x):
         return np.array([guess[key] for key in params_to_fit.keys()])
 
+    def pack(x):
+        vals = { f: (x[params_to_fit[f]] if f in guess else getattr(DefaultRates, f)) for f in RateFields }
+        return Rates(**vals)
+
     times = TimeRange(0, max(len(datum)-1 for datum in data))
 
     def fit(x):
-        rates = Rates(x[params_to_fit["beta"]], x[params_to_fit["gamma"]])
-        param = Params(AGES, rates, N, times)
+        param = Params(AGES, pack(x), N, times)
         return assess_model(param, data)
 
-    fit_param = opt.minimize(fit, unpack(guess), method='Nelder-Mead', tol=1e-3)
+    fit_param = opt.minimize(fit, unpack(guess), method='Nelder-Mead')
+
+    # TODO: repack parameters
 
     return fit_param
 
 if __name__ == "__main__":
-    rates = Rates(latency=1/5, R0=3, infection=1/3, hospital=1/3, critical=1/14, imports=1)
+    rates = DefaultRates
     times = TimeRange(0, 100)
     param = Params(AGES, rates, N, times)
 
     model = solve_ode(param, init_pop(param.ages, param.size, 1))
+    data  = trace_ages(model)
 
-    # guess = {"beta": 10, "gamma": 5}
-    # fit   = fit_params(model, guess)
+    guess = { "R0": 3.2 }
+    fit   = fit_params(None, data, guess)
