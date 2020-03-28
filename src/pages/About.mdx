@@ -36,7 +36,7 @@ The model works as follows:
 Transmissibility of the virus could have seasonal variation which is parameterized with the parameter
 "seasonal forcing" (amplitude) and "peak month" (month of most efficient transmission).
 
- - exposed individuals progress to a symptomatic/infectious state after an average latency
+ - exposed individuals progress to a symptomatic/infectious state after an average latency. This progression happends in three stages to ensure the distribution of times spend in the exposed compartment is more realistic than a simple exponential.
 
  - infectious individuals recover or progress to severe disease. The ratio of recovery to severe progression depends on age
 
@@ -99,9 +99,11 @@ Quantitatively, we solve the following system of equations to estimate hospital 
 
 $$
 \begin{aligned}
-\frac{dS_{a}(t)}{dt} & = - \beta_a(t) S_a(t)\sum_{b}I_b(t) \\
-\frac{dE_{a}(t)}{dt} & = \beta_a(t) S_a(t)\sum_{b}I_b(t) - E_{a}(t)/t_l \\
-\frac{dI_{a}(t)}{dt} & = E_{a}(t)/t_l - I_a(t)/t_i \\
+\frac{dS_{a}(t)}{dt} & = - N^{-1}\beta_a(t) S_a(t)\sum_{b}I_b(t) \\
+\frac{dE_{a1}(t)}{dt} & = N^{-1}\beta_a(t) S_a(t)\sum_{b}I_b(t) - 3E_{a1}(t)/t_l \\
+\frac{dE_{a2}(t)}{dt} & =  3E_{a1}(t)/t_l - 3E_{a2}(t)/t_l \\
+\frac{dE_{a3}(t)}{dt} & =  3E_{a2}(t)/t_l - 3E_{a3}(t)/t_l \\
+\frac{dI_{a}(t)}{dt} & = 3E_{a3}(t)/t_l - I_a(t)/t_i \\
 \frac{dH_{a}(t)}{dt} & = (1-m_a) I_a(t)/t_i + (1-f_a) C_a(t)/t_c - H_a(t)/t_h \\
 \frac{dC_{a}(t)}{dt} & = c_a H_a(t)/t_h - C_a(t)/t_c \\
 \frac{dR_{a}(t)}{dt} & = m_a I_a(t)/t_i + (1-c_a)H_a(t)/t_h \\
