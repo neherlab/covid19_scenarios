@@ -5,7 +5,7 @@ export const LOCAL_STORAGE_KEYS = {
   SHOW_HUMANIZED_RESULTS: 'show-humanized-results',
   SUPPRESS_DISCLAIMER: 'suppress-disclaimer',
   SKIP_LANDING_PAGE: 'skip-landing-page'
-}
+} as const
 
 export type LocalStorageKey = typeof LOCAL_STORAGE_KEYS[keyof typeof LOCAL_STORAGE_KEYS]
 
@@ -22,4 +22,4 @@ function get<T>(key: LocalStorageKey): T | null {
   }
 }
 
-export default { LOCAL_STORAGE_KEYS, set, get }
+export default { set, get }
