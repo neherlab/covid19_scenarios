@@ -1,9 +1,10 @@
 .legend {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .legend-inactive {
-    @extend .legend;
-    color: #A9A9A9;
-    text-decoration: line-through;
+  @extend .legend;
+
+  color: #a9a9a9;
+  text-decoration: line-through;
 }
