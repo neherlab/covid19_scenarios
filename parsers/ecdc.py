@@ -46,18 +46,18 @@ def retrieve_case_data():
     for row_index in range(1, worksheet.nrows):
         row = worksheet.row_values(row_index)
 
-        country = row[Ix['Countries and territories']].replace("_"," ")
+        country = row[Ix['countriesAndTerritories']].replace("_"," ")
 
         # replace country name if we have the "official" one in country_codes.csv
-        geoID = row[Ix['GeoId']]
+        geoID = row[Ix['geoId']]
         if geoID in countries:
             country = countries[geoID]
 
         # date = "-".join([str(int(row[Ix['Year']])), str(int(row[Ix['Month']])), str(int(row[Ix['Day']]))])
-        date = f"{int(row[Ix['Year']]):04d}-{int(row[Ix['Month']]):02d}-{int(row[Ix['Day']]):02d}"
+        date = f"{int(row[Ix['year']]):04d}-{int(row[Ix['month']]):02d}-{int(row[Ix['day']]):02d}"
 
         # note: Cases are per day, not cumulative. We need to aggregate later
-        cases[country].append({"time": date, "deaths": stoi(row[Ix['Deaths']]), "cases":  stoi(row[Ix['Cases']])})
+        cases[country].append({"time": date, "deaths": stoi(row[Ix['deaths']]), "cases":  stoi(row[Ix['cases']])})
 
     for cntry, data in cases.items():
         cases[cntry] = sorted_date(cases[cntry])
@@ -68,7 +68,7 @@ def retrieve_case_data():
         total['cases']  = 0
         total['deaths'] = 0
         total['recovered'] = 0
-        for k in total:        
+        for k in total:
             for d in data:
                 if k in d and d[k]:
                     total[k] += d[k]
@@ -82,7 +82,7 @@ def retrieve_case_data():
 def parse():
     cases = retrieve_case_data()
     store_data(cases, {'default': LOC+'/World.tsv'}, 'ecdc')
-    
+
 
 
 
