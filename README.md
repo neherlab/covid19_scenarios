@@ -75,9 +75,6 @@ Models of COVID-19 outbreak trajectories and hospital demand
 </p>
 
 <p align="center">
-  <a href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a">
-    <img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
-  </a>
   <a href="https://github.com/neherlab/covid19_scenarios/issues">
     <img src="https://img.shields.io/badge/contributions-are%20welcome-%234295f5.svg" alt="Contributions: welcome" />
   </a>
