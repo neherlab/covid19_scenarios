@@ -248,9 +248,9 @@ The model's results can be exported in CSV format by clicking the "export" butto
 
 Install the requirements:
 
-- Git >= 2.0
-- Node >= 10
-- Yarn 1.x
+- git >= 2.0
+- node.js >= 10
+- 1.0 < yarn < 2.0 
 
 Then in your terminal type:
 
@@ -276,7 +276,7 @@ This will trigger the development server and build process. Wait for the build t
 
 Install the requirements:
 
-- Docker 19+
+- Docker > 19.0
 - docker-compose >= 1.25
 
 Run docker-compose with `docker/docker-compose.dev.yml` file:
