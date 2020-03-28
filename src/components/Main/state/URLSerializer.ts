@@ -18,13 +18,8 @@ so some extra work is needed during deserialization.
 export async function serializeScenarioToURL(scenarioState: State, params: AllParams) {
   const toSave = {
     ...params,
-    current: {
-      overall: scenarioState.overall.current,
-      population: scenarioState.population.current,
-      epidemiological: scenarioState.epidemiological.current,
-      containment: scenarioState.containment.current,
-    },
-    containment: scenarioState.containment.data.reduction,
+    current: scenarioState.current,
+    containment: scenarioState.data.containment.reduction,
   }
 
   window.history.pushState('', '', `?${encodeURIComponent(JSON.stringify(toSave))}`)
@@ -51,22 +46,16 @@ export function deserializeScenarioFromURL(initState: State): State {
 
       return {
         ...initState,
-        overall: { ...initState.overall, current: obj.current.overall },
-        population: { ...initState.population, current: obj.current.population, data: obj.population },
-        epidemiological: {
-          ...initState.epidemiological,
-          current: obj.current.epidemiological,
-          data: obj.epidemiological,
-        },
-        containment: {
-          ...initState.containment,
-          current: obj.current.containment,
-          data: {
+        current: obj.current,
+        data: {
+          population: initState.data.population,
+          containment: {
             reduction: containmentDataReduction,
-            numberPoints: initState.containment.data.numberPoints,
+            numberPoints: containmentDataReduction.length,
           },
+          epidemiological: initState.data.epidemiological,
+          simulation: obj.simulation,
         },
-        simulation: { ...initState.simulation, data: obj.simulation },
       }
     } catch (error) {
       console.error('Error while parsing URL :', error.message)

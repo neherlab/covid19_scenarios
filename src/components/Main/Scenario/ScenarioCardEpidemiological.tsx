@@ -1,17 +1,14 @@
 import React from 'react'
-
+import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 
 import { FormikErrors, FormikTouched } from 'formik'
 import { AnyAction } from 'typescript-fsa'
 
-import { useTranslation } from 'react-i18next'
-import { CardWithDropdown } from '../../Form/CardWithDropdown'
+import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
-import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-import { setEpidemiologicalScenario } from '../state/actions'
 import { State } from '../state/state'
 
 const months = moment.months()
@@ -31,21 +28,17 @@ function ScenarioCardEpidemiological({
   scenarioDispatch,
 }: ScenarioCardEpidemiologicalProps) {
   const { t } = useTranslation()
-  const epidemiologicalScenarioOptions = stringsToOptions(scenarioState.epidemiological.scenarios)
-  function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
-    scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))
-  }
+  // function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
+  //   scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))
+  // }
 
   return (
-    <CardWithDropdown
+    <CardWithoutDropdown
       identifier="epidemiologicalScenario"
       label={<h5 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h5>}
       help={t(
         'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).',
       )}
-      options={epidemiologicalScenarioOptions}
-      value={epidemiologicalScenarioOptions.find((s) => s.label === scenarioState.epidemiological.current)}
-      onValueChange={handleChangeEpidemiologicalScenario}
     >
       <FormSpinBox
         identifier="epidemiological.r0"
@@ -123,7 +116,7 @@ function ScenarioCardEpidemiological({
         errors={errors}
         touched={touched}
       />
-    </CardWithDropdown>
+    </CardWithoutDropdown>
   )
 }
 

@@ -23,7 +23,7 @@ import countryCaseCountData from '../../assets/data/case_counts.json'
 
 import { schema } from './validation/schema'
 
-import { setEpidemiologicalData, setPopulationData, setSimulationData, setContainmentData } from './state/actions'
+import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
 import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
@@ -113,10 +113,10 @@ function Main() {
   }, [])
 
   const allParams: AllParams = {
-    population: scenarioState.population.data,
-    epidemiological: scenarioState.epidemiological.data,
-    simulation: scenarioState.simulation.data,
-    containment: scenarioState.containment.data,
+    population: scenarioState.data.population,
+    epidemiological: scenarioState.data.epidemiological,
+    simulation: scenarioState.data.simulation,
+    containment: scenarioState.data.containment,
   }
 
   const [debouncedRun] = useDebouncedCallback(
@@ -129,10 +129,10 @@ function Main() {
     if (autorunSimulation) {
       debouncedRun(
         {
-          population: scenarioState.population.data,
-          epidemiological: scenarioState.epidemiological.data,
-          simulation: scenarioState.simulation.data,
-          containment: scenarioState.containment.data,
+          population: scenarioState.data.population,
+          epidemiological: scenarioState.data.epidemiological,
+          simulation: scenarioState.data.simulation,
+          containment: scenarioState.data.containment,
         },
         severity,
       )
