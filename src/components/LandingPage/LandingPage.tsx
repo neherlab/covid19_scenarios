@@ -16,7 +16,7 @@ function LandingPage() {
     dispatch(setShouldSkipLandingPage({ shouldSkip: true }))
 
     if (isSkipLandingChecked) {
-      LocalStorage.set(LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE, String(true))
+      LocalStorage.set(LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE, true)
     }
   }, [dispatch, isSkipLandingChecked])
 
