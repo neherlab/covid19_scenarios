@@ -89,17 +89,43 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
   return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
 }
 
+function segmentStateForManyScenarios(id: string, initialState: any, state: any, setState: any): any[] {
+  let segmentedState
+  if (id in state) {
+    segmentedState = state[id]
+  } else {
+    segmentedState = initialState
+  }
+  const segmentedSetState = (newValue: any) => setState({ ...state, [id]: newValue })
+
+  return [segmentedState, segmentedSetState]
+}
+
 interface MainProps {
   onScenarioSave: SaveScenario
   activeScenario: ActiveScenario
 }
 
 function Main({ activeScenario, onScenarioSave }: MainProps) {
-  const [result, setResult] = useState<AlgorithmResult | undefined>()
+  const [allResults, setAllResults] = useState<{ [key: string]: AlgorithmResult | undefined }>({})
   const [autorunSimulation, setAutorunSimulation] = useState(false)
   const [manyScenariosState, dispatch] = useReducer(scenarioReducer, defaultScenarioState)
-  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
-  const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
+  const [allSeverites, setAllSeverities] = useState<{ [key: string]: SeverityTableRow[] }>({})
+  const [allEmpiricalCases, setAllEmpiricalCases] = useState<{ [key: string]: EmpiricalData | undefined }>({})
+
+  const [result, setResult] = segmentStateForManyScenarios(activeScenario.id, undefined, allResults, setAllResults)
+  const [severity, setSeverity] = segmentStateForManyScenarios(
+    activeScenario.id,
+    severityDefaults,
+    allSeverites,
+    setAllSeverities,
+  )
+  const [empiricalCases, setEmpiricalCases] = segmentStateForManyScenarios(
+    activeScenario.id,
+    undefined,
+    allEmpiricalCases,
+    setAllEmpiricalCases,
+  )
 
   const scenarioDispatch = (action: AnyAction) => {
     dispatch({ ...action, payload: { ...action.payload, id: activeScenario.id } })
