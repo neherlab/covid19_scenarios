@@ -3,7 +3,6 @@ import argparse
 import os
 import json
 import importlib
-import shutil
 from paths import BASE_PATH, SOURCES_FILE, JSON_DIR, TMP_CASES, TMP_POPULATION
 
 if __name__ == "__main__":
@@ -33,9 +32,6 @@ if __name__ == "__main__":
                 country = importlib.import_module(f"parsers.{src}")
                 country.parse()
 
-        print(f"Generating population tsv")
-        pop = importlib.import_module(f"scripts.populations")
-        pop.parse()
 
     # generate and copy jsons to app if requested
     if args.output_cases:
@@ -49,16 +45,13 @@ if __name__ == "__main__":
         with open(os.path.join(BASE_PATH, JSON_DIR, TMP_CASES), 'w') as fh:
             fh.write("{}")
         pop = importlib.import_module(f"scripts.tsv")
-        pop.parse()
-        
-        case_counts_file = os.path.join(BASE_PATH, JSON_DIR, TMP_CASES)
-        print(f"Copying {case_counts_file} to {args.output_cases}")
-        shutil.copy(case_counts_file, args.output_cases)
+        pop.parse(args.output_cases)
+
 
     if args.output_population:
-        population_file = os.path.join(BASE_PATH, JSON_DIR, TMP_POPULATION)
-        print(f"Copying {population_file} to {args.output_population}")
-        shutil.copy(population_file, args.output_population)
+        print(f"Generating population json")
+        pop = importlib.import_module(f"scripts.populations")
+        pop.generate(args.output_population)
 
     if args.output_scenarios:
         print(f"Generating scenario json")

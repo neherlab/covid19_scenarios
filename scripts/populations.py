@@ -21,6 +21,7 @@ import os
 import sys
 sys.path.append('..')
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, TMP_POPULATION
+from scripts.tsv import parse as parse_tsv
 
 # obsolete
 def getImportsPerDay(pop, cases):
@@ -74,11 +75,10 @@ def loadPopTable(fname):
     return pops
 
 def getRegions():
-    with open(os.path.join(BASE_PATH, JSON_DIR,TMP_CASES)) as fd:
-        regions = json.load(fd)
-        return set(regions.keys())
+    regions = parse_tsv()
+    return set(regions.keys())
 
-def parse():
+def generate(output):
     pops = loadPopTable(os.path.join(BASE_PATH,"populationData.tsv"))
     popSizes = {d['name']:d['data']['populationServed'] for d in pops}
 
@@ -87,7 +87,7 @@ def parse():
     for d in pops:
         d['data']['cases'] = d['name'] if d['name'] in regions else 'none'
 
-    with open(os.path.join(BASE_PATH, JSON_DIR,TMP_POPULATION), 'w') as fh:
+    with open(output, 'w') as fh:
         json.dump(pops, fh)
 
 
