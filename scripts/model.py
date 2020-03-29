@@ -1,6 +1,8 @@
 import csv
 import json
+
 from enum import IntEnum
+from datetime import datetime
 
 import numpy as np
 import scipy.integrate as solve
@@ -14,6 +16,8 @@ PATH_UN_AGES   = "covid19_scenarios/src/assets/data/country_age_distribution.jso
 PATH_UN_CODES  = "covid19_scenarios_data/country_codes.csv"
 PATH_CASE_DATA = "covid19_scenarios/src/assets/data/case_counts.json"
 PATH_POP_DATA  = "covid19_scenarios_data/populationData.tsv"
+JAN1_2019      = datetime.strptime("2019-01-01", "%Y-%m-%d").toordinal()
+JUN1_2019      = datetime.strptime("2019-06-01", "%Y-%m-%d").toordinal()
 
 def load_distribution(path):
     dist = {}
@@ -113,7 +117,7 @@ class Params(Data):
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/5, R0=2.7, infection=1/3, hospital=1/4, critical=1/14, imports=1)
+DefaultRates = Rates(latency=1/5.75, R0=2.7, infection=1/3.25, hospital=1/4, critical=1/14, imports=1)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
