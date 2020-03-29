@@ -22,10 +22,8 @@ default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 # Functions
 
 def stoi(x):
-    if x is None:
+    if x is None or x == '':
         return None
-    if x == "":
-        return 0
 
     return int(x)
 
