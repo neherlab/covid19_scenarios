@@ -1,5 +1,6 @@
 import csv
 import json
+import argparse
 
 from enum import IntEnum
 from datetime import datetime
@@ -18,6 +19,7 @@ PATH_CASE_DATA = "covid19_scenarios/src/assets/data/case_counts.json"
 PATH_POP_DATA  = "covid19_scenarios_data/populationData.tsv"
 JAN1_2019      = datetime.strptime("2019-01-01", "%Y-%m-%d").toordinal()
 JUN1_2019      = datetime.strptime("2019-06-01", "%Y-%m-%d").toordinal()
+JAN1_2020      = datetime.strptime("2020-01-01", "%Y-%m-%d").toordinal()
 
 def load_distribution(path):
     dist = {}
@@ -45,17 +47,13 @@ def load_population_data(path):
         rdr = csv.reader(fd, delimiter='\t')
         next(rdr)
         for entry in rdr:
-            db[entry[0]] = int(entry[1])
+            db[entry[0]] = {'size':int(entry[1]), 'ageDistribution':entry[2]}
 
     return db
 
 AGES  = load_distribution(PATH_UN_AGES)
-SIZES = load_population_data(PATH_POP_DATA)
+POPDATA = load_population_data(PATH_POP_DATA)
 CODES = load_country_codes(PATH_UN_CODES)
-COUNTRY = "United States of America"
-REGION  = "California"
-# COUNTRY = "United States of America"
-# REGION  = "California"
 
 # ------------------------------------------------------------------------
 # Indexing enums
@@ -116,17 +114,17 @@ class Params(Data):
         self.time  = times
 
         # Make infection function
-        phase_offset = (times.day0 - JAN1_2019)
+        phase_offset = (times[0] - JAN1_2019)
         beta = self.rates.infectivity
         def infectivity(t):
             return beta*(1 + 0.2*np.cos(2*np.pi*(t + phase_offset)/365))
 
-        self.rates.infectivity = infectivity
+        self.rates.infectivity = lambda t:beta #infectivity
 
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/5.75, R0=2.7, infection=1/3.25, hospital=1/4, critical=1/14, imports=1)
+DefaultRates = Rates(latency=1/3.0, R0=2.7, infection=1/3.0, hospital=1/4, critical=1/14, imports=1)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
@@ -190,21 +188,19 @@ def init_pop(ages, size, cases):
     return pop
 
 def solve_ode(params, init_pop):
-    t_beg  = params.time.start
-    t_end  = params.time.end
-    dt     = params.time.delta
-    num_tp = int((t_end - t_beg)/dt)
+    t_beg  = params.time[0]
+    num_tp = len(params.time)
 
     evolve = make_evolve(params)
     solver = solve.ode(evolve) # TODO: Add Jacobian
     solver.set_initial_value(init_pop, t_beg)
 
-    solution = np.zeros((num_tp+1, len(init_pop)))
+    solution = np.zeros((num_tp, len(init_pop)))
     solution[0, :] = init_pop
 
     i = 1
-    while solver.successful() and solver.t < t_end:
-        solution[i, :] = solver.integrate(solver.t + dt)
+    while solver.successful() and i<num_tp:
+        solution[i, :] = solver.integrate(params.time[i])
         i += 1
 
     return solution
@@ -228,14 +224,14 @@ def assess_model(params, data, cases):
     for i, datum in enumerate(data):
         if datum is None:
             continue
-        res = np.power(model[i] - datum, 2)
+        res = np.power(model[i][1:] - datum[1:], 2)
         lsq += np.sum(res)
+    print(lsq)
 
     return lsq
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
-def fit_params(country, region, day0, data, guess, bounds=None):
-    key = make_key(country, region)
+def fit_params(key, time_points, data, guess, bounds=None):
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
     def pack(x, as_list=False):
@@ -248,10 +244,8 @@ def fit_params(country, region, day0, data, guess, bounds=None):
         vals = { f: (x[params_to_fit[f]] if f in guess else getattr(DefaultRates, f)) for f in RateFields }
         return Rates(**vals), Fracs(x[params_to_fit['reported']]) if 'reported' in params_to_fit else Fracs()
 
-    times = TimeRange(day0, 0, max(len(datum)-1 if datum is not None else 0 for datum in data))
-
     def fit(x):
-        param = Params(AGES[country], SIZES[key], times, *unpack(x))
+        param = Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points, *unpack(x))
         return assess_model(param, data, x[params_to_fit['initial']])
 
     if bounds is None:
@@ -261,29 +255,21 @@ def fit_params(country, region, day0, data, guess, bounds=None):
 
     err = (fit_param.success, fit_param.message)
 
-    return Params(AGES[country], SIZES[key], times, *unpack(fit_param.x)), fit_param.x[params_to_fit['initial']], err
+    return Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points, *unpack(fit_param.x)), fit_param.x[params_to_fit['initial']], err
 
 # ------------------------------------------
 # Data loading
 
-def make_key(country, region):
-    if region is None:
-        return country
-    else:
-        return f"{CODES[country]}-{region}"
-
 # TODO: Better data filtering criteria needed!
 # TODO: Take hospitalization and ICU data?
-# NOTE: Assumes data is sampled every day!
-def load_data(country, region):
+def load_data(key):
     data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
     days = []
-
-    key = make_key(country, region)
+    case_min, case_max = 20, 5e3
 
     with open(PATH_CASE_DATA, 'r') as fd:
         db = json.load(fd)
-        ts = db[country]
+        ts = db[key]
 
         days = [d['time'] for d in ts]
         for tp in ts:
@@ -293,43 +279,61 @@ def load_data(country, region):
     data = [ np.array(d) if d is not None else d for d in data]
 
     # Filter points
-    good_idx = np.bitwise_and(1 <= data[Sub.T], data[Sub.T] < 5e3)
-    data[Sub.D] = data[Sub.D][good_idx]
-    data[Sub.T] = data[Sub.T][good_idx]
+    good_idx = np.bitwise_and(case_min <= data[Sub.T], data[Sub.T] < case_max)
+    data[Sub.D] = np.concatenate([[np.nan], data[Sub.D][good_idx]])
+    data[Sub.T] = np.concatenate([[np.nan], data[Sub.T][good_idx]])
 
-    idx = max(np.where(good_idx)[0][0]-5, 0)
-    return data, datetime.strptime(days[idx], "%Y-%m-%d").toordinal()
+    # np.where(good_idx)[0][0] is the first day with case_min cases
+    # start the model 3 weeks prior.
+    idx = max(np.where(good_idx)[0][0]-21, 0)
+    day0 = datetime.strptime(days[idx], "%Y-%m-%d").toordinal()
+
+    times = np.array([day0] + [datetime.strptime(days[i], "%Y-%m-%d").toordinal()
+                      for i in np.where(good_idx)[0]])
+
+    return times, data
 
 # ------------------------------------------------------------------------
 # Testing entry
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description = "",
+                                     usage="fit data")
+
+    parser.add_argument('--key', type=str, help="key for region, e.g 'USA-California'")
+    args = parser.parse_args()
+
     # NOTE: For debugging purposes only
     # rates = DefaultRates
     # fracs = Fracs()
     # times = TimeRange(0, 100)
-    # param = Params(AGES[COUNTRY], SIZES[make_key(COUNTRY, REGION)], times, rates, fracs)
+    # param = Params(AGES[COUNTRY], POPDATA[make_key(COUNTRY, REGION)], times, rates, fracs)
     # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
-    data, day0 = load_data(COUNTRY, REGION)
+    time_points, data = load_data(args.key)
+
     guess = { "R0": 4.3,
               "reported" : 1/30,
-              "initial" : 10,
-              "hospital" : 1/5,
-              "imports": 40, }
+              "initial" : 10}
+              # "hospital" : 1/5}
+              # "imports": 4, }
     # bounds = { "R0" : (2, 5),
     #           "reported" : (0, 1),
     #           "initial" : (.01, 1e2),
     #           "hospital" : (1/100, 5),
     #           "imports": (1, 1e5) }
 
-    # param, init_cases, err = fit_params(COUNTRY, REGION, day0, data, guess, bounds)
-    param, init_cases, err = fit_params(COUNTRY, REGION, day0, data, guess)
+    param, init_cases, err = fit_params(args.key, time_points, data, guess)
 
     model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, init_cases)))
-    plt.plot(data[Sub.T], 'o')
-    plt.plot(np.round(model[Sub.T]))
+    tp = param.time - JAN1_2020
+    plt.plot(tp, data[Sub.T], 'o')
+    plt.plot(tp, np.round(model[Sub.T]))
 
-    plt.plot(data[Sub.D], 'o')
-    plt.plot(np.round(model[Sub.D]))
+    plt.plot(tp, data[Sub.D], 'o')
+    plt.plot(tp, np.round(model[Sub.D]))
+
+    plt.plot(tp, np.round(model[Sub.I]))
+
     plt.yscale('log')
