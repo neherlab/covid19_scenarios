@@ -62,12 +62,12 @@ def parse():
             i += 1
             json_data = merge_cases(json_data, data)
     if ok:
-        store_json(data, json_file)
+        store_json(json_data, json_file)
     else:
         print(f"Panic: '{f}' incorrectly formatted", file=sys.stderr)
     print(f'Imported {len(files)} files with total {i} regions into {json_file}')
 
-
+    return json_data
 
 
 
