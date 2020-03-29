@@ -1,19 +1,30 @@
-import React, { useState } from 'react'
-
+import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import './LandingPage.scss'
-import promoImage from './tool.jpg'
+
+import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 import { setShouldSkipLandingPage } from '../../state/ui/ui.actions'
-import { SKIP_LANDING_PAGE_KEY } from '../../state/ui/ui.reducer'
 import { State } from '../../state/reducer'
+import promoImage from './tool.jpg'
+import './LandingPage.scss'
 
 function LandingPage() {
   const [isSkipLandingChecked, setSkipLandingChecked] = useState(false)
   const showSkipCheckbox = useSelector(({ ui }: State) => !ui.skipLandingPage)
   const dispatch = useDispatch()
+  const onLinkClick = useCallback(() => {
+    dispatch(setShouldSkipLandingPage({ shouldSkip: true }))
+
+    if (isSkipLandingChecked) {
+      LocalStorage.set(LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE, String(true))
+    }
+  }, [dispatch, isSkipLandingChecked])
+
+  const onCheckboxChange = useCallback((e) => {
+    setSkipLandingChecked(e.target.checked)
+  }, [])
+
   return (
-    <>
       <div className="landing-page">
         <div className="landing-page__hero-section">
           <div className="landing-page__header">
@@ -21,12 +32,7 @@ function LandingPage() {
             <p className="landing-page__sub-heading">Tool that models COVID-19 outbreak and hospital demand</p>
           </div>
           <Link
-            onClick={() => {
-              dispatch(setShouldSkipLandingPage({ shouldSkip: true }))
-              if (isSkipLandingChecked) {
-                localStorage.setItem(SKIP_LANDING_PAGE_KEY, '1')
-              }
-            }}
+            onClick={onLinkClick}
             to="/"
             className="landing-page__simulate-link"
           >
@@ -47,10 +53,7 @@ function LandingPage() {
           {showSkipCheckbox && (
             <div>
               <input
-                onChange={(e) => {
-                  console.log(e.target.checked)
-                  setSkipLandingChecked(e.target.checked)
-                }}
+                onChange={onCheckboxChange}
                 id="skip-landing-page"
                 type="checkbox"
               />
@@ -61,7 +64,6 @@ function LandingPage() {
           )}
         </div>
       </div>
-    </>
   )
 }
 

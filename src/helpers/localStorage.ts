@@ -1,24 +1,19 @@
-export interface LocalStorageKeys {
-  AUTORUN_SIMULATION: string
-  LANG: string
-  LOG_SCALE: string
-  SHOW_HUMANIZED_RESULTS: string
-  SUPPRESS_DISCLAIMER: string
-}
-
-export const LOCAL_STORAGE_KEYS: LocalStorageKeys = {
+export const LOCAL_STORAGE_KEYS = {
   AUTORUN_SIMULATION: 'autorun-simulation',
   LANG: 'lang',
   LOG_SCALE: 'log-scale',
   SHOW_HUMANIZED_RESULTS: 'show-humanized-results',
   SUPPRESS_DISCLAIMER: 'suppress-disclaimer',
+  SKIP_LANDING_PAGE: 'skip-landing-page'
+} as const
+
+export type LocalStorageKey = typeof LOCAL_STORAGE_KEYS[keyof typeof LOCAL_STORAGE_KEYS]
+
+function set<T>(key: LocalStorageKey, value: T): void {
+  localStorage.setItem(key, JSON.stringify(value))
 }
 
-function set<T>(key: string, value: T): void {
-  localStorage.setItem(key, typeof value !== 'string' ? JSON.stringify(value) : value)
-}
-
-function get<T>(key: string): T | null {
+function get<T>(key: LocalStorageKey): T | null {
   const value = localStorage.getItem(key)
   try {
     return value !== null ? JSON.parse(value) : value
@@ -27,4 +22,4 @@ function get<T>(key: string): T | null {
   }
 }
 
-export default { LOCAL_STORAGE_KEYS, set, get }
+export default { set, get }
