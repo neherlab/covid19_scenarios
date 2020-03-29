@@ -27,17 +27,17 @@ context('The results card', () => {
 
   describe('results charts', () => {
     it('should have default invisible charts', () => {
-      for (const testId of resultsCharts) {
+      resultsCharts.forEach((testId) => {
         cy.findByTestId(testId).should('be.not.visible')
-      }
+      })
     })
 
     it('should become visible charts after clicking RunResults button', () => {
       cy.findByTestId('RunResults').click()
 
-      for (const testId of resultsCharts) {
+      resultsCharts.forEach((testId) => {
         cy.findByTestId(testId).should('be.visible')
-      }
+      })
     })
   })
 })
