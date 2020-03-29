@@ -104,7 +104,8 @@
     "react-a11y-accessible-headings": false,
     "react-this-binding-issue": false,
     "underscore-consistent-invocation": false,
-    "use-simple-attributes": false
+    "use-simple-attributes": false,
+    "no-namespace": [true, "allow-declarations"]
   },
   "linterOptions": {
     "exclude": [
