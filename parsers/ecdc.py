@@ -53,7 +53,6 @@ def retrieve_case_data():
         if geoID in countries:
             country = countries[geoID]
 
-        # date = "-".join([str(int(row[Ix['Year']])), str(int(row[Ix['Month']])), str(int(row[Ix['Day']]))])
         date = f"{int(row[Ix['year']]):04d}-{int(row[Ix['month']]):02d}-{int(row[Ix['day']]):02d}"
 
         # note: Cases are per day, not cumulative. We need to aggregate later
@@ -67,7 +66,6 @@ def retrieve_case_data():
         total = {}
         total['cases']  = 0
         total['deaths'] = 0
-        total['recovered'] = 0
         for k in total:
             for d in data:
                 if k in d and d[k]:
@@ -83,10 +81,3 @@ def parse():
     cases = retrieve_case_data()
     store_data(cases, {'default': LOC+'/World.tsv'}, 'ecdc')
 
-
-
-
-if __name__ == "__main__":
-    # for debugging
-    cases = retrieve_case_data()
-    cases = flatten(cases)
