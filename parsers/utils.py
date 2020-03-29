@@ -190,15 +190,8 @@ def add_country_code(regions, exceptions, code):
 
 
 def store_json(newdata, json_file):
-    if os.path.isfile(json_file):
-        with open(json_file, 'r') as fh:
-            oldcases = json.load(fh)
-    else:
-        oldcases = {}
-
-    mergedCases = merge_cases(oldcases, newdata)
     with open(json_file, 'w') as fh:
-        json.dump(mergedCases, fh)
+        json.dump(newdata, fh)
 
     #print('first layer keys are %s'%mergedCases.keys())
     #print(f'Stored {len(mergedCases)} regions to {json_file}')
