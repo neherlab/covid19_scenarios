@@ -17,7 +17,7 @@ export default function SaveScenarioDialog({ onSave, onCloseDialog }: SaveScenar
         <ModalHeader toggle={onCloseDialog}>{t('Save scenario')}</ModalHeader>
         <ModalBody>
           <FormGroup>
-            <Label for="scenarioName">Scenario Name</Label>
+            <Label for="scenarioName">{t('Scenario Name')}</Label>
             <Input
               type="text"
               name="scenarioName"

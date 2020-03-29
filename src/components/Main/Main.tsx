@@ -104,9 +104,10 @@ function segmentStateForManyScenarios(id: string, initialState: any, state: any,
 interface MainProps {
   onScenarioSave: SaveScenario
   activeScenario: ActiveScenario
+  onScenarioShare: () => void
 }
 
-function Main({ activeScenario, onScenarioSave }: MainProps) {
+function Main({ activeScenario, onScenarioSave, onScenarioShare }: MainProps) {
   const [allResults, setAllResults] = useState<{ [key: string]: AlgorithmResult | undefined }>({})
   const [autorunSimulation, setAutorunSimulation] = useState(false)
   const [manyScenariosState, dispatch] = useReducer(scenarioReducer, defaultScenarioState)
@@ -245,6 +246,7 @@ function Main({ activeScenario, onScenarioSave }: MainProps) {
                       onScenarioSave={(name: string) => {
                         onScenarioSave(name, serializeScenario(scenarioState, severity))
                       }}
+                      onScenarioShare={onScenarioShare}
                     />
                   </Col>
                 </Row>
