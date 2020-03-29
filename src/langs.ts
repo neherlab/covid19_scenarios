@@ -42,9 +42,8 @@ const langs: Record<LANG, LangType> = {
   },
   [LANG.PL]: {
     lang: LANG.PL,
-    numeralLocale: 'pl',
     name: 'polski',
-  },
+  } as any,
 }
 
 export default langs
