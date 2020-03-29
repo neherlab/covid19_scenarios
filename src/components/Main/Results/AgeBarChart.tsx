@@ -4,7 +4,7 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { useTranslation } from 'react-i18next'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
@@ -25,16 +25,17 @@ export interface SimProps {
   rates?: SeverityTableRow[]
 }
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
   const percentageChartRef = React.useRef(null)
-  
+
   if (!data || !rates) {
     return null
   }
 
-  const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
 
   const t = (...args: Parameters<typeof unsafeT>) => {
@@ -43,7 +44,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
       return translation
     }
 
-    process.env.NODE_ENV !== 'production' && console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    if (!isProduction) {
+      console.warn('Translation incompatible in AgeBarChart.tsx', ...args)
+    }
+
     return String(translation)
   }
 
@@ -57,15 +61,6 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     peakOverflow: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.overflow[age]))),
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
   }))
-
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ) => <span>{formatNumber(Number(value))}</span>
-
-  const tickFormatter = (value: number) => formatNumberRounded(value)
 
   return (
     <div className="w-100 h-100" data-testid="AgeBarChart">
@@ -98,12 +93,9 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <XAxis dataKey="name" />
                 <YAxis
                   label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }}
-                  tickFormatter={tickFormatter}
+                  tickFormatter={formatNumberRounded}
                 />
-                <Tooltip 
-                  position={tooltipPosition} 
-                  content={ResponsiveTooltipContent}
-                />
+                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
                 <Legend verticalAlign="top" />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
@@ -134,8 +126,8 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   }}
                 />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip 
-                  position={tooltipPosition} 
+                <Tooltip
+                  position={tooltipPosition}
                   content={ResponsiveTooltipContent}
                 />
                 <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
