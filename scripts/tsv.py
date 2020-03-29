@@ -48,21 +48,23 @@ def filter_tsv(fname):
 
 def parse():
     json_file = os.path.join(BASE_PATH,JSON_DIR, TMP_CASES)
-    
+
     files = defaultdict(list)
 
     for dirpath, dirnames, filenames in os.walk(os.path.join(BASE_PATH,TSV_DIR)):
         files[dirpath] = [f for f in filenames if f.endswith(".tsv")]
     i = 0
+    json_data = {}
     for d in files:
         print(f'Now importing {len(files[d])} .tsv files for {d}')
         for f in files[d]:
             data, ok = parse_tsv(filter_tsv(os.path.join(d,f)), f[:-4])
             i += 1
-            if ok:
-                store_json(data, json_file)
-            else:
-                print(f"Panic: '{f}' incorrectly formatted", file=sys.stderr)
+            json_data = merge_cases(json_data, data)
+    if ok:
+        store_json(data, json_file)
+    else:
+        print(f"Panic: '{f}' incorrectly formatted", file=sys.stderr)
     print(f'Imported {len(files)} files with total {i} regions into {json_file}')
 
 

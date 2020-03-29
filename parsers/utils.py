@@ -126,10 +126,14 @@ def merge_cases(oldcases, newcases):
     return res
 
 def store_tsv(regions, source, cols):
+    dirname = f"{BASE_PATH}/{TSV_DIR}/{source}"
+    if not os.path.isdir(dirname):
+        os.mkdir(dirname)
+
     for region, data in regions.items():
         # region is API provided and should be sanitized before using it to construct paths for security reasons
         region = sanitize(region)
-        write_tsv(f"{BASE_PATH}/{TSV_DIR}/{source}/{region}.tsv", cols, data, source)
+        write_tsv(f"{dirname}/{region}.tsv", cols, data, source)
 
 def list_to_dict(regions, cols):
     # transform a a dict of lists of lists {'USA':[['2020-03-01', 1, 2,...],..]} into a dict of lists of dicts {'USA': [{'time': '2020-03-01', 'cases': 1, ...},...]}
@@ -193,7 +197,7 @@ def store_json(newdata, json_file):
             oldcases = json.load(fh)
     else:
         oldcases = {}
-    
+
     mergedCases = merge_cases(oldcases, newdata)
     with open(json_file, 'w') as fh:
         json.dump(mergedCases, fh)
