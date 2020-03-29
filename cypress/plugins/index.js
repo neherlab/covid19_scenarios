@@ -25,15 +25,15 @@ module.exports = (on, config) => {
           {
             test: /\.tsx?$/,
             use: 'babel-loader',
-            exclude: /node_modules/
-          }
-        ]
+            exclude: /node_modules/,
+          },
+        ],
       },
       resolve: {
-        extensions: ['.ts', '.tsx', '.js']
-      }
+        extensions: ['.ts', '.tsx', '.js'],
+      },
     },
-    watchOptions: {}
+    watchOptions: {},
   }
 
   on('file:preprocessor', webpack(options))
