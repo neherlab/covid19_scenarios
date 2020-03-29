@@ -60,6 +60,7 @@
     "animate.css": "3.7.2",
     "axios": "0.19.2",
     "bootstrap": "4.4.1",
+    "classnames": "2.2.6",
     "connected-react-router": "6.7.0",
     "core-js": "3.6.4",
     "d3": "5.15.0",
