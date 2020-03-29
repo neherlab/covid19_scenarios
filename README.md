@@ -210,27 +210,27 @@ We are actively looking for people to supply data to be used for our modeling!
 
 ## Contributing and curating data:
 
-### Adding case count data for a new region:
+### Adding parser or case count data for a new region:
 
 The steps to follow are:
 
 ##### Identify a source for case counts data that is updated frequently (at least daily) as outbreak evolves.
 
--   Write a script that downloads and converts raw data into TSV format
+-   Write a script that downloads and converts raw data into a dict of lists of lists {'<country>': [['2020-03-20', 1, 0, ...], ['2020-03-21', 2, 0, ...]]}
     -   Columns: [time, cases, deaths, hospitalized, ICU, recovered]
     -   **Important:** all columns must be cumulative data.
     -   The time column **must** be a string formatted as `YYYY-MM-DD`
     -   Try to keep the same order of columns for hygiene, although it should not ultimately matter
-    -   If data is missing, please leave the entry empty
-    -   Use the store_data() function in utils to store the data into .tsv and .json files automatically
+    -   If data is missing, please leave the entry empty (i.e., ['2020-03-20',1, None, None, ...])
+    -   Use the store_data() function in utils to store the data into .tsv automatically
+-   Ensure that the data provided to store_data() is well formatted
+    -   The keys in the datastructure provided to utils should be
+        -   For countries: U.N. country names (see country_codes.csv), or
+	-   For states within countries: <TLC>-<state>, where <TLC> is the three letter code for the country (see country_codes.csv), and <state> is the state name
+    -   The second parameter is the string identifying your parser (see sources.json entry below)
 -   Place the script into the parsers directory
     -   The name should correspond to the region name desired in the scenario.
     -   There **must** be a function parse() defined that calls store_data() from utils
--   Ensure that the path provided to store_data() is well formatted
-    -   The structure of the directory is Region/Sub-Region/Country/
-    -   Region and Sub-Region are designated as per the U.N.
-    -   U.N. designations are found within country_codes.csv
-    -   Please use only the U.N. designated name for the country, region, and sub-region.
 
 ##### Update the _sources.json_ file to contain all relevant metadata.
 
@@ -238,6 +238,17 @@ The steps to follow are:
     -   primarySource = The URL/path to the raw data
     -   dataProvenance = The organization behind the data collection
     -   license = The license governing the usage of data
+
+##### Test your parser and create a Pull Request
+
+-   Create the appropriate directory in case-counts/
+-   Test your parser from the directory above (outside your covid19_scenario_data folder) using
+
+```shell
+python3 covid19_scenarios_data/generate_data.py --fetch --parsers <yourparsername>
+```
+
+-   Check the resulting output in case-counts/<yourparsername>/, and add the files to your Pull Request together with the parser and sources.json
 
 ##### Add populations data for the additional regions/states.
 
@@ -248,12 +259,9 @@ Case count data is most useful when tied to data on the population it refers to.
 We note that this option is not preferred relative to a script that automatically updates as outlined above.
 However, if there is no accessible data sources, one can manually enter the data. To do so
 
-##### Commit a manually entered file into the correct directory
+##### Commit a manually entered file into the "manuals" directory
 
--   The structure of the directory is Region/Sub-Region/Country/
--   Region and Sub-Region are designated as per the U.N.
--   U.N. designations are found within country_codes.csv
--   Please use only the U.N. designated name for the country, region, and sub-region.
+-   Please use only the U.N. designated name for the country, the file name should be <country>.tsv.
 
 ### Adding/editing population data for a country and/or region:
 
