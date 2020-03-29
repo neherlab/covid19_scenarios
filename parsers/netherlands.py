@@ -84,15 +84,11 @@ def parse_icu(regions_date):
 
 def parse():
     regions_date = defaultdict(lambda: defaultdict(dict))
-    print('starting parsing')
+
     parse_cases(regions_date)
-    print('starting parsing2')
     parse_deaths(regions_date)
-    print('starting parsing3')
     parse_hospitalized(regions_date)
-    print('starting parsing4')
     parse_icu(regions_date)
-    print('ending parsing')
 
     regions = defaultdict(list)
     for region in regions_date:
