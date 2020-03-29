@@ -14,7 +14,7 @@ const useSavedScenariosState = createPersistedState('savedScenarios')
 const useUserState = createPersistedState('user')
 
 export default function MultipleScenarios() {
-  const [user] = useUserState({ version: 1, id: uuidv4(), handleForSharedLinks: '' })
+  const [user, setUser] = useUserState({ version: 1, id: uuidv4(), handleForSharedLinks: '' })
   const [savedScenarios, setSavedScenarios] = useSavedScenariosState({ version: 1, scenarios: [] })
   const [activeTab, setActiveTab] = useState(DEFAULT_SCENARIO_ID)
   const [showShareModal, setShowShareModal] = useState<boolean>(false)
@@ -24,10 +24,6 @@ export default function MultipleScenarios() {
       version: 1,
       scenarios: [...savedScenarios.scenarios, { id: uuidv4(), userid: user.id, name, serializedScenario } as never],
     })
-  }
-
-  function generateShareableLink(name: string, createdBy: string): string {
-    return name + createdBy
   }
 
   const toggleTab = (tab: string) => {
@@ -43,6 +39,22 @@ export default function MultipleScenarios() {
     activeTab === DEFAULT_SCENARIO_ID
       ? allScenarios[0]
       : allScenarios.find((saved) => activeTab === saved.id) || allScenarios[0]
+
+  function generateShareableLink(name: string, createdBy: string): string {
+    if (createdBy !== user.handleForSharedLinks) {
+      setUser({ ...user, handleForSharedLinks: createdBy })
+    }
+
+    const toSerialize = {
+      version: 1,
+      id: activeScenario.id !== DEFAULT_SCENARIO_ID ? activeScenario.id : uuidv4(),
+      name,
+      createdBy,
+      serializedScenario: activeScenario.serializedScenario,
+    }
+    const baseURL = window.location.href.split('?')[0]
+    return `${baseURL}?${btoa(JSON.stringify(toSerialize))}`
+  }
 
   return (
     <div className="multiple-scenarios">
