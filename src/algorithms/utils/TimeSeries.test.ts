@@ -6,7 +6,7 @@ const { utils } = require('jest-snapshot')
 
 expect.extend({
   toBeCloseToArraySnapshot(received: number[]) {
-    const { testPath, currentTestName, snapshotState } = this
+    const { currentTestName, snapshotState } = this
     snapshotState._counters.set(currentTestName, (snapshotState._counters.get(currentTestName) || 0) + 1)
     const count = Number(snapshotState._counters.get(currentTestName))
     const key = utils.testNameToKey(currentTestName, count)
