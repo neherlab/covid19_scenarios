@@ -14,8 +14,6 @@ import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import run from '../../algorithms/run'
 
-import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
-
 import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
