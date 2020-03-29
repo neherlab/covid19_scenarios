@@ -17,7 +17,7 @@ import webpack from '@cypress/webpack-preprocessor'
 /**
  * @type {Cypress.PluginConfig}
  */
-module.exports = (on, config) => {
+module.exports = (on) => {
   const options = {
     webpackOptions: {
       module: {
