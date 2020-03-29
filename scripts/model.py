@@ -101,7 +101,8 @@ class Fracs(Data):
         self.reported = reported
 
 class TimeRange(Data):
-    def __init__(self, start, end, delta=1):
+    def __init__(self, day0, start, end, delta=1):
+        self.day0  = day0
         self.start = start
         self.end   = end
         self.delta = delta
@@ -113,6 +114,14 @@ class Params(Data):
         self.fracs = fracs
         self.size  = size
         self.time  = times
+
+        # Make infection function
+        phase_offset = (times.day0 - JAN1_2019)
+        beta = self.rates.infectivity
+        def infectivity(t):
+            return beta*(1 + 0.2*np.cos(2*np.pi*(t + phase_offset)/365))
+
+        self.rates.infectivity = infectivity
 
 # ------------------------------------------------------------------------
 # Default parameters
@@ -140,7 +149,7 @@ def make_evolve(params):
         for age in range(Age.NUM):
             # Fluxes
             # TODO: Multiply out fracs and rates outside of hot loop
-            flux_S   = params.rates.infectivity*fracI*pop[at(Sub.S, age)] + (params.rates.imports / Sub.NUM)
+            flux_S   = params.rates.infectivity(t)*fracI*pop[at(Sub.S, age)] + (params.rates.imports / Sub.NUM)
             flux_E1  = params.rates.latency*pop[at(Sub.E1, age)]*3
             flux_E2  = params.rates.latency*pop[at(Sub.E2, age)]*3
             flux_E3  = params.rates.latency*pop[at(Sub.E3, age)]*3
@@ -219,12 +228,13 @@ def assess_model(params, data, cases):
     for i, datum in enumerate(data):
         if datum is None:
             continue
-        lsq += np.sum(np.power(model[i] - datum, 2))
+        res = np.power(model[i] - datum, 2)
+        lsq += np.sum(res)
 
     return lsq
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
-def fit_params(country, region, data, guess, bounds=None):
+def fit_params(country, region, day0, data, guess, bounds=None):
     key = make_key(country, region)
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
@@ -238,7 +248,7 @@ def fit_params(country, region, data, guess, bounds=None):
         vals = { f: (x[params_to_fit[f]] if f in guess else getattr(DefaultRates, f)) for f in RateFields }
         return Rates(**vals), Fracs(x[params_to_fit['reported']]) if 'reported' in params_to_fit else Fracs()
 
-    times = TimeRange(0, max(len(datum)-1 if datum is not None else 0 for datum in data))
+    times = TimeRange(day0, 0, max(len(datum)-1 if datum is not None else 0 for datum in data))
 
     def fit(x):
         param = Params(AGES[country], SIZES[key], times, *unpack(x))
@@ -288,7 +298,7 @@ def load_data(country, region):
     data[Sub.T] = data[Sub.T][good_idx]
 
     idx = max(np.where(good_idx)[0][0]-5, 0)
-    return data, days[idx]
+    return data, datetime.strptime(days[idx], "%Y-%m-%d").toordinal()
 
 # ------------------------------------------------------------------------
 # Testing entry
@@ -305,14 +315,14 @@ if __name__ == "__main__":
     guess = { "R0": 4.3,
               "reported" : 1/30,
               "initial" : 1,
-              "hospital" : 1/4,
+              "hospital" : 1/5,
               "imports": 40, }
     bounds = { "R0" : (2, 5),
               "reported" : (0, 1),
               "initial" : (.01, 1e2),
               "hospital" : (1/100, 1),
               "imports": (0, 1e5) }
-    param, init_cases, err = fit_params(COUNTRY, REGION, data, guess, bounds)
+    param, init_cases, err = fit_params(COUNTRY, REGION, day0, data, guess, bounds)
 
     model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, init_cases)))
     plt.plot(data[Sub.T], 'o')
