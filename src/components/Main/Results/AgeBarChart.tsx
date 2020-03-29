@@ -14,6 +14,9 @@ import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { colors } from './DeterministicLinePlot'
 
+import { calculatePosition, scrollToRef } from './chartHelper'
+import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
+
 const ASPECT_RATIO = 16 / 4
 
 export interface SimProps {
@@ -23,13 +26,16 @@ export interface SimProps {
 }
 
 export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
-  const { t: unsafeT, i18n } = useTranslation()
-
+  const { t: unsafeT } = useTranslation()
+  const casesChartRef = React.useRef(null)
+  const percentageChartRef = React.useRef(null)
+  
   if (!data || !rates) {
     return null
   }
 
-  const formatNumber = numberFormatter(i18n.language, !!showHumanized, false)
+  const formatNumber = numberFormatter(!!showHumanized, false)
+  const formatNumberRounded = numberFormatter(!!showHumanized, true)
 
   const t = (...args: Parameters<typeof unsafeT>) => {
     const translation = unsafeT(...args)
@@ -59,7 +65,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     index: number,
   ) => <span>{formatNumber(Number(value))}</span>
 
-  const tickFormatter = (value: number) => formatNumber(value)
+  const tickFormatter = (value: number) => formatNumberRounded(value)
 
   return (
     <div className="w-100 h-100" data-testid="AgeBarChart">
@@ -70,11 +76,15 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
           }
 
           const height = Math.max(250, width / ASPECT_RATIO)
+          const tooltipPosition = calculatePosition(height)
 
           return (
             <>
               <h5>{t('Distribution across age groups')}</h5>
+
+              <div ref={casesChartRef} />
               <BarChart
+                onClick={() => scrollToRef(casesChartRef)}
                 width={width}
                 height={height}
                 data={plotData}
@@ -90,7 +100,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }}
                   tickFormatter={tickFormatter}
                 />
-                <Tooltip formatter={tooltipFormatter} />
+                <Tooltip 
+                  position={tooltipPosition} 
+                  content={ResponsiveTooltipContent}
+                />
                 <Legend verticalAlign="top" />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
@@ -98,7 +111,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
                 <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} />
               </BarChart>
+
+              <div ref={percentageChartRef} />
               <BarChart
+                onClick={() => scrollToRef(percentageChartRef)}
                 width={width}
                 height={height}
                 data={plotData}
@@ -118,7 +134,10 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   }}
                 />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip />
+                <Tooltip 
+                  position={tooltipPosition} 
+                  content={ResponsiveTooltipContent}
+                />
                 <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
               </BarChart>
             </>

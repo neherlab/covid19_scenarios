@@ -1,9 +1,11 @@
+3rdparty
 \.build
 \.cache
 \.env
 \.ignore
 \.reports
-3rdparty
+covid19_scenarios_data
+cypress/integration/language.spec.ts
 node_modules
 static
 tsconfig.json

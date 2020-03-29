@@ -6,7 +6,10 @@ import os from 'os'
 import { codeFrameColumns } from '@babel/code-frame'
 import chalk from 'chalk'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
-import { NormalizedMessage } from 'fork-ts-checker-webpack-plugin/lib/NormalizedMessage'
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import { NormalizedMessage } from 'fork-ts-checker-webpack-plugin/lib/NormalizedMessage' // eslint-disable-line import/no-unresolved
 
 function identity<T>(t: T) {
   return t
@@ -68,6 +71,8 @@ export default function webpackTsChecker({
     eslint: true,
     tslint,
     tsconfig,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     formatter: tsCheckerFormatter,
     checkSyntacticErrors: true,
     async: false,

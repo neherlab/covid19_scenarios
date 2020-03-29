@@ -249,7 +249,7 @@ The model's results can be exported in CSV format by clicking the "export" butto
 Install the requirements:
 
 - git >= 2.0
-- node.js >= 10
+- node.js >= 10 (we recommend installation through [nvm](https://github.com/nvm-sh/nvm) or [nvm-windows](https://github.com/coreybutler/nvm-windows))
 - 1.0 < yarn < 2.0
 
 Then in your terminal type:

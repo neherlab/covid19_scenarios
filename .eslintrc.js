@@ -11,7 +11,7 @@ module.exports = {
       globalReturn: false,
     },
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'],
+    project: ['./tsconfig.json', './cypress/tsconfig.json'],
     extraFileExtensions: ['.json'],
     warnOnUnsupportedTypeScriptVersion: true,
   },
@@ -48,6 +48,7 @@ module.exports = {
   plugins: [
     'array-func',
     'cflint',
+    'i18next',
     'import',
     'jest',
     'json',
@@ -110,6 +111,7 @@ module.exports = {
     'no-secrets/no-secrets': ['warn', { tolerance: 5 }],
     'no-shadow': 'off',
     'only-ascii/only-ascii': 'warn',
+    'prefer-for-of': 'off',
     'prettier/prettier': 'warn',
     'react-redux/prefer-separate-component-file': 'off',
     'react/jsx-curly-brace-presence': 'off',
@@ -171,15 +173,27 @@ module.exports = {
         'config/**/*.ts',
         'jest-runner-eslint.config.js',
         'jest.config.js',
-        'postcss.config.js',
         'lib/findModuleRoot.js',
+        'postcss.config.js',
         'stylelint.config.js',
         'webpack.config.js',
       ],
       rules: {
-        'global-require': 'off',
         '@typescript-eslint/no-var-requires': 'off',
+        'global-require': 'off',
         'sonarjs/cognitive-complexity': ['warn', 50],
+      },
+    },
+    {
+      files: ['src/components/**', 'src/pages/**'],
+      rules: {
+        'i18next/no-literal-string': [
+          'off',
+          {
+            ignoreCallee: ['t'],
+            ignoreAttribute: ['url', 'key', 'identifier'],
+          },
+        ],
       },
     },
     {
@@ -208,9 +222,30 @@ module.exports = {
       },
     },
     {
-      files: ['**/__tests__/**', '**/*.test.*'],
+      files: ['**/*.test.*', '**/__test__/**', '**/__tests__/**', '**/test/**', '**/tests/**'],
       rules: {
+        'i18next/no-literal-string': 'off',
+        'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
+      },
+    },
+    {
+      files: ['cypress/**'],
+      env: {
+        'cypress/globals': true,
+      },
+      plugins: ['cypress'],
+      rules: {
+        'cypress/assertion-before-screenshot': 'warn',
+        'cypress/no-assigning-return-values': 'warn',
+        'cypress/no-force': 'warn',
+        'cypress/no-unnecessary-waiting': 'warn',
+        'jest/consistent-test-it': 'off',
+        'jest/expect-expect': 'off',
+        'sonarjs/no-duplicate-string': 'off',
+        'sonarjs/no-identical-functions': 'off',
+        'spaced-comment': 'off',
+        'tslint:no-namespace': 'off',
       },
     },
     {
@@ -232,6 +267,14 @@ module.exports = {
       files: ['**/*reducer.*', '**/*reducers.*'],
       rules: {
         'no-param-reassign': ['warn', { ignorePropertyModificationsFor: ['draft'] }],
+      },
+    },
+    {
+      files: ['src/algorithms/**/*.{js,ts}'],
+      rules: {
+        'no-loops/no-loops': 'off',
+        'no-plusplus': 'off',
+        'sonarjs/cognitive-complexity': 'off',
       },
     },
   ],

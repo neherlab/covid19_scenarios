@@ -9,4 +9,5 @@
 \.ignore
 \.prettierignore
 \.reports
+covid19_scenarios_data
 node_modules

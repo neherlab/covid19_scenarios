@@ -1,0 +1,136 @@
+{
+    "params": {
+        "populationServed": 195000,
+        "country": "Switzerland",
+        "hospitalBeds": 698,
+        "ICUBeds": 80,
+        "suspectedCasesToday": 213,
+        "importsPerDay": 0.1,
+        "cases": "CHE-Basel-Stadt",
+        "r0": 2.7,
+        "latencyTime": 5,
+        "infectiousPeriod": 3,
+        "lengthHospitalStay": 4,
+        "lengthICUStay": 14,
+        "seasonalForcing": 0.2,
+        "peakMonth": 0,
+        "overflowSeverity": 2,
+        "simulationTimeRange": {
+            "tMin": "2020-03-01T04:00:00.000Z",
+            "tMax": "2020-09-01T03:00:00.000Z"
+        },
+        "numberStochasticRuns": 0
+    },
+    "severity": [
+        {
+            "id": 0,
+            "ageGroup": "0-9",
+            "isolated": 0,
+            "confirmed": 5,
+            "severe": 1,
+            "critical": 5,
+            "fatal": 30,
+            "totalFatal": 0.00075,
+            "errors": {}
+        },
+        {
+            "id": 2,
+            "ageGroup": "10-19",
+            "isolated": 0,
+            "confirmed": 5,
+            "severe": 3,
+            "critical": 10,
+            "fatal": 30,
+            "totalFatal": 0.0045,
+            "errors": {}
+        },
+        {
+            "id": 4,
+            "ageGroup": "20-29",
+            "isolated": 0,
+            "confirmed": 10,
+            "severe": 3,
+            "critical": 10,
+            "fatal": 30,
+            "totalFatal": 0.009,
+            "errors": {}
+        },
+        {
+            "id": 6,
+            "ageGroup": "30-39",
+            "isolated": 0,
+            "confirmed": 15,
+            "severe": 3,
+            "critical": 15,
+            "fatal": 30,
+            "totalFatal": 0.02025,
+            "errors": {}
+        },
+        {
+            "id": 8,
+            "ageGroup": "40-49",
+            "isolated": 0,
+            "confirmed": 20,
+            "severe": 6,
+            "critical": 20,
+            "fatal": 30,
+            "totalFatal": 0.072,
+            "errors": {}
+        },
+        {
+            "id": 10,
+            "ageGroup": "50-59",
+            "isolated": 0,
+            "confirmed": 25,
+            "severe": 10,
+            "critical": 25,
+            "fatal": 40,
+            "totalFatal": 0.25,
+            "errors": {}
+        },
+        {
+            "id": 12,
+            "ageGroup": "60-69",
+            "isolated": 0,
+            "confirmed": 30,
+            "severe": 25,
+            "critical": 35,
+            "fatal": 40,
+            "totalFatal": 1.05,
+            "errors": {}
+        },
+        {
+            "id": 14,
+            "ageGroup": "70-79",
+            "isolated": 0,
+            "confirmed": 40,
+            "severe": 35,
+            "critical": 45,
+            "fatal": 50,
+            "totalFatal": 3.15,
+            "errors": {}
+        },
+        {
+            "id": 16,
+            "ageGroup": "80+",
+            "isolated": 0,
+            "confirmed": 50,
+            "severe": 50,
+            "critical": 55,
+            "fatal": 50,
+            "totalFatal": 6.875,
+            "errors": {}
+        }
+    ],
+    "ageCounts": {
+        "0-9": 884945,
+        "10-19": 834866,
+        "20-29": 1039727,
+        "30-39": 1219227,
+        "40-49": 1166590,
+        "50-59": 1320623,
+        "60-69": 977436,
+        "70-79": 751994,
+        "80+": 459214
+    }
+}

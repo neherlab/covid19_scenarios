@@ -1,0 +1,32 @@
+.responsive-tooltip-content-base {
+  padding: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  background-color: white;
+}
+
+.responsive-tooltip-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.responsive-tooltip-content-item {
+  padding: 0.25rem 0.6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.responsive-tooltip-content-placeholder {
+  min-width: 1rem;
+}
+
+@media screen and (max-width: 992px) {
+  .responsive-tooltip-content {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+    max-width: 90vw;
+  }
+}
+
