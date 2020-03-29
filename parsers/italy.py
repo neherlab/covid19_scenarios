@@ -44,7 +44,7 @@ def parse():
     regions = defaultdict(list)
     for row in db:
         elt = [ int(row[X[c]]) if i > 0 else row[X[c]].split()[0] for i, c in enumerate(cols) ]
-        regions[row[X["region"]]].append(elt)
+        regions['-'.join(['ITA',row[X["region"]]])].append(elt)
     regions = dict(regions)
 
     # Sum all regions to obtain Italian data
@@ -57,4 +57,4 @@ def parse():
     for date, counts in dates.items():
         regions["Italy"].append([date] + [int(c) for c in counts])
 
-    store_data(regions, { 'default': LOC}, 'italy', 'ITA', cols)
+    store_data(regions, 'italy', cols)

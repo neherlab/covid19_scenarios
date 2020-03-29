@@ -25,6 +25,21 @@ if __name__ == "__main__":
         sys.exit()
 
     if args.fetch:
+        srcs = list(json.load(open(os.path.join(BASE_PATH, SOURCES_FILE))).keys())
+        for src in srcs:
+            # Allow running this as `python3 covid19_scenarios_data/generate_data.py --fetch --parsers netherlands` to filter sources (debug mode)
+            if (args.parsers is None) or src in args.parsers:
+                print(f"Running {src} to generate .tsv", file=sys.stderr)
+                country = importlib.import_module(f"parsers.{src}")
+                country.parse()
+
+        print(f"Generating population tsv")
+        pop = importlib.import_module(f"scripts.populations")
+        pop.parse()
+
+    # generate and copy jsons to app if requested
+    if args.output_cases:
+        print(f"Generating cases json")
         # make directory for JSONs if it doesn't exist
         outpath = os.path.join(BASE_PATH, JSON_DIR)
         if not os.path.isdir(outpath):
@@ -33,21 +48,9 @@ if __name__ == "__main__":
         # initialize empty json
         with open(os.path.join(BASE_PATH, JSON_DIR, TMP_CASES), 'w') as fh:
             fh.write("{}")
-
-        srcs = list(json.load(open(os.path.join(BASE_PATH, SOURCES_FILE))).keys())
-        for src in srcs:
-            # Allow running this as `python3 covid19_scenarios_data/generate_data.py --fetch --parsers netherlands` to filter sources (debug mode)
-            if (args.parsers is None) or src in args.parsers:
-                print(f"Running {src}", file=sys.stderr)
-                country = importlib.import_module(f"parsers.{src}")
-                country.parse()
-
-        print(f"Generating population json")
-        pop = importlib.import_module(f"scripts.populations")
+        pop = importlib.import_module(f"scripts.tsv")
         pop.parse()
-
-    # copy jsons to app if requested
-    if args.output_cases:
+        
         case_counts_file = os.path.join(BASE_PATH, JSON_DIR, TMP_CASES)
         print(f"Copying {case_counts_file} to {args.output_cases}")
         shutil.copy(case_counts_file, args.output_cases)

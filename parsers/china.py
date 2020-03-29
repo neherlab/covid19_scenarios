@@ -125,8 +125,12 @@ def parse():
                 # first observation for that date and
                 cases[cntry].append(d)
 
-    # sort chronologically
+    # sort chronologically, update keys
+    cases2 = {}
     for cntry, data in cases.items():
-        cases[cntry] = sorted_date(data)
+        if not cntry == 'China':
+            cases2['-'.join(['CHN',cntry])] = sorted_date(data)
+        else:
+            cases2[cntry] = sorted_date(data)
 
-    store_data(cases, {'default': LOC, 'China': LOC}, 'china', 'CHN', cols=cols)
+    store_data(cases2, 'china', cols=cols)

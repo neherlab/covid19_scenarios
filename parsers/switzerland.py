@@ -118,4 +118,11 @@ def parse():
 
         regions[cantonal_codes[canton]] = canton_data
 
-    store_data(regions, { 'default': LOC, 'Liechtenstein': LOC2, 'Switzerland': LOC}, 'switzerland','CHE', cols)
+    regions2 = {}
+    for region in regions.keys():
+        if region == 'Switzerland' or region == 'Liechtenstein':
+            regions2[region] = regions[region]
+        else:
+            regions2['-'.join(['CHE',region])] = regions[region]
+
+    store_data(regions2, 'switzerland', cols)

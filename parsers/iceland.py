@@ -93,7 +93,4 @@ def parse():
             regions[region].append(entry)
     regions = dict(regions)
 
-    for region in regions.keys():
-        regions[region] = sorted_date(regions[region])
-
-    store_data(regions, {'default': LOC}, 'iceland', 'ISL', cols)
+    store_data(regions, 'iceland', cols)

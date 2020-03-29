@@ -84,11 +84,15 @@ def parse_icu(regions_date):
 
 def parse():
     regions_date = defaultdict(lambda: defaultdict(dict))
-
+    print('starting parsing')
     parse_cases(regions_date)
+    print('starting parsing2')
     parse_deaths(regions_date)
+    print('starting parsing3')
     parse_hospitalized(regions_date)
+    print('starting parsing4')
     parse_icu(regions_date)
+    print('ending parsing')
 
     regions = defaultdict(list)
     for region in regions_date:
@@ -104,7 +108,12 @@ def parse():
             regions[region].append(entry)
     regions = dict(regions)
 
+    regions2 = {}
     for region in regions.keys():
-        regions[region] = sorted_date(regions[region])
+        if not region =='Netherlands':
+            regions2['-'.join(['NLD',region])] = sorted_date(regions[region])
+        else:
+            regions2[region] = sorted_date(regions[region])
+            
 
-    store_data(regions, {'default': LOC, 'Netherlands': LOC}, 'netherlands', 'NLD', cols)
+    store_data(regions2, 'netherlands', cols)
