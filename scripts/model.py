@@ -20,7 +20,7 @@ def load_distribution(path):
     with open(path, 'r') as fd:
         db = json.load(fd)
         for key, data in db.items():
-            dist[key] = np.array([data[k] for k in sorted(data.keys())])
+            dist[key] = np.array([float(data[k]) for k in sorted(data.keys())])
             dist[key] = dist[key]/np.sum(dist[key])
 
     return dist
@@ -49,7 +49,9 @@ AGES  = load_distribution(PATH_UN_AGES)
 SIZES = load_population_data(PATH_POP_DATA)
 CODES = load_country_codes(PATH_UN_CODES)
 COUNTRY = "United States of America"
-REGION  = "California"
+REGION  = "Washington"
+# COUNTRY = "United States of America"
+# REGION  = "California"
 
 # ------------------------------------------------------------------------
 # Indexing enums
@@ -134,7 +136,7 @@ def make_evolve(params):
         for age in range(Age.NUM):
             # Fluxes
             # TODO: Multiply out fracs and rates outside of hot loop
-            flux_S   = params.rates.infectivity*fracI*pop[at(Sub.S, age)]
+            flux_S   = params.rates.infectivity*fracI*pop[at(Sub.S, age)] + (params.rates.imports / Sub.NUM)
             flux_E1  = params.rates.latency*pop[at(Sub.E1, age)]*3
             flux_E2  = params.rates.latency*pop[at(Sub.E2, age)]*3
             flux_E3  = params.rates.latency*pop[at(Sub.E3, age)]*3
@@ -206,8 +208,8 @@ def trace_ages(solution):
 
 # ------------------------------------------
 # Parameter estimation
-def assess_model(params, data):
-    model = trace_ages(solve_ode(params, init_pop(params.ages, params.size, 1)))
+def assess_model(params, data, cases):
+    model = trace_ages(solve_ode(params, init_pop(params.ages, params.size, cases)))
 
     lsq   = 0
     for i, datum in enumerate(data):
@@ -218,12 +220,15 @@ def assess_model(params, data):
     return lsq
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
-def fit_params(country, region, data, guess):
+def fit_params(country, region, data, guess, bounds=None):
     key = make_key(country, region)
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
-    def pack(x):
-        return np.array([guess[key] for key in params_to_fit.keys()])
+    def pack(x, as_list=False):
+        data = [x[key] for key in params_to_fit.keys()]
+        if not as_list:
+            return np.array(data)
+        return data
 
     def unpack(x):
         vals = { f: (x[params_to_fit[f]] if f in guess else getattr(DefaultRates, f)) for f in RateFields }
@@ -233,13 +238,16 @@ def fit_params(country, region, data, guess):
 
     def fit(x):
         param = Params(AGES[country], SIZES[key], times, *unpack(x))
-        return assess_model(param, data)
+        return assess_model(param, data, x[params_to_fit['initial']])
 
-    fit_param = opt.minimize(fit, pack(guess), method='Nelder-Mead')
+    if bounds is None:
+        fit_param = opt.minimize(fit, pack(guess), method='Nelder-Mead')
+    else:
+        fit_param = opt.minimize(fit, pack(guess), method='TNC', bounds=pack(bounds, as_list=True))
 
-    # TODO: repack parameters
+    err = (fit_param.success, fit_param.message)
 
-    return fit_param
+    return Params(AGES[country], SIZES[key], times, *unpack(fit_param.x)), fit_param.x[params_to_fit['initial']], err
 
 # ------------------------------------------
 # Data loading
@@ -251,7 +259,8 @@ def make_key(country, region):
         return f"{CODES[country]}-{region}"
 
 # TODO: Better data filtering criteria needed!
-# TODO: Take hospitalization and ICU data
+# TODO: Take hospitalization and ICU data?
+# NOTE: Assumes data is sampled every day!
 def load_data(country, region):
     data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
     days = []
@@ -270,7 +279,7 @@ def load_data(country, region):
     data = [ np.array(d) if d is not None else d for d in data]
 
     # Filter points
-    good_idx = 1 <= data[Sub.T]
+    good_idx = np.bitwise_and(1 <= data[Sub.T], data[Sub.T] < 5e3)
     data[Sub.D] = data[Sub.D][good_idx]
     data[Sub.T] = data[Sub.T][good_idx]
 
@@ -282,12 +291,28 @@ def load_data(country, region):
 
 if __name__ == "__main__":
     # NOTE: For debugging purposes only
-    rates = DefaultRates
-    fracs = Fracs()
-    times = TimeRange(0, 100)
-    param = Params(AGES[COUNTRY], SIZES[make_key(COUNTRY, REGION)], times, rates, fracs)
-    model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
+    # rates = DefaultRates
+    # fracs = Fracs()
+    # times = TimeRange(0, 100)
+    # param = Params(AGES[COUNTRY], SIZES[make_key(COUNTRY, REGION)], times, rates, fracs)
+    # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
     data, day0 = load_data(COUNTRY, REGION)
-    guess = { "R0": 3.2, "reported" : 1/30 }
-    # fit   = fit_params(COUNTRY, REGION, model, guess)
+    guess = { "R0": 4.3,
+              "reported" : 1/30,
+              "initial" : 1,
+              "hospital" : 1/4,
+              "imports": 40, }
+    bounds = { "R0" : (2, 5),
+              "reported" : (0, 1),
+              "initial" : (.01, 1e2),
+              "hospital" : (1/100, 1),
+              "imports": (0, 1e5) }
+    param, init_cases, err = fit_params(COUNTRY, REGION, data, guess, bounds)
+
+    model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, init_cases)))
+    plt.plot(data[Sub.T], 'o')
+    plt.plot(np.round(model[Sub.T]))
+
+    plt.plot(data[Sub.D], 'o')
+    plt.plot(np.round(model[Sub.D]))
