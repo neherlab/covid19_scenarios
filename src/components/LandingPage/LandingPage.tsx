@@ -25,13 +25,13 @@ function LandingPage() {
   }, [])
 
   return (
-    <div className="landing-page">
+    <div className="landing-page" data-testid="LandingPage">
       <div className="landing-page__hero-section">
         <div className="landing-page__header">
           <h1 className="landing-page__heading">COVID-19 Scenarios</h1>
           <p className="landing-page__sub-heading">Tool that models COVID-19 outbreak and hospital demand</p>
         </div>
-        <Link onClick={onLinkClick} to="/" className="landing-page__simulate-link">
+        <Link onClick={onLinkClick} to="/" className="landing-page__simulate-link" data-testid="Simulate">
           Simulate
         </Link>
       </div>

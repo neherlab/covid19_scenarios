@@ -8,12 +8,14 @@ const languageMap: {[key: string]: string} = {
   fr: 'Resultats',
   pt: 'Resultados',
   de: 'Ergebnisse',
-  es: 'Resultados'
+  es: 'Resultados',
+  pl: 'Wyniki'
 }
 
 context('Language switcher', () => {
   before(() => {
     cy.visit(Cypress.env('BASE_URL'))
+    cy.skipLandingPage()
     cy.closeDisclaimer()
   })
 

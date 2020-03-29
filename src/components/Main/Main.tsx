@@ -164,7 +164,7 @@ function Main() {
   }
 
   return (
-    <Row noGutters>
+    <Row noGutters data-testid="MainPage">
       <Col md={12}>
         <Formik
           enableReinitialize

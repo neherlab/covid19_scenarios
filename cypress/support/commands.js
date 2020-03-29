@@ -24,14 +24,14 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import '@testing-library/cypress/add-commands';
+import '@testing-library/cypress/add-commands'
 
 Cypress.Commands.add('closeDisclaimer', () => {
-  cy.findByText('COVID-19 Scenario Disclaimer')
-    .should('exist')
-    .next()
-    .click()
+  cy.findByText('COVID-19 Scenario Disclaimer').should('exist').next().click()
+  cy.findByText('COVID-19 Scenario Disclaimer').should('not.exist')
+})
 
-  cy.findByText('COVID-19 Scenario Disclaimer')
-    .should('not.exist')
-});
+Cypress.Commands.add('skipLandingPage', () => {
+  cy.findByTestId('Simulate').should('exist').click()
+  cy.findByTestId('Simulate').should('not.exist')
+})
