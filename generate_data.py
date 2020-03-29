@@ -31,19 +31,10 @@ if __name__ == "__main__":
                 print(f"Running {src} to generate .tsv", file=sys.stderr)
                 country = importlib.import_module(f"parsers.{src}")
                 country.parse()
-
-    # make directory for JSONs if it doesn't exist
-    if args.output_cases or args.output_population or args.output_scenarios: 
-        outpath = os.path.join(BASE_PATH, JSON_DIR)
-        if not os.path.isdir(outpath):
-            os.mkdir(outpath)
                 
     # generate and copy jsons to app if requested
     if args.output_cases:
         print(f"Generating cases json")
-        # initialize empty json
-        with open(os.path.join(BASE_PATH, JSON_DIR, TMP_CASES), 'w') as fh:
-            fh.write("{}")
         pop = importlib.import_module(f"scripts.tsv")
         pop.parse(args.output_cases)
 
