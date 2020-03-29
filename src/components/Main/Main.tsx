@@ -114,12 +114,14 @@ function Main({ activeScenario, onScenarioSave }: MainProps) {
   const [allEmpiricalCases, setAllEmpiricalCases] = useState<{ [key: string]: EmpiricalData | undefined }>({})
 
   const [result, setResult] = segmentStateForManyScenarios(activeScenario.id, undefined, allResults, setAllResults)
-  const [severity, setSeverity] = segmentStateForManyScenarios(
+  const segmentedScenarios = segmentStateForManyScenarios(
     activeScenario.id,
     severityDefaults,
     allSeverites,
     setAllSeverities,
   )
+  let [severity] = segmentedScenarios
+  const [, setSeverity] = segmentedScenarios
   const [empiricalCases, setEmpiricalCases] = segmentStateForManyScenarios(
     activeScenario.id,
     undefined,
@@ -134,8 +136,14 @@ function Main({ activeScenario, onScenarioSave }: MainProps) {
   let scenarioState: State
   if (activeScenario.id in manyScenariosState) {
     scenarioState = manyScenariosState[activeScenario.id]
+  } else if (!activeScenario.serializedScenario) {
+    scenarioState = defaultScenarioState[DEFAULT_SCENARIO_ID]
   } else {
-    scenarioState = deserializeScenario(activeScenario.serializedScenario, defaultScenarioState[DEFAULT_SCENARIO_ID])
+    ;({ scenarioState, severity } = deserializeScenario(
+      activeScenario.serializedScenario,
+      defaultScenarioState[DEFAULT_SCENARIO_ID],
+      severityDefaults,
+    ))
   }
 
   const togglePersistAutorun = () => {

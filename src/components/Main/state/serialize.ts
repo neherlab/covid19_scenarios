@@ -1,4 +1,3 @@
-import type { AllParams } from '../../../algorithms/types/Param.types'
 import { State } from './state'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
@@ -6,31 +5,47 @@ export function serializeScenario(scenarioState: State, severity: SeverityTableR
   const toSave = {
     version: 1,
     payload: {
-      current: scenarioState.current,
-      data: scenarioState.data,
+      scenarioState: {
+        current: scenarioState.current,
+        data: scenarioState.data,
+      },
+      severity,
     },
   }
 
   return btoa(JSON.stringify(toSave))
 }
 
-export function deserializeScenario(serialized: string, initState: State): State {
+export function deserializeScenario(
+  serialized: string,
+  initialScenarioState: State,
+  severityDefaults: SeverityTableRow[],
+): { scenarioState: State; severity: SeverityTableRow[] } {
   try {
     const obj = JSON.parse(atob(serialized)).payload
-    obj.scenarios = initState.scenarios
 
-    // Be careful of dates object that have been serialized to string
-    obj.data.simulation.simulationTimeRange.tMin = new Date(obj.data.simulation.simulationTimeRange.tMin)
-    obj.data.simulation.simulationTimeRange.tMax = new Date(obj.data.simulation.simulationTimeRange.tMax)
-    obj.data.containment.reduction = obj.data.containment.reduction.map((c: { t: string; y: number }) => ({
-      y: c.y,
-      t: new Date(c.t),
-    }))
+    const { scenarioState, severity } = obj
 
-    return obj
+    scenarioState.scenarios = initialScenarioState.scenarios
+
+    // Be careful of dates that have been serialized to string
+    scenarioState.data.simulation.simulationTimeRange.tMin = new Date(
+      scenarioState.data.simulation.simulationTimeRange.tMin,
+    )
+    scenarioState.data.simulation.simulationTimeRange.tMax = new Date(
+      scenarioState.data.simulation.simulationTimeRange.tMax,
+    )
+    scenarioState.data.containment.reduction = scenarioState.data.containment.reduction.map(
+      (c: { t: string; y: number }) => ({
+        y: c.y,
+        t: new Date(c.t),
+      }),
+    )
+
+    return { scenarioState, severity }
   } catch (error) {
     console.error('Error deserializing:', error.message)
   }
 
-  return initState
+  return { scenarioState: initialScenarioState, severity: severityDefaults }
 }
