@@ -1,15 +1,15 @@
 /// <reference types="cypress" />
 
-import langs from '../../src/langs'
+import languages, { Lang } from '../../src/langs'
 
-const availableLangs = Object.entries(langs)
-const languageMap: {[key: string]: string} = {
+const availableLanguages = Object.keys(languages) as Lang[]
+const languageMap: Record<Lang, string> = {
   en: 'Results',
   fr: 'Resultats',
   pt: 'Resultados',
   de: 'Ergebnisse',
   es: 'Resultados',
-  pl: 'Wyniki'
+  pl: 'Wyniki',
 }
 
 context('Language switcher', () => {
@@ -39,31 +39,28 @@ context('Language switcher', () => {
         .should('not.have.class', 'show')
     })
 
-    it(`should have ${availableLangs.length} languages`, () => {
+    it(`should have ${availableLanguages.length} languages`, () => {
       cy.findByTestId('LanguageSwitcher')
         .get('[role="menu"] button')
-        .should('have.length', availableLangs.length)
+        .should('have.length', availableLanguages.length)
     })
   })
 
-  availableLangs.forEach(([key, value]: [string, { lang: string, name: string }]) => {
-    describe(`Switching to "${value.name}"`, () => {
-      it(`should change the language to "${value.lang}" correctly`, () => {
+  for (const language of availableLanguages) {
+    describe(`Switching to "${languages[language].name}"`, () => {
+      it(`should change the language to "${languages[language].lang}" correctly`, () => {
         cy.findByTestId('LanguageSwitcher')
           .get('.dropdown-toggle')
           .click()
           .parent()
           .get('.dropdown-menu')
-          .findByText(value.name)
+          .findByText(languages[language].name)
           .click()
 
-        cy.findByTestId('LanguageSwitcher')
-          .get('.dropdown-toggle')
-          .should('have.text', value.name)
+        cy.findByTestId('LanguageSwitcher').get('.dropdown-toggle').should('have.text', languages[language].name)
 
-        cy.findByTestId('ResultsCardTitle')
-          .should('have.text', languageMap[key])
+        cy.findByTestId('ResultsCardTitle').should('have.text', languageMap[language])
       })
     })
-  })
+  }
 })
