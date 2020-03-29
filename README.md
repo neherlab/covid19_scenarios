@@ -159,7 +159,8 @@ To run the parsers, call
 python3 covid19_scenarios_data/generate_data.py --fetch
 ```
 
-This will update the tables and generate new jsons in the `assets` folder.
+This will update the tables in the directory `case-counts`.
+For each parser there is a separate directory which contains individual case counts for each location covered by the parser.
 
 To only run specific parsers, run
 
@@ -167,10 +168,10 @@ To only run specific parsers, run
 python3 covid19_scenarios_data/generate_data.py --fetch --parsers netherlands switzerland
 ```
 
-To copy the output jsons to a specific place (e.g. to deploy to an app), run
+To generate jsons for the app, specific the path the location of the target. This can either be done in combination with updating the `tsv` files or separately depending on whether the command is run with `--fetch` or not.
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py --fetch \
+python3 covid19_scenarios_data/generate_data.py \
         --output-cases path/case-counts.json  \
         --output-population path/population.json
 ```
@@ -178,10 +179,11 @@ python3 covid19_scenarios_data/generate_data.py --fetch \
 To generate the integrated scenario json, run
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py --fetch \
+python3 covid19_scenarios_data/generate_data.py \
         --output-cases path/case-counts.json  \
         --output-scenarios path/scenarios.json
 ```
+
 
 ## Contents
 
