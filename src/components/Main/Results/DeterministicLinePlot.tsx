@@ -1,7 +1,18 @@
 import React, { useState } from 'react'
 import ReactResizeDetector from 'react-resize-detector'
-import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
-import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
+import {
+  CartesianGrid,
+  ComposedChart,
+  Legend,
+  Line,
+  LineProps as RechartsLineProps,
+  Scatter,
+  Tooltip,
+  TooltipPayload,
+  XAxis,
+  YAxis,
+  YAxisProps,
+} from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
@@ -94,7 +105,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     return null
   }
 
-  const hasUserResult = Boolean(userResult?.trajectory)
   const nHospitalBeds = data.params.hospitalBeds
   const nICUBeds = data.params.ICUBeds
 
@@ -203,8 +213,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     index: number,
   ): React.ReactNode => <span>{formatNumber(Number(value))}</span>
 
-  const yTickFormatter = (value: number) => formatNumberRounded(value)
-
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
@@ -219,7 +227,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
           return (
             <>
               <h5>{t('Cases through time')}</h5>
-              
+
               <div ref={chartRef} />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
@@ -242,11 +250,11 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                   domain={[tMin, tMax]}
                   tickCount={7}
                 />
-                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
-                <Tooltip 
-                  formatter={tooltipFormatter} 
+                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={formatNumberRounded} />
+                <Tooltip
+                  formatter={tooltipFormatter}
                   labelFormatter={labelFormatter}
-                  position={tooltipPosition} 
+                  position={tooltipPosition}
                   content={ResponsiveTooltipContent}
                 />
                 <Legend

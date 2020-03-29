@@ -1,18 +1,20 @@
 import { MutableRefObject } from 'react'
+import { Coordinate } from 'recharts'
 
-const singleColumnThreshold = 992
+const SINGLE_COLUMN_THRESHOLD = 992
+const IS_GREATER_THRESHOLD = SINGLE_COLUMN_THRESHOLD > window.innerWidth
 
-export function calculatePosition(height: number) {
-  const yPosition = window.innerWidth < singleColumnThreshold ? height - 20 : null
+export const calculatePosition = (height: number): Coordinate =>
+  ({
+    x: IS_GREATER_THRESHOLD ? 0 : null,
+    y: IS_GREATER_THRESHOLD ? height - 20 : null,
+  } as Coordinate)
 
-  if (window.innerWidth < singleColumnThreshold) return { x: 0, y: yPosition }
-  else return { y: yPosition }
-}
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function scrollToRef(ref: MutableRefObject<any>) {
-  if (window.innerWidth < singleColumnThreshold) {
+  if (IS_GREATER_THRESHOLD) {
     ref.current.scrollIntoView({
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
 }
