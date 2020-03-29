@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import i18next from 'i18next'
 
-import langs, { Lang as LANG, LangType } from '../../langs'
+import langs, { LANG, LangType } from '../../langs'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 

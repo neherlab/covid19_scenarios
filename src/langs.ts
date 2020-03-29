@@ -1,4 +1,4 @@
-export enum Lang {
+export enum LANG {
   EN = 'en',
   FR = 'fr',
   PT = 'pt',
@@ -9,39 +9,39 @@ export enum Lang {
 
 /* eslint-disable only-ascii/only-ascii */
 export type LangType = {
-  lang: Lang
+  lang: LANG
   numeralLocale: string
   name: string
 }
 
-const langs: Record<Lang, LangType> = {
-  [Lang.EN]: {
-    lang: Lang.EN,
+const langs: Record<LANG, LangType> = {
+  [LANG.EN]: {
+    lang: LANG.EN,
     numeralLocale: 'en-gb',
     name: 'english',
   },
-  [Lang.FR]: {
-    lang: Lang.FR,
+  [LANG.FR]: {
+    lang: LANG.FR,
     numeralLocale: 'fr-ca',
     name: 'français',
   },
-  [Lang.PT]: {
-    lang: Lang.PT,
+  [LANG.PT]: {
+    lang: LANG.PT,
     numeralLocale: 'pt-br',
     name: 'português',
   },
-  [Lang.DE]: {
-    lang: Lang.DE,
+  [LANG.DE]: {
+    lang: LANG.DE,
     numeralLocale: 'de',
     name: 'deutsch',
   },
-  [Lang.ES]: {
-    lang: Lang.ES,
+  [LANG.ES]: {
+    lang: LANG.ES,
     numeralLocale: 'es',
     name: 'español',
   },
-  [Lang.PL]: {
-    lang: Lang.PL,
+  [LANG.PL]: {
+    lang: LANG.PL,
     numeralLocale: 'pl',
     name: 'polski',
   },
