@@ -7,6 +7,7 @@ import { Form, Formik, FormikHelpers } from 'formik'
 
 import { Col, Row } from 'reactstrap'
 
+import { useSelector, useDispatch } from 'react-redux'
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
 import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
@@ -27,6 +28,9 @@ import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimul
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
 import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
+
+import { State as ReduxState } from '../../state/reducer'
+import { setAutorunSimulation } from '../../state/settings/settings.actions'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
@@ -90,27 +94,22 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
 
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [autorunSimulation, setAutorunSimulation] = useState(false)
-  const [scenarioState, scenarioDispatch] = useReducer(
-    scenarioReducer,
-    defaultScenarioState,
-    deserializeScenarioFromURL,
-  )
 
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
+  const [scenarioState, scenarioDispatch] = useReducer(
+    scenarioReducer,
+    defaultScenarioState,
+    deserializeScenarioFromURL,
+  )
+  const autorunSimulation = useSelector<ReduxState, boolean>((state) => state.settings.autorunSimulation)
+  const dispatch = useDispatch()
 
   const togglePersistAutorun = () => {
-    LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
-    setAutorunSimulation(!autorunSimulation)
+    dispatch(setAutorunSimulation({ autorunSimulation: !autorunSimulation }))
   }
-
-  useEffect(() => {
-    const autorun = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
-    setAutorunSimulation(autorun ?? false)
-  }, [])
 
   const allParams: AllParams = {
     population: scenarioState.data.population,

@@ -2,6 +2,7 @@ import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import { useSelector, useDispatch } from 'react-redux'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
@@ -18,9 +19,8 @@ import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import './ResultsCard.scss'
-
-const LOG_SCALE_DEFAULT = true
-const SHOW_HUMANIZED_DEFAULT = true
+import { State } from '../../../state/reducer'
+import { setLogScale, setShowHumanized } from '../../../state/settings/settings.actions'
 
 interface ResultsCardProps {
   autorunSimulation: boolean
@@ -40,29 +40,21 @@ function ResultsCardFunction({
   caseCounts,
 }: ResultsCardProps) {
   const { t } = useTranslation()
-  const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
-  const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
+
+  const logScale = useSelector<State, boolean>((state) => state.settings.logScale)
+  const showHumanized = useSelector<State, boolean>((state) => state.settings.showHumanized)
+  const dispatch = useDispatch()
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
   const [userResult, setUserResult] = useState<UserResult | undefined>()
 
-  useEffect(() => {
-    const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
-    setLogScale(persistedLogScale ?? LOG_SCALE_DEFAULT)
-
-    const persistedShowHumanized = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS)
-    setShowHumanized(persistedShowHumanized ?? SHOW_HUMANIZED_DEFAULT)
-  }, [])
-
   const setPersistLogScale = (value: boolean) => {
-    LocalStorage.set(LOCAL_STORAGE_KEYS.LOG_SCALE, value)
-    setLogScale(value)
+    dispatch(setLogScale({ logScale: value }))
   }
 
   const setPersistShowHumanized = (value: boolean) => {
-    LocalStorage.set(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS, value)
-    setShowHumanized(value)
+    dispatch(setShowHumanized({ showHumanized: value }))
   }
 
   // TODO: shis should probably go into the `Compare/`
