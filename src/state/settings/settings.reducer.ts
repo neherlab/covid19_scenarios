@@ -15,7 +15,7 @@ const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
 
 export const settingsDefaultState: SettingsState = {
-  autorunSimulation: Boolean(LocalStorage.get(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION ?? AUTORUN_SIMULTAION_DEFAULT)),
+  autorunSimulation: Boolean(LocalStorage.get(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? AUTORUN_SIMULTAION_DEFAULT),
   logScale: Boolean(LocalStorage.get(LOCAL_STORAGE_KEYS.LOG_SCALE) ?? LOG_SCALE_DEFAULT),
   showHumanized: Boolean(LocalStorage.get(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS) ?? SHOW_HUMANIZED_DEFAULT),
 }
