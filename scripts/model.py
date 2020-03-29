@@ -53,7 +53,7 @@ AGES  = load_distribution(PATH_UN_AGES)
 SIZES = load_population_data(PATH_POP_DATA)
 CODES = load_country_codes(PATH_UN_CODES)
 COUNTRY = "United States of America"
-REGION  = "Washington"
+REGION  = "California"
 # COUNTRY = "United States of America"
 # REGION  = "California"
 
@@ -314,15 +314,17 @@ if __name__ == "__main__":
     data, day0 = load_data(COUNTRY, REGION)
     guess = { "R0": 4.3,
               "reported" : 1/30,
-              "initial" : 1,
+              "initial" : 10,
               "hospital" : 1/5,
               "imports": 40, }
-    bounds = { "R0" : (2, 5),
-              "reported" : (0, 1),
-              "initial" : (.01, 1e2),
-              "hospital" : (1/100, 1),
-              "imports": (0, 1e5) }
-    param, init_cases, err = fit_params(COUNTRY, REGION, day0, data, guess, bounds)
+    # bounds = { "R0" : (2, 5),
+    #           "reported" : (0, 1),
+    #           "initial" : (.01, 1e2),
+    #           "hospital" : (1/100, 5),
+    #           "imports": (1, 1e5) }
+
+    # param, init_cases, err = fit_params(COUNTRY, REGION, day0, data, guess, bounds)
+    param, init_cases, err = fit_params(COUNTRY, REGION, day0, data, guess)
 
     model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, init_cases)))
     plt.plot(data[Sub.T], 'o')
@@ -330,3 +332,4 @@ if __name__ == "__main__":
 
     plt.plot(data[Sub.D], 'o')
     plt.plot(np.round(model[Sub.D]))
+    plt.yscale('log')
