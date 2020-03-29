@@ -522,11 +522,13 @@ otherwise. Thanks goes to these wonderful people ([emoji key](https://allcontrib
     <td align="center"><a href="http://joaopn.github.io"><img src="https://avatars1.githubusercontent.com/u/6084685?v=4" width="100px;" alt=""/><br /><sub><b>joaopn</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=joaopn" title="Code">💻</a> <a href="#translation-joaopn" title="Translation">🌍</a></td>
     <td align="center"><a href="https://stocksinplay.com"><img src="https://avatars0.githubusercontent.com/u/2551341?v=4" width="100px;" alt=""/><br /><sub><b>nono</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=nonotest" title="Code">💻</a> <a href="#question-nonotest" title="Answering Questions">💬</a> <a href="#translation-nonotest" title="Translation">🌍</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/thoo1"><img src="https://avatars2.githubusercontent.com/u/55852795?v=4" width="100px;" alt=""/><br /><sub><b>thoo1</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=thoo1" title="Code">💻</a> <a href="#design-thoo1" title="Design">🎨</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.

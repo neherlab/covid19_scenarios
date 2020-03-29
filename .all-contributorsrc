@@ -393,6 +393,16 @@
         "question",
         "translation"
       ]
+    },
+    {
+      "login": "thoo1",
+      "name": "thoo1",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/55852795?v=4",
+      "profile": "https://github.com/thoo1",
+      "contributions": [
+        "code",
+        "design"
+      ]
     }
   ],
   "repoType": "github",
