@@ -62,12 +62,13 @@ def parse():
     region_tables = {}
     for region, d in region_data.items():
         dps = sorted(d.items())
-        region_tables[region]  = [[x[0], x[1].get("cases", None),
+        region_tables['-'.join(['ESP',region])]  = [[x[0], x[1].get("cases", None),
                                          x[1].get("deaths",None),
                                          x[1].get("hospitalized",None),
                                          x[1].get("ICU", None),
                                          x[1].get("recovered", None)] for x in dps]
 
-    region_tables['Spain'] = region_tables['Total']
-    del region_tables['Total']
-    store_data(region_tables, { 'default': LOC, 'Spain': LOC}, 'spain', 'ESP', cols)
+    region_tables['Spain'] = region_tables['ESP-Total']
+    del region_tables['ESP-Total']
+    
+    store_data(region_tables, 'spain', cols)

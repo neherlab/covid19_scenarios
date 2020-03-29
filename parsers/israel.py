@@ -40,4 +40,4 @@ def parse():
         num_cases = to_int(row[1])
         il_data["Israel"].append([date_str, num_cases, None, None, None, None])
 
-    store_data(il_data, {'default': LOC}, 'israel', 'ISR', cols=cols)
+    store_data(il_data, 'israel', cols=cols)

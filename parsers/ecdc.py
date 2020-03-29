@@ -79,5 +79,5 @@ def retrieve_case_data():
 
 def parse():
     cases = retrieve_case_data()
-    store_data(cases, {'default': LOC+'/World.tsv'}, 'ecdc')
+    store_data(cases, 'ecdc')
 

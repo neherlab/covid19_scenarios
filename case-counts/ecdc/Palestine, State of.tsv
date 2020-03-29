@@ -1,0 +1,25 @@
+# Data source: https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-<DATE>-xlsx
+# Data provenance: European Centre for Disease Prevention and Control
+# License: The downloadable data file is updated daily and contains the latest available public data on COVID-19. Public-use data files allows users to manipulate the data in a format appropriate for their analyses. Users of ECDC public-use data files must comply with data use restrictions to ensure that the information will be used solely for statistical analysis or reporting purposes.
+time	cases	deaths	hospitalized	ICU	recovered
+2020-03-06	7	0			0
+2020-03-07	16	0			0
+2020-03-08	19	0			0
+2020-03-10	20	0			0
+2020-03-11	29	0			0
+2020-03-12	30	0			0
+2020-03-14	35	0			0
+2020-03-15	38	0			0
+2020-03-16	38	0			0
+2020-03-17	39	0			0
+2020-03-18	41	0			0
+2020-03-19	44	0			0
+2020-03-20	47	0			0
+2020-03-21	48	0			0
+2020-03-22	52	0			0
+2020-03-23	59	0			0
+2020-03-24	59	0			0
+2020-03-25	60	0			0
+2020-03-26	62	0			0
+2020-03-27	84	1			0
+2020-03-28	91	1			0
