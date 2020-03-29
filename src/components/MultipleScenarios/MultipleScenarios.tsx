@@ -7,6 +7,8 @@ import classnames from 'classnames'
 import Main from '../Main/Main'
 import { DEFAULT_SCENARIO_ID } from '../Main/state/state'
 
+import './MultipleScenarios.scss'
+
 const useSavedScenariosState = createPersistedState('savedScenarios')
 const useUserState = createPersistedState('user')
 
@@ -37,7 +39,7 @@ export default function MultipleScenarios() {
       : allScenarios.find((saved) => activeTab === saved.id) || allScenarios[0]
 
   return (
-    <>
+    <div className="multiple-scenarios">
       {savedScenarios.scenarios.length > 0 && (
         <Nav tabs>
           {allScenarios.map((scenario) => (
@@ -48,13 +50,13 @@ export default function MultipleScenarios() {
                   toggleTab(scenario.id)
                 }}
               >
-                {scenario.name}
+                <h5>{scenario.name}</h5>
               </NavLink>
             </NavItem>
           ))}
         </Nav>
       )}
       <Main activeScenario={activeScenario} onScenarioSave={onScenarioSave} />
-    </>
+    </div>
   )
 }
