@@ -2,19 +2,19 @@ import React, { useState } from 'react'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import i18next from 'i18next'
 
-import langs, { Lang as LangType } from '../../langs'
+import langs, { LANG, LangType } from '../../langs'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 import './LanguageSwitcher.scss'
 
-const DEFAULT_LANG = 'en'
+const DEFAULT_LANG = LANG.EN
 
 /**
  * Returns our active lang loaded from localstorage
  */
-export function getCurrentLang(): string {
-  const storedLang = LocalStorage.get<string>(LOCAL_STORAGE_KEYS.LANG)
+export function getCurrentLang(): LANG {
+  const storedLang = LocalStorage.get<LANG>(LOCAL_STORAGE_KEYS.LANG)
   return storedLang ?? DEFAULT_LANG
 }
 
@@ -31,6 +31,7 @@ export default function LanguageSwitcher() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const toggle = () => setDropdownOpen((prevState) => !prevState)
   const selectedLang = getCurrentLang()
+  const langKeys = Object.keys(langs) as LANG[]
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} className="pull-right" data-testid="LanguageSwitcher">
@@ -38,7 +39,7 @@ export default function LanguageSwitcher() {
         <Lang lang={langs[selectedLang]} />
       </DropdownToggle>
       <DropdownMenu>
-        {Object.keys(langs).map((key) => (
+        {langKeys.map((key) => (
           <DropdownItem
             key={key}
             onClick={() => {
