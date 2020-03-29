@@ -11,28 +11,34 @@ import {
 const action = actionCreatorFactory('SCENARIO')
 
 export interface SetScenarioParams {
+  id: string
   name: string
 }
 
 export const setScenario = action<SetScenarioParams>('SET_SCENARIO')
 
 export interface SetScenarioDataParams {
+  id: string
   data: ScenarioData
 }
 
 export interface SetPopulationDataParams {
+  id: string
   data: PopulationData
 }
 
 export interface SetEpidemiologicalDataParams {
+  id: string
   data: EpidemiologicalData
 }
 
 export interface SetContainmentDataParams {
+  id: string
   data: ContainmentData
 }
 
 export interface SetSimulationDataParams {
+  id: string
   data: SimulationData
 }
 

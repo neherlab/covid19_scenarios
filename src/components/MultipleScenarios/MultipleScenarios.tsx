@@ -5,6 +5,7 @@ import { Nav, NavItem, NavLink } from 'reactstrap'
 import classnames from 'classnames'
 
 import Main from '../Main/Main'
+import { DEFAULT_SCENARIO_ID } from '../Main/state/state'
 
 const useSavedScenariosState = createPersistedState('savedScenarios')
 const useUserState = createPersistedState('user')
@@ -12,7 +13,7 @@ const useUserState = createPersistedState('user')
 export default function MultipleScenarios() {
   const [user] = useUserState({ version: 1, id: uuidv4() })
   const [savedScenarios, setSavedScenarios] = useSavedScenariosState({ version: 1, scenarios: [] })
-  const [activeTab, setActiveTab] = useState('customize')
+  const [activeTab, setActiveTab] = useState(DEFAULT_SCENARIO_ID)
 
   function onScenarioSave(name: string, serializedScenario: string) {
     setSavedScenarios({
@@ -25,13 +26,19 @@ export default function MultipleScenarios() {
     if (activeTab !== tab) setActiveTab(tab)
   }
 
-  if (savedScenarios.scenarios.length > 0) {
-    const allScenarios = [
-      { id: 'customize', userid: user.id, name: 'Customize', serializedScenario: null },
-      ...savedScenarios.scenarios,
-    ]
-    return (
-      <>
+  const allScenarios = [
+    { id: DEFAULT_SCENARIO_ID, userid: user.id, name: 'Customize', serializedScenario: null },
+    ...savedScenarios.scenarios,
+  ]
+
+  const activeScenario =
+    activeTab === DEFAULT_SCENARIO_ID
+      ? allScenarios[0]
+      : allScenarios.find((saved) => activeTab === saved.id) || allScenarios[0]
+
+  return (
+    <>
+      {savedScenarios.scenarios.length > 0 && (
         <Nav tabs>
           {allScenarios.map((scenario) => (
             <NavItem key={scenario.id}>
@@ -46,10 +53,8 @@ export default function MultipleScenarios() {
             </NavItem>
           ))}
         </Nav>
-        <Main onScenarioSave={onScenarioSave} />
-      </>
-    )
-  }
-
-  return <Main onScenarioSave={onScenarioSave} />
+      )}
+      <Main activeScenario={activeScenario} onScenarioSave={onScenarioSave} />
+    </>
+  )
 }

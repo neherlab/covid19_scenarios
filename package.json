@@ -136,6 +136,7 @@
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.0",
     "@types/babel__code-frame": "7.0.1",
+    "@types/classnames": "2.2.10",
     "@types/compression-webpack-plugin": "2.0.1",
     "@types/connect-history-api-fallback": "1.3.3",
     "@types/copy-webpack-plugin": "5.0.0",

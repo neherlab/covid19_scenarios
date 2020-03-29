@@ -1,5 +1,6 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
+import { AnyAction } from 'redux'
 
 import _ from 'lodash'
 
@@ -25,15 +26,14 @@ import { schema } from './validation/schema'
 
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
-import { defaultScenarioState, State } from './state/state'
-import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
-import { serializeScenario } from './state/serialize'
+import { defaultScenarioState, State, DEFAULT_SCENARIO_ID } from './state/state'
+import { serializeScenario, deserializeScenario } from './state/serialize'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
-import { SaveScenario } from '../MultipleScenarios'
+import { SaveScenario, ActiveScenario } from '../MultipleScenarios'
 
 import './Main.scss'
 
@@ -73,8 +73,6 @@ async function runSimulation(
 
   const containmentData = params.containment.reduction
 
-  serializeScenarioToURL(scenarioState, params)
-
   const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
@@ -93,21 +91,26 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
 
 interface MainProps {
   onScenarioSave: SaveScenario
+  activeScenario: ActiveScenario
 }
 
-function Main({ onScenarioSave }: MainProps) {
+function Main({ activeScenario, onScenarioSave }: MainProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
-  const [scenarioState, scenarioDispatch] = useReducer(
-    scenarioReducer,
-    defaultScenarioState,
-    deserializeScenarioFromURL,
-  )
-
-  // TODO: Can this complex state be handled by formik too?
+  const [manyScenariosState, dispatch] = useReducer(scenarioReducer, defaultScenarioState)
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
-
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
+
+  const scenarioDispatch = (action: AnyAction) => {
+    dispatch({ ...action, payload: { ...action.payload, id: activeScenario.id } })
+  }
+
+  let scenarioState: State
+  if (activeScenario.id in manyScenariosState) {
+    scenarioState = manyScenariosState[activeScenario.id]
+  } else {
+    scenarioState = deserializeScenario(activeScenario.serializedScenario, defaultScenarioState[DEFAULT_SCENARIO_ID])
+  }
 
   const togglePersistAutorun = () => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
@@ -206,7 +209,7 @@ function Main({ onScenarioSave }: MainProps) {
                       result={result}
                       caseCounts={empiricalCases}
                       onScenarioSave={(name: string) => {
-                        onScenarioSave(name, serializeScenario(scenarioState, allParams, severity))
+                        onScenarioSave(name, serializeScenario(scenarioState, severity))
                       }}
                     />
                   </Col>
