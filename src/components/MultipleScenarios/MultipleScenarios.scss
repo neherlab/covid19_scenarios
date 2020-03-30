@@ -1,7 +1,11 @@
-.multiple-scenarios a.active {
+.multiple-scenarios a.active > h5 {
   font-weight: bolder;
 }
 
 .multiple-scenarios h5 {
   margin: 0;
+}
+
+.multiple-scenarios > ul.nav {
+  margin-top: 5px;
 }
