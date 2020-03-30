@@ -3,5 +3,6 @@
 declare namespace Cypress {
   interface Chainable {
     closeDisclaimer: () => void
+    closeLanding: () => void
   }
 }

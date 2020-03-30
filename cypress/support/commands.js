@@ -26,6 +26,10 @@
 
 import '@testing-library/cypress/add-commands'
 
+Cypress.Commands.add('closeLanding', () => {
+  cy.get('#go-simulate').click()
+})
+
 Cypress.Commands.add('closeDisclaimer', () => {
   cy.findByText('COVID-19 Scenario Disclaimer').should('exist').next().click()
 

@@ -33,6 +33,7 @@ function LandingPage() {
           </div>
           <Link
             onClick={onLinkClick}
+            id="go-simulate"
             to="/"
             className="landing-page__simulate-link"
           >
