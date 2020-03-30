@@ -1,0 +1,90 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "Countries age distribution",
+    "description": "Age distribution of countries' populations",
+    "additionalProperties": {
+        "$id": "#/additionalProperties",
+        "type": "object",
+        "title": "Country age distribution",
+        "description": "Age distribution of a country's population",
+        "default": {},
+        "required": [
+            "0-9",
+            "10-19",
+            "20-29",
+            "30-39",
+            "40-49",
+            "50-59",
+            "60-69",
+            "70-79",
+            "80+"
+        ],
+        "properties": {
+            "0-9": {
+                "$id": "#/properties/properties/0-9",
+                "type": "integer",
+                "title": "The 0-9 Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+            },
+            "10-19": {
+                "$id": "#/properties/properties/10-19",
+                "type": "integer",
+                "title": "The 10-19 Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+            },
+            "20-29": {
+                "$id": "#/properties/properties/20-29",
+                "type": "integer",
+                "title": "The 20-29 Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+            },
+            "30-39": {
+                "$id": "#/properties/properties/30-39",
+                "type": "integer",
+                "title": "The 30-39 Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+            },
+            "40-49": {
+                "$id": "#/properties/properties/40-49",
+                "type": "integer",
+                "title": "The 40-49 Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+            },
+            "50-59": {
+                "$id": "#/properties/properties/50-59",
+                "type": "integer",
+                "title": "The 50-59 Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+            },
+            "60-69": {
+                "$id": "#/properties/properties/60-69",
+                "type": "integer",
+                "title": "The 60-69 Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+            },
+            "70-79": {
+                "$id": "#/properties/properties/70-79",
+                "type": "integer",
+                "title": "The 70-79 Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+            },
+            "80+": {
+                "$id": "#/properties/properties/80+",
+                "type": "integer",
+                "title": "The 80+ Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+            }
+        }
+    }
+}
