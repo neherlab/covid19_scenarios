@@ -1,4 +1,7 @@
 import csv
+import importlib
+import sys
+sys.path.append('..')
 import json
 import argparse
 
@@ -9,14 +12,14 @@ import numpy as np
 import scipy.integrate as solve
 import scipy.optimize as opt
 import matplotlib.pylab as plt
+from scripts.tsv import parse as parse_tsv
 
 # ------------------------------------------------------------------------
 # Globals
 
-PATH_UN_AGES   = "covid19_scenarios/src/assets/data/country_age_distribution.json"
-PATH_UN_CODES  = "covid19_scenarios_data/country_codes.csv"
-PATH_CASE_DATA = "covid19_scenarios/src/assets/data/case_counts.json"
-PATH_POP_DATA  = "covid19_scenarios_data/populationData.tsv"
+PATH_UN_AGES   = "../covid19_scenarios/src/assets/data/country_age_distribution.json"
+PATH_UN_CODES  = "country_codes.csv"
+PATH_POP_DATA  = "populationData.tsv"
 JAN1_2019      = datetime.strptime("2019-01-01", "%Y-%m-%d").toordinal()
 JUN1_2019      = datetime.strptime("2019-06-01", "%Y-%m-%d").toordinal()
 JAN1_2020      = datetime.strptime("2020-01-01", "%Y-%m-%d").toordinal()
@@ -133,57 +136,54 @@ RateFields.remove('infectivity')
 # ------------------------------------------------------------------------
 # Functions
 
-def at(i, j):
-    return i + Sub.NUM*j
-
 # ------------------------------------------
 # Modeling
 def make_evolve(params):
     # Equations for coupled ODEs
     def evolve(t, pop):
-        dpop = np.zeros_like(pop)
+        pop2d = np.reshape(pop, (Sub.NUM, Age.NUM))
+        fracI = pop2d[Sub.I, :].sum() / params.size
+        dpop = np.zeros_like(pop2d)
 
-        fracI = sum(pop[at(Sub.I, age)] for age in range(Age.NUM)) / params.size
-        for age in range(Age.NUM):
-            # Fluxes
-            # TODO: Multiply out fracs and rates outside of hot loop
-            flux_S   = params.rates.infectivity(t)*fracI*pop[at(Sub.S, age)] + (params.rates.imports / Sub.NUM)
-            flux_E1  = params.rates.latency*pop[at(Sub.E1, age)]*3
-            flux_E2  = params.rates.latency*pop[at(Sub.E2, age)]*3
-            flux_E3  = params.rates.latency*pop[at(Sub.E3, age)]*3
-            flux_I_R = params.rates.infection*params.fracs.recovery[age]*pop[at(Sub.I, age)]
-            flux_I_H = params.rates.infection*params.fracs.severe[age]*pop[at(Sub.I, age)]
-            flux_H_R = params.rates.hospital*params.fracs.discharge[age]*pop[at(Sub.H, age)]
-            flux_H_C = params.rates.hospital*params.fracs.critical[age]*pop[at(Sub.H, age)]
-            flux_C_H = params.rates.critical*params.fracs.stabilize[age]*pop[at(Sub.C, age)]
-            flux_C_D = params.rates.critical*params.fracs.fatality[age]*pop[at(Sub.C, age)]
+        flux_S   = params.rates.infectivity(t)*fracI*pop2d[Sub.S] + (params.rates.imports / Sub.NUM)
 
-            # Add fluxes to states
-            dpop[at(Sub.S, age)]  = -flux_S
-            dpop[at(Sub.E1, age)] = +flux_S  - flux_E1
-            dpop[at(Sub.E2, age)] = +flux_E1 - flux_E2
-            dpop[at(Sub.E3, age)] = +flux_E2 - flux_E3
-            dpop[at(Sub.I, age)]  = +flux_E3 - flux_I_R - flux_I_H
-            dpop[at(Sub.H, age)]  = +flux_I_H + flux_C_H - flux_H_R - flux_H_C
-            dpop[at(Sub.C, age)]  = +flux_H_C - flux_C_D - flux_C_H
-            dpop[at(Sub.R, age)]  = +flux_H_R + flux_I_R
-            dpop[at(Sub.D, age)]  = +flux_C_D
-            dpop[at(Sub.T, age)]  = +flux_E3*params.fracs.reported
+        flux_E1  = params.rates.latency*pop2d[Sub.E1]*3
+        flux_E2  = params.rates.latency*pop2d[Sub.E2]*3
+        flux_E3  = params.rates.latency*pop2d[Sub.E3]*3
 
-        return dpop
+        flux_I_R = params.rates.infection*params.fracs.recovery*pop2d[Sub.I]
+        flux_I_H = params.rates.infection*params.fracs.severe*pop2d[Sub.I]
+        flux_H_R = params.rates.hospital*params.fracs.discharge*pop2d[Sub.H]
+        flux_H_C = params.rates.hospital*params.fracs.critical*pop2d[Sub.H]
+        flux_C_H = params.rates.critical*params.fracs.stabilize*pop2d[Sub.C]
+        flux_C_D = params.rates.critical*params.fracs.fatality*pop2d[Sub.C]
+
+        # Add fluxes to states
+        dpop[Sub.S]  = -flux_S
+        dpop[Sub.E1] = +flux_S  - flux_E1
+        dpop[Sub.E2] = +flux_E1 - flux_E2
+        dpop[Sub.E3] = +flux_E2 - flux_E3
+        dpop[Sub.I]  = +flux_E3 - flux_I_R - flux_I_H
+        dpop[Sub.H]  = +flux_I_H + flux_C_H - flux_H_R - flux_H_C
+        dpop[Sub.C]  = +flux_H_C - flux_C_D - flux_C_H
+        dpop[Sub.R]  = +flux_H_R + flux_I_R
+        dpop[Sub.D]  = +flux_C_D
+        dpop[Sub.T]  = +flux_E3*params.fracs.reported
+
+        return np.reshape(dpop, Sub.NUM*Age.NUM)
 
     return evolve
 
+
 def init_pop(ages, size, cases):
-    pop  = np.zeros(Sub.NUM * Age.NUM)
+    pop  = np.zeros((Sub.NUM, Age.NUM))
     ages = np.array(ages) / np.sum(ages)
 
     case_age = Age.NUM // 2
-    for age in range(len(ages)):
-        pop[at(Sub.S, age)] = size * ages[age]
+    pop[Sub.S, :] = size * ages
 
-    pop[at(Sub.S, case_age)] -= cases
-    pop[at(Sub.I, case_age)] += cases
+    pop[Sub.S, case_age] -= cases
+    pop[Sub.I, case_age] += cases
 
     return pop
 
@@ -193,42 +193,33 @@ def solve_ode(params, init_pop):
 
     evolve = make_evolve(params)
     solver = solve.ode(evolve) # TODO: Add Jacobian
-    solver.set_initial_value(init_pop, t_beg)
+    solver.set_initial_value(init_pop.flatten(), t_beg)
 
-    solution = np.zeros((num_tp, len(init_pop)))
-    solution[0, :] = init_pop
+    solution = np.zeros((num_tp, init_pop.shape[0], init_pop.shape[1]))
+    solution[0, :, :] = init_pop
 
     i = 1
     while solver.successful() and i<num_tp:
-        solution[i, :] = solver.integrate(params.time[i])
+        solution[i, :, :] = np.reshape(solver.integrate(params.time[i]), (Sub.NUM, Age.NUM))
         i += 1
 
     return solution
 
+
 def trace_ages(solution):
-    total = [np.zeros(solution.shape[0]) for _ in range(Sub.NUM)]
-
-    # Sum over age compartments
-    for age in range(Age.NUM):
-        for pop in range(Sub.NUM):
-            total[pop] += solution[:, at(pop, age)]
-
-    return total
+    return solution.sum(axis=-1)
 
 # ------------------------------------------
 # Parameter estimation
 def assess_model(params, data, cases):
-    model = trace_ages(solve_ode(params, init_pop(params.ages, params.size, cases)))
+    sol = solve_ode(params, init_pop(params.ages, params.size, cases))
+    model = trace_ages(sol)
 
-    lsq   = 0
-    for i, datum in enumerate(data):
-        if datum is None:
-            continue
-        res = np.power(model[i][1:] - datum[1:], 2)
-        lsq += np.sum(res)
-    print(lsq)
+    case_cost = np.sum(np.power(model[1:,Sub.T] - data[Sub.T][1:], 2))
+    death_cost = 10000*np.sum(np.power(model[1:,Sub.D] - data[Sub.D][1:], 2))
 
-    return lsq
+    return case_cost + death_cost
+
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, bounds=None):
@@ -246,7 +237,7 @@ def fit_params(key, time_points, data, guess, bounds=None):
 
     def fit(x):
         param = Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points, *unpack(x))
-        return assess_model(param, data, x[params_to_fit['initial']])
+        return assess_model(param, data, np.exp(x[params_to_fit['logInitial']]))
 
     if bounds is None:
         fit_param = opt.minimize(fit, pack(guess), method='Nelder-Mead')
@@ -255,7 +246,8 @@ def fit_params(key, time_points, data, guess, bounds=None):
 
     err = (fit_param.success, fit_param.message)
 
-    return Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points, *unpack(fit_param.x)), fit_param.x[params_to_fit['initial']], err
+    return (Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points,
+           *unpack(fit_param.x)), np.exp(fit_param.x[params_to_fit['logInitial']]), err)
 
 # ------------------------------------------
 # Data loading
@@ -267,14 +259,15 @@ def load_data(key):
     days = []
     case_min, case_max = 20, 5e3
 
-    with open(PATH_CASE_DATA, 'r') as fd:
-        db = json.load(fd)
-        ts = db[key]
+    cases = importlib.import_module(f"scripts.tsv")
 
-        days = [d['time'] for d in ts]
-        for tp in ts:
-            data[Sub.T].append(tp['cases'])
-            data[Sub.D].append(tp['deaths'])
+    db = cases.parse()
+    ts = db[key]
+
+    days = [d['time'] for d in ts]
+    for tp in ts:
+        data[Sub.T].append(tp['cases'] or 0)
+        data[Sub.D].append(tp['deaths'] or 0)
 
     data = [ np.array(d) if d is not None else d for d in data]
 
@@ -313,9 +306,9 @@ if __name__ == "__main__":
 
     time_points, data = load_data(args.key)
 
-    guess = { "R0": 4.3,
-              "reported" : 1/30,
-              "initial" : 10}
+    guess = { "R0": 3.0,
+              "reported" : 0.3,
+              "logInitial" : 1}
               # "hospital" : 1/5}
               # "imports": 4, }
     # bounds = { "R0" : (2, 5),
@@ -329,11 +322,12 @@ if __name__ == "__main__":
     model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, init_cases)))
     tp = param.time - JAN1_2020
     plt.plot(tp, data[Sub.T], 'o')
-    plt.plot(tp, np.round(model[Sub.T]))
+    plt.plot(tp, np.round(model[:,Sub.T]))
 
     plt.plot(tp, data[Sub.D], 'o')
-    plt.plot(tp, np.round(model[Sub.D]))
+    plt.plot(tp, np.round(model[:,Sub.D]))
 
-    plt.plot(tp, np.round(model[Sub.I]))
+    plt.plot(tp, np.round(model[:,Sub.I]))
+    plt.plot(tp, np.round(model[:,Sub.R]))
 
     plt.yscale('log')

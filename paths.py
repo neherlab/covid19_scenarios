@@ -1,4 +1,6 @@
-BASE_PATH = 'covid19_scenarios_data'
+import os
+
+BASE_PATH = os.getcwd()
 JSON_DIR = 'assets'
 TSV_DIR = 'case-counts'
 SOURCES_FILE = 'sources.json'
