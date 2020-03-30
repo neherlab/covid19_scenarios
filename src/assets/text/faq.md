@@ -9,17 +9,17 @@ period, the same number of infections happen over a longer period. Hence the out
 
 **Q:** Why is the number of severe cases lower than the number of critical cases?
 
-**A:** _COVID19 cases in critical condition need intensive care for a long time. Our model assumes that they spend on
-average 14days in the ICU. The severly ill (our proxy for those in need of a regular hospital bed) either deteriorate
-fast or recovery (default in our model is four days). Hence at any given point in time, the number of critically ill
-people might exceed the number of severly ill._
+**A:** _COVID-19 cases in critical condition need intensive care for a long time. Our model assumes that they spend on
+average 14 days in the ICU. The severely ill (our proxy for those in need of a regular hospital bed) either deteriorate
+fast or recover (default in our model is four days). Hence at any given point in time, the number of critically ill
+people might exceed the number of severely ill._
 
 ---
 
 **Q:** Is the model fit to observations?
 
 **A:** _No, currently we don't fit the model to observations. This is planned and we hopefully get it done soon.
-Instead, we use epidemiological parameters estimated from data from China and guess the initial size of the COVID19
+Instead, we use epidemiological parameters estimated from data from China and guess the initial size of the COVID-19
 outbreak in different populations._
 
 ---
@@ -33,7 +33,7 @@ https://github.com/neherlab/covid19_scenarios_data and make a PR!_
 
 **Q:** What is ICU overflow?
 
-**A:** _In places that have seen severe COVID19 outbreak, the capacity of intensive care facilities is quickly
+**A:** _In places that have seen severe COVID-19 outbreak, the capacity of intensive care facilities is quickly
 exhausted. Patients that need ventilation but can't get ventilation due to shortage will die faster. "ICU overflow" is
 our label for critically ill patients that should be ventilated but are not since no ventilators are available. These
 patients will die faster. The degree to which they die faster is specified by the `Severity of ICU overflow` parameter._
@@ -52,8 +52,8 @@ age groups are isolated from the rest of the population._
 
 **A:** _You are probably referring to the
 [March 16 report by Neil Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf).
-Like us, Ferguson et al model the effect of interventions on the spread of COVID19 using a computational model.
-Their model is individual based, meaning their program represents a large number of individuals among which
-the virus is spreading. Our model is breaks the population into age-groups and different categories corresponding
-to susceptible, infected, dead, recovered, etc. This allows for faster simulations, but looses some realism.
+Like us, Ferguson et al model the effect of interventions on the spread of COVID-19 using a computational model.
+Their model is individual based, meaning their program represents a large number of individuals among whom
+the virus is spreading. Our model breaks the population into age-groups and different categories corresponding
+to susceptible, infected, dead, recovered, etc. This allows for faster simulations, but loses some realism.
 The faster simulation allows exploration of parameters._
