@@ -95,8 +95,10 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   }
 
   const hasUserResult = Boolean(userResult?.trajectory)
-  const nHospitalBeds = data.params.hospitalBeds
-  const nICUBeds = data.params.ICUBeds
+  const verifyPositive = (x: number) => (x > 0 ? x : undefined)
+
+  const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
+  const nICUBeds = verifyPositive(data.params.ICUBeds)
 
   const count_observations = {
     cases: caseCounts?.filter((d) => d.cases).length ?? 0,
