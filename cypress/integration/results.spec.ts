@@ -16,28 +16,28 @@ context('The results card', () => {
 
   describe('LogScaleSwitch', () => {
     it('should be invisible by default', () => {
-      cy.findByTestId('LogScaleSwitch').should('be.not.visible');
-    });
+      cy.findByTestId('LogScaleSwitch').should('be.not.visible')
+    })
 
     it('should become visible after clicking RunResults button', () => {
       cy.findByTestId('RunResults').click()
-      cy.findByTestId('LogScaleSwitch').should('be.visible');
-    });
+      cy.findByTestId('LogScaleSwitch').should('be.visible')
+    })
   })
 
   describe('results charts', () => {
     it('should have default invisible charts', () => {
-      for (const testId of resultsCharts) {
+      resultsCharts.forEach((testId) => {
         cy.findByTestId(testId).should('be.not.visible')
-      }
+      })
     })
 
     it('should become visible charts after clicking RunResults button', () => {
       cy.findByTestId('RunResults').click()
 
-      for (const testId of resultsCharts) {
+      resultsCharts.forEach((testId) => {
         cy.findByTestId(testId).should('be.visible')
-      }
+      })
     })
   })
 })
