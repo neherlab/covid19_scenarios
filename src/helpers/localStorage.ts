@@ -4,7 +4,7 @@ export const LOCAL_STORAGE_KEYS = {
   LOG_SCALE: 'log-scale',
   SHOW_HUMANIZED_RESULTS: 'show-humanized-results',
   SUPPRESS_DISCLAIMER: 'suppress-disclaimer',
-  SKIP_LANDING_PAGE: 'skip-landing-page',
+  SKIP_LANDING_PAGE: 'skip-landing-page'
 } as const
 
 export type LocalStorageKey = typeof LOCAL_STORAGE_KEYS[keyof typeof LOCAL_STORAGE_KEYS]
