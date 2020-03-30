@@ -4,7 +4,7 @@ import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution
 
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
 
-import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
+import { collectTotals, evolve, eulerStepsPerDay, getPopulationParams, initializePopulation } from './model'
 import { AllParamsFlat } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './types/Result.types'
 import { TimeSeries } from './types/TimeSeries.types'
@@ -20,8 +20,8 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
     throw new Error('Containment cannot be empty')
   }
 
-  const Ys = containment.map((d) => d.y)
-  const Ts = containment.map((d) => Number(d.t))
+  const Ys = containment.map(d => d.y)
+  const Ts = containment.map(d => Number(d.t))
 
   /* All needed linear algebra functions */
   type Vector = number[]
@@ -74,7 +74,7 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
     if (t >= containment[containment.length - 1].t) {
       return containment[containment.length - 1].y
     }
-    const i = containment.findIndex((d) => Number(t) < Number(d.t))
+    const i = containment.findIndex(d => Number(t) < Number(d.t))
 
     // Eval spline will return the function value @ t, fit to a spline
     // Requires the containment strengths (ys) and derivatives (yps) and times (ts)
@@ -119,9 +119,14 @@ export default async function run(
 
   function simulate(initialState: SimulationTimePoint, func: (x: number) => number) {
     const dynamics = [initialState]
-    while (dynamics[dynamics.length - 1].time < tMax) {
-      const pop = dynamics[dynamics.length - 1]
-      dynamics.push(evolve(pop, modelParams, func))
+    let currState = initialState
+    let i = 0
+    while (currState.time < tMax) {
+      currState = evolve(currState, modelParams, func)
+      i++
+      if (i % eulerStepsPerDay == 0) {
+        dynamics.push(currState)
+      }
     }
 
     return collectTotals(dynamics)
