@@ -1,48 +1,38 @@
-export enum LANG {
-  EN = 'en',
-  FR = 'fr',
-  PT = 'pt',
-  DE = 'de',
-  ES = 'es',
-  PL = 'pl',
-}
-
 /* eslint-disable only-ascii/only-ascii */
-export type LangType = {
-  lang: LANG
+export type Lang = {
+  lang: string
   numeralLocale: string
   name: string
 }
 
-const langs: Record<LANG, LangType> = {
-  [LANG.EN]: {
-    lang: LANG.EN,
+const langs: { [key: string]: Lang } = {
+  en: {
+    lang: 'en',
     numeralLocale: 'en-gb',
     name: 'english',
   },
-  [LANG.FR]: {
-    lang: LANG.FR,
+  fr: {
+    lang: 'fr',
     numeralLocale: 'fr-ca',
     name: 'français',
   },
-  [LANG.PT]: {
-    lang: LANG.PT,
+  pt: {
+    lang: 'pt',
     numeralLocale: 'pt-br',
     name: 'português',
   },
-  [LANG.DE]: {
-    lang: LANG.DE,
+  de: {
+    lang: 'de',
     numeralLocale: 'de',
     name: 'deutsch',
   },
-  [LANG.ES]: {
-    lang: LANG.ES,
+  es: {
+    lang: 'es',
     numeralLocale: 'es',
     name: 'español',
   },
-  [LANG.PL]: {
-    lang: LANG.PL,
-    numeralLocale: 'pl',
+  pl: {
+    lang: 'pl',
     name: 'polski',
   },
 }

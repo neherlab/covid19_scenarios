@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
-import languages, { LANG } from '../../src/langs'
+import languages  from '../../src/langs'
 
-const availableLanguages = Object.keys(languages) as LANG[]
-const languageMap: Record<LANG, string> = {
+const availableLanguages = Object.keys(languages)
+const languageMap: Record<string, string> = {
   en: 'Results',
   fr: 'Resultats',
   pt: 'Resultados',
