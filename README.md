@@ -152,7 +152,7 @@ For each source there is a parser written in python in the directory `parsers`.
 The data is stored as `tsv` files (tab separated values) for each location or country.
 These tabular files are mainly meant to enable data curation and storage, while the web application needs json files as input.
 
-The following commands assume that you have clones this repository as `covid19_scenarios_data` and run these commands from **outside** this repository.
+The following commands assume that you have cloned this repository as `covid19_scenarios_data` and run these commands from **outside** this repository.
 To run the parsers, call
 
 ```shell
