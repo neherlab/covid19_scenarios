@@ -1,6 +1,5 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
-import { AnyAction } from 'redux'
 
 import _ from 'lodash'
 
@@ -26,14 +25,12 @@ import { schema } from './validation/schema'
 
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
-import { defaultScenarioState, State, DEFAULT_SCENARIO_ID } from './state/state'
-import { serializeScenario, deserializeScenario } from './state/serialize'
+import { defaultScenarioState, State } from './state/state'
+import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
-
-import { ActiveScenario } from '../MultipleScenarios'
 
 import './Main.scss'
 
@@ -73,6 +70,8 @@ async function runSimulation(
 
   const containmentData = params.containment.reduction
 
+  serializeScenarioToURL(scenarioState, params)
+
   const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
@@ -89,67 +88,19 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
   return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
 }
 
-function segmentStateForManyScenarios(id: string, initialState: any, state: any, setState: any): any[] {
-  let segmentedState
-  if (id in state) {
-    segmentedState = state[id]
-  } else {
-    segmentedState = initialState
-  }
-  const setSegmentedState = (newValue: any) => setState({ ...state, [id]: newValue })
-
-  return [segmentedState, setSegmentedState]
-}
-
-interface MainProps {
-  onScenarioSave: (serializedScenario: string) => void
-  activeScenario: ActiveScenario
-  onScenarioShare: (serializedScenario: string) => void
-  onScenarioDelete?: () => void
-}
-
-function Main({ activeScenario, onScenarioSave, onScenarioShare, onScenarioDelete }: MainProps) {
-  const [allScenarios, dispatch] = useReducer(scenarioReducer, defaultScenarioState)
-  const [allResults, setAllResults] = useState<{ [key: string]: AlgorithmResult | undefined }>({})
-  const [allSeverites, setAllSeverities] = useState<{ [key: string]: SeverityTableRow[] }>({})
-  const [allEmpiricalCases, setAllEmpiricalCases] = useState<{ [key: string]: EmpiricalData | undefined }>({})
+function Main() {
+  const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
-
-  const [scenarioState, setScenarioState] = useState<State>(defaultScenarioState[DEFAULT_SCENARIO_ID])
-
-  const [result, setResult] = segmentStateForManyScenarios(activeScenario.id, undefined, allResults, setAllResults)
-  const [severity, setSeverity] = segmentStateForManyScenarios(
-    activeScenario.id,
-    severityDefaults,
-    allSeverites,
-    setAllSeverities,
-  )
-  const [empiricalCases, setEmpiricalCases] = segmentStateForManyScenarios(
-    activeScenario.id,
-    undefined,
-    allEmpiricalCases,
-    setAllEmpiricalCases,
+  const [scenarioState, scenarioDispatch] = useReducer(
+    scenarioReducer,
+    defaultScenarioState,
+    deserializeScenarioFromURL,
   )
 
-  useEffect(() => {
-    if (activeScenario.id in allScenarios) {
-      setScenarioState(allScenarios[activeScenario.id])
-    } else if (!activeScenario.serializedScenario) {
-      setScenarioState(defaultScenarioState[DEFAULT_SCENARIO_ID])
-    } else {
-      const deserialized = deserializeScenario(
-        activeScenario.serializedScenario,
-        defaultScenarioState[DEFAULT_SCENARIO_ID],
-        severityDefaults,
-      )
-      setScenarioState(deserialized.scenarioState)
-      setSeverity(deserialized.severity)
-    }
-  }, [activeScenario, allScenarios])
+  // TODO: Can this complex state be handled by formik too?
+  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
 
-  const scenarioDispatch = (action: AnyAction) => {
-    dispatch({ ...action, payload: { ...action.payload, id: activeScenario.id } })
-  }
+  const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
   const togglePersistAutorun = () => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
@@ -247,9 +198,6 @@ function Main({ activeScenario, onScenarioSave, onScenarioShare, onScenarioDelet
                       severity={severity}
                       result={result}
                       caseCounts={empiricalCases}
-                      onScenarioSave={() => onScenarioSave(serializeScenario(scenarioState, severity))}
-                      onScenarioShare={() => onScenarioShare(serializeScenario(scenarioState, severity))}
-                      onScenarioDelete={onScenarioDelete}
                     />
                   </Col>
                 </Row>
