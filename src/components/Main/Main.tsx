@@ -104,7 +104,7 @@ function segmentStateForManyScenarios(id: string, initialState: any, state: any,
 interface MainProps {
   onScenarioSave: SaveScenario
   activeScenario: ActiveScenario
-  onScenarioShare: () => void
+  onScenarioShare: (serializedScenario: string) => void
 }
 
 function Main({ activeScenario, onScenarioSave, onScenarioShare }: MainProps) {
@@ -246,7 +246,7 @@ function Main({ activeScenario, onScenarioSave, onScenarioShare }: MainProps) {
                       onScenarioSave={(name: string) => {
                         onScenarioSave(name, serializeScenario(scenarioState, severity))
                       }}
-                      onScenarioShare={onScenarioShare}
+                      onScenarioShare={() => onScenarioShare(serializeScenario(scenarioState, severity))}
                     />
                   </Col>
                 </Row>

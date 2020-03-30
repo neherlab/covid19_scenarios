@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import createPersistedState from 'use-persisted-state'
 import { v4 as uuidv4 } from 'uuid'
 import { Nav, NavItem, NavLink } from 'reactstrap'
@@ -18,6 +18,7 @@ export default function MultipleScenarios() {
   const [savedScenarios, setSavedScenarios] = useSavedScenariosState({ version: 1, scenarios: [] })
   const [activeTab, setActiveTab] = useState(DEFAULT_SCENARIO_ID)
   const [showShareModal, setShowShareModal] = useState<boolean>(false)
+  const [serializedScenarioToShare, setSerializedScenarioToShare] = useState<string>('')
 
   function onScenarioSave(name: string, serializedScenario: string) {
     setSavedScenarios({
@@ -48,13 +49,35 @@ export default function MultipleScenarios() {
     const toSerialize = {
       version: 1,
       id: activeScenario.id !== DEFAULT_SCENARIO_ID ? activeScenario.id : uuidv4(),
+      userid: user.id,
       name,
       createdBy,
-      serializedScenario: activeScenario.serializedScenario,
+      serializedScenario: serializedScenarioToShare,
     }
     const baseURL = window.location.href.split('?')[0]
     return `${baseURL}?${btoa(JSON.stringify(toSerialize))}`
   }
+
+  useEffect(() => {
+    try {
+      const shareableLink = window.location.search.slice(1)
+      if (shareableLink) {
+        const fromLink = JSON.parse(atob(shareableLink))
+        const existing = allScenarios.find((scenario) => scenario.id === fromLink.id)
+        if (!existing) {
+          delete fromLink.version
+          setSavedScenarios({
+            version: 1,
+            scenarios: [...savedScenarios.scenarios, fromLink as never],
+          })
+        }
+        setActiveTab(fromLink.id)
+      }
+    } catch (error) {
+      console.error('Error while parsing URL :', error.message)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="multiple-scenarios">
@@ -77,7 +100,10 @@ export default function MultipleScenarios() {
       <Main
         activeScenario={activeScenario}
         onScenarioSave={onScenarioSave}
-        onScenarioShare={() => setShowShareModal(true)}
+        onScenarioShare={(serializedScenario) => {
+          setSerializedScenarioToShare(serializedScenario)
+          setShowShareModal(true)
+        }}
       />
       {showShareModal && (
         <ShareScenarioDialog
