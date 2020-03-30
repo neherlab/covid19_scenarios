@@ -18,11 +18,10 @@ import { FaRegClipboard } from 'react-icons/fa'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { ActiveScenario } from '.'
-import { DEFAULT_SCENARIO_ID } from '../Main/state/state'
+import { Scenario, DEFAULT_SCENARIO_ID } from '.'
 
 export interface ShareScenarioDialogProps {
-  scenario: ActiveScenario
+  scenario: Scenario
   createdBy: string
   generateLink(name: string, createdBy: string): string
   onCloseDialog: () => void

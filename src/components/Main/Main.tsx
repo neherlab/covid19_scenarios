@@ -26,7 +26,6 @@ import { schema } from './validation/schema'
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
-import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
@@ -70,8 +69,6 @@ async function runSimulation(
 
   const containmentData = params.containment.reduction
 
-  serializeScenarioToURL(scenarioState, params)
-
   const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
@@ -88,14 +85,16 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
   return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
 }
 
-function Main() {
+interface MainProps {
+  onScenarioSave: () => void
+  onScenarioShare: () => void
+  onScenarioDelete?: () => void
+}
+
+function Main({ onScenarioSave, onScenarioShare, onScenarioDelete }: MainProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
-  const [scenarioState, scenarioDispatch] = useReducer(
-    scenarioReducer,
-    defaultScenarioState,
-    deserializeScenarioFromURL,
-  )
+  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState)
 
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
@@ -198,6 +197,9 @@ function Main() {
                       severity={severity}
                       result={result}
                       caseCounts={empiricalCases}
+                      onScenarioSave={onScenarioSave}
+                      onScenarioShare={onScenarioShare}
+                      onScenarioDelete={onScenarioDelete}
                     />
                   </Col>
                 </Row>
