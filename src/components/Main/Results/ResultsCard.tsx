@@ -30,6 +30,7 @@ interface ResultsCardProps {
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   onScenarioSave: (name: string) => void
   onScenarioShare: () => void
+  onScenarioDelete?: () => void
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
 }
@@ -41,6 +42,7 @@ function ResultsCardFunction({
   severity,
   onScenarioSave,
   onScenarioShare,
+  onScenarioDelete,
   result,
   caseCounts,
 }: ResultsCardProps) {
@@ -148,7 +150,10 @@ function ResultsCardFunction({
               {t('Export')}
             </Button>
             <Button onClick={(_) => setShowSaveModal(true)}>{t('Save')}</Button>
-            <Button onClick={(_) => onScenarioShare()}>{t('Share')}</Button>
+            <Button onClick={onScenarioShare}>{t('Share')}</Button>
+            <Button disabled={!onScenarioDelete} onClick={onScenarioDelete}>
+              {t('Delete')}
+            </Button>
           </Col>
         </Row>
         <Row noGutters hidden={!result}>

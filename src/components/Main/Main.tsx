@@ -105,9 +105,10 @@ interface MainProps {
   onScenarioSave: SaveScenario
   activeScenario: ActiveScenario
   onScenarioShare: (serializedScenario: string) => void
+  onScenarioDelete?: () => void
 }
 
-function Main({ activeScenario, onScenarioSave, onScenarioShare }: MainProps) {
+function Main({ activeScenario, onScenarioSave, onScenarioShare, onScenarioDelete }: MainProps) {
   const [allResults, setAllResults] = useState<{ [key: string]: AlgorithmResult | undefined }>({})
   const [autorunSimulation, setAutorunSimulation] = useState(false)
   const [manyScenariosState, dispatch] = useReducer(scenarioReducer, defaultScenarioState)
@@ -247,6 +248,7 @@ function Main({ activeScenario, onScenarioSave, onScenarioShare }: MainProps) {
                         onScenarioSave(name, serializeScenario(scenarioState, severity))
                       }}
                       onScenarioShare={() => onScenarioShare(serializeScenario(scenarioState, severity))}
+                      onScenarioDelete={onScenarioDelete}
                     />
                   </Col>
                 </Row>

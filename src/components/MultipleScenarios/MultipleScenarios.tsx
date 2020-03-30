@@ -15,7 +15,10 @@ const useUserState = createPersistedState('user')
 
 export default function MultipleScenarios() {
   const [user, setUser] = useUserState({ version: 1, id: uuidv4(), handleForSharedLinks: '' })
-  const [savedScenarios, setSavedScenarios] = useSavedScenariosState({ version: 1, scenarios: [] })
+  const [savedScenarios, setSavedScenarios] = useSavedScenariosState({
+    version: 1,
+    scenarios: [{ id: DEFAULT_SCENARIO_ID, userid: user.id, name: 'Customize', serializedScenario: null }],
+  })
   const [activeTab, setActiveTab] = useState(DEFAULT_SCENARIO_ID)
   const [showShareModal, setShowShareModal] = useState<boolean>(false)
   const [serializedScenarioToShare, setSerializedScenarioToShare] = useState<string>('')
@@ -31,15 +34,7 @@ export default function MultipleScenarios() {
     if (activeTab !== tab) setActiveTab(tab)
   }
 
-  const allScenarios = [
-    { id: DEFAULT_SCENARIO_ID, userid: user.id, name: 'Customize', serializedScenario: null },
-    ...savedScenarios.scenarios,
-  ]
-
-  const activeScenario =
-    activeTab === DEFAULT_SCENARIO_ID
-      ? allScenarios[0]
-      : allScenarios.find((saved) => activeTab === saved.id) || allScenarios[0]
+  const activeScenario = savedScenarios.scenarios.find((saved) => activeTab === saved.id) || savedScenarios.scenarios[0]
 
   function generateShareableLink(name: string, createdBy: string): string {
     if (createdBy !== user.handleForSharedLinks) {
@@ -63,7 +58,7 @@ export default function MultipleScenarios() {
       const shareableLink = window.location.search.slice(1)
       if (shareableLink) {
         const fromLink = JSON.parse(atob(shareableLink))
-        const existing = allScenarios.find((scenario) => scenario.id === fromLink.id)
+        const existing = savedScenarios.scenarios.find((scenario) => scenario.id === fromLink.id)
         if (!existing) {
           delete fromLink.version
           setSavedScenarios({
@@ -79,11 +74,22 @@ export default function MultipleScenarios() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  function onScenarioDelete() {
+    if (activeTab !== DEFAULT_SCENARIO_ID) {
+      const toDelete = activeTab
+      setActiveTab(DEFAULT_SCENARIO_ID)
+      setSavedScenarios({
+        version: 1,
+        scenarios: savedScenarios.scenarios.filter((scenario) => scenario.id !== toDelete),
+      })
+    }
+  }
+
   return (
     <div className="multiple-scenarios">
-      {savedScenarios.scenarios.length > 0 && (
+      {savedScenarios.scenarios.length > 1 && (
         <Nav tabs>
-          {allScenarios.map((scenario) => (
+          {savedScenarios.scenarios.map((scenario) => (
             <NavItem key={scenario.id}>
               <NavLink
                 className={classnames({ active: activeTab === scenario.id })}
@@ -104,6 +110,7 @@ export default function MultipleScenarios() {
           setSerializedScenarioToShare(serializedScenario)
           setShowShareModal(true)
         }}
+        onScenarioDelete={activeTab !== DEFAULT_SCENARIO_ID ? onScenarioDelete : undefined}
       />
       {showShareModal && (
         <ShareScenarioDialog
