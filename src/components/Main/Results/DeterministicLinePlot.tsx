@@ -99,7 +99,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
   const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
   const nICUBeds = verifyPositive(data.params.ICUBeds)
-  console.log('number ICUs', nICUBeds, data)
 
   const count_observations = {
     cases: caseCounts?.filter(d => d.cases).length ?? 0,
