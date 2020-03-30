@@ -1,5 +1,3 @@
-export type SaveScenario = (name: string, serializedScenario: string) => void
-
 export interface SavedScenario {
   id: string
   userid: string

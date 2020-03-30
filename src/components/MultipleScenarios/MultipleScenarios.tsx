@@ -5,6 +5,7 @@ import { Nav, NavItem, NavLink } from 'reactstrap'
 import classnames from 'classnames'
 
 import Main from '../Main/Main'
+import SaveScenarioDialog from './SaveScenarioDialog'
 import ShareScenarioDialog from './ShareScenarioDialog'
 import { DEFAULT_SCENARIO_ID } from '../Main/state/state'
 
@@ -20,6 +21,8 @@ export default function MultipleScenarios() {
     scenarios: [{ id: DEFAULT_SCENARIO_ID, userid: user.id, name: 'Customize', serializedScenario: null }],
   })
   const [activeTab, setActiveTab] = useState(DEFAULT_SCENARIO_ID)
+  const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
+  const [serializedScenarioToSave, setSerializedScenarioToSave] = useState<string>('')
   const [showShareModal, setShowShareModal] = useState<boolean>(false)
   const [serializedScenarioToShare, setSerializedScenarioToShare] = useState<string>('')
 
@@ -105,7 +108,10 @@ export default function MultipleScenarios() {
       )}
       <Main
         activeScenario={activeScenario}
-        onScenarioSave={onScenarioSave}
+        onScenarioSave={(serializedScenario) => {
+          setSerializedScenarioToSave(serializedScenario)
+          setShowSaveModal(true)
+        }}
         onScenarioShare={(serializedScenario) => {
           setSerializedScenarioToShare(serializedScenario)
           setShowShareModal(true)
@@ -118,6 +124,15 @@ export default function MultipleScenarios() {
           createdBy={user.handleForSharedLinks}
           generateLink={generateShareableLink}
           onCloseDialog={() => setShowShareModal(false)}
+        />
+      )}
+      {showSaveModal && (
+        <SaveScenarioDialog
+          onSave={(name: string) => {
+            onScenarioSave(name, serializedScenarioToSave)
+            setShowSaveModal(false)
+          }}
+          onCloseDialog={() => setShowSaveModal(false)}
         />
       )}
     </div>

@@ -3,7 +3,6 @@ import React, { createRef, useEffect, useState } from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import ExportSimulationDialog from './ExportSimulationDialog'
-import SaveScenarioDialog from './SaveScenarioDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 import processUserResult from '../../../algorithms/utils/userResult'
@@ -28,7 +27,7 @@ interface ResultsCardProps {
   toggleAutorun: () => void
   canRun: boolean
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
-  onScenarioSave: (name: string) => void
+  onScenarioSave: () => void
   onScenarioShare: () => void
   onScenarioDelete?: () => void
   result?: AlgorithmResult
@@ -94,8 +93,6 @@ function ResultsCardFunction({
   const [canExport, setCanExport] = useState<boolean>(false)
   const [showExportModal, setShowExportModal] = useState<boolean>(false)
 
-  const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
-
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
@@ -149,7 +146,7 @@ function ResultsCardFunction({
             <Button type="button" color="secondary" disabled={!canExport} onClick={(_) => setShowExportModal(true)}>
               {t('Export')}
             </Button>
-            <Button onClick={(_) => setShowSaveModal(true)}>{t('Save')}</Button>
+            <Button onClick={onScenarioSave}>{t('Save')}</Button>
             <Button onClick={onScenarioShare}>{t('Share')}</Button>
             <Button disabled={!onScenarioDelete} onClick={onScenarioDelete}>
               {t('Delete')}
@@ -220,15 +217,6 @@ function ResultsCardFunction({
         canExport={canExport}
         result={result}
       />
-      {showSaveModal && (
-        <SaveScenarioDialog
-          onSave={(name: string) => {
-            onScenarioSave(name)
-            setShowSaveModal(false)
-          }}
-          onCloseDialog={() => setShowSaveModal(false)}
-        />
-      )}
     </>
   )
 }
