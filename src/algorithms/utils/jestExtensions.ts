@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import { MatcherState } from 'expect'
 const { utils } = require('jest-snapshot')
 
-/* Interface derived from https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts#L54
+/* This interface is made to match https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts#L54
  */
 interface SnapshotState {
   _counters: Map<string, number>
@@ -18,7 +18,7 @@ interface SnapshotState {
   matched: number
 }
 
-/* Context derived from https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/types.ts#L11
+/* This interface is made to match https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/types.ts#L11
  */
 interface Context extends MatcherState {
   snapshotState: SnapshotState
@@ -40,7 +40,7 @@ function getExpectedSnapshot(state: SnapshotState, key: string) {
   const data = state._snapshotData[key]
 
   if (!data) {
-    return []
+    return undefined
   }
 
   try {
@@ -50,14 +50,14 @@ function getExpectedSnapshot(state: SnapshotState, key: string) {
   }
 }
 
-function toBeCloseToArraySnapshot(this: Context, received: number[]) {
-  const { testName, state, count, key } = extractContext(this)
-
-  /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
-  state.markSnapshotsAsCheckedForTest(testName)
-
-  const expected = getExpectedSnapshot(state, key)
-  const tolerance = 10 ** -2 / 2
+function compare(
+  expected: number[],
+  received: number[],
+  tolerance: number,
+): { pass: boolean; diffs?: { want: number; got: number; diff: number }[] } {
+  if (expected === undefined) {
+    return { pass: false }
+  }
 
   const diffs = received.map((_, idx) => {
     const want = expected[idx]
@@ -67,9 +67,26 @@ function toBeCloseToArraySnapshot(this: Context, received: number[]) {
   })
 
   const pass = diffs.filter(({ diff }) => diff >= tolerance).length === 0
+
+  return { pass, diffs }
+}
+
+function toBeCloseToArraySnapshot(this: Context, received: number[]) {
+  const { testName, state, count, key } = extractContext(this)
+
+  /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
+  state.markSnapshotsAsCheckedForTest(testName)
+
+  const expected = getExpectedSnapshot(state, key)
+
   const hasSnapshot = expected !== undefined
-  const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
+
+  const tolerance = 10 ** -2 / 2
+  const { pass, diffs } = compare(expected, received, tolerance)
+
   const receivedSerialized = JSON.stringify(received, null, 2)
+
+  const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
 
   if (pass) {
     /* Test passed, now update the snapshot state with the serialize snapshot.
