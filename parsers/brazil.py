@@ -68,7 +68,7 @@ def parse():
     hdr = next(rdr)
 
     for row in rdr:
-        state = state_codes[row[1]]
+        state = '-'.join(['BRA',state_codes[row[1]]])
         city = row[2]
         if city != "": continue
         date = row[0]
@@ -78,4 +78,4 @@ def parse():
     for state, data in regions.items():
         regions[state] = sorted_date(data, cols)
 
-    store_data(regions, { 'default': LOC}, 'brazil', 'BRA', cols)
+    store_data(regions, 'brazil',  cols)

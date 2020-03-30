@@ -46,11 +46,11 @@ def parse():
                 confirmedCases += i["confirmedCasesForeign"]
 
             deaths = i["deaths"]
-            locations = i['loc']
+            locations = '-'.join(['IND',i['loc']])
             elt  = [ dates, confirmedCases, deaths, None, None, None ]
             states[locations].append(elt)
 
     for cntry, data in states.items():
         states[cntry] = sorted_date(states[cntry])
 
-    store_data(states, { 'default': LOC}, 'india', 'IND', cols)
+    store_data(states, 'india', cols)

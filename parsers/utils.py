@@ -5,7 +5,7 @@ import os
 import re
 import sys
 sys.path.append('..')
-from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR
 
 from datetime import datetime
 from collections import defaultdict
@@ -22,10 +22,8 @@ default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 # Functions
 
 def stoi(x):
-    if x is None:
+    if x is None or x == '':
         return None
-    if x == "":
-        return 0
 
     return int(x)
 
@@ -125,20 +123,15 @@ def merge_cases(oldcases, newcases):
             res[c] = joinedDays
     return res
 
-def store_tsv(regions, exceptions, source, cols):
+def store_tsv(regions, source, cols):
+    dirname = f"{BASE_PATH}/{TSV_DIR}/{source}"
+    if not os.path.isdir(dirname):
+        os.mkdir(dirname)
+
     for region, data in regions.items():
         # region is API provided and should be sanitized before using it to construct paths for security reasons
         region = sanitize(region)
-
-        # If we only want to store one .tsv in the root, we signal this with exceptions['default': 'FOO.tsv']
-        if  '.tsv' in exceptions['default']:
-            # TODO this is actually creating the World.tsv n times at the moment (open(,'w='), not what we really want.)
-            write_tsv(os.path.join(BASE_PATH, exceptions['default']), ['location']+cols, flatten(regions), source)
-        # For normal .tsv storage in individual regions' tsv
-        elif region not in exceptions:
-            write_tsv(f"{BASE_PATH}/{exceptions['default']}/{region}.tsv", cols, data, source)
-        else:
-            write_tsv(f"{BASE_PATH}/{exceptions[region]}/{region}.tsv", cols, data, source)
+        write_tsv(f"{dirname}/{region}.tsv", cols, data, source)
 
 def list_to_dict(regions, cols):
     # transform a a dict of lists of lists {'USA':[['2020-03-01', 1, 2,...],..]} into a dict of lists of dicts {'USA': [{'time': '2020-03-01', 'cases': 1, ...},...]}
@@ -196,20 +189,12 @@ def add_country_code(regions, exceptions, code):
     return res
 
 
-def store_json(newdata):
-    json_file = os.path.join(BASE_PATH,JSON_DIR, TMP_CASES)
-    if os.path.isfile(json_file):
-        with open(json_file, 'r') as fh:
-            oldcases = json.load(fh)
-    else:
-        oldcases = {}
-    
-    mergedCases = merge_cases(oldcases, newdata)
+def store_json(newdata, json_file):
     with open(json_file, 'w') as fh:
-        json.dump(mergedCases, fh)
+        json.dump(newdata, fh)
 
     #print('first layer keys are %s'%mergedCases.keys())
-    print(f'Stored {len(mergedCases)} regions to {json_file}')
+    #print(f'Stored {len(mergedCases)} regions to {json_file}')
 
 def sanitize(fname):
     # we sanitize to ASCII alphabetic here
@@ -221,14 +206,11 @@ def sanitize(fname):
     return fname2
 
 
-def store_data(regions, exceptions, source, code='', cols=[]):
+def store_data(regions, source, cols=[]):
     """ Store data to .tsv and .json files
-
     Keyword arguments:
-    regions -- a dict of lists of lists {'USA': [['2020-03-20', 0, ...], ...]}, or a dict of lists of dicts {'USA': [{'cases': 0, 'time': '2020-03-20'}, ... ] }
-    exceptions -- a dict that provides the path for .tsv files. Needs at least a {'default': LOC} entry. If region and total data is available, this typically looks like {'default': LOC, 'Spain': LOC}
+    regions -- a dict of lists of lists {'USA': [['2020-03-20', 0, ...], ...]}, or a dict of lists of dicts {'USA': [{'cases': 0, 'time': '2020-03-20'}, ... ] }. Keys of states need to include 3 letter country code from country_codes.tsv
     source --  the string identifyig the source in sources.json
-    code -- the three letter code for the country from country_codes.csv
     cols -- the colum headers that were used to prepare the innermost list
     """
 
@@ -238,30 +220,14 @@ def store_data(regions, exceptions, source, code='', cols=[]):
         cd1 = list(regions.values())[0]
         if isinstance(cd1, list):
             cd2 = cd1[0]
-            if isinstance(cd2, list):
-                store_tsv(regions, exceptions, source, cols)
+            if isinstance(cd2, dict):
+                store_tsv(dict_to_list(regions, default_cols), source, default_cols)
+            elif isinstance(cd2, list):
                 if not cols==[]:
-                    regions2 = {}
-                    for region, data in regions.items():
-                        if not region in exceptions:
-                            regions2[code+"-"+region] = data
-                        else:
-                            regions2[region] = data
-                    store_json(list_to_dict(regions2, cols))
+                    store_tsv(regions, source, cols)
                 else:
                     print(f'ERROR: You need to provide cols to store_data for the format you use. cols will indicate type of values in your inner lists. No data was stored to .tsv now!', file=sys.stderr)
-                    return
-            elif isinstance(cd2, dict):
-                # catch the World.tsv case
-                if not '.tsv' in exceptions['default']:
-                    store_tsv(dict_to_list(regions, default_cols), exceptions, source, default_cols)
-                else:
-                    store_tsv(regions, exceptions, source, default_cols)
-                # for non-World data we need to add country code for json
-                if not '.tsv' in exceptions['default']:
-                    regions = add_country_code(regions, exceptions, code)
-                store_json(regions)
-
+                    exit(1)
             else:
                 print(f'ERROR: unable to parse {regions}', file=sys.stderr)
         else:

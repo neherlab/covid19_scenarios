@@ -59,7 +59,7 @@ def parse():
     for row in rdr:
         date   = row[0]
         if row[1] in bundesland_codes:
-            bundesland = bundesland_codes[row[1]]
+            bundesland = '-'.join(['DEU', bundesland_codes[row[1]]])
             regions[bundesland].append([date, to_int(row[2]), to_int(row[3]), None, None, None])
 
-    store_data(regions, { 'default': LOC}, 'germany', 'DEU', cols)
+    store_data(regions,  'germany', cols)

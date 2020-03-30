@@ -7,12 +7,12 @@ from scipy.stats import linregress
 import sys
 sys.path.append('..')
 from paths import TMP_CASES, BASE_PATH, JSON_DIR
+from scripts.tsv import parse as parse_tsv
 
 # ------------------------------------------------------------------------
 # Globals
 
 SCENARIO_POPS = os.path.join(BASE_PATH, "populationData.tsv")
-CASE_COUNTS = os.path.join(BASE_PATH, JSON_DIR, TMP_CASES)
 FIT_CASE_DATA = {}
 
 # ------------------------------------------------------------------------
@@ -149,12 +149,12 @@ def marshalJSON(obj, wtr):
 
 def fit_all_case_data():
     Params = Fitter()
-    with open(CASE_COUNTS) as fh:
-        case_counts = json.load(fh)
-        for region, data in case_counts.items():
-            fit = Params.fit(data)
-            if fit:
-                FIT_CASE_DATA[region] = fit
+
+    case_counts = parse_tsv()
+    for region, data in case_counts.items():
+        fit = Params.fit(data)
+        if fit:
+            FIT_CASE_DATA[region] = fit
 
 # ------------------------------------------------------------------------
 # Main point of entry

@@ -105,8 +105,9 @@ def parse():
         elt  = [ date, stoi(row["positive"]), stoi(row["death"]), None, None, None ]
         regions[acronyms[row["state"]]].append(elt)
     regions = dict(regions)
-
+    
+    regions2 = {}
     for cntry, data in regions.items():
-        regions[cntry] = sorted_date(regions[cntry])
+        regions2['-'.join(['USA',cntry])] = sorted_date(regions[cntry])
 
-    store_data(regions, { 'default': LOC}, 'unitedstates', 'USA', cols)
+    store_data(regions2, 'unitedstates', cols)

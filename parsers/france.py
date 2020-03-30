@@ -46,12 +46,14 @@ def parse():
             region = row[3].replace(" ", "-").replace("Î", "I").replace("'", "").replace("’", "")
             cases = to_int(row[4])
             death = to_int(row[5])
+            hospitalized = to_int(row[7])
+            ICU = to_int(row[6])
 
             if region not in regions:
                 regions[region] = {}
 
             if date not in regions[region]:
-                regions[region][date] = [date, cases, death, None, None, None]
+                regions[region][date] = [date, cases, death, hospitalized, ICU, None]
                 continue
 
             # If data from another source is bigger, we take it
@@ -60,9 +62,15 @@ def parse():
 
             if death is not None and (regions[region][date][2] is None or death > regions[region][date][2]):
                 regions[region][date][2] = death
+                
+            if hospitalized is not None and (regions[region][date][3] is None or hospitalized > regions[region][date][3]):
+                regions[region][date][3] = hospitalized
+                
+            if ICU is not None and (regions[region][date][4] is None or ICU > regions[region][date][4]):
+                regions[region][date][4] = ICU
 
     regions2 = {}
     for reg, d in regions.items():
-        regions2[reg] = [d[day] for day in sorted(d.keys()) if d[day][1]]
+        regions2['-'.join(['FRA',reg])] = [d[day] for day in sorted(d.keys()) if d[day][1]]
 
-    store_data(regions2, { 'default': LOC}, 'france', 'FRA', cols)
+    store_data(regions2, 'france',  cols)

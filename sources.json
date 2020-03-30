@@ -64,19 +64,9 @@
     "dataProvenance": "European Centre for Disease Prevention and Control",
     "license": "The downloadable data file is updated daily and contains the latest available public data on COVID-19. Public-use data files allows users to manipulate the data in a format appropriate for their analyses. Users of ECDC public-use data files must comply with data use restrictions to ensure that the information will be used solely for statistical analysis or reporting purposes."
   },
-  "cds": {
-    "primarySource": "https://coronadatascraper.com/timeseries-byLocation.json",
-    "dataProvenance": "Coronadatascraper.com",
-    "license": "Scraped from many sources, no clear license"
-  },
   "india": {
     "primarySource": "https://api.rootnet.in/covid19-in/stats/daily",
     "dataProvenance": "https://github.com/amodm/api-covid19-in",
     "license": "Scraped from Ministry of Health and Family Welfare plus other sources, no clear license"
-  },
-  "tsv": {
-    "primarySource": "Manually maintained .tsv files in case-counts/ folder",
-    "dataProvenance": "Manually maintained by contributors",
-    "license": "no clear license, multiple sources"
   }
 }
