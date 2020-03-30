@@ -146,7 +146,7 @@ function toBeCloseToArraySnapshot(this: Context, received: number[]) {
     if (!pass) {
       state.unmatched++
       return {
-        message: () => 'message b',
+        message: () => `expected: ${serialize(received)}\n received: ${serialize(expected)}`,
         actual: serialize(received),
         count,
         expected: expected !== undefined ? serialize(expected) : undefined,
