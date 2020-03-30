@@ -82,7 +82,7 @@ function compare(
 /* This nested mess is derived the Jest snapshot matcher code:
  * https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts
  */
-function shouldAddSnapshot(state: SnapshotState, hasSnapshot: boolean): boolean {
+function couldAddSnapshot(state: SnapshotState, hasSnapshot: boolean): boolean {
   const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
 
   return (
@@ -91,7 +91,7 @@ function shouldAddSnapshot(state: SnapshotState, hasSnapshot: boolean): boolean 
   )
 }
 
-function addSnapshot(
+function maybeAddSnapshot(
   state: SnapshotState,
   key: string,
   hasSnapshot: boolean,
@@ -135,8 +135,8 @@ function toBeCloseToArraySnapshot(this: Context, received: number[]) {
 
   const hasSnapshot = expected !== undefined
 
-  if (shouldAddSnapshot(state, hasSnapshot)) {
-    addSnapshot(state, key, hasSnapshot, received, pass, error)
+  if (couldAddSnapshot(state, hasSnapshot)) {
+    maybeAddSnapshot(state, key, hasSnapshot, received, pass, error)
 
     return {
       message: () => '',
