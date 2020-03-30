@@ -266,7 +266,7 @@ def load_data(key):
     db = cases.parse()
     ts = db[key]
 
-    days = [d['time'] for d in ts]
+    days = [d['time'].split('T')[0] for d in ts]
     for tp in ts:
         data[Sub.T].append(tp['cases'] or 0)
         data[Sub.D].append(tp['deaths'] or 0)
@@ -295,7 +295,8 @@ def fit_population(population):
 
     guess = { "R0": 3.0,
               "reported" : 0.3,
-              "logInitial" : 1}
+              "logInitial" : 1
+            }
     param, init_cases, err = fit_params(population, time_points, data, guess)
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     return {'params':param, 'initialCases':init_cases, 'tMin':tMin, 'data': data, 'error':err}
