@@ -95,8 +95,10 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   }
 
   const hasUserResult = Boolean(userResult?.trajectory)
-  const nHospitalBeds = data.params.hospitalBeds
-  const nICUBeds = data.params.ICUBeds
+  const verifyPositive = (x: number) => (x > 0 ? x : undefined)
+
+  const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
+  const nICUBeds = verifyPositive(data.params.ICUBeds)
 
   const count_observations = {
     cases: caseCounts?.filter((d) => d.cases).length ?? 0,
@@ -125,33 +127,31 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     })) ?? []
 
   const plotData = [
-    ...data.deterministic.trajectory
-      .filter((_, i) => i % 4 === 0)
-      .map((x) => ({
-        time: x.time,
-        susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
-          ? Math.round(x.current.susceptible.total) || undefined
-          : undefined,
-        // exposed: Math.round(x.exposed.total) || undefined,
-        infectious: enabledPlots.includes(DATA_POINTS.Infectious)
-          ? Math.round(x.current.infectious.total) || undefined
-          : undefined,
-        severe: enabledPlots.includes(DATA_POINTS.Severe) ? Math.round(x.current.severe.total) || undefined : undefined,
-        critical: enabledPlots.includes(DATA_POINTS.Critical)
-          ? Math.round(x.current.critical.total) || undefined
-          : undefined,
-        overflow: enabledPlots.includes(DATA_POINTS.Overflow)
-          ? Math.round(x.current.overflow.total) || undefined
-          : undefined,
-        recovered: enabledPlots.includes(DATA_POINTS.Recovered)
-          ? Math.round(x.cumulative.recovered.total) || undefined
-          : undefined,
-        fatality: enabledPlots.includes(DATA_POINTS.Fatalities)
-          ? Math.round(x.cumulative.fatality.total) || undefined
-          : undefined,
-        hospitalBeds: nHospitalBeds,
-        ICUbeds: nICUBeds,
-      })),
+    ...data.deterministic.trajectory.map((x) => ({
+      time: x.time,
+      susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
+        ? Math.round(x.current.susceptible.total) || undefined
+        : undefined,
+      // exposed: Math.round(x.exposed.total) || undefined,
+      infectious: enabledPlots.includes(DATA_POINTS.Infectious)
+        ? Math.round(x.current.infectious.total) || undefined
+        : undefined,
+      severe: enabledPlots.includes(DATA_POINTS.Severe) ? Math.round(x.current.severe.total) || undefined : undefined,
+      critical: enabledPlots.includes(DATA_POINTS.Critical)
+        ? Math.round(x.current.critical.total) || undefined
+        : undefined,
+      overflow: enabledPlots.includes(DATA_POINTS.Overflow)
+        ? Math.round(x.current.overflow.total) || undefined
+        : undefined,
+      recovered: enabledPlots.includes(DATA_POINTS.Recovered)
+        ? Math.round(x.cumulative.recovered.total) || undefined
+        : undefined,
+      fatality: enabledPlots.includes(DATA_POINTS.Fatalities)
+        ? Math.round(x.cumulative.fatality.total) || undefined
+        : undefined,
+      hospitalBeds: nHospitalBeds,
+      ICUbeds: nICUBeds,
+    })),
     ...observations,
   ] // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
 

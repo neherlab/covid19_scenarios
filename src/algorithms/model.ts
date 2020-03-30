@@ -10,6 +10,8 @@ import {
 } from './types/Result.types'
 
 const msPerDay = 1000 * 60 * 60 * 24
+const eulerStep = 0.05
+export const eulerStepsPerDay = Math.round(1 / eulerStep)
 
 const monthToDay = (m: number) => {
   return m * 30 + 15
@@ -42,7 +44,7 @@ export function getPopulationParams(
   ageCounts: Record<string, number>,
   containment: (t: Date) => number,
 ): ModelParams {
-  const timeDeltaDays = 0.25
+  const timeDeltaDays = eulerStep
 
   // TODO: Make this a form-adjustable factor
   const pop: ModelParams = {
@@ -489,7 +491,7 @@ export function exportSimulation(result: UserResult) {
   const headerCumulative = keys(result.trajectory[0].cumulative)
   const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
 
-  const tsv = [`time\t${tsv_header.concat(tsvHeaderCumulative).join('\t')}`]
+  const tsv = [`time\t${tsvHeader.concat(tsvHeaderCumulative).join('\t')}`]
 
   const pop: Record<string, boolean> = {}
   result.trajectory.forEach((d) => {
