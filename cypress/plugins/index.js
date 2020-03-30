@@ -12,12 +12,12 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-const webpack = require('@cypress/webpack-preprocessor')
+import webpack from '@cypress/webpack-preprocessor'
 
 /**
  * @type {Cypress.PluginConfig}
  */
-module.exports = (on, config) => {
+module.exports = (on) => {
   const options = {
     webpackOptions: {
       module: {
@@ -25,15 +25,15 @@ module.exports = (on, config) => {
           {
             test: /\.tsx?$/,
             use: 'babel-loader',
-            exclude: /node_modules/
-          }
-        ]
+            exclude: /node_modules/,
+          },
+        ],
       },
       resolve: {
-        extensions: ['.ts', '.tsx', '.js']
-      }
+        extensions: ['.ts', '.tsx', '.js'],
+      },
     },
-    watchOptions: {}
+    watchOptions: {},
   }
 
   on('file:preprocessor', webpack(options))

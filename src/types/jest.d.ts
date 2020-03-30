@@ -11,10 +11,16 @@ import 'jest-extended/types'
 import 'jest-chain'
 
 // tslint:disable-next-line:no-namespace
-namespace jest {
-  interface Matchers<R> {
-    // After toBeTruthy() we are certain that the matched value is not null.
-    // Modify the return type accordingly.
-    toBeTruthy(): NonNullable<R>
+declare global {
+  namespace jest {
+    interface Matchers<R> {
+      // After toBeTruthy() we are certain that the matched value is not null.
+      // Modify the return type accordingly.
+      toBeTruthy(): NonNullable<R>
+    }
+
+    interface ChainedMatchers<R> {
+      toBeCloseToArraySnapshot(values: number[]): R
+    }
   }
 }
