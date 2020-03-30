@@ -3,8 +3,10 @@ import createPersistedState from 'use-persisted-state'
 import { v4 as uuidv4 } from 'uuid'
 import { Nav, NavItem, NavLink } from 'reactstrap'
 import classnames from 'classnames'
+import jestDiff from 'jest-diff'
+import isEqual from 'is-equal'
 
-import { Scenario, SavedScenariosState, DEFAULT_SCENARIO_ID } from '.'
+import { Scenario, SavedScenariosState, DEFAULT_SCENARIO_ID, ScenarioParams } from '.'
 import Main from '../Main/Main'
 import SaveScenarioDialog from './SaveScenarioDialog'
 import ShareScenarioDialog from './ShareScenarioDialog'
@@ -25,7 +27,7 @@ export default function MultipleScenarios() {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
   const [showShareModal, setShowShareModal] = useState<boolean>(false)
 
-  const activeScenario = scenarios.find((scenario) => scenario.id === activeTab)
+  const activeScenario = scenarios.find((scenario) => scenario.id === activeTab) || scenarios[0]
 
   function onScenarioSave(name: string) {
     if (activeScenario) {
@@ -50,7 +52,7 @@ export default function MultipleScenarios() {
 
     const toSerialize = {
       version: 1,
-      id: activeScenario && activeScenario.id !== DEFAULT_SCENARIO_ID ? activeScenario.id : uuidv4(),
+      id: activeScenario.id !== DEFAULT_SCENARIO_ID ? activeScenario.id : uuidv4(),
       userid: user.id,
       name,
       createdBy,
@@ -91,6 +93,34 @@ export default function MultipleScenarios() {
     }
   }
 
+  function handleChangedParameters(params: ScenarioParams) {
+    // Note: isEqual handles Date() objects while lodash.isEqual does not.
+    const different = !isEqual(activeScenario.params, params)
+
+    console.log(`hoisted params. different: ${different}`)
+    if (!activeScenario.params) {
+      console.log('initial params')
+    } else {
+      console.log('existing params')
+      console.log(
+        jestDiff(activeScenario.params, params, {
+          expand: false,
+          contextLines: 2,
+          aAnnotation: 'was',
+          bAnnotation: 'is',
+        }),
+      )
+    }
+
+    if (different || (!activeScenario.params && params)) {
+      updateScenario(activeScenario.id, { params })
+    }
+  }
+
+  function updateScenario(id: string, update: Partial<Scenario>) {
+    setScenarios(scenarios.map((scenario) => (scenario.id === id ? { ...scenario, ...update } : scenario)))
+  }
+
   return (
     <div className="multiple-scenarios">
       {savedScenarios.scenarios.length > 1 && (
@@ -110,6 +140,8 @@ export default function MultipleScenarios() {
         </Nav>
       )}
       <Main
+        incomingParams={activeScenario.params}
+        onParamChange={handleChangedParameters}
         onScenarioSave={() => {
           setShowSaveModal(true)
         }}

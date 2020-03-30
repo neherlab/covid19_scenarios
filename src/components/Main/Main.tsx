@@ -1,5 +1,6 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
+import isEqual from 'is-equal'
 
 import _ from 'lodash'
 
@@ -23,15 +24,23 @@ import countryCaseCountData from '../../assets/data/case_counts.json'
 
 import { schema } from './validation/schema'
 
-import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
+import {
+  setContainmentData,
+  setPopulationData,
+  setEpidemiologicalData,
+  setSimulationData,
+  setScenarioData,
+  setScenario,
+} from './state/actions'
 import { scenarioReducer } from './state/reducer'
-import { defaultScenarioState, State } from './state/state'
+import { CUSTOM_SCENARIO_NAME, defaultScenarioState, State } from './state/state'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
 import './Main.scss'
+import { ScenarioParams } from '../MultipleScenarios'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -86,12 +95,14 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
 }
 
 interface MainProps {
+  incomingParams: ScenarioParams | null
+  onParamChange: (params: ScenarioParams) => void
   onScenarioSave: () => void
   onScenarioShare: () => void
   onScenarioDelete?: () => void
 }
 
-function Main({ onScenarioSave, onScenarioShare, onScenarioDelete }: MainProps) {
+function Main({ incomingParams, onParamChange, onScenarioSave, onScenarioShare, onScenarioDelete }: MainProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState)
@@ -118,7 +129,10 @@ function Main({ onScenarioSave, onScenarioShare, onScenarioDelete }: MainProps) 
     containment: scenarioState.data.containment,
   }
 
-  const [debouncedRun] = useDebouncedCallback(
+  console.log(`ICU: ${allParams.population.ICUBeds}`)
+  console.log(`ICU: ${scenarioState.data.population.ICUBeds}`)
+
+  const [debouncedRun, cancelDebouncedRun] = useDebouncedCallback(
     (params: AllParams, severity: SeverityTableRow[]) =>
       runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases),
     500,
@@ -138,24 +152,48 @@ function Main({ onScenarioSave, onScenarioShare, onScenarioDelete }: MainProps) 
     }
   }, [autorunSimulation, debouncedRun, scenarioState, severity])
 
-  const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
+  const [setScenarioToCustom, cancelSetScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.population, newParams.population)) {
+    console.log(`ICU: ${allParams.population.ICUBeds}`)
+    console.log(`ICU: ${newParams.population.ICUBeds}`)
+    // Note: isEqual handles Date() objects while lodash.isEqual does not.
+    if (!isEqual(allParams.population, newParams.population)) {
       scenarioDispatch(setPopulationData({ data: newParams.population }))
     }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
+    if (!isEqual(allParams.epidemiological, newParams.epidemiological)) {
       scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
     }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.simulation, newParams.simulation)) {
+    if (!isEqual(allParams.simulation, newParams.simulation)) {
       scenarioDispatch(setSimulationData({ data: newParams.simulation }))
     }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.containment, newParams.containment)) {
+    if (!isEqual(allParams.containment, newParams.containment)) {
       scenarioDispatch(setContainmentData({ data: newParams.containment }))
     }
   }, 1000)
+
+  useEffect(() => {
+    onParamChange({ scenarioState, severity })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scenarioState, severity])
+
+  useEffect(() => {
+    if (incomingParams) {
+      console.log('Incoming!')
+      // Prior to update we must cancel any pending (debounced) call to set from
+      // form parameters. A re-render with prior scenario data can occur when
+      // switching views with multiple scenarios. The debounced call would
+      // change parameters for the new scenario.
+      cancelSetScenarioToCustom()
+      cancelDebouncedRun()
+
+      // Update state from incoming parameters.
+      scenarioDispatch(setScenarioData({ data: incomingParams.scenarioState.data }))
+      if (incomingParams.scenarioState.current !== CUSTOM_SCENARIO_NAME) {
+        scenarioDispatch(setScenario({ name: incomingParams.scenarioState.current }))
+      }
+      setSeverity(incomingParams.severity)
+    }
+  }, [incomingParams, cancelSetScenarioToCustom, cancelDebouncedRun])
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
     runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases)

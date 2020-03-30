@@ -46,7 +46,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = name
       if (name !== CUSTOM_SCENARIO_NAME) {
-        draft.data = getScenarioData(name)
+        draft.data = { ...getScenarioData(name) }
         draft.data.containment = {
           reduction: updateTimeSeries(
             draft.data.simulation.simulationTimeRange,
