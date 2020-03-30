@@ -24,6 +24,9 @@ JAN1_2019      = datetime.strptime("2019-01-01", "%Y-%m-%d").toordinal()
 JUN1_2019      = datetime.strptime("2019-06-01", "%Y-%m-%d").toordinal()
 JAN1_2020      = datetime.strptime("2020-01-01", "%Y-%m-%d").toordinal()
 
+CASES = importlib.import_module(f"scripts.tsv")
+CASE_DATA = CASES.parse()
+
 def load_distribution(path):
     dist = {}
     with open(path, 'r') as fd:
@@ -261,10 +264,7 @@ def load_data(key):
     days = []
     case_min, case_max = 20, 1e4
 
-    cases = importlib.import_module(f"scripts.tsv")
-
-    db = cases.parse()
-    ts = db[key]
+    ts = CASE_DATA[key]
 
     days = [d['time'].split('T')[0] for d in ts]
     for tp in ts:
@@ -289,15 +289,15 @@ def load_data(key):
     return times, data
 
 
-def fit_population(population):
+def fit_population(region, guess=None):
+    time_points, data = load_data(region)
+    if guess is None:
+        guess = { "R0": 3.0,
+                  "reported" : 0.3,
+                  "logInitial" : 1
+                }
 
-    time_points, data = load_data(population)
-
-    guess = { "R0": 3.0,
-              "reported" : 0.3,
-              "logInitial" : 1
-            }
-    param, init_cases, err = fit_params(population, time_points, data, guess)
+    param, init_cases, err = fit_params(region, time_points, data, guess)
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     return {'params':param, 'initialCases':init_cases, 'tMin':tMin, 'data': data, 'error':err}
 

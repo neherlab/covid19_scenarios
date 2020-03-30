@@ -8,6 +8,7 @@ import sys
 sys.path.append('..')
 from paths import TMP_CASES, BASE_PATH, JSON_DIR
 from scripts.tsv import parse as parse_tsv
+from scripts.model import fit_population
 
 # ------------------------------------------------------------------------
 # Globals
@@ -161,13 +162,16 @@ def marshalJSON(obj, wtr):
     return json.dump(obj, wtr, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
 def fit_all_case_data():
-    Params = Fitter()
+    # Params = Fitter()
+    def unpack(fit):
+        return {"tMin": fit['tMin'], "r0": fit['params'].rates.R0, "initialCases": fit["initialCases"]}
 
     case_counts = parse_tsv()
     for region, data in case_counts.items():
-        fit = Params.fit(data)
-        if fit:
-            FIT_CASE_DATA[region] = fit
+        # fit = Params.fit(data)
+        # if fit:
+        print(f"Fitting '{region}'")
+        FIT_CASE_DATA[region] = unpack(fit_population(region))
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -186,7 +190,6 @@ def generate(OUTPUT_JSON):
                'icus' : hdr.index('ICUBeds'),
                'hemisphere' : hdr.index('hemisphere')}
 
-        
         args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere']
         for region in rdr:
             entry = [region[idx[arg]] for arg in args]
