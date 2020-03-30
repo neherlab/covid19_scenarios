@@ -77,13 +77,13 @@ export function getPopulationParams(
   }
 
   // Compute age-stratified parameters
-  const total = severity.map(d => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
+  const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
 
   let severeFrac = 0
   let criticalFracHospitalized = 0
   let fatalFracCritical = 0
   let avgIsolatedFrac = 0
-  severity.forEach(d => {
+  severity.forEach((d) => {
     const freq = (1.0 * ageCounts[d.ageGroup]) / total
     pop.ageDistribution[d.ageGroup] = freq
     pop.frac.severe[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
@@ -114,7 +114,7 @@ export function getPopulationParams(
 
   // Get import rates per age class (assume flat)
   const L = Object.keys(pop.rate.recovery).length
-  Object.keys(pop.rate.recovery).forEach(k => {
+  Object.keys(pop.rate.recovery).forEach((k) => {
     pop.importsPerDay[k] = params.importsPerDay / L
   })
 
@@ -204,7 +204,7 @@ export function initializePopulation(
       pop.current.susceptible[k] -= numCases
       pop.current.infectious[k] = 0.3 * numCases
       const e = (0.7 * numCases) / pop.current.exposed[k].length
-      pop.current.exposed[k] = pop.current.exposed[k].map(_ => e)
+      pop.current.exposed[k] = pop.current.exposed[k].map((_) => e)
     }
   })
 
@@ -297,7 +297,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
 
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
   const Keys = Object.keys(pop.current.infectious).sort()
-  Keys.forEach(age => {
+  Keys.forEach((age) => {
     // Initialize all multi-faceted states with internal arrays
     flux.exposed[age] = Array(pop.current.exposed[age].length)
     newPop.current.exposed[age] = Array(flux.exposed[age].length)
@@ -383,7 +383,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
 
   // Move hospitalized patients according to constrained resources
   let freeICUBeds = P.ICUBeds - (sum(pop.current.critical) - sum(flux.critical.severe) - sum(flux.critical.fatality))
-  Keys.forEach(age => {
+  Keys.forEach((age) => {
     if (freeICUBeds > flux.severe.critical[age]) {
       freeICUBeds -= flux.severe.critical[age]
       update('critical', age, flux.severe.critical[age] - flux.critical.severe[age] - flux.critical.fatality[age])
@@ -401,7 +401,7 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
 
   // If any overflow patients are left AND there are free beds, move them back.
   // Again, move w/ lower age as priority.
-  Keys.forEach(age => {
+  Keys.forEach((age) => {
     if (freeICUBeds > 0) {
       if (newPop.current.overflow[age] < freeICUBeds) {
         newPop.current.critical[age] += newPop.current.overflow[age]
@@ -432,7 +432,7 @@ export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
   // FIXME: parameter reassign
   const res: UserResult = { trajectory: [] }
 
-  trajectory.forEach(d => {
+  trajectory.forEach((d) => {
     const tp: ExportedTimePoint = {
       time: d.time,
       current: {
@@ -451,15 +451,15 @@ export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
       },
     }
 
-    keys(d.current).forEach(k => {
+    keys(d.current).forEach((k) => {
       if (k === 'exposed') {
         tp.current[k].total = 0
-        Object.values(d.current[k]).forEach(x => {
-          x.forEach(y => {
+        Object.values(d.current[k]).forEach((x) => {
+          x.forEach((y) => {
             tp.current[k].total += y
           })
         })
-        Object.keys(d.current[k]).forEach(a => {
+        Object.keys(d.current[k]).forEach((a) => {
           tp.current[k][a] = d.current[k][a].reduce((a, b) => a + b, 0)
         })
       } else {
@@ -468,7 +468,7 @@ export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
       }
     })
 
-    keys(d.cumulative).forEach(k => {
+    keys(d.cumulative).forEach((k) => {
       tp.cumulative[k] = { ...d.cumulative[k] }
       tp.cumulative[k].total = Object.values(d.cumulative[k]).reduce((a, b) => a + b)
     })
@@ -486,26 +486,26 @@ export function exportSimulation(result: UserResult) {
   // TODO: Make the down sampling interval a parameter
 
   const header = keys(result.trajectory[0].current)
-  const tsvHeader: string[] = header.map(x => (x == 'critical' ? 'ICU' : x))
+  const tsvHeader: string[] = header.map((x) => (x == 'critical' ? 'ICU' : x))
 
   const headerCumulative = keys(result.trajectory[0].cumulative)
-  const tsvHeaderCumulative = headerCumulative.map(x => `cumulative_${x}`)
+  const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
 
   const tsv = [`time\t${tsv_header.concat(tsvHeaderCumulative).join('\t')}`]
 
   const pop: Record<string, boolean> = {}
-  result.trajectory.forEach(d => {
+  result.trajectory.forEach((d) => {
     const t = new Date(d.time).toISOString().slice(0, 10)
     if (t in pop) {
       return
     } // skip if date is already in table
     pop[t] = true
     let buf = t
-    header.forEach(k => {
+    header.forEach((k) => {
       buf += `\t${Math.round(d.current[k].total)}`
     })
 
-    headerCumulative.forEach(k => {
+    headerCumulative.forEach((k) => {
       buf += `\t${Math.round(d.cumulative[k].total)}`
     })
     tsv.push(buf)
