@@ -3,20 +3,20 @@ import * as fs from 'fs'
 const { utils } = require('jest-snapshot')
 
 function extractContext(context: any) {
-  const { currentTestName, snapshotState } = context
-  snapshotState._counters.set(currentTestName, (snapshotState._counters.get(currentTestName) || 0) + 1)
-  const count = Number(snapshotState._counters.get(currentTestName))
-  const key = utils.testNameToKey(currentTestName, count)
+  const { currentTestName: testName, snapshotState: state } = context
+  state._counters.set(testName, (state._counters.get(testName) || 0) + 1)
+  const count = Number(state._counters.get(testName))
+  const key = utils.testNameToKey(testName, count)
 
-  return { currentTestName, snapshotState, count, key }
+  return { testName, state, count, key }
 }
 
 function toBeCloseToArraySnapshot(this: any, received: number[]) {
-  const { currentTestName, snapshotState, count, key } = extractContext(this)
-  const expected = snapshotState._snapshotData[key]
+  const { testName, state, count, key } = extractContext(this)
+  const expected = state._snapshotData[key]
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
-  snapshotState.markSnapshotsAsCheckedForTest(currentTestName)
+  state.markSnapshotsAsCheckedForTest(testName)
 
   /* If the snapshot isn't JSON, then return an empty array. Otherwise
    * the test will fails in an inscrutable way.
@@ -37,37 +37,36 @@ function toBeCloseToArraySnapshot(this: any, received: number[]) {
       ? received.every((_, idx) => Math.abs(expectedDeserialized[idx] - received[idx]) < 10 ** -2 / 2)
       : false
   const hasSnapshot = expected !== undefined
-  const snapshotIsPersisted = fs.existsSync(snapshotState._snapshotPath)
+  const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
   const receivedSerialized = JSON.stringify(received, null, 2)
 
   if (pass) {
     /* Test passed, now update the snapshot state with the serialize snapshot.
      * Technically this is only necessary if no snapshot was saved before. */
-    snapshotState._snapshotData[key] = receivedSerialized
+    state._snapshotData[key] = receivedSerialized
   }
 
   /* This nested mess is derived the Jest snapshot matcher code:
    * https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts
    */
   if (
-    (hasSnapshot && snapshotState._updateSnapshot === 'all') ||
-    ((!hasSnapshot || !snapshotIsPersisted) &&
-      (snapshotState._updateSnapshot === 'new' || snapshotState._updateSnapshot === 'all'))
+    (hasSnapshot && state._updateSnapshot === 'all') ||
+    ((!hasSnapshot || !snapshotIsPersisted) && (state._updateSnapshot === 'new' || state._updateSnapshot === 'all'))
   ) {
-    if (snapshotState._updateSnapshot === 'all') {
+    if (state._updateSnapshot === 'all') {
       if (!pass) {
         if (hasSnapshot) {
-          snapshotState.updated++
+          state.updated++
         } else {
-          snapshotState.added++
+          state.added++
         }
-        snapshotState._addSnapshot(key, receivedSerialized, { error: undefined, isInline: false })
+        state._addSnapshot(key, receivedSerialized, { error: undefined, isInline: false })
       } else {
-        snapshotState.matched++
+        state.matched++
       }
     } else {
-      snapshotState._addSnapshot(key, receivedSerialized, { error: undefined, isInline: false })
-      snapshotState.added++
+      state._addSnapshot(key, receivedSerialized, { error: undefined, isInline: false })
+      state.added++
     }
 
     return {
@@ -80,7 +79,7 @@ function toBeCloseToArraySnapshot(this: any, received: number[]) {
     }
   } else {
     if (!pass) {
-      snapshotState.unmatched++
+      state.unmatched++
       return {
         message: () => 'message b',
         actual: receivedSerialized,
@@ -90,7 +89,7 @@ function toBeCloseToArraySnapshot(this: any, received: number[]) {
         pass: false,
       }
     } else {
-      snapshotState.matched++
+      state.matched++
       return {
         message: () => 'message c',
         actual: receivedSerialized,
