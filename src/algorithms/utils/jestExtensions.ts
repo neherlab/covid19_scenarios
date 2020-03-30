@@ -25,7 +25,7 @@ interface Context extends MatcherState {
   currentTestName: string
 }
 
-function extractContext(context: Context) {
+function getContext(context: Context) {
   const { currentTestName: testName, snapshotState: state, error } = context
 
   state._counters.set(testName, (state._counters.get(testName) || 0) + 1)
@@ -119,7 +119,7 @@ function addSnapshot(
 }
 
 function toBeCloseToArraySnapshot(this: Context, received: number[]) {
-  const { testName, state, count, key, error } = extractContext(this)
+  const { testName, state, count, key, error } = getContext(this)
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
   state.markSnapshotsAsCheckedForTest(testName)
