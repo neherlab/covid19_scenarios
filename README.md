@@ -268,7 +268,7 @@ However, if there is no accessible data sources, one can manually enter the data
 As of now all data used to initialize scenarios used by our model is found within populationData.tsv
 It has the following form:
 
-    name    populationServed    ageDistribution hospitalBeds    ICUBeds suspectedCaseMarch1st   importsPerDay
+    name    populationServed    ageDistribution hospitalBeds    ICUBeds suspectedCaseMarch1st   importsPerDay   hemisphere
     Switzerland ...
 
 -   Names: the U.N. designated name found within country_codes.csv
@@ -279,6 +279,7 @@ It has the following form:
 -   ICUBeds: number of ICU beds
 -   suspectedCasesMarch1st: The number of cases thought to be within the region on March 1st.
 -   importsPerDay: number of suspected import cases per day
+-   hemisphere: either 'Northern', 'Southern', or 'Tropical', used to determine parameters for the epidemiology
 
 At least one of `suspectedCasesMarch1st` and `importsPerDay` needs to be non-zero. Otherwise there is no outbreak (good news in principle, but not useful for exploring scenarios).
 
