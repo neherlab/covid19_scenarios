@@ -1,11 +1,14 @@
+import sys
 import csv
 import os
 import json
 import numpy as np
+import multiprocessing as multi
+
+sys.path.append('..')
+
 from datetime import datetime
 from scipy.stats import linregress
-import sys
-sys.path.append('..')
 from paths import TMP_CASES, BASE_PATH, JSON_DIR
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
@@ -161,24 +164,26 @@ class AllParams(Object):
 def marshalJSON(obj, wtr):
     return json.dump(obj, wtr, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
-def fit_all_case_data():
-    # Params = Fitter()
-    def unpack(fit):
-        return {"tMin": fit['tMin'], "r0": fit['params'].rates.R0, "initialCases": fit["initialCases"]}
+def fit_one_case_data(args):
+    region, param = args
+    r     = fit_population(region)
+    print(f"Fit '{region}': Error {r['error']}")
+    param = {"tMin": r['tMin'], "r0": r['params'].rates.R0, "initialCases": r["initialCases"]}
+    return (region, param)
 
+def fit_all_case_data(num_procs=4):
+    # Params = Fitter()
+    pool = multi.Pool(num_procs)
     case_counts = parse_tsv()
-    for region, data in case_counts.items():
-        # fit = Params.fit(data)
-        # if fit:
-        print(f"Fitting '{region}'")
-        FIT_CASE_DATA[region] = unpack(fit_population(region))
+    results = pool.map(fit_one_case_data, case_counts.items())
+    print(results)
 
 # ------------------------------------------------------------------------
 # Main point of entry
 
-def generate(OUTPUT_JSON):
+def generate(OUTPUT_JSON, num_procs=1):
     scenario = {}
-    fit_all_case_data()
+    fit_all_case_data(num_procs)
 
     with open(SCENARIO_POPS, 'r') as fd:
         rdr = csv.reader(fd, delimiter='\t')

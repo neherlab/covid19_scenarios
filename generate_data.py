@@ -15,6 +15,7 @@ if __name__ == "__main__":
     parser.add_argument('--output-cases', type=str, default=None, help='path to case-counts file')
     parser.add_argument('--output-population', type=str, default=None, help='path to population file')
     parser.add_argument('--output-scenarios', type=str, default=None, help='path to scenarios file')
+    parser.add_argument('--num-threads', type=int, default=1, help='number of threads to open for fitting')
     args = parser.parse_args()
 
     if not os.path.isdir(BASE_PATH):
@@ -47,4 +48,4 @@ if __name__ == "__main__":
     if args.output_scenarios:
         print(f"Generating scenario json")
         scenarios = importlib.import_module(f"scripts.scenarios")
-        scenarios.generate(args.output_scenarios)
+        scenarios.generate(args.output_scenarios, num_procs=args.num_threads)
