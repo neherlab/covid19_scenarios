@@ -3,17 +3,19 @@
 import langs from '../../src/langs'
 
 const availableLangs = Object.entries(langs)
-const languageMap: {[key: string]: string} = {
+const languageMap: { [key: string]: string } = {
   en: 'Results',
   fr: 'Resultats',
   pt: 'Resultados',
   de: 'Ergebnisse',
-  es: 'Resultados'
+  es: 'Resultados',
+  pl: 'Wyniki',
 }
 
 context('Language switcher', () => {
   before(() => {
     cy.visit(Cypress.env('BASE_URL'))
+    cy.closeLanding()
     cy.closeDisclaimer()
   })
 
