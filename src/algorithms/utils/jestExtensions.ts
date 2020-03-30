@@ -2,16 +2,40 @@
 import * as fs from 'fs'
 const { utils } = require('jest-snapshot')
 
-function extractContext(context: any) {
+/* Interface derived from https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts#L54
+ */
+interface SnapshotState {
+  _counters: Map<string, number>
+  _updateSnapshot: 'new' | 'all' | 'none'
+  _snapshotData: Record<string, string>
+  _snapshotPath: string
+  markSnapshotsAsCheckedForTest: (testName: string) => void
+  _addSnapshot: (key: string, receivedSerialized: string, options: { isInline: boolean; error?: Error }) => void
+  updated: number
+  added: number
+  unmatched: number
+  matched: number
+}
+
+/* Context derived from https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/types.ts#L11
+ */
+interface Context {
+  snapshotState: SnapshotState
+  currentTestName: string
+}
+
+function extractContext(context: Context) {
   const { currentTestName: testName, snapshotState: state } = context
+
   state._counters.set(testName, (state._counters.get(testName) || 0) + 1)
+
   const count = Number(state._counters.get(testName))
   const key = utils.testNameToKey(testName, count)
 
   return { testName, state, count, key }
 }
 
-function getExpectedSnapshot(state: any, key: string) {
+function getExpectedSnapshot(state: SnapshotState, key: string) {
   const data = state._snapshotData[key]
 
   if (!data) {
@@ -25,7 +49,7 @@ function getExpectedSnapshot(state: any, key: string) {
   }
 }
 
-function toBeCloseToArraySnapshot(this: any, received: number[]) {
+function toBeCloseToArraySnapshot(this: Context, received: number[]) {
   const { testName, state, count, key } = extractContext(this)
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
