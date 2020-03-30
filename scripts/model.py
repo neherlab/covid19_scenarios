@@ -127,7 +127,7 @@ class Params(Data):
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/3.0, R0=2.7, infection=1/3.0, hospital=1/4, critical=1/14, imports=1)
+DefaultRates = Rates(latency=1/5.0, R0=2.7, infection=1/3.0, hospital=1/4, critical=1/14, imports=1)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
@@ -179,11 +179,13 @@ def init_pop(ages, size, cases):
     pop  = np.zeros((Sub.NUM, Age.NUM))
     ages = np.array(ages) / np.sum(ages)
 
-    case_age = Age.NUM // 2
     pop[Sub.S, :] = size * ages
 
-    pop[Sub.S, case_age] -= cases
-    pop[Sub.I, case_age] += cases
+    pop[Sub.S, :]  -= cases*ages
+    pop[Sub.I, :]  += cases*ages*0.3
+    pop[Sub.E1, :] += cases*ages*0.7/3
+    pop[Sub.E2, :] += cases*ages*0.7/3
+    pop[Sub.E3, :] += cases*ages*0.7/3
 
     return pop
 
@@ -257,7 +259,7 @@ def fit_params(key, time_points, data, guess, bounds=None):
 def load_data(key):
     data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
     days = []
-    case_min, case_max = 20, 5e3
+    case_min, case_max = 20, 1e4
 
     cases = importlib.import_module(f"scripts.tsv")
 
@@ -278,13 +280,26 @@ def load_data(key):
 
     # np.where(good_idx)[0][0] is the first day with case_min cases
     # start the model 3 weeks prior.
-    idx = max(np.where(good_idx)[0][0]-21, 0)
-    day0 = datetime.strptime(days[idx], "%Y-%m-%d").toordinal()
+    idx = np.where(good_idx)[0][0]
+    day0 = datetime.strptime(days[idx], "%Y-%m-%d").toordinal()-21
 
     times = np.array([day0] + [datetime.strptime(days[i], "%Y-%m-%d").toordinal()
                       for i in np.where(good_idx)[0]])
 
     return times, data
+
+
+def fit_population(population):
+
+    time_points, data = load_data(population)
+
+    guess = { "R0": 3.0,
+              "reported" : 0.3,
+              "logInitial" : 1}
+    param, init_cases, err = fit_params(population, time_points, data, guess)
+    tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
+    return {'params':param, 'initialCases':init_cases, 'tMin':tMin, 'data': data, 'error':err}
+
 
 # ------------------------------------------------------------------------
 # Testing entry
@@ -304,30 +319,20 @@ if __name__ == "__main__":
     # param = Params(AGES[COUNTRY], POPDATA[make_key(COUNTRY, REGION)], times, rates, fracs)
     # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
-    time_points, data = load_data(args.key)
+    res = fit_population(args.key)
 
-    guess = { "R0": 3.0,
-              "reported" : 0.3,
-              "logInitial" : 1}
-              # "hospital" : 1/5}
-              # "imports": 4, }
-    # bounds = { "R0" : (2, 5),
-    #           "reported" : (0, 1),
-    #           "initial" : (.01, 1e2),
-    #           "hospital" : (1/100, 5),
-    #           "imports": (1, 1e5) }
+    model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
 
-    param, init_cases, err = fit_params(args.key, time_points, data, guess)
+    tp = res['params'].time - JAN1_2020
 
-    model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, init_cases)))
-    tp = param.time - JAN1_2020
-    plt.plot(tp, data[Sub.T], 'o')
-    plt.plot(tp, np.round(model[:,Sub.T]))
+    plt.figure()
+    plt.plot(tp, res['data'][Sub.T], 'o')
+    plt.plot(tp, model[:,Sub.T])
 
-    plt.plot(tp, data[Sub.D], 'o')
-    plt.plot(tp, np.round(model[:,Sub.D]))
+    plt.plot(tp, res['data'][Sub.D], 'o')
+    plt.plot(tp, model[:,Sub.D])
 
-    plt.plot(tp, np.round(model[:,Sub.I]))
-    plt.plot(tp, np.round(model[:,Sub.R]))
+    plt.plot(tp, model[:,Sub.I])
+    plt.plot(tp, model[:,Sub.R])
 
     plt.yscale('log')
