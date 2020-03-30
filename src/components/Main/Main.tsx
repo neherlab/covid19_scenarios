@@ -152,9 +152,14 @@ function Main() {
     if (!_.isEqual(allParams.simulation, newParams.simulation)) {
       scenarioDispatch(setSimulationData({ data: newParams.simulation }))
     }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.containment, newParams.containment)) {
-      scenarioDispatch(setContainmentData({ data: newParams.containment }))
+    // NOTE: compare only value controlled by formik!
+    if (allParams.containment.numberPoints !== newParams.containment.numberPoints) {
+      scenarioDispatch(setContainmentData({
+        data: {
+          reduction: allParams.containment.reduction,
+          numberPoints: newParams.containment.numberPoints
+        }
+      }))
     }
   }, 1000)
 
