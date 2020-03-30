@@ -32,11 +32,16 @@ function toBeCloseToArraySnapshot(this: any, received: number[]) {
   state.markSnapshotsAsCheckedForTest(testName)
 
   const expected = getExpectedSnapshot(state, key)
+  const tolerance = 10 ** -2 / 2
 
-  const pass =
-    expected.length > 0 /* must check this because every() returns true if empty array */
-      ? received.every((_, idx) => Math.abs(expected[idx] - received[idx]) < 10 ** -2 / 2)
-      : false
+  const diffs = received.map((_, idx) => {
+    const want = expected[idx]
+    const got = received[idx]
+    const diff = Math.abs(want - got)
+    return { want, got, diff }
+  })
+
+  const pass = diffs.filter(({ diff }) => diff >= tolerance).length === 0
   const hasSnapshot = expected !== undefined
   const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
   const receivedSerialized = JSON.stringify(received, null, 2)
