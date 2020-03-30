@@ -1,5 +1,6 @@
 /* eslint-disable */
 import * as fs from 'fs'
+import { MatcherState } from 'expect'
 const { utils } = require('jest-snapshot')
 
 /* Interface derived from https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts#L54
@@ -19,7 +20,7 @@ interface SnapshotState {
 
 /* Context derived from https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/types.ts#L11
  */
-interface Context {
+interface Context extends MatcherState {
   snapshotState: SnapshotState
   currentTestName: string
 }
