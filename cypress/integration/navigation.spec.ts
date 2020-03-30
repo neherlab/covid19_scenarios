@@ -7,6 +7,7 @@ context('The navigation bar', () => {
 
   beforeEach(() => {
     cy.visit(Cypress.env('BASE_URL'))
+    cy.closeLanding()
     cy.closeDisclaimer()
   })
 
@@ -14,7 +15,7 @@ context('The navigation bar', () => {
     cy.findByTestId('NavigationBar').get('.nav-link').should('have.length', navLinks.length)
   })
 
-  navLinks.forEach((url: string) => {
+  navLinks.forEach(([url]: string) => {
     describe(`Clicking on "${url}" link`, () => {
       it(`should open the ${url} page correctly`, () => {
         cy.findByTestId('NavigationBar').get(`[href="${url}"]`).first().click()
