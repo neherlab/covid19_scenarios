@@ -98,7 +98,7 @@ class PopulationParams(Object):
     def __init__(self, region, country, population, beds, icus):
         self.populationServed    = int(population)
         self.country             = country
-        self.suspectedCasesToday = Fitter.cases_on_tMin
+        self.suspectedCasesToday = FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin
         self.importsPerDay       = round(max(3e-4 * float(population)**0.5, .1),1)
         self.hospitalBeds        = int(beds)
         self.ICUBeds             = int(icus)
@@ -165,25 +165,36 @@ def marshalJSON(obj, wtr):
     return json.dump(obj, wtr, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
 def fit_one_case_data(args):
-    region, param = args
-    r     = fit_population(region)
-    print(f"Fit '{region}': Error {r['error']}")
+    Params = Fitter()
+    region, data = args
+
+    r = fit_population(region)
+    if r is None:
+        return (region, Params.fit(data))
+    else:
+        if 'New York' in region:
+            print(f"Region {region}: {r['params']}", file=sys.stderr)
+
     param = {"tMin": r['tMin'], "r0": r['params'].rates.R0, "initialCases": r["initialCases"]}
     return (region, param)
 
 def fit_all_case_data(num_procs=4):
-    # Params = Fitter()
     pool = multi.Pool(num_procs)
     case_counts = parse_tsv()
     results = pool.map(fit_one_case_data, case_counts.items())
-    print(results)
+    for k, v in results:
+        if v is not None:
+            FIT_CASE_DATA[k] = v
 
 # ------------------------------------------------------------------------
 # Main point of entry
 
-def generate(OUTPUT_JSON, num_procs=1):
+def generate(output_json, num_procs=1):
     scenario = {}
     fit_all_case_data(num_procs)
+    print("DONE")
+    print(FIT_CASE_DATA)
+    print(output_json)
 
     with open(SCENARIO_POPS, 'r') as fd:
         rdr = csv.reader(fd, delimiter='\t')
@@ -200,7 +211,7 @@ def generate(OUTPUT_JSON, num_procs=1):
             entry = [region[idx[arg]] for arg in args]
             scenario[region[idx['name']]] = AllParams(*entry)
 
-    with open(OUTPUT_JSON, "w+") as fd:
+    with open(output_json, "w+") as fd:
         marshalJSON(scenario, fd)
 
 if __name__ == '__main__':

@@ -120,10 +120,10 @@ class Params(Data):
         self.time  = times
 
         # Make infection function
-        phase_offset = (times[0] - JAN1_2019)
+        # phase_offset = (times[0] - JAN1_2019)
         beta = self.rates.infectivity
-        def infectivity(t):
-            return beta*(1 + 0.2*np.cos(2*np.pi*(t + phase_offset)/365))
+        # def infectivity(t):
+        #     return beta*(1 + 0.2*np.cos(2*np.pi*(t + phase_offset)/365))
 
         self.rates.infectivity = lambda t:beta #infectivity
 
@@ -228,6 +228,9 @@ def assess_model(params, data, cases):
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, bounds=None):
+    if key not in POPDATA:
+        return Params(None, None, None, DefaultRates, Fracs()), 10, (False, "Not within population database")
+
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
     def pack(x, as_list=False):
@@ -278,6 +281,9 @@ def load_data(key):
     data[Sub.D] = np.concatenate([[np.nan], data[Sub.D][good_idx]])
     data[Sub.T] = np.concatenate([[np.nan], data[Sub.T][good_idx]])
 
+    if sum(good_idx) == 0:
+        return None, None
+
     # np.where(good_idx)[0][0] is the first day with case_min cases
     # start the model 3 weeks prior.
     idx = np.where(good_idx)[0][0]
@@ -291,6 +297,9 @@ def load_data(key):
 
 def fit_population(region, guess=None):
     time_points, data = load_data(region)
+    if data is None or len(data[Sub.D]) <= 5:
+        return None
+
     if guess is None:
         guess = { "R0": 3.0,
                   "reported" : 0.3,
@@ -306,7 +315,6 @@ def fit_population(region, guess=None):
 # Testing entry
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(description = "",
                                      usage="fit data")
 
