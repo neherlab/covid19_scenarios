@@ -4,10 +4,15 @@
     <title><%= htmlWebpackPlugin.options.vars.title %></title>
     <meta charset="utf-8" />
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta name="description" content="This tool uses a mathematical model to simulate a variety of COVID-19 outcomes based on user-defined parameters"/>
+    <!-- Open Graph general -->
+    <meta property="og:title" content="COVID-19 Scenarios">
+    <meta property="og:description" content="This tool uses a mathematical model to simulate a variety of COVID-19 outcomes based on user-defined parameters">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://<%= htmlWebpackPlugin.options.vars.host %>/ms-icon-310x310.png">
   </head>
   <body>
     <div id="root"></div>

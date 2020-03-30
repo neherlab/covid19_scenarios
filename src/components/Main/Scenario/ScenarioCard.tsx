@@ -42,7 +42,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
       label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h3>}
       help={t('Combination of population, epidemiology, and mitigation scenarios')}
       options={scenarioOptions}
-      value={scenarioOptions.find(s => s.label === scenarioState.current)}
+      value={scenarioOptions.find((s) => s.label === scenarioState.current)}
       onValueChange={handleChangeScenario}
     >
       <>
