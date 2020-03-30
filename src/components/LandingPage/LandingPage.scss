@@ -20,18 +20,18 @@
   grid-gap: 20px;
   grid-template-columns: 1fr auto 1fr;
 
-&::after {
-  position: absolute;
-  // Otherwise blue background shows one pixel underneath the wave.
-  bottom: -2px;
-  width: 102%;
-  height: 120px;
-  pointer-events: none;
-  content: '';
-  background-image: url('./wave.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+  &::after {
+    position: absolute;
+    // Otherwise blue background shows one pixel underneath the wave.
+    bottom: -2px;
+    width: 102%;
+    height: 120px;
+    pointer-events: none;
+    content: '';
+    background-image: url('./wave.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
 
 @media (max-width: 1685px) {
@@ -61,15 +61,15 @@
   border-radius: 500px;
   align-self: end;
   justify-self: center;
-&:hover,
-&:focus {
-  color: $black;
-  text-decoration: none;
-  transform: scale(1.1);
-}
-&:active {
-  transform: scale(0.99);
-}
+  &:hover,
+  &:focus {
+    color: $black;
+    text-decoration: none;
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.99);
+  }
 }
 
 .landing-page__wave {
@@ -89,9 +89,9 @@
   right: 42px;
   width: 600px;
 
-@media (max-width: 1645px) {
-    width: 450px
-}
+  @media (max-width: 1645px) {
+    width: 450px;
+  }
 }
 
 .landing-page__content-section {

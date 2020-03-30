@@ -1,9 +1,9 @@
 .loading-page {
   margin-top: 1rem;
 
-& > div.spinner-border {
-  width: 6rem;
-  height: 6rem;
-  animation-duration: 1.5s;
-}
+  & > div.spinner-border {
+    width: 6rem;
+    height: 6rem;
+    animation-duration: 1.5s;
+  }
 }
