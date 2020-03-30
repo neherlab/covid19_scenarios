@@ -96,9 +96,9 @@ function segmentStateForManyScenarios(id: string, initialState: any, state: any,
   } else {
     segmentedState = initialState
   }
-  const segmentedSetState = (newValue: any) => setState({ ...state, [id]: newValue })
+  const setSegmentedState = (newValue: any) => setState({ ...state, [id]: newValue })
 
-  return [segmentedState, segmentedSetState]
+  return [segmentedState, setSegmentedState]
 }
 
 interface MainProps {
@@ -109,21 +109,21 @@ interface MainProps {
 }
 
 function Main({ activeScenario, onScenarioSave, onScenarioShare, onScenarioDelete }: MainProps) {
+  const [allScenarios, dispatch] = useReducer(scenarioReducer, defaultScenarioState)
   const [allResults, setAllResults] = useState<{ [key: string]: AlgorithmResult | undefined }>({})
-  const [autorunSimulation, setAutorunSimulation] = useState(false)
-  const [manyScenariosState, dispatch] = useReducer(scenarioReducer, defaultScenarioState)
   const [allSeverites, setAllSeverities] = useState<{ [key: string]: SeverityTableRow[] }>({})
   const [allEmpiricalCases, setAllEmpiricalCases] = useState<{ [key: string]: EmpiricalData | undefined }>({})
+  const [autorunSimulation, setAutorunSimulation] = useState(false)
+
+  const [scenarioState, setScenarioState] = useState<State>(defaultScenarioState[DEFAULT_SCENARIO_ID])
 
   const [result, setResult] = segmentStateForManyScenarios(activeScenario.id, undefined, allResults, setAllResults)
-  const segmentedScenarios = segmentStateForManyScenarios(
+  const [severity, setSeverity] = segmentStateForManyScenarios(
     activeScenario.id,
     severityDefaults,
     allSeverites,
     setAllSeverities,
   )
-  let [severity] = segmentedScenarios
-  const [, setSeverity] = segmentedScenarios
   const [empiricalCases, setEmpiricalCases] = segmentStateForManyScenarios(
     activeScenario.id,
     undefined,
@@ -131,21 +131,24 @@ function Main({ activeScenario, onScenarioSave, onScenarioShare, onScenarioDelet
     setAllEmpiricalCases,
   )
 
+  useEffect(() => {
+    if (activeScenario.id in allScenarios) {
+      setScenarioState(allScenarios[activeScenario.id])
+    } else if (!activeScenario.serializedScenario) {
+      setScenarioState(defaultScenarioState[DEFAULT_SCENARIO_ID])
+    } else {
+      const deserialized = deserializeScenario(
+        activeScenario.serializedScenario,
+        defaultScenarioState[DEFAULT_SCENARIO_ID],
+        severityDefaults,
+      )
+      setScenarioState(deserialized.scenarioState)
+      setSeverity(deserialized.severity)
+    }
+  }, [activeScenario, allScenarios])
+
   const scenarioDispatch = (action: AnyAction) => {
     dispatch({ ...action, payload: { ...action.payload, id: activeScenario.id } })
-  }
-
-  let scenarioState: State
-  if (activeScenario.id in manyScenariosState) {
-    scenarioState = manyScenariosState[activeScenario.id]
-  } else if (!activeScenario.serializedScenario) {
-    scenarioState = defaultScenarioState[DEFAULT_SCENARIO_ID]
-  } else {
-    ;({ scenarioState, severity } = deserializeScenario(
-      activeScenario.serializedScenario,
-      defaultScenarioState[DEFAULT_SCENARIO_ID],
-      severityDefaults,
-    ))
   }
 
   const togglePersistAutorun = () => {
