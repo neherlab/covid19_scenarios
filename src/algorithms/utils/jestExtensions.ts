@@ -10,7 +10,7 @@ function toBeCloseToArraySnapshot(this: any, received: number[]) {
   const expected = snapshotState._snapshotData[key]
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
-  snapshotState._uncheckedKeys.delete(key)
+  snapshotState.markSnapshotsAsCheckedForTest(currentTestName)
 
   /* If the snapshot isn't JSON, then return an empty array. Otherwise
    * the test will fails in an inscrutable way.
