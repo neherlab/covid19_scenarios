@@ -2,11 +2,17 @@
 import * as fs from 'fs'
 const { utils } = require('jest-snapshot')
 
-function toBeCloseToArraySnapshot(this: any, received: number[]) {
-  const { currentTestName, snapshotState } = this
+function extractContext(context: any) {
+  const { currentTestName, snapshotState } = context
   snapshotState._counters.set(currentTestName, (snapshotState._counters.get(currentTestName) || 0) + 1)
   const count = Number(snapshotState._counters.get(currentTestName))
   const key = utils.testNameToKey(currentTestName, count)
+
+  return { currentTestName, snapshotState, count, key }
+}
+
+function toBeCloseToArraySnapshot(this: any, received: number[]) {
+  const { currentTestName, snapshotState, count, key } = extractContext(this)
   const expected = snapshotState._snapshotData[key]
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
