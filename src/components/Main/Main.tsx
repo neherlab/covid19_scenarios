@@ -54,7 +54,7 @@ async function runSimulation(
   scenarioState: State,
   params: AllParams,
   severity: SeverityTableRow[],
-  setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
+  setResult: (result: AlgorithmResult) => void,
   setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
 ) {
   const paramsFlat = {
@@ -97,12 +97,22 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
 interface MainProps {
   incomingParams: ScenarioParams | null
   onParamChange: (params: ScenarioParams) => void
+  incomingResult: AlgorithmResult | null
+  onResultChange: (Result: AlgorithmResult) => void
   onScenarioSave: () => void
   onScenarioShare: () => void
   onScenarioDelete?: () => void
 }
 
-function Main({ incomingParams, onParamChange, onScenarioSave, onScenarioShare, onScenarioDelete }: MainProps) {
+function Main({
+  incomingParams,
+  onParamChange,
+  incomingResult,
+  onResultChange,
+  onScenarioSave,
+  onScenarioShare,
+  onScenarioDelete,
+}: MainProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, defaultScenarioState)
@@ -134,7 +144,16 @@ function Main({ incomingParams, onParamChange, onScenarioSave, onScenarioShare, 
 
   const [debouncedRun, cancelDebouncedRun] = useDebouncedCallback(
     (params: AllParams, severity: SeverityTableRow[]) =>
-      runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases),
+      runSimulation(
+        scenarioState,
+        params,
+        severity,
+        (result) => {
+          setResult(result)
+          onResultChange(result)
+        },
+        setEmpiricalCases,
+      ),
     500,
   )
 
@@ -178,7 +197,7 @@ function Main({ incomingParams, onParamChange, onScenarioSave, onScenarioShare, 
 
   useEffect(() => {
     if (incomingParams) {
-      console.log('Incoming!')
+      console.log('Incoming params!')
       // Prior to update we must cancel any pending (debounced) call to set from
       // form parameters. A re-render with prior scenario data can occur when
       // switching views with multiple scenarios. The debounced call would
@@ -194,6 +213,13 @@ function Main({ incomingParams, onParamChange, onScenarioSave, onScenarioShare, 
       setSeverity(incomingParams.severity)
     }
   }, [incomingParams, cancelSetScenarioToCustom, cancelDebouncedRun])
+
+  useEffect(() => {
+    if (incomingResult) {
+      console.log('Incoming result!')
+      setResult(incomingResult)
+    }
+  }, [incomingResult])
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
     runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases)

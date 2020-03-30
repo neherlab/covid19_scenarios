@@ -10,6 +10,7 @@ import { Scenario, SavedScenariosState, DEFAULT_SCENARIO_ID, ScenarioParams } fr
 import Main from '../Main/Main'
 import SaveScenarioDialog from './SaveScenarioDialog'
 import ShareScenarioDialog from './ShareScenarioDialog'
+import { AlgorithmResult } from '../../algorithms/types/Result.types'
 
 import './MultipleScenarios.scss'
 
@@ -117,6 +118,30 @@ export default function MultipleScenarios() {
     }
   }
 
+  function handleChangedResult(result: AlgorithmResult) {
+    // Note: isEqual handles Date() objects while lodash.isEqual does not.
+    const different = !isEqual(activeScenario.result, result)
+
+    console.log(`hoisted result. different: ${different}`)
+    if (!activeScenario.result) {
+      console.log('initial result')
+    } else {
+      console.log('existing result')
+      console.log(
+        jestDiff(activeScenario.result, result, {
+          expand: false,
+          contextLines: 2,
+          aAnnotation: 'was',
+          bAnnotation: 'is',
+        }),
+      )
+    }
+
+    if (different || (!activeScenario.result && result)) {
+      updateScenario(activeScenario.id, { result })
+    }
+  }
+
   function updateScenario(id: string, update: Partial<Scenario>) {
     setScenarios(scenarios.map((scenario) => (scenario.id === id ? { ...scenario, ...update } : scenario)))
   }
@@ -142,6 +167,8 @@ export default function MultipleScenarios() {
       <Main
         incomingParams={activeScenario.params}
         onParamChange={handleChangedParameters}
+        incomingResult={activeScenario.result || null}
+        onResultChange={handleChangedResult}
         onScenarioSave={() => {
           setShowSaveModal(true)
         }}

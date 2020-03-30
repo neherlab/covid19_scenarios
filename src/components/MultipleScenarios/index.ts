@@ -1,12 +1,13 @@
 import { State } from '../Main/state/state'
 import { SeverityTableRow } from '../Main/Scenario/SeverityTable'
+import { AlgorithmResult } from '../../algorithms/types/Result.types'
 
 export interface Scenario {
   id: string
   userid: string
   name: string
   params: null | ScenarioParams
-  result?: null
+  result?: null | AlgorithmResult
 }
 
 export interface ScenarioParams {
