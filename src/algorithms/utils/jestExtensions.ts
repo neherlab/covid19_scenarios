@@ -36,7 +36,7 @@ function extractContext(context: Context) {
   return { testName, state, count, key, error }
 }
 
-function getExpectedSnapshot(state: SnapshotState, key: string) {
+function getSnapshot(state: SnapshotState, key: string) {
   const data = state._snapshotData[key]
 
   if (!data) {
@@ -48,6 +48,14 @@ function getExpectedSnapshot(state: SnapshotState, key: string) {
   } catch {
     return []
   }
+}
+
+function serialize(data: number[]): string {
+  return JSON.stringify(data, null, 2)
+}
+
+function setSnapshot(state: SnapshotState, key: string, expected: number[]) {
+  state._snapshotData[key] = serialize(expected)
 }
 
 function compare(
@@ -73,26 +81,22 @@ function compare(
 
 function toBeCloseToArraySnapshot(this: Context, received: number[]) {
   const { testName, state, count, key, error } = extractContext(this)
+  const isInline = false
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
   state.markSnapshotsAsCheckedForTest(testName)
 
-  const expected = getExpectedSnapshot(state, key)
-
-  const hasSnapshot = expected !== undefined
+  const expected = getSnapshot(state, key)
 
   const tolerance = 10 ** -2 / 2
   const { pass, diffs } = compare(expected, received, tolerance)
 
-  const receivedSerialized = JSON.stringify(received, null, 2)
-
-  const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
-
   if (pass) {
-    /* Test passed, now update the snapshot state with the serialize snapshot.
-     * Technically this is only necessary if no snapshot was saved before. */
-    state._snapshotData[key] = receivedSerialized
+    setSnapshot(state, key, received)
   }
+
+  const hasSnapshot = expected !== undefined
+  const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
 
   /* This nested mess is derived the Jest snapshot matcher code:
    * https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts
@@ -108,12 +112,12 @@ function toBeCloseToArraySnapshot(this: Context, received: number[]) {
         } else {
           state.added++
         }
-        state._addSnapshot(key, receivedSerialized, { error, isInline: false })
+        state._addSnapshot(key, serialize(received), { error, isInline })
       } else {
         state.matched++
       }
     } else {
-      state._addSnapshot(key, receivedSerialized, { error, isInline: false })
+      state._addSnapshot(key, serialize(received), { error, isInline })
       state.added++
     }
 
@@ -130,9 +134,9 @@ function toBeCloseToArraySnapshot(this: Context, received: number[]) {
       state.unmatched++
       return {
         message: () => 'message b',
-        actual: receivedSerialized,
+        actual: serialize(received),
         count,
-        expected: expected !== undefined ? expected : undefined,
+        expected: expected !== undefined ? serialize(expected) : undefined,
         key,
         pass: false,
       }
@@ -140,7 +144,7 @@ function toBeCloseToArraySnapshot(this: Context, received: number[]) {
       state.matched++
       return {
         message: () => 'message c',
-        actual: receivedSerialized,
+        actual: serialize(received),
         count,
         expected: '',
         key,
