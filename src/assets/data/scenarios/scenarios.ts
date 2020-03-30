@@ -4,7 +4,7 @@ import { makeTimeSeries } from '../../../algorithms/utils/TimeSeries'
 
 const scenarios: Record<string, ScenarioData> = {}
 
-Object.keys(rawScenarios).forEach(k => {
+Object.keys(rawScenarios).forEach((k) => {
   const data = rawScenarios[k]
   const tMin = new Date(data.simulation.simulationTimeRange.tMin)
   const tMax = new Date(data.simulation.simulationTimeRange.tMax)
@@ -17,11 +17,11 @@ Object.keys(rawScenarios).forEach(k => {
       ...data.epidemiological,
     },
     containment: {
-      reduction: makeTimeSeries({ tMin: tMin, tMax: tMax }, data.containment.reduction),
+      reduction: makeTimeSeries({ tMin, tMax }, data.containment.reduction),
       numberPoints: data.containment.reduction.length,
     },
     simulation: {
-      simulationTimeRange: { tMin: tMin, tMax: tMax },
+      simulationTimeRange: { tMin, tMax },
       numberStochasticRuns: 0,
     },
   }

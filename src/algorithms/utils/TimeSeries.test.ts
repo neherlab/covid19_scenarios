@@ -1,7 +1,7 @@
+import * as fs from 'fs'
 import { uniformDatesBetween, makeTimeSeries, updateTimeSeries } from './TimeSeries'
 import { interpolateTimeSeries } from '../run'
 
-import * as fs from 'fs'
 const { utils } = require('jest-snapshot')
 
 expect.extend({
@@ -21,7 +21,7 @@ expect.extend({
     const tryParse = (str: string) => {
       try {
         return JSON.parse(str)
-      } catch (e) {
+      } catch (error) {
         return []
       }
     }
@@ -75,28 +75,26 @@ expect.extend({
         key,
         pass: true,
       }
-    } else {
-      if (!pass) {
-        snapshotState.unmatched++
-        return {
-          message: () => 'message b',
-          actual: receivedSerialized,
-          count,
-          expected: expected !== undefined ? expected : undefined,
-          key,
-          pass: false,
-        }
-      } else {
-        snapshotState.matched++
-        return {
-          message: () => 'message c',
-          actual: receivedSerialized,
-          count,
-          expected: '',
-          key,
-          pass: true,
-        }
+    }
+    if (!pass) {
+      snapshotState.unmatched++
+      return {
+        message: () => 'message b',
+        actual: receivedSerialized,
+        count,
+        expected: expected !== undefined ? expected : undefined,
+        key,
+        pass: false,
       }
+    }
+    snapshotState.matched++
+    return {
+      message: () => 'message c',
+      actual: receivedSerialized,
+      count,
+      expected: '',
+      key,
+      pass: true,
     }
   },
 })

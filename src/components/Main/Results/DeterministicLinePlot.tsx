@@ -219,7 +219,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
           return (
             <>
               <h5>{t('Cases through time')}</h5>
-              
+
               <div ref={chartRef} />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
@@ -243,10 +243,10 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                   tickCount={7}
                 />
                 <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
-                <Tooltip 
-                  formatter={tooltipFormatter} 
+                <Tooltip
+                  formatter={tooltipFormatter}
                   labelFormatter={labelFormatter}
-                  position={tooltipPosition} 
+                  position={tooltipPosition}
                   content={ResponsiveTooltipContent}
                 />
                 <Legend
