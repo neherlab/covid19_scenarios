@@ -26,14 +26,14 @@ interface Context extends MatcherState {
 }
 
 function extractContext(context: Context) {
-  const { currentTestName: testName, snapshotState: state } = context
+  const { currentTestName: testName, snapshotState: state, error } = context
 
   state._counters.set(testName, (state._counters.get(testName) || 0) + 1)
 
   const count = Number(state._counters.get(testName))
   const key = utils.testNameToKey(testName, count)
 
-  return { testName, state, count, key }
+  return { testName, state, count, key, error }
 }
 
 function getExpectedSnapshot(state: SnapshotState, key: string) {
@@ -72,7 +72,7 @@ function compare(
 }
 
 function toBeCloseToArraySnapshot(this: Context, received: number[]) {
-  const { testName, state, count, key } = extractContext(this)
+  const { testName, state, count, key, error } = extractContext(this)
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
   state.markSnapshotsAsCheckedForTest(testName)
@@ -108,12 +108,12 @@ function toBeCloseToArraySnapshot(this: Context, received: number[]) {
         } else {
           state.added++
         }
-        state._addSnapshot(key, receivedSerialized, { error: undefined, isInline: false })
+        state._addSnapshot(key, receivedSerialized, { error, isInline: false })
       } else {
         state.matched++
       }
     } else {
-      state._addSnapshot(key, receivedSerialized, { error: undefined, isInline: false })
+      state._addSnapshot(key, receivedSerialized, { error, isInline: false })
       state.added++
     }
 
