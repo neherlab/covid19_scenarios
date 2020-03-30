@@ -11,30 +11,31 @@ function extractContext(context: any) {
   return { testName, state, count, key }
 }
 
+function getExpectedSnapshot(state: any, key: string) {
+  const data = state._snapshotData[key]
+
+  if (!data) {
+    return []
+  }
+
+  try {
+    return JSON.parse(data)
+  } catch {
+    return []
+  }
+}
+
 function toBeCloseToArraySnapshot(this: any, received: number[]) {
   const { testName, state, count, key } = extractContext(this)
-  const expected = state._snapshotData[key]
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
   state.markSnapshotsAsCheckedForTest(testName)
 
-  /* If the snapshot isn't JSON, then return an empty array. Otherwise
-   * the test will fails in an inscrutable way.
-   */
-  const tryParse = (str: string) => {
-    try {
-      return JSON.parse(str)
-    } catch (e) {
-      return []
-    }
-  }
-
-  /* If the expected field is blank, then this is probably a new snapshot. */
-  const expectedDeserialized = expected ? tryParse(expected) : []
+  const expected = getExpectedSnapshot(state, key)
 
   const pass =
-    expectedDeserialized.length > 0 /* must check this because every() returns true if empty array */
-      ? received.every((_, idx) => Math.abs(expectedDeserialized[idx] - received[idx]) < 10 ** -2 / 2)
+    expected.length > 0 /* must check this because every() returns true if empty array */
+      ? received.every((_, idx) => Math.abs(expected[idx] - received[idx]) < 10 ** -2 / 2)
       : false
   const hasSnapshot = expected !== undefined
   const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
