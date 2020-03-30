@@ -79,9 +79,47 @@ function compare(
   return { pass, diffs }
 }
 
+/* This nested mess is derived the Jest snapshot matcher code:
+ * https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts
+ */
+function shouldAddSnapshot(state: SnapshotState, hasSnapshot: boolean): boolean {
+  const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
+
+  return (
+    (hasSnapshot && state._updateSnapshot === 'all') ||
+    ((!hasSnapshot || !snapshotIsPersisted) && (state._updateSnapshot === 'new' || state._updateSnapshot === 'all'))
+  )
+}
+
+function addSnapshot(
+  state: SnapshotState,
+  key: string,
+  hasSnapshot: boolean,
+  received: number[],
+  pass: boolean,
+  error?: Error,
+) {
+  const isInline = false
+
+  if (state._updateSnapshot === 'all') {
+    if (!pass) {
+      if (hasSnapshot) {
+        state.updated++
+      } else {
+        state.added++
+      }
+      state._addSnapshot(key, serialize(received), { error, isInline })
+    } else {
+      state.matched++
+    }
+  } else {
+    state._addSnapshot(key, serialize(received), { error, isInline })
+    state.added++
+  }
+}
+
 function toBeCloseToArraySnapshot(this: Context, received: number[]) {
   const { testName, state, count, key, error } = extractContext(this)
-  const isInline = false
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
   state.markSnapshotsAsCheckedForTest(testName)
@@ -96,37 +134,12 @@ function toBeCloseToArraySnapshot(this: Context, received: number[]) {
   }
 
   const hasSnapshot = expected !== undefined
-  const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
 
-  /* This nested mess is derived the Jest snapshot matcher code:
-   * https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts
-   */
-  if (
-    (hasSnapshot && state._updateSnapshot === 'all') ||
-    ((!hasSnapshot || !snapshotIsPersisted) && (state._updateSnapshot === 'new' || state._updateSnapshot === 'all'))
-  ) {
-    if (state._updateSnapshot === 'all') {
-      if (!pass) {
-        if (hasSnapshot) {
-          state.updated++
-        } else {
-          state.added++
-        }
-        state._addSnapshot(key, serialize(received), { error, isInline })
-      } else {
-        state.matched++
-      }
-    } else {
-      state._addSnapshot(key, serialize(received), { error, isInline })
-      state.added++
-    }
+  if (shouldAddSnapshot(state, hasSnapshot)) {
+    addSnapshot(state, key, hasSnapshot, received, pass, error)
 
     return {
-      message: () => 'message a',
-      actual: '',
-      count,
-      expected: '',
-      key,
+      message: () => '',
       pass: true,
     }
   } else {
