@@ -33,7 +33,7 @@ import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
-import { SaveScenario, ActiveScenario } from '../MultipleScenarios'
+import { ActiveScenario } from '../MultipleScenarios'
 
 import './Main.scss'
 
