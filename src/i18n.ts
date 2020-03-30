@@ -32,7 +32,7 @@ i18n
     },
   })
 
-i18n.on('languageChanged', lang => {
+i18n.on('languageChanged', (lang) => {
   numeral.locale(langs[lang].numeralLocale)
 })
 
