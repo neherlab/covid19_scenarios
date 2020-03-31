@@ -94,6 +94,12 @@ class Object:
     def marshalJSON(self):
         return json.dumps(self, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
+class Measure(Object):
+    def __init__(self, name, tMin, tMax, value):
+        self.name = name
+        self.timeRange = DateRange(tMin, tMax) 
+        self.mitigationValue = value
+
 class PopulationParams(Object):
     def __init__(self, region, country, population, beds, icus):
         self.populationServed    = int(population)
@@ -136,6 +142,8 @@ class ContainmentParams(Object):
         #self.reduction    = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
         self.reduction    = np.ones(15)
         self.numberPoints = len(self.reduction)
+        self.measures = []
+
 
 class DateRange(Object):
     def __init__(self, tMin, tMax):
@@ -201,11 +209,16 @@ def set_mitigation(cases, scenario):
     levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e5),200))[0]
     levelTwo = np.where(case_counts > min(max(5, scenario.population.populationServed/1e4),2000))[0]
 
-    for level, val in [(levelOne, 0.6), (levelTwo, 0.4)]:
+    for name, level, val in [("levelOne", levelOne, 0.6), ('levelTwo', levelTwo, 0.5)]:
         if len(level):
             level_idx = level[0]
-            cutoff = datetime.strptime(valid_cases[level_idx]["time"][:10], '%Y-%m-%d').toordinal()
-            scenario.containment.reduction[timeline>cutoff] = val
+            cutoff_str = valid_cases[level_idx]["time"][:10]
+            cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
+
+            scenario.containment.reduction[timeline>cutoff] *= val
+            scenario.containment.measures.append(Measure(name, cutoff_str, 
+                scenario.simulation.simulationTimeRange.tMax[:10], 
+                val))
 
     scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
 
