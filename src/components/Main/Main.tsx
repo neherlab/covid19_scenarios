@@ -196,19 +196,24 @@ function Main({
       cancelSetScenarioToCustom()
       cancelDebouncedRun()
 
-      // Update state from incoming parameters.
-      scenarioDispatch(setScenarioData({ data: incomingParams.scenarioState.data }))
-      if (incomingParams.scenarioState.current !== CUSTOM_SCENARIO_NAME) {
-        scenarioDispatch(setScenario({ name: incomingParams.scenarioState.current }))
+      // Update state from incoming parameters and be paranoid about unecessary updates
+      if (!isEqual(scenarioState.data, incomingParams.scenarioState.data)) {
+        scenarioDispatch(setScenarioData({ data: incomingParams.scenarioState.data }))
+        if (incomingParams.scenarioState.current !== CUSTOM_SCENARIO_NAME) {
+          scenarioDispatch(setScenario({ name: incomingParams.scenarioState.current }))
+        }
+        setSeverity(incomingParams.severity)
       }
-      setSeverity(incomingParams.severity)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [incomingParams, cancelSetScenarioToCustom, cancelDebouncedRun])
 
   useEffect(() => {
-    if (incomingResult) {
+    if (incomingResult && !isEqual(result, incomingResult)) {
+      // Update from incoming and be paranoid about unecessary updates
       setResult(incomingResult)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [incomingResult])
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {

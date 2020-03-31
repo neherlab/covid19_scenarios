@@ -6,7 +6,7 @@ import classnames from 'classnames'
 import isEqual from 'is-equal'
 import _ from 'lodash'
 
-import { Scenario, SavedScenariosState, DEFAULT_SCENARIO_ID, ScenarioParams } from '.'
+import { Scenario, SavedScenariosState, DEFAULT_SCENARIO_ID, ScenarioParams, AnyScenario } from '.'
 import Main, { severityDefaults } from '../Main/Main'
 import { defaultScenarioState } from '../Main/state/state'
 import SaveScenarioDialog from './SaveScenarioDialog'
@@ -14,6 +14,31 @@ import ShareScenarioDialog from './ShareScenarioDialog'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 
 import './MultipleScenarios.scss'
+
+function updateOrAddScenario(scenario: AnyScenario, scenarios: AnyScenario[]) {
+  const exists = !!scenarios.find((other: AnyScenario) => other.id === scenario.id)
+  if (exists) {
+    return scenarios.map((other: AnyScenario) => (other.id === scenario.id ? scenario : other))
+  }
+  return [...scenarios, scenario]
+}
+
+function rehydrateScenario(scenario: AnyScenario) {
+  if (scenario.params) {
+    const copy = _.cloneDeep(scenario)
+    if (copy.params) {
+      const { data } = copy.params.scenarioState
+      data.simulation.simulationTimeRange.tMin = new Date(data.simulation.simulationTimeRange.tMin)
+      data.simulation.simulationTimeRange.tMax = new Date(data.simulation.simulationTimeRange.tMax)
+      data.containment.reduction = data.containment.reduction.map((c) => ({
+        y: c.y,
+        t: new Date(c.t),
+      }))
+    }
+    return copy
+  }
+  return scenario
+}
 
 const useSavedScenariosState = createPersistedState('savedScenarios')
 const useUserState = createPersistedState('user')
@@ -28,10 +53,18 @@ export default function MultipleScenarios() {
   const [activeTab, setActiveTab] = useState(DEFAULT_SCENARIO_ID)
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
   const [showShareModal, setShowShareModal] = useState<boolean>(false)
-  const [modifiedScenarios, setModifiedScenarios] = useState<{ [key: string]: boolean }>({})
 
   const activeScenario = scenarios.find((scenario) => scenario.id === activeTab) || scenarios[0]
-  const isModified = (scenarioId: string) => scenarioId in modifiedScenarios && modifiedScenarios[scenarioId]
+
+  function isModified(scenario: Scenario) {
+    if (scenario.id !== DEFAULT_SCENARIO_ID) {
+      const saved = savedScenarios.scenarios.find((other) => other.id === scenario.id)
+      if (saved && scenario.params && !isEqual(saved.params?.scenarioState.data, scenario.params.scenarioState.data)) {
+        return true
+      }
+    }
+    return false
+  }
 
   function onScenarioClone(name: string) {
     const newScenario = { id: uuidv4(), userid: user.id, name, params: activeScenario.params }
@@ -49,7 +82,6 @@ export default function MultipleScenarios() {
       version: 1,
       scenarios: savedScenarios.scenarios.map((scenario) => (scenario.id === activeScenario.id ? toSave : scenario)),
     })
-    setModifiedScenarios({ ...modifiedScenarios, [activeScenario.id]: false })
   }
 
   const toggleTab = (tab: string) => {
@@ -63,6 +95,7 @@ export default function MultipleScenarios() {
 
     const toSerialize = _.cloneDeep({
       id: activeScenario.id !== DEFAULT_SCENARIO_ID ? activeScenario.id : uuidv4(),
+      version: 1,
       userid: user.id,
       name,
       createdBy,
@@ -74,46 +107,34 @@ export default function MultipleScenarios() {
   }
 
   useEffect(() => {
+    let scenarioFromLink
     try {
       const shareableLink = window.location.search.slice(1)
       if (shareableLink) {
-        const fromLink = JSON.parse(decodeURIComponent(escape(atob(shareableLink))))
-        const existing = savedScenarios.scenarios.find((scenario) => scenario.id === fromLink.id)
-        if (!existing) {
-          delete fromLink.version
-          setSavedScenarios({
-            version: 1,
-            scenarios: [...savedScenarios.scenarios, fromLink],
-          })
-        }
-        setActiveTab(fromLink.id)
+        scenarioFromLink = JSON.parse(decodeURIComponent(escape(atob(shareableLink))))
+        delete scenarioFromLink.version
+        scenarioFromLink = rehydrateScenario(scenarioFromLink)
       }
     } catch (error) {
       console.error('Error while parsing URL :', error.message)
+      scenarioFromLink = undefined
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
-  // Rehydrate saved scenario dates and seed the scenarios list
-  useEffect(() => {
-    const updatedScenarios = savedScenarios.scenarios.map((scenario) => {
-      if (scenario.params) {
-        const copy = _.cloneDeep(scenario)
-        if (copy.params) {
-          const { data } = copy.params.scenarioState
-          data.simulation.simulationTimeRange.tMin = new Date(data.simulation.simulationTimeRange.tMin)
-          data.simulation.simulationTimeRange.tMax = new Date(data.simulation.simulationTimeRange.tMax)
-          data.containment.reduction = data.containment.reduction.map((c) => ({
-            y: c.y,
-            t: new Date(c.t),
-          }))
-        }
-        return copy
-      }
-      return scenario
+    const rehydratedSavedScenarios = savedScenarios.scenarios.map((scenario) => rehydrateScenario(scenario))
+    setSavedScenarios({ ...savedScenarios, scenarios: rehydratedSavedScenarios })
+
+    let workingScenarios = scenarios
+    rehydratedSavedScenarios.forEach((savedScenario) => {
+      workingScenarios = updateOrAddScenario(savedScenario, workingScenarios)
     })
-    setSavedScenarios({ ...savedScenarios, scenarios: updatedScenarios })
-    setScenarios(updatedScenarios)
+    if (scenarioFromLink) {
+      workingScenarios = updateOrAddScenario(scenarioFromLink, workingScenarios)
+    }
+    setScenarios(workingScenarios)
+
+    if (scenarioFromLink) {
+      setActiveTab(scenarioFromLink.id)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -150,12 +171,6 @@ export default function MultipleScenarios() {
 
     if (different || (!activeScenario.params && params)) {
       updateScenario(activeScenario.id, { params })
-      if (
-        activeScenario.id !== DEFAULT_SCENARIO_ID &&
-        savedScenarios.scenarios.find((scenario) => scenario.id === activeScenario.id)
-      ) {
-        setModifiedScenarios({ ...modifiedScenarios, [activeScenario.id]: true })
-      }
     }
   }
 
@@ -189,9 +204,9 @@ export default function MultipleScenarios() {
 
   return (
     <div className="multiple-scenarios">
-      {savedScenarios.scenarios.length > 1 && (
+      {scenarios.length > 1 && (
         <Nav tabs>
-          {savedScenarios.scenarios.map((scenario) => (
+          {scenarios.map((scenario) => (
             <NavItem key={scenario.id}>
               <NavLink
                 className={classnames({ active: activeTab === scenario.id })}
@@ -200,7 +215,7 @@ export default function MultipleScenarios() {
                 }}
               >
                 <h5>
-                  {scenario.name} {isModified(scenario.id) && <sup>*</sup>}
+                  {scenario.name} {isModified(scenario) && <sup>*</sup>}
                 </h5>
               </NavLink>
             </NavItem>
@@ -215,7 +230,7 @@ export default function MultipleScenarios() {
         onScenarioClone={() => {
           setShowSaveModal(true)
         }}
-        onScenarioSave={activeTab !== DEFAULT_SCENARIO_ID && isModified(activeScenario.id) ? onScenarioSave : undefined}
+        onScenarioSave={activeTab !== DEFAULT_SCENARIO_ID && isModified(activeScenario) ? onScenarioSave : undefined}
         onScenarioShare={() => {
           setShowShareModal(true)
         }}

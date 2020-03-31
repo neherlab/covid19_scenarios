@@ -148,7 +148,7 @@ function ResultsCardFunction({
             </Button>
             <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
             <ButtonDropdown isOpen={showActionMenu} toggle={toggleShowActionMenu}>
-              <DropdownToggle caret>Actions...</DropdownToggle>
+              <DropdownToggle caret>{t('Actions...')}</DropdownToggle>
               <DropdownMenu>
                 <DropdownItem disabled={!canExport} onClick={(_) => setShowExportModal(true)}>
                   {t('Export')}

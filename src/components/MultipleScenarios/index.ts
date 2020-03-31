@@ -29,3 +29,5 @@ export interface SavedScenariosState {
 }
 
 export const DEFAULT_SCENARIO_ID = 'customize'
+
+export type AnyScenario = Scenario | SavedScenario
