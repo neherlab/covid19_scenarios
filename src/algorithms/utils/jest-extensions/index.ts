@@ -1,6 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* Because Jest StateSnapshot uses them. */
-
 /* eslint-disable no-param-reassign */
 /* Because the convention in Jest's toMatchSnapshot() is to modify state. */
 
@@ -8,41 +5,19 @@
 /* tslint:disable:no-implicit-dependencies */
 /* Because this is a Jest extension, and these imports are present. :/ */
 
-import * as fs from 'fs'
-import { utils } from 'jest-snapshot'
-import type { Context, SnapshotData } from './types'
-
-function getContext(context: Context) {
-  const { currentTestName: testName, snapshotState: state, error } = context
-
-  state._counters.set(testName, (state._counters.get(testName) || 0) + 1)
-
-  const count = Number(state._counters.get(testName))
-  const key = utils.testNameToKey(testName, count)
-
-  return { testName, state, count, key, error }
-}
-
-function getSnapshot(state: SnapshotState, key: string) {
-  const data = state._snapshotData[key]
-
-  if (!data) {
-    return undefined
-  }
-
-  try {
-    return JSON.parse(data)
-  } catch {
-    return []
-  }
-}
+import type { Context } from './types'
+import State from './state'
 
 function serialize(data: number[]): string {
   return JSON.stringify(data, null, 2)
 }
 
-function setSnapshot(state: SnapshotState, key: string, expected: number[]) {
-  state._snapshotData[key] = serialize(expected)
+function deserialize(data: string): number[] {
+  try {
+    return JSON.parse(data)
+  } catch {
+    return []
+  }
 }
 
 function compare(
@@ -66,64 +41,24 @@ function compare(
   return { pass, diffs }
 }
 
-/* This nested mess is derived the Jest snapshot matcher code:
- * https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts
- */
-function couldAddSnapshot(state: SnapshotState, hasSnapshot: boolean): boolean {
-  const snapshotIsPersisted = fs.existsSync(state._snapshotPath)
-
-  return (
-    (hasSnapshot && state._updateSnapshot === 'all') ||
-    ((!hasSnapshot || !snapshotIsPersisted) && (state._updateSnapshot === 'new' || state._updateSnapshot === 'all'))
-  )
-}
-
-function maybeAddSnapshot(
-  state: SnapshotState,
-  key: string,
-  hasSnapshot: boolean,
-  received: number[],
-  pass: boolean,
-  error?: Error,
-) {
-  const isInline = false
-
-  if (state._updateSnapshot === 'all') {
-    if (!pass) {
-      if (hasSnapshot) {
-        state.updated++
-      } else {
-        state.added++
-      }
-      state._addSnapshot(key, serialize(received), { error, isInline })
-    } else {
-      state.matched++
-    }
-  } else {
-    state._addSnapshot(key, serialize(received), { error, isInline })
-    state.added++
-  }
-}
-
 function toBeCloseToArraySnapshot(this: Context, received: number[], precision: 2) {
-  const { testName, state, count, key, error } = getContext(this)
+  const state = new State(this)
 
-  /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
-  state.markSnapshotsAsCheckedForTest(testName)
-
-  const expected = getSnapshot(state, key)
+  const snapshot = state.getSnapshot()
+  const expected = deserialize(snapshot)
 
   const tolerance = Math.pow(10, -precision) / 2
   const { pass } = compare(expected, received, tolerance)
 
   if (pass) {
-    setSnapshot(state, key, received)
+    state.setSnapshot(serialize(received))
   }
 
-  const hasSnapshot = expected !== undefined
+  state.markSnapshotsAsCheckedForTest()
+  state.updateTally(pass)
 
-  if (couldAddSnapshot(state, hasSnapshot)) {
-    maybeAddSnapshot(state, key, hasSnapshot, received, pass, error)
+  if (state.couldAddSnapshot()) {
+    state.addSnapshot(serialize(received))
 
     return {
       message: () => '',
@@ -132,24 +67,22 @@ function toBeCloseToArraySnapshot(this: Context, received: number[], precision: 
   }
 
   if (!pass) {
-    state.unmatched++
     return {
       message: () => `expected: ${serialize(received)}\n received: ${serialize(expected)}`,
       actual: serialize(received),
-      count,
+      count: state.count,
       expected: expected !== undefined ? serialize(expected) : undefined,
-      key,
+      key: state.key,
       pass: false,
     }
   }
 
-  state.matched++
   return {
     message: () => 'message c',
     actual: serialize(received),
-    count,
+    count: state.count,
     expected: '',
-    key,
+    key: state.key,
     pass: true,
   }
 }
