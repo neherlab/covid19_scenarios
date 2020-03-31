@@ -26,7 +26,7 @@ import { schema } from './validation/schema'
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
-import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
+// import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
@@ -53,6 +53,7 @@ async function runSimulation(
     ...params.population,
     ...params.epidemiological,
     ...params.simulation,
+    ...params.containment,
   }
 
   if (!isCountry(params.population.country)) {
@@ -68,11 +69,9 @@ async function runSimulation(
   const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[params.population.country]
   const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
 
-  const containmentData = params.containment.reduction
+  // serializeScenarioToURL(scenarioState, params)
 
-  serializeScenarioToURL(scenarioState, params)
-
-  const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
+  const newResult = await run(paramsFlat, severity, ageDistribution)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
@@ -94,7 +93,7 @@ function Main() {
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,
-    deserializeScenarioFromURL,
+    // deserializeScenarioFromURL,
   )
 
   // TODO: Can this complex state be handled by formik too?
@@ -154,7 +153,8 @@ function Main() {
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.containment, newParams.containment)) {
-      scenarioDispatch(setContainmentData({ data: newParams.containment }))
+      const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
+      scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
     }
   }, 1000)
 

@@ -1,4 +1,7 @@
-import scenarios from '../../../assets/data/scenarios/scenarios'
+import _ from 'lodash'
+
+import scenarios from '../../../assets/data/scenarios/scenarios.json'
+
 import { ScenarioData } from '../../../algorithms/types/Param.types'
 
 export type Scenario = string
@@ -6,8 +9,10 @@ export type Scenario = string
 export const scenarioNames = Object.keys(scenarios)
 
 export function getScenarioData(key: string): ScenarioData {
-  if (!(key in scenarios)) {
+  // TODO: use schema-generate type, validate against schema on runtime
+  const scenarioData = _.get(scenarios, key) as ScenarioData | null
+  if (!scenarioData) {
     throw new Error(`Error: scenario "${key}" not found in JSON`)
   }
-  return scenarios[key]
+  return { ...scenarioData, containment: { mitigationIntervals: [] } }
 }
