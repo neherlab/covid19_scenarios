@@ -68,7 +68,7 @@ export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) 
   return (
     <Row data-testid="OutcomeRatesTable">
       <Col lg={6}>
-        <h5>{t('Proportions')}</h5>
+        <h3>{t('Proportions')}</h3>
         <table>
           <thead>
             <tr>
@@ -97,7 +97,7 @@ export function OutcomeRatesTable({ showHumanized, result, rates }: TableProps) 
         </table>
       </Col>
       <Col lg={6}>
-        <h5>{t('Totals/Peak')}</h5>
+        <h3>{t('Totals/Peak')}</h3>
         <table>
           <thead>
             <tr>
