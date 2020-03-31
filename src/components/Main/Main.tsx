@@ -60,7 +60,7 @@ async function runSimulation(
     return
   }
 
-  if (!isRegion(params.population.cases)) {
+  if (params.population.cases !== "none" && !isRegion(params.population.cases)) {
     console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
     return
   }
