@@ -133,8 +133,8 @@ class EpidemiologicalParams(Object):
 
 class ContainmentParams(Object):
     def __init__(self):
-        self.reduction    = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
-        # self.reduction    = [1.0, 0.8, 0.7, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6]
+        #self.reduction    = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        self.reduction    = np.ones(15)
         self.numberPoints = len(self.reduction)
 
 class DateRange(Object):
@@ -181,10 +181,33 @@ def fit_one_case_data(args):
 def fit_all_case_data(num_procs=4):
     pool = multi.Pool(num_procs)
     case_counts = parse_tsv()
-    results = pool.map(fit_one_case_data, case_counts.items())
+    results = pool.map(fit_one_case_data, list(case_counts.items()))
     for k, v in results:
         if v is not None:
             FIT_CASE_DATA[k] = v
+
+
+def set_mitigation(cases, scenario):
+    timeline = np.linspace(datetime.strptime(scenario.simulation.simulationTimeRange.tMin[:10], '%Y-%m-%d').toordinal(),
+                           datetime.strptime(scenario.simulation.simulationTimeRange.tMax[:10], '%Y-%m-%d').toordinal(),
+                           len(scenario.containment.reduction))
+
+    valid_cases = [c for c in cases if c['cases'] is not None]
+    if len(valid_cases)==0:
+        scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
+        return
+
+    case_counts = np.array([c['cases'] for c in valid_cases])
+    levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e5),200))[0]
+    levelTwo = np.where(case_counts > min(max(5, scenario.population.populationServed/1e4),2000))[0]
+
+    for level, val in [(levelOne, 0.6), (levelTwo, 0.4)]:
+        if len(level):
+            level_idx = level[0]
+            cutoff = datetime.strptime(valid_cases[level_idx]["time"][:10], '%Y-%m-%d').toordinal()
+            scenario.containment.reduction[timeline>cutoff] = val
+
+    scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -195,6 +218,7 @@ def generate(output_json, num_procs=1):
     print("DONE")
     print(FIT_CASE_DATA)
     print(output_json)
+    case_counts = parse_tsv()
 
     with open(SCENARIO_POPS, 'r') as fd:
         rdr = csv.reader(fd, delimiter='\t')
@@ -208,11 +232,18 @@ def generate(output_json, num_procs=1):
 
         args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere']
         for region in rdr:
+            region_name = region[idx['name']]
             entry = [region[idx[arg]] for arg in args]
-            scenario[region[idx['name']]] = AllParams(*entry)
+            scenario[region_name] = AllParams(*entry)
+            if region_name in case_counts:
+                set_mitigation(case_counts[region_name], scenario[region_name])
+            else:
+                scenario[region_name].containment.reduction = [float(x) 
+                    for x in scenario[region_name].containment.reduction]
 
     with open(output_json, "w+") as fd:
         marshalJSON(scenario, fd)
 
 if __name__ == '__main__':
     generate()
+
