@@ -1,4 +1,13 @@
 /* eslint-disable no-underscore-dangle */
+/* Because Jest StateSnapshot uses them. */
+
+/* eslint-disable no-param-reassign */
+/* Because the convention in Jest's toMatchSnapshot() is to modify state. */
+
+/* eslint-disable import/no-extraneous-dependencies */
+/* tslint:disable:no-implicit-dependencies */
+/* Because this is a Jest extension, and these imports are present. :/ */
+
 import * as fs from 'fs'
 import { MatcherState } from 'expect'
 import { utils } from 'jest-snapshot'
