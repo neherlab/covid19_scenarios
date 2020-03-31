@@ -50,11 +50,12 @@ export default function toBeCloseToArraySnapshot(this: Context, received: number
   const tolerance = Math.pow(10, -precision) / 2
   const { pass } = compare(expected, received, tolerance)
 
+  state.markSnapshotsAsCheckedForTest()
+
   if (pass) {
     state.setSnapshot(serialize(received))
   }
 
-  state.markSnapshotsAsCheckedForTest()
   state.updateTally(pass)
 
   if (state.couldAddSnapshot()) {
