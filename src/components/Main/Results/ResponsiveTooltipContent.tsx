@@ -10,7 +10,7 @@ interface TooltipItem {
 
 interface TooltipContentProps {
   active: boolean
-  label: string | number
+  label?: string | number
   payload: TooltipItem[]
   formatter?: Function
   labelFormatter?: Function
