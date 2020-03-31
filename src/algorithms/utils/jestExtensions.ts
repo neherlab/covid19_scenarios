@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable no-underscore-dangle */
 import * as fs from 'fs'
 import { MatcherState } from 'expect'
 import { utils } from 'jest-snapshot'
