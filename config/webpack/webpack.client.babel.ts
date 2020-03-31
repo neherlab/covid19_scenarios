@@ -271,6 +271,7 @@ export default {
       BABEL_ENV: process.env.BABEL_ENV,
       DEBUGGABLE_PROD: process.env.DEBUGGABLE_PROD,
       NODE_ENV: process.env.NODE_ENV,
+      DEV_ENABLE_I18N_DEBUG: getenv('DEV_ENABLE_I18N_DEBUG', '0'),
     }),
 
     ...(fancyConsole
