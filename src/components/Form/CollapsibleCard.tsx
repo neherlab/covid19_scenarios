@@ -27,7 +27,7 @@ export function CollapsibleCard({
 
   return (
     <Card className={`h-100 ${className || ''}`}>
-      <CardHeader onClick={toggle}>
+      <CardHeader className="py-1 px-2" onClick={toggle}>
         <div className="w-100 h-100 text-left p-0" color="default">
           <div className="d-flex">
             <span className="mx-1 my-auto">

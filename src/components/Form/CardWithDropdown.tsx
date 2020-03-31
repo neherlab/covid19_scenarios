@@ -33,7 +33,7 @@ export function CardWithDropdown({
 }: CardWithDropdownProps) {
   return (
     <Card className={`h-100 ${className || ''}`}>
-      <CardHeader className="p-1">
+      <CardHeader className="py-1 px-2">
         <FormDropdownStateless<string>
           identifier={identifier}
           label={label}
