@@ -7,7 +7,8 @@ import isEqual from 'is-equal'
 import _ from 'lodash'
 
 import { Scenario, SavedScenariosState, DEFAULT_SCENARIO_ID, ScenarioParams } from '.'
-import Main from '../Main/Main'
+import Main, { severityDefaults } from '../Main/Main'
+import { defaultScenarioState } from '../Main/state/state'
 import SaveScenarioDialog from './SaveScenarioDialog'
 import ShareScenarioDialog from './ShareScenarioDialog'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
@@ -23,7 +24,7 @@ export default function MultipleScenarios() {
     version: 1,
     scenarios: [{ id: DEFAULT_SCENARIO_ID, userid: user.id, name: 'Customize', params: null }],
   })
-  const [scenarios, setScenarios] = useState<Scenario[]>(savedScenarios.scenarios)
+  const [scenarios, setScenarios] = useState<Scenario[]>([savedScenarios.scenarios[0]])
   const [activeTab, setActiveTab] = useState(DEFAULT_SCENARIO_ID)
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
   const [showShareModal, setShowShareModal] = useState<boolean>(false)
@@ -81,6 +82,29 @@ export default function MultipleScenarios() {
     } catch (error) {
       console.error('Error while parsing URL :', error.message)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Rehydrate saved scenario dates and seed the scenarios list
+  useEffect(() => {
+    const updatedScenarios = savedScenarios.scenarios.map((scenario) => {
+      if (scenario.params) {
+        const copy = _.cloneDeep(scenario)
+        if (copy.params) {
+          const { data } = copy.params.scenarioState
+          data.simulation.simulationTimeRange.tMin = new Date(data.simulation.simulationTimeRange.tMin)
+          data.simulation.simulationTimeRange.tMax = new Date(data.simulation.simulationTimeRange.tMax)
+          data.containment.reduction = data.containment.reduction.map((c) => ({
+            y: c.y,
+            t: new Date(c.t),
+          }))
+        }
+        return copy
+      }
+      return scenario
+    })
+    setSavedScenarios({ ...savedScenarios, scenarios: updatedScenarios })
+    setScenarios(updatedScenarios)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -167,7 +191,7 @@ export default function MultipleScenarios() {
         </Nav>
       )}
       <Main
-        incomingParams={activeScenario.params}
+        incomingParams={activeScenario.params || { scenarioState: defaultScenarioState, severity: severityDefaults }}
         onParamChange={handleChangedParameters}
         incomingResult={activeScenario.result || null}
         onResultChange={handleChangedResult}

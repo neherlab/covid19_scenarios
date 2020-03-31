@@ -84,7 +84,7 @@ async function runSimulation(
   setEmpiricalCases(caseCounts)
 }
 
-const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
+export const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
 const isCountry = (country: string): country is keyof CountryAgeDistribution => {
   return Object.prototype.hasOwnProperty.call(countryAgeDistributionData, country)
