@@ -39,8 +39,9 @@ export default class State {
     this.snapshotState = context.snapshotState
     this.error = context.error
 
-    this.hasSnapshot = this.getSnapshot() !== undefined
     this.incrementCounters()
+
+    this.hasSnapshot = this.getSnapshot() !== undefined
   }
 
   getSnapshot() {
