@@ -65,6 +65,8 @@ TODO: generate a table of contributors
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/tryggvigy"><img src="https://avatars2.githubusercontent.com/u/2373958?v=4" width="100px;" alt=""/><br /><sub><b>Tryggvi Gylfason</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=tryggvigy" title="Code">💻</a> <a href="#design-tryggvigy" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/kant"><img src="https://avatars1.githubusercontent.com/u/32717?v=4" width="100px;" alt=""/><br /><sub><b>Darío Hereñú</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=kant" title="Documentation">📖</a> <a href="#translation-kant" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://mikalaaksonen.netlify.com/"><img src="https://avatars0.githubusercontent.com/u/48655257?v=4" width="100px;" alt=""/><br /><sub><b>Mika Laaksonen</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=miksa1987" title="Code">💻</a> <a href="#design-miksa1987" title="Design">🎨</a></td>
   </tr>
 </table>
 
