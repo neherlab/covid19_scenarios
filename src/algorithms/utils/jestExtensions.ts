@@ -127,7 +127,7 @@ function maybeAddSnapshot(
   }
 }
 
-function toBeCloseToArraySnapshot(this: Context, received: number[]) {
+function toBeCloseToArraySnapshot(this: Context, received: number[], precision: 2) {
   const { testName, state, count, key, error } = getContext(this)
 
   /* If this isn't done, Jest reports the test as 'obsolete' and prompts for deletion. */
@@ -135,7 +135,7 @@ function toBeCloseToArraySnapshot(this: Context, received: number[]) {
 
   const expected = getSnapshot(state, key)
 
-  const tolerance = 10 ** -2 / 2
+  const tolerance = Math.pow(10, -precision) / 2
   const { pass, diffs } = compare(expected, received, tolerance)
 
   if (pass) {
