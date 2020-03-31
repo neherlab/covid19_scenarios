@@ -127,7 +127,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
         ? d.hospitalized || undefined
         : undefined,
       ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.ICU || undefined : undefined,
-      newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newCases(caseCounts, i) : undefined,
+      newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newCases(nonEmptyCaseCounts, i) : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
