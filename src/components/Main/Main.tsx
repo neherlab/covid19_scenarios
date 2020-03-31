@@ -11,7 +11,7 @@ import { SeverityTableRow } from './Scenario/SeverityTable'
 
 import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import run from '../../algorithms/run'
+import { run, intervalsToTimeSeries } from '../../algorithms/run'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
@@ -33,6 +33,7 @@ import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
 import './Main.scss'
+import { TimeSeries } from 'src/algorithms/types/TimeSeries.types'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -68,10 +69,11 @@ async function runSimulation(
 
   const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[params.population.country]
   const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
+  const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
 
   // serializeScenarioToURL(scenarioState, params)
-
-  const newResult = await run(paramsFlat, severity, ageDistribution)
+  intervalsToTimeSeries(params.containment.mitigationIntervals)
+  const newResult = await run(paramsFlat, severity, ageDistribution, containment)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
