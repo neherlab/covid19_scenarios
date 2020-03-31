@@ -9,30 +9,8 @@
 /* Because this is a Jest extension, and these imports are present. :/ */
 
 import * as fs from 'fs'
-import { MatcherState } from 'expect'
 import { utils } from 'jest-snapshot'
-
-/* This interface is made to match https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts#L54
- */
-interface SnapshotState {
-  _counters: Map<string, number>
-  _updateSnapshot: 'new' | 'all' | 'none'
-  _snapshotData: Record<string, string>
-  _snapshotPath: string
-  markSnapshotsAsCheckedForTest: (testName: string) => void
-  _addSnapshot: (key: string, receivedSerialized: string, options: { isInline: boolean; error?: Error }) => void
-  updated: number
-  added: number
-  unmatched: number
-  matched: number
-}
-
-/* This interface is made to match https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/types.ts#L11
- */
-interface Context extends MatcherState {
-  snapshotState: SnapshotState
-  currentTestName: string
-}
+import type { Context, SnapshotData } from './types'
 
 function getContext(context: Context) {
   const { currentTestName: testName, snapshotState: state, error } = context
