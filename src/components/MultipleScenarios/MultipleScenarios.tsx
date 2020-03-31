@@ -28,8 +28,10 @@ export default function MultipleScenarios() {
   const [activeTab, setActiveTab] = useState(DEFAULT_SCENARIO_ID)
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
   const [showShareModal, setShowShareModal] = useState<boolean>(false)
+  const [modifiedScenarios, setModifiedScenarios] = useState<{ [key: string]: boolean }>({})
 
   const activeScenario = scenarios.find((scenario) => scenario.id === activeTab) || scenarios[0]
+  const isModified = (scenarioId: string) => scenarioId in modifiedScenarios && modifiedScenarios[scenarioId]
 
   function onScenarioSave(name: string) {
     if (activeScenario) {
@@ -141,6 +143,12 @@ export default function MultipleScenarios() {
 
     if (different || (!activeScenario.params && params)) {
       updateScenario(activeScenario.id, { params })
+      if (
+        activeScenario.id !== DEFAULT_SCENARIO_ID &&
+        savedScenarios.scenarios.find((scenario) => scenario.id === activeScenario.id)
+      ) {
+        setModifiedScenarios({ ...modifiedScenarios, [activeScenario.id]: true })
+      }
     }
   }
 
@@ -184,7 +192,9 @@ export default function MultipleScenarios() {
                   toggleTab(scenario.id)
                 }}
               >
-                <h5>{scenario.name}</h5>
+                <h5>
+                  {scenario.name} {isModified(scenario.id) && <sup>*</sup>}
+                </h5>
               </NavLink>
             </NavItem>
           ))}
