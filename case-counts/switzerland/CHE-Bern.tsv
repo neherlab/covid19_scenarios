@@ -2,6 +2,12 @@
 # Data provenance: OpenZH
 # License: none specified
 time	cases	deaths	hospitalized	ICU	recovered
+2020-02-28	1				
+2020-03-01	2				
+2020-03-02	4				
+2020-03-04	6				
+2020-03-06	17				
+2020-03-09	34				
 2020-03-16	123	1			
 2020-03-18	193	1			
 2020-03-19	282	1			
@@ -15,3 +21,4 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-03-28	767	9			
 2020-03-29	798	10			
 2020-03-30	826	13	112	21	
+2020-03-31	856	16	111	23	
