@@ -20,6 +20,7 @@ export interface SavedScenario {
   userid: string
   name: string
   params: null | ScenarioParams
+  createdBy?: string
 }
 
 export interface SavedScenariosState {

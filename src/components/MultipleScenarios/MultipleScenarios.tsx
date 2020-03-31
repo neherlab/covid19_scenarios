@@ -5,6 +5,7 @@ import { Nav, NavItem, NavLink } from 'reactstrap'
 import classnames from 'classnames'
 import jestDiff from 'jest-diff'
 import isEqual from 'is-equal'
+import _ from 'lodash'
 
 import { Scenario, SavedScenariosState, DEFAULT_SCENARIO_ID, ScenarioParams } from '.'
 import Main from '../Main/Main'
@@ -32,13 +33,12 @@ export default function MultipleScenarios() {
 
   function onScenarioSave(name: string) {
     if (activeScenario) {
+      const newScenario = { id: uuidv4(), userid: user.id, name, params: activeScenario.params }
       setSavedScenarios({
         version: 1,
-        scenarios: [
-          ...savedScenarios.scenarios,
-          { id: uuidv4(), userid: user.id, name, params: activeScenario.params },
-        ],
+        scenarios: [...savedScenarios.scenarios, newScenario],
       })
+      setScenarios([...scenarios, newScenario])
     }
   }
 
@@ -51,35 +51,37 @@ export default function MultipleScenarios() {
       setUser({ ...user, handleForSharedLinks: createdBy })
     }
 
-    const toSerialize = {
+    const toSerialize = _.cloneDeep({
       version: 1,
       id: activeScenario.id !== DEFAULT_SCENARIO_ID ? activeScenario.id : uuidv4(),
       userid: user.id,
       name,
       createdBy,
-    }
+      params: activeScenario.params,
+    })
+    delete toSerialize.params?.scenarioState.scenarios
     const baseURL = window.location.href.split('?')[0]
-    return `${baseURL}?${btoa(JSON.stringify(toSerialize))}`
+    return `${baseURL}?${btoa(unescape(encodeURIComponent(JSON.stringify(toSerialize))))}`
   }
 
   useEffect(() => {
-    // try {
-    //   const shareableLink = window.location.search.slice(1)
-    //   if (shareableLink) {
-    //     const fromLink = JSON.parse(atob(shareableLink))
-    //     const existing = savedScenarios.scenarios.find((scenario) => scenario.id === fromLink.id)
-    //     if (!existing) {
-    //       delete fromLink.version
-    //       setSavedScenarios({
-    //         version: 1,
-    //         scenarios: [...savedScenarios.scenarios, fromLink as never],
-    //       })
-    //     }
-    //     setActiveTab(fromLink.id)
-    //   }
-    // } catch (error) {
-    //   console.error('Error while parsing URL :', error.message)
-    // }
+    try {
+      const shareableLink = window.location.search.slice(1)
+      if (shareableLink) {
+        const fromLink = JSON.parse(decodeURIComponent(escape(atob(shareableLink))))
+        const existing = savedScenarios.scenarios.find((scenario) => scenario.id === fromLink.id)
+        if (!existing) {
+          delete fromLink.version
+          setSavedScenarios({
+            version: 1,
+            scenarios: [...savedScenarios.scenarios, fromLink],
+          })
+        }
+        setActiveTab(fromLink.id)
+      }
+    } catch (error) {
+      console.error('Error while parsing URL :', error.message)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -91,6 +93,7 @@ export default function MultipleScenarios() {
         version: 1,
         scenarios: savedScenarios.scenarios.filter((scenario) => scenario.id !== toDelete),
       })
+      setScenarios(scenarios.filter((scenario) => scenario.id !== toDelete))
     }
   }
 
