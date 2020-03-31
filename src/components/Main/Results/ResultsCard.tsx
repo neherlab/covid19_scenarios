@@ -211,12 +211,14 @@ function ResultsCardFunction({
           {t('Go to results')}
         </Button>
       ) : undefined}
-      <ExportSimulationDialog
-        showModal={showExportModal}
-        toggleShowModal={toggleShowExportModal}
-        canExport={canExport}
-        result={result}
-      />
+      {showExportModal && (
+        <ExportSimulationDialog
+          showModal={showExportModal}
+          toggleShowModal={toggleShowExportModal}
+          canExport={canExport}
+          result={result}
+        />
+      )}
     </>
   )
 }
