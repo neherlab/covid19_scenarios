@@ -403,6 +403,77 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "kbobrowski",
+      "name": "Kamil Bobrowski",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/28542783?v=4",
+      "profile": "https://github.com/kbobrowski",
+      "contributions": [
+        "code",
+        "test",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "t-eckert",
+      "name": "Thomas Eckert",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/29112081?v=4",
+      "profile": "https://thomaseckert.dev",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "kimuraz",
+      "name": "Jose Eduardo Kimura",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9062864?v=4",
+      "profile": "https://github.com/kimuraz",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "agoralski",
+      "name": "Arkadiusz Goralski",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7045673?v=4",
+      "profile": "https://github.com/agoralski",
+      "contributions": [
+        "code",
+        "translation"
+      ]
+    },
+    {
+      "login": "kmid5280",
+      "name": "kmid5280",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/35879775?v=4",
+      "profile": "https://www.linkedin.com/in/kyle-middleton-b9a258165/",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "mickeypearce",
+      "name": "Mickey Pearce",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1925433?v=4",
+      "profile": "https://github.com/mickeypearce",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "tryggvigy",
+      "name": "Tryggvi Gylfason",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2373958?v=4",
+      "profile": "https://github.com/tryggvigy",
+      "contributions": [
+        "code",
+        "design"
+      ]
     }
   ],
   "repoType": "github",
