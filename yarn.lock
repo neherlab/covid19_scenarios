@@ -12535,6 +12535,11 @@ rc@^1.0.1, rc@^1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-children-utilities@2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/react-children-utilities/-/react-children-utilities-2.0.12.tgz#75dcb4eded7d1a2509d68f52a0b13fc00694165f"
+  integrity sha512-SqoczHew6ZQahJmI2EE3JZWefVHtwknqIx0zhdpJNYdyCXZNDm+7k+1ZAnZCOUY9anXh+O52b0eeLrqOdXvTeQ==
+
 react-dates@21.8.0:
   version "21.8.0"
   resolved "https://registry.yarnpkg.com/react-dates/-/react-dates-21.8.0.tgz#355c3c7a243a7c29568fe00aca96231e171a5e94"

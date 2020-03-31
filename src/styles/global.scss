@@ -133,6 +133,22 @@ p {
   }
 }
 
+//HELP CARDS
+.card--help {
+  .card-body {
+    line-height: 1.2;
+
+    p {
+      margin: 0;
+      text-align: left;
+    }
+
+    h4 {
+      font-weight: bold;
+      font-size: 110%;
+    }
+  }
+}
 // Always show spinbox arrows in Chrome
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
