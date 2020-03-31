@@ -1,5 +1,3 @@
-# Updates to the model
-
 The SARS-CoV-2 is a novel virus and we are learning more about the virus every day.
 Scientists around the world are studying how the virus spreads and how it affects people of different age, sex, or those with pre-existing conditions.
 Dozens of scientific papers are published every day.
