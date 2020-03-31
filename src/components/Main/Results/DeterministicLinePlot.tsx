@@ -103,6 +103,8 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.ICU || d.hospitalized)
 
   const caseStep = 3
+  // this currently relies on there being data for every day. This should be
+  // the case given how the data are parsed, but would be good to put in a check
   const newCases = (cc: EmpiricalData, i: number) => {
     if (i >= caseStep && nonEmptyCaseCounts[i].cases && nonEmptyCaseCounts[i - caseStep].cases) {
       return verifyPositive(nonEmptyCaseCounts[i].cases - nonEmptyCaseCounts[i - caseStep].cases)
