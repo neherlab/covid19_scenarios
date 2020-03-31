@@ -1,6 +1,6 @@
 import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
-import { Button, Col, Row } from 'reactstrap'
+import { Button, Col, Row, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
@@ -92,10 +92,12 @@ function ResultsCardFunction({
 
   const [canExport, setCanExport] = useState<boolean>(false)
   const [showExportModal, setShowExportModal] = useState<boolean>(false)
+  const [showActionMenu, setShowActionMenu] = useState<boolean>(false)
 
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
+  const toggleShowActionMenu = () => setShowActionMenu(!showActionMenu)
 
   useEffect(() => {
     setCanExport((result && !!result.deterministic) || false)
@@ -143,14 +145,19 @@ function ResultsCardFunction({
               {t('Run')}
             </Button>
             <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
-            <Button type="button" color="secondary" disabled={!canExport} onClick={(_) => setShowExportModal(true)}>
-              {t('Export')}
-            </Button>
-            <Button onClick={onScenarioSave}>{t('Save')}</Button>
-            <Button onClick={onScenarioShare}>{t('Share')}</Button>
-            <Button disabled={!onScenarioDelete} onClick={onScenarioDelete}>
-              {t('Delete')}
-            </Button>
+            <ButtonDropdown isOpen={showActionMenu} toggle={toggleShowActionMenu}>
+              <DropdownToggle caret>Actions...</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem disabled={!canExport} onClick={(_) => setShowExportModal(true)}>
+                  {t('Export')}
+                </DropdownItem>
+                <DropdownItem onClick={onScenarioSave}>{t('Save')}</DropdownItem>
+                <DropdownItem onClick={onScenarioShare}>{t('Share')}</DropdownItem>
+                <DropdownItem disabled={!onScenarioDelete} onClick={onScenarioDelete}>
+                  {t('Delete')}
+                </DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
           </Col>
         </Row>
         <Row noGutters hidden={!result}>
