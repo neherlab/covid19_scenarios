@@ -1,6 +1,6 @@
 import { uniformDatesBetween, makeTimeSeries, updateTimeSeries } from './TimeSeries'
 import { interpolateTimeSeries } from '../run'
-import { toBeCloseToArraySnapshot } from './jestExtensions'
+import { toBeCloseToArraySnapshot } from './jest-extensions'
 
 expect.extend({ toBeCloseToArraySnapshot })
 
