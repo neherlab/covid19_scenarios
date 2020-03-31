@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import './ResponsiveTooltipContent.scss'
 
 interface TooltipItem {
   name: string
-  value: string | number
+  value: string | number | ReactNode
   color: string
 }
 
