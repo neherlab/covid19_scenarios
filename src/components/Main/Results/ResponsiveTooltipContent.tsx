@@ -12,8 +12,8 @@ interface TooltipContentProps {
   active: boolean
   label: string | number
   payload: TooltipItem[]
-  formatter?: Function
-  labelFormatter?: Function
+  formatter?: (value: string | number) => string | number
+  labelFormatter?: (label: string | number) => string | number
 }
 
 function ToolTipContentItem({ name, value, color }: TooltipItem) {

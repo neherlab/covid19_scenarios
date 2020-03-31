@@ -58,13 +58,6 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
   }))
 
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ) => <span>{formatNumber(Number(value))}</span>
-
   const tickFormatter = (value: number) => formatNumberRounded(value)
 
   return (

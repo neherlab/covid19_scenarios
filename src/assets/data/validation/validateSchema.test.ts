@@ -17,8 +17,8 @@ describe('data', () => {
         logger: {
           log: console.log,
           warn: console.warn,
-          error: console.error
-        }
+          error: console.error,
+        },
       })
       const result = ajv.validate(schema, data)
       if (typeof result === 'boolean') {
