@@ -151,28 +151,28 @@ function toBeCloseToArraySnapshot(this: Context, received: number[], precision: 
       message: () => '',
       pass: true,
     }
-  } else {
-    if (!pass) {
-      state.unmatched++
-      return {
-        message: () => `expected: ${serialize(received)}\n received: ${serialize(expected)}`,
-        actual: serialize(received),
-        count,
-        expected: expected !== undefined ? serialize(expected) : undefined,
-        key,
-        pass: false,
-      }
-    } else {
-      state.matched++
-      return {
-        message: () => 'message c',
-        actual: serialize(received),
-        count,
-        expected: '',
-        key,
-        pass: true,
-      }
+  }
+
+  if (!pass) {
+    state.unmatched++
+    return {
+      message: () => `expected: ${serialize(received)}\n received: ${serialize(expected)}`,
+      actual: serialize(received),
+      count,
+      expected: expected !== undefined ? serialize(expected) : undefined,
+      key,
+      pass: false,
     }
+  }
+
+  state.matched++
+  return {
+    message: () => 'message c',
+    actual: serialize(received),
+    count,
+    expected: '',
+    key,
+    pass: true,
   }
 }
 
