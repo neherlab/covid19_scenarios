@@ -1,7 +1,7 @@
 /* eslint-disable */
 import * as fs from 'fs'
 import { MatcherState } from 'expect'
-const { utils } = require('jest-snapshot')
+import { utils } from 'jest-snapshot'
 
 /* This interface is made to match https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts#L54
  */
