@@ -103,10 +103,25 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
                 <Legend verticalAlign="top" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
-                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
-                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} />
+                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} isAnimationActive={false} />
+                <Bar
+                  dataKey="peakCritical"
+                  fill={colors.critical}
+                  name={t('peak critical')}
+                  isAnimationActive={false}
+                />
+                <Bar
+                  dataKey="peakOverflow"
+                  fill={colors.overflow}
+                  name={t('peak overflow')}
+                  isAnimationActive={false}
+                />
+                <Bar
+                  dataKey="totalFatalities"
+                  fill={colors.fatality}
+                  name={t('total deaths')}
+                  isAnimationActive={false}
+                />
               </BarChart>
 
               <div ref={percentageChartRef} />
@@ -132,7 +147,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                 />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
-                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
+                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} isAnimationActive={false} />
               </BarChart>
             </>
           )

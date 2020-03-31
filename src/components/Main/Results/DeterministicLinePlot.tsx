@@ -272,7 +272,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                   />
                 ))}
                 {scatterToPlot.map((d) => (
-                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
               </ComposedChart>
             </>
