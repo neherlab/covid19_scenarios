@@ -47,6 +47,12 @@ h3 {
   color: $white;
 }
 
+.card.card--results h3 {
+  color: $black;
+  margin-bottom: 0;
+  margin-top: 1em;
+}
+
 .container.absolute {
   position: absolute;
   top: 100px;
