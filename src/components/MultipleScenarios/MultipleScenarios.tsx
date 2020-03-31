@@ -33,15 +33,23 @@ export default function MultipleScenarios() {
   const activeScenario = scenarios.find((scenario) => scenario.id === activeTab) || scenarios[0]
   const isModified = (scenarioId: string) => scenarioId in modifiedScenarios && modifiedScenarios[scenarioId]
 
-  function onScenarioSave(name: string) {
-    if (activeScenario) {
-      const newScenario = { id: uuidv4(), userid: user.id, name, params: activeScenario.params }
-      setSavedScenarios({
-        version: 1,
-        scenarios: [...savedScenarios.scenarios, newScenario],
-      })
-      setScenarios([...scenarios, newScenario])
-    }
+  function onScenarioClone(name: string) {
+    const newScenario = { id: uuidv4(), userid: user.id, name, params: activeScenario.params }
+    setSavedScenarios({
+      version: 1,
+      scenarios: [...savedScenarios.scenarios, newScenario],
+    })
+    setScenarios([...scenarios, newScenario])
+  }
+
+  function onScenarioSave() {
+    const toSave = { ...activeScenario }
+    delete toSave.result
+    setSavedScenarios({
+      version: 1,
+      scenarios: savedScenarios.scenarios.map((scenario) => (scenario.id === activeScenario.id ? toSave : scenario)),
+    })
+    setModifiedScenarios({ ...modifiedScenarios, [activeScenario.id]: false })
   }
 
   const toggleTab = (tab: string) => {
@@ -54,7 +62,6 @@ export default function MultipleScenarios() {
     }
 
     const toSerialize = _.cloneDeep({
-      version: 1,
       id: activeScenario.id !== DEFAULT_SCENARIO_ID ? activeScenario.id : uuidv4(),
       userid: user.id,
       name,
@@ -205,9 +212,10 @@ export default function MultipleScenarios() {
         onParamChange={handleChangedParameters}
         incomingResult={activeScenario.result || null}
         onResultChange={handleChangedResult}
-        onScenarioSave={() => {
+        onScenarioClone={() => {
           setShowSaveModal(true)
         }}
+        onScenarioSave={activeTab !== DEFAULT_SCENARIO_ID && isModified(activeScenario.id) ? onScenarioSave : undefined}
         onScenarioShare={() => {
           setShowShareModal(true)
         }}
@@ -224,7 +232,7 @@ export default function MultipleScenarios() {
       {showSaveModal && (
         <SaveScenarioDialog
           onSave={(name: string) => {
-            onScenarioSave(name)
+            onScenarioClone(name)
             setShowSaveModal(false)
           }}
           onCloseDialog={() => setShowSaveModal(false)}

@@ -98,7 +98,8 @@ interface MainProps {
   onParamChange: (params: ScenarioParams) => void
   incomingResult: AlgorithmResult | null
   onResultChange: (Result: AlgorithmResult) => void
-  onScenarioSave: () => void
+  onScenarioClone: () => void
+  onScenarioSave?: () => void
   onScenarioShare: () => void
   onScenarioDelete?: () => void
 }
@@ -108,6 +109,7 @@ function Main({
   onParamChange,
   incomingResult,
   onResultChange,
+  onScenarioClone,
   onScenarioSave,
   onScenarioShare,
   onScenarioDelete,
@@ -249,6 +251,7 @@ function Main({
                       severity={severity}
                       result={result}
                       caseCounts={empiricalCases}
+                      onScenarioClone={onScenarioClone}
                       onScenarioSave={onScenarioSave}
                       onScenarioShare={onScenarioShare}
                       onScenarioDelete={onScenarioDelete}

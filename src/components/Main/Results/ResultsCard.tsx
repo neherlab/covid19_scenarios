@@ -27,7 +27,8 @@ interface ResultsCardProps {
   toggleAutorun: () => void
   canRun: boolean
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
-  onScenarioSave: () => void
+  onScenarioClone: () => void
+  onScenarioSave?: () => void
   onScenarioShare: () => void
   onScenarioDelete?: () => void
   result?: AlgorithmResult
@@ -39,6 +40,7 @@ function ResultsCardFunction({
   autorunSimulation,
   toggleAutorun,
   severity,
+  onScenarioClone,
   onScenarioSave,
   onScenarioShare,
   onScenarioDelete,
@@ -151,7 +153,10 @@ function ResultsCardFunction({
                 <DropdownItem disabled={!canExport} onClick={(_) => setShowExportModal(true)}>
                   {t('Export')}
                 </DropdownItem>
-                <DropdownItem onClick={onScenarioSave}>{t('Save')}</DropdownItem>
+                <DropdownItem disabled={!onScenarioSave} onClick={onScenarioSave}>
+                  {t('Save')}
+                </DropdownItem>
+                <DropdownItem onClick={onScenarioClone}>{t('Save As...')}</DropdownItem>
                 <DropdownItem onClick={onScenarioShare}>{t('Share')}</DropdownItem>
                 <DropdownItem disabled={!onScenarioDelete} onClick={onScenarioDelete}>
                   {t('Delete')}
