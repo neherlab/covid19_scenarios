@@ -136,7 +136,7 @@ function toBeCloseToArraySnapshot(this: Context, received: number[], precision: 
   const expected = getSnapshot(state, key)
 
   const tolerance = Math.pow(10, -precision) / 2
-  const { pass, diffs } = compare(expected, received, tolerance)
+  const { pass } = compare(expected, received, tolerance)
 
   if (pass) {
     setSnapshot(state, key, received)
