@@ -41,7 +41,7 @@ function compare(
   return { pass, diffs }
 }
 
-export default function toBeCloseToArraySnapshot(this: Context, received: number[], precision: 2) {
+export default function toBeCloseToArraySnapshot(this: Context, received: number[], precision: number = 2) {
   const state = new State(this)
 
   const snapshot = state.getSnapshot()
