@@ -39,8 +39,12 @@ h2 {
 }
 
 h3 {
-  color: $white;
+  color: $black;
   font-size: 20px;
+}
+
+.card h3 {
+  color: $white;
 }
 
 .container.absolute {
@@ -98,6 +102,14 @@ p {
   padding: 8px 4px;
 }
 
+.card-header label {
+  margin: 0;
+}
+
+.card-header p {
+  color: $white;
+}
+
 .card-header-button {
   width: 100%;
   height: 100%;
@@ -114,6 +126,8 @@ p {
   & > .card-header {
     background-color: transparent;
     border-bottom: 3px solid $black;
+    min-height: 3em;
+    padding-left: 0;
   }
 
   & > .card-body,
@@ -149,6 +163,17 @@ p {
     }
   }
 }
+
+//FORMs
+.card--population,
+.card--epidemiology {
+  .card-body .row {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0.5em;
+  }
+}
+
 // Always show spinbox arrows in Chrome
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
