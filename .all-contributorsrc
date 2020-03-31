@@ -6,6 +6,8 @@
     "src/assets/text/contributors-generated.md"
   ],
   "imageSize": 100,
+  "contributorsSortAlphabetically":true,
+  "skipCi": false,
   "contributors": [
     {
       "login": "rneher",
