@@ -139,21 +139,14 @@ function Main({
     containment: scenarioState.data.containment,
   }
 
-  console.log(`ICU: ${allParams.population.ICUBeds}`)
-  console.log(`ICU: ${scenarioState.data.population.ICUBeds}`)
+  const setAllResults = (result: AlgorithmResult) => {
+    setResult(result)
+    onResultChange(result)
+  }
 
   const [debouncedRun, cancelDebouncedRun] = useDebouncedCallback(
     (params: AllParams, severity: SeverityTableRow[]) =>
-      runSimulation(
-        scenarioState,
-        params,
-        severity,
-        (result) => {
-          setResult(result)
-          onResultChange(result)
-        },
-        setEmpiricalCases,
-      ),
+      runSimulation(scenarioState, params, severity, setAllResults, setEmpiricalCases),
     500,
   )
 
@@ -173,8 +166,6 @@ function Main({
 
   const [setScenarioToCustom, cancelSetScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
-    console.log(`ICU: ${allParams.population.ICUBeds}`)
-    console.log(`ICU: ${newParams.population.ICUBeds}`)
     // Note: isEqual handles Date() objects while lodash.isEqual does not.
     if (!isEqual(allParams.population, newParams.population)) {
       scenarioDispatch(setPopulationData({ data: newParams.population }))
@@ -197,7 +188,6 @@ function Main({
 
   useEffect(() => {
     if (incomingParams) {
-      console.log('Incoming params!')
       // Prior to update we must cancel any pending (debounced) call to set from
       // form parameters. A re-render with prior scenario data can occur when
       // switching views with multiple scenarios. The debounced call would
@@ -216,13 +206,12 @@ function Main({
 
   useEffect(() => {
     if (incomingResult) {
-      console.log('Incoming result!')
       setResult(incomingResult)
     }
   }, [incomingResult])
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases)
+    runSimulation(scenarioState, params, severity, setAllResults, setEmpiricalCases)
     setSubmitting(false)
   }
 

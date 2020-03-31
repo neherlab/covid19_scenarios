@@ -3,7 +3,6 @@ import createPersistedState from 'use-persisted-state'
 import { v4 as uuidv4 } from 'uuid'
 import { Nav, NavItem, NavLink } from 'reactstrap'
 import classnames from 'classnames'
-import jestDiff from 'jest-diff'
 import isEqual from 'is-equal'
 import _ from 'lodash'
 
@@ -101,20 +100,20 @@ export default function MultipleScenarios() {
     // Note: isEqual handles Date() objects while lodash.isEqual does not.
     const different = !isEqual(activeScenario.params, params)
 
-    console.log(`hoisted params. different: ${different}`)
-    if (!activeScenario.params) {
-      console.log('initial params')
-    } else {
-      console.log('existing params')
-      console.log(
-        jestDiff(activeScenario.params, params, {
-          expand: false,
-          contextLines: 2,
-          aAnnotation: 'was',
-          bAnnotation: 'is',
-        }),
-      )
-    }
+    // console.log(`hoisted params. different: ${different}`)
+    // if (!activeScenario.params) {
+    //   console.log('initial params')
+    // } else {
+    //   console.log('existing params')
+    //   console.log(
+    //     jestDiff(activeScenario.params, params, {
+    //       expand: false,
+    //       contextLines: 2,
+    //       aAnnotation: 'was',
+    //       bAnnotation: 'is',
+    //     }),
+    //   )
+    // }
 
     if (different || (!activeScenario.params && params)) {
       updateScenario(activeScenario.id, { params })
@@ -125,20 +124,20 @@ export default function MultipleScenarios() {
     // Note: isEqual handles Date() objects while lodash.isEqual does not.
     const different = !isEqual(activeScenario.result, result)
 
-    console.log(`hoisted result. different: ${different}`)
-    if (!activeScenario.result) {
-      console.log('initial result')
-    } else {
-      console.log('existing result')
-      console.log(
-        jestDiff(activeScenario.result, result, {
-          expand: false,
-          contextLines: 2,
-          aAnnotation: 'was',
-          bAnnotation: 'is',
-        }),
-      )
-    }
+    // console.log(`hoisted result. different: ${different}`)
+    // if (!activeScenario.result) {
+    //   console.log('initial result')
+    // } else {
+    //   console.log('existing result')
+    //   console.log(
+    //     jestDiff(activeScenario.result, result, {
+    //       expand: false,
+    //       contextLines: 2,
+    //       aAnnotation: 'was',
+    //       bAnnotation: 'is',
+    //     }),
+    //   )
+    // }
 
     if (different || (!activeScenario.result && result)) {
       updateScenario(activeScenario.id, { result })
