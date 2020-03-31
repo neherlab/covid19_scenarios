@@ -8,6 +8,7 @@ import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { MitigationTable } from '../Mitigation/MitigationTable'
 
 import { State } from '../state/state'
+import { MitigationChart } from '../Mitigation/MitigationChart'
 
 export interface ScenarioCardContainmentProps {
   scenarioState: State
@@ -30,6 +31,9 @@ function ScenarioCardContainment({ scenarioState, errors, touched }: ScenarioCar
     >
       <div className="w-auto">
         <MitigationTable mitigationIntervals={mitigationIntervals} />
+      </div>
+      <div className="w-auto">
+        <MitigationChart />
       </div>
       <div>
         <p>
