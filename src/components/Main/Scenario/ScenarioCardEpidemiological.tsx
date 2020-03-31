@@ -37,9 +37,10 @@ function ScenarioCardEpidemiological({
       className="card--epidemiology"
       identifier="epidemiologicalScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
-      help={t(
-        'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).',
-      )}
+      help={t('Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).')}
+      options={epidemiologicalScenarioOptions}
+      value={epidemiologicalScenarioOptions.find(s => s.label === scenarioState.epidemiological.current)}
+      onValueChange={handleChangeEpidemiologicalScenario}
     >
       <FormSpinBox
         identifier="epidemiological.r0"
