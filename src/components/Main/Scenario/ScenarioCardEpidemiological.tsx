@@ -34,6 +34,7 @@ function ScenarioCardEpidemiological({
 
   return (
     <CardWithoutDropdown
+      className="card--epidemiology"
       identifier="epidemiologicalScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
       help={t(
