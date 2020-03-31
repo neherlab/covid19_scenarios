@@ -33,7 +33,7 @@ import {
   setScenario,
 } from './state/actions'
 import { scenarioReducer } from './state/reducer'
-import { CUSTOM_SCENARIO_NAME, defaultScenarioState, State } from './state/state'
+import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './state/state'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
