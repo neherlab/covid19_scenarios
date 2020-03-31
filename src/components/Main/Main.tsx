@@ -51,7 +51,6 @@ export function severityErrors(severity: SeverityTableRow[]) {
 }
 
 async function runSimulation(
-  scenarioState: State,
   params: AllParams,
   severity: SeverityTableRow[],
   setResult: (result: AlgorithmResult) => void,
@@ -146,7 +145,7 @@ function Main({
 
   const [debouncedRun, cancelDebouncedRun] = useDebouncedCallback(
     (params: AllParams, severity: SeverityTableRow[]) =>
-      runSimulation(scenarioState, params, severity, setAllResults, setEmpiricalCases),
+      runSimulation(params, severity, setAllResults, setEmpiricalCases),
     500,
   )
 
@@ -211,7 +210,7 @@ function Main({
   }, [incomingResult])
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    runSimulation(scenarioState, params, severity, setAllResults, setEmpiricalCases)
+    runSimulation(params, severity, setAllResults, setEmpiricalCases)
     setSubmitting(false)
   }
 

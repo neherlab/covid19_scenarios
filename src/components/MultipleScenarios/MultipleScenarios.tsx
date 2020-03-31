@@ -203,7 +203,7 @@ export default function MultipleScenarios() {
         }}
         onScenarioDelete={activeTab !== DEFAULT_SCENARIO_ID ? onScenarioDelete : undefined}
       />
-      {showShareModal && activeScenario && (
+      {showShareModal && (
         <ShareScenarioDialog
           scenario={activeScenario}
           createdBy={user.handleForSharedLinks}
