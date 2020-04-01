@@ -1,6 +1,6 @@
 import os
 
-BASE_PATH = os.getcwd()
+BASE_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)))
 JSON_DIR = 'assets'
 TSV_DIR = 'case-counts'
 SOURCES_FILE = 'sources.json'
