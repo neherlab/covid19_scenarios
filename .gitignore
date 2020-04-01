@@ -11,3 +11,6 @@
 cypress/screenshots
 cypress/videos
 node_modules
+make_case_counts
+make_data
+make_scenario
