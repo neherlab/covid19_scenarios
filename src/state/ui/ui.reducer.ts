@@ -8,8 +8,6 @@ export interface UiState {
   skipLandingPage: boolean
 }
 
-console.log(LocalStorage, LocalStorage.get(LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE) === 'true')
-
 export const uiDefaultState: UiState = {
   skipLandingPage: LocalStorage.get(LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE) === 'true',
 }

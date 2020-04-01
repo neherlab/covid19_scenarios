@@ -58,7 +58,7 @@ export async function serializeScenarioToURL(scenarioState: State, params: AllPa
     containment: scenarioState.data.containment.reduction,
   })
 
-  window.history.pushState({}, '', `?${encodeURIComponent(JSON.stringify(toSave))}`)
+  window.history.pushState('', '', `?${encodeURIComponent(JSON.stringify(toSave))}`)
 }
 
 export function deserializeScenarioFromURL(initState: State): State {
