@@ -32,7 +32,7 @@ if __name__ == "__main__":
                 print(f"Running {src} to generate .tsv", file=sys.stderr)
                 country = importlib.import_module(f"parsers.{src}")
                 country.parse()
-                
+
     # generate and copy jsons to app if requested
     if args.output_cases:
         print(f"Generating cases json")
