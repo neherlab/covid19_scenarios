@@ -24,6 +24,9 @@ JAN1_2019      = datetime.strptime("2019-01-01", "%Y-%m-%d").toordinal()
 JUN1_2019      = datetime.strptime("2019-06-01", "%Y-%m-%d").toordinal()
 JAN1_2020      = datetime.strptime("2020-01-01", "%Y-%m-%d").toordinal()
 
+CASES = importlib.import_module(f"scripts.tsv")
+CASE_DATA = CASES.parse()
+
 def load_distribution(path):
     dist = {}
     with open(path, 'r') as fd:
@@ -117,10 +120,10 @@ class Params(Data):
         self.time  = times
 
         # Make infection function
-        phase_offset = (times[0] - JAN1_2019)
+        # phase_offset = (times[0] - JAN1_2019)
         beta = self.rates.infectivity
-        def infectivity(t):
-            return beta*(1 + 0.2*np.cos(2*np.pi*(t + phase_offset)/365))
+        # def infectivity(t):
+        #     return beta*(1 + 0.2*np.cos(2*np.pi*(t + phase_offset)/365))
 
         self.rates.infectivity = lambda t:beta #infectivity
 
@@ -225,6 +228,9 @@ def assess_model(params, data, cases):
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, bounds=None):
+    if key not in POPDATA:
+        return Params(None, None, None, DefaultRates, Fracs()), 10, (False, "Not within population database")
+
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
     def pack(x, as_list=False):
@@ -261,10 +267,7 @@ def load_data(key):
     days = []
     case_min, case_max = 20, 1e4
 
-    cases = importlib.import_module(f"scripts.tsv")
-
-    db = cases.parse()
-    ts = db[key]
+    ts = CASE_DATA[key]
 
     days = [d['time'].split('T')[0] for d in ts]
     for tp in ts:
@@ -278,6 +281,9 @@ def load_data(key):
     data[Sub.D] = np.concatenate([[np.nan], data[Sub.D][good_idx]])
     data[Sub.T] = np.concatenate([[np.nan], data[Sub.T][good_idx]])
 
+    if sum(good_idx) == 0:
+        return None, None
+
     # np.where(good_idx)[0][0] is the first day with case_min cases
     # start the model 3 weeks prior.
     idx = np.where(good_idx)[0][0]
@@ -289,15 +295,18 @@ def load_data(key):
     return times, data
 
 
-def fit_population(population):
+def fit_population(region, guess=None):
+    time_points, data = load_data(region)
+    if data is None or len(data[Sub.D]) <= 5:
+        return None
 
-    time_points, data = load_data(population)
+    if guess is None:
+        guess = { "R0": 3.0,
+                  "reported" : 0.3,
+                  "logInitial" : 1
+                }
 
-    guess = { "R0": 3.0,
-              "reported" : 0.3,
-              "logInitial" : 1
-            }
-    param, init_cases, err = fit_params(population, time_points, data, guess)
+    param, init_cases, err = fit_params(region, time_points, data, guess)
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     return {'params':param, 'initialCases':init_cases, 'tMin':tMin, 'data': data, 'error':err}
 
@@ -306,7 +315,6 @@ def fit_population(population):
 # Testing entry
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(description = "",
                                      usage="fit data")
 
