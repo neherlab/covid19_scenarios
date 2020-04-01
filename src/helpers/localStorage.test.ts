@@ -10,7 +10,7 @@ describe('localStorage', () => {
   })
 
   it('initially returns null', () => {
-    keys(LOCAL_STORAGE_KEYS).map((key) => {
+    keys(LOCAL_STORAGE_KEYS).forEach((key) => {
       expect(LocalStorage.get(LOCAL_STORAGE_KEYS[key])).toBeNull()
     })
   })
