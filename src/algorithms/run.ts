@@ -78,7 +78,7 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
 
     // Eval spline will return the function value @ t, fit to a spline
     // Requires the containment strengths (ys) and derivatives (yps) and times (ts)
-    const eval_spline = (t: number) => {
+    const evalSpline = (t: number) => {
       const f = (t - Ts[i - 1]) / (Ts[i] - Ts[i - 1])
       const a = +Yps[i - 1] * (Ts[i] - Ts[i - 1]) - (Ys[i] - Ys[i - 1])
       const b = -Yps[i] * (Ts[i] - Ts[i - 1]) + (Ys[i] - Ys[i - 1])
@@ -86,7 +86,7 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const eval_linear = (t: number) => {
+    const evalLinear = (t: number) => {
       const deltaY = Ys[i] - Ys[i - 1]
       const deltaT = Ts[i] - Ts[i - 1]
 
@@ -96,7 +96,7 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
       return Ys[i - 1] + dS * dT
     }
 
-    return eval_spline(Number(t))
+    return evalSpline(Number(t))
   }
 }
 
@@ -124,7 +124,7 @@ export default async function run(
     while (currState.time < tMax) {
       currState = evolve(currState, modelParams, func)
       i++
-      if (i % eulerStepsPerDay == 0) {
+      if (i % eulerStepsPerDay === 0) {
         dynamics.push(currState)
       }
     }
