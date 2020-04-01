@@ -46,7 +46,7 @@ def parse():
         for row_index in range(4, worksheet.nrows):
             row = worksheet.row_values(row_index)
 
-            state = row[Ix['province']]
+            state = '-'.join(['CAN',row[Ix['province']]])
             # Hack: recovered currently has no county-level data.            
             county = None
             # county-level removed as requested in https://github.com/neherlab/covid19_scenarios_data/pull/42#issuecomment-603427339
@@ -95,4 +95,4 @@ def parse():
                     total[k] += d[k]
                 d[k] = total[k]
     
-    store_data(cases, {'default': LOC}, 'canada', 'CAN', cols)
+    store_data(cases, 'canada', cols)

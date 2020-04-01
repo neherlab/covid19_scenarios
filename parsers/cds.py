@@ -13,7 +13,7 @@ from urllib.request import urlopen
 
 from collections import defaultdict
 from datetime import datetime, timedelta
-from .utils import write_tsv, flatten, parse_countries, stoi, merge_cases, sorted_date, store_json
+from .utils import parse_countries, sorted_date, store_data
 
 from paths import BASE_PATH
 
@@ -68,13 +68,5 @@ def retrieve_case_data():
 
 def parse():
     cases = retrieve_case_data()
-    store_json(cases)
+    store_data(cases, 'cds')
 
-    # for legacy support
-    #cases = flatten(cases)
-    #write_tsv(os.path.join(BASE_PATH,"case-counts/cds.tsv"), cols, cases, "cds")
-
-if __name__ == "__main__":
-    # for debugging
-    cases = retrieve_case_data()
-    cases = flatten(cases)

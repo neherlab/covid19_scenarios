@@ -104,7 +104,12 @@ def parse():
             regions[region].append(entry)
     regions = dict(regions)
 
+    regions2 = {}
     for region in regions.keys():
-        regions[region] = sorted_date(regions[region])
+        if not region =='Netherlands':
+            regions2['-'.join(['NLD',region])] = sorted_date(regions[region])
+        else:
+            regions2[region] = sorted_date(regions[region])
+            
 
-    store_data(regions, {'default': LOC, 'Netherlands': LOC}, 'netherlands', 'NLD', cols)
+    store_data(regions2, 'netherlands', cols)
