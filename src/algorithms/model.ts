@@ -44,7 +44,6 @@ export function getPopulationParams(
   ageCounts: Record<string, number>,
   containment: (t: Date) => number,
 ): ModelParams {
-  const timeDeltaDays = eulerStep
 
   // TODO: Make this a form-adjustable factor
   const pop: ModelParams = {
@@ -68,8 +67,6 @@ export function getPopulationParams(
     },
     importsPerDay: { total: params.importsPerDay },
 
-    timeDeltaDays,
-    timeDelta: msPerDay * timeDeltaDays,
     populationServed: params.populationServed,
     numberStochasticRuns: params.numberStochasticRuns,
     hospitalBeds: params.hospitalBeds,
