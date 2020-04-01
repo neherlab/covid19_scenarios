@@ -17,7 +17,6 @@
   color: $white;
   background: linear-gradient(180deg, #206bbd 2%, rgba(249, 252, 255, 0) 80%),
     linear-gradient(180deg, #007bff00 5%, #007bff 80%);
-  grid-gap: 20px;
   grid-template-columns: 1fr auto 1fr;
 
   &::after {
@@ -61,6 +60,7 @@
   border-radius: 500px;
   align-self: end;
   justify-self: center;
+  margin: 0 20px;
   &:hover,
   &:focus {
     color: $black;
