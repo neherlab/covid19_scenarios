@@ -207,9 +207,9 @@ def set_mitigation(cases, scenario):
 
     case_counts = np.array([c['cases'] for c in valid_cases])
     levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e5),200))[0]
-    levelTwo = np.where(case_counts > min(max(5, scenario.population.populationServed/1e4),2000))[0]
+    levelTwo = np.where(case_counts > min(max(5, scenario.population.populationServed/1e3),10000))[0]
 
-    for name, level, val in [("levelOne", levelOne, 0.6), ('levelTwo', levelTwo, 0.5)]:
+    for name, level, val in [("levelOne", levelOne, 0.8), ('levelTwo', levelTwo, 0.6)]:
         if len(level):
             level_idx = level[0]
             cutoff_str = valid_cases[level_idx]["time"][:10]
