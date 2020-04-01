@@ -3,7 +3,7 @@ import React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import NavigationLink from './NavigationLink'
-import LanguageSwitcher from '../LanguageSwitcher'
+import { UserMenu } from './UserMenu'
 
 import logo from '../../assets/img/HIVEVO_logo.png'
 import './NavigationBar.scss'
@@ -29,7 +29,7 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
         })}
       </ul>
       <div className="ml-auto">
-        <LanguageSwitcher />
+        <UserMenu />
       </div>
     </nav>
   )

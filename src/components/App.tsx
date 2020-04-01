@@ -13,6 +13,7 @@ import { State } from '../state/reducer'
 
 function App() {
   const shouldGoToLandingPage = useSelector(({ ui }: State) => !ui.skipLandingPage)
+
   return (
     <Switch>
       {shouldGoToLandingPage && <Redirect exact from="/" to="/start" />}
