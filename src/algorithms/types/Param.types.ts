@@ -1,5 +1,5 @@
-import { TimeSeriesType } from './TimeSeries.types'
 import * as t from 'io-ts'
+import { TimeSeriesType } from './TimeSeries.types'
 import { DateType } from './Date.types'
 
 export const PopulationDataType = t.type({

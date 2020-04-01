@@ -73,7 +73,7 @@ async function runSimulation(
 
   const containmentData = params.containment.reduction
 
-  serializeScenarioToURL(scenarioState)
+  serializeScenarioToURL(params)
 
   const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
   setResult(newResult)

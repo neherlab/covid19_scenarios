@@ -1,20 +1,11 @@
-import { ScenarioDataType } from '../../../algorithms/types/Param.types'
-import { State } from './state'
-import * as t from 'io-ts'
+import _ from 'lodash'
 import { isLeft } from 'fp-ts/lib/Either'
 import { PathReporter } from 'io-ts/lib/PathReporter'
+import { ScenarioDataType, ScenarioData } from '../../../algorithms/types/Param.types'
+import { State, CUSTOM_SCENARIO_NAME } from './state'
 
-const URLSerializationType = t.type({
-  current: t.string,
-  data: ScenarioDataType,
-})
-
-export async function serializeScenarioToURL(scenarioState: State) {
-  const toSave = URLSerializationType.encode({
-    current: scenarioState.current,
-    data: scenarioState.data,
-  })
-
+export async function serializeScenarioToURL(data: ScenarioData) {
+  const toSave = ScenarioDataType.encode(data)
   window.history.pushState('', '', `?${encodeURIComponent(JSON.stringify(toSave))}`)
 }
 
@@ -34,7 +25,8 @@ export function deserializeScenarioFromURL(initState: State): State {
     return initState
   }
 
-  const result = URLSerializationType.decode(obj)
+  console.log('HELLO', initState, obj)
+  const result = ScenarioDataType.decode(obj)
 
   if (isLeft(result)) {
     const errors = PathReporter.report(result)
@@ -43,8 +35,11 @@ export function deserializeScenarioFromURL(initState: State): State {
   }
 
   return {
-    scenarios: initState.scenarios,
-    current: result.right.current,
-    data: result.right.data,
+    // Automatically add CUSTOM_SCENARIO_NAME in the scenarios.
+    // This replicates the logic found in reducer.ts. We probably don't need the unique check yet
+    // however its there just as a precaution.
+    scenarios: _.uniq([...initState.scenarios, CUSTOM_SCENARIO_NAME]),
+    current: CUSTOM_SCENARIO_NAME,
+    data: result.right,
   }
 }
