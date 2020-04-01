@@ -4,7 +4,7 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { useTranslation } from 'react-i18next'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
@@ -34,7 +34,6 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     return null
   }
 
-  const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
 
   const t = (...args: Parameters<typeof unsafeT>) => {
@@ -43,7 +42,9 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
       return translation
     }
 
-    process.env.NODE_ENV !== 'production' && console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    }
     return String(translation)
   }
 

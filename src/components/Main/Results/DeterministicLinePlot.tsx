@@ -90,6 +90,8 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
   return <span className={activeClassName}>{value}</span>
 }
 
+const verifyPositive = (x: number) => (x > 0 ? x : undefined)
+
 export function DeterministicLinePlot({ data, userResult, logScale, showHumanized, caseCounts }: LinePlotProps) {
   const { t } = useTranslation()
 
@@ -104,9 +106,6 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   if (!data || data.stochastic.length > 0) {
     return null
   }
-
-  const hasUserResult = Boolean(userResult?.trajectory)
-  const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 
   const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
   const nICUBeds = verifyPositive(data.params.ICUBeds)
@@ -187,12 +186,13 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'line' },
   ]
 
-  const tMin = observations.length ? Math.min(plotData[0].time, observations[0].time) : plotData[0].time
-  const tMax = observations.length
+  const hasObservations = observations.length > 0
+  const tMin = hasObservations ? Math.min(plotData[0].time, observations[0].time) : plotData[0].time
+  const tMax = hasObservations
     ? Math.max(plotData[plotData.length - 1].time, observations[observations.length - 1].time)
     : plotData[plotData.length - 1].time
 
-  const scatterToPlot: LineProps[] = observations.length
+  const scatterToPlot: LineProps[] = hasObservations
     ? [
         // Append empirical data
         ...(countObservations.observedDeaths

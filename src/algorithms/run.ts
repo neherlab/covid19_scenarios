@@ -27,7 +27,7 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
   type Vector = number[]
   type Matrix = number[][]
 
-  const getSmoothDerivatives = function (): Vector {
+  const getSmoothDerivatives = (): Vector => {
     // Solve for the derivatives that lead to "smoothest" interpolator
     const Mtx: Matrix = []
     const Vec: Vector = []

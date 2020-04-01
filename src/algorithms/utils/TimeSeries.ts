@@ -24,19 +24,19 @@ export function makeTimeSeries(simulationTimeRange: DateRange, values: number[])
   return tSeries
 }
 
+const clamp = (x: number, min: number, max: number): number => {
+  if (x < min) {
+    return min
+  }
+  if (x > max) {
+    return max
+  }
+  return x
+}
+
 export function updateTimeSeries(simulationTimeRange: DateRange, oldTimeSeries: TimeSeries, n: number): TimeSeries {
   const { tMin, tMax } = simulationTimeRange
   const interpolator = interpolateTimeSeries(oldTimeSeries)
-  const clamp = function (x: number, min: number, max: number): number {
-    if (x < min) {
-      return min
-    }
-    if (x > max) {
-      return max
-    }
-    return x
-  }
-
   const dates = uniformDatesBetween(tMin.getTime(), tMax.getTime(), n)
   return dates.map((d) => ({ t: d, y: clamp(interpolator(d), 0, 1.2) }))
 }
