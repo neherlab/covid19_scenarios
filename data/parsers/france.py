@@ -71,6 +71,6 @@ def parse():
 
     regions2 = {}
     for reg, d in regions.items():
-        regions2['-'.join(['FRA',reg])] = [d[day] for day in sorted(d.keys()) if d[day][1]]
+        regions2['-'.join(['FRA',reg])] = [d[day] for day in sorted(d.keys())]
 
     store_data(regions2, 'france',  cols)
