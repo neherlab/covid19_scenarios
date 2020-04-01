@@ -2,7 +2,6 @@ import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import NewWindow from 'react-new-window'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
@@ -154,30 +153,26 @@ function ResultsCardFunction({
             </p>
           </Col>
         </Row>
-
-        <NewWindow>
-          <Row noGutters hidden={!result} className="mb-4">
-            <div className="mr-4" data-testid="LogScaleSwitch">
-              <FormSwitch
-                identifier="logScale"
-                label={t('Log scale')}
-                help={t('Toggle between logarithmic and linear scale on vertical axis of the plot')}
-                checked={logScale}
-                onValueChanged={setPersistLogScale}
-              />
-            </div>
-            <div data-testid="HumanizedValuesSwitch">
-              <FormSwitch
-                identifier="showHumanized"
-                label={t('Show humanized results')}
-                help={t('Show numerical results in a human friendly format')}
-                checked={showHumanized}
-                onValueChanged={setPersistShowHumanized}
-              />
-            </div>
-          </Row>
-        </NewWindow>
-
+        <Row noGutters hidden={!result} className="mb-4">
+          <div className="mr-4" data-testid="LogScaleSwitch">
+            <FormSwitch
+              identifier="logScale"
+              label={t('Log scale')}
+              help={t('Toggle between logarithmic and linear scale on vertical axis of the plot')}
+              checked={logScale}
+              onValueChanged={setPersistLogScale}
+            />
+          </div>
+          <div data-testid="HumanizedValuesSwitch">
+            <FormSwitch
+              identifier="showHumanized"
+              label={t('Show humanized results')}
+              help={t('Show numerical results in a human friendly format')}
+              checked={showHumanized}
+              onValueChanged={setPersistShowHumanized}
+            />
+          </div>
+        </Row>
         <Row noGutters>
           <Col>
             <DeterministicLinePlot
