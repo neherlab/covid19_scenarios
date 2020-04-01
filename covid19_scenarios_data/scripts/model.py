@@ -17,7 +17,7 @@ from scripts.tsv import parse as parse_tsv
 # ------------------------------------------------------------------------
 # Globals
 
-PATH_UN_AGES   = "../covid19_scenarios/src/assets/data/country_age_distribution.json"
+PATH_UN_AGES   = "../src/assets/data/country_age_distribution.json"
 PATH_UN_CODES  = "country_codes.csv"
 PATH_POP_DATA  = "populationData.tsv"
 JAN1_2019      = datetime.strptime("2019-01-01", "%Y-%m-%d").toordinal()
