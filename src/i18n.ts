@@ -17,7 +17,7 @@ i18n
     resources,
     lng: lang,
     fallbackLng: 'en',
-    debug: true,
+    debug: process.env.DEV_ENABLE_I18N_DEBUG === '1',
     keySeparator: false, // Disable dots as key separators as we use dots in keys
 
     interpolation: {
@@ -32,7 +32,7 @@ i18n
     },
   })
 
-i18n.on('languageChanged', lang => {
+i18n.on('languageChanged', (lang) => {
   numeral.locale(langs[lang].numeralLocale)
 })
 

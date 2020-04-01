@@ -29,7 +29,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
   const percentageChartRef = React.useRef(null)
-  
+
   if (!data || !rates) {
     return null
   }
@@ -80,7 +80,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
 
           return (
             <>
-              <h5>{t('Distribution across age groups')}</h5>
+              <h3>{t('Distribution across age groups')}</h3>
 
               <div ref={casesChartRef} />
               <BarChart
@@ -100,10 +100,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }}
                   tickFormatter={tickFormatter}
                 />
-                <Tooltip 
-                  position={tooltipPosition} 
-                  content={ResponsiveTooltipContent}
-                />
+                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
                 <Legend verticalAlign="top" />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
@@ -134,10 +131,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   }}
                 />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip 
-                  position={tooltipPosition} 
-                  content={ResponsiveTooltipContent}
-                />
+                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
                 <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
               </BarChart>
             </>

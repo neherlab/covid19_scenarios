@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { Button, Card, CardBody, CardHeader, UncontrolledPopover } from 'reactstrap'
+import { Button, Card, CardBody, UncontrolledPopover } from 'reactstrap'
+
+import { onlyText } from 'react-children-utilities'
 
 import { FaQuestion } from 'react-icons/fa'
 
@@ -21,7 +23,7 @@ export default function FormHelpButton({ identifier, label, help }: FormHelpButt
     <>
       <Button
         id={safeId(identifier)}
-        className="help-button"
+        className="help-button ml-2"
         type="button"
         aria-label="help"
         onClick={(e) => {
@@ -32,9 +34,11 @@ export default function FormHelpButton({ identifier, label, help }: FormHelpButt
         <FaQuestion className="help-button-icon" />
       </Button>
       <UncontrolledPopover placement="right" target={safeId(identifier)} trigger="legacy" hideArrow>
-        <Card>
-          <CardHeader>{label}</CardHeader>
-          <CardBody>{help}</CardBody>
+        <Card className="card--help">
+          <CardBody>
+            {label && <h4>{onlyText(label)}</h4>}
+            <p>{help}</p>
+          </CardBody>
         </Card>
       </UncontrolledPopover>
     </>

@@ -90,11 +90,16 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setContainmentData, (draft, { data }) => {
+      let validNumberPoints = draft.data.containment.numberPoints
+      if (data.numberPoints && data.numberPoints >= 5 && data.numberPoints <= 100) {
+        validNumberPoints = data.numberPoints
+      }
+
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.containment = {
-        reduction: updateTimeSeries(draft.data.simulation.simulationTimeRange, data.reduction, data.numberPoints),
-        numberPoints: data.numberPoints,
+        reduction: updateTimeSeries(draft.data.simulation.simulationTimeRange, data.reduction, validNumberPoints),
+        numberPoints: validNumberPoints,
       }
     }),
   )

@@ -1,8 +1,10 @@
+@import '../../../styles/variables';
+
 .responsive-tooltip-content-base {
-  padding: 0.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.5);
   z-index: 999;
-  background-color: white;
+  padding: 0.25rem;
+  background-color: $white;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .responsive-tooltip-content {
@@ -11,8 +13,8 @@
 }
 
 .responsive-tooltip-content-item {
-  padding: 0.25rem 0.6rem;
   display: flex;
+  padding: 0.25rem 0.6rem;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -29,4 +31,3 @@
     max-width: 90vw;
   }
 }
-

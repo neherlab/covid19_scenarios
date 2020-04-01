@@ -34,8 +34,9 @@ function ScenarioCardEpidemiological({
 
   return (
     <CardWithoutDropdown
+      className="card--epidemiology"
       identifier="epidemiologicalScenario"
-      label={<h5 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h5>}
+      label={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
       help={t(
         'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).',
       )}

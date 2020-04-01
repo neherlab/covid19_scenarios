@@ -57,6 +57,8 @@ const analyzerPort = parseInt(getenv('WEB_DEV_BUNDLE_ANALYZER_PORT', '8888'), 10
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
 const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
+const webProdHost = getenv('WEB_PROD_HOST')
+const webDevHost = `localhost:${devServerPort}`
 
 const { moduleRoot, pkg } = findModuleRoot()
 const buildPath = path.join(moduleRoot, '.build', analyze ? 'analyze' : MODE, 'web') // prettier-ignore
@@ -233,6 +235,7 @@ export default {
       template: path.join(moduleRoot, 'src', 'index.ejs'),
       vars: {
         title: getenv('WEB_APP_NAME_FRIENDLY'),
+        host: MODE === 'production' ? webProdHost : webDevHost,
       },
     }),
 
@@ -268,6 +271,7 @@ export default {
       BABEL_ENV: process.env.BABEL_ENV,
       DEBUGGABLE_PROD: process.env.DEBUGGABLE_PROD,
       NODE_ENV: process.env.NODE_ENV,
+      DEV_ENABLE_I18N_DEBUG: getenv('DEV_ENABLE_I18N_DEBUG', '0'),
     }),
 
     ...(fancyConsole

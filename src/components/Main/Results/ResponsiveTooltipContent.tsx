@@ -4,19 +4,19 @@ import './ResponsiveTooltipContent.scss'
 
 interface TooltipItem {
   name: string
-  value: string | number
+  value: string | number
   color: string
 }
 
 interface TooltipContentProps {
-  active: boolean,
-  label: string | number
+  active: boolean
+  label: string | number
   payload: TooltipItem[]
   formatter?: Function
   labelFormatter?: Function
-} 
+}
 
-function ToolTipContentItem({ name, value, color}: TooltipItem) {
+function ToolTipContentItem({ name, value, color }: TooltipItem) {
   return (
     <div style={{ color }} className="responsive-tooltip-content-item">
       {name}
@@ -30,10 +30,10 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
   const formattedLabel = labelFormatter && label ? labelFormatter(label) : label
   const formatNumber = formatter
 
-  const essentialPayload = payload.map(payloadItem => ({
+  const essentialPayload = payload.map((payloadItem) => ({
     name: payloadItem.name,
-    color: payloadItem.color || '#bbbbbb',
-    value: formatter ? formatNumber(payloadItem.value, '', '', 0) : payloadItem.value
+    color: payloadItem.color || '#bbbbbb',
+    value: formatter ? formatNumber(payloadItem.value, '', '', 0) : payloadItem.value,
   }))
 
   const left = payload.length > 1 ? essentialPayload.slice(0, Math.floor(payload.length / 2)) : payload
@@ -45,10 +45,14 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
         <strong>{formattedLabel}</strong>
         <div className="responsive-tooltip-content">
           <div>
-            {left.map((item, idx) => <ToolTipContentItem key={idx} name={item.name} value={item.value} color={item.color} />)}
+            {left.map((item, idx) => (
+              <ToolTipContentItem key={idx} name={item.name} value={item.value} color={item.color} />
+            ))}
           </div>
           <div>
-            {right.map((item, idx) => <ToolTipContentItem key={idx} name={item.name} value={item.value} color={item.color} />)}
+            {right.map((item, idx) => (
+              <ToolTipContentItem key={idx} name={item.name} value={item.value} color={item.color} />
+            ))}
           </div>
         </div>
       </div>
