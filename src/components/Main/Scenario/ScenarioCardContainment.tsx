@@ -25,18 +25,11 @@ function ScenarioCardContainment({ scenarioState, errors, touched }: ScenarioCar
       identifier="containmentScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}
       help={t(
-        'Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.',
+        'Reduction of transmission through mitigation measures over time. Add or remove interventions.',
       )}
     >
       <div className="w-auto">
         <MitigationTable mitigationIntervals={mitigationIntervals} />
-      </div>
-      <div>
-        <p>
-          {t(
-            'Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no infection control, zero is complete prevention of all transmission.',
-          )}
-        </p>
       </div>
     </CardWithoutDropdown>
   )
