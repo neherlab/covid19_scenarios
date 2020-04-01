@@ -1,7 +1,5 @@
 import React from 'react'
 
-import _ from 'lodash'
-
 import { FastField, FieldProps } from 'formik'
 import Media from 'react-media'
 
@@ -20,15 +18,14 @@ function getNumberOfMonthsCount(media: { tiny: boolean; small: boolean; medium: 
 
 export interface MitigationDatePickerProps {
   identifier: string
-  label?: string
-  help?: string | React.ReactNode
+  value: DateRange
   allowPast?: boolean
 }
 
-export function MitigationDatePicker({ identifier, label, help, allowPast = true }: MitigationDatePickerProps) {
+export function MitigationDatePicker({ identifier, value, allowPast = true }: MitigationDatePickerProps) {
   return (
     <FastField name={identifier}>
-      {({ field: { value }, form: { setFieldValue } }: FieldProps<DateRange>) => {
+      {({ form: { setFieldValue } }: FieldProps<DateRange>) => {
         return (
           <Media
             queries={{

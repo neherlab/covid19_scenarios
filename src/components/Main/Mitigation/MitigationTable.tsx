@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Field, FieldArray } from 'formik'
+import { FastField, FieldArray } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Button, FormGroup } from 'reactstrap'
+import { Button, FormGroup, Row, Col } from 'reactstrap'
 
 import { FaTrash } from 'react-icons/fa'
 
@@ -11,6 +11,8 @@ import { MitigationInterval, MitigationIntervals } from '../../../algorithms/typ
 import { suggestNextMitigationInterval } from '../../../algorithms/utils/createMitigationInterval'
 
 import { MitigationDatePicker } from './MitigationDatePicker'
+
+import './MitigationTable.scss'
 
 export interface MitigationTableProps {
   mitigationIntervals: MitigationIntervals
@@ -23,45 +25,65 @@ export function MitigationTable({ mitigationIntervals }: MitigationTableProps) {
     <FieldArray
       name="containment.mitigationIntervals"
       render={(arrayHelpers) => (
-        <div>
-          <div className="form-inline">
-            {mitigationIntervals.map((interval: MitigationInterval, index: number) => (
-              <FormGroup key={interval.id}>
-                <Field
-                  className="form-control"
-                  id={`containment.mitigationIntervals[${index}].name`}
-                  name={`containment.mitigationIntervals[${index}].name`}
-                  type="text"
-                />
+        <Row noGutters>
+          <Col>
+            <Row>
+              <Col>
+                <div className="form-inline w-100">
+                  {mitigationIntervals.map((interval: MitigationInterval, index: number) => {
+                    if (!interval) {
+                      return null
+                    }
 
-                <MitigationDatePicker identifier={`containment.mitigationIntervals[${index}].timeRange`} allowPast />
+                    return (
+                      <FormGroup key={interval.id} className="interval-form-group w-100">
+                        <FastField
+                          className="form-control"
+                          id={`containment.mitigationIntervals[${index}].name`}
+                          name={`containment.mitigationIntervals[${index}].name`}
+                          type="text"
+                        />
 
-                <Field
-                  className="form-control"
-                  id={`containment.mitigationIntervals[${index}].mitigationValue`}
-                  name={`containment.mitigationIntervals[${index}].mitigationValue`}
-                  type="number"
-                  step={0.1}
-                  min={0}
-                  max={1}
-                />
+                        <MitigationDatePicker
+                          identifier={`containment.mitigationIntervals[${index}].timeRange`}
+                          value={interval.timeRange}
+                          allowPast
+                        />
 
-                <Button type="button" onClick={() => arrayHelpers.remove(index)}>
-                  <FaTrash />
+                        <FastField
+                          className="form-control"
+                          id={`containment.mitigationIntervals[${index}].mitigationValue`}
+                          name={`containment.mitigationIntervals[${index}].mitigationValue`}
+                          type="number"
+                          step={0.1}
+                          min={0}
+                          max={1}
+                        />
+
+                        <Button type="button" onClick={() => arrayHelpers.remove(index)}>
+                          <FaTrash />
+                        </Button>
+                      </FormGroup>
+                    )
+                  })}
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button
+                  type="button"
+                  onClick={() => {
+                    const interval = suggestNextMitigationInterval(mitigationIntervals)
+                    arrayHelpers.push(interval)
+                  }}
+                >
+                  {t('Add')}
                 </Button>
-              </FormGroup>
-            ))}
-          </div>
-          <Button
-            type="button"
-            onClick={() => {
-              const interval = suggestNextMitigationInterval(mitigationIntervals)
-              arrayHelpers.push(interval)
-            }}
-          >
-            {t('Add')}
-          </Button>
-        </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       )}
     />
   )
