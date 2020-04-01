@@ -9,7 +9,7 @@ import { Col, Row } from 'reactstrap'
 
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
-import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
+import { ScenarioData, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import run from '../../algorithms/run'
 
@@ -43,7 +43,7 @@ export function severityErrors(severity: SeverityTableRow[]) {
 
 async function runSimulation(
   scenarioState: State,
-  params: AllParams,
+  params: ScenarioData,
   severity: SeverityTableRow[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
   setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
@@ -73,7 +73,7 @@ async function runSimulation(
 
   const containmentData = params.containment.reduction
 
-  serializeScenarioToURL(scenarioState, params)
+  serializeScenarioToURL(scenarioState)
 
   const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
   setResult(newResult)
@@ -115,7 +115,7 @@ function Main() {
     setAutorunSimulation(autorun ?? false)
   }, [])
 
-  const allParams: AllParams = {
+  const allParams: ScenarioData = {
     population: scenarioState.data.population,
     epidemiological: scenarioState.data.epidemiological,
     simulation: scenarioState.data.simulation,
@@ -123,7 +123,7 @@ function Main() {
   }
 
   const [debouncedRun] = useDebouncedCallback(
-    (params: AllParams, severity: SeverityTableRow[]) =>
+    (params: ScenarioData, severity: SeverityTableRow[]) =>
       runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases),
     500,
   )
@@ -142,7 +142,7 @@ function Main() {
     }
   }, [autorunSimulation, debouncedRun, scenarioState, severity])
 
-  const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
+  const [setScenarioToCustom] = useDebouncedCallback((newParams: ScenarioData) => {
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.population, newParams.population)) {
       scenarioDispatch(setPopulationData({ data: newParams.population }))
@@ -161,7 +161,7 @@ function Main() {
     }
   }, 1000)
 
-  function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
+  function handleSubmit(params: ScenarioData, { setSubmitting }: FormikHelpers<ScenarioData>) {
     runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases)
     setSubmitting(false)
   }

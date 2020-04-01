@@ -1,54 +1,61 @@
-import { TimeSeries } from './TimeSeries.types'
+import { TimeSeriesType } from './TimeSeries.types'
+import * as t from 'io-ts'
+import { DateType } from './Date.types'
 
-export interface PopulationData {
-  populationServed: number
-  country: string
-  suspectedCasesToday: number
-  importsPerDay: number
-  hospitalBeds: number
-  ICUBeds: number
-  cases: string
-}
+export const PopulationDataType = t.type({
+  populationServed: t.number,
+  country: t.string,
+  suspectedCasesToday: t.number,
+  importsPerDay: t.number,
+  hospitalBeds: t.number,
+  ICUBeds: t.number,
+  cases: t.string,
+})
 
-export interface EpidemiologicalData {
-  r0: number // Average number of people who will catch a disease from one contagious person. Usually specified as a decimal, e. g. 2.7
-  latencyTime: number
-  infectiousPeriod: number
-  lengthHospitalStay: number
-  lengthICUStay: number
-  seasonalForcing: number
-  peakMonth: number
-  overflowSeverity: number
-}
+export type PopulationData = t.TypeOf<typeof PopulationDataType>
 
-export interface ContainmentData {
-  reduction: TimeSeries
-  numberPoints: number
-}
+export const EpidemiologicalDataType = t.type({
+  r0: t.number, // Average number of people who will catch a disease from one contagious person. Usually specified as a decimal, e. g. 2.7
+  latencyTime: t.number,
+  infectiousPeriod: t.number,
+  lengthHospitalStay: t.number,
+  lengthICUStay: t.number,
+  seasonalForcing: t.number,
+  peakMonth: t.number,
+  overflowSeverity: t.number,
+})
 
-export interface DateRange {
-  tMin: Date
-  tMax: Date
-}
+export type EpidemiologicalData = t.TypeOf<typeof EpidemiologicalDataType>
 
-export interface SimulationData {
-  simulationTimeRange: DateRange
-  numberStochasticRuns: number
-}
+export const ContainmentDataType = t.type({
+  reduction: TimeSeriesType,
+  numberPoints: t.number,
+})
 
-export interface ScenarioData {
-  population: PopulationData
-  epidemiological: EpidemiologicalData
-  containment: ContainmentData
-  simulation: SimulationData
-}
+export type ContainmentData = t.TypeOf<typeof ContainmentDataType>
 
-export interface AllParams {
-  population: PopulationData
-  epidemiological: EpidemiologicalData
-  simulation: SimulationData
-  containment: ContainmentData
-}
+export const DateRangeType = t.type({
+  tMin: DateType,
+  tMax: DateType,
+})
+
+export type DateRange = t.TypeOf<typeof DateRangeType>
+
+export const SimulationDataType = t.type({
+  simulationTimeRange: DateRangeType,
+  numberStochasticRuns: t.number,
+})
+
+export type SimulationData = t.TypeOf<typeof SimulationDataType>
+
+export const ScenarioDataType = t.type({
+  population: PopulationDataType,
+  epidemiological: EpidemiologicalDataType,
+  containment: ContainmentDataType,
+  simulation: SimulationDataType,
+})
+
+export type ScenarioData = t.TypeOf<typeof ScenarioDataType>
 
 export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData
 

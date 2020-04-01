@@ -261,11 +261,16 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
   // NOTE: Regression on type checking
   // update touches the current data
   // push touches the cumulative data
-  const update = (sub: keyof InternalCurrentData, age: string, delta: number) => {
+  const update = (
+    // tslint:disable-next-line:max-union-size
+    sub: 'susceptible' | 'infectious' | 'severe' | 'critical' | 'overflow',
+    age: string,
+    delta: number,
+  ) => {
     newPop.current[sub][age] = pop.current[sub][age] + delta
   }
 
-  const updateAt = (sub: keyof InternalCurrentData, age: string, delta: number, index: number) => {
+  const updateAt = (sub: 'exposed', age: string, delta: number, index: number) => {
     newPop.current[sub][age][index] = pop.current[sub][age][index] + delta
   }
 
@@ -486,7 +491,7 @@ export function exportSimulation(result: UserResult) {
   // TODO: Make the down sampling interval a parameter
 
   const header = keys(result.trajectory[0].current)
-  const tsvHeader: string[] = header.map((x) => (x == 'critical' ? 'ICU' : x))
+  const tsvHeader: string[] = header.map((x) => (x === 'critical' ? 'ICU' : x))
 
   const headerCumulative = keys(result.trajectory[0].cumulative)
   const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
