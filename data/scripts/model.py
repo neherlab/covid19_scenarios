@@ -2,6 +2,7 @@ import csv
 import importlib
 import sys
 sys.path.append('..')
+import os
 import json
 import argparse
 
@@ -13,13 +14,14 @@ import scipy.integrate as solve
 import scipy.optimize as opt
 import matplotlib.pylab as plt
 from scripts.tsv import parse as parse_tsv
+from paths import BASE_PATH
 
 # ------------------------------------------------------------------------
 # Globals
 
-PATH_UN_AGES   = "../src/assets/data/country_age_distribution.json"
-PATH_UN_CODES  = "country_codes.csv"
-PATH_POP_DATA  = "populationData.tsv"
+PATH_UN_AGES   = os.path.join(BASE_PATH, "..//src/assets/data/country_age_distribution.json")
+PATH_UN_CODES  = os.path.join(BASE_PATH,"country_codes.csv")
+PATH_POP_DATA  = os.path.join(BASE_PATH,"populationData.tsv")
 JAN1_2019      = datetime.strptime("2019-01-01", "%Y-%m-%d").toordinal()
 JUN1_2019      = datetime.strptime("2019-06-01", "%Y-%m-%d").toordinal()
 JAN1_2020      = datetime.strptime("2020-01-01", "%Y-%m-%d").toordinal()
