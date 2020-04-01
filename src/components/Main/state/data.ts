@@ -11,8 +11,9 @@ export const scenarioNames = Object.keys(scenarios)
 export function getScenarioData(key: string): ScenarioData {
   // TODO: use schema-generate type, validate against schema on runtime
   const scenarioData = _.get(scenarios, key) as ScenarioData | null
+  console.log('scen', scenarioData)
   if (!scenarioData) {
     throw new Error(`Error: scenario "${key}" not found in JSON`)
   }
-  return { ...scenarioData, containment: { mitigationIntervals: [] } }
+  return { ...scenarioData}
 }
