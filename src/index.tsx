@@ -14,8 +14,6 @@ import App from './components/App'
 
 import configureStore from './state/store'
 
-import './helpers/windowOpen'
-
 const { store, history } = configureStore()
 const Root = (
   <Provider store={store}>
