@@ -1,6 +1,42 @@
 import type { AllParams } from '../../../algorithms/types/Param.types'
-
 import { State } from './state'
+import * as t from 'io-ts'
+import { either, isLeft } from 'fp-ts/lib/Either'
+import { PathReporter } from 'io-ts/lib/PathReporter'
+
+const DateType = new t.Type<Date, string, unknown>(
+  'DateType',
+  (u): u is Date => u instanceof Date,
+  (u, c) =>
+    either.chain(t.string.validate(u, c), (s) => {
+      const d = new Date(s)
+      return isNaN(d.getTime()) ? t.failure(u, c) : t.success(d)
+    }),
+  (a) => a.toISOString(),
+)
+
+const DateRangeType = t.type({
+  tMin: DateType,
+  tMax: DateType,
+})
+
+const SimulationData = t.type({
+  simulationTimeRange: DateRangeType,
+  numberStochasticRuns: t.number,
+})
+
+const TimePointType = t.type({
+  t: DateType,
+  y: t.number,
+})
+
+const TimeSeriesType = t.array(TimePointType)
+
+const URLSerializationType = t.type({
+  current: t.string,
+  containment: TimeSeriesType,
+  simulation: SimulationData,
+})
 
 /*
 
@@ -16,50 +52,52 @@ so some extra work is needed during deserialization.
 */
 
 export async function serializeScenarioToURL(scenarioState: State, params: AllParams) {
-  const toSave = {
-    ...params,
+  const toSave = URLSerializationType.encode({
     current: scenarioState.current,
+    simulation: params.simulation,
     containment: scenarioState.data.containment.reduction,
-  }
+  })
 
-  window.history.pushState('', '', `?${encodeURIComponent(JSON.stringify(toSave))}`)
+  window.history.pushState({}, '', `?${encodeURIComponent(JSON.stringify(toSave))}`)
 }
 
 export function deserializeScenarioFromURL(initState: State): State {
-  if (window.location.search) {
-    try {
-      /*
-        We deserialise the URL by removing the first char ('?'), and applying JSON.parse 
-      */
-      const obj = JSON.parse(decodeURIComponent(window.location.search.slice(1)))
-
-      // Be careful of dates object that have been serialized to string
-
-      // safe to mutate here
-      obj.simulation.simulationTimeRange.tMin = new Date(obj.simulation.simulationTimeRange.tMin)
-      obj.simulation.simulationTimeRange.tMax = new Date(obj.simulation.simulationTimeRange.tMax)
-
-      const containmentDataReduction = obj.containment.map((c: { t: string; y: number }) => ({
-        y: c.y,
-        t: new Date(c.t),
-      }))
-
-      return {
-        ...initState,
-        current: obj.current,
-        data: {
-          population: initState.data.population,
-          containment: {
-            reduction: containmentDataReduction,
-            numberPoints: containmentDataReduction.length,
-          },
-          epidemiological: initState.data.epidemiological,
-          simulation: obj.simulation,
-        },
-      }
-    } catch (error) {
-      console.error('Error while parsing URL :', error.message)
-    }
+  if (!window.location.search) {
+    return initState
   }
-  return initState
+
+  let obj: unknown
+  try {
+    /*
+      We deserialise the URL by removing the first char ('?'), and applying JSON.parse 
+    */
+    obj = JSON.parse(decodeURIComponent(window.location.search.slice(1)))
+  } catch (e) {
+    console.error('Error while parsing URL: ', e.message)
+    return initState
+  }
+
+  const result = URLSerializationType.decode(obj)
+
+  if (isLeft(result)) {
+    const errors = PathReporter.report(result)
+    console.warn(`Found ${errors.length} error(s) while decoding URL: \n${errors.join('\n\n')}`)
+    return initState
+  }
+
+  const urlParam = result.right
+
+  return {
+    scenarios: initState.scenarios,
+    current: urlParam.current,
+    data: {
+      population: initState.data.population,
+      containment: {
+        reduction: urlParam.containment,
+        numberPoints: urlParam.containment.length,
+      },
+      epidemiological: initState.data.epidemiological,
+      simulation: urlParam.simulation,
+    },
+  }
 }

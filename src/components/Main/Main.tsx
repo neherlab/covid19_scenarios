@@ -15,7 +15,6 @@ import run from '../../algorithms/run'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
-import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 
@@ -60,13 +59,17 @@ async function runSimulation(
     return
   }
 
-  if (params.population.cases !== "none" && !isRegion(params.population.cases)) {
+  const ageDistribution = countryAgeDistributionData[params.population.country]
+
+  let caseCounts: EmpiricalData
+  if (isRegion(params.population.cases)) {
+    caseCounts = countryCaseCountData[params.population.cases]
+  } else if (params.population.cases === 'none') {
+    caseCounts = []
+  } else {
     console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
     return
   }
-
-  const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[params.population.country]
-  const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
 
   const containmentData = params.containment.reduction
 
@@ -80,7 +83,7 @@ async function runSimulation(
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
-const isCountry = (country: string): country is keyof CountryAgeDistribution => {
+const isCountry = (country: string): country is keyof typeof countryAgeDistributionData => {
   return Object.prototype.hasOwnProperty.call(countryAgeDistributionData, country)
 }
 
@@ -108,7 +111,7 @@ function Main() {
   }
 
   useEffect(() => {
-    const autorun = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
+    const autorun = LocalStorage.get(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
     setAutorunSimulation(autorun ?? false)
   }, [])
 

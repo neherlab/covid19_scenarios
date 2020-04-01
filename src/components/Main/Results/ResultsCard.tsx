@@ -48,10 +48,10 @@ function ResultsCardFunction({
   const [userResult, setUserResult] = useState<UserResult | undefined>()
 
   useEffect(() => {
-    const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
+    const persistedLogScale = LocalStorage.get(LOCAL_STORAGE_KEYS.LOG_SCALE)
     setLogScale(persistedLogScale ?? LOG_SCALE_DEFAULT)
 
-    const persistedShowHumanized = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS)
+    const persistedShowHumanized = LocalStorage.get(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS)
     setShowHumanized(persistedShowHumanized ?? SHOW_HUMANIZED_DEFAULT)
   }, [])
 

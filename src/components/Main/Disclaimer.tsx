@@ -4,11 +4,6 @@ import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 const disclaimerVersion = 0
 
-interface SuppressShowAgain {
-  version: number
-  suppressShowAgain: boolean
-}
-
 function onDialogClosed(suppressShowAgain: boolean) {
   LocalStorage.set(LOCAL_STORAGE_KEYS.SUPPRESS_DISCLAIMER, {
     version: disclaimerVersion,
@@ -21,7 +16,7 @@ export default function DisclaimerProps() {
   const [suppressShowAgain, setsuppressShowAgain] = useState(false)
 
   useEffect(() => {
-    const persistedSuppressShowAgain = LocalStorage.get<SuppressShowAgain>(LOCAL_STORAGE_KEYS.SUPPRESS_DISCLAIMER)
+    const persistedSuppressShowAgain = LocalStorage.get(LOCAL_STORAGE_KEYS.SUPPRESS_DISCLAIMER)
 
     if (persistedSuppressShowAgain !== null) {
       setsuppressShowAgain(persistedSuppressShowAgain.suppressShowAgain)
@@ -63,7 +58,7 @@ export default function DisclaimerProps() {
               className="form-check-input"
               onChange={toggleChecked}
               checked={suppressShowAgain}
-              ariaChecked={suppressShowAgain}
+              aria-checked={suppressShowAgain}
             />
             Don't show again
           </label>

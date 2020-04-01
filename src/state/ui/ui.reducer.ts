@@ -8,8 +8,10 @@ export interface UiState {
   skipLandingPage: boolean
 }
 
+console.log(LocalStorage, LocalStorage.get(LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE) === 'true')
+
 export const uiDefaultState: UiState = {
-  skipLandingPage: Boolean(LocalStorage.get(LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE)),
+  skipLandingPage: LocalStorage.get(LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE) === 'true',
 }
 
 export function uiReducer(state: UiState = uiDefaultState, action: Action) {

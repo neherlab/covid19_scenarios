@@ -14,7 +14,7 @@ const DEFAULT_LANG = 'en'
  * Returns our active lang loaded from localstorage
  */
 export function getCurrentLang(): string {
-  const storedLang = LocalStorage.get<string>(LOCAL_STORAGE_KEYS.LANG)
+  const storedLang = LocalStorage.get(LOCAL_STORAGE_KEYS.LANG)
   return storedLang ?? DEFAULT_LANG
 }
 
