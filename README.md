@@ -1,3 +1,5 @@
+# NOTE: This repo has been moved directly within covid19-scenarios. Please continue the discussion there
+
 <h1 align="center">
   COVID-19 Scenarios Data
 </h1>
