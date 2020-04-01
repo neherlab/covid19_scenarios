@@ -11,23 +11,17 @@ from .utils import store_data
 # ------------------------------------------------------------------------
 # Globals
 
-URL_CASES_CUM = "https://raw.githubusercontent.com/tryggvigy/CoronaWatchIS/master/data/covid_in_is.cvs"
-URL_HOSPITALIZED_CUM = "https://raw.githubusercontent.com/tryggvigy/CoronaWatchIS/master/data/covid_in_is_hosp.cvs"
+URL_CASES_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scenarios_is/master/data/cumulative_cases.cvs"
+URL_DEATHS_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scenarios_is/master/data/cumulative_deaths.cvs"
+URL_HOSPITALIZED_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scenarios_is/master/data/cumulative_hospitalized.cvs"
+URL_ICU_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scenarios_is/master/data/cumulative_icu.cvs"
+URL_RECOVERED_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scenarios_is/master/data/cumulative_recovered.cvs"
 
 LOC = "case-counts/Europe/Northern Europe/Iceland"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions
-
-def parse_date(s):
-    try:
-      # URL_CASES_CUM date formats are 03-26-2020. Convert them to 2020-03-26
-      return datetime.strftime(datetime.strptime(s,'%m-%d-%Y'),'%Y-%m-%d')
-    except ValueError:
-        # If the conversion fails, then assume s is a date in URL_HOSPITALIZED_CUM
-        # and already of the expected format 2020-03-26
-        return s
 
 def sorted_date(s):
     return sorted(s, key=lambda d: datetime.strptime(d[cols.index('time')], "%Y-%m-%d"))
@@ -37,7 +31,7 @@ def sorted_date(s):
 # Sub parsers
 
 
-def parse_csv(regions_date, url, col_index, output_column):
+def parse_csv(regions_date, url, output_column):
     r = requests.get(url)
     if not r.ok:
         print(f"Failed to fetch {url}", file=sys.stderr)
@@ -49,24 +43,27 @@ def parse_csv(regions_date, url, col_index, output_column):
     next(rdr)
 
     for row in rdr:
-        date_string = parse_date(row[0])
-        if row[col_index] == '':
+        date_string = row[0]
+        if row[1] == '':
             regions_date["Iceland"][date_string][output_column] = None
         else:
-            regions_date["Iceland"][date_string][output_column] = row[col_index]
+            regions_date["Iceland"][date_string][output_column] = row[1]
 
 
 def parse_cases(regions_date):
-    parse_csv(regions_date, URL_CASES_CUM, 4, 'cases')
+    parse_csv(regions_date, URL_CASES_CUM, 'cases')
 
 def parse_deaths(regions_date):
-    parse_csv(regions_date, URL_CASES_CUM, 7, 'deaths')
+    parse_csv(regions_date, URL_DEATHS_CUM, 'deaths')
 
 def parse_hospitalized(regions_date):
-    parse_csv(regions_date, URL_HOSPITALIZED_CUM, 4, 'hospitalized')
+    parse_csv(regions_date, URL_HOSPITALIZED_CUM, 'hospitalized')
 
 def parse_icu(regions_date):
-    parse_csv(regions_date, URL_HOSPITALIZED_CUM, 2, 'ICU')
+    parse_csv(regions_date, URL_ICU_CUM, 'ICU')
+
+def parse_recovered(regions_date):
+    parse_csv(regions_date, URL_RECOVERED_CUM, 'recovered')
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -78,6 +75,7 @@ def parse():
     parse_deaths(regions_date)
     parse_hospitalized(regions_date)
     parse_icu(regions_date)
+    parse_recovered(regions_date)
 
     regions = defaultdict(list)
     for region in regions_date:
@@ -88,7 +86,7 @@ def parse():
                 regions_date[region][date].get('deaths', None),
                 regions_date[region][date].get('hospitalized', None),
                 regions_date[region][date].get('ICU', None),
-                None
+                regions_date[region][date].get('recovered', None),
             ]
             regions[region].append(entry)
     regions = dict(regions)
