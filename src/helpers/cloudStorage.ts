@@ -35,6 +35,10 @@ export function setAuthObserver(fn: Function) {
   })
 }
 
+export function getCurrentUser() {
+  return firebase.auth().currentUser?.uid
+}
+
 // TODO data typing
 export function setUserData(uid: string, data: any) {
   firebase.firestore().collection('users').doc(uid).set(data, { merge: true })
