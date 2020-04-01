@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import FormLabel from './FormLabel'
+import {help} from './FormHelpButton'
 
 const findLabelInTree = (el: HTMLElement | null): HTMLElement | null => {
   if (!el) {
@@ -18,7 +19,7 @@ describe('FormLabel', () => {
     // element tree that shows the label text. And that <label> should be for
     // the identifier.
 
-    const { getByText } = render(<FormLabel identifier="abc" label="def" />)
+    const { getByText } = render(<FormLabel identifier="abc" label="def" help={help('hij')} />)
 
     const labelElement = findLabelInTree(getByText('def')) as HTMLLabelElement
 

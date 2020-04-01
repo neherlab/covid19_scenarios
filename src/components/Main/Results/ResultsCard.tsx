@@ -4,6 +4,7 @@ import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
+import { help } from '../../Form/FormHelpButton'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 import processUserResult from '../../../algorithms/utils/userResult'
 import { AgeBarChart } from './AgeBarChart'
@@ -106,7 +107,7 @@ function ResultsCardFunction({
             {t('Results')}
           </h2>
         }
-        help={t('This section contains simulation results')}
+        help={help(t('Results'), t('This section contains simulation results'))}
         defaultCollapsed={false}
       >
         <Row className="mb-4">
@@ -159,7 +160,7 @@ function ResultsCardFunction({
             <FormSwitch
               identifier="logScale"
               label={t('Log scale')}
-              help={t('Toggle between logarithmic and linear scale on vertical axis of the plot')}
+              help={help(t('Log scale'), t('Toggle between logarithmic and linear scale on vertical axis of the plot'))}
               checked={logScale}
               onValueChanged={setPersistLogScale}
             />
@@ -168,7 +169,7 @@ function ResultsCardFunction({
             <FormSwitch
               identifier="showHumanized"
               label={t('Show humanized results')}
-              help={t('Show numerical results in a human friendly format')}
+              help={help(t('Show humanized results'), t('Show numerical results in a human friendly format'))}
               checked={showHumanized}
               onValueChanged={setPersistShowHumanized}
             />

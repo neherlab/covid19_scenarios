@@ -2,8 +2,6 @@ import React from 'react'
 
 import { Button, Card, CardBody, UncontrolledPopover } from 'reactstrap'
 
-import { onlyText } from 'react-children-utilities'
-
 import { FaQuestion } from 'react-icons/fa'
 
 import './FormHelpButton.scss'
@@ -12,13 +10,21 @@ function safeId(id: string) {
   return id.replace('.', '-')
 }
 
-export interface FormHelpButtonProps {
-  identifier: string
-  label: string | React.ReactNode
-  help?: string | React.ReactNode
+export interface HelpProps {
+  label: string
+  text: string
 }
 
-export default function FormHelpButton({ identifier, label, help }: FormHelpButtonProps) {
+export function help(label:string = "", text:string = "") : HelpProps {
+  return { label, text }
+}
+
+export interface FormHelpButtonProps {
+  identifier: string
+  help?: HelpProps
+}
+
+export default function FormHelpButton({ identifier, help }: FormHelpButtonProps) {
   return (
     <>
       <Button
@@ -36,8 +42,8 @@ export default function FormHelpButton({ identifier, label, help }: FormHelpButt
       <UncontrolledPopover placement="right" target={safeId(identifier)} trigger="legacy" hideArrow>
         <Card className="card--help">
           <CardBody>
-            {label && <h4>{onlyText(label)}</h4>}
-            <p>{help}</p>
+            <h4>{help.label}</h4>
+            <p>{help.text}</p>
           </CardBody>
         </Card>
       </UncontrolledPopover>

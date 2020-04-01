@@ -5,11 +5,12 @@ import { Col, FormGroup, Row } from 'reactstrap'
 
 import { FormDropdownOption } from './FormDropdownOption'
 import FormLabel from './FormLabel'
+import HelpProps from './FormHelpButton'
 
 export interface FormDropdownProps<ValueType extends string | number> {
   identifier: string
   label: string | React.ReactNode
-  help?: string | React.ReactNode
+  help?: HelpProps
   options: FormDropdownOption<ValueType>[]
   defaultOption?: FormDropdownOption<ValueType>
   value?: FormDropdownOption<ValueType>

@@ -3,6 +3,8 @@ import React from 'react'
 import { Field, FieldProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import FormDropdownStateless from './FormDropdownStateless'
 
+import HelpProps from './FormHelpButton'
+
 export interface FormDropdownOption<ValueType extends string | number> {
   value: ValueType
   label: string
@@ -11,7 +13,7 @@ export interface FormDropdownOption<ValueType extends string | number> {
 export interface FormDropdownProps<ValueType extends string | number> {
   identifier: string
   label: string
-  help?: string | React.ReactNode
+  help?: HelpProps
   options: FormDropdownOption<ValueType>[]
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>

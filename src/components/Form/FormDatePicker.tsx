@@ -7,6 +7,7 @@ import Media from 'react-media'
 import { Col, FormGroup, Row } from 'reactstrap'
 
 import FormLabel from './FormLabel'
+import {HelpProps} from './FormHelpButton'
 
 import { DateRange } from '../../algorithms/types/Param.types'
 
@@ -21,7 +22,7 @@ function getNumberOfMonthsCount(media: { tiny: boolean; small: boolean; medium: 
 export interface FormDatePickerProps {
   identifier: string
   label: string
-  help?: string | React.ReactNode
+  help?: HelpProps
   allowPast?: boolean
 }
 

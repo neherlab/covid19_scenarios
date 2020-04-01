@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 
 import { CardWithDropdown } from '../../Form/CardWithDropdown'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
+import { help } from '../../Form/FormHelpButton'
 
 import { setScenario } from '../state/actions'
 import { State } from '../state/state'
@@ -40,7 +41,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
     <CardWithDropdown
       identifier="scenarioName"
       label={<h2 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h2>}
-      help={t('Combination of population, epidemiology, and mitigation scenarios')}
+      help={help(t('Scenario'), t('Combination of population, epidemiology, and mitigation scenarios'))}
       options={scenarioOptions}
       value={scenarioOptions.find((s) => s.label === scenarioState.current)}
       onValueChange={handleChangeScenario}

@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
+import { help } from '../../Form/FormHelpButton'
+
 import { ContainmentGraph } from '../Containment/ContainmentGraph'
 
 import { setContainmentData } from '../state/actions'
@@ -33,14 +35,12 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
     <CardWithoutDropdown
       identifier="containmentScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}
-      help={t(
-        'Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.',
-      )}
+      help={help(t('Mitigation'), t('Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.'))}
     >
       <FormSpinBox
         identifier="containment.numberPoints"
         label={t('Number of points')}
-        help={t('Number of controllable points on the mitigation curve')}
+        help={help(t('Number of points'), t('Number of controllable points on the mitigation curve'))}
         step={1}
         min={5}
         max={100}
