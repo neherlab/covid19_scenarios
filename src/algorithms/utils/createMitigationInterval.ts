@@ -7,12 +7,15 @@ import { MitigationInterval, MitigationIntervals } from '../types/Param.types'
 
 export function suggestNextMitigationInterval(intervals: MitigationIntervals): MitigationInterval {
   const tMaxMoments = intervals.map((interval) => moment(interval.timeRange.tMax))
-  const tMin = _.isEmpty(tMaxMoments) ? moment().startOf('day').toDate() : moment.max(tMaxMoments).toDate()
-  const tMax = moment(tMin).add('3 months').toDate()
+  const tMinMoment = _.isEmpty(tMaxMoments) ? moment().startOf('day') : moment.max(tMaxMoments)
+  const tMaxMoment = tMinMoment.clone().add(3, 'month')
+
+  const timeRange = { tMin: tMinMoment.toDate(), tMax: tMaxMoment.toDate() }
+
   return {
     id: uuidv4(),
-    name: `Act from ${moment(tMin).format('D MMM YYYY')}`,
-    timeRange: { tMin, tMax },
+    name: `Act from ${tMinMoment.format('D MMM YYYY')}`,
+    timeRange,
     mitigationValue: 1,
   }
 }
