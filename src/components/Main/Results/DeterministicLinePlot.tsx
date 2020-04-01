@@ -5,7 +5,7 @@ import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
-import { EmpiricalData } from '../../../algorithms/types/Param.types'
+import { ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
@@ -54,6 +54,7 @@ export const colors = {
 export interface LinePlotProps {
   data?: AlgorithmResult
   userResult?: UserResult
+  mitigation: ContainmentData
   logScale?: boolean
   showHumanized?: boolean
   caseCounts?: EmpiricalData
@@ -79,7 +80,14 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
   return <span className={activeClassName}>{value}</span>
 }
 
-export function DeterministicLinePlot({ data, userResult, logScale, showHumanized, caseCounts }: LinePlotProps) {
+export function DeterministicLinePlot({
+  data,
+  userResult,
+  mitigation,
+  logScale,
+  showHumanized,
+  caseCounts,
+}: LinePlotProps) {
   const { t } = useTranslation()
 
   const formatNumber = numberFormatter(!!showHumanized, false)
@@ -94,24 +102,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     return null
   }
 
-  const mitigationIntervals = [
-    {
-      mitigationValue: 0.8,
-      name: 'levelOne',
-      timeRange: {
-        tMax: '2020-09-01',
-        tMin: '2020-03-05'
-      },
-    },
-    {
-      mitigationValue: 0.6,
-      name: 'levelTwo',
-      timeRange: {
-        tMax: '2020-09-01',
-        tMin: '2020-03-20'
-      },
-    },
-  ]
+  const { mitigationIntervals } = mitigation
 
   const mitigationMeasures = []
   mitigationIntervals.forEach((d) => {
@@ -148,11 +139,12 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
-  const mitigationsToPlot = mitigationIntervals.map((d) => (
-    { key: d.name, color: '#CCCCCC', legendType: 'line', name: d.name }
-    )
-  )
-  console.log(mitigationsToPlot)
+  const mitigationsToPlot = mitigationIntervals.map((d) => ({
+    key: d.name,
+    color: '#CCCCCC',
+    legendType: 'line',
+    name: d.name,
+  }))
 
   const observations =
     nonEmptyCaseCounts?.map((d, i) => ({
@@ -195,7 +187,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
       ICUbeds: nICUBeds,
     })),
     ...observations,
-    ...mitigationMeasures
+    ...mitigationMeasures,
   ] // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
 
   const linesToPlot: LineProps[] = [
