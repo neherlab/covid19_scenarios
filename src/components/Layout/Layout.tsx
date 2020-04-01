@@ -19,9 +19,9 @@ interface LayoutProps {
 function Layout({ location }: LayoutProps) {
   return (
     <div className="container-fluid">
-      <div className="row">
+      <header className="row">
         <NavigationBar navLinks={links} />
-      </div>
+      </header>
 
       <div className="row">
         <main className="container-fluid absolute" role="main">

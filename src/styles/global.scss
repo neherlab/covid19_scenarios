@@ -18,8 +18,39 @@ html {
 }
 
 body {
+  background-color: #eeeeee;
   // HACK: workaround for bootstrap modal adding padding-right when open
   padding: 0 !important;
+}
+
+// TYPOGRAPHY
+h2,
+h3 {
+  font-family: $font-family-sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: $black;
+  font-size: 28px;
+  letter-spacing: 0.49em;
+}
+
+h3 {
+  color: $black;
+  font-size: 20px;
+}
+
+.card h3 {
+  color: $white;
+}
+
+.card.card--results h3 {
+  color: $black;
+  margin-bottom: 0;
+  margin-top: 1em;
 }
 
 .container.absolute {
@@ -65,12 +96,24 @@ p {
   }
 }
 
+// STRUCTURE ELEMENTS
 .card {
-  border-radius: 2px;
+  background-color: transparent;
+  border: 1px solid $black;
+  // margin-top: 15px;
 }
 
 .card-header {
+  background-color: $black;
   padding: 8px 4px;
+}
+
+.card-header label {
+  margin: 0;
+}
+
+.card-header p {
+  color: $white;
 }
 
 .card-header-button {
@@ -79,7 +122,62 @@ p {
 }
 
 .card-body {
-  padding: 4px 6px;
+  padding: 1rem;
+}
+
+.card--main {
+  border: none;
+  margin-top: 30px;
+
+  & > .card-header {
+    background-color: transparent;
+    border-bottom: 3px solid $black;
+    min-height: 3em;
+    padding-left: 0;
+  }
+
+  & > .card-body,
+  & > .collapse > .card-body {
+    margin-top: 10px;
+    padding: 0;
+  }
+}
+
+.card--results {
+  & > .card-body,
+  & > .collapse > .card-body {
+    background-color: $white;
+    border: 1px solid $black;
+    margin-top: 20px;
+    padding: 1rem;
+  }
+}
+
+//HELP CARDS
+.card--help {
+  .card-body {
+    line-height: 1.2;
+
+    p {
+      margin: 0;
+      text-align: left;
+    }
+
+    h4 {
+      font-weight: bold;
+      font-size: 110%;
+    }
+  }
+}
+
+//FORMs
+.card--population,
+.card--epidemiology {
+  .card-body .row {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0.5em;
+  }
 }
 
 // Always show spinbox arrows in Chrome
