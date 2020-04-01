@@ -39,21 +39,6 @@
 </p>
 
 <p align="center">
-  <a href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a">
-    <img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
-  </a>
-  <a href="https://github.com/neherlab/covid19_scenarios_data/issues">
-    <img src="https://img.shields.io/badge/contributions-are%20welcome-%234295f5.svg" alt="Contributions: welcome" />
-  </a>
-  <a href="https://github.com/neherlab/covid19_scenarios/issues/18">
-    <img
-      src="https://img.shields.io/badge/questions%20and%20discussions-in%20issue%20%2318-%235bd9b1.svg"
-      alt="Discuss: in issue 18"
-    />
-  </a>
-</p>
-
-<p align="center">
   <a href="https://twitter.com/richardneher">
     <img src="https://img.shields.io/twitter/follow/richardneher?style=social" alt="Twitter Follow" />
   </a>
@@ -62,18 +47,6 @@
 <h2 align="center">
 Got questions or suggestions?
 </h2>
-
-<p align="center">
-  <a
-    alt="Link to join the chat"
-    href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a"
-  >
-    <img
-      alt="Image for the link to join the chat"
-      src="https://user-images.githubusercontent.com/9403403/77235704-691ec480-6bb8-11ea-985d-82ec87cfdcdf.png"
-    />
-  </a>
-</p>
 
 <h2 align="center">
 Discover
@@ -156,7 +129,7 @@ The following commands assume that you have cloned this repository as `covid19_s
 from **outside** this repository. To run the parsers, call
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py --fetch
+python data/generate_data.py --fetch
 ```
 
 This will update the tables in the directory `case-counts`. For each parser there is a separate directory which contains
@@ -165,14 +138,14 @@ individual case counts for each location covered by the parser.
 To only run specific parsers, run
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py --fetch --parsers netherlands switzerland
+python data/generate_data.py --fetch --parsers netherlands switzerland
 ```
 
 To generate jsons for the app, specific the path the location of the target. This can either be done in combination with
 updating the `tsv` files or separately depending on whether the command is run with `--fetch` or not.
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py \
+python data/generate_data.py \
         --output-cases path/case-counts.json  \
         --output-population path/population.json
 ```
@@ -180,7 +153,7 @@ python3 covid19_scenarios_data/generate_data.py \
 To generate the integrated scenario json, run
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py \
+python data/generate_data.py \
         --output-cases path/case-counts.json  \
         --output-scenarios path/scenarios.json
 ```
@@ -246,7 +219,7 @@ The steps to follow are:
 - Test your parser from the directory above (outside your covid19_scenario_data folder) using
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py --fetch --parsers <yourparsername>
+python data/generate_data.py --fetch --parsers <yourparsername>
 ```
 
 - Check the resulting output in case-counts/<yourparsername>/, and add the files to your Pull Request together with the
@@ -289,6 +262,17 @@ following form:
 
 At least one of `suspectedCasesMarch1st` and `importsPerDay` needs to be non-zero. Otherwise there is no outbreak (good
 news in principle, but not useful for exploring scenarios).
+
+## Quick Start
+
+#### Run natively
+
+Install the requirements:
+
+- pipenv
+
+Then type in your terminal `pipenv install` This should recreate the required python environment To enter the
+environment, type `pipenv shell`
 
 ## License
 
