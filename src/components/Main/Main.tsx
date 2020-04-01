@@ -17,7 +17,7 @@ import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
-import severityData from '../../assets/data/severityData.json'
+import severityData from '../../assets/data/severity.json'
 
 import countryCaseCountData from '../../assets/data/case_counts.json'
 
@@ -60,7 +60,7 @@ async function runSimulation(
     return
   }
 
-  if (params.population.cases !== "none" && !isRegion(params.population.cases)) {
+  if (params.population.cases !== 'none' && !isRegion(params.population.cases)) {
     console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
     return
   }
