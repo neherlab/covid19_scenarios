@@ -77,7 +77,7 @@
     "lodash": "4.17.15",
     "mathjs": "6.6.1",
     "moment": "2.24.0",
-    "numeral": "2.0.6",
+    "numbro": "2.2.0",
     "p-min-delay": "3.1.0",
     "papaparse": "5.1.1",
     "prop-types": "15.7.2",
