@@ -67,6 +67,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
 
   const tickFormatter = (value: number) => formatNumberRounded(value)
 
+  console.log(process.env)
   return (
     <div className="w-100 h-100" data-testid="AgeBarChart">
       <ReactResizeDetector handleWidth handleHeight>
