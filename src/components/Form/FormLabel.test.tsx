@@ -19,7 +19,7 @@ describe('FormLabel', () => {
     // element tree that shows the label text. And that <label> should be for
     // the identifier.
 
-    const { getByText } = render(<FormLabel identifier="abc" label="def" help={help('hij')} />)
+    const { getByText } = render(<FormLabel identifier="abc" label="def" help={help('hij', 'klm')} />)
 
     const labelElement = findLabelInTree(getByText('def')) as HTMLLabelElement
 
