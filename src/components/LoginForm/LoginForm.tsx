@@ -1,9 +1,15 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import { useFormik } from 'formik'
 import { Card, CardBody, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
+import { setCurrentUserUid } from '../../state/user/user.actions'
+import { signInWithEmail } from '../../helpers/cloudStorage'
+
 function LoginForm() {
+  const dispatch = useDispatch()
+
   const initialValues = {
     email: '',
     password: ''
@@ -11,8 +17,9 @@ function LoginForm() {
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values))
+    onSubmit: async (values) => {
+      const uid = await signInWithEmail(values.email, values.password) || null
+      dispatch(setCurrentUserUid({ currentUserUid: uid }))
     }
   })
 

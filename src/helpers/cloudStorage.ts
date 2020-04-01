@@ -21,8 +21,9 @@ export async function createUserWithEmail(email: string, password: string) {
   }
 }
 
-export function signInWithEmail(email: string, password: string) {
-  firebase.auth().signInWithEmailAndPassword(email, password)
+export async function signInWithEmail(email: string, password: string) {
+  await firebase.auth().signInWithEmailAndPassword(email, password)
+  return getCurrentUser()
 }
 
 export function signOut() {

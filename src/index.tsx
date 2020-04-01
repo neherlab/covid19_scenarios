@@ -10,9 +10,14 @@ import { Provider } from 'react-redux'
 
 import './i18n'
 
+import { init as initCloudProvider } from './helpers/cloudStorage'
+
 import App from './components/App'
 
 import configureStore from './state/store'
+
+// TODO Rename
+initCloudProvider()
 
 const { store, history } = configureStore()
 const Root = (
