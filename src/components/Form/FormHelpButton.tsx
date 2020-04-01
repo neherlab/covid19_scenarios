@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody } from 'reactstrap'
 import { onlyText } from 'react-children-utilities'
 import { FaQuestion } from 'react-icons/fa'
-import Popover from 'react-awesome-popover'
+import Popover from '../Wrappers/Popover'
 
 import './FormHelpButton.scss'
 
@@ -13,8 +13,8 @@ export interface FormHelpButtonProps {
 
 export default function FormHelpButton({ label, help }: FormHelpButtonProps) {
   return (
-    <Popover placement="right-center" action="click" preventDefault stopPropagation>
-      <button className="help-button ml-2" type="button" aria-label="help">
+    <Popover placement="right-center" preventDefault stopPropagation>
+      <button className="btn btn-secondary help-button ml-2" type="button" aria-label="help">
         <FaQuestion className="help-button-icon" />
       </button>
       <Card className="card--help">
