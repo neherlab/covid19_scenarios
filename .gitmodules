@@ -1,3 +1,0 @@
-[submodule "data"]
-	path = covid19_scenarios_data
-	url = https://github.com/neherlab/covid19_scenarios_data
