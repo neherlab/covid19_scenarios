@@ -229,7 +229,12 @@ interface StateFlux {
   }
 }
 
-export function evolve(pop: SimulationTimePoint, P: ModelParams, tMax: number, sample: (x: number) => number): SimulationTimePoint {
+export function evolve(
+  pop: SimulationTimePoint,
+  P: ModelParams,
+  tMax: number,
+  sample: (x: number) => number,
+): SimulationTimePoint {
   const dT: number = tMax - pop.time
   const nSteps: number = Math.max(1, Math.round(dT / eulerStep))
   const dt = dT / nSteps
@@ -241,7 +246,12 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, tMax: number, s
 }
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
-export function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number, sample: (x: number) => number): SimulationTimePoint {
+export function stepODE(
+  pop: SimulationTimePoint,
+  P: ModelParams,
+  dt: number,
+  sample: (x: number) => number,
+): SimulationTimePoint {
   const sum = (dict: Record<string, number>): number => {
     return Object.values(dict).reduce((a, b) => a + b, 0)
   }
