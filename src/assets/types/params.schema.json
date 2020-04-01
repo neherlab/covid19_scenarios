@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "title": "COVID-19 scenario parameters",
+  "description": "Model parameters utilized in the generation of COVID-19 scenarios",
+  "type": "object",
+
+  "definitions": {
+    "populationParams": {
+      "$id": "#populationParams",
+      "type": "object",
+      "properties": {
+        "populationServed": {
+          "type": "number"
+        },
+        "country": {
+          "type": "string"
+        },
+        "suspectedCasesToday": {
+          "type": "number"
+        },
+        "importsPerDay": {
+          "type": "number"
+        },
+        "hospitalBeds": {
+          "type": "number"
+        },
+        "ICUBeds": {
+          "type": "number"
+        }
+      },
+      "required": ["populationServed", "country", "suspectedCasesToday", "importsPerDay", "hospitalBeds", "ICUBeds"]
+    },
+    "epidemiologicalParams": {
+      "$id": "#epidemiologicalParams",
+      "type": "object",
+      "properties": {
+        "latencyTime": {
+          "type": "number"
+        },
+        "infectiousPeriod": {
+          "type": "number"
+        },
+        "lengthHospitalStay": {
+          "type": "number"
+        },
+        "seasonalForcing": {
+          "type": "number"
+        },
+        "peakMonth": {
+          "type": "number"
+        },
+        "overflowSeverity": {
+          "type": "number"
+        },
+        "r0": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "latencyTime",
+        "infectiousPeriod",
+        "lengthHospitalStay",
+        "seasonalForcing",
+        "peakMonth",
+        "overflowSeverity",
+        "r0"
+      ]
+    },
+    "simulationParams": {
+      "$id": "#simulationParams",
+      "type": "object",
+      "properties": {
+        "simulationTimeRange": {
+          "type": "object",
+          "properties": {
+            "tMin": {
+              "type": "string"
+            },
+            "tMax": {
+              "type": "string"
+            }
+          },
+          "required": ["tMin", "tMax"]
+        },
+        "numberStochasticRuns": {
+          "type": "number"
+        }
+      },
+      "required": ["simulationTimeRange", "numberStochasticRuns"]
+    },
+    "containmentParams": {
+      "type": "object",
+      "id": "#containmentParams",
+      "properties": {
+        "reduction": {
+          "type": "array",
+          "title": "reduction",
+          "items": {
+            "type": "number"
+          }
+        },
+        "numberPoints": {
+          "type": "number"
+        }
+      },
+      "required": ["reduction", "numberPoints"]
+    }
+  },
+
+  "properties": {
+    "population": {
+      "$ref": "#/definitions/populationParams"
+    },
+    "epidemiological": {
+      "$ref": "#/definitions/epidemiologicalParams"
+    },
+    "simulation": {
+      "$ref": "#/definitions/simulationParams"
+    },
+    "containment": {
+      "$ref": "#/definitions/containmentParams"
+    }
+  },
+  "required": ["population", "epidemiological", "simulation", "containment"]
+}
