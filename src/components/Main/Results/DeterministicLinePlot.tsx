@@ -94,6 +94,35 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     return null
   }
 
+  const mitigationIntervals = [
+    {
+      mitigationValue: 0.8,
+      name: 'levelOne',
+      timeRange: {
+        tMax: '2020-09-01',
+        tMin: '2020-03-05'
+      },
+    },
+    {
+      mitigationValue: 0.6,
+      name: 'levelTwo',
+      timeRange: {
+        tMax: '2020-09-01',
+        tMin: '2020-03-20'
+      },
+    },
+  ]
+
+  const mitigationMeasures = []
+  mitigationIntervals.forEach((d) => {
+    const start = { time: new Date(d.timeRange.tMin).getTime() }
+    start[d.name] = 1000
+    mitigationMeasures.push(start)
+    const stop = { time: new Date(d.timeRange.tMax).getTime() }
+    stop[d.name] = 1000
+    mitigationMeasures.push(stop)
+  })
+
   const hasUserResult = Boolean(userResult?.trajectory)
   const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 
@@ -119,6 +148,11 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
+  const mitigationsToPlot = mitigationIntervals.map((d) => (
+    { key: d.name, color: '#CCCCCC', legendType: 'line', name: d.name }
+    )
+  )
+  console.log(mitigationsToPlot)
 
   const observations =
     nonEmptyCaseCounts?.map((d, i) => ({
@@ -161,6 +195,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
       ICUbeds: nICUBeds,
     })),
     ...observations,
+    ...mitigationMeasures
   ] // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
 
   const linesToPlot: LineProps[] = [
@@ -281,6 +316,9 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 ))}
                 {scatterToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                ))}
+                {mitigationsToPlot.map((d) => (
+                  <Line key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}
               </ComposedChart>
             </>
