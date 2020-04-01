@@ -4,7 +4,7 @@ import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution
 
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
 
-import { collectTotals, evolve, eulerStepsPerDay, getPopulationParams, initializePopulation } from './model'
+import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
 import { AllParamsFlat } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './types/Result.types'
 import { TimeSeries } from './types/TimeSeries.types'
