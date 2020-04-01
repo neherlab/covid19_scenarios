@@ -15,7 +15,7 @@ export interface HelpProps {
   text: string
 }
 
-export function help(label:string = "", text:string = "") : HelpProps {
+export function help(label = '', text = ''): HelpProps {
   return { label, text }
 }
 

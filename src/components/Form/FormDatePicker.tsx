@@ -7,7 +7,7 @@ import Media from 'react-media'
 import { Col, FormGroup, Row } from 'reactstrap'
 
 import FormLabel from './FormLabel'
-import {HelpProps} from './FormHelpButton'
+import { HelpProps } from './FormHelpButton'
 
 import { DateRange } from '../../algorithms/types/Param.types'
 

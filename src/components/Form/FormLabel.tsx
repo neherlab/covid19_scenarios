@@ -1,7 +1,7 @@
 import React from 'react'
 
 import HelpLabel from './HelpLabel'
-import {HelpProps} from './FormHelpButton'
+import { HelpProps } from './FormHelpButton'
 
 export interface LabelWithHelpButtonProps {
   identifier: string

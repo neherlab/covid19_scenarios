@@ -5,7 +5,6 @@ import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
 
-
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 import countryCaseCounts from '../../../assets/data/case_counts.json'
 
@@ -43,7 +42,7 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       className="card--population"
       identifier="populationScenario"
       label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
-      help={help(t('Population'), ('Parameters of the population in the health care system.'))}
+      help={help(t('Population'), 'Parameters of the population in the health care system.')}
     >
       <FormSpinBox
         identifier="population.populationServed"
@@ -80,8 +79,10 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       <FormSpinBox
         identifier="population.hospitalBeds"
         label={`${t('Hospital Beds')} (${t('est.')})`}
-        help={help(t(`${t('Hospital Beds')} (${t('est.')})`),
-          'Number of hospital beds available in health care system. Presets are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.')}
+        help={help(
+          t(`${t('Hospital Beds')} (${t('est.')})`),
+          'Number of hospital beds available in health care system. Presets are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
+        )}
         step={1}
         errors={errors}
         touched={touched}
@@ -89,8 +90,12 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       <FormSpinBox
         identifier="population.ICUBeds"
         label={`${t('ICU/ICMU')} (${t('est.')})`}
-        help={help(`${t('ICU/ICMU')} (${t('est.')})`, t(
-          'Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.'))}
+        help={help(
+          `${t('ICU/ICMU')} (${t('est.')})`,
+          t(
+            'Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
+          ),
+        )}
         step={1}
         errors={errors}
         touched={touched}
@@ -106,8 +111,12 @@ function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispat
       <FormDatePicker
         identifier="simulation.simulationTimeRange"
         label={t('Simulation time range')}
-        help={help(t('Simulation time range'), t(
-          'Start and end date of the simulation. Changing the time range might affect the result due to resampling of the mitigation curve.'))}
+        help={help(
+          t('Simulation time range'),
+          t(
+            'Start and end date of the simulation. Changing the time range might affect the result due to resampling of the mitigation curve.',
+          ),
+        )}
       />
     </CardWithoutDropdown>
   )

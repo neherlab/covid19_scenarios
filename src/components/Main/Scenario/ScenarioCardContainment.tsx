@@ -35,7 +35,12 @@ function ScenarioCardContainment({ scenarioState, errors, touched, scenarioDispa
     <CardWithoutDropdown
       identifier="containmentScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}
-      help={help(t('Mitigation'), t('Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.'))}
+      help={help(
+        t('Mitigation'),
+        t(
+          'Reduction of transmission through mitigation measures over time. Different presets with variable degree of reduction can be selected from the dropdown.',
+        ),
+      )}
     >
       <FormSpinBox
         identifier="containment.numberPoints"
