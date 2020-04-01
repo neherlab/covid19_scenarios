@@ -12,16 +12,16 @@ function safeId(id: string) {
 
 export interface HelpProps {
   label: string
-  text: string
+  content: string | React.ReactNode
 }
 
-export function help(label = '', text = ''): HelpProps {
-  return { label, text }
+export function help(label: string, content: string | React.ReactNode): HelpProps {
+  return { label, content }
 }
 
 export interface FormHelpButtonProps {
   identifier: string
-  help?: HelpProps
+  help: HelpProps
 }
 
 export default function FormHelpButton({ identifier, help }: FormHelpButtonProps) {
@@ -43,7 +43,7 @@ export default function FormHelpButton({ identifier, help }: FormHelpButtonProps
         <Card className="card--help">
           <CardBody>
             <h4>{help.label}</h4>
-            <p>{help.text}</p>
+            <p>{help.content}</p>
           </CardBody>
         </Card>
       </UncontrolledPopover>

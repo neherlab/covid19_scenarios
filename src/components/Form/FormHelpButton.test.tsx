@@ -4,19 +4,21 @@ import FormHelpButton, { help } from './FormHelpButton'
 
 describe('FormHelpButton', () => {
   it('renders', () => {
-    const { getByLabelText } = render(<FormHelpButton identifier="abc" help={help('def')} />)
+    const { getByLabelText } = render(<FormHelpButton identifier="abc" help={help('def', 'hij')} />)
 
     expect(getByLabelText('help')).not.toBeNull()
   })
 
   it('initially hides help', () => {
-    const { queryByText } = render(<FormHelpButton identifier="abc" help={help('def')} />)
+    const { queryByText } = render(<FormHelpButton identifier="abc" help={help('def', 'hij')} />)
 
     expect(queryByText('def')).toBeNull()
   })
 
   it('opens', async () => {
-    const { getByLabelText, findByText, queryByText } = render(<FormHelpButton identifier="abc" help={help('def')} />)
+    const { getByLabelText, findByText, queryByText } = render(
+      <FormHelpButton identifier="abc" help={help('def', 'hij')} />,
+    )
 
     fireEvent.click(getByLabelText('help'))
 
@@ -35,8 +37,21 @@ describe('FormHelpButton', () => {
     expect(queryByText('some help')).toBeTruthy()
   })
 
+  it('it displays a ReactNode', async () => {
+    const { getByLabelText, findByText, queryByText } = render(
+      <FormHelpButton identifier="abc" help={help('def', <span>Hello, ReactNode</span>)} />,
+    )
+
+    fireEvent.click(getByLabelText('help'))
+
+    await findByText('Hello, ReactNode')
+    expect(queryByText('Hello, ReactNode')).toBeTruthy()
+  })
+
   it('closes inside', async () => {
-    const { getByLabelText, findByText, queryByText } = render(<FormHelpButton identifier="abc" help={help('def')} />)
+    const { getByLabelText, findByText, queryByText } = render(
+      <FormHelpButton identifier="abc" help={help('def', 'hij')} />,
+    )
     fireEvent.click(getByLabelText('help'))
     await findByText('def')
     expect(queryByText('def')).not.toBeNull()
@@ -50,7 +65,7 @@ describe('FormHelpButton', () => {
   it('closes outside', async () => {
     const { getByLabelText, findByText, getByText, queryByText } = render(
       <div>
-        <FormHelpButton identifier="abc" help={help('def')} />
+        <FormHelpButton identifier="abc" help={help('def', 'hij')} />
         <span>click outside</span>
       </div>,
     )
