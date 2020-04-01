@@ -142,7 +142,7 @@ class ContainmentParams(Object):
         #self.reduction    = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
         self.reduction    = np.ones(15)
         self.numberPoints = len(self.reduction)
-        self.measures = []
+        self.mitigationIntervals = []
 
 
 class DateRange(Object):
@@ -216,7 +216,7 @@ def set_mitigation(cases, scenario):
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
             scenario.containment.reduction[timeline>cutoff] *= val
-            scenario.containment.measures.append(Measure(name, cutoff_str, 
+            scenario.containment.mitigationIntervals.append(Measure(name, cutoff_str, 
                 scenario.simulation.simulationTimeRange.tMax[:10], 
                 val))
 
