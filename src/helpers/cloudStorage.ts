@@ -1,4 +1,7 @@
 import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
+
 import { firebaseConfig } from '../../firebaseconf'
 
 export async function init() {
@@ -8,13 +11,14 @@ export async function init() {
 export async function createUserWithEmail(email: string, password: string) {
   try {
     await firebase.auth().createUserWithEmailAndPassword(email, password)
-    const uid = firebase.auth().currentUser?.uid
+    const uid = getCurrentUser()
 
     // TODO better error
     if (!uid) throw new Error('Something went wrong')
 
     // TODO add default values or get them from localStorage
     setUserData(uid, {})
+    return uid
   }
   catch (error) {
     throw new Error(error.message)
