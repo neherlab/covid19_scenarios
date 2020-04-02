@@ -1,23 +1,17 @@
 import React from 'react'
-
 import _ from 'lodash'
-
 import i18next from 'i18next'
-
 import { Col, Row } from 'reactstrap'
-
 import { ChangeSet, Column, EditingState, Row as TableRow, Table as TableBase } from '@devexpress/dx-react-grid'
-
 import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress/dx-react-grid-bootstrap4'
-
 import { format as d3format } from 'd3-format'
 
 import { updateSeverityTable } from './severityTableUpdate'
-
 import './SeverityTable.scss'
 
 const columns: SeverityTableColumn[] = [
   { name: 'ageGroup', title: i18next.t('Age group') },
+  { name: 'population', title: i18next.t('Age distribution') },
   { name: 'confirmed', title: `${i18next.t('Confirmed')}\n% ${i18next.t('total')}` },
   { name: 'severe', title: `${i18next.t('Severe')}\n% ${i18next.t('of confirmed')}` },
   { name: 'critical', title: `${i18next.t('Critical')}\n% ${i18next.t('of severe')}` },
@@ -91,6 +85,10 @@ export function EditableCell({
           onFocus={onFocus}
           onKeyDown={onKeyDown}
           readOnly={isReadOnly}
+          role="spinbutton"
+          aria-valuemin={0}
+          aria-valuemax={1000}
+          aria-valuenow={value}
         />
       </div>
     </td>
@@ -126,6 +124,7 @@ export function Cell({ value, children, column, row, tableColumn, tableRow, onCl
 export interface SeverityTableRow {
   id: number
   ageGroup: string
+  population: number
   confirmed: number
   severe: number
   critical: number
