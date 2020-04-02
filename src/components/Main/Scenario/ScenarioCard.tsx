@@ -39,15 +39,16 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
   return (
     <CardWithDropdown
       identifier="scenarioName"
-      label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h3>}
+      label={<h2 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h2>}
       help={t('Combination of population, epidemiology, and mitigation scenarios')}
       options={scenarioOptions}
       value={scenarioOptions.find((s) => s.label === scenarioState.current)}
       onValueChange={handleChangeScenario}
+      className="card--main"
     >
       <>
-        <Row noGutters>
-          <Col xl={6} className="py-1 px-1">
+        <Row>
+          <Col xl={6} className="my-2">
             <ScenarioCardPopulation
               scenarioState={scenarioState}
               errors={errors}
@@ -56,7 +57,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
             />
           </Col>
 
-          <Col xl={6} className="py-1 px-1">
+          <Col xl={6} className="my-2">
             <ScenarioCardEpidemiological
               scenarioState={scenarioState}
               errors={errors}
@@ -67,7 +68,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
         </Row>
 
         <Row noGutters>
-          <Col className="py-1 px-1">
+          <Col className="my-2">
             <ScenarioCardContainment
               scenarioState={scenarioState}
               errors={errors}
@@ -78,7 +79,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
         </Row>
 
         <Row noGutters>
-          <Col className="py-1 px-1">
+          <Col className="my-2">
             <SeverityCard severity={severity} setSeverity={setSeverity} />
           </Col>
         </Row>

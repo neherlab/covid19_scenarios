@@ -100,16 +100,28 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
   const nICUBeds = verifyPositive(data.params.ICUBeds)
 
-  const count_observations = {
-    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: caseCounts?.filter((d) => d.ICU).length ?? 0,
-    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: caseCounts?.filter((d, i) => i > 2 && d.cases && caseCounts[i - 3].cases).length ?? 0,
-    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
+  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.ICU || d.hospitalized)
+
+  const caseStep = 3
+  // this currently relies on there being data for every day. This should be
+  // the case given how the data are parsed, but would be good to put in a check
+  const newCases = (cc: EmpiricalData, i: number) => {
+    if (i >= caseStep && cc[i].cases && cc[i - caseStep].cases) {
+      return verifyPositive(cc[i].cases - cc[i - caseStep].cases)
+    }
+    return undefined
+  }
+
+  const countObservations = {
+    cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
+    ICU: nonEmptyCaseCounts?.filter((d) => d.ICU).length ?? 0,
+    observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
+    newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
+    hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
   const observations =
-    caseCounts?.map((d, i) => ({
+    nonEmptyCaseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
       cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
       observedDeaths: enabledPlots.includes(DATA_POINTS.ObservedDeaths) ? d.deaths || undefined : undefined,
@@ -117,11 +129,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
         ? d.hospitalized || undefined
         : undefined,
       ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.ICU || undefined : undefined,
-      newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases)
-        ? i > 2
-          ? d.cases - caseCounts[i - 3].cases || undefined
-          : undefined
-        : undefined,
+      newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newCases(nonEmptyCaseCounts, i) : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
@@ -176,19 +184,19 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const scatterToPlot: LineProps[] = observations.length
     ? [
         // Append empirical data
-        ...(count_observations.observedDeaths
+        ...(countObservations.observedDeaths
           ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative confirmed deaths') }]
           : []),
-        ...(count_observations.cases
+        ...(countObservations.cases
           ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
           : []),
-        ...(count_observations.hospitalized
+        ...(countObservations.hospitalized
           ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital') }]
           : []),
-        ...(count_observations.ICU
+        ...(countObservations.ICU
           ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }]
           : []),
-        ...(count_observations.newCases
+        ...(countObservations.newCases
           ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Confirmed cases past 3 days') }]
           : []),
       ]
@@ -218,7 +226,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
           return (
             <>
-              <h5>{t('Cases through time')}</h5>
+              <h3>{t('Cases through time')}</h3>
 
               <div ref={chartRef} />
               <ComposedChart

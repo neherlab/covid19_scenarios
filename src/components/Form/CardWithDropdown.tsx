@@ -6,6 +6,7 @@ import { FormDropdownOption } from './FormDropdownOption'
 
 export interface CardWithDropdownProps {
   children?: React.ReactNode | React.ReactNode[]
+  className?: string
   identifier: string
   label: string | React.ReactNode
   help?: string | React.ReactNode
@@ -19,6 +20,7 @@ export interface CardWithDropdownProps {
 
 export function CardWithDropdown({
   children,
+  className,
   identifier,
   label,
   help,
@@ -30,8 +32,8 @@ export function CardWithDropdown({
   onBlur,
 }: CardWithDropdownProps) {
   return (
-    <Card className="h-100">
-      <CardHeader className="p-1">
+    <Card className={`h-100 ${className || ''}`}>
+      <CardHeader className="py-1 px-2">
         <FormDropdownStateless<string>
           identifier={identifier}
           label={label}

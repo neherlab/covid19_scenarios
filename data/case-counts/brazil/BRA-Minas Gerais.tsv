@@ -1,0 +1,28 @@
+# Data source: https://brasil.io/api/dataset/covid19/caso/data
+# Data provenance: https://brasil.io/dataset/covid19/caso
+# License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+time	cases	deaths	hospitalized	ICU	recovered
+2020-03-08	1	0			
+2020-03-09	1	0			
+2020-03-10	1	0			
+2020-03-11	1	0			
+2020-03-12	2	0			
+2020-03-13	2	0			
+2020-03-14	4	0			
+2020-03-16	6	0			
+2020-03-17	14	0			
+2020-03-18	19	0			
+2020-03-19	29	0			
+2020-03-20	38	0			
+2020-03-21	55	0			
+2020-03-22	83	0			
+2020-03-23	128	0			
+2020-03-24	130	0			
+2020-03-25	133	0			
+2020-03-26	153	0			
+2020-03-27	189	0			
+2020-03-28	205	0			
+2020-03-29	231	0			
+2020-03-30	261	1			
+2020-03-31	275	2			
+2020-04-01	314	3			

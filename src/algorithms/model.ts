@@ -44,7 +44,6 @@ export function getPopulationParams(
   ageCounts: Record<string, number>,
   containment: (t: Date) => number,
 ): ModelParams {
-  const timeDeltaDays = eulerStep
 
   // TODO: Make this a form-adjustable factor
   const pop: ModelParams = {
@@ -68,8 +67,6 @@ export function getPopulationParams(
     },
     importsPerDay: { total: params.importsPerDay },
 
-    timeDeltaDays,
-    timeDelta: msPerDay * timeDeltaDays,
     populationServed: params.populationServed,
     numberStochasticRuns: params.numberStochasticRuns,
     hospitalBeds: params.hospitalBeds,
@@ -232,14 +229,35 @@ interface StateFlux {
   }
 }
 
+export function evolve(
+  pop: SimulationTimePoint,
+  P: ModelParams,
+  tMax: number,
+  sample: (x: number) => number,
+): SimulationTimePoint {
+  const dT: number = tMax - pop.time
+  const nSteps: number = Math.max(1, Math.round(dT / eulerStep))
+  const dt = dT / nSteps
+  let currState = pop
+  for (let i = 0; i < nSteps; i++) {
+    currState = stepODE(currState, P, dt, sample)
+  }
+  return currState
+}
+
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
-export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: number) => number): SimulationTimePoint {
+export function stepODE(
+  pop: SimulationTimePoint,
+  P: ModelParams,
+  dt: number,
+  sample: (x: number) => number,
+): SimulationTimePoint {
   const sum = (dict: Record<string, number>): number => {
     return Object.values(dict).reduce((a, b) => a + b, 0)
   }
   const fracInfected = sum(pop.current.infectious) / P.populationServed
 
-  const newTime = new Date(pop.time + P.timeDelta)
+  const newTime = new Date(pop.time + dt * msPerDay)
   const newPop: SimulationTimePoint = {
     time: newTime.valueOf(),
     current: {
@@ -304,58 +322,58 @@ export function evolve(pop: SimulationTimePoint, P: ModelParams, sample: (x: num
 
     // Susceptible -> Exposed
     flux.susceptible[age] =
-      sample(P.importsPerDay[age] * P.timeDeltaDays) +
+      sample(P.importsPerDay[age] * dt) +
       sample(
         (1 - P.frac.isolated[age]) *
           P.rate.infection(newTime) *
           pop.current.susceptible[age] *
           fracInfected *
-          P.timeDeltaDays,
+          dt,
       )
 
     // Exposed -> Internal -> Infectious
     pop.current.exposed[age].forEach((exposed, i, exposedArray) => {
       flux.exposed[age][i] = Math.min(
         exposed,
-        sample(P.rate.latency * (exposed * P.timeDeltaDays) * exposedArray.length),
+        sample(P.rate.latency * (exposed * dt) * exposedArray.length),
       )
     })
 
     // Infectious -> Recovered/Critical
     flux.infectious.recovered[age] = Math.min(
       pop.current.infectious[age],
-      sample(pop.current.infectious[age] * P.timeDeltaDays * P.rate.recovery[age]),
+      sample(pop.current.infectious[age] * dt * P.rate.recovery[age]),
     )
     flux.infectious.severe[age] = Math.min(
       pop.current.infectious[age] - flux.infectious.recovered[age],
-      sample(pop.current.infectious[age] * P.timeDeltaDays * P.rate.severe[age]),
+      sample(pop.current.infectious[age] * dt * P.rate.severe[age]),
     )
     // Severe -> Recovered/Critical
     flux.severe.recovered[age] = Math.min(
       pop.current.severe[age],
-      sample(pop.current.severe[age] * P.timeDeltaDays * P.rate.discharge[age]),
+      sample(pop.current.severe[age] * dt * P.rate.discharge[age]),
     )
     flux.severe.critical[age] = Math.min(
       pop.current.severe[age] - flux.severe.recovered[age],
-      sample(pop.current.severe[age] * P.timeDeltaDays * P.rate.critical[age]),
+      sample(pop.current.severe[age] * dt * P.rate.critical[age]),
     )
     // Critical -> Severe/Fatality
     flux.critical.severe[age] = Math.min(
       pop.current.critical[age],
-      sample(pop.current.critical[age] * P.timeDeltaDays * P.rate.stabilize[age]),
+      sample(pop.current.critical[age] * dt * P.rate.stabilize[age]),
     )
     flux.critical.fatality[age] = Math.min(
       pop.current.critical[age] - flux.critical.severe[age],
-      sample(pop.current.critical[age] * P.timeDeltaDays * P.rate.fatality[age]),
+      sample(pop.current.critical[age] * dt * P.rate.fatality[age]),
     )
     // Overflow -> Severe/Fatality
     flux.overflow.severe[age] = Math.min(
       pop.current.overflow[age],
-      sample(pop.current.overflow[age] * P.timeDeltaDays * P.rate.stabilize[age]),
+      sample(pop.current.overflow[age] * dt * P.rate.stabilize[age]),
     )
     flux.overflow.fatality[age] = Math.min(
       pop.current.overflow[age] - flux.overflow.severe[age],
-      sample(pop.current.overflow[age] * P.timeDeltaDays * P.rate.overflowFatality[age]),
+      sample(pop.current.overflow[age] * dt * P.rate.overflowFatality[age]),
     )
 
     update('susceptible', age, -flux.susceptible[age])

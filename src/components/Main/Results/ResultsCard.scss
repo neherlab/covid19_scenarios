@@ -1,3 +1,59 @@
+.btn-container {
+  display: flex;
+
+  button {
+    margin: 0 0.5em 0 0;
+    text-transform: uppercase;
+  }
+
+  button:last-of-type {
+    margin: 0;
+  }
+
+  button:not([hidden]) {
+    flex: 100%;
+  }
+}
+
+.form-check-label {
+  font-size: 80%;
+  margin-bottom: 1.5rem;
+}
+
+.form-check-input {
+  margin-top: 0.2rem;
+}
+
+@media (min-width: 768px) {
+  .btn-container {
+    flex-direction: column;
+
+    button {
+      margin: 0 0 0.5em;
+      width: 100%;
+    }
+
+    button:last-of-type {
+      margin: 0;
+    }
+  }
+
+  .form-check-label {
+    margin-bottom: 0;
+  }
+}
+
+.caution-text {
+  font-size: 0.9rem;
+  max-width: 32em;
+  text-align: left;
+}
+
+.custom-switch {
+  border: none;
+  box-shadow: none;
+}
+
 .goToResultsBtn {
   position: fixed;
   right: 0;
