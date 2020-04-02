@@ -1,5 +1,3 @@
-# Frequently asked questions
-
 **Q:** Why does the outbreak grow more slowly when I increase the infectious period?
 
 **A:** _The number of secondary cases a particular case causes is specified by R0. If you increase the infectious
