@@ -42,9 +42,9 @@ export default function FormHelpButton({ identifier, help }: FormHelpButtonProps
       <UncontrolledPopover placement="right" target={safeId(identifier)} trigger="legacy" hideArrow>
         <Card className="card--help">
           <CardBody>
-            {{help && <h4>{help.label}</h4>}}
-            {{help && <p>{help.content}</p>}}
-            {{!help && <p>No help attribute assigned.</p>}}
+            {help && <h4>{help.label}</h4>}
+            {help && <p>{help.content}</p>}
+            {!help && <p>No help attribute assigned.</p>}
           </CardBody>
         </Card>
       </UncontrolledPopover>
