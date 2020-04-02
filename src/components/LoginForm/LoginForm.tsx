@@ -17,8 +17,9 @@ function LoginForm() {
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => {
-      signInWithEmail(values.email, values.password) || null
+    onSubmit: async (values) => {
+      await signInWithEmail(values.email, values.password) || null
+      dispatch(setLoginVisible({ loginVisible: false }))
     }
   })
 
@@ -28,7 +29,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="form-container">
+    <div className="form-container" onClick={() => dispatch(setLoginVisible({ loginVisible: false }))}>
       <Card>
         <CardBody>
           <Col>
