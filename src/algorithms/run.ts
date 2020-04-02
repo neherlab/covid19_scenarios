@@ -6,7 +6,7 @@ import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
 
 import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
 import { AllParamsFlat } from './types/Param.types'
-import { AlgorithmResult, SimulationTimePoint } from './types/Result.types'
+import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types/Result.types'
 import { TimeSeries } from './types/TimeSeries.types'
 
 const identity = (x: number) => x
@@ -111,35 +111,90 @@ export default async function run(
   ageDistribution: OneCountryAgeDistribution,
   containment: TimeSeries,
 ): Promise<AlgorithmResult> {
-  console.log('PARAMS RECIEVED', params)
+  function sumTimePoint(x: ExportedTimePoint, y: ExportedTimePoint, func: (x: number) => number) {
+    const sum = (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
+      const s: Record<string, number> = {}
+      Object.keys(dict).forEach((k) => {
+        s[k] = dict[k] + func(other[k])
+      })
 
-  const modelParams = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
+      return s
+    }
+    const z: ExportedTimePoint = {
+      time: x.time,
+      current: {
+        susceptible: sum(x.current.susceptible, y.current.susceptible),
+        severe: sum(x.current.severe, y.current.severe),
+        exposed: sum(x.current.exposed, y.current.exposed),
+        critical: sum(x.current.critical, y.current.critical),
+        overflow: sum(x.current.overflow, y.current.overflow),
+        infectious: sum(x.current.infectious, y.current.infectious),
+      },
+      cumulative: {
+        critical: sum(x.cumulative.critical, y.cumulative.critical),
+        fatality: sum(x.cumulative.fatality, y.cumulative.fatality),
+        recovered: sum(x.cumulative.recovered, y.cumulative.recovered),
+        hospitalized: sum(x.cumulative.hospitalized, y.cumulative.hospitalized),
+      },
+    }
+
+    return z
+  }
+
   const tMin: number = new Date(params.simulationTimeRange.tMin).getTime()
   const tMax: number = new Date(params.simulationTimeRange.tMax).getTime()
   const initialCases = params.suspectedCasesToday
-  let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
+  const modelParamsArray = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
 
-  function simulate(initialState: SimulationTimePoint, func: (x: number) => number) {
-    let currState = Object.assign({}, initialState)
-    const dynamics = [currState]
-    while (currState.time < tMax) {
-      currState = evolve(currState, modelParams, currState.time + 1, func)
-      dynamics.push(currState)
+  const avgLinear: ExportedTimePoint[] = []
+  const avgSquare: ExportedTimePoint[] = []
+
+  modelParamsArray.forEach((modelParams) => {
+    let population = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
+    function simulate(initialState: SimulationTimePoint, func: (x: number) => number): ExportedTimePoint[] {
+      let currState = Object.assign({}, initialState)
+      const dynamics = [currState]
+      while (currState.time < tMax) {
+        currState = evolve(currState, modelParams, currState.time + 1, func)
+        dynamics.push(currState)
+      }
+
+      return collectTotals(dynamics)
     }
 
-    return collectTotals(dynamics)
-  }
+    const realization = simulate(population, identity)
+
+    avgLinear.forEach((timePoint, i) => {
+      avgLinear[i] = sumTimePoint(timePoint, realization[i], (x) => {
+        return x / modelParamsArray.length
+      })
+    })
+
+    avgSquare.forEach((timePoint, i) => {
+      avgSquare[i] = sumTimePoint(timePoint, realization[i], (x) => {
+        return (x * x) / modelParamsArray.length
+      })
+    })
+  })
+
+  const avgVariance = avgSquare.map((tp, i) => {
+    return sumTimePoint(tp, avgLinear[i], (x: number) => {
+      return -x * x
+    })
+  })
 
   const sim: AlgorithmResult = {
-    deterministic: simulate(initialState, identity),
-    stochastic: [],
-    params: modelParams,
+    trajectory: {
+      mean: avgLinear,
+      variance: avgVariance,
+    },
+    params: modelParamsArray,
   }
 
-  for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
-    initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
-    sim.stochastic.push(simulate(initialState, poisson))
-  }
+  // for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
+  //   initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
+  //   sim.stochastic.push(simulate(initialState, poisson))
+  // }
 
   return sim
 }

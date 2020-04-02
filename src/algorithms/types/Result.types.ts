@@ -70,11 +70,11 @@ export interface ModelParams {
 }
 
 export interface UserResult {
-  trajectory: ExportedTimePoint[]
+  mean: ExportedTimePoint[]
+  variance: ExportedTimePoint[]
 }
 
 export interface AlgorithmResult {
-  deterministic: UserResult
-  stochastic: UserResult[]
-  params: ModelParams
+  trajectory: UserResult
+  params: ModelParams[]
 }

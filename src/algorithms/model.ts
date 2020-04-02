@@ -462,9 +462,9 @@ const keys = <T>(o: T): Array<keyof T & string> => {
   return Object.keys(o) as Array<keyof T & string>
 }
 
-export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
+export function collectTotals(trajectory: SimulationTimePoint[]): ExportedTimePoint[] {
   // FIXME: parameter reassign
-  const res: UserResult = { trajectory: [] }
+  const res: ExportedTimePoint[] = []
 
   trajectory.forEach((d) => {
     const tp: ExportedTimePoint = {
@@ -507,7 +507,7 @@ export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
       tp.cumulative[k].total = Object.values(d.cumulative[k]).reduce((a, b) => a + b)
     })
 
-    res.trajectory.push(tp)
+    res.push(tp)
   })
 
   return res
