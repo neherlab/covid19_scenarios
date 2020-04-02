@@ -135,7 +135,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     })) ?? []
 
   const plotData = [
-    ...data.deterministic.trajectory.map((x) => ({
+    ...data.trajectory.mean.map((x) => ({
       time: x.time,
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
         ? Math.round(x.current.susceptible.total) || undefined
