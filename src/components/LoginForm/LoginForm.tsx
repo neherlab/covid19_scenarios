@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import { Card, CardBody, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
-import { setCurrentUserUid } from '../../state/user/user.actions'
 import { setSignupVisible, setLoginVisible } from '../../state/ui/ui.actions'
 import { signInWithEmail } from '../../helpers/cloudStorage'
 
@@ -18,9 +17,8 @@ function LoginForm() {
 
   const formik = useFormik({
     initialValues,
-    onSubmit: async (values) => {
-      const uid = await signInWithEmail(values.email, values.password) || null
-      //dispatch(setCurrentUserUid({ currentUserUid: uid }))
+    onSubmit: (values) => {
+      signInWithEmail(values.email, values.password) || null
     }
   })
 
