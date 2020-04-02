@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 
@@ -8,6 +8,7 @@ import { AnyAction } from 'typescript-fsa'
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
+import { RangeSlider } from '../../Form/RangeSlider'
 
 import { State } from '../state/state'
 
@@ -31,6 +32,7 @@ function ScenarioCardEpidemiological({
   // function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
   //   scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))
   // }
+  const [values, setValues] = useState([2, 4])
 
   return (
     <CardWithoutDropdown
@@ -50,6 +52,18 @@ function ScenarioCardEpidemiological({
         step={0.1}
         errors={errors}
         touched={touched}
+      />
+      <RangeSlider
+        identifier={'test'}
+        label={`${t('Annual average')} R\u2080`}
+        help={t(
+          'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
+        )}
+        values={values}
+        setValues={setValues}
+        step={0.1}
+        min={1}
+        max={10}
       />
       <FormSpinBox
         identifier="epidemiological.latencyTime"
