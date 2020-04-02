@@ -5,13 +5,13 @@ import { help } from './FormHelpButton'
 
 describe('HelpLabel', () => {
   it('displays the label', () => {
-    const { getByText } = render(<HelpLabel identifier="abc" label="def" help={help('hij')} />)
+    const { getByText } = render(<HelpLabel identifier="abc" label="def" help={help('hij', 'klm')} />)
 
     expect(getByText('def')).not.toBeNull()
   })
 
   it('displays a help button', () => {
-    const { getByLabelText } = render(<HelpLabel identifier="abc" label="def" help={help('hij')} />)
+    const { getByLabelText } = render(<HelpLabel identifier="abc" label="def" help={help('hij', 'klm')} />)
 
     expect(getByLabelText('help')).not.toBeNull()
   })
