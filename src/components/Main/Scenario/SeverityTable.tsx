@@ -140,6 +140,16 @@ export interface SeverityTableRow {
   }
 }
 
+export type SeverityTableNumberFields =
+  | 'id'
+  | 'population'
+  | 'confirmed'
+  | 'severe'
+  | 'critical'
+  | 'fatal'
+  | 'totalFatal'
+  | 'isolated'
+
 export type SeverityTableColumn = Column
 
 export interface SeverityTableProps {
