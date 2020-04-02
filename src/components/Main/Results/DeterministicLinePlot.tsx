@@ -92,7 +92,7 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
 
 const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 
-export function DeterministicLinePlot({ data, userResult, logScale, showHumanized, caseCounts }: LinePlotProps) {
+export function DeterministicLinePlot({ data, logScale, showHumanized, caseCounts }: LinePlotProps) {
   const { t } = useTranslation()
 
   const formatNumber = numberFormatter(!!showHumanized, false)
