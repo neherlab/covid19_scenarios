@@ -205,8 +205,8 @@ def set_mitigation(cases, scenario):
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, 1e-3*scenario.population.populationServed),2000))[0]
-    levelTwo = np.where(case_counts > min(max(50, 1e-2*scenario.population.populationServed/3e2),20000))[0]
+    levelOne = np.where(case_counts > min(max(5, 3e-4*scenario.population.populationServed),10000))[0]
+    levelTwo = np.where(case_counts > min(max(50, 3e-3*scenario.population.populationServed),50000))[0]
     levelOneVal = np.minimum(0.8, 1.8/scenario.epidemiological.r0)
     levelTwoVal = np.minimum(0.4, 0.5)
 
