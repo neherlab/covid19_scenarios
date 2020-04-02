@@ -1,6 +1,7 @@
 import type { AllParams } from '../../../algorithms/types/Param.types'
 
 import { State } from './state'
+import { SeverityTableRow, SeverityTableNumberFields } from '../Scenario/SeverityTable'
 
 /*
 
@@ -15,11 +16,12 @@ so some extra work is needed during deserialization.
 
 */
 
-export async function serializeScenarioToURL(scenarioState: State, params: AllParams) {
+export async function serializeScenarioToURL(scenarioState: State, severity: SeverityTableRow[], params: AllParams) {
   const toSave = {
     ...params,
     current: scenarioState.current,
     containment: scenarioState.data.containment.reduction,
+    severity,
   }
 
   window.history.pushState('', '', `?${encodeURIComponent(JSON.stringify(toSave))}`)
@@ -62,4 +64,41 @@ export function deserializeScenarioFromURL(initState: State): State {
     }
   }
   return initState
+}
+
+export function deserializeSeverityFromURL(severityDefaults: SeverityTableRow[]): SeverityTableRow[] {
+  if (window.location.search) {
+    try {
+      /*
+        We deserialise the URL by removing the first char ('?'), and applying JSON.parse 
+      */
+      const { severity } = JSON.parse(decodeURIComponent(window.location.search.slice(1)))
+
+      if (!severity) {
+        return severityDefaults
+      }
+
+      // prettier-ignore
+      severity.forEach((row: SeverityTableRow) => {
+        ['id', 'population', 'confirmed', 'severe', 'critical', 'fatal', 'totalFatal', 'isolated'].forEach(
+          (fieldName) => {
+            if (fieldName in row) {
+              // eslint-disable-next-line no-param-reassign
+              row[fieldName as SeverityTableNumberFields] = parseInt(
+                `${row[fieldName as SeverityTableNumberFields]}`,
+                10,
+              )
+            }
+          },
+        )
+        // eslint-disable-next-line no-param-reassign
+        delete row.errors
+      })
+
+      return severity
+    } catch (error) {
+      console.error('Error while parsing URL :', error.message)
+    }
+  }
+  return severityDefaults
 }

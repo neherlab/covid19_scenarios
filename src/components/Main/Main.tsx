@@ -26,13 +26,16 @@ import { schema } from './validation/schema'
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
-import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
+import { serializeScenarioToURL, deserializeScenarioFromURL, deserializeSeverityFromURL } from './state/URLSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
 import './Main.scss'
+
+const scenarioStateFromURLHandling = deserializeScenarioFromURL(defaultScenarioState)
+const severityFromURLHandling = deserializeSeverityFromURL(severityData as SeverityTableRow[])
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -82,7 +85,7 @@ async function runSimulation(
 
   const containmentData = params.containment.reduction
 
-  serializeScenarioToURL(scenarioState, params)
+  serializeScenarioToURL(scenarioState, severity, params)
 
   const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
   setResult(newResult)
@@ -98,30 +101,55 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
   return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
 }
 
+enum Provenance {
+  DEFAULT = 'DEFAULT',
+  URL = 'URL',
+  EFFECT = 'EFFECT',
+}
+
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
-  const [scenarioState, scenarioDispatch] = useReducer(
-    scenarioReducer,
-    defaultScenarioState,
-    deserializeScenarioFromURL,
-  )
-
-  const [severity, setSeverity] = useState<SeverityTableRow[]>([])
-
+  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, scenarioStateFromURLHandling)
+  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityFromURLHandling)
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
+  // prettier-ignore
+  const scenarioStateProvenance =
+    scenarioState === defaultScenarioState
+      ? Provenance.DEFAULT
+      // eslint-disable-next-line unicorn/no-nested-ternary
+      : (scenarioState === scenarioStateFromURLHandling
+      ? Provenance.URL
+      : Provenance.EFFECT)
+
+  // prettier-ignore
+  const severityProvenance =
+    severity === severityData
+      ? Provenance.DEFAULT
+      // eslint-disable-next-line unicorn/no-nested-ternary
+      : (severity === severityFromURLHandling
+      ? Provenance.URL
+      : Provenance.EFFECT)
+
+  // eslint-disable-next-line no-console
+  console.debug(`Scenario state is ${scenarioStateProvenance}`)
+  // eslint-disable-next-line no-console
+  console.debug(`Severity table is ${severityProvenance}`)
+
   useEffect(() => {
-    const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[
-      scenarioState.data.population.country
-    ]
+    if (severityProvenance !== Provenance.URL || scenarioStateProvenance === Provenance.EFFECT) {
+      const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[
+        scenarioState.data.population.country
+      ]
 
-    const severityDataWithAgeDistribution = severityData.map((ageRow) => {
-      return { ...ageRow, population: ageDistribution[ageRow.ageGroup] }
-    })
+      const severityWithAgeDistribution = severityData.map((ageRow) => {
+        return { ...ageRow, population: ageDistribution[ageRow.ageGroup] }
+      })
 
-    setSeverity(updateSeverityTable(severityDataWithAgeDistribution))
-  }, [scenarioState.data.population.country])
+      setSeverity(updateSeverityTable(severityWithAgeDistribution))
+    }
+  }, [scenarioState.data.population.country, scenarioStateProvenance, severityProvenance])
 
   const togglePersistAutorun = () => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
