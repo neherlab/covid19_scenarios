@@ -40,7 +40,7 @@ export function infectionRate(
   return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
 }
 
-const NUMBER_PARAMETER_SAMPLES = 100
+const NUMBER_PARAMETER_SAMPLES = 10
 export function getPopulationParams(
   params: AllParamsFlat,
   severity: SeverityTableRow[],
@@ -152,6 +152,8 @@ export function getPopulationParams(
       const avg_infection_rate = r0 / params.infectiousPeriod
       elt.rate.infection = (time: Date) =>
         containment(time) * infectionRate(time.valueOf(), avg_infection_rate, params.peakMonth, params.seasonalForcing)
+
+      return elt
     })
   }
 
