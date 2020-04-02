@@ -6,7 +6,7 @@ import { Field, FormikErrors, FormikTouched } from 'formik'
 import { Col, FormGroup, Row } from 'reactstrap'
 
 import FormLabel from './FormLabel'
-import HelpProps from './FormHelpButton'
+import { HelpProps } from './FormHelpButton'
 
 export interface FormSpinBoxProps<T> {
   identifier: string

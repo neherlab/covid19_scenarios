@@ -3,7 +3,7 @@ import React from 'react'
 import { CustomInput } from 'reactstrap'
 
 import FormLabel from './FormLabel'
-import HelpProps from './FormHelpButton'
+import { HelpProps } from './FormHelpButton'
 
 export interface FormSwitchProps {
   identifier: string
