@@ -1113,7 +1113,9 @@
           "timeRange": {
             "tMax": "2020-09-01",
             "tMin": "2020-03-05"
-          }
+          },
+          "id": "aaa",
+          "color": "#f00"
         },
         {
           "mitigationValue": 0.6,
@@ -1121,7 +1123,9 @@
           "timeRange": {
             "tMax": "2020-09-01",
             "tMin": "2020-03-19"
-          }
+          },
+          "id": "bbb",
+          "color": "#0f0"
         }
       ],
       "numberPoints": 15,

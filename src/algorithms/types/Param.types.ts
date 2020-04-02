@@ -6,8 +6,9 @@ export interface DateRange {
 export interface MitigationInterval {
   id: string
   name: string
+  color: string
   timeRange: DateRange
-  mitigationValue?: number
+  mitigationValue: number
 }
 
 export type MitigationIntervalWithoutId = Omit<MitigationInterval, 'id'>

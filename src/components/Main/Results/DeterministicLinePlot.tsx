@@ -1,11 +1,26 @@
 import React, { useState } from 'react'
+
+import _ from 'lodash'
+
 import ReactResizeDetector from 'react-resize-detector'
-import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
-import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
+import {
+  CartesianGrid,
+  ComposedChart,
+  Legend,
+  Line,
+  ReferenceArea,
+  Scatter,
+  Tooltip,
+  TooltipPayload,
+  XAxis,
+  YAxis,
+} from 'recharts'
+
+import { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
-import { ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
@@ -54,6 +69,7 @@ export const colors = {
 export interface LinePlotProps {
   data?: AlgorithmResult
   userResult?: UserResult
+  params: AllParams
   mitigation: ContainmentData
   logScale?: boolean
   showHumanized?: boolean
@@ -83,19 +99,21 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
 export function DeterministicLinePlot({
   data,
   userResult,
+  params,
   mitigation,
   logScale,
   showHumanized,
   caseCounts,
 }: LinePlotProps) {
   const { t } = useTranslation()
+  const chartRef = React.useRef(null)
+  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+
+  // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
+  // href: https://reactjs.org/docs/hooks-rules.html
 
   const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
-
-  const chartRef = React.useRef(null)
-
-  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
@@ -104,17 +122,6 @@ export function DeterministicLinePlot({
 
   const { mitigationIntervals } = mitigation
 
-  const mitigationMeasures = []
-  mitigationIntervals.forEach((d) => {
-    const start = { time: new Date(d.timeRange.tMin).getTime() }
-    start[d.name] = 1000
-    mitigationMeasures.push(start)
-    const stop = { time: new Date(d.timeRange.tMax).getTime() }
-    stop[d.name] = 1000
-    mitigationMeasures.push(stop)
-  })
-
-  const hasUserResult = Boolean(userResult?.trajectory)
   const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 
   const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
@@ -187,8 +194,7 @@ export function DeterministicLinePlot({
       ICUbeds: nICUBeds,
     })),
     ...observations,
-    ...mitigationMeasures,
-  ] // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
+  ]
 
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
@@ -203,10 +209,12 @@ export function DeterministicLinePlot({
     { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'line' },
   ]
 
-  const tMin = observations.length ? Math.min(plotData[0].time, observations[0].time) : plotData[0].time
-  const tMax = observations.length
-    ? Math.max(plotData[plotData.length - 1].time, observations[observations.length - 1].time)
-    : plotData[plotData.length - 1].time
+  if (plotData.length === 0) {
+    return null
+  }
+
+  const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
+  const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
   const scatterToPlot: LineProps[] = observations.length
     ? [
@@ -270,6 +278,7 @@ export function DeterministicLinePlot({
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
+
                 <XAxis
                   dataKey="time"
                   type="number"
@@ -277,13 +286,18 @@ export function DeterministicLinePlot({
                   domain={[tMin, tMax]}
                   tickCount={7}
                 />
+
                 <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
+
+                <YAxis yAxisId="mitigationStrengthAxis" orientation={'right'} type="number" domain={[0, 1]} />
+
                 <Tooltip
                   formatter={tooltipFormatter}
                   labelFormatter={labelFormatter}
                   position={tooltipPosition}
                   content={ResponsiveTooltipContent}
                 />
+
                 <Legend
                   verticalAlign="top"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
@@ -293,6 +307,20 @@ export function DeterministicLinePlot({
                     setEnabledPlots(plots)
                   }}
                 />
+
+                {mitigationIntervals.map((interval) => (
+                  <ReferenceArea
+                    key={interval.id}
+                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
+                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
+                    y1={0}
+                    y2={_.clamp(interval.mitigationValue, 0, 1)}
+                    yAxisId={'mitigationStrengthAxis'}
+                    fill={interval.color}
+                    fillOpacity={0.075}
+                  />
+                ))}
+
                 {linesToPlot.map((d) => (
                   <Line
                     key={d.key}
@@ -306,11 +334,9 @@ export function DeterministicLinePlot({
                     legendType={d.legendType}
                   />
                 ))}
+
                 {scatterToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
-                ))}
-                {mitigationsToPlot.map((d) => (
-                  <Line key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}
               </ComposedChart>
             </>

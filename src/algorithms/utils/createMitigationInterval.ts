@@ -2,6 +2,7 @@ import _ from 'lodash'
 
 import moment from 'moment'
 import { v4 as uuidv4 } from 'uuid'
+import createColor from 'create-color'
 
 import { MitigationInterval, MitigationIntervals } from '../types/Param.types'
 
@@ -12,10 +13,14 @@ export function suggestNextMitigationInterval(intervals: MitigationIntervals): M
 
   const timeRange = { tMin: tMinMoment.toDate(), tMax: tMaxMoment.toDate() }
 
-  return {
+  const interval: Omit<MitigationInterval, 'color'> = {
     id: uuidv4(),
     name: `Act from ${tMinMoment.format('D MMM YYYY')}`,
     timeRange,
     mitigationValue: 1,
   }
+
+  const color = createColor(interval)
+
+  return { ...interval, color }
 }

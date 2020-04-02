@@ -198,6 +198,7 @@ function Main() {
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
+                      params={allParams}
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
