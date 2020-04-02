@@ -18,6 +18,7 @@ import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import './ResultsCard.scss'
+import ImportSimulationDialog from './ImportSimulationDialog'
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
@@ -86,10 +87,12 @@ function ResultsCardFunction({
 
   const [canExport, setCanExport] = useState<boolean>(false)
   const [showExportModal, setShowExportModal] = useState<boolean>(false)
+  const [showImportModal, setShowImportModal] = useState<boolean>(false)
 
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
+  const toggleShowImportModal = () => setShowImportModal(!showImportModal)
 
   useEffect(() => {
     setCanExport((result && !!result.deterministic) || false)
@@ -123,11 +126,18 @@ function ResultsCardFunction({
               </Button>
               <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
               <Button
+                className="import-button"
+                type="button"
+                color="secondary"
+                onClick={_ => setShowImportModal(true)}
+              >
+                {t('Import')}
+              </Button><Button
                 className="export-button"
                 type="button"
                 color="secondary"
                 disabled={!canExport}
-                onClick={(_) => setShowExportModal(true)}
+                onClick={_ => setShowExportModal(true)}
               >
                 {t('Export')}
               </Button>
@@ -218,6 +228,10 @@ function ResultsCardFunction({
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
         result={result}
+      />
+      <ImportSimulationDialog
+        showModal={showImportModal}
+        toggleShowModal={toggleShowImportModal}
       />
     </>
   )

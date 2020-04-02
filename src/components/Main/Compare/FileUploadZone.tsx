@@ -18,11 +18,15 @@ function reduceDroppedFiles(files: Map<FileType, File>, file: File) {
 
 export enum FileType {
   CSV = 'CSV',
+  JSON = 'JSON',
 }
 
 /* Converts file extension to FileType enum */
 function fileExtToType(ext: string) {
-  const extMap = new Map<string, FileType>(Object.entries({ '.csv': FileType.CSV }))
+  const extMap = new Map<string, FileType>(Object.entries({
+    '.csv': FileType.CSV,
+    '.json': FileType.JSON,
+  }))
   return extMap.get(ext)
 }
 
