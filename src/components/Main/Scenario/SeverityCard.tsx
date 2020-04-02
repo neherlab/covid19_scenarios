@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
+import { help } from '../../Form/FormHelpButton'
 
 import { SeverityTable, SeverityTableRow } from './SeverityTable'
 
@@ -24,7 +25,10 @@ function SeverityCard({ severity, setSeverity }: SeverityCardProps) {
           </p>
         </>
       }
-      help={t('Assumptions on severity which are informed by epidemiological and clinical observations in China')}
+      help={help(
+        `${t('based on data from')} ${t('China')}`,
+        t('Assumptions on severity which are informed by epidemiological and clinical observations in China'),
+      )}
       defaultCollapsed
     >
       <p>
