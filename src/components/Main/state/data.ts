@@ -53,5 +53,6 @@ export function getScenarioData(key: string): ScenarioData {
     }
   })
 
+  scenarioData.epidemiological.r0 = [2, 4]
   return { ...scenarioData, containment: { mitigationIntervals } }
 }
