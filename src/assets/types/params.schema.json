@@ -76,21 +76,24 @@
         "r0"
       ]
     },
+    "DateRange": {
+      "type": "object",
+      "properties": {
+        "tMin": {
+          "type": "string"
+        },
+        "tMax": {
+          "type": "string"
+        }
+      },
+      "required": ["tMin", "tMax"]
+    },
     "SimulationParams": {
       "$id": "#simulationParams",
       "type": "object",
       "properties": {
         "simulationTimeRange": {
-          "type": "object",
-          "properties": {
-            "tMin": {
-              "type": "string"
-            },
-            "tMax": {
-              "type": "string"
-            }
-          },
-          "required": ["tMin", "tMax"]
+          "$ref": "#/definitions/DateRange"
         },
         "numberStochasticRuns": {
           "type": "number",

@@ -23,11 +23,20 @@ FIT_CASE_DATA = {}
 # Dynamically create Python classes that match input parameter structure of app
 
 # TODO: Fix the path to not be hard-coded
+DEFAULTS   = {}
 import schemapi
 with open("../src/assets/types/params.schema.json") as fd:
-    SCHEMA_API = schemapi.SchemaModuleGenerator(json.load(fd), root_name="AllParams")
+    SCHEMA_DB  = json.load(fd)
+    SCHEMA_API = schemapi.SchemaModuleGenerator(SCHEMA_DB, root_name="AllParams")
     SCHEMA     = SCHEMA_API.import_as("SCHEMA")
-from SCHEMA import PopulationParams, EpidemiologicalParams, SimulationParams, ContainmentParams, AllParams
+    # Log default value annotations
+    for kind, param in SCHEMA_DB['definitions'].items():
+        DEFAULTS[kind] = {}
+        for prop, entry in param['properties'].items():
+            if 'default' in entry:
+                DEFAULTS[kind][prop] = entry['default']
+
+from SCHEMA import PopulationParams, EpidemiologicalParams, DateRange, SimulationParams, ContainmentParams, AllParams
 
 # ------------------------------------------------------------------------
 # Wrappers for parameter class constructors
@@ -50,7 +59,8 @@ def make_population_params(region, country, population, beds, icus):
                 importsPerDay       = round(max(3e-4 * float(population)**0.5, .1),1),
                 hospitalBeds        = int(beds),
                 ICUBeds             = int(icus),
-                cases               = region)
+                cases               = region,
+                **DEFAULTS['PopulationParams'])
 
 def make_epidemiological_params(region, hemisphere):
     seasonalForcing = 2.0
@@ -72,34 +82,27 @@ def make_epidemiological_params(region, hemisphere):
     if region in FIT_CASE_DATA:
         self.r0 = round(FIT_CASE_DATA[region]['r0'],1)
 
-    return EpidemiologicalParams(r0, seasonalForcing, peakMonth)
+    return EpidemiologicalParams(r0=r0, seasonalForcing=seasonalForcing, peakMonth=peakMonth, **DEFAULTS['EpidemiologicalParams'])
+
+def make_date_range(tMin, tMax):
+    return DateRange(tMin=tMin, tMax=tMax)
 
 def make_simulation_params(region):
     tMin = FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01"
     tMax = "2020-09-01"
-    return SimulationParams(tMin, tMax)
-
+    return SimulationParams(simulationTimeRange=make_date_range(tMin, tMax), **DEFAULTS['SimulationParams'])
 
 def make_containment_params():
-    return ContainmentParams()
+    return ContainmentParams(**DEFAULTS['ContainmentParams'])
 
+# TODO: Region and country provide redudant information
+#       Condense the information into one field.
 def make_params(region, country, population, beds, icus, hemisphere):
     return AllParams(
             population      = make_population_params(region, country, population, beds, icus),
             epidemiological = make_epidemiological_params(region, hemisphere),
-            simulation      = make_simulation_params(region, country, population, beds, icus),
+            simulation      = make_simulation_params(region),
             containment     = make_containment_params())
-
-# TODO: Region and country provide redudant information
-#       Condense the information into one field.
-# class AllParams(Object):
-#     def __init__(self, region, country, population, beds, icus, hemisphere):
-#         self.population      = make_population_params(region, country, population, beds, icus)
-#         self.epidemiological = EpidemiologicalParams(region, hemisphere)
-#         self.simulation      = SimulationParams(region)
-        # self.containment     = ContainmentParams()
-
-
 
 # ------------------------------------------------------------------------
 # Data fitter
@@ -197,13 +200,14 @@ def fit_all_case_data(num_procs=4):
 
 
 def set_mitigation(cases, scenario):
+    data = np.array([float(x) for x in scenario.containment.reduction])
     timeline = np.linspace(datetime.strptime(scenario.simulation.simulationTimeRange.tMin[:10], '%Y-%m-%d').toordinal(),
                            datetime.strptime(scenario.simulation.simulationTimeRange.tMax[:10], '%Y-%m-%d').toordinal(),
-                           len(scenario.containment.reduction))
+                           len(data))
 
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
-        scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
+        scenario.containment.reduction = [float(x) for x in data]
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
@@ -216,12 +220,12 @@ def set_mitigation(cases, scenario):
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.containment.reduction[timeline>cutoff] *= val
-            scenario.containment.mitigationIntervals.append(Measure(name, cutoff_str, 
-                scenario.simulation.simulationTimeRange.tMax[:10], 
-                val))
+            data[timeline>cutoff] *= val
+            # scenario.containment.mitigationIntervals.append(Measure(name, cutoff_str, 
+            #     scenario.simulation.simulationTimeRange.tMax[:10], 
+            #     val))
 
-    scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
+    scenario.containment.reduction = [float(x) for x in data]
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -243,7 +247,6 @@ def generate(output_json, num_procs=1):
 
         args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere']
         for region in rdr:
-            print(f"Analyzing region {region}")
             region_name = region[idx['name']]
             entry = [region[idx[arg]] for arg in args]
             scenario[region_name] = make_params(*entry)
@@ -258,5 +261,4 @@ def generate(output_json, num_procs=1):
         marshalJSON(scenario, fd)
 
 if __name__ == '__main__':
-    with open("tmp.json", 'w+') as fd:
-        generate(fd)
+        generate("tmp.json")
