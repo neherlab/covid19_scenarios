@@ -9,6 +9,8 @@ import {
   ExportedTimePoint,
 } from './types/Result.types'
 
+import { random } from 'mathjs'
+
 const msPerDay = 1000 * 60 * 60 * 24
 const eulerStep = 0.05
 export const eulerStepsPerDay = Math.round(1 / eulerStep)
@@ -38,15 +40,17 @@ export function infectionRate(
   return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
 }
 
+const NUMBER_PARAMETER_SAMPLES = 100
 export function getPopulationParams(
   params: AllParamsFlat,
   severity: SeverityTableRow[],
   ageCounts: Record<string, number>,
   containment: (t: Date) => number,
-): ModelParams {
+): ModelParams[] {
+  let sims = []
 
   // TODO: Make this a form-adjustable factor
-  const pop: ModelParams = {
+  const sim: ModelParams = {
     ageDistribution: {},
     frac: {
       severe: {},
@@ -82,12 +86,12 @@ export function getPopulationParams(
   let avgIsolatedFrac = 0
   severity.forEach((d) => {
     const freq = (1.0 * ageCounts[d.ageGroup]) / total
-    pop.ageDistribution[d.ageGroup] = freq
-    pop.frac.severe[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
-    pop.frac.critical[d.ageGroup] = pop.frac.severe[d.ageGroup] * (d.critical / 100)
-    pop.frac.fatal[d.ageGroup] = pop.frac.critical[d.ageGroup] * (d.fatal / 100)
+    sim.ageDistribution[d.ageGroup] = freq
+    sim.frac.severe[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
+    sim.frac.critical[d.ageGroup] = sim.frac.severe[d.ageGroup] * (d.critical / 100)
+    sim.frac.fatal[d.ageGroup] = sim.frac.critical[d.ageGroup] * (d.fatal / 100)
 
-    const dHospital = pop.frac.severe[d.ageGroup]
+    const dHospital = sim.frac.severe[d.ageGroup]
     const dCritical = d.critical / 100
     const dFatal = d.fatal / 100
 
@@ -99,38 +103,59 @@ export function getPopulationParams(
     avgIsolatedFrac += (freq * isolated) / 100
 
     // Age specific rates
-    pop.frac.isolated[d.ageGroup] = isolated / 100
-    pop.rate.recovery[d.ageGroup] = (1 - dHospital) / params.infectiousPeriod
-    pop.rate.severe[d.ageGroup] = dHospital / params.infectiousPeriod
-    pop.rate.discharge[d.ageGroup] = (1 - dCritical) / params.lengthHospitalStay
-    pop.rate.critical[d.ageGroup] = dCritical / params.lengthHospitalStay
-    pop.rate.stabilize[d.ageGroup] = (1 - dFatal) / params.lengthICUStay
-    pop.rate.fatality[d.ageGroup] = dFatal / params.lengthICUStay
-    pop.rate.overflowFatality[d.ageGroup] = params.overflowSeverity * pop.rate.fatality[d.ageGroup]
+    sim.frac.isolated[d.ageGroup] = isolated / 100
+    sim.rate.recovery[d.ageGroup] = (1 - dHospital) / params.infectiousPeriod
+    sim.rate.severe[d.ageGroup] = dHospital / params.infectiousPeriod
+    sim.rate.discharge[d.ageGroup] = (1 - dCritical) / params.lengthHospitalStay
+    sim.rate.critical[d.ageGroup] = dCritical / params.lengthHospitalStay
+    sim.rate.stabilize[d.ageGroup] = (1 - dFatal) / params.lengthICUStay
+    sim.rate.fatality[d.ageGroup] = dFatal / params.lengthICUStay
+    sim.rate.overflowFatality[d.ageGroup] = params.overflowSeverity * sim.rate.fatality[d.ageGroup]
   })
 
   // Get import rates per age class (assume flat)
-  const L = Object.keys(pop.rate.recovery).length
-  Object.keys(pop.rate.recovery).forEach((k) => {
-    pop.importsPerDay[k] = params.importsPerDay / L
+  const L = Object.keys(sim.rate.recovery).length
+  Object.keys(sim.rate.recovery).forEach((k) => {
+    sim.importsPerDay[k] = params.importsPerDay / L
   })
 
   // Population average rates
-  pop.rate.recovery.total = (1 - severeFrac) / params.infectiousPeriod
-  pop.rate.severe.total = severeFrac / params.infectiousPeriod
-  pop.rate.discharge.total = (1 - criticalFracHospitalized) / params.lengthHospitalStay
-  pop.rate.critical.total = criticalFracHospitalized / params.lengthHospitalStay
-  pop.rate.fatality.total = fatalFracCritical / params.lengthICUStay
-  pop.rate.stabilize.total = (1 - fatalFracCritical) / params.lengthICUStay
-  pop.rate.overflowFatality.total = (params.overflowSeverity * fatalFracCritical) / params.lengthICUStay
-  pop.frac.isolated.total = avgIsolatedFrac
+  sim.rate.recovery.total = (1 - severeFrac) / params.infectiousPeriod
+  sim.rate.severe.total = severeFrac / params.infectiousPeriod
+  sim.rate.discharge.total = (1 - criticalFracHospitalized) / params.lengthHospitalStay
+  sim.rate.critical.total = criticalFracHospitalized / params.lengthHospitalStay
+  sim.rate.fatality.total = fatalFracCritical / params.lengthICUStay
+  sim.rate.stabilize.total = (1 - fatalFracCritical) / params.lengthICUStay
+  sim.rate.overflowFatality.total = (params.overflowSeverity * fatalFracCritical) / params.lengthICUStay
+  sim.frac.isolated.total = avgIsolatedFrac
 
   // Infectivity dynamics
-  const avgInfectionRate = params.r0 / params.infectiousPeriod
-  pop.rate.infection = (time: Date) =>
-    containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
+  if (params.r0[0] == params.r0[1]) {
+    const avg_infection_rate = params.r0[0] / params.infectiousPeriod
+    sim.rate.infection = (time: Date) =>
+      containment(time) * infectionRate(time.valueOf(), avg_infection_rate, params.peakMonth, params.seasonalForcing)
+    sims = [sim]
+  } else {
+    // TODO(nnoll): Generalize to allow for sampling multiple uncertainty ranges
+    const sample_uniform = (range: [number, number], npoints: number): number[] => {
+      const rand: number[] = []
+      while (rand.length < npoints) {
+        rand.push(random(range[0], range[1]))
+      }
+      return rand
+    }
 
-  return pop
+    // NOTE(nnoll): Should we worry about deep copying here?
+    const r0s = sample_uniform(params.r0, NUMBER_PARAMETER_SAMPLES)
+    sims = r0s.map((r0) => {
+      const elt = Object.assign({}, sim)
+      const avg_infection_rate = r0 / params.infectiousPeriod
+      elt.rate.infection = (time: Date) =>
+        containment(time) * infectionRate(time.valueOf(), avg_infection_rate, params.peakMonth, params.seasonalForcing)
+    })
+  }
+
+  return sims
 }
 
 export function initializePopulation(
@@ -323,20 +348,11 @@ export function stepODE(
     // Susceptible -> Exposed
     flux.susceptible[age] =
       sample(P.importsPerDay[age] * dt) +
-      sample(
-        (1 - P.frac.isolated[age]) *
-          P.rate.infection(newTime) *
-          pop.current.susceptible[age] *
-          fracInfected *
-          dt,
-      )
+      sample((1 - P.frac.isolated[age]) * P.rate.infection(newTime) * pop.current.susceptible[age] * fracInfected * dt)
 
     // Exposed -> Internal -> Infectious
     pop.current.exposed[age].forEach((exposed, i, exposedArray) => {
-      flux.exposed[age][i] = Math.min(
-        exposed,
-        sample(P.rate.latency * (exposed * dt) * exposedArray.length),
-      )
+      flux.exposed[age][i] = Math.min(exposed, sample(P.rate.latency * (exposed * dt) * exposedArray.length))
     })
 
     // Infectious -> Recovered/Critical
