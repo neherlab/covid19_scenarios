@@ -360,11 +360,10 @@ Click the Fork button on the upper right-hand side of the repository’s page.
 
 #### 👯 Clone Forked Repository
 
-Clone this repository recursively (including submodules) to your local machine. You can use the URL of your repo inside
-git command, for example:
+Clone this repository to your local machine. You can use the URL of your repo inside git command, for example:
 
 ```bash
-git clone --recursive https://github.com/<YOUR_GITHUB_USERNAME>/covid19_scenarios
+git clone https://github.com/<YOUR_GITHUB_USERNAME>/covid19_scenarios
 
 ```
 
