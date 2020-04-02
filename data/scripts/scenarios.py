@@ -97,14 +97,14 @@ class Object:
 class Measure(Object):
     def __init__(self, name, tMin, tMax, value):
         self.name = name
-        self.timeRange = DateRange(tMin, tMax) 
+        self.timeRange = DateRange(tMin, tMax)
         self.mitigationValue = value
 
 class PopulationParams(Object):
     def __init__(self, region, country, population, beds, icus):
         self.populationServed    = int(population)
         self.country             = country
-        self.suspectedCasesToday = FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin
+        self.suspectedCasesToday = round(FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin)
         self.importsPerDay       = round(max(3e-4 * float(population)**0.5, .1),1)
         self.hospitalBeds        = int(beds)
         self.ICUBeds             = int(icus)
@@ -112,16 +112,16 @@ class PopulationParams(Object):
 
 class EpidemiologicalParams(Object):
     def __init__(self, region, hemisphere):
-        self.latencyTime     = 5
+        self.latencyTime     = 3
         self.infectiousPeriod   = 3
         self.lengthHospitalStay = 4
         self.lengthICUStay      = 14
         if hemisphere:
             if hemisphere == 'Northern':
-                self.seasonalForcing    = 0.2
+                self.seasonalForcing    = 0.0
                 self.peakMonth          = 0
             elif hemisphere == 'Southern':
-                self.seasonalForcing    = 0.2
+                self.seasonalForcing    = 0.0
                 self.peakMonth          = 6
             elif hemisphere == 'Tropical':
                 self.seasonalForcing    = 0
@@ -139,7 +139,6 @@ class EpidemiologicalParams(Object):
 
 class ContainmentParams(Object):
     def __init__(self):
-        #self.reduction    = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
         self.reduction    = np.ones(15)
         self.numberPoints = len(self.reduction)
         self.mitigationIntervals = []
@@ -206,18 +205,21 @@ def set_mitigation(cases, scenario):
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e5),200))[0]
-    levelTwo = np.where(case_counts > min(max(5, scenario.population.populationServed/1e3),10000))[0]
+    levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e4),2000))[0]
+    levelTwo = np.where(case_counts > min(max(50, scenario.population.populationServed/3e2),20000))[0]
+    levelOneVal = np.minimum(0.8, 1.5/scenario.epidemiological.r0)
+    levelTwoVal = np.minimum(0.4, 0.5)
 
-    for name, level, val in [("levelOne", levelOne, 0.8), ('levelTwo', levelTwo, 0.6)]:
+
+    for name, level, val in [("levelOne", levelOne, levelOneVal), ('levelTwo', levelTwo, levelTwoVal)]:
         if len(level):
             level_idx = level[0]
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
             scenario.containment.reduction[timeline>cutoff] *= val
-            scenario.containment.mitigationIntervals.append(Measure(name, cutoff_str, 
-                scenario.simulation.simulationTimeRange.tMax[:10], 
+            scenario.containment.mitigationIntervals.append(Measure(name, cutoff_str,
+                scenario.simulation.simulationTimeRange.tMax[:10],
                 val))
 
     scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
@@ -251,7 +253,7 @@ def generate(output_json, num_procs=1):
             if region_name in case_counts:
                 set_mitigation(case_counts[region_name], scenario[region_name])
             else:
-                scenario[region_name].containment.reduction = [float(x) 
+                scenario[region_name].containment.reduction = [float(x)
                     for x in scenario[region_name].containment.reduction]
 
     with open(output_json, "w+") as fd:

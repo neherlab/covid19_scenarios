@@ -132,7 +132,7 @@ class Params(Data):
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/5.0, R0=2.7, infection=1/3.0, hospital=1/4, critical=1/14, imports=1)
+DefaultRates = Rates(latency=1/3.0, R0=2.7, infection=1/3.0, hospital=1/4, critical=1/14, imports=1)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
