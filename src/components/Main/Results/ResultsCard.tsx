@@ -126,12 +126,12 @@ function ResultsCardFunction({
               </Button>
               <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
               <Button
-                className="import-button"
+                className="compare-button"
                 type="button"
                 color="secondary"
                 onClick={_ => setShowImportModal(true)}
               >
-                {t('Import')}
+                {t('Import more data')}
               </Button><Button
                 className="export-button"
                 type="button"

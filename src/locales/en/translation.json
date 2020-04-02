@@ -35,8 +35,8 @@
   "Default": "Default",
   "Distribution across age groups": "Distribution across age groups",
   "Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no infection control, zero is complete prevention of all transmission.": "Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no infection control, zero is complete prevention of all transmission.",
-  "Drag n' drop some files here, or click to select files": "Drag n' drop some files here, or click to select files",
-  "Drop the files here ...": "Drop the files here ...",
+  "Drag n' drop some files here, or click to select files": "Drag n' drop some files here, or click to select files.",
+  "Drop the files here ...": "Drop the files here…",
   "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).": "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).",
   "Epidemiology": "Epidemiology",
   "Error": "Error",
@@ -51,7 +51,7 @@
   "ICU stay": "ICU stay",
   "Imports per day": "Imports per day",
   "Import": "Import",
-  "Import simulation": "Import simulation",
+  "Import more data": "Import more data",
   "Infectious": "Infectious",
   "Infectious period": "Infectious period",
   "Initial suspected cases": "Initial suspected cases",
@@ -152,5 +152,6 @@
   "This table summarizes the assumptions on severity which are informed by epidemiological and clinical observations in China. The first column reflects our assumption on what fraction of infections are reflected in the statistics from China, the following columns contain the assumption on what fraction of the previous category deteriorates to the next. These fields are editable and can be adjusted to different assumptions. The last column is the implied infection fatality for different age groups.": "This table summarizes the assumptions on severity which are informed by epidemiological and clinical observations in China. The first column reflects our assumption on what fraction of infections are reflected in the statistics from China, the following columns contain the assumption on what fraction of the previous category deteriorates to the next. These fields are editable and can be adjusted to different assumptions. The last column is the implied infection fatality for different age groups.",
   "too many stochastic trajectories will slow things down": "too many stochastic trajectories will slow things down",
   "total": "total",
-  "total deaths": "total deaths"
+  "total deaths": "total deaths",
+  "You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.": "You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases."
 }
