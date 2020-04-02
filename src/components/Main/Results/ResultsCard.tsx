@@ -16,7 +16,7 @@ import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
-
+import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
 
 const LOG_SCALE_DEFAULT = true
@@ -29,6 +29,7 @@ interface ResultsCardProps {
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
+  scenarioUrl?: string
 }
 
 function ResultsCardFunction({
@@ -38,6 +39,7 @@ function ResultsCardFunction({
   severity,
   result,
   caseCounts,
+  scenarioUrl,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
@@ -121,6 +123,16 @@ function ResultsCardFunction({
               >
                 {t('Run')}
               </Button>
+              <LinkButton
+                className="new-tab-button"
+                color="secondary"
+                desabled={!scenarioUrl}
+                href={scenarioUrl}
+                target="_blank"
+                data-testid="RunResultsInNewTab"
+              >
+                {t('Run in new tab')}
+              </LinkButton>
               <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
               <Button
                 className="export-button"
@@ -148,7 +160,7 @@ function ResultsCardFunction({
           <Col xs={12} sm={6} md={8}>
             <p className="m-0 caution-text">
               {t(
-                'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution',
+                'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution.',
               )}
             </p>
           </Col>
