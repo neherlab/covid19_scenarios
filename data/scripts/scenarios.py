@@ -26,12 +26,12 @@ ms_in_day = 1000*60*60*24
 
 class Fitter:
     doubling_time   = 3.0
-    serial_interval = 7.5
+    serial_interval = 6.0
     fixed_slope     = np.log(2)/doubling_time
     cases_on_tMin   = 10
     under_reporting = 5
-    delay           = 18
-    fatality_rate   = 0.02
+    delay           = 15
+    fatality_rate   = 0.01
 
     def slope_to_r0(self, slope):
         return 1 + slope*self.serial_interval
@@ -105,7 +105,7 @@ class PopulationParams(Object):
         self.populationServed    = int(population)
         self.country             = country
         self.suspectedCasesToday = round(FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin)
-        self.importsPerDay       = round(max(3e-4 * float(population)**0.5, .1),1)
+        self.importsPerDay       = 0.1
         self.hospitalBeds        = int(beds)
         self.ICUBeds             = int(icus)
         self.cases               = region
@@ -129,11 +129,11 @@ class EpidemiologicalParams(Object):
             else:
                 print(f'Error: Could not parse hemisphere for {region} in scenarios.py')
         else:
-            self.seasonalForcing    = 0.2
+            self.seasonalForcing    = 0.0
             self.peakMonth          = 0
         self.overflowSeverity   = 2
         if region in FIT_CASE_DATA:
-            self.r0 = round(FIT_CASE_DATA[region]['r0'],1)
+            self.r0 = max(1,round(FIT_CASE_DATA[region]['r0'],1))
         else:
             self.r0 = 2.7
 
@@ -182,7 +182,7 @@ def fit_one_case_data(args):
         if 'New York' in region:
             print(f"Region {region}: {r['params']}", file=sys.stderr)
 
-    param = {"tMin": r['tMin'], "r0": r['params'].rates.R0, "initialCases": r["initialCases"]}
+    param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0), "initialCases": r["initialCases"]}
     return (region, param)
 
 def fit_all_case_data(num_procs=4):
@@ -205,9 +205,9 @@ def set_mitigation(cases, scenario):
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e4),2000))[0]
-    levelTwo = np.where(case_counts > min(max(50, scenario.population.populationServed/3e2),20000))[0]
-    levelOneVal = np.minimum(0.8, 1.5/scenario.epidemiological.r0)
+    levelOne = np.where(case_counts > min(max(5, 3e-4*scenario.population.populationServed),10000))[0]
+    levelTwo = np.where(case_counts > min(max(50, 3e-3*scenario.population.populationServed),50000))[0]
+    levelOneVal = np.minimum(0.8, 1.8/scenario.epidemiological.r0)
     levelTwoVal = np.minimum(0.4, 0.5)
 
 
