@@ -33,6 +33,7 @@ const langs: { [key: string]: Lang } = {
   },
   pl: {
     lang: 'pl',
+    numeralLocale: 'pl',
     name: 'polski',
   },
 }
