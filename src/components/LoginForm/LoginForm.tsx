@@ -5,6 +5,7 @@ import { useFormik } from 'formik'
 import { Card, CardBody, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
 import { setCurrentUserUid } from '../../state/user/user.actions'
+import { setSignupVisible, setLoginVisible } from '../../state/ui/ui.actions'
 import { signInWithEmail } from '../../helpers/cloudStorage'
 
 function LoginForm() {
@@ -19,9 +20,14 @@ function LoginForm() {
     initialValues,
     onSubmit: async (values) => {
       const uid = await signInWithEmail(values.email, values.password) || null
-      dispatch(setCurrentUserUid({ currentUserUid: uid }))
+      //dispatch(setCurrentUserUid({ currentUserUid: uid }))
     }
   })
+
+  const handleNewUserClick = () => {
+    dispatch(setLoginVisible({ loginVisible: false }))
+    dispatch(setSignupVisible({ signupVisible: true }))
+  }
 
   return (
     <div className="form-container">
@@ -49,7 +55,12 @@ function LoginForm() {
                   type="text"
                 />
               </FormGroup>
-              <Button>Login</Button>
+              <Button type="submit">
+                Login
+              </Button>
+              <Button type="button" onClick={handleNewUserClick}>
+                New user?
+              </Button>
             </Form>
           </Col>
         </CardBody>
