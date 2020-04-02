@@ -15,7 +15,7 @@ import run from '../../algorithms/run'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
-import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
+import { CountryAgeDistribution, AGE_GROUP_COUNT } from '../../assets/data/CountryAgeDistribution.types'
 import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
 import severityData from '../../assets/data/severityData.json'
 
@@ -65,7 +65,19 @@ async function runSimulation(
     return
   }
 
-  const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[params.population.country]
+  const ageDistribution: Record<string, number> = {}
+  severity.forEach((row) => {
+    ageDistribution[row.ageGroup] = parseInt(`${row.population}`, 10)
+  })
+  if (Object.keys(ageDistribution).length !== AGE_GROUP_COUNT) {
+    console.error(
+      `The age distribution list does not match the expected size. Got: ${
+        Object.keys(ageDistribution).length
+      }, Expected: ${AGE_GROUP_COUNT}`,
+    )
+    return
+  }
+
   const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
 
   const containmentData = params.containment.reduction
