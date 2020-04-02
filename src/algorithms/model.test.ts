@@ -108,11 +108,9 @@ describe('model', () => {
         initializePopulationInput.ages,
       )
 
-      const result = [...new Array(5)].reduce((acc) => {
-        return evolve(acc, params, identity)
-      }, input)
-
-      // evolveOutput5 is the output after the 5th iteration with default parameters
+      // run model for 0.25 days
+      const result = evolve(input, params, input.time + 0.25, identity)
+      // compare result with snapshot
       expect(result).toMatchSnapshot()
     })
   })

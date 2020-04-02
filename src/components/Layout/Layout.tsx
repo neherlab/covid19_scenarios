@@ -12,6 +12,8 @@ import routes from '../../routes'
 
 import { State } from '../../state/reducer'
 
+import './Layout.scss'
+
 interface LayoutProps {
   location: Location
 }
