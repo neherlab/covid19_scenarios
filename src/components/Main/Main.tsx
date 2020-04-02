@@ -60,7 +60,7 @@ async function runSimulation(
     return
   }
 
-  if (params.population.cases !== "none" && !isRegion(params.population.cases)) {
+  if (params.population.cases !== 'none' && !isRegion(params.population.cases)) {
     console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
     return
   }
@@ -77,8 +77,6 @@ async function runSimulation(
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
 }
-
-const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
 const isCountry = (country: string): country is keyof CountryAgeDistribution => {
   return Object.prototype.hasOwnProperty.call(countryAgeDistributionData, country)
@@ -97,10 +95,21 @@ function Main() {
     deserializeScenarioFromURL,
   )
 
-  // TODO: Can this complex state be handled by formik too?
-  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
+  const [severity, setSeverity] = useState<SeverityTableRow[]>([])
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
+
+  useEffect(() => {
+    const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[
+      scenarioState.data.population.country
+    ]
+
+    const severityDataWithAgeDistribution = severityData.map((ageRow) => {
+      return { ...ageRow, population: ageDistribution[ageRow.ageGroup] }
+    })
+
+    setSeverity(updateSeverityTable(severityDataWithAgeDistribution))
+  }, [scenarioState.data.population.country])
 
   const togglePersistAutorun = () => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
