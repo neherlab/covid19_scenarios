@@ -32,7 +32,7 @@ function ScenarioCardEpidemiological({
   // function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
   //   scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))
   // }
-  const [values, setValues] = useState([2, 4])
+  const [values, setValues] = useState([1.9, 4.3])
 
   return (
     <CardWithoutDropdown
@@ -43,18 +43,8 @@ function ScenarioCardEpidemiological({
         'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).',
       )}
     >
-      <FormSpinBox
-        identifier="epidemiological.r0"
-        label={`${t('Annual average')} R\u2080`}
-        help={t(
-          'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
-        )}
-        step={0.1}
-        errors={errors}
-        touched={touched}
-      />
       <RangeSlider
-        identifier={'test'}
+        identifier="epidemiological.r0"
         label={`${t('Annual average')} R\u2080`}
         help={t(
           'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',

@@ -10,8 +10,9 @@ export interface PopulationData {
   cases: string
 }
 
+export type Tuple = [number, number]
 export interface EpidemiologicalData {
-  r0: number // Average number of people who will catch a disease from one contagious person. Usually specified as a decimal, e. g. 2.7
+  r0: Tuple
   latencyTime: number
   infectiousPeriod: number
   lengthHospitalStay: number
