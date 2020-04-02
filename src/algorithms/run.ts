@@ -146,10 +146,10 @@ export default async function run(
   const initialCases = params.suspectedCasesToday
   const modelParamsArray = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
 
-  const avgLinear: ExportedTimePoint[] = []
-  const avgSquare: ExportedTimePoint[] = []
+  let avgLinear: ExportedTimePoint[] = []
+  let avgSquare: ExportedTimePoint[] = []
 
-  modelParamsArray.forEach((modelParams) => {
+  modelParamsArray.forEach((modelParams, iter) => {
     let population = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
     function simulate(initialState: SimulationTimePoint, func: (x: number) => number): ExportedTimePoint[] {
       let currState = Object.assign({}, initialState)
@@ -164,17 +164,22 @@ export default async function run(
 
     const realization = simulate(population, identity)
 
-    avgLinear.forEach((timePoint, i) => {
-      avgLinear[i] = sumTimePoint(timePoint, realization[i], (x) => {
-        return x / modelParamsArray.length
+    if (iter == 0) {
+      avgLinear = realization
+      avgSquare = realization
+    } else {
+      avgLinear.forEach((timePoint, i) => {
+        avgLinear[i] = sumTimePoint(timePoint, realization[i], (x) => {
+          return x / modelParamsArray.length
+        })
       })
-    })
 
-    avgSquare.forEach((timePoint, i) => {
-      avgSquare[i] = sumTimePoint(timePoint, realization[i], (x) => {
-        return (x * x) / modelParamsArray.length
+      avgSquare.forEach((timePoint, i) => {
+        avgSquare[i] = sumTimePoint(timePoint, realization[i], (x) => {
+          return (x * x) / modelParamsArray.length
+        })
       })
-    })
+    }
   })
 
   const avgVariance = avgSquare.map((tp, i) => {
@@ -183,7 +188,9 @@ export default async function run(
     })
   })
 
-  const sim: AlgorithmResult = {
+  console.log('MEAN', avgLinear)
+
+  const result: AlgorithmResult = {
     trajectory: {
       mean: avgLinear,
       variance: avgVariance,
@@ -196,5 +203,5 @@ export default async function run(
   //   sim.stochastic.push(simulate(initialState, poisson))
   // }
 
-  return sim
+  return result
 }
