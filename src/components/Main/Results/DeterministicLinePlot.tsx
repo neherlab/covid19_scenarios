@@ -237,7 +237,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
           return (
             <>
-              <h5>{t('Cases through time')}</h5>
+              <h3>{t('Cases through time')}</h3>
 
               <div ref={chartRef} />
               <ComposedChart

@@ -100,68 +100,62 @@ function ResultsCardFunction({
       <span ref={scrollTargetRef} />
       <CollapsibleCard
         identifier="results-card"
+        className="card--main card--results"
         title={
-          <h3 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">
+          <h2 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">
             {t('Results')}
-          </h3>
+          </h2>
         }
         help={t('This section contains simulation results')}
         defaultCollapsed={false}
       >
-        <Row noGutters>
-          <Col>
-            <p>
+        <Row className="mb-4">
+          <Col xs={12} sm={6} md={4}>
+            <div className="btn-container mb-3">
+              <Button
+                className="run-button"
+                type="submit"
+                color="primary"
+                disabled={!canRun || autorunSimulation}
+                data-testid="RunResults"
+              >
+                {t('Run')}
+              </Button>
+              <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
+              <Button
+                className="export-button"
+                type="button"
+                color="secondary"
+                disabled={!canExport}
+                onClick={(_) => setShowExportModal(true)}
+              >
+                {t('Export')}
+              </Button>
+            </div>
+            <div className="pl-4">
+              <label className="form-check-label">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  onChange={toggleAutorun}
+                  checked={autorunSimulation}
+                  aria-checked={autorunSimulation}
+                />
+                {t('Autorun Simulation on scenario parameter change')}
+              </label>
+            </div>
+          </Col>
+          <Col xs={12} sm={6} md={8}>
+            <p className="m-0 caution-text">
               {t(
                 'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution',
               )}
             </p>
           </Col>
         </Row>
-        <Row noGutters className="mb-4 pl-4">
-          <label className="form-check-label">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              onChange={toggleAutorun}
-              checked={autorunSimulation}
-              aria-checked={autorunSimulation}
-            />
-            {t('Autorun Simulation on scenario parameter change')}
-          </label>
-        </Row>
-        <Row noGutters className="mb-4">
-          <Col>
-            <div>
-              <span>
-                <Button
-                  className="run-button"
-                  type="submit"
-                  color="primary"
-                  disabled={!canRun || autorunSimulation}
-                  data-testid="RunResults"
-                >
-                  {t('Run')}
-                </Button>
-              </span>
-              <span>
-                <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
-              </span>
-              <span>
-                <Button
-                  className="export-button"
-                  type="button"
-                  color="secondary"
-                  disabled={!canExport}
-                  onClick={(_) => setShowExportModal(true)}
-                >
-                  {t('Export')}
-                </Button>
-              </span>
-            </div>
-          </Col>
-        </Row>
-        <Row noGutters hidden={!result}>
-          <Col data-testid="LogScaleSwitch">
+
+        <Row noGutters hidden={!result} className="mb-4">
+          <div className="mr-4" data-testid="LogScaleSwitch">
             <FormSwitch
               identifier="logScale"
               label={t('Log scale')}
@@ -169,8 +163,8 @@ function ResultsCardFunction({
               checked={logScale}
               onValueChanged={setPersistLogScale}
             />
-          </Col>
-          <Col data-testid="HumanizedValuesSwitch">
+          </div>
+          <div data-testid="HumanizedValuesSwitch">
             <FormSwitch
               identifier="showHumanized"
               label={t('Show humanized results')}
@@ -178,8 +172,9 @@ function ResultsCardFunction({
               checked={showHumanized}
               onValueChanged={setPersistShowHumanized}
             />
-          </Col>
+          </div>
         </Row>
+
         <Row noGutters>
           <Col>
             <DeterministicLinePlot

@@ -74,7 +74,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
 
           return (
             <>
-              <h5>{t('Distribution across age groups')}</h5>
+              <h3>{t('Distribution across age groups')}</h3>
 
               <div ref={casesChartRef} />
               <BarChart

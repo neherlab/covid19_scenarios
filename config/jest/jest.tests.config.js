@@ -29,7 +29,10 @@ module.exports = {
     '<rootDir>/src/**/test/**/*.{js,jsx,ts,tsx}',
     '<rootDir>/src/**/tests/**/*.{js,jsx,ts,tsx}',
   ],
-  transformIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/cypress'],
+  transformIgnorePatterns: [
+    '<rootDir>/node_modules/(?!(react-children-utilities)/)',
+    '<rootDir>/cypress',
+  ],
   moduleNameMapper: {
     '\\.(eot|otf|webp|ttf|woff\\d?|svg|png|jpe?g|gif)$':
       '<rootDir>/src/__mocks__/fileMock.js',
