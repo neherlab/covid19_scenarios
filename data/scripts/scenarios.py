@@ -97,7 +97,7 @@ class Object:
 class Measure(Object):
     def __init__(self, name, tMin, tMax, value):
         self.name = name
-        self.timeRange = DateRange(tMin, tMax) 
+        self.timeRange = DateRange(tMin, tMax)
         self.mitigationValue = value
 
 class PopulationParams(Object):
@@ -118,10 +118,10 @@ class EpidemiologicalParams(Object):
         self.lengthICUStay      = 14
         if hemisphere:
             if hemisphere == 'Northern':
-                self.seasonalForcing    = 0.2
+                self.seasonalForcing    = 0.0
                 self.peakMonth          = 0
             elif hemisphere == 'Southern':
-                self.seasonalForcing    = 0.2
+                self.seasonalForcing    = 0.0
                 self.peakMonth          = 6
             elif hemisphere == 'Tropical':
                 self.seasonalForcing    = 0
@@ -139,7 +139,6 @@ class EpidemiologicalParams(Object):
 
 class ContainmentParams(Object):
     def __init__(self):
-        #self.reduction    = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
         self.reduction    = np.ones(15)
         self.numberPoints = len(self.reduction)
         self.mitigationIntervals = []
@@ -216,8 +215,8 @@ def set_mitigation(cases, scenario):
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
             scenario.containment.reduction[timeline>cutoff] *= val
-            scenario.containment.mitigationIntervals.append(Measure(name, cutoff_str, 
-                scenario.simulation.simulationTimeRange.tMax[:10], 
+            scenario.containment.mitigationIntervals.append(Measure(name, cutoff_str,
+                scenario.simulation.simulationTimeRange.tMax[:10],
                 val))
 
     scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
@@ -251,7 +250,7 @@ def generate(output_json, num_procs=1):
             if region_name in case_counts:
                 set_mitigation(case_counts[region_name], scenario[region_name])
             else:
-                scenario[region_name].containment.reduction = [float(x) 
+                scenario[region_name].containment.reduction = [float(x)
                     for x in scenario[region_name].containment.reduction]
 
     with open(output_json, "w+") as fd:
