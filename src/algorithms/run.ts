@@ -85,17 +85,6 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
       return (1 - f) * Ys[i - 1] + f * Ys[i] + f * (1 - f) * (a * (1 - f) + b * f)
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const evalLinear = (t: number) => {
-      const deltaY = Ys[i] - Ys[i - 1]
-      const deltaT = Ts[i] - Ts[i - 1]
-
-      const dS = deltaY / deltaT
-      const dT = t - Ts[i - 1]
-
-      return Ys[i - 1] + dS * dT
-    }
-
     return evalSpline(Number(t))
   }
 }
