@@ -90,12 +90,15 @@ class Rates(Data):
 # NOTE: Pulled from default severe table on neherlab.org/covid19
 #       Keep in sync!
 # TODO: Allow custom values?
-
+# TODO: Remove hard-coded path
 class Fracs(Data):
-    confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
-    severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
-    critical  = np.array([5, 10, 10, 15, 20, 25, 35, 45, 55]) / 100
-    fatality  = np.array([30, 30, 30, 30, 30, 40, 40, 50, 50]) / 100
+    defaults  = json.load(open("../src/assets/data/severity.json"))
+    defaults  = sorted(defaults, key = lambda x : x['ageGroup'])
+
+    confirmed = np.array([ d['confirmed'] / 100 for d in defaults ])
+    severe    = np.array([ d['severe'] / 100 for d in defaults ])
+    critical  = np.array([ d['critical'] / 100 for d in defaults ])
+    fatality  = np.array([ d['fatal'] / 100 for d in defaults ])
 
     recovery  = 1 - severe
     discharge = 1 - critical
