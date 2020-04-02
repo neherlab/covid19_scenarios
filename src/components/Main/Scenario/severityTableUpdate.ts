@@ -1,4 +1,4 @@
-import { SeverityTableRow } from './SeverityTable'
+import type { SeverityTableRow } from './SeverityTable'
 
 import { validatePercentage } from './validatePercentage'
 
