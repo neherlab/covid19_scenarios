@@ -2,12 +2,14 @@ import React from 'react'
 import { Range, getTrackBackground } from 'react-range'
 import HelpLabel from './HelpLabel'
 
+import { Tuple } from '../../algorithms/types/Param.types'
+
 export interface RangeSliderProps {
   identifier: string
   label: string
   help?: string | React.ReactNode
-  values: number[]
-  setValues(values: number[]): void
+  values: Tuple
+  setValues(values: Tuple): void
   step: number
   min: number
   max: number
