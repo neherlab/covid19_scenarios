@@ -9,5 +9,7 @@ export function getScenarioData(key: string): ScenarioData {
   if (!(key in scenarios)) {
     throw new Error(`Error: scenario "${key}" not found in JSON`)
   }
-  return scenarios[key]
+  const tmp = scenarios[key]
+  tmp.epidemiological.r0 = [2, 4]
+  return tmp
 }
