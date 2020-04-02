@@ -4,7 +4,6 @@
 \.env
 \.ignore
 \.reports
-covid19_scenarios_data
 cypress/integration/language.spec.ts
 node_modules
 static
