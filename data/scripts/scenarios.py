@@ -112,7 +112,7 @@ class PopulationParams(Object):
 
 class EpidemiologicalParams(Object):
     def __init__(self, region, hemisphere):
-        self.latencyTime     = 5
+        self.latencyTime     = 3
         self.infectiousPeriod   = 3
         self.lengthHospitalStay = 4
         self.lengthICUStay      = 14
@@ -205,8 +205,8 @@ def set_mitigation(cases, scenario):
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e5),2000))[0]
-    levelTwo = np.where(case_counts > min(max(5, scenario.population.populationServed/1e3),30000))[0]
+    levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e4),2000))[0]
+    levelTwo = np.where(case_counts > min(max(50, scenario.population.populationServed/3e2),20000))[0]
     levelOneVal = np.minimum(0.8, 1.5/scenario.epidemiological.r0)
     levelTwoVal = np.minimum(0.4, 0.5)
 
