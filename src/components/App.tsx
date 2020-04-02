@@ -13,11 +13,13 @@ import { State } from '../state/reducer'
 
 function App() {
   const shouldGoToLandingPage = useSelector(({ ui }: State) => !ui.skipLandingPage)
+  const initialQueryString = window.location.search
+
   return (
     <Switch>
       {shouldGoToLandingPage && <Redirect exact from="/" to="/start" />}
       <Route exact path="/start">
-        <LandingPage />
+        <LandingPage initialQueryString={initialQueryString} />
       </Route>
       <Route>
         <Layout />

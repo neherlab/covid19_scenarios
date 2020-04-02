@@ -10,11 +10,16 @@ import './LandingPage.scss'
 
 import { useTranslation } from 'react-i18next'
 
-function LandingPage() {
+interface LandingPageProps {
+  initialQueryString: string
+}
+
+function LandingPage({ initialQueryString }: LandingPageProps) {
   const { t } = useTranslation()
   const [isSkipLandingChecked, setSkipLandingChecked] = useState(false)
   const showSkipCheckbox = useSelector(({ ui }: State) => !ui.skipLandingPage)
   const dispatch = useDispatch()
+  const redirectUrl = `/${initialQueryString || ''}`
   const onLinkClick = useCallback(() => {
     dispatch(setShouldSkipLandingPage({ shouldSkip: true }))
 
@@ -34,7 +39,7 @@ function LandingPage() {
           <h1 className="landing-page__heading">{t('COVID-19 Scenarios')}</h1>
           <p className="landing-page__sub-heading">{t('Tool that models COVID-19 outbreak and hospital demand')}</p>
         </div>
-        <Link onClick={onLinkClick} to="/" className="landing-page__simulate-link">
+        <Link onClick={onLinkClick} to={redirectUrl} className="landing-page__simulate-link">
           {t('Simulate')}
         </Link>
       </div>
