@@ -20,9 +20,89 @@ SCENARIO_POPS = os.path.join(BASE_PATH, "populationData.tsv")
 FIT_CASE_DATA = {}
 
 # ------------------------------------------------------------------------
-# Data fitter
+# Dynamically create Python classes that match input parameter structure of app
 
-ms_in_day = 1000*60*60*24
+# TODO: Fix the path to not be hard-coded
+import schemapi
+with open("../src/assets/types/params.schema.json") as fd:
+    SCHEMA_API = schemapi.SchemaModuleGenerator(json.load(fd), root_name="AllParams")
+    SCHEMA     = SCHEMA_API.import_as("SCHEMA")
+from SCHEMA import PopulationParams, EpidemiologicalParams, SimulationParams, ContainmentParams, AllParams
+
+# ------------------------------------------------------------------------
+# Wrappers for parameter class constructors
+
+class Object:
+    def marshalJSON(self):
+        return json.dumps(self, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+
+class Measure(Object):
+    def __init__(self, name, tMin, tMax, value):
+        self.name = name
+        self.timeRange = DateRange(tMin, tMax)
+        self.mitigationValue = value
+
+def make_population_params(region, country, population, beds, icus):
+    return PopulationParams(
+                populationServed    = int(population),
+                country             = country,
+                suspectedCasesToday = FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin,
+                importsPerDay       = round(max(3e-4 * float(population)**0.5, .1),1),
+                hospitalBeds        = int(beds),
+                ICUBeds             = int(icus),
+                cases               = region)
+
+def make_epidemiological_params(region, hemisphere):
+    seasonalForcing = 2.0
+    peakMonth       = 0
+    if hemisphere:
+        if hemisphere == "Northern":
+            seasonalForcing = 0.2
+            peakMonth       = 0
+        elif hemisphere == "Southern":
+            seasonalForcing = 0.2
+            peakMonth       = 6
+        elif hemisphere == "Tropical":
+            seasonalForcing = 0.0
+            peakMonth       = 0
+        else:
+            raise ValueError(f"Could not parse hemisphere for region '{region}'")
+
+    r0 = 2.7
+    if region in FIT_CASE_DATA:
+        self.r0 = round(FIT_CASE_DATA[region]['r0'],1)
+
+    return EpidemiologicalParams(r0, seasonalForcing, peakMonth)
+
+def make_simulation_params(region):
+    tMin = FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01"
+    tMax = "2020-09-01"
+    return SimulationParams(tMin, tMax)
+
+
+def make_containment_params():
+    return ContainmentParams()
+
+def make_params(region, country, population, beds, icus, hemisphere):
+    return AllParams(
+            population      = make_population_params(region, country, population, beds, icus),
+            epidemiological = make_epidemiological_params(region, hemisphere),
+            simulation      = make_simulation_params(region, country, population, beds, icus),
+            containment     = make_containment_params())
+
+# TODO: Region and country provide redudant information
+#       Condense the information into one field.
+# class AllParams(Object):
+#     def __init__(self, region, country, population, beds, icus, hemisphere):
+#         self.population      = make_population_params(region, country, population, beds, icus)
+#         self.epidemiological = EpidemiologicalParams(region, hemisphere)
+#         self.simulation      = SimulationParams(region)
+        # self.containment     = ContainmentParams()
+
+
+
+# ------------------------------------------------------------------------
+# Data fitter
 
 class Fitter:
     doubling_time   = 3.0
@@ -85,92 +165,13 @@ class Fitter:
         return None
 
 # ------------------------------------------------------------------------
-# Parameter classes
-#
-# IMPORTANT: Keep in sync with algorithm parameters of input [AllParamsFlat]
-#            covid19_scenarios/src/algorithm/types/Param.types.ts
-
-class Object:
-    def marshalJSON(self):
-        return json.dumps(self, default=lambda x: x.__dict__, sort_keys=True, indent=4)
-
-class Measure(Object):
-    def __init__(self, name, tMin, tMax, value):
-        self.name = name
-        self.timeRange = DateRange(tMin, tMax) 
-        self.mitigationValue = value
-
-class PopulationParams(Object):
-    def __init__(self, region, country, population, beds, icus):
-        self.populationServed    = int(population)
-        self.country             = country
-        self.suspectedCasesToday = FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin
-        self.importsPerDay       = round(max(3e-4 * float(population)**0.5, .1),1)
-        self.hospitalBeds        = int(beds)
-        self.ICUBeds             = int(icus)
-        self.cases               = region
-
-class EpidemiologicalParams(Object):
-    def __init__(self, region, hemisphere):
-        self.latencyTime     = 5
-        self.infectiousPeriod   = 3
-        self.lengthHospitalStay = 4
-        self.lengthICUStay      = 14
-        if hemisphere:
-            if hemisphere == 'Northern':
-                self.seasonalForcing    = 0.2
-                self.peakMonth          = 0
-            elif hemisphere == 'Southern':
-                self.seasonalForcing    = 0.2
-                self.peakMonth          = 6
-            elif hemisphere == 'Tropical':
-                self.seasonalForcing    = 0
-                self.peakMonth          = 6
-            else:
-                print(f'Error: Could not parse hemisphere for {region} in scenarios.py')
-        else:
-            self.seasonalForcing    = 0.2
-            self.peakMonth          = 0
-        self.overflowSeverity   = 2
-        if region in FIT_CASE_DATA:
-            self.r0 = round(FIT_CASE_DATA[region]['r0'],1)
-        else:
-            self.r0 = 2.7
-
-class ContainmentParams(Object):
-    def __init__(self):
-        #self.reduction    = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
-        self.reduction    = np.ones(15)
-        self.numberPoints = len(self.reduction)
-        self.mitigationIntervals = []
-
-
-class DateRange(Object):
-    def __init__(self, tMin, tMax):
-        self.tMin = tMin
-        self.tMax = tMax
-
-class SimulationParams(Object):
-    def __init__(self, region):
-        tMin = FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01"
-        tMax = "2020-09-01"
-        self.simulationTimeRange  = DateRange(tMin, tMax)
-        self.numberStochasticRuns = 0
-
-# TODO: Region and country provide redudant information
-#       Condense the information into one field.
-class AllParams(Object):
-    def __init__(self, region, country, population, beds, icus, hemisphere):
-        self.population      = PopulationParams(region, country, population, beds, icus)
-        self.epidemiological = EpidemiologicalParams(region, hemisphere)
-        self.simulation      = SimulationParams(region)
-        self.containment     = ContainmentParams()
-
-# ------------------------------------------------------------------------
 # Functions
 
-def marshalJSON(obj, wtr):
-    return json.dump(obj, wtr, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+def marshalJSON(obj, wtr=None):
+    if wtr is None:
+        return json.dumps(obj, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+    else:
+        return json.dump(obj, wtr, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
 def fit_one_case_data(args):
     Params = Fitter()
@@ -227,10 +228,7 @@ def set_mitigation(cases, scenario):
 
 def generate(output_json, num_procs=1):
     scenario = {}
-    fit_all_case_data(num_procs)
-    print("DONE")
-    print(FIT_CASE_DATA)
-    print(output_json)
+    # fit_all_case_data(num_procs)
     case_counts = parse_tsv()
 
     with open(SCENARIO_POPS, 'r') as fd:
@@ -245,18 +243,20 @@ def generate(output_json, num_procs=1):
 
         args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere']
         for region in rdr:
+            print(f"Analyzing region {region}")
             region_name = region[idx['name']]
             entry = [region[idx[arg]] for arg in args]
-            scenario[region_name] = AllParams(*entry)
+            scenario[region_name] = make_params(*entry)
             if region_name in case_counts:
                 set_mitigation(case_counts[region_name], scenario[region_name])
             else:
-                scenario[region_name].containment.reduction = [float(x) 
+                scenario[region_name].containment.reduction = [float(x)
                     for x in scenario[region_name].containment.reduction]
+            break
 
     with open(output_json, "w+") as fd:
         marshalJSON(scenario, fd)
 
 if __name__ == '__main__':
-    generate()
-
+    with open("tmp.json", 'w+') as fd:
+        generate(fd)

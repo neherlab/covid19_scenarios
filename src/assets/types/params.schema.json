@@ -6,7 +6,7 @@
   "type": "object",
 
   "definitions": {
-    "populationParams": {
+    "PopulationParams": {
       "$id": "#populationParams",
       "type": "object",
       "properties": {
@@ -31,18 +31,25 @@
       },
       "required": ["populationServed", "country", "suspectedCasesToday", "importsPerDay", "hospitalBeds", "ICUBeds"]
     },
-    "epidemiologicalParams": {
+    "EpidemiologicalParams": {
       "$id": "#epidemiologicalParams",
       "type": "object",
       "properties": {
         "latencyTime": {
-          "type": "number"
+          "type": "number",
+          "default": 5
         },
         "infectiousPeriod": {
-          "type": "number"
+          "type": "number",
+          "default": 3
         },
         "lengthHospitalStay": {
-          "type": "number"
+          "type": "number",
+          "default": 4
+        },
+        "lengthICUStay": {
+          "type": "number",
+          "default": 14
         },
         "seasonalForcing": {
           "type": "number"
@@ -51,7 +58,8 @@
           "type": "number"
         },
         "overflowSeverity": {
-          "type": "number"
+          "type": "number",
+          "default": 2
         },
         "r0": {
           "type": "number"
@@ -61,13 +69,14 @@
         "latencyTime",
         "infectiousPeriod",
         "lengthHospitalStay",
+        "lengthICUStay",
         "seasonalForcing",
         "peakMonth",
         "overflowSeverity",
         "r0"
       ]
     },
-    "simulationParams": {
+    "SimulationParams": {
       "$id": "#simulationParams",
       "type": "object",
       "properties": {
@@ -84,12 +93,13 @@
           "required": ["tMin", "tMax"]
         },
         "numberStochasticRuns": {
-          "type": "number"
+          "type": "number",
+          "default": 0
         }
       },
       "required": ["simulationTimeRange", "numberStochasticRuns"]
     },
-    "containmentParams": {
+    "ContainmentParams": {
       "type": "object",
       "id": "#containmentParams",
       "properties": {
@@ -98,10 +108,12 @@
           "title": "reduction",
           "items": {
             "type": "number"
-          }
+          },
+          "default": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         },
         "numberPoints": {
-          "type": "number"
+          "type": "number",
+          "default": 15
         }
       },
       "required": ["reduction", "numberPoints"]
@@ -110,16 +122,16 @@
 
   "properties": {
     "population": {
-      "$ref": "#/definitions/populationParams"
+      "$ref": "#/definitions/PopulationParams"
     },
     "epidemiological": {
-      "$ref": "#/definitions/epidemiologicalParams"
+      "$ref": "#/definitions/EpidemiologicalParams"
     },
     "simulation": {
-      "$ref": "#/definitions/simulationParams"
+      "$ref": "#/definitions/SimulationParams"
     },
     "containment": {
-      "$ref": "#/definitions/containmentParams"
+      "$ref": "#/definitions/ContainmentParams"
     }
   },
   "required": ["population", "epidemiological", "simulation", "containment"]
