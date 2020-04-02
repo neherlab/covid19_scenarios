@@ -1,11 +1,15 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import { useFormik } from 'formik'
 import { Card, CardBody, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
+import { setSignupVisible } from '../../state/ui/ui.actions'
 import { createUserWithEmail } from '../../helpers/cloudStorage'
 
 function SignupForm() {
+  const dispatch = useDispatch()
+
   const initialValues = {
     email: '',
     password: '',
@@ -14,9 +18,10 @@ function SignupForm() {
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       if (values.password === values.repeatPassword) {
-        createUserWithEmail(values.email, values.password)
+        await createUserWithEmail(values.email, values.password)
+        dispatch(setSignupVisible({ signupVisible: false }))
       }
       else {
         throw new Error('Passwords do not match')
@@ -26,7 +31,7 @@ function SignupForm() {
 
 
   return (
-    <div className="form-container">
+    <div className="form-container" onClick={() => dispatch(setSignupVisible({ signupVisible: false }))}>
       <Card>
         <CardBody>
           <Col>

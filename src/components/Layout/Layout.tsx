@@ -24,9 +24,6 @@ function Layout({ location }: LayoutProps) {
   const loginVisible = useSelector(({ ui }: State) => ui.loginFormVisible)
   const signupVisible = useSelector(({ ui }: State) => ui.signupFormVisible)
 
-  console.log('loginVisible', loginVisible)
-  console.log('signupVisible', signupVisible)
-
   return (
     <div className="container-fluid">
       <div className="row">

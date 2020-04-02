@@ -22,6 +22,7 @@ function App() {
 
   const handleAuthStateChange = (user: any) => {
     if (user) {
+      console.log(user)
       dispatch(setCurrentUserUid({ currentUserUid: user.uid }))
       fetchAndSetLocalStorageValues(user.uid)
     }
@@ -39,6 +40,7 @@ function App() {
     for (let key in Object.keys(data)) {
       if(Object.keys(LOCAL_STORAGE_KEYS).includes(key)) {
         localStorage.set(key, data[key])
+        console.log(`wrote ${key}`)
       }
     }
   }
