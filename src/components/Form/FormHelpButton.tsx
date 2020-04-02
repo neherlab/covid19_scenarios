@@ -21,7 +21,7 @@ export function help(label: string, content: string | React.ReactNode): HelpProp
 
 export interface FormHelpButtonProps {
   identifier: string
-  help: HelpProps
+  help?: HelpProps
 }
 
 export default function FormHelpButton({ identifier, help }: FormHelpButtonProps) {
@@ -42,8 +42,9 @@ export default function FormHelpButton({ identifier, help }: FormHelpButtonProps
       <UncontrolledPopover placement="right" target={safeId(identifier)} trigger="legacy" hideArrow>
         <Card className="card--help">
           <CardBody>
-            <h4>{help.label}</h4>
-            <p>{help.content}</p>
+            {{help && <h4>{help.label}</h4>}}
+            {{help && <p>{help.content}</p>}}
+            {{!help && <p>No help attribute assigned.</p>}}
           </CardBody>
         </Card>
       </UncontrolledPopover>
