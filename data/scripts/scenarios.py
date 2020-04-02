@@ -104,7 +104,7 @@ class PopulationParams(Object):
     def __init__(self, region, country, population, beds, icus):
         self.populationServed    = int(population)
         self.country             = country
-        self.suspectedCasesToday = FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin
+        self.suspectedCasesToday = round(FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin)
         self.importsPerDay       = round(max(3e-4 * float(population)**0.5, .1),1)
         self.hospitalBeds        = int(beds)
         self.ICUBeds             = int(icus)
@@ -205,10 +205,13 @@ def set_mitigation(cases, scenario):
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e5),200))[0]
-    levelTwo = np.where(case_counts > min(max(5, scenario.population.populationServed/1e3),10000))[0]
+    levelOne = np.where(case_counts > min(max(5, scenario.population.populationServed/1e5),2000))[0]
+    levelTwo = np.where(case_counts > min(max(5, scenario.population.populationServed/1e3),30000))[0]
+    levelOneVal = np.minimum(0.8, 1.5/scenario.epidemiological.r0)
+    levelTwoVal = np.minimum(0.4, 0.5)
 
-    for name, level, val in [("levelOne", levelOne, 0.8), ('levelTwo', levelTwo, 0.6)]:
+
+    for name, level, val in [("levelOne", levelOne, levelOneVal), ('levelTwo', levelTwo, levelTwoVal)]:
         if len(level):
             level_idx = level[0]
             cutoff_str = valid_cases[level_idx]["time"][:10]
