@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useFormik } from 'formik'
-import { Card, CardBody, Col, Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
 
 import { setSignupVisible, setLoginVisible } from '../../state/ui/ui.actions'
 import { signInWithEmail } from '../../helpers/cloudStorage'
@@ -55,12 +55,16 @@ function LoginForm() {
               type="text"
             />
           </FormGroup>
-          <Button type="submit">
-            Login
-          </Button>
-          <Button type="button" onClick={handleNewUserClick}>
-            New user?
-          </Button>
+          <span>
+            <Button type="submit" color="primary">
+              Login
+            </Button>
+          </span>
+          <span>
+            <Button type="button" color="primary" onClick={handleNewUserClick}>
+              New user?
+            </Button>
+          </span>
         </Form>
       </ModalBody>
     </Modal>

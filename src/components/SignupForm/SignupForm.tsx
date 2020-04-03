@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useFormik } from 'formik'
-import { Card, CardBody, Col, Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
 
 import { setSignupVisible } from '../../state/ui/ui.actions'
 import { createUserWithEmail } from '../../helpers/cloudStorage'
@@ -66,7 +66,7 @@ function SignupForm() {
               type="password"
             />
           </FormGroup>
-          <Button type="submit">
+          <Button type="submit" color="primary" >
               Sign up & login
           </Button>
         </Form>

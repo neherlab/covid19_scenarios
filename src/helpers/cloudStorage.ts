@@ -56,7 +56,7 @@ export async function getUserData(uid: string) {
     return doc.data()
   }
 
-  throw new Error('User data not found')
+  return {}
 }
 
 // TODO scenario typing
