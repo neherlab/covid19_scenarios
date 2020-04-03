@@ -4,7 +4,7 @@ import { State } from './state'
 
 /*
 
-Quick and dirty helper to serialize/deserialize parameters within the URL, 
+Quick and dirty helper to serialize/deserialize parameters within the URL,
 so people can share/save it and keep their parameters
 
 This could have been done inside a redux middleware, but with some refacto.
@@ -15,21 +15,21 @@ so some extra work is needed during deserialization.
 
 */
 
-export async function serializeScenarioToURL(scenarioState: State, params: AllParams) {
+export function serializeScenarioToURL(scenarioState: State, params: AllParams): string {
   const toSave = {
     ...params,
     current: scenarioState.current,
     containment: scenarioState.data.containment.reduction,
   }
 
-  window.history.pushState('', '', `?${encodeURIComponent(JSON.stringify(toSave))}`)
+  return encodeURIComponent(JSON.stringify(toSave))
 }
 
 export function deserializeScenarioFromURL(initState: State): State {
   if (window.location.search) {
     try {
       /*
-        We deserialise the URL by removing the first char ('?'), and applying JSON.parse 
+        We deserialise the URL by removing the first char ('?'), and applying JSON.parse
       */
       const obj = JSON.parse(decodeURIComponent(window.location.search.slice(1)))
 

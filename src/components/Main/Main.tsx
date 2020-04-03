@@ -25,8 +25,9 @@ import { schema } from './validation/schema'
 
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
-import { defaultScenarioState, State } from './state/state'
-// import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
+
+import { defaultScenarioState } from './state/state'
+import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
@@ -44,7 +45,6 @@ export function severityErrors(severity: SeverityTableRow[]) {
 }
 
 async function runSimulation(
-  scenarioState: State,
   params: AllParams,
   severity: SeverityTableRow[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
@@ -62,7 +62,7 @@ async function runSimulation(
     return
   }
 
-  if (params.population.cases !== "none" && !isRegion(params.population.cases)) {
+  if (params.population.cases !== 'none' && !isRegion(params.population.cases)) {
     console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
     return
   }
@@ -71,9 +71,9 @@ async function runSimulation(
   const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
   const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
 
-  // serializeScenarioToURL(scenarioState, params)
   intervalsToTimeSeries(params.containment.mitigationIntervals)
   const newResult = await run(paramsFlat, severity, ageDistribution, containment)
+
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
@@ -100,6 +100,8 @@ function Main() {
 
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
+  const [scenarioQueryString, setScenarioQueryString] = useState<string>('')
+  const scenarioUrl = `${window.location.origin}?${scenarioQueryString}`
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
@@ -108,37 +110,51 @@ function Main() {
     setAutorunSimulation(!autorunSimulation)
   }
 
-  useEffect(() => {
-    const autorun = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
-    setAutorunSimulation(autorun ?? false)
-  }, [])
+  const updateBrowserUrl = () => {
+    window.history.pushState('', '', `?${scenarioQueryString}`)
+  }
 
   const allParams: AllParams = {
     population: scenarioState.data.population,
     epidemiological: scenarioState.data.epidemiological,
     simulation: scenarioState.data.simulation,
     containment: scenarioState.data.containment,
+    current: scenarioState.current,
   }
 
+  useEffect(() => {
+    // runs only once, when the component is mounted
+    const autorun = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
+    setAutorunSimulation(autorun ?? false)
+
+    // if the link contains query, we're executing the scenario (and displaying graphs)
+    // this is because the page was either shared via link, or opened in new tab
+    if (window.location.search) {
+      debouncedRun(allParams, severity)
+    }
+  }, [])
+
   const [debouncedRun] = useDebouncedCallback(
-    (params: AllParams, severity: SeverityTableRow[]) =>
-      runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases),
+    (params: AllParams, severity: SeverityTableRow[]) => runSimulation(params, severity, setResult, setEmpiricalCases),
     500,
   )
 
   useEffect(() => {
-    if (autorunSimulation) {
-      debouncedRun(
-        {
-          population: scenarioState.data.population,
-          epidemiological: scenarioState.data.epidemiological,
-          simulation: scenarioState.data.simulation,
-          containment: scenarioState.data.containment,
-        },
-        severity,
-      )
+    // 1. pon each paramter change, we rebuild the query string
+    const queryString = serializeScenarioToURL(scenarioState, allParams)
+
+    if (queryString !== scenarioQueryString) {
+      // whenever the generated query string changes, we're updating:
+      // 1. browser URL
+      // 2. scenarioQueryString state variable (scenarioUrl is used by children)
+      setScenarioQueryString(queryString)
     }
-  }, [autorunSimulation, debouncedRun, scenarioState, severity])
+
+    if (autorunSimulation) {
+      updateBrowserUrl()
+      debouncedRun(allParams, severity)
+    }
+  }, [autorunSimulation, debouncedRun, scenarioState, scenarioQueryString, severity])
 
   const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
@@ -161,7 +177,8 @@ function Main() {
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    runSimulation(scenarioState, params, severity, setResult, setEmpiricalCases)
+    updateBrowserUrl()
+    runSimulation(params, severity, setResult, setEmpiricalCases)
     setSubmitting(false)
   }
 
@@ -202,6 +219,7 @@ function Main() {
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
+                      scenarioUrl={scenarioUrl}
                     />
                   </Col>
                 </Row>
