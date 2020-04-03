@@ -11,7 +11,7 @@ import { SeverityTableRow } from './Scenario/SeverityTable'
 
 import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import run from '../../algorithms/run'
+import { run, intervalsToTimeSeries } from '../../algorithms/run'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
@@ -26,13 +26,14 @@ import { schema } from './validation/schema'
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { defaultScenarioState, State } from './state/state'
-import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
+// import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
 import './Main.scss'
+import { TimeSeries } from 'src/algorithms/types/TimeSeries.types'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -53,6 +54,7 @@ async function runSimulation(
     ...params.population,
     ...params.epidemiological,
     ...params.simulation,
+    ...params.containment,
   }
 
   if (!isCountry(params.population.country)) {
@@ -67,12 +69,11 @@ async function runSimulation(
 
   const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[params.population.country]
   const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
+  const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
 
-  const containmentData = params.containment.reduction
-
-  serializeScenarioToURL(scenarioState, params)
-
-  const newResult = await run(paramsFlat, severity, ageDistribution, containmentData)
+  // serializeScenarioToURL(scenarioState, params)
+  intervalsToTimeSeries(params.containment.mitigationIntervals)
+  const newResult = await run(paramsFlat, severity, ageDistribution, containment)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
@@ -94,7 +95,7 @@ function Main() {
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,
-    deserializeScenarioFromURL,
+    // deserializeScenarioFromURL,
   )
 
   // TODO: Can this complex state be handled by formik too?
@@ -154,7 +155,8 @@ function Main() {
     }
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.containment, newParams.containment)) {
-      scenarioDispatch(setContainmentData({ data: newParams.containment }))
+      const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
+      scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
     }
   }, 1000)
 
@@ -196,6 +198,8 @@ function Main() {
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
+                      params={allParams}
+                      mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
                     />

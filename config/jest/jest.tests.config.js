@@ -37,6 +37,8 @@ module.exports = {
     '\\.(eot|otf|webp|ttf|woff\\d?|svg|png|jpe?g|gif)$':
       '<rootDir>/src/__mocks__/fileMock.js',
     '\\.(css|scss)$': 'identity-obj-proxy',
+    'react-children-utilities':
+      '<rootDir>/config/jest/mockReactChildrenUtilities.js',
   },
   setupFilesAfterEnv: [
     '<rootDir>/config/jest/setupDotenv.js',

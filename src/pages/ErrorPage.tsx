@@ -24,7 +24,7 @@ export default function ErrorPage({ error, componentStack, isDev = development }
     <Container>
       <Row>
         <Col>
-          <h1 className="h1-error">{'Error'}</h1>
+          <h1 className="h1-error">{t('Error')}</h1>
 
           <If condition={isDev}>
             <Then>

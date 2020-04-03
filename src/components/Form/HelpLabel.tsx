@@ -1,5 +1,7 @@
 import React from 'react'
 
+import _ from 'lodash'
+
 import FormHelpButton from './FormHelpButton'
 
 export interface HelpLabelProps {
@@ -12,7 +14,7 @@ export default function HelpLabel({ identifier, label, help }: HelpLabelProps) {
   return (
     <div className="d-flex align-items-center">
       <span className="my-auto text-truncate">{label}</span>
-      <FormHelpButton identifier={`${identifier}_help`} label={label} help={help} />
+      {help && !_.isEmpty(help) && <FormHelpButton label={label} help={help} />}
     </div>
   )
 }
