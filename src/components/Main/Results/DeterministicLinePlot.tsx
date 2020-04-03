@@ -319,7 +319,7 @@ export function DeterministicLinePlot({
                     fill={interval.color}
                     fillOpacity={0.25}
                   >
-                    <Label value={interval.name} position="insideTopRight" />
+                    <Label value={interval.name} position="insideTopRight" fill="#444444"/>
                   </ReferenceArea>
                 ))}
 
