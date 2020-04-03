@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setLoginVisible } from '../../state/ui/ui.actions'
+import { signOut } from '../../helpers/cloudStorage'
+import { State } from '../../state/reducer'
 
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 
@@ -13,6 +15,8 @@ function UserMenu() {
 
   const toggle = () => setDropdownOpen(!dropdownOpen)
 
+  const userIsLogged = useSelector(({ user }): State => user.currentUserUid !== null ? true : false)
+
   const handleLoginClick = () => {
     setDropdownOpen(false)
     dispatch(setLoginVisible({ loginVisible: true }))
@@ -24,8 +28,8 @@ function UserMenu() {
         USER
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem onClick={handleLoginClick}>
-          Login
+        <DropdownItem onClick={userIsLogged ? signOut : handleLoginClick}>
+          {userIsLogged ? 'Logout' : 'Login'}
         </DropdownItem>
         <DropdownItem>
           Download my data
