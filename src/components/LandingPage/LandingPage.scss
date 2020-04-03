@@ -122,9 +122,6 @@
     &:checked + label::after {
       content: '';
     }
-    /*&:focus + label::before {
-      outline: rgb(59, 153, 252) auto 5px;
-    }*/
   }
 
   &__label {
