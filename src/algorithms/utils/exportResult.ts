@@ -1,12 +1,12 @@
 import i18n from 'i18next'
 import jsPDF from 'jspdf'
-import domtoimage from 'dom-to-image';
+import domtoimage from 'dom-to-image'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import { AlgorithmResult } from '../types/Result.types'
 import { exportSimulation } from '../model'
-import { ScenarioCardId, ScenarioCardContainmentId } from '../../components/Main/Scenario/ScenarioCard';
-import { OutcomeRatesTableId, DeterministicLinePlotId, AgeBarChartId } from '../../components/Main/Results/ResultsCard';
+import { ScenarioCardId, ScenarioCardContainmentId } from '../../components/Main/Scenario/ScenarioCard'
+import { OutcomeRatesTableId, DeterministicLinePlotId, AgeBarChartId } from '../../components/Main/Results/ResultsCard'
 
 export function isBlobApiSupported() {
   try {
@@ -112,33 +112,33 @@ export async function exportPDF(result: AlgorithmResult) {
   var scenarioCardContainment = document.getElementById(ScenarioCardContainmentId)
   
   var doc = new jsPDF()
-  doc.setFontSize(22);
-  doc.text(20, 20, i18n.t('Export simulation'));
-  var currentHeight = 30;
+  doc.setFontSize(22)
+  doc.text(20, 20, i18n.t('Export simulation'))
+  var currentHeight = 30
   currentHeight = await addElementToPdf(doc, currentHeight, scenarioCard)
   currentHeight = await addElementToPdf(doc, currentHeight, scenarioCardContainment)
   currentHeight = await addElementToPdf(doc, currentHeight, deterministicLinePlot)
   currentHeight = await addElementToPdf(doc, currentHeight, ageBarChart)
-  currentHeight = await addElementToPdf(doc, currentHeight, outcomesRatesTable)
+  await addElementToPdf(doc, currentHeight, outcomesRatesTable)
   
   doc.save('covid.params.results.pdf')
 }
 
 //adds element to pdf and returns the currentHeight
 async function addElementToPdf(doc:jsPDF, currentHeight:number, element:HTMLElement | null):Promise<number> {
-  var headerMargin = 30;
-  var topMargin = 5;
-  var sideMargin = 20;
+  var headerMargin = 30
+  var topMargin = 5
+  var sideMargin = 20
   if(element != null) {
-    var pngImage = await domtoimage.toPng(element);
-    var elementWidth = doc.internal.pageSize.width - sideMargin * 2;
-    var elementHeight = (elementWidth / element.offsetWidth * element.offsetHeight);
+    var pngImage = await domtoimage.toPng(element)
+    var elementWidth = doc.internal.pageSize.width - sideMargin * 2
+    var elementHeight = (elementWidth / element.offsetWidth * element.offsetHeight)
     if(currentHeight + elementHeight > doc.internal.pageSize.height) {
-      doc.addPage();
-      currentHeight = headerMargin;
+      doc.addPage()
+      currentHeight = headerMargin
     }
-    doc.addImage(pngImage, 'PNG', sideMargin, currentHeight, elementWidth, elementHeight);
-    currentHeight += elementHeight + topMargin;
+    doc.addImage(pngImage, 'PNG', sideMargin, currentHeight, elementWidth, elementHeight)
+    currentHeight += elementHeight + topMargin
   }
-  return currentHeight;
+  return currentHeight
 }

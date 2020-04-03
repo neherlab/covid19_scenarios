@@ -19,9 +19,9 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import './ResultsCard.scss'
 
-export const DeterministicLinePlotId = "DeterministicLinePlot-Col";
-export const AgeBarChartId = "AgeBarChart-Col";
-export const OutcomeRatesTableId = "OutcomeRatesTable-Col";
+export const DeterministicLinePlotId = "DeterministicLinePlot-Col"
+export const AgeBarChartId = "AgeBarChart-Col"
+export const OutcomeRatesTableId = "OutcomeRatesTable-Col"
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true

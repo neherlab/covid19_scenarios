@@ -28,8 +28,8 @@ export interface ScenarioCardProps {
   scenarioDispatch(action: AnyAction): void
 }
 
-export const ScenarioCardId = "ScenarioCard-Row";
-export const ScenarioCardContainmentId = "ScenarioCardContainment-Col";
+export const ScenarioCardId = "ScenarioCard-Row"
+export const ScenarioCardContainmentId = "ScenarioCardContainment-Col"
 
 function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, scenarioDispatch }: ScenarioCardProps) {
   const { t } = useTranslation()
