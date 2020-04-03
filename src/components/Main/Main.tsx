@@ -32,6 +32,8 @@ import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
+import { setUserData, getCurrentUser } from '../../helpers/cloudStorage'
+
 import './Main.scss'
 import { TimeSeries } from 'src/algorithms/types/TimeSeries.types'
 
@@ -105,6 +107,9 @@ function Main() {
 
   const togglePersistAutorun = () => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
+    let data = {}
+    data[LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE] = true
+    setUserData(getCurrentUser(), data)
     setAutorunSimulation(!autorunSimulation)
   }
 

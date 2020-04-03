@@ -29,7 +29,6 @@ function LandingPage({ initialQueryString }: LandingPageProps) {
       
       let data = {}
       data[LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE] = true
-      console.log(data)
       setUserData(getCurrentUser(), data)
     }
   }, [dispatch, isSkipLandingChecked])
