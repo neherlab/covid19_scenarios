@@ -90,6 +90,10 @@ export function EditableCell({
           onFocus={onFocus}
           onKeyDown={onKeyDown}
           readOnly={isReadOnly}
+          role="spinbutton"
+          aria-valuemin={0}
+          aria-valuemax={100000000000}
+          aria-valuenow={value}
         />
       </div>
     </td>
