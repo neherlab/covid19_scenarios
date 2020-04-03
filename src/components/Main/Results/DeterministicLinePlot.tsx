@@ -275,7 +275,12 @@ export function DeterministicLinePlot({
       name: t('Infectious uncertainty'),
       legendType: 'none',
     },
-    { key: `${DATA_POINTS.Severe}_area`, color: colors.severe, name: t('Severe uncertainty'), legendType: 'none' },
+    {
+      key: `${DATA_POINTS.Severe}_area`,
+      color: colors.severe,
+      name: t('Severely ill uncertainty'),
+      legendType: 'none',
+    },
     {
       key: `${DATA_POINTS.Critical}_area`,
       color: colors.critical,
