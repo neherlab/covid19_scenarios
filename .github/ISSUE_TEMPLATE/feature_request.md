@@ -1,7 +1,7 @@
 ---
 name: 🙋 Feature Request
 about: You have an idea? Suggest an improvement!
-labels: 't:feat', 'help wanted', 'needs triage'
+labels: t:feat, help wanted, needs triage
 ---
 <!---
 Thanks for filing an issue 😄! Before you submit, please read the following:
