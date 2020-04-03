@@ -1,7 +1,7 @@
 ---
 name: 🐛 Bug Report
 about: Did something not work as expected?
-labels: 'severity:bug'
+labels: 't:bug' 'help wanted'
 ---
 <!---
 Thanks for filing an issue 😄! Before you submit, please read the following:
@@ -32,7 +32,7 @@ Steps to reproduce the issue:
 
 
 ## 💁 Possible Solution
-<!--- Suggest why this happes, propose a fix -->
+<!--- Suggest why this happens, propose a fix -->
 
 
 ## 🔦 Context
