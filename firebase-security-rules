@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+   		allow read, write: if request.auth.uid == userId;
+		}
+    match /scenarios/** {
+    	allow read, write, delete: if isScenarioOwner();
+      
+      function isScenarioOwner() {
+      	return resource.data.uid == request.auth.uid;
+      }
+    }
+  }
+}
