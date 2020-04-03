@@ -82,6 +82,7 @@
     "prop-types": "15.7.2",
     "raf": "3.4.1",
     "react": "16.13.0",
+    "react-awesome-popover": "6.1.1",
     "react-children-utilities": "2.0.12",
     "react-dates": "21.8.0",
     "react-dom": "16.13.0",

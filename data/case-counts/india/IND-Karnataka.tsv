@@ -1,0 +1,28 @@
+# Data source: https://api.rootnet.in/covid19-in/stats/daily
+# Data provenance: https://github.com/amodm/api-covid19-in
+# License: Scraped from Ministry of Health and Family Welfare plus other sources, no clear license
+time	cases	deaths	hospitalized	ICU	recovered
+2020-03-10	1	0			
+2020-03-11	4	0			
+2020-03-12	4	0			
+2020-03-13	6	1			
+2020-03-14	6	1			
+2020-03-15	6	1			
+2020-03-16	6	1			
+2020-03-17	11	1			
+2020-03-18	11	1			
+2020-03-19	14	1			
+2020-03-20	15	1			
+2020-03-21	15	1			
+2020-03-22	26	1			
+2020-03-23	33	1			
+2020-03-24	37	1			
+2020-03-25	41	1			
+2020-03-26	55	2			
+2020-03-27	55	2			
+2020-03-28	55	2			
+2020-03-29	76	3			
+2020-03-30	83	3			
+2020-03-31	83	3			
+2020-04-01	101	3			
+2020-04-02	110	3			

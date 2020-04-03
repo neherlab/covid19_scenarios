@@ -12535,6 +12535,13 @@ rc@^1.0.1, rc@^1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-awesome-popover@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/react-awesome-popover/-/react-awesome-popover-6.1.1.tgz#3e37d3d3d4ad49d23b0e73a8d247dc3b1a5260e0"
+  integrity sha512-jBLcTpd6NaCBwWVfONzDqry4rowBgnHh7DW4bWJAd2GxMif6XAbIIBk2UDBWLjLqjhaFeL/c0QCLGElJpyDPZg==
+  dependencies:
+    react "^16.9.0"
+
 react-children-utilities@2.0.12:
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/react-children-utilities/-/react-children-utilities-2.0.12.tgz#75dcb4eded7d1a2509d68f52a0b13fc00694165f"
@@ -12838,6 +12845,15 @@ react@16.13.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.0.tgz#d046eabcdf64e457bbeed1e792e235e1b9934cf7"
   integrity sha512-TSavZz2iSLkq5/oiE7gnFzmURKZMltmi193rm5HEoUDAXpzT9Kzw6oNZnGoai/4+fUnm7FqS5dwgUL34TujcWQ==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+
+react@^16.9.0:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
+  integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
