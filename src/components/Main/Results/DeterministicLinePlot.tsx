@@ -8,6 +8,7 @@ import {
   ComposedChart,
   Legend,
   Line,
+  Label,
   ReferenceArea,
   Scatter,
   Tooltip,
@@ -317,7 +318,9 @@ export function DeterministicLinePlot({
                     yAxisId={'mitigationStrengthAxis'}
                     fill={interval.color}
                     fillOpacity={0.25}
-                  />
+                  >
+                    <Label value={interval.name} position="insideTopRight" />
+                  </ReferenceArea>
                 ))}
 
                 {linesToPlot.map((d) => (
