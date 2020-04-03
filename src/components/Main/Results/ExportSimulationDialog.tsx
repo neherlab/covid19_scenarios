@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
 import ClipboardButton from '../../Buttons/ClipboardButton'
-import { createNonExistingElement } from '../../../helpers/createNonExistingElement'
-
-const POPOVER_TARGET = 'export-simulation-dialog-popover'
 
 export interface ExportSimulationDialogProps {
   canExport: boolean
@@ -17,10 +14,6 @@ export interface ExportSimulationDialogProps {
 
 export default function ExportSimulationDialog({ showModal, toggleShowModal, result }: ExportSimulationDialogProps) {
   const { t } = useTranslation()
-
-  useEffect(() => {
-    createNonExistingElement(POPOVER_TARGET)
-  }, [])
 
   return (
     <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
@@ -71,13 +64,7 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               <td>{t('Shareable link')}</td>
               <td>URL</td>
               <td>
-                <ClipboardButton
-                  disabled={!(result?.params ?? null)}
-                  textToCopy={window.location.href}
-                  popoverHeader="Copied!"
-                  popoverBody={'The scenario link is now copied.'}
-                  popoverTarget={POPOVER_TARGET}
-                >
+                <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={window.location.href}>
                   {t('Copy link')}
                 </ClipboardButton>
               </td>
