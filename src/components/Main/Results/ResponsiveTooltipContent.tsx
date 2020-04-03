@@ -18,7 +18,6 @@ interface TooltipContentProps {
 }
 
 function ToolTipContentItem({ name, value, error, color }: TooltipItem) {
-  console.log('ERROR', error)
   if (error) {
     return (
       <div style={{ color }} className="responsive-tooltip-content-item">
@@ -49,7 +48,6 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
       uncertainty[key] = (item.value[1] - item.value[0]) / 2.0
     }
   })
-  console.log('UNCERTAINTY', uncertainty)
 
   const essentialPayload = payload
     .map((payloadItem) => ({
