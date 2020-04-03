@@ -6,6 +6,7 @@ import _ from 'lodash'
 import { Form, Formik, FormikHelpers } from 'formik'
 
 import { Col, Row } from 'reactstrap'
+import { Responsive, WidthProvider } from 'react-grid-layout'
 
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
@@ -60,7 +61,7 @@ async function runSimulation(
     return
   }
 
-  if (params.population.cases !== "none" && !isRegion(params.population.cases)) {
+  if (params.population.cases !== 'none' && !isRegion(params.population.cases)) {
     console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
     return
   }
@@ -87,6 +88,8 @@ const isCountry = (country: string): country is keyof CountryAgeDistribution => 
 const isRegion = (region: string): region is keyof typeof countryCaseCountData => {
   return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
 }
+
+const ResponsiveGridLayout = WidthProvider(Responsive)
 
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
@@ -178,8 +181,13 @@ function Main() {
 
             return (
               <Form className="form">
-                <Row>
-                  <Col lg={4} xl={6} className="py-1">
+                <ResponsiveGridLayout
+                  className="layout"
+                  draggableHandle=".card-header"
+                  breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+                  cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                >
+                  <div key="0" data-grid={{ x: 0, y: 0, w: 6, h: 1 }}>
                     <ScenarioCard
                       severity={severity}
                       setSeverity={setSeverity}
@@ -188,9 +196,8 @@ function Main() {
                       errors={errors}
                       touched={touched}
                     />
-                  </Col>
-
-                  <Col lg={8} xl={6} className="py-1">
+                  </div>
+                  <div key="1" data-grid={{ x: 6, y: 0, w: 6, h: 1 }}>
                     <ResultsCard
                       canRun={canRun}
                       autorunSimulation={autorunSimulation}
@@ -199,8 +206,8 @@ function Main() {
                       result={result}
                       caseCounts={empiricalCases}
                     />
-                  </Col>
-                </Row>
+                  </div>
+                </ResponsiveGridLayout>
               </Form>
             )
           }}

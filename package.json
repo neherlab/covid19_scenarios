@@ -87,6 +87,7 @@
     "react-dates": "21.8.0",
     "react-dom": "16.13.0",
     "react-error-boundary": "1.2.5",
+    "react-grid-layout": "0.18.3",
     "react-i18next": "11.3.3",
     "react-icons": "3.9.0",
     "react-if": "3.4.3",
