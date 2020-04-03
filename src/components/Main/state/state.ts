@@ -13,6 +13,7 @@ export interface State {
 // TODO: Add a default category to export
 export const DEFAULT_OVERALL_SCENARIO_NAME = 'CHE-Basel-Stadt'
 export const CUSTOM_SCENARIO_NAME = i18next.t('Custom')
+export const CUSTOMIZED_AGE_DISTRIBUTION = 'Custom'
 
 export const defaultScenarioName = DEFAULT_OVERALL_SCENARIO_NAME
 

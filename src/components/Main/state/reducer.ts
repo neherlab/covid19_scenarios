@@ -5,17 +5,17 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import immerCase from '../../../state/util/fsaImmerReducer'
 
 import {
-  setScenarioData,
   setPopulationData,
   setEpidemiologicalData,
   setContainmentData,
   setSimulationData,
   setScenario,
+  setAgeDistributionData,
 } from './actions'
 
-import { getScenarioData } from './data'
+import { getScenarioData, getAgeDistribution } from './data'
 
-import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './state'
+import { CUSTOM_SCENARIO_NAME, CUSTOMIZED_AGE_DISTRIBUTION, defaultScenarioState } from './state'
 
 function maybeAdd<T>(where: T[], what: T): T[] {
   return _.uniq([...where, what])
@@ -45,15 +45,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.current = name
       if (name !== CUSTOM_SCENARIO_NAME) {
         draft.data = _.cloneDeep(getScenarioData(name))
+        draft.ageDistribution = getAgeDistribution(draft.data.population.country)
       }
-    }),
-  )
-
-  .withHandling(
-    immerCase(setScenarioData, (draft, { data }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = CUSTOM_SCENARIO_NAME
-      draft.data = _.cloneDeep(data)
     }),
   )
 
@@ -62,6 +55,9 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.population = _.cloneDeep(data)
+      if (draft.data.population.country !== CUSTOMIZED_AGE_DISTRIBUTION) {
+        draft.ageDistribution = getAgeDistribution(draft.data.population.country)
+      }
     }),
   )
 
@@ -91,5 +87,17 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.simulation = _.cloneDeep(data)
+    }),
+  )
+
+  .withHandling(
+    immerCase(setAgeDistributionData, (draft, { data }) => {
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.current = CUSTOM_SCENARIO_NAME
+      draft.ageDistribution = data
+      draft.data.population = {
+        ...draft.data.population,
+        country: CUSTOMIZED_AGE_DISTRIBUTION,
+      }
     }),
   )
