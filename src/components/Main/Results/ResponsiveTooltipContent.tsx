@@ -30,11 +30,13 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
   const formattedLabel = labelFormatter && label ? labelFormatter(label) : label
   const formatNumber = formatter
 
-  const essentialPayload = payload.map((payloadItem) => ({
-    name: payloadItem.name,
-    color: payloadItem.color || '#bbbbbb',
-    value: formatter ? formatNumber(payloadItem.value, '', '', 0) : payloadItem.value,
-  }))
+  const essentialPayload = payload
+    .map((payloadItem) => ({
+      name: payloadItem.name,
+      color: payloadItem.color || '#bbbbbb',
+      value: formatter ? formatNumber(payloadItem.value, '', '', 0) : payloadItem.value,
+    }))
+    .filter((payloadItem) => !payloadItem.name.includes('uncertainty'))
 
   const left = payload.length > 1 ? essentialPayload.slice(0, Math.floor(payload.length / 2)) : payload
   const right = payload.length > 1 ? essentialPayload.slice(Math.floor(payload.length / 2), payload.length - 1) : []
