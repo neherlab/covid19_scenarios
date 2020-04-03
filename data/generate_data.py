@@ -12,6 +12,7 @@ if __name__ == "__main__":
                                      usage="Parse data and copy output to app")
 
     parser.add_argument('--fetch', action='store_true', help='update sources from remote')
+    parser.add_argument('--recalculate', action='store_true', help='recalculate fit parameters')
     parser.add_argument('--parsers', nargs='+', help='parsers to run')
     parser.add_argument('--output-cases', type=str, default=None, help='path to case-counts file')
     parser.add_argument('--output-population', type=str, default=None, help='path to population file')
@@ -72,4 +73,5 @@ if __name__ == "__main__":
     if args.output_scenarios:
         print(f"Generating scenario json")
         scenarios = importlib.import_module(f"scripts.scenarios")
-        scenarios.generate(args.output_scenarios, num_procs=args.num_threads)
+        scenarios.generate(args.output_scenarios, num_procs=args.num_threads,
+                          recalculate = args.recalculate)

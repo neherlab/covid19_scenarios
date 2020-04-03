@@ -1,11 +1,27 @@
 import React, { useState } from 'react'
+
+import _ from 'lodash'
+
 import ReactResizeDetector from 'react-resize-detector'
-import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
-import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
+import {
+  CartesianGrid,
+  ComposedChart,
+  Legend,
+  Line,
+  Label,
+  ReferenceArea,
+  Scatter,
+  Tooltip,
+  TooltipPayload,
+  XAxis,
+  YAxis,
+} from 'recharts'
+
+import { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
-import { EmpiricalData } from '../../../algorithms/types/Param.types'
+import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
@@ -54,6 +70,8 @@ export const colors = {
 export interface LinePlotProps {
   data?: AlgorithmResult
   userResult?: UserResult
+  params: AllParams
+  mitigation: ContainmentData
   logScale?: boolean
   showHumanized?: boolean
   caseCounts?: EmpiricalData
@@ -79,22 +97,32 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
   return <span className={activeClassName}>{value}</span>
 }
 
-export function DeterministicLinePlot({ data, userResult, logScale, showHumanized, caseCounts }: LinePlotProps) {
+export function DeterministicLinePlot({
+  data,
+  userResult,
+  params,
+  mitigation,
+  logScale,
+  showHumanized,
+  caseCounts,
+}: LinePlotProps) {
   const { t } = useTranslation()
+  const chartRef = React.useRef(null)
+  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+
+  // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
+  // href: https://reactjs.org/docs/hooks-rules.html
 
   const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
-
-  const chartRef = React.useRef(null)
-
-  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
     return null
   }
 
-  const hasUserResult = Boolean(userResult?.trajectory)
+  const { mitigationIntervals } = mitigation
+
   const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 
   const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
@@ -119,6 +147,12 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
+  const mitigationsToPlot = mitigationIntervals.map((d) => ({
+    key: d.name,
+    color: '#CCCCCC',
+    legendType: 'line',
+    name: d.name,
+  }))
 
   const observations =
     nonEmptyCaseCounts?.map((d, i) => ({
@@ -161,25 +195,26 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
       ICUbeds: nICUBeds,
     })),
     ...observations,
-  ] // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
+  ]
 
   const linesToPlot: LineProps[] = [
-    { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
-    { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
-    // {key: DATA_POINTS.Exposed, color: colors.exposed, name:'', legendType:"line"},
+    { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
     { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
+    { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'line' },
     { key: DATA_POINTS.Severe, color: colors.severe, name: t('Severely ill'), legendType: 'line' },
     { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
     { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
-    { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
-    { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'line' },
+    { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
+    { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
   ]
 
-  const tMin = observations.length ? Math.min(plotData[0].time, observations[0].time) : plotData[0].time
-  const tMax = observations.length
-    ? Math.max(plotData[plotData.length - 1].time, observations[observations.length - 1].time)
-    : plotData[plotData.length - 1].time
+  if (plotData.length === 0) {
+    return null
+  }
+
+  const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
+  const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
   const scatterToPlot: LineProps[] = observations.length
     ? [
@@ -243,6 +278,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
+
                 <XAxis
                   dataKey="time"
                   type="number"
@@ -250,13 +286,18 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                   domain={[tMin, tMax]}
                   tickCount={7}
                 />
+
                 <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
+
+                <YAxis yAxisId="mitigationStrengthAxis" orientation={'right'} type="number" domain={[0, 1]} />
+
                 <Tooltip
                   formatter={tooltipFormatter}
                   labelFormatter={labelFormatter}
                   position={tooltipPosition}
                   content={ResponsiveTooltipContent}
                 />
+
                 <Legend
                   verticalAlign="top"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
@@ -266,6 +307,22 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                     setEnabledPlots(plots)
                   }}
                 />
+
+                {mitigationIntervals.map((interval) => (
+                  <ReferenceArea
+                    key={interval.id}
+                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
+                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
+                    y1={0}
+                    y2={_.clamp(interval.mitigationValue, 0, 1)}
+                    yAxisId={'mitigationStrengthAxis'}
+                    fill={interval.color}
+                    fillOpacity={0.25}
+                  >
+                    <Label value={interval.name} position="insideTopRight" fill="#444444"/>
+                  </ReferenceArea>
+                ))}
+
                 {linesToPlot.map((d) => (
                   <Line
                     key={d.key}
@@ -279,6 +336,7 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                     legendType={d.legendType}
                   />
                 ))}
+
                 {scatterToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}

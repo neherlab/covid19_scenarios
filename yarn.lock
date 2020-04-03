@@ -2505,6 +2505,11 @@
   resolved "https://registry.yarnpkg.com/@types/url-join/-/url-join-4.0.0.tgz#72eff71648a429c7d4acf94e03780e06671369bd"
   integrity sha512-awrJu8yML4E/xTwr2EMatC+HBnHGoDxc2+ImA9QyeUELI1S7dOCIZcyjki1rkwoA8P2D2NVgLAJLjnclkdLtAw==
 
+"@types/uuid@7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-7.0.2.tgz#d680a9c596ef84abf5c4c07a32ffd66d582526f8"
+  integrity sha512-8Ly3zIPTnT0/8RCU6Kg/G3uTICf9sRwYOpUzSIM3503tLIKcnJPRuinHhXngJUy2MntrEf6dlpOHXJju90Qh5w==
+
 "@types/vfile-message@*":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/vfile-message/-/vfile-message-2.0.0.tgz#690e46af0fdfc1f9faae00cd049cc888957927d5"
@@ -4688,6 +4693,11 @@ cosmiconfig@^6.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.7.2"
+
+create-color@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/create-color/-/create-color-2.0.2.tgz#3c515f02c99b6e6b6045b142469eb991d50bef11"
+  integrity sha512-7C/o9vPX3piGEi3ryKPwDhN22S/1XnpdfieluG8mH/vJRbUIe3p1FfpqAijE2W++2hQuV+Nsuo/4gYpymKDr/A==
 
 create-ecdh@^4.0.0:
   version "4.0.3"
@@ -12535,6 +12545,13 @@ rc@^1.0.1, rc@^1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-awesome-popover@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/react-awesome-popover/-/react-awesome-popover-6.1.1.tgz#3e37d3d3d4ad49d23b0e73a8d247dc3b1a5260e0"
+  integrity sha512-jBLcTpd6NaCBwWVfONzDqry4rowBgnHh7DW4bWJAd2GxMif6XAbIIBk2UDBWLjLqjhaFeL/c0QCLGElJpyDPZg==
+  dependencies:
+    react "^16.9.0"
+
 react-children-utilities@2.0.12:
   version "2.0.12"
   resolved "https://registry.yarnpkg.com/react-children-utilities/-/react-children-utilities-2.0.12.tgz#75dcb4eded7d1a2509d68f52a0b13fc00694165f"
@@ -12838,6 +12855,15 @@ react@16.13.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.0.tgz#d046eabcdf64e457bbeed1e792e235e1b9934cf7"
   integrity sha512-TSavZz2iSLkq5/oiE7gnFzmURKZMltmi193rm5HEoUDAXpzT9Kzw6oNZnGoai/4+fUnm7FqS5dwgUL34TujcWQ==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+
+react@^16.9.0:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
+  integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -15877,6 +15903,11 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
+
+uuid@7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.2.tgz#7ff5c203467e91f5e0d85cfcbaaf7d2ebbca9be6"
+  integrity sha512-vy9V/+pKG+5ZTYKf+VcphF5Oc6EFiu3W8Nv3P3zIh0EqVI80ZxOzuPfe9EHjkFNvf8+xuTHVeei4Drydlx4zjw==
 
 uuid@^3.0.1, uuid@^3.3.2:
   version "3.4.0"
