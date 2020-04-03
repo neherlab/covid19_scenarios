@@ -222,9 +222,8 @@ def set_mitigation(cases, scenario):
     case_counts = np.array([c['cases'] for c in valid_cases])
     levelOne = np.where(case_counts > min(max(5, 3e-4*scenario.population.populationServed),10000))[0]
     levelTwo = np.where(case_counts > min(max(50, 3e-3*scenario.population.populationServed),50000))[0]
-    levelOneVal = np.minimum(0.8, 1.8/scenario.epidemiological.r0)
-    levelTwoVal = np.minimum(0.4, 0.5)
-
+    levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0), 1)
+    levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
     for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
         if len(level):
@@ -232,7 +231,7 @@ def set_mitigation(cases, scenario):
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.containment.reduction[timeline>cutoff] *= val
+            scenario.containment.reduction[timeline>cutoff] *= (1-val)
             scenario.containment.mitigationIntervals.append(Measure(
                 name=name,
                 tMin=cutoff_str,
