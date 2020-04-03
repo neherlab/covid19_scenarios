@@ -1,5 +1,3 @@
-import * as math from 'mathjs'
-
 import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
 
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'

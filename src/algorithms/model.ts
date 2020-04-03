@@ -9,8 +9,6 @@ import {
   ExportedTimePoint,
 } from './types/Result.types'
 
-import { random } from 'mathjs'
-
 const msPerDay = 1000 * 60 * 60 * 24
 const eulerStep = 0.05
 export const eulerStepsPerDay = Math.round(1 / eulerStep)
@@ -138,11 +136,14 @@ export function getPopulationParams(
   } else {
     // TODO(nnoll): Generalize to allow for sampling multiple uncertainty ranges
     const sample_uniform = (range: [number, number], npoints: number): number[] => {
-      const rand: number[] = []
-      while (rand.length < npoints) {
-        rand.push(random(range[0], range[1]))
+      const sample: number[] = []
+      const delta = (range[1] - range[0]) / npoints
+      let val = range[0]
+      while (sample.length < npoints) {
+        sample.push(val)
+        val += delta
       }
-      return rand
+      return sample
     }
 
     // NOTE(nnoll): Should we worry about deep copying here?
