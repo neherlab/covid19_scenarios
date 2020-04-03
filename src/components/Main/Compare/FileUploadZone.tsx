@@ -10,16 +10,21 @@ export enum FileType {
 }
 
 export interface FileUploadZoneProps {
-  onFilesChange(files: Map<FileType, File>): void
+  onFilesUploaded(files: Map<FileType, File>): void
+  onFilesRejected?(): void
+  accept?: string | string[]
+  multiple?: boolean
+  disabled?: boolean
 }
-
 
 /* Converts file extension to FileType enum */
 function fileExtToType(ext: string) {
-  const extMap = new Map<string, FileType>(Object.entries({
-    '.csv': FileType.CSV,
-    '.tsv': FileType.TSV,
-  }))
+  const extMap = new Map<string, FileType>(
+    Object.entries({
+      '.csv': FileType.CSV,
+      '.tsv': FileType.TSV,
+    }),
+  )
   return extMap.get(ext)
 }
 
@@ -33,19 +38,25 @@ function reduceDroppedFiles(files: Map<FileType, File>, file: File) {
   return files
 }
 
-
-function FileUploadZone({ onFilesChange }: FileUploadZoneProps) {
+function FileUploadZone({ onFilesUploaded, accept, multiple, disabled, onFilesRejected }: FileUploadZoneProps) {
   const [uploadedFiles, dispatchUploadedFile] = useReducer(reduceDroppedFiles, new Map())
   const onDrop = useCallback(
     (droppedFiles: File[]) => {
-      droppedFiles.forEach(dispatchUploadedFile);
-      onFilesChange(uploadedFiles)
+      droppedFiles.forEach(dispatchUploadedFile)
+      onFilesUploaded(uploadedFiles)
     },
-    [onFilesChange],
+    [onFilesUploaded],
   )
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept,
+    multiple,
+    disabled,
+    onDropAccepted: onDrop,
+    onDropRejected: onFilesRejected,
+  })
   const { t } = useTranslation()
+
   return (
     <div>
       <div {...getRootProps()} className="fileuploadzone-drop-area rounded p-3">
@@ -55,9 +66,7 @@ function FileUploadZone({ onFilesChange }: FileUploadZoneProps) {
         </p>
       </div>
       <ul>
-        {uploadedFiles.size > 0 && [...uploadedFiles.values()].map(({ name }: File) => (
-          <li key={name}>{name}</li>
-        ))}
+        {uploadedFiles.size > 0 && [...uploadedFiles.values()].map(({ name }: File) => <li key={name}>{name}</li>)}
       </ul>
     </div>
   )

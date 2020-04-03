@@ -134,6 +134,7 @@ function ResultsCardFunction({
                 type="button"
                 color="secondary"
                 onClick={_ => setShowImportModal(true)}
+                onDataImported={setUserResult}
               >
                 {t('Import more data')}
               </Button><Button

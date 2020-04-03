@@ -101,6 +101,7 @@
     "prefer-for-of": false,
     "prefer-type-cast": false,
     "prettier": true,
+    "semicolon": false,
     "react-a11y-accessible-headings": false,
     "react-this-binding-issue": false,
     "underscore-consistent-invocation": false,
