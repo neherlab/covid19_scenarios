@@ -75,7 +75,7 @@ describe('model', () => {
 
       expect(params).toMatchSnapshot()
       containmentWithDate.forEach((o) => {
-        expect(params.rate.infection(o.t)).toMatchSnapshot()
+        expect(params[0].rate.infection(o.t)).toMatchSnapshot()
       })
     })
   })
@@ -109,7 +109,7 @@ describe('model', () => {
       )
 
       // run model for 0.25 days
-      const result = evolve(input, params, input.time + 10, identity)
+      const result = evolve(input, params[0], input.time + 10, identity)
       // compare result with snapshot
       expect(result).toMatchSnapshot()
     })
