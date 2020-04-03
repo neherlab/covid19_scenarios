@@ -15,15 +15,14 @@ from scripts.model import fit_population
 
 ##
 mitigation_colors = {
-"School Closures": "#fbb4ae",
-"Social Distancing": "#b3cde3",
-"Lock-down": "#ccebc5",
-"Shut-down": "#decbe4",
-"Case Isolation": "#fed9a6",
-"Contact Tracing": "#ffffcc",
-"Agressive Contact Tracing": "#e5d8bd",
-"Intervention #1": "#fddaec",
-"Intervention #2": "#f2f2f2",
+"School Closures": "#7fc97f",
+"Social Distancing": "#beaed4",
+"Lock-down": "#fdc086",
+"Shut-down": "#ffff99",
+"Case Isolation": "#386cb0",
+"Contact Tracing": "#f0027f",
+"Intervention #1": "#bf5b17",
+"Intervention #2": "#666666",
 }
 
 
@@ -111,8 +110,8 @@ class Object:
 class Measure(Object):
     def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
         self.name = name
-        self.id = id,
-        self.color = color,
+        self.id = str(id)
+        self.color = str(color)
         self.timeRange = DateRange(tMin, tMax)
         self.mitigationValue = mitigationValue
 
@@ -237,9 +236,10 @@ def set_mitigation(cases, scenario):
             scenario.containment.mitigationIntervals.append(Measure(
                 name=name,
                 tMin=cutoff_str,
+                id=uuid4(),
                 tMax=scenario.simulation.simulationTimeRange.tMax[:10],
                 color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=1-val))
+                mitigationValue=val))
 
     scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
 
