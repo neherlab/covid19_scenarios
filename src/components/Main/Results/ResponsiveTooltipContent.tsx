@@ -23,7 +23,9 @@ function ToolTipContentItem({ name, value, error, color }: TooltipItem) {
       <div style={{ color }} className="responsive-tooltip-content-item">
         {name}
         <div className="responsive-tooltip-content-placeholder" />
-        {value} ± {error}
+        <div>
+          {value} ± {error}
+        </div>
       </div>
     )
   } else {

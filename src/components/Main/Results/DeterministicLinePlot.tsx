@@ -380,8 +380,6 @@ export function DeterministicLinePlot({
 
                 <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
 
-                <YAxis yAxisId="mitigationStrengthAxis" orientation={'right'} type="number" domain={[0, 1]} />
-
                 <Tooltip
                   formatter={tooltipFormatter}
                   labelFormatter={labelFormatter}
