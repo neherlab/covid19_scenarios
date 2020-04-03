@@ -146,16 +146,22 @@ export function getPopulationParams(
     }
 
     // NOTE(nnoll): Should we worry about deep copying here?
+    //              Will become more relevant as we have more uncertain ranges
     const r0s = sample_uniform(params.r0, NUMBER_PARAMETER_SAMPLES)
     sims = r0s.map((r0) => {
       const elt = Object.assign({}, sim)
       const avg_infection_rate = r0 / params.infectiousPeriod
+      elt.rate = Object.assign({}, sim.rate)
       elt.rate.infection = (time: Date) =>
         containment(time) * infectionRate(time.valueOf(), avg_infection_rate, params.peakMonth, params.seasonalForcing)
 
       return elt
     })
   }
+
+  sims.forEach((sim) => {
+    console.log('RATE', sim.rate.infection(new Date(Date.now())))
+  })
 
   return sims
 }
@@ -515,6 +521,7 @@ export function collectTotals(trajectory: SimulationTimePoint[]): ExportedTimePo
   return res
 }
 
+// TODO(nnoll): Regression. This is expected not to work!
 export function exportSimulation(result: UserResult) {
   // Store parameter values
 

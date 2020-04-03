@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
 import ReactResizeDetector from 'react-resize-detector'
-import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
+import {
+  CartesianGrid,
+  Legend,
+  Line,
+  Area,
+  Scatter,
+  ComposedChart,
+  Tooltip,
+  TooltipPayload,
+  XAxis,
+  YAxis,
+} from 'recharts'
 import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
@@ -133,11 +144,16 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
       ICUbeds: nICUBeds,
     })) ?? []
 
+  const variance = data.trajectory.variance
+  const verify = (x: number) => {
+    return x > 1 ? Math.round(x) : 1
+  }
   const plotData = [
-    ...data.trajectory.mean.map((x) => ({
+    ...data.trajectory.mean.map((x, i) => ({
       time: x.time,
+      // Means
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? Math.round(x.current.susceptible.total) || undefined
+        ? x.current.susceptible.total || undefined
         : undefined,
       // exposed: Math.round(x.exposed.total) || undefined,
       infectious: enabledPlots.includes(DATA_POINTS.Infectious)
@@ -158,9 +174,56 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
         : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
+
+      // Error bars
+      susceptible_area: enabledPlots.includes(DATA_POINTS.Susceptible)
+        ? [
+            verify(x.current.susceptible.total - Math.sqrt(variance[i].current.susceptible.total)),
+            verify(x.current.susceptible.total + Math.sqrt(variance[i].current.susceptible.total)),
+          ] || undefined
+        : undefined,
+      infectious_area: enabledPlots.includes(DATA_POINTS.Infectious)
+        ? [
+            verify(x.current.infectious.total - Math.sqrt(variance[i].current.infectious.total)),
+            verify(x.current.infectious.total + Math.sqrt(variance[i].current.infectious.total)),
+          ] || undefined
+        : undefined,
+      severe_area: enabledPlots.includes(DATA_POINTS.Severe)
+        ? [
+            verify(x.current.severe.total - Math.sqrt(variance[i].current.severe.total)),
+            verify(x.current.severe.total + Math.sqrt(variance[i].current.severe.total)),
+          ] || undefined
+        : undefined,
+      critical_area: enabledPlots.includes(DATA_POINTS.Critical)
+        ? [
+            verify(x.current.critical.total - Math.sqrt(variance[i].current.critical.total)),
+            verify(x.current.critical.total + Math.sqrt(variance[i].current.critical.total)),
+          ] || undefined
+        : undefined,
+      overflow_area: enabledPlots.includes(DATA_POINTS.Overflow)
+        ? [
+            verify(x.current.overflow.total - Math.sqrt(variance[i].current.overflow.total)),
+            verify(x.current.overflow.total + Math.sqrt(variance[i].current.overflow.total)),
+          ] || undefined
+        : undefined,
+      recovered_area: enabledPlots.includes(DATA_POINTS.Recovered)
+        ? [
+            verify(x.cumulative.recovered.total - Math.sqrt(variance[i].cumulative.recovered.total)),
+            verify(x.cumulative.recovered.total + Math.sqrt(variance[i].cumulative.recovered.total)),
+          ] || undefined
+        : undefined,
+      fatality_area: enabledPlots.includes(DATA_POINTS.Fatalities)
+        ? [
+            verify(x.cumulative.fatality.total - Math.sqrt(variance[i].cumulative.fatality.total)),
+            verify(x.cumulative.fatality.total + Math.sqrt(variance[i].cumulative.fatality.total)),
+          ] || undefined
+        : undefined,
     })),
     ...observations,
   ] // .filter((d) => {return d.time >= tMin && d.time <= tMax}))
+  console.log('PLOT DATA', plotData)
+  console.log('params', data.params)
+  console.log('variance', variance)
 
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
@@ -173,6 +236,16 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
     { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
     { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
     { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'line' },
+  ]
+
+  const areasToPlot: LineProps[] = [
+    { key: `${DATA_POINTS.Susceptible}_area`, color: colors.susceptible, name: t('Susceptible'), legendType: 'none' },
+    { key: `${DATA_POINTS.Infectious}_area`, color: colors.infectious, name: t('Infectious'), legendType: 'none' },
+    { key: `${DATA_POINTS.Severe}_area`, color: colors.severe, name: t('Severely ill'), legendType: 'none' },
+    { key: `${DATA_POINTS.Critical}_area`, color: colors.critical, name: t('Patients in ICU'), legendType: 'none' },
+    { key: `${DATA_POINTS.Overflow}_area`, color: colors.overflow, name: t('ICU overflow'), legendType: 'none' },
+    { key: `${DATA_POINTS.Recovered}_area`, color: colors.recovered, name: t('Recovered'), legendType: 'none' },
+    { key: `${DATA_POINTS.Fatalities}_area`, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'none' },
   ]
 
   const tMin = observations.length ? Math.min(plotData[0].time, observations[0].time) : plotData[0].time
@@ -275,6 +348,18 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                     dataKey={d.key}
                     stroke={d.color}
                     name={d.name}
+                    legendType={d.legendType}
+                  />
+                ))}
+                {areasToPlot.map((d) => (
+                  <Area
+                    key={d.key}
+                    type="monotone"
+                    fillOpacity={0.15}
+                    dataKey={d.key}
+                    stroke={d.color}
+                    strokeWidth={0}
+                    fill={d.color}
                     legendType={d.legendType}
                   />
                 ))}
