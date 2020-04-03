@@ -317,7 +317,7 @@ export function DeterministicLinePlot({
                     y2={_.clamp(interval.mitigationValue, 0, 1)}
                     yAxisId={'mitigationStrengthAxis'}
                     fill={interval.color}
-                    fillOpacity={0.075}
+                    fillOpacity={0.25}
                   />
                 ))}
 
