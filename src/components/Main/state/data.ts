@@ -1,5 +1,8 @@
 import _ from 'lodash'
 
+import { v4 as uuidv4 } from 'uuid'
+import createColor from 'create-color'
+
 import scenarios from '../../../assets/data/scenarios/scenarios.json'
 
 import { MitigationIntervals, ScenarioData } from '../../../algorithms/types/Param.types'
@@ -16,15 +19,36 @@ export function getScenarioData(key: string): ScenarioData {
     throw new Error(`Error: scenario "${key}" not found in JSON`)
   }
 
-  // Convert dates
+  // Add mitigation intervals field, if non existent
+  // TODO: implement proper compile-time + runtime validation and deserialization
+  if (_.isEmpty(scenarioData.containment.mitigationIntervals)) {
+    scenarioData.containment.mitigationIntervals = []
+  }
+
+  // Convert dates, add ids and colors if missing
   // TODO: implement proper compile-time + runtime validation and deserialization
   const mitigationIntervals: MitigationIntervals = scenarioData.containment.mitigationIntervals.map((interval) => {
     let { tMin, tMax } = interval.timeRange
     tMin = new Date(tMin)
     tMax = new Date(tMax)
 
+    // FIXME: should this be present in data or are we fine generating this every time?
+    let id = interval?.id
+    if (!id) {
+      id = uuidv4()
+    }
+
+    // FIXME: should this be present in data or are we fine generating this every time?
+    // FIXME: color may change when interval changes
+    let color = interval?.color
+    if (!color) {
+      color = createColor(interval)
+    }
+
     return {
       ...interval,
+      id,
+      color,
       timeRange: { tMin, tMax },
     }
   })
