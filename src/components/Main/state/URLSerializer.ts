@@ -48,12 +48,18 @@ export function deserializeScenarioFromURL(initState: State): State {
         ...initState,
         current: obj.current,
         data: {
-          population: initState.data.population,
+          population: {
+            ...initState.data.population,
+            ...obj.population,
+          },
           containment: {
             reduction: containmentDataReduction,
             numberPoints: containmentDataReduction.length,
           },
-          epidemiological: initState.data.epidemiological,
+          epidemiological: {
+            ...initState.data.epidemiological,
+            ...obj.epidemiological,
+          },
           simulation: obj.simulation,
         },
       }

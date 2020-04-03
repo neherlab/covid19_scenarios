@@ -10,7 +10,7 @@ describe('HelpLabel', () => {
   })
 
   it('displays a help button', () => {
-    const { getByLabelText } = render(<HelpLabel identifier="abc" label="def" />)
+    const { getByLabelText } = render(<HelpLabel identifier="abc" label="def" help="ghi" />)
 
     expect(getByLabelText('help')).not.toBeNull()
   })

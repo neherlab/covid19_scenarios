@@ -119,7 +119,7 @@ Got questions or suggestions?
 <th>    </th>
 <th>Simulator</th>
 <th>Source code repository</th>
-<th>Data repository</th>
+<th>Data directory</th>
 <th>Updates</th>
 <th>    </th>
 </tr>
@@ -150,7 +150,7 @@ Got questions or suggestions?
 </td>
 
 <td>
-<a alt="Link to the data repo" href="https://github.com/neherlab/covid19_scenarios_data">
+<a alt="Link to the data directory" href="https://github.com/neherlab/covid19_scenarios/tree/master/data">
 <img 
   alt="Image with GutHub logo and text 'Add Data'"
   src="https://user-images.githubusercontent.com/9403403/77235705-69b75b00-6bb8-11ea-8b21-f4aaf0ec60e7.png"
@@ -195,9 +195,9 @@ assumptions and age specific isolation.
 
 Most parameters can be adjusted in the tool and for many of them we provide presets (scenarios).
 
-Input data for the tool and the basic parameters of the populations are collected in a separate repository
-[neherlab/covid19_scenarios_data](https://github.com/neherlab/covid19_scenarios_data). Please add data on populations
-and parsers of publicly available case count data there.
+Input data for the tool and the basic parameters of the populations are collected in the
+[`/data` directory](https://github.com/neherlab/covid19_scenarios/tree/master/data). Please add data on populations and
+parsers of publicly available case count data there.
 
 <h1 align="center" />
 
@@ -249,7 +249,8 @@ The model's results can be exported in CSV format by clicking the "export" butto
 Install the requirements:
 
 - git >= 2.0
-- node.js >= 10 (we recommend installation through [nvm](https://github.com/nvm-sh/nvm) or [nvm-windows](https://github.com/coreybutler/nvm-windows))
+- node.js >= 10 (we recommend installation through [nvm](https://github.com/nvm-sh/nvm) or
+  [nvm-windows](https://github.com/coreybutler/nvm-windows))
 - 1.0 < yarn < 2.0
 
 Then in your terminal type:
@@ -359,11 +360,10 @@ Click the Fork button on the upper right-hand side of the repository’s page.
 
 #### 👯 Clone Forked Repository
 
-Clone this repository recursively (including submodules) to your local machine. You can use the URL of your repo inside
-git command, for example:
+Clone this repository to your local machine. You can use the URL of your repo inside git command, for example:
 
 ```bash
-git clone --recursive https://github.com/<YOUR_GITHUB_USERNAME>/covid19_scenarios
+git clone https://github.com/<YOUR_GITHUB_USERNAME>/covid19_scenarios
 
 ```
 
@@ -553,6 +553,7 @@ otherwise. Thanks goes to these wonderful people ([emoji key](https://allcontrib
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.

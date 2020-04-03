@@ -2,6 +2,7 @@
 # Data provenance: Données nationales concernant l'épidémie de COVID19
 # License: Etalab Open License 2.0
 time	cases	deaths	hospitalized	ICU	recovered
+2020-02-25	0	0			
 2020-02-28	5	0			
 2020-03-01	10	0			
 2020-03-02	8				
@@ -28,3 +29,11 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-03-23	1347	62	411	115	
 2020-03-24	1510	86	480	121	
 2020-03-25	1569	102	591	150	
+2020-03-26		123	679	166	
+2020-03-27		139	740	186	
+2020-03-28		148	787	194	
+2020-03-29		164	873	217	
+2020-03-30		187	902	220	
+2020-03-31		214	914	212	
+2020-04-01		230	963	229	
+2020-04-02		271	1017	250	

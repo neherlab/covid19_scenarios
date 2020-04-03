@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  covid19_scenarios-dev-web:
+    container_name: covid19_scenarios-dev-data
+    image: ovid19_scenarios-dev-data
+    build:
+      context: ./
+      dockerfile: python-pip/Dockerfile
+    working_dir: /code/data
+    command: bash -c "cd /code/data && make data-for-app"
+    volumes:
+      - ../:/code
+      - ../.cache/data/.cache:/.cache
+      - ../.cache/data/.local/bin:/.local/bin
+      - ../.cache/data/.local/share:/.local/share
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - COLORTERM=truecolor
+      - TERM=xterm-truecolor
+    restart: 'no'
+    init: true
+    user: '${UID}'
+    tty: true

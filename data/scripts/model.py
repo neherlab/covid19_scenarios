@@ -2,6 +2,7 @@ import csv
 import importlib
 import sys
 sys.path.append('..')
+import os
 import json
 import argparse
 
@@ -13,13 +14,14 @@ import scipy.integrate as solve
 import scipy.optimize as opt
 import matplotlib.pylab as plt
 from scripts.tsv import parse as parse_tsv
+from paths import BASE_PATH
 
 # ------------------------------------------------------------------------
 # Globals
 
-PATH_UN_AGES   = "../src/assets/data/country_age_distribution.json"
-PATH_UN_CODES  = "country_codes.csv"
-PATH_POP_DATA  = "populationData.tsv"
+PATH_UN_AGES   = os.path.join(BASE_PATH, "..//src/assets/data/country_age_distribution.json")
+PATH_UN_CODES  = os.path.join(BASE_PATH,"country_codes.csv")
+PATH_POP_DATA  = os.path.join(BASE_PATH,"populationData.tsv")
 JAN1_2019      = datetime.strptime("2019-01-01", "%Y-%m-%d").toordinal()
 JUN1_2019      = datetime.strptime("2019-06-01", "%Y-%m-%d").toordinal()
 JAN1_2020      = datetime.strptime("2020-01-01", "%Y-%m-%d").toordinal()
@@ -78,10 +80,10 @@ class Data(object):
         return str({k : str(v) for k, v in self.__dict__.items()})
 
 class Rates(Data):
-    def __init__(self, latency, R0, infection, hospital, critical, imports):
+    def __init__(self, latency, logR0, infection, hospital, critical, imports):
         self.latency     = latency
-        self.R0          = R0
-        self.infectivity = R0 * infection
+        self.logR0       = logR0
+        self.infectivity = np.exp(self.logR0) * infection
         self.infection   = infection
         self.hospital    = hospital
         self.critical    = critical
@@ -94,6 +96,7 @@ class Rates(Data):
 class Fracs(Data):
     confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
     severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
+    severe   *= confirmed
     critical  = np.array([5, 10, 10, 15, 20, 25, 35, 45, 55]) / 100
     fatality  = np.array([30, 30, 30, 30, 30, 40, 40, 50, 50]) / 100
 
@@ -130,7 +133,7 @@ class Params(Data):
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/5.0, R0=2.7, infection=1/3.0, hospital=1/4, critical=1/14, imports=1)
+DefaultRates = Rates(latency=1/3.0, logR0=1.0, infection=1/3.0, hospital=1/4, critical=1/14, imports=.1)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
@@ -220,9 +223,8 @@ def assess_model(params, data, cases):
     sol = solve_ode(params, init_pop(params.ages, params.size, cases))
     model = trace_ages(sol)
 
-    case_cost = np.sum(np.power(model[1:,Sub.T] - data[Sub.T][1:], 2))
-    death_cost = 10000*np.sum(np.power(model[1:,Sub.D] - data[Sub.D][1:], 2))
-
+    case_cost = np.ma.sum(np.power(model[:,Sub.T] - data[Sub.T], 2))
+    death_cost = 100000*np.ma.sum(np.power(model[:,Sub.D] - data[Sub.D], 2))
     return case_cost + death_cost
 
 
@@ -253,7 +255,7 @@ def fit_params(key, time_points, data, guess, bounds=None):
         fit_param = opt.minimize(fit, pack(guess), method='TNC', bounds=pack(bounds, as_list=True))
 
     err = (fit_param.success, fit_param.message)
-
+    print(key, fit_param.x)
     return (Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points,
            *unpack(fit_param.x)), np.exp(fit_param.x[params_to_fit['logInitial']]), err)
 
@@ -263,23 +265,30 @@ def fit_params(key, time_points, data, guess, bounds=None):
 # TODO: Better data filtering criteria needed!
 # TODO: Take hospitalization and ICU data?
 def load_data(key):
+    if key in POPDATA:
+        popsize = POPDATA[key]["size"]
+    else:
+        popsize = 1e6
+
     data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
     days = []
-    case_min, case_max = 20, 1e4
+    case_min, case_max = 20, max(20000, popsize*3e-3)
 
     ts = CASE_DATA[key]
 
     days = [d['time'].split('T')[0] for d in ts]
     for tp in ts:
-        data[Sub.T].append(tp['cases'] or 0)
-        data[Sub.D].append(tp['deaths'] or 0)
+        data[Sub.T].append(tp['cases'] or np.nan)
+        data[Sub.D].append(tp['deaths'] or np.nan)
 
     data = [ np.array(d) if d is not None else d for d in data]
 
     # Filter points
     good_idx = np.bitwise_and(case_min <= data[Sub.T], data[Sub.T] < case_max)
-    data[Sub.D] = np.concatenate([[np.nan], data[Sub.D][good_idx]])
-    data[Sub.T] = np.concatenate([[np.nan], data[Sub.T][good_idx]])
+    data[Sub.D] = np.ma.array(np.concatenate([[np.nan], data[Sub.D][good_idx]]))
+    data[Sub.T] = np.ma.array(np.concatenate([[np.nan], data[Sub.T][good_idx]]))
+    data[Sub.D].mask = np.isnan(data[Sub.D])
+    data[Sub.T].mask = np.isnan(data[Sub.T])
 
     if sum(good_idx) == 0:
         return None, None
@@ -301,7 +310,7 @@ def fit_population(region, guess=None):
         return None
 
     if guess is None:
-        guess = { "R0": 3.0,
+        guess = { "logR0": 1.0,
                   "reported" : 0.3,
                   "logInitial" : 1
                 }

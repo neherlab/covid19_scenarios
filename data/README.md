@@ -12,43 +12,28 @@
 <h1 align="center" />
 
 <p align="center">
-  <a href="https://github.com/neherlab/covid19_scenarios_data/blob/master/LICENSE">
+  <a href="https://github.com/neherlab/covid19_scenarios/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-mixed-yellow.svg" alt="License" />
   </a>
 
-  <a href="https://github.com/neherlab/covid19_scenarios_data/commits">
+  <a href="https://github.com/neherlab/covid19_scenarios/commits">
     <img
-      src="https://img.shields.io/github/commit-activity/m/neherlab/covid19_scenarios_data"
+      src="https://img.shields.io/github/commit-activity/m/neherlab/covid19_scenarios"
       alt="GitHub commit activity"
     />
   </a>
 
-  <a href="https://github.com/neherlab/covid19_scenarios_data/graphs/contributors">
+  <a href="https://github.com/neherlab/covid19_scenarios/graphs/contributors">
     <img
-      src="https://img.shields.io/github/contributors/neherlab/covid19_scenarios_data?logo=github&label=data%20contributors"
+      src="https://img.shields.io/github/contributors/neherlab/covid19_scenarios?logo=github&label=data%20contributors"
       alt="GitHub contributors"
     />
   </a>
 
-  <a href="https://github.com/neherlab/covid19_scenarios_data/commits">
+  <a href="https://github.com/neherlab/covid19_scenarios/commits">
     <img
-      src="https://img.shields.io/github/last-commit/neherlab/covid19_scenarios_data?logo=github"
+      src="https://img.shields.io/github/last-commit/neherlab/covid19_scenarios?logo=github"
       alt="GitHub last commit"
-    />
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a">
-    <img alt="Join the community on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
-  </a>
-  <a href="https://github.com/neherlab/covid19_scenarios_data/issues">
-    <img src="https://img.shields.io/badge/contributions-are%20welcome-%234295f5.svg" alt="Contributions: welcome" />
-  </a>
-  <a href="https://github.com/neherlab/covid19_scenarios/issues/18">
-    <img
-      src="https://img.shields.io/badge/questions%20and%20discussions-in%20issue%20%2318-%235bd9b1.svg"
-      alt="Discuss: in issue 18"
     />
   </a>
 </p>
@@ -63,18 +48,6 @@
 Got questions or suggestions?
 </h2>
 
-<p align="center">
-  <a
-    alt="Link to join the chat"
-    href="https://spectrum.chat/covid19-scenarios/general/questions-discussions~8d49f461-a890-4beb-84f7-2d6ed0ae503a"
-  >
-    <img
-      alt="Image for the link to join the chat"
-      src="https://user-images.githubusercontent.com/9403403/77235704-691ec480-6bb8-11ea-985d-82ec87cfdcdf.png"
-    />
-  </a>
-</p>
-
 <h2 align="center">
 Discover
 </h2>
@@ -87,7 +60,7 @@ Discover
 <th>    </th>
 <th>Simulator</th>
 <th>Source code repository</th>
-<th>Data repository</th>
+<th>Data directory</th>
 <th>Updates</th>
 <th>    </th>
 </tr>
@@ -111,16 +84,16 @@ Discover
 <td>
 <a alt="Link to the main repo" href="https://github.com/neherlab/covid19_scenarios">
 <img
-  alt="Image with GutHub logo and text 'Get Involved'"
+  alt="Image with GitHub logo and text 'Get Involved'"
   src="https://user-images.githubusercontent.com/9403403/77235706-6a4ff180-6bb8-11ea-8390-99b100d8035c.png"
 />
 </a>
 </td>
 
 <td>
-<a alt="Link to the data repo" href="https://github.com/neherlab/covid19_scenarios_data">
+<a alt="Link to the data repo" href="https://github.com/neherlab/covid19_scenarios/tree/master/data">
 <img
-  alt="Image with GutHub logo and text 'Add Data'"
+  alt="Image with GitHub logo and text 'Add Data'"
   src="https://user-images.githubusercontent.com/9403403/77235705-69b75b00-6bb8-11ea-8b21-f4aaf0ec60e7.png"
 />
 </a>
@@ -146,17 +119,16 @@ Discover
 
 ## Overview
 
-This repository serves as the source of observational data for [covid19_scenarios](https://neherlab.org/covid19/). It
+This directory serves as the source of observational data for [covid19_scenarios](https://neherlab.org/covid19/). It
 ingests data from a variety of sources listed in [sources.json](sources.json). For each source there is a parser written
 in python in the directory `parsers`. The data is stored as `tsv` files (tab separated values) for each location or
 country. These tabular files are mainly meant to enable data curation and storage, while the web application needs json
 files as input.
 
-The following commands assume that you have cloned this repository as `covid19_scenarios_data` and run these commands
-from **outside** this repository. To run the parsers, call
+To run the parsers, call
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py --fetch
+python generate_data.py --fetch
 ```
 
 This will update the tables in the directory `case-counts`. For each parser there is a separate directory which contains
@@ -165,14 +137,14 @@ individual case counts for each location covered by the parser.
 To only run specific parsers, run
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py --fetch --parsers netherlands switzerland
+python generate_data.py --fetch --parsers netherlands switzerland
 ```
 
 To generate jsons for the app, specific the path the location of the target. This can either be done in combination with
 updating the `tsv` files or separately depending on whether the command is run with `--fetch` or not.
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py \
+python generate_data.py \
         --output-cases path/case-counts.json  \
         --output-population path/population.json
 ```
@@ -180,7 +152,7 @@ python3 covid19_scenarios_data/generate_data.py \
 To generate the integrated scenario json, run
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py \
+python generate_data.py \
         --output-cases path/case-counts.json  \
         --output-scenarios path/scenarios.json
 ```
@@ -246,7 +218,7 @@ The steps to follow are:
 - Test your parser from the directory above (outside your covid19_scenario_data folder) using
 
 ```shell
-python3 covid19_scenarios_data/generate_data.py --fetch --parsers <yourparsername>
+python generate_data.py --fetch --parsers <yourparsername>
 ```
 
 - Check the resulting output in case-counts/<yourparsername>/, and add the files to your Pull Request together with the
@@ -290,6 +262,13 @@ following form:
 At least one of `suspectedCasesMarch1st` and `importsPerDay` needs to be non-zero. Otherwise there is no outbreak (good
 news in principle, but not useful for exploring scenarios).
 
-## License
+## Quick Start
 
-[Mixed](LICENSE)
+#### Run natively
+
+Install the requirements:
+
+- pipenv
+
+Then type in your terminal `pipenv install` This should recreate the required python environment To enter the
+environment, type `pipenv shell`
