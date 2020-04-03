@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
 import ReactResizeDetector from 'react-resize-detector'
-import { CartesianGrid, Legend, Line, ComposedChart, Scatter, Tooltip, TooltipPayload, XAxis, YAxis } from 'recharts'
+import {
+  CartesianGrid,
+  Legend,
+  Line,
+  ComposedChart,
+  Scatter,
+  Tooltip,
+  TooltipPayload,
+  XAxis,
+  YAxis,
+  ReferenceArea,
+} from 'recharts'
 import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
@@ -88,6 +99,13 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
   const chartRef = React.useRef(null)
 
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+
+  const [zoomLeftState, setzoomLeftState] = useState('dataMin')
+  const [zoomRightState, setzoomRightState] = useState('dataMax')
+  const [zoomSelectedLeftState, setzoomSelectedLeftState] = useState('')
+  const [zoomSelectedRightState, setzoomSelectedRightState] = useState('')
+  const [zoomTopState, setzoomTopState] = useState('dataMax+1')
+  const [zoomBottomState, setzoomBottomState] = useState('dataMin-1')
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
@@ -213,6 +231,49 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
+  const getAxisYDomain = (from: number, to: number, ref: string, offset: number) => {
+    const refData = plotData.slice(from - 1, to)
+    let [bottom, top] = [refData[0] ? refData[0][ref] : 1, refData[0] ? refData[0][ref] : 'dataMax']
+    refData.forEach((d: any) => {
+      if (d[ref] > top) top = d[ref]
+      if (d[ref] < bottom) bottom = d[ref]
+    })
+
+    return [(bottom | 0) - offset, (top | 0) + offset]
+  }
+
+  const zoomIn = () => {
+    if (zoomSelectedLeftState === zoomSelectedRightState || zoomSelectedRightState === '') {
+      setzoomSelectedLeftState('')
+      setzoomSelectedRightState('')
+    }
+
+    // xAxis domain
+    if (zoomSelectedLeftState > zoomSelectedRightState) {
+      setzoomSelectedLeftState(zoomSelectedRightState)
+      setzoomSelectedRightState(zoomSelectedLeftState)
+    }
+
+    // yAxis domain
+    const [bottom, top] = getAxisYDomain(zoomSelectedLeftState, zoomSelectedRightState, 'susceptible', 1)
+
+    setzoomLeftState(zoomSelectedLeftState)
+    setzoomRightState(zoomSelectedRightState)
+    setzoomTopState(top)
+    setzoomBottomState(bottom)
+    setzoomSelectedLeftState('')
+    setzoomSelectedRightState('')
+  }
+
+  const zoomOut = () => {
+    setzoomLeftState('dataMin')
+    setzoomRightState('dataMax')
+    setzoomTopState('dataMax+1')
+    setzoomBottomState('dataMin-1')
+    setzoomSelectedLeftState('')
+    setzoomSelectedRightState('')
+  }
+
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
@@ -226,7 +287,10 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
           return (
             <>
-              <h3>{t('Cases through time')}</h3>
+              <h3 className="d-flex justify-content-between">
+                {t('Cases through time')}
+                <button onClick={zoomOut}>{t('Zoom Out')}</button>
+              </h3>
 
               <div ref={chartRef} />
               <ComposedChart
@@ -241,16 +305,26 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                   bottom: 15,
                   top: 15,
                 }}
+                onMouseDown={(e: any) => e && setzoomSelectedLeftState(e.activeLabel)}
+                onMouseMove={(e: any) => e && zoomSelectedLeftState && setzoomSelectedRightState(e.activeLabel)}
+                onMouseUp={zoomIn}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
+                  allowDataOverflow={true}
                   dataKey="time"
                   type="number"
                   tickFormatter={xTickFormatter}
-                  domain={[tMin, tMax]}
+                  domain={[zoomLeftState, zoomRightState]}
                   tickCount={7}
                 />
-                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
+                <YAxis
+                  allowDataOverflow={true}
+                  scale={logScaleString}
+                  type="number"
+                  domain={[[zoomBottomState, zoomTopState]]}
+                  tickFormatter={yTickFormatter}
+                />
                 <Tooltip
                   formatter={tooltipFormatter}
                   labelFormatter={labelFormatter}
@@ -282,6 +356,9 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
                 {scatterToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}
+                {zoomSelectedLeftState && zoomSelectedRightState ? (
+                  <ReferenceArea x1={zoomSelectedLeftState} x2={zoomSelectedRightState} strokeOpacity={0.3} />
+                ) : null}
               </ComposedChart>
             </>
           )
