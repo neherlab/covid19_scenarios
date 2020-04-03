@@ -36,7 +36,7 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
       color: payloadItem.color || '#bbbbbb',
       value: formatter ? formatNumber(payloadItem.value, '', '', 0) : payloadItem.value,
     }))
-    .filter((payloadItem) => !payloadItem.name.includes('uncertainty'))
+    .filter((payloadItem) => (payloadItem ? !payloadItem.name.includes('uncertainty') : true))
 
   const left = payload.length > 1 ? essentialPayload.slice(0, Math.floor(payload.length / 2)) : payload
   const right = payload.length > 1 ? essentialPayload.slice(Math.floor(payload.length / 2), payload.length - 1) : []
