@@ -93,7 +93,7 @@ describe('model', () => {
   })
 
   describe('evolve', () => {
-    it('produces the expected output in the default scenario after 5 evolutions', () => {
+    it('model evolution produces the expected output in the default scenario after running for 10 days', () => {
       const params = getPopulationParams(
         processParams(getPopulationParamsInput.params),
         getPopulationParamsInput.severity,
@@ -109,7 +109,7 @@ describe('model', () => {
       )
 
       // run model for 0.25 days
-      const result = evolve(input, params, input.time + 0.25, identity)
+      const result = evolve(input, params, input.time + 10, identity)
       // compare result with snapshot
       expect(result).toMatchSnapshot()
     })

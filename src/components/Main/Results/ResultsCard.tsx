@@ -153,7 +153,6 @@ function ResultsCardFunction({
             </p>
           </Col>
         </Row>
-
         <Row noGutters hidden={!result} className="mb-4">
           <div className="mr-4" data-testid="LogScaleSwitch">
             <FormSwitch
@@ -174,7 +173,6 @@ function ResultsCardFunction({
             />
           </div>
         </Row>
-
         <Row noGutters>
           <Col>
             <DeterministicLinePlot

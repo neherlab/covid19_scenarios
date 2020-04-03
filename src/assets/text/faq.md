@@ -25,7 +25,7 @@ outbreak in different populations._
 **Q:** My country/region/town is missing!
 
 **A:** _If you have suggestions on additional regions that should be covered, head over to
-https://github.com/neherlab/covid19_scenarios_data and make a PR!_
+https://github.com/neherlab/covid19_scenarios/tree/master/data and make a PR!_
 
 ---
 
@@ -50,8 +50,8 @@ age groups are isolated from the rest of the population._
 
 **A:** _You are probably referring to the
 [March 16 report by Neil Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf).
-Like us, Ferguson et al model the effect of interventions on the spread of COVID-19 using a computational model.
-Their model is individual based, meaning their program represents a large number of individuals among whom
-the virus is spreading. Our model breaks the population into age-groups and different categories corresponding
-to susceptible, infected, dead, recovered, etc. This allows for faster simulations, but loses some realism.
-The faster simulation allows exploration of parameters._
+Like us, Ferguson et al model the effect of interventions on the spread of COVID-19 using a computational model. Their
+model is individual based, meaning their program represents a large number of individuals among whom the virus is
+spreading. Our model breaks the population into age-groups and different categories corresponding to susceptible,
+infected, dead, recovered, etc. This allows for faster simulations, but loses some realism. The faster simulation allows
+exploration of parameters._
