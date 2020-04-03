@@ -1,7 +1,7 @@
 ---
 name: 🐛 Bug Report
-about: Did something not work as expected?
-labels: 't:bug' 'help wanted'
+about: Tell us if something is broken
+labels: 't:bug', 'help wanted', 'needs triage'
 ---
 <!---
 Thanks for filing an issue 😄! Before you submit, please read the following:
