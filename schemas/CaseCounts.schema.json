@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "$id": "http://example.com/example.json",
     "type": "object",
-    "title": "Case counts",
+    "title": "CaseCounts",
     "description": "Cases in each population broken down in a time series",
     "additionalProperties": {
         "type": "array",
