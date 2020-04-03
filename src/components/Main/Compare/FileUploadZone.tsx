@@ -50,11 +50,9 @@ function FileUploadZone({ onFilesChange }: FileUploadZoneProps) {
     <div>
       <div {...getRootProps()} className="fileuploadzone-drop-area rounded p-3">
         <input type="file" {...getInputProps()} />
-        {isDragActive ? (
-          <p>{t('Drop the files here ...')}</p>
-        ) : (
-          <p>{t("Drag n' drop some files here, or click to select files")}</p>
-        )}
+        <p className="h5 text-secondary text-center m-0">
+          {isDragActive ? t('Drop the files here ...') : t("Drag n' drop some files here, or click to select files")}
+        </p>
       </div>
       <ul>
         {uploadedFiles.size > 0 && [...uploadedFiles.values()].map(({ name }: File) => (
