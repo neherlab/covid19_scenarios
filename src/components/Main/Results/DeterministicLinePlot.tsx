@@ -368,11 +368,16 @@ export function DeterministicLinePlot({
                     fill={interval.color}
                     fillOpacity={0.25}
                   >
-                    <Label value={interval.name} position="insideTopRight" fill="#444444"/>
+                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
                   </ReferenceArea>
                 ))}
                 {zoomSelectedLeftState && zoomSelectedRightState ? (
-                  <ReferenceArea x1={zoomSelectedLeftState} x2={zoomSelectedRightState} fill="grey" fillOpacity={0.2} />
+                  <ReferenceArea
+                    x1={zoomSelectedLeftState}
+                    x2={zoomSelectedRightState}
+                    fill="#c0f5bc"
+                    fillOpacity={0.2}
+                  />
                 ) : null}
 
                 {linesToPlot.map((d) => (
