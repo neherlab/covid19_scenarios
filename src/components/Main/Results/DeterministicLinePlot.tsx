@@ -119,8 +119,6 @@ export function DeterministicLinePlot({
   const [zoomRightState, setzoomRightState] = useState('dataMax')
   const [zoomSelectedLeftState, setzoomSelectedLeftState] = useState('')
   const [zoomSelectedRightState, setzoomSelectedRightState] = useState('')
-  const [zoomTopState, setzoomTopState] = useState('dataMax+1')
-  const [zoomBottomState, setzoomBottomState] = useState('dataMin-1')
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
@@ -254,17 +252,6 @@ export function DeterministicLinePlot({
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
-  const getAxisYDomain = (from: number, to: number, ref: string, offset: number) => {
-    const refData = plotData.slice(from - 1, to)
-    let [bottom, top] = [refData[0] ? refData[0][ref] : 1, refData[0] ? refData[0][ref] : 'dataMax']
-    refData.forEach((d: any) => {
-      if (d[ref] > top) top = d[ref]
-      if (d[ref] < bottom) bottom = d[ref]
-    })
-
-    return [(bottom | 0) - offset, (top | 0) + offset]
-  }
-
   const zoomIn = () => {
     if (zoomSelectedLeftState === zoomSelectedRightState || zoomSelectedRightState === '') {
       setzoomSelectedLeftState('')
@@ -277,13 +264,8 @@ export function DeterministicLinePlot({
       setzoomSelectedRightState(zoomSelectedLeftState)
     }
 
-    // yAxis domain
-    const [bottom, top] = getAxisYDomain(zoomSelectedLeftState, zoomSelectedRightState, 'susceptible', 1)
-
     setzoomLeftState(zoomSelectedLeftState)
     setzoomRightState(zoomSelectedRightState)
-    setzoomTopState(top)
-    setzoomBottomState(bottom)
     setzoomSelectedLeftState('')
     setzoomSelectedRightState('')
   }
@@ -291,8 +273,6 @@ export function DeterministicLinePlot({
   const zoomOut = () => {
     setzoomLeftState('dataMin')
     setzoomRightState('dataMax')
-    setzoomTopState('dataMax+1')
-    setzoomBottomState('dataMin-1')
     setzoomSelectedLeftState('')
     setzoomSelectedRightState('')
   }
@@ -344,14 +324,21 @@ export function DeterministicLinePlot({
                 />
 
                 <YAxis
+                  // yAxisId="plotDataAxis"
                   allowDataOverflow={true}
                   scale={logScaleString}
                   type="number"
-                  domain={[zoomBottomState, zoomTopState]}
+                  domain={[1, 'dataMax']}
                   tickFormatter={yTickFormatter}
                 />
 
-                <YAxis yAxisId="mitigationStrengthAxis" orientation={'right'} type="number" domain={[0, 1]} />
+                <YAxis
+                  yAxisId="mitigationStrengthAxis"
+                  allowDataOverflow={true}
+                  orientation={'right'}
+                  type="number"
+                  domain={[0, 1]}
+                />
 
                 <Tooltip
                   formatter={tooltipFormatter}
@@ -400,9 +387,6 @@ export function DeterministicLinePlot({
                 {scatterToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}
-                {zoomSelectedLeftState && zoomSelectedRightState ? (
-                  <ReferenceArea x1={zoomSelectedLeftState} x2={zoomSelectedRightState} strokeOpacity={0.3} />
-                ) : null}
               </ComposedChart>
             </>
           )
