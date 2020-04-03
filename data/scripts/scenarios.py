@@ -25,7 +25,6 @@ mitigation_colors = {
 "Intervention #2": "#666666",
 }
 
-
 # ------------------------------------------------------------------------
 # Globals
 
@@ -127,7 +126,10 @@ class PopulationParams(Object):
 
 class EpidemiologicalParams(Object):
     def __init__(self, region, hemisphere):
-        self.latencyTime     = 3
+        def report_errors(x):
+            return [.9*x, 1.1*x]
+
+        self.latencyTime        = 3
         self.infectiousPeriod   = 3
         self.lengthHospitalStay = 4
         self.lengthICUStay      = 14
@@ -148,16 +150,16 @@ class EpidemiologicalParams(Object):
             self.peakMonth          = 0
         self.overflowSeverity   = 2
         if region in FIT_CASE_DATA:
-            self.r0 = max(1,round(FIT_CASE_DATA[region]['r0'],1))
+            self.r0 = report_errors(max(1, round(FIT_CASE_DATA[region]['r0'],1)))
         else:
-            self.r0 = 2.7
+            self.r0 = report_errors(2.7)
+
 
 class ContainmentParams(Object):
     def __init__(self):
         self.reduction    = np.ones(15)
         self.numberPoints = len(self.reduction)
         self.mitigationIntervals = []
-
 
 class DateRange(Object):
     def __init__(self, tMin, tMax):
@@ -193,9 +195,6 @@ def fit_one_case_data(args):
     r = fit_population(region)
     if r is None:
         return (region, Params.fit(data))
-    else:
-        if 'New York' in region:
-            print(f"Region {region}: {r['params']}", file=sys.stderr)
 
     param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0), "initialCases": r["initialCases"]}
     return (region, param)
@@ -222,7 +221,7 @@ def set_mitigation(cases, scenario):
     case_counts = np.array([c['cases'] for c in valid_cases])
     levelOne = np.where(case_counts > min(max(5, 3e-4*scenario.population.populationServed),10000))[0]
     levelTwo = np.where(case_counts > min(max(50, 3e-3*scenario.population.populationServed),50000))[0]
-    levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0), 1)
+    levelOneVal = round(1 - np.minimum(0.8, 1.8/np.mean(scenario.epidemiological.r0)), 1)
     levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
     for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
@@ -258,9 +257,6 @@ def generate(output_json, num_procs=1, recalculate=False):
             for k,v in tmp.items():
                 FIT_CASE_DATA[k] = v
 
-    print("DONE")
-    print(FIT_CASE_DATA)
-    print(output_json)
     case_counts = parse_tsv()
 
     with open(SCENARIO_POPS, 'r') as fd:
