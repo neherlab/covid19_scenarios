@@ -324,7 +324,6 @@ export function DeterministicLinePlot({
                 />
 
                 <YAxis
-                  // yAxisId="plotDataAxis"
                   allowDataOverflow={true}
                   scale={logScaleString}
                   type="number"
