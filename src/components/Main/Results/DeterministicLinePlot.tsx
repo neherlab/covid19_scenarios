@@ -123,8 +123,8 @@ export function DeterministicLinePlot({
   const { mitigationIntervals } = mitigation
 
   const verifyPositive = (x: number) => (x > 0 ? x : undefined)
-  const nHospitalBeds = verifyPositive(data.params[0].hospitalBeds)
-  const nICUBeds = verifyPositive(data.params[0].ICUBeds)
+  const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
+  const nICUBeds = verifyPositive(params.population.ICUBeds)
 
   const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.ICU || d.hospitalized)
 
@@ -263,13 +263,43 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const areasToPlot: LineProps[] = [
-    { key: `${DATA_POINTS.Susceptible}_area`, color: colors.susceptible, name: t('Susceptible'), legendType: 'none' },
-    { key: `${DATA_POINTS.Infectious}_area`, color: colors.infectious, name: t('Infectious'), legendType: 'none' },
-    { key: `${DATA_POINTS.Severe}_area`, color: colors.severe, name: t('Severely ill'), legendType: 'none' },
-    { key: `${DATA_POINTS.Critical}_area`, color: colors.critical, name: t('Patients in ICU'), legendType: 'none' },
-    { key: `${DATA_POINTS.Overflow}_area`, color: colors.overflow, name: t('ICU overflow'), legendType: 'none' },
-    { key: `${DATA_POINTS.Recovered}_area`, color: colors.recovered, name: t('Recovered'), legendType: 'none' },
-    { key: `${DATA_POINTS.Fatalities}_area`, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'none' },
+    {
+      key: `${DATA_POINTS.Susceptible}_area`,
+      color: colors.susceptible,
+      name: t('Susceptible uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Infectious}_area`,
+      color: colors.infectious,
+      name: t('Infectious uncertainty'),
+      legendType: 'none',
+    },
+    { key: `${DATA_POINTS.Severe}_area`, color: colors.severe, name: t('Severe uncertainty'), legendType: 'none' },
+    {
+      key: `${DATA_POINTS.Critical}_area`,
+      color: colors.critical,
+      name: t('Patients in ICU uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Overflow}_area`,
+      color: colors.overflow,
+      name: t('ICU overflow uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Recovered}_area`,
+      color: colors.recovered,
+      name: t('Recovered uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Fatalities}_area`,
+      color: colors.fatality,
+      name: t('Cumulative deaths uncertainty'),
+      legendType: 'none',
+    },
   ]
 
   const scatterToPlot: LineProps[] = observations.length
@@ -384,6 +414,8 @@ export function DeterministicLinePlot({
                     type="monotone"
                     fillOpacity={0.15}
                     dataKey={d.key}
+                    isAnimationActive={false}
+                    name={d.name}
                     stroke={d.color}
                     strokeWidth={0}
                     fill={d.color}
