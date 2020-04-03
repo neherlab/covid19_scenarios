@@ -14,3 +14,4 @@ node_modules
 
 ## data
 data/parsers.log
+firebaseconf.*
