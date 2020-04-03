@@ -26,10 +26,14 @@ export function RangeSlider({ identifier, label, help, step, min, max }: RangeSl
             style={{
               display: 'flex',
               justifyContent: 'center',
-              flexWrap: 'wrap',
+              flexDirection: 'row',
               height: '40px',
             }}
           >
+            <div id={identifier} style={{ width: '100%', justifyContent: 'left' }}>
+              <HelpLabel identifier={identifier} label={label} help={help} />
+            </div>
+
             <Range
               values={value}
               step={step}
@@ -47,14 +51,11 @@ export function RangeSlider({ identifier, label, help, step, min, max }: RangeSl
                     width: '100%',
                   }}
                 >
-                  <div id={identifier} style={{ width: '50%', paddingRight: '20px' }}>
-                    <HelpLabel identifier={identifier} label={label} help={help} />
-                  </div>
                   <div
                     ref={props.ref}
                     style={{
                       height: '8px',
-                      width: '35%',
+                      width: '80%',
                       borderRadius: '4px',
                       background: getTrackBackground({
                         values: value,
@@ -67,7 +68,7 @@ export function RangeSlider({ identifier, label, help, step, min, max }: RangeSl
                   >
                     {children}
                   </div>
-                  <div style={{ width: '20%', paddingLeft: '20px' }}>
+                  <div style={{ width: '40%', paddingLeft: '20px', justifyContent: 'right' }}>
                     <output>
                       {value[0].toFixed(1)} - {value[1].toFixed(1)}
                     </output>
