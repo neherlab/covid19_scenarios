@@ -1,17 +1,19 @@
 import React from 'react'
-
 import { useTranslation } from 'react-i18next'
+import { AnyAction } from 'typescript-fsa'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
-
 import { SeverityTable, SeverityTableRow } from './SeverityTable'
+import { State } from '../state/state'
 
 export interface SeverityCardProps {
   severity: SeverityTableRow[]
   setSeverity(severity: SeverityTableRow[]): void
+  scenarioState: State
+  scenarioDispatch(action: AnyAction): void
 }
 
-function SeverityCard({ severity, setSeverity }: SeverityCardProps) {
+function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }: SeverityCardProps) {
   const { t } = useTranslation()
   return (
     <CollapsibleCard
@@ -33,7 +35,12 @@ function SeverityCard({ severity, setSeverity }: SeverityCardProps) {
         )}
       </p>
 
-      <SeverityTable severity={severity} setSeverity={setSeverity} />
+      <SeverityTable
+        severity={severity}
+        setSeverity={setSeverity}
+        scenarioState={scenarioState}
+        scenarioDispatch={scenarioDispatch}
+      />
     </CollapsibleCard>
   )
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import i18next from 'i18next'
 
 import { FormikErrors, FormikTouched } from 'formik'
 import { AnyAction } from 'typescript-fsa'
@@ -7,18 +8,16 @@ import { useTranslation } from 'react-i18next'
 
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 import countryCaseCounts from '../../../assets/data/case_counts.json'
+import { State, CUSTOMIZED_AGE_DISTRIBUTION } from '../state/state'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-// import { setPopulationScenario } from '../state/actions'
-
-import { State } from '../state/state'
-
 const countries = Object.keys(countryAgeDistribution)
 const countryOptions = countries.map((country) => ({ value: country, label: country }))
+countryOptions.push({ value: CUSTOMIZED_AGE_DISTRIBUTION, label: i18next.t(CUSTOMIZED_AGE_DISTRIBUTION) })
 const caseCountOptions = Object.keys(countryCaseCounts).map((country) => ({ value: country, label: country }))
 caseCountOptions.push({ value: 'none', label: 'None' })
 
