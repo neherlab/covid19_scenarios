@@ -4,14 +4,28 @@ import os
 import json
 import numpy as np
 import multiprocessing as multi
-
+from uuid import uuid4
 sys.path.append('..')
 
 from datetime import datetime
 from scipy.stats import linregress
-from paths import TMP_CASES, BASE_PATH, JSON_DIR
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
+
+##
+mitigation_colors = {
+"School Closures": "#fbb4ae",
+"Social Distancing": "#b3cde3",
+"Lock-down": "#ccebc5",
+"Shut-down": "#decbe4",
+"Case Isolation": "#fed9a6",
+"Contact Tracing": "#ffffcc",
+"Agressive Contact Tracing": "#e5d8bd",
+"Intervention #1": "#fddaec",
+"Intervention #2": "#f2f2f2",
+}
+
 
 # ------------------------------------------------------------------------
 # Globals
@@ -95,10 +109,12 @@ class Object:
         return json.dumps(self, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
 class Measure(Object):
-    def __init__(self, name, tMin, tMax, value):
+    def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
         self.name = name
+        self.id = id,
+        self.color = color,
         self.timeRange = DateRange(tMin, tMax)
-        self.mitigationValue = value
+        self.mitigationValue = mitigationValue
 
 class PopulationParams(Object):
     def __init__(self, region, country, population, beds, icus):
@@ -211,25 +227,38 @@ def set_mitigation(cases, scenario):
     levelTwoVal = np.minimum(0.4, 0.5)
 
 
-    for name, level, val in [("levelOne", levelOne, levelOneVal), ('levelTwo', levelTwo, levelTwoVal)]:
+    for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
         if len(level):
             level_idx = level[0]
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
             scenario.containment.reduction[timeline>cutoff] *= val
-            scenario.containment.mitigationIntervals.append(Measure(name, cutoff_str,
-                scenario.simulation.simulationTimeRange.tMax[:10],
-                val))
+            scenario.containment.mitigationIntervals.append(Measure(
+                name=name,
+                tMin=cutoff_str,
+                tMax=scenario.simulation.simulationTimeRange.tMax[:10],
+                color=mitigation_colors.get(name, "#cccccc"),
+                mitigationValue=1-val))
 
     scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
 
 # ------------------------------------------------------------------------
 # Main point of entry
 
-def generate(output_json, num_procs=1):
+def generate(output_json, num_procs=1, recalculate=False):
     scenario = {}
-    fit_all_case_data(num_procs)
+    fit_fname = os.path.join(BASE_PATH,FIT_PARAMETERS)
+    if recalculate or (not os.path.isfile(fit_fname)):
+        fit_all_case_data(num_procs)
+        with open(fit_fname, 'w') as fh:
+            json.dump(FIT_CASE_DATA, fh)
+    else:
+        with open(fit_fname, 'r') as fh:
+            tmp = json.load(fh)
+            for k,v in tmp.items():
+                FIT_CASE_DATA[k] = v
+
     print("DONE")
     print(FIT_CASE_DATA)
     print(output_json)
