@@ -369,7 +369,7 @@ export function DeterministicLinePlot({
                   />
                 ))}
                 {zoomSelectedLeftState && zoomSelectedRightState ? (
-                  <ReferenceArea x1={zoomSelectedLeftState} x2={zoomSelectedRightState} fill="grey" fillOpacity={0.3} />
+                  <ReferenceArea x1={zoomSelectedLeftState} x2={zoomSelectedRightState} fill="grey" fillOpacity={0.1} />
                 ) : null}
 
                 {linesToPlot.map((d) => (
