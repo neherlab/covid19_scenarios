@@ -47,11 +47,11 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     return String(translation)
   }
 
-  const ages = Object.keys(data.params.ageDistribution)
+  const ages = Object.keys(data.params[0].ageDistribution)
   const lastDataPoint = data.trajectory.mean[data.trajectory.mean.length - 1]
   const plotData = ages.map((age) => ({
     name: age,
-    fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
+    fraction: Math.round(data.params[0].ageDistribution[age] * 1000) / 10,
     peakSevere: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.severe[age]))),
     peakCritical: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.critical[age]))),
     peakOverflow: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.overflow[age]))),

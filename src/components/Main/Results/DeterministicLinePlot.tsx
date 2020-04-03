@@ -89,16 +89,15 @@ export function DeterministicLinePlot({ data, userResult, logScale, showHumanize
 
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
-  // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
-  if (!data || data.stochastic.length > 0) {
+  if (!data) {
     return null
   }
 
-  const hasUserResult = Boolean(userResult?.trajectory)
+  const hasUserResult = Boolean(userResult?.mean)
   const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 
-  const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
-  const nICUBeds = verifyPositive(data.params.ICUBeds)
+  const nHospitalBeds = verifyPositive(data.params[0].hospitalBeds)
+  const nICUBeds = verifyPositive(data.params[0].ICUBeds)
 
   const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.ICU || d.hospitalized)
 
