@@ -1,7 +1,7 @@
 ---
 name: 🙋 Feature Request
-about: Want us to add something to COVID-19 Scenarios?
-labels: 'severity:enhancement'
+about: Want to add something to COVID-19 Scenarios?
+labels: 't:feat' 'help wanted'
 ---
 <!---
 Thanks for filing an issue 😄! Before you submit, please read the following:
