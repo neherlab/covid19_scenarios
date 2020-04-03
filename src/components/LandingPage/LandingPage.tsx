@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
+import { setUserData, getCurrentUser } from '../../helpers/cloudStorage'
 import { setShouldSkipLandingPage } from '../../state/ui/ui.actions'
 import { State } from '../../state/reducer'
 import promoImage from './tool.jpg'
@@ -25,6 +26,11 @@ function LandingPage({ initialQueryString }: LandingPageProps) {
 
     if (isSkipLandingChecked) {
       LocalStorage.set(LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE, String(true))
+      
+      let data = {}
+      data[LOCAL_STORAGE_KEYS.SKIP_LANDING_PAGE] = true
+      console.log(data)
+      setUserData(getCurrentUser(), data)
     }
   }, [dispatch, isSkipLandingChecked])
 
