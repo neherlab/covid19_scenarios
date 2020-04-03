@@ -17,7 +17,7 @@ export async function createUserWithEmail(email: string, password: string) {
     if (!uid) throw new Error('Something went wrong')
 
     // TODO add default values or get them from localStorage
-    setUserData(uid, {})
+    setUserData(uid, { scenarios: [] })
     return uid
   }
   catch (error) {
@@ -44,7 +44,6 @@ export function getCurrentUser() {
   return firebase.auth().currentUser?.uid
 }
 
-// TODO data typing
 export function setUserData(uid: string, data: any) {
   firebase.firestore().collection('users').doc(uid).set(data, { merge: true })
 }
@@ -77,4 +76,21 @@ export async function getScenarioData(scenarioId: string) {
   }
 
   throw new Error('Scenario data not found')
+}
+
+export async function deleteScenario(scenarioId: string, uid: string) {
+  const docRef = firebase.firestore().collection('scenarios').doc(scenarioId)
+  const docData = (await docRef.get()).data()
+
+  if (docData && docData.uid === uid) {
+    docRef.delete()
+    const userRef = await firebase.firestore().collection('users').doc(uid).get()
+    const userData = userRef.data()
+    const newUserScenarios = userData?.scenarios.filter((scenario: string) => scenario !== scenarioId)
+    userRef.ref.set({ scenarios: newUserScenarios }, { merge: true })
+
+    return
+  }
+  
+  throw new Error('Scenario not found or you are not the owner')
 }
