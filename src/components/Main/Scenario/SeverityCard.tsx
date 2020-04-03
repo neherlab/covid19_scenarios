@@ -49,7 +49,6 @@ function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }
         {t('Most fields are editable and can be adjusted to different assumptions.')} &nbsp;
         {t('The last column can be used to specify age-group specific isolation measures.')}
       </p>
-
     </CollapsibleCard>
   )
 }
