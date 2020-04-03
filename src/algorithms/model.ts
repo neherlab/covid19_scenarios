@@ -160,10 +160,6 @@ export function getPopulationParams(
     })
   }
 
-  sims.forEach((sim) => {
-    console.log('RATE', sim.rate.infection(new Date(Date.now())))
-  })
-
   return sims
 }
 

@@ -207,17 +207,12 @@ export async function run(
     })
   })
 
-  console.log('AVERAGE LINEAR', avgLinear)
-  console.log('AVERAGE SQUARE', avgSquare)
-
   // Convert squared average to variance
   const variance = avgSquare.map((tp, i) => {
     return sumTimePoint(tp, avgLinear[i], (x: number) => {
       return -x * x
     })
   })
-
-  console.log('VARIANCE', variance)
 
   const result: AlgorithmResult = {
     trajectory: {
