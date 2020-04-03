@@ -19,6 +19,10 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import './ResultsCard.scss'
 
+export const DeterministicLinePlotId = "DeterministicLinePlot-Col";
+export const AgeBarChartId = "AgeBarChart-Col";
+export const OutcomeRatesTableId = "OutcomeRatesTable-Col";
+
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
 
@@ -178,7 +182,7 @@ function ResultsCardFunction({
           </div>
         </Row>
         <Row noGutters>
-          <Col>
+          <Col id={DeterministicLinePlotId}>
             <DeterministicLinePlot
               data={result}
               userResult={userResult}
@@ -191,12 +195,12 @@ function ResultsCardFunction({
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col id={AgeBarChartId}>
             <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} />
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col id={OutcomeRatesTableId}>
             <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
           </Col>
         </Row>

@@ -28,6 +28,9 @@ export interface ScenarioCardProps {
   scenarioDispatch(action: AnyAction): void
 }
 
+export const ScenarioCardId = "ScenarioCard-Row";
+export const ScenarioCardContainmentId = "ScenarioCardContainment-Col";
+
 function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, scenarioDispatch }: ScenarioCardProps) {
   const { t } = useTranslation()
   const scenarioOptions = stringsToOptions(scenarioState.scenarios)
@@ -47,7 +50,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
       className="card--main"
     >
       <>
-        <Row>
+        <Row id={ScenarioCardId}>
           <Col xl={6} className="my-2">
             <ScenarioCardPopulation
               scenarioState={scenarioState}
@@ -68,7 +71,7 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
         </Row>
 
         <Row noGutters>
-          <Col className="my-2">
+          <Col className="my-2" id={ScenarioCardContainmentId}>
             <ScenarioCardContainment
               scenarioState={scenarioState}
               errors={errors}

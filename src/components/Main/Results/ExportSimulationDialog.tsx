@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
+import { exportAll, exportParams, exportResult, exportPDF } from '../../../algorithms/utils/exportResult'
 
 export interface ExportSimulationDialogProps {
   canExport: boolean
@@ -51,6 +51,21 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
                 <Button
                   disabled={!(result?.deterministic ?? null)}
                   onClick={() => result && exportResult(result)}
+                  color="primary"
+                  size="sm"
+                >
+                  {t('Download')}
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td>covid.params.results.pdf</td>
+              <td>{t('The simulation parameters and the results of the simulation')}</td>
+              <td>PDF</td>
+              <td>
+                <Button
+                  disabled={!((result?.params ?? null) || (result?.deterministic ?? null))}
+                  onClick={() => result && exportPDF(result)}
                   color="primary"
                   size="sm"
                 >
