@@ -18,7 +18,6 @@ export function getScenarioData(key: string): ScenarioData {
   if (!scenarioData) {
     throw new Error(`Error: scenario "${key}" not found in JSON`)
   }
-
   // Add mitigation intervals field, if non existent
   // TODO: implement proper compile-time + runtime validation and deserialization
   if (_.isEmpty(scenarioData.containment.mitigationIntervals)) {
