@@ -53,7 +53,7 @@ function ScenarioCardEpidemiological({
         setValues={setValues}
         step={0.1}
         min={1}
-        max={10}
+        max={6}
       />
       <FormSpinBox
         identifier="epidemiological.latencyTime"
