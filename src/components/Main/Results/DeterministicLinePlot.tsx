@@ -117,16 +117,15 @@ export function DeterministicLinePlot({
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
-  if (!data || data.stochastic.length > 0) {
+  if (!data) {
     return null
   }
 
   const { mitigationIntervals } = mitigation
 
   const verifyPositive = (x: number) => (x > 0 ? x : undefined)
-
-  const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
-  const nICUBeds = verifyPositive(data.params.ICUBeds)
+  const nHospitalBeds = verifyPositive(data.params[0].hospitalBeds)
+  const nICUBeds = verifyPositive(data.params[0].ICUBeds)
 
   const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.ICU || d.hospitalized)
 
@@ -319,7 +318,7 @@ export function DeterministicLinePlot({
                     fill={interval.color}
                     fillOpacity={0.25}
                   >
-                    <Label value={interval.name} position="insideTopRight" fill="#444444"/>
+                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
                   </ReferenceArea>
                 ))}
 
