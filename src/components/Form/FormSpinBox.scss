@@ -1,0 +1,10 @@
+.form-control::-webkit-outer-spin-button,
+.form-control::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-control {
+  -moz-appearance: textfield;
+  border-radius: 3px;
+}
