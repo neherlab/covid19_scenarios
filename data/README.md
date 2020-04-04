@@ -198,8 +198,7 @@ The steps to follow are:
 - Ensure that the data provided to store_data() is well formatted
   - The keys in the datastructure provided to utils should be
     - For countries: U.N. country names (see country_codes.csv), or
-  - For states within countries: <TLC>-<state>, where <TLC> is the three letter code for the country (see
-    country_codes.csv), and <state> is the state name
+    - For states within countries: <TLC>-<state>, where <TLC> is the three letter code for the country (see country_codes.csv), and <state> is the state name
   - The second parameter is the string identifying your parser (see sources.json entry below)
 - Place the script into the parsers directory
   - The name should correspond to the region name desired in the scenario.
@@ -245,7 +244,7 @@ there is no accessible data sources, one can manually enter the data. To do so
 As of now all data used to initialize scenarios used by our model is found within populationData.tsv It has the
 following form:
 
-    name    populationServed    ageDistribution hospitalBeds    ICUBeds suspectedCaseMarch1st   importsPerDay   hemisphere
+    name    populationServed    ageDistribution hospitalBeds    ICUBeds    hemisphere     srcPopulation    srcHospitalBeds    srcICUBeds
     Switzerland ...
 
 - Names: the U.N. designated name found within country_codes.csv
@@ -255,12 +254,10 @@ following form:
 - ageDistribution: name of the country the region is within. Must be U.N. designated name
 - hospitalBeds: number of hospital beds within the region
 - ICUBeds: number of ICU beds
-- suspectedCasesMarch1st: The number of cases thought to be within the region on March 1st.
-- importsPerDay: number of suspected import cases per day
 - hemisphere: either 'Northern', 'Southern', or 'Tropical', used to determine parameters for the epidemiology
-
-At least one of `suspectedCasesMarch1st` and `importsPerDay` needs to be non-zero. Otherwise there is no outbreak (good
-news in principle, but not useful for exploring scenarios).
+- srcPopulation: string commenting on the source of population data. Ideally a URL or reference to official source. Alternatively, comment on how data was estimated. Must not be empty
+- srcHospitalBeds: string commenting on the source of hospital bed data. Ideally a URL or reference to official source. Alternatively, comment on how data was estimated. Must not be empty
+- srcICUBeds: string commenting on the source of ICU bed data. Ideally a URL or reference to official source. Alternatively, comment on how data was estimated. Must not be empty
 
 ## Quick Start
 
