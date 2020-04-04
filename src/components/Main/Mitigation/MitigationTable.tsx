@@ -60,7 +60,7 @@ export function MitigationTable({ mitigationIntervals }: MitigationTableProps) {
                           max={1}
                         />
 
-                        <Button type="button" onClick={() => arrayHelpers.remove(index)}>
+                        <Button type="button" className="button" onClick={() => arrayHelpers.remove(index)}>
                           <FaTrash />
                         </Button>
                       </FormGroup>
@@ -73,6 +73,7 @@ export function MitigationTable({ mitigationIntervals }: MitigationTableProps) {
               <Col>
                 <Button
                   type="button"
+                  className="button"
                   onClick={() => {
                     const interval = suggestNextMitigationInterval(mitigationIntervals)
                     arrayHelpers.push(interval)
