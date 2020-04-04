@@ -61,6 +61,21 @@ export interface AllParams {
 
 export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData & ContainmentData
 
+// part of the application state to be persisted in the URL
+export interface PersistedState {
+  current: string
+  data: ScenarioData
+}
+
+// format of the application state persisted in the URL
+export interface PersistedStateDto {
+  current: string
+  population: PopulationData
+  epidemiological: EpidemiologicalData
+  simulation: SimulationData
+  containment: TimeSeries
+}
+
 interface EmpiricalDatum {
   time: Date
   cases: number
