@@ -31,7 +31,7 @@ function LoginForm() {
   return (
     <Modal isOpen={true} toggle={() => dispatch(setLoginVisible({ loginVisible: false }))}>
       <ModalHeader toggle={() => dispatch(setLoginVisible({ loginVisible: false }))}>
-        Sign up
+        Log in
       </ModalHeader>
       <ModalBody>
         <Form onSubmit={formik.handleSubmit}>
@@ -50,7 +50,7 @@ function LoginForm() {
             <Input 
               id="login-form-password"
               name="password"
-              onChange={formik.handleChange}
+              onChange={formik.handleChange} 
               value={formik.values.password}
               type="text"
             />
