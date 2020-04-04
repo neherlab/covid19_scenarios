@@ -112,6 +112,10 @@
 }
 
 .landing-page-checkbox {
+  display: block;
+  text-align: center;
+  padding-bottom: 30px;
+
   &__input {
     opacity: 0;
     display: inline-block;
