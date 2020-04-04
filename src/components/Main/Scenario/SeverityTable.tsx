@@ -185,10 +185,12 @@ function SeverityTable({ severity, setSeverity, scenarioState, scenarioDispatch 
     }
 
     const ageDistribution: OneCountryAgeDistribution = { ...scenarioState.ageDistribution }
-    changedRows.forEach((row) => {
+    changedRows = changedRows.map((row) => {
       if (row.population) {
         ageDistribution[row.ageGroup] = parseInt(`${row.population}`, 10)
+        return { ...row, population: ageDistribution[row.ageGroup] }
       }
+      return row
     })
 
     scenarioDispatch(setAgeDistributionData({ data: ageDistribution }))
