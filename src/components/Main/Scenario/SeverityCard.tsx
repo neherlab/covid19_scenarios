@@ -27,7 +27,7 @@ function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }
         </>
       }
       help={t('Assumptions on severity which are informed by epidemiological and clinical observations in China')}
-      defaultCollapsed={false}
+      defaultCollapsed
     >
       <SeverityTable
         severity={severity}
