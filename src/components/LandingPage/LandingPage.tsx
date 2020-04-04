@@ -45,6 +45,16 @@ function LandingPage({ location }: RouteComponentProps) {
       <div className="landing-page__content-section">
         <img className="landing-page__promo-image" src={promoImage} alt="Simulator showing results" />
         <div className="landing-page__content-section-text">
+        {showSkipCheckbox && (
+          <div className="landing-page-checkbox">
+            <div className="landing-page-checkbox__container">
+              <input onChange={onCheckboxChange} id="skip-landing-page" className="landing-page-checkbox__input" type="checkbox" />
+              <label className="landing-page-checkbox__label" htmlFor="skip-landing-page">
+                {t('Skip straight to simulator next time')}
+              </label>
+            </div>
+          </div>
+        )}
           <h1>{t('Simulate Outbreaks')}</h1>
           <p>
             {t(`This tool simulates a COVID19 outbreak. The primary purpose of the tool is to explore the dynamics of
@@ -53,14 +63,6 @@ function LandingPage({ location }: RouteComponentProps) {
             explore the effect of isolation on specific age groups.`)}
           </p>
         </div>
-        {showSkipCheckbox && (
-          <div className="landing-page-checkbox">
-            <input onChange={onCheckboxChange} id="skip-landing-page" className="landing-page-checkbox__input" type="checkbox" />
-            <label className="landing-page-checkbox__label" htmlFor="skip-landing-page">
-              {t('Skip straight to simulator next time')}
-            </label>
-          </div>
-        )}
       </div>
     </div>
   )
