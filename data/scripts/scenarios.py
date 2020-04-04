@@ -258,9 +258,6 @@ def generate(output_json, num_procs=1, recalculate=False):
             for k,v in tmp.items():
                 FIT_CASE_DATA[k] = v
 
-    print("DONE")
-    print(FIT_CASE_DATA)
-    print(output_json)
     case_counts = parse_tsv()
 
     with open(SCENARIO_POPS, 'r') as fd:

@@ -1,238 +1,238 @@
-name	populationServed	ageDistribution	hospitalBeds	ICUBeds	suspectedCaseMarch1st	importsPerDay	hemisphere
-Switzerland	8600000	Switzerland	30799	1400	1179	4	Northern
-Germany	83784000	Germany	500680	23890	1232	12.2	Northern
-France	65274000	France	274462	7540	13997	19.9	Northern
-Italy	60462000	Italy	165384	7550	225600	10	Northern
-Spain	46755000	Spain	110346	4479	62455	27	Northern
-Poland	37847000	Poland	188342	2635	190	0.3	Northern
-Romania	19238000	Romania	90024	4574	9	0.7	Northern
-Netherlands	17135000	Netherlands	55690	1065	3371	0.9	Northern
-Belgium	11590000	Belgium	63692	1755	753	0.1	Northern
-Czechia	10709000	Czechia	92633	1242	12	0.6	Northern
-Brazil	207353391	Brazil	429000	42000	252	10	Southern
-Greece	10423000	Greece	38090	680	286	0.6	Northern
-Portugal	10197000	Portugal	33821	451	8	0.4	Northern
-Sweden	10099000	Sweden	22754	550	467	1.5	Northern
-Hungary	9660000	Hungary	42413	1374	6	0.4	Northern
-Austria	9006000	Austria	49395	1833	246	1.8	Northern
-Bulgaria	6948000	Bulgaria	42851	913	2	0.3	Northern
-Denmark	5792000	Denmark	13962	372	271	0.3	Northern
-Finland	5541000	Finland	16852	329	20	0.2	Northern
-Slovakia	5460000	Slovakia	26642	500	3	0.1	Northern
-Ireland	4938000	Ireland	11241	289	13	0.1	Northern
-Croatia	4105000	Croatia	16974	650	21	1	Northern
-Lithuania	2722000	Lithuania	18504	502	0	0.1	Northern
-Slovenia	2079000	Slovenia	8740	131	15	0.1	Northern
-Kosovo	1810000	Kosovo	1000	142	1	0.1	Northern
-Latvia	1886000	Latvia	6748	217	3	0.1	Northern
-Estonia	1327000	Estonia	4824	196	7	0.1	Northern
-Cyprus	1207000	Cyprus	2912	92	3	0.2	Northern
-Luxembourg	626000	Luxembourg	2332	127	158	0.1	Northern
-Malta	442000	Malta	1400	66	2	0.1	Northern
-Canada	37600000	Canada	73000	4800	384	4	Northern
-United Kingdom	66000000	United Kingdom of Great Britain and Northern Ireland	297000	9900	4143	4.6	Northern
-United States of America	330000000	United States of America	1485000	49499	7403	20	Northern
-CAN-Alberta	4413146	Canada	5819	700	8	1	Northern
-CAN-British Columbia	5110917	Canada	6074	680	18	1	Northern
-CAN-Manitoba	1377517	Canada	2885	246	6	1	Northern
-CAN-New Brunswick	779993	Canada	1448	144	0	1	Northern
-CAN-Newfoundland and Labrador	521356	Canada	1090	121	10	1	Northern
-CAN-Nova Scotia	977457	Canada	1896	128	0	1	Northern
-CAN-Nunavut	39097	Canada	30	4	0	0.1	Northern
-CAN-NWT	44904	Canada	156	4	0	0.1	Northern
-CAN-Ontario	14711827	Canada	15485	1723	21	1	Northern
-CAN-Prince Edward Island	158158	Canada	295	24	10	1	Northern
-CAN-Saskatchwan	1181666	Canada	2198	106	10	1	Northern
-CAN-Yukon	41078	Canada	106	1	10	1	Northern
-CHE-Zürich	1521000	Switzerland	5447	247	31	0.2	Northern
-CHE-Bern	1035000	Switzerland	3706	168	19	0.1	Northern
-CHE-Luzern	410000	Switzerland	1468	66	5	0.1	Northern
-CHE-Uri	36000	Switzerland	128	5	0	0.1	Northern
-CHE-Schwyz	159000	Switzerland	569	25	3	0.1	Northern
-CHE-Obwalden	38000	Switzerland	136	6	2	0.1	Northern
-CHE-Nidwalden	43000	Switzerland	153	7	1	0.1	Northern
-CHE-Glarus	40000	Switzerland	143	6	2	0.1	Northern
-CHE-Zug	127000	Switzerland	454	20	2	0.1	Northern
-CHE-Fribourg	319000	Switzerland	1142	51	8	0.1	Northern
-CHE-Solothurn	273000	Switzerland	977	44	3	0.1	Northern
-CHE-Basel-Stadt	195000	Switzerland	698	80	165	0.1	Northern
-CHE-Basel-Landschaft	288000	Switzerland	1031	46	15	0.1	Northern
-CHE-Schaffhausen	82000	Switzerland	293	13	5	0.1	Northern
-CHE-Appenzell Ausserrhoden	55000	Switzerland	196	8	3	0.1	Northern
-CHE-Appenzell Innerrhoden	16000	Switzerland	57	2	1	0.1	Northern
-CHE-St. Gallen	508000	Switzerland	1819	82	31	0.1	Northern
-CHE-Graubünden	198000	Switzerland	709	32	9	0.1	Northern
-CHE-Aargau	677000	Switzerland	2424	110	18	0.1	Northern
-CHE-Thurgau	276000	Switzerland	988	44	2	0.1	Northern
-CHE-Ticino	353000	Switzerland	1264	57	842	0.1	Northern
-CHE-Vaud	799000	Switzerland	2861	130	411	0.1	Northern
-CHE-Valais	344000	Switzerland	1231	56	223	0.1	Northern
-CHE-Neuchâtel	177000	Switzerland	633	28	7	0.1	Northern
-CHE-Geneva	499000	Switzerland	1787	81	287	0.1	Northern
-CHE-Jura	73000	Switzerland	261	11	1	0.1	Northern
-DEU-Baden-Württemberg	11070000	Germany	66152	3156	433	0.9	Northern
-DEU-Bayern	13077000	Germany	78146	3728	434	1.1	Northern
-DEU-Berlin	3645000	Germany	21781	1039	21	0.2	Northern
-DEU-Bremen	683000	Germany	4081	194	6	0.1	Northern
-DEU-Brandenburg	2512000	Germany	15011	716	6	0.1	Northern
-DEU-Hamburg	1841000	Germany	11001	524	8	0.1	Northern
-DEU-Hessen	6266000	Germany	37444	1786	29	0.4	Northern
-DEU-Mecklenburg-Vorpommern	1610000	Germany	9621	459	9	0.1	Northern
-DEU-Niedersachsen	7982000	Germany	47699	2275	15	0.6	Northern
-DEU-Nordrhein-Westfalen	17933000	Germany	107164	5113	403	1.6	Northern
-DEU-Rheinland-Pfalz	4085000	Germany	24411	1164	7	0.2	Northern
-DEU-Saarland	991000	Germany	5922	282	4	0.1	Northern
-DEU-Sachsen	4078000	Germany	24369	1162	4	0.2	Northern
-DEU-Sachsen-Anhalt	2208000	Germany	13194	629	9	0.1	Northern
-DEU-Schleswig-Holstein	2897000	Germany	17312	826	9	0.2	Northern
-DEU-Thüringen	2143000	Germany	12806	611	4	0.1	Northern
-DEU-NI-RegionGöttingen	600000	Germany	6000	300	10	0.1	Northern
-ESP-Andalucía	8414240	Spain	19744	801	1022	5	Northern
-ESP-Aragón	1319291	Spain	3096	125	790	5	Northern
-ESP-Asturias	1022800	Spain	2400	97	240	5	Northern
-ESP-Baleares	1149460	Spain	2697	109	144	5	Northern
-ESP-Canarias	2153389	Spain	5053	205	220	5	Northern
-ESP-Cantabria	581078	Spain	1363	55	19	5	Northern
-ESP-Castilla-La Mancha	2032863	Spain	4770	193	1894	5	Northern
-ESP-Castilla y León	2399548	Spain	5630	228	1307	5	Northern
-ESP-Cataluña	7675217	Spain	18010	731	2444	5	Northern
-ESP-Ceuta	84777	Spain	199	8	0	5	Northern
-ESP-C. Valenciana	5003769	Spain	11741	476	1114	5	Northern
-ESP-Extremadura	1067710	Spain	2505	101	392	5	Northern
-ESP-Galicia	2699499	Spain	6334	257	277	5	Northern
-ESP-Madrid	6663394	Spain	15636	634	36528	5	Northern
-ESP-Melilla	86487	Spain	203	8	7	5	Northern
-ESP-Murcia	1493898	Spain	3505	142	4	5	Northern
-ESP-Navarra	654214	Spain	1535	62	324	5	Northern
-ESP-País Vasco	2207776	Spain	5180	210	2444	5	Northern
-ESP-La Rioja	316798	Spain	743	30	384	5	Northern
-SWE-Stockholm	2000000	Sweden	4506	108	77	0.2	Northern
-ITA-Piemonte	4356406	Italy	14826	320	490	5	Northern
-ITA-Valle d’Aosta	125666	Italy	449	0	10	5	Northern
-ITA-Lombardia	10060574	Italy	34473	1067	20000	5	Northern
-ITA-TrentinoAltoAdige	1072276	Italy	3763	75	100	5	Northern
-ITA-Veneto	4905854	Italy	15857	825	3000	5	Northern
-ITA-Friuli Venezia Giulia	1215220	Italy	3899	825	600	5	Northern
-ITA-Liguria	1550640	Italy	5085	75	2500	5	Northern
-ITA-Emilia Romagna	4459477	Italy	16304	650	15000	5	Northern
-ITA-Toscana	3729641	Italy	10366	447	200	5	Northern
-ITA-Umbria	882015	Italy	2652	69	100	5	Northern
-ITA-Marche	1525271	Italy	4698	400	700	5	Northern
-ITA-Lazio	5879082	Italy	18887	540	300	5	Northern
-ITA-Abruzzo	1311580	Italy	3872	70	200	5	Northern
-ITA-Molise	305617	Italy	1029	30	10	5	Northern
-ITA-Campania	5801692	Italy	14779	320	1000	5	Northern
-ITA-Puglia	4029053	Italy	11306	300	200	5	Northern
-ITA-Basilicata	562869	Italy	1681	5	10	5	Northern
-ITA-Calabria	1947131	Italy	4901	107	50	5	Northern
-ITA-Sicilia	4999891	Italy	13642	441	300	5	Northern
-ITA-Sardegna	1639591	Italy	4960	244	10	5	Northern
-USA-Wyoming	567025	United States of America	1985	66	1	1	Northern
-USA-Vermont	628061	United States of America	1319	44	0	1	Northern
-USA-District of Columbia	720687	United States of America	3171	106	2	1	Northern
-USA-Alaska	734002	United States of America	1615	54	0	1	Northern
-USA-North Dakota	761723	United States of America	3275	109	1	1	Northern
-USA-South Dakota	903027	United States of America	4335	145	9	1	Northern
-USA-Delaware	982895	United States of America	2162	72	0	1	Northern
-USA-Rhode Island	1056161	United States of America	2218	74	3	1	Northern
-USA-Montana	1086759	United States of America	3586	120	1	1	Northern
-USA-Maine	1345790	United States of America	3364	112	3	1	Northern
-USA-New Hampshire	1371246	United States of America	2880	96	2	1	Northern
-USA-Hawaii	1412687	United States of America	2684	89	1	1	Northern
-USA-West Virginia	1778070	United States of America	6757	225	0	1	Northern
-USA-Idaho	1826156	United States of America	3470	116	1	1	Northern
-USA-Nebraska	1952570	United States of America	7029	234	8	1	Northern
-USA-New Mexico	2096640	United States of America	3774	126	3	1	Northern
-USA-Kansas	2910357	United States of America	9604	320	0	1	Northern
-USA-Mississippi	2989260	United States of America	11957	399	0	2	Northern
-USA-Puerto Rico	3032160	United States of America	6064	202	0	2	Northern
-USA-Arkansas	3038999	United States of America	9725	324	1	2	Northern
-USA-Nevada	3139658	United States of America	6593	220	1	2	Northern
-USA-Iowa	3179840	United States of America	9540	318	7	2	Northern
-USA-Utah	3282115	United States of America	5908	197	0	2	Northern
-USA-Connecticut	3563070	United States of America	7126	238	0	2	Northern
-USA-Oklahoma	3954821	United States of America	11073	369	0	2	Northern
-USA-Oregon	4301089	United States of America	6882	229	13	2	Northern
-USA-Kentucky	4499692	United States of America	14399	480	3	2	Northern
-USA-Louisiana	4645184	United States of America	15329	511	479	2	Northern
-USA-Alabama	4908621	United States of America	15217	507	0	2	Northern
-USA-South Carolina	5210095	United States of America	12504	417	2	2	Northern
-USA-Minnesota	5700671	United States of America	14252	475	2	2	Northern
-USA-Colorado	5845526	United States of America	11106	370	7	2	Northern
-USA-Wisconsin	5851754	United States of America	12289	410	1	2	Northern
-USA-Maryland	6083116	United States of America	11558	385	2	2	Northern
-USA-Missouri	6169270	United States of America	19125	638	0	2	Northern
-USA-Indiana	6745354	United States of America	18212	607	2	2	Northern
-USA-Tennessee	6897576	United States of America	20003	667	1	2	Northern
-USA-Massachusetts	6976597	United States of America	16046	535	20	2	Northern
-USA-Arizona	7378494	United States of America	14019	467	2	2	Northern
-USA-Washington	7797095	United States of America	13255	442	3148	2	Northern
-USA-Virginia	8626207	United States of America	18115	604	5	2	Northern
-USA-New Jersey	8936574	United States of America	21448	715	479	5	Northern
-USA-Michigan	10045029	United States of America	25113	837	8	5	Northern
-USA-North Carolina	10611862	United States of America	22285	743	2	5	Northern
-USA-Georgia	10736059	United States of America	25767	859	503	5	Northern
-USA-Ohio	11747694	United States of America	32894	1096	0	5	Northern
-USA-Illinois	12659682	United States of America	31649	1055	215	5	Northern
-USA-Pennsylvania	12820878	United States of America	37181	1239	2	5	Northern
-USA-New York	19440469	United States of America	52489	1750	1246	10	Northern
-USA-Florida	21992985	United States of America	57182	1906	381	10	Northern
-USA-Texas	29472295	United States of America	67786	2260	154	10	Northern
-USA-California	39937489	United States of America	71887	2396	726	10	Northern
-India	1380004385	India	1376013	70000	131	40	Northern
-IND-Andhra Pradesh	52883163	India	23138	2278	0	2	Northern
-IND-Arunachal Pradesh	1528296	India	2404	236	0	0.1	Northern
-IND-Assam	34586234	India	17142	1688	0	1	Northern
-IND-Bihar	119461013	India	12019	1183	0	1	Northern
-IND-Chhattisgarh	28566990	India	9412	926	0	0.1	Northern
-IND-Goa	1542750	India	3013	296	0	0.1	Northern
-IND-Gujarat	63907200	India	32280	3179	0	3	Northern
-IND-Haryana	27388008	India	11240	1106	53	1	Northern
-IND-Himachal Pradesh	7316708	India	12399	1221	0	1	Northern
-IND-Jammu & Kashmir	13635010	India	11651	1147	0	1	Northern
-IND-Jharkhand	37329128	India	10784	1062	0	1	Northern
-IND-Karnataka	66165886	India	70165	6910	2	6	Northern
-IND-Kerala	35330888	India	38004	3742	15	3	Northern
-IND-Madhya Pradesh	82342793	India	28839	2840	0	2	Northern
-IND-Maharashtra	120837347	India	51446	5066	10	5	Northern
-IND-Manipur	3008546	India	1427	140	0	0.1	Northern
-IND-Meghalaya	3276323	India	4457	438	0	0.1	Northern
-IND-Mizoram	1205974	India	1997	196	0	0.1	Northern
-IND-Nagaland	2189297	India	1880	185	0	0.1	Northern
-IND-Odisha	45429399	India	18519	1823	0	1	Northern
-IND-Punjab	29611935	India	17933	1766	0	1	Northern
-IND-Rajasthan	78230816	India	31848	3136	0	3	Northern
-IND-Sikkim	671720	India	1560	153	0	0.1	Northern
-IND-Tamil Nadu	76481545	India	77532	7635	0	7	Northern
-IND-Telangana	38472769	India	20983	2066	1	2	Northern
-IND-Tripura	4057847	India	4417	435	0	0.1	Northern
-IND-Uttar Pradesh	228959599	India	76260	7510	17	7	Northern
-IND-Uttarakhand	11090425	India	8512	838	0	0.1	Northern
-IND-West Bengal	97694960	India	78566	7737	0	7	Northern
-IND-Andaman & Nicobar Islands	419978	India	1075	105	0	0.1	Northern
-IND-Chandigarh	1126705	India	778	76	0	0.1	Northern
-IND-Dadra & Nagar Haveli	378979	India	589	58	0	0.1	Northern
-IND-Daman & Diu	220084	India	240	23	0	0.1	Northern
-IND-Delhi	18345784	India	24383	2401	5	2	Northern
-IND-Lakshadweep	71218	India	300	29	0	0.1	Northern
-IND-Puducherry	1375592	India	3569	351	0	0.1	Northern
-FRA-Auvergne-Rhône-Alpes	8026685	France	16641	555	1744	1	Northern
-FRA-Bourgogne-Franche-Comté	2795301	France	7095	121	1072	1	Northern
-FRA-Bretagne	3329395	France	7361	109	450	1	Northern
-FRA-Centre-Val-de-Loire	2566759	France	4984	170	16	1	Northern
-FRA-Corse	339178	France	756	71	358	1	Northern
-FRA-Grand-Est	5518188	France	13548	465	5849	1	Northern
-FRA-Hauts-de-France	5978266	France	13872	438	3159	1	Northern
-FRA-Ile-de-France	12213364	France	22792	1147	2398	1	Northern
-FRA-Normandie	3319067	France	7645	294	235	1	Northern
-FRA-Nouvelle-Aquitaine	5987014	France	12491	449	208	1	Northern
-FRA-Occitanie	5892817	France	9851	466	677	1	Northern
-FRA-Pays-de-la-Loire	3786545	France	6570	181	23	1	Northern
-FRA-Provence-Alpes-Côte-dAzur	5059473	France	9909	460	402	1	Northern
-FRA-Guadeloupe	382704	France	735	20	1	1	Tropical
-FRA-Guyane	296711	France	383	15	13	1	Northern
-FRA-La-Réunion	866506	France	1260	60	0	1	Southern
-FRA-Martinique	364354	France	882	20	3	1	Tropical
-FRA-Mayotte	270372	France	300	15	0	1	Southern
-Israel	9136000	Israel	15871	758	12	4	Northern
-Iceland	364260	Iceland	1169	29	53	0.1	Northern
+name	populationServed	ageDistribution	hospitalBeds	ICUBeds	hemisphere
+Switzerland	8600000	Switzerland	30799	1400	Northern
+Germany	83784000	Germany	500680	23890	Northern
+France	65274000	France	274462	7540	Northern
+Italy	60462000	Italy	165384	7550	Northern
+Spain	46755000	Spain	110346	4479	Northern
+Poland	37847000	Poland	188342	2635	Northern
+Romania	19238000	Romania	90024	4574	Northern
+Netherlands	17135000	Netherlands	55690	1065	Northern
+Belgium	11590000	Belgium	63692	1755	Northern
+Czechia	10709000	Czechia	92633	1242	Northern
+Brazil	207353391	Brazil	429000	42000	Southern
+Greece	10423000	Greece	38090	680	Northern
+Portugal	10197000	Portugal	33821	451	Northern
+Sweden	10099000	Sweden	22754	550	Northern
+Hungary	9660000	Hungary	42413	1374	Northern
+Austria	9006000	Austria	49395	1833	Northern
+Bulgaria	6948000	Bulgaria	42851	913	Northern
+Denmark	5792000	Denmark	13962	372	Northern
+Finland	5541000	Finland	16852	329	Northern
+Slovakia	5460000	Slovakia	26642	500	Northern
+Ireland	4938000	Ireland	11241	289	Northern
+Croatia	4105000	Croatia	16974	650	Northern
+Lithuania	2722000	Lithuania	18504	502	Northern
+Slovenia	2079000	Slovenia	8740	131	Northern
+Kosovo	1810000	Kosovo	1000	142	Northern
+Latvia	1886000	Latvia	6748	217	Northern
+Estonia	1327000	Estonia	4824	196	Northern
+Cyprus	1207000	Cyprus	2912	92	Northern
+Luxembourg	626000	Luxembourg	2332	127	Northern
+Malta	442000	Malta	1400	66	Northern
+Canada	37600000	Canada	73000	4800	Northern
+United Kingdom	66000000	United Kingdom of Great Britain and Northern Ireland	297000	9900	Northern
+United States of America	330000000	United States of America	1485000	49499	Northern
+CAN-Alberta	4413146	Canada	5819	700	Northern
+CAN-British Columbia	5110917	Canada	6074	680	Northern
+CAN-Manitoba	1377517	Canada	2885	246	Northern
+CAN-New Brunswick	779993	Canada	1448	144	Northern
+CAN-Newfoundland and Labrador	521356	Canada	1090	121	Northern
+CAN-Nova Scotia	977457	Canada	1896	128	Northern
+CAN-Nunavut	39097	Canada	30	4	Northern
+CAN-NWT	44904	Canada	156	4	Northern
+CAN-Ontario	14711827	Canada	15485	1723	Northern
+CAN-Prince Edward Island	158158	Canada	295	24	Northern
+CAN-Saskatchwan	1181666	Canada	2198	106	Northern
+CAN-Yukon	41078	Canada	106	1	Northern
+CHE-Zürich	1521000	Switzerland	5447	247	Northern
+CHE-Bern	1035000	Switzerland	3706	168	Northern
+CHE-Luzern	410000	Switzerland	1468	66	Northern
+CHE-Uri	36000	Switzerland	128	5	Northern
+CHE-Schwyz	159000	Switzerland	569	25	Northern
+CHE-Obwalden	38000	Switzerland	136	6	Northern
+CHE-Nidwalden	43000	Switzerland	153	7	Northern
+CHE-Glarus	40000	Switzerland	143	6	Northern
+CHE-Zug	127000	Switzerland	454	20	Northern
+CHE-Fribourg	319000	Switzerland	1142	51	Northern
+CHE-Solothurn	273000	Switzerland	977	44	Northern
+CHE-Basel-Stadt	195000	Switzerland	698	80	Northern
+CHE-Basel-Landschaft	288000	Switzerland	1031	46	Northern
+CHE-Schaffhausen	82000	Switzerland	293	13	Northern
+CHE-Appenzell Ausserrhoden	55000	Switzerland	196	8	Northern
+CHE-Appenzell Innerrhoden	16000	Switzerland	57	2	Northern
+CHE-St. Gallen	508000	Switzerland	1819	82	Northern
+CHE-Graubünden	198000	Switzerland	709	32	Northern
+CHE-Aargau	677000	Switzerland	2424	110	Northern
+CHE-Thurgau	276000	Switzerland	988	44	Northern
+CHE-Ticino	353000	Switzerland	1264	57	Northern
+CHE-Vaud	799000	Switzerland	2861	130	Northern
+CHE-Valais	344000	Switzerland	1231	56	Northern
+CHE-Neuchâtel	177000	Switzerland	633	28	Northern
+CHE-Geneva	499000	Switzerland	1787	81	Northern
+CHE-Jura	73000	Switzerland	261	11	Northern
+DEU-Baden-Württemberg	11070000	Germany	66152	3156	Northern
+DEU-Bayern	13077000	Germany	78146	3728	Northern
+DEU-Berlin	3645000	Germany	21781	1039	Northern
+DEU-Bremen	683000	Germany	4081	194	Northern
+DEU-Brandenburg	2512000	Germany	15011	716	Northern
+DEU-Hamburg	1841000	Germany	11001	524	Northern
+DEU-Hessen	6266000	Germany	37444	1786	Northern
+DEU-Mecklenburg-Vorpommern	1610000	Germany	9621	459	Northern
+DEU-Niedersachsen	7982000	Germany	47699	2275	Northern
+DEU-Nordrhein-Westfalen	17933000	Germany	107164	5113	Northern
+DEU-Rheinland-Pfalz	4085000	Germany	24411	1164	Northern
+DEU-Saarland	991000	Germany	5922	282	Northern
+DEU-Sachsen	4078000	Germany	24369	1162	Northern
+DEU-Sachsen-Anhalt	2208000	Germany	13194	629	Northern
+DEU-Schleswig-Holstein	2897000	Germany	17312	826	Northern
+DEU-Thüringen	2143000	Germany	12806	611	Northern
+DEU-NI-RegionGöttingen	600000	Germany	6000	300	Northern
+ESP-Andalucía	8414240	Spain	19744	801	Northern
+ESP-Aragón	1319291	Spain	3096	125	Northern
+ESP-Asturias	1022800	Spain	2400	97	Northern
+ESP-Baleares	1149460	Spain	2697	109	Northern
+ESP-Canarias	2153389	Spain	5053	205	Northern
+ESP-Cantabria	581078	Spain	1363	55	Northern
+ESP-Castilla-La Mancha	2032863	Spain	4770	193	Northern
+ESP-Castilla y León	2399548	Spain	5630	228	Northern
+ESP-Cataluña	7675217	Spain	18010	731	Northern
+ESP-Ceuta	84777	Spain	199	8	Northern
+ESP-C. Valenciana	5003769	Spain	11741	476	Northern
+ESP-Extremadura	1067710	Spain	2505	101	Northern
+ESP-Galicia	2699499	Spain	6334	257	Northern
+ESP-Madrid	6663394	Spain	15636	634	Northern
+ESP-Melilla	86487	Spain	203	8	Northern
+ESP-Murcia	1493898	Spain	3505	142	Northern
+ESP-Navarra	654214	Spain	1535	62	Northern
+ESP-País Vasco	2207776	Spain	5180	210	Northern
+ESP-La Rioja	316798	Spain	743	30	Northern
+SWE-Stockholm	2000000	Sweden	4506	108	Northern
+ITA-Piemonte	4356406	Italy	14826	320	Northern
+ITA-Valle d’Aosta	125666	Italy	449	0	Northern
+ITA-Lombardia	10060574	Italy	34473	1067	Northern
+ITA-TrentinoAltoAdige	1072276	Italy	3763	75	Northern
+ITA-Veneto	4905854	Italy	15857	825	Northern
+ITA-Friuli Venezia Giulia	1215220	Italy	3899	825	Northern
+ITA-Liguria	1550640	Italy	5085	75	Northern
+ITA-Emilia Romagna	4459477	Italy	16304	650	Northern
+ITA-Toscana	3729641	Italy	10366	447	Northern
+ITA-Umbria	882015	Italy	2652	69	Northern
+ITA-Marche	1525271	Italy	4698	400	Northern
+ITA-Lazio	5879082	Italy	18887	540	Northern
+ITA-Abruzzo	1311580	Italy	3872	70	Northern
+ITA-Molise	305617	Italy	1029	30	Northern
+ITA-Campania	5801692	Italy	14779	320	Northern
+ITA-Puglia	4029053	Italy	11306	300	Northern
+ITA-Basilicata	562869	Italy	1681	5	Northern
+ITA-Calabria	1947131	Italy	4901	107	Northern
+ITA-Sicilia	4999891	Italy	13642	441	Northern
+ITA-Sardegna	1639591	Italy	4960	244	Northern
+USA-Wyoming	567025	United States of America	1985	66	Northern
+USA-Vermont	628061	United States of America	1319	44	Northern
+USA-District of Columbia	720687	United States of America	3171	106	Northern
+USA-Alaska	734002	United States of America	1615	54	Northern
+USA-North Dakota	761723	United States of America	3275	109	Northern
+USA-South Dakota	903027	United States of America	4335	145	Northern
+USA-Delaware	982895	United States of America	2162	72	Northern
+USA-Rhode Island	1056161	United States of America	2218	74	Northern
+USA-Montana	1086759	United States of America	3586	120	Northern
+USA-Maine	1345790	United States of America	3364	112	Northern
+USA-New Hampshire	1371246	United States of America	2880	96	Northern
+USA-Hawaii	1412687	United States of America	2684	89	Northern
+USA-West Virginia	1778070	United States of America	6757	225	Northern
+USA-Idaho	1826156	United States of America	3470	116	Northern
+USA-Nebraska	1952570	United States of America	7029	234	Northern
+USA-New Mexico	2096640	United States of America	3774	126	Northern
+USA-Kansas	2910357	United States of America	9604	320	Northern
+USA-Mississippi	2989260	United States of America	11957	399	Northern
+USA-Puerto Rico	3032160	United States of America	6064	202	Northern
+USA-Arkansas	3038999	United States of America	9725	324	Northern
+USA-Nevada	3139658	United States of America	6593	220	Northern
+USA-Iowa	3179840	United States of America	9540	318	Northern
+USA-Utah	3282115	United States of America	5908	197	Northern
+USA-Connecticut	3563070	United States of America	7126	238	Northern
+USA-Oklahoma	3954821	United States of America	11073	369	Northern
+USA-Oregon	4301089	United States of America	6882	229	Northern
+USA-Kentucky	4499692	United States of America	14399	480	Northern
+USA-Louisiana	4645184	United States of America	15329	511	Northern
+USA-Alabama	4908621	United States of America	15217	507	Northern
+USA-South Carolina	5210095	United States of America	12504	417	Northern
+USA-Minnesota	5700671	United States of America	14252	475	Northern
+USA-Colorado	5845526	United States of America	11106	370	Northern
+USA-Wisconsin	5851754	United States of America	12289	410	Northern
+USA-Maryland	6083116	United States of America	11558	385	Northern
+USA-Missouri	6169270	United States of America	19125	638	Northern
+USA-Indiana	6745354	United States of America	18212	607	Northern
+USA-Tennessee	6897576	United States of America	20003	667	Northern
+USA-Massachusetts	6976597	United States of America	16046	535	Northern
+USA-Arizona	7378494	United States of America	14019	467	Northern
+USA-Washington	7797095	United States of America	13255	442	Northern
+USA-Virginia	8626207	United States of America	18115	604	Northern
+USA-New Jersey	8936574	United States of America	21448	715	Northern
+USA-Michigan	10045029	United States of America	25113	837	Northern
+USA-North Carolina	10611862	United States of America	22285	743	Northern
+USA-Georgia	10736059	United States of America	25767	859	Northern
+USA-Ohio	11747694	United States of America	32894	1096	Northern
+USA-Illinois	12659682	United States of America	31649	1055	Northern
+USA-Pennsylvania	12820878	United States of America	37181	1239	Northern
+USA-New York	19440469	United States of America	52489	1750	Northern
+USA-Florida	21992985	United States of America	57182	1906	Northern
+USA-Texas	29472295	United States of America	67786	2260	Northern
+USA-California	39937489	United States of America	71887	2396	Northern
+India	1380004385	India	1376013	70000	Northern
+IND-Andhra Pradesh	52883163	India	23138	2278	Northern
+IND-Arunachal Pradesh	1528296	India	2404	236	Northern
+IND-Assam	34586234	India	17142	1688	Northern
+IND-Bihar	119461013	India	12019	1183	Northern
+IND-Chhattisgarh	28566990	India	9412	926	Northern
+IND-Goa	1542750	India	3013	296	Northern
+IND-Gujarat	63907200	India	32280	3179	Northern
+IND-Haryana	27388008	India	11240	1106	Northern
+IND-Himachal Pradesh	7316708	India	12399	1221	Northern
+IND-Jammu & Kashmir	13635010	India	11651	1147	Northern
+IND-Jharkhand	37329128	India	10784	1062	Northern
+IND-Karnataka	66165886	India	70165	6910	Northern
+IND-Kerala	35330888	India	38004	3742	Northern
+IND-Madhya Pradesh	82342793	India	28839	2840	Northern
+IND-Maharashtra	120837347	India	51446	5066	Northern
+IND-Manipur	3008546	India	1427	140	Northern
+IND-Meghalaya	3276323	India	4457	438	Northern
+IND-Mizoram	1205974	India	1997	196	Northern
+IND-Nagaland	2189297	India	1880	185	Northern
+IND-Odisha	45429399	India	18519	1823	Northern
+IND-Punjab	29611935	India	17933	1766	Northern
+IND-Rajasthan	78230816	India	31848	3136	Northern
+IND-Sikkim	671720	India	1560	153	Northern
+IND-Tamil Nadu	76481545	India	77532	7635	Northern
+IND-Telangana	38472769	India	20983	2066	Northern
+IND-Tripura	4057847	India	4417	435	Northern
+IND-Uttar Pradesh	228959599	India	76260	7510	Northern
+IND-Uttarakhand	11090425	India	8512	838	Northern
+IND-West Bengal	97694960	India	78566	7737	Northern
+IND-Andaman & Nicobar Islands	419978	India	1075	105	Northern
+IND-Chandigarh	1126705	India	778	76	Northern
+IND-Dadra & Nagar Haveli	378979	India	589	58	Northern
+IND-Daman & Diu	220084	India	240	23	Northern
+IND-Delhi	18345784	India	24383	2401	Northern
+IND-Lakshadweep	71218	India	300	29	Northern
+IND-Puducherry	1375592	India	3569	351	Northern
+FRA-Auvergne-Rhône-Alpes	8026685	France	16641	555	Northern
+FRA-Bourgogne-Franche-Comté	2795301	France	7095	121	Northern
+FRA-Bretagne	3329395	France	7361	109	Northern
+FRA-Centre-Val-de-Loire	2566759	France	4984	170	Northern
+FRA-Corse	339178	France	756	71	Northern
+FRA-Grand-Est	5518188	France	13548	465	Northern
+FRA-Hauts-de-France	5978266	France	13872	438	Northern
+FRA-Ile-de-France	12213364	France	22792	1147	Northern
+FRA-Normandie	3319067	France	7645	294	Northern
+FRA-Nouvelle-Aquitaine	5987014	France	12491	449	Northern
+FRA-Occitanie	5892817	France	9851	466	Northern
+FRA-Pays-de-la-Loire	3786545	France	6570	181	Northern
+FRA-Provence-Alpes-Côte-dAzur	5059473	France	9909	460	Northern
+FRA-Guadeloupe	382704	France	735	20	Tropical
+FRA-Guyane	296711	France	383	15	Northern
+FRA-La-Réunion	866506	France	1260	60	Southern
+FRA-Martinique	364354	France	882	20	Tropical
+FRA-Mayotte	270372	France	300	15	Southern
+Israel	9136000	Israel	15871	758	Northern
+Iceland	364260	Iceland	1169	29	Northern
