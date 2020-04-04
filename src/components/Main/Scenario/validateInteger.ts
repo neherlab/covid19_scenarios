@@ -9,7 +9,7 @@ export function validateInteger(
   value: any, // eslint-disable-line @typescript-eslint/no-explicit-any
   zeroOrPositive = false,
 ): { value: number; error?: string } {
-  let integerSchema = yup.number().typeError(i18next.t('This value should be a number')).required(i18next.t('Required'))
+  let integerSchema = yup.number().integer(i18next.t('This value should be a integer')).required(i18next.t('Required'))
 
   if (zeroOrPositive) {
     integerSchema = integerSchema.min(0, i18next.t('This value should be non-negative'))
