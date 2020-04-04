@@ -8,6 +8,9 @@ import ErrorPage from '../pages/ErrorPage'
 import { setAuthObserver, getUserData, setUserData } from '../helpers/cloudStorage'
 import { setCurrentUserUid } from '../state/user/user.actions'
 
+import { LoginForm } from './LoginForm/LoginForm'
+import { SignupForm } from './SignupForm/SignupForm'
+
 import Layout from './Layout/Layout'
 import LandingPage from './LandingPage/LandingPage'
 
@@ -17,6 +20,10 @@ import { State } from '../state/reducer'
 import localStorage, { LOCAL_STORAGE_KEYS, LOCAL_STORAGE_KEYS_DEFAULT_VALUES } from '../helpers/localStorage'
 
 function App() {
+  const loginVisible = useSelector(({ ui }: State) => ui.loginFormVisible)
+  const signupVisible = useSelector(({ ui }: State) => ui.signupFormVisible)
+  console.log(loginVisible)
+
   const dispatch = useDispatch()
   const shouldGoToLandingPage = useSelector(({ ui }: State) => !ui.skipLandingPage)
   const initialQueryString = window.location.search
@@ -63,15 +70,19 @@ function App() {
   }, [])
 
   return (
-    <Switch>
-      {shouldGoToLandingPage && <Redirect exact from="/" to="/start" />}
-      <Route exact path="/start">
-        <LandingPage initialQueryString={initialQueryString} />
-      </Route>
-      <Route>
-        <Layout />
-      </Route>
-    </Switch>
+    <>
+      <Switch>
+        {shouldGoToLandingPage && <Redirect exact from="/" to="/start" />}
+        <Route exact path="/start">
+          <LandingPage initialQueryString={initialQueryString} />
+        </Route>
+        <Route>
+          <Layout />
+        </Route>
+      </Switch>
+      {loginVisible && <LoginForm />}
+      {signupVisible && <SignupForm />}
+    </>
   )
 }
 

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 import { setUserData, getCurrentUser } from '../../helpers/cloudStorage'
-import { setShouldSkipLandingPage } from '../../state/ui/ui.actions'
+
+import { setShouldSkipLandingPage, setLoginVisible } from '../../state/ui/ui.actions'
 import { State } from '../../state/reducer'
 import promoImage from './tool.jpg'
 import './LandingPage.scss'
@@ -19,9 +20,13 @@ function LandingPage({ initialQueryString }: LandingPageProps) {
   const { t } = useTranslation()
   const [isSkipLandingChecked, setSkipLandingChecked] = useState(false)
   const showSkipCheckbox = useSelector(({ ui }: State) => !ui.skipLandingPage)
+  const userIsLogged: boolean = useSelector(({ user }): State => user.currentUserUid !== null ? true : false)
   const dispatch = useDispatch()
   const redirectUrl = `/${initialQueryString || ''}`
-  const onLinkClick = useCallback(() => {
+
+  console.log(userIsLogged)
+
+  const onSimulateLinkClick = useCallback(() => {
     dispatch(setShouldSkipLandingPage({ shouldSkip: true }))
 
     if (isSkipLandingChecked) {
@@ -33,6 +38,10 @@ function LandingPage({ initialQueryString }: LandingPageProps) {
     }
   }, [dispatch, isSkipLandingChecked])
 
+  const onLoginClick = () => {
+    dispatch(setLoginVisible({ loginVisible: true }))
+  }
+
   const onCheckboxChange = useCallback((e) => {
     setSkipLandingChecked(e.target.checked)
   }, [])
@@ -43,10 +52,13 @@ function LandingPage({ initialQueryString }: LandingPageProps) {
         <div className="landing-page__header">
           <h1 className="landing-page__heading">{t('COVID-19 Scenarios')}</h1>
           <p className="landing-page__sub-heading">{t('Tool that models COVID-19 outbreak and hospital demand')}</p>
+          <Link onClick={onSimulateLinkClick} to={redirectUrl} className="landing-page__link">
+            {t('Simulate')}
+          </Link>
+          {userIsLogged === false && <Link onClick={onLoginClick} className="landing-page__link">
+            {t('Login')}
+          </Link>}
         </div>
-        <Link onClick={onLinkClick} to={redirectUrl} className="landing-page__simulate-link">
-          {t('Simulate')}
-        </Link>
       </div>
       <div className="landing-page__content-section">
         <img className="landing-page__promo-image" src={promoImage} alt="Simulator showing results" />

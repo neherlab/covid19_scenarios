@@ -17,6 +17,8 @@ import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
+import { setUserData, getCurrentUser } from '../../../helpers/cloudStorage'
+
 import './ResultsCard.scss'
 
 const LOG_SCALE_DEFAULT = true
@@ -61,11 +63,19 @@ function ResultsCardFunction({
 
   const setPersistLogScale = (value: boolean) => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.LOG_SCALE, value)
+    let data = {}
+    data[LOCAL_STORAGE_KEYS.LOG_SCALE] = value
+    setUserData(getCurrentUser(), data)
+    setAutorunSimulation(!autorunSimulation)
     setLogScale(value)
   }
 
   const setPersistShowHumanized = (value: boolean) => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS, value)
+    let data = {}
+    data[LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS] = value
+    setUserData(getCurrentUser(), data)
+    setAutorunSimulation(!autorunSimulation)
     setShowHumanized(value)
   }
 
