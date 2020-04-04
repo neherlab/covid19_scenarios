@@ -31,9 +31,9 @@ import { serialize } from './state/serialization/StateSerializer'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
+import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
 
 import './Main.scss'
-import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -45,6 +45,7 @@ export function severityErrors(severity: SeverityTableRow[]) {
 
 async function runSimulation(
   params: AllParams,
+  scenarioState: State,
   severity: SeverityTableRow[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
   setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
@@ -117,12 +118,13 @@ function Main() {
     // if the link contains query, we're executing the scenario (and displaying graphs)
     // this is because the page was either shared via link, or opened in new tab
     if (window.location.search) {
-      debouncedRun(allParams, severity)
+      debouncedRun(allParams, scenarioState, severity)
     }
   }, [])
 
   const [debouncedRun] = useDebouncedCallback(
-    (params: AllParams, severity: SeverityTableRow[]) => runSimulation(params, severity, setResult, setEmpiricalCases),
+    (params: AllParams, scenarioState: State, severity: SeverityTableRow[]) =>
+      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases),
     500,
   )
 
@@ -139,7 +141,7 @@ function Main() {
 
     if (autorunSimulation) {
       updateBrowserUrl()
-      debouncedRun(allParams, severity)
+      debouncedRun(allParams, scenarioState, severity)
     }
   }, [autorunSimulation, debouncedRun, scenarioState, scenarioQueryString, severity])
 
@@ -165,7 +167,7 @@ function Main() {
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
     updateBrowserUrl()
-    runSimulation(params, severity, setResult, setEmpiricalCases)
+    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
     setSubmitting(false)
   }
 
