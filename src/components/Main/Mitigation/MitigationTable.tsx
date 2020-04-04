@@ -29,7 +29,7 @@ export function MitigationTable({ mitigationIntervals }: MitigationTableProps) {
           <Col>
             <Row>
               <Col>
-                <div className="form-inline w-100">
+                <div className="form w-100">
                   {mitigationIntervals.map((interval: MitigationInterval, index: number) => {
                     if (!interval) {
                       return null
@@ -37,32 +37,40 @@ export function MitigationTable({ mitigationIntervals }: MitigationTableProps) {
 
                     return (
                       <FormGroup key={interval.id} className="interval-form-group w-100">
-                        <FastField
-                          className="form-control"
-                          id={`containment.mitigationIntervals[${index}].name`}
-                          name={`containment.mitigationIntervals[${index}].name`}
-                          type="text"
-                        />
-
-                        <MitigationDatePicker
-                          identifier={`containment.mitigationIntervals[${index}].timeRange`}
-                          value={interval.timeRange}
-                          allowPast
-                        />
-
-                        <FastField
-                          className="form-control"
-                          id={`containment.mitigationIntervals[${index}].mitigationValue`}
-                          name={`containment.mitigationIntervals[${index}].mitigationValue`}
-                          type="number"
-                          step={0.1}
-                          min={0}
-                          max={1}
-                        />
-
-                        <Button type="button" onClick={() => arrayHelpers.remove(index)}>
-                          <FaTrash />
-                        </Button>
+                        <Row className="" noGutters>
+                          <Col size="12" xs="12" sm="12" md="12" lg="12" xl="12">
+                            <FastField
+                              className="form-control"
+                              id={`containment.mitigationIntervals[${index}].name`}
+                              name={`containment.mitigationIntervals[${index}].name`}
+                              type="text"
+                            />
+                          </Col>
+                          <Col xs="auto" sm="auto" md="auto" lg="5" xl="auto" className="align-self-center">
+                            <MitigationDatePicker
+                              className="form-control"
+                              identifier={`containment.mitigationIntervals[${index}].timeRange`}
+                              value={interval.timeRange}
+                              allowPast
+                            />
+                          </Col>
+                          <Col xs="4" sm="5" md="6" lg="4" xl="6">
+                            <FastField
+                              className="form-control h-100"
+                              id={`containment.mitigationIntervals[${index}].mitigationValue`}
+                              name={`containment.mitigationIntervals[${index}].mitigationValue`}
+                              type="number"
+                              step={0.1}
+                              min={0}
+                              max={1}
+                            />
+                          </Col>
+                          <Col xs="auto" sm="auto" md="auto" lg="auto" xl="auto" className="ml-auto align-self-center">
+                            <Button type="button" onClick={() => arrayHelpers.remove(index)}>
+                              <FaTrash />
+                            </Button>
+                          </Col>
+                        </Row>
                       </FormGroup>
                     )
                   })}
