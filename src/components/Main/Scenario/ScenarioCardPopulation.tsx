@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 import countryCaseCounts from '../../../assets/data/case_counts.json'
-import { State, CUSTOMIZED_AGE_DISTRIBUTION } from '../state/state'
+import { State, CUSTOM_COUNTRY_NAME } from '../state/state'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
@@ -17,7 +17,7 @@ import { FormSpinBox } from '../../Form/FormSpinBox'
 
 const countries = Object.keys(countryAgeDistribution)
 const countryOptions = countries.map((country) => ({ value: country, label: country }))
-countryOptions.push({ value: CUSTOMIZED_AGE_DISTRIBUTION, label: i18next.t(CUSTOMIZED_AGE_DISTRIBUTION) })
+countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 const caseCountOptions = Object.keys(countryCaseCounts).map((country) => ({ value: country, label: country }))
 caseCountOptions.push({ value: 'none', label: 'None' })
 
