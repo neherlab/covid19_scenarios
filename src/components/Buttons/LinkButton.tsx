@@ -5,9 +5,9 @@ interface LinkButtonProps {
   children: ReactNode
   className?: string
   color?: string
-  disabled: boolean
+  disabled?: boolean
   href?: string
-  size: string
+  size?: string
   target: '_blank' | '_self' | '_parent' | '_top'
   type?: 'submit' | 'reset' | 'button'
   onClick: () => void
@@ -15,9 +15,9 @@ interface LinkButtonProps {
 
 const LinkButton = ({
   className,
-  color,
+  color = 'primary',
   children,
-  disabled,
+  disabled = false,
   href,
   onClick,
   target = '_self',
