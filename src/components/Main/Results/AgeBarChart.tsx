@@ -25,7 +25,7 @@ export interface SimProps {
   rates?: SeverityTableRow[]
 }
 
-export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
+function AgeBarChart({ showHumanized, data, rates }: SimProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
   const percentageChartRef = React.useRef(null)
@@ -100,13 +100,28 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }}
                   tickFormatter={tickFormatter}
                 />
-                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
+                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} isAnimationActive={false} />
                 <Legend verticalAlign="top" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
-                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
-                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} />
+                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} isAnimationActive={false} />
+                <Bar
+                  dataKey="peakCritical"
+                  fill={colors.critical}
+                  name={t('peak critical')}
+                  isAnimationActive={false}
+                />
+                <Bar
+                  dataKey="peakOverflow"
+                  fill={colors.overflow}
+                  name={t('peak overflow')}
+                  isAnimationActive={false}
+                />
+                <Bar
+                  dataKey="totalFatalities"
+                  fill={colors.fatality}
+                  name={t('total deaths')}
+                  isAnimationActive={false}
+                />
               </BarChart>
 
               <div ref={percentageChartRef} />
@@ -131,8 +146,8 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   }}
                 />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
-                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
+                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} isAnimationActive={false} />
+                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} isAnimationActive={false} />
               </BarChart>
             </>
           )
@@ -141,3 +156,6 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     </div>
   )
 }
+
+const AgeBarChartMemoized = React.memo(AgeBarChart)
+export default AgeBarChartMemoized

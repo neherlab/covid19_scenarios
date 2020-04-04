@@ -6,12 +6,12 @@ import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 import processUserResult from '../../../algorithms/utils/userResult'
-import { AgeBarChart } from './AgeBarChart'
+import AgeBarChart from './AgeBarChart'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
-import { DeterministicLinePlot } from './DeterministicLinePlot'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import DeterministicLinePlot from './DeterministicLinePlot'
+import { ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
@@ -26,7 +26,6 @@ interface ResultsCardProps {
   autorunSimulation: boolean
   toggleAutorun: () => void
   canRun: boolean
-  params: AllParams
   mitigation: ContainmentData
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
@@ -34,11 +33,10 @@ interface ResultsCardProps {
   scenarioUrl?: string
 }
 
-function ResultsCardFunction({
+function ResultsCard({
   canRun,
   autorunSimulation,
   toggleAutorun,
-  params,
   mitigation,
   severity,
   result,
@@ -51,7 +49,7 @@ function ResultsCardFunction({
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
-  const [userResult, setUserResult] = useState<UserResult | undefined>()
+  const [, setUserResult] = useState<UserResult | undefined>()
 
   useEffect(() => {
     const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
@@ -193,8 +191,6 @@ function ResultsCardFunction({
           <Col>
             <DeterministicLinePlot
               data={result}
-              userResult={userResult}
-              params={params}
               mitigation={mitigation}
               logScale={logScale}
               showHumanized={showHumanized}
@@ -239,4 +235,5 @@ function ResultsCardFunction({
   )
 }
 
-export const ResultsCard = React.memo(ResultsCardFunction)
+const ResultsCardMemoized = React.memo(ResultsCard)
+export default ResultsCardMemoized

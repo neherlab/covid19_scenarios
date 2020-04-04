@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 
-import { SeverityTable, SeverityTableRow } from './SeverityTable'
+import SeverityTable, { SeverityTableRow } from './SeverityTable'
 
 export interface SeverityCardProps {
   severity: SeverityTableRow[]
@@ -38,4 +38,5 @@ function SeverityCard({ severity, setSeverity }: SeverityCardProps) {
   )
 }
 
-export { SeverityCard }
+const SeverityCardMemoized = React.memo(SeverityCard)
+export default SeverityCardMemoized

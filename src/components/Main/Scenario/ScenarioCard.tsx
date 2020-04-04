@@ -16,7 +16,7 @@ import { State } from '../state/state'
 import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
-import { SeverityCard } from './SeverityCard'
+import SeverityCard from './SeverityCard'
 import { SeverityTableRow } from './SeverityTable'
 
 export interface ScenarioCardProps {
@@ -88,4 +88,5 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
   )
 }
 
-export { ScenarioCard }
+const ScenarioCardMemoized = React.memo(ScenarioCard)
+export default ScenarioCardMemoized

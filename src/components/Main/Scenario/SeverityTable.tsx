@@ -224,4 +224,5 @@ function SeverityTable({ severity, setSeverity }: SeverityTableProps) {
   )
 }
 
-export { SeverityTable }
+const SeverityTableMemoized = React.memo(SeverityTable)
+export default SeverityTableMemoized

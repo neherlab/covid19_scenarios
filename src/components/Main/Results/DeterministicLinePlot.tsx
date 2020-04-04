@@ -17,11 +17,11 @@ import {
   YAxis,
 } from 'recharts'
 
-import { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
+import type { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
-import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
@@ -69,8 +69,6 @@ export const colors = {
 
 export interface LinePlotProps {
   data?: AlgorithmResult
-  userResult?: UserResult
-  params: AllParams
   mitigation: ContainmentData
   logScale?: boolean
   showHumanized?: boolean
@@ -97,15 +95,7 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
   return <span className={activeClassName}>{value}</span>
 }
 
-export function DeterministicLinePlot({
-  data,
-  userResult,
-  params,
-  mitigation,
-  logScale,
-  showHumanized,
-  caseCounts,
-}: LinePlotProps) {
+function DeterministicLinePlot({ data, mitigation, logScale, showHumanized, caseCounts }: LinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
@@ -147,12 +137,6 @@ export function DeterministicLinePlot({
     newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
-  const mitigationsToPlot = mitigationIntervals.map((d) => ({
-    key: d.name,
-    color: '#CCCCCC',
-    legendType: 'line',
-    name: d.name,
-  }))
 
   const observations =
     nonEmptyCaseCounts?.map((d, i) => ({
@@ -216,26 +200,27 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const scatterToPlot: LineProps[] = observations.length
-    ? [
-        // Append empirical data
-        ...(countObservations.observedDeaths
-          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative confirmed deaths') }]
-          : []),
-        ...(countObservations.cases
-          ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
-          : []),
-        ...(countObservations.hospitalized
-          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital') }]
-          : []),
-        ...(countObservations.ICU
-          ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }]
-          : []),
-        ...(countObservations.newCases
-          ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Confirmed cases past 3 days') }]
-          : []),
-      ]
-    : []
+  const scatterToPlot: LineProps[] =
+    observations.length !== 0
+      ? [
+          // Append empirical data
+          ...(countObservations.observedDeaths
+            ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative confirmed deaths') }]
+            : []),
+          ...(countObservations.cases
+            ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
+            : []),
+          ...(countObservations.hospitalized
+            ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital') }]
+            : []),
+          ...(countObservations.ICU
+            ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }]
+            : []),
+          ...(countObservations.newCases
+            ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Confirmed cases past 3 days') }]
+            : []),
+        ]
+      : []
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
@@ -296,6 +281,7 @@ export function DeterministicLinePlot({
                   labelFormatter={labelFormatter}
                   position={tooltipPosition}
                   content={ResponsiveTooltipContent}
+                  isAnimationActive={false}
                 />
 
                 <Legend
@@ -319,7 +305,7 @@ export function DeterministicLinePlot({
                     fill={interval.color}
                     fillOpacity={0.25}
                   >
-                    <Label value={interval.name} position="insideTopRight" fill="#444444"/>
+                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
                   </ReferenceArea>
                 ))}
 
@@ -338,7 +324,7 @@ export function DeterministicLinePlot({
                 ))}
 
                 {scatterToPlot.map((d) => (
-                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
               </ComposedChart>
             </>
@@ -348,3 +334,6 @@ export function DeterministicLinePlot({
     </div>
   )
 }
+
+const DeterministicLinePlotMemoized = React.memo(DeterministicLinePlot)
+export default DeterministicLinePlotMemoized

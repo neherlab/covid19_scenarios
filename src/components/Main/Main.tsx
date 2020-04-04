@@ -30,8 +30,8 @@ import { defaultScenarioState } from './state/state'
 import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
 import { serialize } from './state/serialization/StateSerializer'
 
-import { ResultsCard } from './Results/ResultsCard'
-import { ScenarioCard } from './Scenario/ScenarioCard'
+import ResultsCard from './Results/ResultsCard'
+import ScenarioCard from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
 import './Main.scss'
@@ -174,7 +174,7 @@ function Main() {
       const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
       scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
     }
-  }, 1000)
+  }, 100)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
     updateBrowserUrl()
@@ -215,7 +215,6 @@ function Main() {
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
-                      params={allParams}
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
