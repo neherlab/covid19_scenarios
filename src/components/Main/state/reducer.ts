@@ -15,7 +15,7 @@ import {
 
 import { getScenarioData, getAgeDistribution } from './data'
 
-import { CUSTOM_SCENARIO_NAME, CUSTOMIZED_AGE_DISTRIBUTION, defaultScenarioState } from './state'
+import { CUSTOM_SCENARIO_NAME, CUSTOM_COUNTRY_NAME, defaultScenarioState } from './state'
 
 function maybeAdd<T>(where: T[], what: T): T[] {
   return _.uniq([...where, what])
@@ -55,7 +55,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.population = _.cloneDeep(data)
-      if (draft.data.population.country !== CUSTOMIZED_AGE_DISTRIBUTION) {
+      if (draft.data.population.country !== CUSTOM_COUNTRY_NAME) {
         draft.ageDistribution = getAgeDistribution(draft.data.population.country)
       }
     }),
@@ -95,9 +95,6 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.ageDistribution = data
-      draft.data.population = {
-        ...draft.data.population,
-        country: CUSTOMIZED_AGE_DISTRIBUTION,
-      }
+      draft.data.population.country = CUSTOM_COUNTRY_NAME
     }),
   )
