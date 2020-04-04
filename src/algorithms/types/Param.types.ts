@@ -1,4 +1,19 @@
-import { TimeSeries } from './TimeSeries.types'
+export interface DateRange {
+  tMin: Date
+  tMax: Date
+}
+
+export interface MitigationInterval {
+  id: string
+  name: string
+  color: string
+  timeRange: DateRange
+  mitigationValue: number
+}
+
+export type MitigationIntervalWithoutId = Omit<MitigationInterval, 'id'>
+
+export type MitigationIntervals = MitigationInterval[]
 
 export interface PopulationData {
   populationServed: number
@@ -22,13 +37,7 @@ export interface EpidemiologicalData {
 }
 
 export interface ContainmentData {
-  reduction: TimeSeries
-  numberPoints: number
-}
-
-export interface DateRange {
-  tMin: Date
-  tMax: Date
+  mitigationIntervals: MitigationIntervals
 }
 
 export interface SimulationData {
@@ -50,7 +59,22 @@ export interface AllParams {
   containment: ContainmentData
 }
 
-export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData
+export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData & ContainmentData
+
+// part of the application state to be persisted in the URL
+export interface PersistedState {
+  current: string
+  data: ScenarioData
+}
+
+// format of the application state persisted in the URL
+export interface PersistedStateDto {
+  current: string
+  population: PopulationData
+  epidemiological: EpidemiologicalData
+  simulation: SimulationData
+  containment: TimeSeries
+}
 
 interface EmpiricalDatum {
   time: Date

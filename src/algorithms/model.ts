@@ -44,7 +44,6 @@ export function getPopulationParams(
   ageCounts: Record<string, number>,
   containment: (t: Date) => number,
 ): ModelParams {
-
   // TODO: Make this a form-adjustable factor
   const pop: ModelParams = {
     ageDistribution: {},
@@ -184,6 +183,11 @@ export function initializePopulation(
       fatality: {},
     },
   }
+  // specification of the initial condition: there are numCases at tMin
+  // of those, 0.3 are infectious, the remainder is exposed and will turn
+  // infectious as they propagate through the exposed categories.
+  const initialInfectiousFraction = 0.3
+
   // TODO: Ensure the sum is equal to N!
   Object.keys(ages).forEach((k, i) => {
     const n = Math.round((ages[k] / Z) * N)
@@ -199,8 +203,8 @@ export function initializePopulation(
     pop.cumulative.fatality[k] = 0
     if (i === Math.round(Object.keys(ages).length / 2)) {
       pop.current.susceptible[k] -= numCases
-      pop.current.infectious[k] = 0.3 * numCases
-      const e = (0.7 * numCases) / pop.current.exposed[k].length
+      pop.current.infectious[k] = initialInfectiousFraction * numCases
+      const e = ((1 - initialInfectiousFraction) * numCases) / pop.current.exposed[k].length
       pop.current.exposed[k] = pop.current.exposed[k].map((_) => e)
     }
   })

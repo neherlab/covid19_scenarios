@@ -8,7 +8,7 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-03-08	1				
 2020-03-09	1				
 2020-03-10	5				
-2020-03-11	4				
+2020-03-11	5				
 2020-03-12	10				
 2020-03-13	10				
 2020-03-14	10				
@@ -30,3 +30,4 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-03-30	401	9			
 2020-03-31	495	9			
 2020-04-01	586	11			
+2020-04-02	653	12			
