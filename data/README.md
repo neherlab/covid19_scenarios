@@ -190,8 +190,8 @@ The steps to follow are:
 - Write a script that downloads and converts raw data into a dict of lists of lists {'<country>': [['2020-03-20', 1, 0,
   ...], ['2020-03-21', 2, 0, ...]]}
   - Columns: [time, cases, deaths, hospitalized, ICU, recovered]
-  - **Important:** all columns must be cumulative data.
-  - The time column **must** be a string formatted as `YYYY-MM-DD`
+ - **Important:** cases, deaths, and recovered have to be cumulative counts. The fields hospitalized and ICU should refer to current number of patients.
+   - The time column **must** be a string formatted as `YYYY-MM-DD`
   - Try to keep the same order of columns for hygiene, although it should not ultimately matter
   - If data is missing, please leave the entry empty (i.e., ['2020-03-20',1, None, None, ...])
   - Use the store_data() function in utils to store the data into .tsv automatically
