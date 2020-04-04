@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useSelector } from 'react-redux'
 import { withErrorBoundary } from 'react-error-boundary'
-import { Switch, Route, Redirect } from 'react-router'
+import { Switch, Route, Redirect, withRouter, RouteComponentProps } from 'react-router'
 import ErrorPage from '../pages/ErrorPage'
 
 import Layout from './Layout/Layout'
@@ -11,21 +11,23 @@ import LandingPage from './LandingPage/LandingPage'
 import '../styles/global.scss'
 import { State } from '../state/reducer'
 
-function App() {
+function App({ location }: RouteComponentProps) {
   const shouldGoToLandingPage = useSelector(({ ui }: State) => !ui.skipLandingPage)
-  const initialQueryString = window.location.search
 
   return (
     <Switch>
-      {shouldGoToLandingPage && <Redirect exact from="/" to="/start" />}
-      <Route exact path="/start">
-        <LandingPage initialQueryString={initialQueryString} />
-      </Route>
-      <Route>
-        <Layout />
-      </Route>
+      <Route exact path="/start" component={LandingPage} />
+      {shouldGoToLandingPage && (
+        <Redirect
+          to={{
+            pathname: '/start',
+            state: { referrer: location },
+          }}
+        />
+      )}
+      <Route component={Layout} />
     </Switch>
   )
 }
 
-export default withErrorBoundary(App, ErrorPage)
+export default withErrorBoundary(withRouter(App), ErrorPage)

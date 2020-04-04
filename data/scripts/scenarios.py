@@ -4,14 +4,27 @@ import os
 import json
 import numpy as np
 import multiprocessing as multi
-
+from uuid import uuid4
 sys.path.append('..')
 
 from datetime import datetime
 from scipy.stats import linregress
-from paths import TMP_CASES, BASE_PATH, JSON_DIR
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
+
+##
+mitigation_colors = {
+"School Closures": "#7fc97f",
+"Social Distancing": "#beaed4",
+"Lock-down": "#fdc086",
+"Shut-down": "#ffff99",
+"Case Isolation": "#386cb0",
+"Contact Tracing": "#f0027f",
+"Intervention #1": "#bf5b17",
+"Intervention #2": "#666666",
+}
+
 
 # ------------------------------------------------------------------------
 # Globals
@@ -95,10 +108,12 @@ class Object:
         return json.dumps(self, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
 class Measure(Object):
-    def __init__(self, name, tMin, tMax, value):
+    def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
         self.name = name
+        self.id = str(id)
+        self.color = str(color)
         self.timeRange = DateRange(tMin, tMax)
-        self.mitigationValue = value
+        self.mitigationValue = mitigationValue
 
 class PopulationParams(Object):
     def __init__(self, region, country, population, beds, icus):
@@ -159,11 +174,13 @@ class SimulationParams(Object):
 # TODO: Region and country provide redudant information
 #       Condense the information into one field.
 class AllParams(Object):
-    def __init__(self, region, country, population, beds, icus, hemisphere):
+    def __init__(self, region, country, population, beds, icus, hemisphere, srcPopulation, srcHospitalBeds, srcICUBeds):
         self.population      = PopulationParams(region, country, population, beds, icus)
         self.epidemiological = EpidemiologicalParams(region, hemisphere)
         self.simulation      = SimulationParams(region)
         self.containment     = ContainmentParams()
+        # uncomment if the sources are needed in the app
+        #self.sources         = {'populationServed': srcPopulation, 'hospitalBeds': srcHospitalBeds, 'ICUBeds': srcICUBeds }
 
 # ------------------------------------------------------------------------
 # Functions
@@ -207,32 +224,42 @@ def set_mitigation(cases, scenario):
     case_counts = np.array([c['cases'] for c in valid_cases])
     levelOne = np.where(case_counts > min(max(5, 3e-4*scenario.population.populationServed),10000))[0]
     levelTwo = np.where(case_counts > min(max(50, 3e-3*scenario.population.populationServed),50000))[0]
-    levelOneVal = np.minimum(0.8, 1.8/scenario.epidemiological.r0)
-    levelTwoVal = np.minimum(0.4, 0.5)
+    levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0), 1)
+    levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
-
-    for name, level, val in [("levelOne", levelOne, levelOneVal), ('levelTwo', levelTwo, levelTwoVal)]:
+    for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
         if len(level):
             level_idx = level[0]
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.containment.reduction[timeline>cutoff] *= val
-            scenario.containment.mitigationIntervals.append(Measure(name, cutoff_str,
-                scenario.simulation.simulationTimeRange.tMax[:10],
-                val))
+            scenario.containment.reduction[timeline>cutoff] *= (1-val)
+            scenario.containment.mitigationIntervals.append(Measure(
+                name=name,
+                tMin=cutoff_str,
+                id=uuid4(),
+                tMax=scenario.simulation.simulationTimeRange.tMax[:10],
+                color=mitigation_colors.get(name, "#cccccc"),
+                mitigationValue=val))
 
     scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
 
 # ------------------------------------------------------------------------
 # Main point of entry
 
-def generate(output_json, num_procs=1):
+def generate(output_json, num_procs=1, recalculate=False):
     scenario = {}
-    fit_all_case_data(num_procs)
-    print("DONE")
-    print(FIT_CASE_DATA)
-    print(output_json)
+    fit_fname = os.path.join(BASE_PATH,FIT_PARAMETERS)
+    if recalculate or (not os.path.isfile(fit_fname)):
+        fit_all_case_data(num_procs)
+        with open(fit_fname, 'w') as fh:
+            json.dump(FIT_CASE_DATA, fh)
+    else:
+        with open(fit_fname, 'r') as fh:
+            tmp = json.load(fh)
+            for k,v in tmp.items():
+                FIT_CASE_DATA[k] = v
+
     case_counts = parse_tsv()
 
     with open(SCENARIO_POPS, 'r') as fd:
@@ -243,9 +270,12 @@ def generate(output_json, num_procs=1):
                'ages' : hdr.index('ageDistribution'),
                'beds' : hdr.index('hospitalBeds'),
                'icus' : hdr.index('ICUBeds'),
-               'hemisphere' : hdr.index('hemisphere')}
+               'hemisphere' : hdr.index('hemisphere'),
+               'srcPopulation' : hdr.index('srcPopulation'),
+               'srcHospitalBeds' : hdr.index('srcHospitalBeds'),
+               'srcICUBeds' : hdr.index('srcICUBeds')}
 
-        args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere']
+        args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere', 'srcPopulation', 'srcHospitalBeds', 'srcICUBeds']
         for region in rdr:
             region_name = region[idx['name']]
             entry = [region[idx[arg]] for arg in args]
