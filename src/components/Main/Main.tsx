@@ -111,8 +111,7 @@ function Main() {
   }
 
   const updateBrowserUrl = () => {
-    // should be a redux dispatch per use of connected-react-router
-    // window.history.pushState('', '', `?${scenarioQueryString}`)
+    window.history.pushState('', '', `?${scenarioQueryString}`)
   }
 
   const allParams: AllParams = {
