@@ -1,6 +1,10 @@
+.card-body {
+  border-radius: 3px;
+  border-color: #7a7a7a;
+}
+
 .btn-container {
   display: flex;
-  border-radius: 3px;
 
   button {
     margin: 0 0.5em 0 0;
