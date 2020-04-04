@@ -47,7 +47,7 @@ def getCountryAbbreviations():
 
 def dumpPopTable(pops, fname):
     with open(fname, 'w') as fh:
-        fh.write('\t'.join(['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds', 'hemisphere'])+'\n')
+        fh.write('\t'.join(['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds', 'hemisphere', 'srcPopulation', 'srcHospitalBeds', 'srcICUBeds'])+'\n')
         for pop in pops:
             fh.write('\t'.join([pop['name'],
                                 str(pop['data']['populationServed']),
@@ -68,6 +68,9 @@ def loadPopTable(fname):
             tmp['data']['hospitalBeds'] = int(entries[3])
             tmp['data']['ICUBeds'] = int(entries[4])
             tmp['data']['hemisphere'] = entries[5]
+            tmp['data']['srcPopulation'] = entries[6]
+            tmp['data']['srcHospitalBeds'] = entries[7]
+            tmp['data']['srcICUBeds'] = entries[8]
             pops.append(tmp)
 
     return pops

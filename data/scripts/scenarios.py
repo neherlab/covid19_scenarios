@@ -174,11 +174,12 @@ class SimulationParams(Object):
 # TODO: Region and country provide redudant information
 #       Condense the information into one field.
 class AllParams(Object):
-    def __init__(self, region, country, population, beds, icus, hemisphere):
+    def __init__(self, region, country, population, beds, icus, hemisphere, srcPopulation, srcHospitalBeds, srcICUBeds):
         self.population      = PopulationParams(region, country, population, beds, icus)
         self.epidemiological = EpidemiologicalParams(region, hemisphere)
         self.simulation      = SimulationParams(region)
         self.containment     = ContainmentParams()
+        self.sources         = {'population': srcPopulation, 'hospitalBeds': srcHospitalBeds, 'ICUBeds': srcICUBeds }
 
 # ------------------------------------------------------------------------
 # Functions
@@ -268,9 +269,12 @@ def generate(output_json, num_procs=1, recalculate=False):
                'ages' : hdr.index('ageDistribution'),
                'beds' : hdr.index('hospitalBeds'),
                'icus' : hdr.index('ICUBeds'),
-               'hemisphere' : hdr.index('hemisphere')}
+               'hemisphere' : hdr.index('hemisphere'),
+               'srcPopulation' : hdr.index('srcPopulation'),
+               'srcHospitalBeds' : hdr.index('srcHospitalBeds'),
+               'srcICUBeds' : hdr.index('srcICUBeds')}
 
-        args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere']
+        args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere', 'srcPopulation', 'srcHospitalBeds', 'srcICUBeds']
         for region in rdr:
             region_name = region[idx['name']]
             entry = [region[idx[arg]] for arg in args]
