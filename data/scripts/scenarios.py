@@ -179,7 +179,8 @@ class AllParams(Object):
         self.epidemiological = EpidemiologicalParams(region, hemisphere)
         self.simulation      = SimulationParams(region)
         self.containment     = ContainmentParams()
-        self.sources         = {'populationServed': srcPopulation, 'hospitalBeds': srcHospitalBeds, 'ICUBeds': srcICUBeds }
+        # uncomment if the sources are needed in the app
+        #self.sources         = {'populationServed': srcPopulation, 'hospitalBeds': srcHospitalBeds, 'ICUBeds': srcICUBeds }
 
 # ------------------------------------------------------------------------
 # Functions
