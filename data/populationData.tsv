@@ -38,8 +38,8 @@ CAN-Manitoba	1377517	Canada	2885	246	Northern	None	None	None
 CAN-New Brunswick	779993	Canada	1448	144	Northern	None	None	None
 CAN-Newfoundland and Labrador	521356	Canada	1090	121	Northern	None	None	None
 CAN-Nova Scotia	977457	Canada	1896	128	Northern	None	None	None
-CAN-Nunavut	39097	Canada	30	4	Northern	None	None	None
-CAN-NWT	44904	Canada	156	4	Northern	None	None	None
+CAN-Nunavut	39097	Canada	30	4	Northern	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx
+CAN-NWT	44904	Canada	156	4	Northern	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx
 CAN-Ontario	14711827	Canada	15485	1723	Northern	None	None	None
 CAN-Prince Edward Island	158158	Canada	295	24	Northern	None	None	None
 CAN-Saskatchwan	1181666	Canada	2198	106	Northern	None	None	None
@@ -87,25 +87,25 @@ DEU-Sachsen-Anhalt	2208000	Germany	13194	629	Northern	None	None	None
 DEU-Schleswig-Holstein	2897000	Germany	17312	826	Northern	None	None	None
 DEU-Thüringen	2143000	Germany	12806	611	Northern	None	None	None
 DEU-NI-RegionGöttingen	600000	Germany	6000	300	Northern	None	None	None
-ESP-Andalucía	8414240	Spain	19744	801	Northern	None	None	None
-ESP-Aragón	1319291	Spain	3096	125	Northern	None	None	None
-ESP-Asturias	1022800	Spain	2400	97	Northern	None	None	None
-ESP-Baleares	1149460	Spain	2697	109	Northern	None	None	None
-ESP-Canarias	2153389	Spain	5053	205	Northern	None	None	None
-ESP-Cantabria	581078	Spain	1363	55	Northern	None	None	None
-ESP-Castilla-La Mancha	2032863	Spain	4770	193	Northern	None	None	None
-ESP-Castilla y León	2399548	Spain	5630	228	Northern	None	None	None
-ESP-Cataluña	7675217	Spain	18010	731	Northern	None	None	None
-ESP-Ceuta	84777	Spain	199	8	Northern	None	None	None
-ESP-C. Valenciana	5003769	Spain	11741	476	Northern	None	None	None
-ESP-Extremadura	1067710	Spain	2505	101	Northern	None	None	None
-ESP-Galicia	2699499	Spain	6334	257	Northern	None	None	None
-ESP-Madrid	6663394	Spain	15636	634	Northern	None	None	None
-ESP-Melilla	86487	Spain	203	8	Northern	None	None	None
-ESP-Murcia	1493898	Spain	3505	142	Northern	None	None	None
-ESP-Navarra	654214	Spain	1535	62	Northern	None	None	None
-ESP-País Vasco	2207776	Spain	5180	210	Northern	None	None	None
-ESP-La Rioja	316798	Spain	743	30	Northern	None	None	None
+ESP-Andalucía	8414240	Spain	19744	801	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Aragón	1319291	Spain	3096	125	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Asturias	1022800	Spain	2400	97	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Baleares	1149460	Spain	2697	109	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Canarias	2153389	Spain	5053	205	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Cantabria	581078	Spain	1363	55	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Castilla-La Mancha	2032863	Spain	4770	193	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Castilla y León	2399548	Spain	5630	228	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Cataluña	7675217	Spain	18010	731	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Ceuta	84777	Spain	199	8	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-C. Valenciana	5003769	Spain	11741	476	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Extremadura	1067710	Spain	2505	101	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Galicia	2699499	Spain	6334	257	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Madrid	6663394	Spain	15636	634	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Melilla	86487	Spain	203	8	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Murcia	1493898	Spain	3505	142	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Navarra	654214	Spain	1535	62	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-País Vasco	2207776	Spain	5180	210	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-La Rioja	316798	Spain	743	30	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 SWE-Stockholm	2000000	Sweden	4506	108	Northern	None	None	None
 ITA-Piemonte	4356406	Italy	14826	320	Northern	None	None	None
 ITA-Valle d’Aosta	125666	Italy	449	0	Northern	None	None	None
@@ -180,41 +180,41 @@ USA-Florida	21992985	United States of America	57182	1906	Northern	None	None	None
 USA-Texas	29472295	United States of America	67786	2260	Northern	None	None	None
 USA-California	39937489	United States of America	71887	2396	Northern	None	None	None
 India	1380004385	India	1376013	70000	Northern	None	None	None
-IND-Andhra Pradesh	52883163	India	23138	2278	Northern	None	None	None
-IND-Arunachal Pradesh	1528296	India	2404	236	Northern	None	None	None
-IND-Assam	34586234	India	17142	1688	Northern	None	None	None
-IND-Bihar	119461013	India	12019	1183	Northern	None	None	None
-IND-Chhattisgarh	28566990	India	9412	926	Northern	None	None	None
-IND-Goa	1542750	India	3013	296	Northern	None	None	None
-IND-Gujarat	63907200	India	32280	3179	Northern	None	None	None
-IND-Haryana	27388008	India	11240	1106	Northern	None	None	None
-IND-Himachal Pradesh	7316708	India	12399	1221	Northern	None	None	None
-IND-Jammu & Kashmir	13635010	India	11651	1147	Northern	None	None	None
-IND-Jharkhand	37329128	India	10784	1062	Northern	None	None	None
-IND-Karnataka	66165886	India	70165	6910	Northern	None	None	None
-IND-Kerala	35330888	India	38004	3742	Northern	None	None	None
-IND-Madhya Pradesh	82342793	India	28839	2840	Northern	None	None	None
-IND-Maharashtra	120837347	India	51446	5066	Northern	None	None	None
-IND-Manipur	3008546	India	1427	140	Northern	None	None	None
-IND-Meghalaya	3276323	India	4457	438	Northern	None	None	None
-IND-Mizoram	1205974	India	1997	196	Northern	None	None	None
-IND-Nagaland	2189297	India	1880	185	Northern	None	None	None
-IND-Odisha	45429399	India	18519	1823	Northern	None	None	None
-IND-Punjab	29611935	India	17933	1766	Northern	None	None	None
-IND-Rajasthan	78230816	India	31848	3136	Northern	None	None	None
-IND-Sikkim	671720	India	1560	153	Northern	None	None	None
-IND-Tamil Nadu	76481545	India	77532	7635	Northern	None	None	None
-IND-Telangana	38472769	India	20983	2066	Northern	None	None	None
-IND-Tripura	4057847	India	4417	435	Northern	None	None	None
-IND-Uttar Pradesh	228959599	India	76260	7510	Northern	None	None	None
-IND-Uttarakhand	11090425	India	8512	838	Northern	None	None	None
-IND-West Bengal	97694960	India	78566	7737	Northern	None	None	None
-IND-Andaman & Nicobar Islands	419978	India	1075	105	Northern	None	None	None
-IND-Chandigarh	1126705	India	778	76	Northern	None	None	None
-IND-Dadra & Nagar Haveli	378979	India	589	58	Northern	None	None	None
-IND-Daman & Diu	220084	India	240	23	Northern	None	None	None
-IND-Delhi	18345784	India	24383	2401	Northern	None	None	None
-IND-Lakshadweep	71218	India	300	29	Northern	None	None	None
+IND-Andhra Pradesh	52883163	India	23138	2278	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Arunachal Pradesh	1528296	India	2404	236	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Assam	34586234	India	17142	1688	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Bihar	119461013	India	12019	1183	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Chhattisgarh	28566990	India	9412	926	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Goa	1542750	India	3013	296	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Gujarat	63907200	India	32280	3179	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Haryana	27388008	India	11240	1106	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Himachal Pradesh	7316708	India	12399	1221	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Jammu & Kashmir	13635010	India	11651	1147	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Jharkhand	37329128	India	10784	1062	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Karnataka	66165886	India	70165	6910	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Kerala	35330888	India	38004	3742	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Madhya Pradesh	82342793	India	28839	2840	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Maharashtra	120837347	India	51446	5066	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Manipur	3008546	India	1427	140	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Meghalaya	3276323	India	4457	438	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Mizoram	1205974	India	1997	196	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Nagaland	2189297	India	1880	185	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Odisha	45429399	India	18519	1823	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Punjab	29611935	India	17933	1766	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Rajasthan	78230816	India	31848	3136	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Sikkim	671720	India	1560	153	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Tamil Nadu	76481545	India	77532	7635	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Telangana	38472769	India	20983	2066	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Tripura	4057847	India	4417	435	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Uttar Pradesh	228959599	India	76260	7510	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Uttarakhand	11090425	India	8512	838	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-West Bengal	97694960	India	78566	7737	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Andaman & Nicobar Islands	419978	India	1075	105	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Chandigarh	1126705	India	778	76	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Dadra & Nagar Haveli	378979	India	589	58	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Daman & Diu	220084	India	240	23	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Delhi	18345784	India	24383	2401	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Lakshadweep	71218	India	300	29	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Puducherry	1375592	India	3569	351	Northern	None	None	None
 FRA-Auvergne-Rhône-Alpes	8026685	France	16641	555	Northern	None	None	None
 FRA-Bourgogne-Franche-Comté	2795301	France	7095	121	Northern	None	None	None
