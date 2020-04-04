@@ -18,6 +18,8 @@ export const schema = yup.object().shape({
     suspectedCasesToday: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
     importsPerDay: yup.number().required(MSG_REQUIRED),
+
+    gjTest: yup.number().required(MSG_REQUIRED),
   }),
 
   epidemiological: yup.object().shape({

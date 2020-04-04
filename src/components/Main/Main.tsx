@@ -24,7 +24,7 @@ import { schema } from './validation/schema'
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 
-import { defaultScenarioState } from './state/state'
+import { defaultScenarioState, State } from './state/state'
 import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
 import { serialize } from './state/serialization/StateSerializer'
 
