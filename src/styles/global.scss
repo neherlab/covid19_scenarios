@@ -99,7 +99,8 @@ p {
 // STRUCTURE ELEMENTS
 .card {
   background-color: transparent;
-  border: 1px solid $black;
+  border: 1px solid #aaaa;
+  border-radius: 3px;
   // margin-top: 15px;
 }
 
@@ -123,6 +124,7 @@ p {
 
 .card-body {
   padding: 1rem;
+  border-radius: 3px;
 }
 
 .card--main {
@@ -157,6 +159,7 @@ p {
 .card--help {
   .card-body {
     line-height: 1.2;
+    border-radius: 3px;
 
     p {
       margin: 0;
@@ -174,6 +177,10 @@ p {
 //FORMs
 .card--population,
 .card--epidemiology {
+
+  border-radius: 3px;
+  border-color: #7a7a7a;
+
   .card-body .row {
     align-items: center;
     display: flex;

@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Card, CardBody, CardHeader } from 'reactstrap'
 import FormLabel from './FormLabel'
-import './CardWithoutDropdown.scss'
 
 export interface CardWithDropdownProps {
   children?: React.ReactNode | React.ReactNode[]
@@ -15,7 +14,7 @@ export interface CardWithDropdownProps {
 
 export function CardWithoutDropdown({ children, className, identifier, label, help, onBlur }: CardWithDropdownProps) {
   return (
-    <Card className={`h-100 ${className || ''} card-without-dropdown`}>
+    <Card className={`h-100 ${className || ''}`}>
       <CardHeader className="py-1 px-2">
         <FormLabel identifier={identifier} label={label} help={help} />
       </CardHeader>

@@ -4,7 +4,6 @@ import { MdArrowDropDown } from 'react-icons/md'
 import { Card, CardBody, CardHeader, Collapse } from 'reactstrap'
 
 import HelpLabel from './HelpLabel'
-import './CollapsibleCard.scss'
 
 export interface CollapsibleCardProps {
   identifier: string
@@ -27,7 +26,7 @@ export function CollapsibleCard({
   const toggle = () => setCollapsed(!collapsed)
 
   return (
-    <Card className={`h-100 ${className || ''} collapsible-card`}>
+    <Card className={`h-100 ${className || ''}`}>
       <CardHeader className="py-1 px-2" onClick={toggle}>
         <div className="w-100 h-100 text-left p-0" color="default">
           <div className="d-flex">
