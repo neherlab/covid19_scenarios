@@ -12,7 +12,7 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-import webpack from '@cypress/webpack-preprocessor'
+const webpack = require('@cypress/webpack-preprocessor')
 
 /**
  * @type {Cypress.PluginConfig}
