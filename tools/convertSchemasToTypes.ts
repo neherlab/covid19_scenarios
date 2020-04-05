@@ -35,6 +35,7 @@ async function quicktypeJSONSchema(targetLanguage: string, typeName: string, jso
   return quicktype({
     inputData,
     lang: targetLanguage,
+    alphabetizeProperties: false,
   })
 }
 
