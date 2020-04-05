@@ -33,6 +33,8 @@ interface ResultsCardProps {
   scenarioUrl?: string
 }
 
+const MemoizedDeterministicLinePlot = React.memo(DeterministicLinePlot)
+
 function ResultsCardFunction({
   canRun,
   autorunSimulation,
@@ -189,7 +191,7 @@ function ResultsCardFunction({
         </Row>
         <Row noGutters>
           <Col>
-            <DeterministicLinePlot
+            <MemoizedDeterministicLinePlot
               data={result}
               userResult={userResult}
               mitigation={mitigation}
