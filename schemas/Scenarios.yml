@@ -1,5 +1,4 @@
-$schema: https://json-schema.org/draft-07/schema
-
+$schema: http://json-schema.org/draft-07/schema
 title: Scenario
 
 type: array
@@ -48,6 +47,7 @@ definitions:
     required:
       - populationServed
       - country
+      - cases
       - suspectedCasesToday
       - importsPerDay
       - hospitalBeds
@@ -60,6 +60,10 @@ definitions:
         minimum: 0
 
       country:
+        type: string
+        minLength: 1
+
+      cases:
         type: string
         minLength: 1
 
@@ -198,7 +202,7 @@ definitions:
 
       color:
         type: string
-        format: rgbcolor
+        pattern: ^#(?:[0-9a-fA-F]{3}){1,2}$
 
       timeRange:
         $ref: '#/definitions/DateRange'
