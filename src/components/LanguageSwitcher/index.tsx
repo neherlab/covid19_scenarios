@@ -2,20 +2,20 @@ import React, { useState } from 'react'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import i18next from 'i18next'
 
-import langs, { Lang as LangType } from '../../langs'
+import SupportedLocales, { Locale, SupportedLocale } from '../../langs'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 import './LanguageSwitcher.scss'
 
-const DEFAULT_LANG = 'en'
+const DEFAULT_LOCALE: SupportedLocale = 'en'
 
 /**
  * Returns our active lang loaded from localstorage
  */
-export function getCurrentLang(): string {
-  const storedLang = LocalStorage.get<string>(LOCAL_STORAGE_KEYS.LANG)
-  return storedLang ?? DEFAULT_LANG
+export function getCurrentLang(): SupportedLocale {
+  const storedLang = LocalStorage.get<SupportedLocale>(LOCAL_STORAGE_KEYS.LANG)
+  return storedLang ?? DEFAULT_LOCALE
 }
 
 /**
@@ -23,7 +23,7 @@ export function getCurrentLang(): string {
  * Flag next?
  * @param lang
  */
-function Lang({ lang }: { lang: LangType }) {
+function Lang({ lang }: { lang: Locale }) {
   return <span className="language-switcher-lang">{lang.name}</span>
 }
 
@@ -35,19 +35,19 @@ export default function LanguageSwitcher() {
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} className="pull-right" data-testid="LanguageSwitcher">
       <DropdownToggle caret>
-        <Lang lang={langs[selectedLang]} />
+        <Lang lang={SupportedLocales[selectedLang]} />
       </DropdownToggle>
       <DropdownMenu>
-        {Object.keys(langs).map((key) => (
+        {(Object.keys(SupportedLocales) as SupportedLocale[]).map((key: SupportedLocale) => (
           <DropdownItem
             key={key}
             onClick={() => {
-              i18next.changeLanguage(langs[key].lang, () => {
-                LocalStorage.set(LOCAL_STORAGE_KEYS.LANG, langs[key].lang)
+              i18next.changeLanguage(SupportedLocales[key].lang, () => {
+                LocalStorage.set(LOCAL_STORAGE_KEYS.LANG, SupportedLocales[key].lang)
               })
             }}
           >
-            <Lang lang={langs[key]} />
+            <Lang lang={SupportedLocales[key]} />
           </DropdownItem>
         ))}
       </DropdownMenu>

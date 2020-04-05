@@ -80,7 +80,12 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
 
         <Row noGutters>
           <Col className="my-2">
-            <SeverityCard severity={severity} setSeverity={setSeverity} />
+            <SeverityCard
+              severity={severity}
+              setSeverity={setSeverity}
+              scenarioState={scenarioState}
+              scenarioDispatch={scenarioDispatch}
+            />
           </Col>
         </Row>
       </>
