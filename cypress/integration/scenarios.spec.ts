@@ -45,6 +45,8 @@ context('Language switcher', () => {
   })
 
   for (const scenarioKey of firstTenScenarios) {
+    const { population } = scenarios[scenarioKey];
+
     describe(`Switching to "${scenarioKey}"`, () => {
       it(`should change the text on selector to "${scenarioKey}" correctly`, () => {
         cy.get('@ScenarioDropdown')
@@ -56,6 +58,16 @@ context('Language switcher', () => {
         cy.get('@ScenarioDropdown')
           .find('[class$="singleValue"]')
           .should('have.text', scenarioKey)
+      })
+
+      it('should change the values for the "Population" card', () => {
+        cy.get('.card--population').as('PopulationCard')
+
+        for (const key in population) {
+          cy.get('@PopulationCard')
+            .find(`[name="population.${key}"]`)
+            .should('have.value', String(population[key]))
+        }
       })
     })
   }
