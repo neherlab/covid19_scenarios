@@ -8,4 +8,8 @@ const routes: PageRouteDesc[] = [
   { path: '/updates', page: 'Updates' },
 ]
 
+if (process.env.NODE_ENV !== 'production') {
+  routes.push({ path: '/test_standalone', page: 'TestStandalone' })
+}
+
 export default routes
