@@ -91,6 +91,8 @@ const isRegion = (region: string): region is keyof typeof countryCaseCountData =
   return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
 }
 
+const ResponsiveGridLayout = WidthProvider(Responsive)
+
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
@@ -183,7 +185,6 @@ function Main() {
     setSubmitting(false)
   }
 
-  const ResponsiveGridLayout = WidthProvider(Responsive)
   const resultsCardX: any = { lg: 6, md: 6, sm: 0, xs: 0, xxs: 0 }
   const [resultLayout, setResultLayout] = useState({ x: 6, y: 0, w: 6, h: 12 })
   const [layouts, setLayouts] = useState({})
