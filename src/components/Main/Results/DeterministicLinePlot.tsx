@@ -15,9 +15,9 @@ import {
   TooltipPayload,
   XAxis,
   YAxis,
+  YAxisProps,
+  LineProps as RechartsLineProps,
 } from 'recharts'
-
-import { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
@@ -115,6 +115,11 @@ export function DeterministicLinePlot({
 
   const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
+
+  const [zoomLeftState, setzoomLeftState] = useState('dataMin')
+  const [zoomRightState, setzoomRightState] = useState('dataMax')
+  const [zoomSelectedLeftState, setzoomSelectedLeftState] = useState('')
+  const [zoomSelectedRightState, setzoomSelectedRightState] = useState('')
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
@@ -248,6 +253,32 @@ export function DeterministicLinePlot({
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
+  const zoomIn = () => {
+    if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
+      setzoomSelectedLeftState('')
+      setzoomSelectedRightState('')
+      return
+    }
+
+    // xAxis domain
+    if (zoomSelectedLeftState > zoomSelectedRightState) {
+      setzoomSelectedLeftState(zoomSelectedRightState)
+      setzoomSelectedRightState(zoomSelectedLeftState)
+    }
+
+    setzoomLeftState(zoomSelectedLeftState)
+    setzoomRightState(zoomSelectedRightState)
+    setzoomSelectedLeftState('')
+    setzoomSelectedRightState('')
+  }
+
+  const zoomOut = () => {
+    setzoomLeftState('dataMin')
+    setzoomRightState('dataMax')
+    setzoomSelectedLeftState('')
+    setzoomSelectedRightState('')
+  }
+
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
@@ -261,7 +292,12 @@ export function DeterministicLinePlot({
 
           return (
             <>
-              <h3>{t('Cases through time')}</h3>
+              <h3 className="d-flex justify-content-between">
+                {t('Cases through time')}
+                <button className="btn btn-secondary" onClick={zoomOut}>
+                  {t('Zoom Out')}
+                </button>
+              </h3>
 
               <div ref={chartRef} />
               <ComposedChart
@@ -276,20 +312,36 @@ export function DeterministicLinePlot({
                   bottom: 15,
                   top: 15,
                 }}
+                onMouseDown={(e: any) => e && setzoomSelectedLeftState(e.activeLabel)}
+                onMouseMove={(e: any) => e && zoomSelectedLeftState && setzoomSelectedRightState(e.activeLabel)}
+                onMouseUp={zoomIn}
               >
                 <CartesianGrid strokeDasharray="3 3" />
 
                 <XAxis
+                  allowDataOverflow={true}
                   dataKey="time"
                   type="number"
                   tickFormatter={xTickFormatter}
-                  domain={[tMin, tMax]}
+                  domain={[zoomLeftState, zoomRightState]}
                   tickCount={7}
                 />
 
-                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
+                <YAxis
+                  allowDataOverflow={true}
+                  scale={logScaleString}
+                  type="number"
+                  domain={[1, 'dataMax']}
+                  tickFormatter={yTickFormatter}
+                />
 
-                <YAxis yAxisId="mitigationStrengthAxis" orientation={'right'} type="number" domain={[0, 1]} />
+                <YAxis
+                  yAxisId="mitigationStrengthAxis"
+                  allowDataOverflow={true}
+                  orientation={'right'}
+                  type="number"
+                  domain={[0, 1]}
+                />
 
                 <Tooltip
                   formatter={tooltipFormatter}
@@ -311,17 +363,33 @@ export function DeterministicLinePlot({
                 {mitigationIntervals.map((interval) => (
                   <ReferenceArea
                     key={interval.id}
-                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
-                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
+                    x1={_.clamp(
+                      interval.timeRange.tMin.getTime(),
+                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
+                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
+                    )}
+                    x2={_.clamp(
+                      interval.timeRange.tMax.getTime(),
+                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
+                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
+                    )}
                     y1={0}
                     y2={_.clamp(interval.mitigationValue, 0, 1)}
                     yAxisId={'mitigationStrengthAxis'}
                     fill={interval.color}
                     fillOpacity={0.25}
                   >
-                    <Label value={interval.name} position="insideTopRight" fill="#444444"/>
+                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
                   </ReferenceArea>
                 ))}
+                {zoomSelectedLeftState && zoomSelectedRightState ? (
+                  <ReferenceArea
+                    x1={zoomSelectedLeftState}
+                    x2={zoomSelectedRightState}
+                    fill="#c0f5bc"
+                    fillOpacity={0.2}
+                  />
+                ) : null}
 
                 {linesToPlot.map((d) => (
                   <Line
