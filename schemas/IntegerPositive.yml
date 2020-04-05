@@ -1,0 +1,6 @@
+$schema: https://json-schema.org/draft-07/schema
+
+# TODO: replace with a ref to Integer
+type: integer
+multipleOf: 1
+minimum: 0
