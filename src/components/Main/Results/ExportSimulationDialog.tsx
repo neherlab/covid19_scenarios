@@ -25,7 +25,7 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               <th>{t('Filename')}</th>
               <th>{t('Description')}</th>
               <th>{t('Format')}</th>
-              <th>{t('Download')}</th>
+              <th>{t('Action')}</th>
             </tr>
           </thead>
           <tbody>
