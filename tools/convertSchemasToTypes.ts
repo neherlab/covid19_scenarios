@@ -6,7 +6,7 @@ import { quicktype, InputData, JSONSchemaInput, JSONSchemaStore } from 'quicktyp
 
 import { findModuleRoot } from '../lib/findModuleRoot'
 
-const SCHEMA_EXTENSION = '.schema.json'
+const SCHEMA_EXTENSION = '.yml'
 
 export interface Conversion {
   schemasRoot: string
