@@ -8,9 +8,19 @@ import {
   MitigationInterval,
   PopulationData,
   SimulationData,
+  AgeDistribution,
 } from '../../.generated/types/types'
 
-export { CaseCounts, DateRange, MitigationInterval, AllParams, EpidemiologicalData, SimulationData, ContainmentData }
+export {
+  CaseCounts,
+  AgeDistribution,
+  DateRange,
+  MitigationInterval,
+  AllParams,
+  EpidemiologicalData,
+  SimulationData,
+  ContainmentData,
+}
 
 export type MitigationIntervalWithoutId = Omit<MitigationInterval, 'id'>
 
