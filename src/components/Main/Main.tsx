@@ -163,7 +163,7 @@ function Main() {
       const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
       scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
     }
-  }, 1000)
+  }, 0)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
     updateBrowserUrl()
