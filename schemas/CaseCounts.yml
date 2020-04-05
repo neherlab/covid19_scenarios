@@ -1,13 +1,30 @@
 $schema: https://json-schema.org/draft-07/schema
 
-type: object
+title: CaseCounts
 
-additionalProperties:
-  type: array
-  items:
-    $ref: '#/definitions/EmpiricalDatum'
+type: array
+
+items:
+  $ref: '#/definitions/CaseCountsForOneCountry'
 
 definitions:
+  CaseCountsForOneCountry:
+    type: object
+
+    required:
+      - country
+      - empiricalData
+
+    properties:
+      country:
+        type: string
+        minLength: 1
+
+      empiricalData:
+        type: array
+        items:
+          $ref: '#/definitions/EmpiricalDatum'
+
   EmpiricalDatum:
     type: object
 

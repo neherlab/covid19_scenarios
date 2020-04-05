@@ -1,25 +1,48 @@
 $schema: https://json-schema.org/draft-07/schema
 
-type: object
+title: Scenario
 
-required:
-  - population
-  - epidemiological
-  - simulation
-  - containment
+type: array
 
-properties:
-  population:
-   $'ref: '#/definitions/PopulationParams'
-  epidemiological:
-    $ref: '#/definitions/EpidemiologicalParams'
-  simulation:
-    $ref: '#/definitions/SimulationParams'
-  containment:
-    $ref: '#/definitions/ContainmentParams'
+items:
+  $ref: '#/definitions/ScenarioForOneCountry'
 
 definitions:
-  PopulationParams:
+  ScenarioForOneCountry:
+    type: object
+
+    required:
+      - country
+      - allParams
+
+    properties:
+      country:
+        type: string
+        minLength: 1
+
+      allParams:
+        $ref: '#/definitions/AllParams'
+
+  AllParams:
+    type: object
+
+    required:
+      - population
+      - epidemiological
+      - simulation
+      - containment
+
+    properties:
+      population:
+        $ref: '#/definitions/PopulationData'
+      epidemiological:
+        $ref: '#/definitions/EpidemiologicalData'
+      simulation:
+        $ref: '#/definitions/SimulationData'
+      containment:
+        $ref: '#/definitions/ContainmentData'
+
+  PopulationData:
     type: object
 
     required:
@@ -59,7 +82,7 @@ definitions:
         multipleOf: 1
         minimum: 0
 
-  EpidemiologicalParams:
+  EpidemiologicalData:
     type: object
 
     required:
@@ -107,7 +130,7 @@ definitions:
         type: number
         minimum: 0
 
-  SimulationParams:
+  SimulationData:
     type: object
 
     required:
@@ -138,7 +161,7 @@ definitions:
         type: string
         format: date
 
-  ContainmentParams:
+  ContainmentData:
     type: object
 
     required:
