@@ -1,129 +1,110 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "http://example.com/example.json",
-    "type": "array",
-    "title": "Populations",
-    "description": "Collection of populations with covid-19",
-    "items": {
-        "$id": "#/items",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "array",
+  "title": "Populations",
+  "description": "Collection of populations with covid-19",
+  "items": {
+    "$id": "#/items",
+    "type": "object",
+    "title": "Population",
+    "description": "Describes a population with covid-19",
+    "default": {},
+    "required": ["name", "data"],
+    "properties": {
+      "name": {
+        "$id": "#/items/properties/name",
+        "type": "string",
+        "title": "Name",
+        "description": "Name of the population",
+        "default": "",
+        "examples": ["Switzerland"]
+      },
+      "data": {
+        "$id": "#/items/properties/data",
         "type": "object",
-        "title": "Population",
-        "description": "Describes a population with covid-19",
+        "title": "Population data",
+        "description": "Data about the population",
         "default": {},
+        "examples": [
+          {
+            "hospitalBeds": 30799.0,
+            "cases": "Switzerland",
+            "country": "Switzerland",
+            "suspectedCasesToday": 1179.0,
+            "importsPerDay": 4.0,
+            "populationServed": 8600000.0,
+            "ICUBeds": 1400.0
+          }
+        ],
         "required": [
-            "name",
-            "data"
+          "populationServed",
+          "country",
+          "hospitalBeds",
+          "ICUBeds",
+          "suspectedCasesToday",
+          "importsPerDay",
+          "cases"
         ],
         "properties": {
-            "name": {
-                "$id": "#/items/properties/name",
-                "type": "string",
-                "title": "Name",
-                "description": "Name of the population",
-                "default": "",
-                "examples": [
-                    "Switzerland"
-                ]
-            },
-            "data": {
-                "$id": "#/items/properties/data",
-                "type": "object",
-                "title": "Population data",
-                "description": "Data about the population",
-                "default": {},
-                "examples": [
-                    {
-                        "hospitalBeds": 30799.0,
-                        "cases": "Switzerland",
-                        "country": "Switzerland",
-                        "suspectedCasesToday": 1179.0,
-                        "importsPerDay": 4.0,
-                        "populationServed": 8600000.0,
-                        "ICUBeds": 1400.0
-                    }
-                ],
-                "required": [
-                    "populationServed",
-                    "country",
-                    "hospitalBeds",
-                    "ICUBeds",
-                    "suspectedCasesToday",
-                    "importsPerDay",
-                    "cases"
-                ],
-                "properties": {
-                    "populationServed": {
-                        "$id": "#/items/properties/data/properties/populationServed",
-                        "type": "integer",
-                        "title": "Population served",
-                        "description": "Count of people in population",
-                        "default": 0,
-                        "examples": [
-                            8600000
-                        ]
-                    },
-                    "country": {
-                        "$id": "#/items/properties/data/properties/country",
-                        "type": "string",
-                        "title": "Country",
-                        "description": "Country the population belongs to",
-                        "default": "",
-                        "examples": [
-                            "Switzerland"
-                        ]
-                    },
-                    "hospitalBeds": {
-                        "$id": "#/items/properties/data/properties/hospitalBeds",
-                        "type": "integer",
-                        "title": "Hospital beds",
-                        "description": "Hospital beds available in the population",
-                        "default": 0,
-                        "examples": [
-                            30799
-                        ]
-                    },
-                    "ICUBeds": {
-                        "$id": "#/items/properties/data/properties/ICUBeds",
-                        "type": "integer",
-                        "title": "ICU beds",
-                        "description": "ICU beds in the population",
-                        "default": 0,
-                        "examples": [
-                            1400
-                        ]
-                    },
-                    "suspectedCasesToday": {
-                        "$id": "#/items/properties/data/properties/suspectedCasesToday",
-                        "type": "integer",
-                        "title": "Suspected cases",
-                        "description": "Current suspected cases in the population",
-                        "default": 0,
-                        "examples": [
-                            1179
-                        ]
-                    },
-                    "importsPerDay": {
-                        "$id": "#/items/properties/data/properties/importsPerDay",
-                        "type": "number",
-                        "title": "Imports per day",
-                        "description": "Imported cases to the population per day",
-                        "default": 0,
-                        "examples": [
-                            4
-                        ]
-                    },
-                    "cases": {
-                        "$id": "#/items/properties/data/properties/cases",
-                        "type": "string",
-                        "title": "Cases",
-                        "description": "Count of cases in the population",
-                        "default": "",
-                        "examples": [
-                            "Switzerland"
-                        ]
-                    }
-                }
-            }
+          "populationServed": {
+            "$id": "#/items/properties/data/properties/populationServed",
+            "type": "integer",
+            "title": "Population served",
+            "description": "Count of people in population",
+            "default": 0,
+            "examples": [8600000]
+          },
+          "country": {
+            "$id": "#/items/properties/data/properties/country",
+            "type": "string",
+            "title": "Country",
+            "description": "Country the population belongs to",
+            "default": "",
+            "examples": ["Switzerland"]
+          },
+          "hospitalBeds": {
+            "$id": "#/items/properties/data/properties/hospitalBeds",
+            "type": "integer",
+            "title": "Hospital beds",
+            "description": "Hospital beds available in the population",
+            "default": 0,
+            "examples": [30799]
+          },
+          "ICUBeds": {
+            "$id": "#/items/properties/data/properties/ICUBeds",
+            "type": "integer",
+            "title": "ICU beds",
+            "description": "ICU beds in the population",
+            "default": 0,
+            "examples": [1400]
+          },
+          "suspectedCasesToday": {
+            "$id": "#/items/properties/data/properties/suspectedCasesToday",
+            "type": "integer",
+            "title": "Suspected cases",
+            "description": "Current suspected cases in the population",
+            "default": 0,
+            "examples": [1179]
+          },
+          "importsPerDay": {
+            "$id": "#/items/properties/data/properties/importsPerDay",
+            "type": "number",
+            "title": "Imports per day",
+            "description": "Imported cases to the population per day",
+            "default": 0,
+            "examples": [4]
+          },
+          "cases": {
+            "$id": "#/items/properties/data/properties/cases",
+            "type": "string",
+            "title": "Cases",
+            "description": "Count of cases in the population",
+            "default": "",
+            "examples": ["Switzerland"]
+          }
         }
+      }
     }
+  }
 }
