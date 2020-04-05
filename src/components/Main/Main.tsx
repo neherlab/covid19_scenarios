@@ -6,6 +6,7 @@ import _ from 'lodash'
 import { Form, Formik, FormikHelpers } from 'formik'
 
 import { Col, Row } from 'reactstrap'
+import { Responsive, WidthProvider, Layout } from 'react-grid-layout'
 
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
@@ -27,17 +28,15 @@ import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimul
 import { scenarioReducer } from './state/reducer'
 
 import { defaultScenarioState } from './state/state'
-import { serializeScenarioToURL, deserializeScenarioFromURL } from './state/URLSerializer'
+import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
+import { serialize } from './state/serialization/StateSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
 import './Main.scss'
-import { TimeSeries } from 'src/algorithms/types/TimeSeries.types'
-import { Responsive, WidthProvider, Layout } from 'react-grid-layout'
-
-const ResponsiveGridLayout = WidthProvider(Responsive)
+import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -98,7 +97,7 @@ function Main() {
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,
-    // deserializeScenarioFromURL,
+    deserializeScenarioFromURL,
   )
 
   // TODO: Can this complex state be handled by formik too?
@@ -122,7 +121,6 @@ function Main() {
     epidemiological: scenarioState.data.epidemiological,
     simulation: scenarioState.data.simulation,
     containment: scenarioState.data.containment,
-    current: scenarioState.current,
   }
 
   useEffect(() => {
@@ -143,8 +141,8 @@ function Main() {
   )
 
   useEffect(() => {
-    // 1. pon each paramter change, we rebuild the query string
-    const queryString = serializeScenarioToURL(scenarioState, allParams)
+    // 1. upon each parameter change, we rebuild the query string
+    const queryString = serialize(scenarioState)
 
     if (queryString !== scenarioQueryString) {
       // whenever the generated query string changes, we're updating:
@@ -185,6 +183,7 @@ function Main() {
     setSubmitting(false)
   }
 
+  const ResponsiveGridLayout = WidthProvider(Responsive)
   const resultsCardX: any = { lg: 6, md: 6, sm: 0, xs: 0, xxs: 0 }
   const [resultLayout, setResultLayout] = useState({ x: 6, y: 0, w: 6, h: 12 })
   const [layouts, setLayouts] = useState({})
