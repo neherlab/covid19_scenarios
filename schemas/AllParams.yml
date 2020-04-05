@@ -1,5 +1,6 @@
 $schema: https://json-schema.org/draft-07/schema
 
+title: AllParams
 type: object
 
 required:
@@ -10,16 +11,16 @@ required:
 
 properties:
   population:
-   $'ref: '#/definitions/PopulationParams'
+    $ref: '#/definitions/PopulationData'
   epidemiological:
-    $ref: '#/definitions/EpidemiologicalParams'
+    $ref: '#/definitions/EpidemiologicalData'
   simulation:
-    $ref: '#/definitions/SimulationParams'
+    $ref: '#/definitions/SimulationData'
   containment:
-    $ref: '#/definitions/ContainmentParams'
+    $ref: '#/definitions/ContainmentData'
 
 definitions:
-  PopulationParams:
+  PopulationData:
     type: object
 
     required:
@@ -59,7 +60,7 @@ definitions:
         multipleOf: 1
         minimum: 0
 
-  EpidemiologicalParams:
+  EpidemiologicalData:
     type: object
 
     required:
@@ -107,7 +108,7 @@ definitions:
         type: number
         minimum: 0
 
-  SimulationParams:
+  SimulationData:
     type: object
 
     required:
@@ -138,7 +139,7 @@ definitions:
         type: string
         format: date
 
-  ContainmentParams:
+  ContainmentData:
     type: object
 
     required:
