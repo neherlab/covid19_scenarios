@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { useDebouncedCallback } from 'use-debounce'
+
 import _ from 'lodash'
 
 import ReactResizeDetector from 'react-resize-detector'
@@ -109,6 +111,9 @@ export function DeterministicLinePlot({
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+  const [rendered, setRendered] = useState(<></>)
+
+  const [debouncedRender] = useDebouncedCallback( () => setRendered(render()), 1000)
 
   // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
   // href: https://reactjs.org/docs/hooks-rules.html
@@ -248,7 +253,8 @@ export function DeterministicLinePlot({
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
-  return (
+  function render() {
+    return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
         {({ width }: { width?: number }) => {
@@ -346,5 +352,9 @@ export function DeterministicLinePlot({
         }}
       </ReactResizeDetector>
     </div>
-  )
+  )}
+
+  debouncedRender()
+
+  return rendered
 }
