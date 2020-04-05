@@ -22,9 +22,7 @@ import { MitigationInterval } from '../../../../algorithms/types/Param.types'
  */
 const getTime = (potentialDate: Date | string): number => {
   if (typeof potentialDate === 'string') {
-    try {
-      return new Date(potentialDate).getTime()
-    } catch (error) {}
+    return new Date(potentialDate).getTime()
   }
 
   try {
