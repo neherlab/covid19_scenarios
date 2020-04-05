@@ -6,7 +6,11 @@
   "license": "MIT",
   "scripts": {
     "clear": "node lib/clear.js",
-    "schema:totypes": "yarn babel-node --extensions '.ts' tools/convertSchemasToTypes.ts",
+    "schema:totypes": "run-s -c schema:mkdir:typescript schema:totypes:typescript schema:mkdir:python schema:totypes:python",
+    "schema:mkdir:typescript": "mkdir -p 'src/.generated/types'",
+    "schema:mkdir:python": "mkdir -p 'data/generated_types'",
+    "schema:totypes:typescript": "quicktype --src-lang schema --lang typescript --converters all-objects --out src/.generated/types/types.ts schemas/*.yml",
+    "schema:totypes:python": "quicktype --src-lang schema --lang python --out data/generated_types/types.py schemas/*.yml",
     "dev": "nodemon --config config/nodemon/dev.json",
     "dev:start": "yarn install && yarn schema:totypes && yarn dev:nowatch || cd .",
     "dev:nowatch": "cross-env NODE_ENV=development BABEL_ENV=development webpack-dev-server --config config/webpack/webpack.client.babel.ts",
