@@ -25,7 +25,7 @@ A smaller R0 implies that infection control measures are more effective, so this
 Our previous code stepped the ODE forward in 6h intervals. This large step size
 results in inaccuracies, in particular as we are using first order integration scheme.
 This step size is now reduced to 0.05 days. This can change the output of the model
-by a few percents. We will soon move to a higher order integration scheme for 
+by a few percent. We will soon move to a higher order integration scheme for 
 more accurate ODE integration.
 
 
