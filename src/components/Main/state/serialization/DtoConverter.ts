@@ -22,7 +22,9 @@ import { MitigationInterval } from '../../../../algorithms/types/Param.types'
  */
 const getTime = (potentialDate: Date | string): number => {
   if (typeof potentialDate === 'string') {
-    return 0 // epoch zero (1 January 1970)
+    try {
+      return new Date(potentialDate).getTime()
+    } catch (error) {}
   }
 
   try {
