@@ -16,8 +16,7 @@ import { run, intervalsToTimeSeries } from '../../algorithms/run'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 import severityData from '../../assets/data/severityData.json'
-
-import countryCaseCountData from '../../assets/data/case_counts.json'
+import { getCaseCountsData } from './state/caseCountsData'
 
 import { schema } from './validation/schema'
 
@@ -57,12 +56,7 @@ async function runSimulation(
     ...params.containment,
   }
 
-  if (params.population.cases !== 'none' && !isRegion(params.population.cases)) {
-    console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
-    return
-  }
-
-  const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
+  const caseCounts = getCaseCountsData(params.population.cases)
   const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
 
   intervalsToTimeSeries(params.containment.mitigationIntervals)
@@ -73,10 +67,6 @@ async function runSimulation(
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
-
-const isRegion = (region: string): region is keyof typeof countryCaseCountData => {
-  return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
-}
 
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
