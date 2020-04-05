@@ -254,9 +254,10 @@ export function DeterministicLinePlot({
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
   const zoomIn = () => {
-    if (zoomSelectedLeftState === zoomSelectedRightState || zoomSelectedRightState === '') {
+    if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
       setzoomSelectedLeftState('')
       setzoomSelectedRightState('')
+      return
     }
 
     // xAxis domain
@@ -293,7 +294,9 @@ export function DeterministicLinePlot({
             <>
               <h3 className="d-flex justify-content-between">
                 {t('Cases through time')}
-                <button onClick={zoomOut}>{t('Zoom Out')}</button>
+                <button className="btn btn-secondary" onClick={zoomOut}>
+                  {t('Zoom Out')}
+                </button>
               </h3>
 
               <div ref={chartRef} />
@@ -360,8 +363,16 @@ export function DeterministicLinePlot({
                 {mitigationIntervals.map((interval) => (
                   <ReferenceArea
                     key={interval.id}
-                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
-                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
+                    x1={_.clamp(
+                      interval.timeRange.tMin.getTime(),
+                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
+                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
+                    )}
+                    x2={_.clamp(
+                      interval.timeRange.tMax.getTime(),
+                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
+                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
+                    )}
                     y1={0}
                     y2={_.clamp(interval.mitigationValue, 0, 1)}
                     yAxisId={'mitigationStrengthAxis'}
