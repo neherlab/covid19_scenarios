@@ -111,64 +111,6 @@
   max-width: 400px;
 }
 
-.landing-page-checkbox {
-  display: block;
-  text-align: center;
-  padding-bottom: 30px;
-
-  &__input {
-    opacity: 0;
-    display: inline-block;
-
-    & + label::after {
-      content: none;
-    }
-    &:checked + label::after {
-      content: '';
-    }
-  }
-
-  &__label {
-    margin-left: 0.5rem;
-    font-size: 14px;
-    position: relative;
-  }
-
-  /* checkbox style */
-  &__label::before {
-    content: '';
-    display: inline-block;
-    height: 22px;
-    width: 22px;
-    border: 2px solid #4f4f4f;
-    border-radius: 5px;
-    top: 3px;
-  }
-
-  /* checkmark style */
-  &__label::after {
-    content: '';
-    display: inline-block;
-    height: 7px;
-    width: 12px;
-    border-left: 2px solid;
-    border-bottom: 2px solid;
-    transform: rotate(-45deg);
-    left: 5px;
-    top: 8px;
-  }
-
-  &__label::before, 
-  &__label::after {
-    position: absolute;
-    margin-left: -28px;
-  }
-
-  &__label:hover::before {
-    background-color: #d9d9d9;
-  }
-}
-
 @media (max-width: 900px) {
   .landing-page__hero-section {
     min-height: 350px;
