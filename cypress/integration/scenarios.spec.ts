@@ -6,7 +6,7 @@ const scenariosKeys = Object.keys(scenarios);
 // testing all the scenarios would be extremely long
 const firstTenScenarios = scenariosKeys.slice(0, 10);
 
-context('Language switcher', () => {
+context('Scenario selector', () => {
   before(() => {
     cy.visit(Cypress.env('BASE_URL'))
     cy.closeDisclaimer()
@@ -14,6 +14,8 @@ context('Language switcher', () => {
 
   beforeEach(() => {
     cy.get('#scenarioName').as('ScenarioDropdown')
+    cy.get('.card--population').as('PopulationCard')
+    cy.get('.card--epidemiology').as('EpidemiologyCard')
   })
 
   describe('The scenario selector', () => {
@@ -45,15 +47,16 @@ context('Language switcher', () => {
   })
 
   for (const scenarioKey of firstTenScenarios) {
-    const { population } = scenarios[scenarioKey];
+    const { epidemiological, population } = scenarios[scenarioKey];
 
     describe(`Switching to "${scenarioKey}"`, () => {
       it(`should change the text on selector to "${scenarioKey}" correctly`, () => {
         cy.get('@ScenarioDropdown')
           .click()
-          .find('[class$="-menu"]')
           .findByText(scenarioKey)
           .click()
+
+        cy.wait(100) // updating the selectbox can take some time
 
         cy.get('@ScenarioDropdown')
           .find('[class$="singleValue"]')
@@ -61,12 +64,18 @@ context('Language switcher', () => {
       })
 
       it('should change the values for the "Population" card', () => {
-        cy.get('.card--population').as('PopulationCard')
-
         for (const key in population) {
           cy.get('@PopulationCard')
             .find(`[name="population.${key}"]`)
             .should('have.value', String(population[key]))
+        }
+      })
+
+      it('should change the values for the "Epidemiology" card', () => {
+        for (const key in epidemiological) {
+          cy.get('@EpidemiologyCard')
+            .find(`[name="epidemiological.${key}"]`)
+            .should('have.value', String(epidemiological[key]))
         }
       })
     })
