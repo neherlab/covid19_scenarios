@@ -11,7 +11,7 @@ import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.ty
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'

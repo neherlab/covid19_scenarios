@@ -21,7 +21,7 @@ import { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
