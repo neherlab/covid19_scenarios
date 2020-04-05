@@ -2,11 +2,21 @@ import fs from 'fs-extra'
 import path from 'path'
 
 import FA from 'fasy'
-import { quicktype, InputData, JSONSchemaInput, JSONSchemaStore } from 'quicktype-core'
+import { quicktype, InputData, JSONSchema, JSONSchemaInput, JSONSchemaStore, parseJSON } from 'quicktype-core'
 
 import { findModuleRoot } from '../lib/findModuleRoot'
 
 const SCHEMA_EXTENSION = '.yml'
+
+class Store extends JSONSchemaStore {
+  // eslint-disable-next-line class-methods-use-this
+  fetch(address: string): Promise<JSONSchema | undefined> {
+    const { moduleRoot } = findModuleRoot()
+    const schemaFilepath = path.join(moduleRoot, 'schemas', address)
+    const jsonSchemaString = fs.readFileSync(schemaFilepath).toString('utf-8')
+    return parseJSON(jsonSchemaString, 'JSON Schema', address)
+  }
+}
 
 export interface Conversion {
   schemasRoot: string
@@ -16,7 +26,7 @@ export interface Conversion {
 }
 
 async function quicktypeJSONSchema(targetLanguage: string, typeName: string, jsonSchemaString: string) {
-  const schemaInput = new JSONSchemaInput(new JSONSchemaStore())
+  const schemaInput = new JSONSchemaInput(new Store())
   await schemaInput.addSource({ name: typeName, schema: jsonSchemaString })
 
   const inputData = new InputData()
