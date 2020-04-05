@@ -1,0 +1,24 @@
+$schema: https://json-schema.org/draft-07/schema
+
+title: Scenario
+
+type: array
+
+items:
+  $ref: '#/definitions/ScenarioForOneCountry'
+
+definitions:
+  ScenarioForOneCountry:
+    type: object
+
+    required:
+      - country
+      - allParams
+
+    properties:
+      country:
+        type: string
+        minLength: 1
+
+      allParams:
+        $ref: 'AllParams.yml#'

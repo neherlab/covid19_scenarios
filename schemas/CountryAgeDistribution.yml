@@ -1,5 +1,7 @@
 $schema: https://json-schema.org/draft-07/schema
 
+title: CountryAgeDistribution
+
 type: object
 
 # FIXME: These properties and the enum in Severity are currently duplicated.

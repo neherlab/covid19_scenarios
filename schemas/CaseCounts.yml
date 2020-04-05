@@ -1,50 +1,26 @@
 $schema: https://json-schema.org/draft-07/schema
 
-type: object
+title: CaseCounts
 
-additionalProperties:
-  type: array
-  items:
-    $ref: '#/definitions/EmpiricalDatum'
+type: array
+
+items:
+  $ref: '#/definitions/CaseCountsForOneCountry'
 
 definitions:
-  EmpiricalDatum:
+  CaseCountsForOneCountry:
     type: object
 
     required:
-      - time
-      - cases
-      - deaths
-      - hospitalized
-      - icu
-      - recovered
+      - country
+      - empiricalData
 
     properties:
-      time:
+      country:
         type: string
-        format: date-time
+        minLength: 1
 
-      cases:
-        type: integer
-        multipleOf: 1
-        min: 0
-
-      deaths:
-        type: integer
-        multipleOf: 1
-        min: 0
-
-      hospitalized:
-        type: integer
-        multipleOf: 1
-        min: 0
-
-      icu:
-        type: integer
-        multipleOf: 1
-        min: 0
-
-      recovered:
-        type: integer
-        multipleOf: 1
-        min: 0
+      empiricalData:
+        type: array
+        items:
+          $ref: 'EmpiricalDatum.yml#/definitions/EmpiricalDatum'
