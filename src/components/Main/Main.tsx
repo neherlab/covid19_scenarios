@@ -215,8 +215,7 @@ function Main() {
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
-                      params={allParams}
-                      mitigation={allParams.containment}
+                      mitigation={scenarioState.data.containment}
                       result={result}
                       caseCounts={empiricalCases}
                       scenarioUrl={scenarioUrl}

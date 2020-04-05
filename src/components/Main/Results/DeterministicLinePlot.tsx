@@ -70,7 +70,6 @@ export const colors = {
 export interface LinePlotProps {
   data?: AlgorithmResult
   userResult?: UserResult
-  params: AllParams
   mitigation: ContainmentData
   logScale?: boolean
   showHumanized?: boolean
@@ -100,7 +99,6 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
 export function DeterministicLinePlot({
   data,
   userResult,
-  params,
   mitigation,
   logScale,
   showHumanized,

@@ -26,7 +26,6 @@ interface ResultsCardProps {
   autorunSimulation: boolean
   toggleAutorun: () => void
   canRun: boolean
-  params: AllParams
   mitigation: ContainmentData
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
@@ -38,7 +37,6 @@ function ResultsCardFunction({
   canRun,
   autorunSimulation,
   toggleAutorun,
-  params,
   mitigation,
   severity,
   result,
@@ -194,7 +192,6 @@ function ResultsCardFunction({
             <DeterministicLinePlot
               data={result}
               userResult={userResult}
-              params={params}
               mitigation={mitigation}
               logScale={logScale}
               showHumanized={showHumanized}
