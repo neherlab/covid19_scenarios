@@ -46,10 +46,10 @@ function LandingPage({ location }: RouteComponentProps) {
         <img className="landing-page__promo-image" src={promoImage} alt="Simulator showing results" />
         <div className="landing-page__content-section-text">
         {showSkipCheckbox && (
-          <div className="landing-page-checkbox">
-            <div className="landing-page-checkbox__container">
-              <input onChange={onCheckboxChange} id="skip-landing-page" className="landing-page-checkbox__input" type="checkbox" />
-              <label className="landing-page-checkbox__label" htmlFor="skip-landing-page">
+          <div className="checkbox">
+            <div className="checkbox__container">
+              <input onChange={onCheckboxChange} id="skip-landing-page" className="checkbox__input" type="checkbox" />
+              <label className="checkbox__label" htmlFor="skip-landing-page">
                 {t('Skip straight to simulator next time')}
               </label>
             </div>
