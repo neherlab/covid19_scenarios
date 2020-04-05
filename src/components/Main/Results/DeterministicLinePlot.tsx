@@ -17,9 +17,9 @@ import {
   TooltipPayload,
   XAxis,
   YAxis,
+  LineProps as RechartsLineProps,
+  YAxisProps,
 } from 'recharts'
-
-import { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
@@ -113,7 +113,7 @@ export function DeterministicLinePlot({
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
   const [rendered, setRendered] = useState(<></>)
 
-  const [debouncedRender] = useDebouncedCallback( () => setRendered(render()), 1000)
+  const [debouncedRender] = useDebouncedCallback(() => setRendered(render()), 1000)
 
   // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
   // href: https://reactjs.org/docs/hooks-rules.html
@@ -255,104 +255,107 @@ export function DeterministicLinePlot({
 
   function render() {
     return (
-    <div className="w-100 h-100" data-testid="DeterministicLinePlot">
-      <ReactResizeDetector handleWidth handleHeight>
-        {({ width }: { width?: number }) => {
-          if (!width) {
-            return <div className="w-100 h-100" />
-          }
+      <div className="w-100 h-100" data-testid="DeterministicLinePlot">
+        <ReactResizeDetector handleWidth handleHeight>
+          {({ width }: { width?: number }) => {
+            if (!width) {
+              return <div className="w-100 h-100" />
+            }
 
-          const height = Math.max(500, width / ASPECT_RATIO)
-          const tooltipPosition = calculatePosition(height)
+            const height = Math.max(500, width / ASPECT_RATIO)
+            const tooltipPosition = calculatePosition(height)
 
-          return (
-            <>
-              <h3>{t('Cases through time')}</h3>
+            return (
+              <>
+                <h3>{t('Cases through time')}</h3>
 
-              <div ref={chartRef} />
-              <ComposedChart
-                onClick={() => scrollToRef(chartRef)}
-                width={width}
-                height={height}
-                data={plotData}
-                throttleDelay={75}
-                margin={{
-                  left: 15,
-                  right: 15,
-                  bottom: 15,
-                  top: 15,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-
-                <XAxis
-                  dataKey="time"
-                  type="number"
-                  tickFormatter={xTickFormatter}
-                  domain={[tMin, tMax]}
-                  tickCount={7}
-                />
-
-                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
-
-                <YAxis yAxisId="mitigationStrengthAxis" orientation={'right'} type="number" domain={[0, 1]} />
-
-                <Tooltip
-                  formatter={tooltipFormatter}
-                  labelFormatter={labelFormatter}
-                  position={tooltipPosition}
-                  content={ResponsiveTooltipContent}
-                />
-
-                <Legend
-                  verticalAlign="top"
-                  formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
-                  onClick={(e) => {
-                    const plots = enabledPlots.slice(0)
-                    enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)
-                    setEnabledPlots(plots)
+                <div ref={chartRef} />
+                <ComposedChart
+                  onClick={() => scrollToRef(chartRef)}
+                  width={width}
+                  height={height}
+                  data={plotData}
+                  throttleDelay={75}
+                  margin={{
+                    left: 15,
+                    right: 15,
+                    bottom: 15,
+                    top: 15,
                   }}
-                />
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
 
-                {mitigationIntervals.map((interval) => (
-                  <ReferenceArea
-                    key={interval.id}
-                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
-                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
-                    y1={0}
-                    y2={_.clamp(interval.mitigationValue, 0, 1)}
-                    yAxisId={'mitigationStrengthAxis'}
-                    fill={interval.color}
-                    fillOpacity={0.25}
-                  >
-                    <Label value={interval.name} position="insideTopRight" fill="#444444"/>
-                  </ReferenceArea>
-                ))}
-
-                {linesToPlot.map((d) => (
-                  <Line
-                    key={d.key}
-                    dot={false}
-                    isAnimationActive={false}
-                    type="monotone"
-                    strokeWidth={3}
-                    dataKey={d.key}
-                    stroke={d.color}
-                    name={d.name}
-                    legendType={d.legendType}
+                  <XAxis
+                    dataKey="time"
+                    type="number"
+                    tickFormatter={xTickFormatter}
+                    domain={[tMin, tMax]}
+                    tickCount={7}
                   />
-                ))}
 
-                {scatterToPlot.map((d) => (
-                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
-                ))}
-              </ComposedChart>
-            </>
-          )
-        }}
-      </ReactResizeDetector>
-    </div>
-  )}
+                  <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
+
+                  <YAxis yAxisId="mitigationStrengthAxis" orientation={'right'} type="number" domain={[0, 1]} />
+
+                  <Tooltip
+                    formatter={tooltipFormatter}
+                    labelFormatter={labelFormatter}
+                    position={tooltipPosition}
+                    content={ResponsiveTooltipContent}
+                  />
+
+                  <Legend
+                    verticalAlign="top"
+                    formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
+                    onClick={(e) => {
+                      const plots = enabledPlots.slice(0)
+                      enabledPlots.includes(e.dataKey)
+                        ? plots.splice(plots.indexOf(e.dataKey), 1)
+                        : plots.push(e.dataKey)
+                      setEnabledPlots(plots)
+                    }}
+                  />
+
+                  {mitigationIntervals.map((interval) => (
+                    <ReferenceArea
+                      key={interval.id}
+                      x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
+                      x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
+                      y1={0}
+                      y2={_.clamp(interval.mitigationValue, 0, 1)}
+                      yAxisId={'mitigationStrengthAxis'}
+                      fill={interval.color}
+                      fillOpacity={0.25}
+                    >
+                      <Label value={interval.name} position="insideTopRight" fill="#444444" />
+                    </ReferenceArea>
+                  ))}
+
+                  {linesToPlot.map((d) => (
+                    <Line
+                      key={d.key}
+                      dot={false}
+                      isAnimationActive={false}
+                      type="monotone"
+                      strokeWidth={3}
+                      dataKey={d.key}
+                      stroke={d.color}
+                      name={d.name}
+                      legendType={d.legendType}
+                    />
+                  ))}
+
+                  {scatterToPlot.map((d) => (
+                    <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                  ))}
+                </ComposedChart>
+              </>
+            )
+          }}
+        </ReactResizeDetector>
+      </div>
+    )
+  }
 
   debouncedRender()
 
