@@ -3,14 +3,14 @@ Scientists around the world are studying how the virus spreads and how it affect
 Dozens of scientific papers are published every day.
 
 As we learn more about the virus, we try to update our model and the parameters.
-However, updates to the model will mean that a run of the model from last week might give slighly different results from a run now.
+However, updates to the model will mean that a run of the model from last week might give slightly different results from a run now.
 These differences arise for two types of reasons
 
  * We changed the default parameters because we think they more accurately reflect what we know about the virus. In this case, reverting to old parameters should give the same results.
  * We changed the underlying model to be more realistic or because there were some bugs or inaccuracies. In this case, even the same parameters will not necessarily give the same results
 
 We realize this can be confusing, but in this evolving situation, this is difficult to avoid.
-We try to summarize most significant model changes below.
+We try to summarize the most significant model changes below.
 
 ### 2020-04-02: Reduce latency time
 Our initial model assumed a serial interval (time between subsequent infections)
@@ -25,7 +25,7 @@ A smaller R0 implies that infection control measures are more effective, so this
 Our previous code stepped the ODE forward in 6h intervals. This large step size
 results in inaccuracies, in particular as we are using first order integration scheme.
 This step size is now reduced to 0.05 days. This can change the output of the model
-by a few percent. We will soon move to a higher order integration scheme for 
+by a few percents. We will soon move to a higher order integration scheme for 
 more accurate ODE integration.
 
 
@@ -33,7 +33,7 @@ more accurate ODE integration.
 
 In this update, we replaced the single exposed category with a sequence of three exposed categories.
 The single category implicitly assumes that individuals spend an exponentially distributed time in the "exposed but not yet infectious" state.
-The peak of the exponential distribution is at zero implying that many individuals spend a very short time in this category while other spend a much longer time.
+The peak of the exponential distribution is at zero implying that many individuals spend a very short time in this category while others spend a much longer time.
 In reality, it will take at least 2-3 days before the virus has grown to sufficient numbers before somebody is infectious.
 Multiple exposed categories effectively generate an [Erlang distribution](https://en.wikipedia.org/wiki/Erlang_distribution) (a special case of a Gamma distribution) with a peak away from zero.
 
