@@ -15,6 +15,7 @@
     "config",
     "package.json",
     "postcss.config.js",
+    "schemas",
     "stylelint.config.js",
     "tsconfig.json",
     "tslint.json",
