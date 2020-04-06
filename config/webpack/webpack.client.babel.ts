@@ -55,9 +55,9 @@ const profile = getenv('PROFILE', '0') === '1'
 const debuggableProd = getenv('DEBUGGABLE_PROD', '0') === '1'
 const sourceMaps = true
 const schema = getenv('WEB_SCHEMA')
-const host = getenv('WEB_HOST')
+const host = getenv('WEB_HOST', getenv('NOW_URL'))
 const portDev = getenv('WEB_PORT_DEV')
-const portProd = getenv('WEB_PORT_PROD', '')
+const portProd = getenv('WEB_PORT_PROD')
 const portAnalyze = parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
@@ -70,7 +70,7 @@ function getWebRoot() {
     root = `${root}:${portDev}`
   }
 
-  if (production && portProd) {
+  if (production && !_.isEmpty(portProd) && portProd !== 'null') {
     root = `${root}:${portProd}`
   }
 
