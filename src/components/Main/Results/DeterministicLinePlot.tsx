@@ -26,6 +26,7 @@ import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
+import { makeWindowable, NewWindowProps, NewWindowButton } from '../../Wrappers/NewWindow'
 
 import './DeterministicLinePlot.scss'
 
@@ -67,7 +68,7 @@ export const colors = {
   [DATA_POINTS.ICUbeds]: '#cccccc',
 }
 
-export interface LinePlotProps {
+export interface LinePlotProps extends NewWindowProps {
   data?: AlgorithmResult
   userResult?: UserResult
   params: AllParams
@@ -105,6 +106,8 @@ export function DeterministicLinePlot({
   logScale,
   showHumanized,
   caseCounts,
+  isWindowOpen,
+  toggleWindowOpen,
 }: LinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
@@ -288,9 +291,14 @@ export function DeterministicLinePlot({
             <>
               <h3 className="d-flex justify-content-between">
                 {t('Cases through time')}
-                <button className="btn btn-secondary" onClick={zoomOut}>
-                  {t('Zoom Out')}
-                </button>
+                <div>
+                  <button type="button" className="btn btn-secondary mx-1" onClick={zoomOut}>
+                    {t('Zoom Out')}
+                  </button>
+                  {toggleWindowOpen && (
+                    <NewWindowButton isWindowOpen={!!isWindowOpen} toggleWindowOpen={toggleWindowOpen} />
+                  )}
+                </div>
               </h3>
 
               <div ref={chartRef} />
@@ -410,3 +418,8 @@ export function DeterministicLinePlot({
     </div>
   )
 }
+
+export const WindowableDeterministicLinePlot = makeWindowable(DeterministicLinePlot, {
+  name: 'cases-through-time',
+  title: 'Cases Through Time',
+})
