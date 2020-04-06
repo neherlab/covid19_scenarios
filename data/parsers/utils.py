@@ -4,11 +4,14 @@ import functools
 import os
 import re
 import sys
+import yaml
+
 sys.path.append('..')
-from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR, SCHEMA_CASECOUNTS
 
 from datetime import datetime
 from collections import defaultdict
+from jsonschema import validate
 
 # ------------------------------------------------------------------------
 # Globals
@@ -189,8 +192,22 @@ def add_country_code(regions, exceptions, code):
     return res
 
 
-def store_json(newdata, json_file):
-    with open(json_file, 'w') as fh:
+def store_json(case_counts, json_file):
+    """ Validate and store data to .json file
+    Arguments:
+    - case_counts: a dict of lists of dicts for case counts
+    """
+
+    #convert dict of lists of dicts to list of dicts of lists of dicts
+    newdata = []
+    for k in case_counts:
+        newdata.append({'country': k, 'empiricalData': case_counts[k]})
+
+    with open(SCHEMA_CASECOUNTS, "r") as f:
+        schema = yaml.load(f, Loader=yaml.FullLoader)
+        validate(newdata, schema)
+
+    with open(newdata, 'w') as fh:
         json.dump(newdata, fh)
 
     #print('first layer keys are %s'%mergedCases.keys())
