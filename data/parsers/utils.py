@@ -203,7 +203,7 @@ def store_json(case_counts, json_file):
     for k in case_counts:
         newdata.append({'country': k, 'empiricalData': case_counts[k]})
 
-    with open(SCHEMA_CASECOUNTS, "r") as f:
+    with open(os.path.join(BASE_PATH, SCHEMA_CASECOUNTS), "r") as f:
         schema = yaml.load(f, Loader=yaml.FullLoader)
         validate(newdata, schema)
 
