@@ -16,6 +16,9 @@ mitigationMeasures = {
 "Intervention #2": {"color": "#666666", "value":0.1},
 }
 
+# we probably have to find a way to deal with supersets: national measures that
+# supplant regional ones. Another case to deal with are bans of escalating strictness:
+# mass gatherings with 1000, 500, 100, 50, 5 people
 def read_table():
     measures = defaultdict(list)
     with open(os.path.join(BASE_PATH, MITIGATION_TABLE), 'r') as fh:
