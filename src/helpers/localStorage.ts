@@ -5,6 +5,7 @@ export const LOCAL_STORAGE_KEYS = {
   SHOW_HUMANIZED_RESULTS: 'show-humanized-results',
   SUPPRESS_DISCLAIMER: 'suppress-disclaimer',
   SKIP_LANDING_PAGE: 'skip-landing-page',
+  SAVED_SCENARIOS: 'saved-scenarios',
 } as const
 
 export type LocalStorageKey = typeof LOCAL_STORAGE_KEYS[keyof typeof LOCAL_STORAGE_KEYS]

@@ -15,6 +15,40 @@
   }
 }
 
+.modal-btn-container {
+  display: flex;
+
+  button {
+    margin: 0 0.5em 0 0;
+    text-transform: uppercase;
+  }
+
+  > button:last-of-type {
+    margin: 0;
+  }
+
+  button:not([hidden]) {
+    flex: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal-btn-container {
+    display: inline-block;   
+    button {
+      margin: 0 0.5em 0 0;
+      text-transform: uppercase;
+    }
+  
+    > button:last-of-type {
+      margin: 0;
+    }
+  
+    button:not([hidden]) {
+      flex: 100%;
+    }
+  }
+}
 .form-check-label {
   font-size: 80%;
   margin-bottom: 1.5rem;

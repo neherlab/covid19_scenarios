@@ -65,7 +65,7 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
         <Button color="secondary" disabled={!result} onClick={() => result && exportAll(result)}>
           {t('Download all as zip')}
         </Button>
-        <Button color="primary" onClick={toggleShowModal}>
+        <Button color="primary" type="submit" onClick={toggleShowModal}>
           {t('Done')}
         </Button>
       </ModalFooter>

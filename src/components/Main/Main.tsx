@@ -36,6 +36,7 @@ import { updateSeverityTable } from './Scenario/severityTableUpdate'
 
 import './Main.scss'
 import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
+import { SavedScenario } from './state/savedScenario'
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -182,6 +183,34 @@ function Main() {
     setSubmitting(false)
   }
 
+  function saveScenario(name: string, creator: string) {
+    // Read saved scenarios from local storage
+    let existingSavedScenarios = LocalStorage.get<SavedScenario[]>(LOCAL_STORAGE_KEYS.SAVED_SCENARIOS)
+
+    // if null, construct a new object
+    if (!existingSavedScenarios) {
+      existingSavedScenarios = []
+    }
+
+    // Construct an object for the current scenario
+    const currDateTimeUTC: string = new Date().toUTCString()
+
+    // construct the url query string from the state variable rather than reading
+    // from the browser url directly which might have been edited by the user
+    const scenarioUrl: string = `/?${scenarioQueryString}`
+
+    const currentScenario: SavedScenario = {
+      name,
+      creationTime: currDateTimeUTC,
+      creator,
+      url: scenarioUrl,
+    }
+    existingSavedScenarios.push(currentScenario)
+
+    // save it back to local storage
+    LocalStorage.set(LOCAL_STORAGE_KEYS.SAVED_SCENARIOS, existingSavedScenarios)
+  }
+
   return (
     <Row>
       <Col md={12}>
@@ -220,6 +249,7 @@ function Main() {
                       result={result}
                       caseCounts={empiricalCases}
                       scenarioUrl={scenarioUrl}
+                      onSave={saveScenario}
                     />
                   </Col>
                 </Row>

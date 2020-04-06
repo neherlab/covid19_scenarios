@@ -11,13 +11,14 @@ import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.ty
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { AllParams, ContainmentData, EmpiricalData, ScenarioData } from '../../../algorithms/types/Param.types'
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
+import SaveSimulationDialog from './SaveSimulationDialog'
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
@@ -32,6 +33,7 @@ interface ResultsCardProps {
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
   scenarioUrl?: string
+  onSave: (name: string, creator: string) => void
 }
 
 function ResultsCardFunction({
@@ -44,6 +46,7 @@ function ResultsCardFunction({
   result,
   caseCounts,
   scenarioUrl,
+  onSave,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
@@ -90,6 +93,10 @@ function ResultsCardFunction({
     setUserResult(newUserResult)
   }
 
+  const [canSave, setCanSave] = useState<boolean>(false)
+  const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
+  const toggleShowSaveModal = () => setShowSaveModal(!showSaveModal)
+
   const [canExport, setCanExport] = useState<boolean>(false)
   const [showExportModal, setShowExportModal] = useState<boolean>(false)
 
@@ -99,6 +106,7 @@ function ResultsCardFunction({
 
   useEffect(() => {
     setCanExport((result && !!result.deterministic) || false)
+    setCanSave((result && !!result.deterministic) || false)
   }, [result])
 
   return (
@@ -130,13 +138,22 @@ function ResultsCardFunction({
               <LinkButton
                 className="new-tab-button"
                 color="secondary"
-                desabled={!scenarioUrl}
+                disabled={!scenarioUrl}
                 href={scenarioUrl}
                 target="_blank"
                 data-testid="RunResultsInNewTab"
               >
                 {t('Run in new tab')}
               </LinkButton>
+              <Button
+                className="save-button"
+                type="button"
+                color="secondary"
+                disabled={!canSave}
+                onClick={(_) => setShowSaveModal(true)}
+              >
+                {t('Save')}
+              </Button>
               <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
               <Button
                 className="export-button"
@@ -235,6 +252,7 @@ function ResultsCardFunction({
         canExport={canExport}
         result={result}
       />
+      <SaveSimulationDialog showModal={showSaveModal} toggleShowModal={toggleShowSaveModal} onSave={onSave} />
     </>
   )
 }
