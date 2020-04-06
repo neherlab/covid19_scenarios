@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 
-import { useDebouncedCallback } from 'use-debounce'
-
 import _ from 'lodash'
 
 import ReactResizeDetector from 'react-resize-detector'
@@ -17,8 +15,8 @@ import {
   TooltipPayload,
   XAxis,
   YAxis,
-  LineProps as RechartsLineProps,
   YAxisProps,
+  LineProps as RechartsLineProps,
 } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
@@ -111,15 +109,17 @@ export function DeterministicLinePlot({
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
-  const [rendered, setRendered] = useState(<></>)
-
-  const [debouncedRender] = useDebouncedCallback(() => setRendered(render()), 1000)
 
   // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
   // href: https://reactjs.org/docs/hooks-rules.html
 
   const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
+
+  const [zoomLeftState, setzoomLeftState] = useState('dataMin')
+  const [zoomRightState, setzoomRightState] = useState('dataMax')
+  const [zoomSelectedLeftState, setzoomSelectedLeftState] = useState('')
+  const [zoomSelectedRightState, setzoomSelectedRightState] = useState('')
 
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
@@ -253,111 +253,166 @@ export function DeterministicLinePlot({
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
-  function render() {
-    return (
-      <div className="w-100 h-100" data-testid="DeterministicLinePlot">
-        <ReactResizeDetector handleWidth handleHeight>
-          {({ width }: { width?: number }) => {
-            if (!width) {
-              return <div className="w-100 h-100" />
-            }
+  const zoomIn = () => {
+    if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
+      setzoomSelectedLeftState('')
+      setzoomSelectedRightState('')
+      return
+    }
 
-            const height = Math.max(500, width / ASPECT_RATIO)
-            const tooltipPosition = calculatePosition(height)
+    // xAxis domain
+    if (zoomSelectedLeftState > zoomSelectedRightState) {
+      setzoomSelectedLeftState(zoomSelectedRightState)
+      setzoomSelectedRightState(zoomSelectedLeftState)
+    }
 
-            return (
-              <>
-                <h3>{t('Cases through time')}</h3>
-
-                <div ref={chartRef} />
-                <ComposedChart
-                  onClick={() => scrollToRef(chartRef)}
-                  width={width}
-                  height={height}
-                  data={plotData}
-                  throttleDelay={75}
-                  margin={{
-                    left: 15,
-                    right: 15,
-                    bottom: 15,
-                    top: 15,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-
-                  <XAxis
-                    dataKey="time"
-                    type="number"
-                    tickFormatter={xTickFormatter}
-                    domain={[tMin, tMax]}
-                    tickCount={7}
-                  />
-
-                  <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
-
-                  <YAxis yAxisId="mitigationStrengthAxis" orientation={'right'} type="number" domain={[0, 1]} />
-
-                  <Tooltip
-                    formatter={tooltipFormatter}
-                    labelFormatter={labelFormatter}
-                    position={tooltipPosition}
-                    content={ResponsiveTooltipContent}
-                  />
-
-                  <Legend
-                    verticalAlign="top"
-                    formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
-                    onClick={(e) => {
-                      const plots = enabledPlots.slice(0)
-                      enabledPlots.includes(e.dataKey)
-                        ? plots.splice(plots.indexOf(e.dataKey), 1)
-                        : plots.push(e.dataKey)
-                      setEnabledPlots(plots)
-                    }}
-                  />
-
-                  {mitigationIntervals.map((interval) => (
-                    <ReferenceArea
-                      key={interval.id}
-                      x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
-                      x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
-                      y1={0}
-                      y2={_.clamp(interval.mitigationValue, 0, 1)}
-                      yAxisId={'mitigationStrengthAxis'}
-                      fill={interval.color}
-                      fillOpacity={0.25}
-                    >
-                      <Label value={interval.name} position="insideTopRight" fill="#444444" />
-                    </ReferenceArea>
-                  ))}
-
-                  {linesToPlot.map((d) => (
-                    <Line
-                      key={d.key}
-                      dot={false}
-                      isAnimationActive={false}
-                      type="monotone"
-                      strokeWidth={3}
-                      dataKey={d.key}
-                      stroke={d.color}
-                      name={d.name}
-                      legendType={d.legendType}
-                    />
-                  ))}
-
-                  {scatterToPlot.map((d) => (
-                    <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
-                  ))}
-                </ComposedChart>
-              </>
-            )
-          }}
-        </ReactResizeDetector>
-      </div>
-    )
+    setzoomLeftState(zoomSelectedLeftState)
+    setzoomRightState(zoomSelectedRightState)
+    setzoomSelectedLeftState('')
+    setzoomSelectedRightState('')
   }
 
-  debouncedRender()
+  const zoomOut = () => {
+    setzoomLeftState('dataMin')
+    setzoomRightState('dataMax')
+    setzoomSelectedLeftState('')
+    setzoomSelectedRightState('')
+  }
 
-  return rendered
+  return (
+    <div className="w-100 h-100" data-testid="DeterministicLinePlot">
+      <ReactResizeDetector handleWidth handleHeight>
+        {({ width }: { width?: number }) => {
+          if (!width) {
+            return <div className="w-100 h-100" />
+          }
+
+          const height = Math.max(500, width / ASPECT_RATIO)
+          const tooltipPosition = calculatePosition(height)
+
+          return (
+            <>
+              <h3 className="d-flex justify-content-between">
+                {t('Cases through time')}
+                <button className="btn btn-secondary" onClick={zoomOut}>
+                  {t('Zoom Out')}
+                </button>
+              </h3>
+
+              <div ref={chartRef} />
+              <ComposedChart
+                onClick={() => scrollToRef(chartRef)}
+                width={width}
+                height={height}
+                data={plotData}
+                throttleDelay={75}
+                margin={{
+                  left: 15,
+                  right: 15,
+                  bottom: 15,
+                  top: 15,
+                }}
+                onMouseDown={(e: any) => e && setzoomSelectedLeftState(e.activeLabel)}
+                onMouseMove={(e: any) => e && zoomSelectedLeftState && setzoomSelectedRightState(e.activeLabel)}
+                onMouseUp={zoomIn}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+
+                <XAxis
+                  allowDataOverflow={true}
+                  dataKey="time"
+                  type="number"
+                  tickFormatter={xTickFormatter}
+                  domain={[zoomLeftState, zoomRightState]}
+                  tickCount={7}
+                />
+
+                <YAxis
+                  allowDataOverflow={true}
+                  scale={logScaleString}
+                  type="number"
+                  domain={[1, 'dataMax']}
+                  tickFormatter={yTickFormatter}
+                />
+
+                <YAxis
+                  yAxisId="mitigationStrengthAxis"
+                  allowDataOverflow={true}
+                  orientation={'right'}
+                  type="number"
+                  domain={[0, 1]}
+                />
+
+                <Tooltip
+                  formatter={tooltipFormatter}
+                  labelFormatter={labelFormatter}
+                  position={tooltipPosition}
+                  content={ResponsiveTooltipContent}
+                />
+
+                <Legend
+                  verticalAlign="top"
+                  formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
+                  onClick={(e) => {
+                    const plots = enabledPlots.slice(0)
+                    enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)
+                    setEnabledPlots(plots)
+                  }}
+                />
+
+                {mitigationIntervals.map((interval) => (
+                  <ReferenceArea
+                    key={interval.id}
+                    x1={_.clamp(
+                      interval.timeRange.tMin.getTime(),
+                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
+                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
+                    )}
+                    x2={_.clamp(
+                      interval.timeRange.tMax.getTime(),
+                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
+                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
+                    )}
+                    y1={0}
+                    y2={_.clamp(interval.mitigationValue, 0, 1)}
+                    yAxisId={'mitigationStrengthAxis'}
+                    fill={interval.color}
+                    fillOpacity={0.25}
+                  >
+                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
+                  </ReferenceArea>
+                ))}
+                {zoomSelectedLeftState && zoomSelectedRightState ? (
+                  <ReferenceArea
+                    x1={zoomSelectedLeftState}
+                    x2={zoomSelectedRightState}
+                    fill="#c0f5bc"
+                    fillOpacity={0.2}
+                  />
+                ) : null}
+
+                {linesToPlot.map((d) => (
+                  <Line
+                    key={d.key}
+                    dot={false}
+                    isAnimationActive={false}
+                    type="monotone"
+                    strokeWidth={3}
+                    dataKey={d.key}
+                    stroke={d.color}
+                    name={d.name}
+                    legendType={d.legendType}
+                  />
+                ))}
+
+                {scatterToPlot.map((d) => (
+                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                ))}
+              </ComposedChart>
+            </>
+          )
+        }}
+      </ReactResizeDetector>
+    </div>
+  )
 }
