@@ -38,7 +38,7 @@ mitigation_colors = {
 SCENARIO_POPS = os.path.join(BASE_PATH, "populationData.tsv")
 FIT_CASE_DATA = {}
 
-from type_defaults import DEFAULTS
+from scripts.get_default_schema_values import DEFAULTS
 
 # ------------------------------------------------------------------------
 # Fallback data fitter
@@ -104,83 +104,84 @@ class Fitter:
         return None
 
 # ------------------------------------------------------------------------
-# Parameter classes
-#
-# IMPORTANT: Keep in sync with algorithm parameters of input [AllParamsFlat]
-#            covid19_scenarios/src/algorithm/types/Param.types.ts
+# Parameter class constructors (with defaults)
 
-class Measure(Object):
+class DateRange(schema.DateRange):
+    def __init__(self, tMin, tMax):
+        return super(DateRange, self).__init__( \
+                t_min = tMin,
+                t_max = tMax)
+
+class MitigationInterval(schema.MitigationInterval):
     def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
-        self.name = name
-        self.id = str(id)
-        self.color = str(color)
-        self.timeRange = DateRange(tMin, tMax)
-        self.mitigationValue = mitigationValue
+        return super(MitigationInterval, self).__init__( \
+                color = color,
+                id = id,
+                mitigation_value = mitigationValue,
+                name = name,
+                time_range = DateRange(tMin, tMax))
 
-class PopulationParams(Object):
+class PopulationParams(schema.PopulationData):
     def __init__(self, region, country, population, beds, icus):
-        self.populationServed    = int(population)
-        self.country             = country
-        self.suspectedCasesToday = round(FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin)
-        self.importsPerDay       = 0.1
-        self.hospitalBeds        = int(beds)
-        self.ICUBeds             = int(icus)
-        self.cases               = region
+        return super(PopulationParams, self).__init__( \
+                region,
+                country,
+                int(beds),
+                int(icus),
+                0.1,
+                int(population),
+                round(FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin))
 
-class EpidemiologicalParams(Object):
+class EpidemiologicalParams(schema.EpidemiologicalData):
     def __init__(self, region, hemisphere):
-        self.latencyTime     = 3
-        self.infectiousPeriod   = 3
-        self.lengthHospitalStay = 4
-        self.lengthICUStay      = 14
+        default = DEFAULTS["EpidemiologicalData"]
         if hemisphere:
             if hemisphere == 'Northern':
-                self.seasonalForcing    = 0.0
-                self.peakMonth          = 0
+                default['seasonal_forcing'] = 0.0
+                default['peak_month']       = 0
             elif hemisphere == 'Southern':
-                self.seasonalForcing    = 0.0
-                self.peakMonth          = 6
+                default['seasonal_forcing'] = 0.0
+                default['peak_month']       = 6
             elif hemisphere == 'Tropical':
-                self.seasonalForcing    = 0
-                self.peakMonth          = 6
+                default['seasonal_forcing'] = 0.0
+                default['peak_month']       = 6
             else:
                 print(f'Error: Could not parse hemisphere for {region} in scenarios.py')
-        else:
-            self.seasonalForcing    = 0.0
-            self.peakMonth          = 0
-        self.overflowSeverity   = 2
-        if region in FIT_CASE_DATA:
-            self.r0 = max(1,round(FIT_CASE_DATA[region]['r0'],1))
-        else:
-            self.r0 = 2.7
 
-class ContainmentParams(Object):
+        return super(EpidemiologicalParams, self).__init__( \
+                infectious_period = default["infectiousPeriod"],
+                latency_time = default["latencyTime"],
+                length_hospital_stay = default["lengthHospitalStay"],
+                length_icu_stay = default["lengthICUStay"],
+                overflow_severity = default["overflowSeverity"],
+                peak_month = default["peakMonth"],
+                r0 = float(max(1, round(FIT_CASE_DATA[region]['r0'], 1)) if region in FIT_CASE_DATA else default["r0"]),
+                seasonal_forcing = default["seasonalForcing"])
+
+class ContainmentParams(schema.ContainmentData):
     def __init__(self):
-        self.mitigationIntervals = []
+        default = DEFAULTS["ContainmentData"]
+        return super(ContainmentParams, self).__init__([], default["numberPoints"])
 
-
-class DateRange(Object):
-    def __init__(self, tMin, tMax):
-        self.tMin = tMin
-        self.tMax = tMax
-
-class SimulationParams(Object):
+class SimulationParams(schema.SimulationData):
     def __init__(self, region):
-        tMin = FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01"
-        tMax = "2020-09-01"
-        self.simulationTimeRange  = DateRange(tMin, tMax)
-        self.numberStochasticRuns = 0
+        return super(SimulationParams, self).__init__( \
+                simulation_time_range = DateRange( \
+                    datetime.strptime(FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01", '%Y-%m-%d'),
+                    datetime.strptime("2020-09-01", '%Y-%m-%d')),
+                number_stochastic_runs = 0.0)
 
 # TODO: Region and country provide redudant information
 #       Condense the information into one field.
-class AllParams(Object):
+class AllParams(schema.AllParams):
     def __init__(self, region, country, population, beds, icus, hemisphere, srcPopulation, srcHospitalBeds, srcICUBeds):
-        self.population      = PopulationParams(region, country, population, beds, icus)
-        self.epidemiological = EpidemiologicalParams(region, hemisphere)
-        self.simulation      = SimulationParams(region)
-        self.containment     = ContainmentParams()
-        # uncomment if the sources are needed in the app
-        #self.sources         = {'populationServed': srcPopulation, 'hospitalBeds': srcHospitalBeds, 'ICUBeds': srcICUBeds }
+        #self.sources  = {'populationServed': srcPopulation, 'hospitalBeds': srcHospitalBeds, 'ICUBeds': srcICUBeds }
+        return super(AllParams, self).__init__( \
+                ContainmentParams(),
+                EpidemiologicalParams(region, hemisphere),
+                PopulationParams(region, country, population, beds, icus),
+                SimulationParams(region)
+        )
 
 # ------------------------------------------------------------------------
 # Functions
@@ -195,7 +196,7 @@ def marshalJSON(obj, wtr=None):
 
     newdata = []
     for k in obj:
-        newdata.append({'country': k, 'allParams': obj[k]})
+        newdata.append({'country': k, 'allParams': obj[k].to_dict()})
 
     # Serialize into json
     news = json.dumps(newdata, default=lambda x: x.__dict__, sort_keys=True, indent=4)
@@ -229,16 +230,15 @@ def fit_all_case_data(num_procs=4):
         if v is not None:
             FIT_CASE_DATA[k] = v
 
-
 def set_mitigation(cases, scenario):
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
-        scenario.containment.mitigationIntervals = []
+        scenario.containment.mitigation_intervals = []
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, 3e-4*scenario.population.populationServed),10000))[0]
-    levelTwo = np.where(case_counts > min(max(50, 3e-3*scenario.population.populationServed),50000))[0]
+    levelOne = np.where(case_counts > min(max(5, 3e-4*scenario.population.population_served),10000))[0]
+    levelTwo = np.where(case_counts > min(max(50, 3e-3*scenario.population.population_served),50000))[0]
     levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0), 1)
     levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
@@ -248,11 +248,11 @@ def set_mitigation(cases, scenario):
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.containment.mitigationIntervals.append(Measure(
+            scenario.containment.mitigation_intervals.append(MitigationInterval(
                 name=name,
-                tMin=cutoff_str,
+                tMin=datetime.strptime(cutoff_str, '%Y-%m-%d'),
                 id=uuid4(),
-                tMax=scenario.simulation.simulationTimeRange.tMax[:10],
+                tMax=scenario.simulation.simulation_time_range.t_max,
                 color=mitigation_colors.get(name, "#cccccc"),
                 mitigationValue=val))
 
@@ -296,11 +296,10 @@ def generate(output_json, num_procs=1, recalculate=False):
             if region_name in case_counts:
                 set_mitigation(case_counts[region_name], scenario[region_name])
             else:
-                scenario[region_name].containment.mitigationIntervals = []
+                scenario[region_name].containment.mitigation_intervals = []
 
     with open(output_json, "w+") as fd:
         marshalJSON(scenario, fd)
 
 if __name__ == '__main__':
     generate()
-
