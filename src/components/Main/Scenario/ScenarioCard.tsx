@@ -59,33 +59,17 @@ function ScenarioCard({
       <>
         <Row>
           <Col xl={6} className="my-2">
-            <ScenarioCardPopulation
-              scenarioState={scenarioState}
-              errors={errors}
-              touched={touched}
-              scenarioDispatch={scenarioDispatch}
-            />
+            <ScenarioCardPopulation errors={errors} touched={touched} />
           </Col>
 
           <Col xl={6} className="my-2">
-            <ScenarioCardEpidemiological
-              scenarioState={scenarioState}
-              errors={errors}
-              touched={touched}
-              scenarioDispatch={scenarioDispatch}
-            />
+            <ScenarioCardEpidemiological errors={errors} touched={touched} />
           </Col>
         </Row>
 
         <Row noGutters>
           <Col className="my-2">
-            <ScenarioCardContainment
-              values={values}
-              scenarioState={scenarioState}
-              errors={errors}
-              touched={touched}
-              scenarioDispatch={scenarioDispatch}
-            />
+            <ScenarioCardContainment values={values} errors={errors} touched={touched} />
           </Col>
         </Row>
 

@@ -8,16 +8,13 @@ import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { MitigationTable } from '../Mitigation/MitigationTable'
 import { AllParams } from '../../../algorithms/types/Param.types'
 
-import { State } from '../state/state'
-
 export interface ScenarioCardContainmentProps {
   values: AllParams
-  scenarioState: State
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
 
-function ScenarioCardContainment({ values, scenarioState, errors, touched }: ScenarioCardContainmentProps) {
+function ScenarioCardContainment({ values, errors, touched }: ScenarioCardContainmentProps) {
   const { t } = useTranslation()
 
   const { mitigationIntervals } = values.containment
