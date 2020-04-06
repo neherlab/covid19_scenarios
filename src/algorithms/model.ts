@@ -244,7 +244,7 @@ export function evolve(
   const dt = dT / nSteps
   let currState = pop
   for (let i = 0; i < nSteps; i++) {
-    currState = stepODE(currState, P, dt, sample)
+    currState = stepODE(currState, P, dt)
   }
   return currState
 }
@@ -255,24 +255,24 @@ interface TimeDerivative {
 }
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
-function stepODE(
+function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number): SimulationTimePoint {
+  const time = new Date(pop.time + dt * msPerDay)
+  const tdot = derivatives(fluxes(time, pop, P))
+
+  const state = advanceState(pop, tdot, dt, P.ICUBeds)
+  state.time = time.valueOf()
+
+  return state
+}
+
+function advanceState(
   pop: SimulationTimePoint,
-  P: ModelParams,
+  tdot: TimeDerivative,
   dt: number,
-  sample: (x: number) => number,
+  nICUBeds: number,
 ): SimulationTimePoint {
-  const sum = (dict: Record<string, number>): number => {
-    return Object.values(dict).reduce((a, b) => a + b, 0)
-  }
-
-  const gz = (x: number): number => {
-    return x > 0 ? x : 0
-  }
-
-  // Initialize new state
-  const newTime = new Date(pop.time + dt * msPerDay)
   const newPop: SimulationTimePoint = {
-    time: newTime.valueOf(),
+    time: Date.now(),
     current: {
       susceptible: {},
       exposed: {},
@@ -289,24 +289,26 @@ function stepODE(
     },
   }
 
-  // Calculate time derivatives
-  const flux = fluxes(newTime, pop, P)
-  const tdot = derivatives(flux)
-
   // Helper functions
+  const sum = (dict: Record<string, number>): number => {
+    return Object.values(dict).reduce((a, b) => a + b, 0)
+  }
+
+  const gz = (x: number): number => {
+    return x > 0 ? x : 0
+  }
+
   // TODO(nnoll): Sort out types
   const update = (age, kind, compartment) => {
-    newPop[kind][compartment][age] = gz(pop[kind][compartment][age] + sample(dt * tdot[kind][compartment][age]))
+    newPop[kind][compartment][age] = gz(pop[kind][compartment][age] + dt * tdot[kind][compartment][age])
+  }
+
+  const updateAt = (age, kind, compartment, i) => {
+    newPop[kind][compartment][age][i] = gz(pop[kind][compartment][age][i] + dt * tdot[kind][compartment][age][i])
   }
 
   const updateWith = (age, kind, compartment, value) => {
     newPop[kind][compartment][age] = gz(pop[kind][compartment][age] + value)
-  }
-
-  const updateAt = (age, kind, compartment, i) => {
-    newPop[kind][compartment][age][i] = gz(
-      pop[kind][compartment][age][i] + sample(dt * tdot[kind][compartment][age][i]),
-    )
   }
 
   const ages = Object.keys(pop.current.infectious).sort()
@@ -321,6 +323,8 @@ function stepODE(
     update(age, 'current', 'susceptible')
     update(age, 'current', 'severe')
     update(age, 'current', 'susceptible')
+    update(age, 'current', 'critical')
+    update(age, 'current', 'overflow')
 
     update(age, 'cumulative', 'hospitalized')
     update(age, 'cumulative', 'critical')
@@ -329,60 +333,34 @@ function stepODE(
   })
 
   // Move hospitalized patients according to constrained resources
-  let freeICUBeds =
-    P.ICUBeds - (sum(pop.current.critical) - dt * (sum(flux.critical.severe) - sum(flux.critical.fatality)))
+  // TODO(nnoll): The gradients aren't computed subject to this non-linear constraint
+  let freeICUBeds = nICUBeds - sum(newPop.current.critical)
 
-  ages.forEach((age) => {
-    if (freeICUBeds > flux.severe.critical[age]) {
-      freeICUBeds -= dt * flux.severe.critical[age]
-      updateWith(
-        age,
-        'current',
-        'critical',
-        +dt * (flux.severe.critical[age] - flux.critical.severe[age] - flux.critical.fatality[age]),
-      )
-      updateWith(age, 'current', 'overflow', -dt * (flux.overflow.severe[age] + flux.overflow.fatality[age]))
-    } else if (freeICUBeds > 0) {
-      const newOverflow = dt * flux.severe.critical[age] - freeICUBeds
-      updateWith(
-        age,
-        'current',
-        'critical',
-        freeICUBeds - dt * (flux.critical.severe[age] - flux.critical.fatality[age]),
-      )
-      updateWith(
-        age,
-        'current',
-        'overflow',
-        newOverflow - dt * (flux.overflow.severe[age] + flux.overflow.fatality[age]),
-      )
+  for (let i = ages.length - 1; freeICUBeds < 0 && i >= 0; i--) {
+    const age = ages[i]
+    if (newPop.current.critical[age] > -freeICUBeds) {
+      newPop.current.critical[age] += freeICUBeds
+      newPop.current.overflow[age] -= freeICUBeds
       freeICUBeds = 0
     } else {
-      updateWith(age, 'current', 'critical', -dt * (flux.critical.severe[age] + flux.critical.fatality[age]))
-      updateWith(
-        age,
-        'current',
-        'overflow',
-        +dt * (flux.severe.critical[age] - flux.overflow.severe[age] - flux.overflow.fatality[age]),
-      )
+      newPop.current.overflow[age] += newPop.current.critical[age]
+      freeICUBeds += newPop.current.critical[age]
+      newPop.current.critical[age] = 0
     }
-  })
+  }
 
-  // If any overflow patients are left AND there are free beds, move them back.
-  // Again, move w/ lower age as priority.
-  ages.forEach((age) => {
-    if (freeICUBeds > 0) {
-      if (newPop.current.overflow[age] < freeICUBeds) {
-        newPop.current.critical[age] += newPop.current.overflow[age]
-        freeICUBeds -= newPop.current.overflow[age]
-        newPop.current.overflow[age] = 0
-      } else {
-        newPop.current.critical[age] += freeICUBeds
-        newPop.current.overflow[age] -= freeICUBeds
-        freeICUBeds = 0
-      }
+  for (let i = 0; freeICUBeds > 0 && i < ages.length; i++) {
+    const age = ages[i]
+    if (newPop.current.overflow[age] > freeICUBeds) {
+      newPop.current.critical[age] += freeICUBeds
+      newPop.current.overflow[age] -= freeICUBeds
+      freeICUBeds = 0
+    } else {
+      newPop.current.critical[age] += newPop.current.overflow[age]
+      freeICUBeds -= newPop.current.overflow[age]
+      newPop.current.overflow[age] = 0
     }
-  })
+  }
 
   return newPop
 }
@@ -423,7 +401,7 @@ function derivatives(flux: StateFlux): TimeDerivative {
       flux.severe.critical[age] -
       flux.severe.recovered[age]
     grad.current.critical[age] = flux.severe.critical[age] - flux.critical.severe[age] - flux.critical.fatality[age]
-    grad.current.overflow[age] = -flux.overflow.fatality[age] - flux.overflow.severe[age]
+    grad.current.overflow[age] = -(flux.overflow.severe[age] + flux.overflow.fatality[age])
 
     // Cumulative categories
     grad.cumulative.recovered[age] = flux.infectious.recovered[age] + flux.severe.recovered[age]
