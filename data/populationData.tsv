@@ -1,4 +1,6 @@
 name	populationServed	ageDistribution	hospitalBeds	ICUBeds	hemisphere	srcPopulation	srcHospitalBeds	srcICUBeds
+Australia 24600000  Australia 96000 2378  Southern  Wikipedia https://www.aihw.gov.au/reports/hospitals/hospital-resources-2017-18-ahs/contents/summary https://www.mja.com.au/journal/2020/surge-capacity-australian-intensive-care-units-associated-covid-19-admissions
+New Zealand 4800000 New Zealand 13000 153 Southern Wikipedia  Wikipedia https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12319640
 Switzerland	8600000	Switzerland	30799	1400	Northern	None	None	None
 Germany	83784000	Germany	500680	23890	Northern	None	None	None
 France	65274000	France	274462	7540	Northern	None	None	None
