@@ -9,12 +9,15 @@ import yaml
 from uuid import uuid4
 sys.path.append('..')
 
+import generated.types as schema
+
 from datetime import datetime
 from scipy.stats import linregress
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARIOS
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
 from jsonschema import validate
+
 
 ##
 mitigation_colors = {

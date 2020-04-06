@@ -1,3 +1,3 @@
 *.pyc
-generated_types/
+generated/
 raw_data/
