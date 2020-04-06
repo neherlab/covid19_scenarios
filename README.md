@@ -335,7 +335,29 @@ yarn prod:watch
 This should build the application in production mode and to start static server that will serve the app on
 `http://localhost:8080` (by default)
 
-### Release ccycle, continuous integration and deployment
+# Schemas
+
+The directory `schemas/` contains JSON schemas which serve as a base for type checking, validation and serialization.
+
+In particular, some of the types:
+
+- are generated from schemas for both Python (as classes) and Typescript (as interfaces)
+- are validated on runtime using corresponding libraries in these languages
+- are (when appropriate) serialized and deserialized using generated serialization/deserialized functions
+
+We make ephasis on types that are shared across languages (e.g. Python to Typescript) as well as on types that
+participate in input-output (e.g. URLs, Local Storage, File I/O) and require particularly careful validation and
+serialization.
+
+If you are planning to change one of the types that happens to be generated, you need to modify the corresponding schema
+first and them re-run the type generation.
+
+#### See also:
+
+- [JSON Schema website](https://json-schema.org/)
+- [Understanding JSON Schema](https://json-schema.org/understanding-json-schema/)
+
+### Release cycle, continuous integration and deployment
 
 TODO
 
