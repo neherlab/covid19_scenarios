@@ -166,7 +166,7 @@ function Main() {
           onSubmit={handleSubmit}
           validate={setScenarioToCustom}
         >
-          {({ errors, touched, isValid, isSubmitting }) => {
+          {({ values, errors, touched, isValid, isSubmitting }) => {
             const canRun = isValid && severityTableIsValid(severity)
 
             return (
@@ -174,6 +174,7 @@ function Main() {
                 <Row>
                   <Col lg={4} xl={6} className="py-1">
                     <ScenarioCard
+                      values={values}
                       severity={severity}
                       setSeverity={setSeverity}
                       scenarioState={scenarioState}
