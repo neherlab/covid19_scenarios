@@ -5,6 +5,7 @@ import json
 import numpy as np
 import multiprocessing as multi
 import yaml
+from jsonschema import validate
 
 from uuid import uuid4
 sys.path.append('..')
@@ -14,20 +15,7 @@ from scipy.stats import linregress
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARIOS
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
-from jsonschema import validate
-
-##
-mitigation_colors = {
-"School Closures": "#7fc97f",
-"Social Distancing": "#beaed4",
-"Lock-down": "#fdc086",
-"Shut-down": "#ffff99",
-"Case Isolation": "#386cb0",
-"Contact Tracing": "#f0027f",
-"Intervention #1": "#bf5b17",
-"Intervention #2": "#666666",
-}
-
+from scripts.mitigationMeasures import mitigationMeasures
 
 # ------------------------------------------------------------------------
 # Globals
@@ -228,7 +216,22 @@ def fit_all_case_data(num_procs=4):
             FIT_CASE_DATA[k] = v
 
 
-def set_mitigation(cases, scenario):
+def set_mitigation(cases, scenario, measures=None):
+    # if explicit measures are provided, use them to populate the scenario
+    if measures:
+        for m  in measures:
+            M = Measure(name=m['name'],
+                        tMin=m['tMin'] or '2020-03-01',
+                        tMax=m['tMax'] or '2020-08-31',
+                        id=uuid4(),
+                        color=mitigationMeasures[m['name']].color,
+                        mitigationValue=mitigationMeasures[m['name']].value)
+                        )
+            scenario.containment.mitigationIntervals.append(M)
+        return
+
+    # Otherwise generate dummy measures to illustrate the context and
+    # avoid impression of a completely unmitigated pandemic
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
         scenario.containment.mitigationIntervals = []
@@ -251,8 +254,8 @@ def set_mitigation(cases, scenario):
                 tMin=cutoff_str,
                 id=uuid4(),
                 tMax=scenario.simulation.simulationTimeRange.tMax[:10],
-                color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=val))
+                color=mitigationMeasures[name].color if name in mitigationMeasures else "#cccccc",
+                mitigationValue=mitigationMeasures[name].value if name in mitigationMeasures else 0.1))
 
 
 # ------------------------------------------------------------------------
