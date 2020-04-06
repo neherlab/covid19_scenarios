@@ -50,7 +50,7 @@
     "license": "Apache License 2.0"
   },
   "netherlands": {
-    "primarySource": "https://github.com/J535D165/CoronaWatchNL/blob/master/data, https://www.stichting-nice.nl/covid-19/public/intake-cumulative",
+    "primarySource": "https://github.com/J535D165/CoronaWatchNL/blob/master/data, https://www.stichting-nice.nl/covid-19/public/intake-count",
     "dataProvenance": "CoronaWatchNL, Stichting NICE",
     "license": "CC0 (CoronaWatchNL), none specified (Stichting NICE)"
   },

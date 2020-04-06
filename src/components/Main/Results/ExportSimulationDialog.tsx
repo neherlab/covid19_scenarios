@@ -3,6 +3,7 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'react
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
+import ClipboardButton from '../../Buttons/ClipboardButton'
 
 export interface ExportSimulationDialogProps {
   canExport: boolean
@@ -24,7 +25,7 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               <th>{t('Filename')}</th>
               <th>{t('Description')}</th>
               <th>{t('Format')}</th>
-              <th>{t('Download')}</th>
+              <th>{t('Action')}</th>
             </tr>
           </thead>
           <tbody>
@@ -56,6 +57,16 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
                 >
                   {t('Download')}
                 </Button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>{t('Shareable link')}</td>
+              <td>URL</td>
+              <td>
+                <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={window.location.href}>
+                  {t('Copy link')}
+                </ClipboardButton>
               </td>
             </tr>
           </tbody>

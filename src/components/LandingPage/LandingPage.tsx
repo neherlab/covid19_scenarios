@@ -1,6 +1,9 @@
 import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, RouteComponentProps } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import * as History from 'history'
+import _ from 'lodash'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 import { setShouldSkipLandingPage } from '../../state/ui/ui.actions'
@@ -8,18 +11,11 @@ import { State } from '../../state/reducer'
 import promoImage from './tool.jpg'
 import './LandingPage.scss'
 
-import { useTranslation } from 'react-i18next'
-
-interface LandingPageProps {
-  initialQueryString: string
-}
-
-function LandingPage({ initialQueryString }: LandingPageProps) {
+function LandingPage({ location }: RouteComponentProps) {
   const { t } = useTranslation()
   const [isSkipLandingChecked, setSkipLandingChecked] = useState(false)
   const showSkipCheckbox = useSelector(({ ui }: State) => !ui.skipLandingPage)
   const dispatch = useDispatch()
-  const redirectUrl = `/${initialQueryString || ''}`
   const onLinkClick = useCallback(() => {
     dispatch(setShouldSkipLandingPage({ shouldSkip: true }))
 
@@ -32,6 +28,9 @@ function LandingPage({ initialQueryString }: LandingPageProps) {
     setSkipLandingChecked(e.target.checked)
   }, [])
 
+  const original: History.Location = _.get(location, 'state.referrer')
+  const goto = !original || original.pathname === '/start' ? '/' : original.pathname + original.search
+
   return (
     <div className="landing-page">
       <div className="landing-page__hero-section">
@@ -39,13 +38,23 @@ function LandingPage({ initialQueryString }: LandingPageProps) {
           <h1 className="landing-page__heading">{t('COVID-19 Scenarios')}</h1>
           <p className="landing-page__sub-heading">{t('Tool that models COVID-19 outbreak and hospital demand')}</p>
         </div>
-        <Link onClick={onLinkClick} to={redirectUrl} className="landing-page__simulate-link">
+        <Link onClick={onLinkClick} to={goto} className="landing-page__simulate-link">
           {t('Simulate')}
         </Link>
       </div>
       <div className="landing-page__content-section">
         <img className="landing-page__promo-image" src={promoImage} alt="Simulator showing results" />
         <div className="landing-page__content-section-text">
+        {showSkipCheckbox && (
+          <div className="landing-page-checkbox">
+            <div className="landing-page-checkbox__container">
+              <input onChange={onCheckboxChange} id="skip-landing-page" className="landing-page-checkbox__input" type="checkbox" />
+              <label className="landing-page-checkbox__label" htmlFor="skip-landing-page">
+                {t('Skip straight to simulator next time')}
+              </label>
+            </div>
+          </div>
+        )}
           <h1>{t('Simulate Outbreaks')}</h1>
           <p>
             {t(`This tool simulates a COVID19 outbreak. The primary purpose of the tool is to explore the dynamics of
@@ -54,14 +63,6 @@ function LandingPage({ initialQueryString }: LandingPageProps) {
             explore the effect of isolation on specific age groups.`)}
           </p>
         </div>
-        {showSkipCheckbox && (
-          <div>
-            <input onChange={onCheckboxChange} id="skip-landing-page" type="checkbox" />
-            <label className="skip-landing-page-label" htmlFor="skip-landing-page">
-              {t('Skip straight to simulator next time')}
-            </label>
-          </div>
-        )}
       </div>
     </div>
   )

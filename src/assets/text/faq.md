@@ -41,7 +41,7 @@ patients will die faster. The degree to which they die faster is specified by th
 **Q:** Wouldn't it be a good idea to model isolation of specific age-groups?
 
 **A:** _Yes! This is indeed possible on covid-scenarios. Expand the card
-`Severity assumptions and age-specific isolation`. The last column allows you to specify the to what extent individual
+`Severity assumptions and age-specific isolation`. The last column allows you to specify to what extent individual
 age groups are isolated from the rest of the population._
 
 ---

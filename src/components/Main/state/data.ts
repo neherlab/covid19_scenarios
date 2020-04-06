@@ -6,6 +6,8 @@ import createColor from 'create-color'
 import scenarios from '../../../assets/data/scenarios/scenarios.json'
 
 import { MitigationIntervals, ScenarioData } from '../../../algorithms/types/Param.types'
+import countryAgeDistributionData from '../../../assets/data/country_age_distribution.json'
+import { OneCountryAgeDistribution, CountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
 
 export type Scenario = string
 
@@ -54,4 +56,8 @@ export function getScenarioData(key: string): ScenarioData {
   })
 
   return { ...scenarioData, containment: { mitigationIntervals } }
+}
+
+export function getAgeDistribution(country: string): OneCountryAgeDistribution {
+  return (countryAgeDistributionData as CountryAgeDistribution)[country]
 }
