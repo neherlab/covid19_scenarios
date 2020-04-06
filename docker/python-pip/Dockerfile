@@ -23,10 +23,12 @@ RUN ln -s /usr/bin/python3.8 /usr/bin/python3
 
 # TODO: Replace this with a proper package manager
 RUN pip3 install \
-numpy \
-scipy \
+ipython \
+jsonschema \
 matplotlib \
+numpy \
+pyyaml \
 requests \
-xlrd \
 schemapi \
-ipython
+scipy \
+xlrd
