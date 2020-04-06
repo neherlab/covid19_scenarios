@@ -97,21 +97,19 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
   return <span className={activeClassName}>{value}</span>
 }
 
-
-
 export class DebouncedDeterministicLinePlot extends React.Component {
   constructor(props) {
-    super(props);
-    this.debouncedRender = _.debounce( this.forceUpdate, 1000)
+    super(props)
+    this.debouncedRender = _.debounce(this.forceUpdate, 1000)
   }
 
   shouldComponentUpdate() {
     this.debouncedRender()
-    return false;
+    return false
   }
 
   render() {
-    return <DeterministicLinePlot {...this.props}/>
+    return <DeterministicLinePlot {...this.props} />
   }
 }
 
@@ -331,7 +329,7 @@ export function DeterministicLinePlot({
                 <CartesianGrid strokeDasharray="3 3" />
 
                 <XAxis
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   dataKey="time"
                   type="number"
                   tickFormatter={xTickFormatter}
@@ -340,7 +338,7 @@ export function DeterministicLinePlot({
                 />
 
                 <YAxis
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   scale={logScaleString}
                   type="number"
                   domain={[1, 'dataMax']}
@@ -349,7 +347,7 @@ export function DeterministicLinePlot({
 
                 <YAxis
                   yAxisId="mitigationStrengthAxis"
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   orientation={'right'}
                   type="number"
                   domain={[0, 1]}
