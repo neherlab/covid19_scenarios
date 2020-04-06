@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import Ajv from 'ajv'
 
 import { Scenario, AllParams, Convert } from '../../../.generated/types/types'
