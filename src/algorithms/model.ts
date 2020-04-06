@@ -249,8 +249,13 @@ export function evolve(
   return currState
 }
 
+interface TimeDerivative {
+  current: InternalCurrentData
+  cumulative: CumulativeData
+}
+
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
-export function stepODE(
+function stepODE(
   pop: SimulationTimePoint,
   P: ModelParams,
   dt: number,
@@ -259,8 +264,12 @@ export function stepODE(
   const sum = (dict: Record<string, number>): number => {
     return Object.values(dict).reduce((a, b) => a + b, 0)
   }
-  const fracInfected = sum(pop.current.infectious) / P.populationServed
 
+  const gz = (x: number): number => {
+    return x > 0 ? x : 0
+  }
+
+  // Initialize new state
   const newTime = new Date(pop.time + dt * msPerDay)
   const newPop: SimulationTimePoint = {
     time: newTime.valueOf(),
@@ -280,19 +289,155 @@ export function stepODE(
     },
   }
 
-  // NOTE: Regression on type checking
-  // update touches the current data
-  // push touches the cumulative data
-  const update = (sub: keyof InternalCurrentData, age: string, delta: number) => {
-    newPop.current[sub][age] = pop.current[sub][age] + delta
+  // Calculate time derivatives
+  const flux = fluxes(newTime, pop, P)
+  const tdot = derivatives(flux)
+
+  // Helper functions
+  // TODO(nnoll): Sort out types
+  const update = (age, kind, compartment) => {
+    newPop[kind][compartment][age] = gz(pop[kind][compartment][age] + sample(dt * tdot[kind][compartment][age]))
   }
 
-  const updateAt = (sub: keyof InternalCurrentData, age: string, delta: number, index: number) => {
-    newPop.current[sub][age][index] = pop.current[sub][age][index] + delta
+  const updateWith = (age, kind, compartment, value) => {
+    newPop[kind][compartment][age] = gz(pop[kind][compartment][age] + value)
   }
 
-  const push = (sub: keyof CumulativeData, age: string, delta: number) => {
-    newPop.cumulative[sub][age] = pop.cumulative[sub][age] + delta
+  const updateAt = (age, kind, compartment, i) => {
+    newPop[kind][compartment][age][i] = gz(
+      pop[kind][compartment][age][i] + sample(dt * tdot[kind][compartment][age][i]),
+    )
+  }
+
+  const ages = Object.keys(pop.current.infectious).sort()
+  ages.forEach((age) => {
+    newPop.current.exposed[age] = Array(tdot.current.exposed[age].length)
+
+    update(age, 'current', 'susceptible')
+    for (let i = 0; i < pop.current.exposed[age].length; i++) {
+      updateAt(age, 'current', 'exposed', i)
+    }
+    update(age, 'current', 'infectious')
+    update(age, 'current', 'susceptible')
+    update(age, 'current', 'severe')
+    update(age, 'current', 'susceptible')
+
+    update(age, 'cumulative', 'hospitalized')
+    update(age, 'cumulative', 'critical')
+    update(age, 'cumulative', 'fatality')
+    update(age, 'cumulative', 'recovered')
+  })
+
+  // Move hospitalized patients according to constrained resources
+  let freeICUBeds =
+    P.ICUBeds - (sum(pop.current.critical) - dt * (sum(flux.critical.severe) - sum(flux.critical.fatality)))
+
+  ages.forEach((age) => {
+    if (freeICUBeds > flux.severe.critical[age]) {
+      freeICUBeds -= dt * flux.severe.critical[age]
+      updateWith(
+        age,
+        'current',
+        'critical',
+        +dt * (flux.severe.critical[age] - flux.critical.severe[age] - flux.critical.fatality[age]),
+      )
+      updateWith(age, 'current', 'overflow', -dt * (flux.overflow.severe[age] + flux.overflow.fatality[age]))
+    } else if (freeICUBeds > 0) {
+      const newOverflow = dt * flux.severe.critical[age] - freeICUBeds
+      updateWith(
+        age,
+        'current',
+        'critical',
+        freeICUBeds - dt * (flux.critical.severe[age] - flux.critical.fatality[age]),
+      )
+      updateWith(
+        age,
+        'current',
+        'overflow',
+        newOverflow - dt * (flux.overflow.severe[age] + flux.overflow.fatality[age]),
+      )
+      freeICUBeds = 0
+    } else {
+      updateWith(age, 'current', 'critical', -dt * (flux.critical.severe[age] + flux.critical.fatality[age]))
+      updateWith(
+        age,
+        'current',
+        'overflow',
+        +dt * (flux.severe.critical[age] - flux.overflow.severe[age] - flux.overflow.fatality[age]),
+      )
+    }
+  })
+
+  // If any overflow patients are left AND there are free beds, move them back.
+  // Again, move w/ lower age as priority.
+  ages.forEach((age) => {
+    if (freeICUBeds > 0) {
+      if (newPop.current.overflow[age] < freeICUBeds) {
+        newPop.current.critical[age] += newPop.current.overflow[age]
+        freeICUBeds -= newPop.current.overflow[age]
+        newPop.current.overflow[age] = 0
+      } else {
+        newPop.current.critical[age] += freeICUBeds
+        newPop.current.overflow[age] -= freeICUBeds
+        freeICUBeds = 0
+      }
+    }
+  })
+
+  return newPop
+}
+
+function derivatives(flux: StateFlux): TimeDerivative {
+  const grad: TimeDerivative = {
+    current: {
+      susceptible: {},
+      exposed: {},
+      infectious: {},
+      severe: {},
+      critical: {},
+      overflow: {},
+    },
+    cumulative: {
+      recovered: {},
+      hospitalized: {},
+      critical: {},
+      fatality: {},
+    },
+  }
+
+  const ages = Object.keys(flux.susceptible)
+  ages.forEach((age) => {
+    grad.current.exposed[age] = Array(flux.exposed[age].length)
+
+    grad.current.susceptible[age] = -flux.susceptible[age]
+    let fluxIn = flux.susceptible[age]
+    flux.exposed[age].forEach((fluxOut, i) => {
+      grad.current.exposed[age][i] = fluxIn - fluxOut
+      fluxIn = fluxOut
+    })
+    grad.current.infectious[age] = fluxIn - flux.infectious.severe[age] - flux.infectious.recovered[age]
+    grad.current.severe[age] =
+      flux.infectious.severe[age] +
+      flux.critical.severe[age] +
+      flux.overflow.severe[age] -
+      flux.severe.critical[age] -
+      flux.severe.recovered[age]
+    grad.current.critical[age] = flux.severe.critical[age] - flux.critical.severe[age] - flux.critical.fatality[age]
+    grad.current.overflow[age] = -flux.overflow.fatality[age] - flux.overflow.severe[age]
+
+    // Cumulative categories
+    grad.cumulative.recovered[age] = flux.infectious.recovered[age] + flux.severe.recovered[age]
+    grad.cumulative.hospitalized[age] = flux.infectious.severe[age] + flux.infectious.severe[age]
+    grad.cumulative.critical[age] = flux.severe.recovered[age] + flux.severe.recovered[age]
+    grad.cumulative.fatality[age] = flux.critical.fatality[age] + flux.overflow.fatality[age]
+  })
+
+  return grad
+}
+
+function fluxes(time: Date, pop: SimulationTimePoint, P: ModelParams): StateFlux {
+  const sum = (dict: Record<string, number>): number => {
+    return Object.values(dict).reduce((a, b) => a + b, 0)
   }
 
   // Convention: flux is labelled by the state
@@ -318,132 +463,41 @@ export function stepODE(
   }
 
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
-  const Keys = Object.keys(pop.current.infectious).sort()
-  Keys.forEach((age) => {
+  const fracInfected = sum(pop.current.infectious) / P.populationServed
+
+  const ages = Object.keys(pop.current.infectious).sort()
+  ages.forEach((age) => {
     // Initialize all multi-faceted states with internal arrays
     flux.exposed[age] = Array(pop.current.exposed[age].length)
-    newPop.current.exposed[age] = Array(flux.exposed[age].length)
 
     // Susceptible -> Exposed
     flux.susceptible[age] =
-      sample(P.importsPerDay[age] * dt) +
-      sample(
-        (1 - P.frac.isolated[age]) *
-          P.rate.infection(newTime) *
-          pop.current.susceptible[age] *
-          fracInfected *
-          dt,
-      )
+      P.importsPerDay[age] +
+      (1 - P.frac.isolated[age]) * P.rate.infection(time) * pop.current.susceptible[age] * fracInfected
 
     // Exposed -> Internal -> Infectious
     pop.current.exposed[age].forEach((exposed, i, exposedArray) => {
-      flux.exposed[age][i] = Math.min(
-        exposed,
-        sample(P.rate.latency * (exposed * dt) * exposedArray.length),
-      )
+      flux.exposed[age][i] = P.rate.latency * exposed * exposedArray.length
     })
 
     // Infectious -> Recovered/Critical
-    flux.infectious.recovered[age] = Math.min(
-      pop.current.infectious[age],
-      sample(pop.current.infectious[age] * dt * P.rate.recovery[age]),
-    )
-    flux.infectious.severe[age] = Math.min(
-      pop.current.infectious[age] - flux.infectious.recovered[age],
-      sample(pop.current.infectious[age] * dt * P.rate.severe[age]),
-    )
+    flux.infectious.recovered[age] = pop.current.infectious[age] * P.rate.recovery[age]
+    flux.infectious.severe[age] = pop.current.infectious[age] * P.rate.severe[age]
+
     // Severe -> Recovered/Critical
-    flux.severe.recovered[age] = Math.min(
-      pop.current.severe[age],
-      sample(pop.current.severe[age] * dt * P.rate.discharge[age]),
-    )
-    flux.severe.critical[age] = Math.min(
-      pop.current.severe[age] - flux.severe.recovered[age],
-      sample(pop.current.severe[age] * dt * P.rate.critical[age]),
-    )
+    flux.severe.recovered[age] = pop.current.severe[age] * P.rate.discharge[age]
+    flux.severe.critical[age] = pop.current.severe[age] * P.rate.critical[age]
+
     // Critical -> Severe/Fatality
-    flux.critical.severe[age] = Math.min(
-      pop.current.critical[age],
-      sample(pop.current.critical[age] * dt * P.rate.stabilize[age]),
-    )
-    flux.critical.fatality[age] = Math.min(
-      pop.current.critical[age] - flux.critical.severe[age],
-      sample(pop.current.critical[age] * dt * P.rate.fatality[age]),
-    )
+    flux.critical.severe[age] = pop.current.critical[age] * P.rate.stabilize[age]
+    flux.critical.fatality[age] = pop.current.critical[age] * P.rate.fatality[age]
+
     // Overflow -> Severe/Fatality
-    flux.overflow.severe[age] = Math.min(
-      pop.current.overflow[age],
-      sample(pop.current.overflow[age] * dt * P.rate.stabilize[age]),
-    )
-    flux.overflow.fatality[age] = Math.min(
-      pop.current.overflow[age] - flux.overflow.severe[age],
-      sample(pop.current.overflow[age] * dt * P.rate.overflowFatality[age]),
-    )
-
-    update('susceptible', age, -flux.susceptible[age])
-    let fluxIn = flux.susceptible[age]
-    flux.exposed[age].forEach((exposed, i) => {
-      updateAt('exposed', age, fluxIn - exposed, i)
-      fluxIn = exposed
-    })
-    update('infectious', age, fluxIn - flux.infectious.severe[age] - flux.infectious.recovered[age])
-    update(
-      'severe',
-      age,
-      flux.infectious.severe[age] +
-        flux.critical.severe[age] +
-        flux.overflow.severe[age] -
-        flux.severe.critical[age] -
-        flux.severe.recovered[age],
-    )
-    // Cumulative categories
-    push('recovered', age, flux.infectious.recovered[age] + flux.severe.recovered[age])
-    push('hospitalized', age, flux.infectious.severe[age])
-    push('critical', age, flux.severe.critical[age])
-    push('fatality', age, flux.critical.fatality[age] + flux.overflow.fatality[age])
+    flux.overflow.severe[age] = pop.current.overflow[age] * P.rate.stabilize[age]
+    flux.overflow.fatality[age] = pop.current.overflow[age] * P.rate.overflowFatality[age]
   })
 
-  // Move hospitalized patients according to constrained resources
-  let freeICUBeds = P.ICUBeds - (sum(pop.current.critical) - sum(flux.critical.severe) - sum(flux.critical.fatality))
-  Keys.forEach((age) => {
-    if (freeICUBeds > flux.severe.critical[age]) {
-      freeICUBeds -= flux.severe.critical[age]
-      update('critical', age, flux.severe.critical[age] - flux.critical.severe[age] - flux.critical.fatality[age])
-      update('overflow', age, -flux.overflow.fatality[age] - flux.overflow.severe[age])
-    } else if (freeICUBeds > 0) {
-      const newOverflow = flux.severe.critical[age] - freeICUBeds
-      update('critical', age, freeICUBeds - flux.critical.severe[age] - flux.critical.fatality[age])
-      update('overflow', age, newOverflow - flux.overflow.severe[age] - flux.overflow.fatality[age])
-      freeICUBeds = 0
-    } else {
-      update('critical', age, -flux.critical.severe[age] - flux.critical.fatality[age])
-      update('overflow', age, +flux.severe.critical[age] - flux.overflow.fatality[age] - flux.overflow.severe[age])
-    }
-  })
-
-  // If any overflow patients are left AND there are free beds, move them back.
-  // Again, move w/ lower age as priority.
-  Keys.forEach((age) => {
-    if (freeICUBeds > 0) {
-      if (newPop.current.overflow[age] < freeICUBeds) {
-        newPop.current.critical[age] += newPop.current.overflow[age]
-        freeICUBeds -= newPop.current.overflow[age]
-        newPop.current.overflow[age] = 0
-      } else {
-        newPop.current.critical[age] += freeICUBeds
-        newPop.current.overflow[age] -= freeICUBeds
-        freeICUBeds = 0
-      }
-    }
-  })
-
-  // NOTE: For debug purposes only.
-  /*
-  const popSum = sum(newPop.susceptible) + sum(newPop.exposed) + sum(newPop.infectious) + sum(newPop.recovered) + sum(newPop.hospitalized) + sum(newPop.critical) + sum(newPop.overflow) + sum(newPop.dead);
-  console.log(math.abs(popSum - P.populationServed));
-  */
-
-  return newPop
+  return flux
 }
 
 const keys = <T>(o: T): Array<keyof T & string> => {
