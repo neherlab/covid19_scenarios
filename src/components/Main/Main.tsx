@@ -130,7 +130,7 @@ function Main() {
     }
   }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
 
-  const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
+  const setScenarioToCustom = (newParams: AllParams) => {
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.population, newParams.population)) {
       scenarioDispatch(setPopulationData({ data: newParams.population }))
@@ -148,7 +148,7 @@ function Main() {
       const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
       scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
     }
-  }, 0)
+  }
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
     updateBrowserURL(locationSearch)
