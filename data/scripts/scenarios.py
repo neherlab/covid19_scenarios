@@ -38,6 +38,8 @@ mitigation_colors = {
 SCENARIO_POPS = os.path.join(BASE_PATH, "populationData.tsv")
 FIT_CASE_DATA = {}
 
+from type_defaults import DEFAULTS
+
 # ------------------------------------------------------------------------
 # Fallback data fitter
 
@@ -106,10 +108,6 @@ class Fitter:
 #
 # IMPORTANT: Keep in sync with algorithm parameters of input [AllParamsFlat]
 #            covid19_scenarios/src/algorithm/types/Param.types.ts
-
-class Object:
-    def marshalJSON(self):
-        return json.dumps(self, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
 class Measure(Object):
     def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
@@ -187,11 +185,14 @@ class AllParams(Object):
 # ------------------------------------------------------------------------
 # Functions
 
-def marshalJSON(obj, wtr):
+def marshalJSON(obj, wtr=None):
     """ Validate and store data to .json file
     Arguments:
     - obj: a dict of allParams
     """
+    if wtr is None:
+        return json.dumps(self, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+
     newdata = []
     for k in obj:
         newdata.append({'country': k, 'allParams': obj[k]})
