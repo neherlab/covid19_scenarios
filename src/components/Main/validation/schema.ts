@@ -2,11 +2,10 @@ import * as yup from 'yup'
 
 import i18next from 'i18next'
 
-import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
+import { ageDistributionNames } from '../state/countryAgeDistributionData'
 import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
-const countries = Object.keys(countryAgeDistribution)
-countries.push(CUSTOM_COUNTRY_NAME)
+const countries = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]
 
 const MSG_REQUIRED = 'Required'
 const MSG_NON_NEGATIVE = 'Should be non-negative'

@@ -6,8 +6,8 @@ import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
 
-import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 import { caseCountsNames } from '../state/caseCountsData'
+import { ageDistributionNames } from '../state/countryAgeDistributionData'
 
 import { State, CUSTOM_COUNTRY_NAME } from '../state/state'
 
@@ -16,8 +16,7 @@ import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-const countries = Object.keys(countryAgeDistribution)
-const countryOptions = countries.map((country) => ({ value: country, label: country }))
+const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
 const caseCountOptions = caseCountsNames.map((country) => ({ value: country, label: country }))
