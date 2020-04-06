@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import Ajv from 'ajv'
 
 import { CaseCounts, Convert } from '../../../.generated/types/types'

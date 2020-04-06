@@ -147,12 +147,6 @@ export function DeterministicLinePlot({
     newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
-  const mitigationsToPlot = mitigationIntervals.map((d) => ({
-    key: d.name,
-    color: '#CCCCCC',
-    legendType: 'line',
-    name: d.name,
-  }))
 
   const observations =
     nonEmptyCaseCounts?.map((d, i) => ({
