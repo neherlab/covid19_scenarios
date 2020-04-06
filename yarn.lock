@@ -7013,11 +7013,6 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
-fasy@7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/fasy/-/fasy-7.0.1.tgz#aae4499a838cf4deee5959e1d73342415091b95d"
-  integrity sha512-sFL4XuiCszHTQ/g4EbPiICH0KdxP8zd6N2h4weU4fPUzOErtn5i1wkQLZu2oLqIBkAdvroWpch47/fgtDTffJg==
-
 faye-websocket@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/faye-websocket/-/faye-websocket-0.10.0.tgz#4e492f8d04dfb6f89003507f6edbf2d501e7c6f4"
