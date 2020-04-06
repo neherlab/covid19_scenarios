@@ -1,4 +1,5 @@
 from pandasdmx import Request
+from transform_ages import flatten
 
 # ------------------------------------------------------------------------
 # Globals
@@ -325,5 +326,8 @@ if __name__ == "__main__":
     for i, bp in enumerate(bps[:-1]):
         d   = get_data(*ids[bp:bps[i+1]])
         tbl = to_table(d.write())
-        print(tbl)
         table.update(tbl)
+
+    flatten(table)
+
+
