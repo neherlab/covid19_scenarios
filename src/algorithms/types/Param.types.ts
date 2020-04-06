@@ -1,72 +1,25 @@
-export interface DateRange {
-  tMin: Date
-  tMax: Date
-}
+import {
+  AllParams,
+  ContainmentData,
+  DateRange,
+  EmpiricalDatum,
+  EpidemiologicalData,
+  MitigationInterval,
+  PopulationData,
+  SimulationData,
+} from '../../.generated/types/types'
 
-export interface MitigationInterval {
-  id: string
-  name: string
-  color: string
-  timeRange: DateRange
-  mitigationValue: number
-}
+export { DateRange, MitigationInterval, AllParams, EpidemiologicalData, SimulationData, ContainmentData }
+
+export type CaseCounts = Record<string, EmpiricalData[]>
 
 export type MitigationIntervalWithoutId = Omit<MitigationInterval, 'id'>
 
 export type MitigationIntervals = MitigationInterval[]
 
-export interface PopulationData {
-  populationServed: number
-  country: string
-  suspectedCasesToday: number
-  importsPerDay: number
-  hospitalBeds: number
-  ICUBeds: number
-  cases: string
-}
-
-export interface EpidemiologicalData {
-  r0: number // Average number of people who will catch a disease from one contagious person. Usually specified as a decimal, e. g. 2.7
-  latencyTime: number
-  infectiousPeriod: number
-  lengthHospitalStay: number
-  lengthICUStay: number
-  seasonalForcing: number
-  peakMonth: number
-  overflowSeverity: number
-}
-
-export interface ContainmentData {
-  mitigationIntervals: MitigationIntervals
-}
-
-export interface SimulationData {
-  simulationTimeRange: DateRange
-  numberStochasticRuns: number
-}
-
-export interface ScenarioData {
-  population: PopulationData
-  epidemiological: EpidemiologicalData
-  containment: ContainmentData
-  simulation: SimulationData
-}
-
-export interface AllParams {
-  population: PopulationData
-  epidemiological: EpidemiologicalData
-  simulation: SimulationData
-  containment: ContainmentData
-}
+// FIXME: One of these should go away
+export type ScenarioData = AllParams
 
 export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData & ContainmentData
-
-interface EmpiricalDatum {
-  time: Date
-  cases: number
-  deaths: number
-  hospitalized: number
-  ICU: number
-}
 
 export type EmpiricalData = EmpiricalDatum[]

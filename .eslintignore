@@ -5,6 +5,7 @@
 \.ignore
 \.reports
 cypress/integration/language.spec.ts
+data
 node_modules
 static
 tsconfig.json

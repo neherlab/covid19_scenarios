@@ -13,7 +13,7 @@ import {
   setAgeDistributionData,
 } from './actions'
 
-import { getScenarioData, getAgeDistribution } from './data'
+import { getScenarioData, getAgeDistribution } from './scenarioData'
 
 import { CUSTOM_SCENARIO_NAME, CUSTOM_COUNTRY_NAME, defaultScenarioState } from './state'
 

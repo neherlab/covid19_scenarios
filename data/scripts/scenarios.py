@@ -4,27 +4,19 @@ import os
 import json
 import numpy as np
 import multiprocessing as multi
+import yaml
+from jsonschema import validate
+
 from uuid import uuid4
 sys.path.append('..')
 
 from datetime import datetime
 from scipy.stats import linregress
-from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARIOS
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
-
-##
-mitigation_colors = {
-"School Closures": "#7fc97f",
-"Social Distancing": "#beaed4",
-"Lock-down": "#fdc086",
-"Shut-down": "#ffff99",
-"Case Isolation": "#386cb0",
-"Contact Tracing": "#f0027f",
-"Intervention #1": "#bf5b17",
-"Intervention #2": "#666666",
-}
-
+from scripts.mitigationMeasures import mitigationMeasures
+from scripts.mitigationMeasures import read_table as read_mitigations
 
 # ------------------------------------------------------------------------
 # Globals
@@ -154,8 +146,6 @@ class EpidemiologicalParams(Object):
 
 class ContainmentParams(Object):
     def __init__(self):
-        self.reduction    = np.ones(15)
-        self.numberPoints = len(self.reduction)
         self.mitigationIntervals = []
 
 
@@ -186,7 +176,23 @@ class AllParams(Object):
 # Functions
 
 def marshalJSON(obj, wtr):
-    return json.dump(obj, wtr, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+    """ Validate and store data to .json file
+    Arguments:
+    - obj: a dict of allParams
+    """
+    newdata = []
+    for k in obj:
+        newdata.append({'country': k, 'allParams': obj[k]})
+
+    # Serialize into json
+    news = json.dumps(newdata, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+
+    # Validate the dict based on the json
+    with open(os.path.join(BASE_PATH, SCHEMA_SCENARIOS), "r") as f:
+        schema = yaml.load(f, Loader=yaml.FullLoader)
+        validate(json.loads(news), schema)
+
+    return wtr.write(news)
 
 def fit_one_case_data(args):
     Params = Fitter()
@@ -211,14 +217,25 @@ def fit_all_case_data(num_procs=4):
             FIT_CASE_DATA[k] = v
 
 
-def set_mitigation(cases, scenario):
-    timeline = np.linspace(datetime.strptime(scenario.simulation.simulationTimeRange.tMin[:10], '%Y-%m-%d').toordinal(),
-                           datetime.strptime(scenario.simulation.simulationTimeRange.tMax[:10], '%Y-%m-%d').toordinal(),
-                           len(scenario.containment.reduction))
+def set_mitigation(cases, scenario, measures=None):
+    # if explicit measures are provided, use them to populate the scenario
+    if measures:
+        for m  in measures:
+            M = Measure(name=m['name'],
+                        tMin=m['tMin'] or '2020-03-01',
+                        tMax=m['tMax'] or '2020-08-31',
+                        id=uuid4(),
+                        color=mitigationMeasures[m['name']]["color"],
+                        mitigationValue=mitigationMeasures[m['name']]["value"])
 
+            scenario.containment.mitigationIntervals.append(M)
+        return
+
+    # Otherwise generate dummy measures to illustrate the context and
+    # avoid impression of a completely unmitigated pandemic
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
-        scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
+        scenario.containment.mitigationIntervals = []
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
@@ -233,16 +250,14 @@ def set_mitigation(cases, scenario):
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.containment.reduction[timeline>cutoff] *= (1-val)
             scenario.containment.mitigationIntervals.append(Measure(
                 name=name,
                 tMin=cutoff_str,
                 id=uuid4(),
                 tMax=scenario.simulation.simulationTimeRange.tMax[:10],
-                color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=val))
+                color=mitigationMeasures[name]["color"] if name in mitigationMeasures else "#cccccc",
+                mitigationValue=mitigationMeasures[name]["value"] if name in mitigationMeasures else 0.1))
 
-    scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -261,6 +276,7 @@ def generate(output_json, num_procs=1, recalculate=False):
                 FIT_CASE_DATA[k] = v
 
     case_counts = parse_tsv()
+    mitigationMeasuresByRegion = read_mitigations()
 
     with open(SCENARIO_POPS, 'r') as fd:
         rdr = csv.reader(fd, delimiter='\t')
@@ -281,10 +297,11 @@ def generate(output_json, num_procs=1, recalculate=False):
             entry = [region[idx[arg]] for arg in args]
             scenario[region_name] = AllParams(*entry)
             if region_name in case_counts:
-                set_mitigation(case_counts[region_name], scenario[region_name])
+                set_mitigation(case_counts[region_name],
+                               scenario[region_name],
+                               mitigationMeasuresByRegion.get(region_name, None))
             else:
-                scenario[region_name].containment.reduction = [float(x)
-                    for x in scenario[region_name].containment.reduction]
+                scenario[region_name].containment.mitigationIntervals = []
 
     with open(output_json, "w+") as fd:
         marshalJSON(scenario, fd)
