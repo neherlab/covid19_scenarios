@@ -28,6 +28,7 @@ import { calculatePosition, scrollToRef } from './chartHelper'
 import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
 
 import './DeterministicLinePlot.scss'
+import { Button, ButtonGroup, ButtonToggle } from 'reactstrap'
 
 const ASPECT_RATIO = 16 / 9
 
@@ -109,6 +110,7 @@ export function DeterministicLinePlot({
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+  const [useImportedData, setUseImportedData] = useState(false)
 
   // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
   // href: https://reactjs.org/docs/hooks-rules.html
@@ -279,6 +281,8 @@ export function DeterministicLinePlot({
     setzoomSelectedRightState('')
   }
 
+  const toggleUseImportedData = () => setUseImportedData(!useImportedData)
+
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
@@ -294,9 +298,19 @@ export function DeterministicLinePlot({
             <>
               <h3 className="d-flex justify-content-between">
                 {t('Cases through time')}
-                <button className="btn btn-secondary" onClick={zoomOut}>
+                <ButtonGroup>
+                  <ButtonToggle
+                    color="secondary"
+                    className={useImportedData ? 'active' : ''}
+                    onClick={toggleUseImportedData}
+                    disabled={!!userResult}
+                  >
+                    {t('Use imported data')}
+                  </ButtonToggle>
+                  <Button color="secondary" onClick={zoomOut}>
                   {t('Zoom Out')}
-                </button>
+                  </Button>
+                </ButtonGroup>
               </h3>
 
               <div ref={chartRef} />
