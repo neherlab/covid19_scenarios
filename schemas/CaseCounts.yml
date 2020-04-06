@@ -38,9 +38,11 @@ definitions:
         format: date
 
       cases:
-        type: integer
-        multipleOf: 1
-        min: 0
+        anyOf:
+          - type: integer
+            multipleOf: 1
+            min: 0
+          - type: 'null'
 
       deaths:
         anyOf:
