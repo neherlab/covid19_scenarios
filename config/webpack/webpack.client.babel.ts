@@ -74,7 +74,7 @@ function getWebRoot() {
     root = `${root}:${portProd}`
   }
 
-  return `${root}/`
+  return root
 }
 
 const { moduleRoot, pkg } = findModuleRoot()
