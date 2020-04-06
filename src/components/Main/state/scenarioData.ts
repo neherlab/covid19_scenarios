@@ -4,8 +4,6 @@ import { Scenario, AllParams, Convert } from '../../../.generated/types/types'
 
 import scenariosRaw from '../../../assets/data/scenarios/scenarios.json'
 import schema from '../../../../schemas/Scenarios.yml'
-import countryAgeDistributionData from '../../../assets/data/country_age_distribution.json'
-import { OneCountryAgeDistribution, CountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
 
 function validate() {
   const ajv = new Ajv()
@@ -28,8 +26,4 @@ export function getScenarioData(key: string): AllParams {
   }
   const scenario = Convert.toScenario(JSON.stringify(scenarioRaw))
   return scenario.allParams
-}
-
-export function getAgeDistribution(country: string): OneCountryAgeDistribution {
-  return (countryAgeDistributionData as CountryAgeDistribution)[country]
 }
