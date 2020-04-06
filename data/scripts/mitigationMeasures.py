@@ -1,8 +1,8 @@
 import csv
-import sys
+import sys, os
 sys.path.append('..')
-
-from paths import MITIGATION_TABLE
+from collections import defaultdict
+from paths import MITIGATION_TABLE, BASE_PATH
 
 ##
 mitigationMeasures = {
@@ -17,8 +17,8 @@ mitigationMeasures = {
 }
 
 def read_table():
-    measures = {}
-    with open(MITIGATION_TABLE, 'r') as fh:
+    measures = defaultdict(list)
+    with open(os.path.join(BASE_PATH, MITIGATION_TABLE), 'r') as fh:
         rdr = csv.reader(fh, delimiter='\t')
         header = rdr.__next__()
         tMin_idx = header.index("Start date")
@@ -34,7 +34,7 @@ def read_table():
             tmp["tMin"] = row[tMin_idx]
             tmp["tMax"] = row[tMax_idx]
             tmp["name"] = row[measure_idx]
-            measures[row[key_idx]] = tmp
+            measures[row[key_idx]].append(tmp)
 
     return measures
 

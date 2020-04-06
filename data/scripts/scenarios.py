@@ -16,6 +16,7 @@ from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARI
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
 from scripts.mitigationMeasures import mitigationMeasures
+from scripts.mitigationMeasures import read_table as read_mitigations
 
 # ------------------------------------------------------------------------
 # Globals
@@ -224,9 +225,9 @@ def set_mitigation(cases, scenario, measures=None):
                         tMin=m['tMin'] or '2020-03-01',
                         tMax=m['tMax'] or '2020-08-31',
                         id=uuid4(),
-                        color=mitigationMeasures[m['name']].color,
-                        mitigationValue=mitigationMeasures[m['name']].value)
-                        )
+                        color=mitigationMeasures[m['name']]["color"],
+                        mitigationValue=mitigationMeasures[m['name']]["value"])
+
             scenario.containment.mitigationIntervals.append(M)
         return
 
@@ -254,8 +255,8 @@ def set_mitigation(cases, scenario, measures=None):
                 tMin=cutoff_str,
                 id=uuid4(),
                 tMax=scenario.simulation.simulationTimeRange.tMax[:10],
-                color=mitigationMeasures[name].color if name in mitigationMeasures else "#cccccc",
-                mitigationValue=mitigationMeasures[name].value if name in mitigationMeasures else 0.1))
+                color=mitigationMeasures[name]["color"] if name in mitigationMeasures else "#cccccc",
+                mitigationValue=mitigationMeasures[name]["value"] if name in mitigationMeasures else 0.1))
 
 
 # ------------------------------------------------------------------------
@@ -275,6 +276,7 @@ def generate(output_json, num_procs=1, recalculate=False):
                 FIT_CASE_DATA[k] = v
 
     case_counts = parse_tsv()
+    mitigationMeasuresByRegion = read_mitigations()
 
     with open(SCENARIO_POPS, 'r') as fd:
         rdr = csv.reader(fd, delimiter='\t')
@@ -295,7 +297,9 @@ def generate(output_json, num_procs=1, recalculate=False):
             entry = [region[idx[arg]] for arg in args]
             scenario[region_name] = AllParams(*entry)
             if region_name in case_counts:
-                set_mitigation(case_counts[region_name], scenario[region_name])
+                set_mitigation(case_counts[region_name],
+                               scenario[region_name],
+                               mitigationMeasuresByRegion.get(region_name, None))
             else:
                 scenario[region_name].containment.mitigationIntervals = []
 
