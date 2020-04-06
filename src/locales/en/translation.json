@@ -40,11 +40,13 @@
   "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).": "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).",
   "Epidemiology": "Epidemiology",
   "Error": "Error",
+  "Error: {{message}}": "Error: {{message}}",
   "Export": "Export",
   "Fast/North": "Fast/North",
   "Fast/South": "Fast/South",
   "Fast/Tropical": "Fast/Tropical",
   "Fatal": "Fatal",
+  "{{fileName}} ({{fileSize}}Kb)": "{{fileName}} ({{fileSize}}Kb)",
   "Hospital Beds": "Hospital Beds",
   "Hospital stay": "Hospital stay",
   "ICU overflow": "ICU overflow",
@@ -66,6 +68,7 @@
   "Moderate/North": "Moderate/North",
   "Moderate/South": "Moderate/South",
   "Moderate/Tropical": "Moderate/Tropical",
+  "No file has been uploaded.": "No file has been uploaded.",
   "No mitigation": "No mitigation",
   "No such country in our data": "No such country in our data",
   "Not found": "Not found",
@@ -77,6 +80,7 @@
   "Number of people served by health care system.": "Number of people served by health care system.",
   "Number of points": "Number of points",
   "of Richard Neher by": "of Richard Neher by",
+  "Only one CSV or TSV file can be imported.": "Only one CSV or TSV file can be imported.",
   "Outcome": "Outcome",
   "Parameters of the population in the health care system.": "Parameters of the population in the health care system.",
   "Patients in ICU": "Patients in ICU",
@@ -153,5 +157,7 @@
   "too many stochastic trajectories will slow things down": "too many stochastic trajectories will slow things down",
   "total": "total",
   "total deaths": "total deaths",
-  "You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.": "You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases."
+  "You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.": "You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.",
+  "Your file": "Your file",
+  "Your file_plural": "Your files"
 }

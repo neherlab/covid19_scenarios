@@ -1,16 +1,16 @@
-import React, { useCallback, useState, useEffect } from 'react'
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Alert } from 'reactstrap'
+import React, { useCallback, useState } from 'react'
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import FileUploadZone from '../Compare/FileUploadZone'
 import Papa from 'papaparse'
+import FileUploadZone from '../Compare/FileUploadZone'
 import processUserResult from '../../../algorithms/utils/userResult'
 import { UserResult } from '../../../algorithms/types/Result.types'
 import Message from '../../../components/Misc/Message'
 
 export interface ImportSimulationDialogProps {
   showModal: boolean
-  toggleShowModal: () => void
-  onDataImported: (data: UserResult) => void
+  toggleShowModal(): void
+  onDataImported(data: UserResult): void
 }
 
 const allowedFileTypes = [
@@ -39,25 +39,31 @@ export default function ImportSimulationDialog({
     setErrorMessage(t('Error: {{message}}', { message: t('Only one CSV or TSV file can be imported.') }))
 
   const onImportClick = useCallback(async () => {
-    if (filesToImport.size !== 1) {
-      setErrorMessage(t('Only one file can be imported for now. Only the first one will be loaded.'))
-    }
-
-    const file: File = filesToImport.values().next().value
-    const { data, errors, meta } = Papa.parse(file)
-
-    if (meta.aborted || errors.length > 0) {
-      setErrorMessage(
-        t('Error: {{message}}', { message: t("The file could not be loaded. Make sure that it's a valid CSV file.") }),
-      )
+    if (filesToImport.size === 0) {
+      setErrorMessage(t('Error: {{message}}', { message: t('No file has been uploaded.') }))
       return
     }
 
-    onDataImported(processUserResult(data))
-    toggleShowModal()
-  }, [toggleShowModal])
+    const file: File = filesToImport.values().next().value
+    Papa.parse(file, {
+      complete: ({ data, errors, meta }: Papa.ParseResult) => {
+        if (meta.aborted || errors.length > 0) {
+          setErrorMessage(
+            t('Error: {{message}}', {
+              message: t("The file could not be loaded. Make sure that it's a valid CSV file."),
+            }),
+          )
+          return
+        }
+        onDataImported(processUserResult(data))
+        toggleShowModal()
+      },
+    })
 
-  const isUploaded: boolean = filesToImport.size > 0
+    // TODO handle loading for huge files
+  }, [toggleShowModal, filesToImport])
+
+  const isFileUploaded: boolean = filesToImport.size > 0
 
   return (
     <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
@@ -68,18 +74,19 @@ export default function ImportSimulationDialog({
           {t('You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.')}
         </p>
         <FileUploadZone
-          onFilesChange={setFilesToImport}
+          onFilesUploaded={setFilesToImport}
           accept={allowedFileTypes}
           multiple={false}
-          disabled={isUploaded}
           onFilesRejected={onImportRejected}
+          dropZoneMessage={t('Drag and drop a file here, or click to select one.')}
+          activeDropZoneMessage={t('Drop the file here...')}
         />
       </ModalBody>
       <ModalFooter>
         <Button color="secondary" onClick={toggleShowModal}>
           {t('Cancel')}
         </Button>
-        <Button color="primary" onClick={onImportClick} disabled={isUploaded}>
+        <Button color="primary" onClick={onImportClick} disabled={!isFileUploaded}>
           {t('Import')}
         </Button>
       </ModalFooter>

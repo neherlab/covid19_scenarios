@@ -146,7 +146,6 @@ function ResultsCardFunction({
                 type="button"
                 color="secondary"
                 onClick={_ => setShowImportModal(true)}
-                onDataImported={setUserResult}
               >
                 {t('Import more data')}
               </Button><Button
@@ -249,6 +248,7 @@ function ResultsCardFunction({
       <ImportSimulationDialog
         showModal={showImportModal}
         toggleShowModal={toggleShowImportModal}
+        onDataImported={setUserResult}
       />
     </>
   )

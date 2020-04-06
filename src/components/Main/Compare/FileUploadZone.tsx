@@ -14,7 +14,8 @@ export interface FileUploadZoneProps {
   onFilesRejected?(): void
   accept?: string | string[]
   multiple?: boolean
-  disabled?: boolean
+  dropZoneMessage: string
+  activeDropZoneMessage: string
 }
 
 /* Converts file extension to FileType enum */
@@ -38,22 +39,21 @@ function reduceDroppedFiles(files: Map<FileType, File>, file: File) {
   return files
 }
 
-function FileUploadZone({ onFilesUploaded, accept, multiple, disabled, onFilesRejected }: FileUploadZoneProps) {
+function FileUploadZone(props: FileUploadZoneProps) {
   const [uploadedFiles, dispatchUploadedFile] = useReducer(reduceDroppedFiles, new Map())
   const onDrop = useCallback(
     (droppedFiles: File[]) => {
       droppedFiles.forEach(dispatchUploadedFile)
-      onFilesUploaded(uploadedFiles)
+      props.onFilesUploaded(uploadedFiles)
     },
-    [onFilesUploaded],
+    [props.onFilesUploaded],
   )
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept,
-    multiple,
-    disabled,
+    accept: props.accept,
+    multiple: props.multiple,
     onDropAccepted: onDrop,
-    onDropRejected: onFilesRejected,
+    onDropRejected: props.onFilesRejected,
   })
   const { t } = useTranslation()
 
@@ -62,12 +62,19 @@ function FileUploadZone({ onFilesUploaded, accept, multiple, disabled, onFilesRe
       <div {...getRootProps()} className="fileuploadzone-drop-area rounded p-3">
         <input type="file" {...getInputProps()} />
         <p className="h5 text-secondary text-center m-0">
-          {isDragActive ? t('Drop the files here ...') : t("Drag n' drop some files here, or click to select files")}
+          {isDragActive ? props.activeDropZoneMessage : props.dropZoneMessage}
         </p>
       </div>
-      <ul>
-        {uploadedFiles.size > 0 && [...uploadedFiles.values()].map(({ name }: File) => <li key={name}>{name}</li>)}
-      </ul>
+      {uploadedFiles.size > 0 && (
+        <>
+          <h3 className="mt-4">{t('Your file', { count: uploadedFiles.size })}</h3>
+          <ul>
+            {[...uploadedFiles.values()].map(({ name, size }: File) => (
+              <li key={name}>{t('{{fileName}} ({{fileSize}}Kb)', { fileName: name, fileSize: size / 1000 })}</li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   )
 }
