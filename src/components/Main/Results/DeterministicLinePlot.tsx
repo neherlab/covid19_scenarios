@@ -110,7 +110,7 @@ export function DeterministicLinePlot({
   toggleWindowOpen,
 }: LinePlotProps) {
   const { t } = useTranslation()
-  const resizeRef = React.useRef(null)
+  const resizeRef = React.useRef<HTMLDivElement>(null)
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
@@ -279,7 +279,11 @@ export function DeterministicLinePlot({
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot" ref={resizeRef}>
-      <ReactResizeDetector handleWidth handleHeight targetDomEl={resizeRef && resizeRef.current}>
+      <ReactResizeDetector
+        handleWidth
+        handleHeight
+        targetDomEl={resizeRef && resizeRef.current ? resizeRef.current : undefined}
+      >
         {({ width }: { width?: number }) => {
           if (!width) {
             return <div className="w-100 h-100" />
