@@ -1,5 +1,6 @@
 import {
   AllParams,
+  CaseCounts,
   ContainmentData,
   DateRange,
   EmpiricalDatum,
@@ -7,11 +8,19 @@ import {
   MitigationInterval,
   PopulationData,
   SimulationData,
-} from '../../.generated/types/types'
+  AgeDistribution,
+} from '../../.generated/types'
 
-export { DateRange, MitigationInterval, AllParams, EpidemiologicalData, SimulationData, ContainmentData }
-
-export type CaseCounts = Record<string, EmpiricalData[]>
+export {
+  CaseCounts,
+  AgeDistribution,
+  DateRange,
+  MitigationInterval,
+  AllParams,
+  EpidemiologicalData,
+  SimulationData,
+  ContainmentData,
+}
 
 export type MitigationIntervalWithoutId = Omit<MitigationInterval, 'id'>
 
