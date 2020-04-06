@@ -296,7 +296,14 @@ export function DeterministicLinePlot({
                     {t('Zoom Out')}
                   </button>
                   {toggleWindowOpen && (
-                    <NewWindowButton isWindowOpen={!!isWindowOpen} toggleWindowOpen={toggleWindowOpen} />
+                    <NewWindowButton
+                      isWindowOpen={!!isWindowOpen}
+                      toggleWindowOpen={toggleWindowOpen}
+                      features={{
+                        width: (2 / 3) * window.innerWidth,
+                        height: ((2 / 3) * window.innerWidth) / ASPECT_RATIO + 100,
+                      }}
+                    />
                   )}
                 </div>
               </h3>

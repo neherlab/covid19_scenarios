@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NewWindow from 'react-new-window'
+import NewWindow, { IWindowFeatures } from 'react-new-window'
 import { Subtract } from 'utility-types'
 import { MdOpenInNew, MdClose } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 
 export interface NewWindowProps {
   isWindowOpen: boolean
-  toggleWindowOpen: () => void
+  toggleWindowOpen: (features?: IWindowFeatures) => void
 }
 
 interface MakeWindowableProps {
@@ -22,11 +22,26 @@ export function makeWindowable<P extends NewWindowProps>(
 ) {
   function WithNewWindow(props: Subtract<P, NewWindowProps>) {
     const [open, setOpen] = useState(false)
+    const [features, setFeatures] = useState<IWindowFeatures>()
 
-    const toWrap = <Component isWindowOpen={open} toggleWindowOpen={() => setOpen(!open)} {...(props as P)} />
+    const toWrap = (
+      <Component
+        isWindowOpen={open}
+        toggleWindowOpen={(features: IWindowFeatures) => {
+          setOpen(!open)
+          setFeatures(features)
+        }}
+        {...(props as P)}
+      />
+    )
 
     return open ? (
-      <NewWindow {...makeWindowableProps} onUnload={() => setOpen(false)} onBlock={() => setOpen(false)}>
+      <NewWindow
+        {...makeWindowableProps}
+        onUnload={() => setOpen(false)}
+        onBlock={() => setOpen(false)}
+        features={features}
+      >
         {toWrap}
       </NewWindow>
     ) : (
@@ -37,11 +52,15 @@ export function makeWindowable<P extends NewWindowProps>(
   return WithNewWindow
 }
 
-export function NewWindowButton({ isWindowOpen, toggleWindowOpen }: NewWindowProps) {
+export function NewWindowButton({
+  isWindowOpen,
+  toggleWindowOpen,
+  features,
+}: NewWindowProps & { features?: IWindowFeatures }) {
   const { t } = useTranslation()
 
   return (
-    <button type="button" className="btn btn-secondary" onClick={toggleWindowOpen}>
+    <button type="button" className="btn btn-secondary" onClick={() => toggleWindowOpen(features)}>
       {isWindowOpen ? t('Close') : t('Open')} {isWindowOpen ? <MdClose /> : <MdOpenInNew />}
     </button>
   )
