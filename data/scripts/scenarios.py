@@ -199,7 +199,7 @@ def marshalJSON(obj, wtr):
     news = json.dumps(newdata, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
     # Validate the dict based on the json
-    with open(SCHEMA_SCENARIOS, "r") as f:
+    with open(os.path.join(BASE_PATH, SCHEMA_SCENARIOS), "r") as f:
         schema = yaml.load(f, Loader=yaml.FullLoader)
         validate(json.loads(news), schema)
 
