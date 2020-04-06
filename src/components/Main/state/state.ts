@@ -1,5 +1,5 @@
 import i18next from 'i18next'
-import { scenarioNames, getScenarioData, getAgeDistribution } from './data'
+import { scenarioNames, getScenarioData, getAgeDistribution } from './scenarioData'
 import { ScenarioData } from '../../../algorithms/types/Param.types'
 import { OneCountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
 

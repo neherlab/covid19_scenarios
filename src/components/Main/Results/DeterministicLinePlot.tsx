@@ -151,7 +151,7 @@ export function DeterministicLinePlot({
   const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
   const nICUBeds = verifyPositive(data.params.ICUBeds)
 
-  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.ICU || d.hospitalized)
+  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
 
   const caseStep = 3
   // this currently relies on there being data for every day. This should be
@@ -165,17 +165,11 @@ export function DeterministicLinePlot({
 
   const countObservations = {
     cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: nonEmptyCaseCounts?.filter((d) => d.ICU).length ?? 0,
+    ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
     observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
     newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
-  const mitigationsToPlot = mitigationIntervals.map((d) => ({
-    key: d.name,
-    color: '#CCCCCC',
-    legendType: 'line',
-    name: d.name,
-  }))
 
   const observations =
     nonEmptyCaseCounts?.map((d, i) => ({
@@ -185,7 +179,7 @@ export function DeterministicLinePlot({
       currentHospitalized: enabledPlots.includes(DATA_POINTS.ObservedHospitalized)
         ? d.hospitalized || undefined
         : undefined,
-      ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.ICU || undefined : undefined,
+      ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.icu || undefined : undefined,
       newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newCases(nonEmptyCaseCounts, i) : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,

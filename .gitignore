@@ -2,16 +2,15 @@
 *.swp
 *log
 \.build
-\.idea
 \.cache
 \.env
+\.generated
+\.idea
 \.output
 \.reports
 \.vscode
 cypress/screenshots
 cypress/videos
+data/parsers.log
 node_modules
 .DS_Store
-
-## data
-data/parsers.log

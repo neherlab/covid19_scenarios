@@ -10,3 +10,4 @@
 \.prettierignore
 \.reports
 node_modules
+src/.generated

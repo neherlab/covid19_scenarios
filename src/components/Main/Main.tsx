@@ -6,7 +6,6 @@ import _ from 'lodash'
 import { Form, Formik, FormikHelpers } from 'formik'
 
 import { Col, Row } from 'reactstrap'
-import { Responsive, WidthProvider, Layout } from 'react-grid-layout'
 
 import { SeverityTableRow } from './Scenario/SeverityTable'
 
@@ -17,8 +16,7 @@ import { run, intervalsToTimeSeries } from '../../algorithms/run'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 import severityData from '../../assets/data/severityData.json'
-
-import countryCaseCountData from '../../assets/data/case_counts.json'
+import { getCaseCountsData } from './state/caseCountsData'
 
 import { schema } from './validation/schema'
 
@@ -58,12 +56,7 @@ async function runSimulation(
     ...params.containment,
   }
 
-  if (params.population.cases !== 'none' && !isRegion(params.population.cases)) {
-    console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
-    return
-  }
-
-  const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
+  const caseCounts = getCaseCountsData(params.population.cases)
   const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
 
   intervalsToTimeSeries(params.containment.mitigationIntervals)
@@ -74,12 +67,6 @@ async function runSimulation(
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
-
-const isRegion = (region: string): region is keyof typeof countryCaseCountData => {
-  return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
-}
-
-const ResponsiveGridLayout = WidthProvider(Responsive)
 
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
@@ -174,18 +161,6 @@ function Main() {
     setSubmitting(false)
   }
 
-  const resultsCardX: any = { lg: 6, md: 6, sm: 0, xs: 0, xxs: 0 }
-  const [resultLayout, setResultLayout] = useState({ x: 6, y: 0, w: 6, h: 12 })
-  const [layouts, setLayouts] = useState({})
-
-  const onBreakpointChange = (breakpoint: string) => {
-    setResultLayout({ ...resultLayout, x: resultsCardX[breakpoint] })
-  }
-
-  const onLayoutChange = (currentLayout: Layout, allLayouts: any) => {
-    setLayouts(allLayouts)
-  }
-
   return (
     <Row>
       <Col md={12}>
@@ -201,16 +176,8 @@ function Main() {
 
             return (
               <Form className="form">
-                <ResponsiveGridLayout
-                  preventCollision={true}
-                  draggableHandle=".card-header"
-                  layouts={layouts}
-                  breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-                  cols={{ lg: 12, md: 12, sm: 6, xs: 6, xxs: 6 }}
-                  onBreakpointChange={onBreakpointChange}
-                  onLayoutChange={onLayoutChange}
-                >
-                  <div key="0" data-grid={{ x: 0, y: 0, w: 6, h: 12 }}>
+                <Row>
+                  <Col lg={4} xl={6} className="py-1">
                     <ScenarioCard
                       severity={severity}
                       setSeverity={setSeverity}
@@ -219,8 +186,9 @@ function Main() {
                       errors={errors}
                       touched={touched}
                     />
-                  </div>
-                  <div key="1" data-grid={resultLayout}>
+                  </Col>
+
+                  <Col lg={8} xl={6} className="py-1">
                     <ResultsCard
                       canRun={canRun}
                       autorunSimulation={autorunSimulation}
@@ -232,8 +200,8 @@ function Main() {
                       caseCounts={empiricalCases}
                       scenarioUrl={scenarioUrl}
                     />
-                  </div>
-                </ResponsiveGridLayout>
+                  </Col>
+                </Row>
               </Form>
             )
           }}
