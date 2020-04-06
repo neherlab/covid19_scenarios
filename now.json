@@ -3,7 +3,7 @@
   "build": {
     "env": {
       "WEB_APP_NAME_FRIENDLY": "COVID-19 Scenarios",
-      "WEB_SCHEMA": "http",
+      "WEB_SCHEMA": "https",
       "WEB_PORT_DEV": "3000",
       "WEB_PORT_PROD": "null",
       "WEB_PORT_ANALYZE": "8888",
