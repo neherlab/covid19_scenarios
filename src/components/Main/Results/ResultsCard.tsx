@@ -10,7 +10,7 @@ import { AgeBarChart } from './AgeBarChart'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
-import { DeterministicLinePlot } from './DeterministicLinePlot'
+import { DebouncedDeterministicLinePlot } from './DeterministicLinePlot'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
@@ -191,7 +191,7 @@ function ResultsCardFunction({
         </Row>
         <Row noGutters>
           <Col>
-            <DeterministicLinePlot
+            <DebouncedDeterministicLinePlot
               data={result}
               userResult={userResult}
               params={params}
