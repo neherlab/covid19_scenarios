@@ -27,11 +27,12 @@
   ],
   "ext": "js,jsx,ts,tsx,json,flow,css,scss,sass,styl,html,ejs,d,txt,yml,sh",
   "ignore": [
+    "**/*.test.*s",
+    "**/*.test.*sx",
+    "**/__tests__",
     ".build",
     "node_modules",
-    "**/__tests__",
-    "**/*.test.*sx",
-    "**/*.test.*s"
+    "src/.generated"
   ],
-  "exec": "run-s -c clear prod:clean prod:start"
+  "exec": "run-s -c clear prod:clean prod:start || cd ."
 }
