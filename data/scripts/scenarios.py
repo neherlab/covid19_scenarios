@@ -39,9 +39,7 @@ SCENARIO_POPS = os.path.join(BASE_PATH, "populationData.tsv")
 FIT_CASE_DATA = {}
 
 # ------------------------------------------------------------------------
-# Data fitter
-
-ms_in_day = 1000*60*60*24
+# Fallback data fitter
 
 class Fitter:
     doubling_time   = 3.0

@@ -103,36 +103,44 @@ definitions:
       latencyTime:
         type: number
         minimum: 0
+        default: 5
 
       infectiousPeriod:
         type: number
         minimum: 0
+        default: 3
 
       lengthHospitalStay:
         type: number
         minimum: 0
+        default: 3
 
       lengthICUStay:
         type: number
         minimum: 0
+        default: 14
 
       seasonalForcing:
         type: number
         minimum: 0
+        default: 0
 
       peakMonth:
         type: integer
         multipleOf: 1
         minimum: 0
         maximum: 11
+        default: 0
 
       overflowSeverity:
         type: number
         minimum: 0
+        default: 2
 
       r0:
         type: number
         minimum: 0
+        default: 3.0
 
   SimulationData:
     type: object
