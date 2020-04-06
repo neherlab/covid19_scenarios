@@ -61,6 +61,7 @@ export const toDto = (state: PersistedState): PersistedStateDto => {
       },
       numberStochasticRuns: clone.data.simulation.numberStochasticRuns,
     },
+    ageDistribution: clone.ageDistribution,
   }
 }
 
@@ -90,5 +91,6 @@ export const fromDto = (dto: PersistedStateDto): PersistedState => {
         numberStochasticRuns: dto.simulation.numberStochasticRuns,
       },
     },
+    ageDistribution: dto.ageDistribution,
   }
 }
