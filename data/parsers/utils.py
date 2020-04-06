@@ -207,7 +207,7 @@ def store_json(case_counts, json_file):
         schema = yaml.load(f, Loader=yaml.FullLoader)
         validate(newdata, schema)
 
-    with open(newdata, 'w') as fh:
+    with open(json_file, 'w') as fh:
         json.dump(newdata, fh)
 
     #print('first layer keys are %s'%mergedCases.keys())
