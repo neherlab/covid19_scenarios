@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -13,6 +13,14 @@ export interface ExportSimulationDialogProps {
 
 export default function ExportSimulationDialog({ showModal, toggleShowModal, result }: ExportSimulationDialogProps) {
   const { t } = useTranslation()
+  const [isPDFLoading, setIsPDFLoading] = useState<boolean>(false)
+
+  function onClickExportPDF() {
+    setIsPDFLoading(true)
+    result && exportPDF(result).then(() => {
+      return setIsPDFLoading(false)
+    });
+  }
 
   return (
     <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
@@ -63,14 +71,18 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               <td>{t('The simulation parameters and the results of the simulation')}</td>
               <td>PDF</td>
               <td>
-                <Button
+              {isPDFLoading 
+              ? <div className="spinner-border" role="status">
+                  <span className="sr-only">{t('Loading...')}</span>
+                </div>
+              : <Button
                   disabled={!((result?.params ?? null) || (result?.deterministic ?? null))}
-                  onClick={() => result && exportPDF(result)}
+                  onClick={onClickExportPDF}
                   color="primary"
                   size="sm"
                 >
                   {t('Download')}
-                </Button>
+                </Button>}
               </td>
             </tr>
           </tbody>
@@ -85,5 +97,5 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
         </Button>
       </ModalFooter>
     </Modal>
-  )
-}
+    )
+  }
