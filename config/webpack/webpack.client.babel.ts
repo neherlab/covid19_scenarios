@@ -1,5 +1,7 @@
 import '../dotenv'
 
+import _ from 'lodash'
+
 import path from 'path'
 
 // import glob from 'glob-all'
@@ -52,13 +54,28 @@ const analyze = getenv('ANALYZE', '0') === '1'
 const profile = getenv('PROFILE', '0') === '1'
 const debuggableProd = getenv('DEBUGGABLE_PROD', '0') === '1'
 const sourceMaps = true
-const devServerPort = getenv('WEB_DEV_SERVER_PORT', '3000')
-const analyzerPort = parseInt(getenv('WEB_DEV_BUNDLE_ANALYZER_PORT', '8888'), 10) // prettier-ignore
+const schema = getenv('WEB_SCHEMA')
+const host = getenv('WEB_HOST')
+const portDev = getenv('WEB_PORT_DEV')
+const portProd = getenv('WEB_PORT_PROD', '')
+const portAnalyze = parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
 const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
-const webProdHost = getenv('WEB_PROD_HOST')
-const webDevHost = `localhost:${devServerPort}`
+
+function getWebRoot() {
+  let root = `${schema}://${host}`
+
+  if (development && !_.isEmpty(portDev)) {
+    root = `${root}:${portDev}`
+  }
+
+  if (production && portProd) {
+    root = `${root}:${portProd}`
+  }
+
+  return `${root}/`
+}
 
 const { moduleRoot, pkg } = findModuleRoot()
 const buildPath = path.join(moduleRoot, '.build', analyze ? 'analyze' : MODE, 'web') // prettier-ignore
@@ -154,7 +171,7 @@ export default {
       warnings: false,
       errors: true,
     },
-    port: devServerPort,
+    port: portDev,
     publicPath: '/',
     quiet: false,
     logLevel: 'info',
@@ -235,7 +252,7 @@ export default {
       template: path.join(moduleRoot, 'src', 'index.ejs'),
       vars: {
         title: getenv('WEB_APP_NAME_FRIENDLY'),
-        host: MODE === 'production' ? webProdHost : webDevHost,
+        webRoot: getWebRoot(),
       },
     }),
 
@@ -329,18 +346,21 @@ export default {
     }),
 
     // Setup for `moment` locales
-    new webpack.ContextReplacementPlugin(/^\.\/locale$/, (context) => {
-      if (!context.context.includes('/moment/')) {
-        return
-      }
-      // context needs to be modified in place
-      Object.assign(context, {
-        // include only CJK
-        regExp: /^\.\/(en|de)/,
-        // point to the locale data folder relative to moment's src/lib/locale
-        request: '../../locale',
-      })
-    }),
+    new webpack.ContextReplacementPlugin(
+      /^\.\/locale$/,
+      (context: { context: string }) => {
+        if (!context.context.includes('/moment/')) {
+          return
+        }
+        // context needs to be modified in place
+        Object.assign(context, {
+          // include only CJK
+          regExp: /^\.\/(en|de)/,
+          // point to the locale data folder relative to moment's src/lib/locale
+          request: '../../locale',
+        })
+      },
+    ),
 
     new webpack.optimize.AggressiveMergingPlugin(),
 
@@ -365,7 +385,7 @@ export default {
       new BundleAnalyzerPlugin({
         analyzerMode: 'server',
         analyzerHost: '0.0.0.0',
-        analyzerPort,
+        analyzerPort: portAnalyze,
         openAnalyzer: false,
         defaultSizes: 'gzip',
       }),
