@@ -9,7 +9,7 @@ import {
   PopulationData,
   SimulationData,
   AgeDistribution,
-} from '../../.generated/types/types'
+} from '../../.generated/types'
 
 export {
   CaseCounts,
