@@ -55,7 +55,7 @@ const profile = getenv('PROFILE', '0') === '1'
 const debuggableProd = getenv('DEBUGGABLE_PROD', '0') === '1'
 const sourceMaps = true
 const schema = getenv('WEB_SCHEMA')
-const host = getenv('WEB_HOST', getenv('NOW_URL'))
+const host = getenv('WEB_HOST', getenv('NOW_URL', 'null'))
 const portDev = getenv('WEB_PORT_DEV')
 const portProd = getenv('WEB_PORT_PROD')
 const portAnalyze = parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
