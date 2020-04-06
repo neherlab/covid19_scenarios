@@ -4,14 +4,17 @@ import os
 import json
 import numpy as np
 import multiprocessing as multi
+import yaml
+
 from uuid import uuid4
 sys.path.append('..')
 
 from datetime import datetime
 from scipy.stats import linregress
-from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARIOS
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
+from jsonschema import validate
 
 ##
 mitigation_colors = {
@@ -186,7 +189,23 @@ class AllParams(Object):
 # Functions
 
 def marshalJSON(obj, wtr):
-    return json.dump(obj, wtr, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+    """ Validate and store data to .json file
+    Arguments:
+    - obj: a dict of allParams
+    """
+    newdata = []
+    for k in obj:
+        newdata.append({'country': k, 'allParams': obj[k]})
+
+    # Serialize into json
+    news = json.dumps(newdata, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+
+    # Validate the dict based on the json
+    with open(SCHEMA_SCENARIOS, "r") as f:
+        schema = yaml.load(f, Loader=yaml.FullLoader)
+        validate(json.loads(news), schema)
+    
+    return wtr.write(news)
 
 def fit_one_case_data(args):
     Params = Fitter()
