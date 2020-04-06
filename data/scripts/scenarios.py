@@ -157,8 +157,6 @@ class EpidemiologicalParams(Object):
 
 class ContainmentParams(Object):
     def __init__(self):
-        self.reduction    = np.ones(15)
-        self.numberPoints = len(self.reduction)
         self.mitigationIntervals = []
 
 
@@ -204,7 +202,7 @@ def marshalJSON(obj, wtr):
     with open(SCHEMA_SCENARIOS, "r") as f:
         schema = yaml.load(f, Loader=yaml.FullLoader)
         validate(json.loads(news), schema)
-    
+
     return wtr.write(news)
 
 def fit_one_case_data(args):
@@ -231,13 +229,9 @@ def fit_all_case_data(num_procs=4):
 
 
 def set_mitigation(cases, scenario):
-    timeline = np.linspace(datetime.strptime(scenario.simulation.simulationTimeRange.tMin[:10], '%Y-%m-%d').toordinal(),
-                           datetime.strptime(scenario.simulation.simulationTimeRange.tMax[:10], '%Y-%m-%d').toordinal(),
-                           len(scenario.containment.reduction))
-
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
-        scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
+        scenario.containment.mitigationIntervals = []
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
@@ -252,7 +246,6 @@ def set_mitigation(cases, scenario):
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.containment.reduction[timeline>cutoff] *= (1-val)
             scenario.containment.mitigationIntervals.append(Measure(
                 name=name,
                 tMin=cutoff_str,
@@ -261,7 +254,6 @@ def set_mitigation(cases, scenario):
                 color=mitigation_colors.get(name, "#cccccc"),
                 mitigationValue=val))
 
-    scenario.containment.reduction = [float(x) for x in scenario.containment.reduction]
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -302,8 +294,7 @@ def generate(output_json, num_procs=1, recalculate=False):
             if region_name in case_counts:
                 set_mitigation(case_counts[region_name], scenario[region_name])
             else:
-                scenario[region_name].containment.reduction = [float(x)
-                    for x in scenario[region_name].containment.reduction]
+                scenario[region_name].containment.mitigationIntervals = []
 
     with open(output_json, "w+") as fd:
         marshalJSON(scenario, fd)
