@@ -2886,6 +2886,16 @@ acorn@^7.1.0, acorn@^7.1.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.1.tgz#e35668de0b402f359de515c5482a1ab9f89a69bf"
   integrity sha512-add7dgA5ppRPxCFJoAGfMDi7PIBXq1RtGo7BhbLaxwrXPOmw8gq48Y9ozT01hUKy9byMjlR20EJhu5zlkErEkg==
 
+adaptivecards-templating@0.1.1-alpha.1:
+  version "0.1.1-alpha.1"
+  resolved "https://registry.yarnpkg.com/adaptivecards-templating/-/adaptivecards-templating-0.1.1-alpha.1.tgz#e7b77d70a29f154b9bcf64a0d61707671ca1c654"
+  integrity sha512-pK34y5tcqmtcUZaaEK1EgrTLJX8yq6RYc2hp3x/IsLdDZm6pFGWliYD8pAQnJdyvblpxV82XTnAMhnBw0HUi7A==
+
+adaptivecards@1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/adaptivecards/-/adaptivecards-1.2.5.tgz#221253df88c07b828b41d0caff01c5bd80dd235d"
+  integrity sha512-Rj+QK0qtBOfLGy3ClXylKxL4ze/a6mtPiJL7Ctjyc1Uso9O1x/LAAu49F36ZQbgAa8vWkKW91RKcwBBOxk3HDg==
+
 address@1.1.2, address@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
