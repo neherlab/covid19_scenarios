@@ -1,35 +1,32 @@
 import React from 'react'
+import i18next from 'i18next'
 
 import { FormikErrors, FormikTouched } from 'formik'
-import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
 
-import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
-import countryCaseCounts from '../../../assets/data/case_counts.json'
+import { caseCountsNames } from '../state/caseCountsData'
+import { ageDistributionNames } from '../state/countryAgeDistributionData'
+
+import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-// import { setPopulationScenario } from '../state/actions'
+const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
+countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
-import { State } from '../state/state'
-
-const countries = Object.keys(countryAgeDistribution)
-const countryOptions = countries.map((country) => ({ value: country, label: country }))
-const caseCountOptions = Object.keys(countryCaseCounts).map((country) => ({ value: country, label: country }))
+const caseCountOptions = caseCountsNames.map((country) => ({ value: country, label: country }))
 caseCountOptions.push({ value: 'none', label: 'None' })
 
 export interface ScenarioCardPopulationProps {
-  scenarioState: State
   errors?: FormikErrors<any>
   touched?: FormikTouched<any>
-  scenarioDispatch(action: AnyAction): void
 }
 
-function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispatch }: ScenarioCardPopulationProps) {
+function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
   // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
   // function handleChangePopulationScenario(newPopulationScenario: string) {

@@ -24,7 +24,7 @@ export interface MitigationDatePickerProps {
 
 export function MitigationDatePicker({ identifier, value, allowPast = true }: MitigationDatePickerProps) {
   return (
-    <FastField name={identifier}>
+    <FastField name={identifier} className="date-picker form-control">
       {({ form: { setFieldValue } }: FieldProps<DateRange>) => {
         return (
           <Media

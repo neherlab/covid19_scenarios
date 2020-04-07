@@ -1,12 +1,15 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import numbro from 'numbro'
 
-import numeral from 'numeral'
 import resources from './locales'
-import { getCurrentLang } from './components/LanguageSwitcher'
+import { getCurrentLang } from './components/Layout/LanguageSwitcher'
 
-import langs from './langs'
+import SupportedLocales, { SupportedLocale } from './langs'
+
+// FIXME: make it an import if possible, remove `any`
+Object.values(require('numbro/dist/languages.min.js')).forEach((l: any) => numbro.registerLanguage(l))
 
 const lang = getCurrentLang()
 
@@ -32,12 +35,12 @@ i18n
     },
   })
 
-i18n.on('languageChanged', (lang) => {
-  numeral.locale(langs[lang].numeralLocale)
+i18n.on('languageChanged', (lang: SupportedLocale) => {
+  numbro.setLanguage(SupportedLocales[lang].numbroLocale)
 })
 
-numeral.locale(langs[lang].numeralLocale)
+numbro.setLanguage(SupportedLocales[lang].numbroLocale)
 
-export { numeral }
+export { numbro }
 
 export default i18n

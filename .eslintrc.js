@@ -139,6 +139,8 @@ module.exports = {
 
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': 'warn',
+
+    '@typescript-eslint/tslint/max-union-size': 'off',
   },
   env: {
     browser: true,

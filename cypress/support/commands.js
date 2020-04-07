@@ -27,6 +27,9 @@
 import '@testing-library/cypress/add-commands'
 
 Cypress.Commands.add('closeDisclaimer', () => {
+  cy.url().should('include', '/start')
+  cy.get('.landing-page__simulate-link').click()
+
   cy.findByText('COVID-19 Scenario Disclaimer').should('exist').next().click()
 
   cy.findByText('COVID-19 Scenario Disclaimer').should('not.exist')

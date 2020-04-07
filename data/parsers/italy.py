@@ -43,7 +43,7 @@ def parse():
     # Convert to ready made TSVs
     regions = defaultdict(list)
     for row in db:
-        elt = [ int(row[X[c]]) if i > 0 else row[X[c]].split()[0] for i, c in enumerate(cols) ]
+        elt = [ int(row[X[c]]) if i > 0 else row[X[c]][:10] for i, c in enumerate(cols) ]
         regions['-'.join(['ITA',row[X["region"]]])].append(elt)
     regions = dict(regions)
 

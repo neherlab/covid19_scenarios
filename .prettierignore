@@ -9,4 +9,9 @@
 \.ignore
 \.prettierignore
 \.reports
+data/**/*.csv
+data/**/*.tsv
+data/case-counts
+data/hospital-data
 node_modules
+src/.generated

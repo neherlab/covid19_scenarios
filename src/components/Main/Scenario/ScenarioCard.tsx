@@ -18,8 +18,10 @@ import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
 import { SeverityTableRow } from './SeverityTable'
+import { AllParams } from '../../../algorithms/types/Param.types'
 
 export interface ScenarioCardProps {
+  values: AllParams
   severity: SeverityTableRow[]
   scenarioState: State
   errors?: FormikErrors<any>
@@ -31,7 +33,15 @@ export interface ScenarioCardProps {
 export const ScenarioCardId = "ScenarioCard-Row"
 export const ScenarioCardContainmentId = "ScenarioCardContainment-Col"
 
-function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, scenarioDispatch }: ScenarioCardProps) {
+function ScenarioCard({
+  values,
+  severity,
+  scenarioState,
+  errors,
+  touched,
+  setSeverity,
+  scenarioDispatch,
+}: ScenarioCardProps) {
   const { t } = useTranslation()
   const scenarioOptions = stringsToOptions(scenarioState.scenarios)
 
@@ -52,38 +62,28 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
       <>
         <Row id={ScenarioCardId}>
           <Col xl={6} className="my-2">
-            <ScenarioCardPopulation
-              scenarioState={scenarioState}
-              errors={errors}
-              touched={touched}
-              scenarioDispatch={scenarioDispatch}
-            />
+            <ScenarioCardPopulation errors={errors} touched={touched} />
           </Col>
 
           <Col xl={6} className="my-2">
-            <ScenarioCardEpidemiological
-              scenarioState={scenarioState}
-              errors={errors}
-              touched={touched}
-              scenarioDispatch={scenarioDispatch}
-            />
+            <ScenarioCardEpidemiological errors={errors} touched={touched} />
           </Col>
         </Row>
 
         <Row noGutters>
-          <Col className="my-2" id={ScenarioCardContainmentId}>
-            <ScenarioCardContainment
-              scenarioState={scenarioState}
-              errors={errors}
-              touched={touched}
-              scenarioDispatch={scenarioDispatch}
-            />
+          <Col className="my-2"  id={ScenarioCardContainmentId}>
+            <ScenarioCardContainment values={values} errors={errors} touched={touched} />
           </Col>
         </Row>
 
         <Row noGutters>
           <Col className="my-2">
-            <SeverityCard severity={severity} setSeverity={setSeverity} />
+            <SeverityCard
+              severity={severity}
+              setSeverity={setSeverity}
+              scenarioState={scenarioState}
+              scenarioDispatch={scenarioDispatch}
+            />
           </Col>
         </Row>
       </>
