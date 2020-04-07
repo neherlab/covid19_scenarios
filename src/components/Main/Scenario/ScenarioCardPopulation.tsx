@@ -61,11 +61,12 @@ function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulat
         errors={errors}
         touched={touched}
       />
-      <FormSpinBox
+      <FormNumericInput
         identifier="population.suspectedCasesToday"
         label={t('Initial suspected cases')}
         help={t('Number of cases present at the start of simulation')}
         step={1}
+        value={values.population.suspectedCasesToday}
         errors={errors}
         touched={touched}
       />
