@@ -18,9 +18,10 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
 
   function onClickExportPDF() {
     setIsPDFLoading(true)
-    result && exportPDF(result).then(() => {
-      return setIsPDFLoading(false)
-    });
+    result &&
+      exportPDF(result).then(() => {
+        return setIsPDFLoading(false)
+      })
   }
 
   return (
@@ -72,18 +73,21 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               <td>{t('The simulation parameters and the results of the simulation')}</td>
               <td>PDF</td>
               <td>
-              {isPDFLoading 
-              ? <div className="spinner-border" role="status">
-                  <span className="sr-only">{t('Loading...')}</span>
-                </div>
-              : <Button
-                  disabled={!((result?.params ?? null) || (result?.deterministic ?? null))}
-                  onClick={onClickExportPDF}
-                  color="primary"
-                  size="sm"
-                >
-                  {t('Download')}
-                </Button>}
+                {isPDFLoading ? (
+                  <div className="spinner-border" role="status">
+                    <span className="sr-only">{t('Loading...')}</span>
+                  </div>
+                ) : (
+                  <Button
+                    disabled={!((result?.params ?? null) || (result?.deterministic ?? null))}
+                    onClick={onClickExportPDF}
+                    color="primary"
+                    size="sm"
+                  >
+                    {t('Download')}
+                  </Button>
+                )}
+              </td>
             </tr>
             <tr>
               <td></td>
@@ -107,5 +111,5 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
         </Button>
       </ModalFooter>
     </Modal>
-    )
-  }
+  )
+}
