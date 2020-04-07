@@ -1,53 +1,42 @@
-import React, { useReducer, useState, useEffect } from 'react'
-import { useDebouncedCallback } from 'use-debounce'
-
-import _ from 'lodash'
-
+import React, { useReducer, useState, useEffect, useCallback } from 'react'
+import { values } from 'lodash'
 import { Form, Formik, FormikHelpers } from 'formik'
-
 import { Col, Row } from 'reactstrap'
-
 import { SeverityTableRow } from './Scenario/SeverityTable'
-
 import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import { run, intervalsToTimeSeries } from '../../algorithms/run'
-
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
-
 import severityData from '../../assets/data/severityData.json'
 import { getCaseCountsData } from './state/caseCountsData'
-
 import { schema } from './validation/schema'
-
-import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
-
 import { defaultScenarioState, State } from './state/state'
-import { deserializeScenarioFromURL, updateBrowserURL, buildLocationSearch } from './state/serialization/URLSerializer'
-
+import { deserializeScenarioFromURL, buildLocationSearch } from './state/serialization/URLSerializer'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
-
+import Delay from './state/delay/Delay'
+import { updateURL } from './state/delay/updateURL'
 import './Main.scss'
 
-export function severityTableIsValid(severity: SeverityTableRow[]) {
-  return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
+export const severityTableIsValid = (severity: SeverityTableRow[]) => {
+  return !severity.some((row) => values(row?.errors).some((x) => x !== undefined))
 }
 
-export function severityErrors(severity: SeverityTableRow[]) {
+export const severityErrors = (severity: SeverityTableRow[]) => {
   return severity.map((row) => row?.errors)
 }
 
-async function runSimulation(
+const runSimulation = async (
   params: AllParams,
   scenarioState: State,
   severity: SeverityTableRow[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
   setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
-) {
+) => {
+  //console.log('=== RUNNING SIMULATION ===')
   const paramsFlat = {
     ...params.population,
     ...params.epidemiological,
@@ -67,9 +56,11 @@ async function runSimulation(
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
-function Main() {
+const Main = () => {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [autorunSimulation, setAutorunSimulation] = useState(false)
+  const [autorunSimulation, setAutorunSimulation] = useState(
+    LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) || false,
+  )
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,
@@ -83,91 +74,65 @@ function Main() {
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
-  const togglePersistAutorun = () => {
+  const togglePersistAutorun = useCallback(() => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
     setAutorunSimulation(!autorunSimulation)
-  }
+  }, [autorunSimulation])
 
-  const allParams: AllParams = {
-    population: scenarioState.data.population,
-    epidemiological: scenarioState.data.epidemiological,
-    simulation: scenarioState.data.simulation,
-    containment: scenarioState.data.containment,
-  }
-
+  // runs only once, when the component is mounted:
   useEffect(() => {
-    // runs only once, when the component is mounted
-    const autorun = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
-    setAutorunSimulation(autorun ?? false)
+    Delay.setDebug(LocalStorage.get(LOCAL_STORAGE_KEYS.DEBUG) || false)
+    Delay.connect(scenarioDispatch)
 
-    // if the link contains query, we're executing the scenario (and displaying graphs)
+    // if the link contains a persisted query, we're running the simulation without any delay (and displaying graphs)
     // this is because the page was either shared via link, or opened in new tab
     if (window.location.search) {
-      debouncedRun(allParams, scenarioState, severity)
+      //console.log('=== SEARCH STRING DETECTED ===', window.location.search)
+      const deserializedState = deserializeScenarioFromURL(scenarioState)
+      const params: AllParams = {
+        ...deserializedState.data,
+      }
+      Delay.setParams(params)
+      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
     }
+
+    // clean-up on unmount
+    return Delay.disconnect
   }, [])
 
-  const [debouncedRun] = useDebouncedCallback(
-    (params: AllParams, scenarioState: State, severity: SeverityTableRow[]) =>
-      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases),
-    500,
-  )
-
   useEffect(() => {
-    if (autorunSimulation) {
-      debouncedRun(allParams, scenarioState, severity)
-    }
-
-    // 1. upon each parameter change, we rebuild the query string
     const nextLocationSearch = buildLocationSearch(scenarioState)
 
     if (nextLocationSearch !== locationSearch) {
       // whenever the generated query string changes, we're updating:
-      // 1. browser's location.search
-      // 2. searchString state variable (scenarioUrl is used by children)
       setLocationSeach(nextLocationSearch)
 
       if (autorunSimulation) {
-        updateBrowserURL(nextLocationSearch)
+        runSimulation(Delay.getLatestParams(), scenarioState, severity, setResult, setEmpiricalCases)
       }
     }
-  }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
+  }, [autorunSimulation, scenarioState, severity])
 
-  const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.population, newParams.population)) {
-      scenarioDispatch(setPopulationData({ data: newParams.population }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
-      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.simulation, newParams.simulation)) {
-      scenarioDispatch(setSimulationData({ data: newParams.simulation }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.containment, newParams.containment)) {
-      const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
-      scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
-    }
-  }, 1000)
+  const handleSubmit = useCallback(
+    (params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) => {
+      updateURL(params)
+      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
+      setSubmitting(false)
+    },
+    [scenarioState, severity, setResult, setEmpiricalCases],
+  )
 
-  function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    updateBrowserURL(locationSearch)
-    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
-    setSubmitting(false)
-  }
+  const params = Delay.getLatestParams()
 
   return (
     <Row>
       <Col md={12}>
         <Formik
           enableReinitialize
-          initialValues={allParams}
+          initialValues={params}
           validationSchema={schema}
           onSubmit={handleSubmit}
-          validate={setScenarioToCustom}
+          validate={Delay.trigger}
         >
           {({ values, errors, touched, isValid, isSubmitting }) => {
             const canRun = isValid && severityTableIsValid(severity)
@@ -193,8 +158,8 @@ function Main() {
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
-                      params={allParams}
-                      mitigation={allParams.containment}
+                      params={params}
+                      mitigation={params.containment}
                       result={result}
                       caseCounts={empiricalCases}
                       scenarioUrl={scenarioUrl}
