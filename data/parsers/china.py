@@ -11,7 +11,7 @@ from .utils import sorted_date, store_data, parse_countries
 
 URL  = "https://github.com/BlankerL/DXY-COVID-19-Data/raw/master/csv/DXYArea.csv"
 LOC  = "case-counts/Asia/Eastern Asia/China"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions

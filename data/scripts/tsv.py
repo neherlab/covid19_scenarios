@@ -15,7 +15,7 @@ from paths import BASE_PATH, JSON_DIR, TMP_CASES, TSV_DIR
 # -----------------------------------------------------------------------------
 # Globals
 
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # -----------------------------------------------------------------------------
 # Functions

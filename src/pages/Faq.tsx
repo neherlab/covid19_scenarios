@@ -6,8 +6,6 @@ import FaqTableOfContents from '../components/Faq/FaqTableOfContents'
 
 import FaqContent from '../assets/text/faq.md'
 
-import './DefaultStatic.scss'
-
 export default function Faq() {
   return (
     <Container>

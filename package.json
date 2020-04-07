@@ -6,8 +6,9 @@
   "license": "MIT",
   "scripts": {
     "clear": "node lib/clear.js",
+    "schema:mkdir": "mkdirp 'src/.generated' 'data/generated'",
+    "schema:clean": "rimraf 'src/.generated{*,.*}' 'data/generated/{*,.*}'",
     "schema:totypes": "yarn babel-node --extensions \".ts\" tools/convertSchemasToType.ts",
-    "schema:clean": "rimraf 'src/.generated/{*,.*}' 'data/generated_types/{*,.*}'",
     "dev": "nodemon --config config/nodemon/dev.json",
     "dev:start": "yarn install && yarn schema:totypes && yarn dev:nowatch || cd .",
     "dev:nowatch": "cross-env NODE_ENV=development BABEL_ENV=development webpack-dev-server --config config/webpack/webpack.client.babel.ts",

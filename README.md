@@ -391,8 +391,6 @@ git clone https://github.com/<YOUR_GITHUB_USERNAME>/covid19_scenarios
 
 #### 🔨 Start coding!
 
-<img src="https://i.giphy.com/media/3oriO7A7bt1wsEP4cw/giphy.webp" />
-
 #### 💻 Updating the Forked Repository
 
 To ensure that the forked code stays updated, you’ll need to add a Git remote pointing back to the original repository

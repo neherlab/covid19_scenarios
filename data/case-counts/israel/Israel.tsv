@@ -1,7 +1,7 @@
 # Data source: https://raw.githubusercontent.com/idandrd/israel-covid19-data/master/IsraelCOVID19.csv
 # Data provenance: https://github.com/idandrd/israel-covid19-data
-# License: none specified
-time	cases	deaths	hospitalized	ICU	recovered
+# License: MIT
+time	cases	deaths	hospitalized	icu	recovered
 2020-02-21	2				
 2020-02-22	2				
 2020-02-23	2				
@@ -44,6 +44,8 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-03-31	5523	20		94	
 2020-04-01	6168	26		95	
 2020-04-02	6901	34		108	
-2020-04-03	7533	39		113	
-2020-04-04	7913	43		126	
-2020-04-05	8018	46		127	
+2020-04-03	7531	39		113	
+2020-04-04	7989	43		126	
+2020-04-05	8618	50		139	
+2020-04-06	8974	57		140	
+2020-04-07	9006	60		153	

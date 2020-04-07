@@ -16,6 +16,8 @@ items:
     - critical
     - fatal
 
+  additionalProperties: false
+  
   properties:
     id:
       type: number

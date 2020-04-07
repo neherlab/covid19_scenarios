@@ -30,7 +30,7 @@ bundesland_codes = {
 
 URL  = "https://raw.githubusercontent.com/chriswien/COVID19_CaseNumberDE/master/COVID19_Cases_Bundeslaender_DE.csv"
 LOC  = "case-counts/Europe/Western Europe/Germany"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions

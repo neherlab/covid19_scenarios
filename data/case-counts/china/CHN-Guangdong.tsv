@@ -1,7 +1,7 @@
 # Data source: https://github.com/BlankerL/DXY-COVID-19-Data/raw/master/csv/DXYOverall.csv
 # Data provenance: https://github.com/BlankerL/DXY-COVID-19-Data
 # License: MIT
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-01-22	26	0			0
 2020-01-23	32	0			2
 2020-01-24	32	0			0
@@ -77,3 +77,5 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-04-03	1514	8			1368
 2020-04-04	1516	8			1378
 2020-04-05	1524	8			1387
+2020-04-06	1532	8			1395
+2020-04-07	1533	8			1401

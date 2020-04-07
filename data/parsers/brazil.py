@@ -41,7 +41,7 @@ state_codes = {
 
 URL  = "https://brasil.io/dataset/covid19/caso?format=csv"
 LOC  = "case-counts/Americas/Latin America and the Caribbean/Brazil"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions

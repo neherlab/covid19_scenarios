@@ -1,7 +1,7 @@
 # Data source: https://github.com/opencovid19-fr/data/raw/master/dist/chiffres-cles.csv
 # Data provenance: Données nationales concernant l'épidémie de COVID19
 # License: Etalab Open License 2.0
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-01-24	1				
 2020-01-25	1				
 2020-01-26	1				
@@ -55,3 +55,5 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-04-02		94	221		
 2020-04-03		100	225		
 2020-04-04		111	239		
+2020-04-05		120	243		
+2020-04-06		138	247		
