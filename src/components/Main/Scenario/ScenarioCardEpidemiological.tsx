@@ -53,7 +53,7 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         errors={errors}
         touched={touched}
       />
-      <FormSpinBox
+      <FormNumericInput
         identifier="epidemiological.infectiousPeriod"
         label={`${t('Infectious period')} [${t('days')}]`}
         help={t(
@@ -61,6 +61,7 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         )}
         step={1}
         min={0}
+        value={values.epidemiological.infectiousPeriod}
         errors={errors}
         touched={touched}
       />
