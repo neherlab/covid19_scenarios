@@ -10,7 +10,7 @@ import {
 } from './types/Result.types'
 
 const msPerDay = 1000 * 60 * 60 * 24
-const eulerStep = 0.05
+const eulerStep = 0.25
 export const eulerStepsPerDay = Math.round(1 / eulerStep)
 
 const monthToDay = (m: number) => {
@@ -256,11 +256,19 @@ interface TimeDerivative {
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
 function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number): SimulationTimePoint {
-  const time = new Date(pop.time + dt * msPerDay)
-  const tdot = derivatives(fluxes(time, pop, P))
+  const t0 = new Date(pop.time)
+  const t1 = new Date(pop.time + (dt / 2) * msPerDay)
+  const t2 = new Date(pop.time + dt * msPerDay)
+
+  const k1 = derivative(fluxes(t0, pop, P))
+  const k2 = derivative(fluxes(t1, advanceState(pop, k1, dt / 2, P.ICUBeds), P))
+  const k3 = derivative(fluxes(t1, advanceState(pop, k2, dt / 2, P.ICUBeds), P))
+  const k4 = derivative(fluxes(t2, advanceState(pop, k3, dt, P.ICUBeds), P))
+
+  const tdot = sumDerivatives([k1, k2, k3, k4], [1 / 6, 1 / 3, 1 / 3, 1 / 6])
 
   const state = advanceState(pop, tdot, dt, P.ICUBeds)
-  state.time = time.valueOf()
+  state.time = t2.valueOf()
 
   return state
 }
@@ -365,7 +373,63 @@ function advanceState(
   return newPop
 }
 
-function derivatives(flux: StateFlux): TimeDerivative {
+function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivative {
+  const sum: TimeDerivative = {
+    current: {
+      susceptible: {},
+      exposed: {},
+      infectious: {},
+      severe: {},
+      critical: {},
+      overflow: {},
+    },
+    cumulative: {
+      hospitalized: {},
+      critical: {},
+      recovered: {},
+      fatality: {},
+    },
+  }
+  const ages = Object.keys(grads[0].current.susceptible)
+
+  ages.forEach((age) => {
+    sum.current.susceptible[age] = 0
+    sum.current.exposed[age] = grads[0].current.exposed[age].map(() => {
+      return 0
+    })
+    sum.current.infectious[age] = 0
+    sum.current.critical[age] = 0
+    sum.current.overflow[age] = 0
+    sum.current.severe[age] = 0
+
+    sum.cumulative.critical[age] = 0
+    sum.cumulative.fatality[age] = 0
+    sum.cumulative.recovered[age] = 0
+    sum.cumulative.hospitalized[age] = 0
+  })
+
+  grads.forEach((grad, i) => {
+    ages.forEach((age) => {
+      sum.current.susceptible[age] += scale[i] * grad.current.susceptible[age]
+      sum.current.infectious[age] += scale[i] * grad.current.infectious[age]
+      grad.current.exposed[age].forEach((e, j) => {
+        sum.current.exposed[age][j] += scale[i] * e
+      })
+      sum.current.severe[age] += scale[i] * grad.current.severe[age]
+      sum.current.critical[age] += scale[i] * grad.current.critical[age]
+      sum.current.overflow[age] += scale[i] * grad.current.overflow[age]
+
+      sum.cumulative.recovered[age] += scale[i] * grad.cumulative.recovered[age]
+      sum.cumulative.fatality[age] += scale[i] * grad.cumulative.fatality[age]
+      sum.cumulative.critical[age] += scale[i] * grad.cumulative.critical[age]
+      sum.cumulative.hospitalized[age] += scale[i] * grad.cumulative.hospitalized[age]
+    })
+  })
+
+  return sum
+}
+
+function derivative(flux: StateFlux): TimeDerivative {
   const grad: TimeDerivative = {
     current: {
       susceptible: {},
