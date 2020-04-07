@@ -288,7 +288,7 @@ export function DeterministicLinePlot({
             <>
               <h3 className="d-flex justify-content-between">
                 {t('Cases through time')}
-                <button className="btn btn-secondary" onClick={zoomOut}>
+                <button className="btn btn-secondary d-print-none" onClick={zoomOut}>
                   {t('Zoom Out')}
                 </button>
               </h3>

@@ -50,12 +50,12 @@ export function FormSpinBox<T>({
       {() => (
         <FormGroup className="my-0">
           <Row noGutters>
-            <Col xl={7}>
+            <Col xl={7} className="formColForPrint">
               <FormLabel identifier={identifier} label={label} help={help} />
             </Col>
-            <Col xl={5}>
+            <Col xl={5} className="formColForPrint">
               <Field
-                className={`form-control ${borderDanger}`}
+                className={`form-control ${borderDanger} formInputForPrint`}
                 id={identifier}
                 name={identifier}
                 type="number"

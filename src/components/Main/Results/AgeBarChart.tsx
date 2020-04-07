@@ -16,6 +16,7 @@ import { colors } from './DeterministicLinePlot'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
+import PrintPageSeparatorHack from '../PrintPageSeparatorHack'
 
 const ASPECT_RATIO = 16 / 4
 
@@ -80,6 +81,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
 
           return (
             <>
+              <PrintPageSeparatorHack />
               <h3>{t('Distribution across age groups')}</h3>
 
               <div ref={casesChartRef} />

@@ -36,11 +36,11 @@ export function FormDatePicker({ identifier, label, help, allowPast = true }: Fo
           <FormGroup className="my-0">
             <Row noGutters>
               {label && !_.isEmpty(label) && (
-                <Col xl={7}>
+                <Col xl={7} className="formColForPrint">
                   <FormLabel identifier={identifier} label={label} help={help} />
                 </Col>
               )}
-              <Col xl={5}>
+              <Col xl={5} className="formColForPrint">
                 <Media
                   queries={{
                     tiny: { maxWidth: 899 },
