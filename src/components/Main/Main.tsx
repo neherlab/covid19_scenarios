@@ -117,7 +117,7 @@ function Main() {
     // 1. upon each parameter change, we rebuild the query string
     const nextLocationSearch = buildLocationSearch(scenarioState)
 
-    if (nextLocationSearch !== locationSearch) {
+    if (nextLocationSearch !== locationSearch || autorunSimulation) {
       // whenever the generated query string changes, we're updating:
       // 1. browser's location.search
       // 2. searchString state variable (scenarioUrl is used by children)
