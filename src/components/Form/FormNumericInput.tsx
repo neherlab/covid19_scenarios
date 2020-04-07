@@ -37,16 +37,6 @@ export function FormNumericInput<T>({
   const showError = errorMessage && isTouched
   const borderDanger = showError ? 'border-danger' : ''
 
-  function validate(value: number) {
-    let error
-    if (min && value < min) {
-      error = `The input cannot be less than ${min}`
-    } else if (max && value > max) {
-      error = `The input cannot be greater than ${max}`
-    }
-    return error
-  }
-
   return (
     <Field>
       {() => (
