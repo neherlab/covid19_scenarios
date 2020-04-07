@@ -16,7 +16,7 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
   const { t } = useTranslation()
 
   return (
-    <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
+    <Modal className="height-fit d-print-none" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
       <ModalHeader toggle={toggleShowModal}>{t('Export simulation')}</ModalHeader>
       <ModalBody>
         <Table>
@@ -60,13 +60,23 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               </td>
             </tr>
             <tr>
-              <td></td>
+              <td />
               <td>{t('Shareable link')}</td>
               <td>URL</td>
               <td>
                 <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={window.location.href}>
                   {t('Copy link')}
                 </ClipboardButton>
+              </td>
+            </tr>
+            <tr>
+              <td />
+              <td>{t('Print (or save as PDF)')}</td>
+              <td>PDF</td>
+              <td>
+                <Button disabled={!(result?.deterministic ?? null)} onClick={() => print()} color="primary" size="sm">
+                  {t('Print')}
+                </Button>
               </td>
             </tr>
           </tbody>
