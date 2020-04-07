@@ -103,7 +103,7 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         errors={errors}
         touched={touched}
       />
-      <FormSpinBox
+      <FormNumericInput
         identifier="epidemiological.overflowSeverity"
         label={t('Severity of ICU overflow')}
         help={t(
@@ -111,6 +111,7 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         )}
         step={0.1}
         min={1}
+        value={values.epidemiological.overflowSeverity}
         errors={errors}
         touched={touched}
       />
