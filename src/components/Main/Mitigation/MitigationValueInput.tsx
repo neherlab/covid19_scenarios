@@ -12,10 +12,10 @@ export interface MitigationValueInputProps {
   step: number
 }
 
-export function MitigationValueInput({ identifier, value, min, max, step }: MitigationDatePickerProps) {
+export function MitigationValueInput({ identifier, value, min, max, step }: MitigationValueInputProps) {
   return (
     <FastField name={identifier} className="form-control">
-      {({ form: { setFieldValue } }: FieldProps<DateRange>) => {
+      {({ form: { setFieldValue } }: FieldProps<number>) => {
         return (
           <NumericInput className="h-100"
           aria-label="mitigation value"
