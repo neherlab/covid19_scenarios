@@ -167,8 +167,8 @@ class SimulationParams(schema.SimulationData):
     def __init__(self, region):
         return super(SimulationParams, self).__init__( \
                 simulation_time_range = DateRange( \
-                    datetime.strptime(FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01", '%Y-%m-%d'),
-                    datetime.strptime("2020-09-01", '%Y-%m-%d')),
+                    datetime.strptime(FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01", '%Y-%m-%d').date(),
+                    datetime.strptime("2020-09-01", '%Y-%m-%d').date()),
                 number_stochastic_runs = 0.0)
 
 # TODO: Region and country provide redudant information
@@ -250,7 +250,7 @@ def set_mitigation(cases, scenario):
 
             scenario.containment.mitigation_intervals.append(MitigationInterval(
                 name=name,
-                tMin=datetime.strptime(cutoff_str, '%Y-%m-%d'),
+                tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
                 id=uuid4(),
                 tMax=scenario.simulation.simulation_time_range.t_max,
                 color=mitigation_colors.get(name, "#cccccc"),
