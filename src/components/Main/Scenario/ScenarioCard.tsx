@@ -24,8 +24,8 @@ export interface ScenarioCardProps {
   values: AllParams
   severity: SeverityTableRow[]
   scenarioState: State
-  errors?: FormikErrors<any>
-  touched?: FormikTouched<any>
+  errors?: FormikErrors<AllParams>
+  touched?: FormikTouched<AllParams>
   setSeverity(severity: SeverityTableRow[]): void
   scenarioDispatch(action: AnyAction): void
 }

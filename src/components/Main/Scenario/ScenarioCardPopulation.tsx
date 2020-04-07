@@ -26,8 +26,8 @@ caseCountOptions.push({ value: 'none', label: 'None' })
 
 export interface ScenarioCardPopulationProps {
   values: AllParams
-  errors?: FormikErrors<any>
-  touched?: FormikTouched<any>
+  errors?: FormikErrors<AllParams>
+  touched?: FormikTouched<AllParams>
 }
 
 function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulationProps) {
