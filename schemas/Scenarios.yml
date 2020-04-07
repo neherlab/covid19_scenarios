@@ -179,7 +179,6 @@ definitions:
 
       numberPoints:
         type: number
-        default: 15
 
   MitigationInterval:
     type: object

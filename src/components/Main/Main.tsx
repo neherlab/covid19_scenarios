@@ -114,6 +114,10 @@ function Main() {
   )
 
   useEffect(() => {
+    if (autorunSimulation) {
+      debouncedRun(allParams, scenarioState, severity)
+    }
+
     // 1. upon each parameter change, we rebuild the query string
     const nextLocationSearch = buildLocationSearch(scenarioState)
 
@@ -125,7 +129,6 @@ function Main() {
 
       if (autorunSimulation) {
         updateBrowserURL(nextLocationSearch)
-        debouncedRun(allParams, scenarioState, severity)
       }
     }
   }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])

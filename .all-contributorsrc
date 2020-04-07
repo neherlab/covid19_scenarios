@@ -3,7 +3,7 @@
   "projectOwner": "neherlab",
   "files": [
     "README.md",
-    "src/assets/text/contributors-generated.md"
+    "src/components/Team/ContributorsGenerated.mdx"
   ],
   "imageSize": 100,
   "contributorsSortAlphabetically":true,

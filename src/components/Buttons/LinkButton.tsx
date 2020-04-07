@@ -10,7 +10,7 @@ interface LinkButtonProps {
   size?: string
   target: '_blank' | '_self' | '_parent' | '_top'
   type?: 'submit' | 'reset' | 'button'
-  onClick: () => void
+  onClick?: () => void
 }
 
 const LinkButton = ({

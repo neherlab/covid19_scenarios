@@ -33,8 +33,10 @@ def load_distribution(path):
     dist = {}
     with open(path, 'r') as fd:
         db = json.load(fd)
-        for key, data in db.items():
-            dist[key] = np.array([float(data[k]) for k in sorted(data.keys())])
+        for data in db:
+            key = data["country"]
+            ageDis = data["ageDistribution"]
+            dist[key] = np.array([float(ageDis[k]) for k in sorted(ageDis.keys())])
             dist[key] = dist[key]/np.sum(dist[key])
 
     return dist

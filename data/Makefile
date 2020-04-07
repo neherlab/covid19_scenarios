@@ -6,7 +6,7 @@ all: clean types data-for-app
 clean: clean-types
 
 clean-types:
-	rm -rf .generated/types/**
+	rm -rf generated/**
 
 types: clean-types
 	cd .. && yarn install && yarn schema:totypes
@@ -14,5 +14,4 @@ types: clean-types
 data-for-app:
 	python3 generate_data.py \
 		--output-scenarios ../src/assets/data/scenarios/scenarios.json \
-#		--output-cases ../src/assets/data/case_counts.json  \
-#		--output-population ../src/assets/data/country_age_distribution.json \
+		--output-cases ../src/assets/data/case_counts.json
