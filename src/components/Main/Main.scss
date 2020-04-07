@@ -1,3 +1,115 @@
+@import '../../styles/variables';
+
+h2,
+h3 {
+  font-family: $font-family-sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: $black;
+  font-size: 28px;
+  letter-spacing: 0.49em;
+}
+
+h3 {
+  color: $black;
+  font-size: 20px;
+}
+
+.card h3 {
+  color: $white;
+}
+
+.card.card--results h3 {
+  color: $black;
+  margin-bottom: 0;
+  margin-top: 1em;
+}
+
+.card {
+  background-color: transparent;
+  border: 1px solid $black;
+}
+
+.card-header {
+  background-color: $black;
+  padding: 8px 4px;
+}
+
+.card-header label {
+  margin: 0;
+}
+
+.card-header p {
+  color: $white;
+}
+
+.card-header-button {
+  width: 100%;
+  height: 100%;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card--main {
+  border: none;
+  margin-top: 30px;
+
+  & > .card-header {
+    background-color: transparent;
+    border-bottom: 3px solid $black;
+    min-height: 3em;
+    padding-left: 0;
+  }
+
+  & > .card-body,
+  & > .collapse > .card-body {
+    margin-top: 10px;
+    padding: 0;
+  }
+}
+
+.card--results {
+  & > .card-body,
+  & > .collapse > .card-body {
+    background-color: $white;
+    border: 1px solid $black;
+    margin-top: 20px;
+    padding: 1rem;
+  }
+}
+
+.card--help {
+  .card-body {
+    line-height: 1.2;
+
+    p {
+      margin: 0;
+      text-align: left;
+      color: initial;
+    }
+
+    h4 {
+      font-weight: bold;
+      font-size: 110%;
+    }
+  }
+}
+
+.card--population,
+.card--epidemiology {
+  .card-body .row {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0.5em;
+  }
+}
+
 $button-width: 100px;
 $button-spacing: 5px;
 

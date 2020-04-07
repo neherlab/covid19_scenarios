@@ -66,7 +66,7 @@ export default async function convertSchemasToType() {
   await fs.mkdirp(TSRoot)
   await convertForType('typescript', path.join(TSRoot, 'types.ts'))
 
-  const PYRoot = path.join(moduleRoot, 'data', 'generated_types')
+  const PYRoot = path.join(moduleRoot, 'data', 'generated')
   rimraf.sync(PYRoot)
   await fs.mkdirp(PYRoot)
   await convertForType('python', path.join(PYRoot, 'types.py'), {
