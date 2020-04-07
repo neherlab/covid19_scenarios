@@ -22,7 +22,11 @@ export interface NavigationBarProps extends RouteComponentProps<{}> {
 
 function NavigationBar({ navLinks, location }: NavigationBarProps) {
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-dark" role="navigation" data-testid="NavigationBar">
+    <nav
+      className="navbar navbar-expand navbar-dark bg-dark navbar-scroll hide-native-scrollbar"
+      role="navigation"
+      data-testid="NavigationBar"
+    >
       <a className="navbar-brand" href="/">
         <img className="navbar-brand-image" alt="logo" src={logo} />
       </a>
