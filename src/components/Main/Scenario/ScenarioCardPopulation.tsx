@@ -70,11 +70,12 @@ function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulat
         errors={errors}
         touched={touched}
       />
-      <FormSpinBox
+      <FormNumericInput
         identifier="population.importsPerDay"
         label={t('Imports per day')}
         help={t('Number of cases imported from the outside per day on average')}
         step={0.1}
+        value={values.population.importsPerDay}
         errors={errors}
         touched={touched}
       />
