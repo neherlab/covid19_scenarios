@@ -47,24 +47,26 @@ export function getPopulationParams(
   // TODO: Make this a form-adjustable factor
   const pop: ModelParams = {
     ageDistribution: {},
+    importsPerDay: [],
+    timeDelta: 0,
+    timeDeltaDays: 0,
     frac: {
-      severe: {},
-      critical: {},
-      fatal: {},
-      isolated: {},
+      severe: [],
+      critical: [],
+      fatal: [],
+      isolated: [],
     },
     rate: {
       latency: 1 / params.latencyTime,
       infection: () => -Infinity, // Dummy infectionRate function. This is set below.
-      recovery: {},
-      severe: {},
-      discharge: {},
-      critical: {},
-      stabilize: {},
-      fatality: {},
-      overflowFatality: {},
+      recovery: [],
+      severe: [],
+      discharge: [],
+      critical: [],
+      stabilize: [],
+      fatality: [],
+      overflowFatality: [],
     },
-    importsPerDay: { total: params.importsPerDay },
 
     populationServed: params.populationServed,
     numberStochasticRuns: params.numberStochasticRuns,
@@ -75,54 +77,36 @@ export function getPopulationParams(
   // Compute age-stratified parameters
   const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
 
-  let severeFrac = 0
-  let criticalFracHospitalized = 0
-  let fatalFracCritical = 0
-  let avgIsolatedFrac = 0
-  severity.forEach((d) => {
-    const freq = (1.0 * ageCounts[d.ageGroup]) / total
-    pop.ageDistribution[d.ageGroup] = freq
-    pop.frac.severe[d.ageGroup] = (d.severe / 100) * (d.confirmed / 100)
-    pop.frac.critical[d.ageGroup] = pop.frac.severe[d.ageGroup] * (d.critical / 100)
-    pop.frac.fatal[d.ageGroup] = pop.frac.critical[d.ageGroup] * (d.fatal / 100)
+  severity.forEach((row, i) => {
+    const freq = (1.0 * ageCounts[row.ageGroup]) / total
+    pop.ageDistribution[row.ageGroup] = freq
+    pop.frac.severe[i] = (row.severe / 100) * (row.confirmed / 100)
+    pop.frac.critical[i] = pop.frac.severe[i] * (row.critical / 100)
+    pop.frac.fatal[i] = pop.frac.critical[i] * (row.fatal / 100)
 
-    const dHospital = pop.frac.severe[d.ageGroup]
-    const dCritical = d.critical / 100
-    const dFatal = d.fatal / 100
+    const dHospital = pop.frac.severe[i]
+    const dCritical = row.critical / 100
+    const dFatal = row.fatal / 100
 
     // d.isolated is possible undefined
-    const isolated = d.isolated ?? 0
-    severeFrac += freq * dHospital
-    criticalFracHospitalized += freq * dCritical
-    fatalFracCritical += freq * dFatal
-    avgIsolatedFrac += (freq * isolated) / 100
+    const isolated = row.isolated ?? 0
 
     // Age specific rates
-    pop.frac.isolated[d.ageGroup] = isolated / 100
-    pop.rate.recovery[d.ageGroup] = (1 - dHospital) / params.infectiousPeriod
-    pop.rate.severe[d.ageGroup] = dHospital / params.infectiousPeriod
-    pop.rate.discharge[d.ageGroup] = (1 - dCritical) / params.lengthHospitalStay
-    pop.rate.critical[d.ageGroup] = dCritical / params.lengthHospitalStay
-    pop.rate.stabilize[d.ageGroup] = (1 - dFatal) / params.lengthICUStay
-    pop.rate.fatality[d.ageGroup] = dFatal / params.lengthICUStay
-    pop.rate.overflowFatality[d.ageGroup] = params.overflowSeverity * pop.rate.fatality[d.ageGroup]
+    pop.frac.isolated[i] = isolated / 100
+    pop.rate.recovery[i] = (1 - dHospital) / params.infectiousPeriod
+    pop.rate.severe[i] = dHospital / params.infectiousPeriod
+    pop.rate.discharge[i] = (1 - dCritical) / params.lengthHospitalStay
+    pop.rate.critical[i] = dCritical / params.lengthHospitalStay
+    pop.rate.stabilize[i] = (1 - dFatal) / params.lengthICUStay
+    pop.rate.fatality[i] = dFatal / params.lengthICUStay
+    pop.rate.overflowFatality[i] = params.overflowSeverity * pop.rate.fatality[i]
   })
 
   // Get import rates per age class (assume flat)
   const L = Object.keys(pop.rate.recovery).length
-  Object.keys(pop.rate.recovery).forEach((k) => {
-    pop.importsPerDay[k] = params.importsPerDay / L
+  pop.rate.recovery.forEach((_, i) => {
+    pop.importsPerDay[i] = params.importsPerDay / L
   })
-
-  // Population average rates
-  pop.rate.recovery.total = (1 - severeFrac) / params.infectiousPeriod
-  pop.rate.severe.total = severeFrac / params.infectiousPeriod
-  pop.rate.discharge.total = (1 - criticalFracHospitalized) / params.lengthHospitalStay
-  pop.rate.critical.total = criticalFracHospitalized / params.lengthHospitalStay
-  pop.rate.fatality.total = fatalFracCritical / params.lengthICUStay
-  pop.rate.stabilize.total = (1 - fatalFracCritical) / params.lengthICUStay
-  pop.rate.overflowFatality.total = (params.overflowSeverity * fatalFracCritical) / params.lengthICUStay
-  pop.frac.isolated.total = avgIsolatedFrac
 
   // Infectivity dynamics
   const avgInfectionRate = params.r0 / params.infectiousPeriod

@@ -116,10 +116,14 @@ export async function run(
   function simulate(initialState: SimulationTimePoint, func: (x: number) => number) {
     const dynamics = [initialState]
     let currState = initialState
+
+    console.log('INITIAL', initialState)
     while (currState.time < tMax) {
       currState = evolve(currState, modelParams, currState.time + 1, func)
       dynamics.push(currState)
+      break
     }
+    console.log('FINAL', currState)
 
     return collectTotals(dynamics, ageGroups)
   }
