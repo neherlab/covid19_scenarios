@@ -138,33 +138,6 @@ export function initializePopulation(
   t0: number,
   ages: Record<string, number>,
 ): SimulationTimePoint {
-  // FIXME: Why it can be `undefined`? Can it also be `null`?
-  if (ages === undefined) {
-    const put = (x: number) => {
-      return { total: x }
-    }
-    const putarr = (x: number) => {
-      return { total: [x, x, x] }
-    }
-
-    return {
-      time: t0,
-      current: {
-        susceptible: put(N - numCases),
-        exposed: putarr(0),
-        infectious: put(numCases),
-        severe: put(0),
-        critical: put(0),
-        overflow: put(0),
-      },
-      cumulative: {
-        recovered: put(0),
-        hospitalized: put(0),
-        critical: put(0),
-        fatality: put(0),
-      },
-    }
-  }
   const Z = Object.values(ages).reduce((a, b) => a + b)
   const pop: SimulationTimePoint = {
     time: t0,
