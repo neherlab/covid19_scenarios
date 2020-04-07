@@ -115,7 +115,7 @@ function Main() {
 
   useEffect(() => {
     if (autorunSimulation) {
-        debouncedRun(allParams, scenarioState, severity)
+      debouncedRun(allParams, scenarioState, severity)
     }
 
     // 1. upon each parameter change, we rebuild the query string
