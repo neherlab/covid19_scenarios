@@ -121,6 +121,7 @@
   "Team": "Team",
   "Acknowledgements": "Acknowledgements",
   "The people behind COVID-19 Scenarios": "The people behind COVID-19 Scenarios",
+  "The time field is missing.": "The time field is missing.",
   "This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution": "This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution",
   "This section contains simulation results": "This section contains simulation results",
   "This tool was developed at the University of Basel in the": "This tool was developed at the University of Basel in the",
@@ -156,6 +157,7 @@
   "too many stochastic trajectories will slow things down": "too many stochastic trajectories will slow things down",
   "total": "total",
   "total deaths": "total deaths",
+  "{{value}} is not a valid field value.": "{{value}} is not a valid field value.",
   "You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.": "You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.",
   "Your file": "Your file",
   "Your file_plural": "Your files"

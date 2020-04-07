@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, getI18n } from 'react-i18next'
 import Papa from 'papaparse'
-import FileUploadZone from '../Compare/FileUploadZone'
+import FileUploadZone, { FileType } from '../Compare/FileUploadZone'
 import processUserResult from '../../../algorithms/utils/userResult'
 import { UserResult } from '../../../algorithms/types/Result.types'
 import Message from '../../../components/Misc/Message'
+import { ProcessingError, ProcessingErrorCode } from '../../../algorithms/utils/exceptions'
 
 export interface ImportSimulationDialogProps {
   showModal: boolean
@@ -26,14 +27,30 @@ const allowedFileTypes = [
   '.tsv',
 ]
 
+function getMessageForError(error: ProcessingError): string {
+  let message
+  switch (error.errorCode) {
+    case ProcessingErrorCode.MissingTimeField:
+      message = getI18n().t('The time field is missing.')
+      break
+    case ProcessingErrorCode.InvalidField:
+      message = getI18n().t('{{value}} is not a valid field value.', { value: error.message })
+      break
+    default:
+      throw new Error('Unknown processing error.')
+  }
+
+  return getI18n().t('Error: {{message}}', { message })
+}
+
 export default function ImportSimulationDialog({
   toggleShowModal,
   showModal,
   onDataImported,
 }: ImportSimulationDialogProps) {
   const { t } = useTranslation()
-  const [filesToImport, setFilesToImport] = useState(new Map())
-  const [errorMessage, setErrorMessage] = useState()
+  const [filesToImport, setFilesToImport] = useState<Map<FileType, File>>(new Map())
+  const [errorMessage, setErrorMessage] = useState<string>()
 
   const onImportRejected = () =>
     setErrorMessage(t('Error: {{message}}', { message: t('Only one CSV or TSV file can be imported.') }))
@@ -46,19 +63,31 @@ export default function ImportSimulationDialog({
 
     const file: File = filesToImport.values().next().value
     Papa.parse(file, {
+      header: true,
+      skipEmptyLines: 'greedy',
       complete: ({ data, errors, meta }: Papa.ParseResult) => {
-        if (meta.aborted || errors.length > 0) {
+        if (meta.aborted || !data?.length) {
+          // TODO display more detailed information to the user in case of error
           setErrorMessage(
             t('Error: {{message}}', {
               message: t("The file could not be loaded. Make sure that it's a valid CSV file."),
             }),
           )
+
+          // TODO log only in dev mode
+          console.error('Parsing error', errors)
           return
         }
-        onDataImported(processUserResult(data))
+
+        try {
+          onDataImported(processUserResult(data))
+        } catch (error) {
+          setErrorMessage(getMessageForError(error))
+          return
+        }
+
         toggleShowModal()
       },
-      header: true,
     })
 
     // TODO handle loading for huge files

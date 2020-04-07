@@ -176,11 +176,11 @@ export function DeterministicLinePlot({
     })) ?? []
 
   const countObservations = {
-    cases: observations?.filter(d => d.cases).length ?? 0,
-    ICU: observations?.filter(d => d.ICU).length ?? 0,
-    observedDeaths: observations?.filter(d => d.observedDeaths).length ?? 0,
-    newCases: observations?.filter(d => d.newCases).length ?? 0,
-    hospitalized: observations?.filter(d => d.currentHospitalized).length ?? 0,
+    cases: observations.filter(d => d.cases).length ?? 0,
+    ICU: observations.filter(d => d.ICU).length ?? 0,
+    observedDeaths: observations.filter(d => d.observedDeaths).length ?? 0,
+    newCases: observations.filter(d => d.newCases).length ?? 0,
+    hospitalized: observations.filter(d => d.currentHospitalized).length ?? 0,
   }
 
   const plotData = [
