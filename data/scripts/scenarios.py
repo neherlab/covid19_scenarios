@@ -38,7 +38,7 @@ mitigation_colors = {
 SCENARIO_POPS = os.path.join(BASE_PATH, "populationData.tsv")
 FIT_CASE_DATA = {}
 
-from scripts.get_default_schema_values import DEFAULTS
+from scripts.default_schema_values import DEFAULTS
 
 # ------------------------------------------------------------------------
 # Fallback data fitter
@@ -192,7 +192,7 @@ def marshalJSON(obj, wtr=None):
     - obj: a dict of allParams
     """
     if wtr is None:
-        return json.dumps(self, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+        return json.dumps(obj, default=lambda x: x.__dict__, sort_keys=True, indent=4)
 
     newdata = []
     for k in obj:
