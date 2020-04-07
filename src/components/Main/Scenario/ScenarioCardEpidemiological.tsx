@@ -93,12 +93,13 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         errors={errors}
         touched={touched}
       />
-      <FormSpinBox
+      <FormNumericInput
         identifier="epidemiological.lengthICUStay"
         label={`${t('ICU stay')} [${t('days')}]`}
         help={t('Average number of days a critical case stays in the ICU')}
         step={1}
         min={0}
+        value={values.epidemiological.lengthICUStay}
         errors={errors}
         touched={touched}
       />
