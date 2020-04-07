@@ -10,7 +10,7 @@ import {
 } from './types/Result.types'
 
 const msPerDay = 1000 * 60 * 60 * 24
-const eulerStep = 0.25
+const eulerStep = 0.5
 export const eulerStepsPerDay = Math.round(1 / eulerStep)
 
 const monthToDay = (m: number) => {
@@ -313,10 +313,6 @@ function advanceState(
 
   const updateAt = (age, kind, compartment, i) => {
     newPop[kind][compartment][age][i] = gz(pop[kind][compartment][age][i] + dt * tdot[kind][compartment][age][i])
-  }
-
-  const updateWith = (age, kind, compartment, value) => {
-    newPop[kind][compartment][age] = gz(pop[kind][compartment][age] + value)
   }
 
   const ages = Object.keys(pop.current.infectious).sort()

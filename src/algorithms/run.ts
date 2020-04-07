@@ -123,13 +123,13 @@ export async function run(
     return collectTotals(dynamics)
   }
 
-  console.profile('test_perf')
+  console.profile('perf')
   const sim: AlgorithmResult = {
     deterministic: simulate(initialState, identity),
     stochastic: [],
     params: modelParams,
   }
-  console.profileEnd('test_perf')
+  console.profileEnd('perf')
 
   for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
     initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
