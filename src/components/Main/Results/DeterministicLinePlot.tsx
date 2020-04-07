@@ -22,6 +22,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { userResultToPlot } from '../../../algorithms/utils/userResult'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
@@ -32,26 +33,26 @@ import { Button, ButtonGroup, ButtonToggle } from 'reactstrap'
 
 const ASPECT_RATIO = 16 / 9
 
-const DATA_POINTS = {
+export enum DATA_POINTS {
   /* Computed */
-  Exposed: 'exposed',
-  Susceptible: 'susceptible',
-  Infectious: 'infectious',
-  Severe: 'severe',
-  Critical: 'critical',
-  Overflow: 'overflow',
-  Recovered: 'recovered',
-  Fatalities: 'fatality',
-  CumulativeCases: 'cumulativeCases',
-  NewCases: 'newCases',
-  HospitalBeds: 'hospitalBeds',
-  ICUbeds: 'ICUbeds',
+  Exposed = 'exposed',
+  Susceptible = 'susceptible',
+  Infectious = 'infectious',
+  Severe = 'severe',
+  Critical = 'critical',
+  Overflow = 'overflow',
+  Recovered = 'recovered',
+  Fatalities = 'fatality',
+  CumulativeCases = 'cumulativeCases',
+  HospitalBeds = 'hospitalBeds',
+  ICUbeds = 'ICUbeds',
+  NewCases = 'newCases',
   /* Observed */
-  ObservedDeaths: 'observedDeaths',
-  ObservedCases: 'cases',
-  ObservedHospitalized: 'currentHospitalized',
-  ObservedICU: 'ICU',
-  ObservedNewCases: 'newCases',
+  ObservedDeaths = 'observedDeaths',
+  ObservedCases = 'cases',
+  ObservedHospitalized = 'currentHospitalized',
+  ObservedICU = 'ICU',
+  ObservedNewCases = 'observedNewCases',
 }
 
 export const colors = {
@@ -66,6 +67,18 @@ export const colors = {
   [DATA_POINTS.NewCases]: '#fdbf6f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
   [DATA_POINTS.ICUbeds]: '#cccccc',
+}
+
+// TODO refactor this interface to avoid duplication with DATA_POINTS
+export interface PlotData {
+  time: number
+  cases?: number
+  observedDeaths?: number
+  currentHospitalized?: number
+  ICU?: number
+  newCases?: number
+  hospitalBeds?: number
+  ICUbeds?: number
 }
 
 export interface LinePlotProps {
@@ -147,16 +160,9 @@ export function DeterministicLinePlot({
     return undefined
   }
 
-  const countObservations = {
-    cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
-    observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
-    hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
-  }
-
-  const observations =
-    nonEmptyCaseCounts?.map((d, i) => ({
+  const observations: PlotData[] = useImportedData
+    ? userResultToPlot(enabledPlots, userResult)
+    : nonEmptyCaseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
       cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
       observedDeaths: enabledPlots.includes(DATA_POINTS.ObservedDeaths) ? d.deaths || undefined : undefined,
@@ -168,6 +174,14 @@ export function DeterministicLinePlot({
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
+
+  const countObservations = {
+    cases: observations?.filter(d => d.cases).length ?? 0,
+    ICU: observations?.filter(d => d.ICU).length ?? 0,
+    observedDeaths: observations?.filter(d => d.observedDeaths).length ?? 0,
+    newCases: observations?.filter(d => d.newCases).length ?? 0,
+    hospitalized: observations?.filter(d => d.currentHospitalized).length ?? 0,
+  }
 
   const plotData = [
     ...data.deterministic.trajectory.map((x) => ({
@@ -297,7 +311,7 @@ export function DeterministicLinePlot({
                     color="secondary"
                     className={useImportedData ? 'active' : ''}
                     onClick={toggleUseImportedData}
-                    disabled={!!userResult}
+                    disabled={!userResult}
                   >
                     {t('Use imported data')}
                   </ButtonToggle>

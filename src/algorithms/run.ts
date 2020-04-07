@@ -6,7 +6,7 @@ import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
 
 import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
 import { AllParamsFlat, MitigationIntervals } from './types/Param.types'
-import { AlgorithmResult, SimulationTimePoint } from './types/Result.types'
+import { AlgorithmResult, SimulationTimePoint, SimulationResult } from './types/Result.types'
 import { TimeSeries } from './types/TimeSeries.types'
 
 const identity = (x: number) => x
@@ -110,7 +110,7 @@ export async function run(
   const initialCases = params.suspectedCasesToday
   let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
 
-  function simulate(initialState: SimulationTimePoint, func: (x: number) => number) {
+  function simulate(initialState: SimulationTimePoint, func: (x: number) => number): SimulationResult {
     const dynamics = [initialState]
     let currState = initialState
     while (currState.time < tMax) {

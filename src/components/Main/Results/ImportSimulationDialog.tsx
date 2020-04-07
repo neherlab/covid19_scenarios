@@ -58,6 +58,7 @@ export default function ImportSimulationDialog({
         onDataImported(processUserResult(data))
         toggleShowModal()
       },
+      header: true,
     })
 
     // TODO handle loading for huge files

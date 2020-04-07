@@ -8,12 +8,12 @@ export interface InternalCurrentData {
 }
 
 export interface ExposedCurrentData {
-  susceptible: Record<string, number>
-  exposed: Record<string, number>
-  infectious: Record<string, number>
-  severe: Record<string, number>
-  critical: Record<string, number>
-  overflow: Record<string, number>
+  susceptible?: Record<string, number>
+  exposed?: Record<string, number>
+  infectious?: Record<string, number>
+  severe?: Record<string, number>
+  critical?: Record<string, number>
+  overflow?: Record<string, number>
 }
 
 export interface CumulativeData {
@@ -34,7 +34,7 @@ export interface SimulationTimePoint {
 export interface ExportedTimePoint {
   time: number
   current: ExposedCurrentData
-  cumulative: CumulativeData
+  cumulative: Partial<CumulativeData>
 }
 
 export interface ModelFracs {
@@ -73,8 +73,12 @@ export interface UserResult {
   trajectory: ExportedTimePoint[]
 }
 
+export interface SimulationResult {
+  trajectory: SimulationTimePoint[]
+}
+
 export interface AlgorithmResult {
-  deterministic: UserResult
-  stochastic: UserResult[]
+  deterministic: SimulationResult
+  stochastic: SimulationResult[]
   params: ModelParams
 }

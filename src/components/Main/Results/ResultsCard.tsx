@@ -147,7 +147,7 @@ function ResultsCardFunction({
                 color="secondary"
                 onClick={_ => setShowImportModal(true)}
               >
-                {t('Import more data')}
+                {t('Import custom data')}
               </Button><Button
                 className="export-button"
                 type="button"
