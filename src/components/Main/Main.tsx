@@ -114,19 +114,19 @@ function Main() {
   )
 
   useEffect(() => {
+    if (autorunSimulation) {
+        debouncedRun(allParams, scenarioState, severity)
+    }
+
     // 1. upon each parameter change, we rebuild the query string
     const nextLocationSearch = buildLocationSearch(scenarioState)
 
-    if (nextLocationSearch !== locationSearch || autorunSimulation) {
+    if (nextLocationSearch !== locationSearch) {
       // whenever the generated query string changes, we're updating:
       // 1. browser's location.search
       // 2. searchString state variable (scenarioUrl is used by children)
       setLocationSeach(nextLocationSearch)
-
-      if (autorunSimulation) {
-        updateBrowserURL(nextLocationSearch)
-        debouncedRun(allParams, scenarioState, severity)
-      }
+      updateBrowserURL(nextLocationSearch)
     }
   }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
 
