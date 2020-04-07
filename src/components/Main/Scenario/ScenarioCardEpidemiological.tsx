@@ -6,7 +6,6 @@ import { FormikErrors, FormikTouched } from 'formik'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
-import { FormSpinBox } from '../../Form/FormSpinBox'
 import { FormNumericInput } from '../../Form/FormNumericInput'
 
 const months = moment.months()
