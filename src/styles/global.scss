@@ -101,3 +101,9 @@ input[type='number']::-webkit-outer-spin-button {
 .recharts-tooltip-wrapper {
   z-index: 999;
 }
+
+.truncate-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
