@@ -46,8 +46,8 @@ def parse():
             region = row[3].replace(" ", "-").replace("Î", "I").replace("'", "").replace("’", "")
             cases = to_int(row[4])
             death = to_int(row[5])
-            hospitalized = to_int(row[7])
-            icu = to_int(row[6])
+            hospitalized = to_int(row[8])
+            icu = to_int(row[7])
 
             if region not in regions:
                 regions[region] = {}
