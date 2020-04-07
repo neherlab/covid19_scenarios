@@ -1,10 +1,17 @@
 export interface InternalCurrentData {
-  susceptible: Record<string, number>
-  exposed: Record<string, number[]>
-  infectious: Record<string, number>
-  severe: Record<string, number>
-  critical: Record<string, number>
-  overflow: Record<string, number>
+  susceptible: number[]
+  exposed: number[][]
+  infectious: number[]
+  severe: number[]
+  critical: number[]
+  overflow: number[]
+}
+
+export interface InternalCumulativeData {
+  recovered: number[]
+  hospitalized: number[]
+  critical: number[]
+  fatality: number[]
 }
 
 export interface ExposedCurrentData {
@@ -16,7 +23,7 @@ export interface ExposedCurrentData {
   overflow: Record<string, number>
 }
 
-export interface CumulativeData {
+export interface ExposedCumulativeData {
   recovered: Record<string, number>
   hospitalized: Record<string, number>
   critical: Record<string, number>
@@ -27,14 +34,14 @@ export interface CumulativeData {
 export interface SimulationTimePoint {
   time: number
   current: InternalCurrentData
-  cumulative: CumulativeData
+  cumulative: InternalCumulativeData
 }
 
 // This defines the user-facing data structure
 export interface ExportedTimePoint {
   time: number
   current: ExposedCurrentData
-  cumulative: CumulativeData
+  cumulative: ExposedCumulativeData
 }
 
 export interface ModelFracs {

@@ -4,7 +4,7 @@ import {
   ModelParams,
   SimulationTimePoint,
   InternalCurrentData,
-  CumulativeData,
+  InternalCumulativeData,
   UserResult,
   ExportedTimePoint,
 } from './types/Result.types'
@@ -142,20 +142,21 @@ export function initializePopulation(
   const pop: SimulationTimePoint = {
     time: t0,
     current: {
-      susceptible: {},
-      exposed: {},
-      infectious: {},
-      severe: {},
-      critical: {},
-      overflow: {},
+      susceptible: [],
+      exposed: [],
+      infectious: [],
+      severe: [],
+      critical: [],
+      overflow: [],
     },
     cumulative: {
-      recovered: {},
-      hospitalized: {},
-      critical: {},
-      fatality: {},
+      recovered: [],
+      hospitalized: [],
+      critical: [],
+      fatality: [],
     },
   }
+
   // specification of the initial condition: there are numCases at tMin
   // of those, 0.3 are infectious, the remainder is exposed and will turn
   // infectious as they propagate through the exposed categories.
@@ -164,21 +165,21 @@ export function initializePopulation(
   // TODO: Ensure the sum is equal to N!
   Object.keys(ages).forEach((k, i) => {
     const n = Math.round((ages[k] / Z) * N)
-    pop.current.susceptible[k] = n
-    pop.current.exposed[k] = [0, 0, 0]
-    pop.current.infectious[k] = 0
-    pop.current.severe[k] = 0
-    pop.current.critical[k] = 0
-    pop.current.overflow[k] = 0
-    pop.cumulative.hospitalized[k] = 0
-    pop.cumulative.recovered[k] = 0
-    pop.cumulative.critical[k] = 0
-    pop.cumulative.fatality[k] = 0
+    pop.current.susceptible[i] = n
+    pop.current.exposed[i] = [0, 0, 0]
+    pop.current.infectious[i] = 0
+    pop.current.severe[i] = 0
+    pop.current.critical[i] = 0
+    pop.current.overflow[i] = 0
+    pop.cumulative.hospitalized[i] = 0
+    pop.cumulative.recovered[i] = 0
+    pop.cumulative.critical[i] = 0
+    pop.cumulative.fatality[i] = 0
     if (i === Math.round(Object.keys(ages).length / 2)) {
-      pop.current.susceptible[k] -= numCases
-      pop.current.infectious[k] = initialInfectiousFraction * numCases
-      const e = ((1 - initialInfectiousFraction) * numCases) / pop.current.exposed[k].length
-      pop.current.exposed[k] = pop.current.exposed[k].map((_) => e)
+      pop.current.susceptible[i] -= numCases
+      pop.current.infectious[i] = initialInfectiousFraction * numCases
+      const e = ((1 - initialInfectiousFraction) * numCases) / pop.current.exposed[i].length
+      pop.current.exposed[i] = pop.current.exposed[i].map((_) => e)
     }
   })
 
@@ -186,23 +187,23 @@ export function initializePopulation(
 }
 
 interface StateFlux {
-  susceptible: Record<string, number>
-  exposed: Record<string, number[]>
+  susceptible: number[]
+  exposed: number[][]
   infectious: {
-    severe: Record<string, number>
-    recovered: Record<string, number>
+    severe: number[]
+    recovered: number[]
   }
   severe: {
-    critical: Record<string, number>
-    recovered: Record<string, number>
+    critical: number[]
+    recovered: number[]
   }
   critical: {
-    severe: Record<string, number>
-    fatality: Record<string, number>
+    severe: number[]
+    fatality: number[]
   }
   overflow: {
-    severe: Record<string, number>
-    fatality: Record<string, number>
+    severe: number[]
+    fatality: number[]
   }
 }
 
@@ -224,7 +225,7 @@ export function evolve(
 
 interface TimeDerivative {
   current: InternalCurrentData
-  cumulative: CumulativeData
+  cumulative: InternalCumulativeData
 }
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
@@ -255,24 +256,24 @@ function advanceState(
   const newPop: SimulationTimePoint = {
     time: Date.now(),
     current: {
-      susceptible: {},
-      exposed: {},
-      infectious: {},
-      severe: {},
-      critical: {},
-      overflow: {},
+      susceptible: [],
+      exposed: [],
+      infectious: [],
+      severe: [],
+      critical: [],
+      overflow: [],
     },
     cumulative: {
-      recovered: {},
-      hospitalized: {},
-      critical: {},
-      fatality: {},
+      recovered: [],
+      hospitalized: [],
+      critical: [],
+      fatality: [],
     },
   }
 
   // Helper functions
-  const sum = (dict: Record<string, number>): number => {
-    return Object.values(dict).reduce((a, b) => a + b, 0)
+  const sum = (arr: number[]): number => {
+    return arr.reduce((a, b) => a + b, 0)
   }
 
   const gz = (x: number): number => {
@@ -288,8 +289,7 @@ function advanceState(
     newPop[kind][compartment][age][i] = gz(pop[kind][compartment][age][i] + dt * tdot[kind][compartment][age][i])
   }
 
-  const ages = Object.keys(pop.current.infectious).sort()
-  ages.forEach((age) => {
+  for (let age = 0; age < pop.current.infectious.length; age++) {
     newPop.current.exposed[age] = Array(tdot.current.exposed[age].length)
 
     update(age, 'current', 'susceptible')
@@ -307,14 +307,13 @@ function advanceState(
     update(age, 'cumulative', 'critical')
     update(age, 'cumulative', 'fatality')
     update(age, 'cumulative', 'recovered')
-  })
+  }
 
   // Move hospitalized patients according to constrained resources
   // TODO(nnoll): The gradients aren't computed subject to this non-linear constraint
   let freeICUBeds = nICUBeds - sum(newPop.current.critical)
 
-  for (let i = ages.length - 1; freeICUBeds < 0 && i >= 0; i--) {
-    const age = ages[i]
+  for (let age = pop.current.critical.length - 1; freeICUBeds < 0 && age >= 0; age--) {
     if (newPop.current.critical[age] > -freeICUBeds) {
       newPop.current.critical[age] += freeICUBeds
       newPop.current.overflow[age] -= freeICUBeds
@@ -326,8 +325,7 @@ function advanceState(
     }
   }
 
-  for (let i = 0; freeICUBeds > 0 && i < ages.length; i++) {
-    const age = ages[i]
+  for (let age = 0; freeICUBeds > 0 && age < pop.current.critical.length; age++) {
     if (newPop.current.overflow[age] > freeICUBeds) {
       newPop.current.critical[age] += freeICUBeds
       newPop.current.overflow[age] -= freeICUBeds
@@ -345,23 +343,21 @@ function advanceState(
 function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivative {
   const sum: TimeDerivative = {
     current: {
-      susceptible: {},
-      exposed: {},
-      infectious: {},
-      severe: {},
-      critical: {},
-      overflow: {},
+      susceptible: [],
+      exposed: [],
+      infectious: [],
+      severe: [],
+      critical: [],
+      overflow: [],
     },
     cumulative: {
-      hospitalized: {},
-      critical: {},
-      recovered: {},
-      fatality: {},
+      hospitalized: [],
+      critical: [],
+      recovered: [],
+      fatality: [],
     },
   }
-  const ages = Object.keys(grads[0].current.susceptible)
-
-  ages.forEach((age) => {
+  for (let age = 0; age < grads[0].current.susceptible.length; age++) {
     sum.current.susceptible[age] = 0
     sum.current.exposed[age] = grads[0].current.exposed[age].map(() => {
       return 0
@@ -375,10 +371,10 @@ function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivativ
     sum.cumulative.fatality[age] = 0
     sum.cumulative.recovered[age] = 0
     sum.cumulative.hospitalized[age] = 0
-  })
+  }
 
   grads.forEach((grad, i) => {
-    ages.forEach((age) => {
+    for (let age = 0; age < grads[0].current.susceptible.length; age++) {
       sum.current.susceptible[age] += scale[i] * grad.current.susceptible[age]
       sum.current.infectious[age] += scale[i] * grad.current.infectious[age]
       grad.current.exposed[age].forEach((e, j) => {
@@ -392,7 +388,7 @@ function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivativ
       sum.cumulative.fatality[age] += scale[i] * grad.cumulative.fatality[age]
       sum.cumulative.critical[age] += scale[i] * grad.cumulative.critical[age]
       sum.cumulative.hospitalized[age] += scale[i] * grad.cumulative.hospitalized[age]
-    })
+    }
   })
 
   return sum
@@ -401,23 +397,22 @@ function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivativ
 function derivative(flux: StateFlux): TimeDerivative {
   const grad: TimeDerivative = {
     current: {
-      susceptible: {},
-      exposed: {},
-      infectious: {},
-      severe: {},
-      critical: {},
-      overflow: {},
+      susceptible: [],
+      exposed: [],
+      infectious: [],
+      severe: [],
+      critical: [],
+      overflow: [],
     },
     cumulative: {
-      recovered: {},
-      hospitalized: {},
-      critical: {},
-      fatality: {},
+      recovered: [],
+      hospitalized: [],
+      critical: [],
+      fatality: [],
     },
   }
 
-  const ages = Object.keys(flux.susceptible)
-  ages.forEach((age) => {
+  for (let age = 0; age < flux.susceptible.length; age++) {
     grad.current.exposed[age] = Array(flux.exposed[age].length)
 
     grad.current.susceptible[age] = -flux.susceptible[age]
@@ -441,43 +436,42 @@ function derivative(flux: StateFlux): TimeDerivative {
     grad.cumulative.hospitalized[age] = flux.infectious.severe[age] + flux.infectious.severe[age]
     grad.cumulative.critical[age] = flux.severe.recovered[age] + flux.severe.recovered[age]
     grad.cumulative.fatality[age] = flux.critical.fatality[age] + flux.overflow.fatality[age]
-  })
+  }
 
   return grad
 }
 
 function fluxes(time: Date, pop: SimulationTimePoint, P: ModelParams): StateFlux {
-  const sum = (dict: Record<string, number>): number => {
-    return Object.values(dict).reduce((a, b) => a + b, 0)
+  const sum = (arr: number[]): number => {
+    return arr.reduce((a, b) => a + b, 0)
   }
 
   // Convention: flux is labelled by the state
   const flux: StateFlux = {
-    susceptible: {},
-    exposed: {},
+    susceptible: [],
+    exposed: [],
     infectious: {
-      severe: {},
-      recovered: {},
+      severe: [],
+      recovered: [],
     },
     severe: {
-      critical: {},
-      recovered: {},
+      critical: [],
+      recovered: [],
     },
     critical: {
-      severe: {},
-      fatality: {},
+      severe: [],
+      fatality: [],
     },
     overflow: {
-      severe: {},
-      fatality: {},
+      severe: [],
+      fatality: [],
     },
   }
 
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
   const fracInfected = sum(pop.current.infectious) / P.populationServed
 
-  const ages = Object.keys(pop.current.infectious).sort()
-  ages.forEach((age) => {
+  for (let age = 0; age < pop.current.infectious.length; age++) {
     // Initialize all multi-faceted states with internal arrays
     flux.exposed[age] = Array(pop.current.exposed[age].length)
 
@@ -506,7 +500,7 @@ function fluxes(time: Date, pop: SimulationTimePoint, P: ModelParams): StateFlux
     // Overflow -> Severe/Fatality
     flux.overflow.severe[age] = pop.current.overflow[age] * P.rate.stabilize[age]
     flux.overflow.fatality[age] = pop.current.overflow[age] * P.rate.overflowFatality[age]
-  })
+  }
 
   return flux
 }
@@ -515,7 +509,7 @@ const keys = <T>(o: T): Array<keyof T & string> => {
   return Object.keys(o) as Array<keyof T & string>
 }
 
-export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
+export function collectTotals(trajectory: SimulationTimePoint[], ages: string[]): UserResult {
   // FIXME: parameter reassign
   const res: UserResult = { trajectory: [] }
 
@@ -538,7 +532,8 @@ export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
       },
     }
 
-    keys(d.current).forEach((k) => {
+    // TODO(nnoll): Typescript linting isn't happy here
+    Object.keys(tp.current).forEach((k) => {
       if (k === 'exposed') {
         tp.current[k].total = 0
         Object.values(d.current[k]).forEach((x) => {
@@ -546,18 +541,22 @@ export function collectTotals(trajectory: SimulationTimePoint[]): UserResult {
             tp.current[k].total += y
           })
         })
-        Object.keys(d.current[k]).forEach((a) => {
-          tp.current[k][a] = d.current[k][a].reduce((a, b) => a + b, 0)
+        Object.keys(d.current[k]).forEach((a, i) => {
+          tp.current[k][a] = d.current[k][i].reduce((a, b) => a + b, 0)
         })
       } else {
-        tp.current[k] = { ...d.current[k] }
-        tp.current[k].total = Object.values(d.current[k]).reduce((a, b) => a + b)
+        ages.forEach((age, i) => {
+          tp.current[k][age] = d.current[k][i]
+        })
+        tp.current[k].total = d.current[k].reduce((a, b) => a + b)
       }
     })
 
-    keys(d.cumulative).forEach((k) => {
-      tp.cumulative[k] = { ...d.cumulative[k] }
-      tp.cumulative[k].total = Object.values(d.cumulative[k]).reduce((a, b) => a + b)
+    Object.keys(tp.cumulative).forEach((k) => {
+      ages.forEach((age, i) => {
+        tp.cumulative[k][age] = d.cumulative[k][i]
+      })
+      tp.cumulative[k].total = d.cumulative[k].reduce((a, b) => a + b, 0)
     })
 
     res.trajectory.push(tp)
