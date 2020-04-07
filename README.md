@@ -345,7 +345,7 @@ In particular, some of the types:
 - are validated on runtime using corresponding libraries in these languages
 - are (when appropriate) serialized and deserialized using generated serialization/deserialized functions
 
-We make ephasis on types that are shared across languages (e.g. Python to Typescript) as well as on types that
+We make emphasis on types that are shared across languages (e.g. Python to Typescript) as well as on types that
 participate in input-output (e.g. URLs, Local Storage, File I/O) and require particularly careful validation and
 serialization.
 

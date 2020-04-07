@@ -27,7 +27,7 @@
   "israel": {
     "primarySource": "https://raw.githubusercontent.com/idandrd/israel-covid19-data/master/IsraelCOVID19.csv",
     "dataProvenance": "https://github.com/idandrd/israel-covid19-data",
-    "license": "none specified"
+    "license": "MIT"
   },
   "spain": {
     "primarySource": "https://github.com/datadista/datasets/tree/master/COVID%2019",

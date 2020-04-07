@@ -14,7 +14,7 @@ from scipy.stats import linregress
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARIOS
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
-from jsonschema import validate
+from jsonschema import validate, FormatChecker
 
 ##
 mitigation_colors = {
@@ -201,7 +201,7 @@ def marshalJSON(obj, wtr):
     # Validate the dict based on the json
     with open(os.path.join(BASE_PATH, SCHEMA_SCENARIOS), "r") as f:
         schema = yaml.load(f, Loader=yaml.FullLoader)
-        validate(json.loads(news), schema)
+        validate(json.loads(news), schema, format_checker=FormatChecker())
 
     return wtr.write(news)
 

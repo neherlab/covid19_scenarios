@@ -16,9 +16,11 @@ people might exceed the number of severely ill._
 
 **Q:** Is the model fit to observations?
 
-**A:** _No, currently we don't fit the model to observations. This is planned and we hopefully get it done soon.
-Instead, we use epidemiological parameters estimated from data from China and guess the initial size of the COVID-19
-outbreak in different populations._
+**A:** _Yes, provided we have a good source of COVID-19 cases, we fit a few model parameters to observations.
+Specifically, we estimate R0, the initial size and date of the epidemic, and the case underreporting fraction. For case
+severity information, we utilize estimate from case outcome data from China._ Currently mitigation efforts, both the
+timing and the efficacy are _not_ estimated from the data. We are actively looking for user-provided dates for
+mitigation efforts for your regions of interest.
 
 ---
 
@@ -41,8 +43,8 @@ patients will die faster. The degree to which they die faster is specified by th
 **Q:** Wouldn't it be a good idea to model isolation of specific age-groups?
 
 **A:** _Yes! This is indeed possible on covid-scenarios. Expand the card
-`Severity assumptions and age-specific isolation`. The last column allows you to specify to what extent individual
-age groups are isolated from the rest of the population._
+`Severity assumptions and age-specific isolation`. The last column allows you to specify to what extent individual age
+groups are isolated from the rest of the population._
 
 ---
 
