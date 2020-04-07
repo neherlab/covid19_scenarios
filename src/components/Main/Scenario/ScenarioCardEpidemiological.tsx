@@ -65,12 +65,13 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         errors={errors}
         touched={touched}
       />
-      <FormSpinBox
+      <FormNumericInput
         identifier="epidemiological.seasonalForcing"
         label={t('Seasonal forcing')}
         help={t('Amplitude of seasonal variation in transmission')}
         step={0.1}
         min={0}
+        value={values.epidemiological.seasonalForcing}
         errors={errors}
         touched={touched}
       />
