@@ -24,10 +24,8 @@ definitions:
         type: string
         minLength: 1
 
-      empiricalData:
-        type: array
-        items:
-          $ref: '#/definitions/AgeDistribution'
+      ageDistribution:
+        $ref: '#/definitions/AgeDistribution'
 
   AgeDistribution:
     type: object
@@ -46,53 +44,44 @@ definitions:
       0-9:
         type: integer
         multipleOf: 1
-        minimim: 0
-        maximum: 100
+        minimum: 0
 
       10-19:
         type: integer
         multipleOf: 1
-        minimim: 0
-        maximum: 100
+        minimum: 0
 
       20-29:
         type: integer
         multipleOf: 1
-        minimim: 0
-        maximum: 100
+        minimum: 0
 
       30-39:
         type: integer
         multipleOf: 1
-        minimim: 0
-        maximum: 100
+        minimum: 0
 
       40-49:
         type: integer
         multipleOf: 1
-        minimim: 0
-        maximum: 100
+        minimum: 0
 
       50-59:
         type: integer
         multipleOf: 1
-        minimim: 0
-        maximum: 100
+        minimum: 0
 
       60-69:
         type: integer
         multipleOf: 1
-        minimim: 0
-        maximum: 100
+        minimum: 0
 
       70-79:
         type: integer
         multipleOf: 1
-        minimim: 0
-        maximum: 100
+        minimum: 0
 
       80+:
         type: integer
         multipleOf: 1
-        minimim: 0
-        maximum: 100
+        minimum: 0
