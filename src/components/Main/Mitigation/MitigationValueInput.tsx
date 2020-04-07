@@ -2,16 +2,7 @@ import React from 'react'
 
 import { FastField, FieldProps } from 'formik'
 
-import * as NumericInput from "react-numeric-input";
-
-// Function to determine number of months to display on the datepicker.
-function getNumberOfMonthsCount(media: { tiny: boolean; small: boolean; medium: boolean }) {
-  const { tiny, small, medium } = media
-  if (tiny) return 1
-  if (small) return 2
-  if (medium) return 3
-  return 4
-}
+import * as NumericInput from 'react-numeric-input'
 
 export interface MitigationValueInputProps {
   identifier: string
