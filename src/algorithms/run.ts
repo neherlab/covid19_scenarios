@@ -109,6 +109,7 @@ export async function run(
   const modelParams = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
   const tMin: number = new Date(params.simulationTimeRange.tMin).getTime()
   const tMax: number = new Date(params.simulationTimeRange.tMax).getTime()
+  const ageGroups = Object.keys(ageDistribution)
   const initialCases = params.suspectedCasesToday
   let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
 
@@ -120,7 +121,7 @@ export async function run(
       dynamics.push(currState)
     }
 
-    return collectTotals(dynamics)
+    return collectTotals(dynamics, ageGroups)
   }
 
   console.profile('perf')
