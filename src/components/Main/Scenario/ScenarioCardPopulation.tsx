@@ -14,6 +14,7 @@ import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
+import { FormNumericInput } from '../../Form/FormNumericInput'
 
 import { AllParams } from '../../../algorithms/types/Param.types'
 
@@ -43,11 +44,12 @@ function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulat
       label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
       help={t('Parameters of the population in the health care system.')}
     >
-      <FormSpinBox
+      <FormNumericInput
         identifier="population.populationServed"
         label={t('Population')}
         help={t('Number of people served by health care system.')}
         step={1}
+        value={values.population.populationServed}
         errors={errors}
         touched={touched}
       />
