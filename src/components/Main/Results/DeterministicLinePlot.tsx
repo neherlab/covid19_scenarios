@@ -30,6 +30,7 @@ import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
 
 import './DeterministicLinePlot.scss'
 import { Button, ButtonGroup, ButtonToggle } from 'reactstrap'
+import { FaCheck } from 'react-icons/fa'
 
 const ASPECT_RATIO = 16 / 9
 
@@ -313,7 +314,8 @@ export function DeterministicLinePlot({
                     onClick={toggleUseImportedData}
                     disabled={!userResult}
                   >
-                    {t('Use imported data')}
+                    {useImportedData && <FaCheck className="mr-2" />}
+                    <span className="align-middle">{t('Use imported data')}</span>
                   </ButtonToggle>
                   <Button color="secondary" onClick={zoomOut}>
                   {t('Zoom Out')}
