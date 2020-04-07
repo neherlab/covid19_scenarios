@@ -79,13 +79,14 @@ function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulat
         errors={errors}
         touched={touched}
       />
-      <FormSpinBox
+      <FormNumericInput
         identifier="population.hospitalBeds"
         label={`${t('Hospital Beds')} (${t('est.')})`}
         help={t(
           'Number of hospital beds available in health care system. Presets are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
         )}
         step={1}
+        value={values.population.hospitalBeds}
         errors={errors}
         touched={touched}
       />
