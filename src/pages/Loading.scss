@@ -1,6 +1,6 @@
 .loading-page {
-  margin-top: 25%;
-
+  margin-top: calc((100vh - 6rem)/2);
+  
   > div.spinner-border {
     width: 6rem;
     height: 6rem;
