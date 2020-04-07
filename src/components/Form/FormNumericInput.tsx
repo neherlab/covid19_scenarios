@@ -56,6 +56,7 @@ export function FormNumericInput<T>({
                       max={max}
                       step={step}
                       value={value}
+                      required
                       onChange={(newValue) => setFieldValue(identifier, newValue)}
                       style={{input:{width:'100%',padding:"1ex"}}}
                     />
