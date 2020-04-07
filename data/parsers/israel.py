@@ -11,7 +11,7 @@ from .utils import store_data
 
 URL  = "https://raw.githubusercontent.com/idandrd/israel-covid19-data/master/IsraelCOVID19.csv"
 LOC  = "case-counts/Asia/Western Asia/Israel"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions

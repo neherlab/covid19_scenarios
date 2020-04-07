@@ -18,7 +18,7 @@ from jsonschema import validate, FormatChecker
 with open(os.path.join(BASE_PATH, SOURCES_FILE)) as fh:
     sources = json.load(fh)
 
-default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 
 # ------------------------------------------------------------------------
@@ -145,7 +145,7 @@ def list_to_dict(regions, cols):
             i = 0
             nd = {}
             while (i < len(d)):
-                # cols is likely ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+                # cols is likely ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
                 if cols[i] == 'time':
                     nd[cols[i]] = d[i]
                 elif d[i] is not None:

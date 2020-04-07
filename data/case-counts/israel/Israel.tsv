@@ -1,7 +1,7 @@
 # Data source: https://raw.githubusercontent.com/idandrd/israel-covid19-data/master/IsraelCOVID19.csv
 # Data provenance: https://github.com/idandrd/israel-covid19-data
 # License: MIT
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-02-21	2				
 2020-02-22	2				
 2020-02-23	2				

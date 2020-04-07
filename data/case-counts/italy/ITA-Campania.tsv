@@ -1,7 +1,7 @@
 # Data source: https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json
 # Data provenance: Dipartimento della Protezione Civile
 # License: CC-BY-4.0
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-02-24	0	0	0	0	0
 2020-02-25	0	0	0	0	0
 2020-02-26	0	0	0	0	0
@@ -45,3 +45,4 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-04-04	2828	186	567	114	146
 2020-04-05	2960	189	609	108	150
 2020-04-06	3058	204	610	101	156
+2020-04-07	3148	216	603	103	167
