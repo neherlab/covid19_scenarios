@@ -14,6 +14,7 @@ export interface FormSpinBoxProps<T> {
   step?: number | string
   min?: number
   max?: number
+  precision?: number
   pattern?: string
   errors?: FormikErrors<T>
   touched?: FormikTouched<T>
@@ -26,6 +27,7 @@ export function FormSpinBox<T>({
   step,
   min,
   max,
+  precision,
   pattern,
   errors,
   touched,
@@ -62,6 +64,7 @@ export function FormSpinBox<T>({
                 step={step}
                 min={min}
                 max={max}
+                precision={precision}
                 pattern={pattern}
                 validate={validate}
               />
