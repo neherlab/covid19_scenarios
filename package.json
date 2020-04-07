@@ -163,6 +163,7 @@
     "@types/loadable__component": "5.10.0",
     "@types/lodash": "4.14.149",
     "@types/lodash-webpack-plugin": "0.11.3",
+    "@types/mdx-js__react": "1.5.1",
     "@types/mini-css-extract-plugin": "0.9.1",
     "@types/node": "13.9.1",
     "@types/numeral": "0.0.26",
