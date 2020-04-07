@@ -126,7 +126,10 @@ function Main() {
       // 1. browser's location.search
       // 2. searchString state variable (scenarioUrl is used by children)
       setLocationSeach(nextLocationSearch)
-      updateBrowserURL(nextLocationSearch)
+
+      if (autorunSimulation) {
+        updateBrowserURL(nextLocationSearch)
+      }
     }
   }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
 
