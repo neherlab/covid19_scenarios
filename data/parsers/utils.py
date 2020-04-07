@@ -11,7 +11,7 @@ from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR, SCHEMA_
 
 from datetime import datetime
 from collections import defaultdict
-from jsonschema import validate
+from jsonschema import validate, FormatChecker
 
 # ------------------------------------------------------------------------
 # Globals
@@ -205,7 +205,7 @@ def store_json(case_counts, json_file):
 
     with open(os.path.join(BASE_PATH, SCHEMA_CASECOUNTS), "r") as f:
         schema = yaml.load(f, Loader=yaml.FullLoader)
-        validate(newdata, schema)
+        validate(newdata, schema, format_checker=FormatChecker())
 
     with open(json_file, 'w') as fh:
         json.dump(newdata, fh)

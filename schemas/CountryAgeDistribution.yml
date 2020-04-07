@@ -3,77 +3,85 @@ $id: 'schemas/CountryAgeDistribution.yml'
 
 title: CountryAgeDistribution
 
-type: object
+type: array
+
+items:
+  $ref: '#/definitions/AgeDistributionForOneCountry'
 
 # FIXME: These properties and the enum in Severity are currently duplicated.
 # FIXME: Bad design. Find a way to factor this out.
 # FIXME: probably should represent all percentages as numbers in range 0..1
 
-additionalProperties:
-  type: object
+definitions:
+  AgeDistributionForOneCountry:
+    type: object
 
-  required:
-    - 0-9
-    - 10-19
-    - 20-29
-    - 30-39
-    - 40-49
-    - 50-59
-    - 60-69
-    - 70-79
-    - 80+
+    required:
+      - country
+      - ageDistribution
+    properties:
+      country:
+        type: string
+        minLength: 1
 
-  properties:
-    0-9:
-      type: integer
-      multipleOf: 1
-      minimim: 0
-      maximum: 100
+      ageDistribution:
+        $ref: '#/definitions/AgeDistribution'
 
-    10-19:
-      type: integer
-      multipleOf: 1
-      minimim: 0
-      maximum: 100
+  AgeDistribution:
+    type: object
+    required:
+      - 0-9
+      - 10-19
+      - 20-29
+      - 30-39
+      - 40-49
+      - 50-59
+      - 60-69
+      - 70-79
+      - 80+
 
-    20-29:
-      type: integer
-      multipleOf: 1
-      minimim: 0
-      maximum: 100
+    properties:
+      0-9:
+        type: integer
+        multipleOf: 1
+        minimum: 0
 
-    30-39:
-      type: integer
-      multipleOf: 1
-      minimim: 0
-      maximum: 100
+      10-19:
+        type: integer
+        multipleOf: 1
+        minimum: 0
 
-    40-49:
-      type: integer
-      multipleOf: 1
-      minimim: 0
-      maximum: 100
+      20-29:
+        type: integer
+        multipleOf: 1
+        minimum: 0
 
-    50-59:
-      type: integer
-      multipleOf: 1
-      minimim: 0
-      maximum: 100
+      30-39:
+        type: integer
+        multipleOf: 1
+        minimum: 0
 
-    60-69:
-      type: integer
-      multipleOf: 1
-      minimim: 0
-      maximum: 100
+      40-49:
+        type: integer
+        multipleOf: 1
+        minimum: 0
 
-    70-79:
-      type: integer
-      multipleOf: 1
-      minimim: 0
-      maximum: 100
+      50-59:
+        type: integer
+        multipleOf: 1
+        minimum: 0
 
-    80+:
-      type: integer
-      multipleOf: 1
-      minimim: 0
-      maximum: 100
+      60-69:
+        type: integer
+        multipleOf: 1
+        minimum: 0
+
+      70-79:
+        type: integer
+        multipleOf: 1
+        minimum: 0
+
+      80+:
+        type: integer
+        multipleOf: 1
+        minimum: 0

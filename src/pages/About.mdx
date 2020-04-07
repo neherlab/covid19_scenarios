@@ -138,7 +138,26 @@ $$
 
 where $\zeta_a$ is the degree to which particular age groups are isolated from the rest of the population, $M(t)$ is the time course of mitigation measures, $\varepsilon$ is the amplitude of seasonal variation in transmissibility, and $t_{max}$ is the time of the year of peak transmission.
 
-## Parameters
+## Parameter estimation
+
+With the prevalence of COVID-19 data for many regions, we now estimate a *few* select parameters for independent regions that provide public data.
+Specifically, we estimate the following default scenario parameters:
+  * R0 value
+  * The date and initial size of the epidemic start
+  * Fraction of cases caught by the region's testing infrastructure
+
+These parameters are estimated from both the cumulative number of COVID-19 cases and COVID-19 related fatalies reported.
+The estimation is accomplished by the minimization of the least squared difference between our model predictions and the empirical data.
+Specifically
+  * We define an objective function that:
+    - Takes as input a set of model parameters to simulate.
+    - Integrates the equations of motion described above.
+    - Returns the sum of squared residuals between the given empirical data and the result of ODE integration.
+    - The residuals to the cumulative fatalities are weighted relative to case data to account for the difference in magnitudes.
+  * The objective function is minimized with respect to the above variable parameters using the Nelder Mead algorithm.
+  * Scenarios are populated with these individualized parameters
+
+## Remaining parameters
 
  * Many estimates of $R_0$ are in the [range of 2-3](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7001239/) with some estimates pointing to considerably [higher values](https://www.medrxiv.org/content/10.1101/2020.02.10.20021675v1).
  * The serial interval, that is the time between subsequent infections in a transmission chain, was initially [estimated to be 7-8 days](https://www.nejm.org/doi/full/10.1056/NEJMoa2001316).
