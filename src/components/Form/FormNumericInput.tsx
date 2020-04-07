@@ -58,7 +58,7 @@ export function FormNumericInput<T>({
                       value={value}
                       required
                       onChange={(newValue) => setFieldValue(identifier, newValue)}
-                      style={{input:{width:'100%',padding:"1ex"}}}
+                      style={{input:{width:'100%',padding:'0.5em'}}}
                     />
                   )
                 }}
