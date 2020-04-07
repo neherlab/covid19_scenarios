@@ -1,0 +1,212 @@
+$schema: http://json-schema.org/draft-07/schema
+title: Scenario
+
+type: array
+
+items:
+  $ref: '#/definitions/ScenarioForOneCountry'
+
+definitions:
+  ScenarioForOneCountry:
+    type: object
+
+    required:
+      - country
+      - allParams
+
+    properties:
+      country:
+        type: string
+        minLength: 1
+
+      allParams:
+        $ref: '#/definitions/AllParams'
+
+  AllParams:
+    type: object
+
+    required:
+      - population
+      - epidemiological
+      - simulation
+      - containment
+
+    properties:
+      population:
+        $ref: '#/definitions/PopulationData'
+      epidemiological:
+        $ref: '#/definitions/EpidemiologicalData'
+      simulation:
+        $ref: '#/definitions/SimulationData'
+      containment:
+        $ref: '#/definitions/ContainmentData'
+
+  PopulationData:
+    type: object
+
+    required:
+      - populationServed
+      - country
+      - cases
+      - suspectedCasesToday
+      - importsPerDay
+      - hospitalBeds
+      - ICUBeds
+
+    properties:
+      populationServed:
+        type: integer
+        multipleOf: 1
+        minimum: 0
+
+      country:
+        type: string
+        minLength: 1
+
+      cases:
+        type: string
+        minLength: 1
+
+      suspectedCasesToday:
+        type: integer
+        multipleOf: 1
+        minimum: 0
+
+      importsPerDay:
+        type: number
+        minimum: 0
+
+      hospitalBeds:
+        type: integer
+        multipleOf: 1
+        minimum: 0
+
+      ICUBeds:
+        type: integer
+        multipleOf: 1
+        minimum: 0
+
+  EpidemiologicalData:
+    type: object
+
+    required:
+      - latencyTime
+      - infectiousPeriod
+      - lengthHospitalStay
+      - lengthICUStay
+      - seasonalForcing
+      - peakMonth
+      - overflowSeverity
+      - r0
+
+    properties:
+      latencyTime:
+        type: number
+        minimum: 0
+
+      infectiousPeriod:
+        type: number
+        minimum: 0
+
+      lengthHospitalStay:
+        type: number
+        minimum: 0
+
+      lengthICUStay:
+        type: number
+        minimum: 0
+
+      seasonalForcing:
+        type: number
+        minimum: 0
+
+      peakMonth:
+        type: integer
+        multipleOf: 1
+        minimum: 0
+        maximum: 11
+
+      overflowSeverity:
+        type: number
+        minimum: 0
+
+      r0:
+        type: number
+        minimum: 0
+
+  SimulationData:
+    type: object
+
+    required:
+      - simulationTimeRange
+      - numberStochasticRuns
+
+    properties:
+      simulationTimeRange:
+        $ref: '#/definitions/DateRange'
+
+      numberStochasticRuns:
+        type: number
+        minimum: 0
+
+  DateRange:
+    type: object
+
+    required:
+      - tMin
+      - tMax
+
+    properties:
+      tMin:
+        type: string
+        format: date
+
+      tMax:
+        type: string
+        format: date
+
+  ContainmentData:
+    type: object
+
+    required:
+      - mitigationIntervals
+
+    properties:
+      mitigationIntervals:
+        type: array
+        items:
+          $ref: '#/definitions/MitigationInterval'
+
+      numberPoints:
+        type: number
+        default: 15
+
+  MitigationInterval:
+    type: object
+
+    required:
+      - id
+      - name
+      - color
+      - timeRange
+      - mitigationValue
+
+    properties:
+      id:
+        type: string
+        format: uuid
+
+      name:
+        type: string
+        minLength: 1
+
+      color:
+        type: string
+        pattern: ^#(?:[0-9a-fA-F]{3}){1,2}$
+
+      timeRange:
+        $ref: '#/definitions/DateRange'
+
+      mitigationValue:
+        type: number
+        minimum: 0

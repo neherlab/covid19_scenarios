@@ -16,8 +16,7 @@ import { run, intervalsToTimeSeries } from '../../algorithms/run'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 import severityData from '../../assets/data/severityData.json'
-
-import countryCaseCountData from '../../assets/data/case_counts.json'
+import { getCaseCountsData } from './state/caseCountsData'
 
 import { schema } from './validation/schema'
 
@@ -25,8 +24,7 @@ import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimul
 import { scenarioReducer } from './state/reducer'
 
 import { defaultScenarioState, State } from './state/state'
-import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
-import { serialize } from './state/serialization/StateSerializer'
+import { deserializeScenarioFromURL, updateBrowserURL, buildLocationSearch } from './state/serialization/URLSerializer'
 
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
@@ -57,12 +55,7 @@ async function runSimulation(
     ...params.containment,
   }
 
-  if (params.population.cases !== 'none' && !isRegion(params.population.cases)) {
-    console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
-    return
-  }
-
-  const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
+  const caseCounts = getCaseCountsData(params.population.cases)
   const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
 
   intervalsToTimeSeries(params.containment.mitigationIntervals)
@@ -73,10 +66,6 @@ async function runSimulation(
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
-
-const isRegion = (region: string): region is keyof typeof countryCaseCountData => {
-  return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
-}
 
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
@@ -89,18 +78,14 @@ function Main() {
 
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
-  const [scenarioQueryString, setScenarioQueryString] = useState<string>('')
-  const scenarioUrl = `${window.location.origin}?${scenarioQueryString}`
+  const [locationSearch, setLocationSeach] = useState<string>('')
+  const scenarioUrl = `${window.location.origin}${locationSearch}`
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
   const togglePersistAutorun = () => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
     setAutorunSimulation(!autorunSimulation)
-  }
-
-  const updateBrowserUrl = () => {
-    window.history.pushState('', '', `?${scenarioQueryString}`)
   }
 
   const allParams: AllParams = {
@@ -130,20 +115,20 @@ function Main() {
 
   useEffect(() => {
     // 1. upon each parameter change, we rebuild the query string
-    const queryString = serialize(scenarioState)
+    const nextLocationSearch = buildLocationSearch(scenarioState)
 
-    if (queryString !== scenarioQueryString) {
+    if (nextLocationSearch !== locationSearch) {
       // whenever the generated query string changes, we're updating:
-      // 1. browser URL
-      // 2. scenarioQueryString state variable (scenarioUrl is used by children)
-      setScenarioQueryString(queryString)
-    }
+      // 1. browser's location.search
+      // 2. searchString state variable (scenarioUrl is used by children)
+      setLocationSeach(nextLocationSearch)
 
-    if (autorunSimulation) {
-      updateBrowserUrl()
-      debouncedRun(allParams, scenarioState, severity)
+      if (autorunSimulation) {
+        updateBrowserURL(nextLocationSearch)
+        debouncedRun(allParams, scenarioState, severity)
+      }
     }
-  }, [autorunSimulation, debouncedRun, scenarioState, scenarioQueryString, severity])
+  }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
 
   const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
@@ -166,7 +151,7 @@ function Main() {
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    updateBrowserUrl()
+    updateBrowserURL(locationSearch)
     runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
     setSubmitting(false)
   }
@@ -181,7 +166,7 @@ function Main() {
           onSubmit={handleSubmit}
           validate={setScenarioToCustom}
         >
-          {({ errors, touched, isValid, isSubmitting }) => {
+          {({ values, errors, touched, isValid, isSubmitting }) => {
             const canRun = isValid && severityTableIsValid(severity)
 
             return (
@@ -189,6 +174,7 @@ function Main() {
                 <Row>
                   <Col lg={4} xl={6} className="py-1">
                     <ScenarioCard
+                      values={values}
                       severity={severity}
                       setSeverity={setSeverity}
                       scenarioState={scenarioState}

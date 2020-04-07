@@ -15,6 +15,7 @@
     "config",
     "package.json",
     "postcss.config.js",
+    "schemas",
     "stylelint.config.js",
     "tsconfig.json",
     "tslint.json",
@@ -29,5 +30,5 @@
     "**/*.test.*sx",
     "**/*.test.*s"
   ],
-  "exec": "run-s -c clear dev:clean dev:start"
+  "exec": "run-s -c clear dev:clean dev:start || cd ."
 }

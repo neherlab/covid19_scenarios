@@ -18,8 +18,10 @@ import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
 import { SeverityTableRow } from './SeverityTable'
+import { AllParams } from '../../../algorithms/types/Param.types'
 
 export interface ScenarioCardProps {
+  values: AllParams
   severity: SeverityTableRow[]
   scenarioState: State
   errors?: FormikErrors<any>
@@ -28,7 +30,15 @@ export interface ScenarioCardProps {
   scenarioDispatch(action: AnyAction): void
 }
 
-function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, scenarioDispatch }: ScenarioCardProps) {
+function ScenarioCard({
+  values,
+  severity,
+  scenarioState,
+  errors,
+  touched,
+  setSeverity,
+  scenarioDispatch,
+}: ScenarioCardProps) {
   const { t } = useTranslation()
   const scenarioOptions = stringsToOptions(scenarioState.scenarios)
 
@@ -49,32 +59,17 @@ function ScenarioCard({ severity, scenarioState, errors, touched, setSeverity, s
       <>
         <Row>
           <Col xl={6} className="my-2">
-            <ScenarioCardPopulation
-              scenarioState={scenarioState}
-              errors={errors}
-              touched={touched}
-              scenarioDispatch={scenarioDispatch}
-            />
+            <ScenarioCardPopulation errors={errors} touched={touched} />
           </Col>
 
           <Col xl={6} className="my-2">
-            <ScenarioCardEpidemiological
-              scenarioState={scenarioState}
-              errors={errors}
-              touched={touched}
-              scenarioDispatch={scenarioDispatch}
-            />
+            <ScenarioCardEpidemiological errors={errors} touched={touched} />
           </Col>
         </Row>
 
         <Row noGutters>
           <Col className="my-2">
-            <ScenarioCardContainment
-              scenarioState={scenarioState}
-              errors={errors}
-              touched={touched}
-              scenarioDispatch={scenarioDispatch}
-            />
+            <ScenarioCardContainment values={values} errors={errors} touched={touched} />
           </Col>
         </Row>
 
