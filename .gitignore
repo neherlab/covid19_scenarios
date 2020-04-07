@@ -1,6 +1,7 @@
 *.pyc
 *.swp
 *log
+.DS_Store
 \.build
 \.cache
 \.env
@@ -11,6 +12,7 @@
 \.vscode
 cypress/screenshots
 cypress/videos
+data/generated
 data/parsers.log
+data/raw_data
 node_modules
-.DS_Store
