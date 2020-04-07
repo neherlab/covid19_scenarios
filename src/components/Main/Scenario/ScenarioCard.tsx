@@ -59,7 +59,7 @@ function ScenarioCard({
       <>
         <Row>
           <Col xl={6} className="my-2">
-            <ScenarioCardPopulation errors={errors} touched={touched} />
+            <ScenarioCardPopulation values={values} errors={errors} touched={touched} />
           </Col>
 
           <Col xl={6} className="my-2">

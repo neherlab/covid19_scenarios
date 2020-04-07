@@ -15,6 +15,8 @@ import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
+import { AllParams } from '../../../algorithms/types/Param.types'
+
 const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
@@ -22,11 +24,12 @@ const caseCountOptions = caseCountsNames.map((country) => ({ value: country, lab
 caseCountOptions.push({ value: 'none', label: 'None' })
 
 export interface ScenarioCardPopulationProps {
+  values: AllParams
   errors?: FormikErrors<any>
   touched?: FormikTouched<any>
 }
 
-function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
+function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
   // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
   // function handleChangePopulationScenario(newPopulationScenario: string) {
