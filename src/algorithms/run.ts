@@ -117,24 +117,21 @@ export async function run(
     const dynamics = [initialState]
     let currState = initialState
 
-    console.log('INITIAL', initialState)
     while (currState.time < tMax) {
       currState = evolve(currState, modelParams, currState.time + 1, func)
       dynamics.push(currState)
-      break
     }
-    console.log('FINAL', currState)
 
     return collectTotals(dynamics, ageGroups)
   }
 
-  console.profile('perf')
+  console.profile('perf_arr')
   const sim: AlgorithmResult = {
     deterministic: simulate(initialState, identity),
     stochastic: [],
     params: modelParams,
   }
-  console.profileEnd('perf')
+  console.profileEnd('perf_arr')
 
   for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
     initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)

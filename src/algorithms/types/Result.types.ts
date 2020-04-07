@@ -45,27 +45,27 @@ export interface ExportedTimePoint {
 }
 
 export interface ModelFracs {
-  severe: Record<string, number>
-  critical: Record<string, number>
-  fatal: Record<string, number>
-  isolated: Record<string, number>
+  severe: number[]
+  critical: number[]
+  fatal: number[]
+  isolated: number[]
 }
 
 export interface ModelRates {
   latency: number
   infection: (t: Date) => number
-  recovery: Record<string, number>
-  severe: Record<string, number>
-  discharge: Record<string, number>
-  critical: Record<string, number>
-  stabilize: Record<string, number>
-  fatality: Record<string, number>
-  overflowFatality: Record<string, number>
+  recovery: number[]
+  severe: number[]
+  discharge: number[]
+  critical: number[]
+  stabilize: number[]
+  fatality: number[]
+  overflowFatality: number[]
 }
 
 export interface ModelParams {
   ageDistribution: Record<string, number>
-  importsPerDay: Record<string, number>
+  importsPerDay: number[]
   timeDelta: number
   timeDeltaDays: number
   populationServed: number
