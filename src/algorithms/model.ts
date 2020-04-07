@@ -77,6 +77,17 @@ export function getPopulationParams(
   // Compute age-stratified parameters
   const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
 
+  // NOTE(nnoll): Assumes the age groups of severity table sorted lexiographically and numerically is equivalent
+  severity.sort((row1, row2) => {
+    if (row1.ageGroup < row2.ageGroup) {
+      return -1
+    } else if (row1.ageGroup > row2.ageGroup) {
+      return +1
+    } else {
+      return 0
+    }
+  })
+
   severity.forEach((row, i) => {
     const freq = (1.0 * ageCounts[row.ageGroup]) / total
     pop.ageDistribution[row.ageGroup] = freq
@@ -147,7 +158,8 @@ export function initializePopulation(
   const initialInfectiousFraction = 0.3
 
   // TODO: Ensure the sum is equal to N!
-  Object.keys(ages).forEach((k, i) => {
+  const ageGroups = Object.keys(ages).sort()
+  ageGroups.forEach((k, i) => {
     const n = Math.round((ages[k] / Z) * N)
     pop.current.susceptible[i] = n
     pop.current.exposed[i] = [0, 0, 0]
@@ -159,7 +171,7 @@ export function initializePopulation(
     pop.cumulative.recovered[i] = 0
     pop.cumulative.critical[i] = 0
     pop.cumulative.fatality[i] = 0
-    if (i === Math.round(Object.keys(ages).length / 2)) {
+    if (i === Math.round(ageGroups.length / 2)) {
       pop.current.susceptible[i] -= numCases
       pop.current.infectious[i] = initialInfectiousFraction * numCases
       const e = ((1 - initialInfectiousFraction) * numCases) / pop.current.exposed[i].length
