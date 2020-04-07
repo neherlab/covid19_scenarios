@@ -17,14 +17,15 @@ export function MitigationValueInput({ identifier, value, min, max, step }: Miti
     <FastField name={identifier} className="form-control">
       {({ form: { setFieldValue } }: FieldProps<number>) => {
         return (
-          <NumericInput className="h-100"
-          aria-label="mitigation value"
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          onChange={(newValue) => setFieldValue(identifier, newValue)}
-        />
+          <NumericInput
+            className="h-100"
+            aria-label="mitigation value"
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            onChange={(newValue) => setFieldValue(identifier, newValue)}
+          />
         )
       }}
     </FastField>
