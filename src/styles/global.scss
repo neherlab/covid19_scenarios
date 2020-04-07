@@ -107,3 +107,11 @@ input[type='number']::-webkit-outer-spin-button {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.hide-native-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
