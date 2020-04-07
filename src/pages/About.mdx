@@ -24,7 +24,7 @@ The source code of this tool is freely available at <LinkExternal url="https://g
 
  - ask a question or post a comment in the <LinkExternal url="https://github.com/neherlab/covid19_scenarios/issues/18">General Discussion Thread</LinkExternal>
 
- - report a bug or propose an improvement by openning a <LinkExternal url="https://github.com/neherlab/covid19_scenarios/issues/new/choose">New Issue</LinkExternal>
+ - report a bug or propose an improvement by opening a <LinkExternal url="https://github.com/neherlab/covid19_scenarios/issues/new/choose">New Issue</LinkExternal>
 
  - directly propose changes in code, documentation or data by <LinkExternal url="https://github.com/neherlab/covid19_scenarios/fork">Forking</LinkExternal> our repository on GitHub, commiting changes to your new fork and opening a <LinkExternal url="https://github.com/neherlab/covid19_scenarios/fork">Pull Request</LinkExternal>, so that we could review and merge the changes.
 
@@ -138,14 +138,33 @@ $$
 
 where $\zeta_a$ is the degree to which particular age groups are isolated from the rest of the population, $M(t)$ is the time course of mitigation measures, $\varepsilon$ is the amplitude of seasonal variation in transmissibility, and $t_{max}$ is the time of the year of peak transmission.
 
-## Parameters
+## Parameter estimation
+
+With the prevalence of COVID-19 data for many regions, we now estimate a *few* select parameters for independent regions that provide public data.
+Specifically, we estimate the following default scenario parameters:
+  * R0 value
+  * The date and initial size of the epidemic start
+  * Fraction of cases caught by the region's testing infrastructure
+
+These parameters are estimated from both the cumulative number of COVID-19 cases and COVID-19 related fatalies reported.
+The estimation is accomplished by the minimization of the least squared difference between our model predictions and the empirical data.
+Specifically
+  * We define an objective function that:
+    - Takes as input a set of model parameters to simulate.
+    - Integrates the equations of motion described above.
+    - Returns the sum of squared residuals between the given empirical data and the result of ODE integration.
+    - The residuals to the cumulative fatalities are weighted relative to case data to account for the difference in magnitudes.
+  * The objective function is minimized with respect to the above variable parameters using the Nelder Mead algorithm.
+  * Scenarios are populated with these individualized parameters
+
+## Remaining parameters
 
  * Many estimates of $R_0$ are in the [range of 2-3](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7001239/) with some estimates pointing to considerably [higher values](https://www.medrxiv.org/content/10.1101/2020.02.10.20021675v1).
  * The serial interval, that is the time between subsequent infections in a transmission chain, was initially [estimated to be 7-8 days](https://www.nejm.org/doi/full/10.1056/NEJMoa2001316).
    More recent research now suggests a serial interval of 5-6 days (see [Ganyani et al](https://www.medrxiv.org/content/10.1101/2020.03.05.20031815v1)).
  * The China CDC compiled [extensive data on severity and fatality of more than 40 thousand confirmed cases](http://weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51).
  In addition, we assume that a substantial fraction of infections, especially in the young, go unreported. This is encoded in the columns "Confirmed [% of total]".
- * Seasonal variation in transmission is common for many respiratory viruses but the strength of seasonal forcing for COVID19 are uncertain. For more information, see a [study by us](https://smw.ch/article/doi/smw.2020.20224) and by [Kissler et al](https://www.medrxiv.org/content/10.1101/2020.03.04.20031112v1).
+ * Seasonal variation in transmission is common for many respiratory viruses but the strength of seasonal forcing for COVID19 is uncertain. For more information, see a [study by us](https://smw.ch/article/doi/smw.2020.20224) and by [Kissler et al](https://www.medrxiv.org/content/10.1101/2020.03.04.20031112v1).
 
 <figure className="figure w-100 text-center">
   <img src={unibas_logo} className="w-40 figure-img" alt="University of Basel" />

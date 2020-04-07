@@ -1,41 +1,38 @@
 /* eslint-disable only-ascii/only-ascii */
-export type Lang = {
-  lang: string
-  numeralLocale: string
-  name: string
-}
-
-const langs: { [key: string]: Lang } = {
+const SupportedLocales = {
   en: {
     lang: 'en',
-    numeralLocale: 'en-gb',
+    numbroLocale: 'en-US',
     name: 'english',
   },
   fr: {
     lang: 'fr',
-    numeralLocale: 'fr-ca',
+    numbroLocale: 'fr-FR',
     name: 'français',
   },
   pt: {
     lang: 'pt',
-    numeralLocale: 'pt-br',
+    numbroLocale: 'pt-PT',
     name: 'português',
   },
   de: {
     lang: 'de',
-    numeralLocale: 'de',
+    numbroLocale: 'de-DE',
     name: 'deutsch',
   },
   es: {
     lang: 'es',
-    numeralLocale: 'es',
+    numbroLocale: 'es-ES',
     name: 'español',
   },
   pl: {
     lang: 'pl',
-    numeralLocale: 'pl',
+    numbroLocale: 'pl-PL',
     name: 'polski',
   },
-}
+} as const
 
-export default langs
+export type SupportedLocale = keyof typeof SupportedLocales
+export type Locale = typeof SupportedLocales[keyof typeof SupportedLocales]
+
+export default SupportedLocales

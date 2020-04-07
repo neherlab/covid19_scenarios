@@ -18,6 +18,7 @@ import allowMethods from 'allow-methods'
 import history from 'connect-history-api-fallback'
 import expressStaticGzip from 'express-static-gzip'
 
+import { getenv } from '../../lib/getenv'
 import { findModuleRoot } from '../../lib/findModuleRoot'
 
 import { NEW_HEADERS } from '../../infra/lambda-at-edge/modifyOutgoingHeaders.lambda'
@@ -67,7 +68,7 @@ function main() {
   app.use(pages, expressStaticGzip(buildDir, cacheOneYear))
   app.get('*', expressStaticGzip(buildDir, cacheNone))
 
-  const port = '8080'
+  const port = getenv('WEB_PORT_PROD')
   app.listen(port, () => {
     console.info(`Server is listening on port ${port}`)
   })
