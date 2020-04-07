@@ -28,7 +28,13 @@ export default async function convertSchemasToType() {
     .readdirSync(schemasRoot)
     .filter((schemaFilename) => schemaFilename.endsWith(SCHEMA_EXTENSION))
 
-  const convertForType = async (lang: string, outputPath: string) => {
+  const convertForType = async (
+    lang: string,
+    outputPath: string,
+    rendererOptions?: {
+      [name: string]: string
+    },
+  ) => {
     const schemaInput = new JSONSchemaInput(new Store())
     await Promise.all(
       schemaFilenames.map((schemaFilename) => {
@@ -50,6 +56,7 @@ export default async function convertSchemasToType() {
     const { lines: outputLines } = await quicktype({
       inputData,
       lang,
+      rendererOptions,
     })
     return fs.writeFile(outputPath, outputLines.join('\n'))
   }
@@ -62,7 +69,9 @@ export default async function convertSchemasToType() {
   const PYRoot = path.join(moduleRoot, 'data', 'generated')
   rimraf.sync(PYRoot)
   await fs.mkdirp(PYRoot)
-  await convertForType('python', path.join(PYRoot, 'types.py'))
+  await convertForType('python', path.join(PYRoot, 'types.py'), {
+    'nice-property-names': 'false',
+  })
 }
 
 convertSchemasToType().catch(console.error)

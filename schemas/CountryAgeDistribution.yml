@@ -19,6 +19,9 @@ definitions:
     required:
       - country
       - ageDistribution
+    
+    additionalProperties: false
+
     properties:
       country:
         type: string
@@ -40,6 +43,8 @@ definitions:
       - 70-79
       - 80+
 
+    additionalProperties: false
+    
     properties:
       0-9:
         type: integer
