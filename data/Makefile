@@ -6,7 +6,7 @@ all: clean types data-for-app
 clean: clean-types
 
 clean-types:
-	rm -rf .generated/types/**
+	rm -rf generated/**
 
 types: clean-types
 	cd .. && yarn install && yarn schema:totypes
