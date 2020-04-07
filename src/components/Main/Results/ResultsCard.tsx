@@ -118,13 +118,7 @@ function ResultsCardFunction({
         <Row className="mb-4">
           <Col xs={12} sm={6} md={4}>
             <div className="btn-container mb-3">
-              <Button
-                className="run-button"
-                type="submit"
-                color="primary"
-                disabled={!canRun || autorunSimulation}
-                data-testid="RunResults"
-              >
+              <Button className="run-button" type="submit" color="primary" disabled={!canRun} data-testid="RunResults">
                 {t('Run')}
               </Button>
               <LinkButton
