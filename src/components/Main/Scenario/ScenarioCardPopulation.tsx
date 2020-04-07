@@ -2,14 +2,13 @@ import React from 'react'
 import i18next from 'i18next'
 
 import { FormikErrors, FormikTouched } from 'formik'
-import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
 
 import countryAgeDistribution from '../../../assets/data/country_age_distribution.json'
 import { caseCountsNames } from '../state/caseCountsData'
 
-import { State, CUSTOM_COUNTRY_NAME } from '../state/state'
+import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
@@ -24,13 +23,11 @@ const caseCountOptions = caseCountsNames.map((country) => ({ value: country, lab
 caseCountOptions.push({ value: 'none', label: 'None' })
 
 export interface ScenarioCardPopulationProps {
-  scenarioState: State
   errors?: FormikErrors<any>
   touched?: FormikTouched<any>
-  scenarioDispatch(action: AnyAction): void
 }
 
-function ScenarioCardPopulation({ scenarioState, errors, touched, scenarioDispatch }: ScenarioCardPopulationProps) {
+function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
   // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
   // function handleChangePopulationScenario(newPopulationScenario: string) {
