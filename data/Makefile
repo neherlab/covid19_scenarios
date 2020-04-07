@@ -11,6 +11,10 @@ clean-types:
 types: clean-types
 	cd .. && yarn install && yarn schema:totypes
 
+tsv-data:
+	python3 generate_data.py \
+		--fetch
+
 data-for-app:
 	python3 generate_data.py \
 		--output-scenarios ../src/assets/data/scenarios/scenarios.json \

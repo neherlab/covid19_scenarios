@@ -12,7 +12,7 @@ from .utils import store_data, sorted_date
 # https://github.com/ishaberry/Covid19Canada
 URL  = "https://docs.google.com/spreadsheets/d/1D6okqtBS3S2NRC7GFVHzaZ67DuTw7LX49-fqSLwJyeo/export?format=xlsx"
 LOC  = "case-counts/Americas/Northern America/Canada"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 dcols = {'cases': 'date_report', 'deaths': 'date_death_report', 'recovered': 'date_recovered'}
 # ------------------------------------------------------------------------
 # Main point of entry

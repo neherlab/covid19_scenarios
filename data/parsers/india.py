@@ -13,7 +13,7 @@ from .utils import store_data
 
 URL  = "https://api.rootnet.in/covid19-in/stats/daily"
 LOC  = "case-counts/Asia/Southern Asia/India"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions
