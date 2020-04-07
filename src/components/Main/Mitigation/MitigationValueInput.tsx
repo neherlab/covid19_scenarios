@@ -4,6 +4,8 @@ import { FastField, FieldProps } from 'formik'
 
 import * as NumericInput from 'react-numeric-input'
 
+import './MitigationValueInput.scss'
+
 export interface MitigationValueInputProps {
   identifier: string
   value: number
