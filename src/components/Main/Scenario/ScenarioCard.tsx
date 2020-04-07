@@ -63,7 +63,7 @@ function ScenarioCard({
           </Col>
 
           <Col xl={6} className="my-2">
-            <ScenarioCardEpidemiological errors={errors} touched={touched} />
+            <ScenarioCardEpidemiological values={values} errors={errors} touched={touched} />
           </Col>
         </Row>
 

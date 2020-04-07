@@ -16,7 +16,7 @@ export interface ScenarioCardEpidemiologicalProps {
   touched?: FormikTouched<any>
 }
 
-function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiologicalProps) {
+function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEpidemiologicalProps) {
   const { t } = useTranslation()
   // function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
   //   scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))
