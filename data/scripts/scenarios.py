@@ -148,6 +148,9 @@ class EpidemiologicalParams(schema.EpidemiologicalData):
             else:
                 print(f'Error: Could not parse hemisphere for {region} in scenarios.py')
 
+        def report_errors(x):
+            return [.9*x, 1.1*x]
+
         return super(EpidemiologicalParams, self).__init__( \
                 infectious_period = default["infectiousPeriod"],
                 latency_time = default["latencyTime"],
@@ -155,7 +158,7 @@ class EpidemiologicalParams(schema.EpidemiologicalData):
                 length_icu_stay = default["lengthICUStay"],
                 overflow_severity = default["overflowSeverity"],
                 peak_month = default["peakMonth"],
-                r0 = float(max(1, round(FIT_CASE_DATA[region]['r0'], 1)) if region in FIT_CASE_DATA else default["r0"]),
+                r0 = report_errors(float(max(1, round(FIT_CASE_DATA[region]['r0'], 1)) if region in FIT_CASE_DATA else default["r0"])),
                 seasonal_forcing = default["seasonalForcing"])
 
 class ContainmentParams(schema.ContainmentData):
@@ -239,7 +242,7 @@ def set_mitigation(cases, scenario):
     case_counts = np.array([c['cases'] for c in valid_cases])
     levelOne = np.where(case_counts > min(max(5, 3e-4*scenario.population.population_served),10000))[0]
     levelTwo = np.where(case_counts > min(max(50, 3e-3*scenario.population.population_served),50000))[0]
-    levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0), 1)
+    levelOneVal = round(1 - np.minimum(0.8, 1.8/np.mean(scenario.epidemiological.r0)), 1)
     levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
     for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
