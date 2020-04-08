@@ -1,13 +1,14 @@
 import React from 'react'
 import { Button } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { AllParams, PopulationData, EpidemiologicalData, EmpiricalData } from '../../algorithms/types/Param.types'
-import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import { SeverityTableRow } from './Scenario/SeverityTable'
-import { DeterministicLinePlot } from './Results/DeterministicLinePlot'
-import { OutcomeRatesTable } from './Results/OutcomeRatesTable'
-import { AgeBarChart } from './Results/AgeBarChart'
-import logo from '../../assets/img/HIVEVO_logo.png'
+import { AllParams, PopulationData, EpidemiologicalData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { SeverityTableRow } from '../Scenario/SeverityTable'
+import { DeterministicLinePlot } from '../Results/DeterministicLinePlot'
+import { OutcomeRatesTable } from '../Results/OutcomeRatesTable'
+import { AgeBarChart } from '../Results/AgeBarChart'
+import TableResult from './TableResult'
+import logo from '../../../assets/img/HIVEVO_logo.png'
 
 import './PrintPage.scss'
 
@@ -124,6 +125,14 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
             forcedWidth={700}
             forcedHeight={500}
           />
+        </div>
+        <div
+          style={{
+            breakBefore: 'always',
+            pageBreakBefore: 'always',
+          }}
+        >
+          <TableResult result={result} />
         </div>
         <div
           style={{

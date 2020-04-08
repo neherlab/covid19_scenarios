@@ -30,7 +30,7 @@ import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
-import PrintPage from './PrintPage'
+import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
 

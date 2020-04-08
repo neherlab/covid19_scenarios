@@ -15,9 +15,34 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
 
 */
 
+
+.tableResult {
+  width: 100%;
+}
+
+@media print 
+{
+  .tableResult {
+    max-width: 17cm;
+  }
+}
+
+.tableResult > table {
+  border: 1px solid black;
+  margin: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.tableResult > table > thead {
+  border-bottom: 1px solid black;
+}
+
+
 @media print 
 {
 
+  
   h1, h2 {
     margin-top: 1cm;
   }
