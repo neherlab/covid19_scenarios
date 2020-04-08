@@ -80,7 +80,7 @@ definitions:
 
       importsPerDay:
         type: number
-        minimum: 1
+        minimum: 0
 
       hospitalBeds:
         type: integer

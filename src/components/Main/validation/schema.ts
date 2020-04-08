@@ -29,7 +29,7 @@ export const schema = yup.object().shape({
 
     suspectedCasesToday: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    importsPerDay: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
+    importsPerDay: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
     cases: yup.string().required(MSG_REQUIRED).oneOf(caseRegions, i18next.t('No such region in our data')),
 
