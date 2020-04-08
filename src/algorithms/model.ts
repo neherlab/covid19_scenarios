@@ -596,29 +596,42 @@ export function exportSimulation(result: UserResult) {
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const header = keys(result.mean[0].current)
-  const tsvHeader: string[] = header.map((x) => (x == 'critical' ? 'ICU' : x))
+  // Get all categories
+  const categories = {
+    current: keys(result.mean[0].current),
+    cumulative: keys(result.mean[0].cumulative),
+  }
+  const header: string[] = ['time']
+  categories.current.forEach((category) => {
+    if (category == 'critical') {
+      header.push(`ICU mean`, `ICU variance`)
+    } else {
+      header.push(`${category} mean`, `${category} variance`)
+    }
+  })
+  categories.cumulative.forEach((category) => {
+    header.push(`cumulative ${category} mean`, `cumulative ${category} variance`)
+  })
 
-  const headerCumulative = keys(result.mean[0].cumulative)
-  const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
+  const tsv = [header.join('\t')]
 
-  const tsv = [`time\t${tsvHeader.concat(tsvHeaderCumulative).join('\t')}`]
-
-  const pop: Record<string, boolean> = {}
-  result.mean.forEach((d) => {
-    const t = new Date(d.time).toISOString().slice(0, 10)
-    if (t in pop) {
+  const seen: Record<string, boolean> = {}
+  const variance = result.variance
+  result.mean.forEach((mean, i) => {
+    const t = new Date(mean.time).toISOString().slice(0, 10)
+    if (t in seen) {
       return
-    } // skip if date is already in table
-    pop[t] = true
+    }
+    seen[t] = true
+
     let buf = t
-    header.forEach((k) => {
-      buf += `\t${Math.round(d.current[k].total)}`
+    categories.current.forEach((k) => {
+      buf += `\t${Math.round(mean.current[k].total)}\t${Math.round(variance[i].current[k].total)}`
+    })
+    categories.cumulative.forEach((k) => {
+      buf += `\t${Math.round(mean.cumulative[k].total)}\t${Math.round(variance[i].cumulative[k].total)}`
     })
 
-    headerCumulative.forEach((k) => {
-      buf += `\t${Math.round(d.cumulative[k].total)}`
-    })
     tsv.push(buf)
   })
 
