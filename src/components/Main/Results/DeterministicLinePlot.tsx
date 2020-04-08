@@ -60,7 +60,7 @@ export const colors = {
   [DATA_POINTS.Critical]: '#e31a1c',
   [DATA_POINTS.Overflow]: '#660033',
   [DATA_POINTS.Recovered]: '#33a02c',
-  [DATA_POINTS.Fatalities]: '#cab2d6',
+  [DATA_POINTS.Fatalities]: '#444',
   [DATA_POINTS.CumulativeCases]: '#aaaaaa',
   [DATA_POINTS.NewCases]: '#fdbf6f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
