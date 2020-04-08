@@ -31,7 +31,7 @@ interface ResultsCardProps {
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
-  getScenarioUrl: () => string
+  scenarioUrl: string
 }
 
 function ResultsCardFunction({
@@ -43,7 +43,7 @@ function ResultsCardFunction({
   severity,
   result,
   caseCounts,
-  getScenarioUrl,
+  scenarioUrl,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
@@ -132,7 +132,7 @@ function ResultsCardFunction({
                 className="new-tab-button"
                 color="secondary"
                 disabled={!canRun}
-                href={getScenarioUrl()}
+                href={scenarioUrl}
                 target="_blank"
                 data-testid="RunResultsInNewTab"
               >
