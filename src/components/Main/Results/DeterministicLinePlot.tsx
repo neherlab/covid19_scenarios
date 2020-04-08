@@ -322,7 +322,7 @@ export function DeterministicLinePlot({
     {
       key: `${DATA_POINTS.Critical}_area`,
       color: colors.critical,
-      name: t('Patients in ICU(model) uncertainty'),
+      name: t('Patients in ICU (model) uncertainty'),
       legendType: 'none',
     },
     {
