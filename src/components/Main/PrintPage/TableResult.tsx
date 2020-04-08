@@ -9,18 +9,6 @@ interface PropsType {
 
 const STEP = 7
 
-// deaths, ICU, hospitalized, recovered
-
-/*
-
-deaths = cumulative.fatality ?
-ICU = current.critical ?
-hospitalize = current.severe, sumulative.hospitalized ?
-recovered = cumulative.recovered ?
-
-
-*/
-
 const dateFormat = (time: number) => moment(time).format('MMM Do YY')
 
 export default function TableResult({ result }: PropsType) {
