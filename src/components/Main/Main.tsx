@@ -3,7 +3,7 @@ import { useDebouncedCallback } from 'use-debounce'
 
 import _ from 'lodash'
 
-import { Form, Formik, FormikHelpers } from 'formik'
+import { Form, Formik, FormikHelpers, FormikErrors } from 'formik'
 
 import { Col, Row } from 'reactstrap'
 
@@ -133,24 +133,31 @@ function Main() {
     }
   }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
 
-  const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.population, newParams.population)) {
-      scenarioDispatch(setPopulationData({ data: newParams.population }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
-      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.simulation, newParams.simulation)) {
-      scenarioDispatch(setSimulationData({ data: newParams.simulation }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.containment, newParams.containment)) {
-      const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
-      scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
-    }
+  const [validateFormAndUpdateState] = useDebouncedCallback((newParams: AllParams) => {
+    return schema
+      .validate(newParams)
+      .then((validParams) => {
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.population, validParams.population)) {
+          scenarioDispatch(setPopulationData({ data: validParams.population }))
+        }
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.epidemiological, validParams.epidemiological)) {
+          scenarioDispatch(setEpidemiologicalData({ data: validParams.epidemiological }))
+        }
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.simulation, validParams.simulation)) {
+          scenarioDispatch(setSimulationData({ data: validParams.simulation }))
+        }
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.containment, validParams.containment)) {
+          const mitigationIntervals = _.map(validParams.containment.mitigationIntervals, _.cloneDeep)
+          scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
+        }
+
+        return validParams
+      })
+      .catch((err: Error) => err.errors)
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
@@ -167,7 +174,7 @@ function Main() {
           initialValues={allParams}
           validationSchema={schema}
           onSubmit={handleSubmit}
-          validate={setScenarioToCustom}
+          validate={validateFormAndUpdateState}
         >
           {({ values, errors, touched, isValid, isSubmitting }) => {
             const canRun = isValid && severityTableIsValid(severity)
