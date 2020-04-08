@@ -3,7 +3,7 @@ import { useDebouncedCallback } from 'use-debounce'
 
 import _ from 'lodash'
 
-import { Form, Formik, FormikHelpers, FormikErrors } from 'formik'
+import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
 
 import { Col, Row } from 'reactstrap'
 
@@ -32,6 +32,10 @@ import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
 
 import './Main.scss'
+
+interface FormikValidationErrors extends Error {
+  errors: FormikErrors<FormikValues>
+}
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -157,7 +161,7 @@ function Main() {
 
         return validParams
       })
-      .catch((err: Error) => err.errors)
+      .catch((error: FormikValidationErrors) => error.errors)
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
@@ -172,9 +176,9 @@ function Main() {
         <Formik
           enableReinitialize
           initialValues={allParams}
-          validationSchema={schema}
           onSubmit={handleSubmit}
           validate={validateFormAndUpdateState}
+          validationSchema={schema}
         >
           {({ values, errors, touched, isValid, isSubmitting }) => {
             const canRun = isValid && severityTableIsValid(severity)
