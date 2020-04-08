@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash'
 import { AllParamsFlat } from './types/Param.types'
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
 import {
@@ -38,14 +39,16 @@ export function infectionRate(
   return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
 }
 
+// TODO(nnoll): Make a user-adjustable parameter?
+const NUMBER_PARAMETER_SAMPLES = 10
 export function getPopulationParams(
   params: AllParamsFlat,
   severity: SeverityTableRow[],
   ageCounts: Record<string, number>,
   containment: (t: Date) => number,
-): ModelParams {
+): ModelParams[] {
   // TODO: Make this a form-adjustable factor
-  const pop: ModelParams = {
+  const sim: ModelParams = {
     ageDistribution: {},
     importsPerDay: [],
     timeDelta: 0,
@@ -90,12 +93,12 @@ export function getPopulationParams(
 
   severity.forEach((row, i) => {
     const freq = (1.0 * ageCounts[row.ageGroup]) / total
-    pop.ageDistribution[row.ageGroup] = freq
-    pop.frac.severe[i] = (row.severe / 100) * (row.confirmed / 100)
-    pop.frac.critical[i] = pop.frac.severe[i] * (row.critical / 100)
-    pop.frac.fatal[i] = pop.frac.critical[i] * (row.fatal / 100)
+    sim.ageDistribution[row.ageGroup] = freq
+    sim.frac.severe[i] = (row.severe / 100) * (row.confirmed / 100)
+    sim.frac.critical[i] = sim.frac.severe[i] * (row.critical / 100)
+    sim.frac.fatal[i] = sim.frac.critical[i] * (row.fatal / 100)
 
-    const dHospital = pop.frac.severe[i]
+    const dHospital = sim.frac.severe[i]
     const dCritical = row.critical / 100
     const dFatal = row.fatal / 100
 
@@ -103,28 +106,55 @@ export function getPopulationParams(
     const isolated = row.isolated ?? 0
 
     // Age specific rates
-    pop.frac.isolated[i] = isolated / 100
-    pop.rate.recovery[i] = (1 - dHospital) / params.infectiousPeriod
-    pop.rate.severe[i] = dHospital / params.infectiousPeriod
-    pop.rate.discharge[i] = (1 - dCritical) / params.lengthHospitalStay
-    pop.rate.critical[i] = dCritical / params.lengthHospitalStay
-    pop.rate.stabilize[i] = (1 - dFatal) / params.lengthICUStay
-    pop.rate.fatality[i] = dFatal / params.lengthICUStay
-    pop.rate.overflowFatality[i] = params.overflowSeverity * pop.rate.fatality[i]
+    sim.frac.isolated[i] = isolated / 100
+    sim.rate.recovery[i] = (1 - dHospital) / params.infectiousPeriod
+    sim.rate.severe[i] = dHospital / params.infectiousPeriod
+    sim.rate.discharge[i] = (1 - dCritical) / params.lengthHospitalStay
+    sim.rate.critical[i] = dCritical / params.lengthHospitalStay
+    sim.rate.stabilize[i] = (1 - dFatal) / params.lengthICUStay
+    sim.rate.fatality[i] = dFatal / params.lengthICUStay
+    sim.rate.overflowFatality[i] = params.overflowSeverity * sim.rate.fatality[i]
   })
 
   // Get import rates per age class (assume flat)
-  const L = Object.keys(pop.rate.recovery).length
-  pop.rate.recovery.forEach((_, i) => {
-    pop.importsPerDay[i] = params.importsPerDay / L
+  const L = Object.keys(sim.rate.recovery).length
+  sim.rate.recovery.forEach((_, i) => {
+    sim.importsPerDay[i] = params.importsPerDay / L
   })
 
   // Infectivity dynamics
-  const avgInfectionRate = params.r0 / params.infectiousPeriod
-  pop.rate.infection = (time: Date) =>
-    containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
+  if (params.r0[0] == params.r0[1]) {
+    const avgInfectionRate = params.r0[0] / params.infectiousPeriod
+    sim.rate.infection = (time: Date) =>
+      containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
 
-  return pop
+    return [sim]
+  } else {
+    // TODO(nnoll): Generalize to allow for sampling multiple uncertainty ranges
+    const sample_uniform = (range: [number, number], npoints: number): number[] => {
+      const sample: number[] = []
+      const delta = (range[1] - range[0]) / npoints
+      let val = range[0]
+      while (sample.length < npoints) {
+        sample.push(val)
+        val += delta
+      }
+      return sample
+    }
+
+    const r0s = sample_uniform(<[number, number]>params.r0, NUMBER_PARAMETER_SAMPLES)
+    const sims = r0s.map((r0) => {
+      const elt = cloneDeep(sim)
+      const avg_infection_rate = r0 / params.infectiousPeriod
+
+      elt.rate.infection = (time: Date) =>
+        containment(time) * infectionRate(time.valueOf(), avg_infection_rate, params.peakMonth, params.seasonalForcing)
+
+      return elt
+    })
+
+    return sims
+  }
 }
 
 export function initializePopulation(
