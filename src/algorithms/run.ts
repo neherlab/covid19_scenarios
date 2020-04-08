@@ -95,6 +95,32 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
   return []
 }
 
+function ensurePositive(x: ExportedTimePoint): ExportedTimePoint {
+  const check = (obj: Record<string, number>) => {
+    Object.keys(obj).forEach((k) => {
+      if (obj[k] < 0) {
+        obj[k] = 0
+      }
+    })
+
+    return obj
+  }
+
+  x.current.susceptible = check(x.current.susceptible)
+  x.current.severe = check(x.current.severe)
+  x.current.exposed = check(x.current.exposed)
+  x.current.critical = check(x.current.critical)
+  x.current.overflow = check(x.current.overflow)
+  x.current.infectious = check(x.current.infectious)
+
+  x.cumulative.critical = check(x.cumulative.critical)
+  x.cumulative.fatality = check(x.cumulative.fatality)
+  x.cumulative.recovered = check(x.cumulative.recovered)
+  x.cumulative.hospitalized = check(x.cumulative.hospitalized)
+
+  return x
+}
+
 function sumTimePoint(x: ExportedTimePoint, y: ExportedTimePoint, func: (x: number) => number): ExportedTimePoint {
   const sum = (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
     const s: Record<string, number> = {}
@@ -210,7 +236,7 @@ export async function run(
   const sim: AlgorithmResult = {
     trajectory: {
       mean: avgLinear,
-      variance: avgSquare.map((tp, i) => sumTimePoint(tp, avgLinear[i], (x: number) => -x * x)),
+      variance: avgSquare.map((tp, i) => ensurePositive(sumTimePoint(tp, avgLinear[i], (x: number) => -x * x))),
     },
   }
 
