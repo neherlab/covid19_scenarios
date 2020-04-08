@@ -36,29 +36,27 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
           </Button>
         </div>
         <div>
-          <h1 className="text-center">COVID-19 Scenarios</h1>
-          <p className="text-center">
-            COVID19-Scenarios allows to explore the dynamics of a COVID19 outbreak in a community and the anticipated
-            burden on the health care system.
-          </p>
-
-          <div className="text-center p-logo">
-            <img alt="logo" src={logo} />
+          <div className="text-right p-logo">
+            <img alt="logo" src={logo} width={'20%'} />
           </div>
+          <h1 className="text-center">COVID-19 Scenarios</h1>
+
           <p>
-            COVID19-Scenarios, as every other model, has parameters whose values are not known with certainty and that
-            might differ between places and with time. The values of some of these parameters have a big effect on the
-            results, especially those that determine how rapidly the outbreak spreads or how effective counter measures
-            are: some values will result in a small limited outbreak, others in a massive outbreak with many fatalities.
-            Furthermore, when extrapolating the outbreak into the future, the results will critically depend on
-            assumptions of <strong>future</strong> policy and the degree to which infection control measures are adhered
-            to. It is therefore important to interpret the model output with care and to assess the plausibility of the
-            parameter values and model assumptions.{' '}
+            COVID19-Scenarios allows to explore the dynamics of a COVID19 outbreak in a community and the anticipated
+            burden on the health care system. COVID19-Scenarios, as every other model, has parameters whose values are
+            not known with certainty and that might differ between places and with time. The values of some of these
+            parameters have a big effect on the results, especially those that determine how rapidly the outbreak
+            spreads or how effective counter measures are: some values will result in a small limited outbreak, others
+            in a massive outbreak with many fatalities. Furthermore, when extrapolating the outbreak into the future,
+            the results will critically depend on assumptions of <strong>future</strong> policy and the degree to which
+            infection control measures are adhered to. It is therefore important to interpret the model output with care
+            and to assess the plausibility of the parameter values and model assumptions.{' '}
           </p>
           <p>
-            {t(
-              `This tool uses a mathematical model to simulate a variety of COVID-19 outcomes based on user-defined parameters. This output of the model depends on model assumptions and parameter choices.`,
-            )}
+            The underlying model is an age-structured generalized SEIR model. For details, please consult the
+            documentation on <a href="https://covid19-scenarios.org/about">covid19-scenarios.org/about</a>. Default
+            parameter choices are informed by the available evidence at the time, but might need adjustment for a
+            particular community or as more information on the outbreak is available.
           </p>
           <p>
             {t(
