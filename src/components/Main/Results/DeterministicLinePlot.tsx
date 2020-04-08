@@ -99,6 +99,8 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
   return <span className={activeClassName}>{value}</span>
 }
 
+const verifyPositive = (x: number) => (x > 0 ? x : undefined)
+
 export function DeterministicLinePlot({
   data,
   userResult,
@@ -120,19 +122,12 @@ export function DeterministicLinePlot({
   const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
 
-  const [zoomLeftState, setzoomLeftState] = useState('dataMin')
-  const [zoomRightState, setzoomRightState] = useState('dataMax')
-  const [zoomSelectedLeftState, setzoomSelectedLeftState] = useState('')
-  const [zoomSelectedRightState, setzoomSelectedRightState] = useState('')
-
   // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
   if (!data || data.stochastic.length > 0) {
     return null
   }
 
   const { mitigationIntervals } = mitigation
-
-  const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 
   const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
   const nICUBeds = verifyPositive(data.params.ICUBeds)
@@ -143,8 +138,8 @@ export function DeterministicLinePlot({
   // this currently relies on there being data for every day. This should be
   // the case given how the data are parsed, but would be good to put in a check
   const newCases = (cc: EmpiricalData, i: number) => {
-    if (i >= caseStep && cc[i].cases && cc[i - caseStep].cases) {
-      return verifyPositive(cc[i].cases - cc[i - caseStep].cases)
+    if (i >= caseStep && cc[i].cases !== null && cc[i - caseStep].cases !== null) {
+      return verifyPositive((cc[i].cases as number) - (cc[i - caseStep].cases as number))
     }
     return undefined
   }
@@ -236,26 +231,27 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const scatterToPlot: LineProps[] = observations.length
-    ? [
-        // Append empirical data
-        ...(countObservations.cases
-          ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative cases (data)') }]
-          : []),
-        ...(countObservations.newCases
-          ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Cases past 3 days (data)') }]
-          : []),
-        ...(countObservations.hospitalized
-          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital (data)') }]
-          : []),
-        ...(countObservations.ICU
-          ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU (data)') }]
-          : []),
-        ...(countObservations.observedDeaths
-          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative deaths (data)') }]
-          : []),
-      ]
-    : []
+  const scatterToPlot: LineProps[] =
+    observations.length > 0
+      ? [
+          // Append empirical data
+          ...(countObservations.cases
+            ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative cases (data)') }]
+            : []),
+          ...(countObservations.newCases
+            ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Cases past 3 days (data)') }]
+            : []),
+          ...(countObservations.hospitalized
+            ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital (data)') }]
+            : []),
+          ...(countObservations.ICU
+            ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU (data)') }]
+            : []),
+          ...(countObservations.observedDeaths
+            ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative deaths (data)') }]
+            : []),
+        ]
+      : []
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 

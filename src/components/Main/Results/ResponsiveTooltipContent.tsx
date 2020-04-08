@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-
+import { TooltipFormatter, LabelFormatter } from 'recharts'
 import './ResponsiveTooltipContent.scss'
 
 interface TooltipItem {
@@ -12,8 +12,8 @@ interface TooltipContentProps {
   active: boolean
   label?: string | number
   payload: TooltipItem[]
-  formatter?: Function
-  labelFormatter?: Function
+  formatter?: TooltipFormatter
+  labelFormatter?: LabelFormatter
 }
 
 function ToolTipContentItem({ name, value, color }: TooltipItem) {

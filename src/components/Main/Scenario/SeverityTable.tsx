@@ -16,9 +16,10 @@ import {
 import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress/dx-react-grid-bootstrap4'
 import { format as d3format } from 'd3-format'
 
+import { SeverityTableRow } from './ScenarioTypes'
 import { validatePositiveInteger } from './validateInteger'
 import { updateSeverityTable } from './severityTableUpdate'
-import { OneCountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
+import { AgeDistribution } from '../../../.generated/types'
 import { setAgeDistributionData } from '../state/actions'
 import type { State } from '../state/state'
 
@@ -73,25 +74,6 @@ const DecimalTypeProvider: React.FC<DataTypeProviderProps> = (props) => (
   <DataTypeProvider formatterComponent={DecimalFormatter} {...props} />
 )
 
-export interface SeverityTableRow {
-  id: number
-  ageGroup: string
-  population?: number
-  confirmed: number
-  severe: number
-  critical: number
-  fatal: number
-  totalFatal?: number
-  isolated?: number
-  errors?: {
-    confirmed?: string
-    severe?: string
-    critical?: string
-    fatal?: string
-    isolated?: string
-  }
-}
-
 export type SeverityTableColumn = Column
 
 export interface SeverityTableProps {
@@ -140,7 +122,7 @@ function SeverityTable({ severity, setSeverity, scenarioState, scenarioDispatch 
       changedRows = severity.filter((row) => !deletedSet.has(row.id))
     }
 
-    const ageDistribution: OneCountryAgeDistribution = { ...scenarioState.ageDistribution }
+    const ageDistribution: AgeDistribution = { ...scenarioState.ageDistribution }
     const thisAgeDistributionErrors: AgeDistributionErrors[] = []
     changedRows = changedRows.map((row) => {
       if (row.population) {
@@ -149,7 +131,7 @@ function SeverityTable({ severity, setSeverity, scenarioState, scenarioDispatch 
           thisAgeDistributionErrors.push({ id: row.id, ageGroup: row.ageGroup, error })
           return row
         }
-        ageDistribution[row.ageGroup] = value
+        ageDistribution[row.ageGroup as keyof AgeDistribution] = value
         return { ...row, population: value }
       }
       return row
@@ -161,7 +143,7 @@ function SeverityTable({ severity, setSeverity, scenarioState, scenarioDispatch 
   }
 
   const severityWithAgeDistribution = severity.map((ageRow) => {
-    return { ...ageRow, population: scenarioState.ageDistribution[ageRow.ageGroup] }
+    return { ...ageRow, population: scenarioState.ageDistribution[ageRow.ageGroup as keyof AgeDistribution] }
   })
 
   return (

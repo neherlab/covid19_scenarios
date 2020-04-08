@@ -8,7 +8,7 @@ import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPay
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
-import { SeverityTableRow } from '../Scenario/SeverityTable'
+import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
@@ -46,7 +46,6 @@ export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidt
     return null
   }
 
-  const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
 
   const t = (...args: Parameters<typeof unsafeT>) => {
@@ -55,7 +54,9 @@ export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidt
       return translation
     }
 
-    process.env.NODE_ENV !== 'production' && console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    }
     return String(translation)
   }
 
@@ -69,13 +70,6 @@ export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidt
     peakOverflow: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.overflow[age]))),
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
   }))
-
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ) => <span>{formatNumber(Number(value))}</span>
 
   const tickFormatter = (value: number) => formatNumberRounded(value)
 

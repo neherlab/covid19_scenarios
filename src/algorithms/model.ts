@@ -1,5 +1,5 @@
 import { AllParamsFlat } from './types/Param.types'
-import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
+import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
 import {
   ModelParams,
   SimulationTimePoint,
@@ -81,11 +81,11 @@ export function getPopulationParams(
   severity.sort((row1, row2) => {
     if (row1.ageGroup < row2.ageGroup) {
       return -1
-    } else if (row1.ageGroup > row2.ageGroup) {
-      return +1
-    } else {
-      return 0
     }
+    if (row1.ageGroup > row2.ageGroup) {
+      return +1
+    }
+    return 0
   })
 
   severity.forEach((row, i) => {
@@ -568,7 +568,7 @@ export function exportSimulation(result: UserResult) {
   // TODO: Make the down sampling interval a parameter
 
   const header = keys(result.trajectory[0].current)
-  const tsvHeader: string[] = header.map((x) => (x == 'critical' ? 'ICU' : x))
+  const tsvHeader: string[] = header.map((x) => (x === 'critical' ? 'ICU' : x))
 
   const headerCumulative = keys(result.trajectory[0].cumulative)
   const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
