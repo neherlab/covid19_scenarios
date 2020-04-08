@@ -79,10 +79,5 @@ export function exportParams(params: AllParams) {
     return
   }
 
-  if (!params) {
-    console.error('Error: the params of the simulation cannot be exported because they are null')
-    return
-  }
-
   saveFile(JSON.stringify(params, null, 2), 'covid.params.json')
 }

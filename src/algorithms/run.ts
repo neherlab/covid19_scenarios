@@ -10,9 +10,6 @@ import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types
 import { TimeSeries } from './types/TimeSeries.types'
 
 const identity = (x: number) => x
-const poisson = (x: number) => {
-  throw new Error('We removed dependency on `random` package. Currently `poisson` is not implemented')
-}
 
 interface ChangePoint {
   t: Date

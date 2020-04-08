@@ -244,6 +244,7 @@ export function DeterministicLinePlot({
           ] || undefined
         : undefined,
     })),
+
     ...observations,
   ]
 
