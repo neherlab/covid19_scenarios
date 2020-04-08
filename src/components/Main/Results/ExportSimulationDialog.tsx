@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import { AllParams } from '../../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
 import ClipboardButton from '../../Buttons/ClipboardButton'
@@ -10,6 +11,7 @@ export interface ExportSimulationDialogProps {
   showModal: boolean
   toggleShowModal: () => void
   openPrintPreview: () => void
+  params?: AllParams
   result?: AlgorithmResult
   scenarioUrl: string
 }
@@ -18,10 +20,13 @@ export default function ExportSimulationDialog({
   showModal,
   toggleShowModal,
   openPrintPreview,
+  params,
   result,
- scenarioUrl,
+  scenarioUrl,
 }: ExportSimulationDialogProps) {
   const { t } = useTranslation()
+
+  console.log('PARAMS', params)
 
   const startPrinting = () => {
     toggleShowModal()
@@ -51,8 +56,8 @@ export default function ExportSimulationDialog({
               <td>JSON</td>
               <td>
                 <Button
-                  disabled={!(result?.params ?? null)}
-                  onClick={() => result && exportParams(result)}
+                  disabled={!(params ?? null)}
+                  onClick={() => result && exportParams(params)}
                   color="primary"
                   size="sm"
                 >
@@ -66,7 +71,7 @@ export default function ExportSimulationDialog({
               <td>TSV</td>
               <td>
                 <Button
-                  disabled={!(result?.deterministic ?? null)}
+                  disabled={!(result?.trajectory.mean ?? null)}
                   onClick={() => result && exportResult(result)}
                   color="primary"
                   size="sm"
@@ -80,7 +85,7 @@ export default function ExportSimulationDialog({
               <td>{t('Shareable link')}</td>
               <td>URL</td>
               <td>
-                <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={shareableLink}>
+                <ClipboardButton disabled={!(result?.trajectory ?? null)} textToCopy={shareableLink}>
                   {t('Copy link')}
                 </ClipboardButton>
               </td>
@@ -90,7 +95,7 @@ export default function ExportSimulationDialog({
               <td>{t('Print Preview (to print or save as PDF)')}</td>
               <td>HTML</td>
               <td>
-                <Button disabled={!(result?.deterministic ?? null)} onClick={startPrinting} color="primary" size="sm">
+                <Button disabled={!(result?.trajectory.mean ?? null)} onClick={startPrinting} color="primary" size="sm">
                   {t('Preview')}
                 </Button>
               </td>
@@ -99,7 +104,7 @@ export default function ExportSimulationDialog({
         </Table>
       </ModalBody>
       <ModalFooter>
-        <Button color="secondary" disabled={!result} onClick={() => result && exportAll(result)}>
+        <Button color="secondary" disabled={!result} onClick={() => result && exportAll(params, result)}>
           {t('Download all as zip')}
         </Button>
         <Button color="primary" onClick={toggleShowModal}>

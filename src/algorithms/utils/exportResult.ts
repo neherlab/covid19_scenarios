@@ -1,5 +1,6 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
+import { AllParams } from '../types/Param.types'
 import { AlgorithmResult } from '../types/Result.types'
 import { exportSimulation } from '../model'
 
@@ -16,14 +17,14 @@ export function saveFile(content: string, filename: string) {
   saveAs(blob, filename)
 }
 
-export async function exportAll(result: AlgorithmResult) {
+export async function exportAll(params: AllParams, result: AlgorithmResult) {
   if (!result) {
     throw new Error(`Algorithm result expected, but got ${result}`)
   }
 
-  const { deterministic, params } = result
+  const { trajectory } = result
 
-  if (!(deterministic || params)) {
+  if (!(trajectory || params)) {
     console.error('Error: the results, and params, of the simulation cannot be exported')
     return
   }
@@ -36,10 +37,10 @@ export async function exportAll(result: AlgorithmResult) {
     zip.file('covid.params.json', JSON.stringify(params, null, 2))
   }
 
-  if (!deterministic) {
+  if (!trajectory) {
     console.error('Error: the results of the simulation cannot be exported because they are nondeterministic')
   } else {
-    zip.file('covid.results.deterministic.tsv', exportSimulation(deterministic))
+    zip.file('covid.results.deterministic.tsv', exportSimulation(trajectory))
   }
 
   const zipFile = await zip.generateAsync({ type: 'blob' })
@@ -51,7 +52,7 @@ export function exportResult(result: AlgorithmResult) {
     throw new Error(`Algorithm result expected, but got ${result}`)
   }
 
-  const { deterministic } = result
+  const { trajectory } = result
 
   if (!isBlobApiSupported()) {
     // TODO: Display an error popup
@@ -59,20 +60,18 @@ export function exportResult(result: AlgorithmResult) {
     return
   }
 
-  if (!deterministic) {
+  if (!trajectory) {
     console.error('Error: the results of the simulation cannot be exported because they are nondeterministic')
     return
   }
 
-  saveFile(exportSimulation(deterministic), 'covid.results.deterministic.tsv')
+  saveFile(exportSimulation(trajectory), 'covid.results.deterministic.tsv')
 }
 
-export function exportParams(result: AlgorithmResult) {
-  if (!result) {
-    throw new Error(`Algorithm result expected, but got ${result}`)
+export function exportParams(params: AllParams) {
+  if (!params) {
+    throw new Error(`Algorithm params expected, but got ${params}`)
   }
-
-  const { params } = result
 
   if (!isBlobApiSupported()) {
     // TODO: Display an error popup
