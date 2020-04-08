@@ -9,11 +9,22 @@ export interface ExportSimulationDialogProps {
   canExport: boolean
   showModal: boolean
   toggleShowModal: () => void
+  openPrintPreview: () => void
   result?: AlgorithmResult
 }
 
-export default function ExportSimulationDialog({ showModal, toggleShowModal, result }: ExportSimulationDialogProps) {
+export default function ExportSimulationDialog({
+  showModal,
+  toggleShowModal,
+  openPrintPreview,
+  result,
+}: ExportSimulationDialogProps) {
   const { t } = useTranslation()
+
+  const startPrinting = () => {
+    toggleShowModal()
+    openPrintPreview()
+  }
 
   return (
     <Modal className="height-fit d-print-none" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
@@ -71,11 +82,11 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
             </tr>
             <tr>
               <td />
-              <td>{t('Print (or save as PDF)')}</td>
-              <td>PDF</td>
+              <td>{t('Print Preview (to print or save as PDF)')}</td>
+              <td>HTML</td>
               <td>
-                <Button disabled={!(result?.deterministic ?? null)} onClick={() => print()} color="primary" size="sm">
-                  {t('Print')}
+                <Button disabled={!(result?.deterministic ?? null)} onClick={startPrinting} color="primary" size="sm">
+                  {t('Preview')}
                 </Button>
               </td>
             </tr>

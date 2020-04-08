@@ -30,6 +30,7 @@ import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
+import PrintPage from './PrintPage'
 
 import './Main.scss'
 
@@ -79,6 +80,7 @@ function Main() {
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [locationSearch, setLocationSeach] = useState<string>('')
+  const [printable, setPrintable] = useState(false)
   const scenarioUrl = `${window.location.origin}${locationSearch}`
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
@@ -159,8 +161,23 @@ function Main() {
     setSubmitting(false)
   }
 
+  if (printable) {
+    return (
+      <PrintPage
+        params={allParams}
+        scenarioUsed={scenarioState.current}
+        severity={severity}
+        result={result}
+        caseCounts={empiricalCases}
+        onClose={() => {
+          setPrintable(false)
+        }}
+      />
+    )
+  }
+
   return (
-    <Row>
+    <Row className="d-print-none">
       <Col md={12}>
         <Formik
           enableReinitialize
@@ -198,6 +215,7 @@ function Main() {
                       result={result}
                       caseCounts={empiricalCases}
                       scenarioUrl={scenarioUrl}
+                      openPrintPreview={() => setPrintable(true)}
                     />
                   </Col>
                 </Row>
