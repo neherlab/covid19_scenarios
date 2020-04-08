@@ -75,6 +75,8 @@ export interface LinePlotProps {
   logScale?: boolean
   showHumanized?: boolean
   caseCounts?: EmpiricalData
+  forcedWidth?: number
+  forcedHeight?: number
 }
 
 interface LineProps {
@@ -105,6 +107,8 @@ export function DeterministicLinePlot({
   logScale,
   showHumanized,
   caseCounts,
+  forcedWidth,
+  forcedHeight,
 }: LinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
@@ -296,8 +300,8 @@ export function DeterministicLinePlot({
               <div ref={chartRef} />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
-                width={width}
-                height={height}
+                width={forcedWidth || width}
+                height={forcedHeight || height}
                 data={plotData}
                 throttleDelay={75}
                 margin={{
