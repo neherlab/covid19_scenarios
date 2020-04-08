@@ -68,6 +68,7 @@ export default function DisclaimerProps() {
             </p>
           </Col>
         </Row>
+
         <Row>
           <Col>
             <Form inline>

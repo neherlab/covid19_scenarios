@@ -59,46 +59,6 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
       max-width: 20cm !important;
       width: 20cm !important;
   }
-/*
-  .card--main {
-    page-break-before: always;
-    break-before: always;
-  }
-
-  .p-break-after {
-    page-break-after: always;
-    break-before: always;
-    clear: both;
-  }
-
-  .p-break-before {
-    page-break-before: always;
-    break-before: always;
-    clear: both;
-  }
-
-  .p-margin-top {
-    margin-top: 50px;
-    clear: both;
-  }
-
-  .severity-table table {
-    // 700 = the point at which the titles break for english
-    // !important because react-grid assigns a width to the table element
-    min-width: 500px !important;
-  }
-
-  .card-body {
-    border: 0 !important;
-  }
-
-  .icon-rotate-0 {
-    display: none;
-  }
-
-  .card-header p {
-    display: none;
-  }*/
 
   .p-logo {
     width: 100%;
@@ -127,25 +87,5 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
   .row {
     display: block;
   }
-
-  /*.col-lg-4 .col-xl-6 .card--main .my-2 .py-1 .lg-4 {
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-
-  .p-full-width {
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-
-  .card--population .card-body .row {
-    margin-bottom: 0 !important;
-    margin-top: 0 !important;
-  }*/
-
-  /*.modal-open {
-    padding-right: 0 !important;
-    overflow: auto !important;
-  }*/
 
 }

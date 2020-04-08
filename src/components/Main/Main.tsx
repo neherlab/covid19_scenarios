@@ -81,6 +81,8 @@ function Main() {
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [locationSearch, setLocationSeach] = useState<string>('')
   const [printable, setPrintable] = useState(false)
+  const openPrintPreview = () => setPrintable(true)
+
   const scenarioUrl = `${window.location.origin}${locationSearch}`
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
@@ -177,7 +179,7 @@ function Main() {
   }
 
   return (
-    <Row className="d-print-none">
+    <Row>
       <Col md={12}>
         <Formik
           enableReinitialize
@@ -215,9 +217,7 @@ function Main() {
                       result={result}
                       caseCounts={empiricalCases}
                       scenarioUrl={scenarioUrl}
-                      openPrintPreview={() => {
-                        setPrintable(true)
-                      }}
+                      openPrintPreview={openPrintPreview}
                     />
                   </Col>
                 </Row>

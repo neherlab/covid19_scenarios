@@ -30,32 +30,30 @@ export default function FormDropdownStateless<ValueType extends string | number>
   onBlur,
 }: FormDropdownProps<ValueType>) {
   return (
-    <>
-      <FormGroup className="my-0">
-        <Row noGutters>
-          <Col xl={7}>
-            <FormLabel identifier={identifier} label={label} help={help} />
-          </Col>
-          <Col xl={5}>
-            <Select
-              id={identifier}
-              name={identifier}
-              options={options}
-              defaultValue={defaultOption}
-              value={value}
-              theme={(theme) => ({
-                ...theme,
-                borderRadius: 0,
-              })}
-              onChange={(option: FormDropdownOption<ValueType>) => {
-                onValueChange?.(option.value)
-                onOptionChange?.(option)
-              }}
-              onBlur={onBlur}
-            />
-          </Col>
-        </Row>
-      </FormGroup>
-    </>
+    <FormGroup className="my-0">
+      <Row noGutters>
+        <Col xl={7}>
+          <FormLabel identifier={identifier} label={label} help={help} />
+        </Col>
+        <Col xl={5}>
+          <Select
+            id={identifier}
+            name={identifier}
+            options={options}
+            defaultValue={defaultOption}
+            value={value}
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 0,
+            })}
+            onChange={(option: FormDropdownOption<ValueType>) => {
+              onValueChange?.(option.value)
+              onOptionChange?.(option)
+            }}
+            onBlur={onBlur}
+          />
+        </Col>
+      </Row>
+    </FormGroup>
   )
 }

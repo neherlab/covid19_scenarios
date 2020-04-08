@@ -117,7 +117,7 @@ function ResultsCardFunction({
         help={t('This section contains simulation results')}
         defaultCollapsed={false}
       >
-        <Row className="mb-4 d-print-none">
+        <Row className="mb-4">
           <Col xs={12} sm={6} md={4}>
             <div className="btn-container mb-3">
               <Button
@@ -172,7 +172,7 @@ function ResultsCardFunction({
             </p>
           </Col>
         </Row>
-        <Row noGutters hidden={!result} className="mb-4 d-print-none">
+        <Row noGutters hidden={!result} className="mb-4">
           <div className="mr-4" data-testid="LogScaleSwitch">
             <FormSwitch
               identifier="logScale"
@@ -218,7 +218,7 @@ function ResultsCardFunction({
       </CollapsibleCard>
       {result ? (
         <Button
-          className="goToResultsBtn d-print-none"
+          className="goToResultsBtn"
           color="primary"
           onClick={() =>
             scrollTargetRef.current &&

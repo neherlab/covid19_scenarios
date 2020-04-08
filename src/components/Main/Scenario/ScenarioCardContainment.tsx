@@ -20,17 +20,15 @@ function ScenarioCardContainment({ values, errors, touched }: ScenarioCardContai
   const { mitigationIntervals } = values.containment
 
   return (
-    <>
-      <CardWithoutDropdown
-        identifier="containmentScenario"
-        label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}
-        help={t('Reduction of transmission through mitigation measures over time. Add or remove interventions.')}
-      >
-        <div className="w-auto">
-          <MitigationTable mitigationIntervals={mitigationIntervals} />
-        </div>
-      </CardWithoutDropdown>
-    </>
+    <CardWithoutDropdown
+      identifier="containmentScenario"
+      label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}
+      help={t('Reduction of transmission through mitigation measures over time. Add or remove interventions.')}
+    >
+      <div className="w-auto">
+        <MitigationTable mitigationIntervals={mitigationIntervals} />
+      </div>
+    </CardWithoutDropdown>
   )
 }
 

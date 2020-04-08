@@ -27,7 +27,7 @@ export default function ExportSimulationDialog({
   }
 
   return (
-    <Modal className="height-fit d-print-none" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
+    <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
       <ModalHeader toggle={toggleShowModal}>{t('Export simulation')}</ModalHeader>
       <ModalBody>
         <Table>

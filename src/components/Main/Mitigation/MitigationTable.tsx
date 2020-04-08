@@ -45,7 +45,7 @@ export function MitigationTable({ mitigationIntervals }: MitigationTableProps) {
                   )
                 })}
               </div>
-              <div className="table-controls d-print-none">
+              <div className="table-controls">
                 <Button
                   type="button"
                   onClick={() => {
@@ -84,7 +84,7 @@ function MitigationIntervalComponent({ width, index, interval, arrayHelpers }: M
       >
         <div className="inputs">
           <FastField
-            className="name form-control formInputForPrint"
+            className="name form-control"
             id={`containment.mitigationIntervals[${index}].name`}
             name={`containment.mitigationIntervals[${index}].name`}
             type="text"
@@ -96,7 +96,7 @@ function MitigationIntervalComponent({ width, index, interval, arrayHelpers }: M
               allowPast
             />
             <FastField
-              className="form-control item-value formInputForPrint"
+              className="form-control item-value"
               id={`containment.mitigationIntervals[${index}].mitigationValue`}
               name={`containment.mitigationIntervals[${index}].mitigationValue`}
               type="number"
@@ -106,7 +106,7 @@ function MitigationIntervalComponent({ width, index, interval, arrayHelpers }: M
             />
           </div>
         </div>
-        <div className="item-controls d-print-none">
+        <div className="item-controls">
           <Button type="button" onClick={() => arrayHelpers.remove(index)}>
             {width && width > 430 && t('Remove')} <FaTrash />
           </Button>
