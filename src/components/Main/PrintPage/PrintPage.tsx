@@ -82,11 +82,20 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
           })}
           <h3>Epidemiology</h3>
           {(Object.keys(params.epidemiological) as (keyof EpidemiologicalData)[]).map((key) => {
-            return (
-              <p key={key} style={{ margin: 0 }}>
-                <u>{key}:</u> {params.epidemiological[key]}
-              </p>
-            )
+            if (key == 'r0') {
+              return (
+                <p key={key} style={{ margin: 0 }}>
+                  <u>{key}:</u> ({Math.round(10 * params.epidemiological[key][0]) / 10},{' '}
+                  {Math.round(10 * params.epidemiological[key][1]) / 10})
+                </p>
+              )
+            } else {
+              return (
+                <p key={key} style={{ margin: 0 }}>
+                  <u>{key}:</u> {params.epidemiological[key]}
+                </p>
+              )
+            }
           })}
           <h3>Mitigation</h3>
           {params.containment.mitigationIntervals.map((mitigationInterval) => {
