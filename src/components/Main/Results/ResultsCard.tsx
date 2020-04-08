@@ -1,6 +1,6 @@
 import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
-import { Button, Col, Row } from 'reactstrap'
+import { Button, Col, CustomInput, Form, FormGroup, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
@@ -124,10 +124,11 @@ function ResultsCardFunction({
                 className="run-button"
                 type="submit"
                 color="primary"
-                disabled={!canRun || autorunSimulation}
+                disabled={!canRun}
                 data-testid="RunResults"
+                title={t(autorunSimulation ? 'Force a run of the simulation' : 'Run the simulation')}
               >
-                {t('Run')}
+                {t(autorunSimulation ? 'Refresh' : 'Run')}
               </Button>
               <LinkButton
                 className="new-tab-button"
@@ -150,18 +151,18 @@ function ResultsCardFunction({
                 {t('Export')}
               </Button>
             </div>
-            <div className="pl-4">
-              <label className="form-check-label">
-                <input
+            <FormGroup inline className="ml-auto">
+              <label htmlFor="autorun-checkbox" className="d-flex">
+                <CustomInput
+                  id="autorun-checkbox"
                   type="checkbox"
-                  className="form-check-input"
                   onChange={toggleAutorun}
                   checked={autorunSimulation}
                   aria-checked={autorunSimulation}
                 />
-                {t('Autorun Simulation on scenario parameter change')}
+                {t(`Run automatically`)}
               </label>
-            </div>
+            </FormGroup>
           </Col>
           <Col xs={12} sm={6} md={8}>
             <p className="m-0 caution-text">
@@ -184,7 +185,7 @@ function ResultsCardFunction({
           <div data-testid="HumanizedValuesSwitch">
             <FormSwitch
               identifier="showHumanized"
-              label={t('Show humanized results')}
+              label={t('Format numbers')}
               help={t('Show numerical results in a human friendly format')}
               checked={showHumanized}
               onValueChanged={setPersistShowHumanized}

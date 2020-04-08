@@ -19,7 +19,7 @@ before_script:
   - cp .env.example .env
 
 script:
-  - yarn test:nowatch
+  - yarn schema:totypes && yarn test:nowatch
 
 before_deploy:
   - yarn prod:build
