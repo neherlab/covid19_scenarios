@@ -18,6 +18,7 @@ export {
   MitigationInterval,
   AllParams,
   EpidemiologicalData,
+  PopulationData,
   SimulationData,
   ContainmentData,
 }

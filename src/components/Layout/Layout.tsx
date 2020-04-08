@@ -21,7 +21,7 @@ interface LayoutProps {
 function Layout({ location }: LayoutProps) {
   return (
     <div className="container-fluid">
-      <header className="row">
+      <header className="row d-print-none">
         <NavigationBar navLinks={links} />
       </header>
 

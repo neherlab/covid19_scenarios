@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormikErrors, FormikTouched } from 'formik'
+import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { Col, Row } from 'reactstrap'
 import { AnyAction } from 'typescript-fsa'
@@ -24,8 +24,8 @@ export interface ScenarioCardProps {
   values: AllParams
   severity: SeverityTableRow[]
   scenarioState: State
-  errors?: FormikErrors<AllParams>
-  touched?: FormikTouched<AllParams>
+  errors?: FormikErrors<FormikValues>
+  touched?: FormikTouched<FormikValues>
   setSeverity(severity: SeverityTableRow[]): void
   scenarioDispatch(action: AnyAction): void
 }

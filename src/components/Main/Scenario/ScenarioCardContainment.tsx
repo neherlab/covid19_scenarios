@@ -26,7 +26,7 @@ function ScenarioCardContainment({ values, errors, touched }: ScenarioCardContai
       help={t('Reduction of transmission through mitigation measures over time. Add or remove interventions.')}
     >
       <div className="w-auto">
-        <MitigationTable mitigationIntervals={mitigationIntervals} />
+        <MitigationTable mitigationIntervals={mitigationIntervals} errors={errors} touched={touched} />
       </div>
     </CardWithoutDropdown>
   )

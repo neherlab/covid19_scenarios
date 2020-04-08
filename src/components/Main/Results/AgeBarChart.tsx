@@ -4,7 +4,7 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { useTranslation } from 'react-i18next'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload, LabelProps } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
@@ -23,12 +23,24 @@ export interface SimProps {
   showHumanized?: boolean
   data?: AlgorithmResult
   rates?: SeverityTableRow[]
+  forcedWidth?: number
+  forcedHeight?: number
+  printLabel?: boolean
 }
 
-export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
+export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidth, forcedHeight }: SimProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
   const percentageChartRef = React.useRef(null)
+
+  const label: LabelProps | undefined = printLabel
+    ? {
+        position: 'top',
+        fill: '#444444',
+        fontSize: '11px',
+        formatter: (label: string | number) => (label > 0 ? label : null),
+      }
+    : undefined
 
   if (!data || !rates) {
     return null
@@ -75,7 +87,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
             return <div className="w-100 h-100" />
           }
 
-          const height = Math.max(250, width / ASPECT_RATIO)
+          const height = Math.max(300, width / ASPECT_RATIO)
           const tooltipPosition = calculatePosition(height)
 
           return (
@@ -85,55 +97,41 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
               <div ref={casesChartRef} />
               <BarChart
                 onClick={() => scrollToRef(casesChartRef)}
-                width={width}
-                height={height}
+                width={forcedWidth || width}
+                height={forcedHeight || height}
                 data={plotData}
                 margin={{
-                  left: 15,
-                  right: 15,
-                  bottom: 3,
-                  top: 15,
+                  left: 0,
+                  right: 0,
+                  bottom: 10,
+                  top: 10,
                 }}
               >
-                <XAxis dataKey="name" />
+                <XAxis
+                  dataKey="name"
+                  label={{ value: t('Age'), textAnchor: 'middle', position: 'insideBottom', offset: -3 }}
+                />
                 <YAxis
                   label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }}
                   tickFormatter={tickFormatter}
                 />
+                <YAxis
+                  label={{ value: t('Age distribution [%]'), textAnchor: 'middle', angle: 90, position: 'insideRight' }}
+                  orientation={'right'}
+                  yAxisId="ageDisAxis"
+                  tickFormatter={tickFormatter}
+                />
                 <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
-                <Legend verticalAlign="top" />
+                <Legend verticalAlign="bottom" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
-                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
-                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} />
+                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} label={label} />
+                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} label={label} />
+                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} label={label} />
+                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} label={label} />
+                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of population')} yAxisId={'ageDisAxis'} />
               </BarChart>
 
               <div ref={percentageChartRef} />
-              <BarChart
-                onClick={() => scrollToRef(percentageChartRef)}
-                width={width}
-                height={height}
-                data={plotData}
-                margin={{
-                  left: 15,
-                  right: 15,
-                  bottom: 15,
-                  top: 3,
-                }}
-              >
-                <XAxis dataKey="name" label={{ value: t('Age'), position: 'insideBottom', offset: -3 }} />
-                <YAxis
-                  label={{
-                    value: t('% of total'),
-                    angle: -90,
-                    position: 'insideLeft',
-                  }}
-                />
-                <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
-                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
-              </BarChart>
             </>
           )
         }}

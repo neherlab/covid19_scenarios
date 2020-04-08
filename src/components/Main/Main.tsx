@@ -3,7 +3,7 @@ import { useDebouncedCallback } from 'use-debounce'
 
 import _ from 'lodash'
 
-import { Form, Formik, FormikHelpers } from 'formik'
+import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
 
 import { Col, Row } from 'reactstrap'
 
@@ -30,8 +30,13 @@ import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
+import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
+
+interface FormikValidationErrors extends Error {
+  errors: FormikErrors<FormikValues>
+}
 
 export function severityTableIsValid(severity: SeverityTableRow[]) {
   return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
@@ -79,6 +84,9 @@ function Main() {
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [locationSearch, setLocationSeach] = useState<string>('')
+  const [printable, setPrintable] = useState(false)
+  const openPrintPreview = () => setPrintable(true)
+
   const scenarioUrl = `${window.location.origin}${locationSearch}`
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
@@ -104,6 +112,9 @@ function Main() {
     // this is because the page was either shared via link, or opened in new tab
     if (window.location.search) {
       debouncedRun(allParams, scenarioState, severity)
+
+      // At this point the scenario params have been captured, and we can clean up the URL.
+      updateBrowserURL('/')
     }
   }, [])
 
@@ -117,46 +128,53 @@ function Main() {
     if (autorunSimulation) {
       debouncedRun(allParams, scenarioState, severity)
     }
+  }, [autorunSimulation, debouncedRun, scenarioState, severity])
 
-    // 1. upon each parameter change, we rebuild the query string
-    const nextLocationSearch = buildLocationSearch(scenarioState)
+  const [validateFormAndUpdateState] = useDebouncedCallback((newParams: AllParams) => {
+    return schema
+      .validate(newParams)
+      .then((validParams) => {
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.population, validParams.population)) {
+          scenarioDispatch(setPopulationData({ data: validParams.population }))
+        }
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.epidemiological, validParams.epidemiological)) {
+          scenarioDispatch(setEpidemiologicalData({ data: validParams.epidemiological }))
+        }
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.simulation, validParams.simulation)) {
+          scenarioDispatch(setSimulationData({ data: validParams.simulation }))
+        }
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.containment, validParams.containment)) {
+          const mitigationIntervals = _.map(validParams.containment.mitigationIntervals, _.cloneDeep)
+          scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
+        }
 
-    if (nextLocationSearch !== locationSearch) {
-      // whenever the generated query string changes, we're updating:
-      // 1. browser's location.search
-      // 2. searchString state variable (scenarioUrl is used by children)
-      setLocationSeach(nextLocationSearch)
-
-      if (autorunSimulation) {
-        updateBrowserURL(nextLocationSearch)
-      }
-    }
-  }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
-
-  const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.population, newParams.population)) {
-      scenarioDispatch(setPopulationData({ data: newParams.population }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
-      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.simulation, newParams.simulation)) {
-      scenarioDispatch(setSimulationData({ data: newParams.simulation }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.containment, newParams.containment)) {
-      const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
-      scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
-    }
+        return validParams
+      })
+      .catch((error: FormikValidationErrors) => error.errors)
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    updateBrowserURL(locationSearch)
     runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
     setSubmitting(false)
+  }
+
+  if (printable) {
+    return (
+      <PrintPage
+        params={allParams}
+        scenarioUsed={scenarioState.current}
+        severity={severity}
+        result={result}
+        caseCounts={empiricalCases}
+        onClose={() => {
+          setPrintable(false)
+        }}
+      />
+    )
   }
 
   return (
@@ -165,9 +183,9 @@ function Main() {
         <Formik
           enableReinitialize
           initialValues={allParams}
-          validationSchema={schema}
           onSubmit={handleSubmit}
-          validate={setScenarioToCustom}
+          validate={validateFormAndUpdateState}
+          validationSchema={schema}
         >
           {({ values, errors, touched, isValid, isSubmitting }) => {
             const canRun = isValid && severityTableIsValid(severity)
@@ -197,7 +215,8 @@ function Main() {
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
-                      scenarioUrl={scenarioUrl}
+                      scenarioUrl={buildLocationSearch(scenarioState)}
+                      openPrintPreview={openPrintPreview}
                     />
                   </Col>
                 </Row>

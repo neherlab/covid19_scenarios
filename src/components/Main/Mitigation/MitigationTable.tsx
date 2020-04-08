@@ -1,9 +1,11 @@
 import React from 'react'
-import ReactResizeDetector from 'react-resize-detector'
 
-import { FastField, FieldArray, FieldArrayRenderProps } from 'formik'
+import _ from 'lodash'
+
+import ReactResizeDetector from 'react-resize-detector'
+import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Button, FormGroup } from 'reactstrap'
+import { Button, FormGroup, Row } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
@@ -18,9 +20,24 @@ import './MitigationTable.scss'
 
 export interface MitigationTableProps {
   mitigationIntervals: MitigationIntervals
+  errors?: FormikErrors<FormikValues>
+  touched?: FormikTouched<FormikValues>
 }
 
-export function MitigationTable({ mitigationIntervals }: MitigationTableProps) {
+export interface GetErrorParams {
+  identifier: string
+  errors?: FormikErrors<FormikValues>
+  touched?: FormikTouched<FormikValues>
+}
+
+export function getFormikError({ identifier, errors, touched }: GetErrorParams): string | undefined {
+  const isTouched = _.get(touched, identifier)
+  const errorMessage = _.get(errors, identifier)
+  const showError = errorMessage && isTouched
+  return showError ? (errorMessage as string) : undefined
+}
+
+export function MitigationTable({ mitigationIntervals, errors, touched }: MitigationTableProps) {
   const { t } = useTranslation()
 
   return (
@@ -30,6 +47,7 @@ export function MitigationTable({ mitigationIntervals }: MitigationTableProps) {
           name="containment.mitigationIntervals"
           render={(arrayHelpers) => (
             <div className="mitigation-table">
+              <p>The presets for the mitigation and infections control measure below are currently just place holders. We are gathering this information at the moment. For the time being please adjust, add, and remove to match your community.</p>
               <div className="w-100">
                 {mitigationIntervals.map((interval: MitigationInterval, index: number) => {
                   if (!interval) {
@@ -42,6 +60,8 @@ export function MitigationTable({ mitigationIntervals }: MitigationTableProps) {
                       index={index}
                       arrayHelpers={arrayHelpers}
                       width={width || 0}
+                      errors={errors}
+                      touched={touched}
                     />
                   )
                 })}
@@ -70,10 +90,31 @@ interface MitigationIntervalProps {
   index: number
   interval: MitigationInterval
   arrayHelpers: FieldArrayRenderProps
+  errors?: FormikErrors<FormikValues>
+  touched?: FormikTouched<FormikValues>
 }
 
-function MitigationIntervalComponent({ width, index, interval, arrayHelpers }: MitigationIntervalProps) {
+function MitigationIntervalComponent({
+  width,
+  index,
+  interval,
+  arrayHelpers,
+  errors,
+  touched,
+}: MitigationIntervalProps) {
   const { t } = useTranslation()
+
+  const nameError = getFormikError({
+    errors,
+    touched,
+    identifier: `containment.mitigationIntervals[${index}].name`,
+  })
+
+  const valueError = getFormikError({
+    errors,
+    touched,
+    identifier: `containment.mitigationIntervals[${index}].mitigationValue`,
+  })
 
   return (
     <FormGroup>
@@ -85,7 +126,7 @@ function MitigationIntervalComponent({ width, index, interval, arrayHelpers }: M
       >
         <div className="inputs">
           <FastField
-            className="name form-control"
+            className={`name form-control ${nameError ? 'border-danger' : ''}`}
             id={`containment.mitigationIntervals[${index}].name`}
             name={`containment.mitigationIntervals[${index}].name`}
             type="text"
@@ -102,16 +143,18 @@ function MitigationIntervalComponent({ width, index, interval, arrayHelpers }: M
               name={`containment.mitigationIntervals[${index}].mitigationValue`}
               value={interval.mitigationValue}
               step={0.1}
-              min={0}
-              max={1}
             />
           </div>
         </div>
         <div className="item-controls">
           <Button type="button" onClick={() => arrayHelpers.remove(index)}>
-            {width && width > 430 && t('Remove')} <FaTrash />
+            <FaTrash />
           </Button>
         </div>
+      </div>
+      <div className="w-100">
+        {nameError && <p className="my-0 text-right text-danger">{`${t('Intervention name')}: ${nameError}`}</p>}
+        {valueError && <p className="my-0 text-right text-danger">{`${t('Mitigation strength')}: ${valueError}`}</p>}
       </div>
     </FormGroup>
   )
