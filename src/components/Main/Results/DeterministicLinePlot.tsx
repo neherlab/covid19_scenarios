@@ -21,7 +21,7 @@ import {
 } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
-import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
@@ -115,10 +115,10 @@ export function DeterministicLinePlot({
   const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
 
-  const [zoomLeftState, setzoomLeftState] = useState('dataMin')
-  const [zoomRightState, setzoomRightState] = useState('dataMax')
-  const [zoomSelectedLeftState, setzoomSelectedLeftState] = useState('')
-  const [zoomSelectedRightState, setzoomSelectedRightState] = useState('')
+  // const [zoomLeftState, setzoomLeftState] = useState('dataMin')
+  // const [zoomRightState, setzoomRightState] = useState('dataMax')
+  // const [zoomSelectedLeftState, setzoomSelectedLeftState] = useState('')
+  // const [zoomSelectedRightState, setzoomSelectedRightState] = useState('')
 
   if (!data) {
     return null
@@ -322,7 +322,7 @@ export function DeterministicLinePlot({
     {
       key: `${DATA_POINTS.Critical}_area`,
       color: colors.critical,
-      name: t('Patients in ICU uncertainty'),
+      name: t('Patients in ICU(model) uncertainty'),
       legendType: 'none',
     },
     {
