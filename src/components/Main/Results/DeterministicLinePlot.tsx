@@ -97,6 +97,22 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
   return <span className={activeClassName}>{value}</span>
 }
 
+export class DebouncedDeterministicLinePlot extends React.Component {
+  constructor(props) {
+    super(props)
+    this.debouncedRender = _.debounce(this.forceUpdate, 1000)
+  }
+
+  shouldComponentUpdate() {
+    this.debouncedRender()
+    return false
+  }
+
+  render() {
+    return <DeterministicLinePlot {...this.props} />
+  }
+}
+
 export function DeterministicLinePlot({
   data,
   userResult,
