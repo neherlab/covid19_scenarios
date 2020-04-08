@@ -75,6 +75,8 @@ export interface LinePlotProps {
   logScale?: boolean
   showHumanized?: boolean
   caseCounts?: EmpiricalData
+  forcedWidth?: number
+  forcedHeight?: number
 }
 
 interface LineProps {
@@ -105,6 +107,8 @@ export function DeterministicLinePlot({
   logScale,
   showHumanized,
   caseCounts,
+  forcedWidth,
+  forcedHeight,
 }: LinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
@@ -215,7 +219,7 @@ export function DeterministicLinePlot({
 
   // determine the max of enabled plots w/o the hospital capacity
   const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
-  const yDataMax = _.max( consolidatedPlotData.map((d) => (_.max(dataKeys.map((k) => d[k])))))
+  const yDataMax = _.max(consolidatedPlotData.map((d) => _.max(dataKeys.map((k) => d[k]))))
 
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
@@ -229,10 +233,8 @@ export function DeterministicLinePlot({
     { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
   ]
 
-
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
-
 
   const scatterToPlot: LineProps[] = observations.length
     ? [
@@ -308,8 +310,8 @@ export function DeterministicLinePlot({
               <div ref={chartRef} />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
-                width={width}
-                height={height}
+                width={forcedWidth || width}
+                height={forcedHeight || height}
                 data={consolidatedPlotData}
                 throttleDelay={75}
                 margin={{
@@ -322,7 +324,7 @@ export function DeterministicLinePlot({
                 <CartesianGrid strokeDasharray="3 3" />
 
                 <XAxis
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   dataKey="time"
                   type="number"
                   domain={['dataMin', 'dataMax']}
@@ -331,7 +333,7 @@ export function DeterministicLinePlot({
                 />
 
                 <YAxis
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   scale={logScaleString}
                   type="number"
                   domain={logScale ? [1, yDataMax * 1.1] : [0, yDataMax * 1.1]}
@@ -340,7 +342,7 @@ export function DeterministicLinePlot({
 
                 <YAxis
                   yAxisId="mitigationStrengthAxis"
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   orientation={'right'}
                   type="number"
                   domain={[0, 100]}

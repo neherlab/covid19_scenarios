@@ -9,12 +9,24 @@ export interface ExportSimulationDialogProps {
   canExport: boolean
   showModal: boolean
   toggleShowModal: () => void
+  openPrintPreview: () => void
   result?: AlgorithmResult
   scenarioUrl: string
 }
 
-export default function ExportSimulationDialog({ showModal, toggleShowModal, result, scenarioUrl }: ExportSimulationDialogProps) {
+export default function ExportSimulationDialog({
+  showModal,
+  toggleShowModal,
+  openPrintPreview,
+  result,
+ scenarioUrl,
+}: ExportSimulationDialogProps) {
   const { t } = useTranslation()
+
+  const startPrinting = () => {
+    toggleShowModal()
+    openPrintPreview()
+  }
 
   // Assuming href and shareable link can be concatenated without other processing:
   const shareableLink = `${window.location.href}${scenarioUrl}`
@@ -64,13 +76,23 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               </td>
             </tr>
             <tr>
-              <td></td>
+              <td />
               <td>{t('Shareable link')}</td>
               <td>URL</td>
               <td>
                 <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={shareableLink}>
                   {t('Copy link')}
                 </ClipboardButton>
+              </td>
+            </tr>
+            <tr>
+              <td />
+              <td>{t('Print Preview (to print or save as PDF)')}</td>
+              <td>HTML</td>
+              <td>
+                <Button disabled={!(result?.deterministic ?? null)} onClick={startPrinting} color="primary" size="sm">
+                  {t('Preview')}
+                </Button>
               </td>
             </tr>
           </tbody>

@@ -32,6 +32,7 @@ interface ResultsCardProps {
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
   scenarioUrl: string
+  openPrintPreview: () => void
 }
 
 function ResultsCardFunction({
@@ -44,6 +45,7 @@ function ResultsCardFunction({
   result,
   caseCounts,
   scenarioUrl,
+  openPrintPreview,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
@@ -232,6 +234,7 @@ function ResultsCardFunction({
       ) : undefined}
       <ExportSimulationDialog
         showModal={showExportModal}
+        openPrintPreview={openPrintPreview}
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
         result={result}
