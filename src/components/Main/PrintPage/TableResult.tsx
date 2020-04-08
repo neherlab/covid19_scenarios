@@ -15,7 +15,7 @@ const STEP = 7
 const dateFormat = (time: number) => moment(time).format('MMM DD YYYY')
 
 export default function TableResult({ result }: PropsType) {
-  const downSampled = result.deterministic.trajectory.reduce<ExportedTimePoint[]>((acc, curr, i) => {
+  const downSampled = result.trajectory.mean.reduce<ExportedTimePoint[]>((acc, curr, i) => {
     if (i % STEP === 0) {
       return [...acc, curr]
     }
