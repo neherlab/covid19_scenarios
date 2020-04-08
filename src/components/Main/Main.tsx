@@ -79,7 +79,6 @@ function Main() {
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [locationSearch, setLocationSeach] = useState<string>('')
-  const scenarioUrl = `${window.location.origin}${locationSearch}`
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
@@ -117,21 +116,7 @@ function Main() {
     if (autorunSimulation) {
       debouncedRun(allParams, scenarioState, severity)
     }
-
-    // 1. upon each parameter change, we rebuild the query string
-    const nextLocationSearch = buildLocationSearch(scenarioState)
-
-    if (nextLocationSearch !== locationSearch) {
-      // whenever the generated query string changes, we're updating:
-      // 1. browser's location.search
-      // 2. searchString state variable (scenarioUrl is used by children)
-      setLocationSeach(nextLocationSearch)
-
-      if (autorunSimulation) {
-        updateBrowserURL(nextLocationSearch)
-      }
-    }
-  }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
+  }, [autorunSimulation, debouncedRun, scenarioState, severity])
 
   const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
@@ -197,7 +182,6 @@ function Main() {
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
-                      scenarioUrl={scenarioUrl}
                     />
                   </Col>
                 </Row>
