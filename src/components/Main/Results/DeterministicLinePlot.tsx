@@ -371,6 +371,47 @@ export function DeterministicLinePlot({
             <>
               <div ref={chartRef} />
               <ComposedChart
+                width={width}
+                height={height / 3}
+                margin={{
+                  left: 5,
+                  right: 5,
+                  bottom: 5,
+                  top: 5,
+                }}
+              >
+                <XAxis
+                  allowDataOverflow={true}
+                  dataKey="time"
+                  type="number"
+                  domain={[tMin, tMax]}
+                  tickFormatter={xTickFormatter}
+                  tickCount={7}
+                />
+                <YAxis
+                  yAxisId="mitigationStrengthAxis"
+                  allowDataOverflow={true}
+                  orientation={'right'}
+                  type="number"
+                  domain={[0, 100]}
+                />
+                {mitigationIntervals.map((interval) => (
+                  <ReferenceArea
+                    key={interval.id}
+                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
+                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
+                    y1={0}
+                    y2={_.clamp(interval.mitigationValue, 0, 100)}
+                    yAxisId={'mitigationStrengthAxis'}
+                    fill={interval.color}
+                    fillOpacity={0.1}
+                  >
+                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
+                  </ReferenceArea>
+                ))}
+              </ComposedChart>
+
+              <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
                 width={width}
                 height={height}
@@ -402,14 +443,6 @@ export function DeterministicLinePlot({
                   tickFormatter={yTickFormatter}
                 />
 
-                <YAxis
-                  yAxisId="mitigationStrengthAxis"
-                  allowDataOverflow={true}
-                  orientation={'right'}
-                  type="number"
-                  domain={[0, 100]}
-                />
-
                 <Tooltip
                   formatter={tooltipFormatter}
                   labelFormatter={labelFormatter}
@@ -426,21 +459,6 @@ export function DeterministicLinePlot({
                     setEnabledPlots(plots)
                   }}
                 />
-
-                {mitigationIntervals.map((interval) => (
-                  <ReferenceArea
-                    key={interval.id}
-                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
-                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
-                    y1={0}
-                    y2={_.clamp(interval.mitigationValue, 0, 100)}
-                    yAxisId={'mitigationStrengthAxis'}
-                    fill={interval.color}
-                    fillOpacity={0.1}
-                  >
-                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
-                  </ReferenceArea>
-                ))}
 
                 {scatterToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
