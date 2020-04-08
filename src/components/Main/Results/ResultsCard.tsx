@@ -183,7 +183,7 @@ function ResultsCardFunction({
           <div data-testid="HumanizedValuesSwitch">
             <FormSwitch
               identifier="showHumanized"
-              label={t('Show humanized results')}
+              label={t('Format numbers')}
               help={t('Show numerical results in a human friendly format')}
               checked={showHumanized}
               onValueChanged={setPersistShowHumanized}
