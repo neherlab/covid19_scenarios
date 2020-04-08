@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { OneCountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
 
 import { SeverityTableRow } from '../Scenario/SeverityTable'
 
@@ -22,15 +23,16 @@ const ASPECT_RATIO = 16 / 4
 export interface SimProps {
   showHumanized?: boolean
   data?: AlgorithmResult
+  ageDistribution?: OneCountryAgeDistribution
   rates?: SeverityTableRow[]
 }
 
-export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
+export function AgeBarChart({ showHumanized, data, ageDistribution, rates }: SimProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
   const percentageChartRef = React.useRef(null)
 
-  if (!data || !rates) {
+  if (!data || !rates || !ageDistribution) {
     return null
   }
 
@@ -47,14 +49,14 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
     return String(translation)
   }
 
-  const ages = Object.keys(data.params.ageDistribution)
-  const lastDataPoint = data.deterministic.trajectory[data.deterministic.trajectory.length - 1]
+  const ages = Object.keys(ageDistribution)
+  const lastDataPoint = data.trajectory.mean[data.trajectory.mean.length - 1]
   const plotData = ages.map((age) => ({
     name: age,
-    fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
-    peakSevere: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.severe[age]))),
-    peakCritical: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.critical[age]))),
-    peakOverflow: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.overflow[age]))),
+    fraction: Math.round(ageDistribution[age] * 1000) / 10,
+    peakSevere: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.severe[age]))),
+    peakCritical: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.critical[age]))),
+    peakOverflow: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.overflow[age]))),
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
   }))
 

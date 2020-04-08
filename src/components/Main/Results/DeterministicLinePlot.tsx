@@ -121,8 +121,7 @@ export function DeterministicLinePlot({
   const [zoomSelectedLeftState, setzoomSelectedLeftState] = useState('')
   const [zoomSelectedRightState, setzoomSelectedRightState] = useState('')
 
-  // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
-  if (!data || data.stochastic.length > 0) {
+  if (!data) {
     return null
   }
 
@@ -130,12 +129,13 @@ export function DeterministicLinePlot({
 
   const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 
-  const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
-  const nICUBeds = verifyPositive(data.params.ICUBeds)
+  const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
+  const nICUBeds = verifyPositive(params.population.ICUBeds)
 
   const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
 
   const caseStep = 3
+
   // this currently relies on there being data for every day. This should be
   // the case given how the data are parsed, but would be good to put in a check
   const newCases = (cc: EmpiricalData, i: number) => {
@@ -149,7 +149,7 @@ export function DeterministicLinePlot({
     cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
     ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
     observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
+    newCases: nonEmptyCaseCounts?.filter((_, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
@@ -168,7 +168,7 @@ export function DeterministicLinePlot({
     })) ?? []
 
   const plotData = [
-    ...data.deterministic.trajectory.map((x) => ({
+    ...data.trajectory.mean.map((x) => ({
       time: x.time,
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
         ? Math.round(x.current.susceptible.total) || undefined
@@ -215,7 +215,7 @@ export function DeterministicLinePlot({
 
   // determine the max of enabled plots w/o the hospital capacity
   const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
-  const yDataMax = _.max( consolidatedPlotData.map((d) => (_.max(dataKeys.map((k) => d[k])))))
+  const yDataMax = _.max(consolidatedPlotData.map((d) => _.max(dataKeys.map((k) => d[k]))))
 
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
@@ -229,10 +229,8 @@ export function DeterministicLinePlot({
     { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
   ]
 
-
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
-
 
   const scatterToPlot: LineProps[] = observations.length
     ? [

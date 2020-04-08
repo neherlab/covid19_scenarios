@@ -194,6 +194,7 @@ function Main() {
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
                       params={allParams}
+                      ageDistribution={scenarioState.ageDistribution}
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
