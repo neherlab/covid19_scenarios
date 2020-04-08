@@ -356,32 +356,6 @@ export function DeterministicLinePlot({
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
-  // const zoomIn = () => {
-  //   if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
-  //     setzoomSelectedLeftState('')
-  //     setzoomSelectedRightState('')
-  //     return
-  //   }
-
-  //   // xAxis domain
-  //   if (zoomSelectedLeftState > zoomSelectedRightState) {
-  //     setzoomSelectedLeftState(zoomSelectedRightState)
-  //     setzoomSelectedRightState(zoomSelectedLeftState)
-  //   }
-
-  //   setzoomLeftState(zoomSelectedLeftState)
-  //   setzoomRightState(zoomSelectedRightState)
-  //   setzoomSelectedLeftState('')
-  //   setzoomSelectedRightState('')
-  // }
-
-  // const zoomOut = () => {
-  //   setzoomLeftState('dataMin')
-  //   setzoomRightState('dataMax')
-  //   setzoomSelectedLeftState('')
-  //   setzoomSelectedRightState('')
-  // }
-
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
