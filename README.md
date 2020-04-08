@@ -17,7 +17,7 @@ Models of COVID-19 outbreak trajectories and hospital demand
     <img
       width="100%"
       height="auto"
-      src="https://user-images.githubusercontent.com/9403403/77125848-710b2700-6a47-11ea-84c3-19016d16e9dd.gif"
+      src="https://user-images.githubusercontent.com/9403403/78839853-9c0aea00-79f9-11ea-92c9-593e05fd1570.gif"
       alt="An animated screenshot of the application, showcasing the user interface on main page"
     />
   </a>
