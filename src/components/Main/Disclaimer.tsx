@@ -73,13 +73,13 @@ export default function DisclaimerProps() {
           <Col>
             <Form inline>
               <FormGroup className="ml-auto">
-                <CustomInput
-                  id="dont-show-again"
-                  type="checkbox"
-                  onChange={toggleChecked}
-                  checked={suppressShowAgain}
-                />
                 <label htmlFor="dont-show-again" className="d-flex">
+                  <CustomInput
+                    id="dont-show-again"
+                    type="checkbox"
+                    onChange={toggleChecked}
+                    checked={suppressShowAgain}
+                  />
                   {t(`Don't show again`)}
                 </label>
               </FormGroup>
