@@ -103,6 +103,9 @@ function Main() {
     // this is because the page was either shared via link, or opened in new tab
     if (window.location.search) {
       debouncedRun(allParams, scenarioState, severity)
+
+      // At this point the scenario params have been captured, and we can clean up the URL.
+      updateBrowserURL("/")
     }
   }, [])
 
