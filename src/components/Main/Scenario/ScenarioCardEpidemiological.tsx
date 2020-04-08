@@ -7,7 +7,7 @@ import { FormikErrors, FormikTouched } from 'formik'
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
-import { RangeSlider } from '../../Form/RangeSlider'
+import { RangeSlider } from '../../Form/FormRangeSlider'
 
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month }))

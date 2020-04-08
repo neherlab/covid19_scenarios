@@ -1,26 +1,52 @@
 import React from 'react'
-import { Field, FieldProps } from 'formik'
+
+import _ from 'lodash'
+
+import { Field, FieldProps, FormikTouched, FormikErrors } from 'formik'
 import { Range, getTrackBackground } from 'react-range'
 import HelpLabel from './HelpLabel'
 
-import { Tuple } from '../../algorithms/types/Param.types'
-
-export interface RangeSliderProps {
+export interface RangeSliderProps<T> {
   identifier: string
   label: string
   help?: string | React.ReactNode
   step: number
   min: number
   max: number
+
+  errors?: FormikErrors<T>
+  touched?: FormikTouched<T>
 }
 
-export function RangeSlider({ identifier, label, help, step, min, max }: RangeSliderProps) {
+export function RangeSlider({ identifier, label, help, step, min, max, errors, touched }: RangeSliderProps<T>) {
+  const isTouched = _.get(touched, identifier)
+  const errorMessage = _.get(errors, identifier)
+  const showError = errorMessage && isTouched
+  const borderDanger = showError ? 'border-danger' : ''
+
+  function validate(value: number[]) {
+    let error
+    if (value.length != 2) {
+      error = `The input length must be 2, found ${value.length}`
+    }
+    if (value[0] > value[1]) {
+      error = `The lower bound ${value[0]} cannot be greater than than the upper bound ${value[1]}`
+    }
+    if (min && value[0] < min) {
+      error = `The lower bound cannot be less than ${min}`
+    } else if (max && value[1] > max) {
+      error = `The upper bound cannot be greater than ${max}`
+    }
+    return error
+  }
+
   return (
-    <Field name={identifier}>
-      {({ field: { value, onChange }, form: { setFieldValue } }: FieldProps<Tuple>) => {
-        const handleChange = (value: Tuple) => {
+    <Field name={identifier} className={`form-control ${borderDanger}`} validate={validate}>
+      {({ field: { value, onChange }, form: { setFieldValue } }: FieldProps<number[]>) => {
+        const handleChange = (value: number[]) => {
           setFieldValue(identifier, value)
         }
+
         return (
           <div
             style={{
