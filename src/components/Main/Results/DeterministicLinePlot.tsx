@@ -196,7 +196,18 @@ export function DeterministicLinePlot({
     ...observations,
   ]
 
-
+  plotData.sort((a, b) => (a.time > b.time ? 1 : -1))
+  const consolidatedPlotData = [plotData[0]]
+  plotData.forEach((d) => {
+    if (d.time === consolidatedPlotData[consolidatedPlotData.length - 1].time) {
+      consolidatedPlotData[consolidatedPlotData.length - 1] = {
+        ...consolidatedPlotData[consolidatedPlotData.length - 1],
+        ...d,
+      }
+    } else {
+      consolidatedPlotData.push(d)
+    }
+  })
 
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
@@ -293,7 +304,7 @@ export function DeterministicLinePlot({
                 onClick={() => scrollToRef(chartRef)}
                 width={width}
                 height={height}
-                data={plotData}
+                data={consolidatedPlotData}
                 throttleDelay={75}
                 margin={{
                   left: 15,
