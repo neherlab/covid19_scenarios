@@ -372,26 +372,26 @@ export function DeterministicLinePlot({
               <div ref={chartRef} />
               <ComposedChart
                 width={width}
-                height={height / 3}
+                height={height / 4}
                 margin={{
                   left: 5,
                   right: 5,
-                  bottom: 5,
                   top: 5,
                 }}
               >
+                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   allowDataOverflow={true}
                   dataKey="time"
                   type="number"
                   domain={[tMin, tMax]}
-                  tickFormatter={xTickFormatter}
+                  tickFormatter={() => ''}
                   tickCount={7}
                 />
                 <YAxis
                   yAxisId="mitigationStrengthAxis"
                   allowDataOverflow={true}
-                  orientation={'right'}
+                  orientation={'left'}
                   type="number"
                   domain={[0, 100]}
                 />
@@ -421,7 +421,6 @@ export function DeterministicLinePlot({
                   left: 5,
                   right: 5,
                   bottom: 5,
-                  top: 5,
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
