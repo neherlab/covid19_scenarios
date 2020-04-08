@@ -196,6 +196,8 @@ export function DeterministicLinePlot({
     ...observations,
   ]
 
+
+
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
     { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
@@ -247,31 +249,31 @@ export function DeterministicLinePlot({
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
-  const zoomIn = () => {
-    if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
-      setzoomSelectedLeftState('')
-      setzoomSelectedRightState('')
-      return
-    }
+  // const zoomIn = () => {
+  //   if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
+  //     setzoomSelectedLeftState('')
+  //     setzoomSelectedRightState('')
+  //     return
+  //   }
 
-    // xAxis domain
-    if (zoomSelectedLeftState > zoomSelectedRightState) {
-      setzoomSelectedLeftState(zoomSelectedRightState)
-      setzoomSelectedRightState(zoomSelectedLeftState)
-    }
+  //   // xAxis domain
+  //   if (zoomSelectedLeftState > zoomSelectedRightState) {
+  //     setzoomSelectedLeftState(zoomSelectedRightState)
+  //     setzoomSelectedRightState(zoomSelectedLeftState)
+  //   }
 
-    setzoomLeftState(zoomSelectedLeftState)
-    setzoomRightState(zoomSelectedRightState)
-    setzoomSelectedLeftState('')
-    setzoomSelectedRightState('')
-  }
+  //   setzoomLeftState(zoomSelectedLeftState)
+  //   setzoomRightState(zoomSelectedRightState)
+  //   setzoomSelectedLeftState('')
+  //   setzoomSelectedRightState('')
+  // }
 
-  const zoomOut = () => {
-    setzoomLeftState('dataMin')
-    setzoomRightState('dataMax')
-    setzoomSelectedLeftState('')
-    setzoomSelectedRightState('')
-  }
+  // const zoomOut = () => {
+  //   setzoomLeftState('dataMin')
+  //   setzoomRightState('dataMax')
+  //   setzoomSelectedLeftState('')
+  //   setzoomSelectedRightState('')
+  // }
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
@@ -286,13 +288,6 @@ export function DeterministicLinePlot({
 
           return (
             <>
-              <h3 className="d-flex justify-content-between">
-                {t('Cases through time')}
-                <button className="btn btn-secondary" onClick={zoomOut}>
-                  {t('Zoom Out')}
-                </button>
-              </h3>
-
               <div ref={chartRef} />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
