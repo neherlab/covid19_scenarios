@@ -596,16 +596,16 @@ export function exportSimulation(result: UserResult) {
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const header = keys(result.trajectory[0].current)
+  const header = keys(result.mean[0].current)
   const tsvHeader: string[] = header.map((x) => (x == 'critical' ? 'ICU' : x))
 
-  const headerCumulative = keys(result.trajectory[0].cumulative)
+  const headerCumulative = keys(result.mean[0].cumulative)
   const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
 
   const tsv = [`time\t${tsvHeader.concat(tsvHeaderCumulative).join('\t')}`]
 
   const pop: Record<string, boolean> = {}
-  result.trajectory.forEach((d) => {
+  result.mean.forEach((d) => {
     const t = new Date(d.time).toISOString().slice(0, 10)
     if (t in pop) {
       return
