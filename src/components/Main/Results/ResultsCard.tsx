@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
-import processUserResult from '../../../algorithms/utils/userResult'
+import { processUserResult, convertUserResultToEmpiricalData } from '../../../algorithms/utils/userResult'
 import { AgeBarChart } from './AgeBarChart'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
@@ -22,6 +22,7 @@ import ImportSimulationDialog from './ImportSimulationDialog'
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
+const USE_IMPORTED_DATA_DEFAULT = false
 
 interface ResultsCardProps {
   autorunSimulation: boolean
@@ -49,6 +50,9 @@ function ResultsCardFunction({
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
   const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
+
+  // TODO persist this setting too when persisting an imported file is ready too
+  const [useImportedData, setUseImportedData] = useState(USE_IMPORTED_DATA_DEFAULT)
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
@@ -190,7 +194,7 @@ function ResultsCardFunction({
               onValueChanged={setPersistLogScale}
             />
           </div>
-          <div data-testid="HumanizedValuesSwitch">
+          <div className="mr-4" data-testid="HumanizedValuesSwitch">
             <FormSwitch
               identifier="showHumanized"
               label={t('Show humanized results')}
@@ -199,17 +203,28 @@ function ResultsCardFunction({
               onValueChanged={setPersistShowHumanized}
             />
           </div>
+          <div data-testid="ImportedDataSwitch">
+            <FormSwitch
+              identifier="useImportedData"
+              label={t('Use imported data')}
+              help={t(`Enable this option to compare the simulation results with your own imported data instead of
+                the confirmed cases selected in the scenario parameters. You must import a file first before using
+                this option.`)}
+              checked={useImportedData && !!userResult}
+              onValueChanged={setUseImportedData}
+              disabled={!userResult}
+            />
+          </div>
         </Row>
         <Row noGutters>
           <Col>
             <DeterministicLinePlot
               data={result}
-              userResult={userResult}
               params={params}
               mitigation={mitigation}
               logScale={logScale}
               showHumanized={showHumanized}
-              caseCounts={caseCounts}
+              caseCounts={useImportedData && userResult ? convertUserResultToEmpiricalData(userResult) : caseCounts}
             />
           </Col>
         </Row>

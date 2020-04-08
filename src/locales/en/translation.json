@@ -37,6 +37,7 @@
   "Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no infection control, zero is complete prevention of all transmission.": "Drag black dots with the mouse to simulate how infection control affects the outbreak trajectory. One is no infection control, zero is complete prevention of all transmission.",
   "Drag n' drop some files here, or click to select files": "Drag n' drop some files here, or click to select files.",
   "Drop the files here ...": "Drop the files here…",
+  "Enable this option to compare the simulation results with your own imported data instead of the confirmed cases selected in the scenario parameters. You must import a file first before using this option.": "Enable this option to compare the simulation results with your own imported data instead of the confirmed cases selected in the scenario parameters. You must import a file first before using this option.",
   "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).": "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).",
   "Epidemiology": "Epidemiology",
   "Error": "Error",

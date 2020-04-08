@@ -22,38 +22,35 @@ import {
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
-import { userResultToPlot } from '../../../algorithms/utils/userResult'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
 
 import './DeterministicLinePlot.scss'
-import { Button, ButtonGroup, ButtonToggle } from 'reactstrap'
-import { FaCheck } from 'react-icons/fa'
 
 const ASPECT_RATIO = 16 / 9
 
-export enum DATA_POINTS {
+const DATA_POINTS = {
   /* Computed */
-  Exposed = 'exposed',
-  Susceptible = 'susceptible',
-  Infectious = 'infectious',
-  Severe = 'severe',
-  Critical = 'critical',
-  Overflow = 'overflow',
-  Recovered = 'recovered',
-  Fatalities = 'fatality',
-  CumulativeCases = 'cumulativeCases',
-  HospitalBeds = 'hospitalBeds',
-  ICUbeds = 'ICUbeds',
-  NewCases = 'newCases',
+  Exposed: 'exposed',
+  Susceptible: 'susceptible',
+  Infectious: 'infectious',
+  Severe: 'severe',
+  Critical: 'critical',
+  Overflow: 'overflow',
+  Recovered: 'recovered',
+  Fatalities: 'fatality',
+  CumulativeCases: 'cumulativeCases',
+  NewCases: 'newCases',
+  HospitalBeds: 'hospitalBeds',
+  ICUbeds: 'ICUbeds',
   /* Observed */
-  ObservedDeaths = 'observedDeaths',
-  ObservedCases = 'cases',
-  ObservedHospitalized = 'currentHospitalized',
-  ObservedICU = 'ICU',
-  ObservedNewCases = 'observedNewCases',
+  ObservedDeaths: 'observedDeaths',
+  ObservedCases: 'cases',
+  ObservedHospitalized: 'currentHospitalized',
+  ObservedICU: 'ICU',
+  ObservedNewCases: 'newCases',
 }
 
 export const colors = {
@@ -70,21 +67,8 @@ export const colors = {
   [DATA_POINTS.ICUbeds]: '#cccccc',
 }
 
-// TODO refactor this interface to avoid duplication with DATA_POINTS
-export interface PlotData {
-  time: number
-  cases?: number
-  observedDeaths?: number
-  currentHospitalized?: number
-  ICU?: number
-  newCases?: number
-  hospitalBeds?: number
-  ICUbeds?: number
-}
-
 export interface LinePlotProps {
   data?: AlgorithmResult
-  userResult?: UserResult
   params: AllParams
   mitigation: ContainmentData
   logScale?: boolean
@@ -114,7 +98,6 @@ function legendFormatter(enabledPlots: string[], value: string, entry: any) {
 
 export function DeterministicLinePlot({
   data,
-  userResult,
   params,
   mitigation,
   logScale,
@@ -124,7 +107,6 @@ export function DeterministicLinePlot({
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
-  const [useImportedData, setUseImportedData] = useState(false)
 
   // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
   // href: https://reactjs.org/docs/hooks-rules.html
@@ -161,9 +143,16 @@ export function DeterministicLinePlot({
     return undefined
   }
 
-  const observations: PlotData[] = useImportedData
-    ? userResultToPlot(enabledPlots, userResult)
-    : nonEmptyCaseCounts?.map((d, i) => ({
+  const countObservations = {
+    cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
+    ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
+    observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
+    newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
+    hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
+  }
+
+  const observations =
+    nonEmptyCaseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
       cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
       observedDeaths: enabledPlots.includes(DATA_POINTS.ObservedDeaths) ? d.deaths || undefined : undefined,
@@ -175,14 +164,6 @@ export function DeterministicLinePlot({
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
-
-  const countObservations = {
-    cases: observations.filter(d => d.cases).length ?? 0,
-    ICU: observations.filter(d => d.ICU).length ?? 0,
-    observedDeaths: observations.filter(d => d.observedDeaths).length ?? 0,
-    newCases: observations.filter(d => d.newCases).length ?? 0,
-    hospitalized: observations.filter(d => d.currentHospitalized).length ?? 0,
-  }
 
   const plotData = [
     ...data.deterministic.trajectory.map((x) => ({
@@ -290,8 +271,6 @@ export function DeterministicLinePlot({
     setzoomSelectedRightState('')
   }
 
-  const toggleUseImportedData = () => setUseImportedData(!useImportedData)
-
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
@@ -307,20 +286,9 @@ export function DeterministicLinePlot({
             <>
               <h3 className="d-flex justify-content-between">
                 {t('Cases through time')}
-                <ButtonGroup>
-                  <ButtonToggle
-                    color="secondary"
-                    className={useImportedData ? 'active' : ''}
-                    onClick={toggleUseImportedData}
-                    disabled={!userResult}
-                  >
-                    {useImportedData && <FaCheck className="mr-2" />}
-                    <span className="align-middle">{t('Use imported data')}</span>
-                  </ButtonToggle>
-                  <Button color="secondary" onClick={zoomOut}>
+                <button className="btn btn-secondary" onClick={zoomOut}>
                   {t('Zoom Out')}
-                  </Button>
-                </ButtonGroup>
+                </button>
               </h3>
 
               <div ref={chartRef} />
