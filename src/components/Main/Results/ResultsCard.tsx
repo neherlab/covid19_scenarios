@@ -122,10 +122,11 @@ function ResultsCardFunction({
                 className="run-button"
                 type="submit"
                 color="primary"
-                disabled={!canRun || autorunSimulation}
+                disabled={!canRun}
                 data-testid="RunResults"
+                title={t(autorunSimulation ? 'Force a run of the simulation' : 'Run the simulation')}
               >
-                {t('Run')}
+                {t(autorunSimulation ? 'Refresh' : 'Run')}
               </Button>
               <LinkButton
                 className="new-tab-button"
