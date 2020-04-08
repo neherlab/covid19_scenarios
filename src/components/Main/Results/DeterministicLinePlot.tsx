@@ -196,42 +196,61 @@ export function DeterministicLinePlot({
     ...observations,
   ]
 
-  const linesToPlot: LineProps[] = [
-    { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
-    { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
-    { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
-    { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'line' },
-    { key: DATA_POINTS.Severe, color: colors.severe, name: t('Severely ill'), legendType: 'line' },
-    { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
-    { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
-    { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
-    { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
-  ]
-
   if (plotData.length === 0) {
     return null
   }
 
+  plotData.sort((a, b) => (a.time > b.time ? 1 : -1))
+  const consolidatedPlotData = [plotData[0]]
+  plotData.forEach((d) => {
+    if (d.time === consolidatedPlotData[consolidatedPlotData.length - 1].time) {
+      consolidatedPlotData[consolidatedPlotData.length - 1] = {
+        ...consolidatedPlotData[consolidatedPlotData.length - 1],
+        ...d,
+      }
+    } else {
+      consolidatedPlotData.push(d)
+    }
+  })
+
+  // determine the max of enabled plots w/o the hospital capacity
+  const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
+  const yDataMax = _.max( consolidatedPlotData.map((d) => (_.max(dataKeys.map((k) => d[k])))))
+
+  const linesToPlot: LineProps[] = [
+    { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
+    { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
+    { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
+    { key: DATA_POINTS.Severe, color: colors.severe, name: t('Severely ill'), legendType: 'line' },
+    { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU (model)'), legendType: 'line' },
+    { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
+    { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths (model)'), legendType: 'line' },
+    { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
+    { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
+  ]
+
+
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
+
 
   const scatterToPlot: LineProps[] = observations.length
     ? [
         // Append empirical data
-        ...(countObservations.observedDeaths
-          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative confirmed deaths') }]
-          : []),
         ...(countObservations.cases
-          ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
-          : []),
-        ...(countObservations.hospitalized
-          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital') }]
-          : []),
-        ...(countObservations.ICU
-          ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }]
+          ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative cases (data)') }]
           : []),
         ...(countObservations.newCases
-          ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Confirmed cases past 3 days') }]
+          ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Cases past 3 days (data)') }]
+          : []),
+        ...(countObservations.hospitalized
+          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital (data)') }]
+          : []),
+        ...(countObservations.ICU
+          ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU (data)') }]
+          : []),
+        ...(countObservations.observedDeaths
+          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative deaths (data)') }]
           : []),
       ]
     : []
@@ -247,31 +266,31 @@ export function DeterministicLinePlot({
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
-  const zoomIn = () => {
-    if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
-      setzoomSelectedLeftState('')
-      setzoomSelectedRightState('')
-      return
-    }
+  // const zoomIn = () => {
+  //   if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
+  //     setzoomSelectedLeftState('')
+  //     setzoomSelectedRightState('')
+  //     return
+  //   }
 
-    // xAxis domain
-    if (zoomSelectedLeftState > zoomSelectedRightState) {
-      setzoomSelectedLeftState(zoomSelectedRightState)
-      setzoomSelectedRightState(zoomSelectedLeftState)
-    }
+  //   // xAxis domain
+  //   if (zoomSelectedLeftState > zoomSelectedRightState) {
+  //     setzoomSelectedLeftState(zoomSelectedRightState)
+  //     setzoomSelectedRightState(zoomSelectedLeftState)
+  //   }
 
-    setzoomLeftState(zoomSelectedLeftState)
-    setzoomRightState(zoomSelectedRightState)
-    setzoomSelectedLeftState('')
-    setzoomSelectedRightState('')
-  }
+  //   setzoomLeftState(zoomSelectedLeftState)
+  //   setzoomRightState(zoomSelectedRightState)
+  //   setzoomSelectedLeftState('')
+  //   setzoomSelectedRightState('')
+  // }
 
-  const zoomOut = () => {
-    setzoomLeftState('dataMin')
-    setzoomRightState('dataMax')
-    setzoomSelectedLeftState('')
-    setzoomSelectedRightState('')
-  }
+  // const zoomOut = () => {
+  //   setzoomLeftState('dataMin')
+  //   setzoomRightState('dataMax')
+  //   setzoomSelectedLeftState('')
+  //   setzoomSelectedRightState('')
+  // }
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
@@ -286,29 +305,19 @@ export function DeterministicLinePlot({
 
           return (
             <>
-              <h3 className="d-flex justify-content-between">
-                {t('Cases through time')}
-                <button className="btn btn-secondary" onClick={zoomOut}>
-                  {t('Zoom Out')}
-                </button>
-              </h3>
-
               <div ref={chartRef} />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
                 width={width}
                 height={height}
-                data={plotData}
+                data={consolidatedPlotData}
                 throttleDelay={75}
                 margin={{
-                  left: 15,
-                  right: 15,
-                  bottom: 15,
-                  top: 15,
+                  left: 5,
+                  right: 5,
+                  bottom: 5,
+                  top: 5,
                 }}
-                onMouseDown={(e: any) => e && setzoomSelectedLeftState(e.activeLabel)}
-                onMouseMove={(e: any) => e && zoomSelectedLeftState && setzoomSelectedRightState(e.activeLabel)}
-                onMouseUp={zoomIn}
               >
                 <CartesianGrid strokeDasharray="3 3" />
 
@@ -316,8 +325,8 @@ export function DeterministicLinePlot({
                   allowDataOverflow={true}
                   dataKey="time"
                   type="number"
+                  domain={['dataMin', 'dataMax']}
                   tickFormatter={xTickFormatter}
-                  domain={[zoomLeftState, zoomRightState]}
                   tickCount={7}
                 />
 
@@ -325,7 +334,7 @@ export function DeterministicLinePlot({
                   allowDataOverflow={true}
                   scale={logScaleString}
                   type="number"
-                  domain={[1, 'dataMax']}
+                  domain={logScale ? [1, yDataMax * 1.1] : [0, yDataMax * 1.1]}
                   tickFormatter={yTickFormatter}
                 />
 
@@ -357,33 +366,21 @@ export function DeterministicLinePlot({
                 {mitigationIntervals.map((interval) => (
                   <ReferenceArea
                     key={interval.id}
-                    x1={_.clamp(
-                      interval.timeRange.tMin.getTime(),
-                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
-                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
-                    )}
-                    x2={_.clamp(
-                      interval.timeRange.tMax.getTime(),
-                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
-                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
-                    )}
+                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
+                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
                     y1={0}
                     y2={_.clamp(interval.mitigationValue, 0, 1)}
                     yAxisId={'mitigationStrengthAxis'}
                     fill={interval.color}
-                    fillOpacity={0.25}
+                    fillOpacity={0.1}
                   >
                     <Label value={interval.name} position="insideTopRight" fill="#444444" />
                   </ReferenceArea>
                 ))}
-                {zoomSelectedLeftState && zoomSelectedRightState ? (
-                  <ReferenceArea
-                    x1={zoomSelectedLeftState}
-                    x2={zoomSelectedRightState}
-                    fill="#c0f5bc"
-                    fillOpacity={0.2}
-                  />
-                ) : null}
+
+                {scatterToPlot.map((d) => (
+                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                ))}
 
                 {linesToPlot.map((d) => (
                   <Line
@@ -397,10 +394,6 @@ export function DeterministicLinePlot({
                     name={d.name}
                     legendType={d.legendType}
                   />
-                ))}
-
-                {scatterToPlot.map((d) => (
-                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}
               </ComposedChart>
             </>
