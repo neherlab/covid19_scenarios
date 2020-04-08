@@ -37,7 +37,31 @@ Models of COVID-19 outbreak trajectories and hospital demand
     />
   </a>
   <a href="https://covid19-scenarios.org/">
-    <img src="https://img.shields.io/website?url=https%3A%2F%2Fcovid19-scenarios.org&logo=circle&logoColor=white" />
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fcovid19-scenarios.org&logo=circle&logoColor=white&label=covid19-scenarios.org" />
+  </a>
+  <a href="https://staging.covid19-scenarios.org/">
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fstaging.covid19-scenarios.org&logo=circle&logoColor=white&label=staging.covid19-scenarios.org" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://travis-ci.org/github/neherlab/covid19_scenarios/branches">
+    <img src="https://img.shields.io/travis/neherlab/covid19_scenarios/release?label=build%3Aproduction" alt="Build status for production" />
+  </a>
+  <a href="https://travis-ci.org/github/neherlab/covid19_scenarios/branches">
+    <img src="https://img.shields.io/travis/neherlab/covid19_scenarios/master?label=build%3Astaging" alt="Build status for staging" />
+  </a>
+  <a href="https://snyk.io/test/github/neherlab/covid19_scenarios?targetFile=package.json">
+    <img src="https://snyk.io/test/github/neherlab/covid19_scenarios/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/neherlab/covid19_scenarios?targetFile=package.json" style="max-width:100%;">
+  </a>
+  <a href="https://securityheaders.com/?q=covid19-scenarios.org&followRedirects=on">
+    <img src="https://img.shields.io/security-headers?url=https%3A%2F%2Fcovid19-scenarios.org" alt="Security Headers badge" />
+  </a>
+  <a href="https://observatory.mozilla.org/analyze/covid19-scenarios.org">
+    <img src="https://img.shields.io/mozilla-observatory/grade/covid19-scenarios.org" alt="Mozilla Observatory badge" />
+  </a>
+  <a href="https://deepscan.io/dashboard#view=project&tid=8207&pid=10365&bid=142593">
+    <img src="https://deepscan.io/api/teams/8207/projects/10365/branches/142593/badge/grade.svg" alt="DeepScan grade">
   </a>
 </p>
 
