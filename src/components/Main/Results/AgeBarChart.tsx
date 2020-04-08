@@ -4,7 +4,7 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { useTranslation } from 'react-i18next'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload, LabelProps } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { OneCountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
@@ -25,12 +25,32 @@ export interface SimProps {
   data?: AlgorithmResult
   ageDistribution?: OneCountryAgeDistribution
   rates?: SeverityTableRow[]
+  forcedWidth?: number
+  forcedHeight?: number
+  printLabel?: boolean
 }
 
-export function AgeBarChart({ showHumanized, data, ageDistribution, rates }: SimProps) {
+export function AgeBarChart({
+  printLabel,
+  showHumanized,
+  data,
+  ageDistribution,
+  rates,
+  forcedWidth,
+  forcedHeight,
+}: SimProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
   const percentageChartRef = React.useRef(null)
+
+  const label: LabelProps | undefined = printLabel
+    ? {
+        position: 'top',
+        fill: '#444444',
+        fontSize: '11px',
+        formatter: (label: string | number) => (label > 0 ? label : null),
+      }
+    : undefined
 
   if (!data || !rates || !ageDistribution) {
     return null
@@ -93,8 +113,8 @@ export function AgeBarChart({ showHumanized, data, ageDistribution, rates }: Sim
               <div ref={casesChartRef} />
               <BarChart
                 onClick={() => scrollToRef(casesChartRef)}
-                width={width}
-                height={height}
+                width={forcedWidth || width}
+                height={forcedHeight || height}
                 data={plotData}
                 margin={{
                   left: 0,
@@ -120,10 +140,10 @@ export function AgeBarChart({ showHumanized, data, ageDistribution, rates }: Sim
                 <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
                 <Legend verticalAlign="bottom" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
-                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
-                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} />
+                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} label={label} />
+                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} label={label} />
+                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} label={label} />
+                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} label={label} />
                 <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of population')} yAxisId={'ageDisAxis'} />
               </BarChart>
 

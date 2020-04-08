@@ -110,19 +110,19 @@ definitions:
     properties:
       latencyTime:
         type: number
-        minimum: 0
+        minimum: 1
 
       infectiousPeriod:
         type: number
-        minimum: 0
+        minimum: 1
 
       lengthHospitalStay:
         type: number
-        minimum: 0
+        minimum: 1
 
       lengthICUStay:
         type: number
-        minimum: 0
+        minimum: 1
 
       seasonalForcing:
         type: number
@@ -207,7 +207,7 @@ definitions:
       - mitigationValue
 
     additionalProperties: false
-    
+
     properties:
       id:
         type: string

@@ -12,6 +12,7 @@ const caseRegions = [...caseCountsNames, CUSTOM_COUNTRY_NAME]
 
 const MSG_REQUIRED = 'Required'
 const MSG_NON_NEGATIVE = 'Should be non-negative'
+const MSG_POSITIVE = 'Should be strictly positive'
 
 export function dateRange() {
   return yup.object({
@@ -40,13 +41,13 @@ export const schema = yup.object().shape({
   epidemiological: yup.object().shape({
     r0: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    latencyTime: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    latencyTime: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
 
-    infectiousPeriod: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    infectiousPeriod: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
 
-    lengthHospitalStay: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    lengthHospitalStay: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
 
-    lengthICUStay: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    lengthICUStay: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
 
     seasonalForcing: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 

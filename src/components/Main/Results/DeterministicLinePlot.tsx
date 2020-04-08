@@ -59,9 +59,9 @@ export const colors = {
   [DATA_POINTS.Infectious]: '#fdbf6f',
   [DATA_POINTS.Severe]: '#fb9a99',
   [DATA_POINTS.Critical]: '#e31a1c',
-  [DATA_POINTS.Overflow]: '#660033',
+  [DATA_POINTS.Overflow]: '#900d2c',
   [DATA_POINTS.Recovered]: '#33a02c',
-  [DATA_POINTS.Fatalities]: '#cab2d6',
+  [DATA_POINTS.Fatalities]: '#5e506a',
   [DATA_POINTS.CumulativeCases]: '#aaaaaa',
   [DATA_POINTS.NewCases]: '#fdbf6f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
@@ -75,6 +75,8 @@ export interface LinePlotProps {
   logScale?: boolean
   showHumanized?: boolean
   caseCounts?: EmpiricalData
+  forcedWidth?: number
+  forcedHeight?: number
 }
 
 interface LineProps {
@@ -104,6 +106,8 @@ export function DeterministicLinePlot({
   logScale,
   showHumanized,
   caseCounts,
+  forcedWidth,
+  forcedHeight,
 }: LinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
@@ -413,8 +417,8 @@ export function DeterministicLinePlot({
 
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
-                width={width}
-                height={height}
+                width={forcedWidth || width}
+                height={forcedHeight || height}
                 data={consolidatedPlotData}
                 throttleDelay={75}
                 margin={{
@@ -426,7 +430,7 @@ export function DeterministicLinePlot({
                 <CartesianGrid strokeDasharray="3 3" />
 
                 <XAxis
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   dataKey="time"
                   type="number"
                   domain={['dataMin', 'dataMax']}
@@ -435,7 +439,7 @@ export function DeterministicLinePlot({
                 />
 
                 <YAxis
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   scale={logScaleString}
                   type="number"
                   domain={logScale ? [1, yDataMax * 1.1] : [0, yDataMax * 1.1]}

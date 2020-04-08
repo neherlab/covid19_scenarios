@@ -34,6 +34,7 @@ interface ResultsCardProps {
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
   scenarioUrl: string
+  openPrintPreview: () => void
 }
 
 function ResultsCardFunction({
@@ -47,6 +48,7 @@ function ResultsCardFunction({
   result,
   caseCounts,
   scenarioUrl,
+  openPrintPreview,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
@@ -156,7 +158,7 @@ function ResultsCardFunction({
           <Col xs={12} sm={6} md={8}>
             <p className="m-0 caution-text">
               {t(
-                'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution.',
+                'This output of any model depends on model assumptions and parameter choices. Please carefully consider the parameters you choose (R0 and the mitigation measures in particular) and interpret the output with caution.',
               )}
             </p>
             <FormGroup inline className="ml-auto">
@@ -239,9 +241,11 @@ function ResultsCardFunction({
       ) : undefined}
       <ExportSimulationDialog
         showModal={showExportModal}
+        openPrintPreview={openPrintPreview}
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
         result={result}
+        scenarioUrl={scenarioUrl}
       />
     </>
   )
