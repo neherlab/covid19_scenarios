@@ -133,7 +133,7 @@ function Main() {
     }
   }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
 
-  const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
+  const setScenarioToCustom = (newParams: AllParams) => {
     // NOTE: deep object comparison!
     if (!_.isEqual(allParams.population, newParams.population)) {
       scenarioDispatch(setPopulationData({ data: newParams.population }))
@@ -151,7 +151,7 @@ function Main() {
       const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
       scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
     }
-  }, 1000)
+  }
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
     updateBrowserURL(locationSearch)
@@ -167,10 +167,13 @@ function Main() {
           initialValues={allParams}
           validationSchema={schema}
           onSubmit={handleSubmit}
-          validate={setScenarioToCustom}
         >
           {({ values, errors, touched, isValid, isSubmitting }) => {
             const canRun = isValid && severityTableIsValid(severity)
+
+            if (isValid) {
+              setScenarioToCustom(values)
+            }
 
             return (
               <Form className="form">
