@@ -301,8 +301,7 @@ export function DeterministicLinePlot({
           }
 
           const height = Math.max(500, width / ASPECT_RATIO)
-          // place tooltip below the graph
-          const tooltipPosition = { x: 10, y: height }
+          const tooltipPosition = calculatePosition(height)
 
           return (
             <>
