@@ -7,13 +7,13 @@ Models of COVID-19 outbreak trajectories and hospital demand
 </blockquote>
 
 <p align="center">
-  <a href="https://neherlab.org/covid19/">
-    🌐 neherlab.org/covid19/
+  <a href="https://covid19-scenarios.org/">
+    🌐 covid19-scenarios.org
   </a>
 </p>
 
 <p align="center">
-  <a href="https://neherlab.org/covid19/">
+  <a href="https://covid19-scenarios.org/">
     <img
       width="100%"
       height="auto"
@@ -36,8 +36,8 @@ Models of COVID-19 outbreak trajectories and hospital demand
       alt="package.json version"
     />
   </a>
-  <a href="https://neherlab.org/covid19/">
-    <img src="https://img.shields.io/website?url=https%3A%2F%2Fneherlab.org/covid19/&logo=circle&logoColor=white" />
+  <a href="https://covid19-scenarios.org/">
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fcovid19-scenarios.org&logo=circle&logoColor=white" />
   </a>
 </p>
 
@@ -132,7 +132,7 @@ Got questions or suggestions?
 <td></td>
 
 <td>
-<a alt="Link to the app" href="https://neherlab.org/covid19/">
+<a alt="Link to the app" href="https://covid19-scenarios.org/">
 <img 
   alt="Image with app logo and text 'Try'"
   src="https://user-images.githubusercontent.com/9403403/77235707-6ae88800-6bb8-11ea-90ff-22db107b6045.png"
