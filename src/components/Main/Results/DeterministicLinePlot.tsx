@@ -354,7 +354,7 @@ export function DeterministicLinePlot({
                 />
 
                 <Legend
-                  verticalAlign="top"
+                  verticalAlign="bottom"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
                   onClick={(e) => {
                     const plots = enabledPlots.slice(0)
@@ -379,7 +379,7 @@ export function DeterministicLinePlot({
                 ))}
 
                 {scatterToPlot.map((d) => (
-                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
 
                 {linesToPlot.map((d) => (
