@@ -306,9 +306,6 @@ export function DeterministicLinePlot({
                   bottom: 15,
                   top: 15,
                 }}
-                onMouseDown={(e: any) => e && setzoomSelectedLeftState(e.activeLabel)}
-                onMouseMove={(e: any) => e && zoomSelectedLeftState && setzoomSelectedRightState(e.activeLabel)}
-                onMouseUp={zoomIn}
               >
                 <CartesianGrid strokeDasharray="3 3" />
 
@@ -316,8 +313,8 @@ export function DeterministicLinePlot({
                   allowDataOverflow={true}
                   dataKey="time"
                   type="number"
+                  domain={['dataMin', 'dataMax']}
                   tickFormatter={xTickFormatter}
-                  domain={[zoomLeftState, zoomRightState]}
                   tickCount={7}
                 />
 
@@ -357,33 +354,17 @@ export function DeterministicLinePlot({
                 {mitigationIntervals.map((interval) => (
                   <ReferenceArea
                     key={interval.id}
-                    x1={_.clamp(
-                      interval.timeRange.tMin.getTime(),
-                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
-                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
-                    )}
-                    x2={_.clamp(
-                      interval.timeRange.tMax.getTime(),
-                      zoomLeftState !== 'dataMin' ? zoomLeftState : tMin,
-                      zoomRightState !== 'dataMax' ? zoomRightState : tMax,
-                    )}
+                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
+                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
                     y1={0}
                     y2={_.clamp(interval.mitigationValue, 0, 1)}
                     yAxisId={'mitigationStrengthAxis'}
                     fill={interval.color}
-                    fillOpacity={0.25}
+                    fillOpacity={0.1}
                   >
                     <Label value={interval.name} position="insideTopRight" fill="#444444" />
                   </ReferenceArea>
                 ))}
-                {zoomSelectedLeftState && zoomSelectedRightState ? (
-                  <ReferenceArea
-                    x1={zoomSelectedLeftState}
-                    x2={zoomSelectedRightState}
-                    fill="#c0f5bc"
-                    fillOpacity={0.2}
-                  />
-                ) : null}
 
                 {linesToPlot.map((d) => (
                   <Line
