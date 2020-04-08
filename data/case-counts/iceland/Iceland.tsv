@@ -1,7 +1,7 @@
 # Data source: https://raw.githubusercontent.com/tryggvigy/CoronaWatchIS/master/data/covid_in_is.cvs
 # Data provenance: https://github.com/tryggvigy/CoronaWatchIS
 # License: none specified
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-02-27	0	0			0
 2020-02-28	1	0			0
 2020-02-29	1	0			0

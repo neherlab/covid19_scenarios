@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
+
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col, CustomInput, Form, FormGroup } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
+
+import './Disclaimer.scss'
+
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 const disclaimerVersion = 0
@@ -17,6 +22,7 @@ function onDialogClosed(suppressShowAgain: boolean) {
 }
 
 export default function DisclaimerProps() {
+  const { t } = useTranslation()
   const [showModal, setShowModal] = useState(false)
   const [suppressShowAgain, setsuppressShowAgain] = useState(false)
 
@@ -37,40 +43,52 @@ export default function DisclaimerProps() {
   const toggleChecked = () => setsuppressShowAgain(!suppressShowAgain)
 
   return (
-    <Modal isOpen={showModal} centered toggle={toggle} onClosed={() => onDialogClosed(suppressShowAgain)}>
-      <ModalHeader toggle={toggle}>COVID-19 Scenario Disclaimer</ModalHeader>
+    <Modal
+      isOpen={showModal}
+      backdrop="static"
+      fade={false}
+      centered
+      autoFocus
+      toggle={toggle}
+      onClosed={() => onDialogClosed(suppressShowAgain)}
+    >
+      <ModalHeader>{t(`COVID-19 Scenarios`)}</ModalHeader>
       <ModalBody>
-        <div className="row mx-md-3">
-          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
-          TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-          AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
-          CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-          DEALINGS IN THE SOFTWARE.
-          <br />
-          <br />
-          This tool uses a mathematical model to simulate a variety of COVID-19 outcomes based on user-defined
-          parameters. This tool is not a medical predictor, and should be used for informative and research purposes
-          only; please use the simulated results responsibly.
-          <br />
-          <br />
-          <strong>GDPR disclaimer:</strong> This tool writes small amounts of data to your device's local storage to
-          improve the user experience. Your continued use of the tool constitutes acceptance.
-        </div>
-        <div className="row float-right mt-sm-3 pr-md-3">
-          <label className="form-check-label">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              onChange={toggleChecked}
-              checked={suppressShowAgain}
-              ariaChecked={suppressShowAgain}
-            />
-            Don't show again
-          </label>
-        </div>
+        <Row>
+          <Col>
+            <p>
+              {t(
+                `This tool uses a mathematical model to simulate a variety of COVID-19 outcomes based on user-defined parameters. This output of the model depends on model assumptions and parameter choices.`,
+              )}
+            </p>
+            <p>
+              {t(
+                `It is not a medical predictor, and should be used for informational and research purposes only. Please carefully consider the parameters you choose. Interpret and use the simulated results responsibly. Authors are not liable for any direct or indirect consequences of this usage.`,
+              )}
+            </p>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <Form inline>
+              <FormGroup className="ml-auto">
+                <CustomInput
+                  id="dont-show-again"
+                  type="checkbox"
+                  onChange={toggleChecked}
+                  checked={suppressShowAgain}
+                />
+                <label htmlFor="dont-show-again" className="d-flex">
+                  {t(`Don't show again`)}
+                </label>
+              </FormGroup>
+            </Form>
+          </Col>
+        </Row>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={toggle}>
+        <Button className="mx-auto" color="danger" onClick={toggle}>
           Accept
         </Button>
       </ModalFooter>

@@ -16,7 +16,7 @@ X = {
         "state": "stato",
         "region": "denominazione_regione",
         "hospitalized" : "ricoverati_con_sintomi",
-        "ICU" : "terapia_intensiva",
+        "icu" : "terapia_intensiva",
         "cases" : "totale_casi",
         "deaths" : "deceduti",
         "recovered": "dimessi_guariti",
@@ -25,7 +25,7 @@ X = {
 
 URL  = "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
 LOC  = "case-counts/Europe/Southern Europe/Italy"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Main point of entry
