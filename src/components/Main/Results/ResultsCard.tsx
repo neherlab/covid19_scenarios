@@ -235,6 +235,7 @@ function ResultsCardFunction({
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
         result={result}
+        scenarioUrl={scenarioUrl}
       />
     </>
   )

@@ -10,10 +10,14 @@ export interface ExportSimulationDialogProps {
   showModal: boolean
   toggleShowModal: () => void
   result?: AlgorithmResult
+  scenarioUrl: string
 }
 
-export default function ExportSimulationDialog({ showModal, toggleShowModal, result }: ExportSimulationDialogProps) {
+export default function ExportSimulationDialog({ showModal, toggleShowModal, result, scenarioUrl }: ExportSimulationDialogProps) {
   const { t } = useTranslation()
+
+  // Assuming href and shareable link can be concatenated without other processing:
+  const shareableLink = `${window.location.href}${scenarioUrl}`
 
   return (
     <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
@@ -64,7 +68,7 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               <td>{t('Shareable link')}</td>
               <td>URL</td>
               <td>
-                <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={window.location.href}>
+                <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={shareableLink}>
                   {t('Copy link')}
                 </ClipboardButton>
               </td>
