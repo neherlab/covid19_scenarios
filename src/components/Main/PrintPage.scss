@@ -17,60 +17,44 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
 
 @media print 
 {
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+
+  h1, h2 {
+    margin-top: 1cm;
   }
 
-  input[type=number] {
-      -moz-appearance:textfield; /* Firefox */
+  h3 {
+    margin-top: 20px;
   }
 
   body {
       background-color: #FFF;
       padding-top:15mm;
       margin: 15mm;
+      font-size: 10pt;
+      max-width: 20cm !important;
+      width: 20cm !important;
   }
-
-  .formValueForPrint {
-    color: #343a40;
-    margin-top: 5px;
-  }
-
-  .formLabelForPrint {
-    max-width: 200px;
-  }
-
-  .formInputForPrint {
-    margin: 0;
-    border: 0;
-    box-shadow: none;
-  }
-
-  .formColForPrint {
-    width: 200px;
-  }
-
-  .DateRangePickerInput__withBorder {
-    border-radius: 0;
-    border: 0;
-  }
-
+/*
   .card--main {
     page-break-before: always;
+    break-before: always;
   }
 
   .p-break-after {
     page-break-after: always;
+    break-before: always;
+    clear: both;
   }
 
   .p-break-before {
     page-break-before: always;
+    break-before: always;
+    clear: both;
   }
 
   .p-margin-top {
     margin-top: 50px;
+    clear: both;
   }
 
   .severity-table table {
@@ -89,7 +73,7 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
 
   .card-header p {
     display: none;
-  }
+  }*/
 
   .p-logo {
     width: 100%;
@@ -108,11 +92,35 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
   }
 
   .modal-backdrop {
-    background-color: #ffffff;
+    display: none;
   }
 
   .modal-backdrop.show {
     display: none;
   }
+
+  .row {
+    display: block;
+  }
+
+  /*.col-lg-4 .col-xl-6 .card--main .my-2 .py-1 .lg-4 {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .p-full-width {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .card--population .card-body .row {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }*/
+
+  /*.modal-open {
+    padding-right: 0 !important;
+    overflow: auto !important;
+  }*/
 
 }
