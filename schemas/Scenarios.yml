@@ -139,8 +139,12 @@ definitions:
         minimum: 0
 
       r0:
-        type: number
-        minimum: 0
+        type: array
+        items:
+            type: number
+            minimum: 0
+        minItems: 2
+        maxItems: 2
 
   SimulationData:
     type: object
