@@ -49,6 +49,12 @@ export function AgeBarChart({ showHumanized, data, ageDistribution, rates }: Sim
     return String(translation)
   }
 
+  // Ensure age distribution is normalized
+  const Z: number = Object.values(ageDistribution).reduce((a, b) => a + b, 0)
+  Object.keys(ageDistribution).forEach((k) => {
+    ageDistribution[k] /= Z
+  })
+
   const ages = Object.keys(ageDistribution)
   const lastDataPoint = data.trajectory.mean[data.trajectory.mean.length - 1]
   const plotData = ages.map((age) => ({
