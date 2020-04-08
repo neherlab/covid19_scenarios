@@ -110,7 +110,7 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
                   tickFormatter={tickFormatter}
                 />
                 <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
-                <Legend verticalAlign="top" />
+                <Legend verticalAlign="bottom" />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
                 <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
