@@ -101,7 +101,7 @@ function ResultsCardFunction({
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
 
   useEffect(() => {
-    setCanExport((result && !!result.deterministic) || false)
+    setCanExport((result && !!result.trajectory) || false)
   }, [result])
 
   return (
