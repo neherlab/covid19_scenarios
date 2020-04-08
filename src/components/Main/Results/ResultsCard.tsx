@@ -131,6 +131,7 @@ function ResultsCardFunction({
               <LinkButton
                 className="new-tab-button"
                 color="secondary"
+                disabled={!canRun}
                 href={getScenarioUrl()}
                 target="_blank"
                 data-testid="RunResultsInNewTab"
