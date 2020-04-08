@@ -369,7 +369,7 @@ export function DeterministicLinePlot({
                     x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
                     x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
                     y1={0}
-                    y2={_.clamp(interval.mitigationValue, 0, 1)}
+                    y2={_.clamp(interval.mitigationValue, 0, 100)}
                     yAxisId={'mitigationStrengthAxis'}
                     fill={interval.color}
                     fillOpacity={0.1}
