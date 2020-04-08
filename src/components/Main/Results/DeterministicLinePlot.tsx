@@ -295,7 +295,8 @@ export function DeterministicLinePlot({
           }
 
           const height = Math.max(500, width / ASPECT_RATIO)
-          const tooltipPosition = calculatePosition(height)
+          // place tooltip below the graph
+          const tooltipPosition = { x: 10, y: height }
 
           return (
             <>
@@ -307,10 +308,10 @@ export function DeterministicLinePlot({
                 data={consolidatedPlotData}
                 throttleDelay={75}
                 margin={{
-                  left: 15,
-                  right: 15,
-                  bottom: 15,
-                  top: 15,
+                  left: 5,
+                  right: 5,
+                  bottom: 5,
+                  top: 5,
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
