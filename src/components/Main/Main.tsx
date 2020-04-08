@@ -184,6 +184,7 @@ function Main() {
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
+                      getScenarioUrl={() => buildLocationSearch(scenarioState)}
                     />
                   </Col>
                 </Row>
