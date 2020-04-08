@@ -58,11 +58,11 @@ export const schema = yup.object().shape({
   containment: yup.object().shape({
     mitigationIntervals: yup.array().of(
       yup.object({
-        color: yup.string().required(),
-        id: yup.string().required(),
-        mitigationValue: yup.number().min(0, MSG_NON_NEGATIVE).max(100).required(),
-        name: yup.string().required(),
-        timeRange: dateRange().required(),
+        color: yup.string().required(MSG_REQUIRED),
+        id: yup.string().required(MSG_REQUIRED),
+        mitigationValue: yup.number().min(0, MSG_NON_NEGATIVE).max(100).required(MSG_REQUIRED),
+        name: yup.string().required(MSG_REQUIRED),
+        timeRange: dateRange().required(MSG_REQUIRED),
       }),
     ),
   }),
@@ -74,6 +74,6 @@ export const schema = yup.object().shape({
       .min(0, MSG_NON_NEGATIVE)
       .max(100, i18next.t('too many stochastic trajectories will slow things down')),
 
-    simulationTimeRange: dateRange().required(),
+    simulationTimeRange: dateRange().required(MSG_REQUIRED),
   }),
 })
