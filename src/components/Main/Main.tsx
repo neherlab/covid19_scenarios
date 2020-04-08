@@ -79,7 +79,6 @@ function Main() {
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
   const [locationSearch, setLocationSeach] = useState<string>('')
-  const scenarioUrl = `${window.location.origin}${locationSearch}`
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
@@ -104,6 +103,9 @@ function Main() {
     // this is because the page was either shared via link, or opened in new tab
     if (window.location.search) {
       debouncedRun(allParams, scenarioState, severity)
+
+      // At this point the scenario params have been captured, and we can clean up the URL.
+      updateBrowserURL('/')
     }
   }, [])
 
@@ -117,21 +119,7 @@ function Main() {
     if (autorunSimulation) {
       debouncedRun(allParams, scenarioState, severity)
     }
-
-    // 1. upon each parameter change, we rebuild the query string
-    const nextLocationSearch = buildLocationSearch(scenarioState)
-
-    if (nextLocationSearch !== locationSearch) {
-      // whenever the generated query string changes, we're updating:
-      // 1. browser's location.search
-      // 2. searchString state variable (scenarioUrl is used by children)
-      setLocationSeach(nextLocationSearch)
-
-      if (autorunSimulation) {
-        updateBrowserURL(nextLocationSearch)
-      }
-    }
-  }, [autorunSimulation, debouncedRun, scenarioState, locationSearch, severity])
+  }, [autorunSimulation, debouncedRun, scenarioState, severity])
 
   const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
     // NOTE: deep object comparison!
@@ -154,7 +142,6 @@ function Main() {
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    updateBrowserURL(locationSearch)
     runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
     setSubmitting(false)
   }
@@ -198,7 +185,7 @@ function Main() {
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
-                      scenarioUrl={scenarioUrl}
+                      scenarioUrl={buildLocationSearch(scenarioState)}
                     />
                   </Col>
                 </Row>
