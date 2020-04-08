@@ -11,6 +11,7 @@ import {
   Label,
   ReferenceArea,
   Scatter,
+  Area,
   Tooltip,
   TooltipPayload,
   XAxis,

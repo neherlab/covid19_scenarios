@@ -197,7 +197,6 @@ function ResultsCardFunction({
           <Col>
             <DeterministicLinePlot
               data={result}
-              userResult={userResult}
               params={params}
               mitigation={mitigation}
               logScale={logScale}
