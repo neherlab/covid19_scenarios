@@ -33,12 +33,11 @@ export default function FormDropdownStateless<ValueType extends string | number>
     <>
       <FormGroup className="my-0">
         <Row noGutters>
-          <Col xl={7} className="formColForPrint">
+          <Col xl={7}>
             <FormLabel identifier={identifier} label={label} help={help} />
           </Col>
-          <Col xl={5} className="formColForPrint">
+          <Col xl={5}>
             <Select
-              className="d-print-none"
               id={identifier}
               name={identifier}
               options={options}
@@ -54,7 +53,6 @@ export default function FormDropdownStateless<ValueType extends string | number>
               }}
               onBlur={onBlur}
             />
-            {value && <p className="d-none d-print-block formValueForPrint">{value.value}</p>}
           </Col>
         </Row>
       </FormGroup>

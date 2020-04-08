@@ -8,8 +8,6 @@ import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { MitigationTable } from '../Mitigation/MitigationTable'
 import { AllParams } from '../../../algorithms/types/Param.types'
 
-import PrintPageSeparatorHack from '../PrintPageSeparatorHack'
-
 export interface ScenarioCardContainmentProps {
   values: AllParams
   errors?: FormikErrors<FormikValues>
@@ -23,7 +21,6 @@ function ScenarioCardContainment({ values, errors, touched }: ScenarioCardContai
 
   return (
     <>
-      <PrintPageSeparatorHack />
       <CardWithoutDropdown
         identifier="containmentScenario"
         label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}

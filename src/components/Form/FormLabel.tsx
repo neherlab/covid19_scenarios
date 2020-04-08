@@ -10,7 +10,7 @@ export interface LabelWithHelpButtonProps {
 
 export default function FormLabel({ identifier, label, help }: LabelWithHelpButtonProps) {
   return (
-    <label htmlFor={identifier} className="d-flex formLabelForPrint">
+    <label htmlFor={identifier} className="d-flex">
       <HelpLabel identifier={identifier} label={label} help={help} />
     </label>
   )
