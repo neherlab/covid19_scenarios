@@ -213,10 +213,10 @@ export function DeterministicLinePlot({
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
     { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
     { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
-    { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'line' },
     { key: DATA_POINTS.Severe, color: colors.severe, name: t('Severely ill'), legendType: 'line' },
-    { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
+    { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU (model)'), legendType: 'line' },
     { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
+    { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths (model)'), legendType: 'line' },
     { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
     { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
   ]
@@ -231,20 +231,20 @@ export function DeterministicLinePlot({
   const scatterToPlot: LineProps[] = observations.length
     ? [
         // Append empirical data
-        ...(countObservations.observedDeaths
-          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative confirmed deaths') }]
-          : []),
         ...(countObservations.cases
-          ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
-          : []),
-        ...(countObservations.hospitalized
-          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital') }]
-          : []),
-        ...(countObservations.ICU
-          ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }]
+          ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative cases (data)') }]
           : []),
         ...(countObservations.newCases
-          ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Confirmed cases past 3 days') }]
+          ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Cases past 3 days (data)') }]
+          : []),
+        ...(countObservations.hospitalized
+          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital (data)') }]
+          : []),
+        ...(countObservations.ICU
+          ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU (data)') }]
+          : []),
+        ...(countObservations.observedDeaths
+          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative deaths (data)') }]
           : []),
       ]
     : []
@@ -372,6 +372,10 @@ export function DeterministicLinePlot({
                   </ReferenceArea>
                 ))}
 
+                {scatterToPlot.map((d) => (
+                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
+                ))}
+
                 {linesToPlot.map((d) => (
                   <Line
                     key={d.key}
@@ -384,10 +388,6 @@ export function DeterministicLinePlot({
                     name={d.name}
                     legendType={d.legendType}
                   />
-                ))}
-
-                {scatterToPlot.map((d) => (
-                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}
               </ComposedChart>
             </>
