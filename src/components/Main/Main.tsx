@@ -139,7 +139,6 @@ function Main() {
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    updateBrowserURL(locationSearch)
     runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
     setSubmitting(false)
   }
