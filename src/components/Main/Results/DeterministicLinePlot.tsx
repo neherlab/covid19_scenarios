@@ -343,7 +343,7 @@ export function DeterministicLinePlot({
                   allowDataOverflow={true}
                   orientation={'right'}
                   type="number"
-                  domain={[0, 1]}
+                  domain={[0, 100]}
                 />
 
                 <Tooltip
