@@ -344,7 +344,7 @@ export function DeterministicLinePlot({
     {
       key: `${DATA_POINTS.Fatalities}_area`,
       color: colors.fatality,
-      name: t('Cumulative deaths uncertainty'),
+      name: t('Cumulative deaths (model) uncertainty'),
       legendType: 'none',
     },
   ]
