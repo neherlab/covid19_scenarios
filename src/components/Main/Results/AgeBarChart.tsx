@@ -35,7 +35,9 @@ export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidt
 
   const label: LabelProps | undefined = printLabel
     ? {
-        position: 'insideTopLeft',
+        position: 'top',
+        fill: '#444444',
+        fontSize: '11px',
         formatter: (label: string | number) => (label > 0 ? label : null),
       }
     : undefined
