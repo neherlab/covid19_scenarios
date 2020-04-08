@@ -33,11 +33,11 @@ export default function LanguageSwitcher() {
   const selectedLang = getCurrentLang()
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle} className="pull-right" data-testid="LanguageSwitcher">
+    <Dropdown isOpen={dropdownOpen} toggle={toggle} data-testid="LanguageSwitcher">
       <DropdownToggle caret>
         <Lang lang={SupportedLocales[selectedLang]} />
       </DropdownToggle>
-      <DropdownMenu>
+      <DropdownMenu positionFixed={true}>
         {(Object.keys(SupportedLocales) as SupportedLocale[]).map((key: SupportedLocale) => (
           <DropdownItem
             key={key}
