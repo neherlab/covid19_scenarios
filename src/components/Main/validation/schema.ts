@@ -2,26 +2,35 @@ import * as yup from 'yup'
 
 import i18next from 'i18next'
 
+import { caseCountsNames } from '../state/caseCountsData'
 import { ageDistributionNames } from '../state/countryAgeDistributionData'
 import { CUSTOM_COUNTRY_NAME } from '../state/state'
-import { DateRange } from '../../../.generated/types'
 
-const countries = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]
+const ageRegions = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]
+
+const caseRegions = [...caseCountsNames, CUSTOM_COUNTRY_NAME]
 
 const MSG_REQUIRED = 'Required'
 const MSG_NON_NEGATIVE = 'Should be non-negative'
+
+export function dateRange() {
+  return yup.object({
+    tMin: yup.date().required(MSG_REQUIRED),
+    tMax: yup.date().required(MSG_REQUIRED),
+  })
+}
 
 export const schema = yup.object().shape({
   population: yup.object().shape({
     populationServed: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    country: yup.string().required(MSG_REQUIRED).oneOf(countries, i18next.t('No such region in our data')),
+    country: yup.string().required(MSG_REQUIRED).oneOf(ageRegions, i18next.t('No such region in our data')),
 
     suspectedCasesToday: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
     importsPerDay: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    cases: yup.string().required(MSG_REQUIRED).oneOf(countries, i18next.t('No such region in our data')),
+    cases: yup.string().required(MSG_REQUIRED).oneOf(caseRegions, i18next.t('No such region in our data')),
 
     hospitalBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
@@ -53,28 +62,18 @@ export const schema = yup.object().shape({
         id: yup.string().required(),
         mitigationValue: yup.number().min(0, MSG_NON_NEGATIVE).max(100).required(),
         name: yup.string().required(),
-        timeRange: yup
-          .object({
-            tMin: yup.date().required(MSG_REQUIRED),
-            tMax: yup.date().required(MSG_REQUIRED),
-          })
-          .required(),
+        timeRange: dateRange().required(),
       }),
     ),
   }),
 
   simulation: yup.object().shape({
-    // numberStochasticRuns: yup
-    //   .number()
-    //   .required(MSG_REQUIRED)
-    //   .min(0, MSG_NON_NEGATIVE)
-    //   .max(100, i18next.t('too many stochastic trajectories will slow things down')),
+    numberStochasticRuns: yup
+      .number()
+      .required(MSG_REQUIRED)
+      .min(0, MSG_NON_NEGATIVE)
+      .max(100, i18next.t('too many stochastic trajectories will slow things down')),
 
-    simulationTimeRange: yup
-      .object({
-        tMin: yup.date().required(MSG_REQUIRED),
-        tMax: yup.date().required(MSG_REQUIRED),
-      })
-      .required(),
+    simulationTimeRange: dateRange().required(),
   }),
 })
