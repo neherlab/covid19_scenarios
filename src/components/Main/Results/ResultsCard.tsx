@@ -31,7 +31,6 @@ interface ResultsCardProps {
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
-  scenarioUrl?: string
 }
 
 function ResultsCardFunction({
@@ -43,11 +42,12 @@ function ResultsCardFunction({
   severity,
   result,
   caseCounts,
-  scenarioUrl,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
   const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
+
+  const scenarioUrl = undefined; // TODO build scenarioURL when needed.
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
