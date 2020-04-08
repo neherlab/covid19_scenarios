@@ -196,6 +196,10 @@ export function DeterministicLinePlot({
     ...observations,
   ]
 
+  if (plotData.length === 0) {
+    return null
+  }
+
   plotData.sort((a, b) => (a.time > b.time ? 1 : -1))
   const consolidatedPlotData = [plotData[0]]
   plotData.forEach((d) => {
@@ -209,6 +213,9 @@ export function DeterministicLinePlot({
     }
   })
 
+  const dataKeys = enabledPlots.filter((d) => d!==DATA_POINTS.HospitalBeds)
+  const yDataMax = _.max( consolidatedPlotData.map((d) => (_.max(dataKeys.map((k) => d[k])))))
+
   const linesToPlot: LineProps[] = [
     { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
     { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
@@ -221,12 +228,10 @@ export function DeterministicLinePlot({
     { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
   ]
 
-  if (plotData.length === 0) {
-    return null
-  }
 
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
+
 
   const scatterToPlot: LineProps[] = observations.length
     ? [
@@ -329,7 +334,7 @@ export function DeterministicLinePlot({
                   allowDataOverflow={true}
                   scale={logScaleString}
                   type="number"
-                  domain={[1, 'dataMax']}
+                  domain={logScale ? [1, yDataMax * 1.1] : [0, yDataMax * 1.1]}
                   tickFormatter={yTickFormatter}
                 />
 
