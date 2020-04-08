@@ -39,8 +39,6 @@ export const schema = yup.object().shape({
   }),
 
   epidemiological: yup.object().shape({
-    r0: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
-
     latencyTime: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
 
     infectiousPeriod: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),

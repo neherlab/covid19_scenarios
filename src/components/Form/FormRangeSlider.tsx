@@ -18,7 +18,7 @@ export interface RangeSliderProps<T> {
   touched?: FormikTouched<T>
 }
 
-export function RangeSlider({ identifier, label, help, step, min, max, errors, touched }: RangeSliderProps<T>) {
+export function RangeSlider<T>({ identifier, label, help, step, min, max, errors, touched }: RangeSliderProps<T>) {
   const isTouched = _.get(touched, identifier)
   const errorMessage = _.get(errors, identifier)
   const showError = errorMessage && isTouched
@@ -37,6 +37,7 @@ export function RangeSlider({ identifier, label, help, step, min, max, errors, t
     } else if (max && value[1] > max) {
       error = `The upper bound cannot be greater than ${max}`
     }
+
     return error
   }
 
