@@ -215,7 +215,9 @@ function Main() {
                       result={result}
                       caseCounts={empiricalCases}
                       scenarioUrl={scenarioUrl}
-                      openPrintPreview={() => setPrintable(true)}
+                      openPrintPreview={() => {
+                        setPrintable(true)
+                      }}
                     />
                   </Col>
                 </Row>
