@@ -105,7 +105,7 @@ function Main() {
       debouncedRun(allParams, scenarioState, severity)
 
       // At this point the scenario params have been captured, and we can clean up the URL.
-      updateBrowserURL("/")
+      updateBrowserURL('/')
     }
   }, [])
 
