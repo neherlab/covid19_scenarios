@@ -213,7 +213,8 @@ export function DeterministicLinePlot({
     }
   })
 
-  const dataKeys = enabledPlots.filter((d) => d!==DATA_POINTS.HospitalBeds)
+  // determine the max of enabled plots w/o the hospital capacity
+  const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
   const yDataMax = _.max( consolidatedPlotData.map((d) => (_.max(dataKeys.map((k) => d[k])))))
 
   const linesToPlot: LineProps[] = [
