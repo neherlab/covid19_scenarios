@@ -105,7 +105,7 @@ export async function run(
   const tMin: number = new Date(params.simulationTimeRange.tMin).getTime()
   const tMax: number = new Date(params.simulationTimeRange.tMax).getTime()
   const ageGroups = Object.keys(ageDistribution)
-  const initialCases = params.suspectedCasesToday
+  const initialCases = params.initialNumberOfCases
   let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
 
   function simulate(initialState: SimulationTimePoint, func: (x: number) => number) {
