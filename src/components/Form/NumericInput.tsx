@@ -19,19 +19,15 @@ export default function NumericInput<T>({
   precision,
 }: NumericInputProps<T>) {
 
-  const toPrecision = (value) =>
+  const toPrecision : (value:number) => number = (value:number) =>
     Math.round((value + Number.EPSILON) * Math.pow(10, precision)) / Math.pow(10, precision)
 
-  const increase = (value, step) => {
-    const parsed = parseFloat(value)
-    const result = parsed + step
-    return toPrecision(result)
+    const increase : (value:number) => number = (value:number, step:number) => {
+    return toPrecision(value + step)
   }
 
-  const decrease = (value, step) => {
-    const parsed = parseFloat(value)
-    const result = parsed - step
-    return toPrecision(result)
+  const decrease : (value:number) => number = (value:number, step:number) => {
+    return toPrecision(value + step)
   }
 
   const spinnerButtonStyle = {
