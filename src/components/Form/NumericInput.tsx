@@ -1,14 +1,9 @@
-
 import React from 'react'
-
-import _ from 'lodash'
 
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
 
-import { Field, FormikErrors, FormikTouched } from 'formik'
-import { Col, FormGroup, Row, Input, Button, ButtonGroup } from 'reactstrap'
-
-import FormLabel from './FormLabel'
+import { Field } from 'formik'
+import { Col, Row, Input, Button, ButtonGroup } from 'reactstrap'
 
 export interface NumericInputProps<T> {
   identifier: string
