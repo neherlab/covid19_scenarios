@@ -99,8 +99,8 @@ export function getPopulationParams(
     const dCritical = row.critical / 100
     const dFatal = row.fatal / 100
 
-    // d.isolated is possible undefined
-    const isolated = row.isolated ?? 0
+    // row.isolated is possible undefined
+    const isolated = row.isolated === undefined ? 0 : row.isolated
 
     // Age specific rates
     pop.frac.isolated[i] = isolated / 100
