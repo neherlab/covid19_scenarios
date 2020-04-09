@@ -119,7 +119,7 @@ function Main() {
       // At this point the scenario params have been captured, and we can clean up the URL.
       updateBrowserURL('/')
     }
-  }, [autorunSimulation, debouncedRun, scenarioState, severity]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (autorunSimulation) {
