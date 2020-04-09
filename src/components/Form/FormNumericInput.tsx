@@ -35,7 +35,6 @@ export function FormNumericInput<T>({
   const isTouched = _.get(touched, identifier)
   const errorMessage = _.get(errors, identifier)
   const showError = errorMessage && isTouched
-  const borderDanger = showError ? 'border-danger' : ''
 
   const toPrecision = (value) =>
     Math.round((value + Number.EPSILON) * Math.pow(10, precision)) / Math.pow(10, precision)
