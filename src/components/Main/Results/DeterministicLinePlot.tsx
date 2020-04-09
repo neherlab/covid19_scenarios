@@ -20,7 +20,7 @@ import {
 } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
-import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
