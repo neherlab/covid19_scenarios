@@ -204,7 +204,7 @@ export function DeterministicLinePlot({
     return null
   }
 
-  plotData.sort((a, b) => (a.time > b.time ? 1 : -1))
+  plotData.sort((a, b) => a.time > b.time)
   const consolidatedPlotData = [plotData[0]]
   plotData.forEach((d) => {
     if (d.time === consolidatedPlotData[consolidatedPlotData.length - 1].time) {
@@ -216,6 +216,7 @@ export function DeterministicLinePlot({
       consolidatedPlotData.push(d)
     }
   })
+  // const consolidatedPlotData = plotData
 
   // determine the max of enabled plots w/o the hospital capacity
   const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
