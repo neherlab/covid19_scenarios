@@ -37,6 +37,10 @@ export default function FormDropdownStateless<ValueType extends string | number>
         </Col>
         <Col xl={5}>
           <Select
+            styles={{
+                // Necessary to fix overlap issue with Bootstrap ButtonGroups
+                menu: existing => ({ ...existing, zIndex: 3 })
+              }}
             id={identifier}
             name={identifier}
             options={options}
