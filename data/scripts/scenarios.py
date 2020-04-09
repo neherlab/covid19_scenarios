@@ -124,13 +124,13 @@ class MitigationInterval(schema.MitigationInterval):
 class PopulationParams(schema.PopulationData):
     def __init__(self, region, country, population, beds, icus):
         return super(PopulationParams, self).__init__( \
-                region,
-                country,
-                int(beds),
-                int(icus),
-                0.1,
-                int(population),
-                round(FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin))
+                cases=region,
+                country=country,
+                hospital_beds=int(beds),
+                icu_beds=int(icus),
+                imports_per_day=0.1,
+                population_served=int(population),
+                initial_number_of_cases=round(FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin))
 
 class EpidemiologicalParams(schema.EpidemiologicalData):
     def __init__(self, region, hemisphere):

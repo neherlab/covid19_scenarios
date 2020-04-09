@@ -12,7 +12,7 @@ const STATE: PersistedState = {
       hospitalBeds: 698,
       importsPerDay: 0.1,
       populationServed: 195000,
-      suspectedCasesToday: 10,
+      initialNumberOfCases: 10,
     },
     epidemiological: {
       infectiousPeriod: 3,
@@ -64,7 +64,7 @@ const DTO: PersistedStateDto = {
     hospitalBeds: 698,
     importsPerDay: 0.1,
     populationServed: 195000,
-    suspectedCasesToday: 10,
+    initialNumberOfCases: 10,
   },
   epidemiological: {
     infectiousPeriod: 3,
