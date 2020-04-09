@@ -69,7 +69,7 @@ export function FormNumericInput<T>({
                 {({ field, form: { setFieldValue, setFieldTouched } }: FieldProps<number>) => (
                   <Row noGutters>
                     <Col xs={10} sm={10} md={10} lg={10} xl={10}>
-                      <Input type="text" inputMode="numeric" pattern="[0-9]*" aria-label={label} {...field} />
+                      <Input type="text" inputMode="numeric" pattern="[0-9]+([,\.][0-9]+)?" aria-label={label} {...field} />
                     </Col>
                     <Col xs={2} sm={2} md={2} lg={2} xl={2}>
                       <ButtonGroup vertical>
