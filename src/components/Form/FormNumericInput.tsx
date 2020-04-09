@@ -76,14 +76,20 @@ export function FormNumericInput<T>({
                         <Button
                           className="py-0"
                           style={spinnerButtonStyle}
-                          onClick={() => setFieldValue(field.name, increase(field.value, step)) }
+                          onClick={() => {
+                            setFieldTouched(field.name, true)
+                            setFieldValue(field.name, increase(field.value, step))
+                          }}
                         >
                           <MdArrowDropUp size={20} />
                         </Button>
                         <Button
                           className="py-0"
                           style={spinnerButtonStyle}
-                          onClick={() => setFieldValue(field.name, decrease(field.value, step)) }
+                          onClick={() => {
+                            setFieldTouched(field.name, true)
+                            setFieldValue(field.name, decrease(field.value, step))
+                          }}
                         >
                           <MdArrowDropDown size={20} />
                         </Button>
