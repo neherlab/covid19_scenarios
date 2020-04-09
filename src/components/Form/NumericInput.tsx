@@ -40,39 +40,42 @@ export default function NumericInput<T>({
     'max-width': '1.5rem',
     'max-height': '1.2rem',
   }
-return (
-              <Field name={identifier}>
-                {({ field, form: { setFieldValue, setFieldTouched } }: FieldProps<number>) => (
-                  <Row noGutters>
-                    <Col xs={10} sm={10} md={10} lg={10} xl={10}>
-                      <Input type="text" inputMode="numeric" pattern="^[-]?[0-9]+([,\.][0-9]+)?" aria-label={label} {...field} />
-                    </Col>
-                    <Col xs={2} sm={2} md={2} lg={2} xl={2}>
-                      <ButtonGroup vertical>
-                        <Button
-                          className="py-0"
-                          style={spinnerButtonStyle}
-                          onClick={() => {
-                            setFieldTouched(field.name, true)
-                            setFieldValue(field.name, increase(field.value, step))
-                          }}
-                        >
-                          <MdArrowDropUp size={20} />
-                        </Button>
-                        <Button
-                          className="py-0"
-                          style={spinnerButtonStyle}
-                          onClick={() => {
-                            setFieldTouched(field.name, true)
-                            setFieldValue(field.name, decrease(field.value, step))
-                          }}
-                        >
-                          <MdArrowDropDown size={20} />
-                        </Button>
-                      </ButtonGroup>
-                    </Col>
-                  </Row>
-                )}
-              </Field>
-)
+
+  const pattern = "^[-]?[0-9]+([,\.][0-9]+)?"
+
+  return (
+    <Field name={identifier}>
+      {({ field, form: { setFieldValue, setFieldTouched } }: FieldProps<number>) => (
+        <Row noGutters>
+          <Col xs={10} sm={10} md={10} lg={10} xl={10}>
+            <Input type="text" inputMode="numeric" pattern={pattern} aria-label={label} {...field} />
+          </Col>
+          <Col xs={2} sm={2} md={2} lg={2} xl={2}>
+            <ButtonGroup vertical>
+              <Button
+                className="py-0"
+                style={spinnerButtonStyle}
+                onClick={() => {
+                  setFieldTouched(field.name, true)
+                  setFieldValue(field.name, increase(field.value, step))
+                }}
+              >
+                <MdArrowDropUp size={20} />
+              </Button>
+              <Button
+                className="py-0"
+                style={spinnerButtonStyle}
+                onClick={() => {
+                  setFieldTouched(field.name, true)
+                  setFieldValue(field.name, decrease(field.value, step))
+                }}
+              >
+                <MdArrowDropDown size={20} />
+              </Button>
+            </ButtonGroup>
+          </Col>
+        </Row>
+      )}
+    </Field>
+  )
 }
