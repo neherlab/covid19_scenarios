@@ -1,15 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import moment from 'moment'
+import moment from 'moment/moment'
 
 import { FormikErrors, FormikTouched } from 'formik'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
-
-const months = moment.months()
-const monthOptions = months.map((month, i) => ({ value: i, label: month }))
 
 export interface ScenarioCardEpidemiologicalProps {
   errors?: FormikErrors<any>
@@ -74,7 +71,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         identifier="epidemiological.peakMonth"
         label={t('Seasonal peak')}
         help={t('Time of the year with peak transmission')}
-        options={monthOptions}
+        options={moment.months().map((month, i) => ({ value: i, label: month }))}
         errors={errors}
         touched={touched}
       />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import i18next from 'i18next'
+import moment from 'moment/moment'
 
 import SupportedLocales, { Locale, SupportedLocale } from '../../langs'
 
@@ -31,6 +32,7 @@ export default function LanguageSwitcher() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const toggle = () => setDropdownOpen((prevState) => !prevState)
   const selectedLang = getCurrentLang()
+  moment.locale(SupportedLocales[selectedLang].lang)
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} data-testid="LanguageSwitcher">
@@ -45,6 +47,7 @@ export default function LanguageSwitcher() {
               i18next.changeLanguage(SupportedLocales[key].lang, () => {
                 LocalStorage.set(LOCAL_STORAGE_KEYS.LANG, SupportedLocales[key].lang)
               })
+              moment.locale(SupportedLocales[key].lang)
             }}
           >
             <Lang lang={SupportedLocales[key]} />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import moment from 'moment'
+import moment from 'moment/moment'
 import { DateRangePicker as AirbnbDateRangePicker, DateRangePickerShape, FocusedInputShape } from 'react-dates'
 
 import { DateRange } from '../../algorithms/types/Param.types'
