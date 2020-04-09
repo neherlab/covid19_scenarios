@@ -23,11 +23,11 @@ export default function NumericInput<T>({
     Math.round((value + Number.EPSILON) * Math.pow(10, precision)) / Math.pow(10, precision)
 
     const increase : (value:number) => number = (value:number, step:number) => {
-    return toPrecision(value + step)
+    return toPrecision(parseFloat(value) + step)
   }
 
   const decrease : (value:number) => number = (value:number, step:number) => {
-    return toPrecision(value - step)
+    return toPrecision(parseFloat(value) - step)
   }
 
   const spinnerButtonStyle = {
