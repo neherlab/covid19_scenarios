@@ -151,7 +151,6 @@ function Main() {
           const mitigationIntervals = _.map(validParams.containment.mitigationIntervals, _.cloneDeep)
           scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
         }
-
       })
       .catch((error: FormikValidationErrors) => error.errors)
   }, 1000)
