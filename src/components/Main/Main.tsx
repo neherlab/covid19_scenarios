@@ -119,13 +119,13 @@ function Main() {
       // At this point the scenario params have been captured, and we can clean up the URL.
       updateBrowserURL('/')
     }
-  }, [allParams, autorunSimulation, debouncedRun, scenarioState, severity])
+  }, [autorunSimulation, debouncedRun, scenarioState, severity]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (autorunSimulation) {
       debouncedRun(allParams, scenarioState, severity)
     }
-  }, [allParams, autorunSimulation, debouncedRun, scenarioState, severity])
+  }, [autorunSimulation, debouncedRun, scenarioState, severity]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const [validateFormAndUpdateState] = useDebouncedCallback((newParams: AllParams) => {
     return schema
