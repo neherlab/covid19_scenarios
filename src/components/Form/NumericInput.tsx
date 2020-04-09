@@ -3,7 +3,7 @@ import React from 'react'
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
 
 import { Field } from 'formik'
-import { Col, InputGroup, InputGroupAddon, Row, Input, Button, ButtonGroup } from 'reactstrap'
+import { InputGroup, InputGroupAddon, Input, Button, ButtonGroup } from 'reactstrap'
 
 export interface NumericInputProps<T> {
   identifier: string
