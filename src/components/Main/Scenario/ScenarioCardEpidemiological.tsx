@@ -16,7 +16,7 @@ export interface ScenarioCardEpidemiologicalProps {
   touched?: FormikTouched<any>
 }
 
-function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEpidemiologicalProps) {
+function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiologicalProps) {
   const { t } = useTranslation()
   // function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
   //   scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))
@@ -38,7 +38,6 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
           'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
         )}
         step={0.1}
-        value={values.epidemiological.r0}
         errors={errors}
         touched={touched}
       />
@@ -48,7 +47,6 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         help={t('Time from infection to onset of symptoms (here onset of infectiousness)')}
         step={1}
         min={0}
-        value={values.epidemiological.latencyTime}
         errors={errors}
         touched={touched}
       />
@@ -60,7 +58,6 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         )}
         step={1}
         min={0}
-        value={values.epidemiological.infectiousPeriod}
         errors={errors}
         touched={touched}
       />
@@ -70,7 +67,6 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         help={t('Amplitude of seasonal variation in transmission')}
         step={0.1}
         min={0}
-        value={values.epidemiological.seasonalForcing}
         errors={errors}
         touched={touched}
       />
@@ -88,7 +84,6 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         help={t('Average number of days a severe case stays in regular hospital beds')}
         step={1}
         min={0}
-        value={values.epidemiological.lengthHospitalStay}
         errors={errors}
         touched={touched}
       />
@@ -98,7 +93,6 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         help={t('Average number of days a critical case stays in the ICU')}
         step={1}
         min={0}
-        value={values.epidemiological.lengthICUStay}
         errors={errors}
         touched={touched}
       />
@@ -110,7 +104,6 @@ function ScenarioCardEpidemiological({ values, errors, touched }: ScenarioCardEp
         )}
         step={0.1}
         min={1}
-        value={values.epidemiological.overflowSeverity}
         errors={errors}
         touched={touched}
       />

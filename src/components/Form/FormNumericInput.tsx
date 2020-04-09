@@ -15,7 +15,6 @@ export interface FormNumericInputProps<T> {
   help?: string | React.ReactNode
   step?: number | string
   precision?: number
-  value: number | string
   errors?: FormikErrors<T>
   touched?: FormikTouched<T>
 }
@@ -28,7 +27,6 @@ export function FormNumericInput<T>({
   min,
   max,
   precision,
-  value,
   errors,
   touched,
 }: FormNumericInputProps<T>) {

@@ -24,12 +24,11 @@ const caseCountOptions = caseCountsNames.map((country) => ({ value: country, lab
 caseCountOptions.push({ value: 'none', label: 'None' })
 
 export interface ScenarioCardPopulationProps {
-  values: AllParams
   errors?: FormikErrors<T>
   touched?: FormikTouched<T>
 }
 
-function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulationProps) {
+function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
   // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
   // function handleChangePopulationScenario(newPopulationScenario: string) {
@@ -49,7 +48,6 @@ function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulat
         help={t('Number of people served by health care system.')}
         step={1}
         precision={1}
-        value={values.population.populationServed}
         errors={errors}
         touched={touched}
       />
@@ -67,7 +65,6 @@ function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulat
         help={t('Number of cases present at the start of simulation')}
         step={1}
         precision={1}
-        value={values.population.suspectedCasesToday}
         errors={errors}
         touched={touched}
       />
@@ -77,7 +74,6 @@ function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulat
         help={t('Number of cases imported from the outside per day on average')}
         step={0.1}
         precision={2}
-        value={values.population.importsPerDay}
         errors={errors}
         touched={touched}
       />
@@ -89,7 +85,6 @@ function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulat
         )}
         step={1}
         precision={1}
-        value={values.population.hospitalBeds}
         errors={errors}
         touched={touched}
       />
@@ -101,7 +96,6 @@ function ScenarioCardPopulation({ values, errors, touched }: ScenarioCardPopulat
         )}
         step={1}
         precision={1}
-        value={values.population.ICUBeds}
         errors={errors}
         touched={touched}
       />
