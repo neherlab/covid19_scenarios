@@ -69,7 +69,7 @@ describe('URLSerializer', () => {
   })
 
   it('pushes to browser history', () => {
-    const spy = jest.spyOn(history, 'pushState')
+    const spy = jest.spyOn(window.history, 'pushState')
 
     updateBrowserURL('?foo=1&bar=baz')
 
