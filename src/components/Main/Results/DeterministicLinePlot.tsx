@@ -206,11 +206,12 @@ export function DeterministicLinePlot({
 
   plotData.sort((a, b) => (a.time > b.time ? 1 : -1))
   const consolidatedPlotData = [plotData[0]]
+  const msPerDay = 24 * 60 * 60 * 1000
   plotData.forEach((d) => {
-    if (d.time === consolidatedPlotData[consolidatedPlotData.length - 1].time) {
+    if (d.time - msPerDay < consolidatedPlotData[consolidatedPlotData.length - 1].time) {
       consolidatedPlotData[consolidatedPlotData.length - 1] = {
-        ...consolidatedPlotData[consolidatedPlotData.length - 1],
         ...d,
+        ...consolidatedPlotData[consolidatedPlotData.length - 1],
       }
     } else {
       consolidatedPlotData.push(d)
