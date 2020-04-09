@@ -141,8 +141,10 @@ function MitigationIntervalComponent({
               className="form-control item-value"
               identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
               name={`containment.mitigationIntervals[${index}].mitigationValue`}
-              value={interval.mitigationValue}
-              step={0.1}
+              step={1}
+              min={0}
+              max={100}
+              precision={2}
             />
           </div>
         </div>

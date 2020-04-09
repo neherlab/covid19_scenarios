@@ -131,7 +131,7 @@ function Main() {
   }, [autorunSimulation, debouncedRun, scenarioState, severity])
 
   const [validateFormAndUpdateState] = useDebouncedCallback((newParams: AllParams) => {
-    return schema
+    schema
       .validate(newParams)
       .then((validParams) => {
         // NOTE: deep object comparison!
@@ -152,7 +152,6 @@ function Main() {
           scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
         }
 
-        return validParams
       })
       .catch((error: FormikValidationErrors) => error.errors)
   }, 1000)
