@@ -14,7 +14,7 @@ import { MitigationInterval, MitigationIntervals } from '../../../algorithms/typ
 import { suggestNextMitigationInterval } from '../../../algorithms/utils/createMitigationInterval'
 
 import { MitigationDatePicker } from './MitigationDatePicker'
-import { MitigationValueInput } from './MitigationValueInput'
+import NumericInput from '../../Form/NumericInput'
 
 import './MitigationTable.scss'
 
@@ -138,13 +138,11 @@ function MitigationIntervalComponent({
               value={interval.timeRange}
               allowPast
             />
-            <MitigationValueInput
+            <NumericInput
               className="form-control item-value"
               identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
               name={`containment.mitigationIntervals[${index}].mitigationValue`}
               step={1}
-              min={0}
-              max={100}
               precision={2}
             />
           </div>
