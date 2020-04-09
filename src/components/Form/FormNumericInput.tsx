@@ -69,27 +69,21 @@ export function FormNumericInput<T>({
                 {({ field, form: { setFieldValue, setFieldTouched } }: FieldProps<number>) => (
                   <Row noGutters>
                     <Col xs={10} sm={10} md={10} lg={10} xl={10}>
-                      <Input type="text" inputMode="numeric" pattern="[0-9]+([,\.][0-9]+)?" aria-label={label} {...field} />
+                      <Input type="text" inputMode="numeric" pattern="^[-]?[0-9]+([,\.][0-9]+)?" aria-label={label} {...field} />
                     </Col>
                     <Col xs={2} sm={2} md={2} lg={2} xl={2}>
                       <ButtonGroup vertical>
                         <Button
                           className="py-0"
                           style={spinnerButtonStyle}
-                          onClick={(evt) => {
-                            evt.stopPropagation()
-                            setFieldValue(field.name, increase(field.value, step))
-                          }}
+                          onClick={() => setFieldValue(field.name, increase(field.value, step)) }
                         >
                           <MdArrowDropUp size={20} />
                         </Button>
                         <Button
                           className="py-0"
                           style={spinnerButtonStyle}
-                          onClick={(evt) => {
-                            evt.stopPropagation()
-                            setFieldValue(field.name, decrease(field.value, step))
-                          }}
+                          onClick={() => setFieldValue(field.name, decrease(field.value, step)) }
                         >
                           <MdArrowDropDown size={20} />
                         </Button>
