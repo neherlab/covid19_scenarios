@@ -8,8 +8,8 @@ import { Col, Row, Input, Button, ButtonGroup } from 'reactstrap'
 export interface NumericInputProps<T> {
   identifier: string
   label: string
-  step?: number | string
-  precision?: number
+  step: number
+  precision: number
 }
 
 export default function NumericInput<T>({
