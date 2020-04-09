@@ -15,6 +15,8 @@ import { suggestNextMitigationInterval } from '../../../algorithms/utils/createM
 import { MitigationDatePicker } from './MitigationDatePicker'
 import NumericInput from '../../Form/NumericInput'
 
+import './MitigationTable.scss'
+
 export interface MitigationTableProps {
   mitigationIntervals: MitigationIntervals
   errors?: FormikErrors<FormikValues>
