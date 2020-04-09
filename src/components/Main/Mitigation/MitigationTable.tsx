@@ -51,9 +51,8 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
             render={(arrayHelpers) => (
               <Row noGutters>
                 {mitigationIntervals.map((interval: MitigationInterval, index: number) => (
-                    <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <Col key={internval.id} xs={12} sm={12} md={12} lg={12} xl={12}>
                       <MitigationIntervalComponent
-                        key={interval.id}
                         interval={interval}
                         index={index}
                         arrayHelpers={arrayHelpers}
