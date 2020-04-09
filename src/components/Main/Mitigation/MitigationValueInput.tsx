@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Field, FieldProps } from 'formik'
 
-import { Col, FormGroup, Row, Input, Button, ButtonGroup } from 'reactstrap'
+import { Col, Row, Input, Button, ButtonGroup } from 'reactstrap'
 
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
 
