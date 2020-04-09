@@ -14,6 +14,7 @@ import scipy.integrate as solve
 import scipy.optimize as opt
 import matplotlib.pylab as plt
 from scripts.tsv import parse as parse_tsv
+from scipy.signal import savgol_filter
 from paths import BASE_PATH
 
 # ------------------------------------------------------------------------
@@ -221,13 +222,70 @@ def trace_ages(solution):
 
 # ------------------------------------------
 # Parameter estimation
-def assess_model(params, data, cases):
+def is_cumulative(vec):
+    return not False in (vec[:-1]<=vec[1:])
+
+def relevant_idxs(vec):
+    #Filter the relevant data points. Zeros after previous non-zero data is discarded
+    #Data points before first non-zero over a certain time window are discarded.
+    #This time window is computed as the time it would take to grow from a 10 person
+    #population to the first datapoint concidering doubling time of 5 days
+
+    # Terrible workaround the masked values. I don't know how to handle that properly
+    relevance_weights = np.ones_like(vec[1:])
+    idx = np.nonzero(vec[1:])
+    idx = idx[0][0]+1
+    value = vec[idx]
+    back_time_discard = 5*np.log(value)/np.log(10)
+
+    relevance_weights[[np.bitwise_and(x>idx, vec[x]<value) for x in range(1,len(vec))]] = 0
+    relevance_weights[[np.bitwise_and(x<idx, x>idx-back_time_discard) for x in range(1,len(vec))]] = 0
+    relevance_weights = np.concatenate(([0], relevance_weights)) #masked value
+
+    return relevance_weights.astype(bool)
+
+def last_exp_idxs(t, data):
+    def expgrowth_end(t, vec):
+        # Return idx such that vec[idx] gives the last point of the exponential growth phase
+        def smooth(vec):
+            return savgol_filter(vec, 11, 3) # arbitrarily found to give the best results
+
+        dvec = smooth(np.gradient(vec, t))
+        dvec[np.isnan(dvec)] = 0
+        return np.argmax(dvec)
+
+    idx_cases = expgrowth_end(t, data[Sub.T])
+    idx_hospitalized = max(min(idx_cases+5, len(data[Sub.H])-1), expgrowth_end(t, data[Sub.H]))
+    idx_ICU = max(min(idx_hospitalized+2, len(data[Sub.C])-1), expgrowth_end(t, data[Sub.C]))
+    idx_deaths = max(min(idx_hospitalized+1, len(data[Sub.D])-1), expgrowth_end(t, data[Sub.D]))
+
+    return [idx_cases, idx_deaths, idx_hospitalized, idx_ICU]
+
+def relevant_exp_idx(vec, last_exp_idx):
+    tmp = np.ones_like(vec)
+    tmp[last_exp_idx+1:] = 0
+    return tmp.astype(bool)
+
+def assess_model(params, data, tp, cases):
     sol = solve_ode(params, init_pop(params.ages, params.size, cases))
     model = trace_ages(sol)
 
-    case_cost = np.ma.sum(np.power(model[:,Sub.T] - data[Sub.T], 2))
-    death_cost = 100000*np.ma.sum(np.power(model[:,Sub.D] - data[Sub.D], 2))
-    return case_cost + death_cost
+    last_exp = last_exp_idxs(tp, data)
+
+    case_cost = 10*np.sum(np.power(model[1:last_exp[0],Sub.T] - data[Sub.T][1:last_exp[0]], 2))
+    death_cost = 10000*np.sum(np.power(model[1:last_exp[1],Sub.D] - data[Sub.D][1:last_exp[1]], 2))
+
+    hospitalized_cost = 0
+    ICU_cost = 0
+    if data[Sub.H][-1] != 0 and is_cumulative(data[Sub.H][1:]):
+        idxs = np.bitwise_and(relevant_idxs(data[Sub.H]), relevant_exp_idx(data[Sub.H], last_exp[2]))
+        hospitalized_cost = np.sum(np.power(np.cumsum(model[idxs,Sub.H]) - data[Sub.H][idxs], 2))
+
+    if data[Sub.C][-1] != 0 and is_cumulative(data[Sub.C][1:]):
+        idxs = np.bitwise_and(relevant_idxs(data[Sub.C]), relevant_exp_idx(data[Sub.H], last_exp[3]))
+        ICU_cost = np.sum(np.power(np.cumsum(model[idxs,Sub.C]) - data[Sub.C][idxs], 2))
+
+    return case_cost + death_cost + hospitalized_cost + ICU_cost
 
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
@@ -249,12 +307,12 @@ def fit_params(key, time_points, data, guess, bounds=None):
 
     def fit(x):
         param = Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points, *unpack(x))
-        return assess_model(param, data, np.exp(x[params_to_fit['logInitial']]))
+        return assess_model(param, data, time_points, np.exp(x[params_to_fit['logInitial']]))
 
     if bounds is None:
         fit_param = opt.minimize(fit, pack(guess), method='Nelder-Mead')
     else:
-        fit_param = opt.minimize(fit, pack(guess), method='TNC', bounds=pack(bounds, as_list=True))
+        fit_param = opt.minimize(fit, pack(guess), method='TNC', bounds=bounds)
 
     err = (fit_param.success, fit_param.message)
     print(key, fit_param.x)
@@ -272,7 +330,7 @@ def load_data(key):
     else:
         popsize = 1e6
 
-    data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
+    data = [[] if (i == Sub.D or i == Sub.T or i == Sub.H or i == Sub.C) else None for i in range(Sub.NUM)]
     days = []
     case_min, case_max = 20, max(20000, popsize*3e-3)
 
@@ -282,6 +340,8 @@ def load_data(key):
     for tp in ts:
         data[Sub.T].append(tp['cases'] or np.nan)
         data[Sub.D].append(tp['deaths'] or np.nan)
+        data[Sub.H].append(tp['hospitalized'] or 0)
+        data[Sub.C].append(tp['icu'] or 0)
 
     data = [ np.array(d) if d is not None else d for d in data]
 
@@ -289,8 +349,12 @@ def load_data(key):
     good_idx = np.bitwise_and(case_min <= data[Sub.T], data[Sub.T] < case_max)
     data[Sub.D] = np.ma.array(np.concatenate([[np.nan], data[Sub.D][good_idx]]))
     data[Sub.T] = np.ma.array(np.concatenate([[np.nan], data[Sub.T][good_idx]]))
+    data[Sub.H] = np.ma.array(np.concatenate([[np.nan], data[Sub.H][good_idx]]))
+    data[Sub.C] = np.ma.array(np.concatenate([[np.nan], data[Sub.C][good_idx]]))
     data[Sub.D].mask = np.isnan(data[Sub.D])
     data[Sub.T].mask = np.isnan(data[Sub.T])
+    data[Sub.H].mask = np.isnan(data[Sub.H])
+    data[Sub.C].mask = np.isnan(data[Sub.C])
 
     if sum(good_idx) == 0:
         return None, None
@@ -317,7 +381,7 @@ def fit_population(region, guess=None):
                   "logInitial" : 1
                 }
 
-    param, init_cases, err = fit_params(region, time_points, data, guess)
+    param, init_cases, err = fit_params(region, time_points, data, guess, bounds=((0.4,2),(0.05,0.8),(None,None)))
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     return {'params':param, 'initialCases':init_cases, 'tMin':tMin, 'data': data, 'error':err}
 
@@ -339,20 +403,33 @@ if __name__ == "__main__":
     # param = Params(AGES[COUNTRY], POPDATA[make_key(COUNTRY, REGION)], times, rates, fracs)
     # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
-    res = fit_population(args.key)
+    keys = ["CHE-Basel-Stadt", "USA-California", "ITA-Lombardia", "FRA-Ile-de-France", "DEU-Berlin", "Iceland"]
+    for key in keys:
 
-    model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
+        res = fit_population(key)
+        model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
+        tp = res['params'].time - JAN1_2020
+        tp = tp - tp[0]
 
-    tp = res['params'].time - JAN1_2020
+        plt.figure()
+        plt.title(f"New fit {key}")
+        plt.plot(tp, res['data'][Sub.T], 'o', color='#a9a9a9', label="cases")
+        plt.plot(tp, model[:,Sub.T], color="#a9a9a9", label="predicted cases")
 
-    plt.figure()
-    plt.plot(tp, res['data'][Sub.T], 'o')
-    plt.plot(tp, model[:,Sub.T])
+        plt.plot(tp, res['data'][Sub.D], 'o', color="#cab2d6", label="deaths")
+        plt.plot(tp, model[:,Sub.D], color="#cab2d6", label="predicated deaths")
 
-    plt.plot(tp, res['data'][Sub.D], 'o')
-    plt.plot(tp, model[:,Sub.D])
+        plt.plot(tp, res['data'][Sub.H], 'o', color="#fb9a98", label="Hospitalized")
+        plt.plot(tp, model[:,Sub.H], color="#fb9a98", label="Predicted hospitalized")
 
-    plt.plot(tp, model[:,Sub.I])
-    plt.plot(tp, model[:,Sub.R])
+        plt.plot(tp, res['data'][Sub.C], 'o', color="#e31a1c", label="ICU")
+        plt.plot(tp, model[:,Sub.C], color="#e31a1c", label="Predicted ICU")
 
-    plt.yscale('log')
+        plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
+        plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
+
+        plt.xlabel("Time [days]")
+        plt.ylabel("Number of people")
+        plt.legend(loc="best")
+        # plt.yscale('log')
+    plt.show()
