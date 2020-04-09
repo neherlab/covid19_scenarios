@@ -27,7 +27,7 @@ export default function NumericInput<T>({
   }
 
   const decrease : (value:number) => number = (value:number, step:number) => {
-    return toPrecision(value + step)
+    return toPrecision(value - step)
   }
 
   const spinnerButtonStyle = {
