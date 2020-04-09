@@ -124,7 +124,7 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
                   to: <b>{mitigationInterval.timeRange.tMax.toString()}</b>
                 </p>
                 <p style={{ margin: 0 }}>
-                  Effect [%]: <b>{mitigationInterval.mitigationValue}</b>
+                  Reduction of transmission: <b>{mitigationInterval.mitigationValue}%</b>
                 </p>
               </div>
             )
