@@ -129,7 +129,7 @@ function MitigationIntervalComponent({
             allowPast
           />
         </Col>
-        <Col xs="4" sm="5" md="6" lg="4" xl="6">
+        <Col xs="4" sm="5" md="6" lg="4" xl="6" className="align-self-center">
           <NumericInput
             className="form-control h-100"
             identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
