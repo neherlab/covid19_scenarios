@@ -1,6 +1,6 @@
 import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
-import { Button, Col, CustomInput, Form, FormGroup, Row } from 'reactstrap'
+import { Button, Col, CustomInput, FormGroup, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
