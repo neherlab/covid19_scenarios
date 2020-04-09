@@ -2,10 +2,9 @@ import React from 'react'
 
 import _ from 'lodash'
 
-import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Button, FormGroup } from 'reactstrap'
+import { Button, Row, Col, FormGroup } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
@@ -15,8 +14,6 @@ import { suggestNextMitigationInterval } from '../../../algorithms/utils/createM
 
 import { MitigationDatePicker } from './MitigationDatePicker'
 import NumericInput from '../../Form/NumericInput'
-
-import './MitigationTable.scss'
 
 export interface MitigationTableProps {
   mitigationIntervals: MitigationIntervals
@@ -41,53 +38,50 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
   const { t } = useTranslation()
 
   return (
-    <ReactResizeDetector handleWidth>
-      {({ width }: { width?: number }) => (
-        <FieldArray
-          name="containment.mitigationIntervals"
-          render={(arrayHelpers) => (
-            <div className="mitigation-table">
-              <p>The presets for the mitigation and infections control measure below are currently just place holders. We are gathering this information at the moment. For the time being please adjust, add, and remove to match your community.</p>
-              <p>Each measure consists of name, start/end date, and an effectiveness in %.</p>
-              <div className="w-100">
-                {mitigationIntervals.map((interval: MitigationInterval, index: number) => {
-                  if (!interval) {
-                    return null
-                  }
-                  return (
-                    <MitigationIntervalComponent
-                      key={interval.id}
-                      interval={interval}
-                      index={index}
-                      arrayHelpers={arrayHelpers}
-                      width={width || 0}
-                      errors={errors}
-                      touched={touched}
-                    />
-                  )
-                })}
-              </div>
-              <div className="table-controls">
-                <Button
-                  type="button"
-                  onClick={() => {
-                    const interval = suggestNextMitigationInterval(mitigationIntervals)
-                    arrayHelpers.push(interval)
-                  }}
-                >
-                  {t('Add')} <FaPlus />
-                </Button>
-              </div>
-            </div>
-          )}
-        />
-      )}
-    </ReactResizeDetector>
+    <Row>
+      <Row>
+        <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+          <p>The presets for the mitigation and infections control measure below are currently just place holders. We are gathering this information at the moment. For the time being please adjust, add, and remove to match your community.</p>
+          <p>Each measure consists of name, start/end date, and an effectiveness in %.</p>
+        </Col>
+      </Row>
+      <Row noGutters>
+          <FieldArray
+            name="containment.mitigationIntervals"
+            render={(arrayHelpers) => (
+              <Row noGutters>
+                {mitigationIntervals.map((interval: MitigationInterval, index: number) => (
+                    <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                      <MitigationIntervalComponent
+                        key={interval.id}
+                        interval={interval}
+                        index={index}
+                        arrayHelpers={arrayHelpers}
+                        errors={errors}
+                        touched={touched}
+                      />
+                    </Col>
+                  ))}
+              </Row>
+            )}
+          />
+      </Row>
+      <Row noGutters>
+        <Button
+          type="button"
+          onClick={() => {
+            const interval = suggestNextMitigationInterval(mitigationIntervals)
+            arrayHelpers.push(interval)
+          }}
+        >
+          {t('Add')} <FaPlus />
+        </Button>
+      </Row>
+    </Row>
   )
 }
 
 interface MitigationIntervalProps {
-  width: number
   index: number
   interval: MitigationInterval
   arrayHelpers: FieldArrayRenderProps
@@ -96,7 +90,6 @@ interface MitigationIntervalProps {
 }
 
 function MitigationIntervalComponent({
-  width,
   index,
   interval,
   arrayHelpers,
@@ -118,45 +111,44 @@ function MitigationIntervalComponent({
   })
 
   return (
-    <FormGroup>
-      <div
-        className={`mitigation-interval ${
-          // eslint-disable-next-line unicorn/no-nested-ternary
-          width && width <= 325 ? 'very-narrow' : width && width <= 580 ? 'narrow' : 'wide'
-        }`}
-      >
-        <div className="inputs">
+    <FormGroup className="w-100">
+      <Row noGutters>
+        <Col size="12" xs="12" sm="12" md="12" lg="12" xl="12">
           <FastField
             className={`name form-control ${nameError ? 'border-danger' : ''}`}
             id={`containment.mitigationIntervals[${index}].name`}
             name={`containment.mitigationIntervals[${index}].name`}
             type="text"
           />
-          <div className="item-date-range-value-group">
-            <MitigationDatePicker
-              identifier={`containment.mitigationIntervals[${index}].timeRange`}
-              value={interval.timeRange}
-              allowPast
-            />
-            <NumericInput
-              className="form-control item-value"
-              identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
-              name={`containment.mitigationIntervals[${index}].mitigationValue`}
-              step={1}
-              precision={2}
-            />
-          </div>
-        </div>
-        <div className="item-controls">
+        </Col>
+        <Col xs="auto" sm="auto" md="auto" lg="5" xl="auto" className="align-self-center">
+          <MitigationDatePicker
+            identifier={`containment.mitigationIntervals[${index}].timeRange`}
+            value={interval.timeRange}
+            allowPast
+          />
+        </Col>
+        <Col xs="4" sm="5" md="6" lg="4" xl="6">
+          <NumericInput
+            className="form-control h-100"
+            identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
+            name={`containment.mitigationIntervals[${index}].mitigationValue`}
+            step={1}
+            precision={2}
+          />
+        </Col>
+        <Col xs="auto" sm="auto" md="auto" lg="auto" xl="auto" className="ml-auto align-self-center">
           <Button type="button" onClick={() => arrayHelpers.remove(index)}>
             <FaTrash />
           </Button>
-        </div>
-      </div>
-      <div className="w-100">
-        {nameError && <p className="my-0 text-right text-danger">{`${t('Intervention name')}: ${nameError}`}</p>}
-        {valueError && <p className="my-0 text-right text-danger">{`${t('Mitigation strength')}: ${valueError}`}</p>}
-      </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs="auto" sm="auto" md="auto" lg="auto" xl="auto">
+          {nameError && <p className="my-0 text-right text-danger">{`${t('Intervention name')}: ${nameError}`}</p>}
+          {valueError && <p className="my-0 text-right text-danger">{`${t('Mitigation strength')}: ${valueError}`}</p>}
+        </Col>
+      </Row>
     </FormGroup>
   )
 }
