@@ -1,4 +1,4 @@
-import { AllParamsFlat } from './types/Param.types'
+import { AllParamsFlat, AgeDistribution } from './types/Param.types'
 import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
 import {
   ModelParams,
@@ -41,7 +41,7 @@ export function infectionRate(
 export function getPopulationParams(
   params: AllParamsFlat,
   severity: SeverityTableRow[],
-  ageCounts: Record<string, number>,
+  ageCounts: AgeDistribution,
   containment: (t: Date) => number,
 ): ModelParams {
   // TODO: Make this a form-adjustable factor
@@ -75,7 +75,7 @@ export function getPopulationParams(
   }
 
   // Compute age-stratified parameters
-  const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
+  const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b as keyof AgeDistribution], 0)
 
   // NOTE(nnoll): Assumes the age groups of severity table sorted lexiographically and numerically is equivalent
   severity.sort((row1, row2) => {
@@ -89,7 +89,7 @@ export function getPopulationParams(
   })
 
   severity.forEach((row, i) => {
-    const freq = (1.0 * ageCounts[row.ageGroup]) / total
+    const freq = (1.0 * ageCounts[row.ageGroup as keyof AgeDistribution]) / total
     pop.ageDistribution[row.ageGroup] = freq
     pop.frac.severe[i] = (row.severe / 100) * (row.confirmed / 100)
     pop.frac.critical[i] = pop.frac.severe[i] * (row.critical / 100)
@@ -131,7 +131,7 @@ export function initializePopulation(
   N: number,
   numCases: number,
   t0: number,
-  ages: Record<string, number>,
+  ages: AgeDistribution,
 ): SimulationTimePoint {
   const Z = Object.values(ages).reduce((a, b) => a + b)
   const pop: SimulationTimePoint = {
@@ -158,7 +158,7 @@ export function initializePopulation(
   const initialInfectiousFraction = 0.3
 
   // TODO: Ensure the sum is equal to N!
-  const ageGroups = Object.keys(ages).sort()
+  const ageGroups = Object.keys(ages).sort() as (keyof AgeDistribution)[]
   ageGroups.forEach((k, i) => {
     const n = Math.round((ages[k] / Z) * N)
     pop.current.susceptible[i] = n

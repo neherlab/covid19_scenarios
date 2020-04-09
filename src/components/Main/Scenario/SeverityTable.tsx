@@ -16,10 +16,10 @@ import {
 import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress/dx-react-grid-bootstrap4'
 import { format as d3format } from 'd3-format'
 
+import { AgeDistribution } from '../../../algorithms/types/Param.types'
 import { SeverityTableRow } from './ScenarioTypes'
 import { validatePositiveInteger } from './validateInteger'
 import { updateSeverityTable } from './severityTableUpdate'
-import { AgeDistribution } from '../../../.generated/types'
 import { setAgeDistributionData } from '../state/actions'
 import type { State } from '../state/state'
 

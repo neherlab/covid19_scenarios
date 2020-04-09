@@ -1,11 +1,6 @@
-import * as math from 'mathjs'
-
-import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
-
 import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
-
 import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
-import { AllParamsFlat, MitigationIntervals } from './types/Param.types'
+import { AgeDistribution, AllParamsFlat, MitigationIntervals } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './types/Result.types'
 import { TimeSeries } from './types/TimeSeries.types'
 
@@ -103,7 +98,7 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
 export async function run(
   params: AllParamsFlat,
   severity: SeverityTableRow[],
-  ageDistribution: OneCountryAgeDistribution,
+  ageDistribution: AgeDistribution,
   containment: TimeSeries,
 ): Promise<AlgorithmResult> {
   const modelParams = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))

@@ -5,7 +5,7 @@ import _ from 'lodash'
 import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Button, FormGroup, Row } from 'reactstrap'
+import { Button, FormGroup } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
