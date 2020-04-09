@@ -13,7 +13,6 @@ import { CUSTOM_COUNTRY_NAME } from '../state/state'
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
-import { FormSpinBox } from '../../Form/FormSpinBox'
 import { FormNumericInput } from '../../Form/FormNumericInput'
 
 import { AllParams } from '../../../algorithms/types/Param.types'
