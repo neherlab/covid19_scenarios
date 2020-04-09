@@ -71,15 +71,16 @@ export function AgeBarChart({
 
   // Ensure age distribution is normalized
   const Z: number = Object.values(ageDistribution).reduce((a, b) => a + b, 0)
+  const normAgeDistribution: Record<string, number> = {}
   Object.keys(ageDistribution).forEach((k) => {
-    ageDistribution[k] /= Z
+    normAgeDistribution[k] = ageDistribution[k] / Z
   })
 
-  const ages = Object.keys(ageDistribution)
+  const ages = Object.keys(normAgeDistribution)
   const lastDataPoint = data.trajectory.mean[data.trajectory.mean.length - 1]
   const plotData = ages.map((age) => ({
     name: age,
-    fraction: Math.round(ageDistribution[age] * 1000) / 10,
+    fraction: Math.round(normAgeDistribution[age] * 1000) / 10,
     peakSevere: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.severe[age]))),
     peakCritical: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.critical[age]))),
     peakOverflow: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.overflow[age]))),
