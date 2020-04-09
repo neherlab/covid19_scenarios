@@ -15,8 +15,6 @@ import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormNumericInput } from '../../Form/FormNumericInput'
 
-import { AllParams } from '../../../algorithms/types/Param.types'
-
 const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
