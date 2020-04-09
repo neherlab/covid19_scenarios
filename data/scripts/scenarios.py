@@ -254,7 +254,7 @@ def set_mitigation(cases, scenario):
                 id=uuid4(),
                 tMax=scenario.simulation.simulation_time_range.t_max,
                 color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=val))
+                mitigationValue=round(100*val)))
 
 
 # ------------------------------------------------------------------------

@@ -33,7 +33,8 @@ interface ResultsCardProps {
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
-  scenarioUrl?: string
+  scenarioUrl: string
+  openPrintPreview: () => void
 }
 
 function ResultsCardFunction({
@@ -46,6 +47,7 @@ function ResultsCardFunction({
   result,
   caseCounts,
   scenarioUrl,
+  openPrintPreview,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
@@ -122,7 +124,7 @@ function ResultsCardFunction({
         help={t('This section contains simulation results')}
         defaultCollapsed={false}
       >
-        <Row className="mb-4">
+        <Row className="mb-0">
           <Col xs={12} sm={6} md={4}>
             <div className="btn-container mb-3">
               <Button
@@ -138,7 +140,7 @@ function ResultsCardFunction({
               <LinkButton
                 className="new-tab-button"
                 color="secondary"
-                disabled={!scenarioUrl}
+                disabled={!canRun}
                 href={scenarioUrl}
                 target="_blank"
                 data-testid="RunResultsInNewTab"
@@ -163,6 +165,13 @@ function ResultsCardFunction({
                 {t('Export')}
               </Button>
             </div>
+          </Col>
+          <Col xs={12} sm={6} md={8}>
+            <p className="m-0 caution-text">
+              {t(
+                'This output of any model depends on model assumptions and parameter choices. Please carefully consider the parameters you choose (R0 and the mitigation measures in particular) and interpret the output with caution.',
+              )}
+            </p>
             <FormGroup inline className="ml-auto">
               <label htmlFor="autorun-checkbox" className="d-flex">
                 <CustomInput
@@ -176,15 +185,8 @@ function ResultsCardFunction({
               </label>
             </FormGroup>
           </Col>
-          <Col xs={12} sm={6} md={8}>
-            <p className="m-0 caution-text">
-              {t(
-                'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution.',
-              )}
-            </p>
-          </Col>
         </Row>
-        <Row noGutters hidden={!result} className="mb-4">
+        <Row noGutters hidden={!result} className="mb-0">
           <div className="mr-4" data-testid="LogScaleSwitch">
             <FormSwitch
               identifier="logScale"
@@ -257,9 +259,11 @@ function ResultsCardFunction({
       ) : undefined}
       <ExportSimulationDialog
         showModal={showExportModal}
+        openPrintPreview={openPrintPreview}
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
         result={result}
+        scenarioUrl={scenarioUrl}
       />
       <ImportSimulationDialog
         showModal={showImportModal}

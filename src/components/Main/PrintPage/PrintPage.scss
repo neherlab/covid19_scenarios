@@ -1,0 +1,84 @@
+/*
+
+This file sets all needed CSS to have nice things to print out
+directly from the browser (or say, export as PDF)
+
+Note that if you want to prevent an element from being printed
+you can just add the CSS class "d-print-none"
+
+On the contrary, if you want to set an element that will be only
+printed, but never displayed, you want use both classes :
+"d-none d-print-block"
+
+More info on https://getbootstrap.com/docs/4.0/utilities/display/
+
+*/
+
+.tableResult {
+  width: 100%;
+}
+
+@media print {
+  .tableResult {
+    max-width: 17cm;
+  }
+}
+
+.tableResult > table {
+  border: 1px solid black;
+  margin: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.tableResult > table > thead {
+  border-bottom: 1px solid black;
+}
+
+@media print {
+  h1,
+  h2 {
+    margin-top: 1cm;
+  }
+
+  h3 {
+    margin-top: 20px;
+  }
+
+  body {
+    background-color: #fff;
+    padding-top: 15mm;
+    margin: 15mm;
+    font-size: 10pt;
+    max-width: 20cm !important;
+    width: 20cm !important;
+  }
+
+  .p-logo {
+    width: 100%;
+  }
+
+  .p-logo > img {
+    width: 10cm;
+    height: 10cm;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1cm;
+  }
+
+  .h-100 {
+    height: auto !important;
+  }
+
+  .modal-backdrop {
+    display: none;
+  }
+
+  .modal-backdrop.show {
+    display: none;
+  }
+
+  .row {
+    display: block;
+  }
+}

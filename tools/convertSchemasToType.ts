@@ -69,9 +69,7 @@ export default async function convertSchemasToType() {
   const PYRoot = path.join(moduleRoot, 'data', 'generated')
   rimraf.sync(PYRoot)
   await fs.mkdirp(PYRoot)
-  await convertForType('python', path.join(PYRoot, 'types.py'), {
-    'nice-property-names': 'false',
-  })
+  await convertForType('python', path.join(PYRoot, 'types.py'))
 }
 
 convertSchemasToType().catch(console.error)
