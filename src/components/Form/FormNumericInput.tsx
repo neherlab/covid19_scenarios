@@ -24,8 +24,6 @@ export function FormNumericInput<T>({
   label,
   help,
   step,
-  min,
-  max,
   precision,
   errors,
   touched,
