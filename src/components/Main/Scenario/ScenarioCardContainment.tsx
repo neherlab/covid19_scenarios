@@ -4,7 +4,7 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
-import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
+import { CardWithControls } from '../../Form/CardWithControls'
 import { MitigationTable } from '../Mitigation/MitigationTable'
 import { AllParams } from '../../../algorithms/types/Param.types'
 
@@ -20,7 +20,7 @@ function ScenarioCardContainment({ values, errors, touched }: ScenarioCardContai
   const { mitigationIntervals } = values.containment
 
   return (
-    <CardWithoutDropdown
+    <CardWithControls
       identifier="containmentScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}
       help={t('Reduction of transmission through mitigation measures over time. Add or remove interventions.')}
@@ -28,7 +28,7 @@ function ScenarioCardContainment({ values, errors, touched }: ScenarioCardContai
       <div className="w-auto">
         <MitigationTable mitigationIntervals={mitigationIntervals} errors={errors} touched={touched} />
       </div>
-    </CardWithoutDropdown>
+    </CardWithControls>
   )
 }
 

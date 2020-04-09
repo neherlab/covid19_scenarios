@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
@@ -6,9 +6,6 @@ import { Col, Row } from 'reactstrap'
 import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
-
-import { CardWithDropdown } from '../../Form/CardWithDropdown'
-import { stringsToOptions } from '../../Form/FormDropdownOption'
 
 import { setScenario } from '../state/actions'
 import { State } from '../state/state'
@@ -19,6 +16,8 @@ import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
 import { SeverityTableRow } from './ScenarioTypes'
 import { AllParams } from '../../../algorithms/types/Param.types'
+import { CardWithControls } from '../../Form/CardWithControls'
+import PresetLoader from './presets/PresetLoader'
 
 export interface ScenarioCardProps {
   values: AllParams
@@ -40,23 +39,32 @@ function ScenarioCard({
   scenarioDispatch,
 }: ScenarioCardProps) {
   const { t } = useTranslation()
-  const scenarioOptions = stringsToOptions(scenarioState.scenarios)
+  const data = scenarioState.scenarios.map((item) => ({
+    label: item,
+    value: item,
+  }))
+  const title: string = scenarioState.current
 
   function handleChangeScenario(newScenario: string) {
     scenarioDispatch(setScenario({ name: newScenario }))
   }
 
+  const presetLoader = useMemo(() => <PresetLoader data={data} onSelect={handleChangeScenario} />, [data])
+
   return (
-    <CardWithDropdown
+    <CardWithControls
       identifier="scenarioName"
       label={<h2 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h2>}
       help={t('Combination of population, epidemiology, and mitigation scenarios')}
-      options={scenarioOptions}
-      value={scenarioOptions.find((s) => s.label === scenarioState.current)}
-      onValueChange={handleChangeScenario}
       className="card--main"
+      controls={presetLoader}
     >
       <>
+        <Row>
+          <Col xl={12} className="my-2">
+            <h1>{title}</h1>
+          </Col>
+        </Row>
         <Row>
           <Col xl={6} className="my-2">
             <ScenarioCardPopulation errors={errors} touched={touched} />
@@ -84,7 +92,7 @@ function ScenarioCard({
           </Col>
         </Row>
       </>
-    </CardWithDropdown>
+    </CardWithControls>
   )
 }
 

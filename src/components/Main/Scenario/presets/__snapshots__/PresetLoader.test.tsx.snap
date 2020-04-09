@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PresetLoader matches snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="preset-loader-button btn btn-primary btn-sm"
+    data-testid="PresetLoaderButton"
+    type="button"
+  >
+    Load scenario
+  </button>
+</DocumentFragment>
+`;
