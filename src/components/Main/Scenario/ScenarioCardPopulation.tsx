@@ -58,7 +58,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormNumericInput
-        identifier="population.suspectedCasesToday"
+        identifier="population.initialNumberOfCases"
         label={t('Initial number of cases')}
         help={t('Number of cases present at the start of simulation')}
         step={1}
