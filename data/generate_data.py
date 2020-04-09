@@ -48,9 +48,9 @@ if __name__ == "__main__":
                 try:
                     country = importlib.import_module(f"parsers.{src}")
                     country.parse()
-                except:
+                except Exception as e:
                     # if error while running any of the parsers, save log in PARSERS_LOG_FILE
-                    olog.insert(0,'\t Error running parser for: '+src+'\n')
+                    olog.insert(0,f'\t Error running parser for: {src}\n{e}\n')
                     print(f"... ERROR while running {src} to generate .tsv. Updated parsers.log file.", file=sys.stderr)
         # Prepend timestamp to PARSERS_LOG_FILE
         olog.insert(0,str(timestamp)+'\n')
