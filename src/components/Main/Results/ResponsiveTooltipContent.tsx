@@ -2,28 +2,12 @@ import React, { ReactNode } from 'react'
 
 import './ResponsiveTooltipContent.scss'
 
-interface TooltipItem {
-  name: string
-  value: string | number | ReactNode
-  color: string
-}
-
 interface TooltipContentProps {
   active: boolean
   label?: string | number
   payload: TooltipItem[]
   formatter?: Function
   labelFormatter?: Function
-}
-
-function ToolTipContentItem({ name, value, color }: TooltipItem) {
-  return (
-    <div style={{ color }} className="responsive-tooltip-content-item">
-      {name}
-      <div className="responsive-tooltip-content-placeholder" />
-      {value}
-    </div>
-  )
 }
 
 export function ResponsiveTooltipContent({ active, payload, label, formatter, labelFormatter }: TooltipContentProps) {
@@ -60,4 +44,20 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
   }
 
   return null
+}
+
+interface TooltipItem {
+  name: string
+  value: string | number | ReactNode
+  color: string
+}
+
+function ToolTipContentItem({ name, value, color }: TooltipItem) {
+  return (
+    <div style={{ color }} className="responsive-tooltip-content-item">
+      {name}
+      <div className="responsive-tooltip-content-placeholder" />
+      {value}
+    </div>
+  )
 }
