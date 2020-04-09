@@ -35,7 +35,7 @@
     "license": "unclear"
   },
   "switzerland": {
-    "primarySource": "https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv",
+    "primarySource": "https://raw.githubusercontent.com/openZH/covid_19/master/fallzahlen_kanton_total_csv/COVID19_Fallzahlen_Kanton_CANTONCODE_total.csv",
     "dataProvenance": "OpenZH",
     "license": "none specified"
   },
