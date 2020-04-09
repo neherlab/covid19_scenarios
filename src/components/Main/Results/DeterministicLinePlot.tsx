@@ -376,8 +376,8 @@ export function DeterministicLinePlot({
             <>
               <div ref={chartRef} />
               <ComposedChart
-                width={width}
-                height={height / 4}
+                width={forcedWidth || width}
+                height={forcedHeight ? forcedHeight / 4 : height / 4}
                 margin={{
                   left: 5,
                   right: 5,
