@@ -32,20 +32,16 @@ export function FormNumericInput<T>({
   const showError = errorMessage && isTouched
 
   return (
-    <Field>
-      {() => (
-        <FormGroup className="my-0">
-          <Row noGutters>
-            <Col xl={7}>
-              <FormLabel identifier={identifier} label={label} help={help} />
-            </Col>
-            <Col xl={5}>
-              <NumericInput identifier={identifier} label={label} step={step} precision={precision}/>
-              {showError ? <div className="text-danger">{errorMessage}</div> : null}
-            </Col>
-          </Row>
-        </FormGroup>
-      )}
-    </Field>
+    <FormGroup className="my-0">
+      <Row noGutters>
+        <Col xl={7}>
+          <FormLabel identifier={identifier} label={label} help={help} />
+        </Col>
+        <Col xl={5}>
+          <NumericInput identifier={identifier} label={label} step={step} precision={precision}/>
+          {showError ? <div className="text-danger">{errorMessage}</div> : null}
+        </Col>
+      </Row>
+    </FormGroup>
   )
 }
