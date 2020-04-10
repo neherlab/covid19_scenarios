@@ -202,6 +202,14 @@ export function DeterministicLinePlot({
     return false
   })
 
+  let tooltipItems: { [key: string]: number | undefined } = {}
+  consolidatedPlotData.forEach((d) => {
+    tooltipItems = { ...tooltipItems, ...d }
+  })
+  const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(
+    (itemKey: string) => itemKey !== 'time' && tooltipItems[itemKey] !== undefined,
+  )
+
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
   const tooltipValueFormatter = (value: number | string) =>
@@ -293,7 +301,11 @@ export function DeterministicLinePlot({
                   labelFormatter={labelFormatter}
                   position={tooltipPosition}
                   content={(props: TooltipProps) => (
-                    <LinePlotTooltip valueFormatter={tooltipValueFormatter} {...props} />
+                    <LinePlotTooltip
+                      valueFormatter={tooltipValueFormatter}
+                      itemsToDisplay={tooltipItemsToDisplay}
+                      {...props}
+                    />
                   )}
                 />
 
