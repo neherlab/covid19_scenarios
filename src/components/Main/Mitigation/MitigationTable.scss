@@ -19,6 +19,7 @@
 .mitigation-interval.narrow > .inputs,
 .mitigation-interval.very-narrow > .inputs {
   flex-direction: column;
+  width: 85%;
 }
 
 .mitigation-interval > .inputs > * {
@@ -29,15 +30,17 @@
   display: flex;
 }
 
+.mitigation-interval > .inputs > .item-date-range-value-group > .input-group {
+  flex-wrap: nowrap;
+  width: max-content;
+  align-items: flex-start;
+}
+
 .mitigation-interval.wide .DateRangePickerInput,
 .mitigation-interval.narrow .DateRangePickerInput {
   // stop the date range from wrapping the dates.
   // but not for very narrow views where it would cause overflow.
   width: max-content;
-}
-
-.mitigation-interval > .inputs > .item-date-range-value-group > .item-value {
-  width: auto;
 }
 
 .mitigation-interval .DateInput_input {

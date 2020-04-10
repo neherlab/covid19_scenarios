@@ -14,6 +14,7 @@ import { MitigationInterval, MitigationIntervals } from '../../../algorithms/typ
 import { suggestNextMitigationInterval } from '../../../algorithms/utils/createMitigationInterval'
 
 import { MitigationDatePicker } from './MitigationDatePicker'
+import NumericInput from '../../Form/NumericInput'
 
 import './MitigationTable.scss'
 
@@ -46,7 +47,11 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
           name="containment.mitigationIntervals"
           render={(arrayHelpers) => (
             <div className="mitigation-table">
-              <p>The presets for the mitigation and infections control measure below are currently just place holders. We are gathering this information at the moment. For the time being please adjust, add, and remove to match your community.</p>
+              <p>
+                The presets for the mitigation and infections control measure below are currently just place holders. We
+                are gathering this information at the moment. For the time being please adjust, add, and remove to match
+                your community.
+              </p>
               <p>Each measure consists of name, start/end date, and an effectiveness in %.</p>
               <div className="w-100">
                 {mitigationIntervals.map((interval: MitigationInterval, index: number) => {
@@ -137,11 +142,11 @@ function MitigationIntervalComponent({
               value={interval.timeRange}
               allowPast
             />
-            <FastField
-              className={`form-control item-value ${valueError ? 'border-danger' : ''}`}
-              id={`containment.mitigationIntervals[${index}].mitigationValue`}
-              name={`containment.mitigationIntervals[${index}].mitigationValue`}
-              type="number"
+            <NumericInput
+              identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
+              label={t('Mitigation Value')}
+              step={1}
+              precision={0}
             />
           </div>
         </div>
