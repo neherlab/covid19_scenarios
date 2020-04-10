@@ -2,11 +2,26 @@ import React, { ReactNode } from 'react'
 import { TooltipProps } from 'recharts'
 import { useTranslation } from 'react-i18next'
 
-import { linesToPlot, translateLinesToPlot } from './LinePlotCommon'
+import { linesToPlot, observationsToPlot, translatePlots, LineProps } from './LinePlotCommon'
 
 import './ResponsiveTooltipContent.scss'
 
-export function ResponsiveTooltipContent({ active, payload, label, formatter, labelFormatter }: TooltipProps) {
+interface TooltipItem extends LineProps {
+  value: React.ReactNode
+  displayUndefinedAs: number | string
+}
+
+interface ResponsiveTooltipContentProps extends TooltipProps {
+  valueFormatter: (value: number | string) => string
+}
+
+export function ResponsiveTooltipContent({
+  active,
+  payload,
+  label,
+  valueFormatter,
+  labelFormatter,
+}: ResponsiveTooltipContentProps) {
   const { t } = useTranslation()
 
   if (!active || !label || !payload || payload.length <= 2) {
@@ -15,17 +30,38 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
 
   const formattedLabel = labelFormatter && label !== undefined ? labelFormatter(label) : '-'
 
-  const tooltipItems = translateLinesToPlot(t, linesToPlot).map((lineToPlot, idx) => {
-    const item = payload.find((item) => item.dataKey === lineToPlot.key) || { ...lineToPlot, value: 0 }
-    return {
-      name: item.name,
-      color: item.color || '#bbbbbb',
-      value: formatter ? formatter(item.value as string | number, item.name, item, idx) : item.value,
-    }
-  })
+  const tooltipItems: TooltipItem[] = []
+    .concat(
+      translatePlots(t, linesToPlot).map((lineToPlot) => ({
+        ...lineToPlot,
+        displayUndefinedAs: 0,
+      })) as never,
+    )
+    .concat(
+      translatePlots(t, observationsToPlot).map((scatterToPlot) => ({
+        ...scatterToPlot,
+        displayUndefinedAs: '-',
+      })) as never,
+    )
+    .map(
+      (tooltipItem: TooltipItem): TooltipItem => {
+        const payloadItem = payload.find((payloadItem) => payloadItem.dataKey === tooltipItem.key)
 
-  const left = tooltipItems.slice(0, Math.floor(payload.length / 2))
-  const right = tooltipItems.slice(Math.floor(payload.length / 2), payload.length - 1)
+        const value =
+          // eslint-disable-next-line unicorn/no-nested-ternary
+          payloadItem && payloadItem.value !== undefined
+            ? (payloadItem.value as string | number)
+            : tooltipItem.displayUndefinedAs
+
+        return {
+          ...tooltipItem,
+          value: valueFormatter ? valueFormatter(value) : value,
+        }
+      },
+    )
+
+  const left = tooltipItems.slice(0, Math.ceil(tooltipItems.length / 2))
+  const right = tooltipItems.slice(Math.ceil(tooltipItems.length / 2))
 
   return (
     <div className="responsive-tooltip-content-base">
@@ -33,12 +69,12 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
       <div className="responsive-tooltip-content">
         <div>
           {left.map((item) => (
-            <ToolTipContentItem key={item.name} name={item.name} value={item.value} color={item.color} />
+            <TooltipContentItem key={item.key} name={item.name} value={item.value} color={item.color} />
           ))}
         </div>
         <div>
           {right.map((item) => (
-            <ToolTipContentItem key={item.name} name={item.name} value={item.value} color={item.color} />
+            <TooltipContentItem key={item.key} name={item.name} value={item.value} color={item.color} />
           ))}
         </div>
       </div>
@@ -46,13 +82,13 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
   )
 }
 
-interface TooltipItem {
+interface TooltipContentItemProps {
   name: string
   value: string | number | ReactNode
   color: string
 }
 
-function ToolTipContentItem({ name, value, color }: TooltipItem) {
+function TooltipContentItem({ name, value, color }: TooltipContentItemProps) {
   return (
     <div style={{ color }} className="responsive-tooltip-content-item">
       {name}
