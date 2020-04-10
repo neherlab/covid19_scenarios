@@ -16,7 +16,7 @@ X = {
         "state": "stato",
         "region": "denominazione_regione",
         "hospitalized" : "ricoverati_con_sintomi",
-        "ICU" : "terapia_intensiva",
+        "icu" : "terapia_intensiva",
         "cases" : "totale_casi",
         "deaths" : "deceduti",
         "recovered": "dimessi_guariti",
@@ -25,7 +25,7 @@ X = {
 
 URL  = "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
 LOC  = "case-counts/Europe/Southern Europe/Italy"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -43,7 +43,7 @@ def parse():
     # Convert to ready made TSVs
     regions = defaultdict(list)
     for row in db:
-        elt = [ int(row[X[c]]) if i > 0 else row[X[c]].split()[0] for i, c in enumerate(cols) ]
+        elt = [ int(row[X[c]]) if i > 0 else row[X[c]][:10] for i, c in enumerate(cols) ]
         regions['-'.join(['ITA',row[X["region"]]])].append(elt)
     regions = dict(regions)
 

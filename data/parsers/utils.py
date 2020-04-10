@@ -4,18 +4,21 @@ import functools
 import os
 import re
 import sys
+import yaml
+
 sys.path.append('..')
-from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR, SCHEMA_CASECOUNTS
 
 from datetime import datetime
 from collections import defaultdict
+from jsonschema import validate, FormatChecker
 
 # ------------------------------------------------------------------------
 # Globals
 with open(os.path.join(BASE_PATH, SOURCES_FILE)) as fh:
     sources = json.load(fh)
 
-default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 
 # ------------------------------------------------------------------------
@@ -142,7 +145,7 @@ def list_to_dict(regions, cols):
             i = 0
             nd = {}
             while (i < len(d)):
-                # cols is likely ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+                # cols is likely ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
                 if cols[i] == 'time':
                     nd[cols[i]] = d[i]
                 elif d[i] is not None:
@@ -189,7 +192,21 @@ def add_country_code(regions, exceptions, code):
     return res
 
 
-def store_json(newdata, json_file):
+def store_json(case_counts, json_file):
+    """ Validate and store data to .json file
+    Arguments:
+    - case_counts: a dict of lists of dicts for case counts
+    """
+
+    #convert dict of lists of dicts to list of dicts of lists of dicts
+    newdata = []
+    for k in case_counts:
+        newdata.append({'country': k, 'empiricalData': case_counts[k]})
+
+    with open(os.path.join(BASE_PATH, SCHEMA_CASECOUNTS), "r") as f:
+        schema = yaml.load(f, Loader=yaml.FullLoader)
+        validate(newdata, schema, format_checker=FormatChecker())
+
     with open(json_file, 'w') as fh:
         json.dump(newdata, fh)
 

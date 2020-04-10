@@ -27,7 +27,7 @@
   "israel": {
     "primarySource": "https://raw.githubusercontent.com/idandrd/israel-covid19-data/master/IsraelCOVID19.csv",
     "dataProvenance": "https://github.com/idandrd/israel-covid19-data",
-    "license": "none specified"
+    "license": "MIT"
   },
   "spain": {
     "primarySource": "https://github.com/datadista/datasets/tree/master/COVID%2019",
@@ -35,7 +35,7 @@
     "license": "unclear"
   },
   "switzerland": {
-    "primarySource": "https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv",
+    "primarySource": "https://raw.githubusercontent.com/openZH/covid_19/master/fallzahlen_kanton_total_csv/COVID19_Fallzahlen_Kanton_CANTONCODE_total.csv",
     "dataProvenance": "OpenZH",
     "license": "none specified"
   },
@@ -50,7 +50,7 @@
     "license": "Apache License 2.0"
   },
   "netherlands": {
-    "primarySource": "https://github.com/J535D165/CoronaWatchNL/blob/master/data, https://www.stichting-nice.nl/covid-19/public/intake-cumulative",
+    "primarySource": "https://github.com/J535D165/CoronaWatchNL/blob/master/data, https://www.stichting-nice.nl/covid-19/public/intake-count",
     "dataProvenance": "CoronaWatchNL, Stichting NICE",
     "license": "CC0 (CoronaWatchNL), none specified (Stichting NICE)"
   },

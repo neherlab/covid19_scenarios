@@ -18,7 +18,7 @@ from .utils import sorted_date, parse_countries, stoi, store_data
 
 URL  = "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-"
 LOC  = 'case-counts'
-cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # -----------------------------------------------------------------------------
 # Functions

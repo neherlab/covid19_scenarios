@@ -1,6 +1,6 @@
 import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
-import { Button, Col, Row } from 'reactstrap'
+import { Button, Col, CustomInput, Form, FormGroup, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
@@ -16,7 +16,7 @@ import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/SeverityTable'
-
+import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
 
 const LOG_SCALE_DEFAULT = true
@@ -31,6 +31,8 @@ interface ResultsCardProps {
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
+  scenarioUrl: string
+  openPrintPreview: () => void
 }
 
 function ResultsCardFunction({
@@ -42,6 +44,8 @@ function ResultsCardFunction({
   severity,
   result,
   caseCounts,
+  scenarioUrl,
+  openPrintPreview,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
@@ -113,18 +117,29 @@ function ResultsCardFunction({
         help={t('This section contains simulation results')}
         defaultCollapsed={false}
       >
-        <Row className="mb-4">
+        <Row className="mb-0">
           <Col xs={12} sm={6} md={4}>
             <div className="btn-container mb-3">
               <Button
                 className="run-button"
                 type="submit"
                 color="primary"
-                disabled={!canRun || autorunSimulation}
+                disabled={!canRun}
                 data-testid="RunResults"
+                title={t(autorunSimulation ? 'Force a run of the simulation' : 'Run the simulation')}
               >
-                {t('Run')}
+                {t(autorunSimulation ? 'Refresh' : 'Run')}
               </Button>
+              <LinkButton
+                className="new-tab-button"
+                color="secondary"
+                disabled={!canRun}
+                href={scenarioUrl}
+                target="_blank"
+                data-testid="RunResultsInNewTab"
+              >
+                {t('Run in new tab')}
+              </LinkButton>
               <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
               <Button
                 className="export-button"
@@ -136,28 +151,28 @@ function ResultsCardFunction({
                 {t('Export')}
               </Button>
             </div>
-            <div className="pl-4">
-              <label className="form-check-label">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  onChange={toggleAutorun}
-                  checked={autorunSimulation}
-                  aria-checked={autorunSimulation}
-                />
-                {t('Autorun Simulation on scenario parameter change')}
-              </label>
-            </div>
           </Col>
           <Col xs={12} sm={6} md={8}>
             <p className="m-0 caution-text">
               {t(
-                'This output of a mathematical model depends on model assumptions and parameter choices. We have done our best (in limited time) to check the model implementation is correct. Please carefully consider the parameters you choose and interpret the output with caution',
+                'This output of any model depends on model assumptions and parameter choices. Please carefully consider the parameters you choose (R0 and the mitigation measures in particular) and interpret the output with caution.',
               )}
             </p>
+            <FormGroup inline className="ml-auto">
+              <label htmlFor="autorun-checkbox" className="d-flex">
+                <CustomInput
+                  id="autorun-checkbox"
+                  type="checkbox"
+                  onChange={toggleAutorun}
+                  checked={autorunSimulation}
+                  aria-checked={autorunSimulation}
+                />
+                {t(`Run automatically`)}
+              </label>
+            </FormGroup>
           </Col>
         </Row>
-        <Row noGutters hidden={!result} className="mb-4">
+        <Row noGutters hidden={!result} className="mb-0">
           <div className="mr-4" data-testid="LogScaleSwitch">
             <FormSwitch
               identifier="logScale"
@@ -170,7 +185,7 @@ function ResultsCardFunction({
           <div data-testid="HumanizedValuesSwitch">
             <FormSwitch
               identifier="showHumanized"
-              label={t('Show humanized results')}
+              label={t('Format numbers')}
               help={t('Show numerical results in a human friendly format')}
               checked={showHumanized}
               onValueChanged={setPersistShowHumanized}
@@ -219,9 +234,11 @@ function ResultsCardFunction({
       ) : undefined}
       <ExportSimulationDialog
         showModal={showExportModal}
+        openPrintPreview={openPrintPreview}
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
         result={result}
+        scenarioUrl={scenarioUrl}
       />
     </>
   )

@@ -11,7 +11,7 @@ from .utils import store_data
 
 URL  = "https://raw.githubusercontent.com/idandrd/israel-covid19-data/master/IsraelCOVID19.csv"
 LOC  = "case-counts/Asia/Western Asia/Israel"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions
@@ -36,6 +36,8 @@ def parse():
     rdr = csv.reader(fd)
     hdr = next(rdr)
     for row in rdr:
+        if len(row[0])==0:
+            continue
         date_str = datetime.strptime(row[0], r"%d/%m/%Y").strftime(r"%Y-%m-%d")
         num_cases = to_int(row[1])
         num_icus = to_int(row[4])

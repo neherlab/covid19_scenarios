@@ -4,7 +4,7 @@
         "country": "Switzerland",
         "hospitalBeds": 698,
         "ICUBeds": 80,
-        "suspectedCasesToday": 213,
+        "initialNumberOfCases": 213,
         "importsPerDay": 0.1,
         "cases": "CHE-Basel-Stadt",
         "r0": 2.7,

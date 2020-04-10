@@ -3,16 +3,33 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'react
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
+import ClipboardButton from '../../Buttons/ClipboardButton'
 
 export interface ExportSimulationDialogProps {
   canExport: boolean
   showModal: boolean
   toggleShowModal: () => void
+  openPrintPreview: () => void
   result?: AlgorithmResult
+  scenarioUrl: string
 }
 
-export default function ExportSimulationDialog({ showModal, toggleShowModal, result }: ExportSimulationDialogProps) {
+export default function ExportSimulationDialog({
+  showModal,
+  toggleShowModal,
+  openPrintPreview,
+  result,
+ scenarioUrl,
+}: ExportSimulationDialogProps) {
   const { t } = useTranslation()
+
+  const startPrinting = () => {
+    toggleShowModal()
+    openPrintPreview()
+  }
+
+  // Assuming href and shareable link can be concatenated without other processing:
+  const shareableLink = `${window.location.href}${scenarioUrl}`
 
   return (
     <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
@@ -24,7 +41,7 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
               <th>{t('Filename')}</th>
               <th>{t('Description')}</th>
               <th>{t('Format')}</th>
-              <th>{t('Download')}</th>
+              <th>{t('Action')}</th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +72,26 @@ export default function ExportSimulationDialog({ showModal, toggleShowModal, res
                   size="sm"
                 >
                   {t('Download')}
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td />
+              <td>{t('Shareable link')}</td>
+              <td>URL</td>
+              <td>
+                <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={shareableLink}>
+                  {t('Copy link')}
+                </ClipboardButton>
+              </td>
+            </tr>
+            <tr>
+              <td />
+              <td>{t('Print Preview (to print or save as PDF)')}</td>
+              <td>HTML</td>
+              <td>
+                <Button disabled={!(result?.deterministic ?? null)} onClick={startPrinting} color="primary" size="sm">
+                  {t('Preview')}
                 </Button>
               </td>
             </tr>

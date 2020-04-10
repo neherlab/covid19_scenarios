@@ -40,12 +40,11 @@ cantonal_codes = {
    "CH": "Switzerland",
 }
 
-URL  = "https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv"
 URL_MASK  = "https://raw.githubusercontent.com/openZH/covid_19/master/fallzahlen_kanton_total_csv/COVID19_Fallzahlen_Kanton_CANTONCODE_total.csv"
 URL_FL  = "https://raw.githubusercontent.com/openZH/covid_19/master/fallzahlen_kanton_total_csv/COVID19_Fallzahlen_FL_total.csv"
 LOC  = "case-counts/Europe/Western Europe/Switzerland"
 LOC2 = "case-counts/Europe/Western Europe/Liechtenstein"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions
@@ -58,26 +57,6 @@ def to_int(x):
 
 # ------------------------------------------------------------------------
 # Main point of entry
-
-def parse_totals_file():
-    r  = requests.get(URL)
-    if not r.ok:
-        print(f"Failed to fetch {URL}", file=sys.stderr)
-        sys.exit(1)
-        r.close()
-
-    regions = defaultdict(list)
-    fd  = io.StringIO(r.text)
-    rdr = csv.reader(fd)
-    hdr = next(rdr)
-
-    for row in rdr:
-        date   = row[0]
-        canton = cantonal_codes[row[1]]
-        regions[canton].append([date, to_int(row[2]), to_int(row[5]), to_int(row[6]), None, to_int(row[7])])
-
-    store_data(regions, { 'default': LOC, 'Liechtenstein': LOC2, 'Switzerland': LOC}, 'switzerland','CHE', cols)
-
 
 def parse():
     regions = defaultdict(list)
@@ -99,7 +78,7 @@ def parse():
         canton_data = []
         cases_idx = hdr.index('ncumul_conf')
         hospitalized_idx = hdr.index('ncumul_hosp')
-        ICU_idx = hdr.index('ncumul_ICU')
+        icu_idx = hdr.index('ncumul_ICU')
         deaths_idx = hdr.index('ncumul_deceased')
         recovered_idx = hdr.index('ncumul_released')
 
@@ -113,7 +92,7 @@ def parse():
             canton_data.append([date, cases,
                                 to_int(row[deaths_idx]),
                                 to_int(row[hospitalized_idx]),
-                                to_int(row[ICU_idx]),
+                                to_int(row[icu_idx]),
                                 to_int(row[recovered_idx])])
 
         regions[cantonal_codes[canton]] = canton_data
@@ -125,4 +104,5 @@ def parse():
         else:
             regions2['-'.join(['CHE',region])] = regions[region]
 
+    # the header of the .tsv will actually only have the generic URL with CANTONCODE in it
     store_data(regions2, 'switzerland', cols)

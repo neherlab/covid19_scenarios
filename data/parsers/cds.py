@@ -21,7 +21,7 @@ from paths import BASE_PATH
 # Globals
 
 URL  = 'https://coronadatascraper.com/timeseries-byLocation.json'
-cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # -----------------------------------------------------------------------------
 # Functions
