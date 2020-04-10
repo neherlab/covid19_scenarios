@@ -36,6 +36,7 @@ export default function NumericInput<T>({
     'maxWidth': '1.5rem',
     'maxHeight': '1.2rem',
     'margin': '0',
+    'zIndex':'inherit'
   }
 
   const inputStyle = {
