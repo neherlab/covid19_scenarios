@@ -12,7 +12,7 @@ import {
   ReferenceArea,
   Scatter,
   Tooltip,
-  TooltipPayload,
+  TooltipProps,
   XAxis,
   YAxis,
   YAxisProps,
@@ -203,12 +203,8 @@ export function DeterministicLinePlot({
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ): React.ReactNode => <span>{formatNumber(Number(value))}</span>
+  const tooltipValueFormatter = (value: number | string) =>
+    typeof value === 'number' ? formatNumber(Number(value)) : value
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
@@ -293,10 +289,11 @@ export function DeterministicLinePlot({
                 />
 
                 <Tooltip
-                  formatter={tooltipFormatter}
                   labelFormatter={labelFormatter}
                   position={tooltipPosition}
-                  content={ResponsiveTooltipContent}
+                  content={(props: TooltipProps) => (
+                    <ResponsiveTooltipContent valueFormatter={tooltipValueFormatter} {...props} />
+                  )}
                 />
 
                 <Legend
