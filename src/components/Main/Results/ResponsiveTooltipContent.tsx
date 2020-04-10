@@ -13,6 +13,7 @@ interface TooltipItem extends LineProps {
 
 interface ResponsiveTooltipContentProps extends TooltipProps {
   valueFormatter: (value: number | string) => string
+  itemsToDisplay?: string[]
 }
 
 export function ResponsiveTooltipContent({
@@ -21,6 +22,7 @@ export function ResponsiveTooltipContent({
   label,
   valueFormatter,
   labelFormatter,
+  itemsToDisplay,
 }: ResponsiveTooltipContentProps) {
   const { t } = useTranslation()
 
@@ -32,16 +34,20 @@ export function ResponsiveTooltipContent({
 
   const tooltipItems: TooltipItem[] = []
     .concat(
+      translatePlots(t, observationsToPlot).map((observationToPlot) => ({
+        ...observationToPlot,
+        displayUndefinedAs: '-',
+      })) as never,
+    )
+    .concat(
       translatePlots(t, linesToPlot).map((lineToPlot) => ({
         ...lineToPlot,
         displayUndefinedAs: 0,
       })) as never,
     )
-    .concat(
-      translatePlots(t, observationsToPlot).map((scatterToPlot) => ({
-        ...scatterToPlot,
-        displayUndefinedAs: '-',
-      })) as never,
+    .filter(
+      (tooltipItem: TooltipItem): boolean =>
+        !itemsToDisplay || !!itemsToDisplay.find((itemKey) => itemKey === tooltipItem.key),
     )
     .map(
       (tooltipItem: TooltipItem): TooltipItem => {
