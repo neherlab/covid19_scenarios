@@ -4,7 +4,7 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { useTranslation } from 'react-i18next'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload, LabelProps } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, LabelProps, TooltipProps } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
@@ -12,10 +12,11 @@ import { SeverityTableRow } from '../Scenario/SeverityTable'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
-import { colors } from './DeterministicLinePlot'
+import { colors } from './ChartCommon'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
-import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
+
+import { ChartTooltip } from './ChartTooltip'
 
 const ASPECT_RATIO = 16 / 4
 
@@ -70,12 +71,8 @@ export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidt
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
   }))
 
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ) => <span>{formatNumber(Number(value))}</span>
+  const tooltipValueFormatter = (value: number | string) =>
+    typeof value === 'number' ? formatNumber(Number(value)) : value
 
   const tickFormatter = (value: number) => formatNumberRounded(value)
 
@@ -121,7 +118,10 @@ export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidt
                   yAxisId="ageDisAxis"
                   tickFormatter={tickFormatter}
                 />
-                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
+                <Tooltip
+                  position={tooltipPosition}
+                  content={(props: TooltipProps) => <ChartTooltip valueFormatter={tooltipValueFormatter} {...props} />}
+                />
                 <Legend verticalAlign="bottom" />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} label={label} />

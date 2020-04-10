@@ -22,10 +22,10 @@ import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
-
 import { calculatePosition, scrollToRef } from './chartHelper'
-import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
-import { linesToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './LinePlotCommon'
+import { linesToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
+import { LinePlotTooltip } from './LinePlotTooltip'
+
 import './DeterministicLinePlot.scss'
 
 const ASPECT_RATIO = 16 / 9
@@ -292,7 +292,7 @@ export function DeterministicLinePlot({
                   labelFormatter={labelFormatter}
                   position={tooltipPosition}
                   content={(props: TooltipProps) => (
-                    <ResponsiveTooltipContent valueFormatter={tooltipValueFormatter} {...props} />
+                    <LinePlotTooltip valueFormatter={tooltipValueFormatter} {...props} />
                   )}
                 />
 
