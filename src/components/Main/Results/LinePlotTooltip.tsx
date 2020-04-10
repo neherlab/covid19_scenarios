@@ -58,7 +58,7 @@ export function LinePlotTooltip({
         const value =
           payloadItem && payloadItem.value !== undefined
             ? (payloadItem.value as string | number)
-            : tooltipItem.displayUndefinedAs || '?'
+            : tooltipItem.displayUndefinedAs
 
         return {
           ...tooltipItem,
