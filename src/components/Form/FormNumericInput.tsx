@@ -2,7 +2,7 @@ import React from 'react'
 
 import _ from 'lodash'
 
-import { Field, FormikErrors, FormikTouched } from 'formik'
+import { FormikErrors, FormikTouched } from 'formik'
 import { Col, FormGroup, Row } from 'reactstrap'
 
 import FormLabel from './FormLabel'
