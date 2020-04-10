@@ -32,7 +32,7 @@ export function LinePlotTooltip({
     return null
   }
 
-  const formattedLabel = labelFormatter && label !== undefined ? labelFormatter(label) : label
+  const formattedLabel = labelFormatter ? labelFormatter(label) : label
 
   const tooltipItems = []
     .concat(

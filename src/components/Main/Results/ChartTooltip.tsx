@@ -15,11 +15,11 @@ export function ChartTooltip({ active, payload, label, valueFormatter, labelForm
     return null
   }
 
-  const formattedLabel = labelFormatter && label !== undefined ? labelFormatter(label) : label
+  const formattedLabel = labelFormatter ? labelFormatter(label) : label
 
   const tooltipItems = payload.map(
     (payloadItem): TooltipItem => {
-      const value = payloadItem && payloadItem.value !== undefined ? (payloadItem.value as string | number) : 0
+      const value = payloadItem.value !== undefined ? (payloadItem.value as string | number) : 0
 
       return {
         name: payloadItem.name,
