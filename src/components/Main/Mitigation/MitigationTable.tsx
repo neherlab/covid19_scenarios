@@ -137,6 +137,7 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
         <Col xs="12" sm="12" md="12" lg="12" xl="12" className="align-self-center pl-1 pr-1 pb-1">
           <NumericInput
             className="form-control"
+            label="Mitigation value"
             identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
             name={`containment.mitigationIntervals[${index}].mitigationValue`}
             step={1}
