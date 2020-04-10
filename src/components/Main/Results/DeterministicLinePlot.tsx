@@ -25,7 +25,7 @@ import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
-import { linesToPlot, DATA_POINTS, colors, LineProps, translateLinesToPlot } from './LinePlotCommon'
+import { linesToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './LinePlotCommon'
 import './DeterministicLinePlot.scss'
 
 const ASPECT_RATIO = 16 / 9
@@ -181,26 +181,26 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const scatterToPlot: LineProps[] = observations.length
-    ? [
-        // Append empirical data
-        ...(countObservations.cases
-          ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative cases (data)') }]
-          : []),
-        ...(countObservations.newCases
-          ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Cases past 3 days (data)') }]
-          : []),
-        ...(countObservations.hospitalized
-          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital (data)') }]
-          : []),
-        ...(countObservations.ICU
-          ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU (data)') }]
-          : []),
-        ...(countObservations.observedDeaths
-          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative deaths (data)') }]
-          : []),
-      ]
-    : []
+  const reducedObservationsToPlot = translatePlots(t, observationsToPlot).filter((itemToPlot) => {
+    if (observations.length !== 0) {
+      if (countObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
+        return true
+      }
+      if (countObservations.newCases && itemToPlot.key === DATA_POINTS.ObservedNewCases) {
+        return true
+      }
+      if (countObservations.hospitalized && itemToPlot.key === DATA_POINTS.ObservedHospitalized) {
+        return true
+      }
+      if (countObservations.ICU && itemToPlot.key === DATA_POINTS.ObservedICU) {
+        return true
+      }
+      if (countObservations.observedDeaths && itemToPlot.key === DATA_POINTS.ObservedDeaths) {
+        return true
+      }
+    }
+    return false
+  })
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
@@ -325,11 +325,11 @@ export function DeterministicLinePlot({
                   </ReferenceArea>
                 ))}
 
-                {scatterToPlot.map((d) => (
+                {reducedObservationsToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
 
-                {translateLinesToPlot(t, linesToPlot).map((d) => (
+                {translatePlots(t, linesToPlot).map((d) => (
                   <Line
                     key={d.key}
                     dot={false}
