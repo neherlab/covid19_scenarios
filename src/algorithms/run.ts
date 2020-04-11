@@ -34,7 +34,6 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
     }
     const i = containment.findIndex((d) => Number(t) < Number(d.t))
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const evalLinear = (t: number) => {
       const deltaY = Ys[i] - Ys[i - 1]
       const deltaT = Ts[i] - Ts[i - 1]
@@ -75,7 +74,7 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
 
   orderedChangePoints.sort(compareTimes)
 
-  if (orderedChangePoints.length) {
+  if (orderedChangePoints.length > 0) {
     const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t, y: 1.0 }]
     const product = (a: number, b: number): number => a * b
 

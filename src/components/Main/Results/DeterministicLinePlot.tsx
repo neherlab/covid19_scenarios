@@ -50,13 +50,15 @@ function labelFormatter(value: string | number): React.ReactNode {
   return xTickFormatter(value)
 }
 
-function legendFormatter(enabledPlots: string[], value: string, entry: any) {
+function legendFormatter(enabledPlots: string[], value: string, entry: { dataKey: string }) {
   const activeClassName = enabledPlots.includes(entry.dataKey) ? 'legend' : 'legend-inactive'
   return <span className={activeClassName}>{value}</span>
 }
 
 const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 
+// FIXME: this component has become too large
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function DeterministicLinePlot({
   data,
   userResult,

@@ -243,6 +243,14 @@ function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number): Simulati
   return state
 }
 
+export function sum(arr: number[]): number {
+  return arr.reduce((a, b) => a + b, 0)
+}
+
+export function gz(x: number): number {
+  return x > 0 ? x : 0
+}
+
 function advanceState(
   pop: SimulationTimePoint,
   tdot: TimeDerivative,
@@ -265,15 +273,6 @@ function advanceState(
       critical: [],
       fatality: [],
     },
-  }
-
-  // Helper functions
-  const sum = (arr: number[]): number => {
-    return arr.reduce((a, b) => a + b, 0)
-  }
-
-  const gz = (x: number): number => {
-    return x > 0 ? x : 0
   }
 
   // TODO(nnoll): Sort out types
@@ -438,10 +437,6 @@ function derivative(flux: StateFlux): TimeDerivative {
 }
 
 function fluxes(time: Date, pop: SimulationTimePoint, P: ModelParams): StateFlux {
-  const sum = (arr: number[]): number => {
-    return arr.reduce((a, b) => a + b, 0)
-  }
-
   // Convention: flux is labelled by the state
   const flux: StateFlux = {
     susceptible: [],

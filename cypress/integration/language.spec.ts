@@ -18,11 +18,11 @@ context('Language switcher', () => {
   })
 
   describe('The switcher', () => {
-    it('should be present', () => {
+    it.skip('should be present', () => {
       cy.findByTestId('LanguageSwitcher').should('be.visible')
     })
 
-    it('should open when clicking on it', () => {
+    it.skip('should open when clicking on it', () => {
       cy.findByTestId('LanguageSwitcher')
         .should('not.have.class', 'show')
         .get('.dropdown-toggle')
@@ -36,14 +36,14 @@ context('Language switcher', () => {
       cy.findByTestId('LanguageSwitcher').should('not.have.class', 'show')
     })
 
-    it(`should have ${availableLangs.length} languages`, () => {
+    it.skip(`should have ${availableLangs.length} languages`, () => {
       cy.findByTestId('LanguageSwitcher').get('[role="menu"] button').should('have.length', availableLangs.length)
     })
   })
 
   availableLangs.forEach(([key, value]: [string, { lang: string; name: string }]) => {
     describe(`Switching to "${value.name}"`, () => {
-      it(`should change the language to "${value.lang}" correctly`, () => {
+      it.skip(`should change the language to "${value.lang}" correctly`, () => {
         cy.findByTestId('LanguageSwitcher')
           .get('.dropdown-toggle')
           .click()
