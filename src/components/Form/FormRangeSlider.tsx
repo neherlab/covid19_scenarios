@@ -4,7 +4,8 @@ import _ from 'lodash'
 
 import { Field, FieldProps, FormikTouched, FormikErrors } from 'formik'
 import { Range, getTrackBackground } from 'react-range'
-import HelpLabel from './HelpLabel'
+import { Col, FormGroup, Row } from 'reactstrap'
+import FormLabel from './FormLabel'
 
 export interface RangeSliderProps<T> {
   identifier: string
@@ -49,85 +50,81 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
         }
 
         return (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              flexDirection: 'row',
-              height: '40px',
-            }}
-          >
-            <div id={identifier} style={{ width: '100%', justifyContent: 'left' }}>
-              <HelpLabel identifier={identifier} label={label} help={help} />
-            </div>
-
-            <Range
-              values={value}
-              step={step}
-              min={min}
-              max={max}
-              onChange={handleChange}
-              renderTrack={({ props, children }) => (
-                <div
-                  onMouseDown={props.onMouseDown}
-                  onTouchStart={props.onTouchStart}
-                  style={{
-                    ...props.style,
-                    height: '24px',
-                    display: 'flex',
-                    width: '100%',
-                  }}
-                >
-                  <div
-                    ref={props.ref}
-                    style={{
-                      height: '8px',
-                      width: '80%',
-                      borderRadius: '4px',
-                      background: getTrackBackground({
-                        values: value,
-                        colors: ['#ccc', 'mediumaquamarine', '#ccc'],
-                        min: min,
-                        max: max,
-                      }),
-                      alignSelf: 'center',
-                    }}
-                  >
-                    {children}
-                  </div>
-                  <div style={{ width: '40%', paddingLeft: '20px', justifyContent: 'right' }}>
-                    <output>
-                      {value[0].toFixed(1)} - {value[1].toFixed(1)}
-                    </output>
-                  </div>
-                </div>
-              )}
-              renderThumb={({ props, isDragged }) => (
-                <div
-                  style={{
-                    ...props.style,
-                    height: '17px',
-                    width: '17px',
-                    borderRadius: '4px',
-                    backgroundColor: '#FFF',
-                    borderWidth: '0px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    boxShadow: '0px 2px 6px #AAA',
-                  }}
-                >
-                  <div
-                    style={{
-                      height: '10px',
-                      width: '5px',
-                      backgroundColor: isDragged ? 'mediumaquamarine' : '#CCC',
-                    }}
-                  />
-                </div>
-              )}
-            />
-          </div>
+          <FormGroup className="my-0">
+            <Row noGutters>
+              <Col xl={7}>
+                <FormLabel identifier={identifier} label={label} help={help} />
+              </Col>
+              <Col xl={5}>
+                <Range
+                  values={value}
+                  step={step}
+                  min={min}
+                  max={max}
+                  onChange={handleChange}
+                  renderTrack={({ props, children }) => (
+                    <div
+                      onMouseDown={props.onMouseDown}
+                      onTouchStart={props.onTouchStart}
+                      style={{
+                        ...props.style,
+                        height: '24px',
+                        display: 'flex',
+                        width: '100%',
+                      }}
+                    >
+                      <div
+                        ref={props.ref}
+                        style={{
+                          height: '8px',
+                          width: '60%',
+                          borderRadius: '4px',
+                          background: getTrackBackground({
+                            values: value,
+                            colors: ['#ccc', 'mediumaquamarine', '#ccc'],
+                            min: min,
+                            max: max,
+                          }),
+                          alignSelf: 'center',
+                        }}
+                      >
+                        {children}
+                      </div>
+                      <div style={{ width: '40%', paddingLeft: '10px', justifyContent: 'right' }}>
+                        <output>
+                          {value[0].toFixed(1)} - {value[1].toFixed(1)}
+                        </output>
+                      </div>
+                    </div>
+                  )}
+                  renderThumb={({ props, isDragged }) => (
+                    <div
+                      style={{
+                        ...props.style,
+                        height: '17px',
+                        width: '12px',
+                        borderRadius: '4px',
+                        backgroundColor: '#FFF',
+                        borderWidth: '0px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        boxShadow: '0px 2px 6px #AAA',
+                      }}
+                    >
+                      <div
+                        style={{
+                          height: '10px',
+                          width: '5px',
+                          backgroundColor: isDragged ? 'mediumaquamarine' : '#CCC',
+                        }}
+                      />
+                    </div>
+                  )}
+                />
+              </Col>
+            </Row>
+          </FormGroup>
         )
       }}
     </Field>

@@ -39,8 +39,8 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
           'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
         )}
         step={0.1}
-        min={1}
-        max={10}
+        min={0.5}
+        max={6}
       />
       <FormSpinBox
         identifier="epidemiological.latencyTime"
