@@ -303,7 +303,7 @@ export default {
       TRAVIS_BUILD_WEB_URL: getenv('TRAVIS_BUILD_WEB_URL', null),
       REVISION:
         getenv('TRAVIS_COMMIT', null) ??
-        getenv('NOW_GITHUB_COMMIT_SHA', null) ??
+        getenv('NOW_GITHUB_COMMIT_SHA') ??
         require('child_process')
           .execSync('git rev-parse --short HEAD')
           .toString()
