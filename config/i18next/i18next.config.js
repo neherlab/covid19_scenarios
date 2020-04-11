@@ -2,8 +2,6 @@ const SupportedLocales = require('../../src/langs').default
 
 const locales = Object.keys(SupportedLocales)
 
-console.log({ locales })
-
 module.exports = {
   contextSeparator: '_',
   // Key separator used in your translation keys
