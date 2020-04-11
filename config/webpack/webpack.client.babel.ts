@@ -289,6 +289,17 @@ export default {
       DEBUGGABLE_PROD: process.env.DEBUGGABLE_PROD,
       NODE_ENV: process.env.NODE_ENV,
       DEV_ENABLE_I18N_DEBUG: getenv('DEV_ENABLE_I18N_DEBUG', '0'),
+      IS_PRODUCTION: production,
+      IS_DEVELOPMENT: development,
+      ENV_NAME: getenv('ENV_NAME'),
+      PACKAGE_VERSION: pkg.version,
+      BUILD_NUMBER: getenv('TRAVIS_BUILD_NUMBER', null),
+      REVISION:
+        getenv('TRAVIS_COMMIT', null) ??
+        require('child_process')
+          .execSync('git rev-parse --short HEAD')
+          .toString()
+          .trim(),
     }),
 
     ...(fancyConsole

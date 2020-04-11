@@ -12,6 +12,8 @@ import routes from '../../routes'
 
 import { State } from '../../state/reducer'
 
+import Footer from './Footer'
+
 import './Layout.scss'
 
 interface LayoutProps {
@@ -25,11 +27,15 @@ function Layout({ location }: LayoutProps) {
         <NavigationBar navLinks={links} />
       </header>
 
-      <div className="row">
-        <main className="container-fluid absolute" role="main">
+      <div className="row main-wrapper">
+        <main className="main container-fluid absolute" role="main">
           <PageSwitcher location={location} routes={routes} loadingComponent={<Loading />} />
         </main>
       </div>
+
+      <footer className="row d-print-none footer">
+        <Footer />
+      </footer>
     </div>
   )
 }

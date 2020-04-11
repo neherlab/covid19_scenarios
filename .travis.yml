@@ -48,4 +48,4 @@ after_deploy:
       -s $AWS_SECRET_ACCESS_KEY \
       -c $AWS_CLOUDFRONT_DISTRIBUTION_ID \
       -i '/*' \
-      -o 'master,release'
+      -o 'master,staging,release'
