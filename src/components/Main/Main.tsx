@@ -32,6 +32,8 @@ import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
 import PrintPage from './PrintPage/PrintPage'
 
+const algorithmWorker = new Worker('../../workers/algorithm.js', { type: 'module' });
+
 import './Main.scss'
 
 interface FormikValidationErrors extends Error {
@@ -52,7 +54,10 @@ async function runSimulation(
   severity: SeverityTableRow[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
   setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
+  setIsRunning: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
+  setIsRunning(true)
+
   const paramsFlat = {
     ...params.population,
     ...params.epidemiological,
@@ -64,10 +69,16 @@ async function runSimulation(
   const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
 
   intervalsToTimeSeries(params.containment.mitigationIntervals)
-  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution, containment)
-  setResult(newResult)
-  caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
-  setEmpiricalCases(caseCounts)
+
+  algorithmWorker.onmessage = event => {
+    setResult(event.data)
+    caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
+    setEmpiricalCases(caseCounts)
+    setIsRunning(false)
+  };
+
+  const { ageDistribution } = scenarioState
+  algorithmWorker.postMessage({paramsFlat, severity, ageDistribution, containment})
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
@@ -75,6 +86,7 @@ const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
+  const [isRunning, setIsRunning] = useState(false)
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,
@@ -102,7 +114,7 @@ function Main() {
 
   const [debouncedRun] = useDebouncedCallback(
     (params: AllParams, scenarioState: State, severity: SeverityTableRow[]) =>
-      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases),
+      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning),
     500,
   )
 
@@ -155,7 +167,7 @@ function Main() {
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
+    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning)
     setSubmitting(false)
   }
 
@@ -205,6 +217,7 @@ function Main() {
                   <Col lg={8} xl={6} className="py-1">
                     <ResultsCard
                       canRun={canRun}
+                      isRunning={isRunning}
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
