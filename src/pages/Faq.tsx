@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'reactstrap'
 
 import FaqTableOfContents from '../components/Faq/FaqTableOfContents'
 
-import FaqContent from '../assets/text/faq.md'
+import FaqContent from '../assets/text/faq.mdx'
 
 export default function Faq() {
   return (
