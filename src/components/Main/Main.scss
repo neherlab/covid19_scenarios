@@ -9,24 +9,24 @@ h3 {
 }
 
 h2 {
-  color: $black;
   font-size: 28px;
+  color: $black;
   letter-spacing: 0.49em;
 }
 
 h3 {
-  color: $black;
   font-size: 20px;
-}
-
-.card h3 {
-  color: $white;
-}
-
-.card.card--results h3 {
   color: $black;
-  margin-bottom: 0;
-  margin-top: 1em;
+
+  @nest .card & {
+    color: $white;
+  }
+
+  @nest .card.card--results & {
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: $black;
+  }
 }
 
 .card {
@@ -35,16 +35,16 @@ h3 {
 }
 
 .card-header {
-  background-color: $black;
   padding: 8px 4px;
-}
+  background-color: $black;
 
-.card-header label {
-  margin: 0;
-}
+  & label {
+    margin: 0;
+  }
 
-.card-header p {
-  color: $white;
+  & p {
+    color: $white;
+  }
 }
 
 .card-header-button {
@@ -57,30 +57,30 @@ h3 {
 }
 
 .card--main {
-  border: none;
   margin-top: 30px;
+  border: none;
 
   & > .card-header {
-    background-color: transparent;
-    border-bottom: 3px solid $black;
     min-height: 3em;
     padding-left: 0;
+    background-color: transparent;
+    border-bottom: 3px solid $black;
   }
 
   & > .card-body,
   & > .collapse > .card-body {
-    margin-top: 10px;
     padding: 0;
+    margin-top: 10px;
   }
 }
 
 .card--results {
   & > .card-body,
   & > .collapse > .card-body {
+    padding: 1rem;
+    margin-top: 20px;
     background-color: $white;
     border: 1px solid $black;
-    margin-top: 20px;
-    padding: 1rem;
   }
 }
 
@@ -90,13 +90,13 @@ h3 {
 
     p {
       margin: 0;
-      text-align: left;
       color: initial;
+      text-align: left;
     }
 
     h4 {
-      font-weight: bold;
       font-size: 110%;
+      font-weight: bold;
     }
   }
 }
