@@ -36,6 +36,8 @@ import { getenv } from '../../lib/getenv'
 
 import babelConfig from '../../babel.config'
 
+const WorkerPlugin = require('worker-plugin')
+
 process.once('SIGINT', () => {
   kill(process.pid, 'SIGTERM')
   process.exit(0)
@@ -414,6 +416,8 @@ export default {
         writeFile: true,
         publish: false,
       }),
+
+    new WorkerPlugin(),
   ].filter(Boolean),
 
   optimization: {
