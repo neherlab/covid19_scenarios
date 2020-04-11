@@ -52,7 +52,7 @@ definitions:
       - populationServed
       - country
       - cases
-      - suspectedCasesToday
+      - initialNumberOfCases
       - importsPerDay
       - hospitalBeds
       - ICUBeds
@@ -73,7 +73,7 @@ definitions:
         type: string
         minLength: 1
 
-      suspectedCasesToday:
+      initialNumberOfCases:
         type: integer
         multipleOf: 1
         minimum: 0
