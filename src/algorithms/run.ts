@@ -153,26 +153,30 @@ function sumTimePoint(x: ExportedTimePoint, y: ExportedTimePoint, func: (x: numb
   return z
 }
 
+function emptyTimePoint(t: number): ExportedTimePoint {
+  return {
+    time: t, // Dummy
+    current: {
+      susceptible: {},
+      severe: {},
+      critical: {},
+      exposed: {},
+      infectious: {},
+      overflow: {},
+    },
+    cumulative: {
+      recovered: {},
+      critical: {},
+      hospitalized: {},
+      fatality: {},
+    },
+  }
+}
+
 function zeroTrajectory(len: number): ExportedTimePoint[] {
   const arr: ExportedTimePoint[] = []
   while (arr.length < len) {
-    arr.push({
-      time: Date.now(), // Dummy
-      current: {
-        susceptible: {},
-        severe: {},
-        critical: {},
-        exposed: {},
-        infectious: {},
-        overflow: {},
-      },
-      cumulative: {
-        recovered: {},
-        critical: {},
-        hospitalized: {},
-        fatality: {},
-      },
-    })
+    arr.push(emptyTimePoint(Date.now()))
   }
 
   return arr
@@ -197,8 +201,8 @@ export async function run(
 
   const msPerDay = 24 * 60 * 60 * 1000
   const numDaysDelta = Math.round((tMax - tMin) / msPerDay)
-  const avgLinear: ExportedTimePoint[] = zeroTrajectory(numDaysDelta)
-  const avgSquare: ExportedTimePoint[] = zeroTrajectory(numDaysDelta)
+
+  const trajectories: ExportedTimePoint[][] = []
 
   modelParamsArray.forEach((modelParams) => {
     let population = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
@@ -214,9 +218,13 @@ export async function run(
 
       return collectTotals(dynamics, ageGroups)
     }
+    trajectories.push(simulate(population, identity))
+  })
 
-    const realization = simulate(population, identity)
+  const avgLinear: ExportedTimePoint[] = zeroTrajectory(numDaysDelta)
+  const avgSquare: ExportedTimePoint[] = zeroTrajectory(numDaysDelta)
 
+  trajectories.forEach((realization) => {
     avgLinear.forEach((tp, i) => {
       avgLinear[i] = sumTimePoint(tp, realization[i], (x) => {
         return x / modelParamsArray.length
