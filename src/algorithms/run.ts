@@ -20,6 +20,9 @@ const compareTimes = (a: ChangePoint, b: ChangePoint): number => {
   return a.t.valueOf() - b.t.valueOf()
 }
 
+// -----------------------------------------------------------------------
+// Utility functions
+
 // NOTE: Assumes containment is sorted ascending in time.
 export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
   if (containment.length === 0) {
@@ -92,34 +95,41 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
   return []
 }
 
-function ensurePositiveTP(x: ExportedTimePoint): ExportedTimePoint {
-  const check = (obj: Record<string, number>) => {
-    Object.keys(obj).forEach((k) => {
-      if (obj[k] < 0) {
-        obj[k] = 0
-      }
-    })
+// -----------------------------------------------------------------------
+// Simulation data methods
 
-    return obj
+/* Constructors */
+function emptyTimePoint(t: number): ExportedTimePoint {
+  return {
+    time: t, // Dummy
+    current: {
+      susceptible: {},
+      severe: {},
+      critical: {},
+      exposed: {},
+      infectious: {},
+      overflow: {},
+    },
+    cumulative: {
+      recovered: {},
+      critical: {},
+      hospitalized: {},
+      fatality: {},
+    },
   }
-
-  x.current.susceptible = check(x.current.susceptible)
-  x.current.severe = check(x.current.severe)
-  x.current.exposed = check(x.current.exposed)
-  x.current.critical = check(x.current.critical)
-  x.current.overflow = check(x.current.overflow)
-  x.current.infectious = check(x.current.infectious)
-
-  x.cumulative.critical = check(x.cumulative.critical)
-  x.cumulative.fatality = check(x.cumulative.fatality)
-  x.cumulative.recovered = check(x.cumulative.recovered)
-  x.cumulative.hospitalized = check(x.cumulative.hospitalized)
-
-  return x
 }
 
+function emptyTrajectory(len: number): ExportedTimePoint[] {
+  const arr: ExportedTimePoint[] = []
+  while (arr.length < len) {
+    arr.push(emptyTimePoint(Date.now()))
+  }
+
+  return arr
+}
+
+/* Binary operations */
 function sumTP(x: ExportedTimePoint, y: ExportedTimePoint): ExportedTimePoint {
-  //, func: (x: number) => number): ExportedTimePoint {
   const sum = (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
     const s: Record<string, number> = {}
     Object.keys(other).forEach((k) => {
@@ -154,6 +164,7 @@ function sumTP(x: ExportedTimePoint, y: ExportedTimePoint): ExportedTimePoint {
   return z
 }
 
+/* Unary operations */
 function scaleTP(x: ExportedTimePoint, transform: (x: number) => number): ExportedTimePoint {
   const scale = (dict: Record<string, number>): Record<string, number> => {
     const s: Record<string, number> = {}
@@ -184,26 +195,50 @@ function scaleTP(x: ExportedTimePoint, transform: (x: number) => number): Export
   return z
 }
 
-function geometricMean(tps: ExportedTimePoint[]): ExportedTimePoint {
+function ensurePositiveTP(x: ExportedTimePoint): ExportedTimePoint {
+  const check = (obj: Record<string, number>) => {
+    Object.keys(obj).forEach((k) => {
+      if (obj[k] < 0) {
+        obj[k] = 0
+      }
+    })
+
+    return obj
+  }
+
+  x.current.susceptible = check(x.current.susceptible)
+  x.current.severe = check(x.current.severe)
+  x.current.exposed = check(x.current.exposed)
+  x.current.critical = check(x.current.critical)
+  x.current.overflow = check(x.current.overflow)
+  x.current.infectious = check(x.current.infectious)
+
+  x.cumulative.critical = check(x.cumulative.critical)
+  x.cumulative.fatality = check(x.cumulative.fatality)
+  x.cumulative.recovered = check(x.cumulative.recovered)
+  x.cumulative.hospitalized = check(x.cumulative.hospitalized)
+
+  return x
+}
+
+/* N-ary operations (TP -> TPs) */
+function scaledMeanTPs(
+  tps: ExportedTimePoint[],
+  scale: (x: number) => number,
+  rescale: (x: number) => number,
+): ExportedTimePoint {
   let mean: ExportedTimePoint = emptyTimePoint(tps[0].time)
+
   tps.forEach((tp) => {
-    mean = sumTP(
-      mean,
-      scaleTP(tp, (x) => Math.log(x) || -20),
-    )
+    mean = sumTP(mean, scaleTP(tp, scale))
   })
-  mean = scaleTP(mean, (x) => Math.exp(x / tps.length))
+
+  mean = scaleTP(mean, rescale)
 
   return mean
 }
 
-function geometricMeanTrajectory(trajectories: ExportedTimePoint[][]): ExportedTimePoint[] {
-  return trajectories[0].map((d, i) => {
-    return geometricMean(trajectories.map((d, j) => trajectories[j][i]))
-  })
-}
-
-function median(tps: ExportedTimePoint[]): ExportedTimePoint {
+function percentileTPs(tps: ExportedTimePoint[]): ExportedTimePoint {
   const med: ExportedTimePoint = emptyTimePoint(tps[0].time)
   const mid = tps.length % 2 ? (tps.length - 1) / 2 : tps.length / 2
   Object.keys(tps[0].current).forEach((k) => {
@@ -219,40 +254,27 @@ function median(tps: ExportedTimePoint[]): ExportedTimePoint {
   return med
 }
 
+// -----------------------------------------------------------------------
+// Operations on sets of realizations
+
 function medianTrajectory(trajectories: ExportedTimePoint[][]): ExportedTimePoint[] {
-  return trajectories[0].map((d, i) => {
-    return geometricMean(trajectories.map((d, j) => trajectories[j][i]))
+  return trajectories[0].map((_, i) => {
+    return percentileTPs(trajectories.map((_, j) => trajectories[j][i]))
   })
 }
 
-function emptyTimePoint(t: number): ExportedTimePoint {
-  return {
-    time: t, // Dummy
-    current: {
-      susceptible: {},
-      severe: {},
-      critical: {},
-      exposed: {},
-      infectious: {},
-      overflow: {},
-    },
-    cumulative: {
-      recovered: {},
-      critical: {},
-      hospitalized: {},
-      fatality: {},
-    },
-  }
+function meanTrajectory(trajectories: ExportedTimePoint[][]): ExportedTimePoint[] {
+  return trajectories[0].map((_, i) => {
+    return scaledMeanTPs(
+      trajectories.map((_, j) => trajectories[j][i]),
+      (x) => Math.log(x) || 20,
+      (x) => Math.exp(x / trajectories.length),
+    )
+  })
 }
 
-function zeroTrajectory(len: number): ExportedTimePoint[] {
-  const arr: ExportedTimePoint[] = []
-  while (arr.length < len) {
-    arr.push(emptyTimePoint(Date.now()))
-  }
-
-  return arr
-}
+// -----------------------------------------------------------------------
+// Main function
 
 /**
  *
@@ -289,8 +311,8 @@ export async function run(
     trajectories.push(simulate(population, identity))
   })
 
-  const avgLinear: ExportedTimePoint[] = zeroTrajectory(trajectories[0].length)
-  const avgSquare: ExportedTimePoint[] = zeroTrajectory(trajectories[0].length)
+  const avgLinear: ExportedTimePoint[] = emptyTrajectory(trajectories[0].length)
+  const avgSquare: ExportedTimePoint[] = emptyTrajectory(trajectories[0].length)
   trajectories.forEach((realization) => {
     avgLinear.forEach((tp, i) => {
       avgLinear[i] = sumTP(
@@ -313,7 +335,7 @@ export async function run(
 
   const sim: AlgorithmResult = {
     trajectory: {
-      mean: medianTrajectory(trajectories),
+      mean: meanTrajectory(trajectories),
       variance: avgSquare.map((tp, i) =>
         ensurePositiveTP(
           sumTP(
