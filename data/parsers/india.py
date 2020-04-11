@@ -1,8 +1,6 @@
-import os, sys
-import csv
+import sys
 import json
 import requests
-import numpy as np
 
 from collections import defaultdict
 from datetime import datetime
@@ -12,7 +10,6 @@ from .utils import store_data
 # Globals
 
 URL  = "https://api.rootnet.in/covid19-in/stats/daily"
-LOC  = "case-counts/Asia/Southern Asia/India"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------

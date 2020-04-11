@@ -1,5 +1,4 @@
-import os, sys
-import csv
+import sys
 import json
 import requests
 import numpy as np
@@ -24,7 +23,6 @@ X = {
 }
 
 URL  = "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
-LOC  = "case-counts/Europe/Southern Europe/Italy"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
@@ -40,7 +38,7 @@ def parse():
     db = json.loads(r.text)
     r.close()
 
-    # Convert to ready made TSVs
+    # Convert to our datatype
     regions = defaultdict(list)
     for row in db:
         elt = [ int(row[X[c]]) if i > 0 else row[X[c]][:10] for i, c in enumerate(cols) ]
