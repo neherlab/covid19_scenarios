@@ -14,6 +14,7 @@ export interface State {
 export const DEFAULT_OVERALL_SCENARIO_NAME = 'United States of America'
 export const CUSTOM_SCENARIO_NAME = i18next.t('Custom')
 export const CUSTOM_COUNTRY_NAME = 'Custom'
+export const NONE_COUNTRY_NAME = 'None'
 
 export const defaultScenarioName = DEFAULT_OVERALL_SCENARIO_NAME
 
