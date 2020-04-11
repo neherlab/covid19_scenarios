@@ -1,3 +1,5 @@
+import 'regenerator-runtime'
+
 import { run } from '../algorithms/run'
 
 addEventListener('message', (event) => {
