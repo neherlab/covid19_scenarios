@@ -11,7 +11,7 @@ import { SeverityTableRow } from './Scenario/ScenarioTypes'
 
 import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import { run, intervalsToTimeSeries } from '../../algorithms/run'
+import { intervalsToTimeSeries } from '../../algorithms/run'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 

@@ -1,4 +1,4 @@
-import { run, intervalsToTimeSeries } from '../algorithms/run'
+import { run } from '../algorithms/run'
 
 addEventListener('message', (event) => {
   const { paramsFlat, severity, ageDistribution, containment } = event.data
