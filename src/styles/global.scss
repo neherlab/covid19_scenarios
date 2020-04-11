@@ -16,6 +16,11 @@
 @import '~react-grid-layout/css/styles.css';
 @import '~react-resizable/css/styles.css';
 
+html,
+body {
+  height: 100%;
+}
+
 html {
   overflow-y: scroll;
 }
@@ -100,6 +105,13 @@ input[type='number']::-webkit-outer-spin-button {
 
 .recharts-tooltip-wrapper {
   z-index: 999;
+}
+
+// rechart <Scatter /> elements can cause the tooltip to hide. (and appear with
+// a payload it cannot handle). So they are set to ignore mouse events.
+// https://github.com/neherlab/covid19_scenarios/issues/234#issuecomment-612294282
+.recharts-scatter-symbol {
+  pointer-events: none;
 }
 
 .truncate-ellipsis {

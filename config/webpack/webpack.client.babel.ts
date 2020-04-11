@@ -289,6 +289,25 @@ export default {
       DEBUGGABLE_PROD: process.env.DEBUGGABLE_PROD,
       NODE_ENV: process.env.NODE_ENV,
       DEV_ENABLE_I18N_DEBUG: getenv('DEV_ENABLE_I18N_DEBUG', '0'),
+      IS_PRODUCTION: production,
+      IS_DEVELOPMENT: development,
+      ENV_NAME:
+        getenv('TRAVIS_BRANCH', null) ??
+        getenv('NOW_GITHUB_COMMIT_REF', null) ??
+        require('child_process')
+          .execSync('git branch --show-current')
+          .toString()
+          .trim(),
+      PACKAGE_VERSION: pkg.version,
+      BUILD_NUMBER: getenv('TRAVIS_BUILD_NUMBER', null),
+      TRAVIS_BUILD_WEB_URL: getenv('TRAVIS_BUILD_WEB_URL', null),
+      REVISION:
+        getenv('TRAVIS_COMMIT', null) ??
+        getenv('NOW_GITHUB_COMMIT_SHA', null) ??
+        require('child_process')
+          .execSync('git rev-parse --short HEAD')
+          .toString()
+          .trim(),
     }),
 
     ...(fancyConsole

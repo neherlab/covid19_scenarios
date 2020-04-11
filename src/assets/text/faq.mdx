@@ -1,7 +1,24 @@
-## Tutorial video
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sv5T7MPKE5A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+import { Container, Col, Row } from 'reactstrap'
 
-## FAQs
+import LinkExternal from '../../components/Router/LinkExternal'
+
+import youtubeTutorialThumbnail from '../img/youtube-tutorial-thumbnail.png'
+
+<Container>
+
+**Q:** How to use this tool? Is there a tutorial?
+
+**A:** _Tutorial video is available on YouTube:_
+
+<Row>
+  <Col className="d-flex">
+    <LinkExternal className="mx-auto" href="https://www.youtube.com/watch?v=sv5T7MPKE5A" alt="Link to YouTube tutorial">
+      <img className="img-fluid" src={youtubeTutorialThumbnail} alt="Link to YouTube tutorial thumbnail" />
+    </LinkExternal>
+  </Col>
+</Row>
+
+---
 
 **Q:** Why does the outbreak grow more slowly when I increase the infectious period?
 
@@ -32,7 +49,7 @@ mitigation efforts for your regions of interest.
 **Q:** My country/region/town is missing!
 
 **A:** _If you have suggestions on additional regions that should be covered, head over to
-https://github.com/neherlab/covid19_scenarios/tree/master/data and make a PR!_
+[our data directory](https://github.com/neherlab/covid19_scenarios/tree/master/data) and make a pull request!_
 
 ---
 
@@ -62,3 +79,5 @@ model is individual based, meaning their program represents a large number of in
 spreading. Our model breaks the population into age-groups and different categories corresponding to susceptible,
 infected, dead, recovered, etc. This allows for faster simulations, but loses some realism. The faster simulation allows
 exploration of parameters._
+
+</Container>
