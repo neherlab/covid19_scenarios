@@ -167,8 +167,7 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
         </div>
         <p />
         <p>
-          Produced with <a href="https://covid19-scenarios.org">covid19-scenarios.org</a> on{' '}
-          {new Date().toString()}.
+          Produced with <a href="https://covid19-scenarios.org">covid19-scenarios.org</a> on {new Date().toString()}.
         </p>
       </div>
     )
