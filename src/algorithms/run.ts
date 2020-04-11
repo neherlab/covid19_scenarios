@@ -92,7 +92,7 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
   return []
 }
 
-function ensurePositive(x: ExportedTimePoint): ExportedTimePoint {
+function ensurePositiveTP(x: ExportedTimePoint): ExportedTimePoint {
   const check = (obj: Record<string, number>) => {
     Object.keys(obj).forEach((k) => {
       if (obj[k] < 0) {
@@ -118,14 +118,15 @@ function ensurePositive(x: ExportedTimePoint): ExportedTimePoint {
   return x
 }
 
-function sumTimePoint(x: ExportedTimePoint, y: ExportedTimePoint, func: (x: number) => number): ExportedTimePoint {
+function sumTP(x: ExportedTimePoint, y: ExportedTimePoint): ExportedTimePoint {
+  //, func: (x: number) => number): ExportedTimePoint {
   const sum = (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
     const s: Record<string, number> = {}
     Object.keys(other).forEach((k) => {
       if (!(k in dict)) {
-        s[k] = func(other[k])
+        s[k] = other[k]
       } else {
-        s[k] = dict[k] + func(other[k])
+        s[k] = dict[k] + other[k]
       }
     })
 
@@ -153,25 +154,50 @@ function sumTimePoint(x: ExportedTimePoint, y: ExportedTimePoint, func: (x: numb
   return z
 }
 
+function scaleTP(x: ExportedTimePoint, transform: (x: number) => number): ExportedTimePoint {
+  const scale = (dict: Record<string, number>): Record<string, number> => {
+    const s: Record<string, number> = {}
+    Object.keys(dict).forEach((k) => {
+      s[k] = transform(dict[k])
+    })
+
+    return s
+  }
+  const z: ExportedTimePoint = {
+    time: x.time,
+    current: {
+      susceptible: scale(x.current.susceptible),
+      severe: scale(x.current.severe),
+      exposed: scale(x.current.exposed),
+      critical: scale(x.current.critical),
+      overflow: scale(x.current.overflow),
+      infectious: scale(x.current.infectious),
+    },
+    cumulative: {
+      critical: scale(x.cumulative.critical),
+      fatality: scale(x.cumulative.fatality),
+      recovered: scale(x.cumulative.recovered),
+      hospitalized: scale(x.cumulative.hospitalized),
+    },
+  }
+
+  return z
+}
 
 function geometricMean(tps: ExportedTimePoint[]): ExportedTimePoint {
-  const mean: ExportedTimePoint = emptyTimePoint(tps[0].time)
-  Object.keys(tps[0].current).forEach((k) => {
-    Object.keys(tps[0].current[k]).forEach(age => {
-      const sumLog = tps.map((d) => Math.log(d.current[k][age])|| -20).reduce((a,b) => (a+b))
-      mean.current[k][age] = Math.exp(sumLog/tps.length)
-    })
+  let mean: ExportedTimePoint = emptyTimePoint(tps[0].time)
+  tps.forEach((tp) => {
+    mean = sumTP(
+      mean,
+      scaleTP(tp, (x) => Math.log(x) || -20),
+    )
   })
-  Object.keys(tps[0].cumulative).forEach((k) => {
-    Object.keys(tps[0].cumulative[k]).forEach((age) => {
-      const sumLog = tps.map((d) => Math.log(d.cumulative[k][age]) || -20).reduce((a, b) => a + b)
-      mean.cumulative[k][age] = Math.exp(sumLog / tps.length)
-    })
-  })
+  mean = scaleTP(mean, (x) => Math.exp(x / tps.length))
+
   return mean
 }
 
-function geometricMeanTrajectory(trajectories: ExportedTimePoint [][]): ExportedTimePoint[] {
+function geometricMeanTrajectory(trajectories: ExportedTimePoint[][]): ExportedTimePoint[] {
   return trajectories[0].map((d, i) => {
     return geometricMean(trajectories.map((d, j) => trajectories[j][i]))
   })
@@ -198,7 +224,6 @@ function medianTrajectory(trajectories: ExportedTimePoint[][]): ExportedTimePoin
     return geometricMean(trajectories.map((d, j) => trajectories[j][i]))
   })
 }
-
 
 function emptyTimePoint(t: number): ExportedTimePoint {
   return {
@@ -268,22 +293,35 @@ export async function run(
   const avgSquare: ExportedTimePoint[] = zeroTrajectory(trajectories[0].length)
   trajectories.forEach((realization) => {
     avgLinear.forEach((tp, i) => {
-      avgLinear[i] = sumTimePoint(tp, realization[i], (x) => {
-        return x / modelParamsArray.length
-      })
+      avgLinear[i] = sumTP(
+        tp,
+        scaleTP(realization[i], (x) => {
+          return x / modelParamsArray.length
+        }),
+      )
     })
 
     avgSquare.forEach((tp, i) => {
-      avgSquare[i] = sumTimePoint(tp, realization[i], (x) => {
-        return (x * x) / modelParamsArray.length
-      })
+      avgSquare[i] = sumTP(
+        tp,
+        scaleTP(realization[i], (x) => {
+          return (x * x) / modelParamsArray.length
+        }),
+      )
     })
   })
 
   const sim: AlgorithmResult = {
     trajectory: {
       mean: medianTrajectory(trajectories),
-      variance: avgSquare.map((tp, i) => ensurePositive(sumTimePoint(tp, avgLinear[i], (x: number) => -x * x))),
+      variance: avgSquare.map((tp, i) =>
+        ensurePositiveTP(
+          sumTP(
+            tp,
+            scaleTP(avgLinear[i], (x: number) => -x * x),
+          ),
+        ),
+      ),
     },
   }
 
