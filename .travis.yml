@@ -6,6 +6,7 @@ dist: bionic
 branches:
   only:
     - master
+    - staging
     - release
 
 language: node_js
@@ -36,7 +37,7 @@ deploy:
     bucket: $AWS_S3_BUCKET
     on:
       all_branches: true
-      condition: $TRAVIS_BRANCH =~ ^(master|release)$
+      condition: $TRAVIS_BRANCH =~ ^(master|staging|release)$
 
 after_deploy:
   - yarn global add travis-ci-cloudfront-invalidation@1.1.0
