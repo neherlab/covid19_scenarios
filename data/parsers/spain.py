@@ -5,7 +5,7 @@ import io
 from datetime import datetime
 
 from collections import defaultdict
-from .utils import store_data
+from .utils import store_data, stoi
 
 # ------------------------------------------------------------------------
 # Globals
@@ -15,18 +15,7 @@ cases_URL =        "https://raw.githubusercontent.com/datadista/datasets/master/
 hospitalized_URL = "https://raw.githubusercontent.com/datadista/datasets/master/COVID%2019/ccaa_covid19_hospitalizados.csv"
 icu_URL =          "https://raw.githubusercontent.com/datadista/datasets/master/COVID%2019/ccaa_covid19_uci.csv"
 recovered_URL =    "https://raw.githubusercontent.com/datadista/datasets/master/COVID%2019/ccaa_covid19_altas.csv"
-
-LOC  = "case-counts/Europe/Southern Europe/Spain"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
-
-# ------------------------------------------------------------------------
-# Functions
-
-def to_int(x):
-    if x == "NA" or x == "":
-        return None
-    else:
-        return int(x)
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -45,11 +34,10 @@ def parse():
         rdr = csv.reader(fd)
         hdr = next(rdr)
         dates = [x for x in hdr[2:]]
-        # dates = [datetime.strptime(x, "%d/%m/%Y").strftime('%Y-%m-%d') for x in hdr[2:]]
         for row in rdr:
             region   = row[1]
             for val, date in zip(row[2:], dates):
-                d[region][date] = to_int(val)
+                d[region][date] = stoi(val)
 
     # combine different data into one dict per region and day
     region_data = defaultdict(lambda: defaultdict(dict))
