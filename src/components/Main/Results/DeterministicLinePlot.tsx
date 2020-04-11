@@ -170,10 +170,8 @@ export function DeterministicLinePlot({
       ICUbeds: nICUBeds,
     })) ?? []
 
-  const variance = data.trajectory.variance
-  const verify = (x: number) => {
-    return x > 1 ? Math.round(x) : 1
-  }
+  const upper = data.trajectory.upper
+  const lower = data.trajectory.lower
 
   const plotData = [
     ...data.trajectory.mean.map((x, i) => ({
@@ -202,46 +200,25 @@ export function DeterministicLinePlot({
 
       // Error bars
       susceptible_area: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? [
-            verify(x.current.susceptible.total - Math.sqrt(variance[i].current.susceptible.total)),
-            verify(x.current.susceptible.total + Math.sqrt(variance[i].current.susceptible.total)),
-          ] || undefined
+        ? [lower[i].current.susceptible.total, upper[i].current.susceptible.total] || undefined
         : undefined,
       infectious_area: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? [
-            verify(x.current.infectious.total - Math.sqrt(variance[i].current.infectious.total)),
-            verify(x.current.infectious.total + Math.sqrt(variance[i].current.infectious.total)),
-          ] || undefined
+        ? [lower[i].current.infectious.total, upper[i].current.infectious.total] || undefined
         : undefined,
       severe_area: enabledPlots.includes(DATA_POINTS.Severe)
-        ? [
-            verify(x.current.severe.total - Math.sqrt(variance[i].current.severe.total)),
-            verify(x.current.severe.total + Math.sqrt(variance[i].current.severe.total)),
-          ] || undefined
+        ? [lower[i].current.severe.total, upper[i].current.severe.total] || undefined
         : undefined,
       critical_area: enabledPlots.includes(DATA_POINTS.Critical)
-        ? [
-            verify(x.current.critical.total - Math.sqrt(variance[i].current.critical.total)),
-            verify(x.current.critical.total + Math.sqrt(variance[i].current.critical.total)),
-          ] || undefined
+        ? [lower[i].current.critical.total, upper[i].current.critical.total] || undefined
         : undefined,
       overflow_area: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? [
-            verify(x.current.overflow.total - Math.sqrt(variance[i].current.overflow.total)),
-            verify(x.current.overflow.total + Math.sqrt(variance[i].current.overflow.total)),
-          ] || undefined
+        ? [lower[i].current.overflow.total, upper[i].current.overflow.total] || undefined
         : undefined,
       recovered_area: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? [
-            verify(x.cumulative.recovered.total - Math.sqrt(variance[i].cumulative.recovered.total)),
-            verify(x.cumulative.recovered.total + Math.sqrt(variance[i].cumulative.recovered.total)),
-          ] || undefined
+        ? [lower[i].cumulative.recovered.total, upper[i].cumulative.recovered.total] || undefined
         : undefined,
       fatality_area: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? [
-            verify(x.cumulative.fatality.total - Math.sqrt(variance[i].cumulative.fatality.total)),
-            verify(x.cumulative.fatality.total + Math.sqrt(variance[i].cumulative.fatality.total)),
-          ] || undefined
+        ? [lower[i].cumulative.fatality.total, upper[i].cumulative.fatality.total] || undefined
         : undefined,
     })),
 

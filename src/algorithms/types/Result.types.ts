@@ -78,7 +78,8 @@ export interface ModelParams {
 
 export interface UserResult {
   mean: ExportedTimePoint[]
-  variance: ExportedTimePoint[]
+  lower: ExportedTimePoint[]
+  upper: ExportedTimePoint[]
 }
 
 export interface AlgorithmResult {
