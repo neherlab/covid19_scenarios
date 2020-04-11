@@ -293,7 +293,6 @@ export default {
       IS_DEVELOPMENT: development,
       ENV_NAME:
         getenv('TRAVIS_BRANCH', null) ??
-        getenv('ENV_NAME') ??
         require('child_process')
           .execSync('git branch --show-current')
           .toString()
