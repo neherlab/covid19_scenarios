@@ -153,6 +153,53 @@ function sumTimePoint(x: ExportedTimePoint, y: ExportedTimePoint, func: (x: numb
   return z
 }
 
+
+function geometricMean(tps: ExportedTimePoint[]): ExportedTimePoint {
+  const mean: ExportedTimePoint = emptyTimePoint(tps[0].time)
+  Object.keys(tps[0].current).forEach((k) => {
+    Object.keys(tps[0].current[k]).forEach(age => {
+      const sumLog = tps.map((d) => Math.log(d.current[k][age])|| -20).reduce((a,b) => (a+b))
+      mean.current[k][age] = Math.exp(sumLog/tps.length)
+    })
+  })
+  Object.keys(tps[0].cumulative).forEach((k) => {
+    Object.keys(tps[0].cumulative[k]).forEach((age) => {
+      const sumLog = tps.map((d) => Math.log(d.cumulative[k][age]) || -20).reduce((a, b) => a + b)
+      mean.cumulative[k][age] = Math.exp(sumLog / tps.length)
+    })
+  })
+  return mean
+}
+
+function geometricMeanTrajectory(trajectories: ExportedTimePoint [][]): ExportedTimePoint[] {
+  return trajectories[0].map((d, i) => {
+    return geometricMean(trajectories.map((d, j) => trajectories[j][i]))
+  })
+}
+
+function median(tps: ExportedTimePoint[]): ExportedTimePoint {
+  const med: ExportedTimePoint = emptyTimePoint(tps[0].time)
+  const mid = tps.length % 2 ? (tps.length - 1) / 2 : tps.length / 2
+  Object.keys(tps[0].current).forEach((k) => {
+    Object.keys(tps[0].current[k]).forEach((age) => {
+      med.current[k][age] = tps.map((d) => d.current[k][age]).sort()[mid]
+    })
+  })
+  Object.keys(tps[0].cumulative).forEach((k) => {
+    Object.keys(tps[0].cumulative[k]).forEach((age) => {
+      med.cumulative[k][age] = tps.map((d) => d.cumulative[k][age]).sort()[mid]
+    })
+  })
+  return med
+}
+
+function medianTrajectory(trajectories: ExportedTimePoint[][]): ExportedTimePoint[] {
+  return trajectories[0].map((d, i) => {
+    return geometricMean(trajectories.map((d, j) => trajectories[j][i]))
+  })
+}
+
+
 function emptyTimePoint(t: number): ExportedTimePoint {
   return {
     time: t, // Dummy
@@ -199,14 +246,10 @@ export async function run(
   const initialCases = params.suspectedCasesToday
   const modelParamsArray = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
 
-  const msPerDay = 24 * 60 * 60 * 1000
-  const numDaysDelta = Math.round((tMax - tMin) / msPerDay)
-
   const trajectories: ExportedTimePoint[][] = []
 
   modelParamsArray.forEach((modelParams) => {
-    let population = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
-
+    const population = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
     function simulate(initialState: SimulationTimePoint, func: (x: number) => number): ExportedTimePoint[] {
       const dynamics = [initialState]
       let currState = initialState
@@ -221,9 +264,8 @@ export async function run(
     trajectories.push(simulate(population, identity))
   })
 
-  const avgLinear: ExportedTimePoint[] = zeroTrajectory(numDaysDelta)
-  const avgSquare: ExportedTimePoint[] = zeroTrajectory(numDaysDelta)
-
+  const avgLinear: ExportedTimePoint[] = zeroTrajectory(trajectories[0].length)
+  const avgSquare: ExportedTimePoint[] = zeroTrajectory(trajectories[0].length)
   trajectories.forEach((realization) => {
     avgLinear.forEach((tp, i) => {
       avgLinear[i] = sumTimePoint(tp, realization[i], (x) => {
@@ -240,7 +282,7 @@ export async function run(
 
   const sim: AlgorithmResult = {
     trajectory: {
-      mean: avgLinear,
+      mean: medianTrajectory(trajectories),
       variance: avgSquare.map((tp, i) => ensurePositive(sumTimePoint(tp, avgLinear[i], (x: number) => -x * x))),
     },
   }
