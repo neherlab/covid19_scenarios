@@ -1,6 +1,6 @@
 {
   "name": "covid19_scenarios",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "module": "src/index.tsx",
   "license": "MIT",
