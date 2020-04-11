@@ -4,8 +4,9 @@ import './ResponsiveTooltipContent.scss'
 
 interface TooltipItem {
   name: string
-  value: string | number | ReactNode
-  error?: string | number | ReactNode
+  value: string | number | [number, number] | ReactNode
+  lower?: string | number | ReactNode
+  upper?: string | number | ReactNode
   color: string
 }
 
@@ -17,14 +18,14 @@ interface TooltipContentProps {
   labelFormatter?: Function
 }
 
-function ToolTipContentItem({ name, value, error, color }: TooltipItem) {
-  if (error) {
+function ToolTipContentItem({ name, value, lower, upper, color }: TooltipItem) {
+  if (lower && upper) {
     return (
       <div style={{ color }} className="responsive-tooltip-content-item">
         {name}
         <div className="responsive-tooltip-content-placeholder" />
         <div>
-          {value} ± {error}
+          {value} [{lower}-{upper}]
         </div>
       </div>
     )
@@ -43,11 +44,11 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
   const formattedLabel = labelFormatter && label ? labelFormatter(label) : label
   const formatNumber = formatter
 
-  const uncertainty: Record<string, number> = {}
+  const uncertainty: Record<string, [number, number]> = {}
   payload.forEach((item) => {
     if (item.name && item.name.includes(' uncertainty')) {
       const key = item.name.replace(' uncertainty', '')
-      uncertainty[key] = (item.value[1] - item.value[0]) / 2.0
+      uncertainty[key] = [item.value[0], item.value[1]]
     }
   })
 
@@ -56,7 +57,8 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
       name: payloadItem.name,
       color: payloadItem.color || '#bbbbbb',
       value: formatter ? formatNumber(payloadItem.value, '', '', 0) : payloadItem.value,
-      error: payloadItem.name in uncertainty ? formatNumber(uncertainty[payloadItem.name], '', '', 0) : undefined,
+      lower: payloadItem.name in uncertainty ? formatNumber(uncertainty[payloadItem.name][0], '', '', 0) : undefined,
+      upper: payloadItem.name in uncertainty ? formatNumber(uncertainty[payloadItem.name][1], '', '', 0) : undefined,
     }))
     .filter((payloadItem) => (payloadItem.name ? !payloadItem.name.includes('uncertainty') : true))
 
@@ -70,12 +72,26 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
         <div className="responsive-tooltip-content">
           <div>
             {left.map((item, idx) => (
-              <ToolTipContentItem key={idx} name={item.name} value={item.value} error={item.error} color={item.color} />
+              <ToolTipContentItem
+                key={idx}
+                name={item.name}
+                value={item.value}
+                lower={item.lower}
+                upper={item.upper}
+                color={item.color}
+              />
             ))}
           </div>
           <div>
             {right.map((item, idx) => (
-              <ToolTipContentItem key={idx} name={item.name} value={item.value} error={item.error} color={item.color} />
+              <ToolTipContentItem
+                key={idx}
+                name={item.name}
+                value={item.value}
+                lower={item.lower}
+                upper={item.upper}
+                color={item.color}
+              />
             ))}
           </div>
         </div>
