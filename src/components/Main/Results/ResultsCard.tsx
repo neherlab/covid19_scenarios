@@ -15,7 +15,7 @@ import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/t
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
-import { SeverityTableRow } from '../Scenario/SeverityTable'
+import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
 

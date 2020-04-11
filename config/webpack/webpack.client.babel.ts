@@ -295,7 +295,7 @@ export default {
         getenv('TRAVIS_BRANCH', null) ??
         getenv('NOW_GITHUB_COMMIT_REF', null) ??
         require('child_process')
-          .execSync('git branch --show-current')
+          .execSync('git rev-parse --abbrev-ref HEAD')
           .toString()
           .trim(),
       PACKAGE_VERSION: pkg.version,
@@ -305,7 +305,7 @@ export default {
         getenv('TRAVIS_COMMIT', null) ??
         getenv('NOW_GITHUB_COMMIT_SHA', null) ??
         require('child_process')
-          .execSync('git rev-parse --short HEAD')
+          .execSync('git rev-parse HEAD')
           .toString()
           .trim(),
     }),

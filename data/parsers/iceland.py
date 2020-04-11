@@ -17,7 +17,6 @@ URL_HOSPITALIZED_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scen
 URL_ICU_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scenarios_is/master/data/cumulative_icu.cvs"
 URL_RECOVERED_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scenarios_is/master/data/cumulative_recovered.cvs"
 
-LOC = "case-counts/Europe/Northern Europe/Iceland"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
@@ -26,10 +25,8 @@ cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 def sorted_date(s):
     return sorted(s, key=lambda d: datetime.strptime(d[cols.index('time')], "%Y-%m-%d"))
 
-
 # ------------------------------------------------------------------------
 # Sub parsers
-
 
 def parse_csv(regions_date, url, output_column):
     r = requests.get(url)

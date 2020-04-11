@@ -8,8 +8,11 @@ import { getCurrentLang } from './components/Layout/LanguageSwitcher'
 
 import SupportedLocales, { SupportedLocale } from './langs'
 
-// FIXME: make it an import if possible, remove `any`
-Object.values(require('numbro/dist/languages.min.js')).forEach((l: any) => numbro.registerLanguage(l))
+// FIXME: make it an import if possible
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+Object.values(require('numbro/dist/languages.min.js')).forEach((l) =>
+  numbro.registerLanguage(l as numbro.NumbroLanguage),
+)
 
 const lang = getCurrentLang()
 

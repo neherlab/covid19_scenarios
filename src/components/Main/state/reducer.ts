@@ -72,11 +72,6 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setContainmentData, (draft, { data }) => {
-      let validNumberPoints = draft.data.containment.numberPoints
-      if (data.numberPoints && data.numberPoints >= 5 && data.numberPoints <= 100) {
-        validNumberPoints = data.numberPoints
-      }
-
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.containment = _.cloneDeep(data)

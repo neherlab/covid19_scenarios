@@ -1,8 +1,9 @@
-import { SimulationTimePoint, UserResult } from '../types/Result.types'
+import { ExportedTimePoint, UserResult } from '../types/Result.types'
 
 export default function processUserResult(rawUserResult: string[]): UserResult {
   // These are the columns we got from currently exported files.
   // They my not be present in the user results.
+  /*
   const columns = [
     'time',
     'susceptible',
@@ -14,9 +15,10 @@ export default function processUserResult(rawUserResult: string[]): UserResult {
     'recovered',
     'dead',
   ]
+  */
 
   // TODO: Parse trajectores, `throw` on errors
-  const trajectory: SimulationTimePoint[] = []
+  const trajectory: ExportedTimePoint[] = []
 
   return { trajectory }
 }

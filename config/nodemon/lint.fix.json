@@ -13,6 +13,7 @@
     ".prettierrc",
     "babel.config.js",
     "config",
+    "cypress",
     "jest.config.js",
     "package.json",
     "src",

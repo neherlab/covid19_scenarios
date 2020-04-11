@@ -7,7 +7,7 @@ import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
 
 import { Col, Row } from 'reactstrap'
 
-import { SeverityTableRow } from './Scenario/SeverityTable'
+import { SeverityTableRow } from './Scenario/ScenarioTypes'
 
 import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
@@ -83,11 +83,8 @@ function Main() {
 
   // TODO: Can this complex state be handled by formik too?
   const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
-  const [locationSearch, setLocationSeach] = useState<string>('')
   const [printable, setPrintable] = useState(false)
   const openPrintPreview = () => setPrintable(true)
-
-  const scenarioUrl = `${window.location.origin}${locationSearch}`
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
@@ -103,6 +100,12 @@ function Main() {
     containment: scenarioState.data.containment,
   }
 
+  const [debouncedRun] = useDebouncedCallback(
+    (params: AllParams, scenarioState: State, severity: SeverityTableRow[]) =>
+      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases),
+    500,
+  )
+
   useEffect(() => {
     // runs only once, when the component is mounted
     const autorun = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
@@ -116,19 +119,13 @@ function Main() {
       // At this point the scenario params have been captured, and we can clean up the URL.
       updateBrowserURL('/')
     }
-  }, [])
-
-  const [debouncedRun] = useDebouncedCallback(
-    (params: AllParams, scenarioState: State, severity: SeverityTableRow[]) =>
-      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases),
-    500,
-  )
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (autorunSimulation) {
       debouncedRun(allParams, scenarioState, severity)
     }
-  }, [autorunSimulation, debouncedRun, scenarioState, severity])
+  }, [autorunSimulation, debouncedRun, scenarioState, severity]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const [validateFormAndUpdateState] = useDebouncedCallback((newParams: AllParams) => {
     schema

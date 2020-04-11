@@ -26,9 +26,9 @@ html {
 }
 
 body {
-  background-color: #eeeeee;
   // HACK: workaround for bootstrap modal adding padding-right when open
   padding: 0 !important;
+  background-color: #eee;
 }
 
 .container.absolute {
@@ -115,9 +115,9 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .truncate-ellipsis {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .hide-native-scrollbar {
