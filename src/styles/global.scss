@@ -16,6 +16,11 @@
 @import '~react-grid-layout/css/styles.css';
 @import '~react-resizable/css/styles.css';
 
+html,
+body {
+  height: 100%;
+}
+
 html {
   overflow-y: scroll;
 }
