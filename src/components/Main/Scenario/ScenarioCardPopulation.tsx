@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { caseCountsNames } from '../state/caseCountsData'
 import { ageDistributionNames } from '../state/countryAgeDistributionData'
 
-import { CUSTOM_COUNTRY_NAME } from '../state/state'
+import { CUSTOM_COUNTRY_NAME, NONE_COUNTRY_NAME } from '../state/state'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
@@ -19,7 +19,7 @@ const countryOptions = ageDistributionNames.map((country) => ({ value: country, 
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
 const caseCountOptions = caseCountsNames.map((country) => ({ value: country, label: country }))
-caseCountOptions.push({ value: 'none', label: 'None' })
+caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: i18next.t(NONE_COUNTRY_NAME) })
 
 export interface ScenarioCardPopulationProps {
   errors?: FormikErrors<FormikValues>
