@@ -293,6 +293,7 @@ export default {
       IS_DEVELOPMENT: development,
       ENV_NAME:
         getenv('TRAVIS_BRANCH', null) ??
+        getenv('NOW_GITHUB_COMMIT_REF', null) ??
         require('child_process')
           .execSync('git branch --show-current')
           .toString()
@@ -302,6 +303,7 @@ export default {
       TRAVIS_BUILD_WEB_URL: getenv('TRAVIS_BUILD_WEB_URL', null),
       REVISION:
         getenv('TRAVIS_COMMIT', null) ??
+        getenv('NOW_GITHUB_COMMIT_SHA') ??
         require('child_process')
           .execSync('git rev-parse --short HEAD')
           .toString()
