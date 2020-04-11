@@ -22,7 +22,7 @@ const PresetLoader = ({ data, onSelect }: LoadPresetButtonProps) => {
       data-testid="PresetLoaderButton"
       onClick={() => setShowDialog(true)}
     >
-      {t('Load scenario')}
+      {t('Change scenario')}
     </Button>
   )
   const dialog = (

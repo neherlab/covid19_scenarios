@@ -34,7 +34,7 @@ describe('PresetLoader', () => {
 
   it('renders button', () => {
     expect(wrapper.getByTestId('PresetLoaderButton')).not.toBeNull()
-    expect(wrapper.getByText('Load scenario')).not.toBeNull()
+    expect(wrapper.getByText('Change scenario')).not.toBeNull()
   })
 
   it('does not render dialog initially', () => {

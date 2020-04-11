@@ -80,7 +80,7 @@ const LoadPresetDialog = ({ data, visible, onLoadButtonClick, onClose }: LoadPre
       toggle={onClose}
       data-testid="PresetLoaderDialog"
     >
-      <ModalHeader toggle={onClose}>{t('Load scenario')}</ModalHeader>
+      <ModalHeader toggle={onClose}>{t('Change scenario')}</ModalHeader>
       <ModalBody>
         <InputGroup>
           <Input

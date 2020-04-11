@@ -43,7 +43,7 @@ describe('PresetLoaderDialog', () => {
   })
 
   it('renders title', () => {
-    expect(wrapper.getByText('Load scenario')).not.toBeNull()
+    expect(wrapper.getByText('Change scenario')).not.toBeNull()
   })
 
   it('displays scenarios', () => {
