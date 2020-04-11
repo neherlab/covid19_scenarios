@@ -19,7 +19,7 @@ export default function ExportSimulationDialog({
   toggleShowModal,
   openPrintPreview,
   result,
- scenarioUrl,
+  scenarioUrl,
 }: ExportSimulationDialogProps) {
   const { t } = useTranslation()
 

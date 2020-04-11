@@ -16,23 +16,21 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
 
 .tableResult {
   width: 100%;
-}
 
-@media print {
-  .tableResult {
+  @media print {
     max-width: 17cm;
   }
-}
 
-.tableResult > table {
-  border: 1px solid black;
-  margin: 10px;
-  width: 100%;
-  text-align: center;
-}
+  & > table {
+    width: 100%;
+    margin: 10px;
+    text-align: center;
+    border: 1px solid black;
 
-.tableResult > table > thead {
-  border-bottom: 1px solid black;
+    & > thead {
+      border-bottom: 1px solid black;
+    }
+  }
 }
 
 @media print {
@@ -46,24 +44,24 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
   }
 
   body {
-    background-color: #fff;
+    width: 20cm !important;
+    max-width: 20cm !important;
     padding-top: 15mm;
     margin: 15mm;
     font-size: 10pt;
-    max-width: 20cm !important;
-    width: 20cm !important;
+    background-color: #fff;
   }
 
   .p-logo {
     width: 100%;
-  }
 
-  .p-logo > img {
-    width: 10cm;
-    height: 10cm;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1cm;
+    & > img {
+      width: 10cm;
+      height: 10cm;
+      margin-right: auto;
+      margin-bottom: 1cm;
+      margin-left: auto;
+    }
   }
 
   .h-100 {
@@ -72,10 +70,10 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
 
   .modal-backdrop {
     display: none;
-  }
 
-  .modal-backdrop.show {
-    display: none;
+    &.show {
+      display: none;
+    }
   }
 
   .row {

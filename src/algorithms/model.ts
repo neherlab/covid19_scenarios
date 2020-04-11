@@ -1,5 +1,5 @@
-import { AllParamsFlat } from './types/Param.types'
-import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
+import { AllParamsFlat, AgeDistribution } from './types/Param.types'
+import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
 import {
   ModelParams,
   SimulationTimePoint,
@@ -41,7 +41,7 @@ export function infectionRate(
 export function getPopulationParams(
   params: AllParamsFlat,
   severity: SeverityTableRow[],
-  ageCounts: Record<string, number>,
+  ageCounts: AgeDistribution,
   containment: (t: Date) => number,
 ): ModelParams {
   // TODO: Make this a form-adjustable factor
@@ -75,21 +75,21 @@ export function getPopulationParams(
   }
 
   // Compute age-stratified parameters
-  const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
+  const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b as keyof AgeDistribution], 0)
 
   // NOTE(nnoll): Assumes the age groups of severity table sorted lexiographically and numerically is equivalent
   severity.sort((row1, row2) => {
     if (row1.ageGroup < row2.ageGroup) {
       return -1
-    } else if (row1.ageGroup > row2.ageGroup) {
-      return +1
-    } else {
-      return 0
     }
+    if (row1.ageGroup > row2.ageGroup) {
+      return +1
+    }
+    return 0
   })
 
   severity.forEach((row, i) => {
-    const freq = (1.0 * ageCounts[row.ageGroup]) / total
+    const freq = (1.0 * ageCounts[row.ageGroup as keyof AgeDistribution]) / total
     pop.ageDistribution[row.ageGroup] = freq
     pop.frac.severe[i] = (row.severe / 100) * (row.confirmed / 100)
     pop.frac.critical[i] = pop.frac.severe[i] * (row.critical / 100)
@@ -99,8 +99,8 @@ export function getPopulationParams(
     const dCritical = row.critical / 100
     const dFatal = row.fatal / 100
 
-    // d.isolated is possible undefined
-    const isolated = row.isolated ?? 0
+    // row.isolated is possible undefined
+    const isolated = row.isolated === undefined ? 0 : row.isolated
 
     // Age specific rates
     pop.frac.isolated[i] = isolated / 100
@@ -131,7 +131,7 @@ export function initializePopulation(
   N: number,
   numCases: number,
   t0: number,
-  ages: Record<string, number>,
+  ages: AgeDistribution,
 ): SimulationTimePoint {
   const Z = Object.values(ages).reduce((a, b) => a + b)
   const pop: SimulationTimePoint = {
@@ -158,7 +158,7 @@ export function initializePopulation(
   const initialInfectiousFraction = 0.3
 
   // TODO: Ensure the sum is equal to N!
-  const ageGroups = Object.keys(ages).sort()
+  const ageGroups = Object.keys(ages).sort() as (keyof AgeDistribution)[]
   ageGroups.forEach((k, i) => {
     const n = Math.round((ages[k] / Z) * N)
     pop.current.susceptible[i] = n
@@ -243,6 +243,14 @@ function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number): Simulati
   return state
 }
 
+export function sum(arr: number[]): number {
+  return arr.reduce((a, b) => a + b, 0)
+}
+
+export function gz(x: number): number {
+  return x > 0 ? x : 0
+}
+
 function advanceState(
   pop: SimulationTimePoint,
   tdot: TimeDerivative,
@@ -265,15 +273,6 @@ function advanceState(
       critical: [],
       fatality: [],
     },
-  }
-
-  // Helper functions
-  const sum = (arr: number[]): number => {
-    return arr.reduce((a, b) => a + b, 0)
-  }
-
-  const gz = (x: number): number => {
-    return x > 0 ? x : 0
   }
 
   // TODO(nnoll): Sort out types
@@ -438,10 +437,6 @@ function derivative(flux: StateFlux): TimeDerivative {
 }
 
 function fluxes(time: Date, pop: SimulationTimePoint, P: ModelParams): StateFlux {
-  const sum = (arr: number[]): number => {
-    return arr.reduce((a, b) => a + b, 0)
-  }
-
   // Convention: flux is labelled by the state
   const flux: StateFlux = {
     susceptible: [],
@@ -568,7 +563,7 @@ export function exportSimulation(result: UserResult) {
   // TODO: Make the down sampling interval a parameter
 
   const header = keys(result.trajectory[0].current)
-  const tsvHeader: string[] = header.map((x) => (x == 'critical' ? 'ICU' : x))
+  const tsvHeader: string[] = header.map((x) => (x === 'critical' ? 'ICU' : x))
 
   const headerCumulative = keys(result.trajectory[0].cumulative)
   const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)

@@ -15,8 +15,6 @@ URL_CASES_CUM = "https://raw.githubusercontent.com/J535D165/CoronaWatchNL/master
 URL_DEATHS_CUM = "https://raw.githubusercontent.com/J535D165/CoronaWatchNL/master/data/rivm_corona_in_nl_fatalities.csv"
 URL_HOSPITALIZED_CUM = "https://raw.githubusercontent.com/J535D165/CoronaWatchNL/master/data/rivm_corona_in_nl_hosp.csv"
 URL_ICU_CUM = "https://www.stichting-nice.nl/covid-19/public/intake-count"
-
-LOC = "case-counts/Europe/Western Europe/Netherlands"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------

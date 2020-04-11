@@ -1,5 +1,4 @@
-import { SeverityTableRow } from './SeverityTable'
-
+import { SeverityTableRow } from './ScenarioTypes'
 import { validatePercentage } from './validatePercentage'
 
 /**

@@ -12,7 +12,7 @@ import LinkExternal from '../components/Router/LinkExternal'
 <Row>
 <Col>
 
-<h1 class="h1-default">About COVID-19 Scenarios</h1>
+<h1>About COVID-19 Scenarios</h1>
 
 This web application serves as a planning tool for COVID-19 outbreaks in communities across the world.
 It implements a simple SIR (Susceptible-Infected-Recovered) model with additional categories for individuals exposed to the virus that are not yet infectious,
@@ -90,7 +90,7 @@ Qualitatively we model the epidemic dynamics with the following subpopulations:
 Subpopulations are delineated by age classes, indexed by $a$, to allow for variable transition rates dependent upon age.
 Quantitatively, we solve the following system of equations to estimate hospital usage:
 
-<div class="text-left">
+<div>
 
 $$
 \begin{aligned}
@@ -119,7 +119,7 @@ Patients are allocated to the overflow category in a manner that gives priority 
 
 The transmission rate $\beta_a(t)$ is given by
 
-<div class="text-left">
+<div>
 
 $$
   \beta_a(t) = R_0 \zeta_a M(t) (1+\varepsilon \cos(2\pi (t-t_{max})))/t_i

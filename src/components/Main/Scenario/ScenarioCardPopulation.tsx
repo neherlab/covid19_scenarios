@@ -1,7 +1,7 @@
 import React from 'react'
 import i18next from 'i18next'
 
-import { FormikErrors, FormikTouched } from 'formik'
+import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
@@ -22,8 +22,8 @@ const caseCountOptions = caseCountsNames.map((country) => ({ value: country, lab
 caseCountOptions.push({ value: 'none', label: 'None' })
 
 export interface ScenarioCardPopulationProps {
-  errors?: FormikErrors<any>
-  touched?: FormikTouched<any>
+  errors?: FormikErrors<FormikValues>
+  touched?: FormikTouched<FormikValues>
 }
 
 function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
@@ -57,8 +57,8 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormSpinBox
-        identifier="population.suspectedCasesToday"
-        label={t('Initial suspected cases')}
+        identifier="population.initialNumberOfCases"
+        label={t('Initial number of cases')}
         help={t('Number of cases present at the start of simulation')}
         step={1}
         errors={errors}

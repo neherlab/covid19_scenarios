@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { AnyAction } from 'typescript-fsa'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
-import { SeverityTable, SeverityTableRow } from './SeverityTable'
+import { SeverityTable } from './SeverityTable'
+import { SeverityTableRow } from './ScenarioTypes'
 import { State } from '../state/state'
 
 export interface SeverityCardProps {
