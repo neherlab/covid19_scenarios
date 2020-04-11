@@ -397,11 +397,6 @@ export default {
       }),
   ].filter(Boolean),
 
-  node: {
-    net: 'empty',
-    fs: 'empty',
-  },
-
   optimization: {
     moduleIds: analyze || development || debuggableProd ? 'named' : 'hashed',
     chunkIds: analyze || development || debuggableProd ? 'named' : 'total-size',
