@@ -291,7 +291,13 @@ export default {
       DEV_ENABLE_I18N_DEBUG: getenv('DEV_ENABLE_I18N_DEBUG', '0'),
       IS_PRODUCTION: production,
       IS_DEVELOPMENT: development,
-      ENV_NAME: getenv('ENV_NAME'),
+      ENV_NAME:
+        getenv('TRAVIS_BRANCH', null) ??
+        getenv('ENV_NAME') ??
+        require('child_process')
+          .execSync('git branch --show-current')
+          .toString()
+          .trim(),
       PACKAGE_VERSION: pkg.version,
       BUILD_NUMBER: getenv('TRAVIS_BUILD_NUMBER', null),
       TRAVIS_BUILD_WEB_URL: getenv('TRAVIS_BUILD_WEB_URL', null),
