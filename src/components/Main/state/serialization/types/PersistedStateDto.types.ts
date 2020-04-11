@@ -1,5 +1,4 @@
-import { EpidemiologicalData, PopulationData } from '../../../../../algorithms/types/Param.types'
-import { OneCountryAgeDistribution } from '../../../../../assets/data/CountryAgeDistribution.types'
+import { AgeDistribution, EpidemiologicalData, PopulationData } from '../../../../../algorithms/types/Param.types'
 
 export interface DateRangeDto {
   tMin?: number
@@ -33,5 +32,5 @@ export interface PersistedStateDto {
   epidemiological: EpidemiologicalData
   simulation: SimulationDataDto
   containment: MitigationIntervalDto[]
-  ageDistribution: OneCountryAgeDistribution
+  ageDistribution: AgeDistribution
 }

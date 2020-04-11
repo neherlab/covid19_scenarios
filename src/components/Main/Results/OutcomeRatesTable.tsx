@@ -8,7 +8,7 @@ import * as d3 from 'd3'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
-import { SeverityTableRow } from '../Scenario/SeverityTable'
+import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 

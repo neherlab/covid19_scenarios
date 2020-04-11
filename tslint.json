@@ -117,6 +117,7 @@
       ".reports/**",
       "3rdparty/**",
       "generated/**",
+      "src/.generated/**",
       "node_modules*/**"
     ]
   }

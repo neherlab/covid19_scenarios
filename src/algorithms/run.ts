@@ -1,11 +1,6 @@
-import * as math from 'mathjs'
-
-import { OneCountryAgeDistribution } from '../assets/data/CountryAgeDistribution.types'
-
-import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
-
+import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
 import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
-import { AllParamsFlat, MitigationIntervals } from './types/Param.types'
+import { AgeDistribution, AllParamsFlat, MitigationIntervals } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint } from './types/Result.types'
 import { TimeSeries } from './types/TimeSeries.types'
 
@@ -16,7 +11,7 @@ const poisson = (x: number) => {
 
 interface ChangePoint {
   t: Date
-  val: Number[]
+  val: number[]
 }
 
 const compareTimes = (a: ChangePoint, b: ChangePoint): number => {
@@ -82,7 +77,7 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
 
   if (orderedChangePoints.length) {
     const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t, y: 1.0 }]
-    const product = (a: Number, b: Number): Number => a * b
+    const product = (a: number, b: number): number => a * b
 
     orderedChangePoints.forEach((d, i) => {
       const prevValue = mitigationSeries[2 * i].y
@@ -103,7 +98,7 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
 export async function run(
   params: AllParamsFlat,
   severity: SeverityTableRow[],
-  ageDistribution: OneCountryAgeDistribution,
+  ageDistribution: AgeDistribution,
   containment: TimeSeries,
 ): Promise<AlgorithmResult> {
   const modelParams = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))

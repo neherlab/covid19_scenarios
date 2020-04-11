@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 const FaqTableOfContents = () => {
   const [content, setContent] = useState<string[]>([])
   useEffect(() => {
-    let links: string[] = []
+    const links: string[] = []
     setTimeout(() => {
       Array.from(document.querySelectorAll('strong')).forEach((node) => {
         if (node.innerHTML === 'Q:') {
