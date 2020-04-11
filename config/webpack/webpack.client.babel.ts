@@ -416,6 +416,13 @@ export default {
       }),
   ].filter(Boolean),
 
+  // The following is a workaround from https://github.com/webpack-contrib/css-loader/issues/447
+  // for missing module errors with 'net' and 'fs' modules after adding 'react-share' package
+  node: {
+    net: 'empty',
+    fs: 'empty',
+  },
+
   optimization: {
     moduleIds: analyze || development || debuggableProd ? 'named' : 'hashed',
     chunkIds: analyze || development || debuggableProd ? 'named' : 'total-size',
