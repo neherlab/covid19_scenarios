@@ -47,22 +47,56 @@ export default function TableResult({ result }: PropsType) {
             <tr key={line.time}>
               <td>{dateFormat(line.time)}</td>
               <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex() }}>
-                {Math.round(line.current.severe.total)}: [{Math.round(downSampled.lower[i].current.severe.total)} -{' '}
-                {Math.round(downSampled.upper[i].current.severe.total)}]
+                {Math.round(line.current.severe.total)}{' '}
+                <div style={{ display: 'inline-block' }}>
+                  <span style={{ display: 'inline-block' }}>
+                    <sup style={{ display: 'block', position: 'relative' }}>
+                      +{Math.round(downSampled.upper[i].current.severe.total)}
+                    </sup>
+                    <sub style={{ display: 'block', position: 'relative' }}>
+                      -{Math.round(downSampled.lower[i].current.severe.total)}
+                    </sub>
+                  </span>
+                </div>
               </td>
               <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex() }}>
-                {Math.round(line.current.critical.total)}: [{Math.round(downSampled.lower[i].current.critical.total)} -{' '}
-                {Math.round(downSampled.upper[i].current.critical.total)}]
+                {Math.round(line.current.critical.total)}{' '}
+                <div style={{ display: 'inline-block' }}>
+                  <span style={{ display: 'inline-block' }}>
+                    <sup style={{ display: 'block', position: 'relative' }}>
+                      +{Math.round(downSampled.upper[i].current.critical.total)}
+                    </sup>
+                    <sub style={{ display: 'block', position: 'relative' }}>
+                      -{Math.round(downSampled.lower[i].current.critical.total)}
+                    </sub>
+                  </span>
+                </div>
               </td>
               <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex() }}>
-                {Math.round(line.cumulative.recovered.total)}: [
-                {Math.round(downSampled.lower[i].cumulative.recovered.total)} -{' '}
-                {Math.round(downSampled.upper[i].cumulative.recovered.total)}]
+                {Math.round(line.cumulative.recovered.total)}{' '}
+                <div style={{ display: 'inline-block' }}>
+                  <span style={{ display: 'inline-block' }}>
+                    <sup style={{ display: 'block', position: 'relative' }}>
+                      +{Math.round(downSampled.upper[i].cumulative.recovered.total)}
+                    </sup>
+                    <sub style={{ display: 'block', position: 'relative' }}>
+                      -{Math.round(downSampled.lower[i].cumulative.recovered.total)}
+                    </sub>
+                  </span>
+                </div>
               </td>
               <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex() }}>
-                {Math.round(line.cumulative.fatality.total)}: [
-                {Math.round(downSampled.lower[i].cumulative.fatality.total)} -{' '}
-                {Math.round(downSampled.upper[i].cumulative.fatality.total)}]
+                {Math.round(line.cumulative.fatality.total)}{' '}
+                <div style={{ display: 'inline-block' }}>
+                  <span style={{ display: 'inline-block' }}>
+                    <sup style={{ display: 'block', position: 'relative' }}>
+                      +{Math.round(downSampled.upper[i].cumulative.fatality.total)}
+                    </sup>
+                    <sub style={{ display: 'block', position: 'relative' }}>
+                      -{Math.round(downSampled.lower[i].cumulative.fatality.total)}
+                    </sub>
+                  </span>
+                </div>
               </td>
             </tr>
           ))}

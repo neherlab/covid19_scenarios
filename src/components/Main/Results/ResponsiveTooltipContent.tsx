@@ -25,7 +25,13 @@ function ToolTipContentItem({ name, value, lower, upper, color }: TooltipItem) {
         {name}
         <div className="responsive-tooltip-content-placeholder" />
         <div>
-          {value} [{lower}-{upper}]
+          {value}{' '}
+          <div style={{ display: 'inline-block' }}>
+            <span style={{ display: 'inline-block' }}>
+              <sup style={{ display: 'block', position: 'relative' }}>+{upper}</sup>
+              <sub style={{ display: 'block', position: 'relative' }}>-{lower}</sub>
+            </span>
+          </div>
         </div>
       </div>
     )
@@ -57,8 +63,14 @@ export function ResponsiveTooltipContent({ active, payload, label, formatter, la
       name: payloadItem.name,
       color: payloadItem.color || '#bbbbbb',
       value: formatter ? formatNumber(payloadItem.value, '', '', 0) : payloadItem.value,
-      lower: payloadItem.name in uncertainty ? formatNumber(uncertainty[payloadItem.name][0], '', '', 0) : undefined,
-      upper: payloadItem.name in uncertainty ? formatNumber(uncertainty[payloadItem.name][1], '', '', 0) : undefined,
+      lower:
+        payloadItem.name in uncertainty
+          ? formatNumber(payloadItem.value - uncertainty[payloadItem.name][0], '', '', 0)
+          : undefined,
+      upper:
+        payloadItem.name in uncertainty
+          ? formatNumber(uncertainty[payloadItem.name][1] - payloadItem.value, '', '', 0)
+          : undefined,
     }))
     .filter((payloadItem) => (payloadItem.name ? !payloadItem.name.includes('uncertainty') : true))
 
