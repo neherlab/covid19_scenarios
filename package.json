@@ -49,7 +49,8 @@
     "test:debug": "node --inspect-brk node_modules/.bin/jest --config=config/jest/jest.config.js --runInBand --watch",
     "test:coverage": "yarn test:nowatch --coverage",
     "e2e": "cypress run",
-    "e2e:dev": "cypress open"
+    "e2e:dev": "cypress open",
+    "i18n": "i18next -c config/i18next/i18next.config.js"
   },
   "dependencies": {
     "@babel/runtime": "7.8.7",
@@ -161,7 +162,6 @@
     "@types/jest-axe": "3.2.1",
     "@types/js-yaml": "3.12.3",
     "@types/jsurl": "1.2.28",
-    "@types/js-yaml": "3.12.3",
     "@types/jszip": "3.1.7",
     "@types/loadable__component": "5.10.0",
     "@types/lodash": "4.14.149",
@@ -264,6 +264,7 @@
     "glob-all": "3.1.0",
     "html-webpack-plugin": "3.2.0",
     "http-server": "0.12.1",
+    "i18next-parser": "1.0.2",
     "identity-obj-proxy": "3.0.0",
     "jest": "25.1.0",
     "jest-axe": "3.4.0",
