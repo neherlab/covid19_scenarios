@@ -37,7 +37,7 @@ export default function LanguageSwitcher() {
       <DropdownToggle caret>
         <Lang lang={SupportedLocales[selectedLang]} />
       </DropdownToggle>
-      <DropdownMenu positionFixed={true}>
+      <DropdownMenu positionFixed>
         {(Object.keys(SupportedLocales) as SupportedLocale[]).map((key: SupportedLocale) => (
           <DropdownItem
             key={key}
