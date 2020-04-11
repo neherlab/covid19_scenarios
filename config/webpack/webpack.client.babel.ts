@@ -294,6 +294,7 @@ export default {
       ENV_NAME: getenv('ENV_NAME'),
       PACKAGE_VERSION: pkg.version,
       BUILD_NUMBER: getenv('TRAVIS_BUILD_NUMBER', null),
+      TRAVIS_BUILD_WEB_URL: getenv('TRAVIS_BUILD_WEB_URL', null),
       REVISION:
         getenv('TRAVIS_COMMIT', null) ??
         require('child_process')
