@@ -26,8 +26,6 @@ export default function ExportSimulationDialog({
 }: ExportSimulationDialogProps) {
   const { t } = useTranslation()
 
-  console.log('PARAMS', params)
-
   const startPrinting = () => {
     toggleShowModal()
     openPrintPreview()

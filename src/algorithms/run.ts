@@ -383,7 +383,6 @@ export async function run(
   const mean = meanTrajectory(trajectories)
   const sdev = stddevTrajectory(trajectories, mean)
 
-  console.log('STD DEV', sdev)
   const sim: AlgorithmResult = {
     trajectory: {
       mean: mean,
@@ -391,7 +390,6 @@ export async function run(
       lower: mean.map((m, i) => divTP(m, sdev[i])),
     },
   }
-  console.log('RESULT', sim)
 
   return sim
 }
