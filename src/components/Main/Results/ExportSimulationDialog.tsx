@@ -75,13 +75,35 @@ export default function ExportSimulationDialog({
               </td>
             </tr>
             <tr>
-              <td>covid.results.deterministic.tsv</td>
-              <td>{t('The deterministic results of the simulation')}</td>
+              <td>covid.summary.tsv</td>
+              <td>{t('The summarized results of the simulation')}</td>
               <td>TSV</td>
               <td>
                 <Button
                   disabled={!(result?.deterministic ?? null)}
-                  onClick={() => result && exportResult(result)}
+                  onClick={() => result && exportResult(result, 'covid.summary.tsv')}
+                  color="primary"
+                  size="sm"
+                >
+                  {t('Download')}
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td>covid.allresults.tsv</td>
+              <td>{t('The full age-stratified results of the simulation')}</td>
+              <td>TSV</td>
+              <td>
+                <Button
+                  disabled={!(result?.deterministic ?? null)}
+                  onClick={() =>
+                    result &&
+                    exportResult(
+                      result,
+                      'covid.allresults.tsv',
+                      ...Object.keys(result.deterministic.trajectory[0].current.severe),
+                    )
+                  }
                   color="primary"
                   size="sm"
                 >
