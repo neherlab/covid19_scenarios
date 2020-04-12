@@ -1,9 +1,6 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
-import ClipboardButton from '../../Buttons/ClipboardButton'
 import {
   TwitterShareButton,
   TwitterIcon,
@@ -12,6 +9,9 @@ import {
   FacebookIcon,
   FacebookShareButton,
 } from 'react-share'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
+import ClipboardButton from '../../Buttons/ClipboardButton'
 
 export interface ExportSimulationDialogProps {
   canExport: boolean
@@ -40,10 +40,10 @@ export default function ExportSimulationDialog({
   const shareableLink = `${window.location.href}${scenarioUrl}`
 
   // Size in pixels for the external icons like facebook, email
-  const externalIconSize: number = 25
+  const externalIconSize = 25
 
   // Boolean to control the shape of the external icons
-  const isRoundIcon: boolean = true
+  const isRoundIcon = true
 
   return (
     <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>

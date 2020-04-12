@@ -28,7 +28,7 @@ module.exports = {
     jsx: ['JsxLexer'],
     tsx: ['JsxLexer'],
 
-    default: ['JavascriptLexer']
+    default: ['JavascriptLexer'],
   },
 
   lineEnding: '\n',
@@ -46,10 +46,7 @@ module.exports = {
   // Supports JSON (.json) and YAML (.yml) file formats
   // Where to write the locale files relative to process.cwd()
 
-  input: [
-    '../../src/**/*.{ts,tsx}',
-    '!../../locales/**'
-  ],
+  input: ['../../src/**/*.{ts,tsx}', '!../../locales/**'],
   // An array of globs that describe where to look for source files
   // relative to the location of the configuration file
 
@@ -64,6 +61,6 @@ module.exports = {
   // Whether to use the keys as the default value; ex. "Hello": "Hello", "World": "World"
   // The option `defaultValue` will not work if this is set to true
 
-  verbose: false
+  verbose: false,
   // Display info about the parsing including some stats
 }
