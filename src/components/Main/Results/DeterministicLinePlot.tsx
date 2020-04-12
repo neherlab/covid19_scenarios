@@ -200,25 +200,26 @@ export function DeterministicLinePlot({
 
       // Error bars
       susceptible_area: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? [lower[i].current.susceptible.total, upper[i].current.susceptible.total] || undefined
+        ? [Math.round(lower[i].current.susceptible.total), Math.round(upper[i].current.susceptible.total)] || undefined
         : undefined,
       infectious_area: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? [lower[i].current.infectious.total, upper[i].current.infectious.total] || undefined
+        ? [Math.round(lower[i].current.infectious.total), Math.round(upper[i].current.infectious.total)] || undefined
         : undefined,
       severe_area: enabledPlots.includes(DATA_POINTS.Severe)
-        ? [lower[i].current.severe.total, upper[i].current.severe.total] || undefined
+        ? [Math.round(lower[i].current.severe.total), Math.round(upper[i].current.severe.total)] || undefined
         : undefined,
       critical_area: enabledPlots.includes(DATA_POINTS.Critical)
-        ? [lower[i].current.critical.total, upper[i].current.critical.total] || undefined
+        ? [Math.round(lower[i].current.critical.total), Math.round(upper[i].current.critical.total)] || undefined
         : undefined,
       overflow_area: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? [lower[i].current.overflow.total, upper[i].current.overflow.total] || undefined
+        ? [Math.round(lower[i].current.overflow.total), Math.round(upper[i].current.overflow.total)] || undefined
         : undefined,
       recovered_area: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? [lower[i].cumulative.recovered.total, upper[i].cumulative.recovered.total] || undefined
+        ? [Math.round(lower[i].cumulative.recovered.total), Math.round(upper[i].cumulative.recovered.total)] ||
+          undefined
         : undefined,
       fatality_area: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? [lower[i].cumulative.fatality.total, upper[i].cumulative.fatality.total] || undefined
+        ? [Math.round(lower[i].cumulative.fatality.total), Math.round(upper[i].cumulative.fatality.total)] || undefined
         : undefined,
     })),
 
