@@ -19,7 +19,7 @@ definitions:
     required:
       - country
       - ageDistribution
-    
+
     additionalProperties: false
 
     properties:
@@ -44,7 +44,7 @@ definitions:
       - 80+
 
     additionalProperties: false
-    
+
     properties:
       0-9:
         type: integer

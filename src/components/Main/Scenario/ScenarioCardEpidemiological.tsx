@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 
-import { FormikErrors, FormikTouched } from 'formik'
+import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
@@ -12,8 +12,8 @@ const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month }))
 
 export interface ScenarioCardEpidemiologicalProps {
-  errors?: FormikErrors<any>
-  touched?: FormikTouched<any>
+  errors?: FormikErrors<FormikValues>
+  touched?: FormikTouched<FormikValues>
 }
 
 function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiologicalProps) {

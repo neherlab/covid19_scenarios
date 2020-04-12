@@ -1,6 +1,6 @@
 {
   "name": "covid19_scenarios",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "main": "index.js",
   "module": "src/index.tsx",
   "license": "MIT",
@@ -49,7 +49,8 @@
     "test:debug": "node --inspect-brk node_modules/.bin/jest --config=config/jest/jest.config.js --runInBand --watch",
     "test:coverage": "yarn test:nowatch --coverage",
     "e2e": "cypress run",
-    "e2e:dev": "cypress open"
+    "e2e:dev": "cypress open",
+    "i18n": "babel-node --extensions \".ts\" node_modules/.bin/i18next -c config/i18next/i18next.config.js"
   },
   "dependencies": {
     "@babel/runtime": "7.8.7",
@@ -103,6 +104,7 @@
     "react-router": "5.1.2",
     "react-router-dom": "5.1.2",
     "react-select": "3.0.8",
+    "react-share": "4.1.0",
     "reactstrap": "8.4.1",
     "recharts": "2.0.0-beta.3",
     "redux": "4.0.5",
@@ -161,7 +163,6 @@
     "@types/jest-axe": "3.2.1",
     "@types/js-yaml": "3.12.3",
     "@types/jsurl": "1.2.28",
-    "@types/js-yaml": "3.12.3",
     "@types/jszip": "3.1.7",
     "@types/loadable__component": "5.10.0",
     "@types/lodash": "4.14.149",
@@ -264,6 +265,7 @@
     "glob-all": "3.1.0",
     "html-webpack-plugin": "3.2.0",
     "http-server": "0.12.1",
+    "i18next-parser": "1.0.2",
     "identity-obj-proxy": "3.0.0",
     "jest": "25.1.0",
     "jest-axe": "3.4.0",
@@ -351,6 +353,7 @@
     "**/core-js": "3.6.4",
     "**/json3": "link:3rdparty/__empty-module",
     "**/left-pad": "link:3rdparty/__empty-module",
+    "react-share/jsonp": "link:3rdparty/__empty-module",
     "node-sass": "link:node_modules/sass",
     "svgo": "1.3.2"
   }

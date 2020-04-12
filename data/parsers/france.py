@@ -4,23 +4,14 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import store_data
+from .utils import store_data, stoi
 
 # ------------------------------------------------------------------------
 # Globals
 
 URL  = "https://github.com/opencovid19-fr/data/raw/master/dist/chiffres-cles.csv"
-LOC  = "case-counts/Europe/Western Europe/France"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
-# ------------------------------------------------------------------------
-# Functions
-
-def to_int(x):
-    if x == "NA" or x == "":
-        return None
-    else:
-        return int(x)
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -44,10 +35,10 @@ def parse():
         if row[1] == 'region':
             date   = row[0]
             region = row[3].replace(" ", "-").replace("Î", "I").replace("'", "").replace("’", "")
-            cases = to_int(row[4])
-            death = to_int(row[5])
-            hospitalized = to_int(row[8])
-            icu = to_int(row[7])
+            cases = stoi(row[4])
+            death = stoi(row[5])
+            hospitalized = stoi(row[8])
+            icu = stoi(row[7])
 
             if region not in regions:
                 regions[region] = {}

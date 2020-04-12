@@ -1,10 +1,9 @@
 /// <reference types="cypress" />
 
-import scenarios from '../../src/assets/data/scenarios/scenarios.json'
+import { getScenarioData, scenarioNames } from '../../src/components/Main/state/scenarioData'
 
-const scenariosKeys = Object.keys(scenarios)
 // testing all the scenarios would be extremely long
-const firstTenScenarios = scenariosKeys.slice(0, 10)
+const someScenarios = ['Switzerland', 'Germany', 'France', 'Australia']
 
 context('Scenario selector', () => {
   before(() => {
@@ -27,11 +26,11 @@ context('Scenario selector', () => {
       cy.get('@ScenarioDropdown').click().find('[class$="-menu"]').should('exist')
     })
 
-    it(`should have ${scenariosKeys.length} options`, () => {
+    it(`should have ${scenarioNames.length} options`, () => {
       cy.get('@ScenarioDropdown')
         .find('[class$="-menu"]')
         .find('[class$="-option"]')
-        .should('have.length', scenariosKeys.length)
+        .should('have.length', scenarioNames.length)
     })
 
     it('should close when clicking on it a second time', () => {
@@ -39,31 +38,30 @@ context('Scenario selector', () => {
     })
   })
 
-  for (const scenarioKey of firstTenScenarios) {
-    const { epidemiological, population } = scenarios[scenarioKey]
+  someScenarios.forEach((scenarioKey) => {
+    const { epidemiological, population } = getScenarioData(scenarioKey)
 
     describe(`Switching to "${scenarioKey}"`, () => {
       it(`should change the text on selector to "${scenarioKey}" correctly`, () => {
         cy.get('@ScenarioDropdown').click().findByText(scenarioKey).click()
 
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
         cy.wait(100) // updating the selectbox can take some time
 
         cy.get('@ScenarioDropdown').find('[class$="singleValue"]').should('have.text', scenarioKey)
       })
 
       it('should change the values for the "Population" card', () => {
-        for (const key in population) {
-          cy.get('@PopulationCard').find(`[name="population.${key}"]`).should('have.value', String(population[key]))
-        }
+        Object.entries(population).forEach(([key, value]) => {
+          cy.get('@PopulationCard').find(`[name="population.${key}"]`).should('have.value', value.toString())
+        })
       })
 
       it('should change the values for the "Epidemiology" card', () => {
-        for (const key in epidemiological) {
-          cy.get('@EpidemiologyCard')
-            .find(`[name="epidemiological.${key}"]`)
-            .should('have.value', String(epidemiological[key]))
-        }
+        Object.entries(epidemiological).forEach(([key, value]) => {
+          cy.get('@EpidemiologyCard').find(`[name="epidemiological.${key}"]`).should('have.value', value.toString())
+        })
       })
     })
-  }
+  })
 })

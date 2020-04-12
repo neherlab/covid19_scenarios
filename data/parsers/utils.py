@@ -6,7 +6,6 @@ import re
 import sys
 import yaml
 
-sys.path.append('..')
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR, SCHEMA_CASECOUNTS
 
 from datetime import datetime
@@ -25,7 +24,7 @@ default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 # Functions
 
 def stoi(x):
-    if x is None or x == '':
+    if x is None or x == "NA" or x == '':
         return None
 
     return int(x)
@@ -46,7 +45,6 @@ def get_header(source):
 def flatten(cases):
     # Expects a dict of lists of dicts {'USA': [{'cases': 0, 'time': '2020-03-20'}, ..., ] }
     # Converts to list of lists [['USA', '2020-03-20', 0, ...]]
-    # This is mostly required for World.tsv and similar
     rows = []
     for cntry, data in cases.items():
         for datum in data:
@@ -104,7 +102,6 @@ def merge_cases(oldcases, newcases):
         if not c in res:
             res[c] = newcases[c]
         else:
-            #print('Found old and new data for ',c)
             # join both lists and sort. Then, check for duplicates and merge them
             try:
                 joinedDays = sorted(res[c]+newcases[c], key=functools.cmp_to_key(compare_day))
@@ -196,6 +193,7 @@ def store_json(case_counts, json_file):
     """ Validate and store data to .json file
     Arguments:
     - case_counts: a dict of lists of dicts for case counts
+    - json_file: name of file to store into
     """
 
     #convert dict of lists of dicts to list of dicts of lists of dicts
@@ -209,9 +207,6 @@ def store_json(case_counts, json_file):
 
     with open(json_file, 'w') as fh:
         json.dump(newdata, fh)
-
-    #print('first layer keys are %s'%mergedCases.keys())
-    #print(f'Stored {len(mergedCases)} regions to {json_file}')
 
 def sanitize(fname):
     # we sanitize to ASCII alphabetic here

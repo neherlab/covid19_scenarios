@@ -5,8 +5,8 @@ import {
   EpidemiologicalData,
   SimulationData,
   PopulationData,
+  AgeDistribution,
 } from '../../../algorithms/types/Param.types'
-import { OneCountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
 
 const action = actionCreatorFactory('SCENARIO')
 
@@ -33,7 +33,7 @@ export interface SetSimulationDataParams {
 }
 
 export interface SetAgeDistributionDataParams {
-  data: OneCountryAgeDistribution
+  data: AgeDistribution
 }
 
 export const setPopulationData = action<SetPopulationDataParams>('SET_POPULATION_DATA')

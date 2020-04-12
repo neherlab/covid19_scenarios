@@ -27,7 +27,9 @@ const getTime = (potentialDate: Date | string): number => {
 
   try {
     return potentialDate.getTime()
-  } catch (error) {}
+  } catch (error) {
+    //
+  }
 
   return 0
 }
