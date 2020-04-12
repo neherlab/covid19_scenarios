@@ -67,7 +67,7 @@ export default function ExportSimulationDialog({
               <td>
                 <Button
                   disabled={!(result?.deterministic ?? null)}
-                  onClick={() => result && exportResult(result, 'covid.summary.tsv', )}
+                  onClick={() => result && exportResult(result, 'covid.summary.tsv')}
                   color="primary"
                   size="sm"
                 >
