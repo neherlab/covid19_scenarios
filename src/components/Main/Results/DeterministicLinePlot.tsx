@@ -197,7 +197,7 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const reducedObservationsToPlot = translatePlots(t, observationsToPlot).filter((itemToPlot) => {
+  const reducedObservationsToPlot = translatePlots(t, observationsToPlot(caseBaseStep)).filter((itemToPlot) => {
     if (observations.length !== 0) {
       if (countObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
         return true
@@ -320,6 +320,7 @@ export function DeterministicLinePlot({
                     <LinePlotTooltip
                       valueFormatter={tooltipValueFormatter}
                       itemsToDisplay={tooltipItemsToDisplay}
+                      deltaCaseDays={caseBaseStep}
                       {...props}
                     />
                   )}
