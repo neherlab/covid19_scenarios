@@ -47,7 +47,7 @@ export async function exportAll(result: AlgorithmResult) {
   saveAs(zipFile, 'covid.params.results.zip')
 }
 
-export function exportResult(result: AlgorithmResult, fileName: string, ...ageGroups: string[]) {
+export function exportResult(result: AlgorithmResult, fileName: string, ageGroups?: string[]) {
   if (!result) {
     throw new Error(`Algorithm result expected, but got ${result}`)
   }
@@ -65,7 +65,7 @@ export function exportResult(result: AlgorithmResult, fileName: string, ...ageGr
     return
   }
 
-  saveFile(exportSimulation(deterministic, ...ageGroups), fileName)
+  saveFile(exportSimulation(deterministic, ageGroups), fileName)
 }
 
 export function exportParams(result: AlgorithmResult) {
