@@ -606,17 +606,22 @@ export function exportSimulation(result: UserResult) {
     if (category == 'critical') {
       header.push(`ICU mean`, `ICU variance`)
     } else {
-      header.push(`${category} mean`, `${category} variance`)
+      header.push(`${category} mean`, `${category} lower bound`, `${category} upper bound`)
     }
   })
   categories.cumulative.forEach((category) => {
-    header.push(`cumulative ${category} mean`, `cumulative ${category} variance`)
+    header.push(
+      `cumulative ${category} mean`,
+      `cumulative ${category} lower bound`,
+      `cumulative ${category} upper bound`,
+    )
   })
 
   const tsv = [header.join('\t')]
 
   const seen: Record<string, boolean> = {}
-  const variance = result.variance
+  const upper = result.upper
+  const lower = result.lower
   result.mean.forEach((mean, i) => {
     const t = new Date(mean.time).toISOString().slice(0, 10)
     if (t in seen) {
@@ -626,10 +631,14 @@ export function exportSimulation(result: UserResult) {
 
     let buf = t
     categories.current.forEach((k) => {
-      buf += `\t${Math.round(mean.current[k].total)}\t${Math.round(variance[i].current[k].total)}`
+      buf += `\t${Math.round(mean.current[k].total)}\t${Math.round(lower[i].current[k].total)}\t${Math.round(
+        upper[i].current[k].total,
+      )}`
     })
     categories.cumulative.forEach((k) => {
-      buf += `\t${Math.round(mean.cumulative[k].total)}\t${Math.round(variance[i].cumulative[k].total)}`
+      buf += `\t${Math.round(mean.cumulative[k].total)}\t${Math.round(lower[i].cumulative[k].total)}\t${Math.round(
+        upper[i].cumulative[k].total,
+      )}`
     })
 
     tsv.push(buf)
