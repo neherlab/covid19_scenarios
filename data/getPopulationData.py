@@ -141,8 +141,13 @@ if __name__ == "__main__":
         newData[d].update(popData[d])
     
     oldData = get_old_data()
+    i = 0
+    for c in oldData:
+        if 'populationServed' in oldData[c] and 'hospitalBeds' in oldData[c] and 'ICUBeds' in oldData[c]:
+            i += 1
+    print(f'{i} old entries are complete')
 
-    #remove entries if we know about them
+    #merge data with old data. Give preference to new (sourced) data
     for n in oldData:
             if n in newData:
                 if not 'populationServed' in newData[n]:
@@ -158,7 +163,20 @@ if __name__ == "__main__":
                     newData[n]['hemisphere'] = oldData[n]['hemisphere']
             else:
                 newData[n] = oldData [n]
-        
+
+    # lets count how many entries are complete
+    i = 0
+    toDel = []
+    for c in newData:
+        if 'populationServed' in newData[c] and 'hospitalBeds' in newData[c] and 'ICUBeds' in newData[c]:
+        #if  'hospitalBeds' in newData[c] :
+            i += 1
+        else:
+            # remove non-complete entries for now
+            toDel.append(c)
+    for k in toDel:
+        del newData[k]
+    print(f'{i} entries are complete')
     with open('popData.tsv', 'w') as fd:
         wtr = csv.writer(fd, delimiter='\t')
         wtr.writerow(cols)
