@@ -1,0 +1,47 @@
+plugins:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - javascript
+        - python
+
+  eslint:
+    enabled: true
+    channel: 'eslint-6'
+    config:
+      extensions:
+        - .js
+        - .json
+        - .jsx
+        - .ts
+        - .tsx
+
+  tslint:
+    enabled: true
+
+  stylelint:
+    enabled: true
+
+  fixme:
+    enabled: false
+
+ratings:
+  paths:
+    - 'src/**/*.{ts,tsx,js,jsx,json}'
+
+exclude_paths:
+  - 3rdparty
+  - .build
+  - .cache
+  - .env
+  - .github
+  - .ignore
+  - .reports
+  - .vscode
+  - cypress
+  - node_modules
+  - src/.generated
+  - src/assets
+  - static
+  - tsconfig.json
