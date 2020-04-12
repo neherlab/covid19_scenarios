@@ -92,21 +92,40 @@ export function DeterministicLinePlot({
 
   const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
 
-  const caseStep = 3
+  const caseBaseStep = Math.floor(params.epidemiological.infectiousPeriod)
+  const caseDelta = params.epidemiological.infectiousPeriod - caseBaseStep
+
   // this currently relies on there being data for every day. This should be
   // the case given how the data are parsed, but would be good to put in a check
-  const newCases = (cc: EmpiricalData, i: number) => {
-    if (i >= caseStep && cc[i].cases !== null && cc[i - caseStep].cases !== null) {
-      return verifyPositive((cc[i].cases as number) - (cc[i - caseStep].cases as number))
-    }
-    return undefined
-  }
+  const newCases =
+    caseDelta === 0
+      ? (cc: EmpiricalData, i: number) => {
+          if (i >= caseBaseStep && cc[i].cases !== null && cc[i - caseBaseStep].cases !== null) {
+            return verifyPositive((cc[i].cases as number) - (cc[i - caseBaseStep].cases as number))
+          }
+          return undefined
+        }
+      : (cc: EmpiricalData, i: number) => {
+          if (
+            i >= caseBaseStep + 1 &&
+            cc[i].cases !== null &&
+            cc[i - caseBaseStep + 1].cases !== null &&
+            cc[i - caseBaseStep].cases !== null
+          ) {
+            return verifyPositive(
+              (cc[i].cases as number) -
+                ((1 - caseDelta) * (cc[i - caseBaseStep].cases as number) +
+                  caseDelta * (cc[i - caseBaseStep + 1].cases as number)),
+            )
+          }
+          return undefined
+        }
 
   const countObservations = {
     cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
     ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
     observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
+    newCases: nonEmptyCaseCounts?.filter((_, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
