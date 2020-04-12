@@ -153,9 +153,14 @@ if __name__ == "__main__":
                 if not 'populationServed' in newData[n]:
                     newData[n]['populationServed'] = oldData[n]['populationServed']
                     newData[n]['srcPopulation'] = oldData[n]['srcPopulation']
+                elif oldData[n]['srcPopulation'] and not oldData[n]['srcPopulation']== 'None':
+                    print(f'Ignoring old pop source {oldData[n]["srcPopulation"]}')
+                    print(f'old val was {oldData[n]["populationServed"]}, new val is {newData[n]["populationServed"]}')
                 if not 'hospitalBeds' in newData[n]:
                     newData[n]['hospitalBeds'] = oldData[n]['hospitalBeds']
                     newData[n]['srcHospitalBeds'] = oldData[n]['srcHospitalBeds']
+                elif oldData[n]['srcHospitalBeds'] and not oldData[n]['srcHospitalBeds']== 'None':
+                    print(f'Ignoring old hosp source {oldData[n]["srcPopulation"]}')
                 if not 'ICUBeds' in newData[n]:
                     newData[n]['ICUBeds'] = oldData[n]['ICUBeds']
                     newData[n]['srcICUBeds'] = oldData[n]['srcICUBeds']
