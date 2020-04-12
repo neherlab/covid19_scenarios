@@ -75,23 +75,18 @@ plugins:
   fixme:
     enabled: false
 
-ratings:
-  paths:
-    - 'src/**/*.{ts,tsx,js,jsx,json}'
-
-exclude_paths:
-  - .build
-  - .cache
-  - .env
-  - .github
-  - .ignore
-  - .reports
-  - .vscode
-  - 3rdparty
-  - cypress
-  - data
-  - node_modules
-  - src/.generated
-  - src/assets
-  - static
-  - tsconfig.json
+exclude_patterns:
+  - '**/node_modules/'
+  - '.build/'
+  - '.cache/'
+  - '.env'
+  - '.github/'
+  - '.ignore/'
+  - '.reports/'
+  - '.vscode/'
+  - '3rdparty/'
+  - 'cypress/'
+  - 'data/'
+  - 'src/.generated/'
+  - 'src/assets/'
+  - 'static/'
