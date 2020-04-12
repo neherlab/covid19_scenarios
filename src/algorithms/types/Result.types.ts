@@ -84,4 +84,5 @@ export interface UserResult {
 
 export interface AlgorithmResult {
   trajectory: UserResult
+  statistics: Record<number, ExportedTimePoint[]>
 }
