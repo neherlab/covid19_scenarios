@@ -102,9 +102,9 @@ def parse():
     for row in db:
         date = str(row["date"])
         date = f"{date[0:4]}-{date[4:6]}-{date[6:8]}"
-        elt  = [ date, stoi(row["positive"]), stoi(row.get("death", None)),
-                       stoi(row.get("hospitalizedCurrently", None)),
-                       stoi(row.get("inIcuCurrently", None)), None]
+        elt  = [ date, stoi(row.get("positive", None)), stoi(row.get("death", None)),
+                    stoi(row.get("hospitalizedCurrently", None)),
+                    stoi(row.get("inIcuCurrently", None)), None]
         regions[acronyms[row["state"]]].append(elt)
     regions = dict(regions)
 
