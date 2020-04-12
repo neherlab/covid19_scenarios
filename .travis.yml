@@ -25,7 +25,6 @@ before_script:
 script:
   - yarn schema:totypes
   - yarn eslint --max-warnings=0
-  - reviewdog -conf=.reviewdog.yml -reporter=github-pr-check
   - yarn test:coverage
   - yarn codecov -f .reports/coverage/coverage-final.json
 
