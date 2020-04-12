@@ -526,14 +526,14 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
     // TODO(nnoll): Typescript linting isn't happy here
     Object.keys(tp.current).forEach((k) => {
       if (k === 'exposed') {
-        tp.current[k].total = 0
-        Object.values(d.current[k]).forEach((x) => {
+        tp.current.exposed.total = 0
+        Object.values(d.current.exposed).forEach((x) => {
           x.forEach((y) => {
             tp.current[k].total += y
           })
         })
-        Object.keys(d.current[k]).forEach((a, i) => {
-          tp.current[k][a] = d.current[k][i].reduce((a, b) => a + b, 0)
+        ages.forEach((age, i) => {
+          tp.current[k][age] = d.current.exposed[i].reduce((a, b) => a + b, 0)
         })
       } else {
         ages.forEach((age, i) => {
