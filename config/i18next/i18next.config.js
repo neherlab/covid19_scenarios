@@ -1,7 +1,3 @@
-const SupportedLocales = require('../../src/langs').default
-
-const locales = Object.keys(SupportedLocales)
-
 module.exports = {
   contextSeparator: '_',
   // Key separator used in your translation keys
@@ -32,13 +28,13 @@ module.exports = {
     jsx: ['JsxLexer'],
     tsx: ['JsxLexer'],
 
-    default: ['JavascriptLexer'],
+    default: ['JavascriptLexer']
   },
 
   lineEnding: '\n',
   // Control the line ending. See options at https://github.com/ryanve/eol
 
-  locales,
+  locales: ['en'],
   // An array of the locales in your applications
 
   namespaceSeparator: false,
@@ -51,9 +47,8 @@ module.exports = {
   // Where to write the locale files relative to process.cwd()
 
   input: [
-    '../../src/**/*.{js,jsx,ts,tsx}',
-    '!../../src/types/**',
-    '!../../locales/**',
+    '../../src/**/*.{ts,tsx}',
+    '!../../locales/**'
   ],
   // An array of globs that describe where to look for source files
   // relative to the location of the configuration file
@@ -69,6 +64,6 @@ module.exports = {
   // Whether to use the keys as the default value; ex. "Hello": "Hello", "World": "World"
   // The option `defaultValue` will not work if this is set to true
 
-  verbose: false,
+  verbose: false
   // Display info about the parsing including some stats
 }
