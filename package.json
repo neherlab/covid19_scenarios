@@ -50,7 +50,8 @@
     "test:coverage": "yarn test:nowatch --coverage",
     "e2e": "cypress run",
     "e2e:dev": "cypress open",
-    "i18n": "babel-node --extensions \".ts\" node_modules/.bin/i18next -c config/i18next/i18next.config.js"
+    "i18n": "babel-node --extensions \".ts\" node_modules/.bin/i18next -c config/i18next/i18next.config.js",
+    "codeclimate": "UID=$(id -u) DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker/docker-compose.codeclimate.yml --compatibility up"
   },
   "dependencies": {
     "@babel/runtime": "7.8.7",
