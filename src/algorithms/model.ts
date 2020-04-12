@@ -561,9 +561,8 @@ export function exportSimulation(result: UserResult, ageGroups?: string[]) {
 
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
-  if (!ageGroups || ageGroups.length == 0) {
-    ageGroups = ['total']
-  }
+
+  const ageGroupsExported = ageGroups ? ageGroups : ['total']
 
   const header = keys(result.trajectory[0].current)
   const tsvHeader: string[] = header.map((x) => (x === 'critical' ? 'ICU' : x))
@@ -572,13 +571,8 @@ export function exportSimulation(result: UserResult, ageGroups?: string[]) {
   const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
 
   let buf = 'time'
-  tsvHeader.forEach((hdr) => {
-    ageGroups.forEach((age) => {
-      buf += `\t${hdr} (${age})`
-    })
-  })
-  tsvHeaderCumulative.forEach((hdr) => {
-    ageGroups.forEach((age) => {
+  tsvHeader.concat(tsvHeaderCumulative).forEach((hdr) => {
+    ageGroupsExported.forEach((age) => {
       buf += `\t${hdr} (${age})`
     })
   })
@@ -593,13 +587,13 @@ export function exportSimulation(result: UserResult, ageGroups?: string[]) {
     pop[t] = true
     let buf = t
     header.forEach((k) => {
-      ageGroups.forEach((age) => {
+      ageGroupsExported.forEach((age) => {
         buf += `\t${Math.round(d.current[k][age])}`
       })
     })
 
     headerCumulative.forEach((k) => {
-      ageGroups.forEach((age) => {
+      ageGroupsExported.forEach((age) => {
         buf += `\t${Math.round(d.cumulative[k][age])}`
       })
     })
