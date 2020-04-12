@@ -39,7 +39,7 @@ export async function exportAll(result: AlgorithmResult) {
   if (!deterministic) {
     console.error('Error: the results of the simulation cannot be exported because they are nondeterministic')
   } else {
-    zip.file('covid.results.deterministic.tsv', exportSimulation(deterministic))
+    zip.file('covid.results.deterministic.tsv', exportSimulation(deterministic, 'total'))
   }
 
   const zipFile = await zip.generateAsync({ type: 'blob' })
@@ -64,7 +64,7 @@ export function exportResult(result: AlgorithmResult) {
     return
   }
 
-  saveFile(exportSimulation(deterministic), 'covid.results.deterministic.tsv')
+  saveFile(exportSimulation(deterministic, 'total'), 'covid.results.deterministic.tsv')
 }
 
 export function exportParams(result: AlgorithmResult) {

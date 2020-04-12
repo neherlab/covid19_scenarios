@@ -556,11 +556,14 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
   return res
 }
 
-export function exportSimulation(result: UserResult) {
+export function exportSimulation(result: UserResult, ...ageGroups: string[]) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
+  if (ageGroups.length == 0) {
+    ageGroups = ['total']
+  }
 
   const header = keys(result.trajectory[0].current)
   const tsvHeader: string[] = header.map((x) => (x === 'critical' ? 'ICU' : x))
@@ -568,7 +571,18 @@ export function exportSimulation(result: UserResult) {
   const headerCumulative = keys(result.trajectory[0].cumulative)
   const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
 
-  const tsv = [`time\t${tsvHeader.concat(tsvHeaderCumulative).join('\t')}`]
+  let buf = 'time'
+  tsvHeader.forEach((hdr) => {
+    ageGroups.forEach((age) => {
+      buf += `\t${hdr} (${age})`
+    })
+  })
+  tsvHeaderCumulative.forEach((hdr) => {
+    ageGroups.forEach((age) => {
+      buf += `\t${hdr} (${age})`
+    })
+  })
+  const tsv = [buf]
 
   const pop: Record<string, boolean> = {}
   result.trajectory.forEach((d) => {
@@ -579,11 +593,15 @@ export function exportSimulation(result: UserResult) {
     pop[t] = true
     let buf = t
     header.forEach((k) => {
-      buf += `\t${Math.round(d.current[k].total)}`
+      ageGroups.forEach((age) => {
+        buf += `\t${Math.round(d.current[k][age])}`
+      })
     })
 
     headerCumulative.forEach((k) => {
-      buf += `\t${Math.round(d.cumulative[k].total)}`
+      ageGroups.forEach((age) => {
+        buf += `\t${Math.round(d.cumulative[k][age])}`
+      })
     })
     tsv.push(buf)
   })
