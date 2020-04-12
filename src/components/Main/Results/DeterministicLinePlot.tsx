@@ -70,7 +70,11 @@ function computeNewEmpiricalCases(
     return [newEmpiricalCases, deltaDay]
   }
 
-  for (let day = deltaDay; day < cumulativeCounts.length; day++) {
+  cumulativeCounts.forEach((_0, day) => {
+    if (day < deltaDay) {
+      return
+    }
+
     const startDay = day - deltaDay
     const startDayPlus = day - deltaDay - 1
 
@@ -82,10 +86,10 @@ function computeNewEmpiricalCases(
         olderCases ? (1 - deltaInt) * (nowCases - oldCases) + deltaInt * (nowCases - olderCases) : nowCases - oldCases,
       )
       newEmpiricalCases.push(newCases)
-      continue
+      return
     }
     newEmpiricalCases[day] = undefined
-  }
+  })
 
   return [newEmpiricalCases, deltaDay]
 }
