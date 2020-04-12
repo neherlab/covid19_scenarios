@@ -556,12 +556,12 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
   return res
 }
 
-export function exportSimulation(result: UserResult, ...ageGroups: string[]) {
+export function exportSimulation(result: UserResult, ageGroups?: string[]) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
-  if (ageGroups.length == 0) {
+  if (!ageGroups || ageGroups.length == 0) {
     ageGroups = ['total']
   }
 
