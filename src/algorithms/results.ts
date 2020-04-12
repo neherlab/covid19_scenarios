@@ -181,7 +181,7 @@ function scaledStdDevTPs(
       logvar,
       scaleTP(
         addTP(
-          scaleTP(tp, (x) => fwd(x)),
+          scaleTP(tp, (x) => fwd(x + COUNT_FLOOR)),
           M,
         ),
         (x) => x * x,
@@ -189,7 +189,7 @@ function scaledStdDevTPs(
     )
   })
 
-  const logstd = scaleTP(logvar, (x) => Math.pow(x / N, 1 / 2) || -20)
+  const logstd = scaleTP(logvar, (x) => Math.pow(x / N, 1 / 2))
 
   return scaleTP(logstd, inv)
 }
@@ -230,7 +230,8 @@ function percentileTrajectory(trajectories: ExportedTimePoint[][], prc: number):
 }
 */
 
-const fwdTransform = (x: number) => Math.log(x) || 20
+const COUNT_FLOOR = 1e-6
+const fwdTransform = (x: number) => Math.log(x + COUNT_FLOOR)
 const invTransform = (x: number) => Math.exp(x)
 
 export function meanTrajectory(trajectories: ExportedTimePoint[][]): ExportedTimePoint[] {
