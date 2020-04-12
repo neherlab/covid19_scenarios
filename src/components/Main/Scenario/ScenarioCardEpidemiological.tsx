@@ -2,31 +2,21 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 
-import { FormikErrors, FormikTouched } from 'formik'
-import { AnyAction } from 'typescript-fsa'
+import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-import { State } from '../state/state'
-
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month }))
 
 export interface ScenarioCardEpidemiologicalProps {
-  scenarioState: State
-  errors?: FormikErrors<any>
-  touched?: FormikTouched<any>
-  scenarioDispatch(action: AnyAction): void
+  errors?: FormikErrors<FormikValues>
+  touched?: FormikTouched<FormikValues>
 }
 
-function ScenarioCardEpidemiological({
-  scenarioState,
-  errors,
-  touched,
-  scenarioDispatch,
-}: ScenarioCardEpidemiologicalProps) {
+function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiologicalProps) {
   const { t } = useTranslation()
   // function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
   //   scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))

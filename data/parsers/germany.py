@@ -4,7 +4,7 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import store_data
+from .utils import store_data, stoi
 
 # ------------------------------------------------------------------------
 # Globals
@@ -29,17 +29,7 @@ bundesland_codes = {
 }
 
 URL  = "https://raw.githubusercontent.com/chriswien/COVID19_CaseNumberDE/master/COVID19_Cases_Bundeslaender_DE.csv"
-LOC  = "case-counts/Europe/Western Europe/Germany"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
-
-# ------------------------------------------------------------------------
-# Functions
-
-def to_int(x):
-    if x == "NA" or x == "":
-        return None
-    else:
-        return int(x)
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -60,6 +50,6 @@ def parse():
         date   = row[0]
         if row[1] in bundesland_codes:
             bundesland = '-'.join(['DEU', bundesland_codes[row[1]]])
-            regions[bundesland].append([date, to_int(row[2]), to_int(row[3]), None, None, None])
+            regions[bundesland].append([date, stoi(row[2]), stoi(row[3]), None, None, None])
 
     store_data(regions,  'germany', cols)

@@ -35,7 +35,8 @@ function generateFeaturePolicyHeader(featurePoicyObject) {
 }
 
 const NEW_HEADERS = {
-  'Content-Security-Policy': "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:",
+  'Content-Security-Policy':
+    "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.githubusercontent.com",
   'Referrer-Policy': 'no-referrer',
   'Strict-Transport-Security': 'max-age=15768000; includeSubDomains; preload',
   'X-Content-Type-Options': 'nosniff',

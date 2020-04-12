@@ -8,10 +8,10 @@ import { userReducer, UserState } from './user/user.reducer'
 
 const rootReducer = (history: History) =>
   combineReducers({
-    ui: uiReducer,
-    user: userReducer,
     error: errorReducer,
     router: connectRouter(history),
+    ui: uiReducer,
+    user: userReducer,
   })
 
 export interface State {

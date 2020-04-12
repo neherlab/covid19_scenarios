@@ -4,23 +4,14 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import store_data
+from .utils import store_data, stoi
 
 # ------------------------------------------------------------------------
 # Globals
 
 URL  = "https://github.com/opencovid19-fr/data/raw/master/dist/chiffres-cles.csv"
-LOC  = "case-counts/Europe/Western Europe/France"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
-# ------------------------------------------------------------------------
-# Functions
-
-def to_int(x):
-    if x == "NA" or x == "":
-        return None
-    else:
-        return int(x)
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -44,16 +35,16 @@ def parse():
         if row[1] == 'region':
             date   = row[0]
             region = row[3].replace(" ", "-").replace("Î", "I").replace("'", "").replace("’", "")
-            cases = to_int(row[4])
-            death = to_int(row[5])
-            hospitalized = to_int(row[7])
-            ICU = to_int(row[6])
+            cases = stoi(row[4])
+            death = stoi(row[5])
+            hospitalized = stoi(row[8])
+            icu = stoi(row[7])
 
             if region not in regions:
                 regions[region] = {}
 
             if date not in regions[region]:
-                regions[region][date] = [date, cases, death, hospitalized, ICU, None]
+                regions[region][date] = [date, cases, death, hospitalized, icu, None]
                 continue
 
             # If data from another source is bigger, we take it
@@ -66,8 +57,8 @@ def parse():
             if hospitalized is not None and (regions[region][date][3] is None or hospitalized > regions[region][date][3]):
                 regions[region][date][3] = hospitalized
                 
-            if ICU is not None and (regions[region][date][4] is None or ICU > regions[region][date][4]):
-                regions[region][date][4] = ICU
+            if icu is not None and (regions[region][date][4] is None or icu > regions[region][date][4]):
+                regions[region][date][4] = icu
 
     regions2 = {}
     for reg, d in regions.items():

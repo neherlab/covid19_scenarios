@@ -3,7 +3,7 @@
 import links from '../../src/links'
 
 context('The navigation bar', () => {
-  const navLinks = Object.entries(links)
+  const navLinks = Object.keys(links)
 
   beforeEach(() => {
     cy.visit(Cypress.env('BASE_URL'))

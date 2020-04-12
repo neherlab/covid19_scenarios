@@ -1,8 +1,6 @@
-import os, sys
-import csv
+import sys
 import json
 import requests
-import numpy as np
 import json
 
 from collections import defaultdict
@@ -75,8 +73,7 @@ acronyms = {
 }
 
 URL  = "https://covidtracking.com/api/states/daily"
-LOC  = "case-counts/Americas/Northern America/United States of America"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions

@@ -17,8 +17,7 @@ URL_HOSPITALIZED_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scen
 URL_ICU_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scenarios_is/master/data/cumulative_icu.cvs"
 URL_RECOVERED_CUM = "https://raw.githubusercontent.com/tryggvigy/covid19_scenarios_is/master/data/cumulative_recovered.cvs"
 
-LOC = "case-counts/Europe/Northern Europe/Iceland"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions
@@ -26,10 +25,8 @@ cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 def sorted_date(s):
     return sorted(s, key=lambda d: datetime.strptime(d[cols.index('time')], "%Y-%m-%d"))
 
-
 # ------------------------------------------------------------------------
 # Sub parsers
-
 
 def parse_csv(regions_date, url, output_column):
     r = requests.get(url)
@@ -60,7 +57,7 @@ def parse_hospitalized(regions_date):
     parse_csv(regions_date, URL_HOSPITALIZED_CUM, 'hospitalized')
 
 def parse_icu(regions_date):
-    parse_csv(regions_date, URL_ICU_CUM, 'ICU')
+    parse_csv(regions_date, URL_ICU_CUM, 'icu')
 
 def parse_recovered(regions_date):
     parse_csv(regions_date, URL_RECOVERED_CUM, 'recovered')
@@ -85,7 +82,7 @@ def parse():
                 regions_date[region][date].get('cases', None),
                 regions_date[region][date].get('deaths', None),
                 regions_date[region][date].get('hospitalized', None),
-                regions_date[region][date].get('ICU', None),
+                regions_date[region][date].get('icu', None),
                 regions_date[region][date].get('recovered', None),
             ]
             regions[region].append(entry)

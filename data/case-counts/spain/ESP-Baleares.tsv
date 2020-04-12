@@ -1,7 +1,7 @@
 # Data source: https://github.com/datadista/datasets/tree/master/COVID%2019
 # Data provenance: http://www.datadista.com
 # License: unclear
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-02-27	1				
 2020-02-28	1				
 2020-02-29	2				
@@ -39,3 +39,11 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-04-01	1131	46	468	95	170
 2020-04-02	1204	58	517	105	239
 2020-04-03	1257	69	587	112	375
+2020-04-04	1271	71	634	114	422
+2020-04-05	1293	75	664	120	461
+2020-04-06	1320	81	683	121	531
+2020-04-07	1369	84	705	124	537
+2020-04-08	1412	89	731	129	616
+2020-04-09	1448	89	751	132	696
+2020-04-10	1488	97	777	136	737
+2020-04-11	1507	102	778	137	757

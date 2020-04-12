@@ -1,7 +1,7 @@
 # Data source: https://github.com/ishaberry/Covid19Canada
 # Data provenance: Offical government data
 # License: none specified
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-02-12	0	0			1
 2020-02-13	0	0			1
 2020-02-14	0	0			1
@@ -53,3 +53,11 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-03-31	754	9			120
 2020-04-01	871	11			142
 2020-04-02	968	13			174
+2020-04-03	1075	18			196
+2020-04-04	1181	20			196
+2020-04-05	1250	23			279
+2020-04-06	1348	24			361
+2020-04-07	1373	26			447
+2020-04-08	1423	29			519
+2020-04-09	1451	32			592
+2020-04-10	1500	39			713

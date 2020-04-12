@@ -1,17 +1,22 @@
 *.pyc
 *.swp
 *log
+.DS_Store
 \.build
-\.idea
 \.cache
 \.env
+\.generated
+\.idea
 \.output
 \.reports
 \.vscode
 cypress/screenshots
 cypress/videos
-node_modules
-
-## data
+data/generated
 data/parsers.log
+<<<<<<< HEAD
 firebaseconf.*
+=======
+data/raw_data
+node_modules
+>>>>>>> upstream/master

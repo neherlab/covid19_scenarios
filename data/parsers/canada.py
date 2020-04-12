@@ -1,9 +1,7 @@
 import xlrd
-import requests
 from datetime import datetime
 
 from urllib.request import urlretrieve
-from collections import defaultdict
 from .utils import store_data, sorted_date
 
 # ------------------------------------------------------------------------
@@ -11,19 +9,12 @@ from .utils import store_data, sorted_date
 
 # https://github.com/ishaberry/Covid19Canada
 URL  = "https://docs.google.com/spreadsheets/d/1D6okqtBS3S2NRC7GFVHzaZ67DuTw7LX49-fqSLwJyeo/export?format=xlsx"
-LOC  = "case-counts/Americas/Northern America/Canada"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 dcols = {'cases': 'date_report', 'deaths': 'date_death_report', 'recovered': 'date_recovered'}
 # ------------------------------------------------------------------------
 # Main point of entry
 
 def parse():
-    r  = requests.get(URL)
-    if not r.ok:
-        print(f"Failed to fetch {URL}", file=sys.stderr)
-        exit(1)
-        r.close()
-
     file_name, headers = urlretrieve(URL)
     workbook = xlrd.open_workbook(file_name)
 

@@ -12,60 +12,23 @@ import {
   ReferenceArea,
   Scatter,
   Tooltip,
-  TooltipPayload,
+  TooltipProps,
   XAxis,
   YAxis,
+  YAxisProps,
 } from 'recharts'
-
-import { LineProps as RechartsLineProps, YAxisProps } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
-
 import { calculatePosition, scrollToRef } from './chartHelper'
-import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
+import { linesToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
+import { LinePlotTooltip } from './LinePlotTooltip'
 
 import './DeterministicLinePlot.scss'
 
 const ASPECT_RATIO = 16 / 9
-
-const DATA_POINTS = {
-  /* Computed */
-  Exposed: 'exposed',
-  Susceptible: 'susceptible',
-  Infectious: 'infectious',
-  Severe: 'severe',
-  Critical: 'critical',
-  Overflow: 'overflow',
-  Recovered: 'recovered',
-  Fatalities: 'fatality',
-  CumulativeCases: 'cumulativeCases',
-  NewCases: 'newCases',
-  HospitalBeds: 'hospitalBeds',
-  ICUbeds: 'ICUbeds',
-  /* Observed */
-  ObservedDeaths: 'observedDeaths',
-  ObservedCases: 'cases',
-  ObservedHospitalized: 'currentHospitalized',
-  ObservedICU: 'ICU',
-  ObservedNewCases: 'newCases',
-}
-
-export const colors = {
-  [DATA_POINTS.Susceptible]: '#a6cee3',
-  [DATA_POINTS.Infectious]: '#fdbf6f',
-  [DATA_POINTS.Severe]: '#fb9a99',
-  [DATA_POINTS.Critical]: '#e31a1c',
-  [DATA_POINTS.Overflow]: '#660033',
-  [DATA_POINTS.Recovered]: '#33a02c',
-  [DATA_POINTS.Fatalities]: '#cab2d6',
-  [DATA_POINTS.CumulativeCases]: '#aaaaaa',
-  [DATA_POINTS.NewCases]: '#fdbf6f',
-  [DATA_POINTS.HospitalBeds]: '#bbbbbb',
-  [DATA_POINTS.ICUbeds]: '#cccccc',
-}
 
 export interface LinePlotProps {
   data?: AlgorithmResult
@@ -75,13 +38,8 @@ export interface LinePlotProps {
   logScale?: boolean
   showHumanized?: boolean
   caseCounts?: EmpiricalData
-}
-
-interface LineProps {
-  key: string
-  name: string
-  color: string
-  legendType?: RechartsLineProps['legendType']
+  forcedWidth?: number
+  forcedHeight?: number
 }
 
 function xTickFormatter(tick: string | number): string {
@@ -92,11 +50,15 @@ function labelFormatter(value: string | number): React.ReactNode {
   return xTickFormatter(value)
 }
 
-function legendFormatter(enabledPlots: string[], value: string, entry: any) {
+function legendFormatter(enabledPlots: string[], value: string, entry: { dataKey: string }) {
   const activeClassName = enabledPlots.includes(entry.dataKey) ? 'legend' : 'legend-inactive'
   return <span className={activeClassName}>{value}</span>
 }
 
+const verifyPositive = (x: number) => (x > 0 ? x : undefined)
+
+// FIXME: this component has become too large
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function DeterministicLinePlot({
   data,
   userResult,
@@ -105,6 +67,8 @@ export function DeterministicLinePlot({
   logScale,
   showHumanized,
   caseCounts,
+  forcedWidth,
+  forcedHeight,
 }: LinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
@@ -123,36 +87,28 @@ export function DeterministicLinePlot({
 
   const { mitigationIntervals } = mitigation
 
-  const verifyPositive = (x: number) => (x > 0 ? x : undefined)
-
   const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
   const nICUBeds = verifyPositive(data.params.ICUBeds)
 
-  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.ICU || d.hospitalized)
+  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
 
   const caseStep = 3
   // this currently relies on there being data for every day. This should be
   // the case given how the data are parsed, but would be good to put in a check
   const newCases = (cc: EmpiricalData, i: number) => {
-    if (i >= caseStep && cc[i].cases && cc[i - caseStep].cases) {
-      return verifyPositive(cc[i].cases - cc[i - caseStep].cases)
+    if (i >= caseStep && cc[i].cases !== null && cc[i - caseStep].cases !== null) {
+      return verifyPositive((cc[i].cases as number) - (cc[i - caseStep].cases as number))
     }
     return undefined
   }
 
   const countObservations = {
     cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: nonEmptyCaseCounts?.filter((d) => d.ICU).length ?? 0,
+    ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
     observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
     newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
-  const mitigationsToPlot = mitigationIntervals.map((d) => ({
-    key: d.name,
-    color: '#CCCCCC',
-    legendType: 'line',
-    name: d.name,
-  }))
 
   const observations =
     nonEmptyCaseCounts?.map((d, i) => ({
@@ -162,7 +118,7 @@ export function DeterministicLinePlot({
       currentHospitalized: enabledPlots.includes(DATA_POINTS.ObservedHospitalized)
         ? d.hospitalized || undefined
         : undefined,
-      ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.ICU || undefined : undefined,
+      ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.icu || undefined : undefined,
       newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newCases(nonEmptyCaseCounts, i) : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
@@ -197,56 +153,92 @@ export function DeterministicLinePlot({
     ...observations,
   ]
 
-  const linesToPlot: LineProps[] = [
-    { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
-    { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
-    { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
-    { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths'), legendType: 'line' },
-    { key: DATA_POINTS.Severe, color: colors.severe, name: t('Severely ill'), legendType: 'line' },
-    { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU'), legendType: 'line' },
-    { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
-    { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
-    { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
-  ]
-
   if (plotData.length === 0) {
     return null
   }
 
+  plotData.sort((a, b) => (a.time > b.time ? 1 : -1))
+  const consolidatedPlotData = [plotData[0]]
+  const msPerDay = 24 * 60 * 60 * 1000
+  plotData.forEach((d) => {
+    if (d.time - msPerDay < consolidatedPlotData[consolidatedPlotData.length - 1].time) {
+      consolidatedPlotData[consolidatedPlotData.length - 1] = {
+        ...d,
+        ...consolidatedPlotData[consolidatedPlotData.length - 1],
+      }
+    } else {
+      consolidatedPlotData.push(d)
+    }
+  })
+
+  // determine the max of enabled plots w/o the hospital capacity
+  const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
+  const yDataMax = _.max(consolidatedPlotData.map((d) => _.max(dataKeys.map((k) => d[k]))))
+
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const scatterToPlot: LineProps[] = observations.length
-    ? [
-        // Append empirical data
-        ...(countObservations.observedDeaths
-          ? [{ key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative confirmed deaths') }]
-          : []),
-        ...(countObservations.cases
-          ? [{ key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative confirmed cases') }]
-          : []),
-        ...(countObservations.hospitalized
-          ? [{ key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital') }]
-          : []),
-        ...(countObservations.ICU
-          ? [{ key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU') }]
-          : []),
-        ...(countObservations.newCases
-          ? [{ key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Confirmed cases past 3 days') }]
-          : []),
-      ]
-    : []
+  const reducedObservationsToPlot = translatePlots(t, observationsToPlot).filter((itemToPlot) => {
+    if (observations.length !== 0) {
+      if (countObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
+        return true
+      }
+      if (countObservations.newCases && itemToPlot.key === DATA_POINTS.ObservedNewCases) {
+        return true
+      }
+      if (countObservations.hospitalized && itemToPlot.key === DATA_POINTS.ObservedHospitalized) {
+        return true
+      }
+      if (countObservations.ICU && itemToPlot.key === DATA_POINTS.ObservedICU) {
+        return true
+      }
+      if (countObservations.observedDeaths && itemToPlot.key === DATA_POINTS.ObservedDeaths) {
+        return true
+      }
+    }
+    return false
+  })
+
+  let tooltipItems: { [key: string]: number | undefined } = {}
+  consolidatedPlotData.forEach((d) => {
+    tooltipItems = { ...tooltipItems, ...d }
+  })
+  const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(
+    (itemKey: string) => itemKey !== 'time' && tooltipItems[itemKey] !== undefined,
+  )
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ): React.ReactNode => <span>{formatNumber(Number(value))}</span>
+  const tooltipValueFormatter = (value: number | string) =>
+    typeof value === 'number' ? formatNumber(Number(value)) : value
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
+
+  // const zoomIn = () => {
+  //   if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
+  //     setzoomSelectedLeftState('')
+  //     setzoomSelectedRightState('')
+  //     return
+  //   }
+
+  //   // xAxis domain
+  //   if (zoomSelectedLeftState > zoomSelectedRightState) {
+  //     setzoomSelectedLeftState(zoomSelectedRightState)
+  //     setzoomSelectedRightState(zoomSelectedLeftState)
+  //   }
+
+  //   setzoomLeftState(zoomSelectedLeftState)
+  //   setzoomRightState(zoomSelectedRightState)
+  //   setzoomSelectedLeftState('')
+  //   setzoomSelectedRightState('')
+  // }
+
+  // const zoomOut = () => {
+  //   setzoomLeftState('dataMin')
+  //   setzoomRightState('dataMax')
+  //   setzoomSelectedLeftState('')
+  //   setzoomSelectedRightState('')
+  // }
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
@@ -261,45 +253,61 @@ export function DeterministicLinePlot({
 
           return (
             <>
-              <h3>{t('Cases through time')}</h3>
-
               <div ref={chartRef} />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
-                width={width}
-                height={height}
-                data={plotData}
+                width={forcedWidth || width}
+                height={forcedHeight || height}
+                data={consolidatedPlotData}
                 throttleDelay={75}
                 margin={{
-                  left: 15,
-                  right: 15,
-                  bottom: 15,
-                  top: 15,
+                  left: 5,
+                  right: 5,
+                  bottom: 5,
+                  top: 5,
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
 
                 <XAxis
+                  allowDataOverflow
                   dataKey="time"
                   type="number"
+                  domain={['dataMin', 'dataMax']}
                   tickFormatter={xTickFormatter}
-                  domain={[tMin, tMax]}
                   tickCount={7}
                 />
 
-                <YAxis scale={logScaleString} type="number" domain={[1, 'dataMax']} tickFormatter={yTickFormatter} />
+                <YAxis
+                  allowDataOverflow
+                  scale={logScaleString}
+                  type="number"
+                  domain={logScale ? [1, yDataMax * 1.1] : [0, yDataMax * 1.1]}
+                  tickFormatter={yTickFormatter}
+                />
 
-                <YAxis yAxisId="mitigationStrengthAxis" orientation={'right'} type="number" domain={[0, 1]} />
+                <YAxis
+                  yAxisId="mitigationStrengthAxis"
+                  allowDataOverflow
+                  orientation={'right'}
+                  type="number"
+                  domain={[0, 100]}
+                />
 
                 <Tooltip
-                  formatter={tooltipFormatter}
                   labelFormatter={labelFormatter}
                   position={tooltipPosition}
-                  content={ResponsiveTooltipContent}
+                  content={(props: TooltipProps) => (
+                    <LinePlotTooltip
+                      valueFormatter={tooltipValueFormatter}
+                      itemsToDisplay={tooltipItemsToDisplay}
+                      {...props}
+                    />
+                  )}
                 />
 
                 <Legend
-                  verticalAlign="top"
+                  verticalAlign="bottom"
                   formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
                   onClick={(e) => {
                     const plots = enabledPlots.slice(0)
@@ -314,16 +322,20 @@ export function DeterministicLinePlot({
                     x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
                     x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
                     y1={0}
-                    y2={_.clamp(interval.mitigationValue, 0, 1)}
+                    y2={_.clamp(interval.mitigationValue, 0, 100)}
                     yAxisId={'mitigationStrengthAxis'}
                     fill={interval.color}
-                    fillOpacity={0.25}
+                    fillOpacity={0.1}
                   >
-                    <Label value={interval.name} position="insideTopRight" fill="#444444"/>
+                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
                   </ReferenceArea>
                 ))}
 
-                {linesToPlot.map((d) => (
+                {reducedObservationsToPlot.map((d) => (
+                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
+                ))}
+
+                {translatePlots(t, linesToPlot).map((d) => (
                   <Line
                     key={d.key}
                     dot={false}
@@ -335,10 +347,6 @@ export function DeterministicLinePlot({
                     name={d.name}
                     legendType={d.legendType}
                   />
-                ))}
-
-                {scatterToPlot.map((d) => (
-                  <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} />
                 ))}
               </ComposedChart>
             </>

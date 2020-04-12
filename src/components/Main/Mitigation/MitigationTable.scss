@@ -1,7 +1,62 @@
 @import '../../../styles/variables';
 
-.form-group.interval-form-group {
-  border: $gray-500 solid 1px;
+.mitigation-table .form-group {
   padding: 4px 2px;
   margin-bottom: 10px;
+  border: $gray-500 solid 1px;
+}
+
+.mitigation-interval {
+  display: flex;
+  width: 100%;
+
+  & > .inputs {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  &.narrow > .inputs,
+  &.very-narrow > .inputs {
+    flex-direction: column;
+  }
+
+  & > .inputs > * {
+    flex-grow: 1;
+  }
+
+  & > .inputs > .item-date-range-value-group {
+    display: flex;
+  }
+
+  &.wide .DateRangePickerInput,
+  &.narrow .DateRangePickerInput {
+    // stop the date range from wrapping the dates.
+    // but not for very narrow views where it would cause overflow.
+    width: max-content;
+  }
+
+  & > .inputs > .item-date-range-value-group > .item-value {
+    width: auto;
+  }
+
+  & .DateInput_input {
+    // make the date range input similar to bootstrap inputs
+    height: calc(1.5em + 0.75rem + 1px);
+  }
+
+  & > *:not(:last-child),
+  &.wide > .inputs > :not(:last-child),
+  & > .inputs > .item-date-range-value-group > :not(:last-child) {
+    margin-right: 4px;
+  }
+
+  &.narrow > .inputs > :not(:last-child),
+  &.very-narrow > .inputs > :not(:last-child) {
+    margin-bottom: 4px;
+  }
+}
+
+.mitigation-table .table-controls {
+  display: flex;
+  justify-content: flex-end;
 }

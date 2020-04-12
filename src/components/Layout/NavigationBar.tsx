@@ -2,10 +2,15 @@ import React from 'react'
 
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 
+import { FaGithub, FaTwitter } from 'react-icons/fa'
+
+// import LanguageSwitcher from './LanguageSwitcher'
+import LinkExternal from '../Router/LinkExternal'
 import NavigationLink from './NavigationLink'
 import { UserMenu } from './UserMenu'
 
 import logo from '../../assets/img/HIVEVO_logo.png'
+
 import './NavigationBar.scss'
 
 export interface NavLinkMap {
@@ -18,10 +23,13 @@ export interface NavigationBarProps extends RouteComponentProps<{}> {
 
 function NavigationBar({ navLinks, location }: NavigationBarProps) {
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-dark" role="navigation" data-testid="NavigationBar">
+    <nav
+      className="navbar navbar-expand navbar-dark bg-dark navbar-scroll hide-native-scrollbar"
+      role="navigation"
+      data-testid="NavigationBar"
+    >
       <a className="navbar-brand" href="/">
         <img className="navbar-brand-image" alt="logo" src={logo} />
-        <h5 className="lab-name">NeherLab</h5>
       </a>
 
       <ul className="navbar-nav">
@@ -31,6 +39,28 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
       </ul>
       <div className="ml-auto">
         <UserMenu />
+        <div className="mx-2">
+          <LinkExternal url="https://neherlab.org/" alt="Link to webpage of NeherLab at University of Basel">
+            <img height={'28px'} alt="NeherLab logo" src={logo} />
+          </LinkExternal>
+        </div>
+
+        <div className="mx-2">
+          <LinkExternal url="https://twitter.com/richardneher" alt="Link to Twitter page of Richard Neher">
+            <FaTwitter size={28} color="#aaa" />
+          </LinkExternal>
+        </div>
+
+        <div className="mx-2">
+          <LinkExternal
+            url="https://github.com/neherlab/covid19_scenarios"
+            alt="Link to Github page of the COVID-19 Scenarios project"
+          >
+            <FaGithub size={28} color="#aaa" />
+          </LinkExternal>
+        </div>
+
+        {/* <LanguageSwitcher /> */}
       </div>
     </nav>
   )

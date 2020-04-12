@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setLoginVisible } from '../../state/ui/ui.actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { setLoginVisible } from '../../state/ui/ui.actions'
 import { signOut } from '../../helpers/cloudStorage'
 import { State } from '../../state/reducer'
 
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 
-import LanguageSwitcher from '../LanguageSwitcher'
+//import LanguageSwitcher from '../LanguageSwitcher'
 import './UserMenu.scss'
 
 function UserMenu() {
@@ -15,7 +15,7 @@ function UserMenu() {
 
   const toggle = () => setDropdownOpen(!dropdownOpen)
 
-  const userIsLogged = useSelector(({ user }): State => user.currentUserUid !== null ? true : false)
+  const userIsLogged = useSelector(({ user }): State => (user.currentUserUid !== null ? true : false))
 
   const handleLoginClick = () => {
     setDropdownOpen(false)
@@ -24,22 +24,13 @@ function UserMenu() {
 
   return (
     <Dropdown className="user-menu-dropdown" isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret>
-        USER
-      </DropdownToggle>
+      <DropdownToggle caret>USER</DropdownToggle>
       <DropdownMenu>
         <DropdownItem onClick={userIsLogged ? signOut : handleLoginClick}>
           {userIsLogged ? 'Logout' : 'Login'}
         </DropdownItem>
-        <DropdownItem>
-          Download my data
-        </DropdownItem>
-        <DropdownItem>
-          Clear my data
-        </DropdownItem>
-        <DropdownItem>
-          <LanguageSwitcher />
-        </DropdownItem>
+        <DropdownItem>Download my data</DropdownItem>
+        <DropdownItem>Clear my data</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   )

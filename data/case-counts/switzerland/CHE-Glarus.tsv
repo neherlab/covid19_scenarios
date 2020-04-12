@@ -1,7 +1,7 @@
-# Data source: https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv
+# Data source: https://raw.githubusercontent.com/openZH/covid_19/master/fallzahlen_kanton_total_csv/COVID19_Fallzahlen_Kanton_CANTONCODE_total.csv
 # Data provenance: OpenZH
 # License: none specified
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-03-01	0				
 2020-03-17	10				
 2020-03-19	17				
@@ -16,3 +16,7 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-04-01	56	2	5		
 2020-04-02	58	2	5		
 2020-04-03	59	2	5		
+2020-04-06	63	2	2		
+2020-04-07	63	2	2		
+2020-04-08	64	2	2		
+2020-04-09	67	2	2		

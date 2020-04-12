@@ -4,7 +4,6 @@ export const LOCAL_STORAGE_KEYS = {
   LOG_SCALE: 'log-scale',
   SHOW_HUMANIZED_RESULTS: 'show-humanized-results',
   SUPPRESS_DISCLAIMER: 'suppress-disclaimer',
-  SKIP_LANDING_PAGE: 'skip-landing-page',
 } as const
 
 export const LOCAL_STORAGE_KEYS_DEFAULT_VALUES = {

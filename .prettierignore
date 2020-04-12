@@ -9,4 +9,12 @@
 \.ignore
 \.prettierignore
 \.reports
+\.vscode
+data/**/*.csv
+data/**/*.json
+data/**/*.tsv
+data/case-counts
+data/hospital-data
 node_modules
+src/.generated
+src/assets/data/**/*.json

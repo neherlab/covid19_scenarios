@@ -5,17 +5,18 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import immerCase from '../../../state/util/fsaImmerReducer'
 
 import {
-  setScenarioData,
   setPopulationData,
   setEpidemiologicalData,
   setContainmentData,
   setSimulationData,
   setScenario,
+  setAgeDistributionData,
 } from './actions'
 
-import { getScenarioData } from './data'
+import { getScenarioData } from './scenarioData'
+import { getCountryAgeDistribution } from './countryAgeDistributionData'
 
-import { CUSTOM_SCENARIO_NAME, defaultScenarioState } from './state'
+import { CUSTOM_SCENARIO_NAME, CUSTOM_COUNTRY_NAME, defaultScenarioState } from './state'
 
 function maybeAdd<T>(where: T[], what: T): T[] {
   return _.uniq([...where, what])
@@ -45,15 +46,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.current = name
       if (name !== CUSTOM_SCENARIO_NAME) {
         draft.data = _.cloneDeep(getScenarioData(name))
+        draft.ageDistribution = getCountryAgeDistribution(draft.data.population.country)
       }
-    }),
-  )
-
-  .withHandling(
-    immerCase(setScenarioData, (draft, { data }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = CUSTOM_SCENARIO_NAME
-      draft.data = _.cloneDeep(data)
     }),
   )
 
@@ -62,6 +56,9 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.population = _.cloneDeep(data)
+      if (draft.data.population.country !== CUSTOM_COUNTRY_NAME) {
+        draft.ageDistribution = getCountryAgeDistribution(draft.data.population.country)
+      }
     }),
   )
 
@@ -75,11 +72,6 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setContainmentData, (draft, { data }) => {
-      let validNumberPoints = draft.data.containment.numberPoints
-      if (data.numberPoints && data.numberPoints >= 5 && data.numberPoints <= 100) {
-        validNumberPoints = data.numberPoints
-      }
-
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.containment = _.cloneDeep(data)
@@ -91,5 +83,14 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.simulation = _.cloneDeep(data)
+    }),
+  )
+
+  .withHandling(
+    immerCase(setAgeDistributionData, (draft, { data }) => {
+      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
+      draft.current = CUSTOM_SCENARIO_NAME
+      draft.ageDistribution = data
+      draft.data.population.country = CUSTOM_COUNTRY_NAME
     }),
   )

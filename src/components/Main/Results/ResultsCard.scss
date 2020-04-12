@@ -6,7 +6,7 @@
     text-transform: uppercase;
   }
 
-  button:last-of-type {
+  > button:last-of-type {
     margin: 0;
   }
 
@@ -16,12 +16,19 @@
 }
 
 .form-check-label {
-  font-size: 80%;
   margin-bottom: 1.5rem;
+  font-size: 80%;
 }
 
 .form-check-input {
   margin-top: 0.2rem;
+}
+
+.new-tab-button {
+  padding: 0.375rem 0.75rem;
+  margin: 0 0.5em 0 0;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
@@ -29,11 +36,11 @@
     flex-direction: column;
 
     button {
-      margin: 0 0 0.5em;
       width: 100%;
+      margin: 0 0 0.5em;
     }
 
-    button:last-of-type {
+    > button:last-of-type {
       margin: 0;
     }
   }
@@ -41,11 +48,16 @@
   .form-check-label {
     margin-bottom: 0;
   }
+
+  .new-tab-button {
+    width: 100%;
+    margin: 0 0 0.5em;
+  }
 }
 
 .caution-text {
-  font-size: 0.9rem;
   max-width: 32em;
+  font-size: 0.9rem;
   text-align: left;
 }
 

@@ -9,9 +9,9 @@ export function calculatePosition(height: number) {
   return { y: yPosition }
 }
 
-export function scrollToRef(ref: MutableRefObject<any>) {
+export function scrollToRef(ref: MutableRefObject<HTMLElement | null>) {
   if (window.innerWidth < singleColumnThreshold) {
-    ref.current.scrollIntoView({
+    ref.current?.scrollIntoView({
       behavior: 'smooth',
     })
   }

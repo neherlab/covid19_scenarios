@@ -13,7 +13,7 @@ export interface FormHelpButtonProps {
 
 export default function FormHelpButton({ label, help }: FormHelpButtonProps) {
   return (
-    <Popover placement="right-center" preventDefault stopPropagation>
+    <Popover preventDefault stopPropagation>
       <button className="btn btn-secondary help-button ml-2" type="button" aria-label="help">
         <FaQuestion className="help-button-icon" />
       </button>

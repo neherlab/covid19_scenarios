@@ -2,9 +2,16 @@
 \.build
 \.cache
 \.env
+\.github
 \.ignore
 \.reports
+\.vscode
 cypress/integration/language.spec.ts
+data
 node_modules
+schemas
+src/.generated
+src/assets
 static
+styles
 tsconfig.json

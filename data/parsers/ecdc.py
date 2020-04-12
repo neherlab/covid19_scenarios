@@ -1,12 +1,8 @@
 '''
-parse country case counts provided by ECDC and write results to TSV
-this should be run from the top level of the repo.
-
-Will need to be integrated with other parsers once they become available.
+parse country case counts provided by ECDC
 '''
 import xlrd
 import csv
-import json
 
 from urllib.request import urlretrieve
 from collections import defaultdict
@@ -17,8 +13,6 @@ from .utils import sorted_date, parse_countries, stoi, store_data
 # Globals
 
 URL  = "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-"
-LOC  = 'case-counts'
-cols = ['location', 'time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 
 # -----------------------------------------------------------------------------
 # Functions
@@ -29,10 +23,15 @@ def retrieve_case_data():
     cases = defaultdict(list)
 
     # For now, always get the data from yesterday. We could make fancier check if today's data is already available
-    yesterday = datetime.today() - timedelta(days=1)
-    date = yesterday.strftime("%Y-%m-%d")
+    try: 
+        yesterday = datetime.today()
+        date = yesterday.strftime("%Y-%m-%d")
+        file_name, headers = urlretrieve(URL+date+".xlsx")
+    except:
+        yesterday = datetime.today() - timedelta(days=1)
+        date = yesterday.strftime("%Y-%m-%d")
+        file_name, headers = urlretrieve(URL+date+".xlsx")
 
-    file_name, headers = urlretrieve(URL+date+".xlsx")
     workbook = xlrd.open_workbook(file_name)
 
     #worksheet = workbook.sheet_by_name('COVID-19-geographic-disbtributi')

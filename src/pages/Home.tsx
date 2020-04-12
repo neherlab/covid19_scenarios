@@ -8,8 +8,8 @@ import './Home.scss'
 function Home() {
   return (
     <>
-      <Main />
       <Disclaimer />
+      <Main />
     </>
   )
 }
