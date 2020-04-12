@@ -1,6 +1,14 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import {
+  TwitterShareButton,
+  TwitterIcon,
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+} from 'react-share'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
 import ClipboardButton from '../../Buttons/ClipboardButton'
@@ -30,6 +38,12 @@ export default function ExportSimulationDialog({
 
   // Assuming href and shareable link can be concatenated without other processing:
   const shareableLink = `${window.location.href}${scenarioUrl}`
+
+  // Size in pixels for the external icons like facebook, email
+  const externalIconSize = 25
+
+  // Boolean to control the shape of the external icons
+  const isRoundIcon = true
 
   return (
     <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
@@ -83,6 +97,17 @@ export default function ExportSimulationDialog({
                 <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={shareableLink}>
                   {t('Copy link')}
                 </ClipboardButton>
+                <div>
+                  <TwitterShareButton url={shareableLink}>
+                    <TwitterIcon size={externalIconSize} round={isRoundIcon} />
+                  </TwitterShareButton>
+                  <EmailShareButton url={shareableLink}>
+                    <EmailIcon size={externalIconSize} round={isRoundIcon} />
+                  </EmailShareButton>
+                  <FacebookShareButton url={shareableLink}>
+                    <FacebookIcon size={externalIconSize} round={isRoundIcon} />
+                  </FacebookShareButton>
+                </div>
               </td>
             </tr>
             <tr>

@@ -1,6 +1,7 @@
 import { CaseCounts, Convert } from '../../../.generated/types'
 import CaseCountsValidate, { errors } from '../../../.generated/CaseCountsValidate'
 import allCaseCountsRaw from '../../../assets/data/case_counts.json'
+import { NONE_COUNTRY_NAME } from './state'
 
 function validate(): CaseCounts[] {
   const valid = CaseCountsValidate(allCaseCountsRaw)
@@ -17,6 +18,10 @@ const caseCounts = validate()
 export const caseCountsNames = caseCounts.map((cc) => cc.country)
 
 export function getCaseCountsData(key: string) {
+  if (key === NONE_COUNTRY_NAME) {
+    return []
+  }
+
   const caseCountFound = caseCounts.find((cc) => cc.country === key)
   if (!caseCountFound) {
     throw new Error(`Error: case counts "${key}" not found in JSON`)
