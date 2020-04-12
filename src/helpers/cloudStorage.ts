@@ -19,8 +19,7 @@ export async function createUserWithEmail(email: string, password: string) {
     // TODO add default values or get them from localStorage
     setUserData(uid, { scenarios: [] })
     return uid
-  }
-  catch (error) {
+  } catch (error) {
     throw new Error(error.message)
   }
 }
@@ -30,12 +29,24 @@ export async function signInWithEmail(email: string, password: string) {
   return getCurrentUser()
 }
 
+export async function signInWithGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider()
+  provider.addScope('profile')
+
+  try {
+    const result = await firebase.auth().signInWithPopup(provider)
+    return result.user
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
 export function signOut() {
   firebase.auth().signOut()
 }
 
 export function setAuthObserver(fn: Function) {
-  firebase.auth().onAuthStateChanged(user => {
+  firebase.auth().onAuthStateChanged((user) => {
     fn(user)
   })
 }
@@ -50,7 +61,7 @@ export function setUserData(uid: string, data: any) {
 
 export async function getUserData(uid: string) {
   const doc = await firebase.firestore().collection('users').doc(uid).get()
-  
+
   if (doc.exists) {
     return doc.data()
   }
@@ -62,10 +73,14 @@ export async function getUserData(uid: string) {
 export async function addScenario(uid: string, scenarioData: any) {
   const addedScenarioRef = await firebase.firestore().collection('scenarios').doc()
   addedScenarioRef.set({ ...scenarioData, uid })
-  
-  firebase.firestore().collection('users').doc(uid).update({
-    scenarios: firebase.firestore.FieldValue.arrayUnion(addedScenarioRef.id)
-  })
+
+  firebase
+    .firestore()
+    .collection('users')
+    .doc(uid)
+    .update({
+      scenarios: firebase.firestore.FieldValue.arrayUnion(addedScenarioRef.id),
+    })
 }
 
 export async function getScenarioData(scenarioId: string) {
@@ -91,6 +106,6 @@ export async function deleteScenario(scenarioId: string, uid: string) {
 
     return
   }
-  
+
   throw new Error('Scenario not found or you are not the owner')
 }
