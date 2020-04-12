@@ -1,0 +1,27 @@
+name: eslint
+
+on:
+  - pull_request
+
+jobs:
+  eslint:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+
+      - run: yarn install
+
+      - run: yarn schema:totypes
+
+      - uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          eslint_flags: '--report-unused-disable-directives "**/*.{js,jsx,ts,tsx,json}"'
+
+      - uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          eslint_flags: '--report-unused-disable-directives "**/*.{js,jsx,ts,tsx,json}"'
