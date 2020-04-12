@@ -309,6 +309,9 @@ function percentileTPs(tps: ExportedTimePoint[], prc: number): ExportedTimePoint
 // -----------------------------------------------------------------------
 // Operations on sets of realizations
 
+/* 
+ * NOTE(nnoll): Keep function as we will use this on detailed runs eventually
+ *
 function percentileTrajectory(trajectories: ExportedTimePoint[][], prc: number): ExportedTimePoint[] {
   return trajectories[0].map((_, i) => {
     return percentileTPs(
@@ -317,6 +320,7 @@ function percentileTrajectory(trajectories: ExportedTimePoint[][], prc: number):
     )
   })
 }
+*/
 
 const fwdTransform = (x: number) => Math.log(x) || 20
 const invTransform = (x: number) => Math.exp(x)
