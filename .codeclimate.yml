@@ -4,7 +4,7 @@ plugins:
     config:
       languages:
         - javascript
-        - python
+        - typescript
 
   eslint:
     enabled: true
@@ -31,7 +31,6 @@ ratings:
     - 'src/**/*.{ts,tsx,js,jsx,json}'
 
 exclude_paths:
-  - 3rdparty
   - .build
   - .cache
   - .env
@@ -39,7 +38,9 @@ exclude_paths:
   - .ignore
   - .reports
   - .vscode
+  - 3rdparty
   - cypress
+  - data
   - node_modules
   - src/.generated
   - src/assets
