@@ -556,13 +556,11 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
   return res
 }
 
-export function exportSimulation(result: UserResult, ageGroups?: string[]) {
+export function exportSimulation(result: UserResult, ageGroups: string[] = ['total']) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
-
-  const ageGroupsExported = ageGroups ? ageGroups : ['total']
 
   const header = keys(result.trajectory[0].current)
   const tsvHeader: string[] = header.map((x) => (x === 'critical' ? 'ICU' : x))
@@ -572,7 +570,7 @@ export function exportSimulation(result: UserResult, ageGroups?: string[]) {
 
   let buf = 'time'
   tsvHeader.concat(tsvHeaderCumulative).forEach((hdr) => {
-    ageGroupsExported.forEach((age) => {
+    ageGroups.forEach((age) => {
       buf += `\t${hdr} (${age})`
     })
   })
@@ -587,13 +585,13 @@ export function exportSimulation(result: UserResult, ageGroups?: string[]) {
     pop[t] = true
     let buf = t
     header.forEach((k) => {
-      ageGroupsExported.forEach((age) => {
+      ageGroups.forEach((age) => {
         buf += `\t${Math.round(d.current[k][age])}`
       })
     })
 
     headerCumulative.forEach((k) => {
-      ageGroupsExported.forEach((age) => {
+      ageGroups.forEach((age) => {
         buf += `\t${Math.round(d.cumulative[k][age])}`
       })
     })
