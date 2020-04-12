@@ -1,5 +1,3 @@
-import * as math from 'mathjs'
-
 import { ExportedTimePoint } from './types/Result.types'
 
 // -----------------------------------------------------------------------
