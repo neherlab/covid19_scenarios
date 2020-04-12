@@ -55,26 +55,6 @@ plugins:
         - javascript
         - typescript
 
-  eslint:
-    enabled: true
-    channel: 'eslint-6'
-    config:
-      extensions:
-        - .js
-        - .json
-        - .jsx
-        - .ts
-        - .tsx
-
-  tslint:
-    enabled: false
-
-  stylelint:
-    enabled: false
-
-  fixme:
-    enabled: false
-
 exclude_patterns:
   - '**/*.*test*.*'
   - '**/__test*__/'
