@@ -24,7 +24,7 @@ export function getCaseCountsData(key: string) {
 
   const caseCountFound = caseCounts.find((cc) => cc.country === key)
   if (!caseCountFound) {
-    throw new Error(`Error: case counts "${key}" not found in JSON`)
+    return []
   }
 
   // FIXME: this should be changed, too hacky
