@@ -76,6 +76,8 @@ plugins:
     enabled: false
 
 exclude_patterns:
+  - '**/*.*test*.*'
+  - '**/__test*__/'
   - '**/node_modules/'
   - '.build/'
   - '.cache/'
@@ -85,8 +87,12 @@ exclude_patterns:
   - '.reports/'
   - '.vscode/'
   - '3rdparty/'
+  - 'config/'
   - 'cypress/'
   - 'data/'
   - 'src/.generated/'
   - 'src/assets/'
+  - 'src/index.polyfilled.ts'
+  - 'src/locales/'
   - 'static/'
+  - 'tools'
