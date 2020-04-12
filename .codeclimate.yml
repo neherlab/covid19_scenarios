@@ -18,10 +18,10 @@ plugins:
         - .tsx
 
   tslint:
-    enabled: true
+    enabled: false
 
   stylelint:
-    enabled: true
+    enabled: false
 
   fixme:
     enabled: false
