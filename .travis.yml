@@ -20,7 +20,10 @@ before_script:
   - cp .env.example .env
 
 script:
-  - yarn schema:totypes && yarn test:nowatch
+  - yarn schema:totypes
+  - yarn eslint --max-warnings=0
+  - yarn test:coverage
+  - yarn codecov -f .reports/coverage/coverage-final.json
 
 before_deploy:
   - yarn prod:build
