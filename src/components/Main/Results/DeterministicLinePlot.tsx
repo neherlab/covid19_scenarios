@@ -130,7 +130,7 @@ export function DeterministicLinePlot({
 
   const { mitigationIntervals } = mitigation
 
-  const verifyPositive = (x: number) => (x > 0 ? x : undefined)
+  const verifyPositive = (x: number) => (x > 0 ? Math.round(x) : undefined)
 
   const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
   const nICUBeds = verifyPositive(params.population.ICUBeds)
@@ -177,48 +177,48 @@ export function DeterministicLinePlot({
     ...data.trajectory.mean.map((x, i) => ({
       time: x.time,
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? Math.round(x.current.susceptible.total) || undefined
+        ? verifyPositive(x.current.susceptible.total)
         : undefined,
       infectious: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? Math.round(x.current.infectious.total) || undefined
+        ? verifyPositive(x.current.infectious.total)
         : undefined,
       severe: enabledPlots.includes(DATA_POINTS.Severe) ? Math.round(x.current.severe.total) || undefined : undefined,
       critical: enabledPlots.includes(DATA_POINTS.Critical)
-        ? Math.round(x.current.critical.total) || undefined
+        ? verifyPositive(Math.round(x.current.critical.total))
         : undefined,
       overflow: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? Math.round(x.current.overflow.total) || undefined
+        ? verifyPositive(Math.round(x.current.overflow.total))
         : undefined,
       recovered: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? Math.round(x.cumulative.recovered.total) || undefined
+        ? verifyPositive(Math.round(x.cumulative.recovered.total))
         : undefined,
       fatality: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? Math.round(x.cumulative.fatality.total) || undefined
+        ? verifyPositive(Math.round(x.cumulative.fatality.total))
         : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
 
       // Error bars
       susceptible_area: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? [Math.round(lower[i].current.susceptible.total), Math.round(upper[i].current.susceptible.total)]
+        ? [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)]
         : undefined,
       infectious_area: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? [Math.round(lower[i].current.infectious.total), Math.round(upper[i].current.infectious.total)]
+        ? [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)]
         : undefined,
       severe_area: enabledPlots.includes(DATA_POINTS.Severe)
-        ? [Math.round(lower[i].current.severe.total), Math.round(upper[i].current.severe.total)]
+        ? [verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)]
         : undefined,
       critical_area: enabledPlots.includes(DATA_POINTS.Critical)
-        ? [Math.round(lower[i].current.critical.total), Math.round(upper[i].current.critical.total)]
+        ? [verifyPositive(lower[i].current.critical.total), verifyPositive(upper[i].current.critical.total)]
         : undefined,
       overflow_area: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? [Math.round(lower[i].current.overflow.total), Math.round(upper[i].current.overflow.total)]
+        ? [verifyPositive(lower[i].current.overflow.total), verifyPositive(upper[i].current.overflow.total)]
         : undefined,
       recovered_area: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? [Math.round(lower[i].cumulative.recovered.total), Math.round(upper[i].cumulative.recovered.total)]
+        ? [verifyPositive(lower[i].cumulative.recovered.total), verifyPositive(upper[i].cumulative.recovered.total)]
         : undefined,
       fatality_area: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? [Math.round(lower[i].cumulative.fatality.total), Math.round(upper[i].cumulative.fatality.total)]
+        ? [verifyPositive(lower[i].cumulative.fatality.total), verifyPositive(upper[i].cumulative.fatality.total)]
         : undefined,
     })),
 
