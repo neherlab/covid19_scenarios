@@ -69,36 +69,20 @@ function computeNewEmpiricalCases(
   if (!cumulativeCounts) {
     return [newEmpiricalCases, deltaDay]
   }
-  const windowIsInt = deltaInt === 0
-
-  const containsDataFrom = (day: number) =>
-    cumulativeCounts[day].cases !== null && cumulativeCounts[day].cases !== undefined
 
   for (let day = deltaDay; day < cumulativeCounts.length; day++) {
-    if (windowIsInt) {
-      const startDay = day - deltaDay
-      if (containsDataFrom(day) && containsDataFrom(startDay)) {
-        const nowCases = cumulativeCounts[day].cases
-        const oldCases = cumulativeCounts[startDay].cases
+    const startDay = day - deltaDay
+    const startDayPlus = day - deltaDay - 1
 
-        const newCases = verifyPositive(nowCases! - oldCases!)
-
-        newEmpiricalCases.push(newCases)
-        continue
-      }
-    } else {
-      const startDay = day - deltaDay
-      const startDayPlus = day - deltaDay - 1
-      if (containsDataFrom(day) && containsDataFrom(startDay) && containsDataFrom(startDayPlus)) {
-        const nowCases = cumulativeCounts[day].cases
-        const oldCases = cumulativeCounts[startDay].cases
-        const olderCases = cumulativeCounts[startDayPlus].cases
-
-        const newCases = verifyPositive((1 - deltaDay) * (nowCases - oldCases) + deltaDay * (nowCases - olderCases))
-
-        newEmpiricalCases[day] = newCases
-        continue
-      }
+    const nowCases = cumulativeCounts[day].cases
+    const oldCases = cumulativeCounts[startDay].cases
+    const olderCases = cumulativeCounts[startDayPlus]?.cases
+    if (oldCases && nowCases) {
+      const newCases = verifyPositive(
+        olderCases ? (1 - deltaInt) * (nowCases - oldCases) + deltaInt * (nowCases - olderCases) : nowCases - oldCases,
+      )
+      newEmpiricalCases.push(newCases)
+      continue
     }
     newEmpiricalCases[day] = undefined
   }
