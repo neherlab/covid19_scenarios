@@ -129,7 +129,6 @@ export function DeterministicLinePlot({
   }
 
   const { mitigationIntervals } = mitigation
-
   const verifyPositive = (x: number) => (x > 0 ? Math.ceil(x) : undefined)
 
   const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
