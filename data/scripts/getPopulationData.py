@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 # script to get population data, hospital beds, and ICU beds from trusted sources
-# to be run in data, will produce popData.tsv in same folder
+# to be run via 'make population' in data/, will produce populationData.tsv in same folder
 
 import xlrd
 import csv
@@ -68,7 +67,6 @@ def retrieve_hosp_data():
     workbook = xlrd.open_workbook(file_name)
 
     worksheet = workbook.sheet_by_name('Data (table)')
-    #worksheet = workbook.sheet_by_index(0) # likely more stable
     i = 0
     Ix = {}
     for c in worksheet.row_values(0):
@@ -121,8 +119,7 @@ def retrieve_pop_data():
 
     workbook = xlrd.open_workbook(file_name)
 
-    #worksheet = workbook.sheet_by_name('COVID-19-geographic-disbtributi')
-    worksheet = workbook.sheet_by_index(0) # likely more stable
+    worksheet = workbook.sheet_by_index(0) 
 
     i = 0
     Ix = {}
@@ -168,8 +165,6 @@ def retrieve_icu_data():
             
     return icuData
 
-
-
 def get_old_data():
     known = {}
     with open('populationData.tsv', 'r') as fd:
@@ -191,9 +186,7 @@ def get_old_data():
                     known[name][n] = row[Ix[n]]
                 else:
                     known[name][n] = stoi(row[Ix[n]])
-
     return known
-
 
 def generate(output):
     hospData = retrieve_hosp_data()
