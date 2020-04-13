@@ -59,7 +59,6 @@ export const schema = yup.object().shape({
       yup.object({
         color: yup.string().required(MSG_REQUIRED),
         id: yup.string().required(MSG_REQUIRED),
-        mitigationValue: yup.number().min(0, MSG_NON_NEGATIVE).max(100).required(MSG_REQUIRED),
         name: yup.string().required(MSG_REQUIRED),
         timeRange: dateRange().required(MSG_REQUIRED),
       }),
