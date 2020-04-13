@@ -1,3 +1,4 @@
+import { Location } from 'history'
 import { State } from '../state'
 import { serialize, deserialize } from './StateSerializer'
 
@@ -30,17 +31,10 @@ export const buildLocationSearch = (scenarioState: State): string => {
 }
 
 /**
- * Updates browser search with a given URL
- */
-export const updateBrowserURL = (searchString: string): void => {
-  window.history.pushState('', '', searchString)
-}
-
-/**
  * Reads the browser URL and returna the updated application state
  */
-export const deserializeScenarioFromURL = (currentAppState: State): State => {
-  const { search } = window.location
+export const deserializeScenarioFromURL = (location: Location, currentAppState: State): State => {
+  const { search } = location
 
   if (search) {
     const searchParams = new URLSearchParams(search.slice(1)) // removing the first char ('?')

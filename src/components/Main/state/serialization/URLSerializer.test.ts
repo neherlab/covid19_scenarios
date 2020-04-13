@@ -1,5 +1,5 @@
 import { State } from '../state'
-import { buildLocationSearch, updateBrowserURL } from './URLSerializer'
+import { buildLocationSearch } from './URLSerializer'
 
 const SCENARIOS = ['CHE-Basel-Landschaft', 'CHE-Basel-Stadt']
 
@@ -77,13 +77,5 @@ describe('URLSerializer', () => {
 
   it('serializes application state and builds the location.search', () => {
     expect(buildLocationSearch(STATE)).toBe(LOCATION_SEARCH)
-  })
-
-  it('pushes to browser history', () => {
-    const spy = jest.spyOn(window.history, 'pushState')
-
-    updateBrowserURL('?foo=1&bar=baz')
-
-    expect(spy).toHaveBeenCalledWith('', '', '?foo=1&bar=baz')
   })
 })
