@@ -31,7 +31,6 @@ export async function signInWithEmail(email: string, password: string) {
 
 export async function signInWithGoogle() {
   const provider = new firebase.auth.GoogleAuthProvider()
-  provider.addScope('profile')
 
   try {
     const result = await firebase.auth().signInWithPopup(provider)

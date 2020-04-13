@@ -7,6 +7,8 @@ import { Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody } 
 import { setSignupVisible, setLoginVisible } from '../../state/ui/ui.actions'
 import { signInWithEmail, signInWithGoogle } from '../../helpers/cloudStorage'
 
+import './LoginForm.scss'
+
 function LoginForm() {
   const dispatch = useDispatch()
 
@@ -58,14 +60,20 @@ function LoginForm() {
               type="text"
             />
           </FormGroup>
-          <Button type="submit" color="primary">
-            Login
-          </Button>
-          <Button type="button" color="primary" onClick={handleNewUserClick}>
-            New user?
-          </Button>
+          <div className="loginform-bottom-row">
+            <div>
+              <Button type="submit" color="primary">
+                Login
+              </Button>
+              <Button type="button" color="primary" onClick={handleNewUserClick}>
+                New user?
+              </Button>
+            </div>
+            <div>
+              <Button onClick={handleGoogleSignIn}>Sign in with Google</Button>
+            </div>
+          </div>
         </Form>
-        <Button onClick={handleGoogleSignIn}>Sign in with Google</Button>
       </ModalBody>
     </Modal>
   )
