@@ -14,7 +14,7 @@ export function suggestNextMitigationInterval(intervals: MitigationIntervals): M
     id: uuidv4(),
     name: `Intervention from ${tMinMoment.format('D MMM YYYY')}`,
     timeRange,
-    mitigationValue: 10,
+    mitigationValue: [10, 30],
   }
 
   const color = createColor(interval)
