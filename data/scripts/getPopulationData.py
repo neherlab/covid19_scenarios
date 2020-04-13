@@ -34,7 +34,8 @@ def update_hosp_data(hospData, popData):
         for row in rdr:
             country   = row[0].strip()
             if not country in countries:
-                print(f'{country} not found in countries')
+                #print(f'{country} not found in countries')
+                pass
             else:
                 country = countries[country]
             if not country in hospData:
@@ -103,7 +104,7 @@ def retrieve_hosp_data():
             if not country in hospData:
                 hospData[country] = {'hospitalBeds': stoi(row[1]), 'srcHospitalBeds': URL_Hosp_Eurostat}
             else:
-                print(f'found new data for {country}: old: {hospData[country]["hospitalBeds"]}, new: {stoi(row[1])}')
+                #print(f'found new data for {country}: old: {hospData[country]["hospitalBeds"]}, new: {stoi(row[1])}')
                 hospData[country] = {'hospitalBeds': stoi(row[1]), 'srcHospitalBeds': URL_Hosp_Eurostat}
 
             
@@ -194,7 +195,7 @@ def get_old_data():
     return known
 
 
-if __name__ == "__main__":
+def generate(output):
     hospData = retrieve_hosp_data()
     icuData = retrieve_icu_data()
     popData = retrieve_pop_data()
@@ -220,7 +221,7 @@ if __name__ == "__main__":
     for c in oldData:
         if 'populationServed' in oldData[c] and 'hospitalBeds' in oldData[c] and 'ICUBeds' in oldData[c]:
             i += 1
-    print(f'{i} old entries are complete')
+    #print(f'{i} old entries are complete')
 
     #merge data with old data. Give preference to new (sourced) data
     for n in oldData:
@@ -256,8 +257,8 @@ if __name__ == "__main__":
             toDel.append(c)
     for k in toDel:
         del newData[k]
-    print(f'{i} entries are complete')
-    with open('populationData.tsv', 'w', newline="") as fd:
+    #print(f'{i} entries are complete')
+    with open(output, 'w', newline="") as fd:
         wtr = csv.writer(fd, delimiter='\t', lineterminator='\n')
         wtr.writerow(cols)
         rows = []
