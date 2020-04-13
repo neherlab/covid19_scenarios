@@ -61,10 +61,7 @@ async function runSimulation(
   }
 
   const caseCounts = getCaseCountsData(params.population.cases)
-  const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
-
-  intervalsToTimeSeries(params.containment.mitigationIntervals)
-  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution, containment)
+  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
