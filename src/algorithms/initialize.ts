@@ -1,6 +1,7 @@
 import { cloneDeep } from 'lodash'
 import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
 
+import { AgeDistribution } from '../.generated/types'
 import { TimeSeries } from './types/TimeSeries.types'
 import { AllParamsFlat, MitigationIntervals } from './types/Param.types'
 import { ModelParams, SimulationTimePoint } from './types/Result.types'
@@ -126,7 +127,7 @@ const NUMBER_PARAMETER_SAMPLES = 10
 export function getPopulationParams(
   params: AllParamsFlat,
   severity: SeverityTableRow[],
-  ageCounts: Record<string, number>,
+  ageCounts: AgeDistribution,
 ): ModelParams[] {
   // TODO: Make this a form-adjustable factor
   const sim: ModelParams = {

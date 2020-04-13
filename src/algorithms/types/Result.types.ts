@@ -1,3 +1,5 @@
+import { AgeDistribution } from '../../.generated/types'
+
 export interface InternalCurrentData {
   susceptible: number[]
   exposed: number[][]
@@ -64,7 +66,7 @@ export interface ModelRates {
 }
 
 export interface ModelParams {
-  ageDistribution: Record<string, number>
+  ageDistribution: AgeDistribution
   importsPerDay: number[]
   timeDelta: number
   timeDeltaDays: number
