@@ -45,6 +45,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         label={t('Population')}
         help={t('Number of people served by health care system.')}
         step={1}
+        min={0}
         errors={errors}
         touched={touched}
       />
@@ -61,6 +62,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         label={t('Initial number of cases')}
         help={t('Number of cases present at the start of simulation')}
         step={1}
+        min={0}
         errors={errors}
         touched={touched}
       />
@@ -69,6 +71,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         label={t('Imports per day')}
         help={t('Number of cases imported from the outside per day on average')}
         step={0.1}
+        min={0}
         errors={errors}
         touched={touched}
       />
@@ -79,6 +82,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
           'Number of hospital beds available in health care system. Presets are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
         )}
         step={1}
+        min={0}
         errors={errors}
         touched={touched}
       />
@@ -89,6 +93,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
           'Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
         )}
         step={1}
+        min={0}
         errors={errors}
         touched={touched}
       />

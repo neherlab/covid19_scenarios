@@ -7,9 +7,9 @@ import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
 const ageRegions = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]
 
-const MSG_REQUIRED = 'Required'
-const MSG_NON_NEGATIVE = 'Should be non-negative'
-const MSG_POSITIVE = 'Should be strictly positive'
+const MSG_REQUIRED = i18next.t('Value is required')
+const MSG_NON_NEGATIVE = i18next.t('Should be non-negative (or zero)')
+const MSG_POSITIVE = i18next.t('Should be strictly positive (non-zero)')
 
 export function dateRange() {
   return yup.object({
@@ -38,19 +38,19 @@ export const schema = yup.object().shape({
   epidemiological: yup.object().shape({
     r0: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    latencyTime: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
+    latencyTime: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
 
-    infectiousPeriod: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
+    infectiousPeriod: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
 
-    lengthHospitalStay: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
+    lengthHospitalStay: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
 
-    lengthICUStay: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
+    lengthICUStay: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
 
     seasonalForcing: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    overflowSeverity: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    overflowSeverity: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
 
-    peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE).max(11),
+    peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_POSITIVE).max(11),
   }),
 
   containment: yup.object().shape({
