@@ -105,7 +105,7 @@ function BaseRangeSlider({ value, handleChange, step, min, max }: BaseRangeSlide
             ref={props.ref}
             style={{
               height: '8px',
-              width: '60%',
+              width: '55%',
               borderRadius: '4px',
               background: getTrackBackground({
                 values: value,
@@ -118,7 +118,7 @@ function BaseRangeSlider({ value, handleChange, step, min, max }: BaseRangeSlide
           >
             {children}
           </div>
-          <div style={{ width: '40%', paddingLeft: '10px', justifyContent: 'right' }}>
+          <div style={{ width: '45%', paddingLeft: '10px', justifyContent: 'right' }}>
             <output>
               {value[0].toFixed(1)} - {value[1].toFixed(1)}
             </output>
