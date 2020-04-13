@@ -6,7 +6,6 @@ import { State } from '../../state/reducer'
 
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 
-//import LanguageSwitcher from '../LanguageSwitcher'
 import './UserMenu.scss'
 
 function UserMenu() {
@@ -15,7 +14,8 @@ function UserMenu() {
 
   const toggle = () => setDropdownOpen(!dropdownOpen)
 
-  const userIsLogged = useSelector(({ user }): State => (user.currentUserUid !== null ? true : false))
+  const userPhoto = useSelector(({ user }): State => user.currentUserPhoto)
+  console.log(userPhoto)
 
   const handleLoginClick = () => {
     setDropdownOpen(false)
@@ -24,10 +24,16 @@ function UserMenu() {
 
   return (
     <Dropdown className="user-menu-dropdown" isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret>USER</DropdownToggle>
+      <DropdownToggle color="black">
+        {userPhoto !== null ? (
+          <img className="user-menu-photo" src={userPhoto} />
+        ) : (
+          <img className="user-menu-photo" src={userPhoto} />
+        ) /* Change the last picture to some appropriate placeholder */}
+      </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem onClick={userIsLogged ? signOut : handleLoginClick}>
-          {userIsLogged ? 'Logout' : 'Login'}
+        <DropdownItem onClick={userPhoto !== null ? signOut : handleLoginClick}>
+          {userPhoto !== null ? 'Logout' : 'Login'}
         </DropdownItem>
         <DropdownItem>Download my data</DropdownItem>
         <DropdownItem>Clear my data</DropdownItem>

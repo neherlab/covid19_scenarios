@@ -37,8 +37,7 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
           return <NavigationLink key={url} url={url} content={text} active={location.pathname === url} />
         })}
       </ul>
-      <div className="ml-auto">
-        <UserMenu />
+      <div className="ml-auto flex-row">
         <div className="mx-2">
           <LinkExternal url="https://neherlab.org/" alt="Link to webpage of NeherLab at University of Basel">
             <img height={'28px'} alt="NeherLab logo" src={logo} />
@@ -60,6 +59,7 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
           </LinkExternal>
         </div>
 
+        <UserMenu />
         {/* <LanguageSwitcher /> */}
       </div>
     </nav>

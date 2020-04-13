@@ -6,7 +6,7 @@ import { withErrorBoundary } from 'react-error-boundary'
 import ErrorPage from '../pages/ErrorPage'
 
 import { setAuthObserver, getUserData, setUserData } from '../helpers/cloudStorage'
-import { setCurrentUserUid } from '../state/user/user.actions'
+import { setCurrentUserUid, setCurrentUserPhoto } from '../state/user/user.actions'
 
 import { LoginForm } from './LoginForm/LoginForm'
 import { SignupForm } from './SignupForm/SignupForm'
@@ -20,18 +20,18 @@ import localStorage, { LOCAL_STORAGE_KEYS, LOCAL_STORAGE_KEYS_DEFAULT_VALUES } f
 function App() {
   const loginVisible = useSelector(({ ui }: State) => ui.loginFormVisible)
   const signupVisible = useSelector(({ ui }: State) => ui.signupFormVisible)
-  console.log(loginVisible)
 
   const dispatch = useDispatch()
-  const shouldGoToLandingPage = useSelector(({ ui }: State) => !ui.skipLandingPage)
   const initialQueryString = window.location.search
 
   const handleAuthStateChange = (user: any) => {
     if (user) {
       dispatch(setCurrentUserUid({ currentUserUid: user.uid }))
+      dispatch(setCurrentUserPhoto({ currentUserPhoto: user.photoURL }))
       fetchAndSetLocalStorageValues(user.uid)
     } else {
       dispatch(setCurrentUserUid({ currentUserUid: null }))
+      dispatch(setCurrentUserPhoto({ currentUserPhoto: null }))
     }
   }
 

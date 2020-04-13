@@ -139,3 +139,9 @@ input[type='number']::-webkit-outer-spin-button {
     display: none;
   }
 }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
