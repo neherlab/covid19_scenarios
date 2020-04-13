@@ -142,10 +142,10 @@ function MitigationIntervalComponent({
               value={interval.timeRange}
               allowPast
             />
+          </div>
+          <div style={{ width: '400px' }}>
             <RangeSlider
               identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
-              label={``}
-              help={t('')}
               step={0.1}
               min={0}
               max={100}
