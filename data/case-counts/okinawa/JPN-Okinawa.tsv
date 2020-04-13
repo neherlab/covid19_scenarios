@@ -1,24 +1,22 @@
-# Data source: https://groups.oist.jp/sites/default/files/imce/u107695/okinawaCOVID19.doc
+# Data source: https://github.com/spigolotti/covid2019data_okinawa/blob/master/okinawaCOVID19.csv
 # Data provenance: https://okinawa.stopcovid19.jp/en/?fbclid=IwAR2MxJ3yYdpGJn7gb3OXc4JzX8CMHSHUWjtwU3t7JnuoNXv1OQI64zz0VsU
-# License: Okinawa COVID-19 Information Website
+# License: MIT
 time	cases	deaths	hospitalized	icu	recovered
-2020-03-24	6	0			
-2020-03-25	6	0			
-2020-03-26	7	0			
-2020-03-27	7	0			
-2020-03-28	9	0			
-2020-03-29	9	0			
-2020-03-30	10	0			
-2020-03-31	10	0			
-2020-04-01	10	0			
-2020-04-02	10	0			
-2020-04-03	12	0			
-2020-04-04	17	0			
-2020-04-05	17	0			
-2020-04-06	23	0			
-2020-04-07	34	0			
-2020-04-08	39	0			
-2020-04-09	39	0			
-2020-04-10	49	0			
-2020-04-11	57	0			
-2020-04-12	66	0			
+2020-02-14	1	0	0		1
+2020-02-19	2	0	0		2
+2020-02-20	3	0	0		3
+2020-03-23	5	0	1		4
+2020-03-24	6	0	2		4
+2020-03-26	7	0	3		4
+2020-03-28	9	0	5		4
+2020-03-30	10	0	6		4
+2020-04-03	12	0	8		4
+2020-04-04	17	0	13		4
+2020-04-06	23	0	17		6
+2020-04-07	34	0	27		7
+2020-04-08	39	0	32		7
+2020-04-09	42	0	35		7
+2020-04-10	49	0	42		7
+2020-04-11	57	0	50		7
+2020-04-12	66	0	59		7
+2020-04-13	73	0	66		7

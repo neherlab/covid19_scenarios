@@ -31,7 +31,6 @@ def parse():
     for row in rdr:
         if len(row[0])==0:
             continue
-        print("A", file=sys.stderr)
   #     date_str = datetime.strptime(row[0], r"%d/%m/%Y").strftime(r"%Y-%m-%d")
         date_str=row[0]
         num_cases = stoi(row[1])
