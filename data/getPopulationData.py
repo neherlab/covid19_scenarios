@@ -14,6 +14,8 @@ from parsers.utils import sorted_date, parse_countries, stoi, store_data
 URL_Hosp = "https://dw.euro.who.int/api/v3/export/download/a8cb2f20d3e74b75a38769fb44c2dc9b"
 URL_Pop  = "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-"
 URL_ICU = "http://dx.doi.org/10.1007/s00134-012-2627-8" # the paper where the numbers came from
+# other ICU source: https://doi.org/10.1097/CCM.0000000000004222, Critical Care Bed Capacity in Asian Countries and Regions Article in Critical Care Medicine · January 2020
+URL_ICU_ASIA = "https://doi.org/10.1097/CCM.0000000000004222" # the paper where the numbers came from
 cols = ['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds', 'hemisphere', 'srcPopulation', 'srcHospitalBeds','srcICUBeds']
 
 def retrieve_hosp_data():
@@ -41,6 +43,16 @@ def retrieve_hosp_data():
             #print(f'could not find country {country}')
             continue
         hospData[country] = {'hospitalBeds': stoi(row[Ix['VALUE']]), 'srcHospitalBeds': 'WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/'}
+
+    # second data set, for Asia
+    with open('hospital-data/ICU_asia.tsv', 'r') as fd:
+        rdr = csv.reader(fd, delimiter='\t')
+        hdr = next(rdr)
+
+        for row in rdr:
+            country   = row[0].strip()
+            hospData[country] = {'hospitalBeds': stoi(row[1]), 'srcHospitalBeds': URL_ICU_ASIA}
+
     return hospData
 
 def retrieve_pop_data():
@@ -92,6 +104,15 @@ def retrieve_icu_data():
             country   = row[0].strip()
             icuData[country] = {'ICUBeds': stoi(row[5]), 'srcICUBeds': URL_ICU}
 
+    # second data set, for Asia
+    with open('hospital-data/ICU_asia.tsv', 'r') as fd:
+        rdr = csv.reader(fd, delimiter='\t')
+        hdr = next(rdr)
+
+        for row in rdr:
+            country   = row[0].strip()
+            icuData[country] = {'ICUBeds': stoi(row[5]), 'srcICUBeds': URL_ICU_ASIA}
+            
     return icuData
 
 
