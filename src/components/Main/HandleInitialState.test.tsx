@@ -6,9 +6,6 @@ import HandleInitialState, { HandleInitialStateProps } from './HandleInitialStat
 import { State, DEFAULT_OVERALL_SCENARIO_NAME } from './state/state'
 import severityData from '../../assets/data/severityData.json'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require('./state/serialization/URLSerializer')
-
 jest.mock('./state/serialization/URLSerializer', () => ({
   deserializeScenarioFromURL: (location: Location, state: State): State => {
     return {
