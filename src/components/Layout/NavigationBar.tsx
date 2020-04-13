@@ -59,7 +59,7 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
           </LinkExternal>
         </div>
 
-        {/* <LanguageSwitcher />*/}
+        {/* <LanguageSwitcher /> */}
       </div>
     </nav>
   )

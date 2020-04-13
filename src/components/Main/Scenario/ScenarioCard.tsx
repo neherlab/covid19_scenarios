@@ -17,7 +17,7 @@ import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
-import { SeverityTableRow } from './SeverityTable'
+import { SeverityTableRow } from './ScenarioTypes'
 import { AllParams } from '../../../algorithms/types/Param.types'
 
 export interface ScenarioCardProps {

@@ -4,7 +4,7 @@ import { Button } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { AllParams, PopulationData, EpidemiologicalData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { SeverityTableRow } from '../Scenario/SeverityTable'
+import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 import { DeterministicLinePlot } from '../Results/DeterministicLinePlot'
 import { OutcomeRatesTable } from '../Results/OutcomeRatesTable'
 import { AgeBarChart } from '../Results/AgeBarChart'
@@ -167,8 +167,7 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
         </div>
         <p />
         <p>
-          Produced with <a href="https://covid19-scenarios.org">covid19-scenarios.org</a> on{' '}
-          {new Date().toString()}.
+          Produced with <a href="https://covid19-scenarios.org">covid19-scenarios.org</a> on {new Date().toString()}.
         </p>
       </div>
     )

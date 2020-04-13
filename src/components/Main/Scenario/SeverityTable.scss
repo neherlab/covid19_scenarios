@@ -2,39 +2,39 @@
   // 700 = the point at which the titles break for english
   // !important because react-grid assigns a width to the table element
   min-width: 700px !important;
-}
 
-.severity-table table td,
-.severity-table table th {
-  padding: 0;
-}
+  & td,
+  & th {
+    padding: 0;
+  }
 
-.severity-table table td > input {
-  padding: 0;
-  // otherwise bootstrap makes it too large
-  height: auto;
-}
+  & td > input {
+    // otherwise bootstrap makes it too large
+    height: auto;
+    padding: 0;
+  }
 
-.severity-table table td p {
-  margin: 0;
-}
+  & td p {
+    margin: 0;
+  }
 
-.severity-table table colgroup col:nth-child(3) {
-  background-color: #fdbf6f55;
-}
+  & colgroup col:nth-child(3) {
+    background-color: #fdbf6f55;
+  }
 
-.severity-table table colgroup col:nth-child(4) {
-  background-color: #fb9a9955;
-}
+  & colgroup col:nth-child(4) {
+    background-color: #fb9a9955;
+  }
 
-.severity-table table colgroup col:nth-child(5) {
-  background-color: #e31a1c55;
-}
+  & colgroup col:nth-child(5) {
+    background-color: #e31a1c55;
+  }
 
-.severity-table table colgroup col:nth-child(6) {
-  background-color: #cab2d655;
-}
+  & colgroup col:nth-child(6) {
+    background-color: #cab2d655;
+  }
 
-.severity-table table colgroup col:nth-child(8) {
-  background-color: #a6cee355;
+  & colgroup col:nth-child(8) {
+    background-color: #a6cee355;
+  }
 }

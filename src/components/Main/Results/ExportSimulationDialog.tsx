@@ -1,6 +1,14 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import {
+  TwitterShareButton,
+  TwitterIcon,
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+} from 'react-share'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
 import ClipboardButton from '../../Buttons/ClipboardButton'
@@ -19,7 +27,7 @@ export default function ExportSimulationDialog({
   toggleShowModal,
   openPrintPreview,
   result,
- scenarioUrl,
+  scenarioUrl,
 }: ExportSimulationDialogProps) {
   const { t } = useTranslation()
 
@@ -30,6 +38,12 @@ export default function ExportSimulationDialog({
 
   // Assuming href and shareable link can be concatenated without other processing:
   const shareableLink = `${window.location.href}${scenarioUrl}`
+
+  // Size in pixels for the external icons like facebook, email
+  const externalIconSize = 25
+
+  // Boolean to control the shape of the external icons
+  const isRoundIcon = true
 
   return (
     <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>
@@ -61,13 +75,35 @@ export default function ExportSimulationDialog({
               </td>
             </tr>
             <tr>
-              <td>covid.results.deterministic.tsv</td>
-              <td>{t('The deterministic results of the simulation')}</td>
+              <td>covid.summary.tsv</td>
+              <td>{t('The summarized results of the simulation')}</td>
               <td>TSV</td>
               <td>
                 <Button
                   disabled={!(result?.deterministic ?? null)}
-                  onClick={() => result && exportResult(result)}
+                  onClick={() => result && exportResult(result, 'covid.summary.tsv')}
+                  color="primary"
+                  size="sm"
+                >
+                  {t('Download')}
+                </Button>
+              </td>
+            </tr>
+            <tr>
+              <td>covid.allresults.tsv</td>
+              <td>{t('The full age-stratified results of the simulation')}</td>
+              <td>TSV</td>
+              <td>
+                <Button
+                  disabled={!(result?.deterministic ?? null)}
+                  onClick={() =>
+                    result &&
+                    exportResult(
+                      result,
+                      'covid.allresults.tsv',
+                      Object.keys(result.deterministic.trajectory[0].current.severe),
+                    )
+                  }
                   color="primary"
                   size="sm"
                 >
@@ -83,6 +119,17 @@ export default function ExportSimulationDialog({
                 <ClipboardButton disabled={!(result?.params ?? null)} textToCopy={shareableLink}>
                   {t('Copy link')}
                 </ClipboardButton>
+                <div>
+                  <TwitterShareButton url={shareableLink}>
+                    <TwitterIcon size={externalIconSize} round={isRoundIcon} />
+                  </TwitterShareButton>
+                  <EmailShareButton url={shareableLink}>
+                    <EmailIcon size={externalIconSize} round={isRoundIcon} />
+                  </EmailShareButton>
+                  <FacebookShareButton url={shareableLink}>
+                    <FacebookIcon size={externalIconSize} round={isRoundIcon} />
+                  </FacebookShareButton>
+                </div>
               </td>
             </tr>
             <tr>

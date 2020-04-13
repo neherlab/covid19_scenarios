@@ -258,5 +258,6 @@ USA-Washington	7797095	United States of America	13255	442	Northern	None	None	Non
 USA-West Virginia	1778070	United States of America	6757	225	Northern	None	None	None
 USA-Wisconsin	5851754	United States of America	12289	410	Northern	None	None	None
 USA-Wyoming	567025	United States of America	1985	66	Northern	None	None	None
+Ukraine	44622516	Ukraine	276004	2646	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	https://youcontrol.com.ua/virus/
 United Kingdom of Great Britain and Northern Ireland	66488991	United Kingdom of Great Britain and Northern Ireland	139647	4114	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 United States of America	327167434	United States of America	798288	49499	Northern	ECDC	Computed from acute care OECD numbers and population size	None
