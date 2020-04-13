@@ -1,0 +1,41 @@
+import sys
+import requests
+import csv
+import io
+from datetime import datetime
+
+from .utils import store_data, stoi
+
+# ------------------------------------------------------------------------
+# Globals
+
+#URL  = "https://github.com/spigolotti/covid2019data_okinawa/okinawaCOVID19.csv"
+URL = "https://github.com/spigolotti/covid2019data_okinawa/blob/master/okinawaCOVID19.csv?raw=true"
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
+
+# ------------------------------------------------------------------------
+# Main point of entry
+
+def parse():
+    r  = requests.get(URL)
+    if not r.ok:
+        print(f"Failed to fetch {URL}", file=sys.stderr)
+        exit(1)
+        r.close()
+#    regions = dict(JPN-Okinawa=[])
+    regions={}
+    regions["JPN-Okinawa"]=[]   
+    fd  = io.StringIO(r.text)
+    rdr = csv.reader(fd)
+    hdr = next(rdr)
+    for row in rdr:
+        if len(row[0])==0:
+            continue
+        print("A", file=sys.stderr)
+        date_str = datetime.strptime(row[0], r"%d/%m/%Y").strftime(r"%Y-%m-%d")
+        num_cases = stoi(row[1])
+      #  num_icus = stoi(row[4])
+      #  num_deaths = stoi(row[5])
+        regions["JPN-Okinawa"].append([date_str, num_cases, 0, None, None, None])
+
+    store_data(regions, 'okinawa', cols)
