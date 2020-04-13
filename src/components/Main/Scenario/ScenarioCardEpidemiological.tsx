@@ -47,7 +47,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         label={`${t('Latency')} [${t('days')}]`}
         help={t('Time from infection to onset of symptoms (here onset of infectiousness)')}
         step={0.1}
-        min={0}
+        min={1}
         errors={errors}
         touched={touched}
       />
@@ -58,7 +58,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
           'Average number of days a person is infectious. Over this time, R0 infections happen on average. Together with the latency time, this defines the serial interval. The longer the serial interval, the slower the outbreak.',
         )}
         step={0.1}
-        min={0}
+        min={1}
         errors={errors}
         touched={touched}
       />
@@ -84,7 +84,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         label={`${t('Hospital stay')} [${t('days')}]`}
         help={t('Average number of days a severe case stays in regular hospital beds')}
         step={0.1}
-        min={0}
+        min={1}
         errors={errors}
         touched={touched}
       />
@@ -93,7 +93,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         label={`${t('ICU stay')} [${t('days')}]`}
         help={t('Average number of days a critical case stays in the ICU')}
         step={0.1}
-        min={0}
+        min={1}
         errors={errors}
         touched={touched}
       />
