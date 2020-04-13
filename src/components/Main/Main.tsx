@@ -188,7 +188,7 @@ function Main() {
             const canRun = isValid && severityTableIsValid(severity)
 
             return (
-              <Form className="form">
+              <Form noValidate className="form">
                 <Row>
                   <Col lg={4} xl={6} className="py-1">
                     <ScenarioCard

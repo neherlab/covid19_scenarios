@@ -2,16 +2,4 @@
 # Data provenance: https://github.com/amodm/api-covid19-in
 # License: Scraped from Ministry of Health and Family Welfare plus other sources, no clear license
 time	cases	deaths	hospitalized	icu	recovered
-2020-04-01	1	0			
-2020-04-02	5	0			
-2020-04-03	16	0			
-2020-04-04	24	0			
-2020-04-05	26	0			
-2020-04-06	26	0			
-2020-04-07	26	0			
-2020-04-08	27	0			
-2020-04-09	28	0			
-2020-04-10	29	0			
-2020-04-11	29	1			
-2020-04-12	29	1			
-2020-04-13	31	1			
+2020-04-13	1	0			
