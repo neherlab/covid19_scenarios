@@ -2,13 +2,10 @@ import * as yup from 'yup'
 
 import i18next from 'i18next'
 
-import { caseCountsNames } from '../state/caseCountsData'
 import { ageDistributionNames } from '../state/countryAgeDistributionData'
-import { CUSTOM_COUNTRY_NAME, NONE_COUNTRY_NAME } from '../state/state'
+import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
 const ageRegions = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]
-
-const caseRegions = [...caseCountsNames, CUSTOM_COUNTRY_NAME, NONE_COUNTRY_NAME]
 
 const MSG_REQUIRED = 'Required'
 const MSG_NON_NEGATIVE = 'Should be non-negative'
@@ -31,7 +28,7 @@ export const schema = yup.object().shape({
 
     importsPerDay: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    cases: yup.string().required(MSG_REQUIRED).oneOf(caseRegions, i18next.t('No such region in our data')),
+    cases: yup.string().required(MSG_REQUIRED),
 
     hospitalBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 

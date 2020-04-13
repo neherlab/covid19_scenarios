@@ -1,6 +1,6 @@
 {
   "name": "covid19_scenarios",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "index.js",
   "module": "src/index.tsx",
   "license": "MIT",
@@ -50,7 +50,8 @@
     "test:coverage": "yarn test:nowatch --coverage",
     "e2e": "cypress run",
     "e2e:dev": "cypress open",
-    "i18n": "babel-node --extensions \".ts\" node_modules/.bin/i18next -c config/i18next/i18next.config.js"
+    "i18n": "babel-node --extensions \".ts\" node_modules/.bin/i18next -c config/i18next/i18next.config.js",
+    "codeclimate": "UID=$(id -u) DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker/docker-compose.codeclimate.yml --compatibility up"
   },
   "dependencies": {
     "@babel/runtime": "7.8.7",
@@ -104,6 +105,7 @@
     "react-router": "5.1.2",
     "react-router-dom": "5.1.2",
     "react-select": "3.0.8",
+    "react-share": "4.1.0",
     "reactstrap": "8.4.1",
     "recharts": "2.0.0-beta.3",
     "redux": "4.0.5",
@@ -213,6 +215,7 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "babel-plugin-typescript-to-proptypes": "1.3.0",
     "chalk": "3.0.0",
+    "codecov": "3.6.5",
     "colorguard": "1.2.1",
     "compression-webpack-plugin": "3.1.0",
     "connect-history-api-fallback": "1.6.0",
@@ -352,6 +355,7 @@
     "**/core-js": "3.6.4",
     "**/json3": "link:3rdparty/__empty-module",
     "**/left-pad": "link:3rdparty/__empty-module",
+    "react-share/jsonp": "link:3rdparty/__empty-module",
     "node-sass": "link:node_modules/sass",
     "svgo": "1.3.2"
   }

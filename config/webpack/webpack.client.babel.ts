@@ -183,6 +183,7 @@ export default {
     rules: [
       ...webpackLoadJavascript({
         babelConfig,
+        eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
         options: { caller: { target: 'web' } },
         sourceMaps,
         transpiledLibs: [
