@@ -225,5 +225,9 @@ definitions:
         $ref: '#/definitions/DateRange'
 
       mitigationValue:
-        type: number
-        minimum: 0
+        type: array
+        items:
+            type: number
+            minimum: 0
+        minItems: 2
+        maxItems: 2

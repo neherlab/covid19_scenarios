@@ -106,6 +106,9 @@ class Fitter:
 # ------------------------------------------------------------------------
 # Parameter class constructors (with defaults)
 
+def report_errors(x):
+    return [.9*x, 1.1*x]
+
 class DateRange(schema.DateRange):
     def __init__(self, tMin, tMax):
         return super(DateRange, self).__init__( \
@@ -147,9 +150,6 @@ class EpidemiologicalParams(schema.EpidemiologicalData):
                 default['peak_month']       = 6
             else:
                 print(f'Error: Could not parse hemisphere for {region} in scenarios.py')
-
-        def report_errors(x):
-            return [.9*x, 1.1*x]
 
         return super(EpidemiologicalParams, self).__init__( \
                 infectious_period = default["infectiousPeriod"],
@@ -257,7 +257,7 @@ def set_mitigation(cases, scenario):
                 id=uuid4(),
                 tMax=scenario.simulation.simulation_time_range.t_max,
                 color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=round(100*val)))
+                mitigationValue=report_errors(round(100*val))))
 
 
 # ------------------------------------------------------------------------
