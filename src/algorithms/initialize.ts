@@ -22,7 +22,7 @@ function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSeries {
   const changePoints = {}
   intervals.forEach((element) => {
     // bound the value by 0.01 and 100 (transmission can be at most 100 fold reduced or increased)
-    const val = Math.min(Math.max(1 - element.mitigationValue * 0.01, 0.01), 100)
+    const val = Math.min(Math.max(1 - element.mitigationValue[0] * 0.01, 0.01), 100)
 
     if (changePoints[element.timeRange.tMin] !== undefined) {
       changePoints[element.timeRange.tMin].push(val)
