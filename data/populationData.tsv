@@ -32,6 +32,7 @@ Cyprus	1207000	Cyprus	2912	92	Northern	None	None	None
 Luxembourg	626000	Luxembourg	2332	127	Northern	None	None	None
 Malta	442000	Malta	1400	66	Northern	None	None	None
 Canada	37600000	Canada	73000	4800	Northern	None	None	None
+Ukraine	37289000	Ukraine	67000	2646	Northern	https://www.pravda.com.ua/news/2020/01/23/7238191/	https://www.kmu.gov.ua/en/news/viktor-lyashko-ministerstvo-opracovuye-rekomendaciyi-rozgortannya-gospitaliv-u-vistavkovih-centrah-ta-palacah-sportu	https://youcontrol.com.ua/virus/
 United Kingdom	66000000	United Kingdom of Great Britain and Northern Ireland	297000	9900	Northern	None	None	None
 United States of America	330000000	United States of America	1485000	49499	Northern	None	None	None
 CAN-Alberta	4413146	Canada	5819	700	Northern	None	None	None
@@ -44,6 +45,7 @@ CAN-Nunavut	39097	Canada	30	4	Northern	https://www.cihi.ca/sites/default/files/d
 CAN-NWT	44904	Canada	156	4	Northern	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx
 CAN-Ontario	14711827	Canada	15485	1723	Northern	None	None	None
 CAN-Prince Edward Island	158158	Canada	295	24	Northern	None	None	None
+CAN-Quebec	8484965	Canada	7000	633	Northern	https://www.stat.gouv.qc.ca/statistiques/population-demographie/structure/qc_1971-20xx.htm	https://www.cbc.ca/news/canada/montreal/numbers-covid-19-coronavirus-quebec-april-1-1.5518397	https://www.cbc.ca/news/canada/montreal/numbers-covid-19-coronavirus-quebec-april-1-1.5518397
 CAN-Saskatchwan	1181666	Canada	2198	106	Northern	None	None	None
 CAN-Yukon	41078	Canada	106	1	Northern	None	None	None
 CHE-Zürich	1521000	Switzerland	5447	247	Northern	None	None	None

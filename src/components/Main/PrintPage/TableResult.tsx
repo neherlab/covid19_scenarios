@@ -4,7 +4,7 @@ import moment from 'moment/moment'
 import chroma from 'chroma-js'
 
 import { AlgorithmResult, ExportedTimePoint } from '../../../algorithms/types/Result.types'
-import { colors } from '../Results/DeterministicLinePlot'
+import { colors } from '../Results/ChartCommon'
 
 interface PropsType {
   result: AlgorithmResult

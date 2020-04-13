@@ -16,14 +16,19 @@
 @import '~react-grid-layout/css/styles.css';
 @import '~react-resizable/css/styles.css';
 
+html,
+body {
+  height: 100%;
+}
+
 html {
   overflow-y: scroll;
 }
 
 body {
-  background-color: #eeeeee;
   // HACK: workaround for bootstrap modal adding padding-right when open
   padding: 0 !important;
+  background-color: #eee;
 }
 
 .container.absolute {
@@ -102,10 +107,17 @@ input[type='number']::-webkit-outer-spin-button {
   z-index: 999;
 }
 
+// rechart <Scatter /> elements can cause the tooltip to hide. (and appear with
+// a payload it cannot handle). So they are set to ignore mouse events.
+// https://github.com/neherlab/covid19_scenarios/issues/234#issuecomment-612294282
+.recharts-scatter-symbol {
+  pointer-events: none;
+}
+
 .truncate-ellipsis {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .hide-native-scrollbar {

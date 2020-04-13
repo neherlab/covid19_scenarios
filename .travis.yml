@@ -6,6 +6,7 @@ dist: bionic
 branches:
   only:
     - master
+    - staging
     - release
 
 language: node_js
@@ -17,9 +18,18 @@ install:
 
 before_script:
   - cp .env.example .env
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
-  - yarn schema:totypes && yarn test:nowatch
+  - yarn schema:totypes
+  - yarn eslint --max-warnings=0
+  - yarn test:coverage
+  - yarn codecov -f .reports/coverage/coverage-final.json
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 before_deploy:
   - yarn prod:build
@@ -36,7 +46,7 @@ deploy:
     bucket: $AWS_S3_BUCKET
     on:
       all_branches: true
-      condition: $TRAVIS_BRANCH =~ ^(master|release)$
+      condition: $TRAVIS_BRANCH =~ ^(master|staging|release)$
 
 after_deploy:
   - yarn global add travis-ci-cloudfront-invalidation@1.1.0
@@ -47,4 +57,4 @@ after_deploy:
       -s $AWS_SECRET_ACCESS_KEY \
       -c $AWS_CLOUDFRONT_DISTRIBUTION_ID \
       -i '/*' \
-      -o 'master,release'
+      -o 'master,staging,release'

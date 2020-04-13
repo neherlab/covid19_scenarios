@@ -1,9 +1,10 @@
 import React from 'react'
+import moment from 'moment'
 import { Button } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { AllParams, PopulationData, EpidemiologicalData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { SeverityTableRow } from '../Scenario/SeverityTable'
+import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 import { DeterministicLinePlot } from '../Results/DeterministicLinePlot'
 import { OutcomeRatesTable } from '../Results/OutcomeRatesTable'
 import { AgeBarChart } from '../Results/AgeBarChart'
@@ -19,6 +20,26 @@ interface PropsType {
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
   onClose: () => void
+}
+
+const months = moment.months()
+
+const parameterExplanations = {
+  cases: 'Case counts for',
+  country: 'Age distribution for',
+  populationServed: 'Population size',
+  hospitalBeds: 'Number of hospital beds',
+  ICUBeds: 'Number of available ICU beds',
+  importsPerDay: 'Cases imported into community per day',
+  initialNumberOfCases: 'Case number at the start of the simulation',
+  infectiousPeriod: 'Infectious period [days]',
+  latencyTime: 'Latency [days]',
+  lengthHospitalStay: 'Average time in regular ward [days]',
+  lengthICUStay: 'Average time in ICU ward [days]',
+  overflowSeverity: 'Increase in death rate when ICUs are overcrowed',
+  r0: 'R0 at the beginning of the outbreak',
+  seasonalForcing: 'Seasonal variation in transmissibility',
+  peakMonth: 'Seasonal peak in transmissibility',
 }
 
 export default function PrintParameters({ params, scenarioUsed, severity, result, caseCounts, onClose }: PropsType) {
@@ -71,36 +92,39 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
           }}
         >
           <h2>Parameters</h2>
-          <p>Scenario used : {scenarioUsed}</p>
+          <h5>Scenario used : {scenarioUsed}</h5>
           <h3>Population</h3>
           {(Object.keys(params.population) as (keyof PopulationData)[]).map((key) => {
             return (
               <p key={key} style={{ margin: 0 }}>
-                <u>{key}:</u> {params.population[key]}
+                {parameterExplanations[key] || key}: <b>{params.population[key]}</b>
               </p>
             )
           })}
+          <p />
           <h3>Epidemiology</h3>
           {(Object.keys(params.epidemiological) as (keyof EpidemiologicalData)[]).map((key) => {
             return (
               <p key={key} style={{ margin: 0 }}>
-                <u>{key}:</u> {params.epidemiological[key]}
+                {parameterExplanations[key] || key}:{' '}
+                <b>{key === 'peakMonth' ? months[params.epidemiological[key]] : params.epidemiological[key]}</b>
               </p>
             )
           })}
+          <p />
           <h3>Mitigation</h3>
           {params.containment.mitigationIntervals.map((mitigationInterval) => {
             return (
               <div key={mitigationInterval.id} style={{ marginBottom: 10 }}>
-                <h6>{mitigationInterval.name}:</h6>
+                <h5>{mitigationInterval.name}:</h5>
                 <p style={{ margin: 0 }}>
-                  <u>from:</u> {mitigationInterval.timeRange.tMin.toString()}
+                  from: <b>{mitigationInterval.timeRange.tMin.toString()}</b>
                 </p>
                 <p style={{ margin: 0 }}>
-                  <u>to:</u> {mitigationInterval.timeRange.tMax.toString()}
+                  to: <b>{mitigationInterval.timeRange.tMax.toString()}</b>
                 </p>
                 <p style={{ margin: 0 }}>
-                  <u>value:</u> {mitigationInterval.mitigationValue}
+                  Reduction of transmission: <b>{mitigationInterval.mitigationValue}%</b>
                 </p>
               </div>
             )
@@ -141,6 +165,10 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
           <AgeBarChart showHumanized data={result} rates={severity} forcedWidth={700} forcedHeight={350} printLabel />
           <OutcomeRatesTable showHumanized result={result} rates={severity} printable />
         </div>
+        <p />
+        <p>
+          Produced with <a href="https://covid19-scenarios.org">covid19-scenarios.org</a> on {new Date().toString()}.
+        </p>
       </div>
     )
   }

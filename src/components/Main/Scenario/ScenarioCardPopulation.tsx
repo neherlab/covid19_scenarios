@@ -1,14 +1,14 @@
 import React from 'react'
 import i18next from 'i18next'
 
-import { FormikErrors, FormikTouched } from 'formik'
+import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
 import { caseCountsNames } from '../state/caseCountsData'
 import { ageDistributionNames } from '../state/countryAgeDistributionData'
 
-import { CUSTOM_COUNTRY_NAME } from '../state/state'
+import { CUSTOM_COUNTRY_NAME, NONE_COUNTRY_NAME } from '../state/state'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
@@ -19,11 +19,11 @@ const countryOptions = ageDistributionNames.map((country) => ({ value: country, 
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
 const caseCountOptions = caseCountsNames.map((country) => ({ value: country, label: country }))
-caseCountOptions.push({ value: 'none', label: 'None' })
+caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: i18next.t(NONE_COUNTRY_NAME) })
 
 export interface ScenarioCardPopulationProps {
-  errors?: FormikErrors<any>
-  touched?: FormikTouched<any>
+  errors?: FormikErrors<FormikValues>
+  touched?: FormikTouched<FormikValues>
 }
 
 function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
@@ -45,6 +45,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         label={t('Population')}
         help={t('Number of people served by health care system.')}
         step={1}
+        min={0}
         errors={errors}
         touched={touched}
       />
@@ -57,10 +58,11 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormSpinBox
-        identifier="population.suspectedCasesToday"
-        label={t('Initial suspected cases')}
+        identifier="population.initialNumberOfCases"
+        label={t('Initial number of cases')}
         help={t('Number of cases present at the start of simulation')}
         step={1}
+        min={0}
         errors={errors}
         touched={touched}
       />
@@ -69,6 +71,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         label={t('Imports per day')}
         help={t('Number of cases imported from the outside per day on average')}
         step={0.1}
+        min={0}
         errors={errors}
         touched={touched}
       />
@@ -79,6 +82,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
           'Number of hospital beds available in health care system. Presets are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
         )}
         step={1}
+        min={0}
         errors={errors}
         touched={touched}
       />
@@ -89,6 +93,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
           'Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
         )}
         step={1}
+        min={0}
         errors={errors}
         touched={touched}
       />

@@ -2,17 +2,15 @@ import * as yup from 'yup'
 
 import i18next from 'i18next'
 
-import { caseCountsNames } from '../state/caseCountsData'
 import { ageDistributionNames } from '../state/countryAgeDistributionData'
 import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
 const ageRegions = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]
 
-const caseRegions = [...caseCountsNames, CUSTOM_COUNTRY_NAME]
-
-const MSG_REQUIRED = 'Required'
-const MSG_NON_NEGATIVE = 'Should be non-negative'
-const MSG_POSITIVE = 'Should be strictly positive'
+const MSG_REQUIRED = i18next.t('Value is required')
+const MSG_NON_NEGATIVE = i18next.t('Should be non-negative (or zero)')
+const MSG_POSITIVE = i18next.t('Should be strictly positive (non-zero)')
+const MSG_AT_LEAST_ONE_DAY = i18next.t('Should be at least one day or greater')
 
 export function dateRange() {
   return yup.object({
@@ -27,11 +25,11 @@ export const schema = yup.object().shape({
 
     country: yup.string().required(MSG_REQUIRED).oneOf(ageRegions, i18next.t('No such region in our data')),
 
-    suspectedCasesToday: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    initialNumberOfCases: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
     importsPerDay: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    cases: yup.string().required(MSG_REQUIRED).oneOf(caseRegions, i18next.t('No such region in our data')),
+    cases: yup.string().required(MSG_REQUIRED),
 
     hospitalBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
@@ -41,19 +39,19 @@ export const schema = yup.object().shape({
   epidemiological: yup.object().shape({
     r0: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    latencyTime: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
+    latencyTime: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    infectiousPeriod: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
+    infectiousPeriod: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    lengthHospitalStay: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
+    lengthHospitalStay: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    lengthICUStay: yup.number().required(MSG_REQUIRED).min(1, MSG_POSITIVE),
+    lengthICUStay: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
     seasonalForcing: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    overflowSeverity: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    overflowSeverity: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
 
-    peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE).max(11),
+    peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_POSITIVE).max(11),
   }),
 
   containment: yup.object().shape({

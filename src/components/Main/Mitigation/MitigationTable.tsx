@@ -5,7 +5,7 @@ import _ from 'lodash'
 import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Button, FormGroup, Row } from 'reactstrap'
+import { Button, FormGroup } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
@@ -46,7 +46,12 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
           name="containment.mitigationIntervals"
           render={(arrayHelpers) => (
             <div className="mitigation-table">
-              <p>The presets for the mitigation and infections control measure below are currently just place holders. We are gathering this information at the moment. For the time being please adjust, add, and remove to match your community.</p>
+              <p>
+                The presets for the mitigation and infections control measure below are currently just place holders. We
+                are gathering this information at the moment. For the time being please adjust, add, and remove to match
+                your community.
+              </p>
+              <p>Each measure consists of name, start/end date, and an effectiveness in %.</p>
               <div className="w-100">
                 {mitigationIntervals.map((interval: MitigationInterval, index: number) => {
                   if (!interval) {
@@ -141,6 +146,9 @@ function MitigationIntervalComponent({
               id={`containment.mitigationIntervals[${index}].mitigationValue`}
               name={`containment.mitigationIntervals[${index}].mitigationValue`}
               type="number"
+              step={1}
+              min={0}
+              max={100}
             />
           </div>
         </div>

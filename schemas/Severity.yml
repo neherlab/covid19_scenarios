@@ -17,7 +17,7 @@ items:
     - fatal
 
   additionalProperties: false
-  
+
   properties:
     id:
       type: number

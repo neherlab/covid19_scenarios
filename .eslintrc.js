@@ -117,6 +117,7 @@ module.exports = {
     'react/jsx-curly-brace-presence': 'off',
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
+    'sonarjs/cognitive-complexity': ['warn', 20],
     'react/prop-types': 'off',
     'react/state-in-constructor': 'off',
     'redux-saga/no-unhandled-errors': 'off',
@@ -183,6 +184,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
         'global-require': 'off',
+        'security/detect-child-process': 'off',
         'sonarjs/cognitive-complexity': ['warn', 50],
       },
     },

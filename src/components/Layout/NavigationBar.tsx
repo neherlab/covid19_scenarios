@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
-import LanguageSwitcher from './LanguageSwitcher'
+// import LanguageSwitcher from './LanguageSwitcher'
 import LinkExternal from '../Router/LinkExternal'
 import NavigationLink from './NavigationLink'
 
@@ -59,7 +59,7 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
           </LinkExternal>
         </div>
 
-        <LanguageSwitcher />
+        {/* <LanguageSwitcher /> */}
       </div>
     </nav>
   )

@@ -21,8 +21,8 @@
                 "country": "Australia",
                 "hospitalBeds": 96000,
                 "importsPerDay": 0.1,
-                "populationServed": 24600000,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 24600000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -56,8 +56,8 @@
                 "country": "New Zealand",
                 "hospitalBeds": 13000,
                 "importsPerDay": 0.1,
-                "populationServed": 4800000,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 4800000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -75,7 +75,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "f91d03a8-ac84-413f-99c6-8b546bdaa886",
+                        "id": "0a696025-dfaf-475d-83e3-249359e63d2c",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -102,8 +102,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 30799,
                 "importsPerDay": 0.1,
-                "populationServed": 8600000,
-                "suspectedCasesToday": 25
+                "initialNumberOfCases": 25,
+                "populationServed": 8600000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -121,7 +121,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "ae15fdb5-d502-4ea8-b8c5-8490dc49a195",
+                        "id": "b7e3ccd7-34f6-4b47-b41a-bff0cf0fde76",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -131,7 +131,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "b13458fc-05f4-417a-b769-22337c594c57",
+                        "id": "cda8bbeb-1674-4f24-b16f-e6bb3b667f1a",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -158,8 +158,8 @@
                 "country": "Germany",
                 "hospitalBeds": 500680,
                 "importsPerDay": 0.1,
-                "populationServed": 83784000,
-                "suspectedCasesToday": 9
+                "initialNumberOfCases": 9,
+                "populationServed": 83784000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -177,7 +177,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b7d6cc2a-3d75-4176-b53c-1e6097234355",
+                        "id": "f0ab4887-df60-4db9-9541-de864e667388",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -187,7 +187,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "3d779e1a-7608-4814-9187-49e3c9f2cb89",
+                        "id": "5094b1e5-f35d-4d10-a5d5-21fd3bed7d9f",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -214,8 +214,8 @@
                 "country": "France",
                 "hospitalBeds": 274462,
                 "importsPerDay": 0.1,
-                "populationServed": 65274000,
-                "suspectedCasesToday": 234
+                "initialNumberOfCases": 234,
+                "populationServed": 65274000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -233,7 +233,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "c458ab71-813e-4952-8081-f02d363f38bc",
+                        "id": "dc08adea-56b3-48ed-87ec-eb55f1de31e7",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -243,7 +243,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "71b1b05e-37d5-4f55-8006-500478278911",
+                        "id": "eb6cb189-1a28-4978-a26f-2215480cfd2a",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -270,8 +270,8 @@
                 "country": "Italy",
                 "hospitalBeds": 165384,
                 "importsPerDay": 0.1,
-                "populationServed": 60462000,
-                "suspectedCasesToday": 4732
+                "initialNumberOfCases": 4732,
+                "populationServed": 60462000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -289,7 +289,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "1d064051-6e49-4f8f-b3b1-2aaf4fc080c4",
+                        "id": "edbb8579-e6b9-41cf-8cf9-a6fb89b9f864",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -299,7 +299,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "597b485c-a088-4da1-95cb-65d34dc369af",
+                        "id": "7daebbb5-f613-4120-b2b1-95c386726ff6",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -326,8 +326,8 @@
                 "country": "Spain",
                 "hospitalBeds": 110346,
                 "importsPerDay": 0.1,
-                "populationServed": 46755000,
-                "suspectedCasesToday": 564
+                "initialNumberOfCases": 564,
+                "populationServed": 46755000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -361,8 +361,8 @@
                 "country": "Poland",
                 "hospitalBeds": 188342,
                 "importsPerDay": 0.1,
-                "populationServed": 37847000,
-                "suspectedCasesToday": 35
+                "initialNumberOfCases": 35,
+                "populationServed": 37847000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -396,8 +396,8 @@
                 "country": "Romania",
                 "hospitalBeds": 90024,
                 "importsPerDay": 0.1,
-                "populationServed": 19238000,
-                "suspectedCasesToday": 2
+                "initialNumberOfCases": 2,
+                "populationServed": 19238000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -415,7 +415,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "9afb626a-bc52-403a-a699-a9dd82eef2a1",
+                        "id": "e1c56270-4ddd-463d-9717-692a19c5423d",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -442,8 +442,8 @@
                 "country": "Netherlands",
                 "hospitalBeds": 55690,
                 "importsPerDay": 0.1,
-                "populationServed": 17135000,
-                "suspectedCasesToday": 98
+                "initialNumberOfCases": 98,
+                "populationServed": 17135000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -461,7 +461,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "12cdb9f6-fd89-40d0-a995-842a9f0659f8",
+                        "id": "8a7a3376-560f-4115-bcda-a0740c71c8de",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -488,8 +488,8 @@
                 "country": "Belgium",
                 "hospitalBeds": 63692,
                 "importsPerDay": 0.1,
-                "populationServed": 11590000,
-                "suspectedCasesToday": 14
+                "initialNumberOfCases": 14,
+                "populationServed": 11590000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -507,7 +507,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "d885b490-d7e5-4c3d-96e1-15bd2fe779eb",
+                        "id": "ac2a35d3-f69a-434b-9e2f-a1fbfe1866d5",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -534,8 +534,8 @@
                 "country": "Czechia",
                 "hospitalBeds": 92633,
                 "importsPerDay": 0.1,
-                "populationServed": 10709000,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 10709000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -553,7 +553,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "6a025e6e-dc04-446a-a91b-61f12d689a46",
+                        "id": "3ac6cfd1-cd76-4f9b-aef5-a5ae1afe2ca0",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -580,8 +580,8 @@
                 "country": "Brazil",
                 "hospitalBeds": 429000,
                 "importsPerDay": 0.1,
-                "populationServed": 207353391,
-                "suspectedCasesToday": 53
+                "initialNumberOfCases": 53,
+                "populationServed": 207353391
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -615,8 +615,8 @@
                 "country": "Greece",
                 "hospitalBeds": 38090,
                 "importsPerDay": 0.1,
-                "populationServed": 10423000,
-                "suspectedCasesToday": 28
+                "initialNumberOfCases": 28,
+                "populationServed": 10423000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -634,7 +634,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "209044ff-8bf2-4dab-a89b-fd6bdf96bd5e",
+                        "id": "863c2f94-32db-47b4-8310-9501158dd8e8",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -661,8 +661,8 @@
                 "country": "Portugal",
                 "hospitalBeds": 33821,
                 "importsPerDay": 0.1,
-                "populationServed": 10197000,
-                "suspectedCasesToday": 11
+                "initialNumberOfCases": 11,
+                "populationServed": 10197000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -680,7 +680,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "9a27e399-7c16-4501-9e5d-9067e7f33a30",
+                        "id": "54834c25-4863-4400-a09c-2bf3e8d466e3",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -707,8 +707,8 @@
                 "country": "Sweden",
                 "hospitalBeds": 22754,
                 "importsPerDay": 0.1,
-                "populationServed": 10099000,
-                "suspectedCasesToday": 7
+                "initialNumberOfCases": 7,
+                "populationServed": 10099000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -742,8 +742,8 @@
                 "country": "Hungary",
                 "hospitalBeds": 42413,
                 "importsPerDay": 0.1,
-                "populationServed": 9660000,
-                "suspectedCasesToday": 79
+                "initialNumberOfCases": 79,
+                "populationServed": 9660000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -761,7 +761,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "d741ef98-c311-450e-8396-1c202602d59b",
+                        "id": "1438288d-4bba-47ea-b6f9-866d3f83c77a",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -788,8 +788,8 @@
                 "country": "Austria",
                 "hospitalBeds": 49395,
                 "importsPerDay": 0.1,
-                "populationServed": 9006000,
-                "suspectedCasesToday": 8
+                "initialNumberOfCases": 8,
+                "populationServed": 9006000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -823,8 +823,8 @@
                 "country": "Bulgaria",
                 "hospitalBeds": 42851,
                 "importsPerDay": 0.1,
-                "populationServed": 6948000,
-                "suspectedCasesToday": 44
+                "initialNumberOfCases": 44,
+                "populationServed": 6948000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -842,7 +842,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "9a431142-73b1-4401-b213-337035e09e52",
+                        "id": "bf4e25d8-8782-4661-a9ea-44802ce842aa",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -869,8 +869,8 @@
                 "country": "Denmark",
                 "hospitalBeds": 13962,
                 "importsPerDay": 0.1,
-                "populationServed": 5792000,
-                "suspectedCasesToday": 23
+                "initialNumberOfCases": 23,
+                "populationServed": 5792000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -888,7 +888,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "917f66d3-2400-4ae9-a301-8cbeb4b37a1f",
+                        "id": "5d14b48c-baec-4c53-b673-38a3bdc8e5bb",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -915,8 +915,8 @@
                 "country": "Finland",
                 "hospitalBeds": 16852,
                 "importsPerDay": 0.1,
-                "populationServed": 5541000,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 5541000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -950,8 +950,8 @@
                 "country": "Slovakia",
                 "hospitalBeds": 26642,
                 "importsPerDay": 0.1,
-                "populationServed": 5460000,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 5460000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -969,7 +969,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b04fe1d6-ab4b-4a02-8cc9-7757c10aa4ee",
+                        "id": "8f961ecb-7136-45e1-b274-eaa2405dbe2b",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -996,8 +996,8 @@
                 "country": "Ireland",
                 "hospitalBeds": 11241,
                 "importsPerDay": 0.1,
-                "populationServed": 4938000,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 4938000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1012,7 +1012,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "5841a05a-0d77-4fbd-bb5d-70cdbf30b77a",
+                        "mitigationValue": 30.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-08"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -1031,8 +1042,8 @@
                 "country": "Croatia",
                 "hospitalBeds": 16974,
                 "importsPerDay": 0.1,
-                "populationServed": 4105000,
-                "suspectedCasesToday": 4
+                "initialNumberOfCases": 4,
+                "populationServed": 4105000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1050,7 +1061,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "997dc76f-7def-4384-81a3-96ffe7078fa3",
+                        "id": "13685a84-3be7-4acc-a44e-e322d32b8168",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1077,8 +1088,8 @@
                 "country": "Lithuania",
                 "hospitalBeds": 18504,
                 "importsPerDay": 0.1,
-                "populationServed": 2722000,
-                "suspectedCasesToday": 27
+                "initialNumberOfCases": 27,
+                "populationServed": 2722000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1096,7 +1107,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "70970301-7adb-4249-a47c-f2620a682fc4",
+                        "id": "5c4369e1-1168-42a3-934b-4f2bdd0eace5",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1123,8 +1134,8 @@
                 "country": "Slovenia",
                 "hospitalBeds": 8740,
                 "importsPerDay": 0.1,
-                "populationServed": 2079000,
-                "suspectedCasesToday": 5
+                "initialNumberOfCases": 5,
+                "populationServed": 2079000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1158,8 +1169,8 @@
                 "country": "Kosovo",
                 "hospitalBeds": 1000,
                 "importsPerDay": 0.1,
-                "populationServed": 1810000,
-                "suspectedCasesToday": 327
+                "initialNumberOfCases": 327,
+                "populationServed": 1810000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1174,7 +1185,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "9c7f62e7-a61d-46b2-8a87-935d18cf2dfa",
+                        "mitigationValue": 30.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-09"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -1193,8 +1215,8 @@
                 "country": "Latvia",
                 "hospitalBeds": 6748,
                 "importsPerDay": 0.1,
-                "populationServed": 1886000,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 1886000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1212,7 +1234,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "4f584034-90db-4a6d-aac1-3c666a8b748b",
+                        "id": "d6fccecf-b3c9-434a-aeb5-577a34c27783",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1239,8 +1261,8 @@
                 "country": "Estonia",
                 "hospitalBeds": 4824,
                 "importsPerDay": 0.1,
-                "populationServed": 1327000,
-                "suspectedCasesToday": 8
+                "initialNumberOfCases": 8,
+                "populationServed": 1327000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1258,7 +1280,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "c38f3761-3d6e-4980-8c22-cfd72805d5fb",
+                        "id": "170f3f0a-e0c2-4e01-a3fc-6510aa4d8004",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1285,8 +1307,8 @@
                 "country": "Cyprus",
                 "hospitalBeds": 2912,
                 "importsPerDay": 0.1,
-                "populationServed": 1207000,
-                "suspectedCasesToday": 26
+                "initialNumberOfCases": 26,
+                "populationServed": 1207000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1304,7 +1326,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "1c762d9f-9a07-482d-a93b-5872520def74",
+                        "id": "0b8f0ce5-0f66-4857-b7a5-9f14fa06c2c7",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1314,7 +1336,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "52544741-89a2-4f05-914e-5e6f56e43b6f",
+                        "id": "71582522-aae8-46a3-a215-20d72f268990",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -1341,8 +1363,8 @@
                 "country": "Luxembourg",
                 "hospitalBeds": 2332,
                 "importsPerDay": 0.1,
-                "populationServed": 626000,
-                "suspectedCasesToday": 60
+                "initialNumberOfCases": 60,
+                "populationServed": 626000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1360,7 +1382,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "21633e37-f889-445d-bb40-13639847d3ed",
+                        "id": "34b9b780-d1c5-46ea-8d50-8cc821002885",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1387,8 +1409,8 @@
                 "country": "Malta",
                 "hospitalBeds": 1400,
                 "importsPerDay": 0.1,
-                "populationServed": 442000,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 442000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1406,7 +1428,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "726abd16-b072-4f3c-b3de-379581953258",
+                        "id": "91d3537d-b5b9-4838-a91c-4e528de41566",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1433,8 +1455,8 @@
                 "country": "Canada",
                 "hospitalBeds": 73000,
                 "importsPerDay": 0.1,
-                "populationServed": 37600000,
-                "suspectedCasesToday": 8
+                "initialNumberOfCases": 8,
+                "populationServed": 37600000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1452,7 +1474,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "75d25b4c-cfb0-425c-9d70-2d76ea243b39",
+                        "id": "a7426569-eb18-485d-8203-2af37cab6723",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1462,7 +1484,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "5999cf4d-5441-45b5-82ab-53fb45713d5a",
+                        "id": "08a71f2d-7ae3-4143-bcdb-033f54b69e97",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -1489,8 +1511,8 @@
                 "country": "United Kingdom of Great Britain and Northern Ireland",
                 "hospitalBeds": 297000,
                 "importsPerDay": 0.1,
-                "populationServed": 66000000,
-                "suspectedCasesToday": 46
+                "initialNumberOfCases": 46,
+                "populationServed": 66000000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1508,7 +1530,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "48cd8424-8d33-474b-9f62-6d3c433dedb4",
+                        "id": "183804c6-c2ff-422b-a4ee-3801ab525457",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1518,7 +1540,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "20f4152b-3432-4e1a-bf1a-6c4ecb1bb417",
+                        "id": "88a53066-0e47-4d47-83c6-01abb2f62ae1",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -1545,8 +1567,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 1485000,
                 "importsPerDay": 0.1,
-                "populationServed": 330000000,
-                "suspectedCasesToday": 9
+                "initialNumberOfCases": 9,
+                "populationServed": 330000000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1564,7 +1586,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "bcb47e58-cc93-439d-9f5a-945a0e0f8820",
+                        "id": "eb37cd75-8fb6-4db2-bf9a-d9623752522d",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1591,8 +1613,8 @@
                 "country": "Canada",
                 "hospitalBeds": 5819,
                 "importsPerDay": 0.1,
-                "populationServed": 4413146,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 4413146
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1622,12 +1644,12 @@
             },
             "population": {
                 "ICUBeds": 680,
-                "cases": "CAN-British Columbia",
+                "cases": "None",
                 "country": "Canada",
                 "hospitalBeds": 6074,
                 "importsPerDay": 0.1,
-                "populationServed": 5110917,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 5110917
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1661,8 +1683,8 @@
                 "country": "Canada",
                 "hospitalBeds": 2885,
                 "importsPerDay": 0.1,
-                "populationServed": 1377517,
-                "suspectedCasesToday": 168
+                "initialNumberOfCases": 168,
+                "populationServed": 1377517
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1696,8 +1718,8 @@
                 "country": "Canada",
                 "hospitalBeds": 1448,
                 "importsPerDay": 0.1,
-                "populationServed": 779993,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 779993
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1727,12 +1749,12 @@
             },
             "population": {
                 "ICUBeds": 121,
-                "cases": "CAN-Newfoundland and Labrador",
+                "cases": "None",
                 "country": "Canada",
                 "hospitalBeds": 1090,
                 "importsPerDay": 0.1,
-                "populationServed": 521356,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 521356
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1750,7 +1772,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "465bc746-006b-42e1-abbb-f656891eeb33",
+                        "id": "73b68532-c8ae-4d25-aafb-e1467351c038",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1777,8 +1799,8 @@
                 "country": "Canada",
                 "hospitalBeds": 1896,
                 "importsPerDay": 0.1,
-                "populationServed": 977457,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 977457
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1812,8 +1834,8 @@
                 "country": "Canada",
                 "hospitalBeds": 30,
                 "importsPerDay": 0.1,
-                "populationServed": 39097,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 39097
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1847,8 +1869,8 @@
                 "country": "Canada",
                 "hospitalBeds": 156,
                 "importsPerDay": 0.1,
-                "populationServed": 44904,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 44904
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1866,7 +1888,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "5f0498c1-6cda-460a-8250-df75391d981c",
+                        "id": "56a3c011-5a99-4175-9243-38819ab54d09",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -1893,8 +1915,8 @@
                 "country": "Canada",
                 "hospitalBeds": 15485,
                 "importsPerDay": 0.1,
-                "populationServed": 14711827,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 14711827
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1924,12 +1946,12 @@
             },
             "population": {
                 "ICUBeds": 24,
-                "cases": "CAN-Prince Edward Island",
+                "cases": "None",
                 "country": "Canada",
                 "hospitalBeds": 295,
                 "importsPerDay": 0.1,
-                "populationServed": 158158,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 158158
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1940,6 +1962,52 @@
             }
         },
         "country": "CAN-Prince Edward Island"
+    },
+    {
+        "allParams": {
+            "containment": {
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "30206ab5-4ab6-4e0c-8505-e8b28c8e67f0",
+                        "mitigationValue": 30.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-03-29"
+                        }
+                    }
+                ],
+                "numberPoints": 15.0
+            },
+            "epidemiological": {
+                "infectiousPeriod": 3.0,
+                "latencyTime": 3.0,
+                "lengthHospitalStay": 3.0,
+                "lengthICUStay": 14.0,
+                "overflowSeverity": 2.0,
+                "peakMonth": 0,
+                "r0": 2.7,
+                "seasonalForcing": 0.0
+            },
+            "population": {
+                "ICUBeds": 633,
+                "cases": "CAN-Quebec",
+                "country": "Canada",
+                "hospitalBeds": 7000,
+                "importsPerDay": 0.1,
+                "initialNumberOfCases": 10,
+                "populationServed": 8484965
+            },
+            "simulation": {
+                "numberStochasticRuns": 0.0,
+                "simulationTimeRange": {
+                    "tMax": "2020-09-01",
+                    "tMin": "2020-02-22"
+                }
+            }
+        },
+        "country": "CAN-Quebec"
     },
     {
         "allParams": {
@@ -1959,12 +2027,12 @@
             },
             "population": {
                 "ICUBeds": 106,
-                "cases": "CAN-Saskatchwan",
+                "cases": "None",
                 "country": "Canada",
                 "hospitalBeds": 2198,
                 "importsPerDay": 0.1,
-                "populationServed": 1181666,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 1181666
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -1998,8 +2066,8 @@
                 "country": "Canada",
                 "hospitalBeds": 106,
                 "importsPerDay": 0.1,
-                "populationServed": 41078,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 41078
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2017,7 +2085,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "aee7c14d-37dd-49d6-95df-1ffe3682ee2b",
+                        "id": "bf5f2b39-66e2-4dfc-a5ea-64e6bda43d5e",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2044,8 +2112,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 5447,
                 "importsPerDay": 0.1,
-                "populationServed": 1521000,
-                "suspectedCasesToday": 6
+                "initialNumberOfCases": 6,
+                "populationServed": 1521000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2063,7 +2131,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "728d6946-5cf3-4979-8138-8da426a1442a",
+                        "id": "e57663c0-b801-4895-9317-7975e29bd170",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2090,8 +2158,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 3706,
                 "importsPerDay": 0.1,
-                "populationServed": 1035000,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 1035000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2109,7 +2177,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "d3482e3a-06d7-462f-a7e2-cbbe0a2cf99f",
+                        "id": "5daa6032-afbc-42f7-8f9e-f5948dad4e8a",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2136,8 +2204,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 1468,
                 "importsPerDay": 0.1,
-                "populationServed": 410000,
-                "suspectedCasesToday": 21
+                "initialNumberOfCases": 21,
+                "populationServed": 410000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2155,7 +2223,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "76302646-6595-4149-89b7-0539e935ba98",
+                        "id": "60fe53da-a783-468f-83a2-a6989c0e3bfa",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2182,8 +2250,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 128,
                 "importsPerDay": 0.1,
-                "populationServed": 36000,
-                "suspectedCasesToday": 21
+                "initialNumberOfCases": 21,
+                "populationServed": 36000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2201,7 +2269,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "845af7b1-ab4e-4e89-a5e4-a2bba504448e",
+                        "id": "c3fec77a-2fa5-4b02-be3f-25f3022fe88b",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2228,8 +2296,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 569,
                 "importsPerDay": 0.1,
-                "populationServed": 159000,
-                "suspectedCasesToday": 27
+                "initialNumberOfCases": 27,
+                "populationServed": 159000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2247,7 +2315,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "101e2228-725d-4577-91fa-b3959be10be0",
+                        "id": "9b504ba4-c293-4944-8cd2-c09e01fe6fc5",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2274,8 +2342,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 136,
                 "importsPerDay": 0.1,
-                "populationServed": 38000,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 38000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2293,7 +2361,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "9857a673-8f9c-403f-b465-45e14a7c636c",
+                        "id": "c7c56237-1243-4834-9031-3730c962a14b",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2320,8 +2388,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 153,
                 "importsPerDay": 0.1,
-                "populationServed": 43000,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 43000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2339,7 +2407,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "9f408452-b51b-4b5b-9915-1b18df09e2b4",
+                        "id": "a5f1a411-dcb1-48e1-b159-e9edeb628a97",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2366,8 +2434,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 143,
                 "importsPerDay": 0.1,
-                "populationServed": 40000,
-                "suspectedCasesToday": 5
+                "initialNumberOfCases": 5,
+                "populationServed": 40000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2385,7 +2453,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "d4c43daf-b022-461f-bc86-be200100c25d",
+                        "id": "4d38810a-0ade-49e0-abb2-b8a345da0ae4",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2412,8 +2480,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 454,
                 "importsPerDay": 0.1,
-                "populationServed": 127000,
-                "suspectedCasesToday": 34
+                "initialNumberOfCases": 34,
+                "populationServed": 127000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2431,7 +2499,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "dc88a190-b8c0-4714-9f22-0aa3726568eb",
+                        "id": "5cc98e66-ceaa-430b-833c-f11fc1e3a6f1",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2458,8 +2526,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 1142,
                 "importsPerDay": 0.1,
-                "populationServed": 319000,
-                "suspectedCasesToday": 22
+                "initialNumberOfCases": 22,
+                "populationServed": 319000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2477,7 +2545,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "316a40c8-b46d-4751-ace5-f35fbf4a779b",
+                        "id": "bb890c50-1470-48e7-a70d-e16b5b4deb27",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2504,8 +2572,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 977,
                 "importsPerDay": 0.1,
-                "populationServed": 273000,
-                "suspectedCasesToday": 13
+                "initialNumberOfCases": 13,
+                "populationServed": 273000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2523,7 +2591,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "45eece71-0d8c-4257-908c-031e67c2b395",
+                        "id": "f25d926a-3ea1-457a-8692-bfe5285616e8",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2533,7 +2601,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "7e8d8383-49ca-4334-98b0-e7481011f660",
+                        "id": "ee855d93-70ad-4e79-9717-4a2f4a9c1b08",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -2560,8 +2628,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 698,
                 "importsPerDay": 0.1,
-                "populationServed": 195000,
-                "suspectedCasesToday": 39
+                "initialNumberOfCases": 39,
+                "populationServed": 195000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2579,7 +2647,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "e58d016a-fcee-494f-a087-e72bf04d60fb",
+                        "id": "47c691c9-777b-4872-80d8-4d02770d8356",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2606,8 +2674,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 1031,
                 "importsPerDay": 0.1,
-                "populationServed": 288000,
-                "suspectedCasesToday": 35
+                "initialNumberOfCases": 35,
+                "populationServed": 288000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2625,7 +2693,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "dbfb7d87-91f8-440a-be83-e877d947d700",
+                        "id": "2498a4f7-3e99-45e6-a5e8-9b2d0c153605",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2652,8 +2720,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 293,
                 "importsPerDay": 0.1,
-                "populationServed": 82000,
-                "suspectedCasesToday": 48
+                "initialNumberOfCases": 48,
+                "populationServed": 82000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2671,7 +2739,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "88dfc555-6f01-4cd8-9063-47822a3482cf",
+                        "id": "2eecbef0-d3a1-461e-9887-b8d5ce4a2845",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2698,8 +2766,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 196,
                 "importsPerDay": 0.1,
-                "populationServed": 55000,
-                "suspectedCasesToday": 168
+                "initialNumberOfCases": 168,
+                "populationServed": 55000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2717,7 +2785,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "787b6e2a-0082-440e-b3f7-5e2da7dca64e",
+                        "id": "7fed6ecd-eed0-40fc-b052-1e7e0268cf32",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2744,8 +2812,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 57,
                 "importsPerDay": 0.1,
-                "populationServed": 16000,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 16000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2763,7 +2831,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b4247427-529e-4bbb-9080-550415896905",
+                        "id": "e959dc5f-802b-4f86-bf20-128a91f615de",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2790,8 +2858,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 1819,
                 "importsPerDay": 0.1,
-                "populationServed": 508000,
-                "suspectedCasesToday": 13
+                "initialNumberOfCases": 13,
+                "populationServed": 508000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2809,7 +2877,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "5595dd09-a427-48f8-bc05-4b9b0cf2e4a0",
+                        "id": "ecefa017-4f66-430d-a8c2-b364dde1b60e",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2819,7 +2887,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "106f589e-96d8-4600-badd-db50382e43e4",
+                        "id": "564653b7-7090-4ca4-92ee-2e4681cff718",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -2846,8 +2914,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 709,
                 "importsPerDay": 0.1,
-                "populationServed": 198000,
-                "suspectedCasesToday": 72
+                "initialNumberOfCases": 72,
+                "populationServed": 198000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2865,7 +2933,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "66905706-6df6-4124-9afb-0d3c03722b53",
+                        "id": "d6fbde46-7e73-4a97-90d4-ed05d5a41a15",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2892,8 +2960,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 2424,
                 "importsPerDay": 0.1,
-                "populationServed": 677000,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 677000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2911,7 +2979,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "8d95201c-235d-4bf5-a1bc-67ce490f436f",
+                        "id": "7be76b4c-f12a-49bc-b62a-37ffa539a9d0",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2938,8 +3006,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 988,
                 "importsPerDay": 0.1,
-                "populationServed": 276000,
-                "suspectedCasesToday": 7
+                "initialNumberOfCases": 7,
+                "populationServed": 276000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -2957,7 +3025,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "93968ef0-5a22-4eb8-9c18-5ac6ef713b31",
+                        "id": "99436a00-e460-4208-8c77-63942841c09e",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -2967,7 +3035,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "28259696-98b6-468a-a9b0-88b0d55b44bb",
+                        "id": "73d2afbd-a932-4a02-aea5-eb3558c1ccd7",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -2994,8 +3062,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 1264,
                 "importsPerDay": 0.1,
-                "populationServed": 353000,
-                "suspectedCasesToday": 136
+                "initialNumberOfCases": 136,
+                "populationServed": 353000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3013,7 +3081,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "cf035de3-b3c4-48aa-9c3a-f226d7542e39",
+                        "id": "94e4c385-799a-4c09-8e81-c774a32aa9d5",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3023,7 +3091,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "512a527b-9367-4327-82dc-1875c6d54ad3",
+                        "id": "3dad3cfa-f05e-4509-a328-3d87423ef5e2",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -3050,8 +3118,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 2861,
                 "importsPerDay": 0.1,
-                "populationServed": 799000,
-                "suspectedCasesToday": 35
+                "initialNumberOfCases": 35,
+                "populationServed": 799000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3069,7 +3137,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "33b33b2e-33ab-4252-809c-6f7678ad4657",
+                        "id": "abbbb7b8-7bbe-4fcc-91dc-dce45f773e3e",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3079,7 +3147,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "8feb53fe-dfba-4390-81d0-04944135bb5e",
+                        "id": "9189666d-c5a2-4e5f-a52a-cc2839b31769",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -3106,8 +3174,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 1231,
                 "importsPerDay": 0.1,
-                "populationServed": 344000,
-                "suspectedCasesToday": 53
+                "initialNumberOfCases": 53,
+                "populationServed": 344000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3125,12 +3193,22 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b9f910b4-6e8c-481e-b989-25bd535b317a",
+                        "id": "34c13720-5b7e-4b8f-baeb-1c2dcdffa39a",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
                             "tMax": "2020-09-01",
                             "tMin": "2020-03-13"
+                        }
+                    },
+                    {
+                        "color": "#666666",
+                        "id": "ed70ca74-c9c5-407f-999d-2aa0eabdfb24",
+                        "mitigationValue": 60.0,
+                        "name": "Intervention #2",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-09"
                         }
                     }
                 ],
@@ -3152,8 +3230,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 633,
                 "importsPerDay": 0.1,
-                "populationServed": 177000,
-                "suspectedCasesToday": 57
+                "initialNumberOfCases": 57,
+                "populationServed": 177000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3171,7 +3249,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "15d9d4ef-73b2-4acc-b7be-18083a756eaa",
+                        "id": "2f016d08-b037-4d42-83b5-b9cc1266ec70",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3181,7 +3259,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "98384ae5-3b60-4ecf-a681-f843180da50c",
+                        "id": "2a7e51c7-3641-4b6e-b9f0-060bffd80e6b",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -3208,8 +3286,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 1787,
                 "importsPerDay": 0.1,
-                "populationServed": 499000,
-                "suspectedCasesToday": 18
+                "initialNumberOfCases": 18,
+                "populationServed": 499000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3227,7 +3305,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "14f13a03-697d-454e-a430-2a0c87d49a74",
+                        "id": "f7502013-a3ba-46f6-9d0b-f0c39b8feb64",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3254,8 +3332,8 @@
                 "country": "Switzerland",
                 "hospitalBeds": 261,
                 "importsPerDay": 0.1,
-                "populationServed": 73000,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 73000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3273,7 +3351,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "1610d665-46a2-48c6-8c81-92156f50f95b",
+                        "id": "d3c037a6-991c-46a3-97d0-657931a64c8e",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3300,8 +3378,8 @@
                 "country": "Germany",
                 "hospitalBeds": 66152,
                 "importsPerDay": 0.1,
-                "populationServed": 11070000,
-                "suspectedCasesToday": 6
+                "initialNumberOfCases": 6,
+                "populationServed": 11070000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3319,7 +3397,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "4e73d345-f3c7-4fc6-9d5d-6a1fb5a64982",
+                        "id": "0362e114-1bea-477e-a3e0-3b19f89d4650",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3346,8 +3424,8 @@
                 "country": "Germany",
                 "hospitalBeds": 78146,
                 "importsPerDay": 0.1,
-                "populationServed": 13077000,
-                "suspectedCasesToday": 2
+                "initialNumberOfCases": 2,
+                "populationServed": 13077000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3365,7 +3443,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "f41b9b6a-bfaf-4df3-8ecc-2984fc469d82",
+                        "id": "e88f316b-1b42-4201-8084-878e9248df63",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3392,8 +3470,8 @@
                 "country": "Germany",
                 "hospitalBeds": 21781,
                 "importsPerDay": 0.1,
-                "populationServed": 3645000,
-                "suspectedCasesToday": 5
+                "initialNumberOfCases": 5,
+                "populationServed": 3645000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3411,7 +3489,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "0d10e1b1-bbc7-4315-8ab3-1c1912c76731",
+                        "id": "8167ecad-483e-4e7a-9638-50e37bb42aa3",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3438,8 +3516,8 @@
                 "country": "Germany",
                 "hospitalBeds": 4081,
                 "importsPerDay": 0.1,
-                "populationServed": 683000,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 683000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3457,7 +3535,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "5c276fb2-5e17-437c-9ccf-46a7168f019d",
+                        "id": "465ef2b1-93f8-4377-ace9-9c7747bcd251",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3484,8 +3562,8 @@
                 "country": "Germany",
                 "hospitalBeds": 15011,
                 "importsPerDay": 0.1,
-                "populationServed": 2512000,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 2512000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3503,7 +3581,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "d911938e-feb4-4cf8-af89-d01e6ce32e62",
+                        "id": "ac88d9ef-986d-4070-b9c3-47fb6e4006e8",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3530,8 +3608,8 @@
                 "country": "Germany",
                 "hospitalBeds": 11001,
                 "importsPerDay": 0.1,
-                "populationServed": 1841000,
-                "suspectedCasesToday": 6
+                "initialNumberOfCases": 6,
+                "populationServed": 1841000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3549,7 +3627,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "6c146e53-9f5a-4890-ae35-86c15fe9ae39",
+                        "id": "f43fe347-52d4-4a17-8186-d6f8e6ba553d",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3576,8 +3654,8 @@
                 "country": "Germany",
                 "hospitalBeds": 37444,
                 "importsPerDay": 0.1,
-                "populationServed": 6266000,
-                "suspectedCasesToday": 7
+                "initialNumberOfCases": 7,
+                "populationServed": 6266000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3595,7 +3673,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "c0c725d8-a12f-4bc6-8699-ffebc0640b3b",
+                        "id": "eece7517-06f6-4faa-89c5-2cf2fb129ed0",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3622,8 +3700,8 @@
                 "country": "Germany",
                 "hospitalBeds": 9621,
                 "importsPerDay": 0.1,
-                "populationServed": 1610000,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 1610000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3641,7 +3719,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "c8ef915b-139f-45f0-99c9-abed8fb8e9bc",
+                        "id": "3e3e4822-fea1-46a4-849e-72e7184c455d",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3668,8 +3746,8 @@
                 "country": "Germany",
                 "hospitalBeds": 47699,
                 "importsPerDay": 0.1,
-                "populationServed": 7982000,
-                "suspectedCasesToday": 4
+                "initialNumberOfCases": 4,
+                "populationServed": 7982000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3687,7 +3765,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "9f04ef2f-cd7e-4f9b-a8ad-3674ff519b93",
+                        "id": "1a41d0f2-9ac3-4836-a7f4-cdd8c329f27c",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3714,8 +3792,8 @@
                 "country": "Germany",
                 "hospitalBeds": 107164,
                 "importsPerDay": 0.1,
-                "populationServed": 17933000,
-                "suspectedCasesToday": 12
+                "initialNumberOfCases": 12,
+                "populationServed": 17933000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3733,7 +3811,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "512a7d4c-fc3d-4aea-83af-441724add8fa",
+                        "id": "8670dd37-7afc-42ee-a337-54aa7b18d557",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3760,8 +3838,8 @@
                 "country": "Germany",
                 "hospitalBeds": 24411,
                 "importsPerDay": 0.1,
-                "populationServed": 4085000,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 4085000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3779,7 +3857,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "6ee465d5-fd60-43ba-82d0-e7c8c54d2bc1",
+                        "id": "e00ef519-35dc-4182-8071-76aded25beeb",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3806,8 +3884,8 @@
                 "country": "Germany",
                 "hospitalBeds": 5922,
                 "importsPerDay": 0.1,
-                "populationServed": 991000,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 991000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3825,7 +3903,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "04a80146-6379-4752-be9b-d6762c8ea46e",
+                        "id": "0821e5d1-cfd5-4037-99a2-c638480c46bd",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3852,8 +3930,8 @@
                 "country": "Germany",
                 "hospitalBeds": 24369,
                 "importsPerDay": 0.1,
-                "populationServed": 4078000,
-                "suspectedCasesToday": 13
+                "initialNumberOfCases": 13,
+                "populationServed": 4078000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3871,7 +3949,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "55cb4459-c5ac-4e5e-99cb-e12be29db254",
+                        "id": "4a6fb258-67e9-406b-88c1-b7bc97808465",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3898,8 +3976,8 @@
                 "country": "Germany",
                 "hospitalBeds": 13194,
                 "importsPerDay": 0.1,
-                "populationServed": 2208000,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 2208000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3917,7 +3995,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "76a41bad-3897-444f-aec1-096bd66a8568",
+                        "id": "7c4c2332-f5a8-49be-b257-ff400c96df83",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3944,8 +4022,8 @@
                 "country": "Germany",
                 "hospitalBeds": 17312,
                 "importsPerDay": 0.1,
-                "populationServed": 2897000,
-                "suspectedCasesToday": 6
+                "initialNumberOfCases": 6,
+                "populationServed": 2897000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -3963,7 +4041,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "a20823cd-faa7-4055-be17-3f8a8e0bc32f",
+                        "id": "1c0fbfe3-c919-481d-854c-859fb969f5b0",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -3990,8 +4068,8 @@
                 "country": "Germany",
                 "hospitalBeds": 12806,
                 "importsPerDay": 0.1,
-                "populationServed": 2143000,
-                "suspectedCasesToday": 15
+                "initialNumberOfCases": 15,
+                "populationServed": 2143000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4021,12 +4099,12 @@
             },
             "population": {
                 "ICUBeds": 300,
-                "cases": "DEU-NI-RegionG\u00f6ttingen",
+                "cases": "None",
                 "country": "Germany",
                 "hospitalBeds": 6000,
                 "importsPerDay": 0.1,
-                "populationServed": 600000,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 600000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4044,7 +4122,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b3eb00a3-7f64-44b3-9e80-2a5569d739df",
+                        "id": "5d124ee5-17af-4ac4-b179-0655028d6002",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4071,8 +4149,8 @@
                 "country": "Spain",
                 "hospitalBeds": 19744,
                 "importsPerDay": 0.1,
-                "populationServed": 8414240,
-                "suspectedCasesToday": 98
+                "initialNumberOfCases": 98,
+                "populationServed": 8414240
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4090,12 +4168,22 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "04501efb-ede8-4e3c-befd-3fab86397bbd",
+                        "id": "10a7448c-e4b5-4e76-9b05-dc46e7de29c7",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
                             "tMax": "2020-09-01",
                             "tMin": "2020-03-21"
+                        }
+                    },
+                    {
+                        "color": "#666666",
+                        "id": "aa694510-6eb6-4b6d-a713-05e8f90847b6",
+                        "mitigationValue": 60.0,
+                        "name": "Intervention #2",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-11"
                         }
                     }
                 ],
@@ -4117,8 +4205,8 @@
                 "country": "Spain",
                 "hospitalBeds": 3096,
                 "importsPerDay": 0.1,
-                "populationServed": 1319291,
-                "suspectedCasesToday": 38
+                "initialNumberOfCases": 38,
+                "populationServed": 1319291
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4136,7 +4224,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "f55a04df-bede-4066-b998-da42d7108261",
+                        "id": "34f39274-c521-40eb-adeb-0a3805817040",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4163,8 +4251,8 @@
                 "country": "Spain",
                 "hospitalBeds": 2400,
                 "importsPerDay": 0.1,
-                "populationServed": 1022800,
-                "suspectedCasesToday": 30
+                "initialNumberOfCases": 30,
+                "populationServed": 1022800
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4182,7 +4270,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "ceaec814-08fc-4f50-87bc-1cd4896c8f28",
+                        "id": "d229cc89-8657-4f45-805d-72c08007d28f",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4209,8 +4297,8 @@
                 "country": "Spain",
                 "hospitalBeds": 2697,
                 "importsPerDay": 0.1,
-                "populationServed": 1149460,
-                "suspectedCasesToday": 23
+                "initialNumberOfCases": 23,
+                "populationServed": 1149460
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4228,7 +4316,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "1c9b0ca7-91dc-43ad-be74-3cdcd887ddbd",
+                        "id": "e50b15bf-ca8b-453e-a64d-185985d50127",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4255,8 +4343,8 @@
                 "country": "Spain",
                 "hospitalBeds": 5053,
                 "importsPerDay": 0.1,
-                "populationServed": 2153389,
-                "suspectedCasesToday": 23
+                "initialNumberOfCases": 23,
+                "populationServed": 2153389
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4274,12 +4362,22 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "cead9c9c-d034-48fb-8f26-ff3712d8365d",
+                        "id": "7b62db75-e77e-40cd-bb86-12192033c5c2",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
                             "tMax": "2020-09-01",
                             "tMin": "2020-03-21"
+                        }
+                    },
+                    {
+                        "color": "#666666",
+                        "id": "56398c20-f891-4cfe-992b-5a19e57cb646",
+                        "mitigationValue": 60.0,
+                        "name": "Intervention #2",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-12"
                         }
                     }
                 ],
@@ -4301,8 +4399,8 @@
                 "country": "Spain",
                 "hospitalBeds": 1363,
                 "importsPerDay": 0.1,
-                "populationServed": 581078,
-                "suspectedCasesToday": 13
+                "initialNumberOfCases": 13,
+                "populationServed": 581078
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4320,7 +4418,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "cbd1750e-d141-4c95-b508-a0cbb15bbb8e",
+                        "id": "d0548593-e3e8-45fb-acc8-3f98ae1a706d",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4330,7 +4428,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "ad645b75-8da4-437f-bacc-dc59e3aa2916",
+                        "id": "ef104628-bb7c-4bca-a244-c87605762f42",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -4357,8 +4455,8 @@
                 "country": "Spain",
                 "hospitalBeds": 4770,
                 "importsPerDay": 0.1,
-                "populationServed": 2032863,
-                "suspectedCasesToday": 235
+                "initialNumberOfCases": 235,
+                "populationServed": 2032863
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4376,7 +4474,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b526b3c3-01b6-4dcd-903b-f8bf223ab03a",
+                        "id": "ac3a6bc0-754a-4d38-bf94-9a806f22c35a",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4386,7 +4484,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "1a8d35c2-3105-46e6-9e19-b2e2c14f54ba",
+                        "id": "4f0627fe-5a39-445d-99db-30237be82805",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -4413,8 +4511,8 @@
                 "country": "Spain",
                 "hospitalBeds": 5630,
                 "importsPerDay": 0.1,
-                "populationServed": 2399548,
-                "suspectedCasesToday": 104
+                "initialNumberOfCases": 104,
+                "populationServed": 2399548
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4432,7 +4530,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "6ec0c05e-fc3c-49e3-a7c1-0906e44e58f6",
+                        "id": "b6b811b2-2e50-45eb-bcfc-b11207be6987",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4442,7 +4540,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "a92b5e2c-9c78-41a9-9c44-ff4cfffccd13",
+                        "id": "d0a2b00a-4913-442f-b3fb-c005134c833d",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -4469,8 +4567,8 @@
                 "country": "Spain",
                 "hospitalBeds": 18010,
                 "importsPerDay": 0.1,
-                "populationServed": 7675217,
-                "suspectedCasesToday": 133
+                "initialNumberOfCases": 133,
+                "populationServed": 7675217
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4488,7 +4586,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "9e29f41f-c75c-4882-8678-2a409b432117",
+                        "id": "17e61ca1-188f-49de-869f-c04a4d47e36d",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4515,8 +4613,8 @@
                 "country": "Spain",
                 "hospitalBeds": 199,
                 "importsPerDay": 0.1,
-                "populationServed": 84777,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 84777
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4534,7 +4632,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "309e35d1-b93e-4530-9d19-0c8bcac4b61a",
+                        "id": "101bfe26-f1c3-4a98-b8fd-0c0b206e6389",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4561,8 +4659,8 @@
                 "country": "Spain",
                 "hospitalBeds": 11741,
                 "importsPerDay": 0.1,
-                "populationServed": 5003769,
-                "suspectedCasesToday": 119
+                "initialNumberOfCases": 119,
+                "populationServed": 5003769
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4580,7 +4678,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "6302b355-f58d-42d9-a9d5-60f4d0aea776",
+                        "id": "bdac8cc9-91ce-4dfb-bea6-0546ad6853d5",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4607,8 +4705,8 @@
                 "country": "Spain",
                 "hospitalBeds": 2505,
                 "importsPerDay": 0.1,
-                "populationServed": 1067710,
-                "suspectedCasesToday": 73
+                "initialNumberOfCases": 73,
+                "populationServed": 1067710
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4626,7 +4724,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "c9865692-99cf-4202-9e85-4e626331b818",
+                        "id": "eb8d00bd-9126-472d-bdb4-9923a02e0259",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4653,8 +4751,8 @@
                 "country": "Spain",
                 "hospitalBeds": 6334,
                 "importsPerDay": 0.1,
-                "populationServed": 2699499,
-                "suspectedCasesToday": 24
+                "initialNumberOfCases": 24,
+                "populationServed": 2699499
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4672,7 +4770,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "78dc0c61-3819-47d1-a475-9d1ba1bff70c",
+                        "id": "a76cd5a4-cf70-4238-96d1-d7372c4fbc38",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4682,7 +4780,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "a5fe84bb-47eb-4c96-b976-99bb18b46006",
+                        "id": "f4e02f03-69ed-4405-b7ea-eb3aaa2151de",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -4709,8 +4807,8 @@
                 "country": "Spain",
                 "hospitalBeds": 15636,
                 "importsPerDay": 0.1,
-                "populationServed": 6663394,
-                "suspectedCasesToday": 268
+                "initialNumberOfCases": 268,
+                "populationServed": 6663394
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4728,7 +4826,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "74a8cd8e-db3f-4bea-b530-8fc96692eb8c",
+                        "id": "34b3cd60-cbea-4bcb-b4d0-ad5bfed8f9cb",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4755,8 +4853,8 @@
                 "country": "Spain",
                 "hospitalBeds": 203,
                 "importsPerDay": 0.1,
-                "populationServed": 86487,
-                "suspectedCasesToday": 125
+                "initialNumberOfCases": 125,
+                "populationServed": 86487
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4774,7 +4872,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b7791f97-29fa-4c6d-b7d3-fa5d3f17dfb3",
+                        "id": "5f4a13a5-f79f-4e16-bcdc-578ff0cefb80",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4801,8 +4899,8 @@
                 "country": "Spain",
                 "hospitalBeds": 3505,
                 "importsPerDay": 0.1,
-                "populationServed": 1493898,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 1493898
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4820,7 +4918,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "20d90d54-04df-43f2-a2c9-439b33227875",
+                        "id": "52e1f756-98c1-4ef9-8149-eadd8a7951ce",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4830,7 +4928,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "b2103af3-dfc1-48de-bc8e-8d0cf26c7d12",
+                        "id": "558ece4d-cd13-487b-aac9-3ecb5afc88ba",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -4857,8 +4955,8 @@
                 "country": "Spain",
                 "hospitalBeds": 1535,
                 "importsPerDay": 0.1,
-                "populationServed": 654214,
-                "suspectedCasesToday": 44
+                "initialNumberOfCases": 44,
+                "populationServed": 654214
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4876,7 +4974,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "c1cc8674-c97d-428e-8966-169b6c906b68",
+                        "id": "f1035bc5-5919-448a-aa73-7185c6c401a5",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4886,7 +4984,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "5d4dc1b9-0aea-49e6-963d-548db6a47ab9",
+                        "id": "0cdc4594-2dab-4190-920b-0c3c6a7cfd17",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -4913,8 +5011,8 @@
                 "country": "Spain",
                 "hospitalBeds": 5180,
                 "importsPerDay": 0.1,
-                "populationServed": 2207776,
-                "suspectedCasesToday": 296
+                "initialNumberOfCases": 296,
+                "populationServed": 2207776
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -4932,7 +5030,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "0dc9e21d-bf32-4550-a0a7-2859d08c0a39",
+                        "id": "11c4dcf1-339f-47e6-98ca-0f9b3c836834",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -4942,7 +5040,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "ae03d039-e6ff-4e32-b20d-d38d10e3ae38",
+                        "id": "89c5c997-043d-426f-8144-073427c596e9",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -4969,8 +5067,8 @@
                 "country": "Spain",
                 "hospitalBeds": 743,
                 "importsPerDay": 0.1,
-                "populationServed": 316798,
-                "suspectedCasesToday": 40
+                "initialNumberOfCases": 40,
+                "populationServed": 316798
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5000,12 +5098,12 @@
             },
             "population": {
                 "ICUBeds": 108,
-                "cases": "SWE-Stockholm",
+                "cases": "None",
                 "country": "Sweden",
                 "hospitalBeds": 4506,
                 "importsPerDay": 0.1,
-                "populationServed": 2000000,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 2000000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5023,7 +5121,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "e225bd54-b1ad-4b2c-9cbd-6d89ab7a037b",
+                        "id": "0a0e033c-e369-4db4-a9dc-c17cf1ec6209",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5033,7 +5131,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "d7ff7dcb-5793-45f8-8f3f-7f8574c0bbdc",
+                        "id": "3906ec7d-14dd-4dc8-8afd-91ddba08e463",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -5060,8 +5158,8 @@
                 "country": "Italy",
                 "hospitalBeds": 14826,
                 "importsPerDay": 0.1,
-                "populationServed": 4356406,
-                "suspectedCasesToday": 499
+                "initialNumberOfCases": 499,
+                "populationServed": 4356406
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5091,12 +5189,12 @@
             },
             "population": {
                 "ICUBeds": 0,
-                "cases": "ITA-Valle d\u2019Aosta",
+                "cases": "None",
                 "country": "Italy",
                 "hospitalBeds": 449,
                 "importsPerDay": 0.1,
-                "populationServed": 125666,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 125666
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5114,7 +5212,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "26065728-61fb-4052-9ccb-de3a877ff331",
+                        "id": "e9627a35-a9b3-4b0c-8eb2-2e76310be547",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5124,7 +5222,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "c7b9e91a-34e9-430c-ab03-54a235d5019a",
+                        "id": "32537ead-62aa-4dd8-9048-4d560c7e4b17",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -5151,8 +5249,8 @@
                 "country": "Italy",
                 "hospitalBeds": 34473,
                 "importsPerDay": 0.1,
-                "populationServed": 10060574,
-                "suspectedCasesToday": 989
+                "initialNumberOfCases": 989,
+                "populationServed": 10060574
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5182,12 +5280,12 @@
             },
             "population": {
                 "ICUBeds": 75,
-                "cases": "ITA-TrentinoAltoAdige",
+                "cases": "None",
                 "country": "Italy",
                 "hospitalBeds": 3763,
                 "importsPerDay": 0.1,
-                "populationServed": 1072276,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 1072276
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5205,7 +5303,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "37bfecb2-a31f-4049-a1e0-a587252558cd",
+                        "id": "44748e1f-630e-43f7-b1b3-10b763621572",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5232,8 +5330,8 @@
                 "country": "Italy",
                 "hospitalBeds": 15857,
                 "importsPerDay": 0.1,
-                "populationServed": 4905854,
-                "suspectedCasesToday": 187
+                "initialNumberOfCases": 187,
+                "populationServed": 4905854
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5251,7 +5349,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "dfc5bc20-c5f7-4dd3-9900-fcaeba500b85",
+                        "id": "c5849226-b3ee-443d-be79-2ee0bb286793",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5278,8 +5376,8 @@
                 "country": "Italy",
                 "hospitalBeds": 3899,
                 "importsPerDay": 0.1,
-                "populationServed": 1215220,
-                "suspectedCasesToday": 253
+                "initialNumberOfCases": 253,
+                "populationServed": 1215220
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5297,7 +5395,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "c11b154a-5eba-4d12-a823-4b2ce6ea78ce",
+                        "id": "2c5305e8-70c0-4009-88a0-5558ac422d5d",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5307,7 +5405,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "a5ee2297-8a74-405b-bb0d-2ee9327921b3",
+                        "id": "a8671ab4-65d2-418a-bc62-2bf6c9c12ab3",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -5334,8 +5432,8 @@
                 "country": "Italy",
                 "hospitalBeds": 5085,
                 "importsPerDay": 0.1,
-                "populationServed": 1550640,
-                "suspectedCasesToday": 303
+                "initialNumberOfCases": 303,
+                "populationServed": 1550640
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5365,12 +5463,12 @@
             },
             "population": {
                 "ICUBeds": 650,
-                "cases": "ITA-Emilia Romagna",
+                "cases": "None",
                 "country": "Italy",
                 "hospitalBeds": 16304,
                 "importsPerDay": 0.1,
-                "populationServed": 4459477,
-                "suspectedCasesToday": 1117
+                "initialNumberOfCases": 1117,
+                "populationServed": 4459477
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5388,7 +5486,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "0b18ac4e-4475-49fd-b037-7ca214b7cd80",
+                        "id": "375f7ce1-018d-41a6-bff0-488db02d3241",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5415,8 +5513,8 @@
                 "country": "Italy",
                 "hospitalBeds": 10366,
                 "importsPerDay": 0.1,
-                "populationServed": 3729641,
-                "suspectedCasesToday": 231
+                "initialNumberOfCases": 231,
+                "populationServed": 3729641
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5434,7 +5532,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "291cc836-5691-45e0-85d1-3116940120f4",
+                        "id": "682fd055-8237-4d4e-b4e0-f61cc3bfcc17",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5461,8 +5559,8 @@
                 "country": "Italy",
                 "hospitalBeds": 2652,
                 "importsPerDay": 0.1,
-                "populationServed": 882015,
-                "suspectedCasesToday": 45
+                "initialNumberOfCases": 45,
+                "populationServed": 882015
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5480,7 +5578,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "c56b76ba-4823-40eb-81c6-e4f057807596",
+                        "id": "c6f457be-828a-4c7f-814d-ded88c0d37c6",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5490,7 +5588,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "4f535f93-3644-4505-9d38-3d4537de2f6b",
+                        "id": "9f02b7f0-443a-4e93-9d50-9f0075fbe512",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -5517,8 +5615,8 @@
                 "country": "Italy",
                 "hospitalBeds": 4698,
                 "importsPerDay": 0.1,
-                "populationServed": 1525271,
-                "suspectedCasesToday": 416
+                "initialNumberOfCases": 416,
+                "populationServed": 1525271
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5536,7 +5634,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "3f0b9599-f503-42c4-b810-c9dde1c8500e",
+                        "id": "398cccb5-7220-47cc-b271-4491def12185",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5563,8 +5661,8 @@
                 "country": "Italy",
                 "hospitalBeds": 18887,
                 "importsPerDay": 0.1,
-                "populationServed": 5879082,
-                "suspectedCasesToday": 203
+                "initialNumberOfCases": 203,
+                "populationServed": 5879082
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5582,7 +5680,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "678b4ee6-ab7e-4a95-a4b7-8c1fda50186d",
+                        "id": "6a1823cc-aa13-4387-be05-33a27a1eb572",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5609,8 +5707,8 @@
                 "country": "Italy",
                 "hospitalBeds": 3872,
                 "importsPerDay": 0.1,
-                "populationServed": 1311580,
-                "suspectedCasesToday": 105
+                "initialNumberOfCases": 105,
+                "populationServed": 1311580
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5628,7 +5726,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b4ed0dc5-dc67-4761-a596-c9472c3b300d",
+                        "id": "fd2a4894-60a8-4fe4-9a74-abaedeb50847",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5655,8 +5753,8 @@
                 "country": "Italy",
                 "hospitalBeds": 1029,
                 "importsPerDay": 0.1,
-                "populationServed": 305617,
-                "suspectedCasesToday": 215
+                "initialNumberOfCases": 215,
+                "populationServed": 305617
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5674,7 +5772,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "0e82a25d-4f0d-467c-af94-ffde9f3c2469",
+                        "id": "01d6bab3-1b11-4a23-9be0-aa7858475cd4",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5701,8 +5799,8 @@
                 "country": "Italy",
                 "hospitalBeds": 14779,
                 "importsPerDay": 0.1,
-                "populationServed": 5801692,
-                "suspectedCasesToday": 66
+                "initialNumberOfCases": 66,
+                "populationServed": 5801692
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5720,7 +5818,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "f5869e63-e5eb-46bc-aa93-a04694a8dbe2",
+                        "id": "8a0c151e-d91c-489e-8f22-06a2b1b64e3e",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5747,8 +5845,8 @@
                 "country": "Italy",
                 "hospitalBeds": 11306,
                 "importsPerDay": 0.1,
-                "populationServed": 4029053,
-                "suspectedCasesToday": 128
+                "initialNumberOfCases": 128,
+                "populationServed": 4029053
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5766,7 +5864,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "3aa744f8-6936-4d00-b785-e044ca593b01",
+                        "id": "16501002-3b0c-4235-b622-ff48037aa5c5",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5793,8 +5891,8 @@
                 "country": "Italy",
                 "hospitalBeds": 1681,
                 "importsPerDay": 0.1,
-                "populationServed": 562869,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 562869
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5812,7 +5910,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b5243d3e-356b-4c8d-ab24-deffb7617605",
+                        "id": "8d9ae7bd-4e40-4bd6-ba6a-648bb47d30df",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5839,8 +5937,8 @@
                 "country": "Italy",
                 "hospitalBeds": 4901,
                 "importsPerDay": 0.1,
-                "populationServed": 1947131,
-                "suspectedCasesToday": 24
+                "initialNumberOfCases": 24,
+                "populationServed": 1947131
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5858,7 +5956,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "3c833fdc-ec2a-4972-8928-1896553e71f7",
+                        "id": "da65f8e2-8feb-4d75-83cf-9245c1dc649c",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5885,8 +5983,8 @@
                 "country": "Italy",
                 "hospitalBeds": 13642,
                 "importsPerDay": 0.1,
-                "populationServed": 4999891,
-                "suspectedCasesToday": 13
+                "initialNumberOfCases": 13,
+                "populationServed": 4999891
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5904,7 +6002,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "fc7d0abd-8cf3-4586-992d-ef9d6f6f2b38",
+                        "id": "aa667076-f892-450f-955a-a68bb24a78f9",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5931,8 +6029,8 @@
                 "country": "Italy",
                 "hospitalBeds": 4960,
                 "importsPerDay": 0.1,
-                "populationServed": 1639591,
-                "suspectedCasesToday": 47
+                "initialNumberOfCases": 47,
+                "populationServed": 1639591
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5950,7 +6048,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "888bedb1-26b4-4032-99ed-16c4e6737e3d",
+                        "id": "8886bf77-5663-49a2-adf3-c86058dcd1c3",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -5977,8 +6075,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 1985,
                 "importsPerDay": 0.1,
-                "populationServed": 567025,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 567025
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -5996,7 +6094,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b2c5a5d6-1aee-45f4-bf08-3f8800ef9776",
+                        "id": "6092172d-5be1-478b-a455-bb391f187c4d",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6023,8 +6121,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 1319,
                 "importsPerDay": 0.1,
-                "populationServed": 628061,
-                "suspectedCasesToday": 187
+                "initialNumberOfCases": 187,
+                "populationServed": 628061
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6042,7 +6140,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "d22baa24-11bc-42c9-904e-1fa149a01531",
+                        "id": "c7e340d2-5a46-47ed-9abe-80c34cca8897",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6069,8 +6167,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 3171,
                 "importsPerDay": 0.1,
-                "populationServed": 720687,
-                "suspectedCasesToday": 8
+                "initialNumberOfCases": 8,
+                "populationServed": 720687
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6085,7 +6183,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "230cf8dc-920c-458a-ad6b-a26cef1cbaa5",
+                        "mitigationValue": 20.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-08"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -6104,8 +6213,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 1615,
                 "importsPerDay": 0.1,
-                "populationServed": 734002,
-                "suspectedCasesToday": 24
+                "initialNumberOfCases": 24,
+                "populationServed": 734002
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6123,7 +6232,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "8fa0a947-0709-4ea0-b67d-428c1ec18157",
+                        "id": "6a9b2a1d-977d-4a3a-9303-c2405ad45661",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6150,8 +6259,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 3275,
                 "importsPerDay": 0.1,
-                "populationServed": 761723,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 761723
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6169,7 +6278,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "33b9f69d-e092-4c7d-a21b-10c44547fabb",
+                        "id": "94ec5629-707a-4cb3-804e-c69209a60dbe",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6196,8 +6305,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 4335,
                 "importsPerDay": 0.1,
-                "populationServed": 903027,
-                "suspectedCasesToday": 130
+                "initialNumberOfCases": 130,
+                "populationServed": 903027
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6215,7 +6324,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "dbddb7f6-f692-4d92-8eb9-5b5c21e6cb10",
+                        "id": "12898df7-f1f0-460a-b69d-53f743ed6ae1",
                         "mitigationValue": 60.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6242,8 +6351,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 2162,
                 "importsPerDay": 0.1,
-                "populationServed": 982895,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 982895
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6261,7 +6370,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "085c2780-b3f7-4286-88b0-06d546237ae6",
+                        "id": "979ce224-0dfb-409c-b05e-eb8281c21ff6",
                         "mitigationValue": 60.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6288,8 +6397,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 2218,
                 "importsPerDay": 0.1,
-                "populationServed": 1056161,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 1056161
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6304,7 +6413,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "de6e9da3-3f5c-4e3c-8181-adc0c7296334",
+                        "mitigationValue": 60.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-08"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -6323,8 +6443,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 3586,
                 "importsPerDay": 0.1,
-                "populationServed": 1086759,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 1086759
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6342,7 +6462,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "7642f7bf-965a-4bf2-81ca-ef776242a48a",
+                        "id": "db9e22fc-92b1-4f44-a5a1-f13c2026136e",
                         "mitigationValue": 70.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6369,8 +6489,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 3364,
                 "importsPerDay": 0.1,
-                "populationServed": 1345790,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 1345790
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6388,7 +6508,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "8fa40ba2-60b8-4ea2-8994-7a6903cebe6d",
+                        "id": "078a9d29-96d0-4a99-8189-b3d29ae4a363",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6415,8 +6535,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 2880,
                 "importsPerDay": 0.1,
-                "populationServed": 1371246,
-                "suspectedCasesToday": 6
+                "initialNumberOfCases": 6,
+                "populationServed": 1371246
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6431,7 +6551,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "14513b5a-b538-40a6-8f10-157e18a7902f",
+                        "mitigationValue": 20.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-09"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -6450,8 +6581,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 2684,
                 "importsPerDay": 0.1,
-                "populationServed": 1412687,
-                "suspectedCasesToday": 52
+                "initialNumberOfCases": 52,
+                "populationServed": 1412687
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6466,7 +6597,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "2856bd23-7f2e-4363-9e35-4a930fc84059",
+                        "mitigationValue": 20.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-10"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -6485,8 +6627,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 6757,
                 "importsPerDay": 0.1,
-                "populationServed": 1778070,
-                "suspectedCasesToday": 13
+                "initialNumberOfCases": 13,
+                "populationServed": 1778070
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6504,7 +6646,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "cbe0ceff-c078-41e3-8290-2ceb80583135",
+                        "id": "fbe101d9-1c3a-4a3b-9e1c-f443fd6b27e6",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6531,8 +6673,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 3470,
                 "importsPerDay": 0.1,
-                "populationServed": 1826156,
-                "suspectedCasesToday": 19
+                "initialNumberOfCases": 19,
+                "populationServed": 1826156
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6547,7 +6689,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "a2979722-a509-4f15-a779-aa239b249067",
+                        "mitigationValue": 40.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-10"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -6566,8 +6719,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 7029,
                 "importsPerDay": 0.1,
-                "populationServed": 1952570,
-                "suspectedCasesToday": 4
+                "initialNumberOfCases": 4,
+                "populationServed": 1952570
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6585,7 +6738,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "e54feded-5e28-451c-89c9-459b0ed0257a",
+                        "id": "e408b072-8a0f-44e2-b965-8a5534cf70bf",
                         "mitigationValue": 60.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6612,8 +6765,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 3774,
                 "importsPerDay": 0.1,
-                "populationServed": 2096640,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 2096640
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6631,7 +6784,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "6132c859-1fce-4a7b-bf4b-07476a11134b",
+                        "id": "b46bea47-e065-4864-83d0-a8c7f46a687b",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6658,8 +6811,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 9604,
                 "importsPerDay": 0.1,
-                "populationServed": 2910357,
-                "suspectedCasesToday": 33
+                "initialNumberOfCases": 33,
+                "populationServed": 2910357
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6677,7 +6830,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "f4f4ca20-0485-49ea-8fe5-173a10a08ff3",
+                        "id": "37f35ada-bf6e-4f35-80f5-d66a54d97288",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6704,8 +6857,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 11957,
                 "importsPerDay": 0.1,
-                "populationServed": 2989260,
-                "suspectedCasesToday": 14
+                "initialNumberOfCases": 14,
+                "populationServed": 2989260
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6739,8 +6892,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 6064,
                 "importsPerDay": 0.1,
-                "populationServed": 3032160,
-                "suspectedCasesToday": 9
+                "initialNumberOfCases": 9,
+                "populationServed": 3032160
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6758,7 +6911,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "93524273-66f5-47d1-9573-3ed4faeadc2e",
+                        "id": "2d2b5775-57ed-48df-aa87-bb16128aee9e",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6785,8 +6938,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 9725,
                 "importsPerDay": 0.1,
-                "populationServed": 3038999,
-                "suspectedCasesToday": 12
+                "initialNumberOfCases": 12,
+                "populationServed": 3038999
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6804,7 +6957,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "83429919-75b1-4968-ab79-ec45ad300c4c",
+                        "id": "7deca5f7-8652-48ca-9a10-f740087c4f18",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6831,8 +6984,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 6593,
                 "importsPerDay": 0.1,
-                "populationServed": 3139658,
-                "suspectedCasesToday": 15
+                "initialNumberOfCases": 15,
+                "populationServed": 3139658
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6850,7 +7003,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "a15e1414-96a7-40ee-a223-c440a5aff68b",
+                        "id": "184e02c4-339c-4fb6-935e-5f5e3878fbe3",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6877,8 +7030,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 9540,
                 "importsPerDay": 0.1,
-                "populationServed": 3179840,
-                "suspectedCasesToday": 2
+                "initialNumberOfCases": 2,
+                "populationServed": 3179840
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6896,7 +7049,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "e001e228-3fa8-4b5f-9136-02a993ea7563",
+                        "id": "10b0d4b0-2f61-4516-a0b4-229b8e7f4a81",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -6923,8 +7076,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 5908,
                 "importsPerDay": 0.1,
-                "populationServed": 3282115,
-                "suspectedCasesToday": 2
+                "initialNumberOfCases": 2,
+                "populationServed": 3282115
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6942,12 +7095,22 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "4bac6efa-c7d5-4e86-8e0f-3735535dd2ef",
+                        "id": "ec6fc911-b9a7-4329-89c1-b4da7630769c",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
                             "tMax": "2020-09-01",
                             "tMin": "2020-03-27"
+                        }
+                    },
+                    {
+                        "color": "#666666",
+                        "id": "5ec6f825-11c8-41df-81f4-67376d8bfeb7",
+                        "mitigationValue": 60.0,
+                        "name": "Intervention #2",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-11"
                         }
                     }
                 ],
@@ -6969,8 +7132,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 7126,
                 "importsPerDay": 0.1,
-                "populationServed": 3563070,
-                "suspectedCasesToday": 14
+                "initialNumberOfCases": 14,
+                "populationServed": 3563070
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -6988,7 +7151,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "7faed19c-2dd1-4594-9ef6-2079e49a4597",
+                        "id": "42552506-d56f-4371-864c-8825c09f4b98",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7015,8 +7178,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 11073,
                 "importsPerDay": 0.1,
-                "populationServed": 3954821,
-                "suspectedCasesToday": 17
+                "initialNumberOfCases": 17,
+                "populationServed": 3954821
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7031,7 +7194,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "2eb4f49d-9df3-405f-8d78-78917001e55b",
+                        "mitigationValue": 20.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-09"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -7050,8 +7224,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 6882,
                 "importsPerDay": 0.1,
-                "populationServed": 4301089,
-                "suspectedCasesToday": 80
+                "initialNumberOfCases": 80,
+                "populationServed": 4301089
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7066,7 +7240,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "93a12317-dcde-4dcd-8a61-289785ff0a15",
+                        "mitigationValue": 30.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-10"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -7085,8 +7270,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 14399,
                 "importsPerDay": 0.1,
-                "populationServed": 4499692,
-                "suspectedCasesToday": 21
+                "initialNumberOfCases": 21,
+                "populationServed": 4499692
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7104,7 +7289,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "f46b3db2-9e59-47f8-bbe9-73a22375c5ac",
+                        "id": "15287c48-7459-4784-893e-815ea2948acb",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7114,7 +7299,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "6779f5f0-3838-4380-9faa-26e932edbdea",
+                        "id": "c3f684b2-ff8d-434b-b7c8-27142f4d4447",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -7141,8 +7326,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 15329,
                 "importsPerDay": 0.1,
-                "populationServed": 4645184,
-                "suspectedCasesToday": 107
+                "initialNumberOfCases": 107,
+                "populationServed": 4645184
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7160,7 +7345,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b83cb97f-7687-4316-88ac-fed94d903238",
+                        "id": "bc8a8a13-1a7e-43a2-a4bb-278e5eef8230",
                         "mitigationValue": 70.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7187,8 +7372,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 15217,
                 "importsPerDay": 0.1,
-                "populationServed": 4908621,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 4908621
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7206,7 +7391,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "1420571c-4e22-40e0-bc99-b0d986b0700b",
+                        "id": "ce50440d-f21e-4e5a-89fe-eee2a8af222d",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7233,8 +7418,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 12504,
                 "importsPerDay": 0.1,
-                "populationServed": 5210095,
-                "suspectedCasesToday": 28
+                "initialNumberOfCases": 28,
+                "populationServed": 5210095
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7268,8 +7453,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 14252,
                 "importsPerDay": 0.1,
-                "populationServed": 5700671,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 5700671
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7287,7 +7472,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "30b39fee-535e-41c4-ba74-82264b0dc3c2",
+                        "id": "40bb810c-e017-4e55-9f01-7acef9770396",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7314,8 +7499,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 11106,
                 "importsPerDay": 0.1,
-                "populationServed": 5845526,
-                "suspectedCasesToday": 12
+                "initialNumberOfCases": 12,
+                "populationServed": 5845526
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7333,7 +7518,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "e8fddd0f-5d46-420b-9f16-e4501c1e0858",
+                        "id": "cb5ea7f8-9829-46ae-9a18-3ee178fc7ef5",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7360,8 +7545,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 12289,
                 "importsPerDay": 0.1,
-                "populationServed": 5851754,
-                "suspectedCasesToday": 56
+                "initialNumberOfCases": 56,
+                "populationServed": 5851754
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7379,7 +7564,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "e9410bb9-3707-4951-b9d2-56b8e4f6faa5",
+                        "id": "f0d4d12e-6e84-49ad-aa04-6eed2b9e9dae",
                         "mitigationValue": 60.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7406,8 +7591,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 11558,
                 "importsPerDay": 0.1,
-                "populationServed": 6083116,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 6083116
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7425,7 +7610,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "eecbfab6-fc53-4a19-abbc-d8642d0301d5",
+                        "id": "fe106b98-0154-4ab1-bd5b-a499de6b8a86",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7452,8 +7637,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 19125,
                 "importsPerDay": 0.1,
-                "populationServed": 6169270,
-                "suspectedCasesToday": 74
+                "initialNumberOfCases": 74,
+                "populationServed": 6169270
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7471,7 +7656,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "d5b27241-e5fb-415a-b739-b30285fb9532",
+                        "id": "d0f1ad6d-d61f-4bb7-a51a-fdb0c57a024b",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7498,8 +7683,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 18212,
                 "importsPerDay": 0.1,
-                "populationServed": 6745354,
-                "suspectedCasesToday": 40
+                "initialNumberOfCases": 40,
+                "populationServed": 6745354
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7517,7 +7702,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "98d83422-c77c-4339-9417-322326435564",
+                        "id": "37dec8c7-88ec-4cd5-acd6-d753816ae74b",
                         "mitigationValue": 60.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7544,8 +7729,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 20003,
                 "importsPerDay": 0.1,
-                "populationServed": 6897576,
-                "suspectedCasesToday": 1
+                "initialNumberOfCases": 1,
+                "populationServed": 6897576
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7563,12 +7748,22 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "48706806-c0e3-4382-afd8-d7634b678508",
+                        "id": "83384c44-2bae-4153-ba53-54d1b54a8a3f",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
                             "tMax": "2020-09-01",
                             "tMin": "2020-03-26"
+                        }
+                    },
+                    {
+                        "color": "#666666",
+                        "id": "23af6919-d8db-46a6-b0aa-50100f7ab6b5",
+                        "mitigationValue": 60.0,
+                        "name": "Intervention #2",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-10"
                         }
                     }
                 ],
@@ -7590,8 +7785,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 16046,
                 "importsPerDay": 0.1,
-                "populationServed": 6976597,
-                "suspectedCasesToday": 2
+                "initialNumberOfCases": 2,
+                "populationServed": 6976597
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7609,7 +7804,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "696d8292-44c9-446e-baa3-c0fc7d0dfec5",
+                        "id": "7455e8c9-d5b8-4cd2-8eaa-5546a1f3919c",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7636,8 +7831,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 14019,
                 "importsPerDay": 0.1,
-                "populationServed": 7378494,
-                "suspectedCasesToday": 31
+                "initialNumberOfCases": 31,
+                "populationServed": 7378494
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7655,12 +7850,12 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "9f8344b0-7e1b-487f-bb09-c83d8c1fe9ea",
+                        "id": "3173d8b0-d8a9-444c-bf2f-19d7fa628487",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
                             "tMax": "2020-09-01",
-                            "tMin": "2020-03-25"
+                            "tMin": "2020-03-23"
                         }
                     }
                 ],
@@ -7682,8 +7877,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 13255,
                 "importsPerDay": 0.1,
-                "populationServed": 7797095,
-                "suspectedCasesToday": 817
+                "initialNumberOfCases": 817,
+                "populationServed": 7797095
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7701,7 +7896,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "1e4c4c97-62f6-4f7a-a4aa-49aa9d703357",
+                        "id": "ce132713-ddfc-4299-897b-ea7a6a3e7524",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7728,8 +7923,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 18115,
                 "importsPerDay": 0.1,
-                "populationServed": 8626207,
-                "suspectedCasesToday": 25
+                "initialNumberOfCases": 25,
+                "populationServed": 8626207
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7747,7 +7942,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "4c72e7da-80bd-436c-ac96-61cb16065b2a",
+                        "id": "445de4ed-1263-4184-8166-eeae1bbd6535",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7757,7 +7952,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "140c6f17-23c3-4272-a4d2-6ec9d916f592",
+                        "id": "fe90f5f4-cecc-49a1-b7a4-d934bba30d43",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -7784,8 +7979,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 21448,
                 "importsPerDay": 0.1,
-                "populationServed": 8936574,
-                "suspectedCasesToday": 24
+                "initialNumberOfCases": 24,
+                "populationServed": 8936574
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7803,12 +7998,12 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "441e17d2-00ac-4b72-9c9c-1a1dc0463863",
+                        "id": "1eb99f54-dc10-42bf-8d97-a4b1d63277fb",
                         "mitigationValue": 60.0,
                         "name": "Intervention #1",
                         "timeRange": {
                             "tMax": "2020-09-01",
-                            "tMin": "2020-03-27"
+                            "tMin": "2020-03-25"
                         }
                     }
                 ],
@@ -7830,8 +8025,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 25113,
                 "importsPerDay": 0.1,
-                "populationServed": 10045029,
-                "suspectedCasesToday": 11
+                "initialNumberOfCases": 11,
+                "populationServed": 10045029
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7849,7 +8044,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "dd4da987-c777-4403-9064-97687218f019",
+                        "id": "284657f7-8570-4455-aba9-bb77fe2335ee",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7876,8 +8071,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 22285,
                 "importsPerDay": 0.1,
-                "populationServed": 10611862,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 10611862
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7895,7 +8090,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "8dde6ed1-6d6c-416f-94da-e3b0ee1bc38f",
+                        "id": "53db412f-d5c9-40d8-ad80-962b230a713e",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7922,8 +8117,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 25767,
                 "importsPerDay": 0.1,
-                "populationServed": 10736059,
-                "suspectedCasesToday": 78
+                "initialNumberOfCases": 78,
+                "populationServed": 10736059
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7941,7 +8136,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "d97ef40a-3c29-43d1-8bac-8468f704d224",
+                        "id": "b22fe3cb-8dbf-4c9d-8a27-4c61b543bbbd",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -7968,8 +8163,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 32894,
                 "importsPerDay": 0.1,
-                "populationServed": 11747694,
-                "suspectedCasesToday": 12
+                "initialNumberOfCases": 12,
+                "populationServed": 11747694
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -7987,7 +8182,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "c1a029d9-6d9c-4ef0-af0b-e69f1b6e0879",
+                        "id": "151978d1-a680-45c3-b266-f4a5952192d0",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -8014,8 +8209,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 31649,
                 "importsPerDay": 0.1,
-                "populationServed": 12659682,
-                "suspectedCasesToday": 7
+                "initialNumberOfCases": 7,
+                "populationServed": 12659682
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8033,7 +8228,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "44649857-a7ed-439d-b9d7-f03164181e0a",
+                        "id": "2f8cd85d-b310-4dfb-8644-f34b8b5d640d",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -8060,8 +8255,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 37181,
                 "importsPerDay": 0.1,
-                "populationServed": 12820878,
-                "suspectedCasesToday": 7
+                "initialNumberOfCases": 7,
+                "populationServed": 12820878
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8079,7 +8274,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "0ea6b331-3122-4a0a-8033-3b84322ffa74",
+                        "id": "8485b488-1b1a-4743-9104-252c91fe62c8",
                         "mitigationValue": 60.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -8089,7 +8284,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "80479dd8-4706-4464-8122-454cafc4f429",
+                        "id": "df3af6d7-c9c0-4488-8eff-c0c0e49a6832",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -8116,8 +8311,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 52489,
                 "importsPerDay": 0.1,
-                "populationServed": 19440469,
-                "suspectedCasesToday": 2
+                "initialNumberOfCases": 2,
+                "populationServed": 19440469
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8135,7 +8330,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "1f2725e6-d7ce-484e-b577-44b44e01e476",
+                        "id": "88bdac2f-8fe8-46f6-95ab-5e6a7c9244f4",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -8162,8 +8357,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 57182,
                 "importsPerDay": 0.1,
-                "populationServed": 21992985,
-                "suspectedCasesToday": 56
+                "initialNumberOfCases": 56,
+                "populationServed": 21992985
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8178,7 +8373,18 @@
     {
         "allParams": {
             "containment": {
-                "mitigationIntervals": [],
+                "mitigationIntervals": [
+                    {
+                        "color": "#bf5b17",
+                        "id": "7f810461-f960-4066-b8bb-b6ff0d2c810c",
+                        "mitigationValue": 40.0,
+                        "name": "Intervention #1",
+                        "timeRange": {
+                            "tMax": "2020-09-01",
+                            "tMin": "2020-04-08"
+                        }
+                    }
+                ],
                 "numberPoints": 15.0
             },
             "epidemiological": {
@@ -8197,8 +8403,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 67786,
                 "importsPerDay": 0.1,
-                "populationServed": 29472295,
-                "suspectedCasesToday": 18
+                "initialNumberOfCases": 18,
+                "populationServed": 29472295
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8216,7 +8422,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "11e186d6-ba72-49b2-9fb5-a30a4cfefa8e",
+                        "id": "4a3538d4-122c-4b6c-95bc-44fc4e38795f",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -8243,8 +8449,8 @@
                 "country": "United States of America",
                 "hospitalBeds": 71887,
                 "importsPerDay": 0.1,
-                "populationServed": 39937489,
-                "suspectedCasesToday": 42
+                "initialNumberOfCases": 42,
+                "populationServed": 39937489
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8278,8 +8484,8 @@
                 "country": "India",
                 "hospitalBeds": 1376013,
                 "importsPerDay": 0.1,
-                "populationServed": 1380004385,
-                "suspectedCasesToday": 25
+                "initialNumberOfCases": 25,
+                "populationServed": 1380004385
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8313,8 +8519,8 @@
                 "country": "India",
                 "hospitalBeds": 23138,
                 "importsPerDay": 0.1,
-                "populationServed": 52883163,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 52883163
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8348,8 +8554,8 @@
                 "country": "India",
                 "hospitalBeds": 2404,
                 "importsPerDay": 0.1,
-                "populationServed": 1528296,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 1528296
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8383,8 +8589,8 @@
                 "country": "India",
                 "hospitalBeds": 17142,
                 "importsPerDay": 0.1,
-                "populationServed": 34586234,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 34586234
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8418,8 +8624,8 @@
                 "country": "India",
                 "hospitalBeds": 12019,
                 "importsPerDay": 0.1,
-                "populationServed": 119461013,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 119461013
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8453,8 +8659,8 @@
                 "country": "India",
                 "hospitalBeds": 9412,
                 "importsPerDay": 0.1,
-                "populationServed": 28566990,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 28566990
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8488,8 +8694,8 @@
                 "country": "India",
                 "hospitalBeds": 3013,
                 "importsPerDay": 0.1,
-                "populationServed": 1542750,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 1542750
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8523,8 +8729,8 @@
                 "country": "India",
                 "hospitalBeds": 32280,
                 "importsPerDay": 0.1,
-                "populationServed": 63907200,
-                "suspectedCasesToday": 217
+                "initialNumberOfCases": 217,
+                "populationServed": 63907200
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8558,8 +8764,8 @@
                 "country": "India",
                 "hospitalBeds": 11240,
                 "importsPerDay": 0.1,
-                "populationServed": 27388008,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 27388008
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8593,8 +8799,8 @@
                 "country": "India",
                 "hospitalBeds": 12399,
                 "importsPerDay": 0.1,
-                "populationServed": 7316708,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 7316708
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8624,12 +8830,12 @@
             },
             "population": {
                 "ICUBeds": 1147,
-                "cases": "IND-Jammu & Kashmir",
+                "cases": "None",
                 "country": "India",
                 "hospitalBeds": 11651,
                 "importsPerDay": 0.1,
-                "populationServed": 13635010,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 13635010
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8663,8 +8869,8 @@
                 "country": "India",
                 "hospitalBeds": 10784,
                 "importsPerDay": 0.1,
-                "populationServed": 37329128,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 37329128
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8698,8 +8904,8 @@
                 "country": "India",
                 "hospitalBeds": 70165,
                 "importsPerDay": 0.1,
-                "populationServed": 66165886,
-                "suspectedCasesToday": 225
+                "initialNumberOfCases": 225,
+                "populationServed": 66165886
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8733,8 +8939,8 @@
                 "country": "India",
                 "hospitalBeds": 38004,
                 "importsPerDay": 0.1,
-                "populationServed": 35330888,
-                "suspectedCasesToday": 9
+                "initialNumberOfCases": 9,
+                "populationServed": 35330888
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8768,8 +8974,8 @@
                 "country": "India",
                 "hospitalBeds": 28839,
                 "importsPerDay": 0.1,
-                "populationServed": 82342793,
-                "suspectedCasesToday": 43
+                "initialNumberOfCases": 43,
+                "populationServed": 82342793
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8803,8 +9009,8 @@
                 "country": "India",
                 "hospitalBeds": 51446,
                 "importsPerDay": 0.1,
-                "populationServed": 120837347,
-                "suspectedCasesToday": 37
+                "initialNumberOfCases": 37,
+                "populationServed": 120837347
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8838,8 +9044,8 @@
                 "country": "India",
                 "hospitalBeds": 1427,
                 "importsPerDay": 0.1,
-                "populationServed": 3008546,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 3008546
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8869,12 +9075,12 @@
             },
             "population": {
                 "ICUBeds": 438,
-                "cases": "IND-Meghalaya",
+                "cases": "None",
                 "country": "India",
                 "hospitalBeds": 4457,
                 "importsPerDay": 0.1,
-                "populationServed": 3276323,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 3276323
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8908,8 +9114,8 @@
                 "country": "India",
                 "hospitalBeds": 1997,
                 "importsPerDay": 0.1,
-                "populationServed": 1205974,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 1205974
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8939,12 +9145,12 @@
             },
             "population": {
                 "ICUBeds": 185,
-                "cases": "IND-Nagaland",
+                "cases": "None",
                 "country": "India",
                 "hospitalBeds": 1880,
                 "importsPerDay": 0.1,
-                "populationServed": 2189297,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 2189297
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -8978,8 +9184,8 @@
                 "country": "India",
                 "hospitalBeds": 18519,
                 "importsPerDay": 0.1,
-                "populationServed": 45429399,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 45429399
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9013,8 +9219,8 @@
                 "country": "India",
                 "hospitalBeds": 17933,
                 "importsPerDay": 0.1,
-                "populationServed": 29611935,
-                "suspectedCasesToday": 25
+                "initialNumberOfCases": 25,
+                "populationServed": 29611935
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9048,8 +9254,8 @@
                 "country": "India",
                 "hospitalBeds": 31848,
                 "importsPerDay": 0.1,
-                "populationServed": 78230816,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 78230816
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9079,12 +9285,12 @@
             },
             "population": {
                 "ICUBeds": 153,
-                "cases": "IND-Sikkim",
+                "cases": "None",
                 "country": "India",
                 "hospitalBeds": 1560,
                 "importsPerDay": 0.1,
-                "populationServed": 671720,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 671720
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9118,8 +9324,8 @@
                 "country": "India",
                 "hospitalBeds": 77532,
                 "importsPerDay": 0.1,
-                "populationServed": 76481545,
-                "suspectedCasesToday": 533
+                "initialNumberOfCases": 533,
+                "populationServed": 76481545
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9149,12 +9355,12 @@
             },
             "population": {
                 "ICUBeds": 2066,
-                "cases": "IND-Telangana",
+                "cases": "None",
                 "country": "India",
                 "hospitalBeds": 20983,
                 "importsPerDay": 0.1,
-                "populationServed": 38472769,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 38472769
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9188,8 +9394,8 @@
                 "country": "India",
                 "hospitalBeds": 4417,
                 "importsPerDay": 0.1,
-                "populationServed": 4057847,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 4057847
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9223,8 +9429,8 @@
                 "country": "India",
                 "hospitalBeds": 76260,
                 "importsPerDay": 0.1,
-                "populationServed": 228959599,
-                "suspectedCasesToday": 70
+                "initialNumberOfCases": 70,
+                "populationServed": 228959599
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9258,8 +9464,8 @@
                 "country": "India",
                 "hospitalBeds": 8512,
                 "importsPerDay": 0.1,
-                "populationServed": 11090425,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 11090425
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9293,8 +9499,8 @@
                 "country": "India",
                 "hospitalBeds": 78566,
                 "importsPerDay": 0.1,
-                "populationServed": 97694960,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 97694960
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9324,12 +9530,12 @@
             },
             "population": {
                 "ICUBeds": 105,
-                "cases": "IND-Andaman & Nicobar Islands",
+                "cases": "None",
                 "country": "India",
                 "hospitalBeds": 1075,
                 "importsPerDay": 0.1,
-                "populationServed": 419978,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 419978
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9363,8 +9569,8 @@
                 "country": "India",
                 "hospitalBeds": 778,
                 "importsPerDay": 0.1,
-                "populationServed": 1126705,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 1126705
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9394,12 +9600,12 @@
             },
             "population": {
                 "ICUBeds": 58,
-                "cases": "IND-Dadra & Nagar Haveli",
+                "cases": "None",
                 "country": "India",
                 "hospitalBeds": 589,
                 "importsPerDay": 0.1,
-                "populationServed": 378979,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 378979
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9429,12 +9635,12 @@
             },
             "population": {
                 "ICUBeds": 23,
-                "cases": "IND-Daman & Diu",
+                "cases": "None",
                 "country": "India",
                 "hospitalBeds": 240,
                 "importsPerDay": 0.1,
-                "populationServed": 220084,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 220084
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9468,8 +9674,8 @@
                 "country": "India",
                 "hospitalBeds": 24383,
                 "importsPerDay": 0.1,
-                "populationServed": 18345784,
-                "suspectedCasesToday": 261
+                "initialNumberOfCases": 261,
+                "populationServed": 18345784
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9499,12 +9705,12 @@
             },
             "population": {
                 "ICUBeds": 29,
-                "cases": "IND-Lakshadweep",
+                "cases": "None",
                 "country": "India",
                 "hospitalBeds": 300,
                 "importsPerDay": 0.1,
-                "populationServed": 71218,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 71218
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9538,8 +9744,8 @@
                 "country": "India",
                 "hospitalBeds": 3569,
                 "importsPerDay": 0.1,
-                "populationServed": 1375592,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 1375592
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9573,8 +9779,8 @@
                 "country": "France",
                 "hospitalBeds": 16641,
                 "importsPerDay": 0.1,
-                "populationServed": 8026685,
-                "suspectedCasesToday": 31
+                "initialNumberOfCases": 31,
+                "populationServed": 8026685
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9592,7 +9798,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "b9e47ac2-2eeb-4f4a-8e78-cb73f8f1ef13",
+                        "id": "1a436b97-18d1-483b-a6ed-0865a30f3ae0",
                         "mitigationValue": 50.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -9619,8 +9825,8 @@
                 "country": "France",
                 "hospitalBeds": 7095,
                 "importsPerDay": 0.1,
-                "populationServed": 2795301,
-                "suspectedCasesToday": 6
+                "initialNumberOfCases": 6,
+                "populationServed": 2795301
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9654,8 +9860,8 @@
                 "country": "France",
                 "hospitalBeds": 7361,
                 "importsPerDay": 0.1,
-                "populationServed": 3329395,
-                "suspectedCasesToday": 28
+                "initialNumberOfCases": 28,
+                "populationServed": 3329395
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9673,7 +9879,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "204bbbfb-d33a-4ca8-b1df-c57b30fb6958",
+                        "id": "416b8d9b-5430-4aef-9341-273e64cc13c0",
                         "mitigationValue": 60.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -9700,8 +9906,8 @@
                 "country": "France",
                 "hospitalBeds": 4984,
                 "importsPerDay": 0.1,
-                "populationServed": 2566759,
-                "suspectedCasesToday": 2
+                "initialNumberOfCases": 2,
+                "populationServed": 2566759
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9719,7 +9925,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "15a51db5-a584-4be3-bbf8-a04445cbd028",
+                        "id": "824ced29-53c1-489a-a848-272b7c2c1004",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -9746,8 +9952,8 @@
                 "country": "France",
                 "hospitalBeds": 756,
                 "importsPerDay": 0.1,
-                "populationServed": 339178,
-                "suspectedCasesToday": 17
+                "initialNumberOfCases": 17,
+                "populationServed": 339178
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9765,7 +9971,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "60fa7ef4-5854-4da7-8125-86997c20324b",
+                        "id": "9e1c7b0d-c105-433d-8905-deb22790798d",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -9792,8 +9998,8 @@
                 "country": "France",
                 "hospitalBeds": 13548,
                 "importsPerDay": 0.1,
-                "populationServed": 5518188,
-                "suspectedCasesToday": 64
+                "initialNumberOfCases": 64,
+                "populationServed": 5518188
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9811,7 +10017,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "59a21b2a-9ba2-4710-8ccd-6643c3e68da0",
+                        "id": "db24e2dc-a685-480d-a44b-ba2b4e128753",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -9838,8 +10044,8 @@
                 "country": "France",
                 "hospitalBeds": 13872,
                 "importsPerDay": 0.1,
-                "populationServed": 5978266,
-                "suspectedCasesToday": 290
+                "initialNumberOfCases": 290,
+                "populationServed": 5978266
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9857,7 +10063,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "f56f0250-aa2e-41c7-8f39-3c387e7a2988",
+                        "id": "1ef52c12-aada-4ad7-a577-84b3c72e43a5",
                         "mitigationValue": 60.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -9884,8 +10090,8 @@
                 "country": "France",
                 "hospitalBeds": 22792,
                 "importsPerDay": 0.1,
-                "populationServed": 12213364,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 12213364
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9919,8 +10125,8 @@
                 "country": "France",
                 "hospitalBeds": 7645,
                 "importsPerDay": 0.1,
-                "populationServed": 3319067,
-                "suspectedCasesToday": 10
+                "initialNumberOfCases": 10,
+                "populationServed": 3319067
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9954,8 +10160,8 @@
                 "country": "France",
                 "hospitalBeds": 12491,
                 "importsPerDay": 0.1,
-                "populationServed": 5987014,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 5987014
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -9973,7 +10179,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "3f29f320-445f-4bc6-bac8-7a913249b814",
+                        "id": "953f226e-8c65-4eff-8799-2fae58531f13",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -10000,8 +10206,8 @@
                 "country": "France",
                 "hospitalBeds": 9851,
                 "importsPerDay": 0.1,
-                "populationServed": 5892817,
-                "suspectedCasesToday": 95
+                "initialNumberOfCases": 95,
+                "populationServed": 5892817
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -10019,7 +10225,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "9385328d-bac3-4a4e-afd7-35e47525da24",
+                        "id": "0bd0f9c7-9030-4416-a014-0c0891c0fe01",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -10046,8 +10252,8 @@
                 "country": "France",
                 "hospitalBeds": 6570,
                 "importsPerDay": 0.1,
-                "populationServed": 3786545,
-                "suspectedCasesToday": 5
+                "initialNumberOfCases": 5,
+                "populationServed": 3786545
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -10065,7 +10271,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "71c6344f-272f-4f94-8e63-1dc8b7eda558",
+                        "id": "2df97c3b-335b-4c85-a07d-34763124089d",
                         "mitigationValue": 40.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -10092,8 +10298,8 @@
                 "country": "France",
                 "hospitalBeds": 9909,
                 "importsPerDay": 0.1,
-                "populationServed": 5059473,
-                "suspectedCasesToday": 5
+                "initialNumberOfCases": 5,
+                "populationServed": 5059473
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -10127,8 +10333,8 @@
                 "country": "France",
                 "hospitalBeds": 735,
                 "importsPerDay": 0.1,
-                "populationServed": 382704,
-                "suspectedCasesToday": 0
+                "initialNumberOfCases": 0,
+                "populationServed": 382704
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -10162,8 +10368,8 @@
                 "country": "France",
                 "hospitalBeds": 383,
                 "importsPerDay": 0.1,
-                "populationServed": 296711,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 296711
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -10197,8 +10403,8 @@
                 "country": "France",
                 "hospitalBeds": 1260,
                 "importsPerDay": 0.1,
-                "populationServed": 866506,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 866506
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -10216,7 +10422,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "0cf2d0c2-0d9e-41ff-b6c6-ed493cca7190",
+                        "id": "014b7417-3074-45f7-b43d-2c888b255db8",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -10243,8 +10449,8 @@
                 "country": "France",
                 "hospitalBeds": 882,
                 "importsPerDay": 0.1,
-                "populationServed": 364354,
-                "suspectedCasesToday": 27
+                "initialNumberOfCases": 27,
+                "populationServed": 364354
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -10262,7 +10468,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "84b6187f-5dd1-4952-a377-3bde352d0506",
+                        "id": "1f2181c1-7636-4484-aa6a-fb34566955e3",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -10289,8 +10495,8 @@
                 "country": "France",
                 "hospitalBeds": 300,
                 "importsPerDay": 0.1,
-                "populationServed": 270372,
-                "suspectedCasesToday": 3
+                "initialNumberOfCases": 3,
+                "populationServed": 270372
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -10308,7 +10514,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "26390e92-90fe-454f-b0c3-9d5657a88309",
+                        "id": "1cc0a37d-6a4a-474b-8a45-6db46891c43d",
                         "mitigationValue": 30.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -10335,8 +10541,8 @@
                 "country": "Israel",
                 "hospitalBeds": 15871,
                 "importsPerDay": 0.1,
-                "populationServed": 9136000,
-                "suspectedCasesToday": 7
+                "initialNumberOfCases": 7,
+                "populationServed": 9136000
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,
@@ -10354,7 +10560,7 @@
                 "mitigationIntervals": [
                     {
                         "color": "#bf5b17",
-                        "id": "32d28acc-8776-4316-9560-f6a536ac2861",
+                        "id": "8e81a8eb-6e9b-43d8-972c-2a0556d01ac5",
                         "mitigationValue": 20.0,
                         "name": "Intervention #1",
                         "timeRange": {
@@ -10364,7 +10570,7 @@
                     },
                     {
                         "color": "#666666",
-                        "id": "25a1e438-0ae4-4f66-adeb-642abe620129",
+                        "id": "2f6f11bf-7d15-4454-83f4-e3f63ea04b11",
                         "mitigationValue": 60.0,
                         "name": "Intervention #2",
                         "timeRange": {
@@ -10391,8 +10597,8 @@
                 "country": "Iceland",
                 "hospitalBeds": 1169,
                 "importsPerDay": 0.1,
-                "populationServed": 364260,
-                "suspectedCasesToday": 9
+                "initialNumberOfCases": 9,
+                "populationServed": 364260
             },
             "simulation": {
                 "numberStochasticRuns": 0.0,

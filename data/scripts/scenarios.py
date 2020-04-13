@@ -122,15 +122,16 @@ class MitigationInterval(schema.MitigationInterval):
                 time_range = DateRange(tMin, tMax))
 
 class PopulationParams(schema.PopulationData):
-    def __init__(self, region, country, population, beds, icus):
+    def __init__(self, region, country, population, beds, icus, cases_key):
         return super(PopulationParams, self).__init__( \
-                region,
-                country,
-                int(beds),
-                int(icus),
-                0.1,
-                int(population),
-                round(FIT_CASE_DATA[region]['initialCases'] if region in FIT_CASE_DATA else Fitter.cases_on_tMin))
+                cases=cases_key,
+                country=country,
+                hospital_beds=int(beds),
+                icu_beds=int(icus),
+                imports_per_day=0.1,
+                population_served=int(population),
+                initial_number_of_cases=round(FIT_CASE_DATA[region]['initialCases']
+                                              if region in FIT_CASE_DATA else Fitter.cases_on_tMin))
 
 class EpidemiologicalParams(schema.EpidemiologicalData):
     def __init__(self, region, hemisphere):
@@ -174,12 +175,12 @@ class SimulationParams(schema.SimulationData):
 # TODO: Region and country provide redudant information
 #       Condense the information into one field.
 class AllParams(schema.AllParams):
-    def __init__(self, region, country, population, beds, icus, hemisphere, srcPopulation, srcHospitalBeds, srcICUBeds):
+    def __init__(self, region, country, population, beds, icus, hemisphere, srcPopulation, srcHospitalBeds, srcICUBeds, cases_key):
         #self.sources  = {'populationServed': srcPopulation, 'hospitalBeds': srcHospitalBeds, 'ICUBeds': srcICUBeds }
         return super(AllParams, self).__init__( \
                 ContainmentParams(),
                 EpidemiologicalParams(region, hemisphere),
-                PopulationParams(region, country, population, beds, icus),
+                PopulationParams(region, country, population, beds, icus, cases_key),
                 SimulationParams(region)
         )
 
@@ -292,7 +293,7 @@ def generate(output_json, num_procs=1, recalculate=False):
         for region in rdr:
             region_name = region[idx['name']]
             entry = [region[idx[arg]] for arg in args]
-            scenario[region_name] = AllParams(*entry)
+            scenario[region_name] = AllParams(*entry, region_name if region_name in case_counts else 'None')
             if region_name in case_counts:
                 set_mitigation(case_counts[region_name], scenario[region_name])
             else:
