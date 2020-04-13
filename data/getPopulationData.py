@@ -94,7 +94,7 @@ def retrieve_hosp_data():
                 hospData[country] = {'hospitalBeds': stoi(row[1]), 'srcHospitalBeds': URL_ICU_ASIA}
 
     # Eurostat, newer than from WHO (2017 vs 2015)
-    with open('hospital-data/ICU_eurostat.tsv', 'r') as fd:
+    with open('hospital-data/hospital_eurostat.tsv', 'r') as fd:
         rdr = csv.reader(fd, delimiter='\t')
         hdr = next(rdr)
 
