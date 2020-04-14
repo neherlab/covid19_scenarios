@@ -53,6 +53,17 @@ const STATE: PersistedState = {
       numberStochasticRuns: 0,
     },
   },
+  ageDistribution: {
+    '0-9': 0,
+    '10-19': 10,
+    '20-29': 20,
+    '30-39': 20,
+    '40-49': 20,
+    '50-59': 10,
+    '60-69': 10,
+    '70-79': 10,
+    '80+': 0,
+  },
 }
 
 const DTO: PersistedStateDto = {
@@ -101,6 +112,17 @@ const DTO: PersistedStateDto = {
   simulation: {
     simulationTimeRange: { tMax: 1598918400000, tMin: 1580428800000 },
     numberStochasticRuns: 0,
+  },
+  ageDistribution: {
+    '0-9': 0,
+    '10-19': 10,
+    '20-29': 20,
+    '30-39': 20,
+    '40-49': 20,
+    '50-59': 10,
+    '60-69': 10,
+    '70-79': 10,
+    '80+': 0,
   },
 }
 
