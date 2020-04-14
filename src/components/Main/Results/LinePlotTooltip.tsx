@@ -73,23 +73,12 @@ export function LinePlotTooltip({
         return {
           ...tooltipItem,
           value: valueFormatter ? valueFormatter(value) : value,
+          lower: tooltipItem.name in uncertainty ? valueFormatter(value - uncertainty[tooltipItem.name][0]) : undefined,
+          upper: tooltipItem.name in uncertainty ? valueFormatter(uncertainty[tooltipItem.name][1] - value) : undefined,
         }
       },
     )
-    .map((payloadItem) => ({
-      name: payloadItem.name,
-      color: payloadItem.color || '#bbbbbb',
-      value: valueFormatter ? valueFormatter(payloadItem.value) : payloadItem.value,
-      lower:
-        payloadItem.name in uncertainty
-          ? valueFormatter(payloadItem.value - uncertainty[payloadItem.name][0])
-          : undefined,
-      upper:
-        payloadItem.name in uncertainty
-          ? valueFormatter(uncertainty[payloadItem.name][1] - payloadItem.value)
-          : undefined,
-    }))
-    .filter((payloadItem) => (payloadItem.name ? !payloadItem.name.includes('uncertainty') : true))
+    .filter((tooltipItem) => (tooltipItem.name ? !tooltipItem.name.includes('uncertainty') : true))
 
   return <ResponsiveTooltipContent formattedLabel={formattedLabel} tooltipItems={tooltipItems} />
 }
