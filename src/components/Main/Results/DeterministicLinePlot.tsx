@@ -276,43 +276,43 @@ export function DeterministicLinePlot({
 
   const areasToPlot: LineProps[] = [
     {
-      key: `${DATA_POINTS.Susceptible}_area`,
+      key: `${DATA_POINTS.Susceptible}Area`,
       color: colors.susceptible,
       name: t('Susceptible uncertainty'),
       legendType: 'none',
     },
     {
-      key: `${DATA_POINTS.Infectious}_area`,
+      key: `${DATA_POINTS.Infectious}Area`,
       color: colors.infectious,
       name: t('Infectious uncertainty'),
       legendType: 'none',
     },
     {
-      key: `${DATA_POINTS.Severe}_area`,
+      key: `${DATA_POINTS.Severe}Area`,
       color: colors.severe,
       name: t('Severely ill uncertainty'),
       legendType: 'none',
     },
     {
-      key: `${DATA_POINTS.Critical}_area`,
+      key: `${DATA_POINTS.Critical}Area`,
       color: colors.critical,
       name: t('Patients in ICU (model) uncertainty'),
       legendType: 'none',
     },
     {
-      key: `${DATA_POINTS.Overflow}_area`,
+      key: `${DATA_POINTS.Overflow}Area`,
       color: colors.overflow,
       name: t('ICU overflow uncertainty'),
       legendType: 'none',
     },
     {
-      key: `${DATA_POINTS.Recovered}_area`,
+      key: `${DATA_POINTS.Recovered}Area`,
       color: colors.recovered,
       name: t('Recovered uncertainty'),
       legendType: 'none',
     },
     {
-      key: `${DATA_POINTS.Fatalities}_area`,
+      key: `${DATA_POINTS.Fatalities}Area`,
       color: colors.fatality,
       name: t('Cumulative deaths (model) uncertainty'),
       legendType: 'none',
