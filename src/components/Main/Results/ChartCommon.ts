@@ -28,7 +28,7 @@ export const DATA_POINTS = {
   ObservedHospitalized: 'currentHospitalized',
   ObservedICU: 'ICU',
   ObservedNewCases: 'newCases',
-}
+} as const
 
 export const colors = {
   [DATA_POINTS.Susceptible]: '#a6cee3',
@@ -42,7 +42,7 @@ export const colors = {
   [DATA_POINTS.NewCases]: '#fdbf6f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
   [DATA_POINTS.ICUbeds]: '#cccccc',
-}
+} as const
 
 export const linesToPlot: LineProps[] = [
   { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: 'Susceptible', legendType: 'line' },

@@ -16,6 +16,7 @@ import {
   XAxis,
   YAxis,
   YAxisProps,
+  LegendPayload as RechartsLegendPayload,
 } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
@@ -27,6 +28,20 @@ import { linesToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './
 import { LinePlotTooltip } from './LinePlotTooltip'
 
 import './DeterministicLinePlot.scss'
+
+type DataPointValues = typeof DATA_POINTS[keyof typeof DATA_POINTS]
+
+type BaseObservation = {
+  [x in DataPointValues]?: number
+}
+
+interface Observation extends BaseObservation {
+  time: number
+}
+
+interface LegendPayload extends RechartsLegendPayload {
+  dataKey: string
+}
 
 const ASPECT_RATIO = 16 / 9
 
@@ -145,7 +160,7 @@ export function DeterministicLinePlot({
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
-  const observations =
+  const observations: Observation[] =
     nonEmptyCaseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
       cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
@@ -159,7 +174,7 @@ export function DeterministicLinePlot({
       ICUbeds: nICUBeds,
     })) ?? []
 
-  const plotData = [
+  const plotData: Observation[] = [
     ...data.deterministic.trajectory.map((x) => ({
       time: x.time,
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
@@ -208,7 +223,7 @@ export function DeterministicLinePlot({
 
   // determine the max of enabled plots w/o the hospital capacity
   const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
-  const yDataMax = _.max(consolidatedPlotData.map((d) => _.max(dataKeys.map((k) => d[k]))))
+  const yDataMax = _.max(consolidatedPlotData.map((d) => _.max(dataKeys.map((k) => d[k])))) as number
 
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
@@ -344,7 +359,7 @@ export function DeterministicLinePlot({
 
                 <Legend
                   verticalAlign="bottom"
-                  formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
+                  formatter={(v, e) => e && legendFormatter(enabledPlots, v, e as LegendPayload)}
                   onClick={(e) => {
                     const plots = enabledPlots.slice(0)
                     enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)
