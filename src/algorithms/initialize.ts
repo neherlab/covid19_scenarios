@@ -129,13 +129,14 @@ export function getPopulationParams(
     return [sim]
   }
 
-  const r0s = sampleUniform(params.r0 as [number, number], NUMBER_PARAMETER_SAMPLES)
+  const r0s = sampleUniform([params.r0[0], params.r0[1]], NUMBER_PARAMETER_SAMPLES)
   return r0s.map((r0, i) => {
     const elt = cloneDeep(sim)
     const avgInfectionRate = r0 / params.infectiousPeriod
 
+    const containment = containmentRealization.length > 1 ? containmentRealization[i] : containmentRealization[0]
     elt.rate.infection = (time: number) =>
-      containmentRealization[i](time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
+      containment(time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
 
     return elt
   })
