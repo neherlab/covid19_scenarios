@@ -4,6 +4,7 @@ from transform_ages import flatten
 
 # ------------------------------------------------------------------------
 # Globals
+PATH_UN_AGES   = os.path.join("../", "../src/assets/data/country_age_distribution.json")
 
 age_codes = {
         "Y_LT5" : "0-4",
@@ -328,9 +329,9 @@ if __name__ == "__main__":
     table = {}
     ids   = list(country_codes.keys())
     bps   = list(range(0, len(country_codes), 10)) + [len(country_codes)]
+
     print(f'Starting download of age dist data for {len(ids)} countries. This can take a while (>30 minutes)')
     for i, bp in enumerate(bps[:-1]):
-        print(ids[bp:bps[i+1]])
         print(f'getting data for {i+1}/{len(bps)}, {[country_codes[i] for i in ids[bp:bps[i+1]]]}')
         d   = get_data(*ids[bp:bps[i+1]])
         print(f'got data for {i+1}/{len(bps)}, {[country_codes[i] for i in ids[bp:bps[i+1]]]}')
@@ -342,5 +343,5 @@ if __name__ == "__main__":
     # add the Kosovo data, as the API does not provide this:
     ftable.append({'country': 'Kosovo', 'ageDistribution': {'0-9': 294038, '10-19': 306895, '20-29': 299672, '30-39': 237846, '40-49': 228757, '50-59': 189740, '60-69': 127956, '70-79': 71350, '80+': 32684}})
     
-    with open('flat.json','w') as f:
+    with open(PATH_UN_AGES, 'w') as f:
         json.dump(ftable, f)
