@@ -25,8 +25,12 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
   const showError = errorMessage && isTouched
   const borderDanger = showError ? 'border-danger' : ''
 
-  function validate(value: number[]) {
+  function validate(value?: number[]) {
     let error
+    if (!value) {
+      return
+    }
+
     if (value.length !== 2) {
       error = `The input length must be 2, found ${value.length}`
     }

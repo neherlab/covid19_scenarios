@@ -41,6 +41,8 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         step={0.1}
         min={0.5}
         max={6}
+        errors={errors}
+        touched={touched}
       />
       <FormSpinBox
         identifier="epidemiological.latencyTime"
