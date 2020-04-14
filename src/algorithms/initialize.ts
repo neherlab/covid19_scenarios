@@ -18,7 +18,7 @@ const compareTimes = (a: ChangePoint, b: ChangePoint): number => {
   return a.t.valueOf() - b.t.valueOf()
 }
 
-function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSeries {
+export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSeries {
   const changePoints = {}
   intervals.forEach((element) => {
     // bound the value by 0.01 and 100 (transmission can be at most 100 fold reduced or increased)
@@ -59,7 +59,7 @@ function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSeries {
   return []
 }
 // NOTE: Assumes containment is sorted ascending in time.
-function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
+export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
   if (containment.length === 0) {
     return () => 1.0
   }
@@ -241,7 +241,7 @@ export function initializePopulation(
   N: number,
   numCases: number,
   t0: number,
-  ages: Record<string, number>,
+  ages: AgeDistribution,
 ): SimulationTimePoint {
   const Z = Object.values(ages).reduce((a, b) => a + b)
   const pop: SimulationTimePoint = {
