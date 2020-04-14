@@ -38,6 +38,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
           'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
         )}
         step={0.1}
+        min={0}
         errors={errors}
         touched={touched}
       />
@@ -45,8 +46,8 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         identifier="epidemiological.latencyTime"
         label={`${t('Latency')} [${t('days')}]`}
         help={t('Time from infection to onset of symptoms (here onset of infectiousness)')}
-        step={1}
-        min={0}
+        step={0.1}
+        min={1}
         errors={errors}
         touched={touched}
       />
@@ -56,8 +57,8 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         help={t(
           'Average number of days a person is infectious. Over this time, R0 infections happen on average. Together with the latency time, this defines the serial interval. The longer the serial interval, the slower the outbreak.',
         )}
-        step={1}
-        min={0}
+        step={0.1}
+        min={1}
         errors={errors}
         touched={touched}
       />
@@ -82,8 +83,8 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         identifier="epidemiological.lengthHospitalStay"
         label={`${t('Hospital stay')} [${t('days')}]`}
         help={t('Average number of days a severe case stays in regular hospital beds')}
-        step={1}
-        min={0}
+        step={0.1}
+        min={1}
         errors={errors}
         touched={touched}
       />
@@ -91,8 +92,8 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         identifier="epidemiological.lengthICUStay"
         label={`${t('ICU stay')} [${t('days')}]`}
         help={t('Average number of days a critical case stays in the ICU')}
-        step={1}
-        min={0}
+        step={0.1}
+        min={1}
         errors={errors}
         touched={touched}
       />
@@ -103,7 +104,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
           'A multiplicative factor to death rate to patients that require but do not have access to an ICU bed relative to those who do.',
         )}
         step={0.1}
-        min={1}
+        min={0}
         errors={errors}
         touched={touched}
       />

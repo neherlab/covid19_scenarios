@@ -72,6 +72,7 @@ function computeNewEmpiricalCases(
 
   cumulativeCounts.forEach((_0, day) => {
     if (day < deltaDay) {
+      newEmpiricalCases[day] = undefined
       return
     }
 

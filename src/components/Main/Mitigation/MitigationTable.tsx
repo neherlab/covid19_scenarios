@@ -146,6 +146,9 @@ function MitigationIntervalComponent({
               id={`containment.mitigationIntervals[${index}].mitigationValue`}
               name={`containment.mitigationIntervals[${index}].mitigationValue`}
               type="number"
+              step={1}
+              min={0}
+              max={100}
             />
           </div>
         </div>
