@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash'
-import { SeverityTableRow } from '../components/Main/Scenario/SeverityTable'
+import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
 
 import { AgeDistribution } from '../.generated/types'
 import { TimeSeries } from './types/TimeSeries.types'
@@ -44,7 +44,7 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
 
   orderedChangePoints.sort(compareTimes)
 
-  if (orderedChangePoints.length) {
+  if (orderedChangePoints.length > 0) {
     const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t, y: 1.0 }]
     const product = (a: number, b: number): number => a * b
 
@@ -75,7 +75,6 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
     }
     const i = containment.findIndex((d) => Number(t) < Number(d.t))
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const evalLinear = (t: number) => {
       const deltaY = Ys[i] - Ys[i - 1]
       const deltaT = Ts[i] - Ts[i - 1]
@@ -206,7 +205,7 @@ export function getPopulationParams(
 
   // Infectivity dynamics
   const containment = interpolateTimeSeries(intervalsToTimeSeries(params.mitigationIntervals))
-  if (params.r0[0] == params.r0[1]) {
+  if (params.r0[0] === params.r0[1]) {
     const avgInfectionRate = params.r0[0] / params.infectiousPeriod
     sim.rate.infection = (time: Date) =>
       containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
