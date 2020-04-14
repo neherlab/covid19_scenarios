@@ -4,21 +4,22 @@ import State from './state'
 function serialize(arr: number[]) {
   const bytesPer = 8 // 8 Bytes per Float64
   const buffer = Buffer.alloc(arr.length * bytesPer)
-  for (let i = 0; i < arr.length; i++) {
-    buffer.writeDoubleLE(arr[i], i * bytesPer)
+  for (const [i, element] of arr.entries()) {
+    buffer.writeDoubleLE(element, i * bytesPer)
   }
   return buffer.toString('base64')
 }
 
+/* Catch failed deserialization and return an empty array to force a new snapshot */
 function tryDeserialize(str: string) {
   try {
     return deserialize(str)
   } catch {
-    console.log('Failed to deserialize float array. It might not exist. Returning empty array.')
     return []
   }
 }
 
+/* This function will throw an exception if param is not defined. */
 function deserialize(str: string) {
   const bytesPer = 8 // 8 Bytes per Float64
   const buffer = Buffer.from(str, 'base64')
@@ -51,7 +52,7 @@ function compare(
   return { pass, diffs }
 }
 
-export default function toBeCloseToArraySnapshot(this: Context, received: number[], precision: number = 2) {
+export default function toBeCloseToArraySnapshot(this: Context, received: number[], precision = 2) {
   const state = new State(this)
 
   const snapshot = state.getSnapshot()
