@@ -28,7 +28,7 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
   function validate(value?: number[]) {
     let error
     if (!value) {
-      return
+      return error
     }
 
     if (value.length !== 2) {
