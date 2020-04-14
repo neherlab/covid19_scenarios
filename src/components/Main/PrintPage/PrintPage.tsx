@@ -31,7 +31,7 @@ const parameterExplanations = {
   hospitalBeds: 'Number of hospital beds',
   ICUBeds: 'Number of available ICU beds',
   importsPerDay: 'Cases imported into community per day',
-  initialNumberOfCases: 'Case number at the start of the simulation',
+  initialNumberOfCases: 'Number of cases at the start of the simulation',
   infectiousPeriod: 'Infectious period [days]',
   latencyTime: 'Latency [days]',
   lengthHospitalStay: 'Average time in regular ward [days]',
@@ -41,6 +41,8 @@ const parameterExplanations = {
   seasonalForcing: 'Seasonal variation in transmissibility',
   peakMonth: 'Seasonal peak in transmissibility',
 }
+
+const dateFormat = (time: number) => moment(time).format('MMM DD YYYY')
 
 export default function PrintParameters({ params, scenarioUsed, severity, result, caseCounts, onClose }: PropsType) {
   const { t } = useTranslation()
@@ -63,18 +65,19 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
           <h1 className="text-center">COVID-19 Scenarios</h1>
 
           <p>
-            COVID19-Scenarios allows to explore the dynamics of a COVID19 outbreak in a community and the anticipated
-            burden on the health care system. COVID19-Scenarios, as every other model, has parameters whose values are
-            not known with certainty and that might differ between places and with time. The values of some of these
-            parameters have a big effect on the results, especially those that determine how rapidly the outbreak
-            spreads or how effective counter measures are: some values will result in a small limited outbreak, others
-            in a massive outbreak with many fatalities. Furthermore, when extrapolating the outbreak into the future,
-            the results will critically depend on assumptions of <strong>future</strong> policy and the degree to which
-            infection control measures are adhered to. It is therefore important to interpret the model output with care
-            and to assess the plausibility of the parameter values and model assumptions.{' '}
+            COVID19-Scenarios allows to explore the dynamics of a COVID19 outbreak in a community and to assess the
+            associated burden on the health care system. COVID19-Scenarios, as every other model, has parameters whose
+            values are not known with certainty and that might differ between places and change with time. The values of
+            some of these of these parameters have a big effect on the results. The results are particularly sensitive
+            to parameters that determine how rapidly the spreads or how effective counter measures are: some values will
+            result in a small limited outbreak, others in a massive outbreak with many fatalities. Furthermore, when
+            extrapolating the outbreak into the future, the results will critically depend on assumptions of{' '}
+            <strong>future</strong> policy and the degree to which infection control measures are adhered to. It is
+            therefore important to interpret the model output with care and to assess the plausibility of the parameter
+            values and model assumptions.{' '}
           </p>
           <p>
-            The underlying model is an age-structured generalized SEIR model. For details, please consult the
+            COVID19-Scenarios uses an age-structured generalized SEIR model. For details, please consult the
             documentation on <a href="https://covid19-scenarios.org/about">covid19-scenarios.org/about</a>. Default
             parameter choices are informed by the available evidence at the time, but might need adjustment for a
             particular community or as more information on the outbreak is available.
@@ -110,7 +113,7 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
                 <b>{key === 'peakMonth' ? months[params.epidemiological[key]] : params.epidemiological[key]}</b>
               </p>
             )
-          })}
+          })}{' '}
           <p />
           <h3>Mitigation</h3>
           {params.containment.mitigationIntervals.map((mitigationInterval) => {
@@ -118,10 +121,10 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
               <div key={mitigationInterval.id} style={{ marginBottom: 10 }}>
                 <h5>{mitigationInterval.name}:</h5>
                 <p style={{ margin: 0 }}>
-                  from: <b>{mitigationInterval.timeRange.tMin.toString()}</b>
+                  from: <b>{dateFormat(mitigationInterval.timeRange.tMin.getTime())}</b>
                 </p>
                 <p style={{ margin: 0 }}>
-                  to: <b>{mitigationInterval.timeRange.tMax.toString()}</b>
+                  to: <b>{dateFormat(mitigationInterval.timeRange.tMax.getTime())}</b>
                 </p>
                 <p style={{ margin: 0 }}>
                   Reduction of transmission: <b>{mitigationInterval.mitigationValue}%</b>
@@ -136,7 +139,7 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
             pageBreakBefore: 'always',
           }}
         >
-          <h2>results</h2>
+          <h2>Results</h2>
           <DeterministicLinePlot
             data={result}
             params={params}
