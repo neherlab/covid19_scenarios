@@ -25,7 +25,7 @@ import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 import { calculatePosition, scrollToRef } from './chartHelper'
-import { colors, linesToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
+import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
 import { LinePlotTooltip } from './LinePlotTooltip'
 
 import './DeterministicLinePlot.scss'
@@ -274,51 +274,6 @@ export function DeterministicLinePlot({
     (itemKey: string) => itemKey !== 'time' && tooltipItems[itemKey] !== undefined,
   )
 
-  const areasToPlot: LineProps[] = [
-    {
-      key: `${DATA_POINTS.Susceptible}Area`,
-      color: colors.susceptible,
-      name: t('Susceptible uncertainty'),
-      legendType: 'none',
-    },
-    {
-      key: `${DATA_POINTS.Infectious}Area`,
-      color: colors.infectious,
-      name: t('Infectious uncertainty'),
-      legendType: 'none',
-    },
-    {
-      key: `${DATA_POINTS.Severe}Area`,
-      color: colors.severe,
-      name: t('Severely ill uncertainty'),
-      legendType: 'none',
-    },
-    {
-      key: `${DATA_POINTS.Critical}Area`,
-      color: colors.critical,
-      name: t('Patients in ICU (model) uncertainty'),
-      legendType: 'none',
-    },
-    {
-      key: `${DATA_POINTS.Overflow}Area`,
-      color: colors.overflow,
-      name: t('ICU overflow uncertainty'),
-      legendType: 'none',
-    },
-    {
-      key: `${DATA_POINTS.Recovered}Area`,
-      color: colors.recovered,
-      name: t('Recovered uncertainty'),
-      legendType: 'none',
-    },
-    {
-      key: `${DATA_POINTS.Fatalities}Area`,
-      color: colors.fatality,
-      name: t('Cumulative deaths (model) uncertainty'),
-      legendType: 'none',
-    },
-  ]
-
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
   const tooltipValueFormatter = (value: number | string) =>
@@ -455,7 +410,7 @@ export function DeterministicLinePlot({
                   />
                 ))}
 
-                {areasToPlot.map((d) => (
+                {translatePlots(t, areasToPlot).map((d) => (
                   <Area
                     key={d.key}
                     type="monotone"
