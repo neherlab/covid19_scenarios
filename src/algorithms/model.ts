@@ -526,14 +526,14 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
     // TODO(nnoll): Typescript linting isn't happy here
     Object.keys(tp.current).forEach((k) => {
       if (k === 'exposed') {
-        tp.current[k].total = 0
-        Object.values(d.current[k]).forEach((x) => {
+        tp.current.exposed.total = 0
+        Object.values(d.current.exposed).forEach((x) => {
           x.forEach((y) => {
             tp.current[k].total += y
           })
         })
-        Object.keys(d.current[k]).forEach((a, i) => {
-          tp.current[k][a] = d.current[k][i].reduce((a, b) => a + b, 0)
+        ages.forEach((age, i) => {
+          tp.current[k][age] = d.current.exposed[i].reduce((a, b) => a + b, 0)
         })
       } else {
         ages.forEach((age, i) => {
@@ -556,7 +556,7 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
   return res
 }
 
-export function exportSimulation(result: UserResult) {
+export function exportSimulation(result: UserResult, ageGroups: string[] = ['total']) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
@@ -568,7 +568,13 @@ export function exportSimulation(result: UserResult) {
   const headerCumulative = keys(result.trajectory[0].cumulative)
   const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
 
-  const tsv = [`time\t${tsvHeader.concat(tsvHeaderCumulative).join('\t')}`]
+  let buf = 'time'
+  tsvHeader.concat(tsvHeaderCumulative).forEach((hdr) => {
+    ageGroups.forEach((age) => {
+      buf += `\t${hdr} (${age})`
+    })
+  })
+  const tsv = [buf]
 
   const pop: Record<string, boolean> = {}
   result.trajectory.forEach((d) => {
@@ -579,11 +585,15 @@ export function exportSimulation(result: UserResult) {
     pop[t] = true
     let buf = t
     header.forEach((k) => {
-      buf += `\t${Math.round(d.current[k].total)}`
+      ageGroups.forEach((age) => {
+        buf += `\t${Math.round(d.current[k][age])}`
+      })
     })
 
     headerCumulative.forEach((k) => {
-      buf += `\t${Math.round(d.cumulative[k].total)}`
+      ageGroups.forEach((age) => {
+        buf += `\t${Math.round(d.cumulative[k][age])}`
+      })
     })
     tsv.push(buf)
   })

@@ -16,6 +16,7 @@ import {
   XAxis,
   YAxis,
   YAxisProps,
+  LegendPayload,
 } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
@@ -50,9 +51,53 @@ function labelFormatter(value: string | number): React.ReactNode {
   return xTickFormatter(value)
 }
 
-function legendFormatter(enabledPlots: string[], value: string, entry: { dataKey: string }) {
-  const activeClassName = enabledPlots.includes(entry.dataKey) ? 'legend' : 'legend-inactive'
+function legendFormatter(enabledPlots: string[], value?: LegendPayload['value'], entry?: LegendPayload) {
+  let activeClassName = 'legend-inactive'
+  if (entry?.dataKey && enabledPlots.includes(entry.dataKey)) {
+    activeClassName = 'legend'
+  }
+
   return <span className={activeClassName}>{value}</span>
+}
+
+type maybeNumber = number | undefined
+
+function computeNewEmpiricalCases(
+  timeWindow: number,
+  verifyPositive: (x: number) => number | undefined,
+  cumulativeCounts?: EmpiricalData,
+): [maybeNumber[], number] {
+  const newEmpiricalCases: maybeNumber[] = []
+  const deltaDay = Math.floor(timeWindow)
+  const deltaInt = timeWindow - deltaDay
+
+  if (!cumulativeCounts) {
+    return [newEmpiricalCases, deltaDay]
+  }
+
+  cumulativeCounts.forEach((_0, day) => {
+    if (day < deltaDay) {
+      newEmpiricalCases[day] = undefined
+      return
+    }
+
+    const startDay = day - deltaDay
+    const startDayPlus = day - deltaDay - 1
+
+    const nowCases = cumulativeCounts[day].cases
+    const oldCases = cumulativeCounts[startDay].cases
+    const olderCases = cumulativeCounts[startDayPlus]?.cases
+    if (oldCases && nowCases) {
+      const newCases = verifyPositive(
+        olderCases ? (1 - deltaInt) * (nowCases - oldCases) + deltaInt * (nowCases - olderCases) : nowCases - oldCases,
+      )
+      newEmpiricalCases.push(newCases)
+      return
+    }
+    newEmpiricalCases[day] = undefined
+  })
+
+  return [newEmpiricalCases, deltaDay]
 }
 
 const verifyPositive = (x: number) => (x > 0 ? x : undefined)
@@ -92,21 +137,17 @@ export function DeterministicLinePlot({
 
   const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
 
-  const caseStep = 3
-  // this currently relies on there being data for every day. This should be
-  // the case given how the data are parsed, but would be good to put in a check
-  const newCases = (cc: EmpiricalData, i: number) => {
-    if (i >= caseStep && cc[i].cases !== null && cc[i - caseStep].cases !== null) {
-      return verifyPositive((cc[i].cases as number) - (cc[i - caseStep].cases as number))
-    }
-    return undefined
-  }
+  const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
+    params.epidemiological.infectiousPeriod,
+    verifyPositive,
+    nonEmptyCaseCounts,
+  )
 
   const countObservations = {
     cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
     ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
     observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: nonEmptyCaseCounts?.filter((d, i) => newCases(nonEmptyCaseCounts, i)).length ?? 0,
+    newCases: nonEmptyCaseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
     hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
@@ -119,7 +160,7 @@ export function DeterministicLinePlot({
         ? d.hospitalized || undefined
         : undefined,
       ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.icu || undefined : undefined,
-      newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newCases(nonEmptyCaseCounts, i) : undefined,
+      newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newEmpiricalCases[i] : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
@@ -178,7 +219,7 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const reducedObservationsToPlot = translatePlots(t, observationsToPlot).filter((itemToPlot) => {
+  const reducedObservationsToPlot = translatePlots(t, observationsToPlot(caseTimeWindow)).filter((itemToPlot) => {
     if (observations.length !== 0) {
       if (countObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
         return true
@@ -213,32 +254,6 @@ export function DeterministicLinePlot({
     typeof value === 'number' ? formatNumber(Number(value)) : value
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
-
-  // const zoomIn = () => {
-  //   if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
-  //     setzoomSelectedLeftState('')
-  //     setzoomSelectedRightState('')
-  //     return
-  //   }
-
-  //   // xAxis domain
-  //   if (zoomSelectedLeftState > zoomSelectedRightState) {
-  //     setzoomSelectedLeftState(zoomSelectedRightState)
-  //     setzoomSelectedRightState(zoomSelectedLeftState)
-  //   }
-
-  //   setzoomLeftState(zoomSelectedLeftState)
-  //   setzoomRightState(zoomSelectedRightState)
-  //   setzoomSelectedLeftState('')
-  //   setzoomSelectedRightState('')
-  // }
-
-  // const zoomOut = () => {
-  //   setzoomLeftState('dataMin')
-  //   setzoomRightState('dataMax')
-  //   setzoomSelectedLeftState('')
-  //   setzoomSelectedRightState('')
-  // }
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
@@ -301,6 +316,7 @@ export function DeterministicLinePlot({
                     <LinePlotTooltip
                       valueFormatter={tooltipValueFormatter}
                       itemsToDisplay={tooltipItemsToDisplay}
+                      deltaCaseDays={caseTimeWindow}
                       {...props}
                     />
                   )}
@@ -308,7 +324,9 @@ export function DeterministicLinePlot({
 
                 <Legend
                   verticalAlign="bottom"
-                  formatter={(v, e) => legendFormatter(enabledPlots, v, e)}
+                  formatter={(value?: LegendPayload['value'], entry?: LegendPayload) =>
+                    legendFormatter(enabledPlots, value, entry)
+                  }
                   onClick={(e) => {
                     const plots = enabledPlots.slice(0)
                     enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)

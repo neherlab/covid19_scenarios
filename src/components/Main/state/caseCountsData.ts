@@ -24,7 +24,15 @@ export function getCaseCountsData(key: string) {
 
   const caseCountFound = caseCounts.find((cc) => cc.country === key)
   if (!caseCountFound) {
-    throw new Error(`Error: case counts "${key}" not found in JSON`)
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`
+        Developer warning: requested case counts for "${key}", but this entry is not present in the data.
+        This probably means that the data has an incorrect reference to non-existing case counts.
+
+        Returning an empty case counts array. However the app state will not be adjusted.
+        This means that the incorrect name "${key}" will be visible in the UI, but no actual case data will be present`)
+    }
+    return []
   }
 
   // FIXME: this should be changed, too hacky
