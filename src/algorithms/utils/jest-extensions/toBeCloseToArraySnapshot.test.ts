@@ -1,4 +1,4 @@
-import { toBeCloseToArraySnapshot } from './jest-extensions'
+import { toBeCloseToArraySnapshot } from './index'
 
 expect.extend({ toBeCloseToArraySnapshot })
 
