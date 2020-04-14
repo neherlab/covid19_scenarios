@@ -45,35 +45,35 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
   orderedChangePoints.sort(compareTimes)
 
   if (orderedChangePoints.length > 0) {
-    const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t, y: 1.0 }]
+    const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t.valueOf(), y: 1.0 }]
     const product = (a: number, b: number): number => a * b
 
     orderedChangePoints.forEach((d, i) => {
       const prevValue = mitigationSeries[2 * i].y
       const newValue = d.val.reduce(product, prevValue)
-      mitigationSeries.push({ t: d.t, y: prevValue })
-      mitigationSeries.push({ t: d.t, y: newValue })
+      mitigationSeries.push({ t: d.t.valueOf(), y: prevValue })
+      mitigationSeries.push({ t: d.t.valueOf(), y: newValue })
     })
     return mitigationSeries
   }
   return []
 }
 // NOTE: Assumes containment is sorted ascending in time.
-export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
+export function interpolateTimeSeries(containment: TimeSeries): (t: number) => number {
   if (containment.length === 0) {
     return () => 1.0
   }
 
   const Ys = containment.map((d) => d.y)
-  const Ts = containment.map((d) => Number(d.t))
-  return (t: Date) => {
+  const Ts = containment.map((d) => d.t)
+  return (t: number) => {
     if (t <= containment[0].t) {
       return containment[0].y
     }
     if (t >= containment[containment.length - 1].t) {
       return containment[containment.length - 1].y
     }
-    const i = containment.findIndex((d) => Number(t) < Number(d.t))
+    const i = containment.findIndex((d) => t < d.t)
 
     const evalLinear = (t: number) => {
       const deltaY = Ys[i] - Ys[i - 1]
@@ -85,7 +85,7 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
       return Ys[i - 1] + dS * dT
     }
 
-    return evalLinear(Number(t))
+    return evalLinear(t)
   }
 }
 
@@ -219,8 +219,8 @@ export function getPopulationParams(
   const containment = interpolateTimeSeries(intervalsToTimeSeries(params.mitigationIntervals))
   if (params.r0[0] === params.r0[1]) {
     const avgInfectionRate = params.r0[0] / params.infectiousPeriod
-    sim.rate.infection = (time: Date) =>
-      containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
+    sim.rate.infection = (time: number) =>
+      containment(time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
 
     return [sim]
   }
@@ -230,8 +230,8 @@ export function getPopulationParams(
     const elt = cloneDeep(sim)
     const avgInfectionRate = r0 / params.infectiousPeriod
 
-    elt.rate.infection = (time: Date) =>
-      containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
+    elt.rate.infection = (time: number) =>
+      containment(time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
 
     return elt
   })

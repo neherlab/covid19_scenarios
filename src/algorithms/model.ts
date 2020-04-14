@@ -56,9 +56,9 @@ interface TimeDerivative {
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
 function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number): SimulationTimePoint {
-  const t0 = new Date(pop.time)
-  const t1 = new Date(pop.time + (dt / 2) * msPerDay)
-  const t2 = new Date(pop.time + dt * msPerDay)
+  const t0 = pop.time
+  const t1 = pop.time + (dt / 2) * msPerDay
+  const t2 = pop.time + dt * msPerDay
 
   const k1 = derivative(fluxes(t0, pop, P))
   const k2 = derivative(fluxes(t1, advanceState(pop, k1, dt / 2, P.ICUBeds), P))
@@ -88,7 +88,7 @@ function advanceState(
   nICUBeds: number,
 ): SimulationTimePoint {
   const newPop: SimulationTimePoint = {
-    time: Date.now(),
+    time: 0,
     current: {
       susceptible: [],
       exposed: [],
@@ -266,7 +266,7 @@ function derivative(flux: StateFlux): TimeDerivative {
   return grad
 }
 
-function fluxes(time: Date, pop: SimulationTimePoint, P: ModelParams): StateFlux {
+function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFlux {
   // Convention: flux is labelled by the state
   const flux: StateFlux = {
     susceptible: [],

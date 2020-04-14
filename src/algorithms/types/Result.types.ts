@@ -55,7 +55,7 @@ export interface ModelFracs {
 
 export interface ModelRates {
   latency: number
-  infection: (t: Date) => number
+  infection: (t: number) => number
   recovery: number[]
   severe: number[]
   discharge: number[]
