@@ -11,7 +11,7 @@ import type { Context, SnapshotState } from './types'
 export default class State {
   private currentTestName: string
   private snapshotState: SnapshotState
-  private error: Error | undefined
+  private error?: Error
   private hasSnapshot: boolean
 
   private incrementCounters() {
