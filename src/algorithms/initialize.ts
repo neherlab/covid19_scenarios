@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash'
+import { clamp, cloneDeep } from 'lodash'
 import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
 
 import { AgeDistribution } from '../.generated/types'
@@ -9,55 +9,51 @@ import { ModelParams, SimulationTimePoint } from './types/Result.types'
 // -----------------------------------------------------------------------
 // Utility functions
 
-interface ChangePoint {
-  t: Date
-  val: number[]
-}
-
-const compareTimes = (a: ChangePoint, b: ChangePoint): number => {
-  return a.t.valueOf() - b.t.valueOf()
-}
-
 export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSeries {
-  const changePoints = {}
+  const changePoints: Record<number, number[]> = {}
   intervals.forEach((element) => {
     // bound the value by 0.01 and 100 (transmission can be at most 100 fold reduced or increased)
-    const val = Math.min(Math.max(1 - element.mitigationValue[0] * 0.01, 0.01), 100)
+    const val = clamp(1 - element.mitigationValue[0] / 100, 0.01, 100)
+    const tMin = element.timeRange.tMin.valueOf()
+    const tMax = element.timeRange.tMax.valueOf()
 
-    if (changePoints[element.timeRange.tMin] !== undefined) {
-      changePoints[element.timeRange.tMin].push(val)
+    if (changePoints[tMin] !== undefined) {
+      changePoints[tMin].push(val)
     } else {
-      changePoints[element.timeRange.tMin] = [val]
+      changePoints[tMin] = [val]
     }
     // add inverse of the value when measure is relaxed
-    if (changePoints[element.timeRange.tMax] !== undefined) {
-      changePoints[element.timeRange.tMax].push(1.0 / val)
+    if (changePoints[tMax] !== undefined) {
+      changePoints[tMax].push(1.0 / val)
     } else {
-      changePoints[element.timeRange.tMax] = [1.0 / val]
+      changePoints[tMax] = [1.0 / val]
     }
   })
 
-  const orderedChangePoints: ChangePoint[] = Object.keys(changePoints).map((d) => ({
-    t: new Date(d),
-    val: changePoints[d],
-  }))
-
-  orderedChangePoints.sort(compareTimes)
+  const orderedChangePoints = Object.entries(changePoints)
+    .map(([t, vals]) => ({
+      t: Number(t),
+      val: vals,
+    }))
+    .sort((a, b): number => a.t - b.t)
 
   if (orderedChangePoints.length > 0) {
-    const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t.valueOf(), y: 1.0 }]
-    const product = (a: number, b: number): number => a * b
+    const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t, y: 1.0 }]
 
     orderedChangePoints.forEach((d, i) => {
-      const prevValue = mitigationSeries[2 * i].y
-      const newValue = d.val.reduce(product, prevValue)
-      mitigationSeries.push({ t: d.t.valueOf(), y: prevValue })
-      mitigationSeries.push({ t: d.t.valueOf(), y: newValue })
+      const oldValue = mitigationSeries[2 * i].y
+      const newValue = d.val.reduce((a, b) => a * b, oldValue)
+
+      mitigationSeries.push({ t: d.t, y: oldValue })
+      mitigationSeries.push({ t: d.t, y: newValue })
     })
+
     return mitigationSeries
   }
+
   return []
 }
+
 // NOTE: Assumes containment is sorted ascending in time.
 export function interpolateTimeSeries(containment: TimeSeries): (t: number) => number {
   if (containment.length === 0) {
