@@ -393,65 +393,63 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  // TODO: full export, please!
-  //
-  // let buf = 'time'
-  // tsvHeader.concat(tsvHeaderCumulative).forEach((hdr) => {
-  //   ageGroups.forEach((age) => {
-  //     buf += `\t${hdr} (${age})`
-  //   })
-  // })
-  // const tsv = [buf]
-  //
-  // const pop: Record<string, boolean> = {}
-  // result.trajectory.forEach((d) => {
-  //   const t = new Date(d.time).toISOString().slice(0, 10)
-  //   if (t in pop) {
-  //     return
-  //   } // skip if date is already in table
-  //   pop[t] = true
-  //   let buf = t
-  //   header.forEach((k) => {
-  //     ageGroups.forEach((age) => {
-  //       buf += `\t${Math.round(d.current[k][age])}`
-  //     })
-  //   })
-  //
-  //   headerCumulative.forEach((k) => {
-  //     ageGroups.forEach((age) => {
-  //       buf += `\t${Math.round(d.cumulative[k][age])}`
-  //     })
-  //   })
-  //   tsv.push(buf)
-  // })
+  const categories = {
+    current: keys(result.mean[0].current),
+    cumulative: keys(result.mean[0].cumulative),
+  }
+  const header: string[] = ['time']
+  const title = (name: string): string => (name === 'critical' ? 'ICU' : name)
 
-  // const tsv = [header.join('\t')]
-  //
-  // const seen: Record<string, boolean> = {}
-  // const upper = result.upper
-  // const lower = result.lower
-  // result.mean.forEach((mean, i) => {
-  //   const t = new Date(mean.time).toISOString().slice(0, 10)
-  //   if (t in seen) {
-  //     return
-  //   }
-  //   seen[t] = true
-  //
-  //   let buf = t
-  //   categories.current.forEach((k) => {
-  //     buf += `\t${Math.round(mean.current[k].total)}\t${Math.round(lower[i].current[k].total)}\t${Math.round(
-  //       upper[i].current[k].total,
-  //     )}`
-  //   })
-  //   categories.cumulative.forEach((k) => {
-  //     buf += `\t${Math.round(mean.cumulative[k].total)}\t${Math.round(lower[i].cumulative[k].total)}\t${Math.round(
-  //       upper[i].cumulative[k].total,
-  //     )}`
-  //   })
-  //
-  //   tsv.push(buf)
-  // })
+  categories.current.forEach((category) => {
+    ageGroups.forEach((age) => {
+      header.push(
+        `${title(category)} (${age}) mean`,
+        `${title(category)} (${age}) lower bound`,
+        `${title(category)} (${age}) upper bound`,
+      )
+    })
+  })
 
-  // return tsv.join('\n')
-  return ''
+  categories.cumulative.forEach((category) => {
+    ageGroups.forEach((age) => {
+      header.push(
+        `cumulative ${title(category)} (${age}) mean`,
+        `cumulative ${title(category)} (${age}) lower bound`,
+        `cumulative ${title(category)} (${age}) upper bound`,
+      )
+    })
+  })
+
+  const tsv = [header.join('\t')]
+
+  const seen: Record<string, boolean> = {}
+  const upper = result.upper
+  const lower = result.lower
+  result.mean.forEach((mean, i) => {
+    const t = new Date(mean.time).toISOString().slice(0, 10)
+    if (t in seen) {
+      return
+    }
+    seen[t] = true
+
+    let buf = t
+    categories.current.forEach((k) => {
+      ageGroups.forEach((age) => {
+        buf += `\t${Math.round(mean.current[k][age])}\t${Math.round(lower[i].current[k][age])}\t${Math.round(
+          upper[i].current[k][age],
+        )}`
+      })
+    })
+    categories.cumulative.forEach((k) => {
+      ageGroups.forEach((age) => {
+        buf += `\t${Math.round(mean.cumulative[k][age])}\t${Math.round(lower[i].cumulative[k][age])}\t${Math.round(
+          upper[i].cumulative[k][age],
+        )}`
+      })
+    })
+
+    tsv.push(buf)
+  })
+
+  return tsv.join('\n')
 }
