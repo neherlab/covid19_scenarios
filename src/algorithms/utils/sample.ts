@@ -1,3 +1,6 @@
+// TODO(nnoll): Make a user-adjustable parameter?
+export const NUMBER_PARAMETER_SAMPLES = 10
+
 // TODO(nnoll): Generalize to allow for sampling multiple uncertainty ranges
 export function sampleUniform(range: [number, number], npoints: number): number[] {
   const sample: number[] = []
@@ -8,4 +11,9 @@ export function sampleUniform(range: [number, number], npoints: number): number[
     val += delta
   }
   return sample
+}
+
+export function sampleRandom(range: [number, number]): number {
+  // tslint:disable-next-line insecure-random
+  return (range[1] - range[0]) * Math.random() + range[0]
 }

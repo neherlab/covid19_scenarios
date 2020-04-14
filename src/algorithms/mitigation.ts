@@ -1,26 +1,59 @@
 import { clamp } from 'lodash'
 import { TimeSeries } from './types/TimeSeries.types'
 import { MitigationIntervals } from './types/Param.types'
+import { NUMBER_PARAMETER_SAMPLES, sampleRandom } from './utils/sample'
 
-function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSeries[] {
+// -----------------------------------------------------------------------
+// Utility functions
+
+function trypush(arr: undefined | number[], val: number): number[] {
+  if (arr !== undefined) {
+    arr.push(val)
+    return arr
+  }
+  return [val]
+}
+
+// -----------------------------------------------------------------------
+// Internal functions
+
+interface MitigationMeasure {
+  val: number
+  tMin: number
+  tMax: number
+}
+
+function strength(mitigation: number): number {
+  return clamp(1 - mitigation / 100, 0.01, 1)
+}
+
+function sampleMitigationRealizations(intervals: MitigationIntervals): MitigationMeasure[][] {
+  const noRanges = intervals.every((elt) => elt.mitigationValue[0] === elt.mitigationValue[1])
+  if (noRanges) {
+    return [
+      intervals.map((interval) => ({
+        val: strength(interval.mitigationValue[0]),
+        tMin: interval.timeRange.tMin.valueOf(),
+        tMax: interval.timeRange.tMax.valueOf(),
+      })),
+    ]
+  }
+
+  return [...Array(NUMBER_PARAMETER_SAMPLES).keys()].map(() =>
+    intervals.map((interval) => ({
+      val: strength(sampleRandom([interval.mitigationValue[0], interval.mitigationValue[1]])),
+      tMin: interval.timeRange.tMin.valueOf(),
+      tMax: interval.timeRange.tMax.valueOf(),
+    })),
+  )
+}
+
+function timeSeriesOf(measures: MitigationMeasure[]): TimeSeries {
   const changePoints: Record<number, number[]> = {}
-  intervals.forEach((element) => {
-    // bound the value by 0.01 and 100 (transmission can be at most 100 fold reduced or increased)
-    const val = clamp(1 - element.mitigationValue[0] / 100, 0.01, 100)
-    const tMin = element.timeRange.tMin.valueOf()
-    const tMax = element.timeRange.tMax.valueOf()
-
-    if (changePoints[tMin] !== undefined) {
-      changePoints[tMin].push(val)
-    } else {
-      changePoints[tMin] = [val]
-    }
-    // add inverse of the value when measure is relaxed
-    if (changePoints[tMax] !== undefined) {
-      changePoints[tMax].push(1.0 / val)
-    } else {
-      changePoints[tMax] = [1.0 / val]
-    }
+  measures.forEach((measure) => {
+    const { val, tMin, tMax } = measure
+    changePoints[tMin] = trypush(changePoints[tMin], val)
+    changePoints[tMax] = trypush(changePoints[tMax], 1.0 / val)
   })
 
   const orderedChangePoints = Object.entries(changePoints)
@@ -31,17 +64,17 @@ function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSeries[] {
     .sort((a, b): number => a.t - b.t)
 
   if (orderedChangePoints.length > 0) {
-    const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t, y: 1.0 }]
+    const mitigation: TimeSeries = [{ t: orderedChangePoints[0].t, y: 1.0 }]
 
     orderedChangePoints.forEach((d, i) => {
-      const oldValue = mitigationSeries[2 * i].y
+      const oldValue = mitigation[2 * i].y
       const newValue = d.val.reduce((a, b) => a * b, oldValue)
 
-      mitigationSeries.push({ t: d.t, y: oldValue })
-      mitigationSeries.push({ t: d.t, y: newValue })
+      mitigation.push({ t: d.t, y: oldValue })
+      mitigation.push({ t: d.t, y: newValue })
     })
 
-    return [mitigationSeries]
+    return mitigation
   }
 
   return []
@@ -79,6 +112,9 @@ function interpolateTimeSeries(containment: TimeSeries): Func {
   }
 }
 
-export function sampleContainmentMeasures(intervals: MitigationIntervals): Func[] {
-  return intervalsToTimeSeries(intervals).map((ts) => interpolateTimeSeries(ts))
+// -----------------------------------------------------------------------
+// Exported functions
+
+export function containmentMeasures(intervals: MitigationIntervals): Func[] {
+  return sampleMitigationRealizations(intervals).map((sample) => interpolateTimeSeries(timeSeriesOf(sample)))
 }

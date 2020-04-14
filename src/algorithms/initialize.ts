@@ -4,8 +4,8 @@ import { AgeDistribution } from '../.generated/types'
 import { AllParamsFlat } from './types/Param.types'
 import { ModelParams, SimulationTimePoint } from './types/Result.types'
 
-import { sampleUniform } from './utils/sample'
-import { sampleContainmentMeasures } from './mitigation'
+import { NUMBER_PARAMETER_SAMPLES, sampleUniform } from './utils/sample'
+import { containmentMeasures } from './mitigation'
 
 // -----------------------------------------------------------------------
 // Globals
@@ -37,9 +37,6 @@ export function infectionRate(
   const phase = ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) * 2 * Math.PI
   return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
 }
-
-// TODO(nnoll): Make a user-adjustable parameter?
-const NUMBER_PARAMETER_SAMPLES = 10
 
 export function getPopulationParams(
   params: AllParamsFlat,
@@ -123,22 +120,22 @@ export function getPopulationParams(
 
   // Infectivity dynamics
   // interpolateTimeSeries(intervalsToTimeSeries(params.mitigationIntervals))
-  const containment = sampleContainmentMeasures(params.mitigationIntervals)
-  if (params.r0[0] === params.r0[1]) {
+  const containmentRealization = containmentMeasures(params.mitigationIntervals)
+  if (params.r0[0] === params.r0[1] && containmentRealization.length === 1) {
     const avgInfectionRate = params.r0[0] / params.infectiousPeriod
     sim.rate.infection = (time: number) =>
-      containment(time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
+      containmentRealization[0](time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
 
     return [sim]
   }
 
   const r0s = sampleUniform(params.r0 as [number, number], NUMBER_PARAMETER_SAMPLES)
-  return r0s.map((r0) => {
+  return r0s.map((r0, i) => {
     const elt = cloneDeep(sim)
     const avgInfectionRate = r0 / params.infectiousPeriod
 
     elt.rate.infection = (time: number) =>
-      containment(time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
+      containmentRealization[i](time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
 
     return elt
   })
