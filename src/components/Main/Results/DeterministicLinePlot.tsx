@@ -414,7 +414,7 @@ export function DeterministicLinePlot({
                   <Area
                     key={d.key}
                     type="monotone"
-                    fillOpacity={0.15}
+                    fillOpacity={0.075}
                     dataKey={d.key}
                     isAnimationActive={false}
                     name={d.name}
