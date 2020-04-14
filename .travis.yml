@@ -18,9 +18,18 @@ install:
 
 before_script:
   - cp .env.example .env
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
-  - yarn schema:totypes && yarn test:nowatch
+  - yarn schema:totypes
+  - yarn eslint --max-warnings=0
+  - yarn test:coverage
+  - yarn codecov -f .reports/coverage/coverage-final.json
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 before_deploy:
   - yarn prod:build
