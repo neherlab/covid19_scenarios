@@ -71,7 +71,7 @@ describe('model', () => {
         getPopulationParamsInput.severity,
         getPopulationParamsInput.ageCounts,
         containmentFunction,
-      )
+      )[0]
 
       expect(params).toMatchSnapshot()
       containmentWithDate.forEach((o) => {
@@ -109,7 +109,7 @@ describe('model', () => {
       )
 
       // run model for 0.25 days
-      const result = evolve(input, params, input.time + 10, identity)
+      const result = evolve(input, params[0], input.time + 10, identity)
       // compare result with snapshot
       expect(result).toMatchSnapshot()
     })

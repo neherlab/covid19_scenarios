@@ -12,6 +12,7 @@ import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { OneCountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
@@ -27,6 +28,7 @@ interface ResultsCardProps {
   toggleAutorun: () => void
   canRun: boolean
   params: AllParams
+  ageDistribution: OneCountryAgeDistribution
   mitigation: ContainmentData
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult
@@ -40,6 +42,7 @@ function ResultsCardFunction({
   autorunSimulation,
   toggleAutorun,
   params,
+  ageDistribution,
   mitigation,
   severity,
   result,
@@ -100,7 +103,7 @@ function ResultsCardFunction({
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
 
   useEffect(() => {
-    setCanExport((result && !!result.deterministic) || false)
+    setCanExport((result && !!result.trajectory) || false)
   }, [result])
 
   return (
@@ -196,7 +199,6 @@ function ResultsCardFunction({
           <Col>
             <DeterministicLinePlot
               data={result}
-              userResult={userResult}
               params={params}
               mitigation={mitigation}
               logScale={logScale}
@@ -207,7 +209,12 @@ function ResultsCardFunction({
         </Row>
         <Row>
           <Col>
-            <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} />
+            <AgeBarChart
+              showHumanized={showHumanized}
+              data={result}
+              rates={severity}
+              ageDistribution={ageDistribution}
+            />
           </Col>
         </Row>
         <Row>
@@ -238,6 +245,7 @@ function ResultsCardFunction({
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
         result={result}
+        params={params}
         scenarioUrl={scenarioUrl}
       />
     </>

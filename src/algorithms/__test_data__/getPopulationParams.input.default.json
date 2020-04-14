@@ -7,7 +7,7 @@
     "initialNumberOfCases": 213,
     "importsPerDay": 0.1,
     "cases": "CHE-Basel-Stadt",
-    "r0": 2.7,
+    "r0": [2.7, 2.7],
     "latencyTime": 5,
     "infectiousPeriod": 3,
     "lengthHospitalStay": 4,

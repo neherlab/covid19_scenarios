@@ -15,6 +15,8 @@ import { suggestNextMitigationInterval } from '../../../algorithms/utils/createM
 
 import { MitigationDatePicker } from './MitigationDatePicker'
 
+import { RangeSlider } from '../../Form/FormRangeSlider'
+
 import './MitigationTable.scss'
 
 export interface MitigationTableProps {
@@ -141,12 +143,11 @@ function MitigationIntervalComponent({
               value={interval.timeRange}
               allowPast
             />
-            <FastField
-              className={`form-control item-value ${valueError ? 'border-danger' : ''}`}
-              id={`containment.mitigationIntervals[${index}].mitigationValue`}
-              name={`containment.mitigationIntervals[${index}].mitigationValue`}
-              type="number"
-              step={1}
+          </div>
+          <div style={{ width: '400px' }}>
+            <RangeSlider
+              identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
+              step={0.1}
               min={0}
               max={100}
             />

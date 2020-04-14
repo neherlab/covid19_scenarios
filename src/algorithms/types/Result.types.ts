@@ -1,3 +1,5 @@
+import { AgeDistribution } from '../../.generated/types'
+
 export interface InternalCurrentData {
   susceptible: number[]
   exposed: number[][]
@@ -64,7 +66,7 @@ export interface ModelRates {
 }
 
 export interface ModelParams {
-  ageDistribution: Record<string, number>
+  ageDistribution: AgeDistribution
   importsPerDay: number[]
   timeDelta: number
   timeDeltaDays: number
@@ -77,11 +79,12 @@ export interface ModelParams {
 }
 
 export interface UserResult {
-  trajectory: ExportedTimePoint[]
+  mean: ExportedTimePoint[]
+  lower: ExportedTimePoint[]
+  upper: ExportedTimePoint[]
 }
 
 export interface AlgorithmResult {
-  deterministic: UserResult
-  stochastic: UserResult[]
-  params: ModelParams
+  trajectory: UserResult
+  percentile: Record<number, ExportedTimePoint[]>
 }

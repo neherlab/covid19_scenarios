@@ -36,6 +36,14 @@ export function LinePlotTooltip({
 
   const formattedLabel = labelFormatter ? labelFormatter(label) : label
 
+  const uncertainty: Record<string, [number, number]> = {}
+  payload.forEach((item) => {
+    if (item.name && item.name.includes(' uncertainty')) {
+      const key = item.name.replace(' uncertainty', '')
+      uncertainty[key] = [item.value[0], item.value[1]]
+    }
+  })
+
   const tooltipItems = []
     .concat(
       translatePlots(t, observationsToPlot(deltaCaseDays)).map((observationToPlot) => ({
@@ -68,6 +76,20 @@ export function LinePlotTooltip({
         }
       },
     )
+    .map((payloadItem) => ({
+      name: payloadItem.name,
+      color: payloadItem.color || '#bbbbbb',
+      value: valueFormatter ? valueFormatter(payloadItem.value) : payloadItem.value,
+      lower:
+        payloadItem.name in uncertainty
+          ? valueFormatter(payloadItem.value - uncertainty[payloadItem.name][0])
+          : undefined,
+      upper:
+        payloadItem.name in uncertainty
+          ? valueFormatter(uncertainty[payloadItem.name][1] - payloadItem.value)
+          : undefined,
+    }))
+    .filter((payloadItem) => (payloadItem.name ? !payloadItem.name.includes('uncertainty') : true))
 
   return <ResponsiveTooltipContent formattedLabel={formattedLabel} tooltipItems={tooltipItems} />
 }
