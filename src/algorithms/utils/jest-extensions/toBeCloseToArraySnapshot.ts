@@ -8,16 +8,33 @@
 import type { Context } from './types'
 import State from './state'
 
-function serialize(data: number[]): string {
-  return JSON.stringify(data, null, 2)
+function serialize(arr: number[]) {
+  const bytesPer = 8 // 8 Bytes per Float64
+  const buffer = Buffer.alloc(arr.length * bytesPer)
+  for (let i = 0; i < arr.length; i++) {
+    buffer.writeDoubleLE(arr[i], i * bytesPer)
+  }
+  return buffer.toString('base64')
 }
 
-function deserialize(data: string): number[] {
+function tryDeserialize(str: string) {
   try {
-    return JSON.parse(data)
+    return deserialize(str)
   } catch {
+    console.log('Failed to deserialize float array. It might not exist. Returning empty array.')
     return []
   }
+}
+
+function deserialize(str: string) {
+  const bytesPer = 8 // 8 Bytes per Float64
+  const buffer = Buffer.from(str, 'base64')
+  const result = []
+  for (let i = 0; i < buffer.length; i += bytesPer) {
+    result.push(buffer.readDoubleLE(i))
+  }
+
+  return result
 }
 
 function compare(
@@ -45,7 +62,7 @@ export default function toBeCloseToArraySnapshot(this: Context, received: number
   const state = new State(this)
 
   const snapshot = state.getSnapshot()
-  const expected = deserialize(snapshot)
+  const expected = tryDeserialize(snapshot)
 
   const tolerance = Math.pow(10, -precision) / 2
   const { pass } = compare(expected, received, tolerance)
@@ -69,7 +86,7 @@ export default function toBeCloseToArraySnapshot(this: Context, received: number
 
   if (!pass) {
     return {
-      message: () => `expected: ${serialize(received)}\n received: ${serialize(expected)}`,
+      message: () => `expected: ${expected}\n received: ${received}`,
       actual: serialize(received),
       count: state.count,
       expected: expected !== undefined ? serialize(expected) : undefined,
