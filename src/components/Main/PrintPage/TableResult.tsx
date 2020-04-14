@@ -14,16 +14,36 @@ const STEP = 7
 
 const dateFormat = (time: number) => moment(time).format('MMM DD YYYY')
 
-export default function TableResult({ result }: PropsType) {
-  const sampleEvery = (arr: ExportedTimePoint[], step: number) => {
-    return arr.reduce<ExportedTimePoint[]>((acc, curr, i) => {
-      if (i % step === 0) {
-        return [...acc, curr]
-      }
-      return acc
-    }, [])
-  }
+function sampleEvery(arr: ExportedTimePoint[], step: number): ExportedTimePoint[] {
+  return arr.reduce<ExportedTimePoint[]>((acc, curr, i) => {
+    if (i % step === 0) {
+      return [...acc, curr]
+    }
+    return acc
+  }, [])
+}
 
+interface NumberPropsType {
+  value: number
+  lower: number
+  upper: number
+}
+
+function NumberWithUncertainty({ value, lower, upper }: NumberPropsType) {
+  return (
+    <div>
+      {Math.round(value)}{' '}
+      <div style={{ display: 'inline-block' }}>
+        <span style={{ display: 'inline-block' }}>
+          <sup style={{ display: 'block', position: 'relative' }}>+{Math.round(lower)}</sup>
+          <sub style={{ display: 'block', position: 'relative' }}>-{Math.round(upper)}</sub>
+        </span>
+      </div>
+    </div>
+  )
+}
+
+export default function TableResult({ result }: PropsType) {
   const downSampled = {
     mean: sampleEvery(result.trajectory.mean, STEP),
     lower: sampleEvery(result.trajectory.lower, STEP),
@@ -47,56 +67,32 @@ export default function TableResult({ result }: PropsType) {
             <tr key={line.time}>
               <td>{dateFormat(line.time)}</td>
               <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex() }}>
-                {Math.round(line.current.severe.total)}{' '}
-                <div style={{ display: 'inline-block' }}>
-                  <span style={{ display: 'inline-block' }}>
-                    <sup style={{ display: 'block', position: 'relative' }}>
-                      +{Math.round(downSampled.upper[i].current.severe.total)}
-                    </sup>
-                    <sub style={{ display: 'block', position: 'relative' }}>
-                      -{Math.round(downSampled.lower[i].current.severe.total)}
-                    </sub>
-                  </span>
-                </div>
+                <NumberWithUncertainty
+                  value={line.current.severe.total}
+                  lower={downSampled.lower[i].current.severe.total}
+                  upper={downSampled.upper[i].current.severe.total}
+                />
               </td>
               <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex() }}>
-                {Math.round(line.current.critical.total)}{' '}
-                <div style={{ display: 'inline-block' }}>
-                  <span style={{ display: 'inline-block' }}>
-                    <sup style={{ display: 'block', position: 'relative' }}>
-                      +{Math.round(downSampled.upper[i].current.critical.total)}
-                    </sup>
-                    <sub style={{ display: 'block', position: 'relative' }}>
-                      -{Math.round(downSampled.lower[i].current.critical.total)}
-                    </sub>
-                  </span>
-                </div>
+                <NumberWithUncertainty
+                  value={line.current.critical.total}
+                  lower={downSampled.lower[i].current.critical.total}
+                  upper={downSampled.upper[i].current.critical.total}
+                />
               </td>
               <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex() }}>
-                {Math.round(line.cumulative.recovered.total)}{' '}
-                <div style={{ display: 'inline-block' }}>
-                  <span style={{ display: 'inline-block' }}>
-                    <sup style={{ display: 'block', position: 'relative' }}>
-                      +{Math.round(downSampled.upper[i].cumulative.recovered.total)}
-                    </sup>
-                    <sub style={{ display: 'block', position: 'relative' }}>
-                      -{Math.round(downSampled.lower[i].cumulative.recovered.total)}
-                    </sub>
-                  </span>
-                </div>
+                <NumberWithUncertainty
+                  value={line.cumulative.recovered.total}
+                  lower={downSampled.lower[i].cumulative.recovered.total}
+                  upper={downSampled.upper[i].cumulative.recovered.total}
+                />
               </td>
               <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex() }}>
-                {Math.round(line.cumulative.fatality.total)}{' '}
-                <div style={{ display: 'inline-block' }}>
-                  <span style={{ display: 'inline-block' }}>
-                    <sup style={{ display: 'block', position: 'relative' }}>
-                      +{Math.round(downSampled.upper[i].cumulative.fatality.total)}
-                    </sup>
-                    <sub style={{ display: 'block', position: 'relative' }}>
-                      -{Math.round(downSampled.lower[i].cumulative.fatality.total)}
-                    </sub>
-                  </span>
-                </div>
+                <NumberWithUncertainty
+                  value={line.cumulative.fatality.total}
+                  lower={downSampled.lower[i].cumulative.fatality.total}
+                  upper={downSampled.upper[i].cumulative.fatality.total}
+                />
               </td>
             </tr>
           ))}
