@@ -1,10 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* Because the convention in Jest's toMatchSnapshot() is to modify state. */
-
-/* eslint-disable import/no-extraneous-dependencies */
-/* tslint:disable:no-implicit-dependencies */
-/* Because this is a Jest extension, and these imports are present. :/ */
-
 import type { Context } from './types'
 import State from './state'
 

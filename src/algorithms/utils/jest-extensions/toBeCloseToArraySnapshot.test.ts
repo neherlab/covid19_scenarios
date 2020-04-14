@@ -1,4 +1,4 @@
-import { toBeCloseToArraySnapshot } from './index'
+import { toBeCloseToArraySnapshot } from '.'
 
 expect.extend({ toBeCloseToArraySnapshot })
 

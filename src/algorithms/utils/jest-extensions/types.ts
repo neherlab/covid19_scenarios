@@ -1,3 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* tslint:disable:no-implicit-dependencies */
+/* Because this is Jest extension, and Jest is present. */
+
 import { MatcherState } from 'expect'
 
 /* SnapshotState interface is made to match https://github.com/facebook/jest/blob/4a59daa8715bde6a1b085ff7f4140f3a337045aa/packages/jest-snapshot/src/State.ts#L54

@@ -2,6 +2,7 @@
 /* Because Jest StateSnapshot uses them. */
 
 /* eslint-disable import/no-extraneous-dependencies */
+/* tslint:disable:no-implicit-dependencies */
 /* Because this is Jest extension, and Jest is present. */
 
 import * as fs from 'fs'
