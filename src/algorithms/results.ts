@@ -59,63 +59,71 @@ function operationTP(
 }
 
 export function addTP(x: ExportedTimePoint, y: ExportedTimePoint): ExportedTimePoint {
-  const sum = (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
-    const s: Record<string, number> = {}
-    Object.keys(other).forEach((k) => {
-      if (!(k in dict)) {
-        s[k] = other[k]
-      } else {
-        s[k] = dict[k] + other[k]
-      }
-    })
+  return operationTP(
+    x,
+    y,
+    (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
+      const s: Record<string, number> = {}
+      Object.keys(other).forEach((k) => {
+        if (!(k in dict)) {
+          s[k] = other[k]
+        } else {
+          s[k] = dict[k] + other[k]
+        }
+      })
 
-    return s
-  }
-
-  return operationTP(x, y, sum)
+      return s
+    },
+  )
 }
 
 export function subTP(x: ExportedTimePoint, y: ExportedTimePoint): ExportedTimePoint {
-  const sum = (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
-    const s: Record<string, number> = {}
-    Object.keys(other).forEach((k) => {
-      if (!(k in dict)) {
-        s[k] = other[k]
-      } else {
-        s[k] = dict[k] + other[k]
-      }
-    })
+  return operationTP(
+    x,
+    y,
+    (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
+      const s: Record<string, number> = {}
+      Object.keys(other).forEach((k) => {
+        if (!(k in dict)) {
+          s[k] = other[k]
+        } else {
+          s[k] = dict[k] - other[k]
+        }
+      })
 
-    return s
-  }
-
-  return operationTP(x, y, sum)
+      return s
+    },
+  )
 }
 
 export function mulTP(x: ExportedTimePoint, y: ExportedTimePoint): ExportedTimePoint {
-  const mul = (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
-    const s: Record<string, number> = {}
-    Object.keys(dict).forEach((k) => {
-      s[k] = dict[k] * other[k]
-    })
+  return operationTP(
+    x,
+    y,
+    (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
+      const s: Record<string, number> = {}
+      Object.keys(dict).forEach((k) => {
+        s[k] = dict[k] * other[k]
+      })
 
-    return s
-  }
-
-  return operationTP(x, y, mul)
+      return s
+    },
+  )
 }
 
 export function divTP(x: ExportedTimePoint, y: ExportedTimePoint): ExportedTimePoint {
-  const div = (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
-    const s: Record<string, number> = {}
-    Object.keys(dict).forEach((k) => {
-      s[k] = dict[k] / other[k]
-    })
+  return operationTP(
+    x,
+    y,
+    (dict: Record<string, number>, other: Record<string, number>): Record<string, number> => {
+      const s: Record<string, number> = {}
+      Object.keys(dict).forEach((k) => {
+        s[k] = dict[k] / other[k]
+      })
 
-    return s
-  }
-
-  return operationTP(x, y, div)
+      return s
+    },
+  )
 }
 
 /* Unary operations */

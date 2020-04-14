@@ -56,7 +56,7 @@ function ResultsCardFunction({
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
-  const [userResult, setUserResult] = useState<UserResult | undefined>()
+  const [, setUserResult] = useState<UserResult | undefined>()
 
   useEffect(() => {
     const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)

@@ -1,5 +1,3 @@
-import { AllParamsFlat, AgeDistribution } from './types/Param.types'
-import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
 import {
   ModelParams,
   SimulationTimePoint,
@@ -387,6 +385,10 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
   return res
 }
 
+function title(name: string): string {
+  return name === 'critical' ? 'ICU' : name
+}
+
 export function exportSimulation(result: UserResult, ageGroups: string[] = ['total']) {
   // Store parameter values
 
@@ -398,7 +400,6 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
     cumulative: keys(result.mean[0].cumulative),
   }
   const header: string[] = ['time']
-  const title = (name: string): string => (name === 'critical' ? 'ICU' : name)
 
   categories.current.forEach((category) => {
     ageGroups.forEach((age) => {
@@ -423,8 +424,8 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
   const tsv = [header.join('\t')]
 
   const seen: Record<string, boolean> = {}
-  const upper = result.upper
-  const lower = result.lower
+  const { upper, lower } = result
+
   result.mean.forEach((mean, i) => {
     const t = new Date(mean.time).toISOString().slice(0, 10)
     if (t in seen) {

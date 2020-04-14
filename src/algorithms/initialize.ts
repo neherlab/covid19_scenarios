@@ -89,6 +89,18 @@ export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => num
   }
 }
 
+// TODO(nnoll): Generalize to allow for sampling multiple uncertainty ranges
+function sampleUniform(range: [number, number], npoints: number): number[] {
+  const sample: number[] = []
+  const delta = (range[1] - range[0]) / npoints
+  let val = range[0]
+  while (sample.length < npoints) {
+    sample.push(val)
+    val += delta
+  }
+  return sample
+}
+
 // -----------------------------------------------------------------------
 // Globals
 
@@ -212,25 +224,14 @@ export function getPopulationParams(
 
     return [sim]
   }
-  // TODO(nnoll): Generalize to allow for sampling multiple uncertainty ranges
-  const sample_uniform = (range: [number, number], npoints: number): number[] => {
-    const sample: number[] = []
-    const delta = (range[1] - range[0]) / npoints
-    let val = range[0]
-    while (sample.length < npoints) {
-      sample.push(val)
-      val += delta
-    }
-    return sample
-  }
 
-  const r0s = sample_uniform(params.r0 as [number, number], NUMBER_PARAMETER_SAMPLES)
+  const r0s = sampleUniform(params.r0 as [number, number], NUMBER_PARAMETER_SAMPLES)
   return r0s.map((r0) => {
     const elt = cloneDeep(sim)
-    const avg_infection_rate = r0 / params.infectiousPeriod
+    const avgInfectionRate = r0 / params.infectiousPeriod
 
     elt.rate.infection = (time: Date) =>
-      containment(time) * infectionRate(time.valueOf(), avg_infection_rate, params.peakMonth, params.seasonalForcing)
+      containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
 
     return elt
   })

@@ -27,7 +27,7 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
 
   function validate(value: number[]) {
     let error
-    if (value.length != 2) {
+    if (value.length !== 2) {
       error = `The input length must be 2, found ${value.length}`
     }
     if (value[0] > value[1]) {
@@ -44,7 +44,7 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
 
   return (
     <Field name={identifier} className={`form-control ${borderDanger}`} validate={validate}>
-      {({ field: { value, onChange }, form: { setFieldValue } }: FieldProps<number[]>) => {
+      {({ field: { value }, form: { setFieldValue } }: FieldProps<number[]>) => {
         const handleChange = (value: number[]) => {
           setFieldValue(identifier, value)
         }
@@ -56,7 +56,13 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
                   <FormLabel identifier={identifier} label={label} help={help} />
                 </Col>
                 <Col xl={5}>
-                  <BaseRangeSlider value={value} handleChange={handleChange} step={step} min={min} max={max} />
+                  <BaseRangeSlider
+                    value={[value[0], value[1]]}
+                    handleChange={handleChange}
+                    step={step}
+                    min={min}
+                    max={max}
+                  />
                 </Col>
               </Row>
             </FormGroup>
@@ -65,7 +71,13 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
         return (
           <FormGroup className="my-0">
             <Row noGutters>
-              <BaseRangeSlider value={value} handleChange={handleChange} step={step} min={min} max={max} />
+              <BaseRangeSlider
+                value={[value[0], value[1]]}
+                handleChange={handleChange}
+                step={step}
+                min={min}
+                max={max}
+              />
             </Row>
           </FormGroup>
         )
@@ -92,6 +104,8 @@ function BaseRangeSlider({ value, handleChange, step, min, max }: BaseRangeSlide
       onChange={handleChange}
       renderTrack={({ props, children }) => (
         <div
+          role="button"
+          tabIndex={0}
           onMouseDown={props.onMouseDown}
           onTouchStart={props.onTouchStart}
           style={{

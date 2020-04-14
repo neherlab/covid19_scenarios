@@ -104,7 +104,7 @@ export default function PrintParameters({ params, scenarioUsed, severity, result
           <p />
           <h3>Epidemiology</h3>
           {(Object.keys(params.epidemiological) as (keyof EpidemiologicalData)[]).map((key) => {
-            if (key == 'r0') {
+            if (key === 'r0') {
               const [lower, upper] = params.epidemiological[key].map((x) => Math.round(10 * x) / 10)
               const keyOrExplanation = parameterExplanations[key] || key
               return (
