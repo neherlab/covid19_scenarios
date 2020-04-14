@@ -36,15 +36,14 @@ function TooltipContentItem({ name, value, lower, upper, color }: TooltipContent
         </div>
       </div>
     )
-  } else {
-    return (
-      <div style={{ color }} className="responsive-tooltip-content-item">
-        {name}
-        <div className="responsive-tooltip-content-placeholder" />
-        {value}
-      </div>
-    )
   }
+  return (
+    <div style={{ color }} className="responsive-tooltip-content-item">
+      {name}
+      <div className="responsive-tooltip-content-placeholder" />
+      {value}
+    </div>
+  )
 }
 export interface ResponsiveTooltipContentProps extends TooltipProps {
   formattedLabel: React.ReactNode

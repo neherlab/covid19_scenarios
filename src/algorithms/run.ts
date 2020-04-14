@@ -49,14 +49,12 @@ export async function run(
   const mean = meanTrajectory(trajectories)
   const sdev = stddevTrajectory(trajectories, mean)
 
-  const sim: AlgorithmResult = {
+  return {
     trajectory: {
-      mean: mean,
+      mean,
       upper: mean.map((m, i) => mulTP(m, sdev[i])),
       lower: mean.map((m, i) => divTP(m, sdev[i])),
     },
     percentile: {},
   }
-
-  return sim
 }

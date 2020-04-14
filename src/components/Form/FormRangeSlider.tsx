@@ -110,8 +110,8 @@ function BaseRangeSlider({ value, handleChange, step, min, max }: BaseRangeSlide
               background: getTrackBackground({
                 values: value,
                 colors: ['#ccc', 'mediumaquamarine', '#ccc'],
-                min: min,
-                max: max,
+                min,
+                max,
               }),
               alignSelf: 'center',
             }}

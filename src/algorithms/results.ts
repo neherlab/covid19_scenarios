@@ -128,7 +128,7 @@ function scaleTP(x: ExportedTimePoint, transform: (x: number) => number): Export
 
     return s
   }
-  const z: ExportedTimePoint = {
+  return {
     time: x.time,
     current: {
       susceptible: scale(x.current.susceptible),
@@ -145,8 +145,6 @@ function scaleTP(x: ExportedTimePoint, transform: (x: number) => number): Export
       hospitalized: scale(x.cumulative.hospitalized),
     },
   }
-
-  return z
 }
 
 /* N-ary operations (TP -> TPs) */

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { AllParams } from '../../../algorithms/types/Param.types'
 import {
   TwitterShareButton,
   TwitterIcon,
@@ -10,6 +9,7 @@ import {
   FacebookIcon,
   FacebookShareButton,
 } from 'react-share'
+import { AllParams } from '../../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
 import ClipboardButton from '../../Buttons/ClipboardButton'
@@ -101,11 +101,7 @@ export default function ExportSimulationDialog({
                   disabled={!(result?.trajectory.mean ?? null)}
                   onClick={() =>
                     result &&
-                    exportResult(
-                      result,
-                      'covid.allresults.tsv',
-                      Object.keys(result.trajectory.mean[0].current.severe),
-                    )
+                    exportResult(result, 'covid.allresults.tsv', Object.keys(result.trajectory.mean[0].current.severe))
                   }
                   color="primary"
                   size="sm"

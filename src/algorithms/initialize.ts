@@ -11,7 +11,7 @@ import { ModelParams, SimulationTimePoint } from './types/Result.types'
 
 interface ChangePoint {
   t: Date
-  val: Number[]
+  val: number[]
 }
 
 const compareTimes = (a: ChangePoint, b: ChangePoint): number => {
@@ -46,7 +46,7 @@ function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSeries {
 
   if (orderedChangePoints.length) {
     const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t, y: 1.0 }]
-    const product = (a: Number, b: Number): Number => a * b
+    const product = (a: number, b: number): number => a * b
 
     orderedChangePoints.forEach((d, i) => {
       const prevValue = mitigationSeries[2 * i].y
@@ -166,11 +166,11 @@ export function getPopulationParams(
   severity.sort((row1, row2) => {
     if (row1.ageGroup < row2.ageGroup) {
       return -1
-    } else if (row1.ageGroup > row2.ageGroup) {
-      return +1
-    } else {
-      return 0
     }
+    if (row1.ageGroup > row2.ageGroup) {
+      return +1
+    }
+    return 0
   })
 
   severity.forEach((row, i) => {
@@ -212,32 +212,29 @@ export function getPopulationParams(
       containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
 
     return [sim]
-  } else {
-    // TODO(nnoll): Generalize to allow for sampling multiple uncertainty ranges
-    const sample_uniform = (range: [number, number], npoints: number): number[] => {
-      const sample: number[] = []
-      const delta = (range[1] - range[0]) / npoints
-      let val = range[0]
-      while (sample.length < npoints) {
-        sample.push(val)
-        val += delta
-      }
-      return sample
-    }
-
-    const r0s = sample_uniform(<[number, number]>params.r0, NUMBER_PARAMETER_SAMPLES)
-    const sims = r0s.map((r0) => {
-      const elt = cloneDeep(sim)
-      const avg_infection_rate = r0 / params.infectiousPeriod
-
-      elt.rate.infection = (time: Date) =>
-        containment(time) * infectionRate(time.valueOf(), avg_infection_rate, params.peakMonth, params.seasonalForcing)
-
-      return elt
-    })
-
-    return sims
   }
+  // TODO(nnoll): Generalize to allow for sampling multiple uncertainty ranges
+  const sample_uniform = (range: [number, number], npoints: number): number[] => {
+    const sample: number[] = []
+    const delta = (range[1] - range[0]) / npoints
+    let val = range[0]
+    while (sample.length < npoints) {
+      sample.push(val)
+      val += delta
+    }
+    return sample
+  }
+
+  const r0s = sample_uniform(params.r0 as [number, number], NUMBER_PARAMETER_SAMPLES)
+  return r0s.map((r0) => {
+    const elt = cloneDeep(sim)
+    const avg_infection_rate = r0 / params.infectiousPeriod
+
+    elt.rate.infection = (time: Date) =>
+      containment(time) * infectionRate(time.valueOf(), avg_infection_rate, params.peakMonth, params.seasonalForcing)
+
+    return elt
+  })
 }
 
 export function initializePopulation(

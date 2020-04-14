@@ -158,8 +158,8 @@ export function DeterministicLinePlot({
       ICUbeds: nICUBeds,
     })) ?? []
 
-  const upper = data.trajectory.upper
-  const lower = data.trajectory.lower
+  const { upper } = data.trajectory
+  const { lower } = data.trajectory
 
   const plotData = [
     ...data.trajectory.mean.map((x, i) => ({
@@ -344,7 +344,7 @@ export function DeterministicLinePlot({
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   dataKey="time"
                   type="number"
                   domain={[tMin, tMax]}
@@ -353,7 +353,7 @@ export function DeterministicLinePlot({
                 />
                 <YAxis
                   yAxisId="mitigationStrengthAxis"
-                  allowDataOverflow={true}
+                  allowDataOverflow
                   orientation={'left'}
                   type="number"
                   domain={[0, 100]}
