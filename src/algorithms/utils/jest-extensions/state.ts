@@ -1,6 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 /* Because Jest StateSnapshot uses them. */
 
+/* eslint-disable import/no-extraneous-dependencies */
+/* Because this is Jest extension, and Jest is present. */
+
 import * as fs from 'fs'
 import { utils } from 'jest-snapshot'
 import type { Context, SnapshotState } from './types'
@@ -87,12 +90,10 @@ export default class State {
       } else {
         this.snapshotState.added++
       }
+    } else if (!pass) {
+      this.snapshotState.unmatched++
     } else {
-      if (!pass) {
-        this.snapshotState.unmatched++
-      } else {
-        this.snapshotState.matched++
-      }
+      this.snapshotState.matched++
     }
   }
 
