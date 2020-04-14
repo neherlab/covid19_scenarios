@@ -1,3 +1,4 @@
+import json
 from pandasdmx import Request
 from transform_ages import flatten
 
@@ -28,6 +29,7 @@ age_codes = {
         "Y_GE100": "100+",
 }
 
+# 3166-1 numeric-3 codes
 country_codes = {
   "012" : "Algeria",
   "434" : "Libya",
@@ -41,7 +43,7 @@ country_codes = {
   "270" : "Gambia",
   "288" : "Ghana",
   "324" : "Guinea",
-  "384" : "Côte d’Ivoire",
+  "384" : "Côte d'Ivoire",
   "430" : "Liberia",
   "466" : "Mali",
   "478" : "Mauritania",
@@ -71,14 +73,14 @@ country_codes = {
   "716" : "Zimbabwe",
   "728" : "South Sudan",
   "800" : "Uganda",
-  "834" : "United Republic of Tanzania",
+  "834" : "Tanzania, United Republic of",
   "894" : "Zambia",
   "024" : "Angola",
   "120" : "Cameroon",
   "140" : "Central African Republic",
   "148" : "Chad",
   "178" : "Congo",
-  "180" : "Democratic Republic of the Congo",
+  "180" : "Congo, Democratic Republic of the",
   "226" : "Equatorial Guinea",
   "266" : "Gabon",
   "678" : "Sao Tome and Principe",
@@ -116,11 +118,11 @@ country_codes = {
   "666" : "Saint Pierre and Miquelon",
   "840" : "United States of America",
   "156" : "China",
-  "158" : "Taiwan Province of China",
-  "344" : "China, Hong Kong Special Administrative Region",
+  "158" : "Taiwan, Province of China",
+  "344" : "Hong Kong",
   "392" : "Japan",
   "408" : "Democratic People's Republic of Korea",
-  "410" : "Republic of Korea",
+  "410" : "Korea, Republic of",
   "446" : "China, Macao Special Administrative Region",
   "496" : "Mongolia",
   "004" : "Afghanistan",
@@ -153,7 +155,7 @@ country_codes = {
   "051" : "Armenia",
   "196" : "Cyprus",
   "268" : "Georgia",
-  "275" : "State of Palestine",
+  "275" : "Palestine, State of",
   "368" : "Iraq",
   "376" : "Israel",
   "400" : "Jordan",
@@ -181,12 +183,12 @@ country_codes = {
   "688" : "Serbia",
   "705" : "Slovenia",
   "724" : "Spain",
-  "807" : "The former Yugoslav Republic of Macedonia",
+  "807" : "North Macedonia",
   "100" : "Bulgaria",
   "112" : "Belarus",
   "203" : "Czechia",
   "348" : "Hungary",
-  "498" : "Republic of Moldova",
+  "498" : "Moldova, Republic of",
   "616" : "Poland",
   "642" : "Romania",
   "643" : "Russian Federation",
@@ -239,7 +241,7 @@ country_codes = {
   "028" : "Antigua and Barbuda",
   "044" : "Bahamas",
   "052" : "Barbados",
-  "092" : "British Virgin Islands",
+  "092" : "Virgin Islands (British)",
   "136" : "Cayman Islands",
   "192" : "Cuba",
   "212" : "Dominica",
@@ -261,7 +263,10 @@ country_codes = {
   "670" : "Saint Vincent and the Grenadines",
   "780" : "Trinidad and Tobago",
   "796" : "Turks and Caicos Islands",
-  "850" : "United States Virgin Islands"
+  "850" : "Virgin Islands (U. S.)"#,
+#  "831" : "Guernsey",
+#  "832" : "Jersey",
+#  "652" : "Saint Barthélemy"
 }
 
 agency   = "UNSD"
@@ -323,11 +328,19 @@ if __name__ == "__main__":
     table = {}
     ids   = list(country_codes.keys())
     bps   = list(range(0, len(country_codes), 10)) + [len(country_codes)]
+    print(f'Starting download of age dist data for {len(ids)} countries. This can take a while (>30 minutes)')
     for i, bp in enumerate(bps[:-1]):
+        print(ids[bp:bps[i+1]])
+        print(f'getting data for {i+1}/{len(bps)}, {[country_codes[i] for i in ids[bp:bps[i+1]]]}')
         d   = get_data(*ids[bp:bps[i+1]])
+        print(f'got data for {i+1}/{len(bps)}, {[country_codes[i] for i in ids[bp:bps[i+1]]]}')
         tbl = to_table(d.write())
         table.update(tbl)
 
-    flatten(table)
+    ftable = flatten(table)
 
-
+    # add the Kosovo data, as the API does not provide this:
+    ftable.append({'country': 'Kosovo', 'ageDistribution': {'0-9': 294038, '10-19': 306895, '20-29': 299672, '30-39': 237846, '40-49': 228757, '50-59': 189740, '60-69': 127956, '70-79': 71350, '80+': 32684}})
+    
+    with open('flat.json','w') as f:
+        json.dump(ftable, f)
