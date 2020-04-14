@@ -89,7 +89,7 @@ export default function toBeCloseToArraySnapshot(this: Context, received: number
       message: () => `expected: ${expected}\n received: ${received}`,
       actual: serialize(received),
       count: state.count,
-      expected: expected !== undefined ? serialize(expected) : undefined,
+      expected: expected ? serialize(expected) : undefined,
       key: state.key,
       pass: false,
     }
