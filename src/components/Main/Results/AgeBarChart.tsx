@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, LabelProps, TooltipProps } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { OneCountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
+import { AgeDistribution } from '../../../.generated/types'
 
 import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 
@@ -24,7 +24,7 @@ const ASPECT_RATIO = 16 / 4
 export interface SimProps {
   showHumanized?: boolean
   data?: AlgorithmResult
-  ageDistribution?: OneCountryAgeDistribution
+  ageDistribution?: AgeDistribution
   rates?: SeverityTableRow[]
   forcedWidth?: number
   forcedHeight?: number

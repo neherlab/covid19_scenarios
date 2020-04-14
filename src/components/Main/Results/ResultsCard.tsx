@@ -12,7 +12,7 @@ import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
-import { OneCountryAgeDistribution } from '../../../assets/data/CountryAgeDistribution.types'
+import { AgeDistribution } from '../../../.generated/types'
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
@@ -28,7 +28,7 @@ interface ResultsCardProps {
   toggleAutorun: () => void
   canRun: boolean
   params: AllParams
-  ageDistribution: OneCountryAgeDistribution
+  ageDistribution: AgeDistribution
   mitigation: ContainmentData
   severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
   result?: AlgorithmResult

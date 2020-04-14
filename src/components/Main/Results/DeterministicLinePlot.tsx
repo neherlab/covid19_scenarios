@@ -100,7 +100,9 @@ function computeNewEmpiricalCases(
   return [newEmpiricalCases, deltaDay]
 }
 
-const verifyPositive = (x: number) => (x > 0 ? x : undefined)
+function verifyPositive(x: number): maybeNumber {
+  return x > 0 ? Math.ceil(x) : undefined
+}
 
 // FIXME: this component has become too large
 // eslint-disable-next-line sonarjs/cognitive-complexity
@@ -129,7 +131,6 @@ export function DeterministicLinePlot({
   }
 
   const { mitigationIntervals } = mitigation
-  const verifyPositive = (x: number) => (x > 0 ? Math.ceil(x) : undefined)
 
   const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
   const nICUBeds = verifyPositive(params.population.ICUBeds)
@@ -193,25 +194,25 @@ export function DeterministicLinePlot({
       ICUbeds: nICUBeds,
 
       // Error bars
-      susceptible_area: enabledPlots.includes(DATA_POINTS.Susceptible)
+      susceptibleArea: enabledPlots.includes(DATA_POINTS.Susceptible)
         ? [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)]
         : undefined,
-      infectious_area: enabledPlots.includes(DATA_POINTS.Infectious)
+      infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
         ? [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)]
         : undefined,
-      severe_area: enabledPlots.includes(DATA_POINTS.Severe)
+      severeArea: enabledPlots.includes(DATA_POINTS.Severe)
         ? [verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)]
         : undefined,
-      critical_area: enabledPlots.includes(DATA_POINTS.Critical)
+      criticalArea: enabledPlots.includes(DATA_POINTS.Critical)
         ? [verifyPositive(lower[i].current.critical.total), verifyPositive(upper[i].current.critical.total)]
         : undefined,
-      overflow_area: enabledPlots.includes(DATA_POINTS.Overflow)
+      overflowArea: enabledPlots.includes(DATA_POINTS.Overflow)
         ? [verifyPositive(lower[i].current.overflow.total), verifyPositive(upper[i].current.overflow.total)]
         : undefined,
-      recovered_area: enabledPlots.includes(DATA_POINTS.Recovered)
+      recoveredArea: enabledPlots.includes(DATA_POINTS.Recovered)
         ? [verifyPositive(lower[i].cumulative.recovered.total), verifyPositive(upper[i].cumulative.recovered.total)]
         : undefined,
-      fatality_area: enabledPlots.includes(DATA_POINTS.Fatalities)
+      fatalityArea: enabledPlots.includes(DATA_POINTS.Fatalities)
         ? [verifyPositive(lower[i].cumulative.fatality.total), verifyPositive(upper[i].cumulative.fatality.total)]
         : undefined,
     })),
