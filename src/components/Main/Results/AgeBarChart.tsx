@@ -96,7 +96,7 @@ export function AgeBarChart({
 
   return (
     <div className="w-100 h-100" data-testid="AgeBarChart">
-      <ReactResizeDetector handleWidth handleHeight>
+      <ReactResizeDetector handleWidth handleHeight refreshRate={300} refreshMode="debounce">
         {({ width }: { width?: number }) => {
           if (!width) {
             return <div className="w-100 h-100" />
@@ -115,6 +115,7 @@ export function AgeBarChart({
                 width={forcedWidth || width}
                 height={forcedHeight || height}
                 data={plotData}
+                throttleDelay={75}
                 margin={{
                   left: 0,
                   right: 0,
@@ -142,11 +143,41 @@ export function AgeBarChart({
                 />
                 <Legend verticalAlign="bottom" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} label={label} />
-                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} label={label} />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} label={label} />
-                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} label={label} />
-                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of population')} yAxisId={'ageDisAxis'} />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="peakSevere"
+                  fill={colors.severe}
+                  name={t('peak severe')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="peakCritical"
+                  fill={colors.critical}
+                  name={t('peak critical')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="peakOverflow"
+                  fill={colors.overflow}
+                  name={t('peak overflow')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="totalFatalities"
+                  fill={colors.fatality}
+                  name={t('total deaths')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="fraction"
+                  fill="#aaaaaa"
+                  name={t('% of population')}
+                  yAxisId={'ageDisAxis'}
+                />
               </BarChart>
 
               <div ref={percentageChartRef} />

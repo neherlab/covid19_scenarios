@@ -66,11 +66,20 @@ async function runSimulation(
   setEmpiricalCases(caseCounts)
 }
 
+function getColumnSizes(areResultsMaximized: boolean) {
+  if (areResultsMaximized) {
+    return { colScenario: { xl: 4 }, colResults: { xl: 8 } }
+  }
+
+  return { colScenario: { xl: 6 }, colResults: { xl: 6 } }
+}
+
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
 
 function Main() {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(false)
+  const [areResultsMaximized, setAreResultsMaximized] = useState(false)
   const [scenarioState, scenarioDispatch] = useReducer(
     scenarioReducer,
     defaultScenarioState,
@@ -155,6 +164,12 @@ function Main() {
     setSubmitting(false)
   }
 
+  function toggleResultsMaximized() {
+    setAreResultsMaximized(!areResultsMaximized)
+  }
+
+  const { colScenario, colResults } = getColumnSizes(areResultsMaximized)
+
   if (printable) {
     return (
       <PrintPage
@@ -186,7 +201,7 @@ function Main() {
             return (
               <Form noValidate className="form">
                 <Row>
-                  <Col lg={4} xl={6} className="py-1">
+                  <Col lg={4} {...colScenario} className="py-1 animate-flex-width">
                     <ScenarioCard
                       values={values}
                       severity={severity}
@@ -195,10 +210,11 @@ function Main() {
                       scenarioDispatch={scenarioDispatch}
                       errors={errors}
                       touched={touched}
+                      areResultsMaximized={areResultsMaximized}
                     />
                   </Col>
 
-                  <Col lg={8} xl={6} className="py-1">
+                  <Col lg={8} {...colResults} className="py-1 animate-flex-width">
                     <ResultsCard
                       canRun={canRun}
                       autorunSimulation={autorunSimulation}
@@ -211,6 +227,8 @@ function Main() {
                       caseCounts={empiricalCases}
                       scenarioUrl={buildLocationSearch(scenarioState)}
                       openPrintPreview={openPrintPreview}
+                      areResultsMaximized={areResultsMaximized}
+                      toggleResultsMaximized={toggleResultsMaximized}
                     />
                   </Col>
                 </Row>

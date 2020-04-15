@@ -66,8 +66,8 @@ if __name__ == "__main__":
 
 
     if args.output_population:
-        print(f"Generating population json")
-        pop = importlib.import_module(f"scripts.populations")
+        print(f"Generating population tsv")
+        pop = importlib.import_module(f"scripts.getPopulationData")
         pop.generate(args.output_population)
 
     if args.output_scenarios:
