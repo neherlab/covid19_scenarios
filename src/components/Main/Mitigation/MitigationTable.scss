@@ -1,18 +1,28 @@
 @import '../../../styles/variables';
 
-.mitigation-table .form-group {
-  padding: 4px 2px;
-  margin-bottom: 10px;
-  border: $gray-500 solid 1px;
+$input-padding: 4px;
+
+.mitigation-table {
+  .form-group {
+    padding: 4px 2px;
+    margin-bottom: 10px;
+    border: $gray-500 solid 1px;
+  }
+
+  .table-controls {
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 .mitigation-interval {
   display: flex;
   width: 100%;
 
-  & > .inputs {
+  > .inputs {
     display: flex;
     flex-grow: 1;
+    margin-right: $input-padding;
   }
 
   &.narrow > .inputs,
@@ -20,12 +30,16 @@
     flex-direction: column;
   }
 
-  & > .inputs > * {
-    flex-grow: 1;
+  .mitigation-value {
+    width: auto;
   }
 
-  & > .inputs > .item-date-range-value-group {
-    display: flex;
+  > .inputs > * {
+    margin-right: $input-padding;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   &.wide .DateRangePickerInput,
@@ -35,28 +49,13 @@
     width: max-content;
   }
 
-  & > .inputs > .item-date-range-value-group > .item-value {
-    width: auto;
-  }
-
-  & .DateInput_input {
+  .DateInput_input {
     // make the date range input similar to bootstrap inputs
     height: calc(1.5em + 0.75rem + 1px);
-  }
-
-  & > *:not(:last-child),
-  &.wide > .inputs > :not(:last-child),
-  & > .inputs > .item-date-range-value-group > :not(:last-child) {
-    margin-right: 4px;
   }
 
   &.narrow > .inputs > :not(:last-child),
   &.very-narrow > .inputs > :not(:last-child) {
     margin-bottom: 4px;
   }
-}
-
-.mitigation-table .table-controls {
-  display: flex;
-  justify-content: flex-end;
 }

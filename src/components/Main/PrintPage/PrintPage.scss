@@ -17,7 +17,7 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
 @import '../../../styles/variables';
 
 .container-print {
-  background-color: #ffffff;
+  background-color: $white;
 
   .page {
     @media not print {
@@ -25,7 +25,7 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
     }
   }
 
-  h1.heading-main {
+  .heading-main {
     margin-top: 3em;
   }
 
@@ -38,10 +38,10 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
     }
 
     th {
-      text-align: center;
-      vertical-align: middle;
       padding-top: auto;
       padding-bottom: auto;
+      text-align: center;
+      vertical-align: middle;
     }
   }
 
@@ -49,16 +49,16 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
     table-layout: fixed;
 
     th {
-      text-align: center;
-      vertical-align: middle;
       padding-top: auto;
       padding-bottom: auto;
+      text-align: center;
+      vertical-align: middle;
     }
 
     td {
+      padding: 2px 4px;
       text-align: right;
       vertical-align: middle;
-      padding: 2px 4px;
     }
   }
 }
@@ -67,7 +67,7 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
   @page {
     //      top right bottom left
     margin: 20mm 25mm 20mm 35mm;
-    background-color: #ffffff;
+    background-color: $white;
   }
 
   .row {

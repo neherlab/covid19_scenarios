@@ -135,22 +135,20 @@ function MitigationIntervalComponent({
             name={`containment.mitigationIntervals[${index}].name`}
             type="text"
           />
-          <div className="item-date-range-value-group">
-            <MitigationDatePicker
-              identifier={`containment.mitigationIntervals[${index}].timeRange`}
-              value={interval.timeRange}
-              allowPast
-            />
-            <FastField
-              className={`form-control item-value ${valueError ? 'border-danger' : ''}`}
-              id={`containment.mitigationIntervals[${index}].mitigationValue`}
-              name={`containment.mitigationIntervals[${index}].mitigationValue`}
-              type="number"
-              step={1}
-              min={0}
-              max={100}
-            />
-          </div>
+          <MitigationDatePicker
+            identifier={`containment.mitigationIntervals[${index}].timeRange`}
+            value={interval.timeRange}
+            allowPast
+          />
+          <FastField
+            className={`form-control mitigation-value ${valueError ? 'border-danger' : ''}`}
+            id={`containment.mitigationIntervals[${index}].mitigationValue`}
+            name={`containment.mitigationIntervals[${index}].mitigationValue`}
+            type="number"
+            step={1}
+            min={0}
+            max={100}
+          />
         </div>
         <div className="item-controls">
           <Button type="button" onClick={() => arrayHelpers.remove(index)}>

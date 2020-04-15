@@ -26,10 +26,10 @@ $red: #dc3545 !default;
 $orange: #fd7e14 !default;
 $yellow: #ffc107 !default;
 $green: #28a745 !default;
-$teal: #20c997 !default;
+$teal: #20c997 !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
 $cyan: #17a2b8 !default;
 
-$primary: #1ad09a !default;
+$primary: #1ad09a !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
 $secondary: $gray-600 !default;
 $success: $green !default;
 $info: $cyan !default;

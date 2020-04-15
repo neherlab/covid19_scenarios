@@ -78,17 +78,13 @@ p {
 }
 
 // Always show spinbox arrows in Chrome
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
   opacity: 1;
 }
 
 .noselect {
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -150,5 +146,5 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .btn-shadow {
-  box-shadow: 4px 4px 10px 1px #222222;
+  box-shadow: 4px 4px 10px 1px #222;
 }

@@ -15643,11 +15643,6 @@ stylelint-scss@^3.10.0:
     postcss-selector-parser "^6.0.2"
     postcss-value-parser "^4.0.2"
 
-stylelint-use-nesting@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/stylelint-use-nesting/-/stylelint-use-nesting-2.0.0.tgz#b660145d824cf8206562dc0e497c19c308c39012"
-  integrity sha512-GpiirOW+bsfGV/QHqDrXc/bLEvNV8ZChdPpGqmlOqZdRFW0Zu+BP5TwMrhYn+FKlaucdUe4ca9okqXB1MtM+CQ==
-
 stylelint@13.2.1, stylelint@>=5.0.0:
   version "13.2.1"
   resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-13.2.1.tgz#9101fcd70791856530049816ff53d980ecd561df"
