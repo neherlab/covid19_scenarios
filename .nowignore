@@ -3,5 +3,4 @@
 .github
 .ignore
 .reports
-cypress
 src/.generated
