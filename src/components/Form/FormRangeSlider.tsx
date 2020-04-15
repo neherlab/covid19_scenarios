@@ -46,14 +46,13 @@ function BaseRangeSlider({ value, exportInternalState, step, min, max }: BaseRan
                 ...props.style,
                 height: '28px',
                 display: 'flex',
-                width: '100%',
               }}
             >
               <div
                 ref={props.ref}
                 style={{
                   height: '8px',
-                  width: '100%',
+                  width: '95%',
                   borderRadius: '4px',
                   background: getTrackBackground({
                     values: state,
@@ -76,7 +75,6 @@ function BaseRangeSlider({ value, exportInternalState, step, min, max }: BaseRan
                 width: '12px',
                 borderRadius: '4px',
                 backgroundColor: '#FFF',
-                borderWidth: '0px',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -94,9 +92,9 @@ function BaseRangeSlider({ value, exportInternalState, step, min, max }: BaseRan
           )}
         />
       </Col>
-      <Col xl={5}>
+      <Col>
         <output>
-          {'   '} {state[0].toFixed(1)} - {state[1].toFixed(1)}
+          {state[0].toFixed(1)} - {state[1].toFixed(1)}
         </output>
       </Col>
     </Row>
