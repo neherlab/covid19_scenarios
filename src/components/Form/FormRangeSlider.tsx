@@ -27,75 +27,79 @@ function BaseRangeSlider({ value, exportInternalState, step, min, max }: BaseRan
   }
 
   return (
-    <Range
-      values={state}
-      step={step}
-      min={min}
-      max={max}
-      onChange={setInternalState}
-      onFinalChange={onFinalChange}
-      renderTrack={({ props, children }) => (
-        <div
-          role="button"
-          tabIndex={0}
-          onMouseDown={props.onMouseDown}
-          onTouchStart={props.onTouchStart}
-          style={{
-            ...props.style,
-            height: '24px',
-            display: 'flex',
-            width: '100%',
-          }}
-        >
-          <div
-            ref={props.ref}
-            style={{
-              height: '8px',
-              width: '55%',
-              borderRadius: '4px',
-              background: getTrackBackground({
-                values: state,
-                colors: ['#ccc', 'mediumaquamarine', '#ccc'],
-                min,
-                max,
-              }),
-              alignSelf: 'center',
-            }}
-          >
-            {children}
-          </div>
-          <div style={{ width: '45%', paddingLeft: '10px', justifyContent: 'right' }}>
-            <output>
-              {value[0].toFixed(1)} - {value[1].toFixed(1)}
-            </output>
-          </div>
-        </div>
-      )}
-      renderThumb={({ props, isDragged }) => (
-        <div
-          style={{
-            ...props.style,
-            height: '17px',
-            width: '12px',
-            borderRadius: '4px',
-            backgroundColor: '#FFF',
-            borderWidth: '0px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxShadow: '0px 2px 6px #AAA',
-          }}
-        >
-          <div
-            style={{
-              height: '10px',
-              width: '5px',
-              backgroundColor: isDragged ? 'mediumaquamarine' : '#CCC',
-            }}
-          />
-        </div>
-      )}
-    />
+    <Row noGutters>
+      <Col xl={7}>
+        <Range
+          values={state}
+          step={step}
+          min={min}
+          max={max}
+          onChange={setInternalState}
+          onFinalChange={onFinalChange}
+          renderTrack={({ props, children }) => (
+            <div
+              role="button"
+              tabIndex={0}
+              onMouseDown={props.onMouseDown}
+              onTouchStart={props.onTouchStart}
+              style={{
+                ...props.style,
+                height: '28px',
+                display: 'flex',
+                width: '100%',
+              }}
+            >
+              <div
+                ref={props.ref}
+                style={{
+                  height: '8px',
+                  width: '100%',
+                  borderRadius: '4px',
+                  background: getTrackBackground({
+                    values: state,
+                    colors: ['#ccc', 'mediumaquamarine', '#ccc'],
+                    min,
+                    max,
+                  }),
+                  alignSelf: 'center',
+                }}
+              >
+                {children}
+              </div>
+            </div>
+          )}
+          renderThumb={({ props, isDragged }) => (
+            <div
+              style={{
+                ...props.style,
+                height: '17px',
+                width: '12px',
+                borderRadius: '4px',
+                backgroundColor: '#FFF',
+                borderWidth: '0px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                boxShadow: '0px 2px 6px #AAA',
+              }}
+            >
+              <div
+                style={{
+                  height: '10px',
+                  width: '5px',
+                  backgroundColor: isDragged ? 'mediumaquamarine' : '#CCC',
+                }}
+              />
+            </div>
+          )}
+        />
+      </Col>
+      <Col xl={5}>
+        <output>
+          {'   '} {state[0].toFixed(1)} - {state[1].toFixed(1)}
+        </output>
+      </Col>
+    </Row>
   )
 }
 
