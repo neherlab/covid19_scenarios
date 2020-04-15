@@ -1,87 +1,65 @@
 name	populationServed	ageDistribution	hospitalBeds	ICUBeds	hemisphere	srcPopulation	srcHospitalBeds	srcICUBeds
-Australia	24600000	Australia	96000	2378	Southern	Wikipedia	https://www.aihw.gov.au/reports/hospitals/hospital-resources-2017-18-ahs/contents/summary	https://www.mja.com.au/journal/2020/surge-capacity-australian-intensive-care-units-associated-covid-19-admissions
-New Zealand	4800000	New Zealand	13000	153	Southern	Wikipedia	Wikipedia	https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12319640
-Switzerland	8600000	Switzerland	30799	1400	Northern	None	None	None
-Germany	83784000	Germany	500680	23890	Northern	None	None	None
-France	65274000	France	274462	7540	Northern	None	None	None
-Italy	60462000	Italy	165384	7550	Northern	None	None	None
-Spain	46755000	Spain	110346	4479	Northern	None	None	None
-Poland	37847000	Poland	188342	2635	Northern	None	None	None
-Romania	19238000	Romania	90024	4574	Northern	None	None	None
-Netherlands	17135000	Netherlands	55690	1065	Northern	None	None	None
-Belgium	11590000	Belgium	63692	1755	Northern	None	None	None
-Czechia	10709000	Czechia	92633	1242	Northern	None	None	None
-Brazil	207353391	Brazil	429000	42000	Southern	None	None	None
-Greece	10423000	Greece	38090	680	Northern	None	None	None
-Portugal	10197000	Portugal	33821	451	Northern	None	None	None
-Sweden	10099000	Sweden	22754	550	Northern	None	None	None
-Hungary	9660000	Hungary	42413	1374	Northern	None	None	None
-Austria	9006000	Austria	49395	1833	Northern	None	None	None
-Bulgaria	6948000	Bulgaria	42851	913	Northern	None	None	None
-Denmark	5792000	Denmark	13962	372	Northern	None	None	None
-Finland	5541000	Finland	16852	329	Northern	None	None	None
-Slovakia	5460000	Slovakia	26642	500	Northern	None	None	None
-Ireland	4938000	Ireland	11241	289	Northern	None	None	None
-Croatia	4105000	Croatia	16974	650	Northern	None	None	None
-Lithuania	2722000	Lithuania	18504	502	Northern	None	None	None
-Slovenia	2079000	Slovenia	8740	131	Northern	None	None	None
-Kosovo	1810000	Kosovo	1000	142	Northern	None	None	None
-Latvia	1886000	Latvia	6748	217	Northern	None	None	None
-Estonia	1327000	Estonia	4824	196	Northern	None	None	None
-Cyprus	1207000	Cyprus	2912	92	Northern	None	None	None
-Luxembourg	626000	Luxembourg	2332	127	Northern	None	None	None
-Malta	442000	Malta	1400	66	Northern	None	None	None
-Canada	37600000	Canada	73000	4800	Northern	None	None	None
-Ukraine	37289000	Ukraine	67000	2646	Northern	https://www.pravda.com.ua/news/2020/01/23/7238191/	https://www.kmu.gov.ua/en/news/viktor-lyashko-ministerstvo-opracovuye-rekomendaciyi-rozgortannya-gospitaliv-u-vistavkovih-centrah-ta-palacah-sportu	https://youcontrol.com.ua/virus/
-United Kingdom	66000000	United Kingdom of Great Britain and Northern Ireland	297000	9900	Northern	None	None	None
-United States of America	330000000	United States of America	1485000	49499	Northern	None	None	None
+Andorra	77006	Andorra	160	6		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	http://dx.doi.org/10.1007/s00134-012-2627-8
+Australia	24992369	Australia	95970	2378	Southern	ECDC	Computed from total bed OECD numbers and population size	https://www.mja.com.au/journal/2020/surge-capacity-australian-intensive-care-units-associated-covid-19-admissions
+Austria	8847037	Austria	47920	1833	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Bangladesh	161356039	Bangladesh	32611	1174		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Belgium	11422068	Belgium	56927	1755	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Brazil	209469333	Brazil	481779	42000	Southern	ECDC	Computed from total bed OECD numbers and population size	None
+Brunei Darussalam	428962	Brunei Darussalam	1234	58		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Bulgaria	7024216	Bulgaria	43646	913	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 CAN-Alberta	4413146	Canada	5819	700	Northern	None	None	None
 CAN-British Columbia	5110917	Canada	6074	680	Northern	None	None	None
 CAN-Manitoba	1377517	Canada	2885	246	Northern	None	None	None
+CAN-NWT	44904	Canada	156	4	Northern	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx
 CAN-New Brunswick	779993	Canada	1448	144	Northern	None	None	None
 CAN-Newfoundland and Labrador	521356	Canada	1090	121	Northern	None	None	None
 CAN-Nova Scotia	977457	Canada	1896	128	Northern	None	None	None
 CAN-Nunavut	39097	Canada	30	4	Northern	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx
-CAN-NWT	44904	Canada	156	4	Northern	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx
 CAN-Ontario	14711827	Canada	15485	1723	Northern	None	None	None
 CAN-Prince Edward Island	158158	Canada	295	24	Northern	None	None	None
 CAN-Quebec	8484965	Canada	7000	633	Northern	https://www.stat.gouv.qc.ca/statistiques/population-demographie/structure/qc_1971-20xx.htm	https://www.cbc.ca/news/canada/montreal/numbers-covid-19-coronavirus-quebec-april-1-1.5518397	https://www.cbc.ca/news/canada/montreal/numbers-covid-19-coronavirus-quebec-april-1-1.5518397
 CAN-Saskatchwan	1181666	Canada	2198	106	Northern	None	None	None
 CAN-Yukon	41078	Canada	106	1	Northern	None	None	None
-CHE-Zürich	1521000	Switzerland	5447	247	Northern	None	None	None
-CHE-Bern	1035000	Switzerland	3706	168	Northern	None	None	None
-CHE-Luzern	410000	Switzerland	1468	66	Northern	None	None	None
-CHE-Uri	36000	Switzerland	128	5	Northern	None	None	None
-CHE-Schwyz	159000	Switzerland	569	25	Northern	None	None	None
-CHE-Obwalden	38000	Switzerland	136	6	Northern	None	None	None
-CHE-Nidwalden	43000	Switzerland	153	7	Northern	None	None	None
-CHE-Glarus	40000	Switzerland	143	6	Northern	None	None	None
-CHE-Zug	127000	Switzerland	454	20	Northern	None	None	None
-CHE-Fribourg	319000	Switzerland	1142	51	Northern	None	None	None
-CHE-Solothurn	273000	Switzerland	977	44	Northern	None	None	None
-CHE-Basel-Stadt	195000	Switzerland	698	80	Northern	None	None	None
-CHE-Basel-Landschaft	288000	Switzerland	1031	46	Northern	None	None	None
-CHE-Schaffhausen	82000	Switzerland	293	13	Northern	None	None	None
+CHE-Aargau	677000	Switzerland	2424	110	Northern	None	None	None
 CHE-Appenzell Ausserrhoden	55000	Switzerland	196	8	Northern	None	None	None
 CHE-Appenzell Innerrhoden	16000	Switzerland	57	2	Northern	None	None	None
-CHE-St. Gallen	508000	Switzerland	1819	82	Northern	None	None	None
+CHE-Basel-Landschaft	288000	Switzerland	1031	46	Northern	None	None	None
+CHE-Basel-Stadt	195000	Switzerland	698	80	Northern	None	None	None
+CHE-Bern	1035000	Switzerland	3706	168	Northern	None	None	None
+CHE-Fribourg	319000	Switzerland	1142	51	Northern	None	None	None
+CHE-Geneva	499000	Switzerland	1787	81	Northern	None	None	None
+CHE-Glarus	40000	Switzerland	143	6	Northern	None	None	None
 CHE-Graubünden	198000	Switzerland	709	32	Northern	None	None	None
-CHE-Aargau	677000	Switzerland	2424	110	Northern	None	None	None
+CHE-Jura	73000	Switzerland	261	11	Northern	None	None	None
+CHE-Luzern	410000	Switzerland	1468	66	Northern	None	None	None
+CHE-Neuchâtel	177000	Switzerland	633	28	Northern	None	None	None
+CHE-Nidwalden	43000	Switzerland	153	7	Northern	None	None	None
+CHE-Obwalden	38000	Switzerland	136	6	Northern	None	None	None
+CHE-Schaffhausen	82000	Switzerland	293	13	Northern	None	None	None
+CHE-Schwyz	159000	Switzerland	569	25	Northern	None	None	None
+CHE-Solothurn	273000	Switzerland	977	44	Northern	None	None	None
+CHE-St. Gallen	508000	Switzerland	1819	82	Northern	None	None	None
 CHE-Thurgau	276000	Switzerland	988	44	Northern	None	None	None
 CHE-Ticino	353000	Switzerland	1264	57	Northern	None	None	None
-CHE-Vaud	799000	Switzerland	2861	130	Northern	None	None	None
+CHE-Uri	36000	Switzerland	128	5	Northern	None	None	None
 CHE-Valais	344000	Switzerland	1231	56	Northern	None	None	None
-CHE-Neuchâtel	177000	Switzerland	633	28	Northern	None	None	None
-CHE-Geneva	499000	Switzerland	1787	81	Northern	None	None	None
-CHE-Jura	73000	Switzerland	261	11	Northern	None	None	None
+CHE-Vaud	799000	Switzerland	2861	130	Northern	None	None	None
+CHE-Zug	127000	Switzerland	454	20	Northern	None	None	None
+CHE-Zürich	1521000	Switzerland	5447	247	Northern	None	None	None
+Canada	37058856	Canada	72264	4800	Northern	ECDC	Computed from acute care OECD numbers and population size	None
+China	1392730000	China	5494778	49453		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Croatia	4089400	Croatia	14475	650	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Cyprus	1189265	Cyprus	2922	92	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Czechia	10625695	Czechia	43531	1227	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 DEU-Baden-Württemberg	11070000	Germany	66152	3156	Northern	None	None	None
 DEU-Bayern	13077000	Germany	78146	3728	Northern	None	None	None
 DEU-Berlin	3645000	Germany	21781	1039	Northern	None	None	None
-DEU-Bremen	683000	Germany	4081	194	Northern	None	None	None
 DEU-Brandenburg	2512000	Germany	15011	716	Northern	None	None	None
+DEU-Bremen	683000	Germany	4081	194	Northern	None	None	None
 DEU-Hamburg	1841000	Germany	11001	524	Northern	None	None	None
 DEU-Hessen	6266000	Germany	37444	1786	Northern	None	None	None
 DEU-Mecklenburg-Vorpommern	1610000	Germany	9621	459	Northern	None	None	None
+DEU-NI-RegionGöttingen	600000	Germany	6000	300	Northern	None	None	None
 DEU-Niedersachsen	7982000	Germany	47699	2275	Northern	None	None	None
 DEU-Nordrhein-Westfalen	17933000	Germany	107164	5113	Northern	None	None	None
 DEU-Rheinland-Pfalz	4085000	Germany	24411	1164	Northern	None	None	None
@@ -90,105 +68,60 @@ DEU-Sachsen	4078000	Germany	24369	1162	Northern	None	None	None
 DEU-Sachsen-Anhalt	2208000	Germany	13194	629	Northern	None	None	None
 DEU-Schleswig-Holstein	2897000	Germany	17312	826	Northern	None	None	None
 DEU-Thüringen	2143000	Germany	12806	611	Northern	None	None	None
-DEU-NI-RegionGöttingen	600000	Germany	6000	300	Northern	None	None	None
+Denmark	5797446	Denmark	14621	372	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 ESP-Andalucía	8414240	Spain	19744	801	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Aragón	1319291	Spain	3096	125	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Asturias	1022800	Spain	2400	97	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Baleares	1149460	Spain	2697	109	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-C. Valenciana	5003769	Spain	11741	476	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Canarias	2153389	Spain	5053	205	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Cantabria	581078	Spain	1363	55	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
-ESP-Castilla-La Mancha	2032863	Spain	4770	193	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Castilla y León	2399548	Spain	5630	228	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-Castilla-La Mancha	2032863	Spain	4770	193	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Cataluña	7675217	Spain	18010	731	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Ceuta	84777	Spain	199	8	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
-ESP-C. Valenciana	5003769	Spain	11741	476	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Extremadura	1067710	Spain	2505	101	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Galicia	2699499	Spain	6334	257	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
+ESP-La Rioja	316798	Spain	743	30	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Madrid	6663394	Spain	15636	634	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Melilla	86487	Spain	203	8	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Murcia	1493898	Spain	3505	142	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Navarra	654214	Spain	1535	62	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-País Vasco	2207776	Spain	5180	210	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
-ESP-La Rioja	316798	Spain	743	30	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
-SWE-Stockholm	2000000	Sweden	4506	108	Northern	None	None	None
-ITA-Piemonte	4356406	Italy	14826	320	Northern	None	None	None
-ITA-Valle d’Aosta	125666	Italy	449	0	Northern	None	None	None
-ITA-Lombardia	10060574	Italy	34473	1067	Northern	None	None	None
-ITA-TrentinoAltoAdige	1072276	Italy	3763	75	Northern	None	None	None
-ITA-Veneto	4905854	Italy	15857	825	Northern	None	None	None
-ITA-Friuli Venezia Giulia	1215220	Italy	3899	825	Northern	None	None	None
-ITA-Liguria	1550640	Italy	5085	75	Northern	None	None	None
-ITA-Emilia Romagna	4459477	Italy	16304	650	Northern	None	None	None
-ITA-Toscana	3729641	Italy	10366	447	Northern	None	None	None
-ITA-Umbria	882015	Italy	2652	69	Northern	None	None	None
-ITA-Marche	1525271	Italy	4698	400	Northern	None	None	None
-ITA-Lazio	5879082	Italy	18887	540	Northern	None	None	None
-ITA-Abruzzo	1311580	Italy	3872	70	Northern	None	None	None
-ITA-Molise	305617	Italy	1029	30	Northern	None	None	None
-ITA-Campania	5801692	Italy	14779	320	Northern	None	None	None
-ITA-Puglia	4029053	Italy	11306	300	Northern	None	None	None
-ITA-Basilicata	562869	Italy	1681	5	Northern	None	None	None
-ITA-Calabria	1947131	Italy	4901	107	Northern	None	None	None
-ITA-Sicilia	4999891	Italy	13642	441	Northern	None	None	None
-ITA-Sardegna	1639591	Italy	4960	244	Northern	None	None	None
-USA-Wyoming	567025	United States of America	1985	66	Northern	None	None	None
-USA-Vermont	628061	United States of America	1319	44	Northern	None	None	None
-USA-District of Columbia	720687	United States of America	3171	106	Northern	None	None	None
-USA-Alaska	734002	United States of America	1615	54	Northern	None	None	None
-USA-North Dakota	761723	United States of America	3275	109	Northern	None	None	None
-USA-South Dakota	903027	United States of America	4335	145	Northern	None	None	None
-USA-Delaware	982895	United States of America	2162	72	Northern	None	None	None
-USA-Rhode Island	1056161	United States of America	2218	74	Northern	None	None	None
-USA-Montana	1086759	United States of America	3586	120	Northern	None	None	None
-USA-Maine	1345790	United States of America	3364	112	Northern	None	None	None
-USA-New Hampshire	1371246	United States of America	2880	96	Northern	None	None	None
-USA-Hawaii	1412687	United States of America	2684	89	Northern	None	None	None
-USA-West Virginia	1778070	United States of America	6757	225	Northern	None	None	None
-USA-Idaho	1826156	United States of America	3470	116	Northern	None	None	None
-USA-Nebraska	1952570	United States of America	7029	234	Northern	None	None	None
-USA-New Mexico	2096640	United States of America	3774	126	Northern	None	None	None
-USA-Kansas	2910357	United States of America	9604	320	Northern	None	None	None
-USA-Mississippi	2989260	United States of America	11957	399	Northern	None	None	None
-USA-Puerto Rico	3032160	United States of America	6064	202	Northern	None	None	None
-USA-Arkansas	3038999	United States of America	9725	324	Northern	None	None	None
-USA-Nevada	3139658	United States of America	6593	220	Northern	None	None	None
-USA-Iowa	3179840	United States of America	9540	318	Northern	None	None	None
-USA-Utah	3282115	United States of America	5908	197	Northern	None	None	None
-USA-Connecticut	3563070	United States of America	7126	238	Northern	None	None	None
-USA-Oklahoma	3954821	United States of America	11073	369	Northern	None	None	None
-USA-Oregon	4301089	United States of America	6882	229	Northern	None	None	None
-USA-Kentucky	4499692	United States of America	14399	480	Northern	None	None	None
-USA-Louisiana	4645184	United States of America	15329	511	Northern	None	None	None
-USA-Alabama	4908621	United States of America	15217	507	Northern	None	None	None
-USA-South Carolina	5210095	United States of America	12504	417	Northern	None	None	None
-USA-Minnesota	5700671	United States of America	14252	475	Northern	None	None	None
-USA-Colorado	5845526	United States of America	11106	370	Northern	None	None	None
-USA-Wisconsin	5851754	United States of America	12289	410	Northern	None	None	None
-USA-Maryland	6083116	United States of America	11558	385	Northern	None	None	None
-USA-Missouri	6169270	United States of America	19125	638	Northern	None	None	None
-USA-Indiana	6745354	United States of America	18212	607	Northern	None	None	None
-USA-Tennessee	6897576	United States of America	20003	667	Northern	None	None	None
-USA-Massachusetts	6976597	United States of America	16046	535	Northern	None	None	None
-USA-Arizona	7378494	United States of America	14019	467	Northern	None	None	None
-USA-Washington	7797095	United States of America	13255	442	Northern	None	None	None
-USA-Virginia	8626207	United States of America	18115	604	Northern	None	None	None
-USA-New Jersey	8936574	United States of America	21448	715	Northern	None	None	None
-USA-Michigan	10045029	United States of America	25113	837	Northern	None	None	None
-USA-North Carolina	10611862	United States of America	22285	743	Northern	None	None	None
-USA-Georgia	10736059	United States of America	25767	859	Northern	None	None	None
-USA-Ohio	11747694	United States of America	32894	1096	Northern	None	None	None
-USA-Illinois	12659682	United States of America	31649	1055	Northern	None	None	None
-USA-Pennsylvania	12820878	United States of America	37181	1239	Northern	None	None	None
-USA-New York	19440469	United States of America	52489	1750	Northern	None	None	None
-USA-Florida	21992985	United States of America	57182	1906	Northern	None	None	None
-USA-Texas	29472295	United States of America	67786	2260	Northern	None	None	None
-USA-California	39937489	United States of America	71887	2396	Northern	None	None	None
-India	1380004385	India	1376013	70000	Northern	None	None	None
+Estonia	1320884	Estonia	4539	196	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+FRA-Auvergne-Rhône-Alpes	8026685	France	16641	555	Northern	None	None	None
+FRA-Bourgogne-Franche-Comté	2795301	France	7095	121	Northern	None	None	None
+FRA-Bretagne	3329395	France	7361	109	Northern	None	None	None
+FRA-Centre-Val-de-Loire	2566759	France	4984	170	Northern	None	None	None
+FRA-Corse	339178	France	756	71	Northern	None	None	None
+FRA-Grand-Est	5518188	France	13548	465	Northern	None	None	None
+FRA-Guadeloupe	382704	France	735	20	Tropical	None	None	None
+FRA-Guyane	296711	France	383	15	Northern	None	None	None
+FRA-Hauts-de-France	5978266	France	13872	438	Northern	None	None	None
+FRA-Ile-de-France	12213364	France	22792	1147	Northern	None	None	None
+FRA-La-Réunion	866506	France	1260	60	Southern	None	None	None
+FRA-Martinique	364354	France	882	20	Tropical	None	None	None
+FRA-Mayotte	270372	France	300	15	Southern	None	None	None
+FRA-Normandie	3319067	France	7645	294	Northern	None	None	None
+FRA-Nouvelle-Aquitaine	5987014	France	12491	449	Northern	None	None	None
+FRA-Occitanie	5892817	France	9851	466	Northern	None	None	None
+FRA-Pays-de-la-Loire	3786545	France	6570	181	Northern	None	None	None
+FRA-Provence-Alpes-Côte-dAzur	5059473	France	9909	460	Northern	None	None	None
+Finland	5518050	Finland	15397	329	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+France	66987244	France	206619	7540	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Germany	82927922	Germany	497182	23890	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Greece	10727668	Greece	38747	680	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Hungary	9768785	Hungary	41803	1374	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+IND-Andaman & Nicobar Islands	419978	India	1075	105	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Andhra Pradesh	52883163	India	23138	2278	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Arunachal Pradesh	1528296	India	2404	236	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Assam	34586234	India	17142	1688	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Bihar	119461013	India	12019	1183	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Chandigarh	1126705	India	778	76	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Chhattisgarh	28566990	India	9412	926	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Dadra & Nagar Haveli	378979	India	589	58	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Daman & Diu	220084	India	240	23	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Delhi	18345784	India	24383	2401	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Goa	1542750	India	3013	296	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Gujarat	63907200	India	32280	3179	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Haryana	27388008	India	11240	1106	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
@@ -197,6 +130,7 @@ IND-Jammu & Kashmir	13635010	India	11651	1147	Northern	None	None	ICU beds not av
 IND-Jharkhand	37329128	India	10784	1062	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Karnataka	66165886	India	70165	6910	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Kerala	35330888	India	38004	3742	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Lakshadweep	71218	India	300	29	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Madhya Pradesh	82342793	India	28839	2840	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Maharashtra	120837347	India	51446	5066	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Manipur	3008546	India	1427	140	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
@@ -204,6 +138,7 @@ IND-Meghalaya	3276323	India	4457	438	Northern	None	None	ICU beds not available a
 IND-Mizoram	1205974	India	1997	196	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Nagaland	2189297	India	1880	185	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Odisha	45429399	India	18519	1823	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Puducherry	1375592	India	3569	351	Northern	None	None	None
 IND-Punjab	29611935	India	17933	1766	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Rajasthan	78230816	India	31848	3136	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Sikkim	671720	India	1560	153	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
@@ -213,30 +148,134 @@ IND-Tripura	4057847	India	4417	435	Northern	None	None	ICU beds not available at 
 IND-Uttar Pradesh	228959599	India	76260	7510	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Uttarakhand	11090425	India	8512	838	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-West Bengal	97694960	India	78566	7737	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
-IND-Andaman & Nicobar Islands	419978	India	1075	105	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
-IND-Chandigarh	1126705	India	778	76	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
-IND-Dadra & Nagar Haveli	378979	India	589	58	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
-IND-Daman & Diu	220084	India	240	23	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
-IND-Delhi	18345784	India	24383	2401	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
-IND-Lakshadweep	71218	India	300	29	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
-IND-Puducherry	1375592	India	3569	351	Northern	None	None	None
-FRA-Auvergne-Rhône-Alpes	8026685	France	16641	555	Northern	None	None	None
-FRA-Bourgogne-Franche-Comté	2795301	France	7095	121	Northern	None	None	None
-FRA-Bretagne	3329395	France	7361	109	Northern	None	None	None
-FRA-Centre-Val-de-Loire	2566759	France	4984	170	Northern	None	None	None
-FRA-Corse	339178	France	756	71	Northern	None	None	None
-FRA-Grand-Est	5518188	France	13548	465	Northern	None	None	None
-FRA-Hauts-de-France	5978266	France	13872	438	Northern	None	None	None
-FRA-Ile-de-France	12213364	France	22792	1147	Northern	None	None	None
-FRA-Normandie	3319067	France	7645	294	Northern	None	None	None
-FRA-Nouvelle-Aquitaine	5987014	France	12491	449	Northern	None	None	None
-FRA-Occitanie	5892817	France	9851	466	Northern	None	None	None
-FRA-Pays-de-la-Loire	3786545	France	6570	181	Northern	None	None	None
-FRA-Provence-Alpes-Côte-dAzur	5059473	France	9909	460	Northern	None	None	None
-FRA-Guadeloupe	382704	France	735	20	Tropical	None	None	None
-FRA-Guyane	296711	France	383	15	Northern	None	None	None
-FRA-La-Réunion	866506	France	1260	60	Southern	None	None	None
-FRA-Martinique	364354	France	882	20	Tropical	None	None	None
-FRA-Mayotte	270372	France	300	15	Southern	None	None	None
-Israel	9136000	Israel	15871	758	Northern	None	None	None
-Iceland	364260	Iceland	1169	29	Northern	None	None	None
+ITA-Abruzzo	1311580	Italy	3872	70	Northern	None	None	None
+ITA-Basilicata	562869	Italy	1681	5	Northern	None	None	None
+ITA-Calabria	1947131	Italy	4901	107	Northern	None	None	None
+ITA-Campania	5801692	Italy	14779	320	Northern	None	None	None
+ITA-Emilia Romagna	4459477	Italy	16304	650	Northern	None	None	None
+ITA-Friuli Venezia Giulia	1215220	Italy	3899	825	Northern	None	None	None
+ITA-Lazio	5879082	Italy	18887	540	Northern	None	None	None
+ITA-Liguria	1550640	Italy	5085	75	Northern	None	None	None
+ITA-Lombardia	10060574	Italy	34473	1067	Northern	None	None	None
+ITA-Marche	1525271	Italy	4698	400	Northern	None	None	None
+ITA-Molise	305617	Italy	1029	30	Northern	None	None	None
+ITA-Piemonte	4356406	Italy	14826	320	Northern	None	None	None
+ITA-Puglia	4029053	Italy	11306	300	Northern	None	None	None
+ITA-Sardegna	1639591	Italy	4960	244	Northern	None	None	None
+ITA-Sicilia	4999891	Italy	13642	441	Northern	None	None	None
+ITA-Toscana	3729641	Italy	10366	447	Northern	None	None	None
+ITA-TrentinoAltoAdige	1072276	Italy	3763	75	Northern	None	None	None
+ITA-Umbria	882015	Italy	2652	69	Northern	None	None	None
+ITA-Valle d’Aosta	125666	Italy	449	0	Northern	None	None	None
+ITA-Veneto	4905854	Italy	15857	825	Northern	None	None	None
+Iceland	353574	Iceland	862	29	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+India	1352617328	India	810730	29997	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Indonesia	267663435	Indonesia	308435	7094	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Iran (Islamic Republic of)	81800269	Iran (Islamic Republic of)	130690	3790	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Ireland	4853506	Ireland	13297	289	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Israel	8883800	Israel	19133	758	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	None
+Italy	60431283	Italy	158891	7550	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+JPN-Okinawa	1433566	Japan	100	24	Tropical	None	None	https://www.stopcovid19.jp
+Japan	126529100	Japan	710846	9241	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Kazakhstan	18276499	Kazakhstan	101231	3948	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Korea, Republic of	51635256	Korea, Republic of	270100	5402	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Kosovo	1845300	Kosovo	1000	142	Northern	ECDC	None	None
+Latvia	1926542	Latvia	6407	217	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Lithuania	2789533	Lithuania	15477	502	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Luxembourg	607728	Luxembourg	2251	127	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Malaysia	31528585	Malaysia	62353	1060	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Malta	483530	Malta	1486	66	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	None
+Mongolia	3170208	Mongolia	10840	271	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Myanmar	53708395	Myanmar	58600	586	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Netherlands	17231017	Netherlands	50047	1065	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+New Zealand	4885500	New Zealand	12653	153	Southern	ECDC	Computed from acute care OECD numbers and population size	https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12319640
+Norway	5314336	Norway	16885	395	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Oman	4829483	Oman	5736	499	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+PHL-BARMM	4089676	Philippines	915	16	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-CAR (Cordillera Administrative Region)	1907454	Philippines	1962	16	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-NCR	13152983	Philippines	29723	104	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 1 (Ilocos Region)	5382803	Philippines	4137	55	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 10 (Northern Mindanao)	5001941	Philippines	5367	43	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 11 (Davao Region)	5338223	Philippines	4907	35	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 12 (Soccskargen)	4958181	Philippines	4611	36	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 13 (Caraga)	2939578	Philippines	1289	11	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 2 (Cagayan Valley)	3687845	Philippines	3325	36	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 3 (Central Luzon)	11739028	Philippines	9930	106	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 4A (Calabarzon)	15179591	Philippines	12428	138	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 4B (MIMAROPA)	3340861	Philippines	1407	16	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 5 (Bicol Region)	6506252	Philippines	3487	33	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 6 (Western Visayas)	8132584	Philippines	5798	39	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 7 (Central Visayas)	7928506	Philippines	6436	38	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 8 (Eastern Visayas)	4874138	Philippines	2962	29	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 9 (Zamboanga Peninsula)	4026515	Philippines	3004	28	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+Pakistan	212215030	Pakistan	125680	3142	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Philippines	106651922	Philippines	63108	2335	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Poland	37978548	Poland	184230	2635	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Portugal	10281762	Portugal	33447	451	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Romania	19473936	Romania	102899	4574	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+SWE-Stockholm	2000000	Sweden	4506	108	Northern	None	None	None
+Saudi Arabia	33699947	Saudi Arabia	70815	6515	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Singapore	5638676	Singapore	10167	671	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Slovakia	5447011	Slovakia	26692	500	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Slovenia	2067372	Slovenia	8686	131	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Spain	46723749	Spain	113042	4479	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Sri Lanka	21670000	Sri Lanka	86500	519	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Sweden	10183175	Sweden	20477	550	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Switzerland	8516543	Switzerland	30057	1400	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Taiwan, Province of China	23780452	Taiwan, Province of China	73637	6701	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Thailand	69428524	Thailand	139216	7100	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+USA-Alabama	4908621	United States of America	15217	507	Northern	None	None	None
+USA-Alaska	734002	United States of America	1615	54	Northern	None	None	None
+USA-Arizona	7378494	United States of America	14019	467	Northern	None	None	None
+USA-Arkansas	3038999	United States of America	9725	324	Northern	None	None	None
+USA-California	39937489	United States of America	71887	2396	Northern	None	None	None
+USA-Colorado	5845526	United States of America	11106	370	Northern	None	None	None
+USA-Connecticut	3563070	United States of America	7126	238	Northern	None	None	None
+USA-Delaware	982895	United States of America	2162	72	Northern	None	None	None
+USA-District of Columbia	720687	United States of America	3171	106	Northern	None	None	None
+USA-Florida	21992985	United States of America	57182	1906	Northern	None	None	None
+USA-Georgia	10736059	United States of America	25767	859	Northern	None	None	None
+USA-Hawaii	1412687	United States of America	2684	89	Northern	None	None	None
+USA-Idaho	1826156	United States of America	3470	116	Northern	None	None	None
+USA-Illinois	12659682	United States of America	31649	1055	Northern	None	None	None
+USA-Indiana	6745354	United States of America	18212	607	Northern	None	None	None
+USA-Iowa	3179840	United States of America	9540	318	Northern	None	None	None
+USA-Kansas	2910357	United States of America	9604	320	Northern	None	None	None
+USA-Kentucky	4499692	United States of America	14399	480	Northern	None	None	None
+USA-Louisiana	4645184	United States of America	15329	511	Northern	None	None	None
+USA-Maine	1345790	United States of America	3364	112	Northern	None	None	None
+USA-Maryland	6083116	United States of America	11558	385	Northern	None	None	None
+USA-Massachusetts	6976597	United States of America	16046	535	Northern	None	None	None
+USA-Michigan	10045029	United States of America	25113	837	Northern	None	None	None
+USA-Minnesota	5700671	United States of America	14252	475	Northern	None	None	None
+USA-Mississippi	2989260	United States of America	11957	399	Northern	None	None	None
+USA-Missouri	6169270	United States of America	19125	638	Northern	None	None	None
+USA-Montana	1086759	United States of America	3586	120	Northern	None	None	None
+USA-Nebraska	1952570	United States of America	7029	234	Northern	None	None	None
+USA-Nevada	3139658	United States of America	6593	220	Northern	None	None	None
+USA-New Hampshire	1371246	United States of America	2880	96	Northern	None	None	None
+USA-New Jersey	8936574	United States of America	21448	715	Northern	None	None	None
+USA-New Mexico	2096640	United States of America	3774	126	Northern	None	None	None
+USA-New York	19440469	United States of America	52489	1750	Northern	None	None	None
+USA-North Carolina	10611862	United States of America	22285	743	Northern	None	None	None
+USA-North Dakota	761723	United States of America	3275	109	Northern	None	None	None
+USA-Ohio	11747694	United States of America	32894	1096	Northern	None	None	None
+USA-Oklahoma	3954821	United States of America	11073	369	Northern	None	None	None
+USA-Oregon	4301089	United States of America	6882	229	Northern	None	None	None
+USA-Pennsylvania	12820878	United States of America	37181	1239	Northern	None	None	None
+USA-Puerto Rico	3032160	United States of America	6064	202	Northern	None	None	None
+USA-Rhode Island	1056161	United States of America	2218	74	Northern	None	None	None
+USA-South Carolina	5210095	United States of America	12504	417	Northern	None	None	None
+USA-South Dakota	903027	United States of America	4335	145	Northern	None	None	None
+USA-Tennessee	6897576	United States of America	20003	667	Northern	None	None	None
+USA-Texas	29472295	United States of America	67786	2260	Northern	None	None	None
+USA-Utah	3282115	United States of America	5908	197	Northern	None	None	None
+USA-Vermont	628061	United States of America	1319	44	Northern	None	None	None
+USA-Virginia	8626207	United States of America	18115	604	Northern	None	None	None
+USA-Washington	7797095	United States of America	13255	442	Northern	None	None	None
+USA-West Virginia	1778070	United States of America	6757	225	Northern	None	None	None
+USA-Wisconsin	5851754	United States of America	12289	410	Northern	None	None	None
+USA-Wyoming	567025	United States of America	1985	66	Northern	None	None	None
+Ukraine	44622516	Ukraine	276004	2646	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	https://youcontrol.com.ua/virus/
+United Kingdom of Great Britain and Northern Ireland	66488991	United Kingdom of Great Britain and Northern Ireland	139647	4114	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+United States of America	327167434	United States of America	798288	49499	Northern	ECDC	Computed from acute care OECD numbers and population size	None

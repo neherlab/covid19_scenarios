@@ -15,6 +15,10 @@ tsv-data:
 	python3 generate_data.py \
 		--fetch
 
+population:
+	python3 generate_data.py \
+		--output-population populationData.tsv
+
 data-for-app:
 	python3 generate_data.py \
 		--output-scenarios ../src/assets/data/scenarios/scenarios.json \
