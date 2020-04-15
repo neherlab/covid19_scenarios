@@ -70,12 +70,15 @@ async function runSimulation(
 
   intervalsToTimeSeries(params.containment.mitigationIntervals)
 
-  algorithmWorker.onmessage = (event) => {
+  const onMessage = (event) => {
+    algorithmWorker.removeEventListener(onMessage)
     setResult(event.data)
     caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
     setEmpiricalCases(caseCounts)
     setIsRunning(false)
   }
+
+  algorithmWorker.addEventListener('message', onMessage)
 
   const { ageDistribution } = scenarioState
   algorithmWorker.postMessage({ paramsFlat, severity, ageDistribution, containment })
