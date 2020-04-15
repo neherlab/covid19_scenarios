@@ -200,7 +200,7 @@ function scaledStdDevTPs(
   return scaleTP(logstd, inv)
 }
 
-/* 
+/*
  * NOTE(nnoll): Keep function as we will use this on detailed runs eventually
  * NOTE(nnoll): 0 <= prc <= 1
 function percentileTPs(tps: ExportedTimePoint[], prc: number): ExportedTimePoint {
@@ -223,7 +223,7 @@ function percentileTPs(tps: ExportedTimePoint[], prc: number): ExportedTimePoint
 // -----------------------------------------------------------------------
 // Operations on sets of realizations
 
-/* 
+/*
  * NOTE(nnoll): Keep function as we will use this on detailed runs eventually
  *
 function percentileTrajectory(trajectories: ExportedTimePoint[][], prc: number): ExportedTimePoint[] {
@@ -236,7 +236,7 @@ function percentileTrajectory(trajectories: ExportedTimePoint[][], prc: number):
 }
 */
 
-const COUNT_FLOOR = 1e-6
+const COUNT_FLOOR = 1e-1
 const fwdTransform = (x: number) => Math.log(x + COUNT_FLOOR)
 const invTransform = (x: number) => Math.exp(x)
 
