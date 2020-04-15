@@ -10,15 +10,6 @@ function serialize(arr: number[]) {
   return buffer.toString('base64')
 }
 
-/* Catch failed deserialization and return an empty array to force a new snapshot */
-function tryDeserialize(str: string) {
-  try {
-    return deserialize(str)
-  } catch {
-    return []
-  }
-}
-
 /* This function will throw an exception if param is not defined. */
 function deserialize(str: string) {
   const bytesPer = 8 // 8 Bytes per Float64
@@ -29,6 +20,15 @@ function deserialize(str: string) {
   }
 
   return result
+}
+
+/* Catch failed deserialization and return an empty array to force a new snapshot */
+function tryDeserialize(str: string) {
+  try {
+    return deserialize(str)
+  } catch {
+    return []
+  }
 }
 
 function compare(
