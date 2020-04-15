@@ -1,11 +1,11 @@
 name	populationServed	ageDistribution	hospitalBeds	ICUBeds	hemisphere	srcPopulation	srcHospitalBeds	srcICUBeds
-Andorra	77006	Andorra	160	6	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	http://dx.doi.org/10.1007/s00134-012-2627-8
+Andorra	77006	Andorra	160	6		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	http://dx.doi.org/10.1007/s00134-012-2627-8
 Australia	24992369	Australia	95970	2378	Southern	ECDC	Computed from total bed OECD numbers and population size	https://www.mja.com.au/journal/2020/surge-capacity-australian-intensive-care-units-associated-covid-19-admissions
 Austria	8847037	Austria	47920	1833	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-Bangladesh	161356039	Bangladesh	32611	1174	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Bangladesh	161356039	Bangladesh	32611	1174		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Belgium	11422068	Belgium	56927	1755	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Brazil	209469333	Brazil	481779	42000	Southern	ECDC	Computed from total bed OECD numbers and population size	None
-Brunei Darussalam	428962	Brunei Darussalam	1234	58	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Brunei Darussalam	428962	Brunei Darussalam	1234	58		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Bulgaria	7024216	Bulgaria	43646	913	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 CAN-Alberta	4413146	Canada	5819	700	Northern	None	None	None
 CAN-British Columbia	5110917	Canada	6074	680	Northern	None	None	None
@@ -47,7 +47,7 @@ CHE-Vaud	799000	Switzerland	2861	130	Northern	None	None	None
 CHE-Zug	127000	Switzerland	454	20	Northern	None	None	None
 CHE-Zürich	1521000	Switzerland	5447	247	Northern	None	None	None
 Canada	37058856	Canada	72264	4800	Northern	ECDC	Computed from acute care OECD numbers and population size	None
-China	1392730000	China	5494778	49453	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+China	1392730000	China	5494778	49453		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Croatia	4089400	Croatia	14475	650	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Cyprus	1189265	Cyprus	2922	92	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Czechia	10625695	Czechia	43531	1227	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
@@ -170,42 +170,59 @@ ITA-Valle d’Aosta	125666	Italy	449	0	Northern	None	None	None
 ITA-Veneto	4905854	Italy	15857	825	Northern	None	None	None
 Iceland	353574	Iceland	862	29	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 India	1352617328	India	810730	29997	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Indonesia	267663435	Indonesia	308435	7094	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Iran (Islamic Republic of)	81800269	Iran (Islamic Republic of)	130690	3790	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Indonesia	267663435	Indonesia	308435	7094		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Iran (Islamic Republic of)	81800269	Iran (Islamic Republic of)	130690	3790		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Ireland	4853506	Ireland	13297	289	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Israel	8883800	Israel	19133	758	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	None
 Italy	60431283	Italy	158891	7550	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-Japan	126529100	Japan	710846	9241	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Kazakhstan	18276499	Kazakhstan	101231	3948	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Korea, Republic of	51635256	Korea, Republic of	270100	5402	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Japan	126529100	Japan	710846	9241		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Kazakhstan	18276499	Kazakhstan	101231	3948		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Korea, Republic of	51635256	Korea, Republic of	270100	5402		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Kosovo	1845300	Kosovo	1000	142	Northern	ECDC	None	None
 Latvia	1926542	Latvia	6407	217	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Lithuania	2789533	Lithuania	15477	502	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Luxembourg	607728	Luxembourg	2251	127	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-Malaysia	31528585	Malaysia	62353	1060	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Malaysia	31528585	Malaysia	62353	1060		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Malta	483530	Malta	1486	66	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	None
-Mongolia	3170208	Mongolia	10840	271	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Myanmar	53708395	Myanmar	58600	586	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Mongolia	3170208	Mongolia	10840	271		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Myanmar	53708395	Myanmar	58600	586		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Netherlands	17231017	Netherlands	50047	1065	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 New Zealand	4885500	New Zealand	12653	153	Southern	ECDC	Computed from acute care OECD numbers and population size	https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12319640
-Norway	5314336	Norway	16885	395	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-Oman	4829483	Oman	5736	499	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Pakistan	212215030	Pakistan	125680	3142	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Philippines	106651922	Philippines	63108	2335	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Norway	5314336	Norway	16885	395		ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Oman	4829483	Oman	5736	499		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+PHL-BARMM	4089676	Philippines	915	16	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-CAR (Cordillera Administrative Region)	1907454	Philippines	1962	16	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-NCR	13152983	Philippines	29723	104	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 1 (Ilocos Region)	5382803	Philippines	4137	55	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 10 (Northern Mindanao)	5001941	Philippines	5367	43	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 11 (Davao Region)	5338223	Philippines	4907	35	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 12 (Soccskargen)	4958181	Philippines	4611	36	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 13 (Caraga)	2939578	Philippines	1289	11	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 2 (Cagayan Valley)	3687845	Philippines	3325	36	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 3 (Central Luzon)	11739028	Philippines	9930	106	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 4A (Calabarzon)	15179591	Philippines	12428	138	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 4B (MIMAROPA)	3340861	Philippines	1407	16	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 5 (Bicol Region)	6506252	Philippines	3487	33	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 6 (Western Visayas)	8132584	Philippines	5798	39	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 7 (Central Visayas)	7928506	Philippines	6436	38	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 8 (Eastern Visayas)	4874138	Philippines	2962	29	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+PHL-Region 9 (Zamboanga Peninsula)	4026515	Philippines	3004	28	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
+Pakistan	212215030	Pakistan	125680	3142		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Philippines	106651922	Philippines	63108	2335	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Poland	37978548	Poland	184230	2635	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Portugal	10281762	Portugal	33447	451	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Romania	19473936	Romania	102899	4574	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 SWE-Stockholm	2000000	Sweden	4506	108	Northern	None	None	None
-Saudi Arabia	33699947	Saudi Arabia	70815	6515	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Singapore	5638676	Singapore	10167	671	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Saudi Arabia	33699947	Saudi Arabia	70815	6515		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Singapore	5638676	Singapore	10167	671		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Slovakia	5447011	Slovakia	26692	500	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Slovenia	2067372	Slovenia	8686	131	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Spain	46723749	Spain	113042	4479	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-Sri Lanka	21670000	Sri Lanka	86500	519	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Sri Lanka	21670000	Sri Lanka	86500	519		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Sweden	10183175	Sweden	20477	550	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Switzerland	8516543	Switzerland	30057	1400	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-Taiwan, Province of China	23780452	Taiwan, Province of China	73637	6701	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Thailand	69428524	Thailand	139216	7100	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Taiwan, Province of China	23780452	Taiwan, Province of China	73637	6701		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Thailand	69428524	Thailand	139216	7100		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 USA-Alabama	4908621	United States of America	15217	507	Northern	None	None	None
 USA-Alaska	734002	United States of America	1615	54	Northern	None	None	None
 USA-Arizona	7378494	United States of America	14019	467	Northern	None	None	None
@@ -259,5 +276,5 @@ USA-West Virginia	1778070	United States of America	6757	225	Northern	None	None	N
 USA-Wisconsin	5851754	United States of America	12289	410	Northern	None	None	None
 USA-Wyoming	567025	United States of America	1985	66	Northern	None	None	None
 Ukraine	44622516	Ukraine	276004	2646	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	https://youcontrol.com.ua/virus/
-United Kingdom of Great Britain and Northern Ireland	66488991	United Kingdom of Great Britain and Northern Ireland	139647	4114	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+United Kingdom of Great Britain and Northern Ireland	66488991	United Kingdom of Great Britain and Northern Ireland	139647	4114		ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 United States of America	327167434	United States of America	798288	49499	Northern	ECDC	Computed from acute care OECD numbers and population size	None
