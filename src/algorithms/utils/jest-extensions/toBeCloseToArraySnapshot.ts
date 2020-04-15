@@ -31,11 +31,18 @@ function tryDeserialize(str: string) {
   }
 }
 
+function bigIntRep(num: number): bigint {
+  const buffer = new ArrayBuffer(Float64Array.BYTES_PER_ELEMENT)
+  const view = new DataView(buffer)
+  view.setFloat64(0, num, true)
+  return view.getBigInt64(0, true)
+}
+
 function compare(
   expected: number[],
   received: number[],
-  tolerance: number,
-): { pass: boolean; diffs?: { want: number; got: number; diff: number }[] } {
+  maxUlp: bigint,
+): { pass: boolean; diffs?: { want: number; got: number; diff: bigint }[] } {
   if (expected === undefined) {
     return { pass: false }
   }
@@ -43,23 +50,26 @@ function compare(
   const diffs = received.map((_, idx) => {
     const want = expected[idx]
     const got = received[idx]
-    const diff = Math.abs(want - got)
+    let diff = bigIntRep(want) - bigIntRep(got)
+    if (diff < 0n) {
+      diff *= -1n
+    }
     return { want, got, diff }
   })
 
-  const pass = diffs.filter(({ diff }) => diff >= tolerance).length === 0
+  const failed = diffs.filter(({ diff }) => diff >= maxUlp)
+  const pass = failed.length === 0
 
   return { pass, diffs }
 }
 
-export default function toBeCloseToArraySnapshot(this: Context, received: number[], precision = 2) {
+export default function toBeCloseToArraySnapshot(this: Context, received: number[], maxUlp: bigint) {
   const state = new State(this)
 
   const snapshot = state.getSnapshot()
   const expected = tryDeserialize(snapshot)
 
-  const tolerance = Math.pow(10, -precision) / 2
-  const { pass } = compare(expected, received, tolerance)
+  const { pass } = compare(expected, received, maxUlp)
 
   state.markSnapshotsAsCheckedForTest()
 
