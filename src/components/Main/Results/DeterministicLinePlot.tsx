@@ -8,8 +8,6 @@ import {
   ComposedChart,
   Legend,
   Line,
-  Label,
-  ReferenceArea,
   Scatter,
   Area,
   Tooltip,
@@ -27,6 +25,7 @@ import { numberFormatter } from '../../../helpers/numberFormat'
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
 import { LinePlotTooltip } from './LinePlotTooltip'
+import { MitigationPlot } from './MitigationLinePlot'
 
 import './DeterministicLinePlot.scss'
 
@@ -295,47 +294,13 @@ export function DeterministicLinePlot({
           return (
             <>
               <div ref={chartRef} />
-              <ComposedChart
+              <MitigationPlot
+                mitigation={mitigationIntervals}
                 width={forcedWidth || width}
-                height={forcedHeight ? forcedHeight / 4 : height / 4}
-                margin={{
-                  left: 5,
-                  right: 5,
-                  top: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                  allowDataOverflow
-                  dataKey="time"
-                  type="number"
-                  domain={[tMin, tMax]}
-                  tickFormatter={() => ''}
-                  tickCount={7}
-                />
-                <YAxis
-                  yAxisId="mitigationStrengthAxis"
-                  allowDataOverflow
-                  orientation={'left'}
-                  type="number"
-                  domain={[0, 100]}
-                />
-                {mitigationIntervals.map((interval) => (
-                  <ReferenceArea
-                    key={interval.id}
-                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
-                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
-                    y1={0}
-                    y2={_.clamp(interval.mitigationValue[0], 0, 100)}
-                    yAxisId={'mitigationStrengthAxis'}
-                    fill={interval.color}
-                    fillOpacity={0.1}
-                  >
-                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
-                  </ReferenceArea>
-                ))}
-              </ComposedChart>
-
+                height={(forcedHeight || height) / 4}
+                tMin={tMin}
+                tMax={tMax}
+              />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
                 width={forcedWidth || width}
