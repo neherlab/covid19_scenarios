@@ -19,7 +19,9 @@ URL  = "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geogra
 
 def retrieve_case_data():
     countries = parse_countries(1)
-
+    countries['UK'] = countries['GB'] # fixing error in data source 
+    countries['EL'] = countries['GR'] # fixing error in data source 
+    
     cases = defaultdict(list)
 
     # For now, always get the data from yesterday. We could make fancier check if today's data is already available
