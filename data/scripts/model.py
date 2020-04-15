@@ -6,6 +6,7 @@ sys.path.append("/home/valentin/Desktop/richardLab/covid19_scenarios/data")
 import os
 import json
 import argparse
+import copy
 
 from enum import IntEnum
 from datetime import datetime
@@ -233,8 +234,8 @@ def assess_model(params, data, cases):
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, bounds=None):
-    if key not in POPDATA:
-        return Params(None, None, None, DefaultRates, Fracs()), 10, (False, "Not within population database")
+    # if key not in POPDATA:
+    #     return Params(None, None, None, DefaultRates, Fracs()), 10, (False, "Not within population database")
 
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
@@ -267,7 +268,7 @@ def fit_params(key, time_points, data, guess, bounds=None):
 
 # TODO: Better data filtering criteria needed!
 # TODO: Take hospitalization and ICU data?
-def load_data(key, confinement_start):
+def load_data(key):
     if key in POPDATA:
         popsize = POPDATA[key]["size"]
     else:
@@ -275,10 +276,8 @@ def load_data(key, confinement_start):
 
     data = [[] if (i == Sub.D or i == Sub.T or i == Sub.H or i == Sub.C) else None for i in range(Sub.NUM)]
     days = []
-    case_min = 20
 
     ts = CASE_DATA[key]
-
 
     for tp in ts:
         data[Sub.T].append(tp['cases'] or np.nan)
@@ -287,11 +286,20 @@ def load_data(key, confinement_start):
         data[Sub.C].append(tp['icu'] or np.nan)
 
     data = [ np.array(d) if d is not None else d for d in data]
-
     days = np.array([datetime.strptime(d['time'].split('T')[0], "%Y-%m-%d").toordinal() for d in ts])
-    day0 = days[case_min <= data[Sub.T]][0]
 
-    fit_stop_day = confinement_start + 1.0/DefaultRates.latency + 1.0/DefaultRates.infection
+    return days, data
+
+
+def get_pre_confinement(days, data_original, confinement_start=None):
+    data = copy.deepcopy(data_original)
+    case_min = 20
+
+    if confinement_start is None:
+        fit_stop_day = times[-1]
+    else:
+        fit_stop_day = confinement_start + 1.0/DefaultRates.latency + 1.0/DefaultRates.infection
+    day0 = days[case_min <= data[Sub.T]][0]
 
     # Filter points
     good_idx = np.bitwise_and(days >= day0, days <= fit_stop_day)
@@ -304,20 +312,13 @@ def load_data(key, confinement_start):
     data[Sub.H].mask = np.isnan(data[Sub.H])
     data[Sub.C].mask = np.isnan(data[Sub.C])
 
-    if sum(good_idx) == 0:
-        return None, None
-
-    # np.where(good_idx)[0][0] is the first day with case_min cases
     # start the model 3 weeks prior.
-    idx = np.where(good_idx)[0][0]
-    times = np.concatenate(([day0-21], days[good_idx]))
-    print(times)
-
-    return times, data
+    time = np.concatenate(([day0-21], days[good_idx]))
+    return time, data
 
 
-def fit_population(region, confinement_start, guess=None):
-    time_points, data = load_data(region, confinement_start)
+
+def fit_population(key, time_points, data, confinement_start, guess=None):
     if data is None or len(data[Sub.D]) <= 5:
         return None
 
@@ -327,7 +328,9 @@ def fit_population(region, confinement_start, guess=None):
                   "logInitial" : 1
                 }
 
-    param, init_cases, err = fit_params(region, time_points, data, guess)
+    time_point_fit, data_fit = get_pre_confinement(time_points, data, confinement_start)
+
+    param, init_cases, err = fit_params(key, time_point_fit, data_fit, guess)
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     return {'params':param, 'initialCases':init_cases, 'tMin':tMin, 'data': data, 'error':err}
 
@@ -352,24 +355,31 @@ if __name__ == "__main__":
     key = "USA-California"
     confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
 
-    res = fit_population(key, confinement_start)
+    # Raw data and time points
+    time, data = load_data(key)
+
+    # Fitting over the pre-confinement days
+    res = fit_population(key, time, data, confinement_start)
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
     tp = res['params'].time - JAN1_2020
     confinement_start -= tp[0] + JAN1_2020
     tp = tp - tp[0]
+    time = time - time[0] + 21
+
+    # TODO : compute the prediction of the model past the confinement start
 
     plt.figure()
     plt.title(f"{key}")
-    plt.plot(tp, res['data'][Sub.T], 'o', color='#a9a9a9', label="cases")
+    plt.plot(time, data[Sub.T], 'o', color='#a9a9a9', label="cases")
     plt.plot(tp, model[:,Sub.T], color="#a9a9a9", label="predicted cases")
 
-    plt.plot(tp, res['data'][Sub.D], 'o', color="#cab2d6", label="deaths")
+    plt.plot(time, data[Sub.D], 'o', color="#cab2d6", label="deaths")
     plt.plot(tp, model[:,Sub.D], color="#cab2d6", label="predicated deaths")
 
-    plt.plot(tp, res['data'][Sub.H], 'o', color="#fb9a98", label="Hospitalized")
+    plt.plot(time, data[Sub.H], 'o', color="#fb9a98", label="Hospitalized")
     plt.plot(tp, model[:,Sub.H], color="#fb9a98", label="Predicted hospitalized")
 
-    plt.plot(tp, res['data'][Sub.C], 'o', color="#e31a1c", label="ICU")
+    plt.plot(time, data[Sub.C], 'o', color="#e31a1c", label="ICU")
     plt.plot(tp, model[:,Sub.C], color="#e31a1c", label="Predicted ICU")
 
     plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
