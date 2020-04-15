@@ -53,8 +53,6 @@ def retrieve_case_data():
         geoID = row[Ix['geoId']]
         if geoID in countries:
             country = countries[geoID]
-        else:
-            print(f'No canonical name for {country} {geoID}')
 
         date = f"{int(row[Ix['year']]):04d}-{int(row[Ix['month']]):02d}-{int(row[Ix['day']]):02d}"
 
