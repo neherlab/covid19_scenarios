@@ -1,7 +1,9 @@
 import { AgeDistribution } from '../.generated/types'
 import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
 import { AllParamsFlat } from './types/Param.types'
+import { TimeSeries } from './types/TimeSeries.types'
 import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types/Result.types'
+
 import { getPopulationParams, initializePopulation } from './initialize'
 import { collectTotals, evolve } from './model'
 import { mulTP, divTP, meanTrajectory, stddevTrajectory } from './results'
@@ -29,6 +31,7 @@ export async function run(
   const modelParamsArray = getPopulationParams(params, severity, ageDistribution)
 
   const trajectories: ExportedTimePoint[][] = []
+  const containments: TimeSeries[] = []
 
   modelParamsArray.forEach((modelParams) => {
     const population = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
@@ -43,7 +46,14 @@ export async function run(
 
       return collectTotals(dynamics, ageGroups)
     }
-    trajectories.push(simulate(population, identity))
+    const trajectory = simulate(population, identity)
+    trajectories.push(trajectory)
+    containments.push(
+      trajectory.map((d) => ({
+        t: d.time,
+        y: modelParams.rate.infection(d.time),
+      })),
+    )
   })
 
   const mean = meanTrajectory(trajectories)
@@ -54,7 +64,12 @@ export async function run(
       mean,
       upper: mean.map((m, i) => mulTP(m, sdev[i])),
       lower: mean.map((m, i) => divTP(m, sdev[i])),
+      percentile: {},
     },
-    percentile: {},
+    mitigation: {
+      mean: [],
+      lower: [],
+      upper: [],
+    },
   }
 }

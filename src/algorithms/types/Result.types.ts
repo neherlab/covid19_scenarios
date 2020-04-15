@@ -1,4 +1,5 @@
 import { AgeDistribution } from '../../.generated/types'
+import { TimeSeries } from './TimeSeries.types'
 
 export interface InternalCurrentData {
   susceptible: number[]
@@ -82,9 +83,14 @@ export interface UserResult {
   mean: ExportedTimePoint[]
   lower: ExportedTimePoint[]
   upper: ExportedTimePoint[]
+  percentile: Record<number, ExportedTimePoint[]>
 }
 
 export interface AlgorithmResult {
   trajectory: UserResult
-  percentile: Record<number, ExportedTimePoint[]>
+  mitigation: {
+    mean: TimeSeries
+    lower: TimeSeries
+    upper: TimeSeries
+  }
 }
