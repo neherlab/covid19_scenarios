@@ -5,7 +5,7 @@ import _ from 'lodash'
 import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Col, Row, Button, FormGroup } from 'reactstrap'
+import { Container, Col, Row, Button, FormGroup } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
@@ -131,31 +131,33 @@ function MitigationIntervalComponent({
         }`}
       >
         <div className="inputs">
-          <Row noGutters>
-            <Col>
-              <FastField
-                className={`name form-control ${nameError ? 'border-danger' : ''}`}
-                id={`containment.mitigationIntervals[${index}].name`}
-                name={`containment.mitigationIntervals[${index}].name`}
-                type="text"
-              />
-            </Col>
-            <Col xl="auto">
-              <MitigationDatePicker
-                identifier={`containment.mitigationIntervals[${index}].timeRange`}
-                value={interval.timeRange}
-                allowPast
-              />
-            </Col>
-            <Col>
-              <RangeSlider
-                identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
-                step={0.1}
-                min={0}
-                max={100}
-              />
-            </Col>
-          </Row>
+          <Container fluid>
+            <Row noGutters>
+              <Col sm md lg xl="auto">
+                <FastField
+                  className={`name form-control ${nameError ? 'border-danger' : ''}`}
+                  id={`containment.mitigationIntervals[${index}].name`}
+                  name={`containment.mitigationIntervals[${index}].name`}
+                  type="text"
+                />
+              </Col>
+              <Col sm md lg xl="auto">
+                <MitigationDatePicker
+                  identifier={`containment.mitigationIntervals[${index}].timeRange`}
+                  value={interval.timeRange}
+                  allowPast
+                />
+              </Col>
+              <Col>
+                <RangeSlider
+                  identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
+                  step={0.1}
+                  min={0}
+                  max={100}
+                />
+              </Col>
+            </Row>
+          </Container>
         </div>
         <div className="item-controls">
           <Button type="button" onClick={() => arrayHelpers.remove(index)}>
