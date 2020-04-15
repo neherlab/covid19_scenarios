@@ -22,21 +22,17 @@ def parse():
         print(f"Failed to fetch {URL}", file=sys.stderr)
         exit(1)
         r.close()
-#    regions = dict(JPN-Okinawa=[])
-    regions={}
-    regions["JPN-Okinawa"]=[]   
+    regions={'JPN-Okinawa'=[]}   
     fd  = io.StringIO(r.text)
     rdr = csv.reader(fd)
     hdr = next(rdr)
     for row in rdr:
         if len(row[0])==0:
             continue
-  #     date_str = datetime.strptime(row[0], r"%d/%m/%Y").strftime(r"%Y-%m-%d")
         date_str=row[0]
         num_cases = stoi(row[1])
         num_deaths = stoi(row[2])
         num_hosp = stoi(row[3])
-      #  num_icus = stoi(row[4])
         num_recover = stoi(row[5])
         regions["JPN-Okinawa"].append([date_str, num_cases, num_deaths, num_hosp, None, num_recover])
 
