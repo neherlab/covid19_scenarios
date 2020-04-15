@@ -126,11 +126,41 @@ export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidt
                 />
                 <Legend verticalAlign="bottom" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar isAnimationActive={false} dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} label={label} />
-                <Bar isAnimationActive={false} dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} label={label} />
-                <Bar isAnimationActive={false} dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} label={label} />
-                <Bar isAnimationActive={false} dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} label={label} />
-                <Bar isAnimationActive={false} dataKey="fraction" fill="#aaaaaa" name={t('% of population')} yAxisId={'ageDisAxis'} />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="peakSevere"
+                  fill={colors.severe}
+                  name={t('peak severe')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="peakCritical"
+                  fill={colors.critical}
+                  name={t('peak critical')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="peakOverflow"
+                  fill={colors.overflow}
+                  name={t('peak overflow')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="totalFatalities"
+                  fill={colors.fatality}
+                  name={t('total deaths')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="fraction"
+                  fill="#aaaaaa"
+                  name={t('% of population')}
+                  yAxisId={'ageDisAxis'}
+                />
               </BarChart>
 
               <div ref={percentageChartRef} />
