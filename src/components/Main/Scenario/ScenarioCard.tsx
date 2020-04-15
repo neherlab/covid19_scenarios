@@ -2,7 +2,7 @@ import React from 'react'
 
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
-import { Col, Row } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
@@ -19,6 +19,15 @@ import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
 import { SeverityTableRow } from './ScenarioTypes'
 import { AllParams } from '../../../algorithms/types/Param.types'
+import { ColCustom } from '../../Layout/ColCustom'
+
+export function getColumnSizes(areResultsMaximized: boolean) {
+  if (areResultsMaximized) {
+    return { colPopulation: { lg: 12 }, colEpidemiological: { lg: 12 } }
+  }
+
+  return { colPopulation: { xl: 6 }, colEpidemiological: { xl: 6 } }
+}
 
 export interface ScenarioCardProps {
   values: AllParams
@@ -28,6 +37,7 @@ export interface ScenarioCardProps {
   touched?: FormikTouched<FormikValues>
   setSeverity(severity: SeverityTableRow[]): void
   scenarioDispatch(action: AnyAction): void
+  areResultsMaximized: boolean
 }
 
 function ScenarioCard({
@@ -38,9 +48,11 @@ function ScenarioCard({
   touched,
   setSeverity,
   scenarioDispatch,
+  areResultsMaximized,
 }: ScenarioCardProps) {
   const { t } = useTranslation()
   const scenarioOptions = stringsToOptions(scenarioState.scenarios)
+  const { colPopulation, colEpidemiological } = getColumnSizes(areResultsMaximized)
 
   function handleChangeScenario(newScenario: string) {
     scenarioDispatch(setScenario({ name: newScenario }))
@@ -58,13 +70,13 @@ function ScenarioCard({
     >
       <>
         <Row>
-          <Col xl={6} className="my-2">
+          <ColCustom {...colPopulation} xxl={6} className="my-2">
             <ScenarioCardPopulation errors={errors} touched={touched} />
-          </Col>
+          </ColCustom>
 
-          <Col xl={6} className="my-2">
+          <ColCustom {...colEpidemiological} xxl={6} className="my-2">
             <ScenarioCardEpidemiological errors={errors} touched={touched} />
-          </Col>
+          </ColCustom>
         </Row>
 
         <Row noGutters>
