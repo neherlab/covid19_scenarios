@@ -2,7 +2,7 @@ import type { Context } from './types'
 import State from './state'
 
 function serialize(arr: number[]) {
-  const bytesPer = 8 // 8 Bytes per Float64
+  const bytesPer = Float64Array.BYTES_PER_ELEMENT
   const buffer = Buffer.alloc(arr.length * bytesPer)
   for (const [i, element] of arr.entries()) {
     buffer.writeDoubleLE(element, i * bytesPer)
@@ -12,7 +12,7 @@ function serialize(arr: number[]) {
 
 /* This function will throw an exception if param is not defined. */
 function deserialize(str: string) {
-  const bytesPer = 8 // 8 Bytes per Float64
+  const bytesPer = Float64Array.BYTES_PER_ELEMENT
   const buffer = Buffer.from(str, 'base64')
   const result = []
   for (let i = 0; i < buffer.length; i += bytesPer) {
