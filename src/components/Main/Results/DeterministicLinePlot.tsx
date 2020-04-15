@@ -65,8 +65,12 @@ function labelFormatter(value: string | number): React.ReactNode {
   return xTickFormatter(value)
 }
 
-function legendFormatter(enabledPlots: string[], value: string, entry: { dataKey: string }) {
-  const activeClassName = enabledPlots.includes(entry.dataKey) ? 'legend' : 'legend-inactive'
+function legendFormatter(enabledPlots: string[], value?: LegendPayload['value'], entry?: LegendPayload) {
+  let activeClassName = 'legend-inactive'
+  if (entry?.dataKey && enabledPlots.includes(entry.dataKey)) {
+    activeClassName = 'legend'
+  }
+
   return <span className={activeClassName}>{value}</span>
 }
 
@@ -87,6 +91,7 @@ function computeNewEmpiricalCases(
 
   cumulativeCounts.forEach((_0, day) => {
     if (day < deltaDay) {
+      newEmpiricalCases[day] = undefined
       return
     }
 
@@ -264,32 +269,6 @@ export function DeterministicLinePlot({
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
-  // const zoomIn = () => {
-  //   if (zoomSelectedLeftState === zoomSelectedRightState || !zoomSelectedRightState) {
-  //     setzoomSelectedLeftState('')
-  //     setzoomSelectedRightState('')
-  //     return
-  //   }
-
-  //   // xAxis domain
-  //   if (zoomSelectedLeftState > zoomSelectedRightState) {
-  //     setzoomSelectedLeftState(zoomSelectedRightState)
-  //     setzoomSelectedRightState(zoomSelectedLeftState)
-  //   }
-
-  //   setzoomLeftState(zoomSelectedLeftState)
-  //   setzoomRightState(zoomSelectedRightState)
-  //   setzoomSelectedLeftState('')
-  //   setzoomSelectedRightState('')
-  // }
-
-  // const zoomOut = () => {
-  //   setzoomLeftState('dataMin')
-  //   setzoomRightState('dataMax')
-  //   setzoomSelectedLeftState('')
-  //   setzoomSelectedRightState('')
-  // }
-
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
       <ReactResizeDetector handleWidth handleHeight>
@@ -359,7 +338,9 @@ export function DeterministicLinePlot({
 
                 <Legend
                   verticalAlign="bottom"
-                  formatter={(v, e) => e && legendFormatter(enabledPlots, v, e as LegendPayload)}
+                  formatter={(value?: LegendPayload['value'], entry?) =>
+                    legendFormatter(enabledPlots, value, entry as LegendPayload | undefined)
+                  }
                   onClick={(e) => {
                     const plots = enabledPlots.slice(0)
                     enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)
