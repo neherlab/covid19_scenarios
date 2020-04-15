@@ -94,6 +94,5 @@ export interface TimeSeriesWithRange {
 
 export interface AlgorithmResult {
   trajectory: UserResult
-  mitigation: TimeSeriesWithRange
   R0: TimeSeriesWithRange
 }
