@@ -22,7 +22,7 @@ def parse():
         print(f"Failed to fetch {URL}", file=sys.stderr)
         exit(1)
         r.close()
-    regions={'JPN-Okinawa'=[]}   
+    regions = {'JPN-Okinawa': []}   
     fd  = io.StringIO(r.text)
     rdr = csv.reader(fd)
     hdr = next(rdr)
