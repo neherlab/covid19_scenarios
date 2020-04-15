@@ -257,7 +257,7 @@ export function DeterministicLinePlot({
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
-      <ReactResizeDetector handleWidth handleHeight>
+      <ReactResizeDetector handleWidth handleHeight refreshRate={300} refreshMode="debounce">
         {({ width }: { width?: number }) => {
           if (!width) {
             return <div className="w-100 h-100" />
