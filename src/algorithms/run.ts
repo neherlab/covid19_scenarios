@@ -59,6 +59,25 @@ export async function run(
   const mean = meanTrajectory(trajectories)
   const sdev = stddevTrajectory(trajectories, mean)
 
+  const R0Trajectories = trajectories[0].map((d) => {
+    return {
+      t: d.time,
+      y: modelParamsArray.map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriod),
+    }
+  })
+
+  const meanR0 = R0Trajectories.map((d) => {
+    return { t: d.t, y: d.y.reduce((a, b) => a + b, 0) / d.y.length }
+  })
+
+  const secondMomentR0 = R0Trajectories.map((d) => {
+    return { t: d.t, y: d.y.reduce((a, b) => a + b * b, 0) / d.y.length }
+  })
+
+  const stdR0 = secondMomentR0.map((d, i) => {
+    return { t: d.t, y: Math.sqrt(d.y - meanR0[i].y * meanR0[i].y) }
+  })
+
   return {
     trajectory: {
       mean,
@@ -70,6 +89,15 @@ export async function run(
       mean: [],
       lower: [],
       upper: [],
+    },
+    R0: {
+      mean: meanR0,
+      lower: meanR0.map((m, i) => {
+        return { t: m.t, y: m.y - stdR0[i].y }
+      }),
+      upper: meanR0.map((m, i) => {
+        return { t: m.t, y: m.y + stdR0[i].y }
+      }),
     },
   }
 }

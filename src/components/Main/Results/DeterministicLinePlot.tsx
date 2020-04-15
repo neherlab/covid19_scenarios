@@ -295,6 +295,7 @@ export function DeterministicLinePlot({
               <div ref={chartRef} />
               <MitigationPlot
                 mitigation={mitigationIntervals}
+                R0Trajectory={data.R0}
                 width={forcedWidth || width}
                 height={(forcedHeight || height) / 4}
                 tMin={tMin}
