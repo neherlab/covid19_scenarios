@@ -264,6 +264,25 @@ def fit_params(key, time_points, data, guess, bounds=None):
 # ------------------------------------------
 # Data loading
 
+def fit_logistic(data):
+    x = np.arange(0, len(data))
+    def residuals(params):
+        L , k, x0, logp = params
+        F = L/(1 + np.exp(-k*(x-x0))) + np.exp(logp)
+        return np.sum(np.power(1-data/F, 2))
+
+    guess = [np.max(data), 1.0, len(data)/2, 1.0]
+    fit_param = opt.minimize(residuals, guess, method='Nelder-Mead')
+
+    L, k, x0, logp = fit_param.x
+    def fit(x):
+        return L/(1 + np.exp(-k*(x-x0))) + np.exp(logp)
+
+    case_min = fit(x0-10/k)
+    case_max = fit(x0+1/k)
+
+    return case_min, case_max
+
 # TODO: Better data filtering criteria needed!
 # TODO: Take hospitalization and ICU data?
 def load_data(key):
@@ -274,7 +293,7 @@ def load_data(key):
 
     data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
     days = []
-    case_min, case_max = 20, max(20000, popsize*3e-3)
+
 
     ts = CASE_DATA[key]
 
@@ -284,6 +303,12 @@ def load_data(key):
         data[Sub.D].append(tp['deaths'] or np.nan)
 
     data = [ np.array(d) if d is not None else d for d in data]
+
+    good_data = data[Sub.T][~np.isnan(data[Sub.T])]
+    if len(good_data) > 5:
+        case_min, case_max = fit_logistic(good_data)
+    else:
+        case_min, case_max = 20, max(20000, popsize*3e-4)
 
     # Filter points
     good_idx = np.bitwise_and(case_min <= data[Sub.T], data[Sub.T] < case_max)
