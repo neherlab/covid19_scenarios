@@ -164,8 +164,7 @@ export function DeterministicLinePlot({
       ICUbeds: nICUBeds,
     })) ?? []
 
-  const { upper } = data.trajectory
-  const { lower } = data.trajectory
+  const { upper, lower } = data.trajectory
 
   const plotData = [
     ...data.trajectory.mean.map((x, i) => ({
