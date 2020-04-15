@@ -18,7 +18,7 @@ CAN-Nunavut	39097	Canada	30	4	Northern	https://www.cihi.ca/sites/default/files/d
 CAN-Ontario	14711827	Canada	15485	1723	Northern	None	None	None
 CAN-Prince Edward Island	158158	Canada	295	24	Northern	None	None	None
 CAN-Quebec	8484965	Canada	7000	633	Northern	https://www.stat.gouv.qc.ca/statistiques/population-demographie/structure/qc_1971-20xx.htm	https://www.cbc.ca/news/canada/montreal/numbers-covid-19-coronavirus-quebec-april-1-1.5518397	https://www.cbc.ca/news/canada/montreal/numbers-covid-19-coronavirus-quebec-april-1-1.5518397
-CAN-Saskatchwan	1181666	Canada	2198	106	Northern	None	None	None
+CAN-Saskatchewan	1181666	Canada	2198	106	Northern	None	None	None
 CAN-Yukon	41078	Canada	106	1	Northern	None	None	None
 CHE-Aargau	677000	Switzerland	2424	110	Northern	None	None	None
 CHE-Appenzell Ausserrhoden	55000	Switzerland	196	8	Northern	None	None	None
@@ -126,7 +126,7 @@ IND-Goa	1542750	India	3013	296	Northern	None	None	ICU beds not available at stat
 IND-Gujarat	63907200	India	32280	3179	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Haryana	27388008	India	11240	1106	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Himachal Pradesh	7316708	India	12399	1221	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
-IND-Jammu & Kashmir	13635010	India	11651	1147	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+IND-Jammu and Kashmir	13635010	India	11651	1147	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Jharkhand	37329128	India	10784	1062	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Karnataka	66165886	India	70165	6910	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Kerala	35330888	India	38004	3742	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
@@ -152,7 +152,7 @@ ITA-Abruzzo	1311580	Italy	3872	70	Northern	None	None	None
 ITA-Basilicata	562869	Italy	1681	5	Northern	None	None	None
 ITA-Calabria	1947131	Italy	4901	107	Northern	None	None	None
 ITA-Campania	5801692	Italy	14779	320	Northern	None	None	None
-ITA-Emilia Romagna	4459477	Italy	16304	650	Northern	None	None	None
+ITA-Emilia-Romagna	4459477	Italy	16304	650	Northern	None	None	None
 ITA-Friuli Venezia Giulia	1215220	Italy	3899	825	Northern	None	None	None
 ITA-Lazio	5879082	Italy	18887	540	Northern	None	None	None
 ITA-Liguria	1550640	Italy	5085	75	Northern	None	None	None
@@ -166,7 +166,7 @@ ITA-Sicilia	4999891	Italy	13642	441	Northern	None	None	None
 ITA-Toscana	3729641	Italy	10366	447	Northern	None	None	None
 ITA-TrentinoAltoAdige	1072276	Italy	3763	75	Northern	None	None	None
 ITA-Umbria	882015	Italy	2652	69	Northern	None	None	None
-ITA-Valle d’Aosta	125666	Italy	449	0	Northern	None	None	None
+ITA-Valle d'Aosta	125666	Italy	449	0	Northern	None	None	None
 ITA-Veneto	4905854	Italy	15857	825	Northern	None	None	None
 Iceland	353574	Iceland	862	29	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 India	1352617328	India	810730	29997	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
