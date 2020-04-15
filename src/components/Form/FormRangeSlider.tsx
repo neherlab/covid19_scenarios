@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import _ from 'lodash'
 
@@ -49,9 +49,10 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
   return (
     <Field name={identifier} className={`form-control ${borderDanger}`} validate={validate}>
       {({ field: { value }, form: { setFieldValue } }: FieldProps<number[]>) => {
-        const handleChange = (value: number[]) => {
+        const exportInternalState = (value: number[]) => {
           setFieldValue(identifier, value)
         }
+
         if (label) {
           return (
             <FormGroup className="my-0">
@@ -62,7 +63,7 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
                 <Col xl={5}>
                   <BaseRangeSlider
                     value={[value[0], value[1]]}
-                    handleChange={handleChange}
+                    exportInternalState={exportInternalState}
                     step={step}
                     min={min}
                     max={max}
@@ -77,7 +78,7 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
             <Row noGutters>
               <BaseRangeSlider
                 value={[value[0], value[1]]}
-                handleChange={handleChange}
+                exportInternalState={exportInternalState}
                 step={step}
                 min={min}
                 max={max}
@@ -95,17 +96,28 @@ export interface BaseRangeSliderProps {
   step: number
   min: number
   max: number
-  handleChange: (value: number[]) => void
+  exportInternalState: (value: number[]) => void
 }
 
-function BaseRangeSlider({ value, handleChange, step, min, max }: BaseRangeSliderProps) {
+function BaseRangeSlider({ value, exportInternalState, step, min, max }: BaseRangeSliderProps) {
+  const [state, setState] = useState<[number, number]>(value)
+  const setInternalState = (value: number[]) => {
+    setState([value[0], value[1]])
+  }
+
+  const onFinalChange = (value: number[]) => {
+    setInternalState(value)
+    exportInternalState(value)
+  }
+
   return (
     <Range
-      values={value}
+      values={state}
       step={step}
       min={min}
       max={max}
-      onChange={handleChange}
+      onChange={setInternalState}
+      onFinalChange={onFinalChange}
       renderTrack={({ props, children }) => (
         <div
           role="button"
@@ -126,7 +138,7 @@ function BaseRangeSlider({ value, handleChange, step, min, max }: BaseRangeSlide
               width: '55%',
               borderRadius: '4px',
               background: getTrackBackground({
-                values: value,
+                values: state,
                 colors: ['#ccc', 'mediumaquamarine', '#ccc'],
                 min,
                 max,
