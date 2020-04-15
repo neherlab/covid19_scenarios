@@ -23,6 +23,8 @@ URL_ICU = "http://dx.doi.org/10.1007/s00134-012-2627-8" # the paper where the nu
 URL_ICU_ASIA = "https://doi.org/10.1097/CCM.0000000000004222" # the paper where the numbers came from
 URL_CIA = "https://raw.githubusercontent.com/iancoleman/cia_world_factbook_api/master/data/factbook.json"
 
+MINPOP = 1 # minimal pop size for ICU estimation if hospital bed data is available
+
 cols = ['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds', 'hemisphere', 'srcPopulation', 'srcHospitalBeds','srcICUBeds']
 
 ciaMap = {
@@ -328,7 +330,7 @@ def generate(output):
 
     # estimate ICU data if only hospital data is available, and pop > 1M
     for c in newData:
-        if 'populationServed' in newData[c] and newData[c]['populationServed'] and newData[c]['populationServed'] > 1000000 and 'hospitalBeds' in newData[c] and not 'ICUBeds' in newData[c]:
+        if 'populationServed' in newData[c] and newData[c]['populationServed'] and newData[c]['populationServed'] > MINPOP and 'hospitalBeds' in newData[c] and not 'ICUBeds' in newData[c]:
             # global average of ICU beds vs hospital beds seems to be 3%
             newData[c]['ICUBeds'] = int(newData[c]['hospitalBeds']*0.03) 
             newData[c]['srcICUBeds'] = "Estimated based on 3% of hospital beds" 
