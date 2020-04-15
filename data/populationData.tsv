@@ -111,6 +111,7 @@ Finland	5518050	Finland	15397	329	Northern	ECDC	https://ec.europa.eu/eurostat/tg
 France	66987244	France	206619	7540	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Germany	82927922	Germany	497182	23890	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Greece	10727668	Greece	38747	680	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Hong Kong	7213338	Hong Kong	18926	511		2018-07-01 data in CIA fact book https://web.archive.org/web/20191116042037/https://www.cia.gov/library/publications/the-world-factbook/geos/hk.html	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Hungary	9768785	Hungary	41803	1374	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 IND-Andaman & Nicobar Islands	419978	India	1075	105	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Andhra Pradesh	52883163	India	23138	2278	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
@@ -180,6 +181,7 @@ Japan	126529100	Japan	710846	9241	Northern	ECDC	https://doi.org/10.1097/CCM.0000
 Kazakhstan	18276499	Kazakhstan	101231	3948	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Korea, Republic of	51635256	Korea, Republic of	270100	5402	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Kosovo	1845300	Kosovo	1000	142	Northern	ECDC	None	None
+Lao People's Democratic Republic	7061507	Lao People's Democratic Republic	10851	152		ECDC	Computed from 2012 data in CIA fact book https://web.archive.org/web/20190912232323/https://www.cia.gov/library/publications/the-world-factbook/geos/la.html	https://doi.org/10.1097/CCM.0000000000004222
 Latvia	1926542	Latvia	6407	217	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Lithuania	2789533	Lithuania	15477	502	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Luxembourg	607728	Luxembourg	2251	127	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
@@ -187,6 +189,7 @@ Malaysia	31528585	Malaysia	62353	1060	Tropical	ECDC	https://doi.org/10.1097/CCM.
 Malta	483530	Malta	1486	66	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	None
 Mongolia	3170208	Mongolia	10840	271	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Myanmar	53708395	Myanmar	58600	586	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Nepal	28087871	Nepal	89152	815		ECDC	Computed from 2012 data in CIA fact book https://web.archive.org/web/20191004234502/https://www.cia.gov/library/publications/the-world-factbook/geos/np.html	https://doi.org/10.1097/CCM.0000000000004222
 Netherlands	17231017	Netherlands	50047	1065	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 New Zealand	4885500	New Zealand	12653	153	Southern	ECDC	Computed from acute care OECD numbers and population size	https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12319640
 Norway	5314336	Norway	16885	395	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
