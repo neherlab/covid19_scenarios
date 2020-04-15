@@ -1,5 +1,13 @@
 @import '../../styles/variables';
 
+.animate-flex-width {
+  // prettier-ignore
+  transition:
+    flex-basis 250ms ease,
+    width 250ms ease,
+    max-width 250ms ease;
+}
+
 .card {
   background-color: transparent;
   border: 1px solid $black;
