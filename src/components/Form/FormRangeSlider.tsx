@@ -27,8 +27,8 @@ function BaseRangeSlider({ value, exportInternalState, step, min, max }: BaseRan
   }
 
   return (
-    <Row noGutters>
-      <Col xl={7}>
+    <Row>
+      <Col sm md lg={4} xl={7}>
         <Range
           values={state}
           step={step}
@@ -52,7 +52,7 @@ function BaseRangeSlider({ value, exportInternalState, step, min, max }: BaseRan
                 ref={props.ref}
                 style={{
                   height: '8px',
-                  width: '95%',
+                  width: '100%',
                   borderRadius: '4px',
                   background: getTrackBackground({
                     values: state,
