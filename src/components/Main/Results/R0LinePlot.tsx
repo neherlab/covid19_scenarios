@@ -13,7 +13,7 @@ export interface R0PlotProps {
   tMax: number
 }
 
-export function R0Plot({ R0Trajectory, width, height, tMin, tMax}: R0PlotProps) {
+export function R0Plot({ R0Trajectory, width, height, tMin, tMax }: R0PlotProps) {
   const plotData = R0Trajectory.mean.map((d, i) => {
     return {
       time: d.t,
