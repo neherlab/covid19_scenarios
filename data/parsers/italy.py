@@ -55,4 +55,22 @@ def parse():
     for date, counts in dates.items():
         regions["Italy"].append([date] + [int(c) for c in counts])
 
+    #https://github.com/neherlab/covid19_scenarios/issues/341
+    regions["ITA-TrentionAltoAdige"] = []
+    for empiricalData in regions['ITA-P.A. Bolzano']:
+        nd = empiricalData.copy()
+        regions["ITA-TrentionAltoAdige"].append(nd)
+    for empiricalData in regions['ITA-P.A. Trento']:
+        time = empiricalData[0]
+        new = True
+        for d in regions["ITA-TrentionAltoAdige"]:
+            # Check if we had data for this date already, if yes add if needed/possible
+            if d[0] == time:
+                new = False
+                for i in range(1,len(d)):
+                    d[i] += empiricalData[i]
+        if new:
+            # we did not have that date in the aggregate yet
+            regions["ITA-TrentionAltoAdige"].append(empiricalData)
+
     store_data(regions, 'italy', cols)
