@@ -326,6 +326,14 @@ def generate(output):
             else:
                 newData[n] = oldData [n]
 
+    # estimate ICU data if only hospital data is available, and pop > 1M
+    for c in newData:
+        if 'populationServed' in newData[c] and newData[c]['populationServed'] and newData[c]['populationServed'] > 1000000 and 'hospitalBeds' in newData[c] and not 'ICUBeds' in newData[c]:
+            # global average of ICU beds vs hospital beds seems to be 3%
+            newData[c]['ICUBeds'] = int(newData[c]['hospitalBeds']*0.03) 
+            newData[c]['srcICUBeds'] = "Estimated based on 3% of hospital beds" 
+
+
     # lets count how many entries are complete
     i = 0
     toDel = []
@@ -336,9 +344,13 @@ def generate(output):
         else:
             # remove non-complete entries for now
             toDel.append(c)
-    #for k in toDel:
-    #    del newData[k]
-    #print(f'{i} entries are complete')
+    for k in toDel:
+        del newData[k]
+    print(f'{i} entries are complete')
+
+    
+
+    
     with open(output, 'w', newline="") as fd:
         wtr = csv.writer(fd, delimiter='\t', lineterminator='\n')
         wtr.writerow(cols)
