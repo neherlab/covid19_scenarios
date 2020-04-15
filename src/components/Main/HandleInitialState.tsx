@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
+import _ from 'lodash'
 
 import { defaultScenarioState, State } from './state/state'
 import { SeverityTableRow } from './Scenario/ScenarioTypes'
@@ -9,6 +10,7 @@ import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
 interface InitialState {
   scenarioState: State
   severityTable: SeverityTableRow[]
+  isDefault: boolean
 }
 
 export interface InitialStateComponentProps {
@@ -33,7 +35,15 @@ function HandleInitialState({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <Component initialState={{ scenarioState, severityTable: severityData }} />
+  return (
+    <Component
+      initialState={{
+        scenarioState,
+        severityTable: severityData,
+        isDefault: _.isEqual(scenarioState, defaultScenarioState),
+      }}
+    />
+  )
 }
 
 export default withRouter(HandleInitialState)

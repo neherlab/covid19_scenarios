@@ -41,10 +41,16 @@ describe('HandleInitialState', () => {
 
   it('passes initial scenario state', () => {
     const { getByText } = render(
-      <ThisTest component={({ initialState }) => <span>{initialState.scenarioState.data.population.country}</span>} />,
+      <ThisTest
+        component={({ initialState }) => (
+          <span>
+            {initialState.scenarioState.data.population.country} {initialState.isDefault ? 'true' : 'false'}
+          </span>
+        )}
+      />,
     )
 
-    expect(getByText(DEFAULT_OVERALL_SCENARIO_NAME)).not.toBeNull()
+    expect(getByText(`${DEFAULT_OVERALL_SCENARIO_NAME} true`)).not.toBeNull()
   })
 
   it('passes initial severity state', () => {
@@ -59,11 +65,15 @@ describe('HandleInitialState', () => {
     const { getByText } = render(
       <ThisTest
         testPushURL="/path?something_to_deserialize"
-        component={({ initialState }) => <span>{initialState.scenarioState.current}</span>}
+        component={({ initialState }) => (
+          <span>
+            {initialState.scenarioState.current} {initialState.isDefault ? 'true' : 'false'}
+          </span>
+        )}
       />,
     )
 
-    expect(getByText('?something_to_deserialize')).not.toBeNull()
+    expect(getByText('?something_to_deserialize false')).not.toBeNull()
   })
 
   it('clears search parameters from the URL', () => {

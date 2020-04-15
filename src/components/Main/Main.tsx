@@ -112,6 +112,13 @@ function Main({ initialState }: InitialStateComponentProps) {
   )
 
   useEffect(() => {
+    // runs only once, when the component is mounted
+    if (!initialState.isDefault) {
+      debouncedRun(allParams, scenarioState, severity)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     if (autorunSimulation) {
       debouncedRun(allParams, scenarioState, severity)
     }
