@@ -35,7 +35,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
 
   return (
     <CardWithoutDropdown
-      className="card--population"
+      className="card--population h-100"
       identifier="populationScenario"
       label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
       help={t('Parameters of the population in the health care system.')}
