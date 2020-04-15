@@ -2,6 +2,7 @@ import csv
 import importlib
 import sys
 sys.path.append('..')
+sys.path.append("/home/valentin/Desktop/richardLab/covid19_scenarios/data")
 import os
 import json
 import argparse
@@ -135,7 +136,7 @@ class Params(Data):
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/3.0, logR0=1.0, infection=1/3.0, hospital=1/4, critical=1/14, imports=.1)
+DefaultRates = Rates(latency=1/4.0, logR0=1.0, infection=1/3.0, hospital=1/4, critical=1/14, imports=.1)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
@@ -266,31 +267,42 @@ def fit_params(key, time_points, data, guess, bounds=None):
 
 # TODO: Better data filtering criteria needed!
 # TODO: Take hospitalization and ICU data?
-def load_data(key):
+def load_data(key, confinement_start):
     if key in POPDATA:
         popsize = POPDATA[key]["size"]
     else:
         popsize = 1e6
 
-    data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
+    data = [[] if (i == Sub.D or i == Sub.T or i == Sub.H or i == Sub.C) else None for i in range(Sub.NUM)]
     days = []
-    case_min, case_max = 20, max(20000, popsize*3e-3)
+    case_min = 20
 
     ts = CASE_DATA[key]
 
-    days = [d['time'].split('T')[0] for d in ts]
+
     for tp in ts:
         data[Sub.T].append(tp['cases'] or np.nan)
         data[Sub.D].append(tp['deaths'] or np.nan)
+        data[Sub.H].append(tp['hospitalized'] or np.nan)
+        data[Sub.C].append(tp['icu'] or np.nan)
 
     data = [ np.array(d) if d is not None else d for d in data]
 
+    days = np.array([datetime.strptime(d['time'].split('T')[0], "%Y-%m-%d").toordinal() for d in ts])
+    day0 = days[case_min <= data[Sub.T]][0]
+
+    fit_stop_day = confinement_start + 1.0/DefaultRates.latency + 1.0/DefaultRates.infection
+
     # Filter points
-    good_idx = np.bitwise_and(case_min <= data[Sub.T], data[Sub.T] < case_max)
+    good_idx = np.bitwise_and(days >= day0, days <= fit_stop_day)
     data[Sub.D] = np.ma.array(np.concatenate([[np.nan], data[Sub.D][good_idx]]))
     data[Sub.T] = np.ma.array(np.concatenate([[np.nan], data[Sub.T][good_idx]]))
+    data[Sub.H] = np.ma.array(np.concatenate([[np.nan], data[Sub.H][good_idx]]))
+    data[Sub.C] = np.ma.array(np.concatenate([[np.nan], data[Sub.C][good_idx]]))
     data[Sub.D].mask = np.isnan(data[Sub.D])
     data[Sub.T].mask = np.isnan(data[Sub.T])
+    data[Sub.H].mask = np.isnan(data[Sub.H])
+    data[Sub.C].mask = np.isnan(data[Sub.C])
 
     if sum(good_idx) == 0:
         return None, None
@@ -298,16 +310,14 @@ def load_data(key):
     # np.where(good_idx)[0][0] is the first day with case_min cases
     # start the model 3 weeks prior.
     idx = np.where(good_idx)[0][0]
-    day0 = datetime.strptime(days[idx], "%Y-%m-%d").toordinal()-21
-
-    times = np.array([day0] + [datetime.strptime(days[i], "%Y-%m-%d").toordinal()
-                      for i in np.where(good_idx)[0]])
+    times = np.concatenate(([day0-21], days[good_idx]))
+    print(times)
 
     return times, data
 
 
-def fit_population(region, guess=None):
-    time_points, data = load_data(region)
+def fit_population(region, confinement_start, guess=None):
+    time_points, data = load_data(region, confinement_start)
     if data is None or len(data[Sub.D]) <= 5:
         return None
 
@@ -339,20 +349,36 @@ if __name__ == "__main__":
     # param = Params(AGES[COUNTRY], POPDATA[make_key(COUNTRY, REGION)], times, rates, fracs)
     # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
-    res = fit_population(args.key)
+    key = "USA-California"
+    confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
 
+    res = fit_population(key, confinement_start)
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
-
     tp = res['params'].time - JAN1_2020
+    confinement_start -= tp[0] + JAN1_2020
+    tp = tp - tp[0]
 
     plt.figure()
-    plt.plot(tp, res['data'][Sub.T], 'o')
-    plt.plot(tp, model[:,Sub.T])
+    plt.title(f"{key}")
+    plt.plot(tp, res['data'][Sub.T], 'o', color='#a9a9a9', label="cases")
+    plt.plot(tp, model[:,Sub.T], color="#a9a9a9", label="predicted cases")
 
-    plt.plot(tp, res['data'][Sub.D], 'o')
-    plt.plot(tp, model[:,Sub.D])
+    plt.plot(tp, res['data'][Sub.D], 'o', color="#cab2d6", label="deaths")
+    plt.plot(tp, model[:,Sub.D], color="#cab2d6", label="predicated deaths")
 
-    plt.plot(tp, model[:,Sub.I])
-    plt.plot(tp, model[:,Sub.R])
+    plt.plot(tp, res['data'][Sub.H], 'o', color="#fb9a98", label="Hospitalized")
+    plt.plot(tp, model[:,Sub.H], color="#fb9a98", label="Predicted hospitalized")
 
+    plt.plot(tp, res['data'][Sub.C], 'o', color="#e31a1c", label="ICU")
+    plt.plot(tp, model[:,Sub.C], color="#e31a1c", label="Predicted ICU")
+
+    plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
+    plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
+
+    plt.plot(confinement_start, 1, 'rx')
+
+    plt.xlabel("Time [days]")
+    plt.ylabel("Number of people")
+    plt.legend(loc="best")
     plt.yscale('log')
+    plt.show()
