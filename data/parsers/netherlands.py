@@ -74,7 +74,7 @@ def parse_icu(regions_date):
         # Data from last 2 days may be incomplete, so we ignore it
         if date < day_before_yesterday:
             date_string = str(row["date"])
-            regions_date["Netherlands"][date_string]['icu'] = row["intakeCount"]
+            regions_date["Netherlands"][date_string]['icu'] = row["value"]
 
 
 # ------------------------------------------------------------------------
