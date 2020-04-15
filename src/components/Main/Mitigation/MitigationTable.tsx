@@ -5,7 +5,7 @@ import _ from 'lodash'
 import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Button, FormGroup } from 'reactstrap'
+import { Col, Row, Button, FormGroup } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
@@ -131,27 +131,31 @@ function MitigationIntervalComponent({
         }`}
       >
         <div className="inputs">
-          <FastField
-            className={`name form-control ${nameError ? 'border-danger' : ''}`}
-            id={`containment.mitigationIntervals[${index}].name`}
-            name={`containment.mitigationIntervals[${index}].name`}
-            type="text"
-          />
-          <div className="item-date-range-value-group">
-            <MitigationDatePicker
-              identifier={`containment.mitigationIntervals[${index}].timeRange`}
-              value={interval.timeRange}
-              allowPast
-            />
-          </div>
-          <div style={{ width: '400px' }}>
-            <RangeSlider
-              identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
-              step={0.1}
-              min={0}
-              max={100}
-            />
-          </div>
+          <Row noGutters>
+            <Col>
+              <FastField
+                className={`name form-control ${nameError ? 'border-danger' : ''}`}
+                id={`containment.mitigationIntervals[${index}].name`}
+                name={`containment.mitigationIntervals[${index}].name`}
+                type="text"
+              />
+            </Col>
+            <Col xl="auto">
+              <MitigationDatePicker
+                identifier={`containment.mitigationIntervals[${index}].timeRange`}
+                value={interval.timeRange}
+                allowPast
+              />
+            </Col>
+            <Col>
+              <RangeSlider
+                identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
+                step={0.1}
+                min={0}
+                max={100}
+              />
+            </Col>
+          </Row>
         </div>
         <div className="item-controls">
           <Button type="button" onClick={() => arrayHelpers.remove(index)}>
