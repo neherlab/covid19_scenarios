@@ -1,7 +1,5 @@
 import React from 'react'
 
-import _ from 'lodash'
-
 import { CartesianGrid, XAxis, YAxis, Line, Area, ComposedChart } from 'recharts'
 import { TimeSeriesWithRange } from '../../../algorithms/types/Result.types'
 
