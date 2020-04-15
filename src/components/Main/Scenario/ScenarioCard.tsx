@@ -23,7 +23,7 @@ import { ColCustom } from '../../Layout/ColCustom'
 
 export function getColumnSizes(areResultsMaximized: boolean) {
   if (areResultsMaximized) {
-    return { colPopulation: { lg: 12 }, colEpidemiological: { lg: 12 } }
+    return { colPopulation: { xxl: 6 }, colEpidemiological: { xxl: 6 } }
   }
 
   return { colPopulation: { xl: 6 }, colEpidemiological: { xl: 6 } }
@@ -70,11 +70,11 @@ function ScenarioCard({
     >
       <>
         <Row>
-          <ColCustom {...colPopulation} xxl={6} className="my-2">
+          <ColCustom {...colPopulation} className="my-2">
             <ScenarioCardPopulation errors={errors} touched={touched} />
           </ColCustom>
 
-          <ColCustom {...colEpidemiological} xxl={6} className="my-2">
+          <ColCustom {...colEpidemiological} className="my-2">
             <ScenarioCardEpidemiological errors={errors} touched={touched} />
           </ColCustom>
         </Row>
