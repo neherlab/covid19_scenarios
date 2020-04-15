@@ -98,6 +98,59 @@ function BaseRangeSlider({ value, exportInternalState, step, min, max }: BaseRan
     />
   )
 }
+
+interface LabeledRangeSliderProps {
+  identifier: string
+  label?: string
+  help?: string | React.ReactNode
+  value: [number, number]
+  exportInternalState: (value: number[]) => void
+  step: number
+  min: number
+  max: number
+}
+
+function LabeledRangeSlider({
+  identifier,
+  label,
+  help,
+  value,
+  exportInternalState,
+  step,
+  min,
+  max,
+}: LabeledRangeSliderProps) {
+  if (label !== undefined) {
+    return (
+      <>
+        <Col xl={7}>
+          <FormLabel identifier={identifier} label={label} help={help} />
+        </Col>
+        <Col xl={5}>
+          <BaseRangeSlider
+            value={[value[0], value[1]]}
+            exportInternalState={exportInternalState}
+            step={step}
+            min={min}
+            max={max}
+          />
+        </Col>
+      </>
+    )
+  }
+  return (
+    <Col>
+      <BaseRangeSlider
+        value={[value[0], value[1]]}
+        exportInternalState={exportInternalState}
+        step={step}
+        min={min}
+        max={max}
+      />
+    </Col>
+  )
+}
+
 export interface RangeSliderProps<T> {
   identifier: string
   label?: string
@@ -143,31 +196,13 @@ export function RangeSlider<T>({ identifier, label, help, step, min, max, errors
         const exportInternalState = (value: number[]) => {
           setFieldValue(identifier, value)
         }
-
-        if (label) {
-          return (
-            <FormGroup className="my-0">
-              <Row noGutters>
-                <Col xl={7}>
-                  <FormLabel identifier={identifier} label={label} help={help} />
-                </Col>
-                <Col xl={5}>
-                  <BaseRangeSlider
-                    value={[value[0], value[1]]}
-                    exportInternalState={exportInternalState}
-                    step={step}
-                    min={min}
-                    max={max}
-                  />
-                </Col>
-              </Row>
-            </FormGroup>
-          )
-        }
         return (
           <FormGroup className="my-0">
             <Row noGutters>
-              <BaseRangeSlider
+              <LabeledRangeSlider
+                identifier={identifier}
+                label={label}
+                help={help}
                 value={[value[0], value[1]]}
                 exportInternalState={exportInternalState}
                 step={step}
