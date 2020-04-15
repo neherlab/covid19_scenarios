@@ -248,7 +248,12 @@ def fit_params(key, time_points, data, guess, bounds=None):
         return Rates(**vals), Fracs(x[params_to_fit['reported']]) if 'reported' in params_to_fit else Fracs()
 
     def fit(x):
-        param = Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points, *unpack(x))
+        # TODO(nnoll): Need a better default here!
+        if POPDATA[key]["ageDistribution"] in AGES:
+            ages = AGES[POPDATA[key]["ageDistribution"]]
+        else:
+            ages = AGES["Switzerland"]
+        param = Params(ages, POPDATA[key]["size"], time_points, *unpack(x))
         return assess_model(param, data, np.exp(x[params_to_fit['logInitial']]))
 
     if bounds is None:
@@ -258,7 +263,12 @@ def fit_params(key, time_points, data, guess, bounds=None):
 
     err = (fit_param.success, fit_param.message)
     print(key, fit_param.x)
-    return (Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points,
+
+    if POPDATA[key]["ageDistribution"] in AGES:
+        ages = AGES[POPDATA[key]["ageDistribution"]]
+    else:
+        ages = AGES["Switzerland"]
+    return (Params(ages, POPDATA[key]["size"], time_points,
            *unpack(fit_param.x)), np.exp(fit_param.x[params_to_fit['logInitial']]), err)
 
 # ------------------------------------------
@@ -278,8 +288,8 @@ def fit_logistic(data):
     def fit(x):
         return L/(1 + np.exp(-k*(x-x0))) + np.exp(logp)
 
-    case_min = fit(x0-10/k)
-    case_max = fit(x0+1/k)
+    case_min = max(fit(x0-12/k), 20)
+    case_max = fit(x0-.5/k)
 
     return case_min, case_max
 
