@@ -1,4 +1,5 @@
-import 'regenerator-runtime'
+/* TODO: fix this: Eslint must be disabled for this file because of an issue between worker-plugin and eslint-plugin. The issue causes the linter to be run twice, which breaks the build. At this point the fix is elusive... */
+/* eslint-disable */
 
 import { run } from '../algorithms/run'
 
