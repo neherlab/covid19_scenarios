@@ -15,6 +15,6 @@ validate(data, schema, format_checker=FormatChecker())
 data = sorted(data, key=lambda x: x['country'])
 
 with open(PATH_UN_AGES, 'w') as f:
-    json.dump(data, f)
+    json.dump(data, f, indent=0)
 
 print(f'Validated age distribution data with len {len(data)}')
