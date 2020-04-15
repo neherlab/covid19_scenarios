@@ -86,11 +86,14 @@ export interface UserResult {
   percentile: Record<number, ExportedTimePoint[]>
 }
 
+export interface TimeSeriesWithRange {
+  mean: TimeSeries
+  lower: TimeSeries
+  upper: TimeSeries
+}
+
 export interface AlgorithmResult {
   trajectory: UserResult
-  mitigation: {
-    mean: TimeSeries
-    lower: TimeSeries
-    upper: TimeSeries
-  }
+  mitigation: TimeSeriesWithRange
+  R0: TimeSeriesWithRange
 }

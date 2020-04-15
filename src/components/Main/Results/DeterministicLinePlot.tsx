@@ -26,6 +26,7 @@ import { calculatePosition, scrollToRef } from './chartHelper'
 import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
 import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
+import { R0Plot } from './R0LinePlot'
 
 import './DeterministicLinePlot.scss'
 
@@ -293,6 +294,13 @@ export function DeterministicLinePlot({
           return (
             <>
               <div ref={chartRef} />
+              <R0Plot
+                R0Trajectory={data.R0}
+                width={forcedWidth || width}
+                height={(forcedHeight || height) / 4}
+                tMin={tMin}
+                tMax={tMax}
+              />
               <MitigationPlot
                 mitigation={mitigationIntervals}
                 width={forcedWidth || width}
