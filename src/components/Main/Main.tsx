@@ -32,9 +32,9 @@ import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
 import PrintPage from './PrintPage/PrintPage'
 
-const algorithmWorker = new Worker('../../workers/algorithm.js', { type: 'module' });
-
 import './Main.scss'
+
+const algorithmWorker = new Worker('../../workers/algorithm.js', { type: 'module' })
 
 interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
@@ -70,15 +70,15 @@ async function runSimulation(
 
   intervalsToTimeSeries(params.containment.mitigationIntervals)
 
-  algorithmWorker.onmessage = event => {
+  algorithmWorker.onmessage = (event) => {
     setResult(event.data)
     caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
     setEmpiricalCases(caseCounts)
     setIsRunning(false)
-  };
+  }
 
   const { ageDistribution } = scenarioState
-  algorithmWorker.postMessage({paramsFlat, severity, ageDistribution, containment})
+  algorithmWorker.postMessage({ paramsFlat, severity, ageDistribution, containment })
 }
 
 const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
