@@ -68,7 +68,7 @@ def update_cia_facts(hospData, popData):
             if country in ciaMap:
                 country2 = ciaMap[country]
             else:
-                print(f'no match found for {country}')
+                #print(f'no match found for {country}')
                 continue
         elif len(matches) == 1:
             country2 = matches[0]
@@ -336,9 +336,9 @@ def generate(output):
         else:
             # remove non-complete entries for now
             toDel.append(c)
-    for k in toDel:
-        del newData[k]
-    print(f'{i} entries are complete')
+    #for k in toDel:
+    #    del newData[k]
+    #print(f'{i} entries are complete')
     with open(output, 'w', newline="") as fd:
         wtr = csv.writer(fd, delimiter='\t', lineterminator='\n')
         wtr.writerow(cols)
