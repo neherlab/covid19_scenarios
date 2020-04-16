@@ -1,29 +1,17 @@
 import type { Context } from './types'
 import State from './state'
 
-function serialize(arr: number[]) {
-  const bytesPer = Float64Array.BYTES_PER_ELEMENT
-  const buffer = Buffer.alloc(arr.length * bytesPer)
-  for (const [i, element] of arr.entries()) {
-    buffer.writeDoubleLE(element, i * bytesPer)
-  }
-  return buffer.toString('base64')
+function serialize(arr: number[]): string {
+  return JSON.stringify(arr)
 }
 
 /* This function will throw an exception if param is not defined. */
-function deserialize(str: string) {
-  const bytesPer = Float64Array.BYTES_PER_ELEMENT
-  const buffer = Buffer.from(str, 'base64')
-  const result = []
-  for (let i = 0; i < buffer.length; i += bytesPer) {
-    result.push(buffer.readDoubleLE(i))
-  }
-
-  return result
+function deserialize(str: string): number[] {
+  return JSON.parse(str)
 }
 
 /* Catch failed deserialization and return an empty array to force a new snapshot */
-function tryDeserialize(str: string) {
+function tryDeserialize(str: string): number[] {
   try {
     return deserialize(str)
   } catch {
