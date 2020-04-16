@@ -21,6 +21,8 @@ import PrintIntroduction from './PrintIntroduction.mdx'
 import PrintDisclaimer from './PrintDisclaimer.mdx'
 
 import logoNeherlab from '../../../assets/img/HIVEVO_logo.png'
+import logoBiozentrum from '../../../assets/img/biozentrum.svg'
+import logoUnibas from '../../../assets/img/unibas.svg'
 
 import './PrintPage.scss'
 
@@ -119,6 +121,52 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
               </Col>
             </Row>
           </Col>
+
+          <Table className="w-75 center mx-auto table-layout-fixed">
+            <tbody>
+              <tr>
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
+                    <img className="mx-auto" height={'50px'} alt="NeherLab logo" src={logoNeherlab} />
+                  </LinkExternal>
+                </td>
+
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
+                    <img className="mx-auto" height={'50px'} alt="Logo of Biozentrum" src={logoBiozentrum} />
+                  </LinkExternal>
+                </td>
+
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of University of Basel">
+                    <img className="mx-auto" height={'50px'} alt="Logo of University of Basel" src={logoUnibas} />
+                  </LinkExternal>
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody>
+              <tr>
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
+                    {`neherlab.org`}
+                  </LinkExternal>
+                </td>
+
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
+                    {`biozentrum.unibas.ch`}
+                  </LinkExternal>
+                </td>
+
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of Biozentrum Basel">
+                    {`unibas.ch`}
+                  </LinkExternal>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
         </Row>
 
         <Row className="page" style={{ breakBefore: 'always', pageBreakBefore: 'always' }}>
