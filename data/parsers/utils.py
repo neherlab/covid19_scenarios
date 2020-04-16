@@ -96,7 +96,7 @@ def compare_day(day1, day2):
 def add_cases(cases, toAdd, target, cols=default_cols):
     """ Add daily counts of toAdd countries together, and aggregate in target country
     Keyword arguments:
-    cases -- a dict of lists of lists {'USA': [['2020-03-20', 0, ...], ...]}. 
+    cases -- a dict of lists of lists {'USA': [['2020-03-20', 0, ...], ...]}.
     toAdd -- a list of country strings of countries that should be added together
     target-- a string denoting the target country for the added data
     cols  -- list of column headers
@@ -106,7 +106,7 @@ def add_cases(cases, toAdd, target, cols=default_cols):
     if target in cases:
         print(f'Warning: add_cases called to overwrite values in {target}', sys.stderr)
     cases[target] = []
-    for s in toAdd:        
+    for s in toAdd:
         for e in cases[s]:
             time = e[cols.index('time')]
             new = True
@@ -121,7 +121,7 @@ def add_cases(cases, toAdd, target, cols=default_cols):
                 cases[target].append(e.copy())
     cases[target] = sorted_date(cases[target], cols)
     return cases
-    
+
 def merge_cases(oldcases, newcases):
     # We expect dicts of lists
     # {"Thailand": [{"time": "2020-1-22", "cases": "2", "deaths": "0", "recovered": "0"}, {"time": "2020-1-23", "cases": "3", "deaths": "0", "recovered": "0"}]}
@@ -230,12 +230,14 @@ def store_json(case_counts, json_file):
     for k in case_counts:
         newdata.append({'country': k, 'empiricalData': case_counts[k]})
 
+    newdata.sort(key=lambda x:x['country'])
+
     with open(os.path.join(BASE_PATH, SCHEMA_CASECOUNTS), "r") as f:
         schema = yaml.load(f, Loader=yaml.FullLoader)
         validate(newdata, schema, format_checker=FormatChecker())
 
     with open(json_file, 'w') as fh:
-        json.dump(newdata, fh)
+        json.dump(newdata, fh, indent=0)
 
 def sanitize(fname):
     # we sanitize to ASCII alphabetic here
