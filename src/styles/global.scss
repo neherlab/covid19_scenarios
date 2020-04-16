@@ -127,3 +127,11 @@ input[type='number']::-webkit-outer-spin-button {
     display: none;
   }
 }
+
+.body-color {
+  color: $body-color;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}

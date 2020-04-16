@@ -1,58 +1,68 @@
 import React from 'react'
 
-import moment from 'moment'
-import chroma from 'chroma-js'
+import { Table } from 'reactstrap'
 
 import { AlgorithmResult, ExportedTimePoint } from '../../../algorithms/types/Result.types'
-import { colors } from '../Results/ChartCommon'
 
-interface PropsType {
-  result: AlgorithmResult
-}
+import { dateFormat } from './dateFormat'
 
 const STEP = 7
 
-const dateFormat = (time: number) => moment(time).format('MMM DD YYYY')
+export interface TableResultProps {
+  result: AlgorithmResult
+}
 
-export default function TableResult({ result }: PropsType) {
-  const downSampled = result.deterministic.trajectory.reduce<ExportedTimePoint[]>((acc, curr, i) => {
-    if (i % STEP === 0) {
-      return [...acc, curr]
-    }
-    return acc
-  }, [])
+export default function TableResult({ result }: TableResultProps) {
+  const { trajectory } = result.deterministic
+
+  const entries = trajectory
+    .reduce((acc, curr, i, _0) => {
+      if (i % STEP === 0) {
+        return [...acc, curr]
+      }
+      return acc
+    }, new Array<ExportedTimePoint>())
+
+    .map((line) => {
+      return {
+        time: dateFormat(new Date(line.time)),
+        severe: Math.round(line.current.severe.total),
+        critical: Math.round(line.current.critical.total),
+        recovered: Math.round(line.cumulative.recovered.total),
+        fatality: Math.round(line.cumulative.fatality.total),
+      }
+    })
+
   return (
-    <div className="tableResult">
-      <table>
-        <thead>
-          <tr>
-            <td>date</td>
-            <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex() }}>hospitalized</td>
-            <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex() }}>ICU</td>
-            <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex() }}>recovered</td>
-            <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex() }}>deaths</td>
+    <Table className="table-result">
+      <thead>
+        <tr>
+          <th>{`Date`}</th>
+          <th>{`Hospitalized`}</th>
+          <th>{`In ICU`}</th>
+          <th>
+            {`Deaths`}
+            <br />
+            {`(cumulative)`}
+          </th>
+          <th>
+            {`Recovered`}
+            <br />
+            {`(cumulative)`}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries.map(({ time, severe, critical, recovered, fatality }) => (
+          <tr key={time}>
+            <td>{time}</td>
+            <td>{severe}</td>
+            <td>{critical}</td>
+            <td>{fatality}</td>
+            <td>{recovered}</td>
           </tr>
-        </thead>
-        <tbody>
-          {downSampled.map((line) => (
-            <tr key={line.time}>
-              <td>{dateFormat(line.time)}</td>
-              <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex() }}>
-                {Math.round(line.current.severe.total)}
-              </td>
-              <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex() }}>
-                {Math.round(line.current.critical.total)}
-              </td>
-              <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex() }}>
-                {Math.round(line.cumulative.recovered.total)}
-              </td>
-              <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex() }}>
-                {Math.round(line.cumulative.fatality.total)}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </Table>
   )
 }
