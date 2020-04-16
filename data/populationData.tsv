@@ -2,7 +2,7 @@ name	populationServed	ageDistribution	hospitalBeds	ICUBeds	hemisphere	srcPopulat
 Afghanistan	37172386	Afghanistan	17470	524		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191122111714/https://www.cia.gov/library/publications/the-world-factbook/geos/af.html	Estimated based on 3% of hospital beds
 Albania	2866376	Albania	7621	228		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	Estimated based on 3% of hospital beds
 Algeria	42228429	Algeria	79149	2374		ECDC	Computed from 2015 data in CIA fact book https://web.archive.org/web/20190912123823/https://www.cia.gov/library/publications/the-world-factbook/geos/ag.html	Estimated based on 3% of hospital beds
-Andorra	77006	Spain	160	6		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	http://dx.doi.org/10.1007/s00134-012-2627-8
+Andorra	77006	Andorra	160	6		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	http://dx.doi.org/10.1007/s00134-012-2627-8
 Antigua and Barbuda	96286	Antigua and Barbuda	364	10		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191025182046/https://www.cia.gov/library/publications/the-world-factbook/geos/ac.html	Estimated based on 3% of hospital beds
 Argentina	44494502	Argentina	223470	6704		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191025124036/https://www.cia.gov/library/publications/the-world-factbook/geos/ar.html	Estimated based on 3% of hospital beds
 Armenia	2951776	Armenia	10253	307		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	Estimated based on 3% of hospital beds
@@ -211,6 +211,8 @@ ITA-Liguria	1550640	Italy	5085	75	Northern	None	None	None
 ITA-Lombardia	10060574	Italy	34473	1067	Northern	None	None	None
 ITA-Marche	1525271	Italy	4698	400	Northern	None	None	None
 ITA-Molise	305617	Italy	1029	30	Northern	None	None	None
+ITA-P.A. Bolzano	531178	Italy	1895	64	Northern	Wikipedia	http://www.europaregion.info/de/zahlen-europaregion.asp	https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Italien
+ITA-P.A. Trento	541098	Italy	2132	69	Northern	Wikipedia	http://www.europaregion.info/de/zahlen-europaregion.asp	https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Italien
 ITA-Piemonte	4356406	Italy	14826	320	Northern	None	None	None
 ITA-Puglia	4029053	Italy	11306	300	Northern	None	None	None
 ITA-Sardegna	1639591	Italy	4960	244	Northern	None	None	None
@@ -220,8 +222,6 @@ ITA-TrentinoAltoAdige	1072276	Italy	3763	75	Northern	None	None	None
 ITA-Umbria	882015	Italy	2652	69	Northern	None	None	None
 ITA-Valle d'Aosta	125666	Italy	449	0	Northern	None	None	None
 ITA-Veneto	4905854	Italy	15857	825	Northern	None	None	None
-ITA-P.A. Bolzano	531178	Italy	1895	64	Northern	Wikipedia	http://www.europaregion.info/de/zahlen-europaregion.asp	https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Italien
-ITA-P.A. Trento	541098	Italy	2132	69	Northern	Wikipedia	http://www.europaregion.info/de/zahlen-europaregion.asp	https://de.wikipedia.org/wiki/COVID-19-Pandemie_in_Italien
 Iceland	353574	Iceland	862	29	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 India	1352617328	India	810730	29997	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Indonesia	267663435	Indonesia	308435	7094	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
@@ -247,7 +247,7 @@ Latvia	1926542	Latvia	6407	217	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/t
 Lebanon	6848925	Lebanon	17690	530		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191121164145/https://www.cia.gov/library/publications/the-world-factbook/geos/le.html	Estimated based on 3% of hospital beds
 Liberia	4818977	Liberia	3847	115		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20190912232332/https://www.cia.gov/library/publications/the-world-factbook/geos/li.html	Estimated based on 3% of hospital beds
 Libya	6678567	Libya	24991	749		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191112114737/https://www.cia.gov/library/publications/the-world-factbook/geos/ly.html	Estimated based on 3% of hospital beds
-Liechtenstein	37910	Switzerland	91	2		ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	Estimated based on 3% of hospital beds
+Liechtenstein	37910	Liechtenstein	91	2		ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	Estimated based on 3% of hospital beds
 Lithuania	2789533	Lithuania	15477	502	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Luxembourg	607728	Luxembourg	2251	127	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Madagascar	26262368	Madagascar	5136	154		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20190912232351/https://www.cia.gov/library/publications/the-world-factbook/geos/ma.html	Estimated based on 3% of hospital beds
