@@ -243,8 +243,6 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
                   logScale
                   showHumanized
                   caseCounts={caseCounts}
-                  forcedWidth={700}
-                  forcedHeight={500}
                 />
               </Col>
             </Row>
@@ -266,8 +264,6 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
                   showHumanized
                   data={result}
                   rates={severity}
-                  // forcedWidth={700}
-                  // forcedHeight={350}
                   // printLabel
                 />
               </Col>
