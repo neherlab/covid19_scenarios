@@ -20,7 +20,7 @@ import LinkExternal from '../../Router/LinkExternal'
 import PrintIntroduction from './PrintIntroduction.mdx'
 import PrintDisclaimer from './PrintDisclaimer.mdx'
 
-import logoNeherlab from '../../../assets/img/HIVEVO_logo.png'
+import logoNeherlab from '../../../assets/img/neherlab.svg'
 import logoBiozentrum from '../../../assets/img/biozentrum.svg'
 import logoUnibas from '../../../assets/img/unibas.svg'
 
