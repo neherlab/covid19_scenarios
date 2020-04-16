@@ -28,6 +28,7 @@ export default function TableResult({ result }: TableResultProps) {
         time: dateFormat(new Date(line.time)),
         severe: Math.round(line.current.severe.total),
         critical: Math.round(line.current.critical.total),
+        overflow: Math.round(line.current.overflow.total),
         recovered: Math.round(line.cumulative.recovered.total),
         fatality: Math.round(line.cumulative.fatality.total),
       }
@@ -40,6 +41,7 @@ export default function TableResult({ result }: TableResultProps) {
           <th>{`Date`}</th>
           <th>{`Hospitalized`}</th>
           <th>{`In ICU`}</th>
+          <th>{`ICU overflow`}</th>
           <th>
             {`Deaths`}
             <br />
@@ -53,11 +55,12 @@ export default function TableResult({ result }: TableResultProps) {
         </tr>
       </thead>
       <tbody>
-        {entries.map(({ time, severe, critical, recovered, fatality }) => (
+        {entries.map(({ time, severe, critical, overflow, recovered, fatality }) => (
           <tr key={time}>
             <td>{time}</td>
             <td>{severe}</td>
             <td>{critical}</td>
+            <td>{overflow}</td>
             <td>{fatality}</td>
             <td>{recovered}</td>
           </tr>
