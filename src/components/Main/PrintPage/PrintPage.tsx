@@ -55,9 +55,6 @@ const parameterExplanations = {
   peakMonth: 'Seasonal peak in transmissibility',
 }
 
-const URL = `https://covid19-scenarios.org`
-const URL_FRIENDLY = `covid19-scenarios.org`
-
 export default function PrintPage({ params, scenarioUsed, severity, result, caseCounts, onClose }: PropsType) {
   const { t } = useTranslation()
   if (result && caseCounts) {
@@ -76,25 +73,6 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
 
         <Row className="page">
           <Col>
-            <Row>
-              <nav className="navbar navbar-expand" role="navigation" data-testid="NavigationBar">
-                <LinkExternal className="navbar-brand" href={URL}>
-                  <img height={'80px'} alt="logo" src={logoNeherlab} />
-                </LinkExternal>
-
-                <ul className="navbar-nav">
-                  <li>
-                    <LinkExternal href={URL}>
-                      <div className="my-0">
-                        <h3 className="my-0 body-color text-decoration-none">{`COVID-19 Scenarios`}</h3>
-                      </div>
-                      <div className="my-0">{URL_FRIENDLY}</div>
-                    </LinkExternal>
-                  </li>
-                </ul>
-              </nav>
-            </Row>
-
             <Row>
               <Col>
                 <h1 className="heading-main text-center text-bold">{`COVID-19 Scenarios`}</h1>
