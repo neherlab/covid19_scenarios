@@ -373,9 +373,8 @@ def generate(output):
                 if c == 'ageDistribution' and not 'ageDistribution' in newData[d] :
                     if check_if_age(d):
                         nrow.append(d)
-                    else:
-                        # this currently only happens for Andorra, lets use Spain as neighboring country
-                        nrow.append('Spain')
+                    else:                        
+                        nrow.append('Switzerland')
                 elif c in newData[d]:
                     nrow.append(newData[d][c])
                 else:
