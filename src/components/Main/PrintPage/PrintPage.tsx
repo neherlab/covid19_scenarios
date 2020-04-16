@@ -260,12 +260,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
           <Col>
             <Row>
               <Col>
-                <AgeBarChart
-                  showHumanized
-                  data={result}
-                  rates={severity}
-                  // printLabel
-                />
+                <AgeBarChart showHumanized data={result} rates={severity} printLabel />
               </Col>
             </Row>
 
