@@ -3,6 +3,7 @@
 
 import xlrd
 import csv
+import json
 
 from urllib.request import urlretrieve
 from collections import defaultdict
@@ -21,6 +22,15 @@ URL_ICU = "http://dx.doi.org/10.1007/s00134-012-2627-8" # the paper where the nu
 URL_ICU_ASIA = "https://doi.org/10.1097/CCM.0000000000004222" # the paper where the numbers came from
 
 cols = ['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds', 'hemisphere', 'srcPopulation', 'srcHospitalBeds','srcICUBeds']
+
+def check_if_age(country):
+    PATH_UN_AGES   = "../src/assets/data/country_age_distribution.json"
+
+    with open(PATH_UN_AGES, 'r') as f:
+        ages = json.load(f)
+
+    return country in [x['country'] for x in ages]
+    
 
 def update_hosp_data(hospData, popData):
     countries = parse_countries(2)
@@ -260,9 +270,12 @@ def generate(output):
             for c in cols:
                 if c == 'name':
                     continue
-                # TODO check if we actually have the age distribution?
                 if c == 'ageDistribution' and not 'ageDistribution' in newData[d] :
-                    nrow.append(d)
+                    if check_if_age(d):
+                        nrow.append(d)
+                    else:
+                        # this currently only happens for Andorra, lets use Spain as neighboring country
+                        nrow.append('Spain')
                 elif c in newData[d]:
                     nrow.append(newData[d][c])
                 else:

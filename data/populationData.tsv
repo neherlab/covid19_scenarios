@@ -1,5 +1,5 @@
 name	populationServed	ageDistribution	hospitalBeds	ICUBeds	hemisphere	srcPopulation	srcHospitalBeds	srcICUBeds
-Andorra	77006	Andorra	160	6		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	http://dx.doi.org/10.1007/s00134-012-2627-8
+Andorra	77006	Spain	160	6		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	http://dx.doi.org/10.1007/s00134-012-2627-8
 Australia	24992369	Australia	95970	2378	Southern	ECDC	Computed from total bed OECD numbers and population size	https://www.mja.com.au/journal/2020/surge-capacity-australian-intensive-care-units-associated-covid-19-admissions
 Austria	8847037	Austria	47920	1833	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Bangladesh	161356039	Bangladesh	32611	1174		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
