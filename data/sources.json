@@ -69,4 +69,9 @@
     "dataProvenance": "https://github.com/amodm/api-covid19-in",
     "license": "Scraped from Ministry of Health and Family Welfare plus other sources, no clear license"
   }
+  "mitigations": {
+    "primarySource": "https://iddynamics.jhsph.edu/apps/connect/connect/#/apps/25/access",
+    "dataProvenance": "https://iddynamics.jhsph.edu/apps/connect/connect/#/apps/25/access",
+    "license": "none specified"
+  }
 }
