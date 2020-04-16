@@ -32,7 +32,7 @@ function compare(
   const diffs = received.map((_, idx) => {
     const want = expected[idx]
     const got = received[idx]
-    let diff = absUlpDiff(want, got)
+    const diff = absUlpDiff(want, got)
     return { want, got, diff }
   })
 
