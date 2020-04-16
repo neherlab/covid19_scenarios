@@ -234,8 +234,8 @@ def assess_model(params, data, cases):
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, bounds=None):
-    # if key not in POPDATA:
-    #     return Params(None, None, None, DefaultRates, Fracs()), 10, (False, "Not within population database")
+    if key not in POPDATA:
+        return Params(None, None, None, DefaultRates, Fracs()), 10, (False, "Not within population database")
 
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
@@ -279,7 +279,7 @@ def load_data(key):
 
     ts = CASE_DATA[key]
 
-    for tp in ts:
+    for tp in ts: #replace all zeros by np.nan
         data[Sub.T].append(tp['cases'] or np.nan)
         data[Sub.D].append(tp['deaths'] or np.nan)
         data[Sub.H].append(tp['hospitalized'] or np.nan)
@@ -291,12 +291,12 @@ def load_data(key):
     return days, data
 
 
-def get_pre_confinement(days, data_original, confinement_start=None):
+def get_fit_data(days, data_original, confinement_start=None):
     data = copy.deepcopy(data_original)
     case_min = 20
 
     if confinement_start is None:
-        fit_stop_day = times[-1]
+        fit_stop_day = days[-1]
     else:
         fit_stop_day = confinement_start + 1.0/DefaultRates.latency + 1.0/DefaultRates.infection
     day0 = days[case_min <= data[Sub.T]][0]
@@ -328,7 +328,7 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
                   "logInitial" : 1
                 }
 
-    time_point_fit, data_fit = get_pre_confinement(time_points, data, confinement_start)
+    time_point_fit, data_fit = get_fit_data(time_points, data, confinement_start)
 
     param, init_cases, err = fit_params(key, time_point_fit, data_fit, guess)
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
@@ -352,21 +352,23 @@ if __name__ == "__main__":
     # param = Params(AGES[COUNTRY], POPDATA[make_key(COUNTRY, REGION)], times, rates, fracs)
     # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
-    key = "USA-California"
-    confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
+    # key = "USA-California"
+    # key = "CHE-Basel-Stadt"
+    key = "DEU-Berlin"
+    # confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
+    confinement_start = None
+    # confinement_start = datetime.strptime("2020-03-13", "%Y-%m-%d").toordinal()
+    # confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
 
     # Raw data and time points
     time, data = load_data(key)
 
     # Fitting over the pre-confinement days
     res = fit_population(key, time, data, confinement_start)
-    res['params'].time = np.concatenate(([time[0]-21], time)) # to project model past fitting window
+    res['params'].time = np.concatenate((res['params'].time, time[time>res['params'].time[-1]])) # to project model past fitting window
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
-    tp = res['params'].time - JAN1_2020
-    confinement_start -= tp[0] + JAN1_2020
-    tp = tp - tp[0]
-    time = time - time[0] + 21
-
+    time = time - res['params'].time[0]
+    tp = res['params'].time - res['params'].time[0]
 
     plt.figure()
     plt.title(f"{key}")
@@ -385,7 +387,7 @@ if __name__ == "__main__":
     plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
     plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
 
-    plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
+    # plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
 
     plt.xlabel("Time [days]")
     plt.ylabel("Number of people")
