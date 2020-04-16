@@ -7,6 +7,8 @@ import { render } from 'react-dom'
 
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
+import { MDXProvider } from '@mdx-js/react'
+import LinkExternal from './components/Router/LinkExternal'
 
 import './i18n'
 
@@ -18,7 +20,9 @@ const { store, history } = configureStore()
 const Root = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <MDXProvider components={{ a: LinkExternal }}>
+        <App />
+      </MDXProvider>
     </ConnectedRouter>
   </Provider>
 )
