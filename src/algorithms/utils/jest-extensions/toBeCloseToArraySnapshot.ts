@@ -1,5 +1,6 @@
 import type { Context } from './types'
 import State from './state'
+import { absUlpDiff } from './comparators'
 
 function serialize(arr: number[]): string {
   return JSON.stringify(arr)
@@ -19,13 +20,6 @@ function tryDeserialize(str: string): number[] {
   }
 }
 
-function bigIntRep(num: number): bigint {
-  const buffer = new ArrayBuffer(Float64Array.BYTES_PER_ELEMENT)
-  const view = new DataView(buffer)
-  view.setFloat64(0, num, true)
-  return view.getBigInt64(0, true)
-}
-
 function compare(
   expected: number[],
   received: number[],
@@ -38,10 +32,7 @@ function compare(
   const diffs = received.map((_, idx) => {
     const want = expected[idx]
     const got = received[idx]
-    let diff = bigIntRep(want) - bigIntRep(got)
-    if (diff < 0n) {
-      diff *= -1n
-    }
+    let diff = absUlpDiff(want, got)
     return { want, got, diff }
   })
 
