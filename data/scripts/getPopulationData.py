@@ -107,6 +107,14 @@ def update_cia_facts(hospData, popData):
             else:
                 popData[country2]['srcPopulation'] = f"Data in CIA fact book {source}"
     return hospData, popData
+
+def check_if_age(country):
+    PATH_UN_AGES   = "../src/assets/data/country_age_distribution.json"
+
+    with open(PATH_UN_AGES, 'r') as f:
+        ages = json.load(f)
+
+    return country in [x['country'] for x in ages]
     
 
 def update_hosp_data(hospData, popData):
@@ -362,9 +370,11 @@ def generate(output):
             for c in cols:
                 if c == 'name':
                     continue
-                # TODO check if we actually have the age distribution?
                 if c == 'ageDistribution' and not 'ageDistribution' in newData[d] :
-                    nrow.append(d)
+                    if check_if_age(d):
+                        nrow.append(d)
+                    else:                        
+                        nrow.append('Switzerland')
                 elif c in newData[d]:
                     nrow.append(newData[d][c])
                 else:
