@@ -100,6 +100,7 @@
     "react-icons": "3.9.0",
     "react-if": "3.4.3",
     "react-media": "1.10.0",
+    "react-range": "1.5.3",
     "react-redux": "7.2.0",
     "react-resize-detector": "4.2.1",
     "react-router": "5.1.2",

@@ -1,3 +1,6 @@
+import { AgeDistribution } from '../../.generated/types'
+import { TimeSeries } from './TimeSeries.types'
+
 export interface InternalCurrentData {
   susceptible: number[]
   exposed: number[][]
@@ -53,7 +56,7 @@ export interface ModelFracs {
 
 export interface ModelRates {
   latency: number
-  infection: (t: Date) => number
+  infection: (t: number) => number
   recovery: number[]
   severe: number[]
   discharge: number[]
@@ -64,7 +67,7 @@ export interface ModelRates {
 }
 
 export interface ModelParams {
-  ageDistribution: Record<string, number>
+  ageDistribution: AgeDistribution
   importsPerDay: number[]
   timeDelta: number
   timeDeltaDays: number
@@ -77,11 +80,19 @@ export interface ModelParams {
 }
 
 export interface UserResult {
-  trajectory: ExportedTimePoint[]
+  mean: ExportedTimePoint[]
+  lower: ExportedTimePoint[]
+  upper: ExportedTimePoint[]
+  percentile: Record<number, ExportedTimePoint[]>
+}
+
+export interface TimeSeriesWithRange {
+  mean: TimeSeries
+  lower: TimeSeries
+  upper: TimeSeries
 }
 
 export interface AlgorithmResult {
-  deterministic: UserResult
-  stochastic: UserResult[]
-  params: ModelParams
+  trajectory: UserResult
+  R0: TimeSeriesWithRange
 }
