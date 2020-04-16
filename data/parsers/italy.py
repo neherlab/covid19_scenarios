@@ -4,7 +4,7 @@ import requests
 import numpy as np
 
 from collections import defaultdict
-from .utils import store_data
+from .utils import store_data, add_cases
 
 # ------------------------------------------------------------------------
 # Globals
@@ -46,13 +46,9 @@ def parse():
     regions = dict(regions)
 
     # Sum all regions to obtain Italian data
-    dates = defaultdict(lambda: np.zeros(len(cols)-1))
-    for data in regions.values():
-        for datum in data:
-            dates[datum[0]] += np.array(datum[1:])
+    regions = add_cases(regions, list(regions.keys()), 'Italy', cols)
 
-    regions["Italy"] = []
-    for date, counts in dates.items():
-        regions["Italy"].append([date] + [int(c) for c in counts])
+    #https://github.com/neherlab/covid19_scenarios/issues/341
+    regions = add_cases(regions, ['ITA-P.A. Bolzano', 'ITA-P.A. Trento'], 'ITA-TrentionAltoAdige', cols)
 
     store_data(regions, 'italy', cols)

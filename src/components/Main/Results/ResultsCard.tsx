@@ -2,13 +2,13 @@ import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
 import { Button, Col, CustomInput, FormGroup, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 import { processUserResult, convertUserResultToEmpiricalData } from '../../../algorithms/utils/userResult'
 import { AgeBarChart } from './AgeBarChart'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
-import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
@@ -18,7 +18,7 @@ import { readFile } from '../../../helpers/readFile'
 import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
-import ImportSimulationDialog from './ImportSimulationDialog'
+import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
@@ -35,6 +35,8 @@ interface ResultsCardProps {
   caseCounts?: EmpiricalData
   scenarioUrl: string
   openPrintPreview: () => void
+  areResultsMaximized: boolean
+  toggleResultsMaximized: () => void
 }
 
 function ResultsCardFunction({
@@ -48,6 +50,8 @@ function ResultsCardFunction({
   caseCounts,
   scenarioUrl,
   openPrintPreview,
+  areResultsMaximized,
+  toggleResultsMaximized,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
@@ -113,16 +117,18 @@ function ResultsCardFunction({
   return (
     <>
       <span ref={scrollTargetRef} />
-      <CollapsibleCard
+      <CardWithoutDropdown
         identifier="results-card"
         className="card--main card--results"
-        title={
-          <h2 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">
-            {t('Results')}
+        label={
+          <h2 className="p-0 m-0 text-truncate d-flex align-items-center" data-testid="ResultsCardTitle">
+            <Button onClick={toggleResultsMaximized} className="btn-dark mr-2">
+              {areResultsMaximized ? <FiChevronRight /> : <FiChevronLeft />}
+            </Button>
+            <span>{t('Results')}</span>
           </h2>
         }
         help={t('This section contains simulation results')}
-        defaultCollapsed={false}
       >
         <Row className="mb-0">
           <Col xs={12} sm={6} md={4}>
@@ -152,15 +158,16 @@ function ResultsCardFunction({
                 className="compare-button"
                 type="button"
                 color="secondary"
-                onClick={_ => setShowImportModal(true)}
+                onClick={(_) => setShowImportModal(true)}
               >
                 {t('Import custom data')}
-              </Button><Button
+              </Button>
+              <Button
                 className="export-button"
                 type="button"
                 color="secondary"
                 disabled={!canExport}
-                onClick={_ => setShowExportModal(true)}
+                onClick={(_) => setShowExportModal(true)}
               >
                 {t('Export')}
               </Button>
@@ -240,7 +247,7 @@ function ResultsCardFunction({
             <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
           </Col>
         </Row>
-      </CollapsibleCard>
+      </CardWithoutDropdown>
       {result ? (
         <Button
           className="goToResultsBtn"

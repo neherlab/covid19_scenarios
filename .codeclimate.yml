@@ -4,22 +4,22 @@ checks:
   argument-count:
     enabled: true
     config:
-      threshold: 4
+      threshold: 5
 
   complex-logic:
     enabled: true
     config:
-      threshold: 4
+      threshold: 5
 
   file-lines:
     enabled: true
     config:
-      threshold: 250
+      threshold: 300
 
   method-complexity:
     enabled: true
     config:
-      threshold: 5
+      threshold: 8
 
   method-count:
     enabled: true
@@ -43,17 +43,21 @@ checks:
 
   similar-code:
     enabled: true
+    threshold: 75
 
   identical-code:
     enabled: true
+    threshold: 75
 
 plugins:
   duplication:
     enabled: true
     config:
       languages:
-        - javascript
-        - typescript
+        javascript:
+          mass_threshold: 75
+        typescript:
+          mass_threshold: 75
 
 exclude_patterns:
   - '**/*.*test*.*'

@@ -1,6 +1,6 @@
 {
   "name": "covid19_scenarios",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "main": "index.js",
   "module": "src/index.tsx",
   "license": "MIT",
@@ -91,7 +91,6 @@
     "raf": "3.4.1",
     "react": "16.13.0",
     "react-awesome-popover": "6.1.1",
-    "react-children-utilities": "2.0.12",
     "react-dates": "21.8.0",
     "react-dom": "16.13.0",
     "react-error-boundary": "1.2.5",
