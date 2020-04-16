@@ -69,6 +69,7 @@ function BaseRangeSlider({ value, exportInternalState, step, min, max }: BaseRan
           )}
           renderThumb={({ props, isDragged }) => (
             <div
+              {...props}
               style={{
                 ...props.style,
                 height: '17px',
