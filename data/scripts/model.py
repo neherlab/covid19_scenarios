@@ -360,13 +360,13 @@ if __name__ == "__main__":
 
     # Fitting over the pre-confinement days
     res = fit_population(key, time, data, confinement_start)
+    res['params'].time = np.concatenate(([time[0]-21], time)) # to project model past fitting window
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
     tp = res['params'].time - JAN1_2020
     confinement_start -= tp[0] + JAN1_2020
     tp = tp - tp[0]
     time = time - time[0] + 21
 
-    # TODO : compute the prediction of the model past the confinement start
 
     plt.figure()
     plt.title(f"{key}")
@@ -385,10 +385,13 @@ if __name__ == "__main__":
     plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
     plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
 
-    plt.plot(confinement_start, 1, 'rx')
+    plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
 
     plt.xlabel("Time [days]")
     plt.ylabel("Number of people")
     plt.legend(loc="best")
-    plt.yscale('log')
+    plt.tight_layout()
+    # plt.yscale('log')
+    # plt.ylim([-1000,25000])
+    # plt.savefig("Confinement_fit_lin", format="png")
     plt.show()
