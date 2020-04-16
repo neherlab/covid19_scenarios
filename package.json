@@ -1,6 +1,6 @@
 {
   "name": "covid19_scenarios",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "index.js",
   "module": "src/index.tsx",
   "license": "MIT",
@@ -61,6 +61,7 @@
     "@devexpress/dx-react-grid": "2.5.1",
     "@devexpress/dx-react-grid-bootstrap4": "2.5.1",
     "@loadable/component": "5.12.0",
+    "@mdx-js/react": "1.5.8",
     "@types/mathjs": "^6.0.4",
     "animate.css": "3.7.2",
     "axios": "0.19.2",

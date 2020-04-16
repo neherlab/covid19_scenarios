@@ -93,6 +93,35 @@ def compare_day(day1, day2):
     else:
         return 0
 
+def add_cases(cases, toAdd, target, cols=default_cols):
+    """ Add daily counts of toAdd countries together, and aggregate in target country
+    Keyword arguments:
+    cases -- a dict of lists of lists {'USA': [['2020-03-20', 0, ...], ...]}. 
+    toAdd -- a list of country strings of countries that should be added together
+    target-- a string denoting the target country for the added data
+    cols  -- list of column headers
+    """
+
+    # we expect to not have target in cases already
+    if target in cases:
+        print(f'Warning: add_cases called to overwrite values in {target}', sys.stderr)
+    cases[target] = []
+    for s in toAdd:        
+        for e in cases[s]:
+            time = e[cols.index('time')]
+            new = True
+            for d in cases[target]:
+                # Check if we had data for this date already, if yes add if needed/possible
+                if d[cols.index('time')] == time:
+                    new = False
+                    for i in range(1,len(d)):
+                        d[i] += e[i]
+            if new:
+                # we did not have that date in the aggregate yet
+                cases[target].append(e.copy())
+    cases[target] = sorted_date(cases[target], cols)
+    return cases
+    
 def merge_cases(oldcases, newcases):
     # We expect dicts of lists
     # {"Thailand": [{"time": "2020-1-22", "cases": "2", "deaths": "0", "recovered": "0"}, {"time": "2020-1-23", "cases": "3", "deaths": "0", "recovered": "0"}]}

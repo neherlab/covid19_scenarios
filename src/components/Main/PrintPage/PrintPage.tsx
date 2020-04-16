@@ -1,15 +1,28 @@
 import React from 'react'
+
+import _ from 'lodash'
 import moment from 'moment'
-import { Button } from 'reactstrap'
+import { Button, Col, Container, Row, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { AllParams, PopulationData, EpidemiologicalData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { FaWindowClose } from 'react-icons/fa'
+
+import { AllParams, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 import { DeterministicLinePlot } from '../Results/DeterministicLinePlot'
 import { OutcomeRatesTable } from '../Results/OutcomeRatesTable'
 import { AgeBarChart } from '../Results/AgeBarChart'
 import TableResult from './TableResult'
-import logo from '../../../assets/img/HIVEVO_logo.png'
+import { dateFormat, dateTimeFormat } from './dateFormat'
+
+import LinkExternal from '../../Router/LinkExternal'
+
+import PrintIntroduction from './PrintIntroduction.mdx'
+import PrintDisclaimer from './PrintDisclaimer.mdx'
+
+import logoNeherlab from '../../../assets/img/HIVEVO_logo.png'
+import logoBiozentrum from '../../../assets/img/biozentrum.svg'
+import logoUnibas from '../../../assets/img/unibas.svg'
 
 import './PrintPage.scss'
 
@@ -36,143 +49,235 @@ const parameterExplanations = {
   latencyTime: 'Latency [days]',
   lengthHospitalStay: 'Average time in regular ward [days]',
   lengthICUStay: 'Average time in ICU ward [days]',
-  overflowSeverity: 'Increase in death rate when ICUs are overcrowed',
+  overflowSeverity: 'Increase in death rate when ICUs are overcrowded',
   r0: 'R0 at the beginning of the outbreak',
   seasonalForcing: 'Seasonal variation in transmissibility',
   peakMonth: 'Seasonal peak in transmissibility',
 }
 
-const dateFormat = (time: number) => moment(time).format('MMM DD YYYY')
-
-export default function PrintParameters({ params, scenarioUsed, severity, result, caseCounts, onClose }: PropsType) {
+export default function PrintPage({ params, scenarioUsed, severity, result, caseCounts, onClose }: PropsType) {
   const { t } = useTranslation()
   if (result && caseCounts) {
     return (
-      <div style={{ maxWidth: '20cm' }}>
-        <div className="d-print-none">
-          <Button onClick={onClose} color="primary" size="sm">
-            {t('Close Print Preview')}
-          </Button>
-          &nbsp;
-          <Button onClick={() => window.print()} color="primary" size="sm">
-            {t('Print (or save as PDF)')}
-          </Button>
-        </div>
-        <div>
-          <div className="text-right p-logo">
-            <img alt="logo" src={logo} width={'20%'} />
-          </div>
-          <h1 className="text-center">COVID-19 Scenarios</h1>
+      <Container className="container-print" style={{ maxWidth: '20cm' }}>
+        <Row className="d-print-none">
+          <Col className="w-100 d-flex">
+            <Button className="mr-auto" onClick={() => window.print()} color="primary">
+              {t('Save as PDF or Print')}
+            </Button>
 
-          <p>
-            COVID19-Scenarios allows to explore the dynamics of a COVID19 outbreak in a community and to assess the
-            associated burden on the health care system. COVID19-Scenarios, as every other model, has parameters whose
-            values are not known with certainty and that might differ between places and change with time. The values of
-            some of these of these parameters have a big effect on the results. The results are particularly sensitive
-            to parameters that determine how rapidly the spreads or how effective counter measures are: some values will
-            result in a small limited outbreak, others in a massive outbreak with many fatalities. Furthermore, when
-            extrapolating the outbreak into the future, the results will critically depend on assumptions of{' '}
-            <strong>future</strong> policy and the degree to which infection control measures are adhered to. It is
-            therefore important to interpret the model output with care and to assess the plausibility of the parameter
-            values and model assumptions.{' '}
-          </p>
-          <p>
-            COVID19-Scenarios uses an age-structured generalized SEIR model. For details, please consult the
-            documentation on <a href="https://covid19-scenarios.org/about">covid19-scenarios.org/about</a>. Default
-            parameter choices are informed by the available evidence at the time, but might need adjustment for a
-            particular community or as more information on the outbreak is available.
-          </p>
-          <p>
-            {t(
-              `It is not a medical predictor, and should be used for informational and research purposes only. Please carefully consider the parameters you choose. Interpret and use the simulated results responsibly. Authors are not liable for any direct or indirect consequences of this usage.`,
-            )}
-          </p>
-        </div>
-        <div
-          style={{
-            breakBefore: 'always',
-            pageBreakBefore: 'always',
-          }}
-        >
-          <h2>Parameters</h2>
-          <h5>Scenario used : {scenarioUsed}</h5>
-          <h3>Population</h3>
-          {(Object.keys(params.population) as (keyof PopulationData)[]).map((key) => {
-            return (
-              <p key={key} style={{ margin: 0 }}>
-                {parameterExplanations[key] || key}: <b>{params.population[key]}</b>
-              </p>
-            )
-          })}
-          <p />
-          <h3>Epidemiology</h3>
-          {(Object.keys(params.epidemiological) as (keyof EpidemiologicalData)[]).map((key) => {
-            return (
-              <p key={key} style={{ margin: 0 }}>
-                {parameterExplanations[key] || key}:{' '}
-                <b>{key === 'peakMonth' ? months[params.epidemiological[key]] : params.epidemiological[key]}</b>
-              </p>
-            )
-          })}{' '}
-          <p />
-          <h3>Mitigation</h3>
-          {params.containment.mitigationIntervals.map((mitigationInterval) => {
-            return (
-              <div key={mitigationInterval.id} style={{ marginBottom: 10 }}>
-                <h5>{mitigationInterval.name}:</h5>
-                <p style={{ margin: 0 }}>
-                  from: <b>{dateFormat(mitigationInterval.timeRange.tMin.getTime())}</b>
+            <Button className="ml-auto" color="transparent" onClick={onClose}>
+              <FaWindowClose />
+            </Button>
+          </Col>
+        </Row>
+
+        <Row className="page">
+          <Col>
+            <Row>
+              <Col>
+                <h1 className="heading-main text-center text-bold">{`COVID-19 Scenarios`}</h1>
+
+                <p className="text-center text-bold mb-0">{`Printable report`}</p>
+                <p className="text-center text-bold">
+                  {`Generated from `}
+                  <LinkExternal url="https://covid19-scenarios.org">{`covid19-scenarios.org`}</LinkExternal>
+                  {` on `}
+                  {dateTimeFormat(new Date())}
                 </p>
-                <p style={{ margin: 0 }}>
-                  to: <b>{dateFormat(mitigationInterval.timeRange.tMax.getTime())}</b>
-                </p>
-                <p style={{ margin: 0 }}>
-                  Reduction of transmission: <b>{mitigationInterval.mitigationValue}%</b>
-                </p>
-              </div>
-            )
-          })}
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <h2 className="text-center text-bold">{`Important information`}</h2>
+
+                <PrintIntroduction />
+
+                <blockquote className="blockquote font-weight-bold">
+                  <PrintDisclaimer />
+                </blockquote>
+              </Col>
+            </Row>
+          </Col>
+
+          <Table className="w-75 center mx-auto table-layout-fixed">
+            <tbody>
+              <tr>
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
+                    <img className="mx-auto" height={'50px'} alt="NeherLab logo" src={logoNeherlab} />
+                  </LinkExternal>
+                </td>
+
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
+                    <img className="mx-auto" height={'50px'} alt="Logo of Biozentrum" src={logoBiozentrum} />
+                  </LinkExternal>
+                </td>
+
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of University of Basel">
+                    <img className="mx-auto" height={'50px'} alt="Logo of University of Basel" src={logoUnibas} />
+                  </LinkExternal>
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody>
+              <tr>
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
+                    {`neherlab.org`}
+                  </LinkExternal>
+                </td>
+
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
+                    {`biozentrum.unibas.ch`}
+                  </LinkExternal>
+                </td>
+
+                <td className="w-100 text-center">
+                  <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of Biozentrum Basel">
+                    {`unibas.ch`}
+                  </LinkExternal>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </Row>
+
+        <Row className="page" style={{ breakBefore: 'always', pageBreakBefore: 'always' }}>
+          <Col>
+            <h2>{`Scenario: ${scenarioUsed}`}</h2>
+
+            <h2>{`Parameters`}</h2>
+
+            <h4 className="pt-3">{`Population`}</h4>
+
+            <Table className="table-parameters">
+              <thead>
+                <tr>
+                  <th>{`Parameter`}</th>
+                  <th>{`Value`}</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {Object.entries(params.population).map(([key, val]) => (
+                  <tr key={key}>
+                    <td className="text-left pl-2 pr-4 py-0">{_.get(parameterExplanations, key) || key}</td>
+                    <td className="text-right pl-4 pr-2 py-0">{val}</td>
+                  </tr>
+                ))}
+              </tbody>
+
+              <h4 className="pt-3">{`Epidemiology`}</h4>
+
+              <thead>
+                <tr>
+                  <th>{`Parameter`}</th>
+                  <th>{`Value`}</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {Object.entries(params.epidemiological).map(([key, val]) => {
+                  let value = val
+                  if (key === 'peakMonth') {
+                    value = months[val]
+                  }
+
+                  return (
+                    <tr key={key}>
+                      <td className="text-left pl-2 pr-4 py-0">{_.get(parameterExplanations, key) || key}</td>
+                      <td className="text-right pl-4 pr-2 py-0">{value}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </Table>
+
+            <h4 className="pt-3">{`Mitigation`}</h4>
+
+            <Table className="table-parameters">
+              <thead>
+                <tr>
+                  <th>{`Intervention name`}</th>
+                  <th>{`From`}</th>
+                  <th>{`To`}</th>
+                  <th>
+                    {`Reduction of`}
+                    <br />
+                    {`transmission`}
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {params.containment.mitigationIntervals.map(({ id, name, timeRange, mitigationValue }) => {
+                  return (
+                    <tr key={id}>
+                      <td className="text-left pl-2 pr-4 py-0">{name}</td>
+                      <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.tMin)}</td>
+                      <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.tMax)}</td>
+                      <td className="text-right pl-2 pr-4 py-0">{`${mitigationValue}%`}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+
+        <Row className="page" style={{ breakBefore: 'always', pageBreakBefore: 'always' }}>
+          <Col>
+            <Row>
+              <Col>
+                <h2>{`Results`}</h2>
+                <DeterministicLinePlot
+                  data={result}
+                  params={params}
+                  mitigation={params.containment}
+                  logScale
+                  showHumanized
+                  caseCounts={caseCounts}
+                />
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <h2>{`Results summary`}</h2>
+                <TableResult result={result} />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+
+        <Row className="page" style={{ breakBefore: 'always', pageBreakBefore: 'always' }}>
+          <Col>
+            <Row>
+              <Col>
+                <AgeBarChart showHumanized data={result} rates={severity} printLabel />
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <OutcomeRatesTable showHumanized result={result} rates={severity} printable />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+
+        <div className="fixed-bottom w-100 d-flex d-print-none">
+          <Button className="btn-shadow mx-auto" onClick={() => window.print()} color="primary">
+            {t('Save as PDF or Print')}
+          </Button>
         </div>
-        <div
-          style={{
-            breakBefore: 'always',
-            pageBreakBefore: 'always',
-          }}
-        >
-          <h2>Results</h2>
-          <DeterministicLinePlot
-            data={result}
-            params={params}
-            mitigation={params.containment}
-            logScale
-            showHumanized
-            caseCounts={caseCounts}
-            forcedWidth={700}
-            forcedHeight={500}
-          />
-        </div>
-        <div
-          style={{
-            breakBefore: 'always',
-            pageBreakBefore: 'always',
-          }}
-        >
-          <TableResult result={result} />
-        </div>
-        <div
-          style={{
-            breakBefore: 'always',
-            pageBreakBefore: 'always',
-          }}
-        >
-          <AgeBarChart showHumanized data={result} rates={severity} forcedWidth={700} forcedHeight={350} printLabel />
-          <OutcomeRatesTable showHumanized result={result} rates={severity} printable />
-        </div>
-        <p />
-        <p>
-          Produced with <a href="https://covid19-scenarios.org">covid19-scenarios.org</a> on {new Date().toString()}.
-        </p>
-      </div>
+      </Container>
     )
   }
   return null
