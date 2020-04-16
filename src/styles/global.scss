@@ -28,7 +28,10 @@ html {
 body {
   // HACK: workaround for bootstrap modal adding padding-right when open
   padding: 0 !important;
-  background-color: #eee;
+
+  @media not print {
+    background-color: #eee;
+  }
 }
 
 .container.absolute {
