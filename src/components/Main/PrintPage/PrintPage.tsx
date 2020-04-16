@@ -222,7 +222,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
                       <td className="text-left pl-2 pr-4 py-0">{name}</td>
                       <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.tMin)}</td>
                       <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.tMax)}</td>
-                      <td className="text-right pl-2 pr-4 py-0">{mitigationValue}</td>
+                      <td className="text-right pl-2 pr-4 py-0">{`${mitigationValue}%`}</td>
                     </tr>
                   )
                 })}
