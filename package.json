@@ -323,7 +323,6 @@
     "stylelint-order": "4.0.0",
     "stylelint-prettier": "1.1.2",
     "stylelint-scss": "3.14.2",
-    "stylelint-use-nesting": "2.0.0",
     "svgo": "1.3.2",
     "terser": "4.6.6",
     "terser-webpack-plugin": "2.3.5",
