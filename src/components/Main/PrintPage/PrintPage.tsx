@@ -60,11 +60,12 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
   if (result && caseCounts) {
     return (
       <Container className="container-print" style={{ maxWidth: '20cm' }}>
-        <Row className="d-print-none d-flex">
-          <Col>
-            <Button onClick={() => window.print()} color="primary">
+        <Row className="d-print-none">
+          <Col className="w-100 d-flex">
+            <Button className="mr-auto" onClick={() => window.print()} color="primary">
               {t('Save as PDF or Print')}
             </Button>
+
             <Button className="ml-auto" color="transparent" onClick={onClose}>
               <FaWindowClose />
             </Button>
@@ -279,6 +280,12 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
             </Row>
           </Col>
         </Row>
+
+        <div className="fixed-bottom w-100 d-flex d-print-none">
+          <Button className="btn-shadow mx-auto" onClick={() => window.print()} color="primary">
+            {t('Save as PDF or Print')}
+          </Button>
+        </div>
       </Container>
     )
   }
