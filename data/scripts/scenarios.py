@@ -130,8 +130,8 @@ class PopulationParams(schema.PopulationData):
                 icu_beds=int(icus),
                 imports_per_day=0.1,
                 population_served=int(population),
-                initial_number_of_cases=round(FIT_CASE_DATA[region]['initialCases']
-                                              if region in FIT_CASE_DATA else Fitter.cases_on_tMin))
+                initial_number_of_cases=int(round(FIT_CASE_DATA[region]['initialCases']
+                                              if region in FIT_CASE_DATA else Fitter.cases_on_tMin)))
 
 class EpidemiologicalParams(schema.EpidemiologicalData):
     def __init__(self, region, hemisphere):
@@ -216,9 +216,6 @@ def fit_one_case_data(args):
     r = fit_population(region)
     if r is None:
         return (region, Params.fit(data))
-    else:
-        if 'New York' in region:
-            print(f"Region {region}: {r['params']}", file=sys.stderr)
 
     param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0), "initialCases": r["initialCases"]}
     return (region, param)
@@ -238,8 +235,8 @@ def set_mitigation(cases, scenario):
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, 3e-4*scenario.population.population_served),10000))[0]
-    levelTwo = np.where(case_counts > min(max(50, 3e-3*scenario.population.population_served),50000))[0]
+    levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served),10000))[0]
+    levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served),50000))[0]
     levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0), 1)
     levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 

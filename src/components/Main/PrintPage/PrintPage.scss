@@ -14,66 +14,60 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
 
 */
 
-.tableResult {
-  width: 100%;
+@import '../../../styles/variables';
 
-  @media print {
-    max-width: 17cm;
+.container-print {
+  background-color: #ffffff;
+
+  .page {
+    @media not print {
+      margin-top: 3em;
+    }
   }
 
-  & > table {
-    width: 100%;
-    margin: 10px;
-    text-align: center;
-    border: 1px solid black;
+  h1.heading-main {
+    margin-top: 3em;
+  }
 
-    & > thead {
-      border-bottom: 1px solid black;
+  .table-parameters,
+  .table-result {
+    tr,
+    td,
+    th {
+      border: 1px solid $gray-500;
+    }
+
+    th {
+      text-align: center;
+      vertical-align: middle;
+      padding-top: auto;
+      padding-bottom: auto;
+    }
+  }
+
+  .table-result {
+    table-layout: fixed;
+
+    th {
+      text-align: center;
+      vertical-align: middle;
+      padding-top: auto;
+      padding-bottom: auto;
+    }
+
+    td {
+      text-align: right;
+      vertical-align: middle;
+      padding: 2px 4px;
     }
   }
 }
 
 @media print {
-  h1,
-  h2 {
-    margin-top: 1cm;
-  }
-
-  h3 {
-    margin-top: 20px;
-  }
-
-  body {
-    width: 20cm !important;
-    max-width: 20cm !important;
-    padding-top: 15mm;
-    margin: 15mm;
-    font-size: 10pt;
-    background-color: #fff;
-  }
-
-  .p-logo {
-    width: 100%;
-
-    & > img {
-      width: 10cm;
-      height: 10cm;
-      margin-right: auto;
-      margin-bottom: 1cm;
-      margin-left: auto;
-    }
-  }
-
-  .h-100 {
-    height: auto !important;
-  }
-
-  .modal-backdrop {
-    display: none;
-
-    &.show {
-      display: none;
-    }
+  @page {
+    //      top right bottom left
+    margin: 20mm 25mm 20mm 35mm;
+    background-color: #ffffff;
   }
 
   .row {

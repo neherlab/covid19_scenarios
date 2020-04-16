@@ -28,7 +28,10 @@ html {
 body {
   // HACK: workaround for bootstrap modal adding padding-right when open
   padding: 0 !important;
-  background-color: #eee;
+
+  @media not print {
+    background-color: #eee;
+  }
 }
 
 .container.absolute {
@@ -126,4 +129,26 @@ input[type='number']::-webkit-outer-spin-button {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.body-color {
+  color: $body-color;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.table-layout-fixed {
+  table-layout: fixed;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 30px;
+  z-index: 100;
+}
+
+.btn-shadow {
+  box-shadow: 4px 4px 10px 1px #222222;
 }
