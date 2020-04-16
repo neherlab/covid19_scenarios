@@ -193,14 +193,16 @@ def marshalJSON(obj, wtr=None):
     - obj: a dict of allParams
     """
     if wtr is None:
-        return json.dumps(obj, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+        return json.dumps(obj, default=lambda x: x.__dict__, sort_keys=True, indent=0)
 
     newdata = []
     for k in obj:
         newdata.append({'country': k, 'allParams': obj[k].to_dict()})
 
+    newdata.sort(key = lambda x:x['country'])
+
     # Serialize into json
-    news = json.dumps(newdata, default=lambda x: x.__dict__, sort_keys=True, indent=4)
+    news = json.dumps(newdata, default=lambda x: x.__dict__, sort_keys=True, indent=0)
 
     # Validate the dict based on the json
     with open(os.path.join(BASE_PATH, SCHEMA_SCENARIOS), "r") as f:
