@@ -11,7 +11,7 @@ import { SeverityTableRow } from './Scenario/ScenarioTypes'
 
 import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import { run, intervalsToTimeSeries } from '../../algorithms/run'
+import { run } from '../../algorithms/run'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
@@ -29,7 +29,6 @@ import { deserializeScenarioFromURL, updateBrowserURL, buildLocationSearch } fro
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
-import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
 import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
@@ -61,10 +60,7 @@ async function runSimulation(
   }
 
   const caseCounts = getCaseCountsData(params.population.cases)
-  const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
-
-  intervalsToTimeSeries(params.containment.mitigationIntervals)
-  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution, containment)
+  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
@@ -225,6 +221,7 @@ function Main() {
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
                       params={allParams}
+                      ageDistribution={scenarioState.ageDistribution}
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}

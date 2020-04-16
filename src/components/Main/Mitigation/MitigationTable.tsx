@@ -5,7 +5,7 @@ import _ from 'lodash'
 import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Button, FormGroup } from 'reactstrap'
+import { Container, Col, Row, Button, FormGroup } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
@@ -14,6 +14,8 @@ import { MitigationInterval, MitigationIntervals } from '../../../algorithms/typ
 import { suggestNextMitigationInterval } from '../../../algorithms/utils/createMitigationInterval'
 
 import { MitigationDatePicker } from './MitigationDatePicker'
+
+import { RangeSlider } from '../../Form/FormRangeSlider'
 
 import './MitigationTable.scss'
 
@@ -122,33 +124,40 @@ function MitigationIntervalComponent({
 
   return (
     <FormGroup>
-      <div className="mitigation-interval">
-        <div
-          className={`mitigation-inputs ${
-            // eslint-disable-next-line unicorn/no-nested-ternary
-            width && width <= 325 ? 'very-narrow' : width && width <= 580 ? 'narrow' : 'wide'
-          }`}
-        >
-          <FastField
-            className={`form-control mitigation-name ${nameError ? 'border-danger' : ''}`}
-            id={`containment.mitigationIntervals[${index}].name`}
-            name={`containment.mitigationIntervals[${index}].name`}
-            type="text"
-          />
-          <MitigationDatePicker
-            identifier={`containment.mitigationIntervals[${index}].timeRange`}
-            value={interval.timeRange}
-            allowPast
-          />
-          <FastField
-            className={`form-control mitigation-value ${valueError ? 'border-danger' : ''}`}
-            id={`containment.mitigationIntervals[${index}].mitigationValue`}
-            name={`containment.mitigationIntervals[${index}].mitigationValue`}
-            type="number"
-            step={1}
-            min={0}
-            max={100}
-          />
+      <div
+        className={`mitigation-interval ${
+          // eslint-disable-next-line unicorn/no-nested-ternary
+          width && width <= 325 ? 'very-narrow' : width && width <= 580 ? 'narrow' : 'wide'
+        }`}
+      >
+        <div className="inputs">
+          <Container fluid>
+            <Row noGutters>
+              <Col sm md lg xl="auto">
+                <FastField
+                  className={`name form-control ${nameError ? 'border-danger' : ''}`}
+                  id={`containment.mitigationIntervals[${index}].name`}
+                  name={`containment.mitigationIntervals[${index}].name`}
+                  type="text"
+                />
+              </Col>
+              <Col sm md lg xl="auto">
+                <MitigationDatePicker
+                  identifier={`containment.mitigationIntervals[${index}].timeRange`}
+                  value={interval.timeRange}
+                  allowPast
+                />
+              </Col>
+              <Col>
+                <RangeSlider
+                  identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
+                  step={0.1}
+                  min={0}
+                  max={100}
+                />
+              </Col>
+            </Row>
+          </Container>
         </div>
         <div className="item-controls">
           <Button type="button" onClick={() => arrayHelpers.remove(index)}>

@@ -20,7 +20,7 @@ import LinkExternal from '../../Router/LinkExternal'
 import PrintIntroduction from './PrintIntroduction.mdx'
 import PrintDisclaimer from './PrintDisclaimer.mdx'
 
-import logoNeherlab from '../../../assets/img/HIVEVO_logo.png'
+import logoNeherlab from '../../../assets/img/neherlab.svg'
 import logoBiozentrum from '../../../assets/img/biozentrum.svg'
 import logoUnibas from '../../../assets/img/unibas.svg'
 
@@ -184,9 +184,15 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
 
               <tbody>
                 {Object.entries(params.epidemiological).map(([key, val]) => {
+                  // NOTE: val can be of different types here
                   let value = val
                   if (key === 'peakMonth') {
                     value = months[val]
+                  }
+
+                  if (key === 'r0') {
+                    const [lower, upper] = val.map((x: number) => Math.round(10 * x) / 10)
+                    value = `(${lower}, ${upper})`
                   }
 
                   return (

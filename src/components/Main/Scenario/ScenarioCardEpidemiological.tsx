@@ -7,6 +7,7 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
+import { RangeSlider } from '../../Form/FormRangeSlider'
 
 const months = moment.months()
 const monthOptions = months.map((month, i) => ({ value: i, label: month }))
@@ -31,14 +32,15 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).',
       )}
     >
-      <FormSpinBox
+      <RangeSlider
         identifier="epidemiological.r0"
         label={`${t('Annual average')} R\u2080`}
         help={t(
           'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
         )}
         step={0.1}
-        min={0}
+        min={0.5}
+        max={6}
         errors={errors}
         touched={touched}
       />
