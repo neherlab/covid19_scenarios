@@ -56,7 +56,7 @@ plugins:
       languages:
         javascript:
           mass_threshold: 75
-        typescript
+        typescript:
           mass_threshold: 75
 
 exclude_patterns:
