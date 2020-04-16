@@ -122,15 +122,15 @@ function MitigationIntervalComponent({
 
   return (
     <FormGroup>
-      <div
-        className={`mitigation-interval ${
-          // eslint-disable-next-line unicorn/no-nested-ternary
-          width && width <= 325 ? 'very-narrow' : width && width <= 580 ? 'narrow' : 'wide'
-        }`}
-      >
-        <div className="inputs">
+      <div className="mitigation-interval">
+        <div
+          className={`mitigation-inputs ${
+            // eslint-disable-next-line unicorn/no-nested-ternary
+            width && width <= 325 ? 'very-narrow' : width && width <= 580 ? 'narrow' : 'wide'
+          }`}
+        >
           <FastField
-            className={`name form-control ${nameError ? 'border-danger' : ''}`}
+            className={`form-control mitigation-name ${nameError ? 'border-danger' : ''}`}
             id={`containment.mitigationIntervals[${index}].name`}
             name={`containment.mitigationIntervals[${index}].name`}
             type="text"
