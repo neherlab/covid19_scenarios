@@ -22,4 +22,8 @@ describe('ULP float comparison', () => {
     expect(-0.2 + 0.3).not.toEqual(0.1)
     expect(absUlpDiff(-0.2 + 0.3, 0.1)).toStrictEqual(2n)
   })
+
+  it('-0 and 0 are equivalent', () => {
+    expect(absUlpDiff(0, -0)).toStrictEqual(0n)
+  })
 })

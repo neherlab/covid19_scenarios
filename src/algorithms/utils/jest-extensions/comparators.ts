@@ -14,6 +14,11 @@ export function signAndMagnitudeToBiased(sam: bigint): bigint {
 }
 
 export function absUlpDiff(a: number, b: number): bigint {
+  /* If the numbers are the same, the diff is zero. */
+  if (a === b) {
+    return 0n
+  }
+
   const biased1 = signAndMagnitudeToBiased(float64ToBigInt64(a))
   const biased2 = signAndMagnitudeToBiased(float64ToBigInt64(b))
 
