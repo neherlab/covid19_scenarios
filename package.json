@@ -356,7 +356,6 @@
     "**/core-js": "3.6.4",
     "**/json3": "link:3rdparty/__empty-module",
     "**/left-pad": "link:3rdparty/__empty-module",
-    "react-share/jsonp": "link:3rdparty/__empty-module",
     "node-sass": "link:node_modules/sass",
     "svgo": "1.3.2"
   }
