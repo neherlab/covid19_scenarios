@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 import { ageDistributionNames } from '../state/countryAgeDistributionData'
 
-import { CUSTOM_COUNTRY_NAME, NONE_COUNTRY_NAME } from '../state/state'
+import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'

@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { ProcessingError, ProcessingErrorCode } from './exceptions'
 import { EmpiricalData } from '../types/Param.types'
 
@@ -13,15 +14,16 @@ enum ImportFileDataColumn {
 }
 
 function formatData(rawData: string): number | null {
-  const parsed = rawData ? +rawData : null
+  const parsed: number = +rawData
 
-  if (parsed && isNaN(parsed)) {
+  if (Number.isNaN(parsed)) {
     throw new ProcessingError(ProcessingErrorCode.InvalidField, rawData)
   }
 
   return parsed
 }
 
+// TODO needs tests
 /**
  * Build a {UserResult} from the raw file data.
  * @param rawUserResult Result of the parsed CSV file, containing an array of objects representing each row, with headers as keys.
@@ -35,14 +37,14 @@ export function processImportedData(rawUserResult: Record<ImportFileDataColumn, 
       throw new ProcessingError(ProcessingErrorCode.MissingTimeField)
     }
 
-    const rowTime = new Date(row.time)
+    const rowTime = moment(row.time)
 
-    if (!rowTime) {
+    if (!rowTime.isValid()) {
       throw new ProcessingError(ProcessingErrorCode.InvalidField, row.time)
     }
 
     data.push({
-      time: rowTime,
+      time: rowTime.toDate(),
       cases: formatData(row.cases),
       deaths: formatData(row.deaths),
       hospitalized: formatData(row.hospitalized),

@@ -4,9 +4,11 @@ import { useTranslation, getI18n } from 'react-i18next'
 import Papa from 'papaparse'
 import FileUploadZone, { FileType } from '../Compare/FileUploadZone'
 import { processImportedData } from '../../../algorithms/utils/importedData'
-import Message from '../../../components/Misc/Message'
+import Message from '../../Misc/Message'
 import { ProcessingError, ProcessingErrorCode } from '../../../algorithms/utils/exceptions'
 import { EmpiricalData } from '../../../algorithms/types/Param.types'
+
+const localizedErrorMessage = 'Error: {{message}}'
 
 export interface ImportedCaseCount {
   fileName: string
@@ -45,7 +47,7 @@ function getMessageForError(error: ProcessingError): string {
       throw new Error('Unknown processing error.')
   }
 
-  return getI18n().t('Error: {{message}}', { message })
+  return getI18n().t(localizedErrorMessage, { message })
 }
 
 export default function ImportCaseCountDialog({
@@ -58,11 +60,11 @@ export default function ImportCaseCountDialog({
   const [errorMessage, setErrorMessage] = useState<string>()
 
   const onImportRejected = () =>
-    setErrorMessage(t('Error: {{message}}', { message: t('Only one CSV or TSV file can be imported.') }))
+    setErrorMessage(t(localizedErrorMessage, { message: t('Only one CSV or TSV file can be imported.') }))
 
   const onImportClick = useCallback(async () => {
     if (filesToImport.size === 0) {
-      setErrorMessage(t('Error: {{message}}', { message: t('No file has been uploaded.') }))
+      setErrorMessage(t(localizedErrorMessage, { message: t('No file has been uploaded.') }))
       return
     }
 
@@ -74,7 +76,7 @@ export default function ImportCaseCountDialog({
         if (meta.aborted || !data?.length) {
           // TODO display more detailed information to the user in case of error
           setErrorMessage(
-            t('Error: {{message}}', {
+            t(localizedErrorMessage, {
               message: t("The file could not be loaded. Make sure that it's a valid CSV file."),
             }),
           )
@@ -99,7 +101,7 @@ export default function ImportCaseCountDialog({
     })
 
     // TODO handle loading for huge files
-  }, [toggleShowModal, filesToImport])
+  }, [filesToImport, t, toggleShowModal, onDataImported])
 
   const isFileUploaded: boolean = filesToImport.size > 0
 
