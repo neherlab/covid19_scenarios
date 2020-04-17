@@ -244,7 +244,7 @@ export function validateAndTransform(
         const match = /\[(\d+)]\.(\w+)/.exec(error.path)
         if (match) {
           return {
-            ageGroup: ageGroupParameters[parseInt(match[1], 10)].ageGroup,
+            ageGroup: ageGroupParameters[Number.parseInt(match[1], 10)].ageGroup,
             columnName: match[2],
             message: error.message,
           }
