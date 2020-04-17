@@ -28,8 +28,8 @@ describe('ULP float comparison', () => {
   })
 
   it('NaN results in false', () => {
-    expect(toBeCloseToUlp(NaN, 3.0, 1n)).toStrictEqual(false)
-    expect(toBeCloseToUlp(3.14, NaN, 1n)).toStrictEqual(false)
-    expect(toBeCloseToUlp(NaN, NaN, 1n)).toStrictEqual(false)
+    expect(toBeCloseToUlp(Number.NaN, 3.0, 1n)).toStrictEqual(false)
+    expect(toBeCloseToUlp(3.14, Number.NaN, 1n)).toStrictEqual(false)
+    expect(toBeCloseToUlp(Number.NaN, Number.NaN, 1n)).toStrictEqual(false)
   })
 })
