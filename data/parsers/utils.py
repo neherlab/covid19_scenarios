@@ -115,7 +115,8 @@ def add_cases(cases, toAdd, target, cols=default_cols):
                 if d[cols.index('time')] == time:
                     new = False
                     for i in range(1,len(d)):
-                        d[i] += e[i]
+                        if e[i]!=None and d[i]!=None:
+                            d[i] += e[i]
             if new:
                 # we did not have that date in the aggregate yet
                 cases[target].append(e.copy())
