@@ -37,6 +37,10 @@ function unused2() {
   return 43
 }
 
+function unused3() {
+  return 3.14
+}
+
 interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
 }
