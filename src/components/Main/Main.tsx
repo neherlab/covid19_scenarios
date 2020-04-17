@@ -105,7 +105,7 @@ function Main({ initialState }: InitialStateComponentProps) {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (autorunSimulation) {
+    if (autorunSimulation && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)) {
       debouncedRun(allParams, scenarioState, severity)
     }
   }, [autorunSimulation, debouncedRun, scenarioState, severity]) // eslint-disable-line react-hooks/exhaustive-deps
