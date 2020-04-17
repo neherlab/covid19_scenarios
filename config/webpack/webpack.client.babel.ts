@@ -100,17 +100,6 @@ function alias(development: boolean) {
   return productionAliases
 }
 
-function entry(development: boolean, entries: string[]) {
-  if (development || debuggableProd) {
-    return [
-      'map.prototype.tojson', // to visualize Map in Redux Dev Tools
-      'set.prototype.tojson', // to visualize Set in Redux Dev Tools
-      ...entries,
-    ]
-  }
-  return entries
-}
-
 function outputFilename(development: boolean, ext = 'js') {
   if (development || analyze) {
     return `content/[name].${ext}`
@@ -142,7 +131,7 @@ export default {
     hints: false,
   },
 
-  entry: entry(development, [path.join(moduleRoot, `src/index.polyfilled.ts`)]),
+  entry: path.join(moduleRoot, `src/index.polyfilled.ts`),
 
   output: {
     path: buildPath,
@@ -189,13 +178,17 @@ export default {
         transpiledLibs: [
           '@loadable',
           '@redux-saga',
+          'create-color',
+          'd3-array',
           'delay',
           'immer',
           'lodash',
           'p-min-delay',
           'react-router',
+          'recharts',
           'redux/es',
         ],
+        nonTranspiledLibs: ['d3-array/src/cumsum.js'],
       }),
 
       ...webpackLoadStyles({

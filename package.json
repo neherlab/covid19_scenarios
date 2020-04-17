@@ -71,6 +71,7 @@
     "core-js": "3.6.4",
     "create-color": "2.0.2",
     "d3": "5.15.0",
+    "d3-array": "2.4.0",
     "d3-format": "1.4.3",
     "file-saver": "2.0.2",
     "formik": "2.1.4",

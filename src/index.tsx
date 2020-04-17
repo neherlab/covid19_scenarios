@@ -1,5 +1,8 @@
 import 'regenerator-runtime'
 
+import 'map.prototype.tojson' // to visualize Map in Redux Dev Tools
+import 'set.prototype.tojson' // to visualize Set in Redux Dev Tools
+
 import 'react-dates/initialize'
 
 import React from 'react'
