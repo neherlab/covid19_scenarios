@@ -72,6 +72,7 @@ export default function ImportCaseCountDialog({
     Papa.parse(file, {
       header: true,
       skipEmptyLines: 'greedy',
+      comments: '#',
       complete: ({ data, errors, meta }: Papa.ParseResult) => {
         if (meta.aborted || !data?.length) {
           // TODO display more detailed information to the user in case of error
@@ -121,7 +122,7 @@ export default function ImportCaseCountDialog({
           accept={allowedFileTypes}
           multiple={false}
           onFilesRejected={onImportRejected}
-          dropZoneMessage={t('Drag and drop a file here, or click to select one.')}
+          dropZoneMessage={t('Drag and drop a case data file here, or click to select one.')}
           activeDropZoneMessage={t('Drop the file here...')}
         />
       </ModalBody>

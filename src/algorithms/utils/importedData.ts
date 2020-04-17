@@ -1,4 +1,5 @@
 import moment from 'moment'
+import { isNil } from 'lodash'
 import { ProcessingError, ProcessingErrorCode } from './exceptions'
 import { EmpiricalData } from '../types/Param.types'
 
@@ -14,9 +15,9 @@ enum ImportFileDataColumn {
 }
 
 function formatData(rawData: string): number | null {
-  const parsed: number = +rawData
+  const parsed: number | null = isNil(rawData) ? null : +rawData?.trim()
 
-  if (Number.isNaN(parsed)) {
+  if (parsed !== null && Number.isNaN(parsed)) {
     throw new ProcessingError(ProcessingErrorCode.InvalidField, rawData)
   }
 
@@ -34,23 +35,25 @@ export function processImportedData(rawUserResult: Record<ImportFileDataColumn, 
 
   for (const row of rawUserResult) {
     if (!row.time) {
-      throw new ProcessingError(ProcessingErrorCode.MissingTimeField)
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('Time field missing in row, skipping.', row)
+      }
+    } else {
+      const rowTime = moment(row.time)
+
+      if (!rowTime.isValid()) {
+        throw new ProcessingError(ProcessingErrorCode.InvalidField, row.time)
+      }
+
+      data.push({
+        time: rowTime.toDate(),
+        cases: formatData(row.cases),
+        deaths: formatData(row.deaths),
+        hospitalized: formatData(row.hospitalized),
+        icu: formatData(row.icu),
+        recovered: formatData(row.recovered),
+      })
     }
-
-    const rowTime = moment(row.time)
-
-    if (!rowTime.isValid()) {
-      throw new ProcessingError(ProcessingErrorCode.InvalidField, row.time)
-    }
-
-    data.push({
-      time: rowTime.toDate(),
-      cases: formatData(row.cases),
-      deaths: formatData(row.deaths),
-      hospitalized: formatData(row.hospitalized),
-      icu: formatData(row.icu),
-      recovered: formatData(row.recovered),
-    })
   }
 
   return data
