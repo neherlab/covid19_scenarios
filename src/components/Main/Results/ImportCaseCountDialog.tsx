@@ -3,15 +3,20 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 import { useTranslation, getI18n } from 'react-i18next'
 import Papa from 'papaparse'
 import FileUploadZone, { FileType } from '../Compare/FileUploadZone'
-import { processUserResult } from '../../../algorithms/utils/userResult'
-import { UserResult } from '../../../algorithms/types/Result.types'
+import { processImportedData } from '../../../algorithms/utils/importedData'
 import Message from '../../../components/Misc/Message'
 import { ProcessingError, ProcessingErrorCode } from '../../../algorithms/utils/exceptions'
+import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
-export interface ImportSimulationDialogProps {
+export interface ImportedCaseCount {
+  fileName: string
+  data: EmpiricalData
+}
+
+export interface ImportCaseCountDialogProps {
   showModal: boolean
   toggleShowModal(): void
-  onDataImported(data: UserResult): void
+  onDataImported(data: ImportedCaseCount): void
 }
 
 const allowedFileTypes = [
@@ -43,11 +48,11 @@ function getMessageForError(error: ProcessingError): string {
   return getI18n().t('Error: {{message}}', { message })
 }
 
-export default function ImportSimulationDialog({
+export default function ImportCaseCountDialog({
   toggleShowModal,
   showModal,
   onDataImported,
-}: ImportSimulationDialogProps) {
+}: ImportCaseCountDialogProps) {
   const { t } = useTranslation()
   const [filesToImport, setFilesToImport] = useState<Map<FileType, File>>(new Map())
   const [errorMessage, setErrorMessage] = useState<string>()
@@ -80,7 +85,10 @@ export default function ImportSimulationDialog({
         }
 
         try {
-          onDataImported(processUserResult(data))
+          onDataImported({
+            fileName: file.name,
+            data: processImportedData(data),
+          })
         } catch (error) {
           setErrorMessage(getMessageForError(error))
           return
@@ -101,7 +109,9 @@ export default function ImportSimulationDialog({
       <ModalBody>
         <Message color="danger">{errorMessage}</Message>
         <p>
-          {t('You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.')}
+          {t(
+            'You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.',
+          )}
         </p>
         <FileUploadZone
           onFilesUploaded={setFilesToImport}

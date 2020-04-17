@@ -39,21 +39,28 @@ function reduceDroppedFiles(files: Map<FileType, File>, file: File) {
   return files
 }
 
-function FileUploadZone(props: FileUploadZoneProps) {
+function FileUploadZone({
+  accept,
+  multiple,
+  onFilesUploaded,
+  onFilesRejected,
+  dropZoneMessage,
+  activeDropZoneMessage,
+}: FileUploadZoneProps) {
   const [uploadedFiles, dispatchUploadedFile] = useReducer(reduceDroppedFiles, new Map())
   const onDrop = useCallback(
     (droppedFiles: File[]) => {
       droppedFiles.forEach(dispatchUploadedFile)
-      props.onFilesUploaded(uploadedFiles)
+      onFilesUploaded(uploadedFiles)
     },
-    [props.onFilesUploaded],
+    [uploadedFiles, onFilesRejected],
   )
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: props.accept,
-    multiple: props.multiple,
+    accept,
+    multiple,
     onDropAccepted: onDrop,
-    onDropRejected: props.onFilesRejected,
+    onDropRejected: onFilesRejected,
   })
   const { t } = useTranslation()
 
@@ -61,9 +68,7 @@ function FileUploadZone(props: FileUploadZoneProps) {
     <div>
       <div {...getRootProps()} className="fileuploadzone-drop-area rounded p-3">
         <input type="file" {...getInputProps()} />
-        <p className="h5 text-secondary text-center m-0">
-          {isDragActive ? props.activeDropZoneMessage : props.dropZoneMessage}
-        </p>
+        <p className="h5 text-secondary text-center m-0">{isDragActive ? activeDropZoneMessage : dropZoneMessage}</p>
       </div>
       {uploadedFiles.size > 0 && (
         <>

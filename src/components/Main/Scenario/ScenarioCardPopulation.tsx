@@ -5,7 +5,6 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
-import { caseCountsNames } from '../state/caseCountsData'
 import { ageDistributionNames } from '../state/countryAgeDistributionData'
 
 import { CUSTOM_COUNTRY_NAME, NONE_COUNTRY_NAME } from '../state/state'
@@ -14,12 +13,10 @@ import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
+import { ConfirmedCasesDataPicker } from './ConfirmedCasesDataPicker'
 
 const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
-
-const caseCountOptions = caseCountsNames.map((country) => ({ value: country, label: country }))
-caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: i18next.t(NONE_COUNTRY_NAME) })
 
 export interface ScenarioCardPopulationProps {
   errors?: FormikErrors<FormikValues>
@@ -97,14 +94,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         errors={errors}
         touched={touched}
       />
-      <FormDropdown<string>
-        identifier="population.cases"
-        label={t('Confirmed cases')}
-        help={t('Select region for which to plot confirmed case and death counts.')}
-        options={caseCountOptions}
-        errors={errors}
-        touched={touched}
-      />
+      <ConfirmedCasesDataPicker errors={errors} touched={touched} />
       <FormDatePicker
         identifier="simulation.simulationTimeRange"
         label={t('Simulation time range')}

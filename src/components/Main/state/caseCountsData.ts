@@ -2,6 +2,10 @@ import { CaseCounts, Convert } from '../../../.generated/types'
 import CaseCountsValidate, { errors } from '../../../.generated/CaseCountsValidate'
 import allCaseCountsRaw from '../../../assets/data/case_counts.json'
 import { NONE_COUNTRY_NAME } from './state'
+import { EmpiricalData } from '../../../algorithms/types/Param.types'
+import { ImportedCaseCount } from '../Results/ImportCaseCountDialog'
+
+const CUSTOM_CASE_COUNT_KEY = 'customCaseCount'
 
 function validate(): CaseCounts[] {
   const valid = CaseCountsValidate(allCaseCountsRaw)
@@ -17,9 +21,15 @@ function validate(): CaseCounts[] {
 const caseCounts = validate()
 export const caseCountsNames = caseCounts.map((cc) => cc.country)
 
-export function getCaseCountsData(key: string) {
+export function getCaseCountsData(key: string): EmpiricalData {
   if (key === NONE_COUNTRY_NAME) {
     return []
+  }
+
+  const customCaseCount = getUserCaseCount()
+
+  if (customCaseCount) {
+    return customCaseCount.data
   }
 
   const caseCountFound = caseCounts.find((cc) => cc.country === key)
@@ -38,4 +48,17 @@ export function getCaseCountsData(key: string) {
   // FIXME: this should be changed, too hacky
   const [caseCount] = Convert.toCaseCounts(JSON.stringify([caseCountFound]))
   return caseCount.empiricalData
+}
+
+export function getUserCaseCount(): ImportedCaseCount | undefined {
+  const data = sessionStorage.getItem(CUSTOM_CASE_COUNT_KEY)
+  return data ? JSON.parse(data) : undefined
+}
+
+export function saveUserCaseCount(userCaseCount: ImportedCaseCount): void {
+  sessionStorage.setItem(CUSTOM_CASE_COUNT_KEY, JSON.stringify(userCaseCount))
+}
+
+export function resetUserCaseCount(): void {
+  sessionStorage.removeItem(CUSTOM_CASE_COUNT_KEY)
 }
