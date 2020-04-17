@@ -33,6 +33,10 @@ import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
 
+function unused2() {
+  return 43
+}
+
 interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
 }
