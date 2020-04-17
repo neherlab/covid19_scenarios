@@ -22,7 +22,7 @@ export interface MitigationIntervalDto {
   name: string
   color: string
   timeRange: DateRangeDto
-  mitigationValue: number
+  mitigationValue: number[]
 }
 
 // format of the application state persisted in the URL
