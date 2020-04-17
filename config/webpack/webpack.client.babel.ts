@@ -58,7 +58,7 @@ const schema = getenv('WEB_SCHEMA')
 const host = getenv('WEB_HOST', getenv('NOW_URL', 'null'))
 const portDev = getenv('WEB_PORT_DEV')
 const portProd = getenv('WEB_PORT_PROD')
-const portAnalyze = parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
+const portAnalyze = Number.parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
 const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
@@ -174,7 +174,7 @@ export default {
     rules: [
       ...webpackLoadJavascript({
         babelConfig,
-        eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
+        // eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
         options: { caller: { target: 'web' } },
         sourceMaps,
         transpiledLibs: [
@@ -183,6 +183,7 @@ export default {
           'create-color',
           'd3-array',
           'delay',
+          'immer',
           'immer',
           'lodash',
           'p-min-delay',
@@ -211,7 +212,6 @@ export default {
     symlinks: false,
 
     mainFields: [
-      'source',
       'ts:main',
       'ts:module',
       'tsmain',
@@ -223,6 +223,7 @@ export default {
       'esm',
       'es2015',
       'main',
+      'source',
     ],
     extensions: [
       '.wasm',

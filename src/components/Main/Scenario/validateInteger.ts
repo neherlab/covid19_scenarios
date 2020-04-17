@@ -24,7 +24,7 @@ export function validateInteger(
       const castedValue = integerSchema.cast(value)
       return { value: castedValue, error: validationError.message }
     } catch (typeError) {
-      return { value: NaN, error: validationError.message }
+      return { value: Number.NaN, error: validationError.message }
     }
   }
 }
