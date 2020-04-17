@@ -5,9 +5,19 @@ export function float64ToBigInt64(n: number): bigint {
   return view.getBigInt64(0, true)
 }
 
+export function signAndMagnitudeToBiased(sam: bigint): bigint {
+  if (sam < 0) {
+    return ~sam + 1n
+  } else {
+    return sam
+  }
+}
+
 export function absUlpDiff(a: number, b: number): bigint {
-  const diff = float64ToBigInt64(a) - float64ToBigInt64(b)
-  return diff < 0n ? diff * -1n : diff
+  const biased1 = signAndMagnitudeToBiased(float64ToBigInt64(a))
+  const biased2 = signAndMagnitudeToBiased(float64ToBigInt64(b))
+
+  return biased1 >= biased2 ? biased1 - biased2 : biased2 - biased1
 }
 
 export function toBeCloseToUlp(a: number, b: number, maxULP: bigint): boolean {
