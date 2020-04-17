@@ -109,6 +109,7 @@ export default function ImportCaseCountDialog({
       <ModalBody>
         <Message color="danger">{errorMessage}</Message>
         <p>
+          {/* TODO add more information on the expected schema here */}
           {t(
             'You can import your own data to display them along with the results of the simulation, allowing to compare the results of the model with real cases.',
           )}

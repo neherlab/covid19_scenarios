@@ -15,19 +15,19 @@ export interface InternalCumulativeData {
 }
 
 export interface ExposedCurrentData {
-  susceptible?: Record<string, number>
-  exposed?: Record<string, number>
-  infectious?: Record<string, number>
-  severe?: Record<string, number>
-  critical?: Record<string, number>
-  overflow?: Record<string, number>
+  susceptible: Record<string, number>
+  exposed: Record<string, number>
+  infectious: Record<string, number>
+  severe: Record<string, number>
+  critical: Record<string, number>
+  overflow: Record<string, number>
 }
 
 export interface ExposedCumulativeData {
-  recovered?: Record<string, number>
-  hospitalized?: Record<string, number>
-  critical?: Record<string, number>
-  fatality?: Record<string, number>
+  recovered: Record<string, number>
+  hospitalized: Record<string, number>
+  critical: Record<string, number>
+  fatality: Record<string, number>
 }
 
 // This defines the internal data structure
@@ -80,12 +80,8 @@ export interface UserResult {
   trajectory: ExportedTimePoint[]
 }
 
-export interface SimulationResult {
-  trajectory: SimulationTimePoint[]
-}
-
 export interface AlgorithmResult {
-  deterministic: SimulationResult
-  stochastic: SimulationResult[]
+  deterministic: UserResult
+  stochastic: UserResult[]
   params: ModelParams
 }

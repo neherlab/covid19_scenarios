@@ -7,7 +7,6 @@ import {
   InternalCumulativeData,
   UserResult,
   ExportedTimePoint,
-  SimulationResult,
 } from './types/Result.types'
 
 const msPerDay = 1000 * 60 * 60 * 24
@@ -501,9 +500,9 @@ const keys = <T>(o: T): Array<keyof T & string> => {
   return Object.keys(o) as Array<keyof T & string>
 }
 
-export function collectTotals(trajectory: SimulationTimePoint[], ages: string[]): SimulationResult {
+export function collectTotals(trajectory: SimulationTimePoint[], ages: string[]): UserResult {
   // FIXME: parameter reassign
-  const res: SimulationResult = { trajectory: [] }
+  const res: UserResult = { trajectory: [] }
 
   trajectory.forEach((d) => {
     const tp: ExportedTimePoint = {

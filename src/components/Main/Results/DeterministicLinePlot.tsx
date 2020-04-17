@@ -20,7 +20,7 @@ import {
 } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 import { calculatePosition, scrollToRef } from './chartHelper'
@@ -33,6 +33,7 @@ const ASPECT_RATIO = 16 / 9
 
 export interface LinePlotProps {
   data?: AlgorithmResult
+  userResult?: UserResult
   params: AllParams
   mitigation: ContainmentData
   logScale?: boolean
@@ -105,6 +106,7 @@ const verifyPositive = (x: number) => (x > 0 ? x : undefined)
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function DeterministicLinePlot({
   data,
+  userResult,
   params,
   mitigation,
   logScale,

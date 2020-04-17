@@ -6,9 +6,9 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
-import { processImportedData } from '../../../algorithms/utils/importedData'
+import processUserResult from '../../../algorithms/utils/userResult'
 import { AgeBarChart } from './AgeBarChart'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
@@ -58,6 +58,7 @@ function ResultsCardFunction({
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
+  const [userResult, setUserResult] = useState<UserResult | undefined>()
 
   useEffect(() => {
     const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
@@ -92,8 +93,8 @@ function ResultsCardFunction({
       // TODO: have to report this back to the user
       throw new Error(`t('Error'): t('CSV file could not be parsed')`)
     }
-    const newUserResult = processImportedData(data)
-    // setUserResult(newUserResult)
+    const newUserResult = processUserResult(data)
+    setUserResult(newUserResult)
   }
 
   const [canExport, setCanExport] = useState<boolean>(false)
@@ -188,7 +189,7 @@ function ResultsCardFunction({
               onValueChanged={setPersistLogScale}
             />
           </div>
-          <div className="mr-4" data-testid="HumanizedValuesSwitch">
+          <div data-testid="HumanizedValuesSwitch">
             <FormSwitch
               identifier="showHumanized"
               label={t('Format numbers')}
@@ -202,6 +203,7 @@ function ResultsCardFunction({
           <Col>
             <DeterministicLinePlot
               data={result}
+              userResult={userResult}
               params={params}
               mitigation={mitigation}
               logScale={logScale}

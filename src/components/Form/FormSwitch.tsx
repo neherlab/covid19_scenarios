@@ -11,7 +11,6 @@ export interface FormSwitchProps {
   checked: boolean
   hidden?: boolean
   onValueChanged(checked: boolean): void
-  disabled?: boolean
 }
 
 export default function FormSwitch({
