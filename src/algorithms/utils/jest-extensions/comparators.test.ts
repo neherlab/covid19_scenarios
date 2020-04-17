@@ -1,4 +1,4 @@
-import { float64ToBigInt64, absUlpDiff } from './comparators'
+import { float64ToBigInt64, absUlpDiff, toBeCloseToUlp } from './comparators'
 
 describe('ULP float comparison', () => {
   it('difference between zero and zero is 0', () => {
@@ -25,5 +25,11 @@ describe('ULP float comparison', () => {
 
   it('-0 and 0 are equivalent', () => {
     expect(absUlpDiff(0, -0)).toStrictEqual(0n)
+  })
+
+  it('NaN results in false', () => {
+    expect(toBeCloseToUlp(NaN, 3.0, 1n)).toStrictEqual(false)
+    expect(toBeCloseToUlp(3.14, NaN, 1n)).toStrictEqual(false)
+    expect(toBeCloseToUlp(NaN, NaN, 1n)).toStrictEqual(false)
   })
 })

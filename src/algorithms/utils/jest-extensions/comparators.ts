@@ -28,5 +28,9 @@ export function absUlpDiff(a: number, b: number): bigint {
 }
 
 export function toBeCloseToUlp(a: number, b: number, maxULP: bigint): boolean {
+  if (isNaN(a) || isNaN(b)) {
+    return false
+  }
+
   return absUlpDiff(a, b) < maxULP
 }
