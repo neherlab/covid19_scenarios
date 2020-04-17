@@ -12,7 +12,6 @@ module.exports = {
     },
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json', './cypress/tsconfig.json'],
-    extraFileExtensions: ['.json'],
     warnOnUnsupportedTypeScriptVersion: true,
   },
   globals: {},
@@ -51,7 +50,6 @@ module.exports = {
     'i18next',
     'import',
     'jest',
-    'json',
     'jsx-a11y',
     'lodash',
     'no-loops',
@@ -155,12 +153,6 @@ module.exports = {
     },
   },
   overrides: [
-    {
-      files: ['*.json'],
-      rules: {
-        '@typescript-eslint/no-useless-files': 'off',
-      },
-    },
     {
       files: ['*.d.ts'],
       rules: {

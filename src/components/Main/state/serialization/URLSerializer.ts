@@ -1,3 +1,4 @@
+import { Location } from 'history'
 import { State } from '../state'
 import { serialize, deserialize } from './StateSerializer'
 
@@ -14,7 +15,7 @@ import { serialize, deserialize } from './StateSerializer'
 const VERSION_PARAM_NAME = 'v'
 const QUERY_PARAM_NAME = 'q'
 const CURRENT_VERSION = '1'
-const VALID_VERSIONS = [CURRENT_VERSION]
+const VALID_VERSIONS = new Set([CURRENT_VERSION])
 
 /**
  * Layer responsible for pushing the serialized state to browser history and reading it from the URL
@@ -30,24 +31,17 @@ export const buildLocationSearch = (scenarioState: State): string => {
 }
 
 /**
- * Updates browser search with a given URL
- */
-export const updateBrowserURL = (searchString: string): void => {
-  window.history.pushState('', '', searchString)
-}
-
-/**
  * Reads the browser URL and returna the updated application state
  */
-export const deserializeScenarioFromURL = (currentAppState: State): State => {
-  const { search } = window.location
+export const deserializeScenarioFromURL = (location: Location, currentAppState: State): State => {
+  const { search } = location
 
   if (search) {
     const searchParams = new URLSearchParams(search.slice(1)) // removing the first char ('?')
     const version = searchParams.get(VERSION_PARAM_NAME)
     const queryString = searchParams.get(QUERY_PARAM_NAME)
 
-    if (!version || !VALID_VERSIONS.includes(version)) {
+    if (!version || !VALID_VERSIONS.has(version)) {
       console.error('Invalid URL version:', version)
     } else if (queryString) {
       try {

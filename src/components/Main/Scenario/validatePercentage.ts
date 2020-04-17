@@ -24,7 +24,7 @@ export function validatePercentage(
       const castedValue = percentageSchema.cast(value)
       return { value: castedValue, errors: validationError.message }
     } catch (typeError) {
-      return { value: NaN, errors: validationError.message }
+      return { value: Number.NaN, errors: validationError.message }
     }
   }
 }

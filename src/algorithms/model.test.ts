@@ -1,14 +1,12 @@
 import { AgeDistribution } from '../.generated/types'
 
-import { interpolateTimeSeries, intervalsToTimeSeries } from './run'
-import { infectionRate, getPopulationParams, initializePopulation, evolve } from './model'
+import { getPopulationParams, infectionRate, initializePopulation } from './initialize'
+
+import { evolve } from './model'
 
 import { ageDisstribution, allParamsFlat, severity } from './__test_data__/getPopulationParams.input.default'
 
 const identity = (x: number) => x
-
-const mitigationTimeSeries = intervalsToTimeSeries(allParamsFlat.mitigationIntervals)
-const mitigationFunction = interpolateTimeSeries(mitigationTimeSeries)
 
 const jul2020 = new Date('2020-07-01')
 const dec2020 = new Date('2020-12-01')
@@ -60,14 +58,9 @@ describe('model', () => {
   })
 
   describe('getPopulationParams', () => {
-    it.each([
-      [jul2020, 0.12659812408021429],
-      [dec2020, 0.876249919193254],
-      [feb2021, 0.9134810622144394],
-    ])('calculates infection rates for %p', (date: Date, expectedRate: number) => {
-      const params = getPopulationParams(allParamsFlat, severity, ageDisstribution, mitigationFunction)
+    it('calculates correct params', () => {
+      const params = getPopulationParams(allParamsFlat, severity, ageDisstribution)
       expect(params).toMatchSnapshot()
-      expect(params.rate.infection(new Date(date))).toBeCloseTo(expectedRate)
     })
   })
 
@@ -85,7 +78,7 @@ describe('model', () => {
 
   describe('evolve', () => {
     it('produces correct output for 10 days', () => {
-      const params = getPopulationParams(allParamsFlat, severity, ageDisstribution, mitigationFunction)
+      const params = getPopulationParams(allParamsFlat, severity, ageDisstribution)
 
       const input = initializePopulation(
         initializePopulationParams.N,
@@ -94,7 +87,7 @@ describe('model', () => {
         initializePopulationParams.ages,
       )
 
-      const result = evolve(input, params, input.time + 10, identity)
+      const result = evolve(input, params[0], input.time + 10, identity)
       expect(result).toMatchSnapshot()
     })
   })

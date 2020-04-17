@@ -58,7 +58,7 @@ const schema = getenv('WEB_SCHEMA')
 const host = getenv('WEB_HOST', getenv('NOW_URL', 'null'))
 const portDev = getenv('WEB_PORT_DEV')
 const portProd = getenv('WEB_PORT_PROD')
-const portAnalyze = parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
+const portAnalyze = Number.parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
 const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
@@ -81,7 +81,9 @@ const { moduleRoot, pkg } = findModuleRoot()
 const buildPath = path.join(moduleRoot, '.build', analyze ? 'analyze' : MODE, 'web') // prettier-ignore
 
 function alias(development: boolean) {
-  let productionAliases = {}
+  let productionAliases: Record<string, string> = {
+    jsonp$: path.join(moduleRoot, '3rdparty/__empty-module'),
+  }
 
   if (profile) {
     productionAliases = {
@@ -98,17 +100,6 @@ function alias(development: boolean) {
   }
 
   return productionAliases
-}
-
-function entry(development: boolean, entries: string[]) {
-  if (development || debuggableProd) {
-    return [
-      'map.prototype.tojson', // to visualize Map in Redux Dev Tools
-      'set.prototype.tojson', // to visualize Set in Redux Dev Tools
-      ...entries,
-    ]
-  }
-  return entries
 }
 
 function outputFilename(development: boolean, ext = 'js') {
@@ -142,7 +133,7 @@ export default {
     hints: false,
   },
 
-  entry: entry(development, [path.join(moduleRoot, `src/index.polyfilled.ts`)]),
+  entry: path.join(moduleRoot, `src/index.polyfilled.ts`),
 
   output: {
     path: buildPath,
@@ -183,19 +174,24 @@ export default {
     rules: [
       ...webpackLoadJavascript({
         babelConfig,
-        eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
+        // eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
         options: { caller: { target: 'web' } },
         sourceMaps,
         transpiledLibs: [
           '@loadable',
           '@redux-saga',
+          'create-color',
+          'd3-array',
           'delay',
+          'immer',
           'immer',
           'lodash',
           'p-min-delay',
           'react-router',
+          'recharts',
           'redux/es',
         ],
+        nonTranspiledLibs: ['d3-array/src/cumsum.js'],
       }),
 
       ...webpackLoadStyles({
@@ -216,7 +212,6 @@ export default {
     symlinks: false,
 
     mainFields: [
-      'source',
       'ts:main',
       'ts:module',
       'tsmain',
@@ -228,6 +223,7 @@ export default {
       'esm',
       'es2015',
       'main',
+      'source',
     ],
     extensions: [
       '.wasm',

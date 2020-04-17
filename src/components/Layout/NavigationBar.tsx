@@ -8,7 +8,7 @@ import { FaGithub, FaTwitter } from 'react-icons/fa'
 import LinkExternal from '../Router/LinkExternal'
 import NavigationLink from './NavigationLink'
 
-import logo from '../../assets/img/HIVEVO_logo.png'
+import logo from '../../assets/img/neherlab.svg'
 
 import './NavigationBar.scss'
 

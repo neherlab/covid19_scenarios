@@ -49,6 +49,6 @@ def parse():
     regions = add_cases(regions, list(regions.keys()), 'Italy', cols)
 
     #https://github.com/neherlab/covid19_scenarios/issues/341
-    regions = add_cases(regions, ['ITA-P.A. Bolzano', 'ITA-P.A. Trento'], 'ITA-TrentionAltoAdige', cols)
+    regions = add_cases(regions, ['ITA-P.A. Bolzano', 'ITA-P.A. Trento'], 'ITA-TrentinoAltoAdige', cols)
 
     store_data(regions, 'italy', cols)

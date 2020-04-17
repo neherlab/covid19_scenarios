@@ -36,9 +36,9 @@ def parse():
             date   = row[0]
             region = row[3].replace(" ", "-").replace("Î", "I").replace("'", "").replace("’", "")
             cases = stoi(row[4])
-            death = stoi(row[5])
-            hospitalized = stoi(row[8])
-            icu = stoi(row[7])
+            death = stoi(row[8])
+            hospitalized = stoi(row[11])
+            icu = stoi(row[10])
 
             if region not in regions:
                 regions[region] = {}

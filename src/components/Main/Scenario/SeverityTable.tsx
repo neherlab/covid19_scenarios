@@ -9,7 +9,6 @@ import {
   EditingState,
   EditingColumnExtension,
   Row as TableRow,
-  Table as TableBase,
   DataTypeProvider,
   DataTypeProviderProps,
 } from '@devexpress/dx-react-grid'
@@ -53,7 +52,7 @@ const editingColumnExtensions: EditingColumnExtension[] = [
 ]
 const getRowId = (row: TableRow) => row.id
 
-export type HeaderCellProps = Partial<TableBase.DataCellProps> & TableHeaderRow.CellProps
+export type HeaderCellProps = Partial<Table.DataCellProps> & TableHeaderRow.CellProps
 
 export function HeaderCell({ column }: HeaderCellProps) {
   const { title } = column
@@ -66,8 +65,20 @@ export function HeaderCell({ column }: HeaderCellProps) {
   return <td title={title}>{content}</td>
 }
 
+interface SeverityTableCellProps extends Table.DataCellProps {
+  onClick?: (e: MouseEvent) => void
+}
+
+const SeverityTableCell = ({ onClick, column, ...props }: SeverityTableCellProps) => {
+  const editingColumnExtension = editingColumnExtensions.find(
+    (editingExtension) => column.name === editingExtension.columnName,
+  )
+  const editable = !editingColumnExtension || editingColumnExtension.editingEnabled
+  return <Table.Cell {...props} tabIndex={editable ? 0 : -1} onFocus={editable ? onClick : undefined} column={column} />
+}
+
 const DecimalFormatter: React.FC<DataTypeProvider.ValueFormatterProps> = ({ value }) => (
-  <span>{d3format('.2')(parseFloat(value))}</span>
+  <span>{d3format('.2')(Number.parseFloat(value))}</span>
 )
 
 const DecimalTypeProvider: React.FC<DataTypeProviderProps> = (props) => (
@@ -102,24 +113,12 @@ function SeverityTable({ severity, setSeverity, scenarioState, scenarioDispatch 
   const commitChanges = ({ added, changed, deleted }: ChangeSet) => {
     let changedRows: SeverityTableRow[] = []
 
-    if (added) {
-      const startingAddedId = severity.length > 0 ? severity[severity.length - 1].id + 1 : 0
-      changedRows = [
-        ...severity,
-        ...added.map((row, index) => ({
-          id: startingAddedId + index,
-          ...row,
-        })),
-      ]
+    if (added || deleted) {
+      console.warn('Adds or deletes are not supported')
     }
 
     if (changed) {
       changedRows = severity.map((row) => (changed[row.id] ? { ...row, ...changed[row.id] } : row))
-    }
-
-    if (deleted) {
-      const deletedSet = new Set(deleted)
-      changedRows = severity.filter((row) => !deletedSet.has(row.id))
     }
 
     const ageDistribution: AgeDistribution = { ...scenarioState.ageDistribution }
@@ -138,8 +137,14 @@ function SeverityTable({ severity, setSeverity, scenarioState, scenarioDispatch 
     })
 
     setAgeDistributionErrors(thisAgeDistributionErrors)
-    scenarioDispatch(setAgeDistributionData({ data: ageDistribution }))
-    setSeverity(updateSeverityTable(changedRows))
+
+    if (!_.isEqual(ageDistribution, scenarioState.ageDistribution)) {
+      scenarioDispatch(setAgeDistributionData({ data: ageDistribution }))
+    }
+    const updatedSeverityTable = updateSeverityTable(changedRows)
+    if (!_.isEqual(updatedSeverityTable, severity)) {
+      setSeverity(updatedSeverityTable)
+    }
   }
 
   const severityWithAgeDistribution = severity.map((ageRow) => {
@@ -155,7 +160,7 @@ function SeverityTable({ severity, setSeverity, scenarioState, scenarioDispatch 
 
             <DecimalTypeProvider for={['totalFatal']} />
 
-            <Table columnExtensions={columnExtensions} />
+            <Table columnExtensions={columnExtensions} cellComponent={SeverityTableCell} />
 
             <TableInlineCellEditing startEditAction={'click'} selectTextOnEditStart />
 

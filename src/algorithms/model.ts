@@ -1,5 +1,3 @@
-import { AllParamsFlat, AgeDistribution } from './types/Param.types'
-import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
 import {
   ModelParams,
   SimulationTimePoint,
@@ -9,178 +7,10 @@ import {
   ExportedTimePoint,
 } from './types/Result.types'
 
-const msPerDay = 1000 * 60 * 60 * 24
+import { msPerDay } from './initialize'
+
 const eulerStep = 0.5
 export const eulerStepsPerDay = Math.round(1 / eulerStep)
-
-const monthToDay = (m: number) => {
-  return m * 30 + 15
-}
-
-const jan2020 = new Date('2020-01-01').valueOf() // time in ms
-
-/**
- *
- * @param time - point in time, until which simulation runs, as epoch time
- * @param avgInfectionRate
- * @param peakMonth - counting number in range of 0-11
- * @param seasonalForcing -  seasonal variation in transmission. Usually a decimal number, e. g. 0.2
- * @returns
- */
-export function infectionRate(
-  time: number,
-  avgInfectionRate: number,
-  peakMonth: number,
-  seasonalForcing: number,
-): number {
-  // this is super hacky
-  const phase = ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) * 2 * Math.PI
-  return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
-}
-
-export function getPopulationParams(
-  params: AllParamsFlat,
-  severity: SeverityTableRow[],
-  ageCounts: AgeDistribution,
-  containment: (t: Date) => number,
-): ModelParams {
-  // TODO: Make this a form-adjustable factor
-  const pop: ModelParams = {
-    ageDistribution: {},
-    importsPerDay: [],
-    timeDelta: 0,
-    timeDeltaDays: 0,
-    frac: {
-      severe: [],
-      critical: [],
-      fatal: [],
-      isolated: [],
-    },
-    rate: {
-      latency: 1 / params.latencyTime,
-      infection: () => -Infinity, // Dummy infectionRate function. This is set below.
-      recovery: [],
-      severe: [],
-      discharge: [],
-      critical: [],
-      stabilize: [],
-      fatality: [],
-      overflowFatality: [],
-    },
-
-    populationServed: params.populationServed,
-    numberStochasticRuns: params.numberStochasticRuns,
-    hospitalBeds: params.hospitalBeds,
-    ICUBeds: params.ICUBeds,
-  }
-
-  // Compute age-stratified parameters
-  const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b as keyof AgeDistribution], 0)
-
-  // NOTE(nnoll): Assumes the age groups of severity table sorted lexiographically and numerically is equivalent
-  severity.sort((row1, row2) => {
-    if (row1.ageGroup < row2.ageGroup) {
-      return -1
-    }
-    if (row1.ageGroup > row2.ageGroup) {
-      return +1
-    }
-    return 0
-  })
-
-  severity.forEach((row, i) => {
-    const freq = (1.0 * ageCounts[row.ageGroup as keyof AgeDistribution]) / total
-    pop.ageDistribution[row.ageGroup] = freq
-    pop.frac.severe[i] = (row.severe / 100) * (row.confirmed / 100)
-    pop.frac.critical[i] = pop.frac.severe[i] * (row.critical / 100)
-    pop.frac.fatal[i] = pop.frac.critical[i] * (row.fatal / 100)
-
-    const dHospital = pop.frac.severe[i]
-    const dCritical = row.critical / 100
-    const dFatal = row.fatal / 100
-
-    // row.isolated is possible undefined
-    const isolated = row.isolated === undefined ? 0 : row.isolated
-
-    // Age specific rates
-    pop.frac.isolated[i] = isolated / 100
-    pop.rate.recovery[i] = (1 - dHospital) / params.infectiousPeriod
-    pop.rate.severe[i] = dHospital / params.infectiousPeriod
-    pop.rate.discharge[i] = (1 - dCritical) / params.lengthHospitalStay
-    pop.rate.critical[i] = dCritical / params.lengthHospitalStay
-    pop.rate.stabilize[i] = (1 - dFatal) / params.lengthICUStay
-    pop.rate.fatality[i] = dFatal / params.lengthICUStay
-    pop.rate.overflowFatality[i] = params.overflowSeverity * pop.rate.fatality[i]
-  })
-
-  // Get import rates per age class (assume flat)
-  const L = Object.keys(pop.rate.recovery).length
-  pop.rate.recovery.forEach((_, i) => {
-    pop.importsPerDay[i] = params.importsPerDay / L
-  })
-
-  // Infectivity dynamics
-  const avgInfectionRate = params.r0 / params.infectiousPeriod
-  pop.rate.infection = (time: Date) =>
-    containment(time) * infectionRate(time.valueOf(), avgInfectionRate, params.peakMonth, params.seasonalForcing)
-
-  return pop
-}
-
-export function initializePopulation(
-  N: number,
-  numCases: number,
-  t0: number,
-  ages: AgeDistribution,
-): SimulationTimePoint {
-  const Z = Object.values(ages).reduce((a, b) => a + b)
-  const pop: SimulationTimePoint = {
-    time: t0,
-    current: {
-      susceptible: [],
-      exposed: [],
-      infectious: [],
-      severe: [],
-      critical: [],
-      overflow: [],
-    },
-    cumulative: {
-      recovered: [],
-      hospitalized: [],
-      critical: [],
-      fatality: [],
-    },
-  }
-
-  // specification of the initial condition: there are numCases at tMin
-  // of those, 0.3 are infectious, the remainder is exposed and will turn
-  // infectious as they propagate through the exposed categories.
-  const initialInfectiousFraction = 0.3
-
-  // TODO: Ensure the sum is equal to N!
-  const ageGroups = Object.keys(ages).sort() as (keyof AgeDistribution)[]
-  ageGroups.forEach((k, i) => {
-    const n = Math.round((ages[k] / Z) * N)
-    pop.current.susceptible[i] = n
-    pop.current.exposed[i] = [0, 0, 0]
-    pop.current.infectious[i] = 0
-    pop.current.severe[i] = 0
-    pop.current.critical[i] = 0
-    pop.current.overflow[i] = 0
-    pop.cumulative.hospitalized[i] = 0
-    pop.cumulative.recovered[i] = 0
-    pop.cumulative.critical[i] = 0
-    pop.cumulative.fatality[i] = 0
-    if (i === Math.round(ageGroups.length / 2)) {
-      pop.current.susceptible[i] -= numCases
-      pop.current.infectious[i] = initialInfectiousFraction * numCases
-      const e = ((1 - initialInfectiousFraction) * numCases) / pop.current.exposed[i].length
-      pop.current.exposed[i] = pop.current.exposed[i].map((_) => e)
-    }
-  })
-
-  return pop
-}
 
 interface StateFlux {
   susceptible: number[]
@@ -226,9 +56,9 @@ interface TimeDerivative {
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
 function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number): SimulationTimePoint {
-  const t0 = new Date(pop.time)
-  const t1 = new Date(pop.time + (dt / 2) * msPerDay)
-  const t2 = new Date(pop.time + dt * msPerDay)
+  const t0 = pop.time
+  const t1 = pop.time + (dt / 2) * msPerDay
+  const t2 = pop.time + dt * msPerDay
 
   const k1 = derivative(fluxes(t0, pop, P))
   const k2 = derivative(fluxes(t1, advanceState(pop, k1, dt / 2, P.ICUBeds), P))
@@ -258,7 +88,7 @@ function advanceState(
   nICUBeds: number,
 ): SimulationTimePoint {
   const newPop: SimulationTimePoint = {
-    time: Date.now(),
+    time: 0,
     current: {
       susceptible: [],
       exposed: [],
@@ -436,7 +266,7 @@ function derivative(flux: StateFlux): TimeDerivative {
   return grad
 }
 
-function fluxes(time: Date, pop: SimulationTimePoint, P: ModelParams): StateFlux {
+function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFlux {
   // Convention: flux is labelled by the state
   const flux: StateFlux = {
     susceptible: [],
@@ -500,9 +330,8 @@ const keys = <T>(o: T): Array<keyof T & string> => {
   return Object.keys(o) as Array<keyof T & string>
 }
 
-export function collectTotals(trajectory: SimulationTimePoint[], ages: string[]): UserResult {
-  // FIXME: parameter reassign
-  const res: UserResult = { trajectory: [] }
+export function collectTotals(trajectory: SimulationTimePoint[], ages: string[]): ExportedTimePoint[] {
+  const res: ExportedTimePoint[] = []
 
   trajectory.forEach((d) => {
     const tp: ExportedTimePoint = {
@@ -550,10 +379,14 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
       tp.cumulative[k].total = d.cumulative[k].reduce((a, b) => a + b, 0)
     })
 
-    res.trajectory.push(tp)
+    res.push(tp)
   })
 
   return res
+}
+
+function title(name: string): string {
+  return name === 'critical' ? 'ICU' : name
 }
 
 export function exportSimulation(result: UserResult, ageGroups: string[] = ['total']) {
@@ -562,39 +395,60 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
-  const header = keys(result.trajectory[0].current)
-  const tsvHeader: string[] = header.map((x) => (x === 'critical' ? 'ICU' : x))
+  const categories = {
+    current: keys(result.mean[0].current),
+    cumulative: keys(result.mean[0].cumulative),
+  }
+  const header: string[] = ['time']
 
-  const headerCumulative = keys(result.trajectory[0].cumulative)
-  const tsvHeaderCumulative = headerCumulative.map((x) => `cumulative_${x}`)
-
-  let buf = 'time'
-  tsvHeader.concat(tsvHeaderCumulative).forEach((hdr) => {
+  categories.current.forEach((category) => {
     ageGroups.forEach((age) => {
-      buf += `\t${hdr} (${age})`
+      header.push(
+        `${title(category)} (${age}) mean`,
+        `${title(category)} (${age}) lower bound`,
+        `${title(category)} (${age}) upper bound`,
+      )
     })
   })
-  const tsv = [buf]
 
-  const pop: Record<string, boolean> = {}
-  result.trajectory.forEach((d) => {
-    const t = new Date(d.time).toISOString().slice(0, 10)
-    if (t in pop) {
+  categories.cumulative.forEach((category) => {
+    ageGroups.forEach((age) => {
+      header.push(
+        `cumulative ${title(category)} (${age}) mean`,
+        `cumulative ${title(category)} (${age}) lower bound`,
+        `cumulative ${title(category)} (${age}) upper bound`,
+      )
+    })
+  })
+
+  const tsv = [header.join('\t')]
+
+  const seen: Record<string, boolean> = {}
+  const { upper, lower } = result
+
+  result.mean.forEach((mean, i) => {
+    const t = new Date(mean.time).toISOString().slice(0, 10)
+    if (t in seen) {
       return
-    } // skip if date is already in table
-    pop[t] = true
+    }
+    seen[t] = true
+
     let buf = t
-    header.forEach((k) => {
+    categories.current.forEach((k) => {
       ageGroups.forEach((age) => {
-        buf += `\t${Math.round(d.current[k][age])}`
+        buf += `\t${Math.round(mean.current[k][age])}\t${Math.round(lower[i].current[k][age])}\t${Math.round(
+          upper[i].current[k][age],
+        )}`
+      })
+    })
+    categories.cumulative.forEach((k) => {
+      ageGroups.forEach((age) => {
+        buf += `\t${Math.round(mean.cumulative[k][age])}\t${Math.round(lower[i].cumulative[k][age])}\t${Math.round(
+          upper[i].cumulative[k][age],
+        )}`
       })
     })
 
-    headerCumulative.forEach((k) => {
-      ageGroups.forEach((age) => {
-        buf += `\t${Math.round(d.cumulative[k][age])}`
-      })
-    })
     tsv.push(buf)
   })
 
