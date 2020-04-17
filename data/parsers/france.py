@@ -63,5 +63,7 @@ def parse():
     regions2 = {}
     for reg, d in regions.items():
         regions2['-'.join(['FRA',reg])] = [d[day] for day in sorted(d.keys())]
+        
+    regions2 = add_cases(regions2, list(regions2.keys()), 'France', cols)
 
     store_data(regions2, 'france',  cols)
