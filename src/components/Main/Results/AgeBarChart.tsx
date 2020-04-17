@@ -7,9 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, LabelProps, TooltipProps } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { AgeDistribution } from '../../../.generated/types'
-
-import { SeverityTableRow } from '../Scenario/ScenarioTypes'
+import { AgeDistribution, Severity } from '../../../.generated/types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
@@ -25,7 +23,7 @@ export interface SimProps {
   showHumanized?: boolean
   data?: AlgorithmResult
   ageDistribution?: AgeDistribution
-  rates?: SeverityTableRow[]
+  rates?: Severity[]
   forcedWidth?: number
   forcedHeight?: number
   printLabel?: boolean

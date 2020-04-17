@@ -7,9 +7,7 @@ import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
 
 import { Col, Row } from 'reactstrap'
 
-import { SeverityTableRow } from './Scenario/ScenarioTypes'
-
-import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
+import { AllParams, EmpiricalData, Severity } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import { run } from '../../algorithms/run'
 
@@ -28,27 +26,19 @@ import { buildLocationSearch } from './state/serialization/URLSerializer'
 import { InitialStateComponentProps } from './HandleInitialState'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
-import { updateSeverityTable } from './Scenario/severityTableUpdate'
 import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
+import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
 
 interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
 }
 
-export function severityTableIsValid(severity: SeverityTableRow[]) {
-  return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
-}
-
-export function severityErrors(severity: SeverityTableRow[]) {
-  return severity.map((row) => row?.errors)
-}
-
 async function runSimulation(
   params: AllParams,
   scenarioState: State,
-  severity: SeverityTableRow[],
+  severity: Severity[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
   setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
 ) {
@@ -83,7 +73,7 @@ function Main({ initialState }: InitialStateComponentProps) {
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, initialState.scenarioState)
 
   // TODO: Can this complex state be handled by formik too?
-  const [severity, setSeverity] = useState<SeverityTableRow[]>(updateSeverityTable(initialState.severityTable))
+  const [severity, setSeverity] = useState<Severity[]>(initialState.severityTable)
   const [printable, setPrintable] = useState(false)
   const openPrintPreview = () => setPrintable(true)
 
@@ -102,7 +92,7 @@ function Main({ initialState }: InitialStateComponentProps) {
   }
 
   const [debouncedRun] = useDebouncedCallback(
-    (params: AllParams, scenarioState: State, severity: SeverityTableRow[]) =>
+    (params: AllParams, scenarioState: State, severity: Severity[]) =>
       runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases),
     500,
   )
@@ -184,8 +174,7 @@ function Main({ initialState }: InitialStateComponentProps) {
           validationSchema={schema}
         >
           {({ values, errors, touched, isValid, isSubmitting }) => {
-            const canRun = isValid && severityTableIsValid(severity)
-
+            const canRun = isValid && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)
             return (
               <Form noValidate className="form">
                 <Row>

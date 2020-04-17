@@ -6,9 +6,8 @@ import { Button, Col, Container, Row, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FaWindowClose } from 'react-icons/fa'
 
-import { AllParams, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { AllParams, EmpiricalData, Severity } from '../../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 import { DeterministicLinePlot } from '../Results/DeterministicLinePlot'
 import { OutcomeRatesTable } from '../Results/OutcomeRatesTable'
 import { AgeBarChart } from '../Results/AgeBarChart'
@@ -29,7 +28,7 @@ import './PrintPage.scss'
 interface PropsType {
   params: AllParams
   scenarioUsed: string
-  severity: SeverityTableRow[]
+  severity: Severity[]
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
   onClose: () => void
