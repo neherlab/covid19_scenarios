@@ -75,11 +75,11 @@ export function LinePlotTooltip({
           value: valueFormatter ? valueFormatter(value) : value,
           lower:
             tooltipItem.name in uncertainty && typeof value === 'number'
-              ? valueFormatter(value - uncertainty[tooltipItem.name][0])
+              ? valueFormatter(Math.abs(value - uncertainty[tooltipItem.name][0]))
               : undefined,
           upper:
             tooltipItem.name in uncertainty && typeof value === 'number'
-              ? valueFormatter(uncertainty[tooltipItem.name][1] - value)
+              ? valueFormatter(Math.abs(uncertainty[tooltipItem.name][1] - value))
               : undefined,
         }
       },
