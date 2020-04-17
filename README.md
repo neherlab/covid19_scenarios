@@ -60,9 +60,26 @@ Models of COVID-19 outbreak trajectories and hospital demand
   <a href="https://observatory.mozilla.org/analyze/covid19-scenarios.org">
     <img src="https://img.shields.io/mozilla-observatory/grade/covid19-scenarios.org" alt="Mozilla Observatory badge" />
   </a>
+
+<p align="center">
+
   <a href="https://deepscan.io/dashboard#view=project&tid=8207&pid=10365&bid=142593">
     <img src="https://deepscan.io/api/teams/8207/projects/10365/branches/142593/badge/grade.svg" alt="DeepScan grade">
   </a>
+
+  <a href="https://codeclimate.com/github/neherlab/covid19_scenarios">
+    <img src="https://img.shields.io/codeclimate/maintainability/neherlab/covid19_scenarios?label=codeclimate" />
+  </a>
+
+  <a href="https://codeclimate.com/github/neherlab/covid19_scenarios">
+    <img src="https://img.shields.io/codeclimate/tech-debt/neherlab/covid19_scenarios" />
+  </a>
+
+
+  <a href="https://codecov.io/gh/neherlab/covid19_scenarios">
+    <img src="https://codecov.io/gh/neherlab/covid19_scenarios/branch/master/graph/badge.svg" />
+  </a>
+
 </p>
 
 <p align="center">

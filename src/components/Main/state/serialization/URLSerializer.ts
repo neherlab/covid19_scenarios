@@ -15,7 +15,7 @@ import { serialize, deserialize } from './StateSerializer'
 const VERSION_PARAM_NAME = 'v'
 const QUERY_PARAM_NAME = 'q'
 const CURRENT_VERSION = '1'
-const VALID_VERSIONS = [CURRENT_VERSION]
+const VALID_VERSIONS = new Set([CURRENT_VERSION])
 
 /**
  * Layer responsible for pushing the serialized state to browser history and reading it from the URL
@@ -41,7 +41,7 @@ export const deserializeScenarioFromURL = (location: Location, currentAppState: 
     const version = searchParams.get(VERSION_PARAM_NAME)
     const queryString = searchParams.get(QUERY_PARAM_NAME)
 
-    if (!version || !VALID_VERSIONS.includes(version)) {
+    if (!version || !VALID_VERSIONS.has(version)) {
       console.error('Invalid URL version:', version)
     } else if (queryString) {
       try {

@@ -1,6 +1,11 @@
 import 'regenerator-runtime'
 
+import 'map.prototype.tojson' // to visualize Map in Redux Dev Tools
+import 'set.prototype.tojson' // to visualize Set in Redux Dev Tools
+
 import 'react-dates/initialize'
+
+import { enableMapSet } from 'immer'
 
 import React from 'react'
 import { render } from 'react-dom'
@@ -15,6 +20,8 @@ import './i18n'
 import App from './components/App'
 
 import configureStore from './state/store'
+
+enableMapSet()
 
 const { store, history } = configureStore()
 const Root = (

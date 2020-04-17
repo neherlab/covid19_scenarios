@@ -78,7 +78,7 @@ const SeverityTableCell = ({ onClick, column, ...props }: SeverityTableCellProps
 }
 
 const DecimalFormatter: React.FC<DataTypeProvider.ValueFormatterProps> = ({ value }) => (
-  <span>{d3format('.2')(parseFloat(value))}</span>
+  <span>{d3format('.2')(Number.parseFloat(value))}</span>
 )
 
 const DecimalTypeProvider: React.FC<DataTypeProviderProps> = (props) => (
