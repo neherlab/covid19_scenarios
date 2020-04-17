@@ -1,5 +1,5 @@
 export interface TimePoint {
-  t: Date
+  t: number
   y: number
 }
 

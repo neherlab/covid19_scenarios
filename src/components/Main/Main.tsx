@@ -11,11 +11,10 @@ import { SeverityTableRow } from './Scenario/ScenarioTypes'
 
 import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import { run, intervalsToTimeSeries } from '../../algorithms/run'
+import { run } from '../../algorithms/run'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
-import severityData from '../../assets/data/severityData.json'
 import { getCaseCountsData } from './state/caseCountsData'
 
 import { schema } from './validation/schema'
@@ -23,13 +22,13 @@ import { schema } from './validation/schema'
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 
-import { defaultScenarioState, State } from './state/state'
-import { deserializeScenarioFromURL, updateBrowserURL, buildLocationSearch } from './state/serialization/URLSerializer'
+import { State } from './state/state'
+import { buildLocationSearch } from './state/serialization/URLSerializer'
 
+import { InitialStateComponentProps } from './HandleInitialState'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import { updateSeverityTable } from './Scenario/severityTableUpdate'
-import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
 import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
@@ -61,10 +60,7 @@ async function runSimulation(
   }
 
   const caseCounts = getCaseCountsData(params.population.cases)
-  const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
-
-  intervalsToTimeSeries(params.containment.mitigationIntervals)
-  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution, containment)
+  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
@@ -78,20 +74,16 @@ function getColumnSizes(areResultsMaximized: boolean) {
   return { colScenario: { xl: 6 }, colResults: { xl: 6 } }
 }
 
-const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
-
-function Main() {
+function Main({ initialState }: InitialStateComponentProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [autorunSimulation, setAutorunSimulation] = useState(false)
-  const [areResultsMaximized, setAreResultsMaximized] = useState(false)
-  const [scenarioState, scenarioDispatch] = useReducer(
-    scenarioReducer,
-    defaultScenarioState,
-    deserializeScenarioFromURL,
+  const [autorunSimulation, setAutorunSimulation] = useState(
+    LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? false,
   )
+  const [areResultsMaximized, setAreResultsMaximized] = useState(false)
+  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, initialState.scenarioState)
 
   // TODO: Can this complex state be handled by formik too?
-  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
+  const [severity, setSeverity] = useState<SeverityTableRow[]>(updateSeverityTable(initialState.severityTable))
   const [printable, setPrintable] = useState(false)
   const openPrintPreview = () => setPrintable(true)
 
@@ -117,16 +109,8 @@ function Main() {
 
   useEffect(() => {
     // runs only once, when the component is mounted
-    const autorun = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
-    setAutorunSimulation(autorun ?? false)
-
-    // if the link contains query, we're executing the scenario (and displaying graphs)
-    // this is because the page was either shared via link, or opened in new tab
-    if (window.location.search) {
+    if (!initialState.isDefault) {
       debouncedRun(allParams, scenarioState, severity)
-
-      // At this point the scenario params have been captured, and we can clean up the URL.
-      updateBrowserURL('/')
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -225,6 +209,7 @@ function Main() {
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
                       params={allParams}
+                      ageDistribution={scenarioState.ageDistribution}
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
