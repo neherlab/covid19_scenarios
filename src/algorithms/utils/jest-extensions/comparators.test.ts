@@ -22,14 +22,4 @@ describe('ULP float comparison', () => {
     expect(-0.2 + 0.3).not.toEqual(0.1)
     expect(absUlpDiff(-0.2 + 0.3, 0.1)).toStrictEqual(2n)
   })
-
-  it('sum 0.1 ten times yields 1.0', () => {
-    const sum = [...new Array(10)].reduce((acc) => acc + 0.1, 0)
-    expect(absUlpDiff(sum, 1.0)).toStrictEqual(1n)
-  })
-
-  it('sum 1.2 one hundred times yields 120.0', () => {
-    const sum = [...new Array(100)].reduce((acc) => acc + 1.2, 0)
-    expect(absUlpDiff(sum, 120.0)).toStrictEqual(14n)
-  })
 })
