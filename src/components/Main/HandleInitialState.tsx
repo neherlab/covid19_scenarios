@@ -3,13 +3,16 @@ import { withRouter, RouteComponentProps } from 'react-router'
 import _ from 'lodash'
 
 import { defaultScenarioState, State } from './state/state'
-import { SeverityTableRow } from './Scenario/ScenarioTypes'
-import severityData from '../../assets/data/severityData.json'
+import { Convert } from '../../.generated/types'
+import rawSeverityData from '../../assets/data/severityData.json'
 import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
+import { Severity } from '../../algorithms/types/Param.types'
+
+const severityData = Convert.toSeverity(JSON.stringify(rawSeverityData))
 
 interface InitialState {
   scenarioState: State
-  severityTable: SeverityTableRow[]
+  severityTable: Severity[]
   isDefault: boolean
 }
 

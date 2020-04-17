@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { AnyAction } from 'typescript-fsa'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
-import { SeverityTable } from './SeverityTable'
-import { SeverityTableRow } from './ScenarioTypes'
+import AgeGroupParameters from './AgeGroupParameters'
 import { State } from '../state/state'
+import { Severity, AgeDistribution } from '../../../algorithms/types/Param.types'
+import { setAgeDistributionData } from '../state/actions'
 
 export interface SeverityCardProps {
-  severity: SeverityTableRow[]
-  setSeverity(severity: SeverityTableRow[]): void
+  severity: Severity[]
+  setSeverity(severity: Severity[]): void
   scenarioState: State
   scenarioDispatch(action: AnyAction): void
 }
@@ -28,11 +29,13 @@ function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }
       help={t('Assumptions on severity which are informed by epidemiological and clinical observations in China')}
       defaultCollapsed
     >
-      <SeverityTable
+      <AgeGroupParameters
         severity={severity}
         setSeverity={setSeverity}
-        scenarioState={scenarioState}
-        scenarioDispatch={scenarioDispatch}
+        ageDistribution={scenarioState.ageDistribution}
+        setAgeDistribution={(ageDistribution: AgeDistribution) =>
+          scenarioDispatch(setAgeDistributionData({ data: ageDistribution }))
+        }
       />
       <p>
         {t('Summary of demographics and age-dependent parameters.')} &nbsp;
