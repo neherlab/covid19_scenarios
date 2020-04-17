@@ -29,7 +29,7 @@ export function LinePlotTooltip({
   const { t } = useTranslation()
 
   if (!active || !label || !payload || payload.length <= 2) {
-    // The tooltip gets some odd payloads intermitttently
+    // The tooltip gets some odd payloads intermittently
     // https://github.com/neherlab/covid19_scenarios/issues/234#issuecomment-611279609
     return null
   }
@@ -39,8 +39,8 @@ export function LinePlotTooltip({
   const uncertainty: Record<string, [number, number]> = {}
   payload.forEach((item) => {
     if (item.name && item.name.includes(' uncertainty')) {
-      const key = item.name.replace(' uncertainty', '')
-      uncertainty[key] = [item.value[0], item.value[1]]
+      const relatedItemName = item.name.replace(' uncertainty', '')
+      uncertainty[relatedItemName] = [(item.value as number[])[0], (item.value as number[])[1]]
     }
   })
 
@@ -73,8 +73,14 @@ export function LinePlotTooltip({
         return {
           ...tooltipItem,
           value: valueFormatter ? valueFormatter(value) : value,
-          lower: tooltipItem.name in uncertainty ? valueFormatter(value - uncertainty[tooltipItem.name][0]) : undefined,
-          upper: tooltipItem.name in uncertainty ? valueFormatter(uncertainty[tooltipItem.name][1] - value) : undefined,
+          lower:
+            tooltipItem.name in uncertainty && typeof value === 'number'
+              ? valueFormatter(value - uncertainty[tooltipItem.name][0])
+              : undefined,
+          upper:
+            tooltipItem.name in uncertainty && typeof value === 'number'
+              ? valueFormatter(uncertainty[tooltipItem.name][1] - value)
+              : undefined,
         }
       },
     )
