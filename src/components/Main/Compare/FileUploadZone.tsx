@@ -53,7 +53,7 @@ function FileUploadZone({
       droppedFiles.forEach(dispatchUploadedFile)
       onFilesUploaded(uploadedFiles)
     },
-    [uploadedFiles, onFilesRejected],
+    [onFilesUploaded, uploadedFiles],
   )
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
