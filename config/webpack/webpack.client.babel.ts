@@ -81,7 +81,9 @@ const { moduleRoot, pkg } = findModuleRoot()
 const buildPath = path.join(moduleRoot, '.build', analyze ? 'analyze' : MODE, 'web') // prettier-ignore
 
 function alias(development: boolean) {
-  let productionAliases = {}
+  let productionAliases: Record<string, string> = {
+    jsonp$: path.join(moduleRoot, '3rdparty/__empty-module'),
+  }
 
   if (profile) {
     productionAliases = {
