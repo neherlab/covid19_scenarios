@@ -41,7 +41,7 @@ export async function exportAll(params: AllParams, result: AlgorithmResult) {
     console.error('Error: the results of the simulation cannot be exported because they are nondeterministic')
   } else {
     const path = 'covid.summary.tsv'
-    zip.file(path, exportSimulation(trajectory, path))
+    zip.file(path, exportSimulation(trajectory))
   }
 
   const zipFile = await zip.generateAsync({ type: 'blob' })
