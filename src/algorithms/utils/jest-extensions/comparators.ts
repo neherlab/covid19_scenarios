@@ -1,3 +1,6 @@
+/* eslint-disable no-bitwise */
+/* tslint:disable:no-bitwise */
+
 export function float64ToBigInt64(n: number): bigint {
   const buffer = new ArrayBuffer(Float64Array.BYTES_PER_ELEMENT)
   const view = new DataView(buffer)
@@ -8,9 +11,8 @@ export function float64ToBigInt64(n: number): bigint {
 export function signAndMagnitudeToBiased(sam: bigint): bigint {
   if (sam < 0) {
     return ~sam + 1n
-  } else {
-    return sam
   }
+  return sam
 }
 
 export function absUlpDiff(a: number, b: number): bigint {
