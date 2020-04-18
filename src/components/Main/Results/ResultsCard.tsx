@@ -11,12 +11,11 @@ import { AgeBarChart } from './AgeBarChart'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { AllParams, ContainmentData, EmpiricalData, Severity } from '../../../algorithms/types/Param.types'
 import { AgeDistribution } from '../../../.generated/types'
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
-import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
@@ -31,7 +30,7 @@ interface ResultsCardProps {
   params: AllParams
   ageDistribution: AgeDistribution
   mitigation: ContainmentData
-  severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
+  severity: Severity[]
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
   scenarioUrl: string

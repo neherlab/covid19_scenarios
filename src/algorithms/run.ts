@@ -1,5 +1,4 @@
-import { AgeDistribution } from '../.generated/types'
-import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
+import { AgeDistribution, Severity } from '../.generated/types'
 import { AllParamsFlat } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types/Result.types'
 
@@ -19,7 +18,7 @@ const identity = (x: number) => x
  */
 export async function run(
   params: AllParamsFlat,
-  severity: SeverityTableRow[],
+  severity: Severity[],
   ageDistribution: AgeDistribution,
 ): Promise<AlgorithmResult> {
   const tMin: number = new Date(params.simulationTimeRange.tMin).getTime()

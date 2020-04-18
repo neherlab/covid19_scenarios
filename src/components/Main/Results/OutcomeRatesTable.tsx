@@ -7,15 +7,14 @@ import { Col, Row } from 'reactstrap'
 import * as d3 from 'd3'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-
-import { SeverityTableRow } from '../Scenario/ScenarioTypes'
+import { Severity } from '../../../.generated/types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 export interface TableProps {
   showHumanized?: boolean
   result?: AlgorithmResult
-  rates?: SeverityTableRow[]
+  rates?: Severity[]
   printable?: boolean
 }
 

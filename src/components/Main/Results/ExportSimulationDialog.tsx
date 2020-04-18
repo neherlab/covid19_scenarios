@@ -68,8 +68,8 @@ export default function ExportSimulationDialog({
               <td>JSON</td>
               <td>
                 <Button
-                  disabled={!(params ?? null)}
-                  onClick={() => result && exportParams(params)}
+                  disabled={!params}
+                  onClick={params ? () => exportParams(params) : undefined}
                   color="primary"
                   size="sm"
                 >
@@ -145,7 +145,11 @@ export default function ExportSimulationDialog({
         </Table>
       </ModalBody>
       <ModalFooter>
-        <Button color="secondary" disabled={!result} onClick={() => result && exportAll(params, result)}>
+        <Button
+          color="secondary"
+          disabled={!result || !params}
+          onClick={result && params ? () => exportAll(params, result) : undefined}
+        >
           {t('Download all as zip')}
         </Button>
         <Button color="primary" onClick={toggleShowModal}>
