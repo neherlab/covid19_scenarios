@@ -35,6 +35,25 @@ interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
 }
 
+async function runOnWorker(...args) {
+  const runWorker = new Worker('../../workers/algorithm.js', { type: 'module' })
+  return new Promise((resolve, reject) => {
+    runWorker.onmessage = (event) => {
+      if (event.data.result) {
+        resolve(result.data)
+        return
+      }
+      if (event.data.error) {
+        reject(error)
+        return
+      }
+    }
+    runWorker.onerror = (error) => console.error('Worker error:', error)
+
+    runWorker.postMessage(args)
+  })
+}
+
 async function runSimulation(
   params: AllParams,
   scenarioState: State,
@@ -50,7 +69,7 @@ async function runSimulation(
   }
 
   const caseCounts = getCaseCountsData(params.population.cases)
-  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
+  const newResult = await runOnWorker(paramsFlat, severity, scenarioState.ageDistribution)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
