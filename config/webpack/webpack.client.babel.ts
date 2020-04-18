@@ -20,6 +20,7 @@ import SizePlugin from 'size-plugin'
 import kill from 'tree-kill'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import isInteractive from 'is-interactive'
 
 import webpackCompression from './lib/webpackCompression'
 import webpackFriendlyConsole from './lib/webpackFriendlyConsole'
@@ -61,7 +62,6 @@ const portProd = getenv('WEB_PORT_PROD')
 const portAnalyze = Number.parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
-const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
 
 function getWebRoot() {
   let root = `${schema}://${host}`
@@ -174,7 +174,6 @@ export default {
     rules: [
       ...webpackLoadJavascript({
         babelConfig,
-        // eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
         options: { caller: { target: 'web' } },
         sourceMaps,
         transpiledLibs: [
@@ -265,11 +264,11 @@ export default {
         dirs: [],
       }),
 
-    !disableLint && !analyze && webpackStylelint(),
+    !analyze && webpackStylelint(),
 
-    !disableLint &&
-      !analyze &&
+    !analyze &&
       webpackTsChecker({
+        warningsAreErrors: production,
         memoryLimit: 1024,
         tslint: path.join(moduleRoot, 'tslint.json'),
         tsconfig: path.join(moduleRoot, 'tsconfig.json'),
@@ -280,6 +279,15 @@ export default {
           '!static/**/*',
         ],
       }),
+
+    ...(fancyConsole && isInteractive()
+      ? webpackFriendlyConsole({
+          clearConsole: !analyze && fancyClearConsole,
+          projectRoot: path.resolve(moduleRoot),
+          packageName: pkg.name || 'web',
+          progressBarColor: 'red',
+        })
+      : []),
 
     new webpack.EnvironmentPlugin({
       BABEL_ENV: process.env.BABEL_ENV,
@@ -306,15 +314,6 @@ export default {
           .toString()
           .trim(),
     }),
-
-    ...(fancyConsole
-      ? webpackFriendlyConsole({
-          clearConsole: !analyze && fancyClearConsole,
-          projectRoot: path.resolve(moduleRoot),
-          packageName: pkg.name || 'web',
-          progressBarColor: 'red',
-        })
-      : []),
 
     new MiniCssExtractPlugin({
       filename: outputFilename(development, 'css'),
