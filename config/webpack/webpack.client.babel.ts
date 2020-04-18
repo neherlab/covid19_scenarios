@@ -323,7 +323,7 @@ export default {
       chunkFilename: outputFilename(development, 'css'),
     }),
 
-    development && new ReactRefreshWebpackPlugin({ disableRefreshCheck: true }),
+    development && new ReactRefreshWebpackPlugin(),
 
     production &&
       !analyze &&
