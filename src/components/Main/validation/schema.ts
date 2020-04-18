@@ -50,6 +50,8 @@ export const schema = yup.object().shape({
     overflowSeverity: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
 
     peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_POSITIVE).max(11),
+
+    r0: yup.array().of(yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE)).min(2).max(2),
   }),
 
   containment: yup.object().shape({
@@ -57,6 +59,11 @@ export const schema = yup.object().shape({
       yup.object({
         color: yup.string().required(MSG_REQUIRED),
         id: yup.string().required(MSG_REQUIRED),
+        mitigationValue: yup
+          .array()
+          .of(yup.number().min(0, MSG_NON_NEGATIVE).max(100).required(MSG_REQUIRED))
+          .min(2)
+          .max(2),
         name: yup.string().required(MSG_REQUIRED),
         timeRange: dateRange().required(MSG_REQUIRED),
       }),
