@@ -149,7 +149,7 @@ export default {
   devServer: {
     contentBase: path.join(buildPath, '..'),
     before: (app: express.Application) => {
-      app.use(express.static(path.join(buildPath, '..', 'sourcemaps')))
+      app.use(express.static(path.join(buildPath, 'sourcemaps')))
       app.use(express.static(path.join(moduleRoot, 'static')))
     },
     compress: true,
@@ -382,19 +382,19 @@ export default {
 
     new ExtraWatchWebpackPlugin({
       files: [
-        path.join(moduleRoot, 'generated/**'),
+        path.join(moduleRoot, 'src/.generated/**'),
         path.join(moduleRoot, 'src/types/**/*.d.ts'),
       ],
       dirs: [],
     }),
 
     new webpack.SourceMapDevToolPlugin({
-      filename: '../sourcemaps/[filebase].map[query]',
-      publicPath: '/sourcemaps/',
+      filename: 'sourcemaps/[filebase].map[query]',
+      publicPath: '/',
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore: BUG: This parameter is missing in @types/webpack declarations
-      fileContext: 'web/content/sourcemaps',
-      noSources: production,
+      fileContext: 'web',
+      noSources: false,
     }),
 
     analyze &&
