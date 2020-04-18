@@ -7,8 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, LabelProps, TooltipProps } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-
-import { SeverityTableRow } from '../Scenario/ScenarioTypes'
+import { AgeDistribution, Severity } from '../../../.generated/types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
@@ -23,13 +22,22 @@ const ASPECT_RATIO = 16 / 4
 export interface SimProps {
   showHumanized?: boolean
   data?: AlgorithmResult
-  rates?: SeverityTableRow[]
+  ageDistribution?: AgeDistribution
+  rates?: Severity[]
   forcedWidth?: number
   forcedHeight?: number
   printLabel?: boolean
 }
 
-export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidth, forcedHeight }: SimProps) {
+export function AgeBarChart({
+  printLabel,
+  showHumanized,
+  data,
+  ageDistribution,
+  rates,
+  forcedWidth,
+  forcedHeight,
+}: SimProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
   const percentageChartRef = React.useRef(null)
@@ -43,7 +51,7 @@ export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidt
       }
     : undefined
 
-  if (!data || !rates) {
+  if (!data || !rates || !ageDistribution) {
     return null
   }
 
@@ -62,14 +70,21 @@ export function AgeBarChart({ printLabel, showHumanized, data, rates, forcedWidt
     return String(translation)
   }
 
-  const ages = Object.keys(data.params.ageDistribution)
-  const lastDataPoint = data.deterministic.trajectory[data.deterministic.trajectory.length - 1]
+  // Ensure age distribution is normalized
+  const Z: number = Object.values(ageDistribution).reduce((a, b) => a + b, 0)
+  const normAgeDistribution: Record<string, number> = {}
+  Object.keys(ageDistribution).forEach((k) => {
+    normAgeDistribution[k] = ageDistribution[k] / Z
+  })
+
+  const ages = Object.keys(normAgeDistribution)
+  const lastDataPoint = data.trajectory.mean[data.trajectory.mean.length - 1]
   const plotData = ages.map((age) => ({
     name: age,
-    fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
-    peakSevere: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.severe[age]))),
-    peakCritical: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.critical[age]))),
-    peakOverflow: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.overflow[age]))),
+    fraction: Math.round(normAgeDistribution[age] * 1000) / 10,
+    peakSevere: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.severe[age]))),
+    peakCritical: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.critical[age]))),
+    peakOverflow: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.overflow[age]))),
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
   }))
 

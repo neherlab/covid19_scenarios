@@ -1,5 +1,6 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
+import { AllParams } from '../types/Param.types'
 import { AlgorithmResult } from '../types/Result.types'
 import { exportSimulation } from '../model'
 
@@ -16,14 +17,14 @@ export function saveFile(content: string, filename: string) {
   saveAs(blob, filename)
 }
 
-export async function exportAll(result: AlgorithmResult) {
+export async function exportAll(params: AllParams, result: AlgorithmResult) {
   if (!result) {
     throw new Error(`Algorithm result expected, but got ${result}`)
   }
 
-  const { deterministic, params } = result
+  const { trajectory } = result
 
-  if (!(deterministic || params)) {
+  if (!(trajectory || params)) {
     console.error('Error: the results, and params, of the simulation cannot be exported')
     return
   }
@@ -36,11 +37,11 @@ export async function exportAll(result: AlgorithmResult) {
     zip.file('covid.params.json', JSON.stringify(params, null, 2))
   }
 
-  if (!deterministic) {
+  if (!trajectory) {
     console.error('Error: the results of the simulation cannot be exported because they are nondeterministic')
   } else {
     const path = 'covid.summary.tsv'
-    zip.file(path, exportSimulation(deterministic, path))
+    zip.file(path, exportSimulation(trajectory))
   }
 
   const zipFile = await zip.generateAsync({ type: 'blob' })
@@ -52,7 +53,7 @@ export function exportResult(result: AlgorithmResult, fileName: string, ageGroup
     throw new Error(`Algorithm result expected, but got ${result}`)
   }
 
-  const { deterministic } = result
+  const { trajectory } = result
 
   if (!isBlobApiSupported()) {
     // TODO: Display an error popup
@@ -60,29 +61,22 @@ export function exportResult(result: AlgorithmResult, fileName: string, ageGroup
     return
   }
 
-  if (!deterministic) {
+  if (!trajectory) {
     console.error('Error: the results of the simulation cannot be exported because they are nondeterministic')
     return
   }
 
-  saveFile(exportSimulation(deterministic, ageGroups), fileName)
+  saveFile(exportSimulation(trajectory, ageGroups), fileName)
 }
 
-export function exportParams(result: AlgorithmResult) {
-  if (!result) {
-    throw new Error(`Algorithm result expected, but got ${result}`)
+export function exportParams(params: AllParams) {
+  if (!params) {
+    throw new Error(`Algorithm params expected, but got ${params}`)
   }
-
-  const { params } = result
 
   if (!isBlobApiSupported()) {
     // TODO: Display an error popup
     console.error('Error: export is not supported in this browser: `Blob()` API is not implemented')
-    return
-  }
-
-  if (!params) {
-    console.error('Error: the params of the simulation cannot be exported because they are null')
     return
   }
 

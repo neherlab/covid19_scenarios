@@ -1,93 +1,15 @@
-import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
-import { collectTotals, evolve, getPopulationParams, initializePopulation } from './model'
-import { AgeDistribution, AllParamsFlat, MitigationIntervals } from './types/Param.types'
-import { AlgorithmResult, SimulationTimePoint } from './types/Result.types'
-import { TimeSeries } from './types/TimeSeries.types'
+import { AgeDistribution, Severity } from '../.generated/types'
+import { AllParamsFlat } from './types/Param.types'
+import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types/Result.types'
+
+import { getPopulationParams, initializePopulation } from './initialize'
+import { collectTotals, evolve } from './model'
+import { mulTP, divTP, meanTrajectory, stddevTrajectory } from './results'
 
 const identity = (x: number) => x
-const poisson = (x: number) => {
-  throw new Error('We removed dependency on `random` package. Currently `poisson` is not implemented')
-}
 
-interface ChangePoint {
-  t: Date
-  val: number[]
-}
-
-const compareTimes = (a: ChangePoint, b: ChangePoint): number => {
-  return a.t.valueOf() - b.t.valueOf()
-}
-
-// NOTE: Assumes containment is sorted ascending in time.
-export function interpolateTimeSeries(containment: TimeSeries): (t: Date) => number {
-  if (containment.length === 0) {
-    return (t: Date) => 1.0
-  }
-  const Ys = containment.map((d) => d.y)
-  const Ts = containment.map((d) => Number(d.t))
-  return (t: Date) => {
-    if (t <= containment[0].t) {
-      return containment[0].y
-    }
-    if (t >= containment[containment.length - 1].t) {
-      return containment[containment.length - 1].y
-    }
-    const i = containment.findIndex((d) => Number(t) < Number(d.t))
-
-    const evalLinear = (t: number) => {
-      const deltaY = Ys[i] - Ys[i - 1]
-      const deltaT = Ts[i] - Ts[i - 1]
-
-      const dS = deltaY / deltaT
-      const dT = t - Ts[i - 1]
-
-      return Ys[i - 1] + dS * dT
-    }
-
-    return evalLinear(Number(t))
-  }
-}
-
-export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSeries {
-  const changePoints = {}
-  intervals.forEach((element) => {
-    // bound the value by 0.01 and 100 (transmission can be at most 100 fold reduced or increased)
-    const val = Math.min(Math.max(1 - element.mitigationValue * 0.01, 0.01), 100)
-
-    if (changePoints[element.timeRange.tMin] !== undefined) {
-      changePoints[element.timeRange.tMin].push(val)
-    } else {
-      changePoints[element.timeRange.tMin] = [val]
-    }
-    // add inverse of the value when measure is relaxed
-    if (changePoints[element.timeRange.tMax] !== undefined) {
-      changePoints[element.timeRange.tMax].push(1.0 / val)
-    } else {
-      changePoints[element.timeRange.tMax] = [1.0 / val]
-    }
-  })
-
-  const orderedChangePoints: ChangePoint[] = Object.keys(changePoints).map((d) => ({
-    t: new Date(d),
-    val: changePoints[d],
-  }))
-
-  orderedChangePoints.sort(compareTimes)
-
-  if (orderedChangePoints.length > 0) {
-    const mitigationSeries: TimeSeries = [{ t: orderedChangePoints[0].t, y: 1.0 }]
-    const product = (a: number, b: number): number => a * b
-
-    orderedChangePoints.forEach((d, i) => {
-      const prevValue = mitigationSeries[2 * i].y
-      const newValue = d.val.reduce(product, prevValue)
-      mitigationSeries.push({ t: d.t, y: prevValue })
-      mitigationSeries.push({ t: d.t, y: newValue })
-    })
-    return mitigationSeries
-  }
-  return []
-}
+// -----------------------------------------------------------------------
+// Main function
 
 /**
  *
@@ -96,39 +18,72 @@ export function intervalsToTimeSeries(intervals: MitigationIntervals): TimeSerie
  */
 export async function run(
   params: AllParamsFlat,
-  severity: SeverityTableRow[],
+  severity: Severity[],
   ageDistribution: AgeDistribution,
-  containment: TimeSeries,
 ): Promise<AlgorithmResult> {
-  const modelParams = getPopulationParams(params, severity, ageDistribution, interpolateTimeSeries(containment))
   const tMin: number = new Date(params.simulationTimeRange.tMin).getTime()
   const tMax: number = new Date(params.simulationTimeRange.tMax).getTime()
   const ageGroups = Object.keys(ageDistribution)
   const initialCases = params.initialNumberOfCases
-  let initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
 
-  function simulate(initialState: SimulationTimePoint, func: (x: number) => number) {
-    const dynamics = [initialState]
-    let currState = initialState
+  const modelParamsArray = getPopulationParams(params, severity, ageDistribution)
 
-    while (currState.time < tMax) {
-      currState = evolve(currState, modelParams, currState.time + 1, func)
-      dynamics.push(currState)
+  const trajectories: ExportedTimePoint[][] = []
+
+  modelParamsArray.forEach((modelParams) => {
+    const population = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
+    function simulate(initialState: SimulationTimePoint, func: (x: number) => number): ExportedTimePoint[] {
+      const dynamics = [initialState]
+      let currState = initialState
+
+      while (currState.time < tMax) {
+        currState = evolve(currState, modelParams, currState.time + 1, func)
+        dynamics.push(currState)
+      }
+
+      return collectTotals(dynamics, ageGroups)
     }
+    const trajectory = simulate(population, identity)
+    trajectories.push(trajectory)
+  })
 
-    return collectTotals(dynamics, ageGroups)
+  const mean = meanTrajectory(trajectories)
+  const sdev = stddevTrajectory(trajectories, mean)
+
+  const R0Trajectories = trajectories[0].map((d) => {
+    return {
+      t: d.time,
+      y: modelParamsArray.map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriod),
+    }
+  })
+
+  const meanR0 = R0Trajectories.map((d) => {
+    return { t: d.t, y: d.y.reduce((a, b) => a + b, 0) / d.y.length }
+  })
+
+  const secondMomentR0 = R0Trajectories.map((d) => {
+    return { t: d.t, y: d.y.reduce((a, b) => a + b * b, 0) / d.y.length }
+  })
+
+  const stdR0 = secondMomentR0.map((d, i) => {
+    return { t: d.t, y: Math.sqrt(d.y - meanR0[i].y * meanR0[i].y) }
+  })
+
+  return {
+    trajectory: {
+      mean,
+      upper: mean.map((m, i) => mulTP(m, sdev[i])),
+      lower: mean.map((m, i) => divTP(m, sdev[i])),
+      percentile: {},
+    },
+    R0: {
+      mean: meanR0,
+      lower: meanR0.map((m, i) => {
+        return { t: m.t, y: m.y - stdR0[i].y }
+      }),
+      upper: meanR0.map((m, i) => {
+        return { t: m.t, y: m.y + stdR0[i].y }
+      }),
+    },
   }
-
-  const sim: AlgorithmResult = {
-    deterministic: simulate(initialState, identity),
-    stochastic: [],
-    params: modelParams,
-  }
-
-  for (let i = 0; i < modelParams.numberStochasticRuns; i++) {
-    initialState = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
-    sim.stochastic.push(simulate(initialState, poisson))
-  }
-
-  return sim
 }

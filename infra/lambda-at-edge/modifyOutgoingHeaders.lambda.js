@@ -57,11 +57,11 @@ function addHeaders(headersObject) {
   )
 }
 
-const HEADERS_TO_REMOVE = ['server', 'via']
+const HEADERS_TO_REMOVE = new Set(['server', 'via'])
 
 function filterHeaders(headers) {
   return Object.entries(headers).reduce((result, [key, value]) => {
-    if (HEADERS_TO_REMOVE.includes(key.toLowerCase())) {
+    if (HEADERS_TO_REMOVE.has(key.toLowerCase())) {
       return result
     }
 

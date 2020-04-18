@@ -37,8 +37,6 @@ export const schema = yup.object().shape({
   }),
 
   epidemiological: yup.object().shape({
-    r0: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
-
     latencyTime: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
     infectiousPeriod: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
@@ -59,7 +57,6 @@ export const schema = yup.object().shape({
       yup.object({
         color: yup.string().required(MSG_REQUIRED),
         id: yup.string().required(MSG_REQUIRED),
-        mitigationValue: yup.number().min(0, MSG_NON_NEGATIVE).max(100).required(MSG_REQUIRED),
         name: yup.string().required(MSG_REQUIRED),
         timeRange: dateRange().required(MSG_REQUIRED),
       }),

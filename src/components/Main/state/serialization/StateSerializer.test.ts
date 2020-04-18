@@ -23,7 +23,7 @@ const STATE: State = {
       lengthICUStay: 14,
       overflowSeverity: 2,
       peakMonth: 0,
-      r0: 2,
+      r0: [1.9, 2.1],
       seasonalForcing: 0.2,
     },
     containment: {
@@ -31,7 +31,7 @@ const STATE: State = {
         {
           color: '#bf5b17',
           id: '06ad1640-ce01-41c0-8dc2-78fbbfbd8dd6',
-          mitigationValue: 0.2,
+          mitigationValue: [0.19, 0.21],
           name: 'Intervention #1',
           timeRange: {
             tMin: new Date('2020-03-12T00:00:00.000Z'),
@@ -41,7 +41,7 @@ const STATE: State = {
         {
           color: '#666666',
           id: 'a353e47f-ed52-4517-9cb5-063878edbbca',
-          mitigationValue: 0.6,
+          mitigationValue: [0.59, 0.61],
           name: 'Intervention #2',
           timeRange: {
             tMin: new Date('2020-03-29T00:00:00.000Z'),
@@ -69,10 +69,7 @@ const STATE: State = {
 }
 
 const SERIALIZED_STATE =
-  "~(current~'CHE-Basel-Stadt~containment~(~(id~'06ad1640-ce01-41c0-8dc2-78fbbfbd8dd6~name~'Intervention*20*231~color~'*23bf5b17~mitigationValue~0.2~timeRange~(tMin~1583971200000~tMax~1598918400000))~(id~'a353e47f-ed52-4517-9cb5-063878edbbca~name~'Intervention*20*232~color~'*23666666~mitigationValue~0.6~timeRange~(tMin~1585440000000~tMax~1598918400000)))~population~(ICUBeds~80~cases~'CHE-Basel-Stadt~country~'Switzerland~hospitalBeds~698~importsPerDay~0.1~populationServed~195000~initialNumberOfCases~10)~epidemiological~(infectiousPeriod~3~latencyTime~5~lengthHospitalStay~4~lengthICUStay~14~overflowSeverity~2~peakMonth~0~r0~2~seasonalForcing~0.2)~simulation~(simulationTimeRange~(tMin~1580428800000~tMax~1598918400000)~numberStochasticRuns~0)~ageDistribution~(0-9~0~10-19~10~20-29~20~30-39~20~40-49~20~50-59~10~60-69~10~70-79~10~80*2b~0))"
-
-const SERIALIZED_STATE_AUSTRIA =
-  "~(current~'Austria~containment~(~(id~'06ad1640-ce01-41c0-8dc2-78fbbfbd8dd6~name~'Intervention*20*231~color~'*23bf5b17~mitigationValue~0.2~timeRange~(tMin~1583971200000~tMax~1598918400000))~(id~'a353e47f-ed52-4517-9cb5-063878edbbca~name~'Intervention*20*232~color~'*23666666~mitigationValue~0.6~timeRange~(tMin~1585440000000~tMax~1598918400000)))~population~(ICUBeds~80~cases~'CHE-Basel-Stadt~country~'Switzerland~hospitalBeds~698~importsPerDay~0.1~populationServed~195000~initialNumberOfCases~10)~epidemiological~(infectiousPeriod~3~latencyTime~5~lengthHospitalStay~4~lengthICUStay~14~overflowSeverity~2~peakMonth~0~r0~2~seasonalForcing~0.2)~simulation~(simulationTimeRange~(tMin~1580428800000~tMax~1598918400000)~numberStochasticRuns~0))"
+  "~(current~'CHE-Basel-Stadt~containment~(~(id~'06ad1640-ce01-41c0-8dc2-78fbbfbd8dd6~name~'Intervention*20*231~color~'*23bf5b17~mitigationValue~(~0.19~0.21)~timeRange~(tMin~1583971200000~tMax~1598918400000))~(id~'a353e47f-ed52-4517-9cb5-063878edbbca~name~'Intervention*20*232~color~'*23666666~mitigationValue~(~0.59~0.61)~timeRange~(tMin~1585440000000~tMax~1598918400000)))~population~(ICUBeds~80~cases~'CHE-Basel-Stadt~country~'Switzerland~hospitalBeds~698~importsPerDay~0.1~populationServed~195000~initialNumberOfCases~10)~epidemiological~(infectiousPeriod~3~latencyTime~5~lengthHospitalStay~4~lengthICUStay~14~overflowSeverity~2~peakMonth~0~r0~(~1.9~2.1)~seasonalForcing~0.2)~simulation~(simulationTimeRange~(tMin~1580428800000~tMax~1598918400000)~numberStochasticRuns~0)~ageDistribution~(0-9~0~10-19~10~20-29~20~30-39~20~40-49~20~50-59~10~60-69~10~70-79~10~80*2b~0))"
 
 describe('StateSerializer', () => {
   it('serializes the state', () => {
@@ -82,13 +79,6 @@ describe('StateSerializer', () => {
   describe('deserializes the state', () => {
     it('from query string that fully represents current state', () => {
       expect(deserialize(SERIALIZED_STATE, STATE)).toEqual(STATE)
-    })
-
-    it('from query string that does not represent current state', () => {
-      expect(deserialize(SERIALIZED_STATE_AUSTRIA, STATE)).toEqual({
-        ...STATE,
-        current: 'Austria',
-      })
     })
   })
 })

@@ -2,3 +2,7 @@ coverage:
   parsers:
     javascript:
       enable_partials: yes
+
+comment:
+  layout: "diff, files"
+  require_changes: true

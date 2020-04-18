@@ -3,7 +3,9 @@
 
 import xlrd
 import csv
+import json
 
+from requests import get
 from urllib.request import urlretrieve
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -19,8 +21,101 @@ URL_Pop  = "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-ge
 URL_ICU = "http://dx.doi.org/10.1007/s00134-012-2627-8" # the paper where the numbers came from
 # other ICU source: https://doi.org/10.1097/CCM.0000000000004222, Critical Care Bed Capacity in Asian Countries and Regions Article in Critical Care Medicine · January 2020
 URL_ICU_ASIA = "https://doi.org/10.1097/CCM.0000000000004222" # the paper where the numbers came from
+URL_CIA = "https://raw.githubusercontent.com/iancoleman/cia_world_factbook_api/master/data/factbook.json"
+
+MINPOP = 1 # minimal pop size for ICU estimation if hospital bed data is available
 
 cols = ['name', 'populationServed', 'ageDistribution', 'hospitalBeds', 'ICUBeds', 'hemisphere', 'srcPopulation', 'srcHospitalBeds','srcICUBeds']
+
+ciaMap = {
+    'bahamas_the': 'Bahamas',
+    'british_virgin_islands': 'Virgin Islands (British)',
+'burma': 'Myanmar',
+'congo_democratic_republic_of_the': 'Congo, Democratic Republic of the',
+'congo_republic_of_the': 'Congo',
+"cote_d'_ivoire": "Côte d'Ivoire",
+'curacao': 'Curaçao',
+'gambia_the': 'Gambia',
+'guinea_bissau': 'Guinea-Bissau',
+'holy_see_vatican_city': 'Holy See',
+'korea_north': "Korea (Democratic People's Republic of)",
+'korea_south': 'Korea, Republic of',
+'laos': "Lao People's Democratic Republic",
+'macau': 'Macao',
+'micronesia_federated_states_of': 'Micronesia (Federated States of)',
+'pitcairn_islands': 'Pitcairn',
+'saint_barthelemy': 'Saint Barthélemy',
+'saint_helena_ascension_and_tristan_da_cunha': 'Saint Helena, Ascension and Tristan da Cunha',
+'south_georgia_and_south_sandwich_islands': 'South Georgia and the South Sandwich Islands',
+'timor_leste': 'Timor-Leste',
+'vietnam': 'Viet Nam'
+}
+
+
+def update_cia_facts(hospData, popData):
+    r  = get(URL_CIA)
+    if not r.ok:
+        print(f"Failed to fetch {URL}", file=sys.stderr)
+        exit(1)
+
+    db = json.loads(r.text)
+
+    countries = parse_countries(2)
+
+    for country in db["countries"]:
+        country2 = None
+        matches = [r for s,r in zip([x.lower() for x in countries.values()],[x for x in countries.values()]) if country.replace("_"," ") in s]
+        if len(matches) == 0:
+            # manual map to compensate
+            if country in ciaMap:
+                country2 = ciaMap[country]
+            else:
+                #print(f'no match found for {country}')
+                continue
+        elif len(matches) == 1:
+            country2 = matches[0]
+        else:
+            # only few cases, handle manually
+            for n in matches:
+                if country.replace("_"," ") == n.lower():
+                    country2 = n
+            if country == 'united_states':
+                country2 = 'United States of America'
+            elif country == 'virgin_islands':
+                country2 = 'Virgin Islands (U.S.)'
+            if not country2:
+                print(f'{country} matches {matches}')
+                continue
+        if not 'people' in db['countries'][country]['data']:
+            continue
+        
+        population = stoi(db["countries"][country]["data"]["people"]["population"]["total"])
+        source = db["countries"][country]["metadata"]["source"]
+        if not country2 in hospData and 'hospital_bed_density' in db['countries'][country]['data']['people']:
+            hospData[country2] = {}
+            hospData[country2]['hospitalBeds'] = int(population/1000*float(db['countries'][country]['data']['people']['hospital_bed_density']['beds_per_1000_population']))
+            if 'date' in db['countries'][country]['data']['people']['hospital_bed_density']:
+                hospData[country2]['srcHospitalBeds'] = f"Computed from {db['countries'][country]['data']['people']['hospital_bed_density']['date']} data in CIA fact book {source}"
+            else:
+                hospData[country2]['srcHospitalBeds'] = f"Computed from data in CIA fact book {source}"
+
+        if not country2 in popData and 'population' in db['countries'][country]['data']['people']:
+            popData[country2] = {}
+            popData[country2]['populationServed'] = population
+            if 'date' in db['countries'][country]['data']['people']['population']:
+                popData[country2]['srcPopulation'] = f"{db['countries'][country]['data']['people']['population']['date']} data in CIA fact book {source}"
+            else:
+                popData[country2]['srcPopulation'] = f"Data in CIA fact book {source}"
+    return hospData, popData
+
+def check_if_age(country):
+    PATH_UN_AGES   = "../src/assets/data/country_age_distribution.json"
+
+    with open(PATH_UN_AGES, 'r') as f:
+        ages = json.load(f)
+
+    return country in [x['country'] for x in ages]
+    
 
 def update_hosp_data(hospData, popData):
     countries = parse_countries(2)
@@ -34,7 +129,7 @@ def update_hosp_data(hospData, popData):
             country   = row[0].strip()
             if not country in countries:
                 #print(f'{country} not found in countries')
-                pass
+                continue
             else:
                 country = countries[country]
             if not country in hospData:
@@ -189,11 +284,14 @@ def get_old_data():
     return known
 
 def generate(output):
+
+
     hospData = retrieve_hosp_data()
     icuData = retrieve_icu_data()
     popData = retrieve_pop_data()
 
     hospData = update_hosp_data(hospData, popData)
+    hospData, popData = update_cia_facts(hospData, popData)
     
     newData = {}
     for d in hospData:
@@ -238,6 +336,14 @@ def generate(output):
             else:
                 newData[n] = oldData [n]
 
+    # estimate ICU data if only hospital data is available, and pop > 1M
+    for c in newData:
+        if 'populationServed' in newData[c] and newData[c]['populationServed'] and newData[c]['populationServed'] > MINPOP and 'hospitalBeds' in newData[c] and not 'ICUBeds' in newData[c]:
+            # global average of ICU beds vs hospital beds seems to be 3%
+            newData[c]['ICUBeds'] = int(newData[c]['hospitalBeds']*0.03) 
+            newData[c]['srcICUBeds'] = "Estimated based on 3% of hospital beds" 
+
+
     # lets count how many entries are complete
     i = 0
     toDel = []
@@ -250,7 +356,11 @@ def generate(output):
             toDel.append(c)
     for k in toDel:
         del newData[k]
-    #print(f'{i} entries are complete')
+    print(f'{i} entries are complete')
+
+    
+
+    
     with open(output, 'w', newline="") as fd:
         wtr = csv.writer(fd, delimiter='\t', lineterminator='\n')
         wtr.writerow(cols)
@@ -260,9 +370,11 @@ def generate(output):
             for c in cols:
                 if c == 'name':
                     continue
-                # TODO check if we actually have the age distribution?
                 if c == 'ageDistribution' and not 'ageDistribution' in newData[d] :
-                    nrow.append(d)
+                    if check_if_age(d):
+                        nrow.append(d)
+                    else:                        
+                        nrow.append('Switzerland')
                 elif c in newData[d]:
                     nrow.append(newData[d][c])
                 else:

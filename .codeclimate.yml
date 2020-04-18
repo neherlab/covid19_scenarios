@@ -14,7 +14,7 @@ checks:
   file-lines:
     enabled: true
     config:
-      threshold: 250
+      threshold: 300
 
   method-complexity:
     enabled: true
@@ -43,18 +43,21 @@ checks:
 
   similar-code:
     enabled: true
-    threshold: 8
+    threshold: 75
 
   identical-code:
     enabled: true
+    threshold: 75
 
 plugins:
   duplication:
     enabled: true
     config:
       languages:
-        - javascript
-        - typescript
+        javascript:
+          mass_threshold: 75
+        typescript:
+          mass_threshold: 75
 
 exclude_patterns:
   - '**/*.*test*.*'

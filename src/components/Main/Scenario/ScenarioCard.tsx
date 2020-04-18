@@ -17,8 +17,7 @@ import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
-import { SeverityTableRow } from './ScenarioTypes'
-import { AllParams } from '../../../algorithms/types/Param.types'
+import { AllParams, Severity } from '../../../algorithms/types/Param.types'
 import { ColCustom } from '../../Layout/ColCustom'
 
 export function getColumnSizes(areResultsMaximized: boolean) {
@@ -31,11 +30,11 @@ export function getColumnSizes(areResultsMaximized: boolean) {
 
 export interface ScenarioCardProps {
   values: AllParams
-  severity: SeverityTableRow[]
+  severity: Severity[]
   scenarioState: State
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
-  setSeverity(severity: SeverityTableRow[]): void
+  setSeverity(severity: Severity[]): void
   scenarioDispatch(action: AnyAction): void
   areResultsMaximized: boolean
 }

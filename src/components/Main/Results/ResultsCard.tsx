@@ -11,11 +11,11 @@ import { AgeBarChart } from './AgeBarChart'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { AllParams, ContainmentData, EmpiricalData, Severity } from '../../../algorithms/types/Param.types'
+import { AgeDistribution } from '../../../.generated/types'
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
-import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
 import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
@@ -29,8 +29,9 @@ interface ResultsCardProps {
   canRun: boolean
   isRunning: boolean
   params: AllParams
+  ageDistribution: AgeDistribution
   mitigation: ContainmentData
-  severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
+  severity: Severity[]
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
   scenarioUrl: string
@@ -45,6 +46,7 @@ function ResultsCardFunction({
   autorunSimulation,
   toggleAutorun,
   params,
+  ageDistribution,
   mitigation,
   severity,
   result,
@@ -60,7 +62,7 @@ function ResultsCardFunction({
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
-  const [userResult, setUserResult] = useState<UserResult | undefined>()
+  const [, setUserResult] = useState<UserResult | undefined>()
 
   useEffect(() => {
     const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
@@ -107,7 +109,7 @@ function ResultsCardFunction({
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
 
   useEffect(() => {
-    setCanExport((result && !!result.deterministic) || false)
+    setCanExport((result && !!result.trajectory) || false)
   }, [result])
 
   return (
@@ -205,7 +207,6 @@ function ResultsCardFunction({
           <Col>
             <DeterministicLinePlot
               data={result}
-              userResult={userResult}
               params={params}
               mitigation={mitigation}
               logScale={logScale}
@@ -216,7 +217,12 @@ function ResultsCardFunction({
         </Row>
         <Row>
           <Col>
-            <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} />
+            <AgeBarChart
+              showHumanized={showHumanized}
+              data={result}
+              rates={severity}
+              ageDistribution={ageDistribution}
+            />
           </Col>
         </Row>
         <Row>
@@ -247,6 +253,7 @@ function ResultsCardFunction({
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
         result={result}
+        params={params}
         scenarioUrl={scenarioUrl}
       />
     </>
