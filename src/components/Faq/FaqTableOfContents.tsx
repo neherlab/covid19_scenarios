@@ -12,7 +12,10 @@ const FaqTableOfContents = () => {
         if (node.innerHTML === 'Q:') {
           // eslint-disable-next-line no-param-reassign
           node.id = `q${links.length}`
-          links.push(node.parentNode.lastChild.textContent)
+          // eslint-disable-next-line lodash/prefer-get
+          if (node.parentNode && node.parentNode.lastChild && node.parentNode.lastChild.textContent) {
+            links.push(node.parentNode.lastChild.textContent)
+          }
         }
       })
       setContent(links)
