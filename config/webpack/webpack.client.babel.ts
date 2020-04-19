@@ -138,6 +138,7 @@ export default {
   entry: path.join(moduleRoot, `src/index.polyfilled.ts`),
 
   output: {
+    globalObject: 'self',
     path: buildPath,
     filename: outputFilename(development),
     chunkFilename: outputFilename(development),
