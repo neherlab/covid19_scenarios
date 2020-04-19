@@ -1,11 +1,6 @@
-import {
-  ModelParams,
-  SimulationTimePoint,
-  InternalCurrentData,
-  InternalCumulativeData,
-  UserResult,
-  ExportedTimePoint,
-} from './types/Result.types'
+import { zip, spread } from 'lodash'
+
+import { ModelParams, SimulationTimePoint, InternalState, UserResult, ExportedTimePoint } from './types/Result.types'
 
 import { msPerDay } from './initialize'
 
@@ -13,23 +8,23 @@ const eulerStep = 0.5
 export const eulerStepsPerDay = Math.round(1 / eulerStep)
 
 interface StateFlux {
-  susceptible: number[]
-  exposed: number[][]
+  susceptible: number
+  exposed: number[]
   infectious: {
-    severe: number[]
-    recovered: number[]
+    severe: number
+    recovered: number
   }
   severe: {
-    critical: number[]
-    recovered: number[]
+    critical: number
+    recovered: number
   }
   critical: {
-    severe: number[]
-    fatality: number[]
+    severe: number
+    fatality: number
   }
   overflow: {
-    severe: number[]
-    fatality: number[]
+    severe: number
+    fatality: number
   }
 }
 
@@ -49,10 +44,7 @@ export function evolve(
   return currState
 }
 
-interface TimeDerivative {
-  current: InternalCurrentData
-  cumulative: InternalCumulativeData
-}
+type TimeDerivative = InternalState[]
 
 // NOTE: Assumes all subfields corresponding to populations have the same set of keys
 function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number): SimulationTimePoint {
@@ -87,243 +79,159 @@ function advanceState(
   dt: number,
   nICUBeds: number,
 ): SimulationTimePoint {
-  const newPop: SimulationTimePoint = {
-    time: 0,
-    current: {
-      susceptible: [],
-      exposed: [],
-      infectious: [],
-      severe: [],
-      critical: [],
-      overflow: [],
-    },
-    cumulative: {
-      recovered: [],
-      hospitalized: [],
-      critical: [],
-      fatality: [],
-    },
-  }
+  // TODO(nnoll): How to assert that state and grad are always defined?
+  const newPop = {
+    ...pop,
+    state: zip(pop.state, tdot).map(([state, grad]) => {
+      return {
+        current: {
+          infectious: state.current.infectious + dt * grad.current.infectious,
+          exposed: state.current.exposed.map((e, i) => e + dt * grad.current.exposed[i]),
+          susceptible: state.current.susceptible + dt * grad.current.susceptible,
+          severe: state.current.severe + dt * grad.current.severe,
+          critical: state.current.critical + dt * grad.current.critical,
+          overflow: state.current.overflow + dt * grad.current.overflow,
+        },
 
-  // TODO(nnoll): Sort out types
-  const update = (age, kind, compartment) => {
-    newPop[kind][compartment][age] = gz(pop[kind][compartment][age] + dt * tdot[kind][compartment][age])
-  }
-
-  const updateAt = (age, kind, compartment, i) => {
-    newPop[kind][compartment][age][i] = gz(pop[kind][compartment][age][i] + dt * tdot[kind][compartment][age][i])
-  }
-
-  for (let age = 0; age < pop.current.infectious.length; age++) {
-    newPop.current.exposed[age] = Array(tdot.current.exposed[age].length)
-
-    update(age, 'current', 'susceptible')
-    for (let i = 0; i < pop.current.exposed[age].length; i++) {
-      updateAt(age, 'current', 'exposed', i)
-    }
-    update(age, 'current', 'infectious')
-    update(age, 'current', 'susceptible')
-    update(age, 'current', 'severe')
-    update(age, 'current', 'susceptible')
-    update(age, 'current', 'critical')
-    update(age, 'current', 'overflow')
-
-    update(age, 'cumulative', 'hospitalized')
-    update(age, 'cumulative', 'critical')
-    update(age, 'cumulative', 'fatality')
-    update(age, 'cumulative', 'recovered')
+        cumulative: {
+          hospitalized: state.cumulative.hospitalized + dt * grad.cumulative.hospitalized,
+          critical: state.cumulative.critical + dt * grad.cumulative.critical,
+          recovered: state.cumulative.recovered + dt * grad.cumulative.recovered,
+          fatality: state.cumulative.fatality + dt * grad.cumulative.fatality,
+        },
+      }
+    }),
   }
 
   // Move hospitalized patients according to constrained resources
   // TODO(nnoll): The gradients aren't computed subject to this non-linear constraint
-  let freeICUBeds = nICUBeds - sum(newPop.current.critical)
+  let freeICUBeds = nICUBeds - sum(newPop.state.map((p) => p.current.critical))
 
-  for (let age = pop.current.critical.length - 1; freeICUBeds < 0 && age >= 0; age--) {
-    if (newPop.current.critical[age] > -freeICUBeds) {
-      newPop.current.critical[age] += freeICUBeds
-      newPop.current.overflow[age] -= freeICUBeds
+  newPop.state.forEach((demo) => {
+    if (demo.current.critical > -freeICUBeds) {
+      demo.current.critical += freeICUBeds
+      demo.current.overflow -= freeICUBeds
       freeICUBeds = 0
     } else {
-      newPop.current.overflow[age] += newPop.current.critical[age]
-      freeICUBeds += newPop.current.critical[age]
-      newPop.current.critical[age] = 0
+      demo.current.overflow += demo.current.critical
+      freeICUBeds += demo.current.critical
+      demo.current.critical = 0
     }
-  }
+  })
 
-  for (let age = 0; freeICUBeds > 0 && age < pop.current.critical.length; age++) {
-    if (newPop.current.overflow[age] > freeICUBeds) {
-      newPop.current.critical[age] += freeICUBeds
-      newPop.current.overflow[age] -= freeICUBeds
+  newPop.state.forEach((demo) => {
+    if (demo.current.overflow > freeICUBeds) {
+      demo.current.critical += freeICUBeds
+      demo.current.overflow -= freeICUBeds
       freeICUBeds = 0
     } else {
-      newPop.current.critical[age] += newPop.current.overflow[age]
-      freeICUBeds -= newPop.current.overflow[age]
-      newPop.current.overflow[age] = 0
+      demo.current.critical += demo.current.overflow
+      freeICUBeds -= demo.current.overflow
+      demo.current.overflow = 0
     }
-  }
+  })
 
   return newPop
 }
 
 function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivative {
-  const sum: TimeDerivative = {
-    current: {
-      susceptible: [],
-      exposed: [],
-      infectious: [],
-      severe: [],
-      critical: [],
-      overflow: [],
+  return grads.reduce(
+    (sum, grad, i) => {
+      return zip(sum, grad).map(([total, g]) => ({
+        current: {
+          susceptible: total.current.susceptible + scale[i] * g.current.susceptible,
+          exposed: total.current.exposed.map((e, i) => e + scale[i] * g.current.exposed[i]),
+          infectious: total.current.infectious + scale[i] * g.current.infectious,
+          severe: total.current.severe + scale[i] * g.current.severe,
+          critical: total.current.critical + scale[i] * g.current.critical,
+          overflow: total.current.overflow + scale[i] * g.current.overflow,
+        },
+        cumulative: {
+          critical: total.cumulative.critical + g.cumulative.critical,
+          fatality: total.cumulative.fatality + g.cumulative.fatality,
+          recovered: total.cumulative.recovered + g.cumulative.recovered,
+          hospitalized: total.cumulative.hospitalized + g.cumulative.hospitalized,
+        },
+      }))
     },
-    cumulative: {
-      hospitalized: [],
-      critical: [],
-      recovered: [],
-      fatality: [],
-    },
-  }
-  for (let age = 0; age < grads[0].current.susceptible.length; age++) {
-    sum.current.susceptible[age] = 0
-    sum.current.exposed[age] = grads[0].current.exposed[age].map(() => {
-      return 0
+    grads[0].map((demo) => ({
+      current: {
+        susceptible: 0,
+        exposed: new Array(demo.current.exposed.length).fill(0),
+        infectious: 0,
+        severe: 0,
+        critical: 0,
+        overflow: 0,
+      },
+      cumulative: {
+        critical: 0,
+        fatality: 0,
+        recovered: 0,
+        hospitalized: 0,
+      },
+    })),
+  )
+}
+
+function derivative(fluxes: StateFlux[]): TimeDerivative {
+  return fluxes.map((flux) => {
+    let fluxIn = flux.susceptible
+    const exposed = flux.exposed.map((fluxOut, i) => {
+      const e = fluxIn - fluxOut
+      fluxIn = fluxOut
+      return e
     })
-    sum.current.infectious[age] = 0
-    sum.current.critical[age] = 0
-    sum.current.overflow[age] = 0
-    sum.current.severe[age] = 0
 
-    sum.cumulative.critical[age] = 0
-    sum.cumulative.fatality[age] = 0
-    sum.cumulative.recovered[age] = 0
-    sum.cumulative.hospitalized[age] = 0
-  }
-
-  grads.forEach((grad, i) => {
-    for (let age = 0; age < grads[0].current.susceptible.length; age++) {
-      sum.current.susceptible[age] += scale[i] * grad.current.susceptible[age]
-      sum.current.infectious[age] += scale[i] * grad.current.infectious[age]
-      grad.current.exposed[age].forEach((e, j) => {
-        sum.current.exposed[age][j] += scale[i] * e
-      })
-      sum.current.severe[age] += scale[i] * grad.current.severe[age]
-      sum.current.critical[age] += scale[i] * grad.current.critical[age]
-      sum.current.overflow[age] += scale[i] * grad.current.overflow[age]
-
-      sum.cumulative.recovered[age] += scale[i] * grad.cumulative.recovered[age]
-      sum.cumulative.fatality[age] += scale[i] * grad.cumulative.fatality[age]
-      sum.cumulative.critical[age] += scale[i] * grad.cumulative.critical[age]
-      sum.cumulative.hospitalized[age] += scale[i] * grad.cumulative.hospitalized[age]
+    return {
+      current: {
+        susceptible: -flux.susceptible,
+        exposed: exposed,
+        infectious: fluxIn - flux.infectious.severe - flux.infectious.recovered,
+        severe:
+          flux.infectious.severe +
+          flux.critical.severe +
+          flux.overflow.severe -
+          flux.severe.critical -
+          flux.severe.recovered,
+        critical: flux.severe.critical - flux.critical.severe - flux.critical.fatality,
+        overflow: -(flux.overflow.severe + flux.overflow.fatality),
+      },
+      cumulative: {
+        recovered: flux.infectious.recovered + flux.severe.recovered,
+        hospitalized: flux.infectious.severe,
+        critical: flux.severe.critical,
+        fatality: flux.critical.fatality + flux.overflow.fatality,
+      },
     }
   })
-
-  return sum
 }
 
-function derivative(flux: StateFlux): TimeDerivative {
-  const grad: TimeDerivative = {
-    current: {
-      susceptible: [],
-      exposed: [],
-      infectious: [],
-      severe: [],
-      critical: [],
-      overflow: [],
-    },
-    cumulative: {
-      recovered: [],
-      hospitalized: [],
-      critical: [],
-      fatality: [],
-    },
-  }
+// Compute all fluxes (apart from overflow states) barring no hospital bed constraints
+function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFlux[] {
+  const fracInfected = sum(pop.state.map((d) => d.current.infectious)) / P.populationServed
 
-  for (let age = 0; age < flux.susceptible.length; age++) {
-    grad.current.exposed[age] = Array(flux.exposed[age].length)
-
-    grad.current.susceptible[age] = -flux.susceptible[age]
-    let fluxIn = flux.susceptible[age]
-    flux.exposed[age].forEach((fluxOut, i) => {
-      grad.current.exposed[age][i] = fluxIn - fluxOut
-      fluxIn = fluxOut
-    })
-    grad.current.infectious[age] = fluxIn - flux.infectious.severe[age] - flux.infectious.recovered[age]
-    grad.current.severe[age] =
-      flux.infectious.severe[age] +
-      flux.critical.severe[age] +
-      flux.overflow.severe[age] -
-      flux.severe.critical[age] -
-      flux.severe.recovered[age]
-    grad.current.critical[age] = flux.severe.critical[age] - flux.critical.severe[age] - flux.critical.fatality[age]
-    grad.current.overflow[age] = -(flux.overflow.severe[age] + flux.overflow.fatality[age])
-
-    // Cumulative categories
-    grad.cumulative.recovered[age] = flux.infectious.recovered[age] + flux.severe.recovered[age]
-    grad.cumulative.hospitalized[age] = flux.infectious.severe[age]
-    grad.cumulative.critical[age] = flux.severe.critical[age]
-    grad.cumulative.fatality[age] = flux.critical.fatality[age] + flux.overflow.fatality[age]
-  }
-
-  return grad
-}
-
-function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFlux {
-  // Convention: flux is labelled by the state
-  const flux: StateFlux = {
-    susceptible: [],
-    exposed: [],
-    infectious: {
-      severe: [],
-      recovered: [],
-    },
-    severe: {
-      critical: [],
-      recovered: [],
-    },
-    critical: {
-      severe: [],
-      fatality: [],
-    },
-    overflow: {
-      severe: [],
-      fatality: [],
-    },
-  }
-
-  // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
-  const fracInfected = sum(pop.current.infectious) / P.populationServed
-
-  for (let age = 0; age < pop.current.infectious.length; age++) {
-    // Initialize all multi-faceted states with internal arrays
-    flux.exposed[age] = Array(pop.current.exposed[age].length)
-
-    // Susceptible -> Exposed
-    flux.susceptible[age] =
-      P.importsPerDay[age] +
-      (1 - P.frac.isolated[age]) * P.rate.infection(time) * pop.current.susceptible[age] * fracInfected
-
-    // Exposed -> Internal -> Infectious
-    pop.current.exposed[age].forEach((exposed, i, exposedArray) => {
-      flux.exposed[age][i] = P.rate.latency * exposed * exposedArray.length
-    })
-
-    // Infectious -> Recovered/Critical
-    flux.infectious.recovered[age] = pop.current.infectious[age] * P.rate.recovery[age]
-    flux.infectious.severe[age] = pop.current.infectious[age] * P.rate.severe[age]
-
-    // Severe -> Recovered/Critical
-    flux.severe.recovered[age] = pop.current.severe[age] * P.rate.discharge[age]
-    flux.severe.critical[age] = pop.current.severe[age] * P.rate.critical[age]
-
-    // Critical -> Severe/Fatality
-    flux.critical.severe[age] = pop.current.critical[age] * P.rate.stabilize[age]
-    flux.critical.fatality[age] = pop.current.critical[age] * P.rate.fatality[age]
-
-    // Overflow -> Severe/Fatality
-    flux.overflow.severe[age] = pop.current.overflow[age] * P.rate.stabilize[age]
-    flux.overflow.fatality[age] = pop.current.overflow[age] * P.rate.overflowFatality[age]
-  }
-
-  return flux
+  return zip(pop.state, P.rates, P.fracs).map(([state, rate, frac]) => {
+    return {
+      susceptible: rate.imports + (1 - frac.isolated) * rate.infection(time) * state.current.susceptible * fracInfected,
+      exposed: state.current.exposed.map((e) => e * rate.latency * state.current.exposed.length),
+      infectious: {
+        recovered: state.current.infectious * rate.recovery,
+        severe: state.current.infectious * rate.severe,
+      },
+      severe: {
+        recovered: state.current.severe * rate.discharge,
+        critical: state.current.severe * rate.critical,
+      },
+      critical: {
+        severe: state.current.critical * rate.stabilize,
+        fatality: state.current.critical * rate.fatality,
+      },
+      overflow: {
+        severe: state.current.overflow * rate.stabilize,
+        fatality: state.current.overflow * rate.overflowFatality,
+      },
+    }
+  })
 }
 
 const keys = <T>(o: T): Array<keyof T & string> => {

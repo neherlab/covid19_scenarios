@@ -2,19 +2,24 @@ import { AgeDistribution } from '../../.generated/types'
 import { TimeSeries } from './TimeSeries.types'
 
 export interface InternalCurrentData {
-  susceptible: number[]
-  exposed: number[][]
-  infectious: number[]
-  severe: number[]
-  critical: number[]
-  overflow: number[]
+  susceptible: number
+  exposed: number[]
+  infectious: number
+  severe: number
+  critical: number
+  overflow: number
 }
 
 export interface InternalCumulativeData {
-  recovered: number[]
-  hospitalized: number[]
-  critical: number[]
-  fatality: number[]
+  recovered: number
+  hospitalized: number
+  critical: number
+  fatality: number
+}
+
+export interface InternalState {
+  current: InternalCurrentData
+  cumulative: InternalCumulativeData
 }
 
 export interface ExposedCurrentData {
@@ -36,8 +41,7 @@ export interface ExposedCumulativeData {
 // This defines the internal data structure
 export interface SimulationTimePoint {
   time: number
-  current: InternalCurrentData
-  cumulative: InternalCumulativeData
+  state: InternalState[]
 }
 
 // This defines the user-facing data structure
@@ -48,35 +52,35 @@ export interface ExportedTimePoint {
 }
 
 export interface ModelFracs {
-  severe: number[]
-  critical: number[]
-  fatal: number[]
-  isolated: number[]
+  severe: number
+  critical: number
+  fatal: number
+  isolated: number
 }
 
 export interface ModelRates {
   latency: number
+  imports: number
   infection: (t: number) => number
-  recovery: number[]
-  severe: number[]
-  discharge: number[]
-  critical: number[]
-  stabilize: number[]
-  fatality: number[]
-  overflowFatality: number[]
+  recovery: number
+  severe: number
+  discharge: number
+  critical: number
+  stabilize: number
+  fatality: number
+  overflowFatality: number
 }
 
 export interface ModelParams {
   ageDistribution: AgeDistribution
-  importsPerDay: number[]
   timeDelta: number
   timeDeltaDays: number
   populationServed: number
   numberStochasticRuns: number
   hospitalBeds: number
   ICUBeds: number
-  frac: ModelFracs
-  rate: ModelRates
+  fracs: ModelFracs[]
+  rates: ModelRates[]
 }
 
 export interface UserResult {
