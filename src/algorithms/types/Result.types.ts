@@ -23,19 +23,19 @@ export interface InternalState {
 }
 
 export interface ExposedCurrentData {
-  susceptible: Record<string, number>
-  exposed: Record<string, number>
-  infectious: Record<string, number>
-  severe: Record<string, number>
-  critical: Record<string, number>
-  overflow: Record<string, number>
+  susceptible: Map<string, number>
+  exposed: Map<string, number>
+  infectious: Map<string, number>
+  severe: Map<string, number>
+  critical: Map<string, number>
+  overflow: Map<string, number>
 }
 
 export interface ExposedCumulativeData {
-  recovered: Record<string, number>
-  hospitalized: Record<string, number>
-  critical: Record<string, number>
-  fatality: Record<string, number>
+  recovered: Map<string, number>
+  hospitalized: Map<string, number>
+  critical: Map<string, number>
+  fatality: Map<string, number>
 }
 
 // This defines the internal data structure

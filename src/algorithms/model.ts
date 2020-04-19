@@ -1,4 +1,4 @@
-import { zip, spread } from 'lodash'
+import { zip, keyBy } from 'lodash'
 
 import { ModelParams, SimulationTimePoint, InternalState, UserResult, ExportedTimePoint } from './types/Result.types'
 
@@ -176,7 +176,7 @@ function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivativ
 function derivative(fluxes: StateFlux[]): TimeDerivative {
   return fluxes.map((flux) => {
     let fluxIn = flux.susceptible
-    const exposed = flux.exposed.map((fluxOut, i) => {
+    const exposed = flux.exposed.map((fluxOut) => {
       const e = fluxIn - fluxOut
       fluxIn = fluxOut
       return e
@@ -238,59 +238,28 @@ const keys = <T>(o: T): Array<keyof T & string> => {
   return Object.keys(o) as Array<keyof T & string>
 }
 
+// TODO(nnoll): Need to add a total column...
 export function collectTotals(trajectory: SimulationTimePoint[], ages: string[]): ExportedTimePoint[] {
-  const res: ExportedTimePoint[] = []
-
-  trajectory.forEach((d) => {
-    const tp: ExportedTimePoint = {
+  ages.push('total')
+  return trajectory.map((d) => {
+    return {
       time: d.time,
       current: {
-        susceptible: {},
-        severe: {},
-        exposed: {},
-        overflow: {},
-        critical: {},
-        infectious: {},
+        susceptible: new Map(d.state.map((p, i) => [ages[i], p.current.susceptible])),
+        exposed: new Map(d.state.map((p, i) => [ages[i], p.current.exposed.reduce((a, b) => a + b)])),
+        infectious: new Map(d.state.map((p, i) => [ages[i], p.current.infectious])),
+        severe: new Map(d.state.map((p, i) => [ages[i], p.current.severe])),
+        critical: new Map(d.state.map((p, i) => [ages[i], p.current.critical])),
+        overflow: new Map(d.state.map((p, i) => [ages[i], p.current.overflow])),
       },
       cumulative: {
-        recovered: {},
-        hospitalized: {},
-        critical: {},
-        fatality: {},
+        recovered: new Map(d.state.map((p, i) => [ages[i], p.cumulative.recovered])),
+        hospitalized: new Map(d.state.map((p, i) => [ages[i], p.cumulative.hospitalized])),
+        critical: new Map(d.state.map((p, i) => [ages[i], p.cumulative.critical])),
+        fatality: new Map(d.state.map((p, i) => [ages[i], p.cumulative.fatality])),
       },
     }
-
-    // TODO(nnoll): Typescript linting isn't happy here
-    Object.keys(tp.current).forEach((k) => {
-      if (k === 'exposed') {
-        tp.current.exposed.total = 0
-        Object.values(d.current.exposed).forEach((x) => {
-          x.forEach((y) => {
-            tp.current[k].total += y
-          })
-        })
-        ages.forEach((age, i) => {
-          tp.current[k][age] = d.current.exposed[i].reduce((a, b) => a + b, 0)
-        })
-      } else {
-        ages.forEach((age, i) => {
-          tp.current[k][age] = d.current[k][i]
-        })
-        tp.current[k].total = d.current[k].reduce((a, b) => a + b)
-      }
-    })
-
-    Object.keys(tp.cumulative).forEach((k) => {
-      ages.forEach((age, i) => {
-        tp.cumulative[k][age] = d.cumulative[k][i]
-      })
-      tp.cumulative[k].total = d.cumulative[k].reduce((a, b) => a + b, 0)
-    })
-
-    res.push(tp)
   })
-
-  return res
 }
 
 function title(name: string): string {
