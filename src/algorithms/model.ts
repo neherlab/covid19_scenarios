@@ -121,16 +121,16 @@ function advanceState(
     for (let i = 0; i < pop.current.exposed[age].length; i++) {
       updateAt(age, 'current', 'exposed', i)
     }
+
+    update(age, 'current', 'critical')
     update(age, 'current', 'infectious')
-    update(age, 'current', 'susceptible')
+    update(age, 'current', 'overflow')
     update(age, 'current', 'severe')
     update(age, 'current', 'susceptible')
-    update(age, 'current', 'critical')
-    update(age, 'current', 'overflow')
 
-    update(age, 'cumulative', 'hospitalized')
     update(age, 'cumulative', 'critical')
     update(age, 'cumulative', 'fatality')
+    update(age, 'cumulative', 'hospitalized')
     update(age, 'cumulative', 'recovered')
   }
 
