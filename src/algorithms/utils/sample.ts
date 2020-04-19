@@ -1,6 +1,3 @@
-// TODO(nnoll): Make a user-adjustable parameter?
-export const NUMBER_PARAMETER_SAMPLES = 10
-
 // TODO(nnoll): Generalize to allow for sampling multiple uncertainty ranges
 export function sampleUniform(range: [number, number], npoints: number): number[] {
   const sample: number[] = []

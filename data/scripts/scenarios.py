@@ -173,7 +173,7 @@ class SimulationParams(schema.SimulationData):
                 simulation_time_range = DateRange( \
                     datetime.strptime(FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01", '%Y-%m-%d').date(),
                     datetime.strptime("2020-09-01", '%Y-%m-%d').date()),
-                number_stochastic_runs = 0.0)
+                number_stochastic_runs = 10)
 
 # TODO: Region and country provide redudant information
 #       Condense the information into one field.

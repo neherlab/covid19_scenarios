@@ -3,7 +3,7 @@ import { AgeDistribution, Severity } from '../.generated/types'
 import { AllParamsFlat } from './types/Param.types'
 import { ModelParams, SimulationTimePoint } from './types/Result.types'
 
-import { NUMBER_PARAMETER_SAMPLES, sampleUniform } from './utils/sample'
+import { sampleUniform } from './utils/sample'
 import { containmentMeasures } from './mitigation'
 
 // -----------------------------------------------------------------------
@@ -128,7 +128,7 @@ export function getPopulationParams(
     return [sim]
   }
 
-  const r0s = sampleUniform([params.r0[0], params.r0[1]], NUMBER_PARAMETER_SAMPLES)
+  const r0s = sampleUniform([params.r0[0], params.r0[1]], params.numberStochasticRuns)
   return r0s.map((r0, i) => {
     const elt = cloneDeep(sim)
     const avgInfectionRate = r0 / params.infectiousPeriod
