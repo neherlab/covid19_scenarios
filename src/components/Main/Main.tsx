@@ -37,8 +37,8 @@ interface FormikValidationErrors extends Error {
 async function runOnWorker(...args) {
   return new Promise((resolve, reject) => {
     const worker = new Worker('../../workers/algorithm.js', { type: 'module' })
-    worker.onmessage = (event) => {
-      const { result, error } = event.data
+    worker.addEventListener('message', (message) => {
+      const { result, error } = message.data
 
       if (result) {
         resolve(result)
@@ -47,11 +47,10 @@ async function runOnWorker(...args) {
 
       if (error) {
         reject(error)
-        return
       }
-    }
+    })
 
-    worker.onerror = (error) => console.error('Worker error:', error)
+    worker.addEventListener('error', (error) => console.error('Worker error:', error))
 
     worker.postMessage(args)
   })
