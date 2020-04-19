@@ -1,10 +1,13 @@
+/* eslint-disable no-restricted-globals */
+/* Necessary because 'self' should be accepted as a global in webworkers. */
+
 import 'regenerator-runtime'
 import { run } from '../algorithms/run'
 
-addEventListener('message', (event) => {
+self.addEventListener('message', (event) => {
   const args = event.data
 
   run(...args)
-    .then((result) => postMessage({ result }))
-    .catch((error) => postMessage({ error }))
+    .then((result) => self.postMessage({ result }))
+    .catch((error) => self.postMessage({ error }))
 })
