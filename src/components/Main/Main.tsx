@@ -9,7 +9,6 @@ import { Col, Row } from 'reactstrap'
 
 import { AllParams, EmpiricalData, Severity } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import { run } from '../../algorithms/run'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
@@ -36,21 +35,25 @@ interface FormikValidationErrors extends Error {
 }
 
 async function runOnWorker(...args) {
-  const runWorker = new Worker('../../workers/algorithm.js', { type: 'module' })
   return new Promise((resolve, reject) => {
-    runWorker.onmessage = (event) => {
-      if (event.data.result) {
-        resolve(result.data)
+    const worker = new Worker('../../workers/algorithm.js', { type: 'module' })
+    worker.onmessage = (event) => {
+      const { result, error } = event.data
+
+      if (result) {
+        resolve(result)
         return
       }
-      if (event.data.error) {
+
+      if (error) {
         reject(error)
         return
       }
     }
-    runWorker.onerror = (error) => console.error('Worker error:', error)
 
-    runWorker.postMessage(args)
+    worker.onerror = (error) => console.error('Worker error:', error)
+
+    worker.postMessage(args)
   })
 }
 
