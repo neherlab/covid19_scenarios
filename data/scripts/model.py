@@ -84,7 +84,7 @@ class Data(object):
         return str({k : str(v) for k, v in self.__dict__.items()})
 
 class Rates(Data):
-    def __init__(self, latency, logR0, infection, hospital, critical, imports):
+    def __init__(self, latency, logR0, infection, hospital, critical, imports, efficacy):
         self.latency     = latency
         self.logR0       = logR0
         self.infectivity = np.exp(self.logR0) * infection
@@ -92,6 +92,7 @@ class Rates(Data):
         self.hospital    = hospital
         self.critical    = critical
         self.imports     = imports
+        self.efficacy    = efficacy
 
 # NOTE: Pulled from default severe table on neherlab.org/covid19
 #       Keep in sync!
@@ -119,25 +120,22 @@ class TimeRange(Data):
         self.delta = delta
 
 class Params(Data):
-    def __init__(self, ages, size, times, rates, fracs):
+    def __init__(self, ages, size, date, times, rates, fracs):
         self.ages  = ages
         self.rates = rates
         self.fracs = fracs
         self.size  = size
         self.time  = times
+        self.date  = date
 
         # Make infection function
-        # phase_offset = (times[0] - JAN1_2019)
         beta = self.rates.infectivity
-        # def infectivity(t):
-        #     return beta*(1 + 0.2*np.cos(2*np.pi*(t + phase_offset)/365))
-
-        self.rates.infectivity = lambda t:beta #infectivity
+        self.rates.infectivity = lambda t,date,eff : beta if t<date else beta*(1-eff)
 
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/4.0, logR0=1.0, infection=1/3.0, hospital=1/4, critical=1/14, imports=.1)
+DefaultRates = Rates(latency=1/4.0, logR0=1.0, infection=1/3.0, hospital=1/4, critical=1/14, imports=.1, efficacy=0.5)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
@@ -155,7 +153,7 @@ def make_evolve(params):
         fracI = pop2d[Sub.I, :].sum() / params.size
         dpop = np.zeros_like(pop2d)
 
-        flux_S   = params.rates.infectivity(t)*fracI*pop2d[Sub.S] + (params.rates.imports / Sub.NUM)
+        flux_S   = params.rates.infectivity(t, params.date, params.rates.efficacy)*fracI*pop2d[Sub.S] + (params.rates.imports / Sub.NUM)
 
         flux_E1  = params.rates.latency*pop2d[Sub.E1]*3
         flux_E2  = params.rates.latency*pop2d[Sub.E2]*3
@@ -223,19 +221,30 @@ def trace_ages(solution):
 
 # ------------------------------------------
 # Parameter estimation
+def is_cumulative(vec):
+    return not False in (vec[~vec.mask][:-1]<=vec[~vec.mask][1:])
+
 def assess_model(params, data, cases):
     sol = solve_ode(params, init_pop(params.ages, params.size, cases))
     model = trace_ages(sol)
 
-    case_cost = np.ma.sum(np.power(model[:,Sub.T] - data[Sub.T], 2))
-    death_cost = 100000*np.ma.sum(np.power(model[:,Sub.D] - data[Sub.D], 2))
-    return case_cost + death_cost
+    case_cost = np.ma.sum(np.power(1 - data[Sub.T]/model[:,Sub.T] , 2))
+    death_cost = np.ma.sum(np.power(1 - data[Sub.D]/model[:,Sub.D] , 2))
+    hospital_cost = 0
+    ICU_cost = 0
+
+    # if data[Sub.H] is not None:
+    #     hospital_cost = np.ma.sum(np.power(1 - data[Sub.H]/model[:,Sub.H] , 2))
+    # if data[Sub.C] is not None:
+    #     ICU_cost = np.ma.sum(np.power(1 - data[Sub.C]/model[:,Sub.C] , 2))
+
+    return case_cost + death_cost + hospital_cost + ICU_cost
 
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
-def fit_params(key, time_points, data, guess, bounds=None):
+def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
     if key not in POPDATA:
-        return Params(None, None, None, DefaultRates, Fracs()), 10, (False, "Not within population database")
+        return Params(None, None, None, None, DefaultRates, Fracs()), 10, (False, "Not within population database")
 
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
 
@@ -250,17 +259,17 @@ def fit_params(key, time_points, data, guess, bounds=None):
         return Rates(**vals), Fracs(x[params_to_fit['reported']]) if 'reported' in params_to_fit else Fracs()
 
     def fit(x):
-        param = Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points, *unpack(x))
+        param = Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], confinement_start, time_points, *unpack(x))
         return assess_model(param, data, np.exp(x[params_to_fit['logInitial']]))
 
     if bounds is None:
         fit_param = opt.minimize(fit, pack(guess), method='Nelder-Mead')
     else:
-        fit_param = opt.minimize(fit, pack(guess), method='TNC', bounds=pack(bounds, as_list=True))
+        fit_param = opt.minimize(fit, pack(guess), method='L-BFGS-B', bounds=bounds)
 
     err = (fit_param.success, fit_param.message)
     print(key, fit_param.x)
-    return (Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points,
+    return (Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], confinement_start, time_points,
            *unpack(fit_param.x)), np.exp(fit_param.x[params_to_fit['logInitial']]), err)
 
 # ------------------------------------------
@@ -285,7 +294,10 @@ def load_data(key):
         data[Sub.H].append(tp['hospitalized'] or np.nan)
         data[Sub.C].append(tp['icu'] or np.nan)
 
-    data = [ np.array(d) if d is not None else d for d in data]
+    data = [ np.ma.array(d) if d is not None else d for d in data]
+    for ii in [Sub.D, Sub.T, Sub.H, Sub.C]:
+        data[ii].mask = np.isnan(data[ii])
+
     days = np.array([datetime.strptime(d['time'].split('T')[0], "%Y-%m-%d").toordinal() for d in ts])
 
     return days, data
@@ -312,6 +324,10 @@ def get_fit_data(days, data_original, confinement_start=None):
     data[Sub.H].mask = np.isnan(data[Sub.H])
     data[Sub.C].mask = np.isnan(data[Sub.C])
 
+    for ii in [Sub.T, Sub.D, Sub.H, Sub.C]: # remove data if whole array is masked
+        if False not in data[ii].mask:
+            data[ii] = None
+
     # start the model 3 weeks prior.
     time = np.concatenate(([day0-21], days[good_idx]))
     return time, data
@@ -325,12 +341,17 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
     if guess is None:
         guess = { "logR0": 1.0,
                   "reported" : 0.3,
-                  "logInitial" : 1
+                  "logInitial" : 1,
+                  "efficacy" : 0.5
                 }
+    bounds = ((0.4,2),(0.01,0.8),(0,None),(0,1))
+    # bounds=None
 
-    time_point_fit, data_fit = get_fit_data(time_points, data, confinement_start)
+    for ii in [Sub.T, Sub.D]:
+        if not is_cumulative(data[ii]):
+            print("Cases / deaths count is not cumulative.")
 
-    param, init_cases, err = fit_params(key, time_point_fit, data_fit, guess)
+    param, init_cases, err = fit_params(key, time_points, data, guess, confinement_start, bounds=bounds)
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     return {'params':param, 'initialCases':init_cases, 'tMin':tMin, 'data': data, 'error':err}
 
@@ -353,21 +374,23 @@ if __name__ == "__main__":
     # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
     # key = "USA-California"
-    # key = "CHE-Basel-Stadt"
-    key = "DEU-Berlin"
+    key = "CHE-Basel-Stadt"
+    # key = "DEU-Berlin"
     # confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
-    confinement_start = None
-    # confinement_start = datetime.strptime("2020-03-13", "%Y-%m-%d").toordinal()
+    confinement_start = datetime.strptime("2020-03-13", "%Y-%m-%d").toordinal()
     # confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
+    # confinement_start = None
 
     # Raw data and time points
     time, data = load_data(key)
 
+
     # Fitting over the pre-confinement days
     res = fit_population(key, time, data, confinement_start)
-    res['params'].time = np.concatenate((res['params'].time, time[time>res['params'].time[-1]])) # to project model past fitting window
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
-    time = time - res['params'].time[0]
+    if confinement_start is not None:
+        confinement_start -= res['params'].time[0]
+    time -= res['params'].time[0]
     tp = res['params'].time - res['params'].time[0]
 
     plt.figure()
@@ -387,13 +410,14 @@ if __name__ == "__main__":
     plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
     plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
 
-    # plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
+    if confinement_start is not None:
+        plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
 
     plt.xlabel("Time [days]")
     plt.ylabel("Number of people")
     plt.legend(loc="best")
     plt.tight_layout()
     # plt.yscale('log')
-    # plt.ylim([-1000,25000])
-    # plt.savefig("Confinement_fit_lin", format="png")
+    plt.ylim([-100,1000])
+    plt.savefig("Basel-Stadt", format="png")
     plt.show()
