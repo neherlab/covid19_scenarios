@@ -119,7 +119,7 @@ export function getPopulationParams(
 
   // Infectivity dynamics
   // interpolateTimeSeries(intervalsToTimeSeries(params.mitigationIntervals))
-  const containmentRealization = containmentMeasures(params.mitigationIntervals)
+  const containmentRealization = containmentMeasures(params.mitigationIntervals, params.numberStochasticRuns)
   if (params.r0[0] === params.r0[1] && containmentRealization.length === 1) {
     const avgInfectionRate = params.r0[0] / params.infectiousPeriod
     sim.rate.infection = (time: number) =>
