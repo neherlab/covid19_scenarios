@@ -188,7 +188,7 @@ export default {
           'delay',
           'immer',
           'immer',
-          'lodash',
+          //'lodash',
           'p-min-delay',
           'react-router',
           'recharts',
