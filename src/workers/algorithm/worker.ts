@@ -9,5 +9,13 @@ self.addEventListener('message', (event: MessageEvent) => {
 
   run(...args)
     .then((result) => self.postMessage({ result }))
-    .catch((error) => self.postMessage({ error: `Algorithm error:${error.name}:${error.message}` }))
+    .catch((error) => self.postMessage({ error: errorToString(error) }))
 })
+
+/* Firefox cannot do structured cloning of Error types,
+ * therefore we convert the error into a string.
+ * Track https://bugzilla.mozilla.org/show_bug.cgi?id=1556604
+ */
+function errorToString(error: Error): string {
+  return `Algorithm error:${error.name}:${error.message}`
+}
