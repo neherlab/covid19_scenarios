@@ -270,4 +270,4 @@ Install the requirements:
 Then type in your terminal `pipenv install` This should recreate the required python environment To enter the
 environment, type `pipenv shell`
 
-***If using WSL, you may have to use `pipenv install --python $(which python3)` instead of `pipenv install`
+**If using WSL, you may have to use `pipenv install --python $(which python3)` instead of `pipenv install`
