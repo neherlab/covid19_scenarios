@@ -1,7 +1,7 @@
 import { clamp } from 'lodash'
 import { TimeSeries } from './types/TimeSeries.types'
 import { MitigationIntervals } from './types/Param.types'
-import { NUMBER_PARAMETER_SAMPLES, sampleRandom } from './utils/sample'
+import { sampleRandom } from './utils/sample'
 
 // -----------------------------------------------------------------------
 // Utility functions
@@ -27,7 +27,10 @@ function strength(mitigation: number): number {
   return clamp(1 - mitigation / 100, 0.01, 1)
 }
 
-function sampleMitigationRealizations(intervals: MitigationIntervals): MitigationMeasure[][] {
+function sampleMitigationRealizations(
+  intervals: MitigationIntervals,
+  numberStochasticRuns: number,
+): MitigationMeasure[][] {
   const noRanges = intervals.every((elt) => elt.mitigationValue[0] === elt.mitigationValue[1])
   if (noRanges) {
     return [
@@ -39,7 +42,7 @@ function sampleMitigationRealizations(intervals: MitigationIntervals): Mitigatio
     ]
   }
 
-  return [...Array(NUMBER_PARAMETER_SAMPLES).keys()].map(() =>
+  return [...Array(numberStochasticRuns).keys()].map(() =>
     intervals.map((interval) => ({
       val: strength(sampleRandom([interval.mitigationValue[0], interval.mitigationValue[1]])),
       tMin: interval.timeRange.tMin.valueOf(),
@@ -115,6 +118,8 @@ function interpolateTimeSeries(containment: TimeSeries): Func {
 // -----------------------------------------------------------------------
 // Exported functions
 
-export function containmentMeasures(intervals: MitigationIntervals): Func[] {
-  return sampleMitigationRealizations(intervals).map((sample) => interpolateTimeSeries(timeSeriesOf(sample)))
+export function containmentMeasures(intervals: MitigationIntervals, numberStochasticRuns: number): Func[] {
+  return sampleMitigationRealizations(intervals, numberStochasticRuns).map((sample) =>
+    interpolateTimeSeries(timeSeriesOf(sample)),
+  )
 }

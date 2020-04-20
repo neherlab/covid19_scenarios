@@ -27,6 +27,7 @@ interface ResultsCardProps {
   autorunSimulation: boolean
   toggleAutorun: () => void
   canRun: boolean
+  isRunning: boolean
   params: AllParams
   ageDistribution: AgeDistribution
   mitigation: ContainmentData
@@ -41,6 +42,7 @@ interface ResultsCardProps {
 
 function ResultsCardFunction({
   canRun,
+  isRunning,
   autorunSimulation,
   toggleAutorun,
   params,
@@ -133,11 +135,11 @@ function ResultsCardFunction({
                 className="run-button"
                 type="submit"
                 color="primary"
-                disabled={!canRun}
+                disabled={!canRun || isRunning}
                 data-testid="RunResults"
                 title={t(autorunSimulation ? 'Force a run of the simulation' : 'Run the simulation')}
               >
-                {t(autorunSimulation ? 'Refresh' : 'Run')}
+                {isRunning ? t('Running...') : t(autorunSimulation ? 'Refresh' : 'Run')}
               </Button>
               <LinkButton
                 className="new-tab-button"

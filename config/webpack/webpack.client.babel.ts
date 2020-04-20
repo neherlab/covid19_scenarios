@@ -21,6 +21,8 @@ import kill from 'tree-kill'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
+import WorkerPlugin from 'worker-plugin'
+
 import webpackCompression from './lib/webpackCompression'
 import webpackFriendlyConsole from './lib/webpackFriendlyConsole'
 import webpackLoadAssets from './lib/webpackLoadAssets'
@@ -136,6 +138,7 @@ export default {
   entry: path.join(moduleRoot, `src/index.polyfilled.ts`),
 
   output: {
+    globalObject: 'self',
     path: buildPath,
     filename: outputFilename(development),
     chunkFilename: outputFilename(development),
@@ -183,7 +186,6 @@ export default {
           'create-color',
           'd3-array',
           'delay',
-          'immer',
           'immer',
           'lodash',
           'p-min-delay',
@@ -411,6 +413,8 @@ export default {
         writeFile: true,
         publish: false,
       }),
+
+    new WorkerPlugin(),
   ].filter(Boolean),
 
   optimization: {
