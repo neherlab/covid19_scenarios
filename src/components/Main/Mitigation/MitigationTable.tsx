@@ -1,7 +1,5 @@
 import React from 'react'
 
-import _ from 'lodash'
-
 import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
