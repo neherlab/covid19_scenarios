@@ -11,6 +11,7 @@ const MSG_REQUIRED = i18next.t('Value is required')
 const MSG_NON_NEGATIVE = i18next.t('Should be non-negative (or zero)')
 const MSG_POSITIVE = i18next.t('Should be strictly positive (non-zero)')
 const MSG_AT_LEAST_ONE_DAY = i18next.t('Should be at least one day or greater')
+const MSG_NUMBER_TYPE_ERROR = i18next.t('This value should be a number')
 
 export function dateRange() {
   return yup.object({
@@ -51,7 +52,11 @@ export const schema = yup.object().shape({
 
     peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_POSITIVE).max(11),
 
-    r0: yup.array().of(yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE)).min(2).max(2),
+    r0: yup
+      .array()
+      .of(yup.number().typeError(MSG_NUMBER_TYPE_ERROR).required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE))
+      .min(2)
+      .max(2),
   }),
 
   containment: yup.object().shape({
@@ -61,7 +66,7 @@ export const schema = yup.object().shape({
         id: yup.string().required(MSG_REQUIRED),
         mitigationValue: yup
           .array()
-          .of(yup.number().min(0, MSG_NON_NEGATIVE).max(100).required(MSG_REQUIRED))
+          .of(yup.number().typeError(MSG_NUMBER_TYPE_ERROR).min(0, MSG_NON_NEGATIVE).max(100).required(MSG_REQUIRED))
           .min(2)
           .max(2),
         name: yup.string().required(MSG_REQUIRED),

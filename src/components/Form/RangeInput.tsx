@@ -10,9 +10,10 @@ interface RangeInputProps {
   onChange?: (value: RangeInputValue) => void
   title?: string
   placeholder?: string
+  hasError?: boolean
 }
 
-export default function RangeInput({ value, onChange: propagateChange, ...restOfProps }: RangeInputProps) {
+export default function RangeInput({ value, onChange: propagateChange, hasError, ...restOfProps }: RangeInputProps) {
   const [hintValue, setHintValue] = useState<string>('')
   const [displayValue, setDisplayValue] = useState<string>(valueToDisplay(value))
   const inputRef = useRef<HTMLInputElement>(null)
@@ -63,6 +64,7 @@ export default function RangeInput({ value, onChange: propagateChange, ...restOf
         innerRef={inputRef}
         placeholder="Enter a number or range of numbers..."
         title="Enter a number or range of numbers. e.g. 29 or 29-31"
+        invalid={hasError}
         value={displayValue}
         onChange={onChange}
         onFocus={onFocus}

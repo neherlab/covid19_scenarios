@@ -15,7 +15,7 @@ import { suggestNextMitigationInterval } from '../../../algorithms/utils/createM
 
 import { MitigationDatePicker } from './MitigationDatePicker'
 
-import { RangeSlider } from '../../Form/FormRangeSlider'
+import { FormRangeInput } from '../../Form/FormRangeInput'
 
 import './MitigationTable.scss'
 
@@ -149,12 +149,7 @@ function MitigationIntervalComponent({
                 />
               </Col>
               <Col>
-                <RangeSlider
-                  identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
-                  step={0.1}
-                  min={0}
-                  max={100}
-                />
+                <FormRangeInput identifier={`containment.mitigationIntervals[${index}].mitigationValue`} />
               </Col>
             </Row>
           </Container>
