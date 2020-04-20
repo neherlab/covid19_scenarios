@@ -25,6 +25,19 @@ export default function RangeInput({ value, onChange: propagateChange, hasError,
     }
   }, [value])
 
+  const shouldSetHint = (value?: RangeInputValue): boolean => {
+    const input = inputRef.current
+
+    return !!(
+      input &&
+      !hasSeparator(input.value) &&
+      value &&
+      value[0] !== undefined &&
+      value[1] !== undefined &&
+      value[0] === value[1]
+    )
+  }
+
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = displayToValue(event.currentTarget.value)
 
@@ -35,15 +48,7 @@ export default function RangeInput({ value, onChange: propagateChange, hasError,
     }
 
     const input = inputRef.current
-
-    if (
-      input &&
-      !hasSeparator(input.value) &&
-      value &&
-      value[0] !== undefined &&
-      value[1] !== undefined &&
-      value[0] === value[1]
-    ) {
+    if (input && shouldSetHint(value)) {
       setHintValue(`${input.value} to ...`)
     } else if (hintValue) {
       setHintValue('')
@@ -51,8 +56,9 @@ export default function RangeInput({ value, onChange: propagateChange, hasError,
   }
 
   const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (value && value[0] !== undefined && value[1] !== undefined && value[0] === value[1]) {
-      setHintValue(`${value[0]} to ...`)
+    const input = inputRef.current
+    if (input && shouldSetHint(value)) {
+      setHintValue(`${input.value} to ...`)
     }
   }
 
