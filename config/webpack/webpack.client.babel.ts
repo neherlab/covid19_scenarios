@@ -36,7 +36,7 @@ import { getenv } from '../../lib/getenv'
 
 import babelConfig from '../../babel.config'
 
-const WorkerPlugin = require('worker-plugin')
+import WorkerPlugin from 'worker-plugin'
 
 process.once('SIGINT', () => {
   kill(process.pid, 'SIGTERM')
