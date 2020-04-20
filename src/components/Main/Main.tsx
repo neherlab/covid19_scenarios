@@ -42,7 +42,9 @@ async function runSimulation(
   severity: Severity[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
   setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
+  setIsRunning: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
+  setIsRunning(true)
   const paramsFlat = {
     ...params.population,
     ...params.epidemiological,
@@ -55,6 +57,7 @@ async function runSimulation(
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)
+  setIsRunning(false)
 }
 
 function getColumnSizes(areResultsMaximized: boolean) {
@@ -85,6 +88,8 @@ function Main({ initialState }: InitialStateComponentProps) {
     setAutorunSimulation(!autorunSimulation)
   }
 
+  const [isRunning, setIsRunning] = useState(false)
+
   const allParams: AllParams = {
     population: scenarioState.data.population,
     epidemiological: scenarioState.data.epidemiological,
@@ -94,7 +99,7 @@ function Main({ initialState }: InitialStateComponentProps) {
 
   const [debouncedRun] = useDebouncedCallback(
     (params: AllParams, scenarioState: State, severity: Severity[]) =>
-      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases),
+      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning),
     500,
   )
 
@@ -139,7 +144,7 @@ function Main({ initialState }: InitialStateComponentProps) {
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
+    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning)
     setSubmitting(false)
   }
 
@@ -195,6 +200,7 @@ function Main({ initialState }: InitialStateComponentProps) {
                   <Col lg={8} {...colResults} className="py-1 animate-flex-width">
                     <ResultsCard
                       canRun={canRun}
+                      isRunning={isRunning}
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
