@@ -112,6 +112,17 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
           'Start and end date of the simulation. Changing the time range might affect the result due to resampling of the mitigation curve.',
         )}
       />
+      <FormSpinBox
+        identifier="simulation.numberStochasticRuns"
+        label={t('Number of runs')}
+        help={t(
+          'Perform multiple runs, to account for the uncertainty of parameters. More runs result in more accurate simulation, but take more time to finish.',
+        )}
+        step={1}
+        min={1}
+        errors={errors}
+        touched={touched}
+      />
     </CardWithoutDropdown>
   )
 }
