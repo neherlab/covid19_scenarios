@@ -91,7 +91,11 @@ definitions:
         type: integer
         multipleOf: 1
         minimum: 0
-
+      
+      srcHospitalBeds:
+        type: string
+        minLength: 1
+      
   EpidemiologicalData:
     type: object
 

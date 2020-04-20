@@ -125,12 +125,13 @@ class MitigationInterval(schema.MitigationInterval):
                 time_range = DateRange(tMin, tMax))
 
 class PopulationParams(schema.PopulationData):
-    def __init__(self, region, country, population, beds, icus, cases_key):
+    def __init__(self, region, country, population, beds, icus, cases_key, srcHospitalBeds):
         return super(PopulationParams, self).__init__( \
                 cases=cases_key,
                 country=country,
                 hospital_beds=int(beds),
                 icu_beds=int(icus),
+                src_hospital_beds=srcHospitalBeds,
                 imports_per_day=0.1,
                 population_served=int(population),
                 initial_number_of_cases=int(round(FIT_CASE_DATA[region]['initialCases']
@@ -183,7 +184,7 @@ class AllParams(schema.AllParams):
         return super(AllParams, self).__init__( \
                 ContainmentParams(),
                 EpidemiologicalParams(region, hemisphere),
-                PopulationParams(region, country, population, beds, icus, cases_key),
+                PopulationParams(region, country, population, beds, icus, cases_key, srcHospitalBeds),
                 SimulationParams(region)
         )
 
