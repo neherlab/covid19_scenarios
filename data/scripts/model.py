@@ -228,15 +228,16 @@ def assess_model(params, data, cases):
     sol = solve_ode(params, init_pop(params.ages, params.size, cases))
     model = trace_ages(sol)
 
-    case_cost = np.ma.sum(np.power(1 - data[Sub.T]/model[:,Sub.T] , 2))
-    death_cost = np.ma.sum(np.power(1 - data[Sub.D]/model[:,Sub.D] , 2))
+    eps = 1e-5
+    case_cost = np.ma.sum(model[:,Sub.T]-data[Sub.T]*(1+np.log((model[:,Sub.T]+eps)/data[Sub.T])))
+    death_cost = np.ma.sum(model[:,Sub.D]-data[Sub.D]*(1+np.log((model[:,Sub.D]+eps)/data[Sub.D])))
+
     hospital_cost = 0
     ICU_cost = 0
-
-    # if data[Sub.H] is not None:
-    #     hospital_cost = np.ma.sum(np.power(1 - data[Sub.H]/model[:,Sub.H] , 2))
-    # if data[Sub.C] is not None:
-    #     ICU_cost = np.ma.sum(np.power(1 - data[Sub.C]/model[:,Sub.C] , 2))
+    if data[Sub.H] is not None:
+        hospital_cost = np.ma.sum(model[:,Sub.H]-data[Sub.H]*(1+np.log((model[:,Sub.H]+eps)/data[Sub.H])))
+    if data[Sub.C] is not None:
+        ICU_cost = np.ma.sum(model[:,Sub.C]-data[Sub.C]*(1+np.log((model[:,Sub.C]+eps)/data[Sub.C])))
 
     return case_cost + death_cost + hospital_cost + ICU_cost
 
@@ -283,6 +284,7 @@ def load_data(key):
     else:
         popsize = 1e6
 
+    case_min = 20
     data = [[] if (i == Sub.D or i == Sub.T or i == Sub.H or i == Sub.C) else None for i in range(Sub.NUM)]
     days = []
 
@@ -295,12 +297,16 @@ def load_data(key):
         data[Sub.C].append(tp['icu'] or np.nan)
 
     data = [ np.ma.array(d) if d is not None else d for d in data]
+    good_idx = np.array(case_min <= data[Sub.T])
+
     for ii in [Sub.D, Sub.T, Sub.H, Sub.C]:
+        data[ii] = data[ii][good_idx]
         data[ii].mask = np.isnan(data[ii])
+        if False not in data[ii].mask:
+            data[ii] = None
 
     days = np.array([datetime.strptime(d['time'].split('T')[0], "%Y-%m-%d").toordinal() for d in ts])
-
-    return days, data
+    return days[good_idx], data
 
 
 def get_fit_data(days, data_original, confinement_start=None):
@@ -344,8 +350,8 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
                   "logInitial" : 1,
                   "efficacy" : 0.5
                 }
-    bounds = ((0.4,2),(0.01,0.8),(0,None),(0,1))
-    # bounds=None
+    # bounds = ((0.4,2),(0.01,0.8),(1,None),(0,1))
+    bounds=None
 
     for ii in [Sub.T, Sub.D]:
         if not is_cumulative(data[ii]):
@@ -358,6 +364,18 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
 
 # ------------------------------------------------------------------------
 # Testing entry
+
+def fit_error(data, model):
+    err = [[] if (i == Sub.D or i == Sub.T or i == Sub.H or i == Sub.C) else None for i in range(Sub.NUM)]
+
+    eps = 1e-5
+    err[Sub.T] = model[:,Sub.T]-data[Sub.T]*(1+np.log((model[:,Sub.T]+eps)/data[Sub.T]))
+    err[Sub.D] = model[:,Sub.D]-data[Sub.D]*(1+np.log((model[:,Sub.D]+eps)/data[Sub.D]))
+    if data[Sub.H] is not None:
+        err[Sub.H] = model[:,Sub.H]-data[Sub.H]*(1+np.log((model[:,Sub.H]+eps)/data[Sub.H]))
+    if data[Sub.C] is not None:
+        err[Sub.C] = model[:,Sub.C]-data[Sub.C]*(1+np.log((model[:,Sub.C]+eps)/data[Sub.C]))
+    return err
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "",
@@ -373,11 +391,11 @@ if __name__ == "__main__":
     # param = Params(AGES[COUNTRY], POPDATA[make_key(COUNTRY, REGION)], times, rates, fracs)
     # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
-    # key = "USA-California"
-    key = "CHE-Basel-Stadt"
+    key = "USA-California"
+    # key = "CHE-Basel-Stadt"
     # key = "DEU-Berlin"
-    # confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
-    confinement_start = datetime.strptime("2020-03-13", "%Y-%m-%d").toordinal()
+    confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
+    # confinement_start = datetime.strptime("2020-03-13", "%Y-%m-%d").toordinal()
     # confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
     # confinement_start = None
 
@@ -388,36 +406,71 @@ if __name__ == "__main__":
     # Fitting over the pre-confinement days
     res = fit_population(key, time, data, confinement_start)
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
+    err = fit_error(data, model)
     if confinement_start is not None:
         confinement_start -= res['params'].time[0]
     time -= res['params'].time[0]
     tp = res['params'].time - res['params'].time[0]
 
+    # plt.figure()
+    # plt.title(f"{key}")
+    # plt.plot(time, data[Sub.T], 'o', color='#a9a9a9', label="cases")
+    # plt.plot(tp, model[:,Sub.T], color="#a9a9a9", label="predicted cases")
+    #
+    # plt.plot(time, data[Sub.D], 'o', color="#cab2d6", label="deaths")
+    # plt.plot(tp, model[:,Sub.D], color="#cab2d6", label="predicated deaths")
+    #
+    # plt.plot(time, data[Sub.H], 'o', color="#fb9a98", label="Hospitalized")
+    # plt.plot(tp, model[:,Sub.H], color="#fb9a98", label="Predicted hospitalized")
+    #
+    # plt.plot(time, data[Sub.C], 'o', color="#e31a1c", label="ICU")
+    # plt.plot(tp, model[:,Sub.C], color="#e31a1c", label="Predicted ICU")
+    #
+    # plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
+    # plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
+    #
+    # if confinement_start is not None:
+    #     plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
+    #
+    # plt.xlabel("Time [days]")
+    # plt.ylabel("Number of people")
+    # plt.legend(loc="best")
+    # plt.tight_layout()
+    # # plt.yscale('log')
+    # # plt.ylim([-100,1000])
+    # plt.savefig("Basel-Stadt", format="png")
+    # plt.show()
+
     plt.figure()
     plt.title(f"{key}")
     plt.plot(time, data[Sub.T], 'o', color='#a9a9a9', label="cases")
     plt.plot(tp, model[:,Sub.T], color="#a9a9a9", label="predicted cases")
+    plt.plot(tp, err[Sub.T], '--', color="#a9a9a9", label="cases error")
 
     plt.plot(time, data[Sub.D], 'o', color="#cab2d6", label="deaths")
-    plt.plot(tp, model[:,Sub.D], color="#cab2d6", label="predicated deaths")
+    plt.plot(tp, model[:,Sub.D], color="#cab2d6")
+    plt.plot(tp, err[Sub.D], '--', color="#cab2d6")
 
     plt.plot(time, data[Sub.H], 'o', color="#fb9a98", label="Hospitalized")
-    plt.plot(tp, model[:,Sub.H], color="#fb9a98", label="Predicted hospitalized")
+    plt.plot(tp, model[:,Sub.H], color="#fb9a98")
+    plt.plot(tp, err[Sub.H], '--', color="#fb9a98")
 
     plt.plot(time, data[Sub.C], 'o', color="#e31a1c", label="ICU")
-    plt.plot(tp, model[:,Sub.C], color="#e31a1c", label="Predicted ICU")
+    plt.plot(tp, model[:,Sub.C], color="#e31a1c")
+    plt.plot(tp, err[Sub.C], '--', color="#e31a1c")
+
 
     plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
     plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
-
     if confinement_start is not None:
         plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
+
+
 
     plt.xlabel("Time [days]")
     plt.ylabel("Number of people")
     plt.legend(loc="best")
     plt.tight_layout()
-    # plt.yscale('log')
-    plt.ylim([-100,1000])
-    plt.savefig("Basel-Stadt", format="png")
+    plt.yscale("log")
+    plt.savefig(f"{key}-Poisson_max_likelihood", format="png")
     plt.show()
