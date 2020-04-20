@@ -1,8 +1,11 @@
+import { AlgorithmResult } from '../../algorithms/types/Result.types'
+
 export async function run(...args) {
-  return new Promise((resolve, reject) => {
-    const worker = new Worker('./worker.js', { type: 'module' })
-    worker.addEventListener('message', (message) => {
-      const { result, error } = message.data
+  return new Promise<AlgorithmResult>((resolve, reject) => {
+    const worker = new Worker('./worker.ts', { type: 'module' })
+
+    worker.addEventListener('message', (message: MessageEvent) => {
+      const { result: AlgorithmResult, error: String } = message.data
 
       if (result) {
         resolve(result)

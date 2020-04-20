@@ -4,7 +4,7 @@
 import 'regenerator-runtime'
 import { run } from '../../algorithms/run'
 
-self.addEventListener('message', (event) => {
+self.addEventListener('message', (event: MessageEvent) => {
   const args = event.data
 
   run(...args)
