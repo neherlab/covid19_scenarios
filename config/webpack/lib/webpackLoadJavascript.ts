@@ -10,9 +10,13 @@ import { PluginOptions } from '@babel/core'
  *
  */
 function excludeNodeModulesExcept(
-  transpiledLibs: string[],
-  nonTranspiledLibs: string[],
+  transpiledLibs?: string[] | boolean,
+  nonTranspiledLibs?: string[] | boolean,
 ) {
+  if (!transpiledLibs || !Array.isArray(transpiledLibs)) {
+    return /node_modules/
+  }
+
   let pathSep: typeof path.sep | string = path.sep
   if (pathSep === '\\') {
     // must be quoted for use in a regexp:
@@ -27,7 +31,11 @@ function excludeNodeModulesExcept(
     if (modulePath.includes('node_modules')) {
       // eslint-disable-next-line no-loops/no-loops
       for (const element of moduleRegExps) {
-        if (nonTranspiledLibs.some((lib) => modulePath.includes(lib))) {
+        if (
+          nonTranspiledLibs &&
+          Array.isArray(nonTranspiledLibs) &&
+          nonTranspiledLibs.some((lib) => modulePath.includes(lib))
+        ) {
           // eslint-disable-next-line no-continue
           continue
         }
@@ -47,8 +55,8 @@ export interface WebpackLoadJavaScriptParams {
   options?: PluginOptions
   eslintConfigFile?: string | boolean
   sourceMaps: boolean
-  transpiledLibs?: string[]
-  nonTranspiledLibs?: string[]
+  transpiledLibs?: string[] | boolean
+  nonTranspiledLibs?: string[] | boolean
 }
 
 export default function webpackLoadJavaScript({
