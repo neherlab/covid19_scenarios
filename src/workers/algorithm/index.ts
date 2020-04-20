@@ -1,9 +1,5 @@
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
-
-interface MessageData {
-  result: AlgorithmResult
-  error: String
-}
+import { MessageData } from './worker.types'
 
 export async function run(...args) {
   return new Promise<AlgorithmResult>((resolve, reject) => {
@@ -23,7 +19,7 @@ export async function run(...args) {
     })
 
     worker.addEventListener('error', (error) => {
-      reject(`Worker error: ${error.name} : ${error.message}`)
+      reject(error)
       console.error('Worker error:', error)
     })
 
