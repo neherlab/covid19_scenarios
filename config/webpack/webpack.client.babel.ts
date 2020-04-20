@@ -180,7 +180,7 @@ export default {
         // eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
         options: { caller: { target: 'web' } },
         sourceMaps,
-        transpiledLibs: [
+        transpiledLibs: production && [
           '@loadable',
           '@redux-saga',
           'create-color',
@@ -194,7 +194,7 @@ export default {
           'recharts',
           'redux/es',
         ],
-        nonTranspiledLibs: ['d3-array/src/cumsum.js'],
+        nonTranspiledLibs: production && ['d3-array/src/cumsum.js'],
       }),
 
       ...webpackLoadStyles({
