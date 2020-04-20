@@ -5,7 +5,7 @@ import _ from 'lodash'
 import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Container, Col, Row, Button, FormGroup } from 'reactstrap'
+import { Button, Table } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
@@ -14,8 +14,7 @@ import { MitigationInterval, MitigationIntervals } from '../../../algorithms/typ
 import { suggestNextMitigationInterval } from '../../../algorithms/utils/createMitigationInterval'
 
 import { MitigationDatePicker } from './MitigationDatePicker'
-
-import { RangeSlider } from '../../Form/FormRangeSlider'
+import { RangeSpinBox } from '../../Form/RangeSpinBox'
 
 import './MitigationTable.scss'
 
@@ -54,24 +53,36 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
                 your community.
               </p>
               <p>Each measure consists of name, start/end date, and an effectiveness in %.</p>
-              <div className="w-100">
-                {mitigationIntervals.map((interval: MitigationInterval, index: number) => {
-                  if (!interval) {
-                    return null
-                  }
-                  return (
-                    <MitigationIntervalComponent
-                      key={interval.id}
-                      interval={interval}
-                      index={index}
-                      arrayHelpers={arrayHelpers}
-                      width={width || 0}
-                      errors={errors}
-                      touched={touched}
-                    />
-                  )
-                })}
-              </div>
+
+              <Table>
+                <thead>
+                  <tr>
+                    <th>{`Intervention name`}</th>
+                    <th>{`Date range`}</th>
+                    <th>{`Transmission reduction`}</th>
+                    <th />
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {mitigationIntervals.map((interval: MitigationInterval, index: number) => {
+                    if (!interval) {
+                      return null
+                    }
+                    return (
+                      <MitigationIntervalComponent
+                        key={interval.id}
+                        interval={interval}
+                        index={index}
+                        arrayHelpers={arrayHelpers}
+                        width={width || 0}
+                        errors={errors}
+                        touched={touched}
+                      />
+                    )
+                  })}
+                </tbody>
+              </Table>
               <div className="table-controls">
                 <Button
                   type="button"
@@ -123,52 +134,46 @@ function MitigationIntervalComponent({
   })
 
   return (
-    <FormGroup>
-      <div
-        className={`mitigation-interval ${
-          // eslint-disable-next-line unicorn/no-nested-ternary
-          width && width <= 325 ? 'very-narrow' : width && width <= 580 ? 'narrow' : 'wide'
-        }`}
-      >
-        <div className="inputs">
-          <Container fluid>
-            <Row noGutters>
-              <Col sm md lg xl="auto">
-                <FastField
-                  className={`name form-control ${nameError ? 'border-danger' : ''}`}
-                  id={`containment.mitigationIntervals[${index}].name`}
-                  name={`containment.mitigationIntervals[${index}].name`}
-                  type="text"
-                />
-              </Col>
-              <Col sm md lg xl="auto">
-                <MitigationDatePicker
-                  identifier={`containment.mitigationIntervals[${index}].timeRange`}
-                  value={interval.timeRange}
-                  allowPast
-                />
-              </Col>
-              <Col>
-                <RangeSlider
-                  identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
-                  step={0.1}
-                  min={0}
-                  max={100}
-                />
-              </Col>
-            </Row>
-          </Container>
+    <>
+      <tr>
+        <td>
+          <FastField
+            className={`form-control ${nameError ? 'border-danger' : ''}`}
+            id={`containment.mitigationIntervals[${index}].name`}
+            name={`containment.mitigationIntervals[${index}].name`}
+            type="text"
+          />
+        </td>
+        <td>
+          <MitigationDatePicker
+            identifier={`containment.mitigationIntervals[${index}].timeRange`}
+            value={interval.timeRange}
+            allowPast
+          />
+        </td>
+        <td>
+          <RangeSpinBox
+            identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
+            step={0.1}
+            min={0}
+            max={100}
+          />
+        </td>
+        <td>
+          <div className="item-controls">
+            <Button type="button" onClick={() => arrayHelpers.remove(index)}>
+              <FaTrash />
+            </Button>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <div className="w-100">
+          {nameError && <p className="my-0 text-right text-danger">{`${t('Intervention name')}: ${nameError}`}</p>}
+          {valueError && <p className="my-0 text-right text-danger">{`${t('Mitigation strength')}: ${valueError}`}</p>}
         </div>
-        <div className="item-controls">
-          <Button type="button" onClick={() => arrayHelpers.remove(index)}>
-            <FaTrash />
-          </Button>
-        </div>
-      </div>
-      <div className="w-100">
-        {nameError && <p className="my-0 text-right text-danger">{`${t('Intervention name')}: ${nameError}`}</p>}
-        {valueError && <p className="my-0 text-right text-danger">{`${t('Mitigation strength')}: ${valueError}`}</p>}
-      </div>
-    </FormGroup>
+      </tr>
+    </>
   )
 }
