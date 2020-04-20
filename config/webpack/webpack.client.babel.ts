@@ -187,7 +187,6 @@ export default {
           'd3-array',
           'delay',
           'immer',
-          'immer',
           'lodash',
           'p-min-delay',
           'react-router',
