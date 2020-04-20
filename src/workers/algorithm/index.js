@@ -1,4 +1,4 @@
-export default async function run(...args) {
+export async function run(...args) {
   return new Promise((resolve, reject) => {
     const worker = new Worker('./worker.js', { type: 'module' })
     worker.addEventListener('message', (message) => {

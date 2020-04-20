@@ -9,6 +9,7 @@ import { Col, Row } from 'reactstrap'
 
 import { AllParams, EmpiricalData, Severity } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
+import { run } from '../../workers/algorithm'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
@@ -29,8 +30,6 @@ import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
 import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
-
-import run from '../../workers/algorithm'
 
 interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
