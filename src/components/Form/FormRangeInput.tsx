@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Field, FieldProps } from 'formik'
 import { Col, FormGroup, Row } from 'reactstrap'
 
@@ -12,12 +13,20 @@ export interface FormRangeInputProps {
 }
 
 export function FormRangeInput({ identifier, label, help }: FormRangeInputProps) {
+  const { t } = useTranslation()
+
   return (
     <Field name={identifier}>
       {({ field: { value }, form: { setFieldValue }, meta: { error } }: FieldProps) => {
         const rangeInput = () => (
           <>
-            <RangeInput value={value} onChange={(value) => setFieldValue(identifier, value)} hasError={!!error} />
+            <RangeInput
+              value={value}
+              onChange={(value) => setFieldValue(identifier, value)}
+              hasError={!!error}
+              placeholder={t('Enter a number or range of numbers...')}
+              title={t('Enter a number or range of numbers. e.g. 29 or 29-31')}
+            />
             {error && <div className="text-danger">{error[0]}</div>}
           </>
         )

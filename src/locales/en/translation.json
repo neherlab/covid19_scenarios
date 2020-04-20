@@ -35,6 +35,8 @@
   "Download all as zip": "Download all as zip",
   "Drag n' drop some files here, or click to select files": "Drag n' drop some files here, or click to select files",
   "Drop the files here ...": "Drop the files here ...",
+  "Enter a number or range of numbers...": "Enter a number or range of numbers...",
+  "Enter a number or range of numbers. e.g. 29 or 29-31": "Enter a number or range of numbers. e.g. 29 or 29-31",
   "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).": "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).",
   "Epidemiology": "Epidemiology",
   "Error": "Error",
