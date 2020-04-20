@@ -21,6 +21,8 @@ import kill from 'tree-kill'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
+import WorkerPlugin from 'worker-plugin'
+
 import webpackCompression from './lib/webpackCompression'
 import webpackFriendlyConsole from './lib/webpackFriendlyConsole'
 import webpackLoadAssets from './lib/webpackLoadAssets'
@@ -35,8 +37,6 @@ import { getenv } from '../../lib/getenv'
 // import htmlTags from './lib/htmlTags'
 
 import babelConfig from '../../babel.config'
-
-import WorkerPlugin from 'worker-plugin'
 
 process.once('SIGINT', () => {
   kill(process.pid, 'SIGTERM')
