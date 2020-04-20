@@ -149,7 +149,7 @@ export default {
   devServer: {
     contentBase: path.join(buildPath, '..'),
     before: (app: express.Application) => {
-      app.use(express.static(path.join(buildPath, '..', 'sourcemaps')))
+      app.use(express.static(path.join(buildPath, 'sourcemaps')))
       app.use(express.static(path.join(moduleRoot, 'static')))
     },
     compress: true,
@@ -177,7 +177,7 @@ export default {
         // eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
         options: { caller: { target: 'web' } },
         sourceMaps,
-        transpiledLibs: [
+        transpiledLibs: production && [
           '@loadable',
           '@redux-saga',
           'create-color',
@@ -191,7 +191,7 @@ export default {
           'recharts',
           'redux/es',
         ],
-        nonTranspiledLibs: ['d3-array/src/cumsum.js'],
+        nonTranspiledLibs: production && ['d3-array/src/cumsum.js'],
       }),
 
       ...webpackLoadStyles({
@@ -321,7 +321,7 @@ export default {
       chunkFilename: outputFilename(development, 'css'),
     }),
 
-    development && new ReactRefreshWebpackPlugin({ disableRefreshCheck: true }),
+    development && new ReactRefreshWebpackPlugin(),
 
     production &&
       !analyze &&
@@ -382,19 +382,19 @@ export default {
 
     new ExtraWatchWebpackPlugin({
       files: [
-        path.join(moduleRoot, 'generated/**'),
+        path.join(moduleRoot, 'src/.generated/**'),
         path.join(moduleRoot, 'src/types/**/*.d.ts'),
       ],
       dirs: [],
     }),
 
     new webpack.SourceMapDevToolPlugin({
-      filename: '../sourcemaps/[filebase].map[query]',
-      publicPath: '/sourcemaps/',
+      filename: 'sourcemaps/[filebase].map[query]',
+      publicPath: '/',
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore: BUG: This parameter is missing in @types/webpack declarations
-      fileContext: 'web/content/sourcemaps',
-      noSources: production,
+      fileContext: 'web',
+      noSources: false,
     }),
 
     analyze &&

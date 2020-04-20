@@ -1,5 +1,4 @@
-import { AgeDistribution } from '../.generated/types'
-import { SeverityTableRow } from '../components/Main/Scenario/ScenarioTypes'
+import { AgeDistribution, Severity } from '../.generated/types'
 import { AllParamsFlat } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types/Result.types'
 
@@ -19,7 +18,7 @@ const identity = (x: number) => x
  */
 export async function run(
   params: AllParamsFlat,
-  severity: SeverityTableRow[],
+  severity: Severity[],
   ageDistribution: AgeDistribution,
 ): Promise<AlgorithmResult> {
   const tMin: number = new Date(params.simulationTimeRange.tMin).getTime()
@@ -29,9 +28,7 @@ export async function run(
 
   const modelParamsArray = getPopulationParams(params, severity, ageDistribution)
 
-  const trajectories: ExportedTimePoint[][] = []
-
-  modelParamsArray.forEach((modelParams) => {
+  const trajectories = modelParamsArray.map((modelParams) => {
     const population = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
     function simulate(initialState: SimulationTimePoint, func: (x: number) => number): ExportedTimePoint[] {
       const dynamics = [initialState]
@@ -44,8 +41,7 @@ export async function run(
 
       return collectTotals(dynamics, ageGroups)
     }
-    const trajectory = simulate(population, identity)
-    trajectories.push(trajectory)
+    return simulate(population, identity)
   })
 
   const mean = meanTrajectory(trajectories)
