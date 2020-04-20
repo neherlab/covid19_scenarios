@@ -1,11 +1,16 @@
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 
+interface MessageData {
+  result: AlgorithmResult
+  error: String
+}
+
 export async function run(...args) {
   return new Promise<AlgorithmResult>((resolve, reject) => {
     const worker = new Worker('./worker.ts', { type: 'module' })
 
     worker.addEventListener('message', (message: MessageEvent) => {
-      const { result: AlgorithmResult, error: String } = message.data
+      const { result, error }: MessageData = message.data
 
       if (result) {
         resolve(result)
