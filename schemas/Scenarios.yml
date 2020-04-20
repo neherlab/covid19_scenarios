@@ -96,6 +96,14 @@ definitions:
         type: string
         minLength: 1
       
+      srcPopulation:
+        type: string
+        min length: 1
+      
+      srcICUBeds:
+        type: string
+        min length: 1
+        
   EpidemiologicalData:
     type: object
 

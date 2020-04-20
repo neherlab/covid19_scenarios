@@ -1,3 +1,4 @@
+//responsible for reading the json into the UI?
 import { AllParams, Scenario, Convert } from '../../../.generated/types'
 import ScenariosValidate, { errors } from '../../../.generated/ScenariosValidate'
 import scenariosRaw from '../../../assets/data/scenarios/scenarios.json'
