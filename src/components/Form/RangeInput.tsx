@@ -34,8 +34,17 @@ export default function RangeInput({ value, onChange: propagateChange, hasError,
       propagateChange(value)
     }
 
-    if (value && value[0] !== undefined && value[1] !== undefined && value[0] === value[1]) {
-      setHintValue(`${value[0]} to ...`)
+    const input = inputRef.current
+
+    if (
+      input &&
+      !hasSeparator(input.value) &&
+      value &&
+      value[0] !== undefined &&
+      value[1] !== undefined &&
+      value[0] === value[1]
+    ) {
+      setHintValue(`${input.value} to ...`)
     } else if (hintValue) {
       setHintValue('')
     }
@@ -101,4 +110,8 @@ function displayToValue(display: string): RangeInputValue {
   }
 
   return [display, undefined]
+}
+
+function hasSeparator(value: string): boolean {
+  return value.split(/\s/).some((piece: string) => Number.isNaN(Number.parseFloat(piece)))
 }
