@@ -9,7 +9,7 @@ import { Col, Row } from 'reactstrap'
 
 import { AllParams, EmpiricalData, Severity } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import { run } from '../../algorithms/run'
+import { run } from '../../workers/algorithm'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
@@ -41,19 +41,28 @@ async function runSimulation(
   severity: Severity[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
   setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
+  setIsRunning: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
-  const paramsFlat = {
-    ...params.population,
-    ...params.epidemiological,
-    ...params.simulation,
-    ...params.containment,
-  }
+  setIsRunning(true)
+  try {
+    const paramsFlat = {
+      ...params.population,
+      ...params.epidemiological,
+      ...params.simulation,
+      ...params.containment,
+    }
 
-  const caseCounts = getCaseCountsData(params.population.cases)
-  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
-  setResult(newResult)
-  caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
-  setEmpiricalCases(caseCounts)
+    const caseCounts = getCaseCountsData(params.population.cases)
+    const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
+    setResult(newResult)
+    caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
+    setEmpiricalCases(caseCounts)
+  } catch (error) {
+    // Rejected promises are thrown by await functions.
+    // Catch and log the error message to console.
+    console.error(error)
+  }
+  setIsRunning(false)
 }
 
 function getColumnSizes(areResultsMaximized: boolean) {
@@ -84,6 +93,8 @@ function Main({ initialState }: InitialStateComponentProps) {
     setAutorunSimulation(!autorunSimulation)
   }
 
+  const [isRunning, setIsRunning] = useState(false)
+
   const allParams: AllParams = {
     population: scenarioState.data.population,
     epidemiological: scenarioState.data.epidemiological,
@@ -93,7 +104,7 @@ function Main({ initialState }: InitialStateComponentProps) {
 
   const [debouncedRun] = useDebouncedCallback(
     (params: AllParams, scenarioState: State, severity: Severity[]) =>
-      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases),
+      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning),
     500,
   )
 
@@ -138,7 +149,7 @@ function Main({ initialState }: InitialStateComponentProps) {
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases)
+    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning)
     setSubmitting(false)
   }
 
@@ -194,6 +205,7 @@ function Main({ initialState }: InitialStateComponentProps) {
                   <Col lg={8} {...colResults} className="py-1 animate-flex-width">
                     <ResultsCard
                       canRun={canRun}
+                      isRunning={isRunning}
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
