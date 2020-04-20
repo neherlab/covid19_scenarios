@@ -16,25 +16,14 @@ import { suggestNextMitigationInterval } from '../../../algorithms/utils/createM
 import { MitigationDatePicker } from './MitigationDatePicker'
 import { RangeSpinBox } from '../../Form/RangeSpinBox'
 
+import { getFormikError } from '../../../helpers/getFormikError'
+
 import './MitigationTable.scss'
 
 export interface MitigationTableProps {
   mitigationIntervals: MitigationIntervals
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
-}
-
-export interface GetErrorParams {
-  identifier: string
-  errors?: FormikErrors<FormikValues>
-  touched?: FormikTouched<FormikValues>
-}
-
-export function getFormikError({ identifier, errors, touched }: GetErrorParams): string | undefined {
-  const isTouched = _.get(touched, identifier)
-  const errorMessage = _.get(errors, identifier)
-  const showError = errorMessage && isTouched
-  return showError ? (errorMessage as string) : undefined
 }
 
 export function MitigationTable({ mitigationIntervals, errors, touched }: MitigationTableProps) {

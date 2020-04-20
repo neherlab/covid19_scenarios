@@ -1,13 +1,15 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 
 import _ from 'lodash'
 
-import { Field, FormikErrors, FormikTouched } from 'formik'
-import { Col, FormGroup, InputGroup, Row } from 'reactstrap'
+import { FormikErrors, FormikTouched } from 'formik'
+import { Col, FormGroup, Row } from 'reactstrap'
 
 import FormLabel from './FormLabel'
+import { RangeSpinBox } from './RangeSpinBox'
 
-export interface FormSpinBoxProps<T> {
+export interface FormRangeSpinBoxProps<T> {
   identifier: string
   label: string
   help?: string | React.ReactNode
@@ -29,21 +31,10 @@ export function FormRangeSpinBox<T>({
   pattern,
   errors,
   touched,
-}: FormSpinBoxProps<T>) {
+}: FormRangeSpinBoxProps<T>) {
   const isTouched = _.get(touched, identifier)
-  const errorMessage = _.get(errors, identifier)
-  const showError = errorMessage && isTouched
-  const borderDanger = showError ? 'border-danger' : ''
-
-  function validate(value: number) {
-    let error
-    if (min && value < min) {
-      error = `The input cannot be less than ${min}`
-    } else if (max && value > max) {
-      error = `The input cannot be greater than ${max}`
-    }
-    return error
-  }
+  const errorMessages = _.get(errors, identifier) as string[]
+  const showError = errorMessages && isTouched
 
   return (
     <FormGroup inline className="my-0">
@@ -52,32 +43,22 @@ export function FormRangeSpinBox<T>({
           <FormLabel identifier={identifier} label={label} help={help} />
         </Col>
         <Col className="d-inline" xl={6}>
-          <InputGroup>
-            <Field
-              className={`form-control d-inline ${borderDanger}`}
-              id={identifier}
-              name={`${identifier}[0]`}
-              type="number"
-              step={step}
-              min={min}
-              max={max}
-              pattern={pattern}
-              validate={validate}
-            />
-            <span className="h-100 pt-2 px-1 text-bold">{'-'}</span>
-            <Field
-              className={`form-control d-inline  ${borderDanger}`}
-              id={identifier}
-              name={`${identifier}[1]`}
-              type="number"
-              step={step}
-              min={min}
-              max={max}
-              pattern={pattern}
-              validate={validate}
-            />
-          </InputGroup>
-          {showError ? <div className="text-danger">{errorMessage}</div> : null}
+          <RangeSpinBox
+            identifier={identifier}
+            step={step}
+            min={min}
+            max={max}
+            pattern={pattern}
+            errors={errors}
+            touched={touched}
+          />
+          {showError
+            ? errorMessages.map((errorMessage, i) => (
+                <div key={`${errorMessage} ([${i}])`} className="text-danger">
+                  {errorMessage}
+                </div>
+              ))
+            : null}
         </Col>
       </Row>
     </FormGroup>
