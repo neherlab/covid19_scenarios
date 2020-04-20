@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 import { useTranslation, getI18n } from 'react-i18next'
 import Papa from 'papaparse'
-import FileUploadZone, { FileType } from '../Compare/FileUploadZone'
+import FileUploadZone from '../Compare/FileUploadZone'
 import { processImportedData } from '../../../algorithms/utils/importedData'
 import Message from '../../Misc/Message'
 import { ProcessingError, ProcessingErrorCode } from '../../../algorithms/utils/exceptions'
@@ -56,14 +56,14 @@ export default function ImportCaseCountDialog({
   onDataImported,
 }: ImportCaseCountDialogProps) {
   const { t } = useTranslation()
-  const [filesToImport, setFilesToImport] = useState<Map<FileType, File>>(new Map())
+  const [filesToImport, setFilesToImport] = useState<File[]>([])
   const [errorMessage, setErrorMessage] = useState<string>()
 
   const onImportRejected = () =>
     setErrorMessage(t(localizedErrorMessage, { message: t('Only one CSV or TSV file can be imported.') }))
 
   const onImportClick = useCallback(async () => {
-    if (filesToImport.size === 0) {
+    if (filesToImport.length === 0) {
       setErrorMessage(t(localizedErrorMessage, { message: t('No file has been uploaded.') }))
       return
     }
@@ -104,7 +104,7 @@ export default function ImportCaseCountDialog({
     // TODO handle loading for huge files
   }, [filesToImport, t, toggleShowModal, onDataImported])
 
-  const isFileUploaded: boolean = filesToImport.size > 0
+  const isFileUploaded: boolean = filesToImport.length > 0
 
   return (
     <Modal className="height-fit" centered size="lg" isOpen={showModal} toggle={toggleShowModal}>

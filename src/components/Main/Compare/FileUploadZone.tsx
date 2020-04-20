@@ -1,7 +1,6 @@
-import React, { useCallback, useReducer } from 'react'
+import React, { useCallback, useReducer, Reducer } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
-import path from 'path'
 import './FileUploadZone.scss'
 
 export enum FileType {
@@ -10,7 +9,7 @@ export enum FileType {
 }
 
 export interface FileUploadZoneProps {
-  onFilesUploaded(files: Map<FileType, File>): void
+  onFilesUploaded(files: File[]): void
   onFilesRejected?(): void
   accept?: string | string[]
   multiple?: boolean
@@ -18,24 +17,9 @@ export interface FileUploadZoneProps {
   activeDropZoneMessage: string
 }
 
-/* Converts file extension to FileType enum */
-function fileExtToType(ext: string) {
-  const extMap = new Map<string, FileType>(
-    Object.entries({
-      '.csv': FileType.CSV,
-      '.tsv': FileType.TSV,
-    }),
-  )
-  return extMap.get(ext)
-}
-
 /* Adds relevant files to a Map to be dispatched */
-function reduceDroppedFiles(files: Map<FileType, File>, file: File) {
-  const ext = path.extname(file.name)
-  const type = fileExtToType(ext)
-  if (type) {
-    files.set(type, file)
-  }
+function reduceDroppedFiles(files: File[], file: File) {
+  files.push(file)
   return files
 }
 
@@ -47,7 +31,7 @@ function FileUploadZone({
   dropZoneMessage,
   activeDropZoneMessage,
 }: FileUploadZoneProps) {
-  const [uploadedFiles, dispatchUploadedFile] = useReducer(reduceDroppedFiles, new Map())
+  const [uploadedFiles, dispatchUploadedFile] = useReducer<Reducer<File[], File>>(reduceDroppedFiles, [])
   const onDrop = useCallback(
     (droppedFiles: File[]) => {
       droppedFiles.forEach(dispatchUploadedFile)
@@ -70,12 +54,14 @@ function FileUploadZone({
         <input type="file" {...getInputProps()} />
         <p className="h5 text-secondary text-center m-0">{isDragActive ? activeDropZoneMessage : dropZoneMessage}</p>
       </div>
-      {uploadedFiles.size > 0 && (
+      {uploadedFiles.length > 0 && (
         <>
-          <h3 className="mt-4">{t('Your file', { count: uploadedFiles.size })}</h3>
+          <h3 className="mt-4">{t('Your file', { count: uploadedFiles.length })}</h3>
           <ul>
-            {[...uploadedFiles.values()].map(({ name, size }: File) => (
-              <li key={name}>{t('{{fileName}} ({{fileSize}}Kb)', { fileName: name, fileSize: size / 1000 })}</li>
+            {uploadedFiles.map((file: File) => (
+              <li key={file.name}>
+                {t('{{fileName}} ({{fileSize}}Kb)', { fileName: file.name, fileSize: file.size / 1000 })}
+              </li>
             ))}
           </ul>
         </>
