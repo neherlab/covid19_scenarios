@@ -162,7 +162,7 @@ definitions:
       numberStochasticRuns:
         type: integer
         multipleOf: 1
-        minimum: 1
+        minimum: 10
         maximum: 100
 
   DateRange:
