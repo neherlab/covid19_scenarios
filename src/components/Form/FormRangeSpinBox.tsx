@@ -3,23 +3,12 @@ import React from 'react'
 
 import _ from 'lodash'
 
-import { FormikErrors, FormikTouched } from 'formik'
 import { Col, FormGroup, Row } from 'reactstrap'
+
+import type { FormSpinBoxProps } from './FormSpinBox'
 
 import FormLabel from './FormLabel'
 import { RangeSpinBox } from './RangeSpinBox'
-
-export interface FormRangeSpinBoxProps<T> {
-  identifier: string
-  label: string
-  help?: string | React.ReactNode
-  step?: number | string
-  min?: number
-  max?: number
-  pattern?: string
-  errors?: FormikErrors<T>
-  touched?: FormikTouched<T>
-}
 
 export function FormRangeSpinBox<T>({
   identifier,
@@ -31,7 +20,7 @@ export function FormRangeSpinBox<T>({
   pattern,
   errors,
   touched,
-}: FormRangeSpinBoxProps<T>) {
+}: FormSpinBoxProps<T>) {
   const isTouched = _.get(touched, identifier)
   const errorMessages = _.get(errors, identifier) as string[]
   const showError = errorMessages && isTouched

@@ -5,7 +5,7 @@ import { InputGroup } from 'reactstrap'
 
 import { SpinBox } from './SpinBox'
 
-export interface FormSpinBoxProps<T> {
+export interface RangeSpinBoxProps<T> {
   identifier: string
   step?: number | string
   min?: number
@@ -15,7 +15,7 @@ export interface FormSpinBoxProps<T> {
   touched?: FormikTouched<T>
 }
 
-export function RangeSpinBox<T>({ identifier, step, min, max, pattern, errors, touched }: FormSpinBoxProps<T>) {
+export function RangeSpinBox<T>({ identifier, step, min, max, pattern, errors, touched }: RangeSpinBoxProps<T>) {
   return (
     <InputGroup>
       <SpinBox
