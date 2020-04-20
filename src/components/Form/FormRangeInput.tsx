@@ -26,6 +26,8 @@ export function FormRangeInput({ identifier, label, help }: FormRangeInputProps)
               hasError={!!error}
               placeholder={t('Enter a number or range of numbers...')}
               title={t('Enter a number or range of numbers. e.g. 29 or 29-31')}
+              separator={t('to')}
+              hint={t('to ...')}
             />
             {error && <div className="text-danger">{error[0]}</div>}
           </>

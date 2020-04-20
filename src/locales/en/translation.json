@@ -127,6 +127,8 @@
   "This value should be non-negative": "This value should be non-negative",
   "Time from infection to onset of symptoms (here onset of infectiousness)": "Time from infection to onset of symptoms (here onset of infectiousness)",
   "Time of the year with peak transmission": "Time of the year with peak transmission",
+  "to": "to",
+  "to ...": "to ...",
   "Toggle between logarithmic and linear scale on vertical axis of the plot": "Toggle between logarithmic and linear scale on vertical axis of the plot",
   "too many stochastic trajectories will slow things down": "too many stochastic trajectories will slow things down",
   "total": "total",

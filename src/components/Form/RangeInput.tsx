@@ -11,19 +11,28 @@ interface RangeInputProps {
   title?: string
   placeholder?: string
   hasError?: boolean
+  separator?: string
+  hint?: string
 }
 
-export default function RangeInput({ value, onChange: propagateChange, hasError, ...restOfProps }: RangeInputProps) {
+export default function RangeInput({
+  value,
+  onChange: propagateChange,
+  hasError,
+  separator = 'to',
+  hint = 'to ...',
+  ...restOfProps
+}: RangeInputProps) {
   const [hintValue, setHintValue] = useState<string>('')
-  const [displayValue, setDisplayValue] = useState<string>(valueToDisplay(value))
+  const [displayValue, setDisplayValue] = useState<string>(valueToDisplay(separator, value))
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     const input = inputRef.current
     if (input && input !== document.activeElement) {
-      setDisplayValue(valueToDisplay(value))
+      setDisplayValue(valueToDisplay(separator, value))
     }
-  }, [value])
+  }, [separator, value])
 
   const shouldSetHint = (value?: RangeInputValue): boolean => {
     const input = inputRef.current
@@ -49,7 +58,7 @@ export default function RangeInput({ value, onChange: propagateChange, hasError,
 
     const input = inputRef.current
     if (input && shouldSetHint(value)) {
-      setHintValue(`${input.value} to ...`)
+      setHintValue(`${input.value} ${hint}`)
     } else if (hintValue) {
       setHintValue('')
     }
@@ -58,7 +67,7 @@ export default function RangeInput({ value, onChange: propagateChange, hasError,
   const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     const input = inputRef.current
     if (input && shouldSetHint(value)) {
-      setHintValue(`${input.value} to ...`)
+      setHintValue(`${input.value} ${hint}`)
     }
   }
 
@@ -67,8 +76,8 @@ export default function RangeInput({ value, onChange: propagateChange, hasError,
   }
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'ArrowRight' && hintValue.includes(' to ...')) {
-      setDisplayValue(`${displayValue} to `)
+    if (event.key === 'ArrowRight' && hintValue.includes(` ${hint}`)) {
+      setDisplayValue(`${displayValue} ${separator} `)
       setHintValue('')
     }
   }
@@ -92,12 +101,12 @@ export default function RangeInput({ value, onChange: propagateChange, hasError,
   )
 }
 
-function valueToDisplay(value?: RangeInputValue): string {
+function valueToDisplay(separator: string, value?: RangeInputValue): string {
   if (value !== undefined && value[0] !== undefined && value[1] !== undefined) {
     if (value[0] === value[1]) {
       return `${value[0]}`
     }
-    return `${value[0]} to ${value[1]}`
+    return `${value[0]} ${separator} ${value[1]}`
   }
   if (value !== undefined && value[0] !== undefined) {
     return `${value[0]}`
