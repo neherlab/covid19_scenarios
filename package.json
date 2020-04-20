@@ -270,7 +270,7 @@
     "http-server": "0.12.1",
     "i18next-parser": "1.0.2",
     "identity-obj-proxy": "3.0.0",
-    "jest": "25.3.0",
+    "jest": "25.4.0",
     "jest-axe": "3.4.0",
     "jest-chain": "1.1.5",
     "jest-extended": "0.11.5",
