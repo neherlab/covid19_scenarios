@@ -17,7 +17,10 @@ export async function run(...args) {
       }
     })
 
-    worker.addEventListener('error', (error) => console.error('Worker error:', error))
+    worker.addEventListener('error', (error) => {
+      reject(`Worker error: ${error.name} : ${error.message}`)
+      console.error('Worker error:', error)
+    })
 
     worker.postMessage(args)
   })

@@ -44,18 +44,24 @@ async function runSimulation(
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
   setIsRunning(true)
-  const paramsFlat = {
-    ...params.population,
-    ...params.epidemiological,
-    ...params.simulation,
-    ...params.containment,
-  }
+  try {
+    const paramsFlat = {
+      ...params.population,
+      ...params.epidemiological,
+      ...params.simulation,
+      ...params.containment,
+    }
 
-  const caseCounts = getCaseCountsData(params.population.cases)
-  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
-  setResult(newResult)
-  caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
-  setEmpiricalCases(caseCounts)
+    const caseCounts = getCaseCountsData(params.population.cases)
+    const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
+    setResult(newResult)
+    caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
+    setEmpiricalCases(caseCounts)
+  } catch (error) {
+    // Rejected promises are thrown by await functions.
+    // Catch and log the error message to console.
+    console.error(error)
+  }
   setIsRunning(false)
 }
 

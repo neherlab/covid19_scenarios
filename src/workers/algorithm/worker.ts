@@ -9,5 +9,5 @@ self.addEventListener('message', (event: MessageEvent) => {
 
   run(...args)
     .then((result) => self.postMessage({ result }))
-    .catch((error) => self.postMessage({ error }))
+    .catch((error) => self.postMessage({ error: `Algorithm error:${error.name}:${error.message}` }))
 })
