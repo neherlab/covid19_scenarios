@@ -30,30 +30,10 @@ import PrintPage from './PrintPage/PrintPage'
 import './Main.scss'
 import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
 
+import run from '../../workers/algorithm'
+
 interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
-}
-
-async function runOnWorker(...args) {
-  return new Promise((resolve, reject) => {
-    const worker = new Worker('../../workers/algorithm.js', { type: 'module' })
-    worker.addEventListener('message', (message) => {
-      const { result, error } = message.data
-
-      if (result) {
-        resolve(result)
-        return
-      }
-
-      if (error) {
-        reject(error)
-      }
-    })
-
-    worker.addEventListener('error', (error) => console.error('Worker error:', error))
-
-    worker.postMessage(args)
-  })
 }
 
 async function runSimulation(
@@ -71,7 +51,7 @@ async function runSimulation(
   }
 
   const caseCounts = getCaseCountsData(params.population.cases)
-  const newResult = await runOnWorker(paramsFlat, severity, scenarioState.ageDistribution)
+  const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
   setResult(newResult)
   caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
   setEmpiricalCases(caseCounts)

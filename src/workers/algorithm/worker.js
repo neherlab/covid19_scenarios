@@ -2,7 +2,7 @@
 /* Necessary because 'self' should be accepted as a global in webworkers. */
 
 import 'regenerator-runtime'
-import { run } from '../algorithms/run'
+import { run } from '../../algorithms/run'
 
 self.addEventListener('message', (event) => {
   const args = event.data
