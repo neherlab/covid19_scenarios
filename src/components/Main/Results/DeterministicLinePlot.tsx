@@ -202,7 +202,7 @@ export function DeterministicLinePlot({
         : undefined,
       cumulativesimArea: enabledPlots.includes(DATA_POINTS.CumulativeSim)
         ? [
-            verifyPositive(nPopulation - upper[i].current.susceptible.total), 
+            verifyPositive(nPopulation - upper[i].current.susceptible.total),
             verifyPositive(nPopulation - lower[i].current.susceptible.total),
           ]
         : undefined,

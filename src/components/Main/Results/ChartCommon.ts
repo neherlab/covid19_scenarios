@@ -48,11 +48,11 @@ export const colors = {
 
 export const linesToPlot: LineProps[] = [
   { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: 'Susceptible', legendType: 'line' },
-  { 
-    key: DATA_POINTS.CumulativeSim, 
-    color: colors.cumulativesim, 
-    name: 'Cumulative cases (simulation)', 
-    legendType: 'line' 
+  {
+    key: DATA_POINTS.CumulativeSim,
+    color: colors.cumulativesim,
+    name: 'Cumulative cases (simulation)',
+    legendType: 'line',
   },
   { key: DATA_POINTS.Recovered, color: colors.recovered, name: 'Recovered', legendType: 'line' },
   { key: DATA_POINTS.Infectious, color: colors.infectious, name: 'Infectious', legendType: 'line' },
