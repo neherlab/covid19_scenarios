@@ -132,7 +132,7 @@ export function DeterministicLinePlot({
 
   const { mitigationIntervals } = mitigation
 
-  const nPopulation  = verifyPositive(params.population.populationServed)
+  const nPopulation = verifyPositive(params.population.populationServed)
   const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
   const nICUBeds = verifyPositive(params.population.ICUBeds)
 
@@ -201,7 +201,10 @@ export function DeterministicLinePlot({
         ? [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)]
         : undefined,
       cumulativesimArea: enabledPlots.includes(DATA_POINTS.CumulativeSim)
-        ? [verifyPositive(nPopulation - upper[i].current.susceptible.total), verifyPositive(nPopulation - lower[i].current.susceptible.total)]
+        ? [
+            verifyPositive(nPopulation - upper[i].current.susceptible.total), 
+            verifyPositive(nPopulation - lower[i].current.susceptible.total),
+          ]
         : undefined,
       infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
         ? [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)]
