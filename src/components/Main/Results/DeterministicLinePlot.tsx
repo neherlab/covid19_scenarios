@@ -136,7 +136,7 @@ export function DeterministicLinePlot({
   const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
   const nICUBeds = verifyPositive(params.population.ICUBeds)
 
-  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized || d.simulation)
+  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
 
   const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
     params.epidemiological.infectiousPeriod,
@@ -146,7 +146,6 @@ export function DeterministicLinePlot({
 
   const countObservations = {
     cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
-    //##simulation: nonEmptyCaseCounts?.filter((d) => d.simulation).length ?? 0,
     ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
     observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
     newCases: nonEmptyCaseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
@@ -156,7 +155,6 @@ export function DeterministicLinePlot({
   const observations =
     nonEmptyCaseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
-      //##simulation: enabledPlots.includes(DATA_POINTS.ObservedSimulatedCases) ? d.simuation || undefined : undefined,
       cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
       observedDeaths: enabledPlots.includes(DATA_POINTS.ObservedDeaths) ? d.deaths || undefined : undefined,
       currentHospitalized: enabledPlots.includes(DATA_POINTS.ObservedHospitalized)
