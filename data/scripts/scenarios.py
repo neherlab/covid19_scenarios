@@ -87,8 +87,11 @@ class Fitter:
 
         # ----------------------------------
         # Body
-
-        data = np.array([ ([to_ms(dp['time']), dp['cases'] or np.nan, dp['deaths'] or np.nan]) for dp in pop ])
+        try:
+            data = np.array([ ([to_ms(dp['time']), dp['cases'] or np.nan, dp['deaths'] or np.nan]) for dp in pop ])
+        except:
+            print(pop)
+            return None
 
         # Try to fit on death
         p = fit_cumulative(data[:,0], data[:,2])
@@ -230,13 +233,17 @@ def fit_one_case_data(args):
     Params = Fitter()
     region, tmp_data = args
     containment_start = get_containment_start(region)
+    print(f"starting fit for {region} with containment start date {containment_start}")
 
     time, data = load_data(region, tmp_data)
+    if len(time)==0:
+        return (region, None)
+
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
     r = fit_population(region, model_tps, fit_data, containment_start)
     if r is None or np.exp(r['params'].rates.logR0)>6 or np.exp(r['params'].rates.logR0)<1.5:
-        return (region, Params.fit(data))
+        return (region, Params.fit(tmp_data))
 
     param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0),
              "initialCases": r["initialCases"], "efficacy":r["params"].rates.efficacy,
@@ -245,6 +252,7 @@ def fit_one_case_data(args):
 
 def fit_all_case_data(num_procs=4):
     pool = multi.Pool(num_procs)
+    print(f"Pooling with {num_procs} processors")
     case_counts = parse_tsv()
     results = pool.map(fit_one_case_data, list(case_counts.items()))
     for k, v in results:

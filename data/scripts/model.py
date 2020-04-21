@@ -2,7 +2,6 @@ import csv
 import importlib
 import sys
 sys.path.append('..')
-sys.path.append("/home/valentin/Desktop/richardLab/covid19_scenarios/data")
 import os
 import json
 import argparse
@@ -354,7 +353,7 @@ def get_fit_data(days, data_original, confinement_start=None):
 
 
 def fit_population(key, time_points, data, confinement_start, guess=None):
-    if data is None or len(data[Sub.D]) <= 5:
+    if data is None or data[Sub.D] is None or len(data[Sub.D]) <= 5:
         return None
 
     if guess is None:
@@ -368,7 +367,7 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
 
     for ii in [Sub.T, Sub.D]:
         if not is_cumulative(data[ii]):
-            print("Cases / deaths count is not cumulative.")
+            print("Cases / deaths count is not cumulative.", data[ii])
 
     param, init_cases, err = fit_params(key, time_points, data, guess, confinement_start, bounds=bounds)
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
