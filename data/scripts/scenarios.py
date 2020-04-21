@@ -246,7 +246,7 @@ def fit_one_case_data(args):
 def fit_all_case_data(num_procs=4):
     pool = multi.Pool(num_procs)
     case_counts = parse_tsv()
-    results = pool.map(fit_one_case_data, list(case_counts.items())[:2])
+    results = pool.map(fit_one_case_data, list(case_counts.items()))
     for k, v in results:
         if v is not None:
             FIT_CASE_DATA[k] = v
