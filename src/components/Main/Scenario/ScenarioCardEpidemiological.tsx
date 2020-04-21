@@ -4,7 +4,7 @@ import moment from 'moment'
 
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
-import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
+import { CardWithControls } from '../../Form/CardWithControls'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormRangeSpinBox } from '../../Form/FormRangeSpinBox'
 import { FormSpinBox } from '../../Form/FormSpinBox'
@@ -24,7 +24,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
   // }
 
   return (
-    <CardWithoutDropdown
+    <CardWithControls
       className="card--epidemiology h-100"
       identifier="epidemiologicalScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
@@ -109,7 +109,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         errors={errors}
         touched={touched}
       />
-    </CardWithoutDropdown>
+    </CardWithControls>
   )
 }
 
