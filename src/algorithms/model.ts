@@ -109,15 +109,19 @@ function advanceState(
 
   const update = <
     Kind extends Exclude<keyof SimulationTimePoint, 'time'> & keyof TimeDerivative,
-    Compartment extends Exclude<keyof SimulationTimePoint[Kind], 'exposed'> & keyof TimeDerivative[Kind],
-    >(age: number, kind: Kind, compartment: Compartment) => {
-    const currentArray = pop[kind][compartment];
-    const deltaArray = tdot[kind][compartment];
-    const newArray = newPop[kind][compartment];
+    Compartment extends Exclude<keyof SimulationTimePoint[Kind], 'exposed'> & keyof TimeDerivative[Kind]
+  >(
+    age: number,
+    kind: Kind,
+    compartment: Compartment,
+  ) => {
+    const currentArray = pop[kind][compartment]
+    const deltaArray = tdot[kind][compartment]
+    const newArray = newPop[kind][compartment]
     if (Array.isArray(currentArray) && Array.isArray(deltaArray) && Array.isArray(newArray)) {
-      const currentForAge = currentArray[age];
-      const deltaForAge = deltaArray[age];
-      if (typeof (currentForAge) === 'number' && typeof (deltaForAge) === 'number') {
+      const currentForAge = currentArray[age]
+      const deltaForAge = deltaArray[age]
+      if (typeof currentForAge === 'number' && typeof deltaForAge === 'number') {
         newArray[age] = gz(currentForAge + dt * deltaForAge)
       }
     }
@@ -125,21 +129,25 @@ function advanceState(
 
   const updateAt = <
     Kind extends Exclude<keyof SimulationTimePoint, 'time'> & keyof TimeDerivative,
-    Compartment extends keyof SimulationTimePoint[Kind] & 'exposed' & keyof TimeDerivative[Kind],
-    >(age: number, kind: Kind, compartment: Compartment, i: number) => {
-    const currentArray = pop[kind][compartment];
-    const deltaArray = tdot[kind][compartment];
-    const newArray = newPop[kind][compartment];
+    Compartment extends keyof SimulationTimePoint[Kind] & 'exposed' & keyof TimeDerivative[Kind]
+  >(
+    age: number,
+    kind: Kind,
+    compartment: Compartment,
+    i: number,
+  ) => {
+    const currentArray = pop[kind][compartment]
+    const deltaArray = tdot[kind][compartment]
+    const newArray = newPop[kind][compartment]
     if (Array.isArray(currentArray) && Array.isArray(deltaArray) && Array.isArray(newArray)) {
-      const currentForAge = currentArray[age];
-      const deltaForAge = deltaArray[age];
-      if (newArray[age] === undefined)
-        newArray[age] = []
-      const newForAge = newArray[age];
+      const currentForAge = currentArray[age]
+      const deltaForAge = deltaArray[age]
+      if (newArray[age] === undefined) newArray[age] = []
+      const newForAge = newArray[age]
       if (Array.isArray(currentForAge) && Array.isArray(deltaForAge) && Array.isArray(newForAge)) {
-        const currentForAgeIndex = currentForAge[i];
-        const deltaForAgeIndex = deltaForAge[i];
-        if (typeof (currentForAgeIndex) === 'number' && typeof (deltaForAgeIndex) === 'number') {
+        const currentForAgeIndex = currentForAge[i]
+        const deltaForAgeIndex = deltaForAge[i]
+        if (typeof currentForAgeIndex === 'number' && typeof deltaForAgeIndex === 'number') {
           newForAge[i] = gz(currentForAgeIndex + dt * deltaForAgeIndex)
         }
       }
@@ -246,7 +254,7 @@ function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivativ
       sum.cumulative.critical[age] += scale[i] * grad.cumulative.critical[age]
       sum.cumulative.hospitalized[age] += scale[i] * grad.cumulative.hospitalized[age]
     }
-  });
+  })
 
   return sum
 }
@@ -266,8 +274,8 @@ function derivative(flux: StateFlux): TimeDerivative {
       hospitalized: [],
       critical: [],
       fatality: [],
-    }
-  };
+    },
+  }
 
   for (let age = 0; age < flux.susceptible.length; age++) {
     grad.current.exposed[age] = Array(flux.exposed[age].length)
@@ -399,7 +407,7 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
         })
       } else {
         // Type assertion, not validated in code
-        const kTyped = k as Exclude<keyof ExposedCurrentData, 'exposed'>;
+        const kTyped = k as Exclude<keyof ExposedCurrentData, 'exposed'>
         ages.forEach((age, i) => {
           tp.current[kTyped][age] = d.current[kTyped][i]
         })
@@ -409,7 +417,7 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
 
     Object.keys(tp.cumulative).forEach((k) => {
       // Type assertion, not validated in code
-      const kTyped = k as keyof ExposedCumulativeData;
+      const kTyped = k as keyof ExposedCumulativeData
       ages.forEach((age, i) => {
         tp.cumulative[kTyped][age] = d.cumulative[kTyped][i]
       })
