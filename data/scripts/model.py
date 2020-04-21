@@ -225,7 +225,9 @@ def is_cumulative(vec):
     return not False in (vec[~vec.mask][:-1]<=vec[~vec.mask][1:])
 
 def poissonNegLogLH(n,lam, eps=0.1):
-    return (lam-n) - n*np.log((lam+eps)/(n+eps))
+    L = np.abs(lam)
+    N = np.abs(n)
+    return (L-N) - N*np.log((L+eps)/(N+eps))
 
 def assess_model(params, data, cases):
     sol = solve_ode(params, init_pop(params.ages, params.size, cases))
@@ -292,7 +294,7 @@ def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
 # ------------------------------------------
 # Data loading
 
-def load_data(key):
+def load_data(key, ts):
     if key in POPDATA:
         popsize = POPDATA[key]["size"]
     else:
@@ -301,8 +303,6 @@ def load_data(key):
     case_min = 20
     data = [[] if (i == Sub.D or i == Sub.T or i == Sub.H or i == Sub.C) else None for i in range(Sub.NUM)]
     days = []
-
-    ts = CASE_DATA[key]
 
     for tp in ts: #replace all zeros by np.nan
         data[Sub.T].append(tp['cases'] or np.nan)
@@ -411,7 +411,7 @@ if __name__ == "__main__":
     # confinement_start = None
 
     # Raw data and time points
-    time, data = load_data(key)
+    time, data = load_data(key, CASE_DATA[key])
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
     # Fitting over the pre-confinement days

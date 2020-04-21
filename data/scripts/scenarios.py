@@ -15,7 +15,7 @@ from datetime import datetime
 from scipy.stats import linregress
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARIOS
 from scripts.tsv import parse as parse_tsv
-from scripts.model import fit_population
+from scripts.model import fit_population, load_data, get_fit_data
 from jsonschema import validate, FormatChecker
 
 
@@ -214,21 +214,39 @@ def marshalJSON(obj, wtr=None):
 
     return wtr.write(news)
 
+def get_containment_start(region):
+    k = region.upper()[:3]
+    if k in ["ITA", "ESP", "SPA"]:
+        return datetime(2020,3,8).toordinal()
+    elif k == "CHN":
+        return datetime(2020,1,23).toordinal()
+    elif k in ["USA", "UNI"]:
+        return datetime(2020,3,23).toordinal()
+    else:
+        return datetime(2020,3,13).toordinal()
+
+
 def fit_one_case_data(args):
     Params = Fitter()
-    region, data = args
+    region, tmp_data = args
+    containment_start = get_containment_start(region)
 
-    r = fit_population(region)
+    time, data = load_data(region, tmp_data)
+    model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
+
+    r = fit_population(region, model_tps, fit_data, containment_start)
     if r is None:
         return (region, Params.fit(data))
 
-    param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0), "initialCases": r["initialCases"]}
+    param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0),
+             "initialCases": r["initialCases"], "efficacy":r["params"].rates.efficacy,
+             "containment_start":r["params"].date}
     return (region, param)
 
 def fit_all_case_data(num_procs=4):
     pool = multi.Pool(num_procs)
     case_counts = parse_tsv()
-    results = pool.map(fit_one_case_data, list(case_counts.items()))
+    results = pool.map(fit_one_case_data, list(case_counts.items())[:2])
     for k, v in results:
         if v is not None:
             FIT_CASE_DATA[k] = v
@@ -263,7 +281,7 @@ def set_mitigation(cases, scenario):
 # ------------------------------------------------------------------------
 # Main point of entry
 
-def generate(output_json, num_procs=1, recalculate=False):
+def generate(output_json=None, num_procs=1, recalculate=False):
     scenario = {}
     fit_fname = os.path.join(BASE_PATH,FIT_PARAMETERS)
     if recalculate or (not os.path.isfile(fit_fname)):
@@ -301,8 +319,12 @@ def generate(output_json, num_procs=1, recalculate=False):
             else:
                 scenario[region_name].containment.mitigation_intervals = []
 
-    with open(output_json, "w+") as fd:
-        marshalJSON(scenario, fd)
+    if output_json:
+        with open(output_json, "w+") as fd:
+            marshalJSON(scenario, fd)
+    else:
+        return scenario
+
 
 if __name__ == '__main__':
-    generate()
+    res = generate(recalculate=True)
