@@ -353,9 +353,9 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
         return None
 
     if guess is None:
-        guess = { "logR0": 1.0,
-                  "reported" : 0.3,
-                  "logInitial" : 1,
+        guess = { "logR0": 1.3,
+                  "reported" : 0.2,
+                  "logInitial" : 5,
                   "efficacy" : 0.5
                 }
     # bounds = ((0.4,2),(0.01,0.8),(1,None),(0,1))
@@ -409,7 +409,6 @@ if __name__ == "__main__":
 
     # Raw data and time points
     time, data = load_data(key)
-    get_fit_data(time, data)
 
     # Fitting over the pre-confinement days
     res = fit_population(key, time, data, confinement_start)
@@ -459,13 +458,15 @@ if __name__ == "__main__":
     plt.plot(tp, model[:,Sub.D], color="#cab2d6")
     plt.plot(tp, err[Sub.D], '--', color="#cab2d6")
 
-    plt.plot(time, data[Sub.H], 'o', color="#fb9a98", label="Hospitalized")
-    plt.plot(tp, model[:,Sub.H], color="#fb9a98")
-    plt.plot(tp, err[Sub.H], '--', color="#fb9a98")
+    if data[Sub.H] is not None:
+        plt.plot(time, data[Sub.H], 'o', color="#fb9a98", label="Hospitalized")
+        plt.plot(tp, model[:,Sub.H], color="#fb9a98")
+        plt.plot(tp, err[Sub.H], '--', color="#fb9a98")
 
-    plt.plot(time, data[Sub.C], 'o', color="#e31a1c", label="ICU")
-    plt.plot(tp, model[:,Sub.C], color="#e31a1c")
-    plt.plot(tp, err[Sub.C], '--', color="#e31a1c")
+    if data[Sub.C] is not None:
+        plt.plot(time, data[Sub.C], 'o', color="#e31a1c", label="ICU")
+        plt.plot(tp, model[:,Sub.C], color="#e31a1c")
+        plt.plot(tp, err[Sub.C], '--', color="#e31a1c")
 
 
     plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
@@ -473,12 +474,10 @@ if __name__ == "__main__":
     if confinement_start is not None:
         plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
 
-
-
     plt.xlabel("Time [days]")
     plt.ylabel("Number of people")
     plt.legend(loc="best")
     plt.tight_layout()
-    plt.yscale("log")
-    plt.savefig(f"{key}-Poisson_max_likelihood", format="png")
+    # plt.yscale("log")
+    # plt.savefig(f"{key}-Poisson_max_likelihood", format="png")
     plt.show()
