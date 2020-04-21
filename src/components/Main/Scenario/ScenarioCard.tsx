@@ -38,7 +38,7 @@ export interface ScenarioCardProps {
   scenarioDispatch(action: AnyAction): void
   areResultsMaximized: boolean
 }
-  
+
 function ScenarioCard({
   values,
   severity,
@@ -70,7 +70,14 @@ function ScenarioCard({
       <>
         <Row>
           <ColCustom {...colPopulation} className="my-2">
-            <ScenarioCardPopulation errors={errors} touched={touched} srcHospitalBeds={scenarioState.data.population.srcHospitalBeds} srcICUBeds={scenarioState.data.population.srcICUBeds} srcPopulation={scenarioState.data.population.srcPopulation} scenarioName={scenarioState.current} />
+            <ScenarioCardPopulation
+              errors={errors}
+              touched={touched}
+              srcHospitalBeds={scenarioState.data.population.srcHospitalBeds}
+              srcICUBeds={scenarioState.data.population.srcICUBeds}
+              srcPopulation={scenarioState.data.population.srcPopulation}
+              scenarioName={scenarioState.current}
+            />
           </ColCustom>
 
           <ColCustom {...colEpidemiological} className="my-2">

@@ -1,4 +1,4 @@
-//Contains the general template for the help buttons
+// Contains the general template for the help buttons
 import React from 'react'
 import i18next from 'i18next'
 
@@ -16,7 +16,6 @@ import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
-
 const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
@@ -26,27 +25,44 @@ caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: i18next.t(NONE_COUNTRY_
 export interface ScenarioCardPopulationProps {
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
-  srcHospitalBeds ?: string
-  srcICUBeds ?: string
-  srcPopulation ?: string
-  scenarioName : string
+  srcHospitalBeds?: string
+  srcICUBeds?: string
+  srcPopulation?: string
+  scenarioName: string
 }
-
-function ScenarioCardPopulation({ errors, touched, srcHospitalBeds, srcICUBeds, srcPopulation, scenarioName }: ScenarioCardPopulationProps) {
-  //detect if src strings are undefined or have no value
-  //if undefined, set them to a "Source cannot be provided"
-  if (scenarioName == "Custom") [
-    srcHospitalBeds, srcPopulation, srcICUBeds = ""
-  ]
-  if (srcHospitalBeds == undefined || srcHospitalBeds == "None") {
-    srcHospitalBeds = "Source cannot be provided"
+function getSrcStrings(scenarioName: string, srcHospitalBeds?: string, srcICUBeds?: string, srcPopulation?: string) {
+  if (scenarioName === 'Custom') {
+    return ['', '', '']
   }
-  if (srcICUBeds == undefined || srcICUBeds== "None") {
-    srcICUBeds = "Source cannot be provided"
+  let ret = ['', '', '']
+  if (srcPopulation === undefined || srcPopulation === 'None') {
+    ret[0] = 'Source cannot be provided'
+  } else {
+    ret[0] = srcPopulation
   }
-  if (srcPopulation == undefined || srcPopulation == "None") {
-    srcICUBeds = "Source cannot be provided"
+  if (srcHospitalBeds === undefined || srcHospitalBeds === 'None') {
+    ret[1] = 'Source cannot be found'
+  } else {
+    ret[1] = srcHospitalBeds
   }
+  if (srcICUBeds === undefined || srcICUBeds === 'None') {
+    ret[2] = 'Source cannot be provided'
+  } else {
+    ret[2] = srcICUBeds
+  }
+  return ret
+}
+function ScenarioCardPopulation({
+  errors,
+  touched,
+  srcHospitalBeds,
+  srcICUBeds,
+  srcPopulation,
+  scenarioName,
+}: ScenarioCardPopulationProps) {
+  // detect if src strings are undefined or have no value
+  // if undefined, set them to a "Source cannot be provided"
+  const srcStr = getSrcStrings(scenarioName, srcHospitalBeds, srcICUBeds, srcPopulation)
   const { t } = useTranslation()
   // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
   // function handleChangePopulationScenario(newPopulationScenario: string) {
@@ -63,7 +79,7 @@ function ScenarioCardPopulation({ errors, touched, srcHospitalBeds, srcICUBeds, 
       <FormSpinBox
         identifier="population.populationServed"
         label={t('Population')}
-        help={t('Number of people served by health care system.' + srcPopulation)}
+        help={t('Number of people served by health care system.'.concat(srcStr[0]))}
         step={1}
         min={0}
         errors={errors}
@@ -98,10 +114,12 @@ function ScenarioCardPopulation({ errors, touched, srcHospitalBeds, srcICUBeds, 
       <FormSpinBox
         identifier="population.hospitalBeds"
         label={`${t('Hospital Beds')} (${t('est.')})`}
-        //There's a bug in rendering special characters. For example for, "https://..."" the ':' character causes an error in rendering
-        //Also need to find out how to input newline characters just for nice spacing
+        // There's a bug in rendering special characters. For example for, "https://..."" the ':' character causes an error in rendering
+        // Also need to find out how to input newline characters just for nice spacing
         help={t(
-          'Number of hospital beds available in health care system. Number of beds available for COVID-19 treatment is likely much lower.' + (srcHospitalBeds)
+          'Number of hospital beds available in health care system. Number of beds available for COVID-19 treatment is likely much lower.'.concat(
+            srcStr[1],
+          ),
         )}
         step={1}
         min={0}
@@ -112,7 +130,9 @@ function ScenarioCardPopulation({ errors, touched, srcHospitalBeds, srcICUBeds, 
         identifier="population.ICUBeds"
         label={`${t('ICU/ICMU')} (${t('est.')})`}
         help={t(
-          'Number of ICU/ICMUs available in health care system. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.' + srcICUBeds
+          'Number of ICU/ICMUs available in health care system. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.'.concat(
+            srcStr[2],
+          ),
         )}
         step={1}
         min={0}
