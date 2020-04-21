@@ -107,7 +107,7 @@ class Fitter:
 # Parameter class constructors (with defaults)
 
 def report_errors(x):
-    return [float(max(1, round(alpha*x, 1))) for alpha in [.9, 1.1]]
+    return [float(max(1, round(alpha*x, 2))) for alpha in [.9, 1.1]]
 
 class DateRange(schema.DateRange):
     def __init__(self, tMin, tMax):
