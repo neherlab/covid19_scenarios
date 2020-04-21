@@ -286,35 +286,6 @@ def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
 # ------------------------------------------
 # Data loading
 
-def fit_logistic(data):
-    x = np.arange(0, len(data))
-    def residuals(params):
-        L , k, x0, logp = params
-        F = L/(1 + np.exp(-k*(x-x0))) + np.exp(logp)
-        return np.sum(np.power(1-data/F, 2))
-
-    guess = [np.max(data), 1.0, len(data)/2, 1.0]
-    fit_param = opt.minimize(residuals, guess, method='Nelder-Mead')
-
-    L, k, x0, logp = fit_param.x
-    def fit(x):
-        return L/(1 + np.exp(-k*(x-x0))) + np.exp(logp)
-
-    case_min = max(fit(x0-12/k), 20)
-    case_max = fit(x0-.5/k)
-
-    # print(case_min, case_max)
-    # good = np.bitwise_and(data > case_min, data < case_max)
-    # plt.plot(data, 'ro')
-    # plt.plot(x[good], data[good], 'go')
-    # plt.plot(x, fit(x), '--')
-    # plt.yscale('log')
-    # input('enter')
-
-    return case_min, case_max
-
-# TODO: Better data filtering criteria needed!
-# TODO: Take hospitalization and ICU data?
 def load_data(key):
     if key in POPDATA:
         popsize = POPDATA[key]["size"]
@@ -325,14 +296,12 @@ def load_data(key):
     data = [[] if (i == Sub.D or i == Sub.T or i == Sub.H or i == Sub.C) else None for i in range(Sub.NUM)]
     days = []
 
-
     ts = CASE_DATA[key]
 
     for tp in ts: #replace all zeros by np.nan
         data[Sub.T].append(tp['cases'] or np.nan)
         data[Sub.H].append(tp['hospitalized'] or np.nan)
         data[Sub.D].append(tp['deaths'] or np.nan)
-        data[Sub.H].append(tp['hospitalized'] or np.nan)
         data[Sub.C].append(tp['icu'] or np.nan)
 
     data = [ np.ma.array(d) if d is not None else d for d in data]
@@ -357,12 +326,6 @@ def get_fit_data(days, data_original, confinement_start=None):
     else:
         fit_stop_day = confinement_start + 1.0/DefaultRates.latency + 1.0/DefaultRates.infection
     day0 = days[case_min <= data[Sub.T]][0]
-
-    good_data = data[Sub.T][~np.isnan(data[Sub.T])]
-    if len(good_data) > 5:
-        case_min, case_max = fit_logistic(good_data)
-    else:
-        case_min, case_max = 20, max(20000, popsize*3e-4)
 
     # Filter points
     good_idx = np.bitwise_and(days >= day0, days <= fit_stop_day)
@@ -446,7 +409,7 @@ if __name__ == "__main__":
 
     # Raw data and time points
     time, data = load_data(key)
-
+    get_fit_data(time, data)
 
     # Fitting over the pre-confinement days
     res = fit_population(key, time, data, confinement_start)
