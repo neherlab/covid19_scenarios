@@ -13,8 +13,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -43,7 +43,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a3ed54bc-7d70-4488-9f0b-cdf0b199b3a3",
+"id": "2893fdb8-b602-47f9-b0c1-80beaab305a9",
 "mitigationValue": [
 18.0,
 22.0
@@ -65,8 +65,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.71,
-2.09
+1.7,
+2.1
 ],
 "seasonalForcing": 0.0
 },
@@ -103,8 +103,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.07,
-2.53
+2.1,
+2.5
 ],
 "seasonalForcing": 0.0
 },
@@ -133,7 +133,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ba62106a-9392-4f29-b69e-ffa7a45dac1f",
+"id": "0522f16d-2eba-45e6-a57d-f08dbb0a59f2",
 "mitigationValue": [
 27.0,
 33.0
@@ -146,7 +146,7 @@
 },
 {
 "color": "#666666",
-"id": "f2d01d4c-ce57-4efd-a8e5-b7315642cbde",
+"id": "b7a0e8db-f28d-4a46-a869-f68dc115f3f0",
 "mitigationValue": [
 54.0,
 66.0
@@ -168,8 +168,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -198,7 +198,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3c936d2c-28c5-492b-830e-8f5aedb4e466",
+"id": "dc9748b8-847a-44b0-9e54-ad1725023397",
 "mitigationValue": [
 18.0,
 22.0
@@ -220,8 +220,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -258,8 +258,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.2,
+2.7
 ],
 "seasonalForcing": 0.0
 },
@@ -288,7 +288,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "90307a95-d1ab-4439-a885-008ca6190249",
+"id": "eae36815-09a6-4e49-bc16-191b07d6da31",
 "mitigationValue": [
 27.0,
 33.0
@@ -310,8 +310,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -340,7 +340,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5c7b0092-cdd8-4f7b-a3a8-901d0d5141a8",
+"id": "fa47c35b-29d4-486a-a090-cdaf88359c55",
 "mitigationValue": [
 18.0,
 22.0
@@ -362,8 +362,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.8900000000000001,
-2.3100000000000005
+1.9,
+2.3
 ],
 "seasonalForcing": 0.0
 },
@@ -392,10 +392,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d697342d-a91c-4f6c-8dc9-74401531a5ca",
+"id": "f33b984f-1820-4471-9e16-83f0ee03bd61",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -405,7 +405,7 @@
 },
 {
 "color": "#666666",
-"id": "bfd4005c-9e10-4ecf-823e-e6e128ac95f9",
+"id": "d99e6225-826a-4120-aac2-007a60a1e7e7",
 "mitigationValue": [
 54.0,
 66.0
@@ -427,8 +427,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.42,
-4.18
+3.4,
+4.1
 ],
 "seasonalForcing": 0.0
 },
@@ -457,7 +457,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "52357c88-9b93-43f8-9da9-d23d9c91453c",
+"id": "1c0b138a-3702-4f8f-bbb7-df1da6cccd62",
 "mitigationValue": [
 18.0,
 22.0
@@ -479,8 +479,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -509,7 +509,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "288808a5-a6f6-422b-9e7e-8ea88c45606f",
+"id": "336223ba-72c4-4350-87a4-312f3aa69c4c",
 "mitigationValue": [
 18.0,
 22.0
@@ -531,8 +531,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -561,7 +561,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "76cb9362-37c1-420e-8074-2fcadb59c8a0",
+"id": "35254aba-86c6-409e-b5a2-3b0601ec2da4",
 "mitigationValue": [
 18.0,
 22.0
@@ -574,7 +574,7 @@
 },
 {
 "color": "#666666",
-"id": "9f4560ec-9496-45f5-a311-84120ce9f032",
+"id": "b00e40cc-ddb1-45f6-903b-25403d7499fc",
 "mitigationValue": [
 54.0,
 66.0
@@ -596,8 +596,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.5,
+1.8
 ],
 "seasonalForcing": 0.0
 },
@@ -635,7 +635,7 @@
 "peakMonth": 0,
 "r0": [
 1.8,
-2.2
+2.3
 ],
 "seasonalForcing": 0.0
 },
@@ -664,10 +664,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3b146b3e-9cfe-41d4-80ec-f637bac43acd",
+"id": "37de8130-6aa1-49ab-bb8f-04b11caa6636",
 "mitigationValue": [
-27.0,
-33.0
+18.0,
+22.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -686,8 +686,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -716,7 +716,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ac07bdc9-aa81-4cce-a1bb-ffec6c65445f",
+"id": "88a1be3d-07d8-4ccf-83ce-b1c604ecbe58",
 "mitigationValue": [
 18.0,
 22.0
@@ -738,8 +738,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.07,
-2.53
+2.1,
+2.5
 ],
 "seasonalForcing": 0.0
 },
@@ -768,7 +768,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "865ca4c0-389c-4696-9c9c-8e2f36a82f6e",
+"id": "7b63ace2-9bf5-4baf-9511-9b80f24a1056",
 "mitigationValue": [
 36.0,
 44.0
@@ -781,7 +781,7 @@
 },
 {
 "color": "#666666",
-"id": "e838c12a-6119-4384-b499-e42911d6bf06",
+"id": "4ad7117e-8375-4bda-948d-e82d1bd3b9ed",
 "mitigationValue": [
 54.0,
 66.0
@@ -803,8 +803,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.5
 ],
 "seasonalForcing": 0.0
 },
@@ -841,8 +841,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.62,
-1.9800000000000002
+1.6,
+2.0
 ],
 "seasonalForcing": 0.0
 },
@@ -879,8 +879,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-0.9,
-1.1
+1.0,
+1.0
 ],
 "seasonalForcing": 0.0
 },
@@ -917,8 +917,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-0.9900000000000001,
-1.2100000000000002
+1.0,
+1.2
 ],
 "seasonalForcing": 0.0
 },
@@ -955,8 +955,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -985,7 +985,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5eb58c0c-a017-414b-8446-76061e6b8cbf",
+"id": "38a40e1d-90c6-4506-bc3c-544b2f96a8c3",
 "mitigationValue": [
 36.0,
 44.0
@@ -1007,8 +1007,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -1045,8 +1045,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.53,
-1.87
+1.5,
+1.8
 ],
 "seasonalForcing": 0.0
 },
@@ -1075,7 +1075,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f328fc35-80b6-40e3-b42d-d76d6edf016f",
+"id": "6fd2a6b9-5e0a-48f1-8542-caeb4d295ac7",
 "mitigationValue": [
 54.0,
 66.0
@@ -1097,8 +1097,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.7800000000000002,
-4.620000000000001
+3.7,
+4.6
 ],
 "seasonalForcing": 0.0
 },
@@ -1127,7 +1127,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c484403f-e0cd-4520-a4b4-3726251814a7",
+"id": "c917d6d3-de39-4d9f-b5a2-bec438fbacd6",
 "mitigationValue": [
 18.0,
 22.0
@@ -1149,8 +1149,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.1,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -1179,7 +1179,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0ef96c29-dee0-4480-bc59-499f1d41c9e8",
+"id": "2dd7fa99-4e9c-4542-b08f-fb88580d817f",
 "mitigationValue": [
 18.0,
 22.0
@@ -1239,8 +1239,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -1277,8 +1277,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -1307,7 +1307,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ac91d828-c5b4-48bf-936a-23956777a20a",
+"id": "0e0469ad-55b1-44e0-9b3c-2f98bd2b350a",
 "mitigationValue": [
 27.0,
 33.0
@@ -1329,8 +1329,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -1359,7 +1359,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7ab82ac5-d7f6-4445-8ca7-68f576e1351c",
+"id": "32348f3e-4820-4cf2-89e6-48a9a38e202c",
 "mitigationValue": [
 27.0,
 33.0
@@ -1381,8 +1381,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -1411,7 +1411,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "05d883d1-8bd3-4853-a10b-b47d3b83891d",
+"id": "ee3e99a4-9fd1-4cd2-a84b-5b9679f8257c",
 "mitigationValue": [
 27.0,
 33.0
@@ -1433,8 +1433,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -1471,8 +1471,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-0.9900000000000001,
-1.2100000000000002
+1.0,
+1.2
 ],
 "seasonalForcing": 0.0
 },
@@ -1501,7 +1501,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2b6c9767-551f-42cb-9f7d-ddcad9aef0df",
+"id": "ecccce4f-6a60-433f-8956-91e7393d2a98",
 "mitigationValue": [
 18.0,
 22.0
@@ -1523,8 +1523,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.5,
+1.8
 ],
 "seasonalForcing": 0.0
 },
@@ -1553,7 +1553,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b05e238a-4f77-4557-b216-b8a0bf22cc56",
+"id": "99e3f596-4bf7-4f0f-9f29-f8710f6365e9",
 "mitigationValue": [
 18.0,
 22.0
@@ -1575,8 +1575,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.53,
-1.87
+1.6,
+1.9
 ],
 "seasonalForcing": 0.0
 },
@@ -1605,7 +1605,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "68e75ecf-e17f-462a-b787-4aa40d4f636b",
+"id": "7982b4a9-d473-48a0-916a-5b4a59c9b99c",
 "mitigationValue": [
 27.0,
 33.0
@@ -1627,8 +1627,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -1666,7 +1666,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -1695,7 +1695,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8fb22088-fe97-4f11-bf81-61cf1bf0f91b",
+"id": "4cfbb44d-2d68-4c9f-84b8-70de8668523a",
 "mitigationValue": [
 27.0,
 33.0
@@ -1717,8 +1717,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -1747,7 +1747,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "38610925-d46c-4a7e-b90c-1e40b0bb7532",
+"id": "9d06a4de-4c22-4e59-9887-894298b22d02",
 "mitigationValue": [
 18.0,
 22.0
@@ -1769,8 +1769,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -1799,7 +1799,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5eff1355-3594-404b-b486-10179cfef305",
+"id": "4bcb8812-65a7-4f32-937c-b92b343aaea3",
 "mitigationValue": [
 54.0,
 66.0
@@ -1812,7 +1812,7 @@
 },
 {
 "color": "#666666",
-"id": "2f18d34e-95a9-4ee0-a46d-c34f1f3368ef",
+"id": "25118054-d8b2-4f56-b4c3-09da288098eb",
 "mitigationValue": [
 54.0,
 66.0
@@ -1834,8 +1834,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.87,
-4.73
+3.9,
+4.8
 ],
 "seasonalForcing": 0.0
 },
@@ -1864,7 +1864,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "edcdf424-1740-4fe3-8ae1-39bd51e5a814",
+"id": "76b60d9f-a35d-4634-bdfa-559ef0ea0108",
 "mitigationValue": [
 27.0,
 33.0
@@ -1886,8 +1886,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -1916,7 +1916,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a0fe01ba-c7c0-45a3-9004-3b70ea55d71c",
+"id": "c57d5854-6f91-498d-bf47-1feaf4a69cb2",
 "mitigationValue": [
 18.0,
 22.0
@@ -1938,8 +1938,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -1968,7 +1968,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "def146e6-c027-416b-9ef4-10a38ba97c86",
+"id": "8230d7c7-c224-492d-8b84-16d8597fcaaa",
 "mitigationValue": [
 27.0,
 33.0
@@ -1981,7 +1981,7 @@
 },
 {
 "color": "#666666",
-"id": "362741f0-2219-438f-9c91-590051ef496f",
+"id": "ae984559-a6a9-4c08-80a2-660fd44dddf0",
 "mitigationValue": [
 54.0,
 66.0
@@ -2003,8 +2003,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -2033,7 +2033,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "efeeaa8e-9f07-46ba-b642-a0d5d7f3aec1",
+"id": "bc783c94-c7cc-42cb-a971-a3555435362b",
 "mitigationValue": [
 18.0,
 22.0
@@ -2046,7 +2046,7 @@
 },
 {
 "color": "#666666",
-"id": "4300402a-aebb-4729-8bb6-aed23b61555c",
+"id": "29ca0889-24f9-4546-8758-616777b34d8f",
 "mitigationValue": [
 54.0,
 66.0
@@ -2068,8 +2068,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -2098,7 +2098,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "04d6bd80-1dde-47ae-93b8-56d707f59b9d",
+"id": "e5c97155-6314-452b-b138-5645da0ee157",
 "mitigationValue": [
 18.0,
 22.0
@@ -2120,8 +2120,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -2150,7 +2150,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8308c824-b06d-47ca-a3b6-7e6ca9cc1b48",
+"id": "e4f619a9-a978-4838-804f-d3d1ac350b72",
 "mitigationValue": [
 18.0,
 22.0
@@ -2163,7 +2163,7 @@
 },
 {
 "color": "#666666",
-"id": "0d1c6c98-c915-4843-b27a-5db7f5a176b4",
+"id": "cf0ff800-2f05-42fc-ace9-17b14c6c498b",
 "mitigationValue": [
 54.0,
 66.0
@@ -2185,8 +2185,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -2215,7 +2215,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3e01bd8a-62df-4ad1-8c35-633c40ca9481",
+"id": "b39d3ded-7c9f-4d84-862e-450118943c5d",
 "mitigationValue": [
 36.0,
 44.0
@@ -2228,7 +2228,7 @@
 },
 {
 "color": "#666666",
-"id": "ef7dc7d7-d050-4c44-a899-801b8fd6636d",
+"id": "9fc9930b-9db8-4873-a1a7-f1863d753d10",
 "mitigationValue": [
 54.0,
 66.0
@@ -2250,8 +2250,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.52,
-3.08
+2.6,
+3.1
 ],
 "seasonalForcing": 0.0
 },
@@ -2280,7 +2280,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b0a2b1ef-2c5d-4e00-b06a-abe85db4bf64",
+"id": "1bae230c-7c0c-407e-a24a-ac7861ae73c8",
 "mitigationValue": [
 36.0,
 44.0
@@ -2293,7 +2293,7 @@
 },
 {
 "color": "#666666",
-"id": "5f3107ad-f099-4086-b07a-daaef10ac5bc",
+"id": "f49005b7-b97c-4668-a2f8-3fd6cc19618b",
 "mitigationValue": [
 54.0,
 66.0
@@ -2315,8 +2315,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -2345,7 +2345,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "abd63b4c-7b89-4dea-a227-2d717b10c372",
+"id": "7b4a67d8-a465-4c96-bc9a-bec44657977f",
 "mitigationValue": [
 36.0,
 44.0
@@ -2358,7 +2358,7 @@
 },
 {
 "color": "#666666",
-"id": "f84bebba-5919-49e4-b04b-30ab9e7f7e3d",
+"id": "4da5b684-be22-41c4-9b7d-41dcc7aec973",
 "mitigationValue": [
 54.0,
 66.0
@@ -2380,8 +2380,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -2410,10 +2410,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6056613d-5405-4b53-a9a6-3f5eaf63cf27",
+"id": "0e4793f4-a243-416c-9bf9-519911823c4e",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -2423,7 +2423,7 @@
 },
 {
 "color": "#666666",
-"id": "12e1fb89-3d6f-4570-91e6-19bf3b456dd1",
+"id": "65d08a2d-5564-4f9d-8f4f-f13c5daff87a",
 "mitigationValue": [
 54.0,
 66.0
@@ -2445,8 +2445,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.06,
-3.74
+3.1,
+3.8
 ],
 "seasonalForcing": 0.0
 },
@@ -2475,7 +2475,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f170bead-811e-46c1-8df8-40d9ea95af7a",
+"id": "4dff98aa-4777-4aac-9b08-6ce4eb8de41f",
 "mitigationValue": [
 18.0,
 22.0
@@ -2488,7 +2488,7 @@
 },
 {
 "color": "#666666",
-"id": "9601366f-0287-45bb-9bad-22712ca6bd65",
+"id": "964ccb64-718f-4f56-81f8-e2050b34edd2",
 "mitigationValue": [
 54.0,
 66.0
@@ -2510,8 +2510,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -2540,10 +2540,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "972d8bbf-ae8c-4415-bd01-1a11a9bd54bb",
+"id": "0bb5c577-dc3f-48e0-a696-9669043468a3",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -2553,7 +2553,7 @@
 },
 {
 "color": "#666666",
-"id": "f3ccc3c5-d6a7-416e-8bd5-8bdee62b3451",
+"id": "6fc0ea31-157a-41a1-857d-2fd20e004fe7",
 "mitigationValue": [
 54.0,
 66.0
@@ -2575,8 +2575,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.06,
-3.74
+3.0,
+3.7
 ],
 "seasonalForcing": 0.0
 },
@@ -2605,7 +2605,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f0cb5055-9016-46dc-b438-5af13143d58d",
+"id": "baa2480a-1558-4181-a2e8-1cd42a68d796",
 "mitigationValue": [
 27.0,
 33.0
@@ -2618,7 +2618,7 @@
 },
 {
 "color": "#666666",
-"id": "31b3844d-54a3-4e32-a73d-bc61e00ad8ae",
+"id": "d0552295-2d15-4164-976c-691af775e499",
 "mitigationValue": [
 54.0,
 66.0
@@ -2640,8 +2640,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -2670,7 +2670,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "851f9255-4cac-476e-8f29-db4223c6a572",
+"id": "9babee17-f7b0-480f-82da-da097b4c886e",
 "mitigationValue": [
 27.0,
 33.0
@@ -2683,7 +2683,7 @@
 },
 {
 "color": "#666666",
-"id": "6476dee5-ed0f-4711-a1ac-620ba9910801",
+"id": "fc7fa880-7221-4d48-99c5-390d3f88dc1b",
 "mitigationValue": [
 54.0,
 66.0
@@ -2705,8 +2705,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -2735,7 +2735,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "93e6db08-74a1-472f-a2ad-9cc31c62cae6",
+"id": "8b1be582-2ef6-4b97-a586-f3df2b5be963",
 "mitigationValue": [
 27.0,
 33.0
@@ -2748,7 +2748,7 @@
 },
 {
 "color": "#666666",
-"id": "123361f2-7edf-421b-a5ca-bea0faa0871b",
+"id": "d16f862c-46a2-44b2-8030-bdceb66367d3",
 "mitigationValue": [
 54.0,
 66.0
@@ -2770,8 +2770,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -2800,7 +2800,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d4ad3e5a-228a-4a56-8ec6-792f613b5209",
+"id": "f47c215f-3595-4981-8dc2-5909ad9029c2",
 "mitigationValue": [
 27.0,
 33.0
@@ -2813,7 +2813,7 @@
 },
 {
 "color": "#666666",
-"id": "32dff390-f868-4c42-a7ed-7811e9713b76",
+"id": "cfcd713d-cba6-4de7-8363-2807571b5fc1",
 "mitigationValue": [
 54.0,
 66.0
@@ -2835,8 +2835,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -2865,7 +2865,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b7950a2e-f7aa-40ef-adac-7da06c4feb88",
+"id": "8e11acbe-8e90-4750-9108-0bcc669f12a4",
 "mitigationValue": [
 18.0,
 22.0
@@ -2878,7 +2878,7 @@
 },
 {
 "color": "#666666",
-"id": "10a8de10-4d9a-4844-be52-9905758fb413",
+"id": "37c28243-e9b6-430b-93e3-4c472c7765ac",
 "mitigationValue": [
 54.0,
 66.0
@@ -2900,8 +2900,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.1,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -2930,7 +2930,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e6f513ae-5dc8-4126-a339-f84b2ef19a93",
+"id": "745b554d-ffa2-43dc-9b48-d5173d184627",
 "mitigationValue": [
 18.0,
 22.0
@@ -2952,8 +2952,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -2982,7 +2982,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "190905cc-5812-40a6-9206-db226e68dec0",
+"id": "b0ff3de0-1e27-4d35-8dfe-9def354af4a9",
 "mitigationValue": [
 18.0,
 22.0
@@ -2995,7 +2995,7 @@
 },
 {
 "color": "#666666",
-"id": "b7110154-f8c0-45c1-ad55-7bd2e59fccbc",
+"id": "f19e6b7b-89c8-4924-a804-97c13bf7201d",
 "mitigationValue": [
 54.0,
 66.0
@@ -3017,8 +3017,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -3047,10 +3047,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ff0cac69-bab9-4ff6-ab80-cb9b6165549e",
+"id": "d8acb1b3-5842-4712-99a9-0421b9b2650c",
 "mitigationValue": [
-27.0,
-33.0
+18.0,
+22.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -3060,7 +3060,7 @@
 },
 {
 "color": "#666666",
-"id": "9251fd9c-a4ee-42e4-9e4f-16aa427cf3d4",
+"id": "8af68a4d-039a-4313-93bc-3ff857f1ce15",
 "mitigationValue": [
 54.0,
 66.0
@@ -3082,8 +3082,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -3112,7 +3112,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d523d312-415c-4779-986d-53c6e745720a",
+"id": "67eeca03-3d41-415a-a51b-c53bf6e07c97",
 "mitigationValue": [
 18.0,
 22.0
@@ -3125,7 +3125,7 @@
 },
 {
 "color": "#666666",
-"id": "1ab1abdd-9240-48a5-bbf8-1ebc3409c52d",
+"id": "113d07c4-2e5b-4279-a097-01cbe204f137",
 "mitigationValue": [
 54.0,
 66.0
@@ -3147,8 +3147,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -3177,7 +3177,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d37f7036-04fa-4bbe-b91f-4e18dbae7b13",
+"id": "219eb96a-9cf8-493a-a9c3-a7d330851e76",
 "mitigationValue": [
 27.0,
 33.0
@@ -3190,7 +3190,7 @@
 },
 {
 "color": "#666666",
-"id": "ec0140dc-f21e-4cca-b4e3-f49a8dedb5ad",
+"id": "0f783a65-cbab-4124-b651-029e62515a59",
 "mitigationValue": [
 54.0,
 66.0
@@ -3212,8 +3212,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.2,
+2.7
 ],
 "seasonalForcing": 0.0
 },
@@ -3242,10 +3242,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "eba534e2-14f6-4ffc-be61-d5892e2bb33f",
+"id": "0d80d046-71c5-4969-9e22-27281809cc3a",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -3255,7 +3255,7 @@
 },
 {
 "color": "#666666",
-"id": "60cc0526-6840-4cda-a3b5-320651488b48",
+"id": "53ddbf8d-179e-4c93-a9da-d10b8fb1741c",
 "mitigationValue": [
 54.0,
 66.0
@@ -3277,8 +3277,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.9699999999999998,
-3.63
+3.0,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -3307,10 +3307,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "53534a03-4a83-4b0b-8c3e-36297fd4d9c1",
+"id": "7c6f3957-afe4-4bf3-9569-d9b7ee95ea77",
 "mitigationValue": [
-27.0,
-33.0
+18.0,
+22.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -3320,7 +3320,7 @@
 },
 {
 "color": "#666666",
-"id": "75cbb68c-296c-4c20-a92a-aed230d662ca",
+"id": "046e5c60-bb39-49b6-bda0-54fbc2fc3e84",
 "mitigationValue": [
 54.0,
 66.0
@@ -3342,8 +3342,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -3372,10 +3372,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a99f21ab-0df0-4db5-9db5-b95f6502bc86",
+"id": "bcfbcbcc-6bc3-44a7-96f3-1fd5d7d1c56e",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -3385,7 +3385,7 @@
 },
 {
 "color": "#666666",
-"id": "80c358e0-e3fd-4c22-ade5-a1e3c0ac7199",
+"id": "39b3203a-00ea-4503-8bb6-8f223d3e8dce",
 "mitigationValue": [
 54.0,
 66.0
@@ -3407,8 +3407,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.42,
-4.18
+3.4,
+4.2
 ],
 "seasonalForcing": 0.0
 },
@@ -3437,7 +3437,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "939f8752-574b-431b-b547-987055569a1d",
+"id": "2ae04def-ea44-4b74-bd0c-2fe9fbea142f",
 "mitigationValue": [
 36.0,
 44.0
@@ -3450,7 +3450,7 @@
 },
 {
 "color": "#666666",
-"id": "9b14a055-b3a2-4d1e-83bd-02578c4af037",
+"id": "e1e31e55-9cd5-46b7-9ddf-81d1c4ae21b4",
 "mitigationValue": [
 54.0,
 66.0
@@ -3473,7 +3473,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -3502,10 +3502,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4eeba9c1-628c-4a6f-8180-11d61a9f69b2",
+"id": "ce2d6525-e24a-4846-adcf-eed3544960e4",
 "mitigationValue": [
-27.0,
-33.0
+18.0,
+22.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -3515,7 +3515,7 @@
 },
 {
 "color": "#666666",
-"id": "b87a4d5c-f00c-432a-a39d-2430d236d88a",
+"id": "55bc77fb-0bc0-4b0a-80a7-fc2280b0da3d",
 "mitigationValue": [
 54.0,
 66.0
@@ -3537,8 +3537,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -3567,7 +3567,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c2435d6f-c128-4dc4-b3f1-39af03566b3b",
+"id": "ff732a0a-3cc3-492b-a1b1-a88758aaafd2",
 "mitigationValue": [
 36.0,
 44.0
@@ -3580,7 +3580,7 @@
 },
 {
 "color": "#666666",
-"id": "6a94321f-d581-4797-bc5a-da716072cd86",
+"id": "b51df679-79af-4b7f-beda-cbd22c054947",
 "mitigationValue": [
 54.0,
 66.0
@@ -3602,8 +3602,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -3632,7 +3632,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "86739901-dd81-4665-a37d-3095ca8e4936",
+"id": "f4f48641-4672-4eec-be05-b951c3b35d22",
 "mitigationValue": [
 18.0,
 22.0
@@ -3654,8 +3654,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -3692,8 +3692,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -3730,8 +3730,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -3760,7 +3760,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3f025649-cf91-41a0-aba2-d884d9da7416",
+"id": "0dd7e8e9-ec1b-47e0-bef6-f71a42ae3280",
 "mitigationValue": [
 36.0,
 44.0
@@ -3782,8 +3782,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -3820,8 +3820,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.2,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -3850,10 +3850,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ed5cb21f-5f3e-4c4c-ae52-1c8eaf787746",
+"id": "787461aa-fbb5-48b8-af72-c665dd4e059b",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -3872,8 +3872,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.06,
-3.74
+3.0,
+3.7
 ],
 "seasonalForcing": 0.0
 },
@@ -3902,7 +3902,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0f6184ac-2162-44ce-85ba-79ed1d0444ff",
+"id": "c8232e02-6e01-4b07-87aa-1461e46756aa",
 "mitigationValue": [
 36.0,
 44.0
@@ -3915,7 +3915,7 @@
 },
 {
 "color": "#666666",
-"id": "3d775060-924f-463f-8ce0-d6a7677827b8",
+"id": "3c584086-49c7-4a0e-80ab-1102702b1590",
 "mitigationValue": [
 54.0,
 66.0
@@ -3937,8 +3937,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -3975,8 +3975,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.52,
-3.08
+2.5,
+3.1
 ],
 "seasonalForcing": 0.0
 },
@@ -4014,7 +4014,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -4043,10 +4043,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ff74b237-e935-449f-a2de-68b0da5bf7a7",
+"id": "c594b92f-03cc-451d-bb8a-fb3c34235a4c",
 "mitigationValue": [
-27.0,
-33.0
+18.0,
+22.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -4065,8 +4065,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -4095,7 +4095,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1c6b91ad-f4e3-44ea-a318-c2fd7302b571",
+"id": "2960483d-7fd0-4f42-84ad-d3c4a6d1a99d",
 "mitigationValue": [
 36.0,
 44.0
@@ -4117,8 +4117,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.7,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -4155,8 +4155,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -4185,7 +4185,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f1f4c1f6-1be3-42c2-8a4e-73b670086dc6",
+"id": "6879ec19-b5ac-40c8-97d3-b6c440240c62",
 "mitigationValue": [
 18.0,
 22.0
@@ -4237,10 +4237,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d6ca7d26-73eb-4abc-a696-26a422659bde",
+"id": "aa007ec8-d62b-4349-b96f-f40b82846a3f",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -4259,8 +4259,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.9699999999999998,
-3.63
+3.0,
+3.7
 ],
 "seasonalForcing": 0.0
 },
@@ -4289,10 +4289,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5e82fdb2-a773-4a3b-b7d7-35e73536e202",
+"id": "7d575d0d-47cc-49d8-a277-99d1312ebc5d",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -4302,7 +4302,7 @@
 },
 {
 "color": "#666666",
-"id": "b8f68b39-ae18-427e-ba06-f1bee26c8932",
+"id": "eff17872-5efc-4d02-bee6-3c306c1f35e9",
 "mitigationValue": [
 54.0,
 66.0
@@ -4324,8 +4324,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.9699999999999998,
-3.63
+3.0,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -4354,7 +4354,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "112dc6b1-647d-45a6-8633-534a48c2a8da",
+"id": "fa534bce-3165-4a99-91f9-d350d1b6cd96",
 "mitigationValue": [
 36.0,
 44.0
@@ -4367,7 +4367,7 @@
 },
 {
 "color": "#666666",
-"id": "a7d58aec-50d1-41c6-9252-b7f198ae386e",
+"id": "d5ea7e8d-1853-4312-a4e8-fa07ce5511c1",
 "mitigationValue": [
 54.0,
 66.0
@@ -4389,8 +4389,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -4419,7 +4419,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cb45ec75-1094-44c0-b9c4-e18ddf67b752",
+"id": "6f7b1f40-897c-4e06-821c-943b9abb56d1",
 "mitigationValue": [
 36.0,
 44.0
@@ -4432,7 +4432,7 @@
 },
 {
 "color": "#666666",
-"id": "6843e208-166c-4f1e-9eb9-59f7f4defe21",
+"id": "5cd10fe7-e40f-4581-9275-b96408717af8",
 "mitigationValue": [
 54.0,
 66.0
@@ -4454,8 +4454,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -4484,7 +4484,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "493d52cd-f61c-4a2e-a3ac-de305898264a",
+"id": "f1d354e1-f262-4dc5-bdbf-c35a95f9371b",
 "mitigationValue": [
 27.0,
 33.0
@@ -4506,8 +4506,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -4536,7 +4536,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "489a7905-3129-42b5-9b7f-245369e6c7b8",
+"id": "1fc718c3-99df-4001-892d-bf963306e38a",
 "mitigationValue": [
 27.0,
 33.0
@@ -4558,8 +4558,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -4588,7 +4588,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f2eaff7e-2b1c-4205-bba0-afb8ccc1c51f",
+"id": "2e066054-419a-4746-bc5d-233a17144bd0",
 "mitigationValue": [
 27.0,
 33.0
@@ -4601,7 +4601,7 @@
 },
 {
 "color": "#666666",
-"id": "f007c0e3-4845-43a2-bec1-967d1cb7662a",
+"id": "43799c53-ce2a-4c13-ad00-e5b6e18a9cdf",
 "mitigationValue": [
 54.0,
 66.0
@@ -4623,8 +4623,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -4653,10 +4653,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d3daaddf-7469-4312-860a-2c1c54c38163",
+"id": "46365172-ec67-42b9-8718-7fb404beac54",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -4666,7 +4666,7 @@
 },
 {
 "color": "#666666",
-"id": "4d02c2e0-e1c4-4882-b293-0d0a5b8b296f",
+"id": "10011a52-902f-4c60-a59a-7372ef8299f7",
 "mitigationValue": [
 54.0,
 66.0
@@ -4688,8 +4688,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.06,
-3.74
+3.1,
+3.8
 ],
 "seasonalForcing": 0.0
 },
@@ -4718,7 +4718,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "228ed57b-80bc-401b-93cb-72ca8219da4f",
+"id": "c6439ee1-9ba8-4bc0-8dea-f709cd49ee8e",
 "mitigationValue": [
 27.0,
 33.0
@@ -4740,8 +4740,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -4779,7 +4779,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -4808,7 +4808,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f94720bb-ca23-4817-b5c9-0707d32ca765",
+"id": "9dfece7f-d368-4a6c-80f7-5f9df74096af",
 "mitigationValue": [
 36.0,
 44.0
@@ -4821,7 +4821,7 @@
 },
 {
 "color": "#666666",
-"id": "211730ac-a488-4ce2-bbd1-ebb6c7011626",
+"id": "cd05327c-35b6-466b-80da-39140acb0577",
 "mitigationValue": [
 54.0,
 66.0
@@ -4843,8 +4843,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -4873,7 +4873,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9b7c0a21-fd7e-44d9-8937-82cc86529c70",
+"id": "0b877b91-1d40-4d1e-9393-f5e54e4d4e04",
 "mitigationValue": [
 27.0,
 33.0
@@ -4886,7 +4886,7 @@
 },
 {
 "color": "#666666",
-"id": "54d0d077-1a7d-4f56-870a-a1a8ddf88aac",
+"id": "bf99b6e8-f648-4cdc-a312-8e8328e6fc90",
 "mitigationValue": [
 54.0,
 66.0
@@ -4908,8 +4908,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -4938,7 +4938,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f7727f18-c8df-43ee-b0c2-f21c13ce6505",
+"id": "611d6ccd-227c-491b-9d11-19eb5152af25",
 "mitigationValue": [
 54.0,
 66.0
@@ -4951,7 +4951,7 @@
 },
 {
 "color": "#666666",
-"id": "4ca5954a-c4a8-4342-b39b-581e019c4375",
+"id": "a3da7acb-91dc-45fc-ba8c-16333eaae830",
 "mitigationValue": [
 54.0,
 66.0
@@ -4973,8 +4973,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.87,
-4.73
+3.8,
+4.7
 ],
 "seasonalForcing": 0.0
 },
@@ -5003,7 +5003,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cf3def96-5c78-494a-adc4-0dfb36f9292d",
+"id": "52868ba5-d9a3-47e6-bacf-e07c28dfb068",
 "mitigationValue": [
 27.0,
 33.0
@@ -5016,7 +5016,7 @@
 },
 {
 "color": "#666666",
-"id": "88b4dcb1-03b3-4f96-9a1f-7a8c093cc340",
+"id": "8504228d-4884-4150-856f-6b21edbc52d4",
 "mitigationValue": [
 54.0,
 66.0
@@ -5038,8 +5038,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -5068,7 +5068,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fe52c592-ed32-4578-ab53-f1ecb82d3948",
+"id": "ad8ceeb7-4568-42da-ac21-492cf9d78e2c",
 "mitigationValue": [
 36.0,
 44.0
@@ -5081,7 +5081,7 @@
 },
 {
 "color": "#666666",
-"id": "794f8443-5f2c-44e0-84c7-f647c542fb84",
+"id": "83c7d42e-04ed-4cdb-8000-4aa5997a3b53",
 "mitigationValue": [
 54.0,
 66.0
@@ -5103,8 +5103,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -5133,7 +5133,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e704878e-5389-4a87-8098-ca2d301bfeba",
+"id": "1ada9742-be57-45fc-91bd-b6d1489132e1",
 "mitigationValue": [
 27.0,
 33.0
@@ -5155,8 +5155,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -5185,7 +5185,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cba9a4ae-4b92-45b2-b912-dd77f391881c",
+"id": "7d7d83a6-5dd8-4367-b8cd-461f68360f01",
 "mitigationValue": [
 36.0,
 44.0
@@ -5207,8 +5207,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.52,
-3.08
+2.6,
+3.1
 ],
 "seasonalForcing": 0.0
 },
@@ -5237,7 +5237,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6fc19858-a096-4cd4-9c1b-e6160e4c9950",
+"id": "92d7053c-6f09-4b9d-8c04-9323d369abb8",
 "mitigationValue": [
 36.0,
 44.0
@@ -5259,8 +5259,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -5289,7 +5289,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8a37a56e-6949-4ffc-8726-a1252a763bf0",
+"id": "fcbffb57-55c6-45e4-b99b-3edde6a0f0dc",
 "mitigationValue": [
 18.0,
 22.0
@@ -5302,7 +5302,7 @@
 },
 {
 "color": "#666666",
-"id": "19734ece-f078-4e8c-a170-9414b6a3d61e",
+"id": "5b4cfc69-fd4f-49d5-af75-7bd22670725a",
 "mitigationValue": [
 54.0,
 66.0
@@ -5324,8 +5324,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -5354,7 +5354,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "99e0168b-f7a1-4163-98bc-90c7e275327a",
+"id": "930aa46f-4f93-4eaa-af5f-f55daefc4a86",
 "mitigationValue": [
 27.0,
 33.0
@@ -5376,8 +5376,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.2,
+2.7
 ],
 "seasonalForcing": 0.0
 },
@@ -5406,7 +5406,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a5ee5368-8a4c-4f9a-95ed-e3e906dbfb24",
+"id": "01c59604-898d-4e78-927b-1bd8f987185c",
 "mitigationValue": [
 18.0,
 22.0
@@ -5428,8 +5428,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -5458,7 +5458,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d2c84ddb-f0f3-4a66-8f2c-9bfc597271f4",
+"id": "3bd063c1-18dd-44f8-93d5-cf5102de5df9",
 "mitigationValue": [
 54.0,
 66.0
@@ -5480,8 +5480,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.9600000000000004,
-4.840000000000001
+4.0,
+4.8
 ],
 "seasonalForcing": 0.0
 },
@@ -5510,10 +5510,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c90f8d08-3326-4a5b-8abc-4a76166c6b13",
+"id": "9c2d139e-6fe3-46f4-96ae-363c13e7545a",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -5523,7 +5523,7 @@
 },
 {
 "color": "#666666",
-"id": "64b9de9f-0466-469f-a48b-9b3bf6db7a86",
+"id": "6dd1b68a-1e50-44ed-b401-38f14472f35a",
 "mitigationValue": [
 54.0,
 66.0
@@ -5545,8 +5545,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.42,
-4.18
+3.4,
+4.2
 ],
 "seasonalForcing": 0.0
 },
@@ -5575,7 +5575,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "64c3d795-7512-4a04-b2ac-7b2c032e9d3a",
+"id": "1370af08-cd4e-4b36-8e14-4bfc6c5a990c",
 "mitigationValue": [
 27.0,
 33.0
@@ -5588,7 +5588,7 @@
 },
 {
 "color": "#666666",
-"id": "9caa1dcb-000e-47ba-9414-6da103b12c8d",
+"id": "7481280b-3d5b-45e2-8546-7514f9b0dd52",
 "mitigationValue": [
 54.0,
 66.0
@@ -5610,8 +5610,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -5640,7 +5640,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "61b6bb38-f9cb-4fa3-aa56-379ed339d15c",
+"id": "2cf20838-8434-4809-8221-ac4aa90c0201",
 "mitigationValue": [
 36.0,
 44.0
@@ -5653,7 +5653,7 @@
 },
 {
 "color": "#666666",
-"id": "aae892ed-6036-4ffe-b5df-8d322ac31238",
+"id": "ec0b3813-3f46-4f28-9610-b78959dc2f9f",
 "mitigationValue": [
 54.0,
 66.0
@@ -5675,8 +5675,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.5
 ],
 "seasonalForcing": 0.0
 },
@@ -5705,7 +5705,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "25591361-171b-4bcf-b699-db4f5e01831f",
+"id": "77814b38-f8f9-41d9-9f79-e9702b9d782b",
 "mitigationValue": [
 36.0,
 44.0
@@ -5718,7 +5718,7 @@
 },
 {
 "color": "#666666",
-"id": "7f9ebb38-c224-484d-82cb-8a9e9354279d",
+"id": "1eb12ede-b2fc-44fd-965a-afcf78da874e",
 "mitigationValue": [
 54.0,
 66.0
@@ -5740,8 +5740,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -5770,10 +5770,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a1fe693f-d2ab-4d6b-b9c0-96a92064bbde",
+"id": "4a7e5ceb-eec7-4a70-af79-a5cd81848efe",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -5783,7 +5783,7 @@
 },
 {
 "color": "#666666",
-"id": "6bec8cc0-eaed-41fb-8a42-451dbca778c4",
+"id": "662165a9-89f3-4b4f-b5aa-301d7f155a71",
 "mitigationValue": [
 54.0,
 66.0
@@ -5805,8 +5805,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.33,
-4.07
+3.4,
+4.1
 ],
 "seasonalForcing": 0.0
 },
@@ -5835,7 +5835,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "97842f43-3063-4cca-b0a3-d0d4686bb4b2",
+"id": "72127299-1aaa-42b6-be08-f046197bcb06",
 "mitigationValue": [
 36.0,
 44.0
@@ -5857,8 +5857,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.5
 ],
 "seasonalForcing": 0.0
 },
@@ -5887,10 +5887,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "77dc997b-cedb-4e05-8d76-296f0dbd25da",
+"id": "c51540a0-3d0f-4880-be1b-6c55f059f000",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -5900,7 +5900,7 @@
 },
 {
 "color": "#666666",
-"id": "9b52f780-ff04-4cce-913d-ffb8b3d8571c",
+"id": "48bff29d-96d0-4c74-8408-fefb0c7aceea",
 "mitigationValue": [
 54.0,
 66.0
@@ -5922,8 +5922,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.42,
-4.18
+3.4,
+4.2
 ],
 "seasonalForcing": 0.0
 },
@@ -5952,7 +5952,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "46d461a5-85b9-4ed4-9495-873af237761d",
+"id": "f5034200-d0d4-4418-9a6b-5f281afa30ea",
 "mitigationValue": [
 54.0,
 66.0
@@ -5965,7 +5965,7 @@
 },
 {
 "color": "#666666",
-"id": "37e0960b-25d3-4384-8c36-f153eeda3187",
+"id": "e3d8a9e2-fc5f-44af-be49-0731b0d6b2ad",
 "mitigationValue": [
 54.0,
 66.0
@@ -5987,8 +5987,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.7800000000000002,
-4.620000000000001
+3.7,
+4.6
 ],
 "seasonalForcing": 0.0
 },
@@ -6017,7 +6017,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a91a6299-d6d6-42e9-8dba-95457f365549",
+"id": "35adbf1f-32a7-4360-92ac-92dbb5c114ff",
 "mitigationValue": [
 54.0,
 66.0
@@ -6030,7 +6030,7 @@
 },
 {
 "color": "#666666",
-"id": "ab920aec-4180-46fa-8aa9-c83a9e8d77ef",
+"id": "5441c8a3-78ef-4ee4-827f-646df13fc676",
 "mitigationValue": [
 54.0,
 66.0
@@ -6082,7 +6082,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7841233a-00a4-4919-a88b-54f57a3ea16d",
+"id": "c4aa972f-76d7-444d-a821-274d0160bc7a",
 "mitigationValue": [
 54.0,
 66.0
@@ -6095,7 +6095,7 @@
 },
 {
 "color": "#666666",
-"id": "360f10f6-95d7-4ed4-8fc1-f36f45b9eafc",
+"id": "4ab4643a-6ecc-4f49-bb97-d4fbf020bcd6",
 "mitigationValue": [
 54.0,
 66.0
@@ -6147,10 +6147,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "db3a2cf2-64af-4907-90de-b361e60e86f6",
+"id": "a7d167bf-0633-4aa2-af66-cfe50afb04eb",
 "mitigationValue": [
-27.0,
-33.0
+18.0,
+22.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -6160,7 +6160,7 @@
 },
 {
 "color": "#666666",
-"id": "5352bc89-5dc3-41f0-be2e-b3c8e0ca212d",
+"id": "e2764c96-a6fc-46ac-84dc-ff3e26e55d0d",
 "mitigationValue": [
 54.0,
 66.0
@@ -6182,8 +6182,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -6212,10 +6212,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fd73b88e-58da-489a-b2e8-bbfdb08301b5",
+"id": "9b0c4d44-f2fd-4202-b6e1-120c7784ad6a",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -6225,7 +6225,7 @@
 },
 {
 "color": "#666666",
-"id": "55d6ef58-2261-4001-922d-b898b3faeab7",
+"id": "0ce0b59b-009a-4ee7-bfc1-36906c446d10",
 "mitigationValue": [
 54.0,
 66.0
@@ -6247,8 +6247,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -6277,10 +6277,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5376a0b4-0f61-4a5f-b30e-b0e4ed1c6e0a",
+"id": "d892eec3-440a-43d0-9e1f-df3357f14a08",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -6290,7 +6290,7 @@
 },
 {
 "color": "#666666",
-"id": "6e1beb36-2856-41ca-bd83-63b9ad112d3e",
+"id": "174f74e5-14e6-4aee-9ab7-677e151d64ec",
 "mitigationValue": [
 54.0,
 66.0
@@ -6312,8 +6312,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.2,
+4.0
 ],
 "seasonalForcing": 0.0
 },
@@ -6342,7 +6342,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d8b5d57d-25af-42bc-9f5a-c30da5e2e80a",
+"id": "dbe99c14-22d8-4d28-9dd0-42159c2a9f15",
 "mitigationValue": [
 27.0,
 33.0
@@ -6355,7 +6355,7 @@
 },
 {
 "color": "#666666",
-"id": "01021351-c30f-4277-afd1-d848add2ab12",
+"id": "2a24f02c-2caf-44b6-8b85-43747a6e40b5",
 "mitigationValue": [
 54.0,
 66.0
@@ -6377,8 +6377,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.3,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -6407,7 +6407,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3ca1c60c-93dc-4325-9365-85a78aa24e29",
+"id": "edd9a990-fe44-4303-9589-3abbf384790e",
 "mitigationValue": [
 54.0,
 66.0
@@ -6420,7 +6420,7 @@
 },
 {
 "color": "#666666",
-"id": "089db523-c8b4-4147-a20b-a9e4d6fb6889",
+"id": "a1476228-9b8e-42a8-a554-207080e7c761",
 "mitigationValue": [
 54.0,
 66.0
@@ -6472,7 +6472,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e5ee0ef8-6673-4486-9af3-cf06dd3e43ad",
+"id": "cd31f0f3-687a-481f-9d5e-6d2749e902de",
 "mitigationValue": [
 18.0,
 22.0
@@ -6485,7 +6485,7 @@
 },
 {
 "color": "#666666",
-"id": "aa241280-8c45-4198-a7bf-4b07b1d825ac",
+"id": "b2a0fea3-f7c3-4aac-8194-4bd5884c6ae6",
 "mitigationValue": [
 54.0,
 66.0
@@ -6507,8 +6507,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -6537,7 +6537,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9b1dcf60-47f9-4406-9c32-15be1ebf6041",
+"id": "955ab10b-3ea8-416d-87a3-cff80a3f33b4",
 "mitigationValue": [
 36.0,
 44.0
@@ -6550,7 +6550,7 @@
 },
 {
 "color": "#666666",
-"id": "9f2b91ab-6622-4812-9175-6822cbe12184",
+"id": "f59de7fc-ebf6-4f08-b9f3-e2b689dd565f",
 "mitigationValue": [
 54.0,
 66.0
@@ -6572,8 +6572,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -6602,10 +6602,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "36b38740-6c19-468a-9f5c-6843678073d4",
+"id": "3358f768-44d2-41bc-9ac2-65f2eac00f14",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -6615,7 +6615,7 @@
 },
 {
 "color": "#666666",
-"id": "6af0d849-39db-4383-ad88-f00c523651c8",
+"id": "275be698-d6b3-457e-810f-c34fb83d3d8b",
 "mitigationValue": [
 54.0,
 66.0
@@ -6637,8 +6637,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.1,
+3.8
 ],
 "seasonalForcing": 0.0
 },
@@ -6667,7 +6667,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "68469c8f-3cd1-45bc-9c73-986ab24a13f9",
+"id": "1a2f7865-8a01-4119-9285-26d1e56a932d",
 "mitigationValue": [
 36.0,
 44.0
@@ -6680,7 +6680,7 @@
 },
 {
 "color": "#666666",
-"id": "f0c3394c-a715-4265-a927-2c9c3c10c98f",
+"id": "1fa0b3ae-3a9c-486d-ad16-6ac571727831",
 "mitigationValue": [
 54.0,
 66.0
@@ -6703,7 +6703,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -6732,10 +6732,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7be72b7e-dd03-4ec6-bd05-1aa57812b717",
+"id": "995202d9-cd59-470c-bc08-da64c42880fe",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -6754,8 +6754,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.2,
+4.0
 ],
 "seasonalForcing": 0.0
 },
@@ -6792,8 +6792,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.8900000000000001,
-2.3100000000000005
+1.9,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -6830,8 +6830,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-4.05,
-4.95
+4.1,
+5.0
 ],
 "seasonalForcing": 0.0
 },
@@ -6868,8 +6868,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -6898,7 +6898,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ebf7c06e-f4e7-4cf2-b5ce-456a61cf4383",
+"id": "b39aba83-f336-44ea-9598-4d4337cc3fe9",
 "mitigationValue": [
 27.0,
 33.0
@@ -6911,7 +6911,7 @@
 },
 {
 "color": "#666666",
-"id": "19d56565-999c-4d87-8370-4b7aafcafa38",
+"id": "5a69adf7-624f-49d6-9188-62d425916994",
 "mitigationValue": [
 54.0,
 66.0
@@ -6933,8 +6933,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -6971,8 +6971,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.2,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -7009,8 +7009,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -7039,7 +7039,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f7de4003-4e42-40db-8ad5-59c308858c09",
+"id": "eb4fc601-9fe0-4f6d-ae99-2de0aab44e45",
 "mitigationValue": [
 27.0,
 33.0
@@ -7061,8 +7061,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7091,7 +7091,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "aa2ac905-cbb7-461a-b646-18e0fed362f6",
+"id": "82a794b7-063e-4ed1-ae97-e7dce40ec461",
 "mitigationValue": [
 27.0,
 33.0
@@ -7113,8 +7113,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7143,7 +7143,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6e36cd34-d2d9-4c35-ab62-66c02c0404ab",
+"id": "2d635ab4-541f-479b-b2a2-0fd5e13695b3",
 "mitigationValue": [
 27.0,
 33.0
@@ -7165,8 +7165,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7195,7 +7195,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "15c52232-ebea-41a3-9ea2-a39155019bc8",
+"id": "66df1f34-f6bb-4fcf-85d3-5b9fe22dd7cc",
 "mitigationValue": [
 27.0,
 33.0
@@ -7217,8 +7217,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7247,7 +7247,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6945571e-ef9b-4bd3-95b9-b4ab78af2983",
+"id": "7386909a-0098-498a-95c1-7b8e77ca0a77",
 "mitigationValue": [
 18.0,
 22.0
@@ -7269,8 +7269,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.62,
-1.9800000000000002
+1.6,
+2.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7299,7 +7299,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e8767cd7-e4fa-41cb-897b-138af8d4c8bc",
+"id": "0a32148c-a243-4afe-8200-6d31625c4c2c",
 "mitigationValue": [
 27.0,
 33.0
@@ -7321,8 +7321,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7351,7 +7351,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2be5c861-5c41-482f-a924-496dfc00ac53",
+"id": "f38b43fb-f2c7-4c35-b495-a57395ce620d",
 "mitigationValue": [
 18.0,
 22.0
@@ -7373,8 +7373,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.8900000000000001,
-2.3100000000000005
+1.9,
+2.3
 ],
 "seasonalForcing": 0.0
 },
@@ -7403,7 +7403,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "915e6b9f-aa7a-45ce-a9d9-b4d2c5146877",
+"id": "3f27f637-91db-4922-b0ee-a592b823bb25",
 "mitigationValue": [
 18.0,
 22.0
@@ -7425,8 +7425,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -7455,7 +7455,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5bf4c1e7-78b5-4562-bd1f-a976663c550a",
+"id": "586a671e-433e-4cca-9f94-3d2f07c6e570",
 "mitigationValue": [
 27.0,
 33.0
@@ -7477,8 +7477,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7507,7 +7507,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d70cfadc-3994-4365-b819-47eac506d1dd",
+"id": "defeef56-327b-4ee1-b335-bb1f220e69e3",
 "mitigationValue": [
 27.0,
 33.0
@@ -7529,8 +7529,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7559,7 +7559,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0dc186db-68ee-486f-888e-2e199719ba8f",
+"id": "c0bedefe-6651-4183-a8b6-0a226294076c",
 "mitigationValue": [
 27.0,
 33.0
@@ -7581,8 +7581,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.3,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -7611,7 +7611,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f77e7072-acb4-44a1-b136-901c96e92066",
+"id": "78704e36-fa8c-434f-be4a-70e99b2466cd",
 "mitigationValue": [
 18.0,
 22.0
@@ -7633,8 +7633,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.8900000000000001,
-2.3100000000000005
+1.9,
+2.3
 ],
 "seasonalForcing": 0.0
 },
@@ -7663,7 +7663,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "48a1aac7-553a-4a64-9f14-366c521732b8",
+"id": "4d58dfd7-3a7a-40a5-8226-dcf28a06f5d1",
 "mitigationValue": [
 18.0,
 22.0
@@ -7685,8 +7685,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -7715,7 +7715,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1e2ec913-e54c-4e5e-9139-1c3b481d8c49",
+"id": "ad6a17bd-78c1-4320-aa9a-aaa8bb5a9221",
 "mitigationValue": [
 27.0,
 33.0
@@ -7737,8 +7737,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7767,7 +7767,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "29abe503-8c9c-4794-8768-cae96739f784",
+"id": "837ce220-bf37-491b-ad67-6ed633834a4e",
 "mitigationValue": [
 27.0,
 33.0
@@ -7789,8 +7789,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7819,7 +7819,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "107c4035-b0b0-40c4-8f43-ecf6aefaa966",
+"id": "b69a2a72-5d6d-4c4a-bc85-6dd904deae26",
 "mitigationValue": [
 27.0,
 33.0
@@ -7841,8 +7841,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7871,7 +7871,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7e1d877d-0634-42f9-b24d-03c687a1b579",
+"id": "e6ef47f9-0f0f-4430-9a07-36591c0f3fd3",
 "mitigationValue": [
 27.0,
 33.0
@@ -7893,8 +7893,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7923,7 +7923,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cea8154f-5483-49ae-ad74-b548f864ba3a",
+"id": "60578440-3468-4c4a-83a5-4feb7664b868",
 "mitigationValue": [
 27.0,
 33.0
@@ -7945,8 +7945,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -7975,7 +7975,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ffb5aa93-c418-4fa1-866e-a9a69a314dd3",
+"id": "4d030fb3-b1d3-46e7-bfb1-5b852da6c37b",
 "mitigationValue": [
 18.0,
 22.0
@@ -7988,7 +7988,7 @@
 },
 {
 "color": "#666666",
-"id": "68034cee-2fd5-4852-90f2-3a759242836e",
+"id": "365f91a9-b165-4ceb-837c-f6549ecb7fee",
 "mitigationValue": [
 54.0,
 66.0
@@ -8010,8 +8010,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -8048,8 +8048,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -8078,7 +8078,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cacefabf-76db-48f4-be4e-6662bf54808c",
+"id": "044d76fe-4648-4fed-9934-6cf7590bd5bd",
 "mitigationValue": [
 18.0,
 22.0
@@ -8100,8 +8100,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.07,
-2.53
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -8130,10 +8130,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e06bbbf4-1d6f-4bbe-96d7-2fd0af4b50a4",
+"id": "8a4ca962-fe6d-419f-8cca-f6b021ae0661",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -8143,7 +8143,7 @@
 },
 {
 "color": "#666666",
-"id": "5b3cb594-171f-489f-b3bc-1f6e0cf01e63",
+"id": "a09941d0-41cb-43e7-878e-e2d317553c89",
 "mitigationValue": [
 54.0,
 66.0
@@ -8165,8 +8165,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.06,
-3.74
+3.1,
+3.8
 ],
 "seasonalForcing": 0.0
 },
@@ -8203,8 +8203,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.2,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -8241,8 +8241,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -8271,7 +8271,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "47fc21c3-e785-47b5-b287-1c6da8f7db34",
+"id": "5c33842e-cdca-434e-9cae-96f16832f2c0",
 "mitigationValue": [
 27.0,
 33.0
@@ -8293,8 +8293,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -8323,10 +8323,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fe312f24-e685-4b80-8c10-c735e92c7523",
+"id": "4d7d03a1-f0c2-455b-bad3-237afaf772cb",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -8336,7 +8336,7 @@
 },
 {
 "color": "#666666",
-"id": "d249c2b8-7703-493b-8402-52948b29d46c",
+"id": "2aa30310-89a0-4cea-a1d4-79e50c19009e",
 "mitigationValue": [
 54.0,
 66.0
@@ -8358,8 +8358,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -8397,7 +8397,7 @@
 "peakMonth": 0,
 "r0": [
 6.3,
-7.700000000000001
+7.7
 ],
 "seasonalForcing": 0.0
 },
@@ -8426,7 +8426,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6966cd94-405b-4150-9381-433a03061826",
+"id": "e85fcf60-1e0e-4a9b-82a8-82ede3d884a2",
 "mitigationValue": [
 27.0,
 33.0
@@ -8448,8 +8448,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -8478,7 +8478,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8a4fd50b-8065-4104-9c40-c4777ec0528c",
+"id": "e9f87b99-2aae-41dd-b8de-100a04b8b0b0",
 "mitigationValue": [
 18.0,
 22.0
@@ -8500,8 +8500,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -8530,7 +8530,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ab33e4d3-4233-4e25-b1e6-2d5c1a30832e",
+"id": "3edb2fc4-f9a5-4cbb-bd94-8f52af85c0f2",
 "mitigationValue": [
 18.0,
 22.0
@@ -8552,8 +8552,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -8590,8 +8590,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -8628,8 +8628,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -8666,8 +8666,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.53,
-1.87
+1.5,
+1.9
 ],
 "seasonalForcing": 0.0
 },
@@ -8704,8 +8704,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -8742,8 +8742,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -8780,8 +8780,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.69,
-4.51
+3.7,
+4.6
 ],
 "seasonalForcing": 0.0
 },
@@ -8819,7 +8819,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -8848,7 +8848,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3f04196f-6376-4b5a-aaef-930af1b268ca",
+"id": "f99a664f-3316-4ddc-ae0e-01e92d245b6d",
 "mitigationValue": [
 27.0,
 33.0
@@ -8870,8 +8870,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -8909,7 +8909,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -8946,8 +8946,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.3,
+4.0
 ],
 "seasonalForcing": 0.0
 },
@@ -8985,7 +8985,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -9022,8 +9022,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -9060,8 +9060,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.53,
-1.87
+1.6,
+1.9
 ],
 "seasonalForcing": 0.0
 },
@@ -9098,8 +9098,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -9136,8 +9136,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -9175,7 +9175,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -9213,7 +9213,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -9242,7 +9242,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "70552361-de9c-437b-8c93-d9346944b6da",
+"id": "c3d7720d-c061-4025-8cc2-14784ff7bf49",
 "mitigationValue": [
 18.0,
 22.0
@@ -9264,8 +9264,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.07,
-2.53
+2.0,
+2.5
 ],
 "seasonalForcing": 0.0
 },
@@ -9302,8 +9302,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-0.9900000000000001,
-1.2100000000000002
+1.0,
+1.2
 ],
 "seasonalForcing": 0.0
 },
@@ -9378,8 +9378,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.53,
-1.87
+1.5,
+1.9
 ],
 "seasonalForcing": 0.0
 },
@@ -9416,8 +9416,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.71,
-2.09
+1.7,
+2.1
 ],
 "seasonalForcing": 0.0
 },
@@ -9454,8 +9454,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-0.9,
-1.1
+1.0,
+1.0
 ],
 "seasonalForcing": 0.0
 },
@@ -9492,8 +9492,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.07,
-2.53
+2.1,
+2.5
 ],
 "seasonalForcing": 0.0
 },
@@ -9530,8 +9530,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.71,
-2.09
+1.7,
+2.1
 ],
 "seasonalForcing": 0.0
 },
@@ -9568,8 +9568,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -9607,7 +9607,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -9644,8 +9644,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -9682,8 +9682,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -9721,7 +9721,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -9759,7 +9759,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -9797,7 +9797,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -9835,7 +9835,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -9872,8 +9872,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -9910,8 +9910,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -9948,8 +9948,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.4,
+1.8
 ],
 "seasonalForcing": 0.0
 },
@@ -9986,8 +9986,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.07,
-2.53
+2.0,
+2.5
 ],
 "seasonalForcing": 0.0
 },
@@ -10025,7 +10025,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -10062,8 +10062,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.2,
+2.7
 ],
 "seasonalForcing": 0.0
 },
@@ -10101,7 +10101,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -10139,7 +10139,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -10176,8 +10176,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.8900000000000001,
-2.3100000000000005
+1.9,
+2.3
 ],
 "seasonalForcing": 0.0
 },
@@ -10214,8 +10214,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.53,
-1.87
+1.5,
+1.9
 ],
 "seasonalForcing": 0.0
 },
@@ -10252,8 +10252,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-4.41,
-5.390000000000001
+4.4,
+5.4
 ],
 "seasonalForcing": 0.0
 },
@@ -10282,10 +10282,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d7443936-de2d-495d-8fc4-208d8e47e002",
+"id": "e8d27e5d-58ee-4758-b04f-23b7e5bcccfb",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -10295,7 +10295,7 @@
 },
 {
 "color": "#666666",
-"id": "73017a64-d4f1-4876-b1a3-9c9a60dac398",
+"id": "3a8774f5-9743-4ad6-9a44-e55c34ac064d",
 "mitigationValue": [
 54.0,
 66.0
@@ -10317,8 +10317,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -10347,7 +10347,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fe4ff76c-cfb6-459b-9b95-37d6e151cdd9",
+"id": "305981c1-9758-4b29-972f-c5e7f4a365c3",
 "mitigationValue": [
 36.0,
 44.0
@@ -10369,8 +10369,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.52,
-3.08
+2.5,
+3.1
 ],
 "seasonalForcing": 0.0
 },
@@ -10399,7 +10399,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "31219843-9543-48ff-ba41-1ea68bdb11a3",
+"id": "3c121f22-7cd7-4173-9abf-8d9f49f4aef6",
 "mitigationValue": [
 36.0,
 44.0
@@ -10421,8 +10421,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.5
 ],
 "seasonalForcing": 0.0
 },
@@ -10451,7 +10451,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "aa1d06c0-d334-44e5-95ff-ba667a7e79b6",
+"id": "4e88a0ff-21df-41be-94a5-5fdfe1c5451e",
 "mitigationValue": [
 27.0,
 33.0
@@ -10473,8 +10473,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -10503,7 +10503,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "97fae6e9-7c59-4549-bdec-2be810d21d49",
+"id": "d15b1245-2680-43b6-a4a8-2c387749f2f1",
 "mitigationValue": [
 36.0,
 44.0
@@ -10516,7 +10516,7 @@
 },
 {
 "color": "#666666",
-"id": "a8e4551e-4770-4e8e-99e1-c4483287ba17",
+"id": "12ed7966-c5a9-44d9-ab45-b42ecb37328c",
 "mitigationValue": [
 54.0,
 66.0
@@ -10538,8 +10538,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.52,
-3.08
+2.6,
+3.1
 ],
 "seasonalForcing": 0.0
 },
@@ -10568,7 +10568,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d5195d46-f34f-4633-b4d7-7dc393aa03e8",
+"id": "06ba68e3-4a2d-4406-b986-e7475c1520e7",
 "mitigationValue": [
 36.0,
 44.0
@@ -10581,7 +10581,7 @@
 },
 {
 "color": "#666666",
-"id": "4f08187b-b8e1-4b23-b3d0-6fc9dee74736",
+"id": "015e9478-6725-4849-893e-c8caf77d8814",
 "mitigationValue": [
 54.0,
 66.0
@@ -10603,8 +10603,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -10633,7 +10633,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4e988f27-3bb7-425d-aff6-442979778a8f",
+"id": "528ec99b-4a01-4518-bfd3-597f73a09f10",
 "mitigationValue": [
 36.0,
 44.0
@@ -10655,8 +10655,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -10685,7 +10685,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "22d35c02-6065-449e-9416-a18a4b36c41c",
+"id": "dd689ef0-e8f6-4ee9-bfeb-d5c77fd8bdaf",
 "mitigationValue": [
 36.0,
 44.0
@@ -10698,7 +10698,7 @@
 },
 {
 "color": "#666666",
-"id": "b4c4024f-6820-4af1-8c4c-5379728f80d5",
+"id": "01e119cb-ed24-4784-8479-1d3fa100b7b4",
 "mitigationValue": [
 54.0,
 66.0
@@ -10721,7 +10721,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -10750,10 +10750,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2806f309-4741-472d-aa04-d4322ba8045a",
+"id": "18a78c0c-7110-454b-92cc-9e0ca9ac9aac",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -10763,7 +10763,7 @@
 },
 {
 "color": "#666666",
-"id": "6f78cc40-4ccd-4f8f-bc2d-23c594df1111",
+"id": "0698942f-f763-4290-902a-e3b1a16a1b65",
 "mitigationValue": [
 54.0,
 66.0
@@ -10785,8 +10785,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.06,
-3.74
+3.0,
+3.7
 ],
 "seasonalForcing": 0.0
 },
@@ -10815,10 +10815,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5b6e3168-9928-4679-97a3-9d2a2ac7e3fe",
+"id": "d18abe7d-cfb6-44a5-8b12-af5733fbb75c",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -10828,7 +10828,7 @@
 },
 {
 "color": "#666666",
-"id": "58a93813-d833-48b7-b1b5-78b73b6e2291",
+"id": "1946139e-d8f6-4853-bcf5-4611dc4ddf01",
 "mitigationValue": [
 54.0,
 66.0
@@ -10850,8 +10850,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.9699999999999998,
-3.63
+3.0,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -10880,7 +10880,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "71754c65-119f-4ec1-ab5c-35167201479c",
+"id": "7f4a3352-fe77-486f-91be-28abb034386c",
 "mitigationValue": [
 18.0,
 22.0
@@ -10902,8 +10902,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -10932,10 +10932,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "17cacd75-89d7-4731-a71e-dba9d20e59d7",
+"id": "8e72e776-7ad1-48f3-a147-2adf1eeb02ed",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -10945,7 +10945,7 @@
 },
 {
 "color": "#666666",
-"id": "4f06d961-0ab8-4391-9ee8-7f9e9329b6c0",
+"id": "f22e9c39-8424-4e21-9dc2-7e186dd8fddf",
 "mitigationValue": [
 54.0,
 66.0
@@ -10967,8 +10967,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -10997,7 +10997,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c3a706c2-f3d1-4031-8e25-27b033d34bea",
+"id": "684cfe42-cec6-47f4-9f98-3b3e230b1c5f",
 "mitigationValue": [
 54.0,
 66.0
@@ -11010,7 +11010,7 @@
 },
 {
 "color": "#666666",
-"id": "67d1a06f-0734-469d-8171-c8c1466acb00",
+"id": "fe7530db-2bb9-4573-a72e-13e2de4ea2a3",
 "mitigationValue": [
 54.0,
 66.0
@@ -11062,7 +11062,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "68ae838e-7157-4993-bd69-5266bc4be37a",
+"id": "ff5c3d63-99ad-4152-8ab0-f0164d928a6f",
 "mitigationValue": [
 36.0,
 44.0
@@ -11075,7 +11075,7 @@
 },
 {
 "color": "#666666",
-"id": "3643d80c-ba78-4586-9d7b-4a859c054e4c",
+"id": "4bc32941-9ce5-4692-a37d-e4f8a2591fe8",
 "mitigationValue": [
 54.0,
 66.0
@@ -11097,8 +11097,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -11127,7 +11127,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "071feaf0-3f91-44ad-97a0-9b69b892033f",
+"id": "efb1c467-6c01-4aaf-b538-6a3ba037c546",
 "mitigationValue": [
 36.0,
 44.0
@@ -11149,8 +11149,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.52,
-3.08
+2.5,
+3.1
 ],
 "seasonalForcing": 0.0
 },
@@ -11179,7 +11179,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c7b34b1e-5e03-4069-916f-c2e6542ba36c",
+"id": "e4b036b8-155c-4848-b8b3-1a2aaeeb7dd1",
 "mitigationValue": [
 36.0,
 44.0
@@ -11202,7 +11202,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -11231,7 +11231,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "198483a5-b8b3-4b28-95b1-2774f171454a",
+"id": "1eee881f-02e1-4b48-af51-74bc01efe40f",
 "mitigationValue": [
 27.0,
 33.0
@@ -11253,8 +11253,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -11283,10 +11283,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "80395b62-8430-4602-bcf7-06fa6e1c51f4",
+"id": "42c0558e-1fcb-491a-84d9-e9d3702febce",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -11296,7 +11296,7 @@
 },
 {
 "color": "#666666",
-"id": "4aaa35fa-4f37-4bf0-b57a-4cd043b41023",
+"id": "97841724-e7fa-4054-b179-170a406e5357",
 "mitigationValue": [
 54.0,
 66.0
@@ -11318,8 +11318,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -11348,7 +11348,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8d801f68-06c4-4caa-b646-24a9ebf9277a",
+"id": "9e367f6f-167d-4375-aa7c-fd8482535f4c",
 "mitigationValue": [
 54.0,
 66.0
@@ -11361,7 +11361,7 @@
 },
 {
 "color": "#666666",
-"id": "91e02582-d73d-4426-a948-21969f6f3358",
+"id": "9806e61e-6302-4c15-8cd0-aec99192b054",
 "mitigationValue": [
 54.0,
 66.0
@@ -11383,8 +11383,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.69,
-4.51
+3.7,
+4.5
 ],
 "seasonalForcing": 0.0
 },
@@ -11413,10 +11413,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d8a5c03d-baf8-4847-9fd2-acf3495e50af",
+"id": "2ad5fd85-2e76-4d63-99ab-3dc3e97df64c",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -11426,7 +11426,7 @@
 },
 {
 "color": "#666666",
-"id": "922d7931-44a4-46a7-82b1-878b7d9ddb60",
+"id": "ffc6b28a-1b1e-43f9-a263-7ec2d1eebce9",
 "mitigationValue": [
 54.0,
 66.0
@@ -11448,8 +11448,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.9699999999999998,
-3.63
+3.0,
+3.7
 ],
 "seasonalForcing": 0.0
 },
@@ -11478,10 +11478,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e4119ad0-45e3-4495-adf8-1628ec3cb55d",
+"id": "f96fc766-199c-4dc1-bcb6-3c080b590e9b",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -11491,7 +11491,7 @@
 },
 {
 "color": "#666666",
-"id": "76fc9673-f12d-487b-b6d5-f93ab604959d",
+"id": "1c1d78a2-4eba-42ef-afae-ebe3cff055a9",
 "mitigationValue": [
 54.0,
 66.0
@@ -11513,8 +11513,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -11543,7 +11543,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "84c2bf8e-a8f7-479b-9cdd-45dc53a00e0d",
+"id": "c99f74ac-4f45-478e-a9b7-13f446a4c265",
 "mitigationValue": [
 27.0,
 33.0
@@ -11556,7 +11556,7 @@
 },
 {
 "color": "#666666",
-"id": "3e354d41-c575-4f91-af28-60db1776a0c0",
+"id": "4b19ea94-9c83-4bc8-b2d1-f596b3cae16e",
 "mitigationValue": [
 54.0,
 66.0
@@ -11578,8 +11578,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -11608,7 +11608,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7a11a2de-535e-4f95-b9bc-8361b5729a3a",
+"id": "63b17bcc-42b5-4134-b0ab-60f02b83b8f8",
 "mitigationValue": [
 18.0,
 22.0
@@ -11616,12 +11616,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-05"
+"tMin": "2020-03-07"
 }
 },
 {
 "color": "#666666",
-"id": "bc59219b-aac4-4095-bf89-1b114ce656e8",
+"id": "bd8d95fc-8f15-40a8-91ee-9dabbd030263",
 "mitigationValue": [
 54.0,
 66.0
@@ -11629,7 +11629,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-19"
+"tMin": "2020-03-21"
 }
 }
 ],
@@ -11643,8 +11643,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.07,
-2.53
+2.1,
+2.5
 ],
 "seasonalForcing": 0.0
 },
@@ -11673,10 +11673,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ed27b1cd-c80a-4a53-bbd3-ea9a4b9fc03f",
+"id": "16c666d1-69c9-4ec3-bffd-a35137365355",
 "mitigationValue": [
-27.0,
-33.0
+18.0,
+22.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -11695,8 +11695,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -11733,8 +11733,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.5,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -11763,7 +11763,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c74e9ac5-99c0-4e2c-83dc-4879c26ed3d9",
+"id": "964b1b85-d7b2-405b-85f9-251a17ab1af7",
 "mitigationValue": [
 72.0,
 88.0
@@ -11776,7 +11776,7 @@
 },
 {
 "color": "#666666",
-"id": "f1cb3053-8ef8-48ed-8da3-cb4fe70fcd9d",
+"id": "5648f37c-aa58-462a-b493-b8853e1a5c82",
 "mitigationValue": [
 54.0,
 66.0
@@ -11798,8 +11798,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-8.46,
-10.340000000000002
+8.5,
+10.4
 ],
 "seasonalForcing": 0.0
 },
@@ -11836,8 +11836,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.4,
+1.8
 ],
 "seasonalForcing": 0.0
 },
@@ -11866,7 +11866,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "49c11bab-a129-4ece-9dc2-7d4faf13f107",
+"id": "df522c0d-206b-477e-aa7c-694d419236e4",
 "mitigationValue": [
 36.0,
 44.0
@@ -11879,7 +11879,7 @@
 },
 {
 "color": "#666666",
-"id": "d9d3983e-3f8a-4679-9b7c-a1eaab12d7a4",
+"id": "24120884-0c21-4d5c-aa62-e5668f702073",
 "mitigationValue": [
 54.0,
 66.0
@@ -11902,7 +11902,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -11931,7 +11931,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cde79c14-3c0d-479f-ac24-f75269c571a5",
+"id": "3d8d26fa-413f-4938-bd77-057b310e5daf",
 "mitigationValue": [
 36.0,
 44.0
@@ -11939,12 +11939,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-21"
+"tMin": "2020-03-23"
 }
 },
 {
 "color": "#666666",
-"id": "83c7948b-520f-4678-ace5-7f1d313a1b82",
+"id": "b05315b1-2a7c-4874-bc36-0a5c61dc13cc",
 "mitigationValue": [
 54.0,
 66.0
@@ -11952,7 +11952,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-04-06"
+"tMin": "2020-04-07"
 }
 }
 ],
@@ -11966,8 +11966,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.5
 ],
 "seasonalForcing": 0.0
 },
@@ -11996,20 +11996,20 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2ac7f771-3d28-4dd6-8ec8-f1220e595cd6",
+"id": "427f0295-f904-4bfb-96b5-2e5df873f544",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-08"
+"tMin": "2020-03-09"
 }
 },
 {
 "color": "#666666",
-"id": "cce63cc3-6d73-413a-9874-6881bf45d6b0",
+"id": "ffd2322e-8113-4f48-85e3-71610db55ed6",
 "mitigationValue": [
 54.0,
 66.0
@@ -12017,7 +12017,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-21"
+"tMin": "2020-03-22"
 }
 }
 ],
@@ -12031,8 +12031,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.1,
+3.8
 ],
 "seasonalForcing": 0.0
 },
@@ -12069,8 +12069,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -12107,8 +12107,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.4,
+1.8
 ],
 "seasonalForcing": 0.0
 },
@@ -12137,7 +12137,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d0f98092-c2fa-4663-b938-2573ae180fcd",
+"id": "7e2a383d-1f4c-4093-bbf2-e29eeccb6b5a",
 "mitigationValue": [
 18.0,
 22.0
@@ -12159,8 +12159,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.4,
+1.8
 ],
 "seasonalForcing": 0.0
 },
@@ -12197,8 +12197,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -12235,8 +12235,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -12273,8 +12273,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.53,
-1.87
+1.6,
+1.9
 ],
 "seasonalForcing": 0.0
 },
@@ -12312,7 +12312,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -12350,7 +12350,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -12379,7 +12379,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "aecfb7ae-43d8-4429-ab93-01b6278d8f3e",
+"id": "27b73802-6bcf-4503-8ce5-583e0aab3a39",
 "mitigationValue": [
 36.0,
 44.0
@@ -12402,7 +12402,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -12431,7 +12431,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "55bfd567-a1f1-4b25-8073-85bce3cfb2a9",
+"id": "a0aba276-4a72-4ccd-b868-e430121b1a8f",
 "mitigationValue": [
 18.0,
 22.0
@@ -12453,8 +12453,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -12483,7 +12483,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b046f30f-04bd-49ff-ab4e-f49c859c9776",
+"id": "4e8f7259-c8ea-4b12-862c-45baf0a511e5",
 "mitigationValue": [
 18.0,
 22.0
@@ -12505,8 +12505,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -12543,8 +12543,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.62,
-1.9800000000000002
+1.7,
+2.0
 ],
 "seasonalForcing": 0.0
 },
@@ -12581,8 +12581,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -12611,7 +12611,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8b416e01-36dc-416f-b4e2-64c8b9e3a1aa",
+"id": "c35724b1-489f-464c-80d1-e254b49bb13e",
 "mitigationValue": [
 27.0,
 33.0
@@ -12633,8 +12633,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -12671,8 +12671,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.71,
-2.09
+1.7,
+2.1
 ],
 "seasonalForcing": 0.0
 },
@@ -12709,8 +12709,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -12747,8 +12747,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -12777,7 +12777,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bbf0117d-ebc4-40b3-924b-81dd5b7fcebe",
+"id": "7c70da88-103f-459d-99e7-19466aa4cf08",
 "mitigationValue": [
 18.0,
 22.0
@@ -12790,7 +12790,7 @@
 },
 {
 "color": "#666666",
-"id": "33f80ea8-7b47-4a0d-8585-0c82afb464e1",
+"id": "1e6ce5d4-7ef7-4c7f-82d1-2c9a5ffc8a3c",
 "mitigationValue": [
 54.0,
 66.0
@@ -12812,8 +12812,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -12842,10 +12842,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7193c7f5-74ad-49c4-9c6e-a564ab4ca18d",
+"id": "5d29fec1-3548-4eb2-a2e6-ca77541fcc51",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -12864,8 +12864,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.51,
-4.29
+3.5,
+4.3
 ],
 "seasonalForcing": 0.0
 },
@@ -12894,7 +12894,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7ba186c1-0d47-4101-846a-c8a8c9a3813c",
+"id": "2f2ad465-ebd1-4604-a905-3479d5014bf1",
 "mitigationValue": [
 54.0,
 66.0
@@ -12907,7 +12907,7 @@
 },
 {
 "color": "#666666",
-"id": "4be94bf3-45b6-4f86-8175-f82ec4faaaf9",
+"id": "a3b31d5e-3627-4909-9e80-79b6a6d74360",
 "mitigationValue": [
 54.0,
 66.0
@@ -12929,8 +12929,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.7800000000000002,
-4.620000000000001
+3.8,
+4.6
 ],
 "seasonalForcing": 0.0
 },
@@ -12967,8 +12967,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -13005,8 +13005,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.62,
-1.9800000000000002
+1.6,
+2.0
 ],
 "seasonalForcing": 0.0
 },
@@ -13035,7 +13035,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ae0a8f8c-96b2-42c5-8f15-947c1b698712",
+"id": "781fabb1-c0e8-4bb4-aa83-eea356f7477b",
 "mitigationValue": [
 18.0,
 22.0
@@ -13057,8 +13057,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.71,
-2.09
+1.7,
+2.1
 ],
 "seasonalForcing": 0.0
 },
@@ -13084,7 +13084,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "7a2c0b79-b7d8-43fd-8553-7ae32ad3853e",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-20"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -13095,8 +13109,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -13163,7 +13177,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f6f8be2a-4490-4c8a-8f3b-520468aebc82",
+"id": "2fcbecae-01e5-456d-96d2-c9ab8c05175d",
 "mitigationValue": [
 27.0,
 33.0
@@ -13185,8 +13199,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -13224,7 +13238,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -13253,7 +13267,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "68f4e0f9-6e70-4859-841b-f5713baa6ba5",
+"id": "6eefd7f6-801b-4100-99e6-b5d323520269",
 "mitigationValue": [
 63.0,
 77.0
@@ -13275,8 +13289,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-5.3100000000000005,
-6.490000000000001
+5.3,
+6.4
 ],
 "seasonalForcing": 0.0
 },
@@ -13313,8 +13327,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -13352,7 +13366,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -13381,7 +13395,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f420332b-8a21-4b07-974c-453fe12385a9",
+"id": "31c0ecfc-9e82-445c-b51a-d78655b363ee",
 "mitigationValue": [
 18.0,
 22.0
@@ -13403,8 +13417,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.5
 ],
 "seasonalForcing": 0.0
 },
@@ -13433,7 +13447,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "51095ed8-c57a-400f-9eb7-c9d40c16b8c0",
+"id": "b474ca37-bd4d-4509-bb0d-95e643587432",
 "mitigationValue": [
 27.0,
 33.0
@@ -13446,7 +13460,7 @@
 },
 {
 "color": "#666666",
-"id": "19b6541a-82d0-4a8f-9c9a-07dc67dab52b",
+"id": "e67d2b9f-e34b-4698-be01-38501d8fd948",
 "mitigationValue": [
 54.0,
 66.0
@@ -13468,8 +13482,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -13506,8 +13520,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.1,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -13536,7 +13550,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6ea31aa7-1230-41aa-82e8-e5e107f85653",
+"id": "ed984fa1-fe36-4eae-920d-20826cfb0f88",
 "mitigationValue": [
 18.0,
 22.0
@@ -13558,8 +13572,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.8900000000000001,
-2.3100000000000005
+1.9,
+2.3
 ],
 "seasonalForcing": 0.0
 },
@@ -13597,7 +13611,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -13634,8 +13648,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -13672,8 +13686,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.62,
-1.9800000000000002
+1.6,
+2.0
 ],
 "seasonalForcing": 0.0
 },
@@ -13710,8 +13724,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.1,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -13749,7 +13763,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -13786,8 +13800,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -13816,10 +13830,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d88a68aa-5f1d-4fdd-a6e7-cea9de7f1c41",
+"id": "141702ee-4083-41ba-bdf8-04ef1f2aa189",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -13829,7 +13843,7 @@
 },
 {
 "color": "#666666",
-"id": "9925b25b-e018-4752-9f6d-a43f506cf371",
+"id": "b7b8fcfb-f98b-4fd8-a0d2-21e5e2891c26",
 "mitigationValue": [
 54.0,
 66.0
@@ -13851,8 +13865,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.1,
+3.8
 ],
 "seasonalForcing": 0.0
 },
@@ -13881,7 +13895,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b0017856-17bd-447f-830e-6954514ab287",
+"id": "1ad642d3-1fc0-4dba-b299-4f31bf860f70",
 "mitigationValue": [
 27.0,
 33.0
@@ -13903,8 +13917,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -13941,8 +13955,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -13971,7 +13985,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "826de80b-fb2b-47af-a05f-4b749ff2821c",
+"id": "dbbf2a3c-4230-49b1-9da4-a5cdc247fbba",
 "mitigationValue": [
 27.0,
 33.0
@@ -13993,8 +14007,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -14023,7 +14037,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5b7e2a04-62bd-4318-9ead-fdb85bff5691",
+"id": "6f58a03c-f689-4ce3-a636-617842202587",
 "mitigationValue": [
 36.0,
 44.0
@@ -14036,7 +14050,7 @@
 },
 {
 "color": "#666666",
-"id": "a55f30ae-b377-48a1-a6cc-e1ba455f0e93",
+"id": "c7b59310-1496-4db7-b138-d7c28371a669",
 "mitigationValue": [
 54.0,
 66.0
@@ -14058,8 +14072,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -14088,7 +14102,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2f8c8dd1-5588-41cc-bd4b-905ff7c74702",
+"id": "3e53b0c7-9ae1-47d7-8b53-42cfbbac594e",
 "mitigationValue": [
 18.0,
 22.0
@@ -14110,8 +14124,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.71,
-2.09
+1.7,
+2.1
 ],
 "seasonalForcing": 0.0
 },
@@ -14149,7 +14163,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14187,7 +14201,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14225,7 +14239,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14263,7 +14277,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14301,7 +14315,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14339,7 +14353,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14377,7 +14391,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14415,7 +14429,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14453,7 +14467,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14491,7 +14505,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14529,7 +14543,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14567,7 +14581,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14605,7 +14619,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14643,7 +14657,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14681,7 +14695,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14719,7 +14733,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14757,7 +14771,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14794,8 +14808,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -14833,7 +14847,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -14862,10 +14876,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ad05ac2b-0185-4d8b-8128-ff032146e634",
+"id": "74f00c3c-97a4-470e-bf55-593c7963f95e",
 "mitigationValue": [
-36.0,
-44.0
+27.0,
+33.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -14875,7 +14889,7 @@
 },
 {
 "color": "#666666",
-"id": "32a1639e-cde4-49c0-93d0-722817ef4195",
+"id": "cd34c9a9-4fa3-4b11-827b-3c665ff53fa3",
 "mitigationValue": [
 54.0,
 66.0
@@ -14897,8 +14911,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.52,
-3.08
+2.5,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -14935,8 +14949,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-5.8500000000000005,
-7.15
+5.8,
+7.1
 ],
 "seasonalForcing": 0.0
 },
@@ -14965,7 +14979,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a0971264-827b-422a-be5f-f93db21fcf82",
+"id": "18e6252e-cae7-4222-9c45-c339af0ab97a",
 "mitigationValue": [
 27.0,
 33.0
@@ -14987,8 +15001,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.2,
+2.7
 ],
 "seasonalForcing": 0.0
 },
@@ -15025,8 +15039,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.2,
+2.7
 ],
 "seasonalForcing": 0.0
 },
@@ -15055,7 +15069,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "80f418a9-973c-4e50-817d-cb9e4c20042e",
+"id": "191e8c43-c19f-44ff-8a01-554f71e6d095",
 "mitigationValue": [
 27.0,
 33.0
@@ -15077,8 +15091,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.2,
+2.7
 ],
 "seasonalForcing": 0.0
 },
@@ -15107,7 +15121,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8380796b-7694-4869-be10-974116cef274",
+"id": "ad5814ce-b0e9-48d7-b46e-b718e09a86e6",
 "mitigationValue": [
 54.0,
 66.0
@@ -15120,7 +15134,7 @@
 },
 {
 "color": "#666666",
-"id": "0be7af12-f656-4748-b46f-cde867151edd",
+"id": "ba8e351f-f5d1-4ed4-b7af-57939d70241a",
 "mitigationValue": [
 54.0,
 66.0
@@ -15172,7 +15186,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d772d858-9ece-4b1d-afbc-f39e7a773f84",
+"id": "0fec27a4-5ea8-438d-8fb9-0c03f0dba0c8",
 "mitigationValue": [
 18.0,
 22.0
@@ -15185,7 +15199,7 @@
 },
 {
 "color": "#666666",
-"id": "9938e0e5-1d45-4d2b-943a-5709449eada6",
+"id": "a6fb031c-9620-4895-991b-6f23aeb58a60",
 "mitigationValue": [
 54.0,
 66.0
@@ -15207,8 +15221,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-0.9900000000000001,
-1.2100000000000002
+1.0,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -15237,7 +15251,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "412d2915-25c6-4683-8f4e-cfd010c4fdd8",
+"id": "5674ad56-5912-40ee-bc3c-2794ee2440d5",
 "mitigationValue": [
 27.0,
 33.0
@@ -15259,8 +15273,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.5,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -15289,7 +15303,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d3958682-35e3-45c7-9883-b3a774121aa5",
+"id": "d9f44de3-4804-49c2-b6c3-d1cf0e3ce45a",
 "mitigationValue": [
 36.0,
 44.0
@@ -15311,8 +15325,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -15350,7 +15364,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -15379,7 +15393,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1f38db20-718c-47b9-808f-033a75c3c5d7",
+"id": "f79a90d5-5f95-4b7a-a07a-005a0872d8f1",
 "mitigationValue": [
 18.0,
 22.0
@@ -15401,8 +15415,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -15439,8 +15453,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -15469,7 +15483,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "03879398-024b-4367-8575-4f9ba33b992a",
+"id": "fa31c624-c598-4c7d-a6ad-45d609ff1569",
 "mitigationValue": [
 18.0,
 22.0
@@ -15491,8 +15505,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -15521,7 +15535,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ff83a16e-54f0-4879-8607-f9a913221f7d",
+"id": "1b98b4a0-44f0-4633-9355-2c12f2040afd",
 "mitigationValue": [
 27.0,
 33.0
@@ -15534,7 +15548,7 @@
 },
 {
 "color": "#666666",
-"id": "7477af4a-17f2-40ad-867b-629767fe6d0d",
+"id": "ba6f9831-8938-40a2-a530-cfe3a69254c6",
 "mitigationValue": [
 54.0,
 66.0
@@ -15556,8 +15570,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.5,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -15594,8 +15608,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -15624,7 +15638,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4cf7b602-4501-4f96-8800-54558311f4de",
+"id": "e4d57bd8-0050-439e-a9b0-ebfb22ade506",
 "mitigationValue": [
 27.0,
 33.0
@@ -15646,8 +15660,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.5,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -15684,8 +15698,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -15714,7 +15728,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4e9bea7f-5e7e-4be9-a3e3-8a3b7ff419a6",
+"id": "d5b83d94-91dc-4703-9f52-6b7ea5ab3157",
 "mitigationValue": [
 27.0,
 33.0
@@ -15736,8 +15750,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -15766,7 +15780,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f276e149-47ab-4b26-97c2-447445319499",
+"id": "d4e27bf4-90c1-43b3-96ae-23d648c91f31",
 "mitigationValue": [
 18.0,
 22.0
@@ -15788,8 +15802,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.0,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -15818,7 +15832,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "28bb9c24-67c1-4d85-a235-b6491031c46e",
+"id": "dfe8bc03-5bb7-4b1f-b864-00b467f3e3c4",
 "mitigationValue": [
 18.0,
 22.0
@@ -15831,7 +15845,7 @@
 },
 {
 "color": "#666666",
-"id": "415873e1-9d2d-4517-b3ef-f42c5ed4feff",
+"id": "9d6ba314-fd92-4980-88c2-406458eaa662",
 "mitigationValue": [
 54.0,
 66.0
@@ -15853,8 +15867,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.5
 ],
 "seasonalForcing": 0.0
 },
@@ -15883,7 +15897,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "620841cb-3b60-4269-a0f8-9476400c38ce",
+"id": "cabd4faf-2bcf-4841-8091-e3e6dd9a65f1",
 "mitigationValue": [
 27.0,
 33.0
@@ -15905,8 +15919,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -15935,7 +15949,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8063095f-e216-4598-a9ad-522ee96a91b0",
+"id": "4ab66040-b9d1-4c5f-8707-06dced05b179",
 "mitigationValue": [
 27.0,
 33.0
@@ -15957,8 +15971,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.2,
+2.7
 ],
 "seasonalForcing": 0.0
 },
@@ -15996,7 +16010,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -16033,8 +16047,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.69,
-4.51
+3.6,
+4.5
 ],
 "seasonalForcing": 0.0
 },
@@ -16071,8 +16085,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -16101,7 +16115,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9fc5c762-51ca-49e2-93ae-a0d76c1ac1e4",
+"id": "e5635bd0-3dd4-408c-9c8e-d16239c44844",
 "mitigationValue": [
 54.0,
 66.0
@@ -16114,7 +16128,7 @@
 },
 {
 "color": "#666666",
-"id": "769db163-6b2e-410b-9a1a-160a92a16720",
+"id": "7f1ebe98-3d29-46d2-8b6a-52f0e619d8c4",
 "mitigationValue": [
 54.0,
 66.0
@@ -16136,8 +16150,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-4.14,
-5.06
+4.2,
+5.1
 ],
 "seasonalForcing": 0.0
 },
@@ -16174,8 +16188,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.1,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -16212,8 +16226,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.4400000000000002,
-1.7600000000000002
+1.5,
+1.8
 ],
 "seasonalForcing": 0.0
 },
@@ -16250,8 +16264,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-0.9900000000000001,
-1.2100000000000002
+1.0,
+1.2
 ],
 "seasonalForcing": 0.0
 },
@@ -16280,7 +16294,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2e65d3e5-fe86-47a2-a762-eb475c7fbe3a",
+"id": "63e2aa57-47a7-443d-b043-ccddb0846d4a",
 "mitigationValue": [
 27.0,
 33.0
@@ -16293,7 +16307,7 @@
 },
 {
 "color": "#666666",
-"id": "2cf9762b-2562-4236-95e1-bded652a6d5b",
+"id": "1c8beb0d-33d5-4063-b552-6ee659408a29",
 "mitigationValue": [
 54.0,
 66.0
@@ -16315,8 +16329,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.5,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -16345,10 +16359,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "921a5986-4b38-4506-b14a-6402dcbf47dd",
+"id": "2c60a4cc-267d-4cb6-aa6f-93dfb42dae8c",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -16358,7 +16372,7 @@
 },
 {
 "color": "#666666",
-"id": "1ef1b52d-95ad-4f56-93d5-465f975f5397",
+"id": "d5bd17b4-ef9b-4e67-a854-452d4b7359b3",
 "mitigationValue": [
 54.0,
 66.0
@@ -16380,8 +16394,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.1,
+3.8
 ],
 "seasonalForcing": 0.0
 },
@@ -16418,8 +16432,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -16456,8 +16470,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.0,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -16495,7 +16509,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -16532,8 +16546,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-6.210000000000001,
-7.590000000000001
+6.2,
+7.6
 ],
 "seasonalForcing": 0.0
 },
@@ -16570,8 +16584,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.4,
+1.7
 ],
 "seasonalForcing": 0.0
 },
@@ -16609,7 +16623,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -16646,8 +16660,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.35,
-1.6500000000000001
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -16685,7 +16699,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -16722,8 +16736,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.08,
-1.32
+1.1,
+1.3
 ],
 "seasonalForcing": 0.0
 },
@@ -16760,8 +16774,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.1
 ],
 "seasonalForcing": 0.0
 },
@@ -16790,10 +16804,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7cc07f18-9d60-4241-9b3c-67565da3d6cc",
+"id": "b5efd753-638f-43a0-9133-eb44eb6e444c",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -16803,7 +16817,7 @@
 },
 {
 "color": "#666666",
-"id": "a0802cfd-0854-4bc6-9f36-106c5645551a",
+"id": "f611489f-305d-4c7c-a485-ca8a548d27cc",
 "mitigationValue": [
 54.0,
 66.0
@@ -16825,8 +16839,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.33,
-4.07
+3.4,
+4.1
 ],
 "seasonalForcing": 0.0
 },
@@ -16864,7 +16878,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -16893,10 +16907,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "742438cd-a4b7-467b-890b-e889aaea6a5c",
+"id": "cd51cc02-a871-464a-9d5d-de6d416ec439",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -16915,8 +16929,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -16945,7 +16959,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1e96b62c-81cd-48b9-9f0c-fb1a3b6f614c",
+"id": "913a0d29-abeb-4434-be83-69a1cb188b44",
 "mitigationValue": [
 36.0,
 44.0
@@ -16967,8 +16981,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -16997,7 +17011,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3476be25-2fc9-4e24-a885-a699274abe0d",
+"id": "70be19f8-7d1b-4d58-b50e-3f9253d50844",
 "mitigationValue": [
 54.0,
 66.0
@@ -17019,8 +17033,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-4.23,
-5.170000000000001
+4.3,
+5.2
 ],
 "seasonalForcing": 0.0
 },
@@ -17049,10 +17063,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4cbdec86-b22b-407a-ad14-474b8b2bbcac",
+"id": "82fd250b-afaa-42a5-8d1f-96eaef2e6089",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -17071,8 +17085,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.06,
-3.74
+3.0,
+3.7
 ],
 "seasonalForcing": 0.0
 },
@@ -17101,7 +17115,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9444065e-7dad-4efb-bcfc-d015039e5fdb",
+"id": "50c4bbea-c763-41dd-97fa-783704bff4c9",
 "mitigationValue": [
 27.0,
 33.0
@@ -17123,8 +17137,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -17153,7 +17167,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ff1d874f-dfb1-4295-917b-3f35b76cbee1",
+"id": "fc5c9f8c-a4f4-4b22-bb34-b7b4f9e31549",
 "mitigationValue": [
 36.0,
 44.0
@@ -17166,7 +17180,7 @@
 },
 {
 "color": "#666666",
-"id": "129b7c00-8b91-44d0-b287-c3f661a63a3c",
+"id": "eedd7686-9c1f-49c3-9fff-19fe7ba4cb62",
 "mitigationValue": [
 54.0,
 66.0
@@ -17188,8 +17202,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.5
 ],
 "seasonalForcing": 0.0
 },
@@ -17218,7 +17232,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d8372e74-6aaf-4ce9-98f7-b7a74afd2ed0",
+"id": "d4ac4780-3fdb-4c3f-bf19-e02f2c2a4f3e",
 "mitigationValue": [
 54.0,
 66.0
@@ -17231,7 +17245,7 @@
 },
 {
 "color": "#666666",
-"id": "2acec5b0-fc2e-46bf-8d45-084ce083bf69",
+"id": "d4f5f762-d847-4121-8d85-8a4682ba5743",
 "mitigationValue": [
 54.0,
 66.0
@@ -17283,7 +17297,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3cbe0e0f-3ab8-489f-b8cd-3d81009b965d",
+"id": "cac16283-68f2-4fe4-8873-7e5508d81eb5",
 "mitigationValue": [
 27.0,
 33.0
@@ -17296,7 +17310,7 @@
 },
 {
 "color": "#666666",
-"id": "9496ff1a-1346-455e-88a9-1e9b559bcc23",
+"id": "332e1bb2-2080-4db8-be1c-4024dbf65838",
 "mitigationValue": [
 54.0,
 66.0
@@ -17318,8 +17332,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -17348,10 +17362,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a649b3d1-9eda-479c-89a2-31f58a68b1e2",
+"id": "630aa90d-df51-4015-a630-11fd1036235b",
 "mitigationValue": [
-36.0,
-44.0
+27.0,
+33.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -17361,7 +17375,7 @@
 },
 {
 "color": "#666666",
-"id": "07931747-cb9a-4d73-84b1-57078fc7e674",
+"id": "aa432c2e-5342-44e3-9f84-23fc5bb38867",
 "mitigationValue": [
 54.0,
 66.0
@@ -17383,8 +17397,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.52,
-3.08
+2.5,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -17413,7 +17427,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b6513718-367c-43a2-a9eb-99f7a0d534ac",
+"id": "81375bdc-a485-4498-93ed-0a7f3ddb380c",
 "mitigationValue": [
 36.0,
 44.0
@@ -17426,7 +17440,7 @@
 },
 {
 "color": "#666666",
-"id": "a71f04ea-d09e-478b-8e77-187e3f95e344",
+"id": "3b605f4f-dda7-40f2-bae3-76e5e78e8dcb",
 "mitigationValue": [
 54.0,
 66.0
@@ -17448,8 +17462,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.7,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -17478,10 +17492,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "224ca499-36a8-4cf1-a287-68012dcf2690",
+"id": "a3c12b1a-f4bf-4af3-9dca-adfae4eb0fd7",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -17491,7 +17505,7 @@
 },
 {
 "color": "#666666",
-"id": "f80db88b-99ef-46d5-9ea9-1c9053765fd5",
+"id": "e340ac5f-8312-447f-bad2-949b09077eca",
 "mitigationValue": [
 54.0,
 66.0
@@ -17513,8 +17527,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -17543,7 +17557,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7e85a0fb-00c6-4be3-8b1a-4fff90c887de",
+"id": "b2d1b1f1-2dc5-48c1-b518-ee53ba8bfd51",
 "mitigationValue": [
 27.0,
 33.0
@@ -17565,8 +17579,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -17595,10 +17609,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "69bd62e1-3282-455e-8843-fc3454055cbd",
+"id": "28a3a783-b5eb-4789-87c9-23388fcbb1f7",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -17617,8 +17631,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.3,
+4.0
 ],
 "seasonalForcing": 0.0
 },
@@ -17647,7 +17661,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9b2226ad-fcf6-4371-9dd1-9e5b02f8aa59",
+"id": "b3156cf1-f76c-40e0-ab62-edfda569c970",
 "mitigationValue": [
 54.0,
 66.0
@@ -17660,7 +17674,7 @@
 },
 {
 "color": "#666666",
-"id": "86881eea-9f7b-482b-a80a-6977a852ad85",
+"id": "101708fb-a55f-4cd3-bed1-b4aaadfa3b3a",
 "mitigationValue": [
 54.0,
 66.0
@@ -17682,8 +17696,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.69,
-4.51
+3.7,
+4.5
 ],
 "seasonalForcing": 0.0
 },
@@ -17712,10 +17726,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9d68d83f-f8fa-4a76-bb08-5a32167b25ec",
+"id": "4ebb58ef-26d7-4ba7-9873-dc3ce4d09238",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -17725,7 +17739,7 @@
 },
 {
 "color": "#666666",
-"id": "148185aa-1dbf-47b3-9ae5-f07988d4c46d",
+"id": "d8255fb8-7602-4204-a922-776eb2bf632c",
 "mitigationValue": [
 54.0,
 66.0
@@ -17747,8 +17761,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.51,
-4.29
+3.5,
+4.3
 ],
 "seasonalForcing": 0.0
 },
@@ -17777,7 +17791,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "61984747-95a3-4094-917a-234589438276",
+"id": "efd2b52d-630f-4961-abb0-b8f38c3e7cf6",
 "mitigationValue": [
 36.0,
 44.0
@@ -17799,8 +17813,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -17829,7 +17843,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "135af0b8-31cd-4eb7-a5f0-c173c725e82c",
+"id": "4d1dd200-8170-4a32-8ce1-c406e940f83c",
 "mitigationValue": [
 27.0,
 33.0
@@ -17851,8 +17865,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -17881,7 +17895,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "69236090-6ac5-404e-aa1d-3f4154518f8d",
+"id": "56cf5bc3-f60c-41ae-ba4a-8056a02f5076",
 "mitigationValue": [
 27.0,
 33.0
@@ -17903,8 +17917,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.5,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -17933,7 +17947,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8e0e3b37-4728-4e67-86fe-8ecd6f6b07a7",
+"id": "efb01938-815d-41bd-948c-4e2753525388",
 "mitigationValue": [
 54.0,
 66.0
@@ -17946,7 +17960,7 @@
 },
 {
 "color": "#666666",
-"id": "90fb17cc-9eba-4e54-9f1e-bd5087e1252a",
+"id": "14972a01-0156-42b0-b95b-378a708b6d38",
 "mitigationValue": [
 54.0,
 66.0
@@ -17998,7 +18012,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c47f7a76-75db-4e11-b66e-98e8e151cd26",
+"id": "5dc1f8f8-d846-4e66-8c9e-c6d51be6ec33",
 "mitigationValue": [
 18.0,
 22.0
@@ -18020,8 +18034,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.07,
-2.53
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -18050,10 +18064,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "41c35cc4-7e3a-497d-84f0-d0c5206e09b2",
+"id": "46f9963f-3c95-4abd-abe6-3d89e1ec16b8",
 "mitigationValue": [
-45.0,
-55.00000000000001
+36.0,
+44.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -18063,7 +18077,7 @@
 },
 {
 "color": "#666666",
-"id": "05ca764b-010b-472f-b350-013375d4151a",
+"id": "13fc8401-4c3a-4b9e-ab16-229db91ce7ec",
 "mitigationValue": [
 54.0,
 66.0
@@ -18085,8 +18099,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.9699999999999998,
-3.63
+2.9,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -18115,7 +18129,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "791ee8f8-217a-49e0-8fb7-92da7ef8ff97",
+"id": "edd30274-200d-473b-bc78-806ca40b6446",
 "mitigationValue": [
 36.0,
 44.0
@@ -18128,7 +18142,7 @@
 },
 {
 "color": "#666666",
-"id": "777570ed-5a64-449f-82d7-89fa92da8a66",
+"id": "c0c91a7c-847b-485c-b59e-0f06a310f4f6",
 "mitigationValue": [
 54.0,
 66.0
@@ -18150,8 +18164,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -18180,10 +18194,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a90bd754-ef14-41cc-b6cb-b123a399af7f",
+"id": "9bac3365-788e-4bdd-a080-be5caabbf1a3",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -18193,7 +18207,7 @@
 },
 {
 "color": "#666666",
-"id": "e58a6168-071f-4c21-b717-7f6d718f3998",
+"id": "01acf862-2af3-4160-a8c5-a11cae1218a4",
 "mitigationValue": [
 54.0,
 66.0
@@ -18215,8 +18229,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.3,
+4.0
 ],
 "seasonalForcing": 0.0
 },
@@ -18245,7 +18259,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b0aac3f2-ca96-4a0c-8aa7-34d959826ee6",
+"id": "563540de-376c-4099-8b68-da0b3d1d22eb",
 "mitigationValue": [
 36.0,
 44.0
@@ -18268,7 +18282,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -18297,7 +18311,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7c0a6e83-20e0-4f0e-b160-948bc3a4a475",
+"id": "bbaebb0d-caf9-4ddc-86ad-6ac400374497",
 "mitigationValue": [
 54.0,
 66.0
@@ -18310,7 +18324,7 @@
 },
 {
 "color": "#666666",
-"id": "56a0a334-9a48-4be0-a370-85640df88c79",
+"id": "307d9794-c0a6-4591-9532-b4c7a681cb72",
 "mitigationValue": [
 54.0,
 66.0
@@ -18332,8 +18346,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.7800000000000002,
-4.620000000000001
+3.8,
+4.6
 ],
 "seasonalForcing": 0.0
 },
@@ -18362,10 +18376,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0cc59ff8-b878-458d-936c-36ba00c7d939",
+"id": "764660c5-7457-46ec-94ec-d3213aafaf80",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -18384,8 +18398,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -18414,10 +18428,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "622546b3-83a3-416c-bea4-8dd0fc976315",
+"id": "29ed746a-173b-44d5-b885-d16b492965f5",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -18436,8 +18450,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -18466,7 +18480,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1c6c59c0-fb10-44ca-8b54-d1ee4438bd9a",
+"id": "941d92c2-6411-41e2-9914-f46b4daa9225",
 "mitigationValue": [
 18.0,
 22.0
@@ -18488,8 +18502,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.9800000000000002,
-2.4200000000000004
+2.0,
+2.4
 ],
 "seasonalForcing": 0.0
 },
@@ -18518,7 +18532,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "58ed8677-9628-47b3-91e6-c2cb5fb073e3",
+"id": "1e8c8a5d-e7a7-4960-a4c5-16ed583d4a05",
 "mitigationValue": [
 36.0,
 44.0
@@ -18531,7 +18545,7 @@
 },
 {
 "color": "#666666",
-"id": "389b3eaa-3aff-4712-9ee5-23c1d709c4a7",
+"id": "940766e1-4cf0-43dd-8f84-c13f45729583",
 "mitigationValue": [
 54.0,
 66.0
@@ -18553,8 +18567,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.5
 ],
 "seasonalForcing": 0.0
 },
@@ -18583,7 +18597,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1e3c7ca9-45ea-468b-9574-2179ca256c6c",
+"id": "49b36528-c01a-4d75-af4f-14e30b37e3ed",
 "mitigationValue": [
 27.0,
 33.0
@@ -18605,8 +18619,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -18635,7 +18649,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "48f3f6a5-7bf9-45b5-981e-8d5fb83ea344",
+"id": "94f74422-1d72-4e12-811a-9a6968a14c04",
 "mitigationValue": [
 54.0,
 66.0
@@ -18648,7 +18662,7 @@
 },
 {
 "color": "#666666",
-"id": "589f14de-2f67-4edc-a224-12f8b776b441",
+"id": "7c6872e1-ffde-45cf-b44b-e585ec6bcfde",
 "mitigationValue": [
 54.0,
 66.0
@@ -18670,8 +18684,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-4.14,
-5.06
+4.1,
+5.0
 ],
 "seasonalForcing": 0.0
 },
@@ -18700,7 +18714,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0d1566a4-d61d-4667-8bc2-ca9ac8e72bc4",
+"id": "bedeb7d3-5612-4f71-9998-ca6a54b8df4d",
 "mitigationValue": [
 27.0,
 33.0
@@ -18722,8 +18736,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -18752,7 +18766,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "20200733-6b3c-424d-a3af-44459949c6ba",
+"id": "9fb33f02-1bcf-4810-979a-28a06172876f",
 "mitigationValue": [
 63.0,
 77.0
@@ -18765,7 +18779,7 @@
 },
 {
 "color": "#666666",
-"id": "355c1ba2-18bb-40cb-b110-59ff4fc5308d",
+"id": "c7690d19-15cc-4314-81e4-084998aa8c21",
 "mitigationValue": [
 54.0,
 66.0
@@ -18787,8 +18801,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-4.680000000000001,
-5.720000000000001
+4.7,
+5.7
 ],
 "seasonalForcing": 0.0
 },
@@ -18817,10 +18831,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9ede27ad-1af4-4697-9e21-1ca878330f62",
+"id": "625e5080-d634-4e79-b8a7-ef114c9ff98b",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -18839,8 +18853,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -18869,10 +18883,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b55d6da8-44a2-40aa-bc3c-a9360ab16a3e",
+"id": "f1127a8b-c9fc-478e-b9bc-5ab9917e10ab",
 "mitigationValue": [
-27.0,
-33.0
+18.0,
+22.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -18891,8 +18905,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.16,
-2.64
+2.1,
+2.6
 ],
 "seasonalForcing": 0.0
 },
@@ -18921,10 +18935,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e521c305-43c2-4afe-bb09-dd479c4257fd",
+"id": "153cb92d-bc16-459f-a278-3d6fd2159f39",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -18943,8 +18957,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.42,
-4.18
+3.5,
+4.2
 ],
 "seasonalForcing": 0.0
 },
@@ -18973,10 +18987,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "47952701-b2fd-4682-aaab-d98ef2c9fa25",
+"id": "bfde3b8a-5aa1-451a-8f3d-26fe12143537",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -18995,8 +19009,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.24,
-3.9600000000000004
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -19025,7 +19039,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "335762f6-9a30-4c50-8754-4436d0cf692e",
+"id": "f9bbd1f1-b288-424f-aef8-8806719b74ee",
 "mitigationValue": [
 27.0,
 33.0
@@ -19047,8 +19061,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.25,
-2.75
+2.3,
+2.8
 ],
 "seasonalForcing": 0.0
 },
@@ -19077,7 +19091,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "97a0d743-8c11-4731-bcc8-ab9567a4a48b",
+"id": "899c3442-ab2b-45eb-b620-8581d717ccf5",
 "mitigationValue": [
 54.0,
 66.0
@@ -19090,7 +19104,7 @@
 },
 {
 "color": "#666666",
-"id": "5433252f-ae61-4312-a8ad-8cfbbc99cfc5",
+"id": "57eb4644-a2ba-4203-a49b-757b2274cad6",
 "mitigationValue": [
 54.0,
 66.0
@@ -19142,7 +19156,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2abef165-02ef-4278-8b87-2edcafe14801",
+"id": "55a66904-1f15-4da2-a880-cec38e5531e7",
 "mitigationValue": [
 36.0,
 44.0
@@ -19165,7 +19179,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -19194,7 +19208,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3cf31d61-f1ba-4022-8608-e71a394d1fc7",
+"id": "f1842bd6-a0b4-4298-9d16-afac737139d0",
 "mitigationValue": [
 27.0,
 33.0
@@ -19207,7 +19221,7 @@
 },
 {
 "color": "#666666",
-"id": "e57bcaf0-22cf-4daa-b682-2a89eab16bfd",
+"id": "21bba930-d15b-4bfa-8a16-43975de33cd0",
 "mitigationValue": [
 54.0,
 66.0
@@ -19229,8 +19243,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.3400000000000003,
-2.8600000000000003
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -19259,7 +19273,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "31d14b8c-9695-459f-a603-6bcc4bf3f868",
+"id": "ce138052-6561-4fc3-a881-d96697a67121",
 "mitigationValue": [
 36.0,
 44.0
@@ -19281,8 +19295,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.8,
+3.5
 ],
 "seasonalForcing": 0.0
 },
@@ -19311,7 +19325,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d7465c56-17b7-4f82-941b-e2728d2c736a",
+"id": "49fff6a7-499b-471e-8c72-e428682701b6",
 "mitigationValue": [
 18.0,
 22.0
@@ -19324,7 +19338,7 @@
 },
 {
 "color": "#666666",
-"id": "3264e541-d6c9-483c-a346-80c8cc029119",
+"id": "a2d10696-99b4-49be-b9df-db51aa9e379b",
 "mitigationValue": [
 54.0,
 66.0
@@ -19346,8 +19360,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.71,
-2.09
+1.8,
+2.1
 ],
 "seasonalForcing": 0.0
 },
@@ -19376,15 +19390,28 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "688f7d4c-eaba-4765-b239-f0ce27a5684c",
+"id": "e8c2fdc5-bc0a-4b5c-bcc0-c33c04a2836c",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-25"
+}
+},
+{
+"color": "#666666",
+"id": "08b9d2f5-e2b7-4c58-9bed-e18ba600c95d",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-19"
 }
 }
 ],
@@ -19398,8 +19425,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.51,
-4.29
+3.5,
+4.2
 ],
 "seasonalForcing": 0.0
 },
@@ -19428,10 +19455,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "33bf0504-43cb-407e-9e55-979c5b612975",
+"id": "38c6300b-4643-43b0-adb2-79860f455917",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -19450,8 +19477,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.15,
-3.8500000000000005
+3.2,
+3.9
 ],
 "seasonalForcing": 0.0
 },
@@ -19480,7 +19507,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0f0fcc75-8b94-4fee-a1d6-0dcaaae1d739",
+"id": "e9f0ee62-0f8e-4dce-a148-cf545d8071b2",
 "mitigationValue": [
 36.0,
 44.0
@@ -19502,8 +19529,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.61,
-3.19
+2.6,
+3.2
 ],
 "seasonalForcing": 0.0
 },
@@ -19532,10 +19559,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4072fc1b-3f8e-46bd-9b12-c25e371b21c0",
+"id": "9c2a462c-9de3-4921-933b-cb3923f17d4f",
 "mitigationValue": [
 45.0,
-55.00000000000001
+55.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -19545,7 +19572,7 @@
 },
 {
 "color": "#666666",
-"id": "30dc7a43-04be-4aab-9020-176866987b48",
+"id": "42d6d646-4743-452d-8268-4db645e1a58e",
 "mitigationValue": [
 54.0,
 66.0
@@ -19567,8 +19594,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-3.06,
-3.74
+3.0,
+3.7
 ],
 "seasonalForcing": 0.0
 },
@@ -19597,7 +19624,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "35205550-951d-40aa-ac1f-4801c7f3c7c1",
+"id": "8d6f6d90-0b6f-4850-beb5-f3a68770967b",
 "mitigationValue": [
 36.0,
 44.0
@@ -19620,7 +19647,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -19649,7 +19676,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bd39f8fd-b163-42ed-8da9-77b82e6e45d4",
+"id": "6a6d16bb-98c1-49ea-b376-5c01cb570e5f",
 "mitigationValue": [
 18.0,
 22.0
@@ -19662,7 +19689,7 @@
 },
 {
 "color": "#666666",
-"id": "2b46c749-a11d-4a86-ab42-9bd407f5802d",
+"id": "3c0b3eef-e64b-4e79-a226-08c7e7281d71",
 "mitigationValue": [
 54.0,
 66.0
@@ -19714,7 +19741,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "42afe8fe-e3a6-4a9a-8578-38e9aa9fdae8",
+"id": "799df9ff-0f1c-4855-b301-45ab83ce5af3",
 "mitigationValue": [
 36.0,
 44.0
@@ -19736,8 +19763,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -19766,7 +19793,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "07d0d4cb-ff18-4b70-942c-627e80dfa1d4",
+"id": "38ff32b7-73b2-4a8f-9249-a952efc9a301",
 "mitigationValue": [
 36.0,
 44.0
@@ -19788,8 +19815,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.79,
-3.4100000000000006
+2.8,
+3.4
 ],
 "seasonalForcing": 0.0
 },
@@ -19818,7 +19845,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7509ddd5-3419-4f61-889c-9dde79c1e07e",
+"id": "bd5e9c12-6886-45a2-8c7c-55a7b32043d5",
 "mitigationValue": [
 27.0,
 33.0
@@ -19840,8 +19867,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -19878,8 +19905,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.3,
+1.6
 ],
 "seasonalForcing": 0.0
 },
@@ -19908,7 +19935,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8f7079a2-b31f-40f2-9d76-59b6c08ca464",
+"id": "fe6b9fdb-251c-4514-a23f-31d9ff1b0f67",
 "mitigationValue": [
 27.0,
 33.0
@@ -19930,8 +19957,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+2.9
 ],
 "seasonalForcing": 0.0
 },
@@ -19960,7 +19987,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7a9c1f2d-265c-4234-aad0-69b87d046ebf",
+"id": "3690a823-b2b7-4d12-a342-d2b8f995f9fc",
 "mitigationValue": [
 18.0,
 22.0
@@ -20012,10 +20039,10 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f5446cbc-0376-4702-a7cd-a71afef04e95",
+"id": "fab93d81-0f24-4a53-a89a-ffa5dede9a8e",
 "mitigationValue": [
-45.0,
-55.00000000000001
+36.0,
+44.0
 ],
 "name": "Intervention #1",
 "timeRange": {
@@ -20025,7 +20052,7 @@
 },
 {
 "color": "#666666",
-"id": "8f44cb79-8a66-4a97-b7db-1db4860f3199",
+"id": "162d17a8-ef57-4d13-9b79-a8b7e27797c2",
 "mitigationValue": [
 54.0,
 66.0
@@ -20047,8 +20074,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.9699999999999998,
-3.63
+2.9,
+3.6
 ],
 "seasonalForcing": 0.0
 },
@@ -20077,7 +20104,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f6a06b08-e6a3-4bb4-a2cd-6dc1f92a8cf3",
+"id": "8be2acb5-702a-425e-9fd2-801ff467def8",
 "mitigationValue": [
 36.0,
 44.0
@@ -20090,7 +20117,7 @@
 },
 {
 "color": "#666666",
-"id": "b1b64d1b-51d2-4f4e-ac2c-88a546221926",
+"id": "c47759f3-4e58-45e5-9ee0-def0a4d5e53e",
 "mitigationValue": [
 54.0,
 66.0
@@ -20112,8 +20139,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.8800000000000003,
-3.5200000000000005
+2.9,
+3.5
 ],
 "seasonalForcing": 0.0
 },
@@ -20142,7 +20169,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "41d8c271-dea3-4351-92af-8064afef1c6a",
+"id": "c4fc01ce-d456-42e3-997e-4424fb3edfb7",
 "mitigationValue": [
 27.0,
 33.0
@@ -20164,8 +20191,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -20240,8 +20267,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -20278,8 +20305,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-2.43,
-2.9700000000000006
+2.4,
+3.0
 ],
 "seasonalForcing": 0.0
 },
@@ -20317,7 +20344,7 @@
 "peakMonth": 0,
 "r0": [
 2.7,
-3.3000000000000003
+3.3
 ],
 "seasonalForcing": 0.0
 },
@@ -20354,8 +20381,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.1700000000000002,
-1.4300000000000002
+1.2,
+1.4
 ],
 "seasonalForcing": 0.0
 },
@@ -20392,8 +20419,8 @@
 "overflowSeverity": 2.0,
 "peakMonth": 0,
 "r0": [
-1.26,
-1.54
+1.2,
+1.5
 ],
 "seasonalForcing": 0.0
 },
