@@ -26,13 +26,7 @@ function TooltipContentItem({ name, value, lower, upper, color }: TooltipContent
         {name}
         <div className="responsive-tooltip-content-placeholder" />
         <div>
-          {value}{' '}
-          <div style={{ display: 'inline-block' }}>
-            <span style={{ display: 'inline-block' }}>
-              <sup style={{ display: 'block', position: 'relative' }}>+{upper}</sup>
-              <sub style={{ display: 'block', position: 'relative' }}>-{lower}</sub>
-            </span>
-          </div>
+          {value} ϵ [{lower}, {upper}]
         </div>
       </div>
     )
