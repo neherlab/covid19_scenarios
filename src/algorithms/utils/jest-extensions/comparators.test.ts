@@ -5,6 +5,11 @@ describe('ULP float comparison', () => {
     expect(absUlpDiff(0, 0)).toStrictEqual(0n)
   })
 
+  it('difference between same values is 0', () => {
+    const val = 28172.21223
+    expect(absUlpDiff(val, val)).toStrictEqual(0n)
+  })
+
   it('difference between 1 and 1+epsilon is 1', () => {
     expect(absUlpDiff(1, 1 + Number.EPSILON)).toStrictEqual(1n)
   })
