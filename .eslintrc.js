@@ -231,6 +231,7 @@ module.exports = {
         'i18next/no-literal-string': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
+        '@typescript-eslint/tslint/no-identical-functions': 'off',
       },
     },
     {

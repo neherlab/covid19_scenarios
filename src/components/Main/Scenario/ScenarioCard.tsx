@@ -55,14 +55,13 @@ function ScenarioCard({
 
   const title: string = scenarioState.current
 
-  function handleChangeScenario(newScenario: string) {
-    scenarioDispatch(setScenario({ name: newScenario }))
-  }
+  const presetLoader = useMemo(() => {
+    function handleChangeScenario(newScenario: string) {
+      scenarioDispatch(setScenario({ name: newScenario }))
+    }
 
-  const presetLoader = useMemo(() => <PresetLoader data={scenarioOptions} onSelect={handleChangeScenario} />, [
-    scenarioOptions,
-    handleChangeScenario,
-  ])
+    return <PresetLoader data={scenarioOptions} onSelect={handleChangeScenario} />
+  }, [scenarioOptions, scenarioDispatch])
 
   return (
     <CardWithControls
