@@ -31,10 +31,10 @@ export interface ScenarioCardPopulationProps {
   scenarioName: string
 }
 function getSrcStrings(scenarioName: string, srcHospitalBeds?: string, srcICUBeds?: string, srcPopulation?: string) {
-  if (scenarioName === 'Custom') {
-    return ['', '', '']
-  }
   let ret = ['', '', '']
+  if (scenarioName === 'Custom') {
+    return ret
+  }
   if (srcPopulation === undefined || srcPopulation === 'None') {
     ret[0] = 'Source cannot be provided'
   } else {
