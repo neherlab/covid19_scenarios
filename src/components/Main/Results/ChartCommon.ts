@@ -22,6 +22,7 @@ export const DATA_POINTS = {
   NewCases: 'newCases',
   HospitalBeds: 'hospitalBeds',
   ICUbeds: 'ICUbeds',
+  CumulativeSim: 'cumulativesim',
   /* Observed */
   ObservedDeaths: 'observedDeaths',
   ObservedCases: 'cases',
@@ -42,10 +43,12 @@ export const colors = {
   [DATA_POINTS.NewCases]: '#fdbf6f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
   [DATA_POINTS.ICUbeds]: '#cccccc',
+  [DATA_POINTS.CumulativeSim]: '#0000ff',
 }
 
 export const linesToPlot: LineProps[] = [
   { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: 'Susceptible', legendType: 'line' },
+  { key: DATA_POINTS.CumulativeSim, color: colors.cumulativesim, name: 'Cumulative cases (simulation)', legendType: 'line' },
   { key: DATA_POINTS.Recovered, color: colors.recovered, name: 'Recovered', legendType: 'line' },
   { key: DATA_POINTS.Infectious, color: colors.infectious, name: 'Infectious', legendType: 'line' },
   { key: DATA_POINTS.Severe, color: colors.severe, name: 'Severely ill', legendType: 'line' },
@@ -61,6 +64,12 @@ export const areasToPlot: LineProps[] = [
     key: `${DATA_POINTS.Susceptible}Area`,
     color: colors.susceptible,
     name: 'Susceptible uncertainty',
+    legendType: 'none',
+  },
+  {
+    key: `${DATA_POINTS.CumulativeSim}Area`,
+    color: colors.cumulativesim,
+    name: 'Cumulative cases (simulation) uncertainty',
     legendType: 'none',
   },
   {

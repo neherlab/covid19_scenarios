@@ -132,10 +132,11 @@ export function DeterministicLinePlot({
 
   const { mitigationIntervals } = mitigation
 
+  const nPopulation  = verifyPositive(params.population.populationServed)
   const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
   const nICUBeds = verifyPositive(params.population.ICUBeds)
 
-  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
+  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized || d.simulation)
 
   const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
     params.epidemiological.infectiousPeriod,
@@ -145,6 +146,7 @@ export function DeterministicLinePlot({
 
   const countObservations = {
     cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
+    //##simulation: nonEmptyCaseCounts?.filter((d) => d.simulation).length ?? 0,
     ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
     observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
     newCases: nonEmptyCaseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
@@ -154,6 +156,7 @@ export function DeterministicLinePlot({
   const observations =
     nonEmptyCaseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
+      //##simulation: enabledPlots.includes(DATA_POINTS.ObservedSimulatedCases) ? d.simuation || undefined : undefined,
       cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
       observedDeaths: enabledPlots.includes(DATA_POINTS.ObservedDeaths) ? d.deaths || undefined : undefined,
       currentHospitalized: enabledPlots.includes(DATA_POINTS.ObservedHospitalized)
@@ -170,6 +173,9 @@ export function DeterministicLinePlot({
   const plotData = [
     ...data.trajectory.mean.map((x, i) => ({
       time: x.time,
+      cumulativesim: enabledPlots.includes(DATA_POINTS.CumulativeSim)
+        ? verifyPositive(nPopulation - x.current.susceptible.total)
+        : undefined,
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
         ? verifyPositive(x.current.susceptible.total)
         : undefined,
@@ -195,6 +201,9 @@ export function DeterministicLinePlot({
       // Error bars
       susceptibleArea: enabledPlots.includes(DATA_POINTS.Susceptible)
         ? [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)]
+        : undefined,
+      cumulativesimArea: enabledPlots.includes(DATA_POINTS.CumulativeSim)
+        ? [verifyPositive(nPopulation - upper[i].current.susceptible.total), verifyPositive(nPopulation - lower[i].current.susceptible.total)]
         : undefined,
       infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
         ? [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)]
