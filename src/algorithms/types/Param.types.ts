@@ -9,6 +9,8 @@ import {
   PopulationData,
   SimulationData,
   AgeDistribution,
+  Severity,
+  AgeGroup,
 } from '../../.generated/types'
 
 export {
@@ -21,6 +23,8 @@ export {
   PopulationData,
   SimulationData,
   ContainmentData,
+  Severity,
+  AgeGroup,
 }
 
 export type MitigationIntervalWithoutId = Omit<MitigationInterval, 'id'>

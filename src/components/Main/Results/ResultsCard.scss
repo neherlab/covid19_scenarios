@@ -11,7 +11,7 @@
   }
 
   button:not([hidden]) {
-    flex: 100%;
+    flex: auto;
   }
 }
 
@@ -62,7 +62,7 @@
 }
 
 .custom-switch {
-  border: none;
+  border: 0;
   box-shadow: none;
 }
 

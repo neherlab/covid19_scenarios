@@ -2,22 +2,23 @@ import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
 import { Button, Col, CustomInput, FormGroup, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 import processUserResult from '../../../algorithms/utils/userResult'
 import { AgeBarChart } from './AgeBarChart'
 import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
-import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+import { AllParams, ContainmentData, EmpiricalData, Severity } from '../../../algorithms/types/Param.types'
+import { AgeDistribution } from '../../../.generated/types'
 import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
-import { SeverityTableRow } from '../Scenario/ScenarioTypes'
 import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
+import { CardWithControls } from '../../Form/CardWithControls'
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
@@ -26,26 +27,34 @@ interface ResultsCardProps {
   autorunSimulation: boolean
   toggleAutorun: () => void
   canRun: boolean
+  isRunning: boolean
   params: AllParams
+  ageDistribution: AgeDistribution
   mitigation: ContainmentData
-  severity: SeverityTableRow[] // TODO: pass severity throughout the algorithm and as a part of `AlgorithmResult` instead?
+  severity: Severity[]
   result?: AlgorithmResult
   caseCounts?: EmpiricalData
   scenarioUrl: string
   openPrintPreview: () => void
+  areResultsMaximized: boolean
+  toggleResultsMaximized: () => void
 }
 
 function ResultsCardFunction({
   canRun,
+  isRunning,
   autorunSimulation,
   toggleAutorun,
   params,
+  ageDistribution,
   mitigation,
   severity,
   result,
   caseCounts,
   scenarioUrl,
   openPrintPreview,
+  areResultsMaximized,
+  toggleResultsMaximized,
 }: ResultsCardProps) {
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
@@ -53,7 +62,7 @@ function ResultsCardFunction({
 
   // TODO: shis should probably go into the `Compare/`
   const [files, setFiles] = useState<Map<FileType, File>>(new Map())
-  const [userResult, setUserResult] = useState<UserResult | undefined>()
+  const [, setUserResult] = useState<UserResult | undefined>()
 
   useEffect(() => {
     const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
@@ -100,22 +109,24 @@ function ResultsCardFunction({
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
 
   useEffect(() => {
-    setCanExport((result && !!result.deterministic) || false)
+    setCanExport((result && !!result.trajectory) || false)
   }, [result])
 
   return (
     <>
       <span ref={scrollTargetRef} />
-      <CollapsibleCard
+      <CardWithControls
         identifier="results-card"
         className="card--main card--results"
-        title={
-          <h2 className="p-0 m-0 text-truncate" data-testid="ResultsCardTitle">
-            {t('Results')}
+        label={
+          <h2 className="p-0 m-0 text-truncate d-flex align-items-center" data-testid="ResultsCardTitle">
+            <Button onClick={toggleResultsMaximized} className="btn-dark mr-2">
+              {areResultsMaximized ? <FiChevronRight /> : <FiChevronLeft />}
+            </Button>
+            <span>{t('Results')}</span>
           </h2>
         }
         help={t('This section contains simulation results')}
-        defaultCollapsed={false}
       >
         <Row className="mb-0">
           <Col xs={12} sm={6} md={4}>
@@ -124,11 +135,11 @@ function ResultsCardFunction({
                 className="run-button"
                 type="submit"
                 color="primary"
-                disabled={!canRun}
+                disabled={!canRun || isRunning}
                 data-testid="RunResults"
                 title={t(autorunSimulation ? 'Force a run of the simulation' : 'Run the simulation')}
               >
-                {t(autorunSimulation ? 'Refresh' : 'Run')}
+                {isRunning ? t('Running...') : t(autorunSimulation ? 'Refresh' : 'Run')}
               </Button>
               <LinkButton
                 className="new-tab-button"
@@ -196,7 +207,6 @@ function ResultsCardFunction({
           <Col>
             <DeterministicLinePlot
               data={result}
-              userResult={userResult}
               params={params}
               mitigation={mitigation}
               logScale={logScale}
@@ -207,7 +217,12 @@ function ResultsCardFunction({
         </Row>
         <Row>
           <Col>
-            <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} />
+            <AgeBarChart
+              showHumanized={showHumanized}
+              data={result}
+              rates={severity}
+              ageDistribution={ageDistribution}
+            />
           </Col>
         </Row>
         <Row>
@@ -215,7 +230,7 @@ function ResultsCardFunction({
             <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
           </Col>
         </Row>
-      </CollapsibleCard>
+      </CardWithControls>
       {result ? (
         <Button
           className="goToResultsBtn"
@@ -238,6 +253,7 @@ function ResultsCardFunction({
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
         result={result}
+        params={params}
         scenarioUrl={scenarioUrl}
       />
     </>

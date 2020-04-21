@@ -21,6 +21,8 @@ import kill from 'tree-kill'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
+import WorkerPlugin from 'worker-plugin'
+
 import webpackCompression from './lib/webpackCompression'
 import webpackFriendlyConsole from './lib/webpackFriendlyConsole'
 import webpackLoadAssets from './lib/webpackLoadAssets'
@@ -58,7 +60,7 @@ const schema = getenv('WEB_SCHEMA')
 const host = getenv('WEB_HOST', getenv('NOW_URL', 'null'))
 const portDev = getenv('WEB_PORT_DEV')
 const portProd = getenv('WEB_PORT_PROD')
-const portAnalyze = parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
+const portAnalyze = Number.parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
 const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
@@ -81,7 +83,9 @@ const { moduleRoot, pkg } = findModuleRoot()
 const buildPath = path.join(moduleRoot, '.build', analyze ? 'analyze' : MODE, 'web') // prettier-ignore
 
 function alias(development: boolean) {
-  let productionAliases = {}
+  let productionAliases: Record<string, string> = {
+    jsonp$: path.join(moduleRoot, '3rdparty/__empty-module'),
+  }
 
   if (profile) {
     productionAliases = {
@@ -98,17 +102,6 @@ function alias(development: boolean) {
   }
 
   return productionAliases
-}
-
-function entry(development: boolean, entries: string[]) {
-  if (development || debuggableProd) {
-    return [
-      'map.prototype.tojson', // to visualize Map in Redux Dev Tools
-      'set.prototype.tojson', // to visualize Set in Redux Dev Tools
-      ...entries,
-    ]
-  }
-  return entries
 }
 
 function outputFilename(development: boolean, ext = 'js') {
@@ -142,9 +135,10 @@ export default {
     hints: false,
   },
 
-  entry: entry(development, [path.join(moduleRoot, `src/index.polyfilled.ts`)]),
+  entry: path.join(moduleRoot, `src/index.polyfilled.ts`),
 
   output: {
+    globalObject: 'self',
     path: buildPath,
     filename: outputFilename(development),
     chunkFilename: outputFilename(development),
@@ -158,7 +152,7 @@ export default {
   devServer: {
     contentBase: path.join(buildPath, '..'),
     before: (app: express.Application) => {
-      app.use(express.static(path.join(buildPath, '..', 'sourcemaps')))
+      app.use(express.static(path.join(buildPath, 'sourcemaps')))
       app.use(express.static(path.join(moduleRoot, 'static')))
     },
     compress: true,
@@ -183,19 +177,23 @@ export default {
     rules: [
       ...webpackLoadJavascript({
         babelConfig,
-        eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
+        // eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
         options: { caller: { target: 'web' } },
         sourceMaps,
-        transpiledLibs: [
+        transpiledLibs: production && [
           '@loadable',
           '@redux-saga',
+          'create-color',
+          'd3-array',
           'delay',
           'immer',
           'lodash',
           'p-min-delay',
           'react-router',
+          'recharts',
           'redux/es',
         ],
+        nonTranspiledLibs: production && ['d3-array/src/cumsum.js'],
       }),
 
       ...webpackLoadStyles({
@@ -216,7 +214,6 @@ export default {
     symlinks: false,
 
     mainFields: [
-      'source',
       'ts:main',
       'ts:module',
       'tsmain',
@@ -228,6 +225,7 @@ export default {
       'esm',
       'es2015',
       'main',
+      'source',
     ],
     extensions: [
       '.wasm',
@@ -325,7 +323,7 @@ export default {
       chunkFilename: outputFilename(development, 'css'),
     }),
 
-    development && new ReactRefreshWebpackPlugin({ disableRefreshCheck: true }),
+    development && new ReactRefreshWebpackPlugin(),
 
     production &&
       !analyze &&
@@ -386,19 +384,19 @@ export default {
 
     new ExtraWatchWebpackPlugin({
       files: [
-        path.join(moduleRoot, 'generated/**'),
+        path.join(moduleRoot, 'src/.generated/**'),
         path.join(moduleRoot, 'src/types/**/*.d.ts'),
       ],
       dirs: [],
     }),
 
     new webpack.SourceMapDevToolPlugin({
-      filename: '../sourcemaps/[filebase].map[query]',
-      publicPath: '/sourcemaps/',
+      filename: 'sourcemaps/[filebase].map[query]',
+      publicPath: '/',
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore: BUG: This parameter is missing in @types/webpack declarations
-      fileContext: 'web/content/sourcemaps',
-      noSources: production,
+      fileContext: 'web',
+      noSources: false,
     }),
 
     analyze &&
@@ -415,6 +413,8 @@ export default {
         writeFile: true,
         publish: false,
       }),
+
+    new WorkerPlugin(),
   ].filter(Boolean),
 
   optimization: {

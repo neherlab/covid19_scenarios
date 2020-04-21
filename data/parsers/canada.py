@@ -38,6 +38,16 @@ def parse():
             row = worksheet.row_values(row_index)
 
             state = '-'.join(['CAN',row[Ix['province']]])
+
+            # fix some names that do not fit entries in populationData.tsv
+            if state == 'CAN-BC':
+                state = 'CAN-British Columbia'
+            elif state == 'CAN-NL':
+                state = 'CAN-Newfoundland and Labrador'
+            elif state == 'CAN-PEI':
+                state = 'CAN-Prince Edward Island'
+
+            
             # Hack: recovered currently has no county-level data.            
             county = None
             # county-level removed as requested in https://github.com/neherlab/covid19_scenarios_data/pull/42#issuecomment-603427339

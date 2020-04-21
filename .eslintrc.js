@@ -12,7 +12,6 @@ module.exports = {
     },
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json', './cypress/tsconfig.json'],
-    extraFileExtensions: ['.json'],
     warnOnUnsupportedTypeScriptVersion: true,
   },
   globals: {},
@@ -51,7 +50,6 @@ module.exports = {
     'i18next',
     'import',
     'jest',
-    'json',
     'jsx-a11y',
     'lodash',
     'no-loops',
@@ -156,12 +154,6 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.json'],
-      rules: {
-        '@typescript-eslint/no-useless-files': 'off',
-      },
-    },
-    {
       files: ['*.d.ts'],
       rules: {
         '@typescript-eslint/no-unused-vars': 'off',
@@ -201,8 +193,16 @@ module.exports = {
       },
     },
     {
-      files: ['src/index.polyfilled.*'],
+      files: ['src/helpers/polyfill*', 'src/index.polyfilled.ts', 'src/workers/algorithm/worker.polyfilled.ts'],
       rules: {
+        'global-require': 'off',
+        'unicorn/import-index': 'off',
+      },
+    },
+    {
+      files: ['src/helpers/polyfill*'],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-typeof-undefined': 'off',
         '@typescript-eslint/tslint/no-typeof-undefined': 'off',
         'global-require': 'off',

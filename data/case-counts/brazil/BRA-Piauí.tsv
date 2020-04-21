@@ -2,11 +2,12 @@
 # Data provenance: https://brasil.io/dataset/covid19/caso
 # License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 time	cases	deaths	hospitalized	icu	recovered
-2020-03-19	3				
-2020-03-20	4				
-2020-03-21	4				
-2020-03-22	6				
-2020-03-24	8				
+2020-03-19	3	0			
+2020-03-20	4	0			
+2020-03-21	4	0			
+2020-03-22	6	0			
+2020-03-23	6	0			
+2020-03-24	8	0			
 2020-03-25	8	0			
 2020-03-26	9	0			
 2020-03-27	10	1			
@@ -24,4 +25,11 @@ time	cases	deaths	hospitalized	icu	recovered
 2020-04-09	40	7			
 2020-04-10	41	7			
 2020-04-11	44	7			
-2020-04-12	47	7			
+2020-04-12	51	7			
+2020-04-13	58	8			
+2020-04-14	75	8			
+2020-04-15	91	8			
+2020-04-16	102	8			
+2020-04-17	123	9			
+2020-04-18	144	10			
+2020-04-19	158	12			

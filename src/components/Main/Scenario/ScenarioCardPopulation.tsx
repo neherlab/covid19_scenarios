@@ -35,7 +35,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
 
   return (
     <CardWithControls
-      className="card--population"
+      className="card--population h-100"
       identifier="populationScenario"
       label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
       help={t('Parameters of the population in the health care system.')}
@@ -111,6 +111,17 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         help={t(
           'Start and end date of the simulation. Changing the time range might affect the result due to resampling of the mitigation curve.',
         )}
+      />
+      <FormSpinBox
+        identifier="simulation.numberStochasticRuns"
+        label={t('Number of runs')}
+        help={t(
+          'Perform multiple runs, to account for the uncertainty of parameters. More runs result in more accurate simulation, but take more time to finish.',
+        )}
+        step={1}
+        min={10}
+        errors={errors}
+        touched={touched}
       />
     </CardWithControls>
   )

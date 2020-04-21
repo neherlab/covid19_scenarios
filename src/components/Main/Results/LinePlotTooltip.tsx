@@ -29,12 +29,20 @@ export function LinePlotTooltip({
   const { t } = useTranslation()
 
   if (!active || !label || !payload || payload.length <= 2) {
-    // The tooltip gets some odd payloads intermitttently
+    // The tooltip gets some odd payloads intermittently
     // https://github.com/neherlab/covid19_scenarios/issues/234#issuecomment-611279609
     return null
   }
 
   const formattedLabel = labelFormatter ? labelFormatter(label) : label
+
+  const uncertainty: Record<string, [number, number]> = {}
+  payload.forEach((item) => {
+    if (item.name && item.name.includes(' uncertainty')) {
+      const relatedItemName = item.name.replace(' uncertainty', '')
+      uncertainty[relatedItemName] = [(item.value as number[])[0], (item.value as number[])[1]]
+    }
+  })
 
   const tooltipItems = []
     .concat(
@@ -65,9 +73,18 @@ export function LinePlotTooltip({
         return {
           ...tooltipItem,
           value: valueFormatter ? valueFormatter(value) : value,
+          lower:
+            tooltipItem.name in uncertainty && typeof value === 'number'
+              ? valueFormatter(Math.abs(value - uncertainty[tooltipItem.name][0]))
+              : undefined,
+          upper:
+            tooltipItem.name in uncertainty && typeof value === 'number'
+              ? valueFormatter(Math.abs(uncertainty[tooltipItem.name][1] - value))
+              : undefined,
         }
       },
     )
+    .filter((tooltipItem) => (tooltipItem.name ? !tooltipItem.name.includes('uncertainty') : true))
 
   return <ResponsiveTooltipContent formattedLabel={formattedLabel} tooltipItems={tooltipItems} />
 }

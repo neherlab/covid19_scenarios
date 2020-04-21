@@ -15,7 +15,7 @@ export interface CardWithControlsProps {
 
 export function CardWithControls({ children, controls, className, identifier, label, help }: CardWithControlsProps) {
   return (
-    <Card className={`h-100 ${className || ''}`}>
+    <Card className={className ?? ''}>
       <CardHeader className="py-1 px-2">
         <Row>
           <Col l={12} xl={7}>
