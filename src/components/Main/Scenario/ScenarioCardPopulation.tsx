@@ -30,11 +30,8 @@ export interface ScenarioCardPopulationProps {
   srcPopulation?: string
   scenarioName: string
 }
-function getSrcStrings(scenarioName: string, srcHospitalBeds?: string, srcICUBeds?: string, srcPopulation?: string) {
+function getSrcStrings(srcHospitalBeds?: string, srcICUBeds?: string, srcPopulation?: string) {
   let ret = ['', '', '']
-  if (scenarioName === 'Custom') {
-    return ret
-  }
   if (srcPopulation === undefined || srcPopulation === 'None') {
     ret[0] = 'Source cannot be provided'
   } else {
@@ -62,7 +59,12 @@ function ScenarioCardPopulation({
 }: ScenarioCardPopulationProps) {
   // detect if src strings are undefined or have no value
   // if undefined, set them to a "Source cannot be provided"
-  const srcStr = getSrcStrings(scenarioName, srcHospitalBeds, srcICUBeds, srcPopulation)
+  let srcStr = []
+  if (scenarioName === 'Custom') {
+    srcStr = ['', '', '']
+  } else {
+    srcStr = getSrcStrings(srcHospitalBeds, srcICUBeds, srcPopulation)
+  }
   const { t } = useTranslation()
   // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
   // function handleChangePopulationScenario(newPopulationScenario: string) {
@@ -74,7 +76,7 @@ function ScenarioCardPopulation({
       className="card--population h-100"
       identifier="populationScenario"
       label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
-      help={t('Parameters of the population in the health care system.') }
+      help={t('Parameters of the population in the health care system.')}
     >
       <FormSpinBox
         identifier="population.populationServed"
