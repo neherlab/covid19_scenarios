@@ -135,7 +135,7 @@ class Params(Data):
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/4.0, logR0=1.0, infection=1/3.0, hospital=1/4, critical=1/14, imports=.1, efficacy=0.5)
+DefaultRates = Rates(latency=1/3.0, logR0=1.0, infection=1/3.0, hospital=1/4, critical=1/14, imports=.1, efficacy=0.5)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
@@ -359,7 +359,7 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
 
     if guess is None:
         guess = { "logR0": 1.0,
-                  "reported" : 0.3,
+                  "reported" : 0.2,
                   "logInitial" : 1,
                   "efficacy" : 0.8
                 }
