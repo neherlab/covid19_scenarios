@@ -119,7 +119,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
           'Perform multiple runs, to account for the uncertainty of parameters. More runs result in more accurate simulation, but take more time to finish.',
         )}
         step={1}
-        min={1}
+        min={10}
         errors={errors}
         touched={touched}
       />
