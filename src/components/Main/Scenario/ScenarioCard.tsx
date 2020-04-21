@@ -18,6 +18,7 @@ import { AllParams, Severity } from '../../../algorithms/types/Param.types'
 import { ColCustom } from '../../Layout/ColCustom'
 import { CardWithControls } from '../../Form/CardWithControls'
 import PresetLoader from './presets/PresetLoader'
+import { stringsToOptions } from '../../Form/FormDropdownOption'
 
 export function getColumnSizes(areResultsMaximized: boolean) {
   if (areResultsMaximized) {
@@ -58,8 +59,10 @@ function ScenarioCard({
     scenarioDispatch(setScenario({ name: newScenario }))
   }
 
-  const presetLoader = useMemo(() => <PresetLoader data={scenarioOptions} onSelect={handleChangeScenario} />, [data])
-
+  const presetLoader = useMemo(() => <PresetLoader data={scenarioOptions} onSelect={handleChangeScenario} />, [
+    scenarioOptions,
+    handleChangeScenario,
+  ])
 
   return (
     <CardWithControls
