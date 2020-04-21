@@ -5,7 +5,7 @@ import 'set.prototype.tojson' // to visualize Set in Redux Dev Tools
 
 import 'react-dates/initialize'
 
-import { enableMapSet } from 'immer'
+import { enableES5 } from 'immer'
 
 import React from 'react'
 import { render } from 'react-dom'
@@ -21,7 +21,7 @@ import App from './components/App'
 
 import configureStore from './state/store'
 
-enableMapSet()
+enableES5()
 
 const { store, history } = configureStore()
 const Root = (
