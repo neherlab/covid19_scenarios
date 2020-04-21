@@ -10,7 +10,7 @@ import { ageDistributionNames } from '../state/countryAgeDistributionData'
 
 import { CUSTOM_COUNTRY_NAME, NONE_COUNTRY_NAME } from '../state/state'
 
-import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
+import { CardWithControls } from '../../Form/CardWithControls'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
@@ -34,7 +34,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
   // }
 
   return (
-    <CardWithoutDropdown
+    <CardWithControls
       className="card--population h-100"
       identifier="populationScenario"
       label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
@@ -119,11 +119,11 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
           'Perform multiple runs, to account for the uncertainty of parameters. More runs result in more accurate simulation, but take more time to finish.',
         )}
         step={1}
-        min={1}
+        min={10}
         errors={errors}
         touched={touched}
       />
-    </CardWithoutDropdown>
+    </CardWithControls>
   )
 }
 

@@ -193,8 +193,16 @@ module.exports = {
       },
     },
     {
-      files: ['src/index.polyfilled.*'],
+      files: ['src/helpers/polyfill*', 'src/index.polyfilled.ts', 'src/workers/algorithm/worker.polyfilled.ts'],
       rules: {
+        'global-require': 'off',
+        'unicorn/import-index': 'off',
+      },
+    },
+    {
+      files: ['src/helpers/polyfill*'],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-typeof-undefined': 'off',
         '@typescript-eslint/tslint/no-typeof-undefined': 'off',
         'global-require': 'off',
@@ -223,6 +231,7 @@ module.exports = {
         'i18next/no-literal-string': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
+        '@typescript-eslint/tslint/no-identical-functions': 'off',
       },
     },
     {

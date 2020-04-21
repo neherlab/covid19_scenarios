@@ -18,7 +18,7 @@ import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { readFile } from '../../../helpers/readFile'
 import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
-import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
+import { CardWithControls } from '../../Form/CardWithControls'
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
@@ -115,7 +115,7 @@ function ResultsCardFunction({
   return (
     <>
       <span ref={scrollTargetRef} />
-      <CardWithoutDropdown
+      <CardWithControls
         identifier="results-card"
         className="card--main card--results"
         label={
@@ -230,7 +230,7 @@ function ResultsCardFunction({
             <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
           </Col>
         </Row>
-      </CardWithoutDropdown>
+      </CardWithControls>
       {result ? (
         <Button
           className="goToResultsBtn"

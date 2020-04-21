@@ -88,7 +88,7 @@ export default function DisclaimerProps() {
         </Row>
       </ModalBody>
       <ModalFooter>
-        <Button className="mx-auto" color="danger" onClick={toggle}>
+        <Button color="danger" onClick={toggle}>
           Accept
         </Button>
       </ModalFooter>
