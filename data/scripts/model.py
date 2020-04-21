@@ -120,7 +120,7 @@ class TimeRange(Data):
         self.delta = delta
 
 class Params(Data):
-    def __init__(self, ages, size, date, times, rates, fracs):
+    def __init__(self, ages=None, size=None, date=None, times=None, rates=None, fracs=None):
         self.ages  = ages
         self.rates = rates
         self.fracs = fracs
@@ -224,31 +224,33 @@ def trace_ages(solution):
 def is_cumulative(vec):
     return not False in (vec[~vec.mask][:-1]<=vec[~vec.mask][1:])
 
+def poissonNegLogLH(n,lam, eps=0.1):
+    return (lam-n) - n*np.log((lam+eps)/(n+eps))
+
 def assess_model(params, data, cases):
     sol = solve_ode(params, init_pop(params.ages, params.size, cases))
     model = trace_ages(sol)
 
-    eps = 1e-5
-    case_cost = np.ma.sum(model[:,Sub.T]-data[Sub.T]*(1+np.log((model[:,Sub.T]+eps)/data[Sub.T])))
-    death_cost = np.ma.sum(model[:,Sub.D]-data[Sub.D]*(1+np.log((model[:,Sub.D]+eps)/data[Sub.D])))
+    eps = 1e-2
+    case_cost =  np.ma.sum(poissonNegLogLH(data[Sub.T], model[:,Sub.T], eps))
+    death_cost = np.ma.sum(poissonNegLogLH(data[Sub.D], model[:,Sub.D], eps))
 
     hospital_cost = 0
     ICU_cost = 0
     if data[Sub.H] is not None:
-        hospital_cost = np.ma.sum(model[:,Sub.H]-data[Sub.H]*(1+np.log((model[:,Sub.H]+eps)/data[Sub.H])))
+        hospital_cost = np.ma.sum(poissonNegLogLH(data[Sub.H], model[:,Sub.H], eps))
     if data[Sub.C] is not None:
-        ICU_cost = np.ma.sum(model[:,Sub.C]-data[Sub.C]*(1+np.log((model[:,Sub.C]+eps)/data[Sub.C])))
+        ICU_cost = np.ma.sum(poissonNegLogLH(data[Sub.C], model[:,Sub.C], eps))
 
-    return case_cost + death_cost + hospital_cost + ICU_cost
+    return case_cost + 10*death_cost + hospital_cost + ICU_cost
 
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
     if key not in POPDATA:
-        return Params(None, None, None, None, DefaultRates, Fracs()), 10, (False, "Not within population database")
+        return Params(ages=None, size=None, date=None, times=None, rates=DefaultRates, fracs=Fracs()), 10, (False, "Not within population database")
 
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
-
     def pack(x, as_list=False):
         data = [x[key] for key in params_to_fit.keys()]
         if not as_list:
@@ -265,7 +267,9 @@ def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
             ages = AGES[POPDATA[key]["ageDistribution"]]
         else:
             ages = AGES["Switzerland"]
-        param = Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], confinement_start, time_points, *unpack(x))
+        rates, fracs = unpack(x)
+        param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"],
+                       date=confinement_start, times=time_points, rates=rates, fracs=fracs)
         return assess_model(param, data, np.exp(x[params_to_fit['logInitial']]))
 
     if bounds is None:
@@ -275,13 +279,15 @@ def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
 
     err = (fit_param.success, fit_param.message)
     print(key, fit_param.x)
-
     if POPDATA[key]["ageDistribution"] in AGES:
         ages = AGES[POPDATA[key]["ageDistribution"]]
     else:
         ages = AGES["Switzerland"]
-    return (Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], confinement_start, time_points,
-           *unpack(fit_param.x)), np.exp(fit_param.x[params_to_fit['logInitial']]), err)
+
+    rates, fracs = unpack(fit_param.x)
+    return (Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"],
+                   date=confinement_start, times=time_points, rates=rates, fracs=fracs),
+           np.exp(fit_param.x[params_to_fit['logInitial']]), err)
 
 # ------------------------------------------
 # Data loading
@@ -329,14 +335,13 @@ def get_fit_data(days, data_original, confinement_start=None):
 
     # Filter points
     good_idx = np.bitwise_and(days >= day0, days <= fit_stop_day)
-    data[Sub.D] = np.ma.array(np.concatenate([[np.nan], data[Sub.D][good_idx]]))
-    data[Sub.T] = np.ma.array(np.concatenate([[np.nan], data[Sub.T][good_idx]]))
-    data[Sub.H] = np.ma.array(np.concatenate([[np.nan], data[Sub.H][good_idx]]))
-    data[Sub.C] = np.ma.array(np.concatenate([[np.nan], data[Sub.C][good_idx]]))
-    data[Sub.D].mask = np.isnan(data[Sub.D])
-    data[Sub.T].mask = np.isnan(data[Sub.T])
-    data[Sub.H].mask = np.isnan(data[Sub.H])
-    data[Sub.C].mask = np.isnan(data[Sub.C])
+    for idx in [Sub.D, Sub.T, Sub.H, Sub.C]:
+        if data[idx] is None:
+            data[idx] = np.ma.array([np.nan])
+            data[idx].mask = np.isnan(data[idx])
+        else:
+            data[idx] = np.ma.array(np.concatenate([[np.nan], data[idx][good_idx]]))
+            data[idx].mask = np.isnan(data[idx])
 
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]: # remove data if whole array is masked
         if False not in data[ii].mask:
@@ -353,10 +358,10 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
         return None
 
     if guess is None:
-        guess = { "logR0": 1.3,
-                  "reported" : 0.2,
-                  "logInitial" : 5,
-                  "efficacy" : 0.5
+        guess = { "logR0": 1.0,
+                  "reported" : 0.3,
+                  "logInitial" : 1,
+                  "efficacy" : 0.8
                 }
     # bounds = ((0.4,2),(0.01,0.8),(1,None),(0,1))
     bounds=None
@@ -376,13 +381,11 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
 def fit_error(data, model):
     err = [[] if (i == Sub.D or i == Sub.T or i == Sub.H or i == Sub.C) else None for i in range(Sub.NUM)]
 
-    eps = 1e-5
-    err[Sub.T] = model[:,Sub.T]-data[Sub.T]*(1+np.log((model[:,Sub.T]+eps)/data[Sub.T]))
-    err[Sub.D] = model[:,Sub.D]-data[Sub.D]*(1+np.log((model[:,Sub.D]+eps)/data[Sub.D]))
-    if data[Sub.H] is not None:
-        err[Sub.H] = model[:,Sub.H]-data[Sub.H]*(1+np.log((model[:,Sub.H]+eps)/data[Sub.H]))
-    if data[Sub.C] is not None:
-        err[Sub.C] = model[:,Sub.C]-data[Sub.C]*(1+np.log((model[:,Sub.C]+eps)/data[Sub.C]))
+    eps = 1e-2
+    for idx in [Sub.T, Sub.D, Sub.H, Sub.C]:
+        if data[idx] is not None:
+            err[idx] = poissonNegLogLH(data[idx], model[:,idx], eps)
+
     return err
 
 if __name__ == "__main__":
@@ -399,21 +402,22 @@ if __name__ == "__main__":
     # param = Params(AGES[COUNTRY], POPDATA[make_key(COUNTRY, REGION)], times, rates, fracs)
     # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
 
-    key = "USA-California"
+    key = args.key or "USA-New York"
     # key = "CHE-Basel-Stadt"
     # key = "DEU-Berlin"
-    confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
+    confinement_start = datetime.strptime("2020-03-20", "%Y-%m-%d").toordinal()
     # confinement_start = datetime.strptime("2020-03-13", "%Y-%m-%d").toordinal()
     # confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
     # confinement_start = None
 
     # Raw data and time points
     time, data = load_data(key)
+    model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
     # Fitting over the pre-confinement days
-    res = fit_population(key, time, data, confinement_start)
+    res = fit_population(key, model_tps, fit_data, confinement_start)
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
-    err = fit_error(data, model)
+    err = fit_error(fit_data, model)
     if confinement_start is not None:
         confinement_start -= res['params'].time[0]
     time -= res['params'].time[0]
