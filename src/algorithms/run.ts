@@ -4,7 +4,7 @@ import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types
 
 import { getPopulationParams, initializePopulation } from './initialize'
 import { collectTotals, evolve } from './model'
-import { mulTP, divTP, meanTrajectory, stddevTrajectory } from './results'
+import { percentileTrajectory } from './results'
 
 const identity = (x: number) => x
 
@@ -44,8 +44,8 @@ export async function run(
     return simulate(population, identity)
   })
 
-  const mean = meanTrajectory(trajectories)
-  const sdev = stddevTrajectory(trajectories, mean)
+  // const mean = meanTrajectory(trajectories)
+  // const sdev = stddevTrajectory(trajectories, mean)
 
   const R0Trajectories = trajectories[0].map((d) => {
     return {
@@ -68,9 +68,12 @@ export async function run(
 
   return {
     trajectory: {
-      mean,
-      upper: mean.map((m, i) => mulTP(m, sdev[i])),
-      lower: mean.map((m, i) => divTP(m, sdev[i])),
+      lower: percentileTrajectory(trajectories, 0.2),
+      middle: percentileTrajectory(trajectories, 0.5),
+      upper: percentileTrajectory(trajectories, 0.8),
+      // middle: mean,
+      // upper: mean.map((m, i) => mulTP(m, sdev[i])),
+      // lower: mean.map((m, i) => divTP(m, sdev[i])),
       percentile: {},
     },
     R0: {
