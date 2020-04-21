@@ -7,15 +7,14 @@ import { Col, Row } from 'reactstrap'
 import * as d3 from 'd3'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-
-import { SeverityTableRow } from '../Scenario/ScenarioTypes'
+import { Severity } from '../../../.generated/types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 export interface TableProps {
   showHumanized?: boolean
   result?: AlgorithmResult
-  rates?: SeverityTableRow[]
+  rates?: Severity[]
   printable?: boolean
 }
 
@@ -48,7 +47,7 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
   let mildFrac = 1 - severeFrac - criticalFrac - deathFrac
   */
 
-  const endResult = result.deterministic.trajectory[result.deterministic.trajectory.length - 1]
+  const endResult = result.trajectory.mean[result.trajectory.mean.length - 1]
 
   const totalDeath = endResult.cumulative.fatality.total
   const totalSevere = endResult.cumulative.hospitalized.total
@@ -60,8 +59,8 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
   const deathFrac = (1.0 * totalDeath) / totalCases
   const mildFrac = 1 - severeFrac - criticalFrac - deathFrac
 
-  const peakSevere = Math.round(Math.max(...result.deterministic.trajectory.map((x) => x.current.severe.total)))
-  const peakCritical = Math.round(Math.max(...result.deterministic.trajectory.map((x) => x.current.critical.total + x.current.overflow.total))) // prettier-ignore
+  const peakSevere = Math.round(Math.max(...result.trajectory.mean.map((x) => x.current.severe.total)))
+  const peakCritical = Math.round(Math.max(...result.trajectory.mean.map((x) => x.current.critical.total + x.current.overflow.total))) // prettier-ignore
 
   const totalFormatter = (value: number) => formatNumber(value)
 

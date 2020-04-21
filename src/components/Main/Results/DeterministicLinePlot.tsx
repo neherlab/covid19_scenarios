@@ -8,9 +8,8 @@ import {
   ComposedChart,
   Legend,
   Line,
-  Label,
-  ReferenceArea,
   Scatter,
+  Area,
   Tooltip,
   TooltipProps,
   XAxis,
@@ -20,12 +19,14 @@ import {
 } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
-import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 import { calculatePosition, scrollToRef } from './chartHelper'
-import { linesToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
+import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
 import { LinePlotTooltip } from './LinePlotTooltip'
+import { MitigationPlot } from './MitigationLinePlot'
+import { R0Plot } from './R0LinePlot'
 
 import './DeterministicLinePlot.scss'
 
@@ -33,7 +34,6 @@ const ASPECT_RATIO = 16 / 9
 
 export interface LinePlotProps {
   data?: AlgorithmResult
-  userResult?: UserResult
   params: AllParams
   mitigation: ContainmentData
   logScale?: boolean
@@ -100,13 +100,14 @@ function computeNewEmpiricalCases(
   return [newEmpiricalCases, deltaDay]
 }
 
-const verifyPositive = (x: number) => (x > 0 ? x : undefined)
+function verifyPositive(x: number): maybeNumber {
+  return x > 0 ? Math.ceil(x) : undefined
+}
 
 // FIXME: this component has become too large
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function DeterministicLinePlot({
   data,
-  userResult,
   params,
   mitigation,
   logScale,
@@ -125,15 +126,14 @@ export function DeterministicLinePlot({
   const formatNumber = numberFormatter(!!showHumanized, false)
   const formatNumberRounded = numberFormatter(!!showHumanized, true)
 
-  // FIXME: is `data.stochasticTrajectories.length > 0` correct here?
-  if (!data || data.stochastic.length > 0) {
+  if (!data) {
     return null
   }
 
   const { mitigationIntervals } = mitigation
 
-  const nHospitalBeds = verifyPositive(data.params.hospitalBeds)
-  const nICUBeds = verifyPositive(data.params.ICUBeds)
+  const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
+  const nICUBeds = verifyPositive(params.population.ICUBeds)
 
   const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
 
@@ -165,32 +165,57 @@ export function DeterministicLinePlot({
       ICUbeds: nICUBeds,
     })) ?? []
 
+  const { upper, lower } = data.trajectory
+
   const plotData = [
-    ...data.deterministic.trajectory.map((x) => ({
+    ...data.trajectory.mean.map((x, i) => ({
       time: x.time,
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? Math.round(x.current.susceptible.total) || undefined
+        ? verifyPositive(x.current.susceptible.total)
         : undefined,
-      // exposed: Math.round(x.exposed.total) || undefined,
       infectious: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? Math.round(x.current.infectious.total) || undefined
+        ? verifyPositive(x.current.infectious.total)
         : undefined,
       severe: enabledPlots.includes(DATA_POINTS.Severe) ? Math.round(x.current.severe.total) || undefined : undefined,
       critical: enabledPlots.includes(DATA_POINTS.Critical)
-        ? Math.round(x.current.critical.total) || undefined
+        ? verifyPositive(Math.round(x.current.critical.total))
         : undefined,
       overflow: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? Math.round(x.current.overflow.total) || undefined
+        ? verifyPositive(Math.round(x.current.overflow.total))
         : undefined,
       recovered: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? Math.round(x.cumulative.recovered.total) || undefined
+        ? verifyPositive(Math.round(x.cumulative.recovered.total))
         : undefined,
       fatality: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? Math.round(x.cumulative.fatality.total) || undefined
+        ? verifyPositive(Math.round(x.cumulative.fatality.total))
         : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
+
+      // Error bars
+      susceptibleArea: enabledPlots.includes(DATA_POINTS.Susceptible)
+        ? [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)]
+        : undefined,
+      infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
+        ? [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)]
+        : undefined,
+      severeArea: enabledPlots.includes(DATA_POINTS.Severe)
+        ? [verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)]
+        : undefined,
+      criticalArea: enabledPlots.includes(DATA_POINTS.Critical)
+        ? [verifyPositive(lower[i].current.critical.total), verifyPositive(upper[i].current.critical.total)]
+        : undefined,
+      overflowArea: enabledPlots.includes(DATA_POINTS.Overflow)
+        ? [verifyPositive(lower[i].current.overflow.total), verifyPositive(upper[i].current.overflow.total)]
+        : undefined,
+      recoveredArea: enabledPlots.includes(DATA_POINTS.Recovered)
+        ? [verifyPositive(lower[i].cumulative.recovered.total), verifyPositive(upper[i].cumulative.recovered.total)]
+        : undefined,
+      fatalityArea: enabledPlots.includes(DATA_POINTS.Fatalities)
+        ? [verifyPositive(lower[i].cumulative.fatality.total), verifyPositive(upper[i].cumulative.fatality.total)]
+        : undefined,
     })),
+
     ...observations,
   ]
 
@@ -257,7 +282,7 @@ export function DeterministicLinePlot({
 
   return (
     <div className="w-100 h-100" data-testid="DeterministicLinePlot">
-      <ReactResizeDetector handleWidth handleHeight>
+      <ReactResizeDetector handleWidth handleHeight refreshRate={300} refreshMode="debounce">
         {({ width }: { width?: number }) => {
           if (!width) {
             return <div className="w-100 h-100" />
@@ -269,6 +294,20 @@ export function DeterministicLinePlot({
           return (
             <>
               <div ref={chartRef} />
+              <R0Plot
+                R0Trajectory={data.R0}
+                width={forcedWidth || width}
+                height={(forcedHeight || height) / 4}
+                tMin={tMin}
+                tMax={tMax}
+              />
+              <MitigationPlot
+                mitigation={mitigationIntervals}
+                width={forcedWidth || width}
+                height={(forcedHeight || height) / 4}
+                tMin={tMin}
+                tMax={tMax}
+              />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
                 width={forcedWidth || width}
@@ -279,7 +318,6 @@ export function DeterministicLinePlot({
                   left: 5,
                   right: 5,
                   bottom: 5,
-                  top: 5,
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
@@ -299,14 +337,6 @@ export function DeterministicLinePlot({
                   type="number"
                   domain={logScale ? [1, yDataMax * 1.1] : [0, yDataMax * 1.1]}
                   tickFormatter={yTickFormatter}
-                />
-
-                <YAxis
-                  yAxisId="mitigationStrengthAxis"
-                  allowDataOverflow
-                  orientation={'right'}
-                  type="number"
-                  domain={[0, 100]}
                 />
 
                 <Tooltip
@@ -334,21 +364,6 @@ export function DeterministicLinePlot({
                   }}
                 />
 
-                {mitigationIntervals.map((interval) => (
-                  <ReferenceArea
-                    key={interval.id}
-                    x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
-                    x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
-                    y1={0}
-                    y2={_.clamp(interval.mitigationValue, 0, 100)}
-                    yAxisId={'mitigationStrengthAxis'}
-                    fill={interval.color}
-                    fillOpacity={0.1}
-                  >
-                    <Label value={interval.name} position="insideTopRight" fill="#444444" />
-                  </ReferenceArea>
-                ))}
-
                 {reducedObservationsToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
@@ -363,6 +378,21 @@ export function DeterministicLinePlot({
                     dataKey={d.key}
                     stroke={d.color}
                     name={d.name}
+                    legendType={d.legendType}
+                  />
+                ))}
+
+                {translatePlots(t, areasToPlot).map((d) => (
+                  <Area
+                    key={d.key}
+                    type="monotone"
+                    fillOpacity={0.075}
+                    dataKey={d.key}
+                    isAnimationActive={false}
+                    name={d.name}
+                    stroke={d.color}
+                    strokeWidth={0}
+                    fill={d.color}
                     legendType={d.legendType}
                   />
                 ))}

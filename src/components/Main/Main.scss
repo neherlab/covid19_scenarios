@@ -1,5 +1,12 @@
 @import '../../styles/variables';
 
+.animate-flex-width {
+  // prettier-ignore
+  // NOTE: performance issue to fix
+
+  transition: flex-basis 250ms ease, width 250ms ease, max-width 250ms ease; // stylelint-disable-line plugin/no-low-performance-animation-properties
+}
+
 .card {
   background-color: transparent;
   border: 1px solid $black;
@@ -12,16 +19,16 @@
 
   h3 {
     font-size: 20px;
+  }
 
-    @nest .card & {
-      color: $white;
-    }
+  .card h3 {
+    color: $white;
+  }
 
-    @nest .card.card--results & {
-      margin-top: 1em;
-      margin-bottom: 0;
-      color: $black;
-    }
+  .card.card--results h3 {
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: $black;
   }
 }
 
@@ -33,7 +40,8 @@
     color: $gray-800;
   }
 
-  h3 {
+  h3,
+  p {
     color: $gray-200;
   }
 
@@ -45,12 +53,8 @@
     text-transform: uppercase;
   }
 
-  & label {
+  label {
     margin: 0;
-  }
-
-  & p {
-    color: $gray-200;
   }
 }
 
@@ -65,25 +69,25 @@
 
 .card--main {
   margin-top: 30px;
-  border: none;
+  border: 0;
 
-  & > .card-header {
+  > .card-header {
     min-height: 3em;
     padding-left: 0;
     background-color: transparent;
     border-bottom: 3px solid $black;
   }
 
-  & > .card-body,
-  & > .collapse > .card-body {
+  > .card-body,
+  > .collapse > .card-body {
     padding: 0;
     margin-top: 10px;
   }
 }
 
 .card--results {
-  & > .card-body,
-  & > .collapse > .card-body {
+  > .card-body,
+  > .collapse > .card-body {
     padding: 1rem;
     margin-top: 20px;
     background-color: $white;
@@ -97,7 +101,7 @@
 
     p {
       margin: 0;
-      color: initial;
+      color: $black;
       text-align: left;
     }
 

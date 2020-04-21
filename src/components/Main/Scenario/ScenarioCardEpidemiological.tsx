@@ -4,8 +4,9 @@ import moment from 'moment'
 
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
-import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
+import { CardWithControls } from '../../Form/CardWithControls'
 import { FormDropdown } from '../../Form/FormDropdown'
+import { FormRangeSpinBox } from '../../Form/FormRangeSpinBox'
 import { FormSpinBox } from '../../Form/FormSpinBox'
 
 const months = moment.months()
@@ -23,22 +24,22 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
   // }
 
   return (
-    <CardWithoutDropdown
-      className="card--epidemiology"
+    <CardWithControls
+      className="card--epidemiology h-100"
       identifier="epidemiologicalScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
       help={t(
         'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).',
       )}
     >
-      <FormSpinBox
+      <FormRangeSpinBox
         identifier="epidemiological.r0"
         label={`${t('Annual average')} R\u2080`}
         help={t(
           'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
         )}
-        step={0.1}
-        min={0}
+        step={0.01}
+        min={0.5}
         errors={errors}
         touched={touched}
       />
@@ -108,7 +109,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         errors={errors}
         touched={touched}
       />
-    </CardWithoutDropdown>
+    </CardWithControls>
   )
 }
 

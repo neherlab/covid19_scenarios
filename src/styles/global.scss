@@ -28,7 +28,10 @@ html {
 body {
   // HACK: workaround for bootstrap modal adding padding-right when open
   padding: 0 !important;
-  background-color: #eee;
+
+  @media not print {
+    background-color: #eee;
+  }
 }
 
 .container.absolute {
@@ -75,17 +78,13 @@ p {
 }
 
 // Always show spinbox arrows in Chrome
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
   opacity: 1;
 }
 
 .noselect {
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -126,4 +125,26 @@ input[type='number']::-webkit-outer-spin-button {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.body-color {
+  color: $body-color;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.table-layout-fixed {
+  table-layout: fixed;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 30px;
+  z-index: 100;
+}
+
+.btn-shadow {
+  box-shadow: 4px 4px 10px 1px #222;
 }

@@ -1,7 +1,8 @@
 import React, { PropsWithChildren } from 'react'
 
 export interface LinkExternalProps extends React.HTMLProps<HTMLAnchorElement> {
-  url: string
+  url?: string
+  href?: string
 }
 
 export default function LinkExternal({ url, href, children, ...restProps }: PropsWithChildren<LinkExternalProps>) {

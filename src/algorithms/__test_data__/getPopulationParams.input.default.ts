@@ -1,6 +1,5 @@
-import { AgeDistribution } from '../../.generated/types'
+import { AgeDistribution, Severity } from '../../.generated/types'
 
-import { SeverityTableRow } from '../../components/Main/Scenario/ScenarioTypes'
 import { AllParamsFlat, MitigationIntervals } from '../types/Param.types'
 
 export const mitigationIntervals: MitigationIntervals = [
@@ -50,7 +49,7 @@ export const allParamsFlat: AllParamsFlat = {
   mitigationIntervals,
 }
 
-export const severity: SeverityTableRow[] = [
+export const severity: Severity[] = [
   {
     id: 0,
     ageGroup: '0-9',

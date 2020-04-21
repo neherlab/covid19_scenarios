@@ -4,7 +4,7 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import store_data, stoi
+from .utils import store_data, stoi, add_cases
 
 # ------------------------------------------------------------------------
 # Globals
@@ -36,9 +36,9 @@ def parse():
             date   = row[0]
             region = row[3].replace(" ", "-").replace("Î", "I").replace("'", "").replace("’", "")
             cases = stoi(row[4])
-            death = stoi(row[5])
-            hospitalized = stoi(row[8])
-            icu = stoi(row[7])
+            death = stoi(row[8])
+            hospitalized = stoi(row[11])
+            icu = stoi(row[10])
 
             if region not in regions:
                 regions[region] = {}
@@ -63,5 +63,7 @@ def parse():
     regions2 = {}
     for reg, d in regions.items():
         regions2['-'.join(['FRA',reg])] = [d[day] for day in sorted(d.keys())]
+        
+    regions2 = add_cases(regions2, list(regions2.keys()), 'France', cols)
 
     store_data(regions2, 'france',  cols)

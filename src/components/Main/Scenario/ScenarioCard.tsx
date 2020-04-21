@@ -1,14 +1,11 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
-import { Col, Row } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
-
-import { CardWithDropdown } from '../../Form/CardWithDropdown'
-import { stringsToOptions } from '../../Form/FormDropdownOption'
 
 import { setScenario } from '../state/actions'
 import { State } from '../state/state'
@@ -17,17 +14,29 @@ import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
-import { SeverityTableRow } from './ScenarioTypes'
-import { AllParams } from '../../../algorithms/types/Param.types'
+import { AllParams, Severity } from '../../../algorithms/types/Param.types'
+import { ColCustom } from '../../Layout/ColCustom'
+import { CardWithControls } from '../../Form/CardWithControls'
+import PresetLoader from './presets/PresetLoader'
+import { stringsToOptions } from '../../Form/FormDropdownOption'
+
+export function getColumnSizes(areResultsMaximized: boolean) {
+  if (areResultsMaximized) {
+    return { colPopulation: { xxl: 6 }, colEpidemiological: { xxl: 6 } }
+  }
+
+  return { colPopulation: { xl: 6 }, colEpidemiological: { xl: 6 } }
+}
 
 export interface ScenarioCardProps {
   values: AllParams
-  severity: SeverityTableRow[]
+  severity: Severity[]
   scenarioState: State
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
-  setSeverity(severity: SeverityTableRow[]): void
+  setSeverity(severity: Severity[]): void
   scenarioDispatch(action: AnyAction): void
+  areResultsMaximized: boolean
 }
 
 function ScenarioCard({
@@ -38,33 +47,44 @@ function ScenarioCard({
   touched,
   setSeverity,
   scenarioDispatch,
+  areResultsMaximized,
 }: ScenarioCardProps) {
   const { t } = useTranslation()
   const scenarioOptions = stringsToOptions(scenarioState.scenarios)
+  const { colPopulation, colEpidemiological } = getColumnSizes(areResultsMaximized)
 
-  function handleChangeScenario(newScenario: string) {
-    scenarioDispatch(setScenario({ name: newScenario }))
-  }
+  const title: string = scenarioState.current
+
+  const presetLoader = useMemo(() => {
+    function handleChangeScenario(newScenario: string) {
+      scenarioDispatch(setScenario({ name: newScenario }))
+    }
+
+    return <PresetLoader data={scenarioOptions} onSelect={handleChangeScenario} />
+  }, [scenarioOptions, scenarioDispatch])
 
   return (
-    <CardWithDropdown
+    <CardWithControls
       identifier="scenarioName"
       label={<h2 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h2>}
       help={t('Combination of population, epidemiology, and mitigation scenarios')}
-      options={scenarioOptions}
-      value={scenarioOptions.find((s) => s.label === scenarioState.current)}
-      onValueChange={handleChangeScenario}
       className="card--main"
+      controls={presetLoader}
     >
       <>
         <Row>
-          <Col xl={6} className="my-2">
+          <Col xl={12} className="my-2">
+            <h1>{title}</h1>
+          </Col>
+        </Row>
+        <Row>
+          <ColCustom {...colPopulation} className="my-2">
             <ScenarioCardPopulation errors={errors} touched={touched} />
-          </Col>
+          </ColCustom>
 
-          <Col xl={6} className="my-2">
+          <ColCustom {...colEpidemiological} className="my-2">
             <ScenarioCardEpidemiological errors={errors} touched={touched} />
-          </Col>
+          </ColCustom>
         </Row>
 
         <Row noGutters>
@@ -84,7 +104,7 @@ function ScenarioCard({
           </Col>
         </Row>
       </>
-    </CardWithDropdown>
+    </CardWithControls>
   )
 }
 
