@@ -26,7 +26,7 @@ function TooltipContentItem({ name, value, lower, upper, color }: TooltipContent
         {name}
         <div className="responsive-tooltip-content-placeholder" />
         <div>
-          {value} ϵ [{lower}, {upper}]
+          {value}: [{lower}, {upper}]
         </div>
       </div>
     )
