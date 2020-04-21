@@ -3,7 +3,7 @@ import { MessageData } from './worker.types'
 
 export async function run(...args) {
   return new Promise<AlgorithmResult>((resolve, reject) => {
-    const worker = new Worker('./worker.polyfilled.ts', { type: 'module' })
+    const worker = new Worker('./worker.ts', { type: 'module' })
 
     worker.addEventListener('message', (message: MessageEvent) => {
       const { result, error }: MessageData = message.data
