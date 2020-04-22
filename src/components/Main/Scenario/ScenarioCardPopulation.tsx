@@ -40,18 +40,19 @@ export interface ScenarioCardPopulationProps {
 }
 function getSrcStrings(srcHospitalBeds?: string, srcICUBeds?: string, srcPopulation?: string) {
   let ret = ['Source: ', 'Source: ', 'Source ']
+  const negMsg = 'No data source in our records'
   if (srcPopulation === undefined || srcPopulation === 'None') {
-    ret[0] = 'Source cannot be provided'
+    ret[0] = negMsg
   } else {
     ret[0] = ret[0].concat(srcPopulation)
   }
   if (srcHospitalBeds === undefined || srcHospitalBeds === 'None') {
-    ret[1] = 'Source cannot be found'
+    ret[1] = negMsg
   } else {
     ret[1] = ret[1].concat(srcHospitalBeds)
   }
   if (srcICUBeds === undefined || srcICUBeds === 'None') {
-    ret[2] = 'Source cannot be provided'
+    ret[2] = negMsg
   } else {
     ret[2] = ret[2].concat(srcICUBeds)
   }
@@ -89,7 +90,7 @@ function ScenarioCardPopulation({
       <FormSpinBox
         identifier="population.populationServed"
         label={t('Population')}
-        help={t('Number of people served by health care system.\n'.concat(srcStr[0]))}
+        help={t('Number of people served by health care system. '.concat(srcStr[0]))}
         step={1}
         min={0}
         errors={errors}
@@ -127,7 +128,7 @@ function ScenarioCardPopulation({
         // There's a bug in rendering special characters. For example for, "https://..."" the ':' character causes an error in rendering
         // Also need to find out how to input newline characters just for nice spacing
         help={t(
-          'Number of hospital beds available in health care system. Number of beds available for COVID-19 treatment is likely much lower.'.concat(
+          'Number of hospital beds available in health care system. Number of beds available for COVID-19 treatment is likely much lower. '.concat(
             srcStr[1],
           ),
         )}
@@ -140,7 +141,7 @@ function ScenarioCardPopulation({
         identifier="population.ICUBeds"
         label={`${t('ICU/ICMU')} (${t('est.')})`}
         help={t(
-          'Number of ICU/ICMUs available in health care system. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.'.concat(
+          'Number of ICU/ICMUs available in health care system. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower. '.concat(
             srcStr[2],
           ),
         )}
