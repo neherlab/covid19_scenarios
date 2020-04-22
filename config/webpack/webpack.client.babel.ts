@@ -281,7 +281,6 @@ export default {
           '!src/algorithms/model.ts', // FIXME
           '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
           '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
-          '!src/workers/algorithm/worker.ts', // FIXME
           // end
 
           '!src/**/*.(spec|test).{js,jsx,ts,tsx}',
@@ -326,6 +325,7 @@ export default {
           .execSync('git rev-parse HEAD')
           .toString()
           .trim(),
+      WEB_ROOT: getWebRoot(),
     }),
 
     new MiniCssExtractPlugin({
