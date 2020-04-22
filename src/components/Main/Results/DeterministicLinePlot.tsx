@@ -118,7 +118,7 @@ export function DeterministicLinePlot({
 }: LinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
-  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS).filter((x) => x !== 'cumulativesim'))
 
   // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
   // href: https://reactjs.org/docs/hooks-rules.html
@@ -132,6 +132,7 @@ export function DeterministicLinePlot({
 
   const { mitigationIntervals } = mitigation
 
+  const nPopulation = verifyPositive(params.population.populationServed)
   const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
   const nICUBeds = verifyPositive(params.population.ICUBeds)
 
@@ -170,6 +171,9 @@ export function DeterministicLinePlot({
   const plotData = [
     ...data.trajectory.mean.map((x, i) => ({
       time: x.time,
+      cumulativesim: enabledPlots.includes(DATA_POINTS.CumulativeSim)
+        ? verifyPositive(nPopulation - x.current.susceptible.total)
+        : undefined,
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
         ? verifyPositive(x.current.susceptible.total)
         : undefined,
@@ -195,6 +199,12 @@ export function DeterministicLinePlot({
       // Error bars
       susceptibleArea: enabledPlots.includes(DATA_POINTS.Susceptible)
         ? [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)]
+        : undefined,
+      cumulativesimArea: enabledPlots.includes(DATA_POINTS.CumulativeSim)
+        ? [
+            verifyPositive(nPopulation - upper[i].current.susceptible.total),
+            verifyPositive(nPopulation - lower[i].current.susceptible.total),
+          ]
         : undefined,
       infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
         ? [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)]
