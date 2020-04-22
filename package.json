@@ -309,7 +309,7 @@
     "source-map-loader": "0.2.4",
     "style-loader": "1.1.4",
     "stylehacks": "4.0.3",
-    "stylelint": "13.3.2",
+    "stylelint": "13.3.3",
     "stylelint-bare-webpack-plugin": "2.0.1",
     "stylelint-config-css-modules": "2.2.0",
     "stylelint-config-prettier": "8.0.1",
