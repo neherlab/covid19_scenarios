@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, KeyboardEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDebouncedCallback } from 'use-debounce'
 import {
@@ -62,7 +62,7 @@ const LoadPresetDialog = ({ data, visible, onLoadButtonClick, onClose }: LoadPre
     executeFilterDebounced(value)
   }
 
-  const onKeyDown = (event: KeyboardEvent) => {
+  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     const isEnterKey = event.keyCode === 13
 
     if (isEnterKey) {
