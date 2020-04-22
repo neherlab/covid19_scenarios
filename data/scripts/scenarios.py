@@ -259,31 +259,42 @@ def fit_all_case_data(num_procs=4):
         if v is not None:
             FIT_CASE_DATA[k] = v
 
-def set_mitigation(cases, scenario):
+def set_mitigation(cases, scenario, fit_params):
+    print(fit_params)
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
         scenario.containment.mitigation_intervals = []
         return
 
-    case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served),10000))[0]
-    levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served),50000))[0]
-    levelOneVal = round(1 - np.minimum(0.8, 1.8/np.mean(scenario.epidemiological.r0)), 1)
-    levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
+    if fit_params and "efficacy" in fit_params and fit_params["efficacy"]>0:
+        name = "Intervention 1"
+        scenario.containment.mitigation_intervals.append(MitigationInterval(
+            name=name,
+            tMin=datetime.fromordinal(fit_params['containment_start']).date(),
+            id=uuid4(),
+            tMax=scenario.simulation.simulation_time_range.t_max,
+            color=mitigation_colors.get(name, "#cccccc"),
+            mitigationValue=report_errors(round(100*fit_params['efficacy']))))
+    else:
+        case_counts = np.array([c['cases'] for c in valid_cases])
+        levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served),10000))[0]
+        levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served),50000))[0]
+        levelOneVal = round(1 - np.minimum(0.8, 1.8/np.mean(scenario.epidemiological.r0)), 1)
+        levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
-    for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
-        if len(level):
-            level_idx = level[0]
-            cutoff_str = valid_cases[level_idx]["time"][:10]
-            cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
+        for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
+            if len(level):
+                level_idx = level[0]
+                cutoff_str = valid_cases[level_idx]["time"][:10]
+                cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.containment.mitigation_intervals.append(MitigationInterval(
-                name=name,
-                tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
-                id=uuid4(),
-                tMax=scenario.simulation.simulation_time_range.t_max,
-                color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=report_errors(round(100*val))))
+                scenario.containment.mitigation_intervals.append(MitigationInterval(
+                    name=name,
+                    tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
+                    id=uuid4(),
+                    tMax=scenario.simulation.simulation_time_range.t_max,
+                    color=mitigation_colors.get(name, "#cccccc"),
+                    mitigationValue=report_errors(round(100*val))))
 
 
 # ------------------------------------------------------------------------
@@ -323,7 +334,8 @@ def generate(output_json=None, num_procs=1, recalculate=False):
             entry = [region[idx[arg]] for arg in args]
             scenario[region_name] = AllParams(*entry, region_name if region_name in case_counts else 'None')
             if region_name in case_counts:
-                set_mitigation(case_counts[region_name], scenario[region_name])
+                set_mitigation(case_counts[region_name], scenario[region_name],
+                               FIT_CASE_DATA.get(region_name, None))
             else:
                 scenario[region_name].containment.mitigation_intervals = []
 
