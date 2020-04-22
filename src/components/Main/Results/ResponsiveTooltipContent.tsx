@@ -26,7 +26,7 @@ function TooltipContentItem({ name, value, lower, upper, color }: TooltipContent
         {name}
         <div className="responsive-tooltip-content-placeholder" />
         <div>
-          {value}: [{lower}, {upper}]
+          ({lower}, <b>{value}</b>, {upper})
         </div>
       </div>
     )
@@ -59,7 +59,10 @@ export function ResponsiveTooltipContent({ formattedLabel, tooltipItems }: Respo
   )
   return (
     <div className="responsive-tooltip-content-base">
-      <strong>{formattedLabel}</strong>
+      <div>
+        <strong>{formattedLabel}</strong>
+        {': '} {'(20%'}, <b>{'50%'}</b>, {'80%)'}{' '}
+      </div>
       <div className="responsive-tooltip-content">
         <div>{left.map((item) => tooltip(item))}</div>
         <div>{right.map((item) => tooltip(item))}</div>

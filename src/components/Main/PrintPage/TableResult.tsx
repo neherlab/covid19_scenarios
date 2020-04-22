@@ -32,10 +32,7 @@ interface NumberWithUncertaintyProps {
 export function NumberWithUncertainty({ value, lower, upper }: NumberWithUncertaintyProps) {
   return (
     <div>
-      {Math.round(value)}:{' '}
-      <div>
-        [{Math.round(lower)}, {Math.round(upper)}]
-      </div>
+      ({Math.round(lower)}, <b>{Math.round(value)}</b>, {Math.round(upper)})
     </div>
   )
 }
