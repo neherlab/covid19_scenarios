@@ -73,6 +73,7 @@ module.exports = {
     // prettier should go last
     'prettier',
   ],
+  reportUnusedDisableDirectives: true,
   rules: {
     '@typescript-eslint/array-type': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
