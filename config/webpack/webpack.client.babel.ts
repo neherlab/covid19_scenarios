@@ -271,7 +271,7 @@ export default {
     !analyze &&
       webpackTsChecker({
         warningsAreErrors: production,
-        memoryLimit: 1024,
+        memoryLimit: 2048,
         tsconfig: path.join(moduleRoot, 'tsconfig.json'),
         reportFiles: [
           'src/**/*.{js,jsx,ts,tsx}',
