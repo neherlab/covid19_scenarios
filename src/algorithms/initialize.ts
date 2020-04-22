@@ -6,17 +6,23 @@ import { ModelParams, SimulationTimePoint } from './types/Result.types'
 import { sampleUniform } from './utils/sample'
 import { containmentMeasures } from './mitigation'
 
-// -----------------------------------------------------------------------
-// Globals
-
 const monthToDay = (m: number) => {
   return m * 30 + 15
 }
+
 const jan2020 = new Date('2020-01-01').valueOf() // time in ms
+
 export const msPerDay = 1000 * 60 * 60 * 24
 
-// -----------------------------------------------------------------------
-// Exported functions
+function sortEntriesByKey<ValueType>([key1]: [string, ValueType], [key2]: [string, ValueType]) {
+  if (key1 > key2) {
+    return 1
+  }
+  if (key1 < key2) {
+    return -1
+  }
+  return 0
+}
 
 /**
  *
@@ -44,7 +50,17 @@ export function getPopulationParams(
 ): ModelParams[] {
   // TODO: Make this a form-adjustable factor
   const sim: ModelParams = {
-    ageDistribution: {},
+    ageDistribution: {
+      '0-9': 0,
+      '10-19': 0,
+      '20-29': 0,
+      '30-39': 0,
+      '40-49': 0,
+      '50-59': 0,
+      '60-69': 0,
+      '70-79': 0,
+      '80+': 0,
+    },
     importsPerDay: [],
     timeDelta: 0,
     timeDeltaDays: 0,
@@ -172,9 +188,9 @@ export function initializePopulation(
   const initialInfectiousFraction = 0.3
 
   // TODO: Ensure the sum is equal to N!
-  const ageGroups = Object.keys(ages).sort()
-  ageGroups.forEach((k, i) => {
-    const n = Math.round((ages[k] / Z) * N)
+  const ageGroups = Object.entries(ages).sort(sortEntriesByKey)
+  ageGroups.forEach(([_0, populationOfThisAge], i) => {
+    const n = Math.round((populationOfThisAge / Z) * N)
     pop.current.susceptible[i] = n
     pop.current.exposed[i] = [0, 0, 0]
     pop.current.infectious[i] = 0

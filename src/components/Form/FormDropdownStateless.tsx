@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Select from 'react-select'
+import Select, { ValueType as SelectValueType } from 'react-select'
 import { Col, FormGroup, Row } from 'reactstrap'
 
 import { FormDropdownOption } from './FormDropdownOption'
@@ -46,9 +46,16 @@ export default function FormDropdownStateless<ValueType extends string | number>
               ...theme,
               borderRadius: 0,
             })}
-            onChange={(option: FormDropdownOption<ValueType>) => {
-              onValueChange?.(option.value)
-              onOptionChange?.(option)
+            isMulti={false}
+            onChange={(option: SelectValueType<FormDropdownOption<ValueType>>) => {
+              // FIXME: This is currently cannot be expressed without type errors due to a defect in typings
+              // See: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/32553
+              // See: https://github.com/JedWatson/react-select/issues/2902
+              if (option) {
+                const optionCasted = option as FormDropdownOption<ValueType>
+                onValueChange?.(optionCasted.value)
+                onOptionChange?.(optionCasted)
+              }
             }}
             onBlur={onBlur}
           />

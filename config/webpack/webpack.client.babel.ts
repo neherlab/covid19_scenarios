@@ -20,6 +20,7 @@ import SizePlugin from 'size-plugin'
 import kill from 'tree-kill'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import isInteractive from 'is-interactive'
 
 import WorkerPlugin from 'worker-plugin'
 
@@ -63,7 +64,6 @@ const portProd = getenv('WEB_PORT_PROD')
 const portAnalyze = Number.parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
-const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
 
 function getWebRoot() {
   let root = `${schema}://${host}`
@@ -177,7 +177,6 @@ export default {
     rules: [
       ...webpackLoadJavascript({
         babelConfig,
-        // eslintConfigFile: path.join(moduleRoot, '.eslintrc.js'),
         options: { caller: { target: 'web' } },
         sourceMaps,
         transpiledLibs: production && [
@@ -267,21 +266,40 @@ export default {
         dirs: [],
       }),
 
-    !disableLint && !analyze && webpackStylelint(),
+    !analyze && webpackStylelint(),
 
-    !disableLint &&
-      !analyze &&
+    !analyze &&
       webpackTsChecker({
-        memoryLimit: 1024,
-        tslint: path.join(moduleRoot, 'tslint.json'),
+        warningsAreErrors: production,
+        memoryLimit: 2048,
         tsconfig: path.join(moduleRoot, 'tsconfig.json'),
         reportFiles: [
           'src/**/*.{js,jsx,ts,tsx}',
-          '!src/**/__tests__/**/*.{js,jsx,ts,tsx}',
+
+          // FIXME: errors in these files have to be resolved eventually
+          // begin
+          '!src/algorithms/model.ts', // FIXME
+          '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
+          '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
+          // end
+
           '!src/**/*.(spec|test).{js,jsx,ts,tsx}',
+          '!src/**/__tests__/**/*.{js,jsx,ts,tsx}',
+          '!src/*generated*/**/*',
+          '!src/algorithms/__test_data__/**/*',
+          '!src/styles/**/*',
           '!static/**/*',
         ],
       }),
+
+    ...(fancyConsole && isInteractive()
+      ? webpackFriendlyConsole({
+          clearConsole: !analyze && fancyClearConsole,
+          projectRoot: path.resolve(moduleRoot),
+          packageName: pkg.name || 'web',
+          progressBarColor: 'red',
+        })
+      : []),
 
     new webpack.EnvironmentPlugin({
       BABEL_ENV: process.env.BABEL_ENV,
@@ -307,16 +325,8 @@ export default {
           .execSync('git rev-parse HEAD')
           .toString()
           .trim(),
+      WEB_ROOT: getWebRoot(),
     }),
-
-    ...(fancyConsole
-      ? webpackFriendlyConsole({
-          clearConsole: !analyze && fancyClearConsole,
-          projectRoot: path.resolve(moduleRoot),
-          packageName: pkg.name || 'web',
-          progressBarColor: 'red',
-        })
-      : []),
 
     new MiniCssExtractPlugin({
       filename: outputFilename(development, 'css'),

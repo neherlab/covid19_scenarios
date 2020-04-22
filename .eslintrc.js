@@ -73,6 +73,7 @@ module.exports = {
     // prettier should go last
     'prettier',
   ],
+  reportUnusedDisableDirectives: true,
   rules: {
     '@typescript-eslint/array-type': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -140,6 +141,7 @@ module.exports = {
     '@typescript-eslint/no-unused-expressions': 'warn',
 
     '@typescript-eslint/tslint/max-union-size': 'off',
+    '@typescript-eslint/tslint/prettier': 'off',
   },
   env: {
     browser: true,
@@ -168,7 +170,9 @@ module.exports = {
         'config/**/*.ts',
         'jest-runner-eslint.config.js',
         'jest.config.js',
+        'lib/EnvVarError.js',
         'lib/findModuleRoot.js',
+        'lib/getenv.js',
         'postcss.config.js',
         'stylelint.config.js',
         'webpack.config.js',

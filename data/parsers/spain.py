@@ -47,16 +47,51 @@ def parse():
                 region_data[region][date][field] = d[date]
 
     # convert dict of dicts into dict of lists
-    region_tables = {}
+    regions = {}
     for region, d in region_data.items():
         dps = sorted(d.items())
-        region_tables['-'.join(['ESP',region])]  = [[x[0], x[1].get("cases", None),
+        regions['-'.join(['ESP',region])]  = [[x[0], x[1].get("cases", None),
                                          x[1].get("deaths",None),
                                          x[1].get("hospitalized",None),
                                          x[1].get("icu", None),
                                          x[1].get("recovered", None)] for x in dps]
 
-    region_tables['Spain'] = region_tables['ESP-Total']
-    del region_tables['ESP-Total']
+    # Delete incorrect data, see https://github.com/neherlab/covid19_scenarios/issues/595
+
+    for r in regions:
+        if r == 'ESP-Madrid':
+            continue
+        elif r == 'ESP-Galicia':
+            for d in regions[r]:
+                d[cols.index('hospitalized')] = None
+        elif r == 'ESP-Castilla-La Mancha':
+            for d in regions[r]:
+                stop = datetime.strptime('2020-04-12', '%Y-%m-%d')
+                if datetime.strptime(d[cols.index('time')], '%Y-%m-%d') >= stop:
+                    d[cols.index('hospitalized')] = None
+                    d[cols.index('icu')] = None
+        elif r == 'SP-Castilla y León':
+            for d in regions[r]:
+                stopHosp = datetime.strptime('2020-04-07', '%Y-%m-%d')
+                stopICU = datetime.strptime('2020-04-17', '%Y-%m-%d')
+                if datetime.strptime(d[cols.index('time')], '%Y-%m-%d') >= stopHosp:
+                    d[cols.index('hospitalized')] = None
+                if datetime.strptime(d[cols.index('time')], '%Y-%m-%d') >= stopICU:
+                    d[cols.index('icu')] = None
+        elif r == 'ESP-C. Valenciana':
+            for d in regions[r]:
+                stop = datetime.strptime('2020-04-09', '%Y-%m-%d')
+                if datetime.strptime(d[cols.index('time')], '%Y-%m-%d') >= stop:
+                    d[cols.index('hospitalized')] = None
+                    d[cols.index('icu')] = None
+        else:
+            # none of the data is current, it is cumulative. We delete it for now
+            for d in regions[r]:
+                d[cols.index('hospitalized')] = None
+                d[cols.index('icu')] = None
+
+    # For totals, we actually only use the recovered data in the end, as hosp+icu are None, and cases and deaths are taken from ecdc data
+    regions['Spain'] = regions['ESP-Total']
+    del regions['ESP-Total']
     
-    store_data(region_tables, 'spain', cols)
+    store_data(regions, 'spain', cols)
