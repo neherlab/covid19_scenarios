@@ -140,6 +140,7 @@ module.exports = {
     '@typescript-eslint/no-unused-expressions': 'warn',
 
     '@typescript-eslint/tslint/max-union-size': 'off',
+    '@typescript-eslint/tslint/prettier': 'off',
   },
   env: {
     browser: true,
