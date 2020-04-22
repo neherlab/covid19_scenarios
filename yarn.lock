@@ -1498,16 +1498,17 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
-"@pmmmwh/react-refresh-webpack-plugin@0.3.0-beta.3":
-  version "0.3.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.3.0-beta.3.tgz#0a70be4efc99895f89262e622e7da37386732735"
-  integrity sha512-r1LSoEjgKNiAe6b9dVO5sVqVPsTbpJI1RFZVZOfjyKDaqcPDw2JLZXYUwaGAjgFVsGYD0X+Zt3Epa47IOlgh3g==
+"@pmmmwh/react-refresh-webpack-plugin@0.3.0-beta.4":
+  version "0.3.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.3.0-beta.4.tgz#84bf67c7f2d532957b15af61387666ea83cbcb92"
+  integrity sha512-yHklACzfrVes87tl5nCFKOWng1/vBVDdCS51ib0FyFLN3HE4buXi5q8Dp4sV7c/xetxd3cLBSi6/yIqry2Dw9A==
   dependencies:
     ansi-html "^0.0.7"
     error-stack-parser "^2.0.6"
     html-entities "^1.2.1"
     lodash.debounce "^4.0.8"
     native-url "^0.2.6"
+    schema-utils "^2.6.5"
 
 "@primer/css@14.3.0":
   version "14.3.0"
