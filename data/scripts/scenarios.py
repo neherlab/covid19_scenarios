@@ -246,8 +246,11 @@ def fit_one_case_data(args):
         return (region, Params.fit(tmp_data))
 
     param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0),
-             "initialCases": r["initialCases"], "efficacy":r["params"].rates.efficacy,
-             "containment_start":r["containment_start"]}
+             "initialCases": r["initialCases"]}
+    if "containment_start" in r:
+        param["efficacy"] = r["params"].rates.efficacy
+        param["containment_start"] = r["containment_start"]
+
     return (region, param)
 
 def fit_all_case_data(num_procs=4):
