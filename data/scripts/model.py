@@ -243,13 +243,14 @@ def assess_model(params, data, cases):
     if data[Sub.C] is not None:
         ICU_cost = np.ma.sum(poissonNegLogLH(data[Sub.C], model[:,Sub.C], eps))
 
-    return case_cost + 10*death_cost + hospital_cost + ICU_cost
+    return case_cost + 10*death_cost # + hospital_cost + ICU_cost
 
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
     if key not in POPDATA:
-        return Params(ages=None, size=None, date=None, times=None, rates=DefaultRates, fracs=Fracs()), 10, (False, "Not within population database")
+        return (Params(ages=None, size=None, date=None, times=None, rates=DefaultRates, fracs=Fracs()),
+                10, (False, "Not within population database"))
 
     params_to_fit = {key : i for i, key in enumerate(guess.keys())}
     def pack(x, as_list=False):
@@ -371,8 +372,11 @@ def fit_population(key, time_points, data, confinement_start, guess=None):
 
     param, init_cases, err = fit_params(key, time_points, data, guess, confinement_start, bounds=bounds)
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
-    return {'params':param, 'initialCases':init_cases, 'tMin':tMin, 'data': data, 'error':err}
+    res = {'params': param, 'initialCases': init_cases, 'tMin': tMin, 'data': data, 'error':err}
+    if param.date is not None:
+        res['containment_start'] = datetime.fromordinal(param.date).strftime('%Y-%m-%d')
 
+    return res
 
 # ------------------------------------------------------------------------
 # Testing entry

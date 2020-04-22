@@ -221,12 +221,12 @@ def get_containment_start(region):
     k = region.upper()[:3]
     if k in ["ITA", "ESP", "SPA"]:
         return datetime(2020,3,8).toordinal()
-    elif k == "CHN":
+    elif k in ["CHN"]:
         return datetime(2020,1,23).toordinal()
-    elif k in ["USA", "UNI"]:
+    elif k in ["USA", "UNI", "BRA"]:
         return datetime(2020,3,23).toordinal()
     else:
-        return datetime(2020,3,13).toordinal()
+        return datetime(2020,3,18).toordinal()
 
 
 def fit_one_case_data(args):
@@ -247,7 +247,7 @@ def fit_one_case_data(args):
 
     param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0),
              "initialCases": r["initialCases"], "efficacy":r["params"].rates.efficacy,
-             "containment_start":r["params"].date}
+             "containment_start":r["containment_start"]}
     return (region, param)
 
 def fit_all_case_data(num_procs=4):
@@ -270,7 +270,7 @@ def set_mitigation(cases, scenario, fit_params):
         name = "Intervention 1"
         scenario.containment.mitigation_intervals.append(MitigationInterval(
             name=name,
-            tMin=datetime.fromordinal(fit_params['containment_start']).date(),
+            tMin=datetime.strptime(fit_params['containment_start'], '%Y-%m-%d').date(),
             id=uuid4(),
             tMax=scenario.simulation.simulation_time_range.t_max,
             color=mitigation_colors.get(name, "#cccccc"),
