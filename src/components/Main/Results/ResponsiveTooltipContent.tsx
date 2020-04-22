@@ -59,9 +59,11 @@ export function ResponsiveTooltipContent({ formattedLabel, tooltipItems }: Respo
   )
   return (
     <div className="responsive-tooltip-content-base">
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <strong>{formattedLabel}</strong>
-        {': '} {'(20%'}, <b>{'50%'}</b>, {'80%)'}{' '}
+        <div>
+          {'(20%'}, <b>{'50%'}</b>, {'80%)'}{' '}
+        </div>
       </div>
       <div className="responsive-tooltip-content">
         <div>{left.map((item) => tooltip(item))}</div>
