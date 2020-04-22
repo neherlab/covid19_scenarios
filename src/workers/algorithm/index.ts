@@ -22,7 +22,6 @@ export async function run(args: RunParams) {
 
     worker.addEventListener('error', (error) => {
       reject(error)
-      console.error('Worker error:', error)
     })
 
     worker.postMessage(args)
