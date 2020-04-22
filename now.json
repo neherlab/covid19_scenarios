@@ -11,6 +11,7 @@
       "DEV_FANCY_CONSOLE": "1",
       "DEV_FANCY_CLEAR_CONSOLE": "1",
       "DEV_DISABLE_CHECKS": "0",
+      "DEV_DISABLE_STYLELINT": "0",
       "DEV_ENABLE_I18N_DEBUG": "0"
     }
   }
