@@ -9,8 +9,8 @@ exports[`PresetLoaderDialogRow matches snapshot 1`] = `
       class="preset-loader-dialog-row-label"
     >
       <a
+        class="nav-link"
         data-testid="PresetLoaderDialogRowLink"
-        href="#"
       >
         Some label
       </a>
