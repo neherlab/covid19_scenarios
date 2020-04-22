@@ -109,7 +109,7 @@ function verifyTuple(x: [number | undefined, number | undefined]): [number | und
     return x
   }
   if (x[0] === undefined && x[1] !== undefined) {
-    return [1, x[1]]
+    return [0, x[1]]
   }
 
   return [undefined, undefined]
