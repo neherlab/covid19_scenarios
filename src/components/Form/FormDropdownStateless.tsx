@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React from 'react'
 
 import Select, { ValueType as SelectValueType } from 'react-select'
