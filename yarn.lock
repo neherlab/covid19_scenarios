@@ -3462,10 +3462,10 @@ babel-plugin-apply-mdx-type-prop@^1.5.8:
     "@babel/helper-plugin-utils" "7.8.3"
     "@mdx-js/util" "^1.5.8"
 
-babel-plugin-dynamic-import-node@2.3.0, babel-plugin-dynamic-import-node@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-2.3.0.tgz#f00f507bdaa3c3e3ff6e7e5e98d90a7acab96f7f"
-  integrity sha512-o6qFkpeQEBxcqt0XYlWzAVxNCSCZdUgcR8IRlhD/8DylxjjO4foPcvTW0GGKa/cVt3rvxZ7o5ippJ+/0nvLhlQ==
+babel-plugin-dynamic-import-node@2.3.2, babel-plugin-dynamic-import-node@^2.3.0:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-2.3.2.tgz#14fb5accb300f9aac0151949f6192259f1403c4a"
+  integrity sha512-yvczAMjbc73xira9yTyF1XnEmkX8QwlUhmxuhimeMUeAaA6s7busTPRVDzhVG7eeBdNcRiZ/mAwFrJ9It4vQcg==
   dependencies:
     object.assign "^4.1.0"
 
@@ -3567,11 +3567,9 @@ babel-plugin-typescript-to-proptypes@1.3.2:
 
 babel-polyfill@^6.8.0:
   version "0.0.0"
-  uid ""
 
 "babel-polyfill@link:3rdparty/__empty-module":
   version "0.0.0"
-  uid ""
 
 babel-preset-current-node-syntax@^0.1.2:
   version "0.1.2"
@@ -4314,7 +4312,6 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
 
 "circular-json@link:node_modules/flatted":
   version "0.0.0"
-  uid ""
 
 class-utils@^0.3.5:
   version "0.3.6"
@@ -9956,15 +9953,12 @@ json2mq@^0.2.0:
 
 json3@3.3.0:
   version "0.0.0"
-  uid ""
 
 json3@^3.3.2:
   version "0.0.0"
-  uid ""
 
 "json3@link:3rdparty/__empty-module":
   version "0.0.0"
-  uid ""
 
 json5@2.x, json5@^2.1.0, json5@^2.1.1, json5@^2.1.2:
   version "2.1.3"
@@ -10172,7 +10166,6 @@ lead@^1.0.0:
 
 "left-pad@link:3rdparty/__empty-module":
   version "0.0.0"
-  uid ""
 
 leven@^2.1.0:
   version "2.1.0"
@@ -11275,7 +11268,6 @@ node-sass-import-once@1.2.0:
 
 "node-sass@link:node_modules/sass":
   version "0.0.0"
-  uid ""
 
 nodemon@2.0.3:
   version "2.0.3"
