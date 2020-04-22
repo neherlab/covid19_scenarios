@@ -118,7 +118,7 @@ export function DeterministicLinePlot({
 }: LinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
-  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS).filter(x => (x != 'cumulativesim')))
 
   // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
   // href: https://reactjs.org/docs/hooks-rules.html
