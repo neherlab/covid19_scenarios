@@ -110,7 +110,7 @@ class Fitter:
 # Parameter class constructors (with defaults)
 
 def report_errors(x):
-    return [.9*x, 1.1*x]
+    return [float(max(1, round(alpha*x, 2))) for alpha in [.9, 1.1]]
 
 class DateRange(schema.DateRange):
     def __init__(self, tMin, tMax):
@@ -162,7 +162,7 @@ class EpidemiologicalParams(schema.EpidemiologicalData):
                 length_icu_stay = default["lengthICUStay"],
                 overflow_severity = default["overflowSeverity"],
                 peak_month = default["peakMonth"],
-                r0 = report_errors(float(max(1, round(FIT_CASE_DATA[region]['r0'], 1)) if region in FIT_CASE_DATA else default["r0"])),
+                r0 = report_errors(FIT_CASE_DATA[region]['r0'] if region in FIT_CASE_DATA else default["r0"]),
                 seasonal_forcing = default["seasonalForcing"])
 
 class ContainmentParams(schema.ContainmentData):
