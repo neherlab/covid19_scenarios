@@ -298,7 +298,9 @@ export function DeterministicLinePlot({
   consolidatedPlotData.forEach((d) => {
     tooltipItems = { ...tooltipItems, ...d }
   })
-  const tooltipItemsToDisplay = Object.keys(tooltipItems).filter((itemKey: string) => itemKey !== 'time')
+  const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(
+    (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey != 'ICUbeds',
+  )
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
 
