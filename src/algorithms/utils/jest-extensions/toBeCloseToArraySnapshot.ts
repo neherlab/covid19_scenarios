@@ -20,35 +20,22 @@ function tryDeserialize(str: string): number[] {
   }
 }
 
-function compare(
-  expected: number[],
-  received: number[],
-  maxUlp: bigint,
-): { pass: boolean; diffs?: { want: number; got: number; diff: bigint }[] } {
-  if (expected === undefined) {
-    return { pass: false }
+function compare(want: number[], got: number[], maxUlp: bigint): boolean {
+  if (want.length !== got.length) {
+    return false
   }
 
-  const diffs = received.map((_, idx) => {
-    const want = expected[idx]
-    const got = received[idx]
-    const diff = absUlpDiff(want, got)
-    return { want, got, diff }
-  })
-
-  const failed = diffs.filter(({ diff }) => diff >= maxUlp)
-  const pass = failed.length === 0
-
-  return { pass, diffs }
+  return want.every((_, idx) => absUlpDiff(want[idx], got[idx]) <= maxUlp)
 }
 
-export default function toBeCloseToArraySnapshot(this: Context, received: number[], maxUlp: bigint) {
+export default function toBeCloseToArraySnapshot(this: Context, received: number[]) {
   const state = new State(this)
 
   const snapshot = state.getSnapshot()
   const expected = tryDeserialize(snapshot)
+  const maxUlp = 1n
 
-  const { pass } = compare(expected, received, maxUlp)
+  const pass = compare(expected, received, maxUlp)
 
   state.markSnapshotsAsCheckedForTest()
 
