@@ -18,6 +18,10 @@ describe('ULP float comparison', () => {
     expect(float64ToBigInt64(Number.MIN_VALUE)).toStrictEqual(1n)
   })
 
+  it('difference between MAX_VALUE and Infinity is 1 ULP', () => {
+    expect(absUlpDiff(Number.MAX_VALUE, Infinity)).toStrictEqual(1n)
+  })
+
   it('compare 0.2 + 0.1', () => {
     expect(0.2 + 0.1).not.toEqual(0.3)
     expect(absUlpDiff(0.2 + 0.1, 0.3)).toStrictEqual(1n)
