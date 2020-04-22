@@ -11,6 +11,7 @@ export interface InternalCurrentData {
 }
 
 export interface InternalCumulativeData {
+  infectious: number[]
   recovered: number[]
   hospitalized: number[]
   critical: number[]
@@ -27,6 +28,7 @@ export interface ExposedCurrentData {
 }
 
 export interface ExposedCumulativeData {
+  infectious: Record<string, number>
   recovered: Record<string, number>
   hospitalized: Record<string, number>
   critical: Record<string, number>

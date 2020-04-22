@@ -18,14 +18,14 @@ export const DATA_POINTS = {
   Overflow: 'overflow',
   Recovered: 'recovered',
   Fatalities: 'fatality',
-  CumulativeCases: 'cumulativeCases',
-  NewCases: 'newCases',
   HospitalBeds: 'hospitalBeds',
   ICUbeds: 'ICUbeds',
-  CumulativeSim: 'cumulativesim',
+  CumulativeCases: 'cases',
+  /* Computed from observed */
+  NewObservedCases: 'newObservedCases',
   /* Observed */
   ObservedDeaths: 'observedDeaths',
-  ObservedCases: 'cases',
+  ObservedCases: 'observedCases',
   ObservedHospitalized: 'currentHospitalized',
   ObservedICU: 'ICU',
   ObservedNewCases: 'newCases',
@@ -39,19 +39,18 @@ export const colors = {
   [DATA_POINTS.Overflow]: '#900d2c',
   [DATA_POINTS.Recovered]: '#33a02c',
   [DATA_POINTS.Fatalities]: '#5e506a',
-  [DATA_POINTS.CumulativeCases]: '#aaaaaa',
-  [DATA_POINTS.NewCases]: '#fdbf6f',
+  [DATA_POINTS.CumulativeCases]: '#39a3c6',
+  [DATA_POINTS.NewObservedCases]: '#fdbf6f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
   [DATA_POINTS.ICUbeds]: '#cccccc',
-  [DATA_POINTS.CumulativeSim]: '#0000ff',
 }
 
 export const linesToPlot: LineProps[] = [
   { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: 'Susceptible', legendType: 'line' },
   {
-    key: DATA_POINTS.CumulativeSim,
-    color: colors.cumulativesim,
-    name: 'Cumulative cases (simulation)',
+    key: DATA_POINTS.CumulativeCases,
+    color: colors.cases,
+    name: 'Cumulative cases (model)',
     legendType: 'line',
   },
   { key: DATA_POINTS.Recovered, color: colors.recovered, name: 'Recovered', legendType: 'line' },
@@ -72,8 +71,8 @@ export const areasToPlot: LineProps[] = [
     legendType: 'none',
   },
   {
-    key: `${DATA_POINTS.CumulativeSim}Area`,
-    color: colors.cumulativesim,
+    key: `${DATA_POINTS.CumulativeCases}Area`,
+    color: colors.cumulativeCases,
     name: 'Cumulative cases (simulation) uncertainty',
     legendType: 'none',
   },
@@ -117,8 +116,12 @@ export const areasToPlot: LineProps[] = [
 
 export function observationsToPlot(casesDelta: number): LineProps[] {
   return [
-    { key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: 'Cumulative cases (data)' },
-    { key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: `Cases past ${casesDelta} day(s) (data)` },
+    { key: DATA_POINTS.ObservedCases, color: colors.cases, name: 'Cumulative cases (data)' },
+    {
+      key: DATA_POINTS.ObservedNewCases,
+      color: colors.newObservedCases,
+      name: `Cases past ${casesDelta} day(s) (data)`,
+    },
     { key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: 'Patients in hospital (data)' },
     { key: DATA_POINTS.ObservedICU, color: colors.critical, name: 'Patients in ICU (data)' },
     { key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: 'Cumulative deaths (data)' },

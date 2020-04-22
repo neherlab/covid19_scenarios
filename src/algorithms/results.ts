@@ -16,6 +16,7 @@ function emptyTimePoint(t: number): ExportedTimePoint {
       overflow: {},
     },
     cumulative: {
+      infectious: {},
       recovered: {},
       critical: {},
       hospitalized: {},
@@ -50,6 +51,7 @@ function operationTP(
       infectious: operator(x.current.infectious, y.current.infectious),
     },
     cumulative: {
+      infectious: operator(x.cumulative.infectious, y.cumulative.infectious),
       critical: operator(x.cumulative.critical, y.cumulative.critical),
       fatality: operator(x.cumulative.fatality, y.cumulative.fatality),
       recovered: operator(x.cumulative.recovered, y.cumulative.recovered),
@@ -147,6 +149,7 @@ function scaleTP(x: ExportedTimePoint, transform: (x: number) => number): Export
       infectious: scale(x.current.infectious),
     },
     cumulative: {
+      infectious: scale(x.cumulative.infectious),
       critical: scale(x.cumulative.critical),
       fatality: scale(x.cumulative.fatality),
       recovered: scale(x.cumulative.recovered),

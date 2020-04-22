@@ -98,6 +98,7 @@ function advanceState(
       overflow: [],
     },
     cumulative: {
+      infectious: [],
       recovered: [],
       hospitalized: [],
       critical: [],
@@ -129,6 +130,7 @@ function advanceState(
     update(age, 'current', 'susceptible')
 
     update(age, 'cumulative', 'critical')
+    update(age, 'cumulative', 'infectious')
     update(age, 'cumulative', 'fatality')
     update(age, 'cumulative', 'hospitalized')
     update(age, 'cumulative', 'recovered')
@@ -176,6 +178,7 @@ function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivativ
       overflow: [],
     },
     cumulative: {
+      infectious: [],
       hospitalized: [],
       critical: [],
       recovered: [],
@@ -196,6 +199,7 @@ function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivativ
     sum.cumulative.fatality[age] = 0
     sum.cumulative.recovered[age] = 0
     sum.cumulative.hospitalized[age] = 0
+    sum.cumulative.infectious[age] = 0
   }
 
   grads.forEach((grad, i) => {
@@ -213,6 +217,7 @@ function sumDerivatives(grads: TimeDerivative[], scale: number[]): TimeDerivativ
       sum.cumulative.fatality[age] += scale[i] * grad.cumulative.fatality[age]
       sum.cumulative.critical[age] += scale[i] * grad.cumulative.critical[age]
       sum.cumulative.hospitalized[age] += scale[i] * grad.cumulative.hospitalized[age]
+      sum.cumulative.infectious[age] += scale[i] * grad.cumulative.infectious[age]
     }
   })
 
@@ -230,6 +235,7 @@ function derivative(flux: StateFlux): TimeDerivative {
       overflow: [],
     },
     cumulative: {
+      infectious: [],
       recovered: [],
       hospitalized: [],
       critical: [],
@@ -261,6 +267,7 @@ function derivative(flux: StateFlux): TimeDerivative {
     grad.cumulative.hospitalized[age] = flux.infectious.severe[age]
     grad.cumulative.critical[age] = flux.severe.critical[age]
     grad.cumulative.fatality[age] = flux.critical.fatality[age] + flux.overflow.fatality[age]
+    grad.cumulative.infectious[age] = fluxIn
   }
 
   return grad
@@ -345,6 +352,7 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
         infectious: {},
       },
       cumulative: {
+        infectious: {},
         recovered: {},
         hospitalized: {},
         critical: {},

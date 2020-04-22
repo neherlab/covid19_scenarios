@@ -179,6 +179,7 @@ export function initializePopulation(
       hospitalized: [],
       critical: [],
       fatality: [],
+      infectious: [],
     },
   }
 
@@ -204,6 +205,7 @@ export function initializePopulation(
     if (i === Math.round(ageGroups.length / 2)) {
       pop.current.susceptible[i] -= numCases
       pop.current.infectious[i] = initialInfectiousFraction * numCases
+      pop.cumulative.infectious[i] = pop.current.infectious[i]
       const e = ((1 - initialInfectiousFraction) * numCases) / pop.current.exposed[i].length
       pop.current.exposed[i] = pop.current.exposed[i].map((_) => e)
     }
