@@ -6,6 +6,8 @@ import { evolve } from './model'
 
 import { ageDisstribution, allParamsFlat, severity } from './__test_data__/getPopulationParams.input.default'
 
+import { toBeCloseToNumber } from './utils/jest-extensions'
+
 const identity = (x: number) => x
 
 const jul2020 = new Date('2020-07-01')
@@ -30,30 +32,32 @@ const initializePopulationParams: InitializePopulationParams = {
   ages: ageDisstribution,
 }
 
+expect.extend({ toBeCloseToNumber })
+
 describe('model', () => {
   describe('infectionRate', () => {
     it('baseline', () => {
-      expect(infectionRate(dec2020num, 0.9, 3, 0.2)).toEqual(0.7768945041075702)
+      expect(infectionRate(dec2020num, 0.9, 3, 0.2)).toBeCloseToNumber(0.7768945041075702)
     })
 
     it('accounts for time correctly', () => {
-      expect(infectionRate(jul2020num, 0.4, 3, 0.2)).toEqual(0.4194279777676749)
-      expect(infectionRate(feb2021num, 1.5, 3, 0.2)).toEqual(1.5927050983124844)
+      expect(infectionRate(jul2020num, 0.4, 3, 0.2)).toBeCloseToNumber(0.4194279777676749)
+      expect(infectionRate(feb2021num, 1.5, 3, 0.2)).toBeCloseToNumber(1.5927050983124844)
     })
 
     it('accounts for avgInfectionRate correctly', () => {
-      expect(infectionRate(dec2020num, 0.4, 3, 0.2)).toEqual(0.3452864462700312)
-      expect(infectionRate(dec2020num, 1.5, 3, 0.2)).toEqual(1.294824173512617)
+      expect(infectionRate(dec2020num, 0.4, 3, 0.2)).toBeCloseToNumber(0.3452864462700312)
+      expect(infectionRate(dec2020num, 1.5, 3, 0.2)).toBeCloseToNumber(1.294824173512617)
     })
 
     it('accounts for peakMonth correctly', () => {
-      expect(infectionRate(dec2020num, 0.9, 2, 0.2)).toEqual(0.8577915498773262)
-      expect(infectionRate(dec2020num, 0.9, 7, 0.2)).toEqual(0.842905568053961)
+      expect(infectionRate(dec2020num, 0.9, 2, 0.2)).toBeCloseToNumber(0.8577915498773262)
+      expect(infectionRate(dec2020num, 0.9, 7, 0.2)).toBeCloseToNumber(0.842905568053961)
     })
 
     it('accounts for seasonalForcing correctly', () => {
-      expect(infectionRate(dec2020num, 0.9, 3, 0.1)).toEqual(0.8384472520537851)
-      expect(infectionRate(dec2020num, 0.9, 3, 0.4)).toEqual(0.6537890082151402)
+      expect(infectionRate(dec2020num, 0.9, 3, 0.1)).toBeCloseToNumber(0.8384472520537851)
+      expect(infectionRate(dec2020num, 0.9, 3, 0.4)).toBeCloseToNumber(0.6537890082151402)
     })
   })
 
