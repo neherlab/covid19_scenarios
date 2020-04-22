@@ -22,6 +22,14 @@ countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTR
 const caseCountOptions = caseCountsNames.map((country) => ({ value: country, label: country }))
 caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: i18next.t(NONE_COUNTRY_NAME) })
 
+// According to the following link: https://github.com/i18next/react-i18next/issues/387,
+// i18next doesn't properly render colons if this isn't included
+i18next.init({
+  // allow keys to be phrases having `:`, `.`
+  nsSeparator: false,
+  keySeparator: false,
+})
+
 export interface ScenarioCardPopulationProps {
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
@@ -31,21 +39,21 @@ export interface ScenarioCardPopulationProps {
   scenarioName: string
 }
 function getSrcStrings(srcHospitalBeds?: string, srcICUBeds?: string, srcPopulation?: string) {
-  let ret = ['', '', '']
+  let ret = ['Source: ', 'Source: ', 'Source ']
   if (srcPopulation === undefined || srcPopulation === 'None') {
     ret[0] = 'Source cannot be provided'
   } else {
-    ret[0] = srcPopulation
+    ret[0] = ret[0].concat(srcPopulation)
   }
   if (srcHospitalBeds === undefined || srcHospitalBeds === 'None') {
     ret[1] = 'Source cannot be found'
   } else {
-    ret[1] = srcHospitalBeds
+    ret[1] = ret[1].concat(srcHospitalBeds)
   }
   if (srcICUBeds === undefined || srcICUBeds === 'None') {
     ret[2] = 'Source cannot be provided'
   } else {
-    ret[2] = srcICUBeds
+    ret[2] = ret[2].concat(srcICUBeds)
   }
   return ret
 }
@@ -81,7 +89,7 @@ function ScenarioCardPopulation({
       <FormSpinBox
         identifier="population.populationServed"
         label={t('Population')}
-        help={t('Number of people served by health care system.'.concat(srcStr[0]))}
+        help={t('Number of people served by health care system.\n'.concat(srcStr[0]))}
         step={1}
         min={0}
         errors={errors}
