@@ -1,7 +1,9 @@
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
 import { MessageData } from './worker.types'
 
-export async function run(...args) {
+import { RunParams } from '../../algorithms/run'
+
+export async function run(args: RunParams) {
   return new Promise<AlgorithmResult>((resolve, reject) => {
     const worker = new Worker('./worker.ts', { type: 'module' })
 

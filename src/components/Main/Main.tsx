@@ -53,7 +53,7 @@ async function runSimulation(
     }
 
     const caseCounts = getCaseCountsData(params.population.cases)
-    const newResult = await run(paramsFlat, severity, scenarioState.ageDistribution)
+    const newResult = await run({ params: paramsFlat, severity, ageDistribution: scenarioState.ageDistribution })
     setResult(newResult)
     caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
     setEmpiricalCases(caseCounts)

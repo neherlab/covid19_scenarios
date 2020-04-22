@@ -8,19 +8,13 @@ import { mulTP, divTP, meanTrajectory, stddevTrajectory } from './results'
 
 const identity = (x: number) => x
 
-// -----------------------------------------------------------------------
-// Main function
+export interface RunParams {
+  params: AllParamsFlat
+  severity: Severity[]
+  ageDistribution: AgeDistribution
+}
 
-/**
- *
- * Entry point for the algorithm
- *
- */
-export async function run(
-  params: AllParamsFlat,
-  severity: Severity[],
-  ageDistribution: AgeDistribution,
-): Promise<AlgorithmResult> {
+export async function run({ params, severity, ageDistribution }: RunParams): Promise<AlgorithmResult> {
   const tMin: number = new Date(params.simulationTimeRange.tMin).getTime()
   const tMax: number = new Date(params.simulationTimeRange.tMax).getTime()
   const ageGroups = Object.keys(ageDistribution)

@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/tslint/config */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from 'reactstrap'
+import { Button, NavLink } from 'reactstrap'
 import './PresetLoaderDialog.scss'
 
 export interface LoadPresetDialogRecordProps {
@@ -21,16 +19,15 @@ const PresetLoaderDialogRow = ({ data, onLoadButtonClick }: LoadPresetDialogRowP
   return (
     <tr className="preset-loader-dialog-row">
       <td className="preset-loader-dialog-row-label">
-        <a
+        <NavLink
           data-testid="PresetLoaderDialogRowLink"
-          href="#"
           onClick={(event) => {
             event.preventDefault()
             onLoadButtonClick(data.value)
           }}
         >
           {data.label}
-        </a>
+        </NavLink>
       </td>
       <td>
         <Button

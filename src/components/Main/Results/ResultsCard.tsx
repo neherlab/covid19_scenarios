@@ -1,4 +1,3 @@
-import Papa from 'papaparse'
 import React, { createRef, useEffect, useState } from 'react'
 import { Button, Col, CustomInput, FormGroup, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
@@ -6,16 +5,12 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import ExportSimulationDialog from './ExportSimulationDialog'
 import FormSwitch from '../../Form/FormSwitch'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
-import processUserResult from '../../../algorithms/utils/userResult'
 import { AgeBarChart } from './AgeBarChart'
-import { AlgorithmResult, UserResult } from '../../../algorithms/types/Result.types'
-import { ComparisonModalWithButton } from '../Compare/ComparisonModalWithButton'
+import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { AllParams, ContainmentData, EmpiricalData, Severity } from '../../../algorithms/types/Param.types'
 import { AgeDistribution } from '../../../.generated/types'
-import { FileType } from '../Compare/FileUploadZone'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
-import { readFile } from '../../../helpers/readFile'
 import LinkButton from '../../Buttons/LinkButton'
 import './ResultsCard.scss'
 import { CardWithControls } from '../../Form/CardWithControls'
@@ -60,10 +55,6 @@ function ResultsCardFunction({
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
   const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
 
-  // TODO: shis should probably go into the `Compare/`
-  const [files, setFiles] = useState<Map<FileType, File>>(new Map())
-  const [, setUserResult] = useState<UserResult | undefined>()
-
   useEffect(() => {
     const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
     setLogScale(persistedLogScale ?? LOG_SCALE_DEFAULT)
@@ -80,25 +71,6 @@ function ResultsCardFunction({
   const setPersistShowHumanized = (value: boolean) => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS, value)
     setShowHumanized(value)
-  }
-
-  // TODO: shis should probably go into the `Compare/`
-  async function handleFileSubmit(files: Map<FileType, File>) {
-    setFiles(files)
-
-    const csvFile: File | undefined = files.get(FileType.CSV)
-    if (!csvFile) {
-      throw new Error(`t('Error'): t('CSV file is missing')`)
-    }
-
-    const csvString: string = await readFile(csvFile)
-    const { data, errors, meta } = Papa.parse(csvString, { trimHeaders: false })
-    if (meta.aborted || errors.length > 0) {
-      // TODO: have to report this back to the user
-      throw new Error(`t('Error'): t('CSV file could not be parsed')`)
-    }
-    const newUserResult = processUserResult(data)
-    setUserResult(newUserResult)
   }
 
   const [canExport, setCanExport] = useState<boolean>(false)
@@ -151,7 +123,7 @@ function ResultsCardFunction({
               >
                 {t('Run in new tab')}
               </LinkButton>
-              <ComparisonModalWithButton files={files} onFilesChange={handleFileSubmit} />
+
               <Button
                 className="export-button"
                 type="button"
