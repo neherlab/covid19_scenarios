@@ -6613,10 +6613,10 @@ eslint-plugin-no-loops@0.3.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-no-loops/-/eslint-plugin-no-loops-0.3.0.tgz#e81fecb4eaaf494a926d9caba9a7cd84d1fede7d"
   integrity sha1-6B/stOqvSUqSbZyrqafNhNH+3n0=
 
-eslint-plugin-no-secrets@0.6.5:
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-no-secrets/-/eslint-plugin-no-secrets-0.6.5.tgz#99ec2cdfce09792125209c02b4188af6659aa3f6"
-  integrity sha512-LbKdK2IYChsIHwEMTARPXj50IeJfmCotAXhfN+S1tF3wAqnJmPMznEXcxPbLyOssgXNFBi9HqQFB0kW0dWqLyw==
+eslint-plugin-no-secrets@0.6.8:
+  version "0.6.8"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-no-secrets/-/eslint-plugin-no-secrets-0.6.8.tgz#cdfdcec78ad0bdf104aa59f36c841b65a477533d"
+  integrity sha512-hX/z+V6oEFBaY6GHRYPv1mXyieq0z3oijE8C3muYhhyjICRS2Uk+RPMwK700ARkQIKFWYsezXc7hmISeqHbEZA==
 
 eslint-plugin-node@11.1.0:
   version "11.1.0"

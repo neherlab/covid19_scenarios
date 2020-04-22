@@ -245,7 +245,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-lodash": "7.1.0",
     "eslint-plugin-no-loops": "0.3.0",
-    "eslint-plugin-no-secrets": "0.6.5",
+    "eslint-plugin-no-secrets": "0.6.8",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-only-ascii": "0.0.0",
     "eslint-plugin-only-warn": "1.0.2",
