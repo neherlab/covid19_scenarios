@@ -2,6 +2,7 @@ import csv
 import importlib
 import sys
 sys.path.append('..')
+sys.path.append('/home/valentin/Desktop/richardLab/covid19_scenarios/data')
 import os
 import json
 import argparse
@@ -485,6 +486,6 @@ if __name__ == "__main__":
     plt.ylabel("Number of people")
     plt.legend(loc="best")
     plt.tight_layout()
-    # plt.yscale("log")
+    plt.yscale("log")
     # plt.savefig(f"{key}-Poisson_max_likelihood", format="png")
     plt.show()
