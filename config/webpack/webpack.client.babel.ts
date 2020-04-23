@@ -1,5 +1,7 @@
 import '../dotenv'
 
+import _ from 'lodash'
+
 import path from 'path'
 
 // import glob from 'glob-all'
@@ -18,6 +20,9 @@ import SizePlugin from 'size-plugin'
 import kill from 'tree-kill'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import isInteractive from 'is-interactive'
+
+import WorkerPlugin from 'worker-plugin'
 
 import webpackCompression from './lib/webpackCompression'
 import webpackFriendlyConsole from './lib/webpackFriendlyConsole'
@@ -52,19 +57,38 @@ const analyze = getenv('ANALYZE', '0') === '1'
 const profile = getenv('PROFILE', '0') === '1'
 const debuggableProd = getenv('DEBUGGABLE_PROD', '0') === '1'
 const sourceMaps = true
-const devServerPort = getenv('WEB_DEV_SERVER_PORT', '3000')
-const analyzerPort = parseInt(getenv('WEB_DEV_BUNDLE_ANALYZER_PORT', '8888'), 10) // prettier-ignore
+const schema = getenv('WEB_SCHEMA')
+const host = getenv('WEB_HOST', getenv('NOW_URL', 'null'))
+const portDev = getenv('WEB_PORT_DEV')
+const portProd = getenv('WEB_PORT_PROD')
+const portAnalyze = Number.parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
-const disableLint = getenv('DEV_DISABLE_LINT', '0') === '1'
-const webProdHost = getenv('WEB_PROD_HOST')
-const webDevHost = `localhost:${devServerPort}`
+const disableChecks = getenv('DEV_DISABLE_CHECKS') === '1'
+const disableStylelint =
+  disableChecks || getenv('DEV_DISABLE_STYLELINT') === '1'
+
+function getWebRoot() {
+  let root = `${schema}://${host}`
+
+  if (development && !_.isEmpty(portDev)) {
+    root = `${root}:${portDev}`
+  }
+
+  if (production && !_.isEmpty(portProd) && portProd !== 'null') {
+    root = `${root}:${portProd}`
+  }
+
+  return root
+}
 
 const { moduleRoot, pkg } = findModuleRoot()
 const buildPath = path.join(moduleRoot, '.build', analyze ? 'analyze' : MODE, 'web') // prettier-ignore
 
 function alias(development: boolean) {
-  let productionAliases = {}
+  let productionAliases: Record<string, string> = {
+    jsonp$: path.join(moduleRoot, '3rdparty/__empty-module'),
+  }
 
   if (profile) {
     productionAliases = {
@@ -81,17 +105,6 @@ function alias(development: boolean) {
   }
 
   return productionAliases
-}
-
-function entry(development: boolean, entries: string[]) {
-  if (development || debuggableProd) {
-    return [
-      'map.prototype.tojson', // to visualize Map in Redux Dev Tools
-      'set.prototype.tojson', // to visualize Set in Redux Dev Tools
-      ...entries,
-    ]
-  }
-  return entries
 }
 
 function outputFilename(development: boolean, ext = 'js') {
@@ -125,9 +138,10 @@ export default {
     hints: false,
   },
 
-  entry: entry(development, [path.join(moduleRoot, `src/index.polyfilled.ts`)]),
+  entry: path.join(moduleRoot, `src/index.polyfilled.ts`),
 
   output: {
+    globalObject: 'self',
     path: buildPath,
     filename: outputFilename(development),
     chunkFilename: outputFilename(development),
@@ -141,7 +155,7 @@ export default {
   devServer: {
     contentBase: path.join(buildPath, '..'),
     before: (app: express.Application) => {
-      app.use(express.static(path.join(buildPath, '..', 'sourcemaps')))
+      app.use(express.static(path.join(buildPath, 'sourcemaps')))
       app.use(express.static(path.join(moduleRoot, 'static')))
     },
     compress: true,
@@ -154,7 +168,7 @@ export default {
       warnings: false,
       errors: true,
     },
-    port: devServerPort,
+    port: portDev,
     publicPath: '/',
     quiet: false,
     logLevel: 'info',
@@ -168,16 +182,20 @@ export default {
         babelConfig,
         options: { caller: { target: 'web' } },
         sourceMaps,
-        transpiledLibs: [
+        transpiledLibs: production && [
           '@loadable',
           '@redux-saga',
+          'create-color',
+          'd3-array',
           'delay',
           'immer',
           'lodash',
           'p-min-delay',
           'react-router',
+          'recharts',
           'redux/es',
         ],
+        nonTranspiledLibs: production && ['d3-array/src/cumsum.js'],
       }),
 
       ...webpackLoadStyles({
@@ -198,7 +216,6 @@ export default {
     symlinks: false,
 
     mainFields: [
-      'source',
       'ts:main',
       'ts:module',
       'tsmain',
@@ -210,6 +227,7 @@ export default {
       'esm',
       'es2015',
       'main',
+      'source',
     ],
     extensions: [
       '.wasm',
@@ -235,7 +253,7 @@ export default {
       template: path.join(moduleRoot, 'src', 'index.ejs'),
       vars: {
         title: getenv('WEB_APP_NAME_FRIENDLY'),
-        host: MODE === 'production' ? webProdHost : webDevHost,
+        webRoot: getWebRoot(),
       },
     }),
 
@@ -251,30 +269,34 @@ export default {
         dirs: [],
       }),
 
-    !disableLint && !analyze && webpackStylelint(),
+    !disableStylelint && !analyze && webpackStylelint(),
 
-    !disableLint &&
+    !disableChecks &&
       !analyze &&
       webpackTsChecker({
-        memoryLimit: 1024,
-        tslint: path.join(moduleRoot, 'tslint.json'),
+        warningsAreErrors: production,
+        memoryLimit: 2048,
         tsconfig: path.join(moduleRoot, 'tsconfig.json'),
         reportFiles: [
           'src/**/*.{js,jsx,ts,tsx}',
-          '!src/**/__tests__/**/*.{js,jsx,ts,tsx}',
+
+          // FIXME: errors in these files have to be resolved eventually
+          // begin
+          '!src/algorithms/model.ts', // FIXME
+          '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
+          '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
+          // end
+
           '!src/**/*.(spec|test).{js,jsx,ts,tsx}',
+          '!src/**/__tests__/**/*.{js,jsx,ts,tsx}',
+          '!src/*generated*/**/*',
+          '!src/algorithms/__test_data__/**/*',
+          '!src/styles/**/*',
           '!static/**/*',
         ],
       }),
 
-    new webpack.EnvironmentPlugin({
-      BABEL_ENV: process.env.BABEL_ENV,
-      DEBUGGABLE_PROD: process.env.DEBUGGABLE_PROD,
-      NODE_ENV: process.env.NODE_ENV,
-      DEV_ENABLE_I18N_DEBUG: getenv('DEV_ENABLE_I18N_DEBUG', '0'),
-    }),
-
-    ...(fancyConsole
+    ...(fancyConsole && isInteractive()
       ? webpackFriendlyConsole({
           clearConsole: !analyze && fancyClearConsole,
           projectRoot: path.resolve(moduleRoot),
@@ -283,12 +305,39 @@ export default {
         })
       : []),
 
+    new webpack.EnvironmentPlugin({
+      BABEL_ENV: process.env.BABEL_ENV,
+      DEBUGGABLE_PROD: process.env.DEBUGGABLE_PROD,
+      NODE_ENV: process.env.NODE_ENV,
+      DEV_ENABLE_I18N_DEBUG: getenv('DEV_ENABLE_I18N_DEBUG', '0'),
+      IS_PRODUCTION: production,
+      IS_DEVELOPMENT: development,
+      ENV_NAME:
+        getenv('TRAVIS_BRANCH', null) ??
+        getenv('NOW_GITHUB_COMMIT_REF', null) ??
+        require('child_process')
+          .execSync('git rev-parse --abbrev-ref HEAD')
+          .toString()
+          .trim(),
+      PACKAGE_VERSION: pkg.version,
+      BUILD_NUMBER: getenv('TRAVIS_BUILD_NUMBER', null),
+      TRAVIS_BUILD_WEB_URL: getenv('TRAVIS_BUILD_WEB_URL', null),
+      REVISION:
+        getenv('TRAVIS_COMMIT', null) ??
+        getenv('NOW_GITHUB_COMMIT_SHA', null) ??
+        require('child_process')
+          .execSync('git rev-parse HEAD')
+          .toString()
+          .trim(),
+      WEB_ROOT: getWebRoot(),
+    }),
+
     new MiniCssExtractPlugin({
       filename: outputFilename(development, 'css'),
       chunkFilename: outputFilename(development, 'css'),
     }),
 
-    development && new ReactRefreshWebpackPlugin({ disableRefreshCheck: true }),
+    development && new ReactRefreshWebpackPlugin(),
 
     production &&
       !analyze &&
@@ -329,43 +378,46 @@ export default {
     }),
 
     // Setup for `moment` locales
-    new webpack.ContextReplacementPlugin(/^\.\/locale$/, (context) => {
-      if (!context.context.includes('/moment/')) {
-        return
-      }
-      // context needs to be modified in place
-      Object.assign(context, {
-        // include only CJK
-        regExp: /^\.\/(en|de)/,
-        // point to the locale data folder relative to moment's src/lib/locale
-        request: '../../locale',
-      })
-    }),
+    new webpack.ContextReplacementPlugin(
+      /^\.\/locale$/,
+      (context: { context: string }) => {
+        if (!context.context.includes('/moment/')) {
+          return
+        }
+        // context needs to be modified in place
+        Object.assign(context, {
+          // include only CJK
+          regExp: /^\.\/(en|de)/,
+          // point to the locale data folder relative to moment's src/lib/locale
+          request: '../../locale',
+        })
+      },
+    ),
 
     new webpack.optimize.AggressiveMergingPlugin(),
 
     new ExtraWatchWebpackPlugin({
       files: [
-        path.join(moduleRoot, 'generated/**'),
+        path.join(moduleRoot, 'src/.generated/**'),
         path.join(moduleRoot, 'src/types/**/*.d.ts'),
       ],
       dirs: [],
     }),
 
     new webpack.SourceMapDevToolPlugin({
-      filename: '../sourcemaps/[filebase].map[query]',
-      publicPath: '/sourcemaps/',
+      filename: 'sourcemaps/[filebase].map[query]',
+      publicPath: '/',
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore: BUG: This parameter is missing in @types/webpack declarations
-      fileContext: 'web/content/sourcemaps',
-      noSources: production,
+      fileContext: 'web',
+      noSources: false,
     }),
 
     analyze &&
       new BundleAnalyzerPlugin({
         analyzerMode: 'server',
         analyzerHost: '0.0.0.0',
-        analyzerPort,
+        analyzerPort: portAnalyze,
         openAnalyzer: false,
         defaultSizes: 'gzip',
       }),
@@ -375,6 +427,8 @@ export default {
         writeFile: true,
         publish: false,
       }),
+
+    new WorkerPlugin(),
   ].filter(Boolean),
 
   optimization: {

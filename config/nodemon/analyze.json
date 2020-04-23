@@ -15,6 +15,7 @@
     "config",
     "package.json",
     "postcss.config.js",
+    "schemas",
     "src",
     "stylelint.config.js",
     "tsconfig.json",
@@ -24,11 +25,12 @@
   ],
   "ext": "js,jsx,ts,tsx,json,flow,css,scss,sass,styl,html,ejs,d,txt,yml,sh",
   "ignore": [
+    "**/*.test.*s",
+    "**/*.test.*sx",
+    "**/__tests__",
     ".build",
     "node_modules",
-    "**/__tests__",
-    "**/*.test.*sx",
-    "**/*.test.*s"
+    "src/.generated"
   ],
   "exec": "yarn clear && yarn install && yarn analyze || cd ."
 }

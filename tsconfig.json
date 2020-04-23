@@ -6,7 +6,7 @@
     },
     "target": "esnext",
     "module": "esnext",
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "webworker"],
     "jsx": "react",
     "moduleResolution": "node",
     "allowJs": true,
@@ -48,5 +48,6 @@
     "node_modules",
     "static",
     "tsconfig.json",
+    "src/.generated"
   ]
 }

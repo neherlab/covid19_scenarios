@@ -15,9 +15,7 @@ URL_CASES_CUM = "https://raw.githubusercontent.com/J535D165/CoronaWatchNL/master
 URL_DEATHS_CUM = "https://raw.githubusercontent.com/J535D165/CoronaWatchNL/master/data/rivm_corona_in_nl_fatalities.csv"
 URL_HOSPITALIZED_CUM = "https://raw.githubusercontent.com/J535D165/CoronaWatchNL/master/data/rivm_corona_in_nl_hosp.csv"
 URL_ICU_CUM = "https://www.stichting-nice.nl/covid-19/public/intake-count"
-
-LOC = "case-counts/Europe/Western Europe/Netherlands"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions
@@ -76,7 +74,7 @@ def parse_icu(regions_date):
         # Data from last 2 days may be incomplete, so we ignore it
         if date < day_before_yesterday:
             date_string = str(row["date"])
-            regions_date["Netherlands"][date_string]['ICU'] = row["intakeCount"]
+            regions_date["Netherlands"][date_string]['icu'] = row["value"]
 
 
 # ------------------------------------------------------------------------
@@ -88,7 +86,7 @@ def parse():
     parse_cases(regions_date)
     parse_deaths(regions_date)
     parse_hospitalized(regions_date)
-    parse_icu(regions_date)
+    #parse_icu(regions_date)
 
     regions = defaultdict(list)
     for region in regions_date:
@@ -98,7 +96,7 @@ def parse():
                 regions_date[region][date].get('cases', None),
                 regions_date[region][date].get('deaths', None),
                 regions_date[region][date].get('hospitalized', None),
-                regions_date[region][date].get('ICU', None),
+                regions_date[region][date].get('icu', None),
                 None
             ]
             regions[region].append(entry)
@@ -110,6 +108,6 @@ def parse():
             regions2['-'.join(['NLD',region])] = sorted_date(regions[region])
         else:
             regions2[region] = sorted_date(regions[region])
-            
+
 
     store_data(regions2, 'netherlands', cols)

@@ -1,11 +1,10 @@
-import os, sys
-import csv
+import sys
 import json
 import requests
 import numpy as np
 
 from collections import defaultdict
-from .utils import store_data
+from .utils import store_data, add_cases
 
 # ------------------------------------------------------------------------
 # Globals
@@ -16,7 +15,7 @@ X = {
         "state": "stato",
         "region": "denominazione_regione",
         "hospitalized" : "ricoverati_con_sintomi",
-        "ICU" : "terapia_intensiva",
+        "icu" : "terapia_intensiva",
         "cases" : "totale_casi",
         "deaths" : "deceduti",
         "recovered": "dimessi_guariti",
@@ -24,8 +23,7 @@ X = {
 }
 
 URL  = "https://raw.github.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
-LOC  = "case-counts/Europe/Southern Europe/Italy"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -40,21 +38,17 @@ def parse():
     db = json.loads(r.text)
     r.close()
 
-    # Convert to ready made TSVs
+    # Convert to our datatype
     regions = defaultdict(list)
     for row in db:
-        elt = [ int(row[X[c]]) if i > 0 else row[X[c]].split()[0] for i, c in enumerate(cols) ]
+        elt = [ int(row[X[c]]) if i > 0 else row[X[c]][:10] for i, c in enumerate(cols) ]
         regions['-'.join(['ITA',row[X["region"]]])].append(elt)
     regions = dict(regions)
 
     # Sum all regions to obtain Italian data
-    dates = defaultdict(lambda: np.zeros(len(cols)-1))
-    for data in regions.values():
-        for datum in data:
-            dates[datum[0]] += np.array(datum[1:])
+    regions = add_cases(regions, list(regions.keys()), 'Italy', cols)
 
-    regions["Italy"] = []
-    for date, counts in dates.items():
-        regions["Italy"].append([date] + [int(c) for c in counts])
+    #https://github.com/neherlab/covid19_scenarios/issues/341
+    regions = add_cases(regions, ['ITA-P.A. Bolzano', 'ITA-P.A. Trento'], 'ITA-TrentinoAltoAdige', cols)
 
     store_data(regions, 'italy', cols)

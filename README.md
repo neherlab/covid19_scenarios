@@ -7,17 +7,17 @@ Models of COVID-19 outbreak trajectories and hospital demand
 </blockquote>
 
 <p align="center">
-  <a href="https://neherlab.org/covid19/">
-    🌐 neherlab.org/covid19/
+  <a href="https://covid19-scenarios.org/">
+    🌐 covid19-scenarios.org
   </a>
 </p>
 
 <p align="center">
-  <a href="https://neherlab.org/covid19/">
+  <a href="https://covid19-scenarios.org/">
     <img
       width="100%"
       height="auto"
-      src="https://user-images.githubusercontent.com/9403403/77125848-710b2700-6a47-11ea-84c3-19016d16e9dd.gif"
+      src="https://user-images.githubusercontent.com/9403403/78839853-9c0aea00-79f9-11ea-92c9-593e05fd1570.gif"
       alt="An animated screenshot of the application, showcasing the user interface on main page"
     />
   </a>
@@ -36,9 +36,50 @@ Models of COVID-19 outbreak trajectories and hospital demand
       alt="package.json version"
     />
   </a>
-  <a href="https://neherlab.org/covid19/">
-    <img src="https://img.shields.io/website?url=https%3A%2F%2Fneherlab.org/covid19/&logo=circle&logoColor=white" />
+  <a href="https://covid19-scenarios.org/">
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fcovid19-scenarios.org&logo=circle&logoColor=white&label=covid19-scenarios.org" />
   </a>
+  <a href="https://staging.covid19-scenarios.org/">
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fstaging.covid19-scenarios.org&logo=circle&logoColor=white&label=staging.covid19-scenarios.org" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://travis-ci.org/github/neherlab/covid19_scenarios/branches">
+    <img src="https://img.shields.io/travis/neherlab/covid19_scenarios/release?label=build%3Aproduction" alt="Build status for production" />
+  </a>
+  <a href="https://travis-ci.org/github/neherlab/covid19_scenarios/branches">
+    <img src="https://img.shields.io/travis/neherlab/covid19_scenarios/master?label=build%3Astaging" alt="Build status for staging" />
+  </a>
+  <a href="https://snyk.io/test/github/neherlab/covid19_scenarios?targetFile=package.json">
+    <img src="https://snyk.io/test/github/neherlab/covid19_scenarios/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/neherlab/covid19_scenarios?targetFile=package.json" style="max-width:100%;">
+  </a>
+  <a href="https://securityheaders.com/?q=covid19-scenarios.org&followRedirects=on">
+    <img src="https://img.shields.io/security-headers?url=https%3A%2F%2Fcovid19-scenarios.org" alt="Security Headers badge" />
+  </a>
+  <a href="https://observatory.mozilla.org/analyze/covid19-scenarios.org">
+    <img src="https://img.shields.io/mozilla-observatory/grade/covid19-scenarios.org" alt="Mozilla Observatory badge" />
+  </a>
+
+<p align="center">
+
+  <a href="https://deepscan.io/dashboard#view=project&tid=8207&pid=10365&bid=142593">
+    <img src="https://deepscan.io/api/teams/8207/projects/10365/branches/142593/badge/grade.svg" alt="DeepScan grade">
+  </a>
+
+  <a href="https://codeclimate.com/github/neherlab/covid19_scenarios">
+    <img src="https://img.shields.io/codeclimate/maintainability/neherlab/covid19_scenarios?label=codeclimate" />
+  </a>
+
+  <a href="https://codeclimate.com/github/neherlab/covid19_scenarios">
+    <img src="https://img.shields.io/codeclimate/tech-debt/neherlab/covid19_scenarios" />
+  </a>
+
+
+  <a href="https://codecov.io/gh/neherlab/covid19_scenarios">
+    <img src="https://codecov.io/gh/neherlab/covid19_scenarios/branch/master/graph/badge.svg" />
+  </a>
+
 </p>
 
 <p align="center">
@@ -132,7 +173,7 @@ Got questions or suggestions?
 <td></td>
 
 <td>
-<a alt="Link to the app" href="https://neherlab.org/covid19/">
+<a alt="Link to the app" href="https://covid19-scenarios.org/">
 <img 
   alt="Image with app logo and text 'Try'"
   src="https://user-images.githubusercontent.com/9403403/77235707-6ae88800-6bb8-11ea-90ff-22db107b6045.png"
@@ -182,7 +223,7 @@ Got questions or suggestions?
 👀 Overview
 </h2>
 
-This tool is based on an SIR model (see about page for details) that simulates a COVID19 outbreak. The population is
+This tool is based on the SIR model (see about page for details) that simulates a COVID19 outbreak. The population is
 initially mostly susceptible (other than for initial cases). Individuals that recover from COVID19 are subsequently
 immune. Currently, the parameters of the model are _not_ fit to data but are simply defaults. These might fit better for
 some localities than others. In particular the initial cases counts are often only rough estimates.
@@ -211,7 +252,7 @@ export results in CSV format. A detailed process is below.
 ### Parameters: population
 
 Select the population drop down and select a country/region to auto-populate the model's parameters with respective UN
-population data. These parameters can be indivdually updated manually if necessary.
+population data. These parameters can be individually updated manually if necessary.
 
 ### Parameters: epidemiology
 
@@ -335,7 +376,29 @@ yarn prod:watch
 This should build the application in production mode and to start static server that will serve the app on
 `http://localhost:8080` (by default)
 
-### Release ccycle, continuous integration and deployment
+# Schemas
+
+The directory `schemas/` contains JSON schemas which serve as a base for type checking, validation and serialization.
+
+In particular, some of the types:
+
+- are generated from schemas for both Python (as classes) and Typescript (as interfaces)
+- are validated on runtime using corresponding libraries in these languages
+- are (when appropriate) serialized and deserialized using generated serialization/deserialized functions
+
+We make emphasis on types that are shared across languages (e.g. Python to Typescript) as well as on types that
+participate in input-output (e.g. URLs, Local Storage, File I/O) and require particularly careful validation and
+serialization.
+
+If you are planning to change one of the types that happens to be generated, you need to modify the corresponding schema
+first and them re-run the type generation.
+
+#### See also:
+
+- [JSON Schema website](https://json-schema.org/)
+- [Understanding JSON Schema](https://json-schema.org/understanding-json-schema/)
+
+### Release cycle, continuous integration and deployment
 
 TODO
 
@@ -368,8 +431,6 @@ git clone https://github.com/<YOUR_GITHUB_USERNAME>/covid19_scenarios
 ```
 
 #### 🔨 Start coding!
-
-<img src="https://i.giphy.com/media/3oriO7A7bt1wsEP4cw/giphy.webp" />
 
 #### 💻 Updating the Forked Repository
 
@@ -483,41 +544,50 @@ otherwise. Thanks goes to these wonderful people ([emoji key](https://allcontrib
     <td align="center"><a href="https://github.com/keevcodes"><img src="https://avatars1.githubusercontent.com/u/17259420?v=4" width="100px;" alt=""/><br /><sub><b>Andrew McKeever</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=keevcodes" title="Code">💻</a> <a href="#question-keevcodes" title="Answering Questions">💬</a></td>
     <td align="center"><a href="https://github.com/agoralski"><img src="https://avatars2.githubusercontent.com/u/7045673?v=4" width="100px;" alt=""/><br /><sub><b>Arkadiusz Goralski</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=agoralski" title="Code">💻</a> <a href="#translation-agoralski" title="Translation">🌍</a></td>
     <td align="center"><a href="https://medium.com/@adostes"><img src="https://avatars1.githubusercontent.com/u/7407917?v=4" width="100px;" alt=""/><br /><sub><b>Arnaud</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=arnaudNYC" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3AarnaudNYC" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://www.ashwingokhale.me"><img src="https://avatars0.githubusercontent.com/u/21692499?v=4" width="100px;" alt=""/><br /><sub><b>Ashwin Gokhale</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=ashwinGokhale" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/brunorzn"><img src="https://avatars1.githubusercontent.com/u/18266054?v=4" width="100px;" alt=""/><br /><sub><b>Bruno RZN</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=brunorzn" title="Code">💻</a> <a href="#question-brunorzn" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Abrunorzn" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="https://github.com/chriswien"><img src="https://avatars2.githubusercontent.com/u/51226915?v=4" width="100px;" alt=""/><br /><sub><b>Christian Wienbruch</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=chriswien" title="Code">💻</a> <a href="#data-chriswien" title="Data">🔣</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://github.com/chriswien"><img src="https://avatars2.githubusercontent.com/u/51226915?v=4" width="100px;" alt=""/><br /><sub><b>Christian Wienbruch</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=chriswien" title="Code">💻</a> <a href="#data-chriswien" title="Data">🔣</a></td>
     <td align="center"><a href="https://github.com/Christian-G-UT"><img src="https://avatars3.githubusercontent.com/u/62850722?v=4" width="100px;" alt=""/><br /><sub><b>Christian-G-UT</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=Christian-G-UT" title="Code">💻</a> <a href="#data-Christian-G-UT" title="Data">🔣</a></td>
+    <td align="center"><a href="http://dankokozar.com"><img src="https://avatars0.githubusercontent.com/u/1078403?v=4" width="100px;" alt=""/><br /><sub><b>Danko Kozar</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=dkozar" title="Code">💻</a> <a href="#design-dkozar" title="Design">🎨</a></td>
     <td align="center"><a href="http://dsepler.com"><img src="https://avatars1.githubusercontent.com/u/3710083?v=4" width="100px;" alt=""/><br /><sub><b>Danny Sepler</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=dannysepler" title="Code">💻</a> <a href="#question-dannysepler" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Adannysepler" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/kant"><img src="https://avatars1.githubusercontent.com/u/32717?v=4" width="100px;" alt=""/><br /><sub><b>Darío Hereñú</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=kant" title="Documentation">📖</a> <a href="#translation-kant" title="Translation">🌍</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=kant" title="Code">💻</a> <a href="#data-kant" title="Data">🔣</a></td>
+    <td align="center"><a href="https://github.com/guandiyiyi"><img src="https://avatars1.githubusercontent.com/u/10755641?v=4" width="100px;" alt=""/><br /><sub><b>Di Guan</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=guandiyiyi" title="Code">💻</a></td>
     <td align="center"><a href="https://emmanuel16cr.web.app"><img src="https://avatars3.githubusercontent.com/u/5572221?v=4" width="100px;" alt=""/><br /><sub><b>Emmanuel Murillo Sánchez</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=emmurillo" title="Code">💻</a> <a href="#question-emmurillo" title="Answering Questions">💬</a> <a href="#translation-emmurillo" title="Translation">🌍</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://fabilab.org"><img src="https://avatars2.githubusercontent.com/u/1200640?v=4" width="100px;" alt=""/><br /><sub><b>Fabio Zanini</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=iosonofabio" title="Code">💻</a> <a href="#data-iosonofabio" title="Data">🔣</a></td>
     <td align="center"><a href="http://linkedin.com/in/gabrielhomsi"><img src="https://avatars2.githubusercontent.com/u/9436096?v=4" width="100px;" alt=""/><br /><sub><b>Gabriel Homsi</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=gabrielhomsi" title="Code">💻</a> <a href="#data-gabrielhomsi" title="Data">🔣</a></td>
     <td align="center"><a href="https://github.com/gj262"><img src="https://avatars0.githubusercontent.com/u/6854428?v=4" width="100px;" alt=""/><br /><sub><b>Gavin Jefferies</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=gj262" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=gj262" title="Documentation">📖</a> <a href="#data-gj262" title="Data">🔣</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=gj262" title="Tests">⚠️</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Agj262" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://medium.com/@gstvribs"><img src="https://avatars1.githubusercontent.com/u/7907966?v=4" width="100px;" alt=""/><br /><sub><b>Gustavo Ribeiro</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=gstvribs" title="Code">💻</a> <a href="#data-gstvribs" title="Data">🔣</a></td>
-  </tr>
-  <tr>
     <td align="center"><a href="https://github.com/hannesgr"><img src="https://avatars2.githubusercontent.com/u/18686736?v=4" width="100px;" alt=""/><br /><sub><b>Hannes Granström</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=hannesgr" title="Code">💻</a> <a href="#question-hannesgr" title="Answering Questions">💬</a> <a href="#translation-hannesgr" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/kibertoad"><img src="https://avatars3.githubusercontent.com/u/1847934?v=4" width="100px;" alt=""/><br /><sub><b>Igor Savin</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=kibertoad" title="Code">💻</a> <a href="#question-kibertoad" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Akibertoad" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/ivan-aksamentov"><img src="https://avatars0.githubusercontent.com/u/9403403?v=4" width="100px;" alt=""/><br /><sub><b>Ivan Aksamentov</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=ivan-aksamentov" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=ivan-aksamentov" title="Documentation">📖</a> <a href="#infra-ivan-aksamentov" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-ivan-aksamentov" title="Maintenance">🚧</a> <a href="#question-ivan-aksamentov" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Aivan-aksamentov" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="https://github.com/ivnnv"><img src="https://avatars0.githubusercontent.com/u/23552631?v=4" width="100px;" alt=""/><br /><sub><b>Iván Yepes</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=ivnnv" title="Code">💻</a> <a href="#question-ivnnv" title="Answering Questions">💬</a></td>
-    <td align="center"><a href="https://jacobsmith.me"><img src="https://avatars3.githubusercontent.com/u/18077531?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Smith</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=jsmith" title="Code">💻</a> <a href="#question-jsmith" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Ajsmith" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="http://joram.vandenboezem.nl"><img src="https://avatars3.githubusercontent.com/u/205834?v=4" width="100px;" alt=""/><br /><sub><b>Joram van den Boezem</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=hongaar" title="Code">💻</a> <a href="#data-hongaar" title="Data">🔣</a></td>
-    <td align="center"><a href="https://github.com/kimuraz"><img src="https://avatars3.githubusercontent.com/u/9062864?v=4" width="100px;" alt=""/><br /><sub><b>Jose Eduardo Kimura</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=kimuraz" title="Code">💻</a> <a href="#design-kimuraz" title="Design">🎨</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://github.com/ivnnv"><img src="https://avatars0.githubusercontent.com/u/23552631?v=4" width="100px;" alt=""/><br /><sub><b>Iván Yepes</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=ivnnv" title="Code">💻</a> <a href="#question-ivnnv" title="Answering Questions">💬</a></td>
+    <td align="center"><a href="https://jacobsmith.me"><img src="https://avatars3.githubusercontent.com/u/18077531?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Smith</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=jsmith" title="Code">💻</a> <a href="#question-jsmith" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Ajsmith" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/jilladona"><img src="https://avatars0.githubusercontent.com/u/29975017?v=4" width="100px;" alt=""/><br /><sub><b>Jill Adona</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=jilladona" title="Code">💻</a> <a href="#data-jilladona" title="Data">🔣</a></td>
+    <td align="center"><a href="https://github.com/Vanuan"><img src="https://avatars2.githubusercontent.com/u/361985?v=4" width="100px;" alt=""/><br /><sub><b>John Yani</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=Vanuan" title="Code">💻</a> <a href="#data-Vanuan" title="Data">🔣</a></td>
+    <td align="center"><a href="http://joram.vandenboezem.nl"><img src="https://avatars3.githubusercontent.com/u/205834?v=4" width="100px;" alt=""/><br /><sub><b>Joram van den Boezem</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=hongaar" title="Code">💻</a> <a href="#data-hongaar" title="Data">🔣</a></td>
+    <td align="center"><a href="https://github.com/kimuraz"><img src="https://avatars3.githubusercontent.com/u/9062864?v=4" width="100px;" alt=""/><br /><sub><b>Jose Eduardo Kimura</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=kimuraz" title="Code">💻</a> <a href="#design-kimuraz" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/Joluma"><img src="https://avatars0.githubusercontent.com/u/6505742?v=4" width="100px;" alt=""/><br /><sub><b>Joël</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=Joluma" title="Code">💻</a> <a href="#question-Joluma" title="Answering Questions">💬</a> <a href="#maintenance-Joluma" title="Maintenance">🚧</a></td>
+  </tr>
+  <tr>
     <td align="center"><a href="https://github.com/kbobrowski"><img src="https://avatars0.githubusercontent.com/u/28542783?v=4" width="100px;" alt=""/><br /><sub><b>Kamil Bobrowski</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=kbobrowski" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=kbobrowski" title="Tests">⚠️</a> <a href="#maintenance-kbobrowski" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://github.com/kupadchoco"><img src="https://avatars1.githubusercontent.com/u/51234684?v=4" width="100px;" alt=""/><br /><sub><b>Kartik</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=kupadchoco" title="Code">💻</a> <a href="#data-kupadchoco" title="Data">🔣</a></td>
     <td align="center"><a href="http://www.manuel-blechschmidt.de"><img src="https://avatars3.githubusercontent.com/u/457641?v=4" width="100px;" alt=""/><br /><sub><b>Manuel Blechschmidt</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=ManuelB" title="Code">💻</a> <a href="#question-ManuelB" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=ManuelB" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/MaozGelbart"><img src="https://avatars0.githubusercontent.com/u/13831112?v=4" width="100px;" alt=""/><br /><sub><b>Maoz Gelbart</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=MaozGelbart" title="Code">💻</a> <a href="#data-MaozGelbart" title="Data">🔣</a></td>
     <td align="center"><a href="https://github.com/vejmelkam"><img src="https://avatars0.githubusercontent.com/u/1494839?v=4" width="100px;" alt=""/><br /><sub><b>Martin Vejmelka</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=vejmelkam" title="Code">💻</a> <a href="#question-vejmelkam" title="Answering Questions">💬</a> <a href="#data-vejmelkam" title="Data">🔣</a></td>
     <td align="center"><a href="https://github.com/maktarsis"><img src="https://avatars1.githubusercontent.com/u/21989873?v=4" width="100px;" alt=""/><br /><sub><b>Max Tarsis</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=maktarsis" title="Code">💻</a> <a href="#question-maktarsis" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=maktarsis" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/mickeypearce"><img src="https://avatars2.githubusercontent.com/u/1925433?v=4" width="100px;" alt=""/><br /><sub><b>Mickey Pearce</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=mickeypearce" title="Code">💻</a> <a href="#maintenance-mickeypearce" title="Maintenance">🚧</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/mickeypearce"><img src="https://avatars2.githubusercontent.com/u/1925433?v=4" width="100px;" alt=""/><br /><sub><b>Mickey Pearce</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=mickeypearce" title="Code">💻</a> <a href="#maintenance-mickeypearce" title="Maintenance">🚧</a></td>
     <td align="center"><a href="http://miguel.tech"><img src="https://avatars3.githubusercontent.com/u/5948929?v=4" width="100px;" alt=""/><br /><sub><b>Miguel Serrano</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=mserranom" title="Code">💻</a> <a href="#question-mserranom" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=mserranom" title="Documentation">📖</a> <a href="#maintenance-mserranom" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://mikalaaksonen.netlify.com/"><img src="https://avatars0.githubusercontent.com/u/48655257?v=4" width="100px;" alt=""/><br /><sub><b>Mika Laaksonen</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=miksa1987" title="Code">💻</a> <a href="#design-miksa1987" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/MikaMaracuja"><img src="https://avatars3.githubusercontent.com/u/15981220?v=4" width="100px;" alt=""/><br /><sub><b>MikaMaracuja</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=MikaMaracuja" title="Code">💻</a> <a href="#data-MikaMaracuja" title="Data">🔣</a></td>
+    <td align="center"><a href="https://github.com/natkaratkova"><img src="https://avatars1.githubusercontent.com/u/2752193?v=4" width="100px;" alt=""/><br /><sub><b>Nataliya Karatkova</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=natkaratkova" title="Code">💻</a> <a href="#design-natkaratkova" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/nnoll"><img src="https://avatars3.githubusercontent.com/u/29447707?v=4" width="100px;" alt=""/><br /><sub><b>Nicholas Noll</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=nnoll" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=nnoll" title="Documentation">📖</a> <a href="#data-nnoll" title="Data">🔣</a> <a href="#maintenance-nnoll" title="Maintenance">🚧</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Annoll" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://tippenhauer.de"><img src="https://avatars1.githubusercontent.com/u/6284775?v=4" width="100px;" alt=""/><br /><sub><b>Nils Ole Tippenhauer</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=noleti" title="Code">💻</a> <a href="#data-noleti" title="Data">🔣</a></td>
     <td align="center"><a href="http://patrikvarga.blogspot.com"><img src="https://avatars0.githubusercontent.com/u/2910243?v=4" width="100px;" alt=""/><br /><sub><b>Patrik Varga</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=patrikvarga" title="Code">💻</a> <a href="#maintenance-patrikvarga" title="Maintenance">🚧</a> <a href="#question-patrikvarga" title="Answering Questions">💬</a></td>
@@ -534,16 +604,22 @@ otherwise. Thanks goes to these wonderful people ([emoji key](https://allcontrib
   <tr>
     <td align="center"><a href="https://ruisaraiva.com"><img src="https://avatars2.githubusercontent.com/u/7356098?v=4" width="100px;" alt=""/><br /><sub><b>Rui Saraiva</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=ruisaraiva19" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=ruisaraiva19" title="Documentation">📖</a> <a href="#question-ruisaraiva19" title="Answering Questions">💬</a> <a href="#maintenance-ruisaraiva19" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://www.xima.de"><img src="https://avatars1.githubusercontent.com/u/7585164?v=4" width="100px;" alt=""/><br /><sub><b>Sebastian Gierth</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=FireLizard" title="Code">💻</a> <a href="#question-FireLizard" title="Answering Questions">💬</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3AFireLizard" title="Reviewed Pull Requests">👀</a> <a href="#translation-FireLizard" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/TeepaBlue"><img src="https://avatars1.githubusercontent.com/u/42367122?v=4" width="100px;" alt=""/><br /><sub><b>TeepaBlue</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=TeepaBlue" title="Code">💻</a></td>
     <td align="center"><a href="https://thomaseckert.dev"><img src="https://avatars3.githubusercontent.com/u/29112081?v=4" width="100px;" alt=""/><br /><sub><b>Thomas Eckert</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=t-eckert" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=t-eckert" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/tryggvigy"><img src="https://avatars2.githubusercontent.com/u/2373958?v=4" width="100px;" alt=""/><br /><sub><b>Tryggvi Gylfason</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=tryggvigy" title="Code">💻</a> <a href="#design-tryggvigy" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/victor-cordova"><img src="https://avatars0.githubusercontent.com/u/18427801?v=4" width="100px;" alt=""/><br /><sub><b>Victor Cordova</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=victor-cordova" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/abrie"><img src="https://avatars3.githubusercontent.com/u/1462268?v=4" width="100px;" alt=""/><br /><sub><b>abrie</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=abrie" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=abrie" title="Documentation">📖</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=abrie" title="Tests">⚠️</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Aabrie" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="https://github.com/aschelch"><img src="https://avatars3.githubusercontent.com/u/2005559?v=4" width="100px;" alt=""/><br /><sub><b>aschelch</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=aschelch" title="Code">💻</a> <a href="#question-aschelch" title="Answering Questions">💬</a> <a href="#translation-aschelch" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/whiver"><img src="https://avatars3.githubusercontent.com/u/394565?v=4" width="100px;" alt=""/><br /><sub><b>William Hiver</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=whiver" title="Code">💻</a> <a href="#translation-whiver" title="Translation">🌍</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://github.com/abrie"><img src="https://avatars3.githubusercontent.com/u/1462268?v=4" width="100px;" alt=""/><br /><sub><b>abrie</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=abrie" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=abrie" title="Documentation">📖</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=abrie" title="Tests">⚠️</a> <a href="https://github.com/neherlab/covid19_scenarios/pulls?q=is%3Apr+reviewed-by%3Aabrie" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/alebrand"><img src="https://avatars2.githubusercontent.com/u/16303460?v=4" width="100px;" alt=""/><br /><sub><b>alebrand</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=alebrand" title="Code">💻</a> <a href="#data-alebrand" title="Data">🔣</a></td>
+    <td align="center"><a href="https://github.com/arieltonglet"><img src="https://avatars0.githubusercontent.com/u/13951624?v=4" width="100px;" alt=""/><br /><sub><b>arieltonglet</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=arieltonglet" title="Code">💻</a> <a href="#design-arieltonglet" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/aschelch"><img src="https://avatars3.githubusercontent.com/u/2005559?v=4" width="100px;" alt=""/><br /><sub><b>aschelch</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=aschelch" title="Code">💻</a> <a href="#question-aschelch" title="Answering Questions">💬</a> <a href="#translation-aschelch" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/bharath6365"><img src="https://avatars3.githubusercontent.com/u/12910216?v=4" width="100px;" alt=""/><br /><sub><b>bharath6365</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=bharath6365" title="Code">💻</a> <a href="#question-bharath6365" title="Answering Questions">💬</a></td>
     <td align="center"><a href="https://github.com/btoo"><img src="https://avatars3.githubusercontent.com/u/8883465?v=4" width="100px;" alt=""/><br /><sub><b>btoo</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=btoo" title="Code">💻</a> <a href="https://github.com/neherlab/covid19_scenarios/commits?author=btoo" title="Documentation">📖</a> <a href="#maintenance-btoo" title="Maintenance">🚧</a></td>
     <td align="center"><a href="http://joaopn.github.io"><img src="https://avatars1.githubusercontent.com/u/6084685?v=4" width="100px;" alt=""/><br /><sub><b>joaopn</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=joaopn" title="Code">💻</a> <a href="#translation-joaopn" title="Translation">🌍</a></td>
+  </tr>
+  <tr>
     <td align="center"><a href="https://www.linkedin.com/in/kyle-middleton-b9a258165/"><img src="https://avatars2.githubusercontent.com/u/35879775?v=4" width="100px;" alt=""/><br /><sub><b>kmid5280</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=kmid5280" title="Code">💻</a> <a href="#design-kmid5280" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/kupad95"><img src="https://avatars1.githubusercontent.com/u/34950511?v=4" width="100px;" alt=""/><br /><sub><b>kupad95</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=kupad95" title="Code">💻</a> <a href="#data-kupad95" title="Data">🔣</a></td>
     <td align="center"><a href="https://stocksinplay.com"><img src="https://avatars0.githubusercontent.com/u/2551341?v=4" width="100px;" alt=""/><br /><sub><b>nono</b></sub></a><br /><a href="https://github.com/neherlab/covid19_scenarios/commits?author=nonotest" title="Code">💻</a> <a href="#question-nonotest" title="Answering Questions">💬</a> <a href="#translation-nonotest" title="Translation">🌍</a></td>
@@ -553,7 +629,6 @@ otherwise. Thanks goes to these wonderful people ([emoji key](https://allcontrib
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.

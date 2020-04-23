@@ -1,7 +1,7 @@
 # Data source: https://covidtracking.com/api/states/daily
 # Data provenance: The COVID Tracking Project
 # License: Apache License 2.0
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-03-07	0				
 2020-03-08	0				
 2020-03-09	0				
@@ -29,3 +29,22 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-03-31	981	13			
 2020-04-01	1077	26			
 2020-04-02	1233	32			
+2020-04-03	1432	35			
+2020-04-04	1580	43			
+2020-04-05	1796	45			
+2020-04-06	1968	50			
+2020-04-07	2119	56			
+2020-04-08	2369	66			
+2020-04-09	2769	74			
+2020-04-10	2968	80			
+2020-04-11	3191	91			
+2020-04-12	3525	93			
+2020-04-13	3734	99			
+2020-04-14	3876	110			
+2020-04-15	4113	121			
+2020-04-16	4345	133			
+2020-04-17	4530	144			
+2020-04-18	4655	146			
+2020-04-19	4837	154			
+2020-04-20	5025	167			
+2020-04-21	5231	177			

@@ -9,13 +9,20 @@ import { PluginOptions } from '@babel/core'
  * https://github.com/webpack/webpack/issues/2031#issuecomment-317589620
  *
  */
-function excludeNodeModulesExcept(modules: string[]) {
+function excludeNodeModulesExcept(
+  transpiledLibs?: string[] | boolean,
+  nonTranspiledLibs?: string[] | boolean,
+) {
+  if (!transpiledLibs || !Array.isArray(transpiledLibs)) {
+    return /node_modules/
+  }
+
   let pathSep: typeof path.sep | string = path.sep
   if (pathSep === '\\') {
     // must be quoted for use in a regexp:
     pathSep = '\\\\'
   }
-  const moduleRegExps = modules.map(
+  const moduleRegExps = transpiledLibs.map(
     // eslint-disable-next-line security/detect-non-literal-regexp
     (modName: string) => new RegExp(`node_modules${pathSep}${modName}`),
   )
@@ -24,6 +31,15 @@ function excludeNodeModulesExcept(modules: string[]) {
     if (modulePath.includes('node_modules')) {
       // eslint-disable-next-line no-loops/no-loops
       for (const element of moduleRegExps) {
+        if (
+          nonTranspiledLibs &&
+          Array.isArray(nonTranspiledLibs) &&
+          nonTranspiledLibs.some((lib) => modulePath.includes(lib))
+        ) {
+          // eslint-disable-next-line no-continue
+          continue
+        }
+
         if (element.test(modulePath)) {
           return false
         }
@@ -39,7 +55,8 @@ export interface WebpackLoadJavaScriptParams {
   options?: PluginOptions
   eslintConfigFile?: string | boolean
   sourceMaps: boolean
-  transpiledLibs?: string[]
+  transpiledLibs?: string[] | boolean
+  nonTranspiledLibs?: string[] | boolean
 }
 
 export default function webpackLoadJavaScript({
@@ -48,6 +65,7 @@ export default function webpackLoadJavaScript({
   eslintConfigFile,
   sourceMaps,
   transpiledLibs = [],
+  nonTranspiledLibs = [],
 }: WebpackLoadJavaScriptParams) {
   return [
     eslintConfigFile && {
@@ -77,7 +95,7 @@ export default function webpackLoadJavaScript({
     },
     {
       test: /\.(js|jsx|ts|tsx)$/,
-      exclude: excludeNodeModulesExcept(transpiledLibs),
+      exclude: excludeNodeModulesExcept(transpiledLibs, nonTranspiledLibs),
       use: [
         {
           loader: 'babel-loader',
@@ -114,6 +132,11 @@ export default function webpackLoadJavaScript({
           },
         },
       ],
+    },
+    {
+      test: /\.ya?ml$/,
+      type: 'json', // Required by Webpack v4
+      use: 'yaml-loader',
     },
   ].filter(Boolean)
 }

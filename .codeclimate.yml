@@ -1,0 +1,86 @@
+version: '2'
+
+checks:
+  argument-count:
+    enabled: true
+    config:
+      threshold: 5
+
+  complex-logic:
+    enabled: true
+    config:
+      threshold: 5
+
+  file-lines:
+    enabled: true
+    config:
+      threshold: 300
+
+  method-complexity:
+    enabled: true
+    config:
+      threshold: 8
+
+  method-count:
+    enabled: true
+    config:
+      threshold: 20
+
+  method-lines:
+    enabled: true
+    config:
+      threshold: 40
+
+  nested-control-flow:
+    enabled: true
+    config:
+      threshold: 4
+
+  return-statements:
+    enabled: true
+    config:
+      threshold: 4
+
+  similar-code:
+    enabled: true
+    threshold: 75
+
+  identical-code:
+    enabled: true
+    threshold: 75
+
+plugins:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        javascript:
+          mass_threshold: 75
+        typescript:
+          mass_threshold: 75
+
+exclude_patterns:
+  - '**/*.*test*.*'
+  - '**/__test*__/'
+  - '**/node_modules/'
+  - '.build/'
+  - '.cache/'
+  - '.env'
+  - '.eslintrc.js'
+  - '.github/'
+  - '.ignore/'
+  - '.reports/'
+  - '.vscode/'
+  - '3rdparty/'
+  - 'babel.config.js'
+  - 'config/'
+  - 'cypress/'
+  - 'data/'
+  - 'postcss.config.js'
+  - 'src/.generated/'
+  - 'src/assets/'
+  - 'src/index.polyfilled.ts'
+  - 'src/locales/'
+  - 'static/'
+  - 'stylelint.config.js'
+  - 'tools'

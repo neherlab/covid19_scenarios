@@ -4,33 +4,54 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { useTranslation } from 'react-i18next'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, TooltipPayload } from 'recharts'
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, LabelProps, TooltipProps } from 'recharts'
 
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-
-import { SeverityTableRow } from '../Scenario/SeverityTable'
+import { AgeDistribution, Severity } from '../../../.generated/types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
-import { colors } from './DeterministicLinePlot'
+import { colors } from './ChartCommon'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
-import { ResponsiveTooltipContent } from './ResponsiveTooltipContent'
+
+import { ChartTooltip } from './ChartTooltip'
 
 const ASPECT_RATIO = 16 / 4
 
 export interface SimProps {
   showHumanized?: boolean
   data?: AlgorithmResult
-  rates?: SeverityTableRow[]
+  ageDistribution?: AgeDistribution
+  rates?: Severity[]
+  forcedWidth?: number
+  forcedHeight?: number
+  printLabel?: boolean
 }
 
-export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
+export function AgeBarChart({
+  printLabel,
+  showHumanized,
+  data,
+  ageDistribution,
+  rates,
+  forcedWidth,
+  forcedHeight,
+}: SimProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
   const percentageChartRef = React.useRef(null)
 
-  if (!data || !rates) {
+  const label: LabelProps | undefined = printLabel
+    ? {
+        position: 'top',
+        fill: '#444444',
+        fontSize: '11px',
+        formatter: (label: string | number) => (label > 0 ? label : null),
+      }
+    : undefined
+
+  if (!data || !rates || !ageDistribution) {
     return null
   }
 
@@ -43,39 +64,43 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
       return translation
     }
 
-    process.env.NODE_ENV !== 'production' && console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
+    }
     return String(translation)
   }
 
-  const ages = Object.keys(data.params.ageDistribution)
-  const lastDataPoint = data.deterministic.trajectory[data.deterministic.trajectory.length - 1]
+  // Ensure age distribution is normalized
+  const Z: number = Object.values(ageDistribution).reduce((a, b) => a + b, 0)
+  const normAgeDistribution: Record<string, number> = {}
+  Object.keys(ageDistribution).forEach((k) => {
+    normAgeDistribution[k] = ageDistribution[k] / Z
+  })
+
+  const ages = Object.keys(normAgeDistribution)
+  const lastDataPoint = data.trajectory.mean[data.trajectory.mean.length - 1]
   const plotData = ages.map((age) => ({
     name: age,
-    fraction: Math.round(data.params.ageDistribution[age] * 1000) / 10,
-    peakSevere: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.severe[age]))),
-    peakCritical: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.critical[age]))),
-    peakOverflow: Math.round(Math.max(...data.deterministic.trajectory.map((x) => x.current.overflow[age]))),
+    fraction: Math.round(normAgeDistribution[age] * 1000) / 10,
+    peakSevere: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.severe[age]))),
+    peakCritical: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.critical[age]))),
+    peakOverflow: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.overflow[age]))),
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
   }))
 
-  const tooltipFormatter = (
-    value: string | number | Array<string | number>,
-    name: string,
-    entry: TooltipPayload,
-    index: number,
-  ) => <span>{formatNumber(Number(value))}</span>
+  const tooltipValueFormatter = (value: number | string) => (typeof value === 'number' ? formatNumber(value) : value)
 
   const tickFormatter = (value: number) => formatNumberRounded(value)
 
   return (
     <div className="w-100 h-100" data-testid="AgeBarChart">
-      <ReactResizeDetector handleWidth handleHeight>
+      <ReactResizeDetector handleWidth handleHeight refreshRate={300} refreshMode="debounce">
         {({ width }: { width?: number }) => {
           if (!width) {
             return <div className="w-100 h-100" />
           }
 
-          const height = Math.max(250, width / ASPECT_RATIO)
+          const height = Math.max(300, width / ASPECT_RATIO)
           const tooltipPosition = calculatePosition(height)
 
           return (
@@ -85,55 +110,75 @@ export function AgeBarChart({ showHumanized, data, rates }: SimProps) {
               <div ref={casesChartRef} />
               <BarChart
                 onClick={() => scrollToRef(casesChartRef)}
-                width={width}
-                height={height}
+                width={forcedWidth || width}
+                height={forcedHeight || height}
                 data={plotData}
+                throttleDelay={75}
                 margin={{
-                  left: 15,
-                  right: 15,
-                  bottom: 3,
-                  top: 15,
+                  left: 0,
+                  right: 0,
+                  bottom: 10,
+                  top: 10,
                 }}
               >
-                <XAxis dataKey="name" />
+                <XAxis
+                  dataKey="name"
+                  label={{ value: t('Age'), textAnchor: 'middle', position: 'insideBottom', offset: -3 }}
+                />
                 <YAxis
                   label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }}
                   tickFormatter={tickFormatter}
                 />
-                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
-                <Legend verticalAlign="top" />
+                <YAxis
+                  label={{ value: t('Age distribution [%]'), textAnchor: 'middle', angle: 90, position: 'insideRight' }}
+                  orientation={'right'}
+                  yAxisId="ageDisAxis"
+                  tickFormatter={tickFormatter}
+                />
+                <Tooltip
+                  position={tooltipPosition}
+                  content={(props: TooltipProps) => <ChartTooltip valueFormatter={tooltipValueFormatter} {...props} />}
+                />
+                <Legend verticalAlign="bottom" />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="peakSevere" fill={colors.severe} name={t('peak severe')} />
-                <Bar dataKey="peakCritical" fill={colors.critical} name={t('peak critical')} />
-                <Bar dataKey="peakOverflow" fill={colors.overflow} name={t('peak overflow')} />
-                <Bar dataKey="totalFatalities" fill={colors.fatality} name={t('total deaths')} />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="peakSevere"
+                  fill={colors.severe}
+                  name={t('peak severe')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="peakCritical"
+                  fill={colors.critical}
+                  name={t('peak critical')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="peakOverflow"
+                  fill={colors.overflow}
+                  name={t('peak overflow')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="totalFatalities"
+                  fill={colors.fatality}
+                  name={t('total deaths')}
+                  label={label}
+                />
+                <Bar
+                  isAnimationActive={false}
+                  dataKey="fraction"
+                  fill="#aaaaaa"
+                  name={t('% of population')}
+                  yAxisId={'ageDisAxis'}
+                />
               </BarChart>
 
               <div ref={percentageChartRef} />
-              <BarChart
-                onClick={() => scrollToRef(percentageChartRef)}
-                width={width}
-                height={height}
-                data={plotData}
-                margin={{
-                  left: 15,
-                  right: 15,
-                  bottom: 15,
-                  top: 3,
-                }}
-              >
-                <XAxis dataKey="name" label={{ value: t('Age'), position: 'insideBottom', offset: -3 }} />
-                <YAxis
-                  label={{
-                    value: t('% of total'),
-                    angle: -90,
-                    position: 'insideLeft',
-                  }}
-                />
-                <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip position={tooltipPosition} content={ResponsiveTooltipContent} />
-                <Bar dataKey="fraction" fill="#aaaaaa" name={t('% of total')} />
-              </BarChart>
             </>
           )
         }}

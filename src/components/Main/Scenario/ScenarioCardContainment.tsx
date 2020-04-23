@@ -4,32 +4,31 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
-import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
+import { CardWithControls } from '../../Form/CardWithControls'
 import { MitigationTable } from '../Mitigation/MitigationTable'
-
-import { State } from '../state/state'
+import { AllParams } from '../../../algorithms/types/Param.types'
 
 export interface ScenarioCardContainmentProps {
-  scenarioState: State
+  values: AllParams
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
 
-function ScenarioCardContainment({ scenarioState, errors, touched }: ScenarioCardContainmentProps) {
+function ScenarioCardContainment({ values, errors, touched }: ScenarioCardContainmentProps) {
   const { t } = useTranslation()
 
-  const { mitigationIntervals } = scenarioState.data.containment
+  const { mitigationIntervals } = values.containment
 
   return (
-    <CardWithoutDropdown
+    <CardWithControls
       identifier="containmentScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}
       help={t('Reduction of transmission through mitigation measures over time. Add or remove interventions.')}
     >
       <div className="w-auto">
-        <MitigationTable mitigationIntervals={mitigationIntervals} />
+        <MitigationTable mitigationIntervals={mitigationIntervals} errors={errors} touched={touched} />
       </div>
-    </CardWithoutDropdown>
+    </CardWithControls>
   )
 }
 

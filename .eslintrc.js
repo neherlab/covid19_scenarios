@@ -12,7 +12,6 @@ module.exports = {
     },
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json', './cypress/tsconfig.json'],
-    extraFileExtensions: ['.json'],
     warnOnUnsupportedTypeScriptVersion: true,
   },
   globals: {},
@@ -51,7 +50,6 @@ module.exports = {
     'i18next',
     'import',
     'jest',
-    'json',
     'jsx-a11y',
     'lodash',
     'no-loops',
@@ -75,6 +73,7 @@ module.exports = {
     // prettier should go last
     'prettier',
   ],
+  reportUnusedDisableDirectives: true,
   rules: {
     '@typescript-eslint/array-type': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -117,6 +116,7 @@ module.exports = {
     'react/jsx-curly-brace-presence': 'off',
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
+    'sonarjs/cognitive-complexity': ['warn', 20],
     'react/prop-types': 'off',
     'react/state-in-constructor': 'off',
     'redux-saga/no-unhandled-errors': 'off',
@@ -139,6 +139,9 @@ module.exports = {
 
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': 'warn',
+
+    '@typescript-eslint/tslint/max-union-size': 'off',
+    '@typescript-eslint/tslint/prettier': 'off',
   },
   env: {
     browser: true,
@@ -152,12 +155,6 @@ module.exports = {
     },
   },
   overrides: [
-    {
-      files: ['*.json'],
-      rules: {
-        '@typescript-eslint/no-useless-files': 'off',
-      },
-    },
     {
       files: ['*.d.ts'],
       rules: {
@@ -173,7 +170,9 @@ module.exports = {
         'config/**/*.ts',
         'jest-runner-eslint.config.js',
         'jest.config.js',
+        'lib/EnvVarError.js',
         'lib/findModuleRoot.js',
+        'lib/getenv.js',
         'postcss.config.js',
         'stylelint.config.js',
         'webpack.config.js',
@@ -181,6 +180,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
         'global-require': 'off',
+        'security/detect-child-process': 'off',
         'sonarjs/cognitive-complexity': ['warn', 50],
       },
     },
@@ -197,8 +197,16 @@ module.exports = {
       },
     },
     {
-      files: ['src/index.polyfilled.*'],
+      files: ['src/helpers/polyfill*', 'src/index.polyfilled.ts', 'src/workers/algorithm/worker.polyfilled.ts'],
       rules: {
+        'global-require': 'off',
+        'unicorn/import-index': 'off',
+      },
+    },
+    {
+      files: ['src/helpers/polyfill*'],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-typeof-undefined': 'off',
         '@typescript-eslint/tslint/no-typeof-undefined': 'off',
         'global-require': 'off',
@@ -227,6 +235,7 @@ module.exports = {
         'i18next/no-literal-string': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
+        '@typescript-eslint/tslint/no-identical-functions': 'off',
       },
     },
     {

@@ -27,7 +27,7 @@
   "israel": {
     "primarySource": "https://raw.githubusercontent.com/idandrd/israel-covid19-data/master/IsraelCOVID19.csv",
     "dataProvenance": "https://github.com/idandrd/israel-covid19-data",
-    "license": "none specified"
+    "license": "MIT"
   },
   "spain": {
     "primarySource": "https://github.com/datadista/datasets/tree/master/COVID%2019",
@@ -35,7 +35,7 @@
     "license": "unclear"
   },
   "switzerland": {
-    "primarySource": "https://raw.github.com/openZH/covid_19/master/COVID19_Cases_Cantons_CH_total.csv",
+    "primarySource": "https://raw.githubusercontent.com/openZH/covid_19/master/fallzahlen_kanton_total_csv/COVID19_Fallzahlen_Kanton_CANTONCODE_total.csv",
     "dataProvenance": "OpenZH",
     "license": "none specified"
   },
@@ -68,5 +68,10 @@
     "primarySource": "https://api.rootnet.in/covid19-in/stats/daily",
     "dataProvenance": "https://github.com/amodm/api-covid19-in",
     "license": "Scraped from Ministry of Health and Family Welfare plus other sources, no clear license"
+  },
+  "okinawa": {
+    "primarySource": "https://github.com/spigolotti/covid2019data_okinawa/blob/master/okinawaCOVID19.csv",
+    "dataProvenance": "https://okinawa.stopcovid19.jp/en/?fbclid=IwAR2MxJ3yYdpGJn7gb3OXc4JzX8CMHSHUWjtwU3t7JnuoNXv1OQI64zz0VsU",
+    "license": "MIT"
   }
 }

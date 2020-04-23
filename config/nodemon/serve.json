@@ -5,8 +5,8 @@
   "watch": [
     ".env",
     "babel.config.js",
-    "package.json",
     "infra/lambda-at-edge/modifyOutgoingHeaders.lambda.js",
+    "package.json",
     "src/server",
     "tsconfig.json",
     "yarn.lock"

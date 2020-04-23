@@ -1,87 +1,39 @@
-export interface DateRange {
-  tMin: Date
-  tMax: Date
-}
+import {
+  AllParams,
+  CaseCounts,
+  ContainmentData,
+  DateRange,
+  EmpiricalDatum,
+  EpidemiologicalData,
+  MitigationInterval,
+  PopulationData,
+  SimulationData,
+  AgeDistribution,
+  Severity,
+  AgeGroup,
+} from '../../.generated/types'
 
-export interface MitigationInterval {
-  id: string
-  name: string
-  color: string
-  timeRange: DateRange
-  mitigationValue: number
+export {
+  CaseCounts,
+  AgeDistribution,
+  DateRange,
+  MitigationInterval,
+  AllParams,
+  EpidemiologicalData,
+  PopulationData,
+  SimulationData,
+  ContainmentData,
+  Severity,
+  AgeGroup,
 }
 
 export type MitigationIntervalWithoutId = Omit<MitigationInterval, 'id'>
 
 export type MitigationIntervals = MitigationInterval[]
 
-export interface PopulationData {
-  populationServed: number
-  country: string
-  suspectedCasesToday: number
-  importsPerDay: number
-  hospitalBeds: number
-  ICUBeds: number
-  cases: string
-}
-
-export interface EpidemiologicalData {
-  r0: number // Average number of people who will catch a disease from one contagious person. Usually specified as a decimal, e. g. 2.7
-  latencyTime: number
-  infectiousPeriod: number
-  lengthHospitalStay: number
-  lengthICUStay: number
-  seasonalForcing: number
-  peakMonth: number
-  overflowSeverity: number
-}
-
-export interface ContainmentData {
-  mitigationIntervals: MitigationIntervals
-}
-
-export interface SimulationData {
-  simulationTimeRange: DateRange
-  numberStochasticRuns: number
-}
-
-export interface ScenarioData {
-  population: PopulationData
-  epidemiological: EpidemiologicalData
-  containment: ContainmentData
-  simulation: SimulationData
-}
-
-export interface AllParams {
-  population: PopulationData
-  epidemiological: EpidemiologicalData
-  simulation: SimulationData
-  containment: ContainmentData
-}
+// FIXME: One of these should go away
+export type ScenarioData = AllParams
 
 export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData & ContainmentData
-
-// part of the application state to be persisted in the URL
-export interface PersistedState {
-  current: string
-  data: ScenarioData
-}
-
-// format of the application state persisted in the URL
-export interface PersistedStateDto {
-  current: string
-  population: PopulationData
-  epidemiological: EpidemiologicalData
-  simulation: SimulationData
-  containment: TimeSeries
-}
-
-interface EmpiricalDatum {
-  time: Date
-  cases: number
-  deaths: number
-  hospitalized: number
-  ICU: number
-}
 
 export type EmpiricalData = EmpiricalDatum[]

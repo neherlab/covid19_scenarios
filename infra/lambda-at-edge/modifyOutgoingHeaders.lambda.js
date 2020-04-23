@@ -35,7 +35,8 @@ function generateFeaturePolicyHeader(featurePoicyObject) {
 }
 
 const NEW_HEADERS = {
-  'Content-Security-Policy': "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:",
+  'Content-Security-Policy':
+    "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: *.githubusercontent.com",
   'Referrer-Policy': 'no-referrer',
   'Strict-Transport-Security': 'max-age=15768000; includeSubDomains; preload',
   'X-Content-Type-Options': 'nosniff',
@@ -56,11 +57,11 @@ function addHeaders(headersObject) {
   )
 }
 
-const HEADERS_TO_REMOVE = ['server', 'via']
+const HEADERS_TO_REMOVE = new Set(['server', 'via'])
 
 function filterHeaders(headers) {
   return Object.entries(headers).reduce((result, [key, value]) => {
-    if (HEADERS_TO_REMOVE.includes(key.toLowerCase())) {
+    if (HEADERS_TO_REMOVE.has(key.toLowerCase())) {
       return result
     }
 

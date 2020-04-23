@@ -4,23 +4,13 @@ import csv
 import io
 from datetime import datetime
 
-from .utils import store_data
+from .utils import store_data, stoi
 
 # ------------------------------------------------------------------------
 # Globals
 
 URL  = "https://raw.githubusercontent.com/idandrd/israel-covid19-data/master/IsraelCOVID19.csv"
-LOC  = "case-counts/Asia/Western Asia/Israel"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
-
-# ------------------------------------------------------------------------
-# Functions
-
-def to_int(x):
-    if x == "NA" or x == "":
-        return None
-    else:
-        return int(x)
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -36,10 +26,12 @@ def parse():
     rdr = csv.reader(fd)
     hdr = next(rdr)
     for row in rdr:
+        if len(row[0])==0:
+            continue
         date_str = datetime.strptime(row[0], r"%d/%m/%Y").strftime(r"%Y-%m-%d")
-        num_cases = to_int(row[1])
-        num_icus = to_int(row[4])
-        num_deaths = to_int(row[5])
+        num_cases = stoi(row[1])
+        num_icus = stoi(row[4])
+        num_deaths = stoi(row[5])
         il_data["Israel"].append([date_str, num_cases, num_deaths, None, num_icus, None])
 
-    store_data(il_data, 'israel', cols=cols)
+    store_data(il_data, 'israel', cols)

@@ -3,106 +3,88 @@ import { useDebouncedCallback } from 'use-debounce'
 
 import _ from 'lodash'
 
-import { Form, Formik, FormikHelpers } from 'formik'
+import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
 
 import { Col, Row } from 'reactstrap'
 
-import { SeverityTableRow } from './Scenario/SeverityTable'
-
-import { AllParams, EmpiricalData } from '../../algorithms/types/Param.types'
+import { AllParams, EmpiricalData, Severity } from '../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import { run, intervalsToTimeSeries } from '../../algorithms/run'
+import { run } from '../../workers/algorithm'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
-import { CountryAgeDistribution } from '../../assets/data/CountryAgeDistribution.types'
-import countryAgeDistributionData from '../../assets/data/country_age_distribution.json'
-import severityData from '../../assets/data/severityData.json'
-
-import countryCaseCountData from '../../assets/data/case_counts.json'
+import { getCaseCountsData } from './state/caseCountsData'
 
 import { schema } from './validation/schema'
 
 import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 
-import { defaultScenarioState } from './state/state'
-import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
-import { serialize } from './state/serialization/StateSerializer'
+import { State } from './state/state'
+import { buildLocationSearch } from './state/serialization/URLSerializer'
 
+import { InitialStateComponentProps } from './HandleInitialState'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
-import { updateSeverityTable } from './Scenario/severityTableUpdate'
+import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
-import { TimeSeries } from '../../algorithms/types/TimeSeries.types'
+import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
 
-export function severityTableIsValid(severity: SeverityTableRow[]) {
-  return !severity.some((row) => _.values(row?.errors).some((x) => x !== undefined))
-}
-
-export function severityErrors(severity: SeverityTableRow[]) {
-  return severity.map((row) => row?.errors)
+interface FormikValidationErrors extends Error {
+  errors: FormikErrors<FormikValues>
 }
 
 async function runSimulation(
   params: AllParams,
-  severity: SeverityTableRow[],
+  scenarioState: State,
+  severity: Severity[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
   setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
+  setIsRunning: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
-  const paramsFlat = {
-    ...params.population,
-    ...params.epidemiological,
-    ...params.simulation,
-    ...params.containment,
+  setIsRunning(true)
+  try {
+    const paramsFlat = {
+      ...params.population,
+      ...params.epidemiological,
+      ...params.simulation,
+      ...params.containment,
+    }
+
+    const caseCounts = getCaseCountsData(params.population.cases)
+    const newResult = await run({ params: paramsFlat, severity, ageDistribution: scenarioState.ageDistribution })
+    setResult(newResult)
+    caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
+    setEmpiricalCases(caseCounts)
+  } catch (error) {
+    // Rejected promises are thrown by await functions.
+    // Catch and log the error message to console.
+    console.error(error)
   }
-
-  if (!isCountry(params.population.country)) {
-    console.error(`The given country is invalid: ${params.population.country}`)
-    return
-  }
-
-  if (params.population.cases !== 'none' && !isRegion(params.population.cases)) {
-    console.error(`The given confirmed cases region is invalid: ${params.population.cases}`)
-    return
-  }
-
-  const ageDistribution = (countryAgeDistributionData as CountryAgeDistribution)[params.population.country]
-  const caseCounts: EmpiricalData = countryCaseCountData[params.population.cases] || []
-  const containment: TimeSeries = intervalsToTimeSeries(params.containment.mitigationIntervals)
-
-  intervalsToTimeSeries(params.containment.mitigationIntervals)
-  const newResult = await run(paramsFlat, severity, ageDistribution, containment)
-
-  setResult(newResult)
-  caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
-  setEmpiricalCases(caseCounts)
+  setIsRunning(false)
 }
 
-const severityDefaults: SeverityTableRow[] = updateSeverityTable(severityData)
+function getColumnSizes(areResultsMaximized: boolean) {
+  if (areResultsMaximized) {
+    return { colScenario: { xl: 4 }, colResults: { xl: 8 } }
+  }
 
-const isCountry = (country: string): country is keyof CountryAgeDistribution => {
-  return Object.prototype.hasOwnProperty.call(countryAgeDistributionData, country)
+  return { colScenario: { xl: 6 }, colResults: { xl: 6 } }
 }
 
-const isRegion = (region: string): region is keyof typeof countryCaseCountData => {
-  return Object.prototype.hasOwnProperty.call(countryCaseCountData, region)
-}
-
-function Main() {
+function Main({ initialState }: InitialStateComponentProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [autorunSimulation, setAutorunSimulation] = useState(false)
-  const [scenarioState, scenarioDispatch] = useReducer(
-    scenarioReducer,
-    defaultScenarioState,
-    deserializeScenarioFromURL,
+  const [autorunSimulation, setAutorunSimulation] = useState(
+    LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? false,
   )
+  const [areResultsMaximized, setAreResultsMaximized] = useState(false)
+  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, initialState.scenarioState)
 
   // TODO: Can this complex state be handled by formik too?
-  const [severity, setSeverity] = useState<SeverityTableRow[]>(severityDefaults)
-  const [scenarioQueryString, setScenarioQueryString] = useState<string>('')
-  const scenarioUrl = `${window.location.origin}?${scenarioQueryString}`
+  const [severity, setSeverity] = useState<Severity[]>(initialState.severityTable)
+  const [printable, setPrintable] = useState(false)
+  const openPrintPreview = () => setPrintable(true)
 
   const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
 
@@ -111,9 +93,7 @@ function Main() {
     setAutorunSimulation(!autorunSimulation)
   }
 
-  const updateBrowserUrl = () => {
-    window.history.pushState('', '', `?${scenarioQueryString}`)
-  }
+  const [isRunning, setIsRunning] = useState(false)
 
   const allParams: AllParams = {
     population: scenarioState.data.population,
@@ -122,64 +102,76 @@ function Main() {
     containment: scenarioState.data.containment,
   }
 
-  useEffect(() => {
-    // runs only once, when the component is mounted
-    const autorun = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION)
-    setAutorunSimulation(autorun ?? false)
-
-    // if the link contains query, we're executing the scenario (and displaying graphs)
-    // this is because the page was either shared via link, or opened in new tab
-    if (window.location.search) {
-      debouncedRun(allParams, severity)
-    }
-  }, [])
-
   const [debouncedRun] = useDebouncedCallback(
-    (params: AllParams, severity: SeverityTableRow[]) => runSimulation(params, severity, setResult, setEmpiricalCases),
+    (params: AllParams, scenarioState: State, severity: Severity[]) =>
+      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning),
     500,
   )
 
   useEffect(() => {
-    // 1. upon each parameter change, we rebuild the query string
-    const queryString = serialize(scenarioState)
+    // runs only once, when the component is mounted
+    if (!initialState.isDefault) {
+      debouncedRun(allParams, scenarioState, severity)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-    if (queryString !== scenarioQueryString) {
-      // whenever the generated query string changes, we're updating:
-      // 1. browser URL
-      // 2. scenarioQueryString state variable (scenarioUrl is used by children)
-      setScenarioQueryString(queryString)
+  useEffect(() => {
+    if (autorunSimulation && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)) {
+      debouncedRun(allParams, scenarioState, severity)
     }
+  }, [autorunSimulation, debouncedRun, scenarioState, severity]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    if (autorunSimulation) {
-      updateBrowserUrl()
-      debouncedRun(allParams, severity)
-    }
-  }, [autorunSimulation, debouncedRun, scenarioState, scenarioQueryString, severity])
+  const [validateFormAndUpdateState] = useDebouncedCallback((newParams: AllParams) => {
+    return schema
+      .validate(newParams)
+      .then((validParams) => {
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.population, validParams.population)) {
+          scenarioDispatch(setPopulationData({ data: validParams.population }))
+        }
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.epidemiological, validParams.epidemiological)) {
+          scenarioDispatch(setEpidemiologicalData({ data: validParams.epidemiological }))
+        }
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.simulation, validParams.simulation)) {
+          scenarioDispatch(setSimulationData({ data: validParams.simulation }))
+        }
+        // NOTE: deep object comparison!
+        if (!_.isEqual(allParams.containment, validParams.containment)) {
+          const mitigationIntervals = _.map(validParams.containment.mitigationIntervals, _.cloneDeep)
+          scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
+        }
 
-  const [setScenarioToCustom] = useDebouncedCallback((newParams: AllParams) => {
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.population, newParams.population)) {
-      scenarioDispatch(setPopulationData({ data: newParams.population }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.epidemiological, newParams.epidemiological)) {
-      scenarioDispatch(setEpidemiologicalData({ data: newParams.epidemiological }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.simulation, newParams.simulation)) {
-      scenarioDispatch(setSimulationData({ data: newParams.simulation }))
-    }
-    // NOTE: deep object comparison!
-    if (!_.isEqual(allParams.containment, newParams.containment)) {
-      const mitigationIntervals = _.map(newParams.containment.mitigationIntervals, _.cloneDeep)
-      scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
-    }
+        return validParams
+      })
+      .catch((error: FormikValidationErrors) => error.errors)
   }, 1000)
 
   function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
-    updateBrowserUrl()
-    runSimulation(params, severity, setResult, setEmpiricalCases)
+    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning)
     setSubmitting(false)
+  }
+
+  function toggleResultsMaximized() {
+    setAreResultsMaximized(!areResultsMaximized)
+  }
+
+  const { colScenario, colResults } = getColumnSizes(areResultsMaximized)
+
+  if (printable) {
+    return (
+      <PrintPage
+        params={allParams}
+        scenarioUsed={scenarioState.current}
+        severity={severity}
+        result={result}
+        caseCounts={empiricalCases}
+        onClose={() => {
+          setPrintable(false)
+        }}
+      />
+    )
   }
 
   return (
@@ -188,38 +180,44 @@ function Main() {
         <Formik
           enableReinitialize
           initialValues={allParams}
-          validationSchema={schema}
           onSubmit={handleSubmit}
-          validate={setScenarioToCustom}
+          validate={validateFormAndUpdateState}
+          validationSchema={schema}
         >
-          {({ errors, touched, isValid, isSubmitting }) => {
-            const canRun = isValid && severityTableIsValid(severity)
-
+          {({ values, errors, touched, isValid, isSubmitting }) => {
+            const canRun = isValid && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)
             return (
-              <Form className="form">
+              <Form noValidate className="form">
                 <Row>
-                  <Col lg={4} xl={6} className="py-1">
+                  <Col lg={4} {...colScenario} className="py-1 animate-flex-width">
                     <ScenarioCard
+                      values={values}
                       severity={severity}
                       setSeverity={setSeverity}
                       scenarioState={scenarioState}
                       scenarioDispatch={scenarioDispatch}
                       errors={errors}
                       touched={touched}
+                      areResultsMaximized={areResultsMaximized}
                     />
                   </Col>
 
-                  <Col lg={8} xl={6} className="py-1">
+                  <Col lg={8} {...colResults} className="py-1 animate-flex-width">
                     <ResultsCard
                       canRun={canRun}
+                      isRunning={isRunning}
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
                       params={allParams}
+                      ageDistribution={scenarioState.ageDistribution}
                       mitigation={allParams.containment}
                       result={result}
                       caseCounts={empiricalCases}
-                      scenarioUrl={scenarioUrl}
+                      scenarioUrl={buildLocationSearch(scenarioState)}
+                      openPrintPreview={openPrintPreview}
+                      areResultsMaximized={areResultsMaximized}
+                      toggleResultsMaximized={toggleResultsMaximized}
                     />
                   </Col>
                 </Row>

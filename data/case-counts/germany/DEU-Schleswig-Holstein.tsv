@@ -1,7 +1,7 @@
 # Data source: https://raw.githubusercontent.com/chriswien/COVID19_CaseNumberDE/master/COVID19_Cases_Bundeslaender_DE.csv
 # Data provenance: https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html
 # License: none specified
-time	cases	deaths	hospitalized	ICU	recovered
+time	cases	deaths	hospitalized	icu	recovered
 2020-02-24	0	0			
 2020-02-25	0	0			
 2020-02-26	0	0			
@@ -42,3 +42,22 @@ time	cases	deaths	hospitalized	ICU	recovered
 2020-04-01	1246	10			
 2020-04-02	1335	11			
 2020-04-03	1443	15			
+2020-04-04	1559	17			
+2020-04-05	1631	18			
+2020-04-06	1671	20			
+2020-04-07	1730	24			
+2020-04-08	1827	28			
+2020-04-09	1932	34			
+2020-04-10	2029	38			
+2020-04-11	2065	39			
+2020-04-12	2118	41			
+2020-04-13	2134	44			
+2020-04-14	2164	49			
+2020-04-15	2245	54			
+2020-04-16	2294	55			
+2020-04-17	2349	59			
+2020-04-18	2387	61			
+2020-04-19	2417	62			
+2020-04-20	2426	67			
+2020-04-21	2414	70			
+2020-04-22	2496	79			

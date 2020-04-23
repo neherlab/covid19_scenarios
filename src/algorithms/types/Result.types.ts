@@ -1,10 +1,20 @@
+import { AgeDistribution } from '../../.generated/types'
+import { TimeSeries } from './TimeSeries.types'
+
 export interface InternalCurrentData {
-  susceptible: Record<string, number>
-  exposed: Record<string, number[]>
-  infectious: Record<string, number>
-  severe: Record<string, number>
-  critical: Record<string, number>
-  overflow: Record<string, number>
+  susceptible: number[]
+  exposed: number[][]
+  infectious: number[]
+  severe: number[]
+  critical: number[]
+  overflow: number[]
+}
+
+export interface InternalCumulativeData {
+  recovered: number[]
+  hospitalized: number[]
+  critical: number[]
+  fatality: number[]
 }
 
 export interface ExposedCurrentData {
@@ -16,7 +26,7 @@ export interface ExposedCurrentData {
   overflow: Record<string, number>
 }
 
-export interface CumulativeData {
+export interface ExposedCumulativeData {
   recovered: Record<string, number>
   hospitalized: Record<string, number>
   critical: Record<string, number>
@@ -27,38 +37,38 @@ export interface CumulativeData {
 export interface SimulationTimePoint {
   time: number
   current: InternalCurrentData
-  cumulative: CumulativeData
+  cumulative: InternalCumulativeData
 }
 
 // This defines the user-facing data structure
 export interface ExportedTimePoint {
   time: number
   current: ExposedCurrentData
-  cumulative: CumulativeData
+  cumulative: ExposedCumulativeData
 }
 
 export interface ModelFracs {
-  severe: Record<string, number>
-  critical: Record<string, number>
-  fatal: Record<string, number>
-  isolated: Record<string, number>
+  severe: number[]
+  critical: number[]
+  fatal: number[]
+  isolated: number[]
 }
 
 export interface ModelRates {
   latency: number
-  infection: (t: Date) => number
-  recovery: Record<string, number>
-  severe: Record<string, number>
-  discharge: Record<string, number>
-  critical: Record<string, number>
-  stabilize: Record<string, number>
-  fatality: Record<string, number>
-  overflowFatality: Record<string, number>
+  infection: (t: number) => number
+  recovery: number[]
+  severe: number[]
+  discharge: number[]
+  critical: number[]
+  stabilize: number[]
+  fatality: number[]
+  overflowFatality: number[]
 }
 
 export interface ModelParams {
-  ageDistribution: Record<string, number>
-  importsPerDay: Record<string, number>
+  ageDistribution: AgeDistribution
+  importsPerDay: number[]
   timeDelta: number
   timeDeltaDays: number
   populationServed: number
@@ -70,11 +80,19 @@ export interface ModelParams {
 }
 
 export interface UserResult {
-  trajectory: ExportedTimePoint[]
+  mean: ExportedTimePoint[]
+  lower: ExportedTimePoint[]
+  upper: ExportedTimePoint[]
+  percentile: Record<number, ExportedTimePoint[]>
+}
+
+export interface TimeSeriesWithRange {
+  mean: TimeSeries
+  lower: TimeSeries
+  upper: TimeSeries
 }
 
 export interface AlgorithmResult {
-  deterministic: UserResult
-  stochastic: UserResult[]
-  params: ModelParams
+  trajectory: UserResult
+  R0: TimeSeriesWithRange
 }

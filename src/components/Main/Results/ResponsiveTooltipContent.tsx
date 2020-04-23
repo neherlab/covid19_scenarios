@@ -1,22 +1,42 @@
 import React, { ReactNode } from 'react'
+import { TooltipProps } from 'recharts'
+
+import { LineProps } from './ChartCommon'
 
 import './ResponsiveTooltipContent.scss'
 
-interface TooltipItem {
+export interface TooltipItem extends LineProps {
+  value: React.ReactNode
+  lower?: ReactNode
+  upper?: ReactNode
+}
+
+interface TooltipContentItemProps {
   name: string
   value: string | number | ReactNode
   color: string
+  lower?: ReactNode
+  upper?: ReactNode
 }
 
-interface TooltipContentProps {
-  active: boolean
-  label?: string | number
-  payload: TooltipItem[]
-  formatter?: Function
-  labelFormatter?: Function
-}
-
-function ToolTipContentItem({ name, value, color }: TooltipItem) {
+function TooltipContentItem({ name, value, lower, upper, color }: TooltipContentItemProps) {
+  if (lower && upper) {
+    return (
+      <div style={{ color }} className="responsive-tooltip-content-item">
+        {name}
+        <div className="responsive-tooltip-content-placeholder" />
+        <div>
+          {value}{' '}
+          <div style={{ display: 'inline-block' }}>
+            <span style={{ display: 'inline-block' }}>
+              <sup style={{ display: 'block', position: 'relative' }}>+{upper}</sup>
+              <sub style={{ display: 'block', position: 'relative' }}>-{lower}</sub>
+            </span>
+          </div>
+        </div>
+      </div>
+    )
+  }
   return (
     <div style={{ color }} className="responsive-tooltip-content-item">
       {name}
@@ -25,39 +45,31 @@ function ToolTipContentItem({ name, value, color }: TooltipItem) {
     </div>
   )
 }
+export interface ResponsiveTooltipContentProps extends TooltipProps {
+  formattedLabel: React.ReactNode
+  tooltipItems: TooltipItem[]
+}
 
-export function ResponsiveTooltipContent({ active, payload, label, formatter, labelFormatter }: TooltipContentProps) {
-  const formattedLabel = labelFormatter && label ? labelFormatter(label) : label
-  const formatNumber = formatter
-
-  const essentialPayload = payload.map((payloadItem) => ({
-    name: payloadItem.name,
-    color: payloadItem.color || '#bbbbbb',
-    value: formatter ? formatNumber(payloadItem.value, '', '', 0) : payloadItem.value,
-  }))
-
-  const left = payload.length > 1 ? essentialPayload.slice(0, Math.floor(payload.length / 2)) : payload
-  const right = payload.length > 1 ? essentialPayload.slice(Math.floor(payload.length / 2), payload.length - 1) : []
-
-  if (active) {
-    return (
-      <div className="responsive-tooltip-content-base">
-        <strong>{formattedLabel}</strong>
-        <div className="responsive-tooltip-content">
-          <div>
-            {left.map((item, idx) => (
-              <ToolTipContentItem key={idx} name={item.name} value={item.value} color={item.color} />
-            ))}
-          </div>
-          <div>
-            {right.map((item, idx) => (
-              <ToolTipContentItem key={idx} name={item.name} value={item.value} color={item.color} />
-            ))}
-          </div>
-        </div>
+export function ResponsiveTooltipContent({ formattedLabel, tooltipItems }: ResponsiveTooltipContentProps) {
+  const left = tooltipItems.slice(0, Math.ceil(tooltipItems.length / 2))
+  const right = tooltipItems.slice(Math.ceil(tooltipItems.length / 2))
+  const tooltip = (item: TooltipItem) => (
+    <TooltipContentItem
+      key={item.key}
+      name={item.name}
+      value={item.value}
+      lower={item.lower}
+      upper={item.upper}
+      color={item.color}
+    />
+  )
+  return (
+    <div className="responsive-tooltip-content-base">
+      <strong>{formattedLabel}</strong>
+      <div className="responsive-tooltip-content">
+        <div>{left.map((item) => tooltip(item))}</div>
+        <div>{right.map((item) => tooltip(item))}</div>
       </div>
-    )
-  }
-
-  return null
+    </div>
+  )
 }

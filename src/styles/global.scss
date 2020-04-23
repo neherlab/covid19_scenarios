@@ -13,44 +13,25 @@
 
 @import './katex';
 
+@import '~react-grid-layout/css/styles.css';
+@import '~react-resizable/css/styles.css';
+
+html,
+body {
+  height: 100%;
+}
+
 html {
   overflow-y: scroll;
 }
 
 body {
-  background-color: #eeeeee;
   // HACK: workaround for bootstrap modal adding padding-right when open
   padding: 0 !important;
-}
 
-// TYPOGRAPHY
-h2,
-h3 {
-  font-family: $font-family-sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-h2 {
-  color: $black;
-  font-size: 28px;
-  letter-spacing: 0.49em;
-}
-
-h3 {
-  color: $black;
-  font-size: 20px;
-}
-
-.card h3 {
-  color: $white;
-}
-
-.card.card--results h3 {
-  color: $black;
-  margin-bottom: 0;
-  margin-top: 1em;
+  @media not print {
+    background-color: #eee;
+  }
 }
 
 .container.absolute {
@@ -96,103 +77,14 @@ p {
   }
 }
 
-// STRUCTURE ELEMENTS
-.card {
-  background-color: transparent;
-  border: 1px solid $black;
-  // margin-top: 15px;
-}
-
-.card-header {
-  background-color: $black;
-  padding: 8px 4px;
-}
-
-.card-header label {
-  margin: 0;
-}
-
-.card-header p {
-  color: $white;
-}
-
-.card-header-button {
-  width: 100%;
-  height: 100%;
-}
-
-.card-body {
-  padding: 1rem;
-}
-
-.card--main {
-  border: none;
-  margin-top: 30px;
-
-  & > .card-header {
-    background-color: transparent;
-    border-bottom: 3px solid $black;
-    min-height: 3em;
-    padding-left: 0;
-  }
-
-  & > .card-body,
-  & > .collapse > .card-body {
-    margin-top: 10px;
-    padding: 0;
-  }
-}
-
-.card--results {
-  & > .card-body,
-  & > .collapse > .card-body {
-    background-color: $white;
-    border: 1px solid $black;
-    margin-top: 20px;
-    padding: 1rem;
-  }
-}
-
-//HELP CARDS
-.card--help {
-  .card-body {
-    line-height: 1.2;
-
-    p {
-      margin: 0;
-      text-align: left;
-      color: initial;
-    }
-
-    h4 {
-      font-weight: bold;
-      font-size: 110%;
-    }
-  }
-}
-
-//FORMs
-.card--population,
-.card--epidemiology {
-  .card-body .row {
-    align-items: center;
-    display: flex;
-    margin-bottom: 0.5em;
-  }
-}
-
 // Always show spinbox arrows in Chrome
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
   opacity: 1;
 }
 
 .noselect {
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -212,4 +104,47 @@ input[type='number']::-webkit-outer-spin-button {
 
 .recharts-tooltip-wrapper {
   z-index: 999;
+}
+
+// rechart <Scatter /> elements can cause the tooltip to hide. (and appear with
+// a payload it cannot handle). So they are set to ignore mouse events.
+// https://github.com/neherlab/covid19_scenarios/issues/234#issuecomment-612294282
+.recharts-scatter-symbol {
+  pointer-events: none;
+}
+
+.truncate-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hide-native-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.body-color {
+  color: $body-color;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.table-layout-fixed {
+  table-layout: fixed;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 30px;
+  z-index: 100;
+}
+
+.btn-shadow {
+  box-shadow: 4px 4px 10px 1px #222;
 }

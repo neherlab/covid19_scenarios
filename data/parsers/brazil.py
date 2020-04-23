@@ -4,7 +4,7 @@ import csv
 import io
 
 from collections import defaultdict
-from .utils import store_data, sorted_date
+from .utils import store_data, sorted_date, stoi
 
 # ------------------------------------------------------------------------
 # Globals
@@ -40,17 +40,7 @@ state_codes = {
 }
 
 URL  = "https://brasil.io/dataset/covid19/caso?format=csv"
-LOC  = "case-counts/Americas/Latin America and the Caribbean/Brazil"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
-
-# ------------------------------------------------------------------------
-# Functions
-
-def to_int(x):
-    if x == "NA" or x == "":
-        return None
-    else:
-        return int(x)
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -72,8 +62,8 @@ def parse():
         city = row[2]
         if city != "": continue
         date = row[0]
-        cases = to_int(row[4])
-        deaths = to_int(row[5])
+        cases = stoi(row[4])
+        deaths = stoi(row[5])
         regions[state].append([date, cases, deaths, None, None, None])
     for state, data in regions.items():
         regions[state] = sorted_date(data, cols)

@@ -3,11 +3,11 @@
   "projectOwner": "neherlab",
   "files": [
     "README.md",
-    "src/assets/text/contributors-generated.md"
+    "src/components/Team/ContributorsGenerated.mdx"
   ],
   "imageSize": 100,
-  "contributorsSortAlphabetically":true,
-  "skipCi": false,
+  "contributorsSortAlphabetically": true,
+  "skipCi": true,
   "contributors": [
     {
       "login": "rneher",
@@ -610,11 +610,117 @@
         "code",
         "data"
       ]
+    },
+    {
+      "login": "dkozar",
+      "name": "Danko Kozar",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1078403?v=4",
+      "profile": "http://dankokozar.com",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "arieltonglet",
+      "name": "arieltonglet",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13951624?v=4",
+      "profile": "https://github.com/arieltonglet",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "iosonofabio",
+      "name": "Fabio Zanini",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1200640?v=4",
+      "profile": "http://fabilab.org",
+      "contributions": [
+        "code",
+        "data"
+      ]
+    },
+    {
+      "login": "alebrand",
+      "name": "alebrand",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16303460?v=4",
+      "profile": "https://github.com/alebrand",
+      "contributions": [
+        "code",
+        "data"
+      ]
+    },
+    {
+      "login": "TeepaBlue",
+      "name": "TeepaBlue",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/42367122?v=4",
+      "profile": "https://github.com/TeepaBlue",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ashwinGokhale",
+      "name": "Ashwin Gokhale",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/21692499?v=4",
+      "profile": "https://www.ashwingokhale.me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "guandiyiyi",
+      "name": "Di Guan",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/10755641?v=4",
+      "profile": "https://github.com/guandiyiyi",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "whiver",
+      "name": "William Hiver",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/394565?v=4",
+      "profile": "https://github.com/whiver",
+      "contributions": [
+        "code",
+        "translation"
+      ]
+    },
+    {
+      "login": "natkaratkova",
+      "name": "Nataliya Karatkova",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2752193?v=4",
+      "profile": "https://github.com/natkaratkova",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "jilladona",
+      "name": "Jill Adona",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/29975017?v=4",
+      "profile": "https://github.com/jilladona",
+      "contributions": [
+        "code",
+        "data"
+      ]
+    },
+    {
+      "login": "Vanuan",
+      "name": "John Yani",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/361985?v=4",
+      "profile": "https://github.com/Vanuan",
+      "contributions": [
+        "code",
+        "data"
+      ]
     }
   ],
   "repoType": "github",
   "contributorsPerLine": 7,
   "repoHost": "https://github.com",
-  "commitConvention": "angular",
-  "skipCi": true
+  "commitConvention": "angular"
 }

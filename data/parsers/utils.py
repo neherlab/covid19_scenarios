@@ -4,25 +4,27 @@ import functools
 import os
 import re
 import sys
-sys.path.append('..')
-from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR
+import yaml
+
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR, SCHEMA_CASECOUNTS
 
 from datetime import datetime
 from collections import defaultdict
+from jsonschema import validate, FormatChecker
 
 # ------------------------------------------------------------------------
 # Globals
 with open(os.path.join(BASE_PATH, SOURCES_FILE)) as fh:
     sources = json.load(fh)
 
-default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 
 # ------------------------------------------------------------------------
 # Functions
 
 def stoi(x):
-    if x is None or x == '':
+    if x is None or x == "NA" or x == '':
         return None
 
     return int(x)
@@ -43,7 +45,6 @@ def get_header(source):
 def flatten(cases):
     # Expects a dict of lists of dicts {'USA': [{'cases': 0, 'time': '2020-03-20'}, ..., ] }
     # Converts to list of lists [['USA', '2020-03-20', 0, ...]]
-    # This is mostly required for World.tsv and similar
     rows = []
     for cntry, data in cases.items():
         for datum in data:
@@ -92,6 +93,39 @@ def compare_day(day1, day2):
     else:
         return 0
 
+def add_cases(cases, toAdd, target, cols=default_cols):
+    """ Add daily counts of toAdd countries together, and aggregate in target country
+    Keyword arguments:
+    cases -- a dict of lists of lists {'USA': [['2020-03-20', 0, ...], ...]}.
+    toAdd -- a list of country strings of countries that should be added together
+    target-- a string denoting the target country for the added data
+    cols  -- list of column headers
+    """
+
+    # we expect to not have target in cases already
+    if target in cases:
+        print(f'Warning: add_cases called to overwrite values in {target}', sys.stderr)
+    cases[target] = []
+    for s in toAdd:
+        for e in cases[s]:
+            time = e[cols.index('time')]
+            new = True
+            for d in cases[target]:
+                # Check if we had data for this date already, if yes add if needed/possible
+                if d[cols.index('time')] == time:
+                    new = False
+                    for i in range(1,len(d)):
+                        if d[i] != None:
+                            if e[i]:
+                                d[i] += e[i]
+                        elif e[i] != None:
+                            d[i] = e[i]
+            if new:
+                # we did not have that date in the aggregate yet
+                cases[target].append(e.copy())
+    cases[target] = sorted_date(cases[target], cols)
+    return cases
+
 def merge_cases(oldcases, newcases):
     # We expect dicts of lists
     # {"Thailand": [{"time": "2020-1-22", "cases": "2", "deaths": "0", "recovered": "0"}, {"time": "2020-1-23", "cases": "3", "deaths": "0", "recovered": "0"}]}
@@ -101,7 +135,6 @@ def merge_cases(oldcases, newcases):
         if not c in res:
             res[c] = newcases[c]
         else:
-            #print('Found old and new data for ',c)
             # join both lists and sort. Then, check for duplicates and merge them
             try:
                 joinedDays = sorted(res[c]+newcases[c], key=functools.cmp_to_key(compare_day))
@@ -142,7 +175,7 @@ def list_to_dict(regions, cols):
             i = 0
             nd = {}
             while (i < len(d)):
-                # cols is likely ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+                # cols is likely ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
                 if cols[i] == 'time':
                     nd[cols[i]] = d[i]
                 elif d[i] is not None:
@@ -189,12 +222,26 @@ def add_country_code(regions, exceptions, code):
     return res
 
 
-def store_json(newdata, json_file):
-    with open(json_file, 'w') as fh:
-        json.dump(newdata, fh)
+def store_json(case_counts, json_file):
+    """ Validate and store data to .json file
+    Arguments:
+    - case_counts: a dict of lists of dicts for case counts
+    - json_file: name of file to store into
+    """
 
-    #print('first layer keys are %s'%mergedCases.keys())
-    #print(f'Stored {len(mergedCases)} regions to {json_file}')
+    #convert dict of lists of dicts to list of dicts of lists of dicts
+    newdata = []
+    for k in case_counts:
+        newdata.append({'country': k, 'empiricalData': case_counts[k]})
+
+    newdata.sort(key=lambda x:x['country'])
+
+    with open(os.path.join(BASE_PATH, SCHEMA_CASECOUNTS), "r") as f:
+        schema = yaml.load(f, Loader=yaml.FullLoader)
+        validate(newdata, schema, format_checker=FormatChecker())
+
+    with open(json_file, 'w') as fh:
+        json.dump(newdata, fh, indent=0)
 
 def sanitize(fname):
     # we sanitize to ASCII alphabetic here

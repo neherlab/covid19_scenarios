@@ -1,7 +1,72 @@
 @import '../../../styles/variables';
 
-.form-group.interval-form-group {
-  border: $gray-500 solid 1px;
-  padding: 4px 2px;
-  margin-bottom: 10px;
+$input-padding: 4px;
+
+.mitigation-table {
+  .form-group {
+    padding: 4px 2px;
+    margin-bottom: 10px;
+    border: $gray-500 solid 1px;
+  }
+
+  .table-controls {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.mitigation-interval {
+  display: flex;
+  width: 100%;
+
+  .DateRangePickerInput {
+    width: max-content;
+  }
+
+  .DateInput_input {
+    // make the date range input similar to bootstrap inputs
+    height: calc(1.5em + 0.75rem + 1px);
+  }
+}
+
+.mitigation-inputs {
+  display: flex;
+  flex-grow: 1;
+
+  > * {
+    margin-right: $input-padding;
+  }
+
+  &.narrow,
+  &.very-narrow {
+    flex-wrap: wrap;
+  }
+
+  &.narrow {
+    .mitigation-name {
+      margin-bottom: $input-padding;
+    }
+  }
+
+  &.very-narrow {
+    margin-right: $input-padding;
+
+    > * {
+      margin-right: 0;
+      margin-bottom: $input-padding;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .DateRangePicker,
+    .DateRangePickerInput {
+      width: 100%;
+    }
+  }
+}
+
+.mitigation-value {
+  width: auto;
 }

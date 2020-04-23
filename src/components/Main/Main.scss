@@ -1,3 +1,126 @@
+@import '../../styles/variables';
+
+.animate-flex-width {
+  // prettier-ignore
+  // NOTE: performance issue to fix
+
+  transition: flex-basis 250ms ease, width 250ms ease, max-width 250ms ease; // stylelint-disable-line plugin/no-low-performance-animation-properties
+}
+
+.card {
+  background-color: transparent;
+  border: 1px solid $black;
+
+  h2 {
+    font-size: 28px;
+    color: $black;
+    letter-spacing: 0.49em;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .card h3 {
+    color: $white;
+  }
+
+  .card.card--results h3 {
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: $black;
+  }
+}
+
+.card-header {
+  padding: 8px 4px;
+  background-color: $black;
+
+  h2 {
+    color: $gray-800;
+  }
+
+  h3,
+  p {
+    color: $gray-200;
+  }
+
+  h2,
+  h3 {
+    font-family: $font-family-sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  label {
+    margin: 0;
+  }
+}
+
+.card-header-button {
+  width: 100%;
+  height: 100%;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card--main {
+  margin-top: 30px;
+  border: 0;
+
+  > .card-header {
+    min-height: 3em;
+    padding-left: 0;
+    background-color: transparent;
+    border-bottom: 3px solid $black;
+  }
+
+  > .card-body,
+  > .collapse > .card-body {
+    padding: 0;
+    margin-top: 10px;
+  }
+}
+
+.card--results {
+  > .card-body,
+  > .collapse > .card-body {
+    padding: 1rem;
+    margin-top: 20px;
+    background-color: $white;
+    border: 1px solid $black;
+  }
+}
+
+.card--help {
+  .card-body {
+    line-height: 1.2;
+
+    p {
+      margin: 0;
+      color: $black;
+      text-align: left;
+    }
+
+    h4 {
+      font-size: 110%;
+      font-weight: bold;
+    }
+  }
+}
+
+.card--population,
+.card--epidemiology {
+  .card-body .row {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0.5em;
+  }
+}
+
 $button-width: 100px;
 $button-spacing: 5px;
 

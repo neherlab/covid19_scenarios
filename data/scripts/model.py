@@ -33,8 +33,10 @@ def load_distribution(path):
     dist = {}
     with open(path, 'r') as fd:
         db = json.load(fd)
-        for key, data in db.items():
-            dist[key] = np.array([float(data[k]) for k in sorted(data.keys())])
+        for data in db:
+            key = data["country"]
+            ageDis = data["ageDistribution"]
+            dist[key] = np.array([float(ageDis[k]) for k in sorted(ageDis.keys())])
             dist[key] = dist[key]/np.sum(dist[key])
 
     return dist
@@ -219,14 +221,15 @@ def trace_ages(solution):
 
 # ------------------------------------------
 # Parameter estimation
+
 def assess_model(params, data, cases):
     sol = solve_ode(params, init_pop(params.ages, params.size, cases))
     model = trace_ages(sol)
 
-    case_cost = np.ma.sum(np.power(model[:,Sub.T] - data[Sub.T], 2))
-    death_cost = 100000*np.ma.sum(np.power(model[:,Sub.D] - data[Sub.D], 2))
+    case_cost = np.ma.sum(np.power(1 - data[Sub.T]/model[:,Sub.T] , 2))
+    death_cost = np.ma.sum(np.power(1 - data[Sub.D]/model[:,Sub.D] , 2))
+    hospital_cost = np.ma.sum(np.power(1 - data[Sub.H]/model[:,Sub.H] , 2))
     return case_cost + death_cost
-
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, bounds=None):
@@ -246,7 +249,12 @@ def fit_params(key, time_points, data, guess, bounds=None):
         return Rates(**vals), Fracs(x[params_to_fit['reported']]) if 'reported' in params_to_fit else Fracs()
 
     def fit(x):
-        param = Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points, *unpack(x))
+        # TODO(nnoll): Need a better default here!
+        if POPDATA[key]["ageDistribution"] in AGES:
+            ages = AGES[POPDATA[key]["ageDistribution"]]
+        else:
+            ages = AGES["Switzerland"]
+        param = Params(ages, POPDATA[key]["size"], time_points, *unpack(x))
         return assess_model(param, data, np.exp(x[params_to_fit['logInitial']]))
 
     if bounds is None:
@@ -256,11 +264,43 @@ def fit_params(key, time_points, data, guess, bounds=None):
 
     err = (fit_param.success, fit_param.message)
     print(key, fit_param.x)
-    return (Params(AGES[POPDATA[key]["ageDistribution"]], POPDATA[key]["size"], time_points,
+
+    if POPDATA[key]["ageDistribution"] in AGES:
+        ages = AGES[POPDATA[key]["ageDistribution"]]
+    else:
+        ages = AGES["Switzerland"]
+    return (Params(ages, POPDATA[key]["size"], time_points,
            *unpack(fit_param.x)), np.exp(fit_param.x[params_to_fit['logInitial']]), err)
 
 # ------------------------------------------
 # Data loading
+
+def fit_logistic(data):
+    x = np.arange(0, len(data))
+    def residuals(params):
+        L , k, x0, logp = params
+        F = L/(1 + np.exp(-k*(x-x0))) + np.exp(logp)
+        return np.sum(np.power(1-data/F, 2))
+
+    guess = [np.max(data), 1.0, len(data)/2, 1.0]
+    fit_param = opt.minimize(residuals, guess, method='Nelder-Mead')
+
+    L, k, x0, logp = fit_param.x
+    def fit(x):
+        return L/(1 + np.exp(-k*(x-x0))) + np.exp(logp)
+
+    case_min = max(fit(x0-12/k), 20)
+    case_max = fit(x0-.5/k)
+
+    # print(case_min, case_max)
+    # good = np.bitwise_and(data > case_min, data < case_max)
+    # plt.plot(data, 'ro')
+    # plt.plot(x[good], data[good], 'go')
+    # plt.plot(x, fit(x), '--')
+    # plt.yscale('log')
+    # input('enter')
+
+    return case_min, case_max
 
 # TODO: Better data filtering criteria needed!
 # TODO: Take hospitalization and ICU data?
@@ -270,25 +310,34 @@ def load_data(key):
     else:
         popsize = 1e6
 
-    data = [[] if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
+    data = [[] if (i == Sub.D or i == Sub.T or i == Sub.H) else None for i in range(Sub.NUM)]
     days = []
-    case_min, case_max = 20, max(20000, popsize*3e-3)
+
 
     ts = CASE_DATA[key]
 
     days = [d['time'].split('T')[0] for d in ts]
     for tp in ts:
         data[Sub.T].append(tp['cases'] or np.nan)
+        data[Sub.H].append(tp['hospitalized'] or np.nan)
         data[Sub.D].append(tp['deaths'] or np.nan)
 
     data = [ np.array(d) if d is not None else d for d in data]
+
+    good_data = data[Sub.T][~np.isnan(data[Sub.T])]
+    if len(good_data) > 5:
+        case_min, case_max = fit_logistic(good_data)
+    else:
+        case_min, case_max = 20, max(20000, popsize*3e-4)
 
     # Filter points
     good_idx = np.bitwise_and(case_min <= data[Sub.T], data[Sub.T] < case_max)
     data[Sub.D] = np.ma.array(np.concatenate([[np.nan], data[Sub.D][good_idx]]))
     data[Sub.T] = np.ma.array(np.concatenate([[np.nan], data[Sub.T][good_idx]]))
+    data[Sub.H] = np.ma.array(np.concatenate([[np.nan], data[Sub.H][good_idx]]))
     data[Sub.D].mask = np.isnan(data[Sub.D])
     data[Sub.T].mask = np.isnan(data[Sub.T])
+    data[Sub.H].mask = np.isnan(data[Sub.H])
 
     if sum(good_idx) == 0:
         return None, None

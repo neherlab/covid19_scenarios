@@ -1,0 +1,36 @@
+@import '../../../../styles/variables';
+
+.preset-loader-dialog-table {
+  width: 100%;
+}
+
+.preset-loader-dialog-table-body {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 400px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.preset-loader-dialog-row {
+  display: flex;
+  width: 100%;
+}
+
+.preset-loader-dialog-row-label {
+  flex: 1;
+  line-height: 2.5em;
+}
+
+@media screen and (max-width: 992px) {
+  .preset-loader-dialog {
+    .modal-content {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: fixed;
+      max-height: 100vh;
+    }
+  }
+}

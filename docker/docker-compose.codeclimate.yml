@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  codeclimate:
+    container_name: codeclimate
+    image: codeclimate/codeclimate:latest
+    command: analyze
+    volumes:
+      - ../:/code
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/cc:/tmp/cc
+    environment:
+      - CODECLIMATE_CODE=${PWD}
+      - COLORTERM=truecolor
+      - TERM=xterm-truecolor
+    restart: 'no'
+    init: true
+    tty: true

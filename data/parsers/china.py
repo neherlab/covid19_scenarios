@@ -4,14 +4,13 @@ import csv
 import io
 from datetime import datetime
 
-from .utils import sorted_date, store_data, parse_countries
+from .utils import sorted_date, store_data
 
 # ------------------------------------------------------------------------
 # Globals
 
 URL  = "https://github.com/BlankerL/DXY-COVID-19-Data/raw/master/csv/DXYArea.csv"
-LOC  = "case-counts/Asia/Eastern Asia/China"
-cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
+cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------
 # Functions
@@ -20,8 +19,6 @@ cols = ['time', 'cases', 'deaths', 'hospitalized', 'ICU', 'recovered']
 # Main point of entry
 
 def parse():
-    countries = parse_countries(2)
-
     r  = requests.get(URL)
     if not r.ok:
         print(f"Failed to fetch {URL}", file=sys.stderr)

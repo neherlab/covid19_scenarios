@@ -18,7 +18,9 @@
   ],
   "jsRules": {
     "array-type": false,
+    "cognitive-complexity": false,
     "completed-docs": false,
+    "detect-child-process": false,
     "export-name": false,
     "function-name": false,
     "import-name": false,
@@ -28,6 +30,7 @@
     "jsx-no-multiline-js": false,
     "jsx-wrap-multiline": false,
     "max-func-body-length": false,
+    "max-union-size": false,
     "mocha-no-side-effect-code": false,
     "no-backbone-get-set-outside-model": false,
     "no-big-function": false,
@@ -38,6 +41,7 @@
     "no-duplicate-string": false,
     "no-empty-interface": false,
     "no-http-string": false,
+    "no-identical-functions": false,
     "no-implicit-dependencies": [true, "dev"],
     "no-increment-decrement": false,
     "no-parameter-reassignment": false,
@@ -63,7 +67,9 @@
   },
   "rules": {
     "array-type": false,
+    "cognitive-complexity": false,
     "completed-docs": false,
+    "detect-child-process": false,
     "export-name": false,
     "function-name": false,
     "import-name": false,
@@ -73,6 +79,7 @@
     "jsx-no-multiline-js": false,
     "jsx-wrap-multiline": false,
     "max-func-body-length": false,
+    "max-union-size": false,
     "mocha-no-side-effect-code": false,
     "no-backbone-get-set-outside-model": false,
     "no-big-function": false,
@@ -83,8 +90,10 @@
     "no-duplicate-string": false,
     "no-empty-interface": false,
     "no-http-string": false,
+    "no-identical-functions": false,
     "no-implicit-dependencies": [true, "dev"],
     "no-increment-decrement": false,
+    "no-namespace": [true, "allow-declarations"],
     "no-parameter-reassignment": false,
     "no-relative-imports": false,
     "no-shadowed-variable": false,
@@ -104,8 +113,7 @@
     "react-a11y-accessible-headings": false,
     "react-this-binding-issue": false,
     "underscore-consistent-invocation": false,
-    "use-simple-attributes": false,
-    "no-namespace": [true, "allow-declarations"]
+    "use-simple-attributes": false
   },
   "linterOptions": {
     "exclude": [
@@ -115,6 +123,7 @@
       ".reports/**",
       "3rdparty/**",
       "generated/**",
+      "src/.generated/**",
       "node_modules*/**"
     ]
   }

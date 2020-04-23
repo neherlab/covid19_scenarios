@@ -1,12 +1,13 @@
 import React, { PropsWithChildren } from 'react'
 
-export interface LinkExternalProps {
-  url: string
+export interface LinkExternalProps extends React.HTMLProps<HTMLAnchorElement> {
+  url?: string
+  href?: string
 }
 
-export default function LinkExternal({ url, children }: PropsWithChildren<LinkExternalProps>) {
+export default function LinkExternal({ url, href, children, ...restProps }: PropsWithChildren<LinkExternalProps>) {
   return (
-    <a target="_blank" rel="noopener noreferrer" href={url}>
+    <a target="_blank" rel="noopener noreferrer" href={url ?? href} {...restProps}>
       {children}
     </a>
   )
