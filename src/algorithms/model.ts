@@ -107,51 +107,24 @@ function advanceState(
     },
   }
 
-  const update = <
-    Kind extends Exclude<keyof SimulationTimePoint, 'time'> & keyof TimeDerivative,
-    Compartment extends Exclude<keyof SimulationTimePoint[Kind], 'exposed'> & keyof TimeDerivative[Kind]
-  >(
+  const update = <Kind extends Exclude<keyof SimulationTimePoint, 'time'>>(
     age: number,
     kind: Kind,
-    compartment: Compartment,
+    compartment: Exclude<
+      (keyof InternalCurrentData | keyof InternalCumulativeData) &
+        keyof SimulationTimePoint[Kind] &
+        keyof TimeDerivative[Kind],
+      'exposed'
+    >,
   ) => {
-    const currentArray = pop[kind][compartment]
-    const deltaArray = tdot[kind][compartment]
-    const newArray = newPop[kind][compartment]
-    if (Array.isArray(currentArray) && Array.isArray(deltaArray) && Array.isArray(newArray)) {
-      const currentForAge = currentArray[age]
-      const deltaForAge = deltaArray[age]
-      if (typeof currentForAge === 'number' && typeof deltaForAge === 'number') {
-        newArray[age] = gz(currentForAge + dt * deltaForAge)
-      }
-    }
+    const currentArray = pop[kind][compartment] as number[]
+    const deltaArray = tdot[kind][compartment] as number[]
+    const newArray = newPop[kind][compartment] as number[]
+    newArray[age] = gz(currentArray[age] + dt * deltaArray[age])
   }
 
-  const updateAt = <
-    Kind extends Exclude<keyof SimulationTimePoint, 'time'> & keyof TimeDerivative,
-    Compartment extends keyof SimulationTimePoint[Kind] & 'exposed' & keyof TimeDerivative[Kind]
-  >(
-    age: number,
-    kind: Kind,
-    compartment: Compartment,
-    i: number,
-  ) => {
-    const currentArray = pop[kind][compartment]
-    const deltaArray = tdot[kind][compartment]
-    const newArray = newPop[kind][compartment]
-    if (Array.isArray(currentArray) && Array.isArray(deltaArray) && Array.isArray(newArray)) {
-      const currentForAge = currentArray[age]
-      const deltaForAge = deltaArray[age]
-      if (newArray[age] === undefined) newArray[age] = []
-      const newForAge = newArray[age]
-      if (Array.isArray(currentForAge) && Array.isArray(deltaForAge) && Array.isArray(newForAge)) {
-        const currentForAgeIndex = currentForAge[i]
-        const deltaForAgeIndex = deltaForAge[i]
-        if (typeof currentForAgeIndex === 'number' && typeof deltaForAgeIndex === 'number') {
-          newForAge[i] = gz(currentForAgeIndex + dt * deltaForAgeIndex)
-        }
-      }
-    }
+  const updateAt = (age: number, kind: 'current', compartment: 'exposed', i: number) => {
+    newPop[kind][compartment][age][i] = gz(pop[kind][compartment][age][i] + dt * tdot[kind][compartment][age][i])
   }
 
   for (let age = 0; age < pop.current.infectious.length; age++) {
