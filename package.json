@@ -338,7 +338,7 @@
     "tslint-eslint-rules": "5.4.0",
     "tslint-microsoft-contrib": "6.2.0",
     "tslint-plugin-prettier": "2.3.0",
-    "tslint-react": "4.2.0",
+    "tslint-react": "5.0.0",
     "tslint-sonarts": "1.9.0",
     "typeface-source-sans-pro": "1.1.5",
     "typescript": "3.8.3",
