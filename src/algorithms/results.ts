@@ -219,7 +219,7 @@ export function percentileTPs(tps: ExportedTimePoint[], prc: number): ExportedTi
 // Operations on sets of realizations
 
 export function percentileTrajectory(trajectories: ExportedTimePoint[][], prc: number): ExportedTimePoint[] {
-  return trajectories[0].map((_, i) => {
+  return trajectories[0].map((_0, i) => {
     return percentileTPs(
       trajectories.map((traj) => traj[i]),
       prc,
@@ -232,9 +232,9 @@ const fwdTransform = (x: number) => Math.log(x + COUNT_FLOOR)
 const invTransform = (x: number) => Math.exp(x)
 
 export function meanTrajectory(trajectories: ExportedTimePoint[][]): ExportedTimePoint[] {
-  return trajectories[0].map((_, i) => {
+  return trajectories[0].map((_0, i) => {
     return scaledMeanTPs(
-      trajectories.map((_, j) => trajectories[j][i]),
+      trajectories.map((_1, j) => trajectories[j][i]),
       fwdTransform,
       invTransform,
     )
@@ -242,9 +242,9 @@ export function meanTrajectory(trajectories: ExportedTimePoint[][]): ExportedTim
 }
 
 export function stddevTrajectory(trajectories: ExportedTimePoint[][], mean: ExportedTimePoint[]): ExportedTimePoint[] {
-  return trajectories[0].map((_, i) => {
+  return trajectories[0].map((_0, i) => {
     return scaledStdDevTPs(
-      trajectories.map((_, j) => trajectories[j][i]),
+      trajectories.map((_1, j) => trajectories[j][i]),
       mean[i],
       fwdTransform,
       invTransform,
