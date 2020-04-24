@@ -58,25 +58,22 @@ def log_diff(data, step):
             log_diff[ii] = None
     return log_diff
 
-def stair_func(time, params):
-    val_o, val_e, x_drop = params
+def stair_func(time, val_o, val_e, x_drop):
     return np.array([val_o if t <= x_drop else val_e for t in time])
 
-def err_function(params, time, vec):
+def err_function(x_drop, time, vec, val_o, val_e):
     # vec need to be masked to avoid nan
-    return np.sum(np.power(vec - stair_func(time, params),2))
+    return np.sum(np.power(vec - stair_func(time, val_o, val_e, x_drop),2))
 
-def stair_fit(time, vec, guess=None):
+def stair_fit(time, vec, guess=None, nb_value=3):
     # time must be in ordinal
     if guess is None:
-        nb_value = 3
-        val_o = np.mean(vec[~vec.mask][:nb_value])
-        val_e = np.mean(vec[~vec.mask][-nb_value:])
-        x_drop = time[len(time)//2]
-        guess = [val_o, val_e, x_drop]
+        guess = time[len(time)//2]
 
-    fit_params = optimize.minimize(err_function, guess, args=(time, vec), method="Nelder-Mead")
-    return fit_params.x, guess
+    val_o = np.mean(vec[~vec.mask][:nb_value])
+    val_e = np.mean(vec[~vec.mask][-nb_value:])
+    fit_params = optimize.minimize(err_function, guess, args=(time, vec, val_e, val_e), method="Nelder-Mead")
+    return val_o, val_e, fit_params.x[0]
 
 
 
@@ -97,7 +94,8 @@ for c in country_list:
     R0_by_day = growth_rate_to_R0(log_diff_vec)
     R0_smoothed = smooth(R0_by_day)
 
-    fit_params, original_params = stair_fit(time, R0_by_day[Sub.T])
+    fit3 = stair_fit(time, R0_by_day[Sub.T])
+    fit4 = stair_fit(time, R0_by_day[Sub.T], 4)
 
     # log_cases = [x["gr_cases"] for x in logdiff]
     # t = [x['time'][0] for x in logdiff]
@@ -115,8 +113,8 @@ for c in country_list:
     # plt.plot(t_smoothed, R0_cases_smoothed, label=c, ls='--', c=f"C{ci}")
     plt.plot(time, R0_by_day[Sub.T], label=f"{c}")
     plt.plot(time, R0_smoothed[Sub.T], label=f"smoothed")
-    plt.plot(time, stair_func(time,original_params), label="Original")
-    plt.plot(time, stair_func(time,fit_params), label="Optimized")
+    plt.plot(time, stair_func(time, *fit3), label="fit drop3")
+    plt.plot(time, stair_func(time, *fit4), label="fit drop4")
     # plt.figure(2)
     # plt.plot(t_smoothed, R0_deaths_smoothed, label=c)
 
@@ -128,6 +126,9 @@ for c in country_list:
 #     plt.ylabel("R0 estimate")
 #     plt.legend(loc=3)
 #     # plt.ylim(0,3.5)
-#     # plt.savefig(f"{n}.png")
+#     # plt.savefig(f"{n}.png")4
+plt.xlabel("R0")
+plt.ylabel("Time [days]")
 plt.legend(loc="best")
+plt.savefig("Stair_fit", format="png")
 plt.show()
