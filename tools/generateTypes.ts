@@ -1,3 +1,4 @@
+/* eslint-disable array-func/no-unnecessary-this-arg */
 import Ajv, { Ajv as AjvModule } from 'ajv'
 import rimrafOriginal from 'rimraf'
 import pack from 'ajv-pack'
@@ -6,19 +7,10 @@ import fs from 'fs-extra'
 import yaml from 'js-yaml'
 import path from 'path'
 import prettier from 'prettier'
-import {
-  quicktype,
-  InputData,
-  JSONSchema,
-  JSONSchemaInput,
-  JSONSchemaStore,
-  parseJSON,
-  QuickTypeError,
-} from 'quicktype-core'
+import { quicktype, InputData, JSONSchema, JSONSchemaInput, JSONSchemaStore, parseJSON } from 'quicktype-core'
 import util from 'util'
 
 import { findModuleRoot } from '../lib/findModuleRoot'
-import { StringMap } from 'quicktype-core/dist/support/Support'
 
 const rimraf = util.promisify(rimrafOriginal)
 
@@ -109,7 +101,8 @@ export default async function generateTypes() {
   let schemaFilenames = await fs.readdir(schemasRoot)
   schemaFilenames = schemaFilenames.filter((schemaFilename) => schemaFilename.endsWith(SCHEMA_EXTENSION))
 
-  await FA.concurrent.forEach(fs.mkdirp, [tsOutputDir, pyOutputDir])
+  await FA.concurrent.forEach(async (d) => rimraf(`${d}/**`), [tsOutputDir, pyOutputDir])
+  await FA.concurrent.forEach(async (d) => fs.mkdirp(d), [tsOutputDir, pyOutputDir])
 
   return Promise.all([
     quicktypesGenerate('typescript', schemasRoot, schemaFilenames, tsOutput, {
@@ -118,7 +111,6 @@ export default async function generateTypes() {
       'runtime-typecheck': 'true',
     }),
     quicktypesGenerate('python', schemasRoot, schemaFilenames, pyOutput, {
-      // 'no-combine-classes': 'true',
       'python-version': '3.6',
       'alphabetize-properties': 'false',
     }),
