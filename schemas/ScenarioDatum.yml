@@ -14,13 +14,13 @@ required:
 
 properties:
   population:
-    $ref: 'ScenarioDataPopulation#'
+    $ref: 'ScenarioDatumPopulation#'
 
   epidemiological:
-    $ref: 'ScenarioDataEpidemiological#'
+    $ref: 'ScenarioDatumEpidemiological#'
 
   simulation:
-    $ref: 'ScenarioDataSimulation#'
+    $ref: 'ScenarioDatumSimulation#'
 
   mitigation:
-    $ref: 'ScenarioDataMitigation#'
+    $ref: 'ScenarioDatumMitigation#'
