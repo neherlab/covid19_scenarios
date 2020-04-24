@@ -1,0 +1,32 @@
+{
+  "all": [
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 884945 },
+        { "ageGroup": "10-19", "population": 834866 },
+        { "ageGroup": "20-29", "population": 1039727 },
+        { "ageGroup": "30-39", "population": 1219227 },
+        { "ageGroup": "40-49", "population": 1166590 },
+        { "ageGroup": "50-59", "population": 1320623 },
+        { "ageGroup": "60-69", "population": 977436 },
+        { "ageGroup": "70-79", "population": 751994 },
+        { "ageGroup": "80+", "population": 459214 }
+      ],
+      "name": "Switzerland"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 39721484 },
+        { "ageGroup": "10-19", "population": 42332393 },
+        { "ageGroup": "20-29", "population": 46094077 },
+        { "ageGroup": "30-39", "population": 44668271 },
+        { "ageGroup": "40-49", "population": 40348398 },
+        { "ageGroup": "50-59", "population": 42120077 },
+        { "ageGroup": "60-69", "population": 38488173 },
+        { "ageGroup": "70-79", "population": 24082598 },
+        { "ageGroup": "80+", "population": 13147180 }
+      ],
+      "name": "United States of America"
+    }
+  ]
+}

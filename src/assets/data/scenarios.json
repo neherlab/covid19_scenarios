@@ -1,0 +1,122 @@
+{
+  "all": [
+    {
+      "data": {
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-09-01",
+                "end": "2020-03-13"
+              },
+              "transmissionReduction": {
+                "begin": 45.0,
+                "end": 55.0
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-09-01",
+                "end": "2020-03-25"
+              },
+              "transmissionReduction": {
+                "begin": 54.0,
+                "end": 66.0
+              }
+            }
+          ]
+        },
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": { "begin": 3.13, "end": 3.83 },
+          "seasonalForcing": 0.0
+        },
+        "population": {
+          "ageDistributionName": "Switzerland",
+          "caseCountsName": "Switzerland",
+          "hospitalBeds": 30057,
+          "icuBeds": 1400,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 4,
+          "populationServed": 8516543
+        },
+        "simulation": {
+          "numberStochasticRuns": 10,
+          "simulationTimeRange": {
+            "begin": "2020-09-01",
+            "end": "2020-02-10"
+          }
+        }
+      },
+      "name": "Switzerland"
+    },
+    {
+      "data": {
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-09-01",
+                "end": "2020-03-20"
+              },
+              "transmissionReduction": {
+                "begin": 36.0,
+                "end": 44.0
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-09-01",
+                "end": "2020-03-25"
+              },
+              "transmissionReduction": {
+                "begin": 54.0,
+                "end": 66.0
+              }
+            }
+          ]
+        },
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": { "begin": 2.9, "end": 3.55 },
+          "seasonalForcing": 0.0
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "United States of America",
+          "hospitalBeds": 798288,
+          "icuBeds": 49499,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 8,
+          "populationServed": 327167434
+        },
+        "simulation": {
+          "numberStochasticRuns": 10,
+          "simulationTimeRange": {
+            "begin": "2020-09-01",
+            "end": "2020-02-01"
+          }
+        }
+      },
+      "name": "United States of America"
+    }
+  ]
+}
