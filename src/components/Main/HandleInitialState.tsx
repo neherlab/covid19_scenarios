@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
+
 import _ from 'lodash'
 
 import { defaultScenarioState, State } from './state/state'
-import { Convert } from '../../.generated/types'
-import rawSeverityData from '../../assets/data/severityData.json'
 import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
-import { Severity } from '../../algorithms/types/Param.types'
 
-const severityData = Convert.toSeverity(JSON.stringify(rawSeverityData))
+import { getSeverityDistribution } from './state/getSeverityDistribution'
+
+import { SeverityDistributionDatum } from '../../.generated/types'
+
+const DEFAULT_SEVERITY_DISTRIBUTION = 'China CDC'
+const severityDistribution = getSeverityDistribution(DEFAULT_SEVERITY_DISTRIBUTION)
 
 interface InitialState {
   scenarioState: State
-  severityTable: Severity[]
+  severityTable: SeverityDistributionDatum[]
   isDefault: boolean
 }
 
@@ -42,7 +45,7 @@ function HandleInitialState({
     <Component
       initialState={{
         scenarioState,
-        severityTable: severityData,
+        severityTable: severityDistribution,
         isDefault: _.isEqual(scenarioState, defaultScenarioState),
       }}
     />

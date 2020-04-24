@@ -15,8 +15,8 @@ import {
 } from './AgeGroupParameters'
 import { Convert } from '../../../.generated/types'
 import { Severity, AgeDistribution } from '../../../algorithms/types/Param.types'
-import rawSeverityData from '../../../assets/data/severityData.json'
-import rawCountryAgeDistribution from '../../../assets/data/country_age_distribution.json'
+import rawSeverityData from '../../../assets/data/severityDistributions.json'
+import rawCountryAgeDistribution from '../../../assets/data/ageDistribution.json'
 
 const severityData = Convert.toSeverity(JSON.stringify(rawSeverityData))
 const { ageDistribution } = Convert.toCountryAgeDistribution(JSON.stringify(rawCountryAgeDistribution))[0]

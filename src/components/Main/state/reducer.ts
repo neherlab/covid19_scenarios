@@ -13,8 +13,8 @@ import {
   setAgeDistributionData,
 } from './actions'
 
-import { getScenarioData } from './scenarioData'
-import { getCountryAgeDistribution } from './countryAgeDistributionData'
+import { getScenario } from './getScenario'
+import { getAgeDistribution } from './getAgeDistribution'
 
 import { CUSTOM_SCENARIO_NAME, CUSTOM_COUNTRY_NAME, defaultScenarioState } from './state'
 
@@ -45,8 +45,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = name
       if (name !== CUSTOM_SCENARIO_NAME) {
-        draft.data = _.cloneDeep(getScenarioData(name))
-        draft.ageDistribution = getCountryAgeDistribution(draft.data.population.country)
+        draft.data = _.cloneDeep(getScenario(name))
+        draft.ageDistribution = getAgeDistribution(draft.data.population.country)
       }
     }),
   )
@@ -57,7 +57,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.population = _.cloneDeep(data)
       if (draft.data.population.country !== CUSTOM_COUNTRY_NAME) {
-        draft.ageDistribution = getCountryAgeDistribution(draft.data.population.country)
+        draft.ageDistribution = getAgeDistribution(draft.data.population.country)
       }
     }),
   )

@@ -2,7 +2,7 @@ import * as yup from 'yup'
 
 import i18next from 'i18next'
 
-import { ageDistributionNames } from '../state/countryAgeDistributionData'
+import { ageDistributionNames } from '../state/getAgeDistribution'
 import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
 const ageRegions = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]

@@ -4,7 +4,7 @@ import { Router } from 'react-router-dom'
 import { createMemoryHistory, Location } from 'history'
 import HandleInitialState, { HandleInitialStateProps } from './HandleInitialState'
 import { State, DEFAULT_OVERALL_SCENARIO_NAME } from './state/state'
-import severityData from '../../assets/data/severityData.json'
+import severityData from '../../assets/data/severityDistributions.json'
 
 jest.mock('./state/serialization/URLSerializer', () => ({
   deserializeScenarioFromURL: (location: Location, state: State): State => {

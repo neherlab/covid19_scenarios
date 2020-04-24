@@ -1,13 +1,13 @@
 import { Convert } from '../../../.generated/types'
 
 import CaseCountsValidate from '../../../.generated/CaseCountsValidate'
-import rawCaseCounts from '../../../assets/data/case_counts.json'
+import rawCaseCounts from '../../../assets/data/caseCounts.json'
 
 import CountryAgeDistributionValidate from '../../../.generated/CountryAgeDistributionValidate'
-import rawCountryAgeDistribution from '../../../assets/data/country_age_distribution.json'
+import rawCountryAgeDistribution from '../../../assets/data/ageDistribution.json'
 
 import SeverityValidate from '../../../.generated/SeverityValidate'
-import rawSeverity from '../../../assets/data/severityData.json'
+import rawSeverity from '../../../assets/data/severityDistributions.json'
 
 import ScenariosValidate from '../../../.generated/ScenariosValidate'
 import rawScenarios from '../../../assets/data/scenarios/scenarios.json'

@@ -13,7 +13,7 @@ import { run } from '../../workers/algorithm'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
-import { getCaseCountsData } from './state/caseCountsData'
+import { getCaseCountsData } from './state/getCaseCounts'
 
 import { schema } from './validation/schema'
 

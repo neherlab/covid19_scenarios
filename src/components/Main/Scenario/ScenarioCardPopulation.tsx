@@ -5,8 +5,8 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
-import { caseCountsNames } from '../state/caseCountsData'
-import { ageDistributionNames } from '../state/countryAgeDistributionData'
+import { caseCountsNames } from '../state/getCaseCounts'
+import { ageDistributionNames } from '../state/getAgeDistribution'
 
 import { CUSTOM_COUNTRY_NAME, NONE_COUNTRY_NAME } from '../state/state'
 
