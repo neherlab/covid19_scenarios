@@ -1,4 +1,4 @@
-/* eslint-disable array-func/no-unnecessary-this-arg */
+/* eslint-disable array-func/no-unnecessary-this-arg,unicorn/no-process-exit */
 import Ajv, { Ajv as AjvModule } from 'ajv'
 import rimrafOriginal from 'rimraf'
 import pack from 'ajv-pack'
@@ -118,4 +118,7 @@ export default async function generateTypes() {
   ])
 }
 
-generateTypes().catch(console.error)
+generateTypes().catch((error) => {
+  console.error(error)
+  process.exit(1)
+})
