@@ -7,6 +7,7 @@ from scripts import tsv
 from model import load_data
 from datetime import datetime
 from scipy.signal import savgol_filter
+from scipy import optimize
 from enum import IntEnum
 import copy
 
@@ -30,7 +31,8 @@ def growth_rate_to_R0(data):
     R0_by_day = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            R0_by_day[ii] = 1+6*data[ii]
+            R0_by_day[ii] = np.ma.array(1+6*data[ii])
+            R0_by_day[ii].mask = np.isnan(R0_by_day[ii])
         else:
             R0_by_day[ii] = None
     return R0_by_day
@@ -56,25 +58,46 @@ def log_diff(data, step):
             log_diff[ii] = None
     return log_diff
 
+def stair_func(time, params):
+    val_o, val_e, x_drop = params
+    return np.array([val_o if t <= x_drop else val_e for t in time])
+
+def err_function(params, time, vec):
+    # vec need to be masked to avoid nan
+    return np.sum(np.power(vec - stair_func(time, params),2))
+
+def stair_fit(time, vec, guess=None):
+    # time must be in ordinal
+    if guess is None:
+        nb_value = 3
+        val_o = np.mean(vec[~vec.mask][:nb_value])
+        val_e = np.mean(vec[~vec.mask][-nb_value:])
+        x_drop = time[len(time)//2]
+        guess = [val_o, val_e, x_drop]
+
+    fit_params = optimize.minimize(err_function, guess, args=(time, vec), method="Nelder-Mead")
+    return fit_params.x, guess
+
+
+
 case_counts = tsv.parse()
 
-# plt.figure(1)
-# plt.figure(2)
 step = 7
 smoothing = 4
-#country_list = ["Switzerland"]
+country_list = ["Switzerland"]
 #country_list = ["Germany", "Switzerland", "Italy"]
-country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey",
-                "Germany", "Italy"]
+# country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
 
 for c in country_list:
 
     time, data = load_data(c, case_counts[c])
-    time = [datetime.fromordinal(t) for t in time]
+    time -= time[0]
     diff_data = differences(data)
     log_diff_vec = log_diff(diff_data, step)
     R0_by_day = growth_rate_to_R0(log_diff_vec)
     R0_smoothed = smooth(R0_by_day)
+
+    fit_params, original_params = stair_fit(time, R0_by_day[Sub.T])
 
     # log_cases = [x["gr_cases"] for x in logdiff]
     # t = [x['time'][0] for x in logdiff]
@@ -92,9 +115,10 @@ for c in country_list:
     # plt.plot(t_smoothed, R0_cases_smoothed, label=c, ls='--', c=f"C{ci}")
     plt.plot(time, R0_by_day[Sub.T], label=f"{c}")
     plt.plot(time, R0_smoothed[Sub.T], label=f"smoothed")
+    plt.plot(time, stair_func(time,original_params), label="Original")
+    plt.plot(time, stair_func(time,fit_params), label="Optimized")
     # plt.figure(2)
     # plt.plot(t_smoothed, R0_deaths_smoothed, label=c)
-
 
 # for i,n in [(1,"cases"), (2, 'deaths')]:
 #     plt.figure(i)
