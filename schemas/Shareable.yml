@@ -1,0 +1,27 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: Shareable
+title: Shareable
+
+type: object
+
+additionalProperties: false
+
+required:
+  - schemaVer
+  - scenarioData
+  - ageDistributionData
+  - severityDistributionData
+
+properties:
+  schemaVer:
+    type: string
+    const: 2.0.0
+
+  scenarioData:
+    $ref: 'ScenarioData#'
+
+  ageDistributionData:
+    $ref: 'AgeDistributionData#'
+
+  severityDistributionData:
+    $ref: 'SeverityDistributionData#'
