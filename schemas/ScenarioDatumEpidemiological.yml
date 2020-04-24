@@ -18,7 +18,7 @@ required:
 
 properties:
   r0:
-    $ref: 'NumberNonNegativeRange#'
+    $ref: 'NumericRangeNonNegative#'
 
   latencyDays:
     type: number
@@ -42,7 +42,7 @@ properties:
 
   peakMonth:
     allOf:
-      - $ref: 'IntegerPositive#'
+      - $ref: 'IntegerNonNegative#'
       - maximum: 11
 
   overflowSeverity:

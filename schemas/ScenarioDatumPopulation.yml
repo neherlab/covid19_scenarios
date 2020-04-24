@@ -13,7 +13,7 @@ required:
   - initialNumberOfCases
   - importsPerDay
   - hospitalBeds
-  - ICUBeds
+  - icuBeds
 
 properties:
   populationServed:
@@ -31,10 +31,11 @@ properties:
     $ref: 'IntegerNonNegative#'
 
   importsPerDay:
-    $ref: 'IntegerNonNegative#'
+    type: number
+    minimum: 0
 
   hospitalBeds:
     $ref: 'IntegerNonNegative#'
 
-  ICUBeds:
+  icuBeds:
     $ref: 'IntegerNonNegative#'

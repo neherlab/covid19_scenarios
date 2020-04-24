@@ -17,25 +17,25 @@ properties:
 
   cases:
     anyOf:
-      - $ref: 'IntegerPositive#'
+      - $ref: 'IntegerNonNegative#'
       - type: 'null'
 
   deaths:
     anyOf:
-      - $ref: 'IntegerPositive#'
+      - $ref: 'IntegerNonNegative#'
       - type: 'null'
 
   hospitalized:
     anyOf:
-      - $ref: 'IntegerPositive#'
+      - $ref: 'IntegerNonNegative#'
       - type: 'null'
 
   icu:
     anyOf:
-      - $ref: 'IntegerPositive#'
+      - $ref: 'IntegerNonNegative#'
       - type: 'null'
 
   recovered:
     anyOf:
-      - $ref: 'IntegerPositive#'
+      - $ref: 'IntegerNonNegative#'
       - type: 'null'

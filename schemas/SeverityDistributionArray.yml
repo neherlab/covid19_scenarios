@@ -7,10 +7,10 @@ type: object
 additionalProperties: false
 
 required:
-  - severityDistrbutions
+  - all
 
 properties:
-  severityDistrbutions:
+  all:
     type: array
     items:
       $ref: 'SeverityDistributionData#'
