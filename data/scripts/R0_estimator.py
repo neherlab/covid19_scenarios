@@ -62,18 +62,18 @@ case_counts = tsv.parse()
 # plt.figure(2)
 step = 7
 smoothing = 4
-country_list = ["Switzerland"]
-# country_list = ["Germany", "Switzerland", "Italy"]
-#country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey",
-#                "Germany", "Italy"]
+#country_list = ["Switzerland"]
+#country_list = ["Germany", "Switzerland", "Italy"]
+country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey",
+                "Germany", "Italy"]
 
 for c in country_list:
 
     time, data = load_data(c, case_counts[c])
     time = [datetime.fromordinal(t) for t in time]
     diff_data = differences(data)
-    log_diff = log_diff(diff_data, step)
-    R0_by_day = growth_rate_to_R0(log_diff)
+    log_diff_vec = log_diff(diff_data, step)
+    R0_by_day = growth_rate_to_R0(log_diff_vec)
     R0_smoothed = smooth(R0_by_day)
 
     # log_cases = [x["gr_cases"] for x in logdiff]
