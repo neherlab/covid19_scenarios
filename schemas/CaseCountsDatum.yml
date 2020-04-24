@@ -1,0 +1,41 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: CaseCountsDatum
+title: CaseCountsDatum
+
+type: object
+
+additionalProperties: false
+
+required:
+  - time
+  - cases
+
+properties:
+  time:
+    type: string
+    format: date
+
+  cases:
+    anyOf:
+      - $ref: 'IntegerPositive#'
+      - type: 'null'
+
+  deaths:
+    anyOf:
+      - $ref: 'IntegerPositive#'
+      - type: 'null'
+
+  hospitalized:
+    anyOf:
+      - $ref: 'IntegerPositive#'
+      - type: 'null'
+
+  icu:
+    anyOf:
+      - $ref: 'IntegerPositive#'
+      - type: 'null'
+
+  recovered:
+    anyOf:
+      - $ref: 'IntegerPositive#'
+      - type: 'null'

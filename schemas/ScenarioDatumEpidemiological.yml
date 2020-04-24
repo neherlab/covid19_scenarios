@@ -1,0 +1,50 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: ScenarioDataEpidemiological
+title: ScenarioDataEpidemiological
+
+type: object
+
+additionalProperties: false
+
+required:
+  - r0
+  - latencyDays
+  - infectiousPeriodDays
+  - hospitalStayDays
+  - icuStayDays
+  - seasonalForcing
+  - peakMonth
+  - overflowSeverity
+
+properties:
+  r0:
+    $ref: 'NumberNonNegativeRange#'
+
+  latencyDays:
+    type: number
+    minimum: 1
+
+  infectiousPeriodDays:
+    type: number
+    minimum: 1
+
+  hospitalStayDays:
+    type: number
+    minimum: 1
+
+  icuStayDays:
+    type: number
+    minimum: 1
+
+  seasonalForcing:
+    type: number
+    minimum: 0
+
+  peakMonth:
+    allOf:
+      - $ref: 'IntegerPositive#'
+      - maximum: 11
+
+  overflowSeverity:
+    type: number
+    minimum: 0

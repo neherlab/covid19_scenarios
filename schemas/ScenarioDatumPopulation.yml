@@ -1,0 +1,40 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: ScenarioDataPopulation
+title: ScenarioDataPopulation
+
+type: object
+
+additionalProperties: false
+
+required:
+  - populationServed
+  - ageDistributionName
+  - caseCountsName
+  - initialNumberOfCases
+  - importsPerDay
+  - hospitalBeds
+  - ICUBeds
+
+properties:
+  populationServed:
+    $ref: 'IntegerNonNegative#'
+
+  ageDistributionName:
+    type: string
+    minLength: 1
+
+  caseCountsName:
+    type: string
+    minLength: 1
+
+  initialNumberOfCases:
+    $ref: 'IntegerNonNegative#'
+
+  importsPerDay:
+    $ref: 'IntegerNonNegative#'
+
+  hospitalBeds:
+    $ref: 'IntegerNonNegative#'
+
+  ICUBeds:
+    $ref: 'IntegerNonNegative#'
