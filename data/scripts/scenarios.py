@@ -245,11 +245,11 @@ def fit_one_case_data(args):
     if r is None or np.exp(r['params'].rates.logR0)>6 or np.exp(r['params'].rates.logR0)<1.5:
         return (region, Params.fit(tmp_data))
 
-    param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0),
-             "initialCases": r["initialCases"]}
+    param = {"tMin": str(r['tMin']), "r0": float(np.exp(r['params'].rates.logR0)),
+             "initialCases": float(r["initialCases"])}
     if "containment_start" in r:
-        param["efficacy"] = r["params"].rates.efficacy
-        param["containment_start"] = r["containment_start"]
+        param["efficacy"] = float(r["params"].rates.efficacy)
+        param["containment_start"] = str(r["containment_start"])
 
     return (region, param)
 
