@@ -2,7 +2,6 @@ import csv
 import importlib
 import sys
 sys.path.append('..')
-sys.path.append('/home/valentin/Desktop/richardLab/covid19_scenarios/data')
 import os
 import json
 import argparse
@@ -16,6 +15,7 @@ import scipy.integrate as solve
 import scipy.optimize as opt
 import matplotlib.pylab as plt
 from scripts.tsv import parse as parse_tsv
+from scripts.R0_estimator import get_Re_guess
 from paths import BASE_PATH
 
 # ------------------------------------------------------------------------
@@ -248,7 +248,10 @@ def assess_model(params, data, cases):
 
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
-def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
+def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
+    if fixed_params is None:
+        fixed_params = {}
+
     if key not in POPDATA:
         return (Params(ages=None, size=None, date=None, times=None, rates=DefaultRates, fracs=Fracs()),
                 10, (False, "Not within population database"))
@@ -261,7 +264,15 @@ def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
         return data
 
     def unpack(x):
-        vals = { f: (x[params_to_fit[f]] if f in guess else getattr(DefaultRates, f)) for f in RateFields }
+        vals = {}
+        for f in RateFields:
+            if f in guess:
+                vals[f] = x[params_to_fit[f]]
+            elif f in fixed_params:
+                vals[f] = fixed_params[f]
+            else:
+                vals[f] = getattr(DefaultRates, f)
+
         return Rates(**vals), Fracs(x[params_to_fit['reported']]) if 'reported' in params_to_fit else Fracs()
 
     def fit(x):
@@ -272,7 +283,7 @@ def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
             ages = AGES["Switzerland"]
         rates, fracs = unpack(x)
         param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"],
-                       date=confinement_start, times=time_points, rates=rates, fracs=fracs)
+                       date=fixed_params.get('containment_start', None), times=time_points, rates=rates, fracs=fracs)
         return assess_model(param, data, np.exp(x[params_to_fit['logInitial']]))
 
     if bounds is None:
@@ -289,7 +300,7 @@ def fit_params(key, time_points, data, guess, confinement_start, bounds=None):
 
     rates, fracs = unpack(fit_param.x)
     return (Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"],
-                   date=confinement_start, times=time_points, rates=rates, fracs=fracs),
+                   date=fixed_params.get('containment_start', None), times=time_points, rates=rates, fracs=fracs),
            np.exp(fit_param.x[params_to_fit['logInitial']]), err)
 
 # ------------------------------------------
@@ -354,24 +365,46 @@ def get_fit_data(days, data_original, confinement_start=None):
 
 
 
-def fit_population(key, time_points, data, confinement_start, guess=None):
+def fit_population(key, time_points, data, confinement_start=None, guess=None, second_fit=False):
     if data is None or data[Sub.D] is None or len(data[Sub.D]) <= 5:
         return None
 
+    res = get_Re_guess(time_points, data)
+    if res['fit'][0]<1 or res['fit'][0]>6 or res['fit'][1]>res['fit'][0] or res['fit'][1]<0:
+        return None
+
+    fixed_params = {}
+    fixed_params['logR0'] = np.log(res['fit'][0])
+    fixed_params['efficacy'] = 1-res['fit'][1]/res['fit'][0]
+    fixed_params['containment_start'] = res['fit'][2]
+
     if guess is None:
-        guess = { "logR0": 1.0,
-                  "reported" : 0.2,
+        guess = { "reported" : 0.1,
                   "logInitial" : 1,
-                  "efficacy" : 0.8
                 }
-    # bounds = ((0.4,2),(0.01,0.8),(1,None),(0,1))
+    #bounds = ((0.01,0.8),(-5,3))
     bounds=None
 
     for ii in [Sub.T, Sub.D]:
         if not is_cumulative(data[ii]):
             print("Cases / deaths count is not cumulative.", data[ii])
 
-    param, init_cases, err = fit_params(key, time_points, data, guess, confinement_start, bounds=bounds)
+    t1 = datetime.now().timestamp()
+    param, init_cases, err = fit_params(key, time_points, data, guess, fixed_params, bounds=bounds)
+    t2 = datetime.now().timestamp()
+    print(round(t2 - t1,2), fixed_params)
+    if second_fit:
+      guess = { "reported" : param.fracs.reported,
+                "logInitial" : np.log(init_cases),
+                "logR0": param.rates.logR0,
+                "efficacy": param.rates.efficacy
+              }
+      param, init_cases, err = fit_params(key, time_points, data, guess,
+                                          {'containment_start':fixed_params['containment_start']}, bounds=None)
+
+      t3 = datetime.now().timestamp()
+      print(round(t3 - t2, 2), fixed_params)
+
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     res = {'params': param, 'initialCases': init_cases, 'tMin': tMin, 'data': data, 'error':err}
     if param.date is not None:
@@ -419,7 +452,7 @@ if __name__ == "__main__":
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
     # Fitting over the pre-confinement days
-    res = fit_population(key, model_tps, fit_data, confinement_start)
+    res = fit_population(key, model_tps, fit_data)
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
     err = fit_error(fit_data, model)
     if confinement_start is not None:

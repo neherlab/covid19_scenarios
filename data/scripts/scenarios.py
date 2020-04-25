@@ -241,7 +241,7 @@ def fit_one_case_data(args):
 
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
-    r = fit_population(region, model_tps, fit_data, containment_start)
+    r = fit_population(region, model_tps, fit_data)
     if r is None or np.exp(r['params'].rates.logR0)>6 or np.exp(r['params'].rates.logR0)<1.5:
         return (region, Params.fit(tmp_data))
 

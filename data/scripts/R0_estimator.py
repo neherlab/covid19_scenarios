@@ -2,14 +2,11 @@ import numpy as np
 from matplotlib import pyplot as plt
 import sys
 sys.path.append('..')
-sys.path.append('/home/valentin/Desktop/richardLab/covid19_scenarios/data')
 from datetime import datetime
 from scipy.signal import savgol_filter
 from scipy import optimize
 from enum import IntEnum
 import copy
-from scripts import tsv
-from model import load_data
 
 compartments = ['S', 'E1', 'E2', 'E3', 'I', 'H', 'C', 'D', 'R', 'T', 'NUM']
 Sub = IntEnum('Sub', compartments, start=0)
@@ -79,41 +76,44 @@ def get_Re_guess(time, cases, step=7, extremal_points=7, death_data=False):
             "R0_smoothed": smooth(R0_by_day)}
 
 
-case_counts = tsv.parse()
+if __name__ == "__main__":
+    from scripts import tsv
+    from scripts.model import load_data
+    case_counts = tsv.parse()
 
-step = 7
-smoothing = 4
-country_list = ["Switzerland"]
-country_list = ["Germany", "Switzerland", "Italy"]
-#country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
+    step = 7
+    smoothing = 4
+    country_list = ["Switzerland"]
+    country_list = ["Germany", "Switzerland", "Italy"]
+    #country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
 
-for ci, c in enumerate(country_list):
-    time, data = load_data(c, case_counts[c])
-    res = get_Re_guess(time, data, extremal_points=10, death_data=False)
-    fit = res["fit"]
-    R0_by_day = res["R0_by_day"]
-    R0_smoothed = res["R0_smoothed"]
-    dates = [datetime.fromordinal(x) for x in time]
+    for ci, c in enumerate(country_list):
+        time, data = load_data(c, case_counts[c])
+        res = get_Re_guess(time, data, extremal_points=10, death_data=False)
+        fit = res["fit"]
+        R0_by_day = res["R0_by_day"]
+        R0_smoothed = res["R0_smoothed"]
+        dates = [datetime.fromordinal(x) for x in time]
 
-    plt.figure(1)
-    # plt.plot(t_smoothed, R0_cases_smoothed, label=c, ls='--', c=f"C{ci}")
-    plt.plot(dates, R0_by_day[Sub.T], label=f"{c}", c=f"C{ci}")
-    plt.plot(dates, R0_smoothed[Sub.T], c=f"C{ci}")
-    plt.plot(dates, stair_func(time, *fit), c=f"C{ci}")
-    # plt.figure(2)
-    # plt.plot(t_smoothed, R0_deaths_smoothed, label=c)
+        plt.figure(1)
+        # plt.plot(t_smoothed, R0_cases_smoothed, label=c, ls='--', c=f"C{ci}")
+        plt.plot(dates, R0_by_day[Sub.T], label=f"{c}", c=f"C{ci}")
+        plt.plot(dates, R0_smoothed[Sub.T], c=f"C{ci}")
+        plt.plot(dates, stair_func(time, *fit), c=f"C{ci}")
+        # plt.figure(2)
+        # plt.plot(t_smoothed, R0_deaths_smoothed, label=c)
 
-# for i,n in [(1,"cases"), (2, 'deaths')]:
-#     plt.figure(i)
-#     plt.title("Naive R0 estimate from smoothed new case reports 7 days apart")
-#     plt.xlim(time[-40] if len(time)>40 else time[0], time[-1])
-#     plt.plot(time, np.ones_like(time))
-#     plt.ylabel("R0 estimate")
-#     plt.legend(loc=3)
-#     # plt.ylim(0,3.5)
-#     # plt.savefig(f"{n}.png")4
-plt.xlabel("R0")
-plt.ylabel("Time [days]")
-plt.legend(loc="best")
-plt.savefig("Stair_fit", format="png")
-plt.show()
+    # for i,n in [(1,"cases"), (2, 'deaths')]:
+    #     plt.figure(i)
+    #     plt.title("Naive R0 estimate from smoothed new case reports 7 days apart")
+    #     plt.xlim(time[-40] if len(time)>40 else time[0], time[-1])
+    #     plt.plot(time, np.ones_like(time))
+    #     plt.ylabel("R0 estimate")
+    #     plt.legend(loc=3)
+    #     # plt.ylim(0,3.5)
+    #     # plt.savefig(f"{n}.png")4
+    plt.xlabel("R0")
+    plt.ylabel("Time [days]")
+    plt.legend(loc="best")
+    plt.savefig("Stair_fit", format="png")
+    plt.show()
