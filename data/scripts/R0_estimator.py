@@ -3,13 +3,13 @@ from matplotlib import pyplot as plt
 import sys
 sys.path.append('..')
 sys.path.append('/home/valentin/Desktop/richardLab/covid19_scenarios/data')
-from scripts import tsv
-from model import load_data
 from datetime import datetime
 from scipy.signal import savgol_filter
 from scipy import optimize
 from enum import IntEnum
 import copy
+from scripts import tsv
+from model import load_data
 
 compartments = ['S', 'E1', 'E2', 'E3', 'I', 'H', 'C', 'D', 'R', 'T', 'NUM']
 Sub = IntEnum('Sub', compartments, start=0)
@@ -27,16 +27,15 @@ def smooth(data):
                     savgol_filter(smoothed[ii][~np.isnan(smoothed[ii])], 9, 3, mode="mirror"))
     return smoothed
 
-def growth_rate_to_R0(data):
+def growth_rate_to_R0(data, serial_interval=6):
     R0_by_day = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            R0_by_day[ii] = np.ma.array(1+6*data[ii])
+            R0_by_day[ii] = np.ma.array(1+serial_interval*data[ii])
             R0_by_day[ii].mask = np.isnan(R0_by_day[ii])
         else:
             R0_by_day[ii] = None
     return R0_by_day
-    # return np.exp(6*vec)
 
 def differences(data):
     diff_data = empty_data_list()
@@ -53,7 +52,7 @@ def log_diff(data, step):
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
             log_diff[ii] = (np.log(data[ii][step:]) - np.log(data[ii][:-step]))/step
-            log_diff[ii] = np.concatenate((np.repeat(np.nan, step), log_diff[ii]))
+            log_diff[ii] = np.concatenate((log_diff[ii], np.repeat(np.nan, step)))
         else:
             log_diff[ii] = None
     return log_diff
@@ -63,18 +62,21 @@ def stair_func(time, val_o, val_e, x_drop):
 
 def err_function(x_drop, time, vec, val_o, val_e):
     # vec need to be masked to avoid nan
-    return np.sum(np.power(vec - stair_func(time, val_o, val_e, x_drop),2))
+    return np.sum(np.abs(vec - stair_func(time, val_o, val_e, x_drop))**1)
 
 def stair_fit(time, vec, guess=None, nb_value=3):
-    # time must be in ordinal
-    if guess is None:
-        guess = time[len(time)//2]
-
     val_o = np.mean(vec[~vec.mask][:nb_value])
     val_e = np.mean(vec[~vec.mask][-nb_value:])
-    fit_params = optimize.minimize(err_function, guess, args=(time, vec, val_e, val_e), method="Nelder-Mead")
-    return val_o, val_e, fit_params.x[0]
+    drop = time[np.argmin([err_function(x, time, vec, val_o, val_e) for x in time])]
+    return val_o, val_e, drop
 
+def get_Re_guess(time, cases, step=7, extremal_points=7, death_data=False):
+    diff_data = differences(cases)
+    log_diff_vec = log_diff(diff_data, step)
+    R0_by_day = growth_rate_to_R0(log_diff_vec)
+    return {"fit": stair_fit(time, R0_by_day[Sub.D if death_data else Sub.T], nb_value=extremal_points),
+            "R0_by_day": R0_by_day,
+            "R0_smoothed": smooth(R0_by_day)}
 
 
 case_counts = tsv.parse()
@@ -82,39 +84,22 @@ case_counts = tsv.parse()
 step = 7
 smoothing = 4
 country_list = ["Switzerland"]
-#country_list = ["Germany", "Switzerland", "Italy"]
-# country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
+country_list = ["Germany", "Switzerland", "Italy"]
+#country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
 
-for c in country_list:
-
+for ci, c in enumerate(country_list):
     time, data = load_data(c, case_counts[c])
-    time -= time[0]
-    diff_data = differences(data)
-    log_diff_vec = log_diff(diff_data, step)
-    R0_by_day = growth_rate_to_R0(log_diff_vec)
-    R0_smoothed = smooth(R0_by_day)
+    res = get_Re_guess(time, data, extremal_points=7, death_data=False)
+    fit = res["fit"]
+    R0_by_day = res["R0_by_day"]
+    R0_smoothed = res["R0_smoothed"]
+    dates = [datetime.fromordinal(x) for x in time]
 
-    fit3 = stair_fit(time, R0_by_day[Sub.T])
-    fit4 = stair_fit(time, R0_by_day[Sub.T], 4)
-
-    # log_cases = [x["gr_cases"] for x in logdiff]
-    # t = [x['time'][0] for x in logdiff]
-    # t_smoothed = [x['time'][0] for x in logdiff][smoothing//2:-smoothing//2+1]
-    #
-    # R0_cases_by_day = np.ma.array([growth_rate_to_R0(x['gr_cases']) for x in logdiff])
-    # R0_cases_by_day.mask = R0_cases_by_day.mask = np.isinf(R0_cases_by_day)
-    #
-    # R0_deaths_by_day = np.ma.array([growth_rate_to_R0(x['gr_deaths']) for x in logdiff])
-    # R0_deaths_by_day.mask = R0_deaths_by_day.mask = np.isinf(R0_deaths_by_day)
-    #
-    # R0_cases_smoothed =  np.ma.convolve(R0_cases_by_day,  np.ma.ones(smoothing)/smoothing, mode='valid')
-    # R0_deaths_smoothed = np.ma.convolve(R0_deaths_by_day, np.ma.ones(smoothing)/smoothing, mode='valid')
     plt.figure(1)
     # plt.plot(t_smoothed, R0_cases_smoothed, label=c, ls='--', c=f"C{ci}")
-    plt.plot(time, R0_by_day[Sub.T], label=f"{c}")
-    plt.plot(time, R0_smoothed[Sub.T], label=f"smoothed")
-    plt.plot(time, stair_func(time, *fit3), label="fit drop3")
-    plt.plot(time, stair_func(time, *fit4), label="fit drop4")
+    plt.plot(dates, R0_by_day[Sub.T], label=f"{c}", c=f"C{ci}")
+    plt.plot(dates, R0_smoothed[Sub.T], c=f"C{ci}")
+    plt.plot(dates, stair_func(time, *fit), c=f"C{ci}")
     # plt.figure(2)
     # plt.plot(t_smoothed, R0_deaths_smoothed, label=c)
 
