@@ -27,17 +27,17 @@ def smooth(data):
                     savgol_filter(smoothed[ii][~np.isnan(smoothed[ii])], 9, 3, mode="mirror"))
     return smoothed
 
-def growth_rate_to_R0(data, serial_interval=6):
+def growth_rate_to_R0(data, serial_interval=9):
     R0_by_day = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            R0_by_day[ii] = np.ma.array(1+serial_interval*data[ii])
+            R0_by_day[ii] = 1+serial_interval*data[ii]
             R0_by_day[ii].mask = np.isnan(R0_by_day[ii])
         else:
             R0_by_day[ii] = None
     return R0_by_day
 
-def differences(data):
+def get_daily_counts(data):
     diff_data = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
@@ -47,7 +47,7 @@ def differences(data):
             diff_data[ii] = None
     return diff_data
 
-def log_diff(data, step):
+def get_growth_rate(data, step=7):
     log_diff = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
@@ -71,9 +71,9 @@ def stair_fit(time, vec, guess=None, nb_value=3):
     return val_o, val_e, drop
 
 def get_Re_guess(time, cases, step=7, extremal_points=7, death_data=False):
-    diff_data = differences(cases)
-    log_diff_vec = log_diff(diff_data, step)
-    R0_by_day = growth_rate_to_R0(log_diff_vec)
+    diff_data = get_daily_counts(cases)
+    growth_rate = get_growth_rate(diff_data, step)
+    R0_by_day = growth_rate_to_R0(growth_rate)
     return {"fit": stair_fit(time, R0_by_day[Sub.D if death_data else Sub.T], nb_value=extremal_points),
             "R0_by_day": R0_by_day,
             "R0_smoothed": smooth(R0_by_day)}
@@ -89,7 +89,7 @@ country_list = ["Germany", "Switzerland", "Italy"]
 
 for ci, c in enumerate(country_list):
     time, data = load_data(c, case_counts[c])
-    res = get_Re_guess(time, data, extremal_points=7, death_data=False)
+    res = get_Re_guess(time, data, extremal_points=10, death_data=False)
     fit = res["fit"]
     R0_by_day = res["R0_by_day"]
     R0_smoothed = res["R0_smoothed"]
