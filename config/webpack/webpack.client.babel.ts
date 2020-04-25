@@ -64,6 +64,9 @@ const portProd = getenv('WEB_PORT_PROD')
 const portAnalyze = Number.parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
+const disableChecks = getenv('DEV_DISABLE_CHECKS') === '1'
+const disableStylelint =
+  disableChecks || getenv('DEV_DISABLE_STYLELINT') === '1'
 
 function getWebRoot() {
   let root = `${schema}://${host}`
@@ -266,12 +269,13 @@ export default {
         dirs: [],
       }),
 
-    !analyze && webpackStylelint(),
+    !disableStylelint && !analyze && webpackStylelint(),
 
-    !analyze &&
+    !disableChecks &&
+      !analyze &&
       webpackTsChecker({
         warningsAreErrors: production,
-        memoryLimit: 1024,
+        memoryLimit: 2048,
         tsconfig: path.join(moduleRoot, 'tsconfig.json'),
         reportFiles: [
           'src/**/*.{js,jsx,ts,tsx}',
