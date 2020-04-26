@@ -2,6 +2,7 @@ import { CaseCounts, Convert } from '../../../.generated/types'
 import CaseCountsValidate, { errors } from '../../../.generated/CaseCountsValidate'
 import allCaseCountsRaw from '../../../assets/data/case_counts.json'
 import { NONE_COUNTRY_NAME } from './state'
+import { EmpiricalData } from '../../../algorithms/types/Param.types'
 
 function validate(): CaseCounts[] {
   const valid = CaseCountsValidate(allCaseCountsRaw)
@@ -38,4 +39,10 @@ export function getCaseCountsData(key: string) {
   // FIXME: this should be changed, too hacky
   const [caseCount] = Convert.toCaseCounts(JSON.stringify([caseCountFound]))
   return caseCount.empiricalData
+}
+
+export function getSortedNonEmptyCaseCounts(key: string): EmpiricalData {
+  return getCaseCountsData(key)
+    .filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
+    .sort((a, b) => (a.time > b.time ? 1 : -1))
 }

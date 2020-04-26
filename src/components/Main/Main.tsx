@@ -13,7 +13,7 @@ import { run } from '../../workers/algorithm'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
-import { getCaseCountsData } from './state/caseCountsData'
+import { getSortedNonEmptyCaseCounts } from './state/caseCountsData'
 
 import { schema } from './validation/schema'
 
@@ -55,10 +55,8 @@ async function runSimulation(
     const newResult = await run({ params: paramsFlat, severity, ageDistribution: scenarioState.ageDistribution })
     setResult(newResult)
 
-    const caseCounts = getCaseCountsData(params.population.cases)
-    const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
-    nonEmptyCaseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
-    setEmpiricalCases(nonEmptyCaseCounts)
+    const caseCounts = getSortedNonEmptyCaseCounts(params.population.cases)
+    setEmpiricalCases(caseCounts)
   } catch (error) {
     // Rejected promises are thrown by await functions.
     // Catch and log the error message to console.
