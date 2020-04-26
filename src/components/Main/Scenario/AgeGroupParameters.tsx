@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-import _, { pick, omit } from 'lodash'
+import { pick, isEqual } from 'lodash'
 
 import i18next from 'i18next'
+
 import * as yup from 'yup'
 import { format as d3format } from 'd3-format'
 
@@ -46,19 +47,21 @@ export const DataMarshal = ({
   view: View,
 }: DataMarshalProps) => {
   function propagateChange(ageGroupParameters: AgeGroupRow[]) {
-    const updatedSeverity = ageGroupParameters.map((row) => {
-      return omit(row, ['population'])
+    const updatedSeverity: SeverityDistributionDatum[] = ageGroupParameters.map((row) => {
+      return pick(row, ['ageGroup', 'confirmed', 'critical', 'fatal', 'isolated', 'severe'])
     })
 
-    if (!_.isEqual(ageGroupParameters, severity)) {
+    if (!isEqual(ageGroupParameters, severity)) {
       setSeverity(updatedSeverity)
     }
 
-    const updatedAgeDistribution: AgeDistributionDatum[] = ageGroupParameters.map((row) => {
-      return pick(row, ['ageGroup', 'population'])
-    })
+    const updatedAgeDistribution: AgeDistributionDatum[] = ageGroupParameters.map(
+      (row): AgeDistributionDatum => {
+        return pick(row, ['ageGroup', 'population'])
+      },
+    )
 
-    if (!_.isEqual(updatedAgeDistribution, ageDistribution)) {
+    if (!isEqual(updatedAgeDistribution, ageDistribution)) {
       setAgeDistribution(updatedAgeDistribution)
     }
   }
@@ -70,12 +73,13 @@ export const DataMarshal = ({
 
 function marshalData(severity: SeverityDistributionDatum[], ageDistribution: AgeDistributionDatum[]) {
   return severity.map(
-    (severityRow, i) => ({ ...severityRow, population: ageDistribution[i].population } as AgeGroupRow),
+    (severityRow, i) =>
+      ({ id: severityRow.ageGroup, ...severityRow, population: ageDistribution[i].population } as AgeGroupRow),
   )
 }
 
 export interface AgeGroupRow {
-  id: number
+  id: string
   ageGroup: AgeGroup
   population: number
   confirmed: number
@@ -173,7 +177,7 @@ export const View = ({ ageGroupParameters, onChange }: ViewProps) => {
     if (result.errors) {
       setErrors(result.errors)
     }
-    if (result.values && !_.isEqual(result.values, ageGroupParameters)) {
+    if (result.values && !isEqual(result.values, ageGroupParameters)) {
       onChange(result.values)
     }
   }
@@ -227,7 +231,7 @@ export function validateAndTransform(
 
   const schema = yup.array().of(
     yup.object().shape({
-      id: yup.number(),
+      id: yup.string(),
       ageGroup: yup.string(),
       population: positiveIntegerSchema,
       confirmed: percentageSchema,
