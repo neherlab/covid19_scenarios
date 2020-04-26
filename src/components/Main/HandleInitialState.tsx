@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react'
+
+import { isEqual } from 'lodash'
+
+import History from 'history'
 import { withRouter, RouteComponentProps } from 'react-router'
 
-import _ from 'lodash'
+import type { SeverityDistributionDatum } from '../../algorithms/types/Param.types'
 
 import { defaultScenarioState, State } from './state/state'
-import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
 
 import { getSeverityDistribution } from './state/getSeverityDistribution'
 
-import { SeverityDistributionDatum } from '../../.generated/types'
-
 const DEFAULT_SEVERITY_DISTRIBUTION = 'China CDC'
 const severityDistribution = getSeverityDistribution(DEFAULT_SEVERITY_DISTRIBUTION)
+
+function deserializeScenarioFromURL(location: History.Location) {
+  // TODO: actually deserialize the URL
+  return defaultScenarioState
+}
 
 interface InitialState {
   scenarioState: State
@@ -32,7 +38,7 @@ function HandleInitialState({
   location,
   component: Component,
 }: RouteComponentProps<{}> & HandleInitialStateProps) {
-  const [scenarioState] = useState<State>(deserializeScenarioFromURL(location, defaultScenarioState))
+  const [scenarioState] = useState<State>(deserializeScenarioFromURL(location))
 
   useEffect(() => {
     if (location.search) {
@@ -46,7 +52,7 @@ function HandleInitialState({
       initialState={{
         scenarioState,
         severityTable: severityDistribution,
-        isDefault: _.isEqual(scenarioState, defaultScenarioState),
+        isDefault: isEqual(scenarioState, defaultScenarioState),
       }}
     />
   )

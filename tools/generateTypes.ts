@@ -78,6 +78,9 @@ function ajvGenerateOne(schemasRoot: string, ajv: AjvModule, outputDir: string) 
     const jsonSchemaString = fs.readFileSync(schemaFilepath).toString('utf-8')
     const schema = yaml.safeLoad(jsonSchemaString)
     const validateFunction = ajv.compile(schema)
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     let code = pack(ajv, validateFunction)
     code = prettier.format(code, { parser: 'babel' })
     return fs.writeFile(path.join(outputDir, `validate${typeName}.js`), code)

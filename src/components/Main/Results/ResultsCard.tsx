@@ -1,19 +1,31 @@
-import React, { createRef, useEffect, useState } from 'react'
+import React, { createRef, useEffect, useMemo, useState } from 'react'
+
 import { Button, Col, CustomInput, FormGroup, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
-import ExportSimulationDialog from './ExportSimulationDialog'
-import FormSwitch from '../../Form/FormSwitch'
+
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import type {
+  AgeDistributionDatum,
+  CaseCountsDatum,
+  ScenarioDatum,
+  SeverityDistributionDatum,
+} from '../../../algorithms/types/Param.types'
+
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
-import { AgeBarChart } from './AgeBarChart'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { DeterministicLinePlot } from './DeterministicLinePlot'
-import { AllParams, ContainmentData, EmpiricalData, Severity } from '../../../algorithms/types/Param.types'
-import { AgeDistribution } from '../../../.generated/types'
-import { OutcomeRatesTable } from './OutcomeRatesTable'
+
+import { stateToURL } from '../state/serialization/v2.0.0/stateToURL'
+
 import LinkButton from '../../Buttons/LinkButton'
-import './ResultsCard.scss'
+import FormSwitch from '../../Form/FormSwitch'
 import { CardWithControls } from '../../Form/CardWithControls'
+
+import ExportSimulationDialog from './ExportSimulationDialog'
+import { AgeBarChart } from './AgeBarChart'
+import { DeterministicLinePlot } from './DeterministicLinePlot'
+import { OutcomeRatesTable } from './OutcomeRatesTable'
+
+import './ResultsCard.scss'
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
@@ -23,13 +35,11 @@ interface ResultsCardProps {
   toggleAutorun: () => void
   canRun: boolean
   isRunning: boolean
-  params: AllParams
-  ageDistribution: AgeDistribution
-  mitigation: ContainmentData
-  severity: Severity[]
+  scenarioData: ScenarioDatum
+  ageDistribution: AgeDistributionDatum[]
+  severity: SeverityDistributionDatum[]
+  caseCounts?: CaseCountsDatum[]
   result?: AlgorithmResult
-  caseCounts?: EmpiricalData
-  scenarioUrl: string
   openPrintPreview: () => void
   areResultsMaximized: boolean
   toggleResultsMaximized: () => void
@@ -40,13 +50,11 @@ function ResultsCardFunction({
   isRunning,
   autorunSimulation,
   toggleAutorun,
-  params,
+  scenarioData,
   ageDistribution,
-  mitigation,
   severity,
   result,
   caseCounts,
-  scenarioUrl,
   openPrintPreview,
   areResultsMaximized,
   toggleResultsMaximized,
@@ -54,6 +62,8 @@ function ResultsCardFunction({
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
   const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
+  const [canExport, setCanExport] = useState<boolean>(false)
+  const [showExportModal, setShowExportModal] = useState<boolean>(false)
 
   useEffect(() => {
     const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
@@ -62,6 +72,13 @@ function ResultsCardFunction({
     const persistedShowHumanized = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS)
     setShowHumanized(persistedShowHumanized ?? SHOW_HUMANIZED_DEFAULT)
   }, [])
+
+  useEffect(() => {
+    setCanExport((result && !!result.trajectory) || false)
+  }, [result])
+
+  // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
+  // href: https://reactjs.org/docs/hooks-rules.html
 
   const setPersistLogScale = (value: boolean) => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.LOG_SCALE, value)
@@ -73,16 +90,16 @@ function ResultsCardFunction({
     setShowHumanized(value)
   }
 
-  const [canExport, setCanExport] = useState<boolean>(false)
-  const [showExportModal, setShowExportModal] = useState<boolean>(false)
-
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
 
-  useEffect(() => {
-    setCanExport((result && !!result.trajectory) || false)
-  }, [result])
+  const scenarioUrl = useMemo(() => stateToURL(scenarioData, ageDistribution, severity, caseCounts), [
+    scenarioData,
+    ageDistribution,
+    severity,
+    caseCounts,
+  ])
 
   return (
     <>
@@ -179,8 +196,7 @@ function ResultsCardFunction({
           <Col>
             <DeterministicLinePlot
               data={result}
-              params={params}
-              mitigation={mitigation}
+              params={scenarioData}
               logScale={logScale}
               showHumanized={showHumanized}
               caseCounts={caseCounts}
@@ -224,9 +240,9 @@ function ResultsCardFunction({
         openPrintPreview={openPrintPreview}
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
-        result={result}
-        params={params}
         scenarioUrl={scenarioUrl}
+        result={result}
+        params={scenarioData}
       />
     </>
   )

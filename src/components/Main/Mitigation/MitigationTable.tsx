@@ -7,8 +7,7 @@ import { Button, Table } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
-import { MitigationInterval, MitigationIntervals } from '../../../algorithms/types/Param.types'
-
+import type { MitigationInterval } from '../../../algorithms/types/Param.types'
 import { suggestNextMitigationInterval } from '../../../algorithms/utils/createMitigationInterval'
 
 import { MitigationDatePicker } from './MitigationDatePicker'
@@ -19,7 +18,7 @@ import { getFormikError } from '../../../helpers/getFormikError'
 import './MitigationTable.scss'
 
 export interface MitigationTableProps {
-  mitigationIntervals: MitigationIntervals
+  mitigationIntervals: MitigationInterval[]
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
@@ -89,7 +88,7 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
   )
 }
 
-interface MitigationIntervalProps {
+export interface MitigationIntervalProps {
   width: number
   index: number
   interval: MitigationInterval

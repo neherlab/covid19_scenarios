@@ -3,6 +3,10 @@ import { render, fireEvent } from '@testing-library/react'
 
 import '../../../i18n'
 
+import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+
+import { severity, ageDistribution } from '../../../algorithms/__test_data__/getPopulationParams.input.default'
+
 import {
   DataMarshal,
   DataMarshalProps,
@@ -13,17 +17,10 @@ import {
   AgeGroupParameterError,
   areAgeGroupParametersValid,
 } from './AgeGroupParameters'
-import { Convert } from '../../../.generated/types'
-import { Severity, AgeDistribution } from '../../../algorithms/types/Param.types'
-import rawSeverityData from '../../../assets/data/severityDistributions.json'
-import rawCountryAgeDistribution from '../../../assets/data/ageDistribution.json'
-
-const severityData = Convert.toSeverity(JSON.stringify(rawSeverityData))
-const { ageDistribution } = Convert.toCountryAgeDistribution(JSON.stringify(rawCountryAgeDistribution))[0]
 
 const ThisTest = (props: Pick<DataMarshalProps, 'view'> & Partial<DataMarshalProps>) => (
   <DataMarshal
-    severity={severityData}
+    severity={severity}
     setSeverity={jest.fn()}
     ageDistribution={ageDistribution}
     setAgeDistribution={jest.fn()}
@@ -50,7 +47,10 @@ type TestChangeFn = (ageGroupParameters: AgeGroupRow[]) => AgeGroupRow[]
 
 function doChangePropagationTest(
   testChange: TestChangeFn,
-): { setSeverity: (severity: Severity[]) => void; setAgeDistribution: (ageDistribution: AgeDistribution) => void } {
+): {
+  setSeverity: (severity: SeverityDistributionDatum[]) => void
+  setAgeDistribution: (ageDistribution: AgeDistributionDatum[]) => void
+} {
   const WrappedTest = (props: ViewProps) => <InnerButtonTest testChange={testChange} {...props} />
 
   const setSeverity = jest.fn()
@@ -69,7 +69,7 @@ describe('AgeGroupParameters.DataMarshal', () => {
 
     const { getByText } = render(<ThisTest view={WrappedTest} />)
 
-    expect(getByText(severityData[0].ageGroup)).not.toBeNull()
+    expect(getByText(severity[0].ageGroup)).not.toBeNull()
   })
 
   it('wraps the age distribution', () => {
@@ -77,7 +77,7 @@ describe('AgeGroupParameters.DataMarshal', () => {
 
     const { getByText } = render(<ThisTest view={WrappedTest} />)
 
-    expect(getByText(`${ageDistribution[severityData[0].ageGroup]}`)).not.toBeNull()
+    expect(getByText(`${ageDistribution[0].ageGroup}`)).not.toBeNull()
   })
 
   it('propagates severity update', () => {
@@ -87,7 +87,7 @@ describe('AgeGroupParameters.DataMarshal', () => {
       return thisChange
     })
 
-    const expectedChange = [...severityData]
+    const expectedChange = [...severity]
     expectedChange[0] = { ...expectedChange[0], severe: 99 }
 
     expect(setSeverity).toHaveBeenCalledWith(expectedChange)
@@ -102,7 +102,7 @@ describe('AgeGroupParameters.DataMarshal', () => {
     })
 
     const expectedChange = { ...ageDistribution }
-    expectedChange[severityData[0].ageGroup] = 99
+    expectedChange[0].population = 99
 
     expect(setAgeDistribution).toHaveBeenCalledWith(expectedChange)
     expect(setSeverity).not.toHaveBeenCalled()
@@ -117,8 +117,8 @@ describe('AgeGroupParameters.DataMarshal', () => {
     })
 
     const expectedChange1 = { ...ageDistribution }
-    expectedChange1[severityData[0].ageGroup] = 99
-    const expectedChange2 = [...severityData]
+    expectedChange1[0].population = 99
+    const expectedChange2 = [...severity]
     expectedChange2[1] = { ...expectedChange2[1], confirmed: 88 }
 
     expect(setAgeDistribution).toHaveBeenCalledWith(expectedChange1)
@@ -142,7 +142,7 @@ const ErrorTest = ({ ageGroupParameters }: ViewProps) => {
 
 describe('AgeGroupParameters.Schema', () => {
   it('can be error free', () => {
-    expect(areAgeGroupParametersValid(severityData, ageDistribution)).toBeTrue()
+    expect(areAgeGroupParametersValid(severity, ageDistribution)).toBeTrue()
   })
 
   describe('Severity errors', () => {
@@ -159,30 +159,30 @@ describe('AgeGroupParameters.Schema', () => {
       const [columnName, value, errorMessage] = [...testPlan]
 
       it(`finds and flags errors - ${columnName} - ${value}`, () => {
-        const thisChange = [...severityData]
+        const thisChange = [...severity]
         thisChange[0] = { ...thisChange[0] }
-        thisChange[0][columnName as keyof Severity] = value as never
+        thisChange[0][columnName as never] = value as never
 
         const { getByText } = render(<ThisTest severity={thisChange} view={ErrorTest} />)
 
-        expect(getByText(`${severityData[0].ageGroup}/${columnName}/${errorMessage}`)).not.toBeNull()
+        expect(getByText(`${severity[0].ageGroup}/${columnName}/${errorMessage}`)).not.toBeNull()
         expect(areAgeGroupParametersValid(thisChange, ageDistribution)).toBeFalse()
       })
     })
 
     it(`finds and flags all errors`, () => {
-      const thisChange = [...severityData]
+      const thisChange = [...severity]
       thisChange[0] = { ...thisChange[0] }
       testPlans.forEach((testPlan) => {
         const [columnName, value] = [...testPlan]
-        thisChange[0][columnName as keyof Severity] = value as never
+        thisChange[0][columnName as never] = value as never
       })
 
       const { getByText } = render(<ThisTest severity={thisChange} view={ErrorTest} />)
 
       testPlans.forEach((testPlan) => {
         const [columnName, , errorMessage] = [...testPlan]
-        expect(getByText(`${severityData[0].ageGroup}/${columnName}/${errorMessage}`)).not.toBeNull()
+        expect(getByText(`${severity[0].ageGroup}/${columnName}/${errorMessage}`)).not.toBeNull()
       })
       expect(areAgeGroupParametersValid(thisChange, ageDistribution)).toBeFalse()
     })
@@ -200,12 +200,12 @@ describe('AgeGroupParameters.Schema', () => {
 
       it(`finds and flags an error - ${value}`, () => {
         const thisChange = { ...ageDistribution }
-        thisChange[severityData[0].ageGroup] = value as never
+        thisChange[0].population = value as never
 
         const { getByText } = render(<ThisTest ageDistribution={thisChange} view={ErrorTest} />)
 
-        expect(getByText(`${severityData[0].ageGroup}/population/${errorMessage}`)).not.toBeNull()
-        expect(areAgeGroupParametersValid(severityData, thisChange)).toBeFalse()
+        expect(getByText(`${severity[0].ageGroup}/population/${errorMessage}`)).not.toBeNull()
+        expect(areAgeGroupParametersValid(severity, thisChange)).toBeFalse()
       })
     })
   })
@@ -215,17 +215,17 @@ describe('AgeGroupParameters.View', () => {
   it('displays the severity table', () => {
     const { getByText } = render(<ThisTest view={View} />)
 
-    expect(getByText(`${severityData[0].severe}`)).not.toBeNull()
-    expect(getByText(`${ageDistribution[severityData[0].ageGroup]}`)).not.toBeNull()
+    expect(getByText(`${severity[0].severe}`)).not.toBeNull()
+    expect(getByText(`${ageDistribution[0].ageGroup}`)).not.toBeNull()
   })
 
   it('displays an error for an invalid value', () => {
-    const severityWithError = [...severityData]
+    const severityWithError = [...severity]
     severityWithError[0] = { ...severityWithError[0], confirmed: -1 }
     const { getByText } = render(<ThisTest severity={severityWithError} view={View} />)
 
     expect(
-      getByText(`Error in row "${severityData[0].ageGroup}", column "confirmed": Percentage should be non-negative`),
+      getByText(`Error in row "${severity[0].ageGroup}", column "confirmed": Percentage should be non-negative`),
     ).not.toBeNull()
   })
 })

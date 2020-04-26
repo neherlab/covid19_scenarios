@@ -1,10 +1,15 @@
 import React from 'react'
+
 import { render } from '@testing-library/react'
+
 import { Router } from 'react-router-dom'
 import { createMemoryHistory, Location } from 'history'
-import HandleInitialState, { HandleInitialStateProps } from './HandleInitialState'
+
 import { State, DEFAULT_OVERALL_SCENARIO_NAME } from './state/state'
-import severityData from '../../assets/data/severityDistributions.json'
+
+import HandleInitialState, { HandleInitialStateProps } from './HandleInitialState'
+
+import { severity } from '../../algorithms/__test_data__/getPopulationParams.input.default'
 
 jest.mock('./state/serialization/URLSerializer', () => ({
   deserializeScenarioFromURL: (location: Location, state: State): State => {
@@ -44,7 +49,7 @@ describe('HandleInitialState', () => {
       <ThisTest
         component={({ initialState }) => (
           <span>
-            {initialState.scenarioState.data.population.country} {initialState.isDefault ? 'true' : 'false'}
+            {initialState.scenarioState.data.population.ageDistributionName} {initialState.isDefault ? 'true' : 'false'}
           </span>
         )}
       />,
@@ -58,7 +63,7 @@ describe('HandleInitialState', () => {
       <ThisTest component={({ initialState }) => <span>{initialState.severityTable[0].ageGroup}</span>} />,
     )
 
-    expect(getByText(severityData[0].ageGroup)).not.toBeNull()
+    expect(getByText(severity[0].ageGroup)).not.toBeNull()
   })
 
   it('may pull state from the URL', () => {

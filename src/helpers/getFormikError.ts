@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
-export interface GetErrorParams {
+export type GetErrorParams = {
   identifier: string
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>

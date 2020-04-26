@@ -28,10 +28,6 @@ export interface ScenarioCardPopulationProps {
 
 function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
-  // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
-  // function handleChangePopulationScenario(newPopulationScenario: string) {
-  //   scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario }))
-  // }
 
   return (
     <CardWithControls

@@ -14,7 +14,7 @@ import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
-import { AllParams, Severity } from '../../../algorithms/types/Param.types'
+import { ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 import { ColCustom } from '../../Layout/ColCustom'
 import { CardWithControls } from '../../Form/CardWithControls'
 import PresetLoader from './presets/PresetLoader'
@@ -29,18 +29,18 @@ export function getColumnSizes(areResultsMaximized: boolean) {
 }
 
 export interface ScenarioCardProps {
-  values: AllParams
-  severity: Severity[]
+  scenario: ScenarioDatum
+  severity: SeverityDistributionDatum[]
   scenarioState: State
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
-  setSeverity(severity: Severity[]): void
+  setSeverity(severity: SeverityDistributionDatum[]): void
   scenarioDispatch(action: AnyAction): void
   areResultsMaximized: boolean
 }
 
 function ScenarioCard({
-  values,
+  scenario,
   severity,
   scenarioState,
   errors,
@@ -89,7 +89,7 @@ function ScenarioCard({
 
         <Row noGutters>
           <Col className="my-2">
-            <ScenarioCardContainment values={values} errors={errors} touched={touched} />
+            <ScenarioCardContainment scenario={scenario} errors={errors} touched={touched} />
           </Col>
         </Row>
 

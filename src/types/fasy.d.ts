@@ -1,18 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export declare type PotentialPromise<T> = T | Promise<T>
 export declare type MapperFn<I, O> = (value: I, idx: number, arr: I[]) => PotentialPromise<O>
 export declare type EachFn<I> = MapperFn<I, any>
 export declare type PredicateFn<I> = MapperFn<I, any>
 export declare type ReducerFn<I, O> = (acc: O, v: I, idx: number, arr: I[]) => Promise<O>
 export declare type Transducer<I, O> = (combinationFn: ReducerFn<I, O>) => ReducerFn<I, O>
-
-export declare namespace concurrent {
-  function forEach<I>(eachFn: EachFn<I>, arr?: I[]): Promise<void>
-  function map<I, O>(mapperFn: MapperFn<I, O>, arr?: I[]): Promise<O[]>
-  function flatMap<I, O>(mapperFn: MapperFn<I, O>, arr?: I[]): Promise<O[]>
-  function filterIn<I>(predicateFn: PredicateFn<I>, arr?: I[]): Promise<I[]>
-  function filterOut<I>(predicateFn: PredicateFn<I>, arr?: I[]): Promise<I[]>
-  const filter: typeof filterIn
-}
 
 export declare namespace serial {
   function forEach<I>(eachFn: EachFn<I>, arr?: I[]): Promise<void>
@@ -28,6 +21,12 @@ export declare namespace serial {
 }
 
 export declare namespace concurrent {
+  function forEach<I>(eachFn: EachFn<I>, arr?: I[]): Promise<void>
+  function map<I, O>(mapperFn: MapperFn<I, O>, arr?: I[]): Promise<O[]>
+  function flatMap<I, O>(mapperFn: MapperFn<I, O>, arr?: I[]): Promise<O[]>
+  function filterIn<I>(predicateFn: PredicateFn<I>, arr?: I[]): Promise<I[]>
+  function filterOut<I>(predicateFn: PredicateFn<I>, arr?: I[]): Promise<I[]>
+  const filter: typeof filterIn
   const reduce: typeof serial.reduce
   const reduceRight: typeof serial.reduceRight
   const pipe: typeof serial.pipe

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
+
+import _, { pick, omit } from 'lodash'
+
 import i18next from 'i18next'
-import _ from 'lodash'
 import * as yup from 'yup'
+import { format as d3format } from 'd3-format'
+
 import {
   Column,
   ChangeSet,
@@ -11,10 +15,10 @@ import {
   DataTypeProvider,
   DataTypeProviderProps,
 } from '@devexpress/dx-react-grid'
-import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress/dx-react-grid-bootstrap4'
-import { format as d3format } from 'd3-format'
 
-import { AgeGroup, Severity, AgeDistribution } from '../../../algorithms/types/Param.types'
+import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress/dx-react-grid-bootstrap4'
+
+import type { AgeDistributionDatum, AgeGroup, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
 import './AgeGroupParameters.scss'
 
@@ -22,10 +26,10 @@ const AgeGroupParameters = (props: Omit<DataMarshalProps, 'view'>) => <DataMarsh
 export default AgeGroupParameters
 
 export interface DataMarshalProps {
-  severity: Severity[]
-  setSeverity: (severity: Severity[]) => void
-  ageDistribution: AgeDistribution
-  setAgeDistribution: (ageDistribution: AgeDistribution) => void
+  severity: SeverityDistributionDatum[]
+  setSeverity: (severity: SeverityDistributionDatum[]) => void
+  ageDistribution: AgeDistributionDatum[]
+  setAgeDistribution: (ageDistribution: AgeDistributionDatum[]) => void
   view: React.ComponentType<ViewProps>
 }
 
@@ -43,16 +47,17 @@ export const DataMarshal = ({
 }: DataMarshalProps) => {
   function propagateChange(ageGroupParameters: AgeGroupRow[]) {
     const updatedSeverity = ageGroupParameters.map((row) => {
-      const { ageGroup, confirmed, critical, fatal, id, isolated, severe } = row
-      return { ageGroup, confirmed, critical, fatal, id, isolated, severe }
+      return omit(row, ['population'])
     })
-    if (!_.isEqual(updatedSeverity, severity)) {
+
+    if (!_.isEqual(ageGroupParameters, severity)) {
       setSeverity(updatedSeverity)
     }
-    const updatedAgeDistribution: AgeDistribution = { ...ageDistribution }
-    ageGroupParameters.forEach((row) => {
-      updatedAgeDistribution[row.ageGroup] = row.population
+
+    const updatedAgeDistribution: AgeDistributionDatum[] = ageGroupParameters.map((row) => {
+      return pick(row, ['ageGroup', 'population'])
     })
+
     if (!_.isEqual(updatedAgeDistribution, ageDistribution)) {
       setAgeDistribution(updatedAgeDistribution)
     }
@@ -63,9 +68,9 @@ export const DataMarshal = ({
   return <View ageGroupParameters={ageGroupParameters} onChange={propagateChange} />
 }
 
-function marshalData(severity: Severity[], ageDistribution: AgeDistribution) {
+function marshalData(severity: SeverityDistributionDatum[], ageDistribution: AgeDistributionDatum[]) {
   return severity.map(
-    (severityRow) => ({ ...severityRow, population: ageDistribution[severityRow.ageGroup] } as AgeGroupRow),
+    (severityRow, i) => ({ ...severityRow, population: ageDistribution[i].population } as AgeGroupRow),
   )
 }
 
@@ -256,6 +261,9 @@ export function validateAndTransform(
   }
 }
 
-export function areAgeGroupParametersValid(severity: Severity[], ageDistribution: AgeDistribution): boolean {
+export function areAgeGroupParametersValid(
+  severity: SeverityDistributionDatum[],
+  ageDistribution: AgeDistributionDatum[],
+): boolean {
   return !validateAndTransform(marshalData(severity, ageDistribution)).errors
 }

@@ -9,7 +9,7 @@ import {
   FacebookIcon,
   FacebookShareButton,
 } from 'react-share'
-import { AllParams } from '../../../algorithms/types/Param.types'
+import { ScenarioDatum } from '../../../algorithms/types/Param.types'
 import { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
 import ClipboardButton from '../../Buttons/ClipboardButton'
@@ -19,7 +19,7 @@ export interface ExportSimulationDialogProps {
   showModal: boolean
   toggleShowModal: () => void
   openPrintPreview: () => void
-  params?: AllParams
+  params?: ScenarioDatum
   result?: AlgorithmResult
   scenarioUrl: string
 }

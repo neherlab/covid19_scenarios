@@ -1,4 +1,4 @@
-import { CaseCountsArray, CaseCountsData, Convert } from '../../../.generated/types'
+import { CaseCountsArray, CaseCountsData, Convert } from '../../../algorithms/types/Param.types'
 import validateCaseCountsArray, { errors } from '../../../.generated/validateCaseCountsArray'
 import caseCountsDataRaw from '../../../assets/data/caseCounts.json'
 import { NONE_COUNTRY_NAME } from './state'

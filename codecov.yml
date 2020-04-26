@@ -4,5 +4,5 @@ coverage:
       enable_partials: yes
 
 comment:
-  layout: "diff, files"
+  layout: 'diff, files'
   require_changes: true

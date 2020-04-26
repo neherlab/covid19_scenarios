@@ -1,13 +1,13 @@
 import i18next from 'i18next'
 import { scenarioNames, getScenario } from './getScenario'
 import { getAgeDistribution } from './getAgeDistribution'
-import { ScenarioData, AgeDistribution } from '../../../algorithms/types/Param.types'
+import { ScenarioDatum, AgeDistributionDatum } from '../../../algorithms/types/Param.types'
 
 export interface State {
   scenarios: string[]
   current: string
-  data: ScenarioData
-  ageDistribution: AgeDistribution
+  data: ScenarioDatum
+  ageDistribution: AgeDistributionDatum[]
 }
 
 // TODO: Add a default category to export

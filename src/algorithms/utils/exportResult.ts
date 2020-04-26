@@ -1,7 +1,8 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
-import { AllParams } from '../types/Param.types'
-import { AlgorithmResult } from '../types/Result.types'
+
+import type { ScenarioDatumExternal } from '../types/Param.types'
+import type { AlgorithmResult } from '../types/Result.types'
 import { exportSimulation } from '../model'
 
 export function isBlobApiSupported() {
@@ -17,7 +18,7 @@ export function saveFile(content: string, filename: string) {
   saveAs(blob, filename)
 }
 
-export async function exportAll(params: AllParams, result: AlgorithmResult) {
+export async function exportAll(params: ScenarioDatumExternal, result: AlgorithmResult) {
   if (!result) {
     throw new Error(`Algorithm result expected, but got ${result}`)
   }
@@ -69,7 +70,7 @@ export function exportResult(result: AlgorithmResult, fileName: string, ageGroup
   saveFile(exportSimulation(trajectory, ageGroups), fileName)
 }
 
-export function exportParams(params: AllParams) {
+export function exportParams(params: ScenarioDatumExternal) {
   if (!params) {
     throw new Error(`Algorithm params expected, but got ${params}`)
   }

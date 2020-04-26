@@ -1,5 +1,4 @@
-import { AgeDistribution, Severity } from '../.generated/types'
-import { AllParamsFlat } from './types/Param.types'
+import { AgeDistributionDatum, ScenarioFlat, SeverityDistributionDatum } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types/Result.types'
 
 import { getPopulationParams, initializePopulation } from './initialize'
@@ -9,14 +8,14 @@ import { mulTP, divTP, meanTrajectory, stddevTrajectory } from './results'
 const identity = (x: number) => x
 
 export interface RunParams {
-  params: AllParamsFlat
-  severity: Severity[]
-  ageDistribution: AgeDistribution
+  params: ScenarioFlat
+  severity: SeverityDistributionDatum[]
+  ageDistribution: AgeDistributionDatum[]
 }
 
 export async function run({ params, severity, ageDistribution }: RunParams): Promise<AlgorithmResult> {
-  const tMin: number = new Date(params.simulationTimeRange.tMin).getTime()
-  const tMax: number = new Date(params.simulationTimeRange.tMax).getTime()
+  const tMin: number = new Date(params.simulationTimeRange.begin).getTime()
+  const tMax: number = new Date(params.simulationTimeRange.end).getTime()
   const ageGroups = Object.keys(ageDistribution)
   const initialCases = params.initialNumberOfCases
 
@@ -44,7 +43,7 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
   const R0Trajectories = trajectories[0].map((d) => {
     return {
       t: d.time,
-      y: modelParamsArray.map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriod),
+      y: modelParamsArray.map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriodDays),
     }
   })
 

@@ -46,7 +46,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.current = name
       if (name !== CUSTOM_SCENARIO_NAME) {
         draft.data = _.cloneDeep(getScenario(name))
-        draft.ageDistribution = getAgeDistribution(draft.data.population.country)
+        draft.ageDistribution = getAgeDistribution(draft.data.population.ageDistributionName)
       }
     }),
   )
@@ -56,8 +56,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.population = _.cloneDeep(data)
-      if (draft.data.population.country !== CUSTOM_COUNTRY_NAME) {
-        draft.ageDistribution = getAgeDistribution(draft.data.population.country)
+      if (draft.data.population.ageDistributionName !== CUSTOM_COUNTRY_NAME) {
+        draft.ageDistribution = getAgeDistribution(draft.data.population.ageDistributionName)
       }
     }),
   )
@@ -74,7 +74,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
     immerCase(setContainmentData, (draft, { data }) => {
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
-      draft.data.containment = _.cloneDeep(data)
+      draft.data.mitigation.mitigationIntervals = _.cloneDeep(data.mitigationIntervals)
     }),
   )
 
@@ -91,6 +91,6 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.ageDistribution = data
-      draft.data.population.country = CUSTOM_COUNTRY_NAME
+      draft.data.population.ageDistributionName = CUSTOM_COUNTRY_NAME
     }),
   )

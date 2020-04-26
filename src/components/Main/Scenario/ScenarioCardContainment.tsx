@@ -6,18 +6,18 @@ import { useTranslation } from 'react-i18next'
 
 import { CardWithControls } from '../../Form/CardWithControls'
 import { MitigationTable } from '../Mitigation/MitigationTable'
-import { AllParams } from '../../../algorithms/types/Param.types'
+import { ScenarioDatum } from '../../../algorithms/types/Param.types'
 
 export interface ScenarioCardContainmentProps {
-  values: AllParams
+  scenario: ScenarioDatum
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
 
-function ScenarioCardContainment({ values, errors, touched }: ScenarioCardContainmentProps) {
+function ScenarioCardContainment({ scenario, errors, touched }: ScenarioCardContainmentProps) {
   const { t } = useTranslation()
 
-  const { mitigationIntervals } = values.containment
+  const { mitigationIntervals } = scenario.mitigation
 
   return (
     <CardWithControls

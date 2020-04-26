@@ -1,4 +1,4 @@
-import { AgeDistributionArray, AgeDistributionData, Convert } from '../../../.generated/types'
+import { AgeDistributionArray, AgeDistributionData, Convert } from '../../../algorithms/types/Param.types'
 import validateAgeDistributionArray, { errors } from '../../../.generated/validateAgeDistributionArray'
 import ageDistributionRaw from '../../../assets/data/ageDistribution.json'
 
@@ -13,7 +13,7 @@ function validate(): AgeDistributionData[] {
 }
 
 const ageDistributions = validate()
-export const ageDistributionNames = ageDistributions.map((cad) => cad.data)
+export const ageDistributionNames = ageDistributions.map((cad) => cad.name)
 
 export function getAgeDistribution(name: string) {
   const ageDistributionFound = ageDistributions.find((cad) => cad.name === name)
@@ -23,5 +23,15 @@ export function getAgeDistribution(name: string) {
 
   // FIXME: this should be changed, too hacky
   const ageDistribution = Convert.toAgeDistributionData(JSON.stringify(ageDistributionFound))
-  return ageDistribution.data
+  return ageDistribution.data.sort((a, b) => {
+    if (a.ageGroup > b.ageGroup) {
+      return +1
+    }
+
+    if (a.ageGroup < b.ageGroup) {
+      return -1
+    }
+
+    return 0
+  })
 }

@@ -1,20 +1,19 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React from 'react'
 
+import { sumBy } from 'lodash'
+
 import ReactResizeDetector from 'react-resize-detector'
-
 import { useTranslation } from 'react-i18next'
-
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, LabelProps, TooltipProps } from 'recharts'
 
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { AgeDistribution, Severity } from '../../../.generated/types'
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { colors } from './ChartCommon'
-
 import { calculatePosition, scrollToRef } from './chartHelper'
-
 import { ChartTooltip } from './ChartTooltip'
 
 const ASPECT_RATIO = 16 / 4
@@ -22,8 +21,8 @@ const ASPECT_RATIO = 16 / 4
 export interface SimProps {
   showHumanized?: boolean
   data?: AlgorithmResult
-  ageDistribution?: AgeDistribution
-  rates?: Severity[]
+  ageDistribution?: AgeDistributionDatum[]
+  rates?: SeverityDistributionDatum[]
   forcedWidth?: number
   forcedHeight?: number
   printLabel?: boolean
@@ -71,9 +70,10 @@ export function AgeBarChart({
   }
 
   // Ensure age distribution is normalized
-  const Z: number = Object.values(ageDistribution).reduce((a, b) => a + b, 0)
+  const Z: number = sumBy(ageDistribution, ({ population }) => population)
   const normAgeDistribution: Record<string, number> = {}
   Object.keys(ageDistribution).forEach((k) => {
+    // @ts-ignore
     normAgeDistribution[k] = ageDistribution[k] / Z
   })
 

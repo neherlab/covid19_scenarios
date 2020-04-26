@@ -1,4 +1,4 @@
-import { Convert, SeverityDistributionArray, SeverityDistributionData } from '../../../.generated/types'
+import { Convert, SeverityDistributionArray, SeverityDistributionData } from '../../../algorithms/types/Param.types'
 import validateSeverityDistributionArray, { errors } from '../../../.generated/validateSeverityDistributionArray'
 import severityRaw from '../../../assets/data/severityDistributions.json'
 
@@ -23,5 +23,15 @@ export function getSeverityDistribution(name: string) {
 
   // FIXME: this should be changed, too hacky
   const severityDistribution = Convert.toSeverityDistributionData(JSON.stringify(severityDistributionFound))
-  return severityDistribution.data
+  return severityDistribution.data.sort((a, b) => {
+    if (a.ageGroup > b.ageGroup) {
+      return +1
+    }
+
+    if (a.ageGroup < b.ageGroup) {
+      return -1
+    }
+
+    return 0
+  })
 }

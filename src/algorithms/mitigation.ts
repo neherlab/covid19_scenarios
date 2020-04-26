@@ -1,6 +1,6 @@
 import { clamp } from 'lodash'
 import { TimeSeries } from './types/TimeSeries.types'
-import { MitigationIntervals } from './types/Param.types'
+import { MitigationInterval } from './types/Param.types'
 import { sampleRandom } from './utils/sample'
 
 // -----------------------------------------------------------------------
@@ -28,25 +28,27 @@ function strength(mitigation: number): number {
 }
 
 function sampleMitigationRealizations(
-  intervals: MitigationIntervals,
+  intervals: MitigationInterval[],
   numberStochasticRuns: number,
 ): MitigationMeasure[][] {
-  const noRanges = intervals.every((elt) => elt.mitigationValue[0] === elt.mitigationValue[1])
+  const noRanges = intervals.every(
+    (interval) => interval.transmissionReduction.begin === interval.transmissionReduction.end,
+  )
   if (noRanges) {
     return [
       intervals.map((interval) => ({
-        val: strength(interval.mitigationValue[0]),
-        tMin: interval.timeRange.tMin.valueOf(),
-        tMax: interval.timeRange.tMax.valueOf(),
+        val: strength(interval.transmissionReduction.begin),
+        tMin: interval.timeRange.begin.valueOf(),
+        tMax: interval.timeRange.end.valueOf(),
       })),
     ]
   }
 
   return [...Array(numberStochasticRuns).keys()].map(() =>
     intervals.map((interval) => ({
-      val: strength(sampleRandom([interval.mitigationValue[0], interval.mitigationValue[1]])),
-      tMin: interval.timeRange.tMin.valueOf(),
-      tMax: interval.timeRange.tMax.valueOf(),
+      val: strength(sampleRandom([interval.transmissionReduction.begin, interval.transmissionReduction.end])),
+      tMin: interval.timeRange.begin.valueOf(),
+      tMax: interval.timeRange.end.valueOf(),
     })),
   )
 }
@@ -118,7 +120,7 @@ function interpolateTimeSeries(containment: TimeSeries): Func {
 // -----------------------------------------------------------------------
 // Exported functions
 
-export function containmentMeasures(intervals: MitigationIntervals, numberStochasticRuns: number): Func[] {
+export function containmentMeasures(intervals: MitigationInterval[], numberStochasticRuns: number): Func[] {
   return sampleMitigationRealizations(intervals, numberStochasticRuns).map((sample) =>
     interpolateTimeSeries(timeSeriesOf(sample)),
   )

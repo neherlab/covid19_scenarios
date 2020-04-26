@@ -1,6 +1,45 @@
-import { ScenarioArray, ScenarioData, ScenarioDatum, Convert } from '../../../.generated/types'
+import { merge, omit } from 'lodash'
+
+import { v4 as uuidv4 } from 'uuid'
+
+import type {
+  MitigationInterval,
+  MitigationIntervalExternal,
+  ScenarioArray,
+  ScenarioData,
+  ScenarioDatum,
+  ScenarioDatumExternal,
+} from '../../../algorithms/types/Param.types'
+
+import { Convert } from '../../../algorithms/types/Param.types'
+
 import validateScenarioArray, { errors } from '../../../.generated/validateScenarioArray'
+
 import scenariosRaw from '../../../assets/data/scenarios.json'
+
+export function addId(interval: MitigationIntervalExternal): MitigationInterval {
+  return { ...interval, id: uuidv4() }
+}
+
+export function removeId(interval: MitigationInterval): MitigationIntervalExternal {
+  return omit(interval, 'id')
+}
+
+export function toInternal(scenario: ScenarioDatumExternal): ScenarioDatum {
+  return merge(scenario, {
+    mitigation: {
+      mitigationIntervals: scenario.mitigation.mitigationIntervals.map(addId),
+    },
+  })
+}
+
+export function toExternal(scenario: ScenarioDatum): ScenarioDatumExternal {
+  return merge(scenario, {
+    mitigation: {
+      mitigationIntervals: scenario.mitigation.mitigationIntervals.map(removeId),
+    },
+  })
+}
 
 function validate(): ScenarioData[] {
   const valid = validateScenarioArray(scenariosRaw)
@@ -22,6 +61,6 @@ export function getScenario(name: string): ScenarioDatum {
   }
 
   // FIXME: this should be changed, too hacky
-  const scenario = Convert.toScenarioData(JSON.stringify(scenarioFound))
-  return scenario.data
+  const { data } = Convert.toScenarioData(JSON.stringify(scenarioFound))
+  return toInternal(data)
 }
