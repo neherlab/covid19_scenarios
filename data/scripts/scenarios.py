@@ -15,7 +15,7 @@ from datetime import datetime
 from scipy.stats import linregress
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARIOS
 from scripts.tsv import parse as parse_tsv
-from scripts.model import fit_population, load_data, get_fit_data
+from scripts.model import fit_population, load_data, get_fit_data, fit_population_iterative
 from jsonschema import validate, FormatChecker
 
 
@@ -241,7 +241,10 @@ def fit_one_case_data(args):
 
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
-    r = fit_population(region, model_tps, fit_data)
+    if region[:4]=='FRA-': #french don't report case data anymore
+        r = fit_population(region, model_tps, fit_data, containment_start=containment_start)
+    else:
+        r = fit_population_iterative(region, model_tps, fit_data)
     if r is None or np.exp(r['params'].rates.logR0)>6 or np.exp(r['params'].rates.logR0)<1.5:
         return (region, Params.fit(tmp_data))
 

@@ -365,7 +365,7 @@ def get_fit_data(days, data_original, confinement_start=None):
 
 
 
-def fit_population(key, time_points, data, confinement_start=None, guess=None, second_fit=False):
+def fit_population_iterative(key, time_points, data, confinement_start=None, guess=None, second_fit=False):
     if data is None or data[Sub.D] is None or len(data[Sub.D]) <= 5:
         return None
 
@@ -411,6 +411,33 @@ def fit_population(key, time_points, data, confinement_start=None, guess=None, s
         res['containment_start'] = datetime.fromordinal(param.date).strftime('%Y-%m-%d')
 
     return res
+
+def fit_population(key, time_points, data, containment_start=None, guess=None):
+    if data is None or data[Sub.D] is None or len(data[Sub.D]) <= 5:
+        return None
+
+    if guess is None:
+        guess = { "logR0": 1.0,
+                  "reported" : 0.2,
+                  "logInitial" : 1,
+                  "efficacy" : 0.8
+                }
+    # bounds = ((0.4,2),(0.01,0.8),(1,None),(0,1))
+    bounds=None
+
+    for ii in [Sub.T, Sub.D]:
+        if not is_cumulative(data[ii]):
+            print("Cases / deaths count is not cumulative.", data[ii])
+
+    param, init_cases, err = fit_params(key, time_points, data, guess,
+                                        {'containment_start':containment_start}, bounds=bounds)
+    tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
+    res = {'params': param, 'initialCases': init_cases, 'tMin': tMin, 'data': data, 'error':err}
+    if param.date is not None:
+        res['containment_start'] = datetime.fromordinal(param.date).strftime('%Y-%m-%d')
+
+    return res
+
 
 # ------------------------------------------------------------------------
 # Testing entry

@@ -85,7 +85,7 @@ if __name__ == "__main__":
     smoothing = 4
     country_list = ["Switzerland"]
     country_list = ["Germany", "Switzerland", "Italy"]
-    #country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
+    country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
 
     for ci, c in enumerate(country_list):
         time, data = load_data(c, case_counts[c])
