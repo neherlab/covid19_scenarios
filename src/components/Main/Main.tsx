@@ -52,11 +52,13 @@ async function runSimulation(
       ...params.containment,
     }
 
-    const caseCounts = getCaseCountsData(params.population.cases)
     const newResult = await run({ params: paramsFlat, severity, ageDistribution: scenarioState.ageDistribution })
     setResult(newResult)
-    caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
-    setEmpiricalCases(caseCounts)
+
+    const caseCounts = getCaseCountsData(params.population.cases)
+    const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
+    nonEmptyCaseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
+    setEmpiricalCases(nonEmptyCaseCounts)
   } catch (error) {
     // Rejected promises are thrown by await functions.
     // Catch and log the error message to console.
