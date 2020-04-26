@@ -86,7 +86,6 @@ export interface AgeGroupRow {
   severe: number
   critical: number
   fatal: number
-  totalFatal: number
   isolated: number
 }
 
