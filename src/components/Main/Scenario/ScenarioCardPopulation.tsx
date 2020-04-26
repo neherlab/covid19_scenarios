@@ -46,7 +46,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormDropdown<string>
-        identifier="population.country"
+        identifier="population.ageDistributionName"
         label={t('Age distribution')}
         help={t('Country to determine the age distribution in the population')}
         options={countryOptions}
@@ -83,7 +83,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormSpinBox
-        identifier="population.ICUBeds"
+        identifier="population.icuBeds"
         label={`${t('ICU/ICMU')} (${t('est.')})`}
         help={t(
           'Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
@@ -94,7 +94,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormDropdown<string>
-        identifier="population.cases"
+        identifier="population.caseCountsName"
         label={t('Confirmed cases')}
         help={t('Select region for which to plot confirmed case and death counts.')}
         options={caseCountOptions}

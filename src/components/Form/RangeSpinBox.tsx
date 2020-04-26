@@ -20,7 +20,7 @@ export function RangeSpinBox<T>({ identifier, step, min, max, pattern, errors, t
     <InputGroup>
       <SpinBox
         className="form-control d-inline"
-        identifier={`${identifier}[0]`}
+        identifier={`${identifier}.begin`}
         type="number"
         step={step}
         min={min}
@@ -30,7 +30,7 @@ export function RangeSpinBox<T>({ identifier, step, min, max, pattern, errors, t
       <span className="h-100 pt-2 px-1 text-bold">{'-'}</span>
       <SpinBox
         className="form-control d-inline"
-        identifier={`${identifier}[1]`}
+        identifier={`${identifier}.end`}
         type="number"
         step={step}
         min={min}

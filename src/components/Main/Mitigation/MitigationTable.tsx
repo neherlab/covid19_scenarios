@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { isEmpty } from 'lodash'
+
 import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
@@ -30,7 +32,7 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
     <ReactResizeDetector handleWidth>
       {({ width }: { width?: number }) => (
         <FieldArray
-          name="containment.mitigationIntervals"
+          name="mitigation.mitigationIntervals"
           render={(arrayHelpers) => (
             <div className="mitigation-table">
               <p>
@@ -107,39 +109,52 @@ function MitigationIntervalComponent({
 }: MitigationIntervalProps) {
   const { t } = useTranslation()
 
-  const nameError = getFormikError({
-    errors,
-    touched,
-    identifier: `containment.mitigationIntervals[${index}].name`,
-  })
+  const errorMessages = [
+    { friendlyName: t('Intervention name'), identifier: `mitigation.mitigationIntervals[${index}].name` },
+    {
+      friendlyName: t('Transmission reduction from'),
+      identifier: `mitigation.mitigationIntervals[${index}].transmissionReduction.begin`,
+    },
+    {
+      friendlyName: t('Transmission reduction to'),
+      identifier: `mitigation.mitigationIntervals[${index}].transmissionReduction.end`,
+    },
+  ]
+    .map(({ friendlyName, identifier }) => {
+      const message = getFormikError({ errors, touched, identifier })
+      return { friendlyName, message }
+    })
+    .filter(({ message }) => message && !isEmpty(message))
 
-  const valueError = getFormikError({
-    errors,
-    touched,
-    identifier: `containment.mitigationIntervals[${index}].mitigationValue`,
-  })
+  const errorComponents = errorMessages.map(({ friendlyName, message }) => (
+    <tr key={friendlyName}>
+      <p className="my-0 text-right text-danger">{`${friendlyName}: ${message}`}</p>
+    </tr>
+  ))
+
+  const nameHasError = errorMessages.find(({ friendlyName }) => friendlyName === t('Intervention name'))
 
   return (
     <>
       <tr>
         <td>
           <FastField
-            className={`form-control ${nameError ? 'border-danger' : ''}`}
-            id={`containment.mitigationIntervals[${index}].name`}
-            name={`containment.mitigationIntervals[${index}].name`}
+            className={`form-control ${nameHasError ? 'border-danger' : ''}`}
+            id={`mitigation.mitigationIntervals[${index}].name`}
+            name={`mitigation.mitigationIntervals[${index}].name`}
             type="text"
           />
         </td>
         <td>
           <MitigationDatePicker
-            identifier={`containment.mitigationIntervals[${index}].timeRange`}
+            identifier={`mitigation.mitigationIntervals[${index}].timeRange`}
             value={interval.timeRange}
             allowPast
           />
         </td>
         <td>
           <RangeSpinBox
-            identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
+            identifier={`mitigation.mitigationIntervals[${index}].transmissionReduction`}
             step={0.1}
             min={0}
             max={100}
@@ -154,12 +169,7 @@ function MitigationIntervalComponent({
         </td>
       </tr>
 
-      <tr>
-        <div className="w-100">
-          {nameError && <p className="my-0 text-right text-danger">{`${t('Intervention name')}: ${nameError}`}</p>}
-          {valueError && <p className="my-0 text-right text-danger">{`${t('Mitigation strength')}: ${valueError}`}</p>}
-        </div>
-      </tr>
+      <tr>{errorComponents}</tr>
     </>
   )
 }
