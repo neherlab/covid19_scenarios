@@ -171,9 +171,11 @@ function Main({ initialState }: InitialStateComponentProps) {
           onSubmit={handleSubmit}
           validate={validateFormAndUpdateState}
           validationSchema={schema}
+          validateOnMount
         >
           {({ values, errors, touched, isValid, isSubmitting }) => {
             const canRun = isValid && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)
+
             return (
               <Form noValidate className="form">
                 <Row>

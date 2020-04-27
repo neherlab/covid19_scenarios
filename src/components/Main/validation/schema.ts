@@ -16,38 +16,35 @@ const MSG_AT_LEAST_ONE_DAY = i18next.t('Should be at least one day or greater')
 const MSG_INTEGER = i18next.t('Should be a whole number')
 const MSG_MAX_100 = i18next.t('Should be 100 at most')
 const MSG_TOO_MANY_RUNS = i18next.t('Too many runs')
-const MSG_RANGE_INVALID = i18next.t('Invalid range: range begin should be less or equal to range end')
+const MSG_RANGE_INVALID = i18next.t('Range begin should be less or equal to range end')
 
 // TODO: all this validation should be replaced with JSON-schema-based validation
 
 export function numericRangeNonNegative() {
-  return yup.object({
-    begin: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
-    end: yup.number(),
-  })
+  return yup
+    .object({
+      begin: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+      end: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    })
+    .test('valid numeric range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
 }
 
 export function percentageRange() {
-  return yup.object({
-    begin: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE).max(100, MSG_MAX_100),
-    end: yup
-      .number()
-      .max(100, MSG_MAX_100)
-      .test('percentage less or equal', MSG_RANGE_INVALID, (end) => {
-        const begin = yup.ref('begin')
-        return begin <= end
-      }),
-  })
+  return yup
+    .object({
+      begin: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE).max(100, MSG_MAX_100),
+      end: yup.number().max(100, MSG_MAX_100),
+    })
+    .test('valid percentage range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
 }
 
 export function dateRange() {
-  return yup.object({
-    begin: yup.date().required(MSG_REQUIRED),
-    end: yup.date().test('date less or equal', MSG_RANGE_INVALID, (end) => {
-      const begin = yup.ref('begin')
-      return begin <= end
-    }),
-  })
+  return yup
+    .object({
+      begin: yup.date().required(MSG_REQUIRED),
+      end: yup.date().required(MSG_REQUIRED),
+    })
+    .test('valid percentage range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
 }
 
 export const schema: yup.Schema<ScenarioDatum> = yup.object().shape({

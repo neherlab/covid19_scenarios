@@ -8,8 +8,8 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-09-01",
-                "end": "2020-03-13"
+                "begin": "2020-03-13",
+                "end": "2020-09-01"
               },
               "transmissionReduction": {
                 "begin": 45.0,
@@ -20,8 +20,8 @@
               "color": "#666666",
               "name": "Intervention #2",
               "timeRange": {
-                "begin": "2020-09-01",
-                "end": "2020-03-25"
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
               },
               "transmissionReduction": {
                 "begin": 54.0,
@@ -52,8 +52,8 @@
         "simulation": {
           "numberStochasticRuns": 10,
           "simulationTimeRange": {
-            "begin": "2020-09-01",
-            "end": "2020-02-10"
+            "begin": "2020-02-10",
+            "end": "2020-09-01"
           }
         }
       },
@@ -67,8 +67,8 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-09-01",
-                "end": "2020-03-20"
+                "begin": "2020-03-20",
+                "end": "2020-09-01"
               },
               "transmissionReduction": {
                 "begin": 36.0,
@@ -79,8 +79,8 @@
               "color": "#666666",
               "name": "Intervention #2",
               "timeRange": {
-                "begin": "2020-09-01",
-                "end": "2020-03-25"
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
               },
               "transmissionReduction": {
                 "begin": 54.0,
@@ -111,8 +111,8 @@
         "simulation": {
           "numberStochasticRuns": 10,
           "simulationTimeRange": {
-            "begin": "2020-09-01",
-            "end": "2020-02-01"
+            "begin": "2020-02-01",
+            "end": "2020-09-01"
           }
         }
       },
