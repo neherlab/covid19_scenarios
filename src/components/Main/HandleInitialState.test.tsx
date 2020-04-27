@@ -11,15 +11,6 @@ import HandleInitialState, { HandleInitialStateProps } from './HandleInitialStat
 
 import { severity } from '../../algorithms/__test_data__/getPopulationParams.input.default'
 
-jest.mock('./state/serialization/URLSerializer', () => ({
-  deserializeScenarioFromURL: (location: Location, state: State): State => {
-    return {
-      ...state,
-      ...(location.search ? { current: location.search } : {}),
-    }
-  },
-}))
-
 interface ThisTestProps extends HandleInitialStateProps {
   testPushURL?: string
 }
@@ -67,6 +58,8 @@ describe('HandleInitialState', () => {
   })
 
   it('may pull state from the URL', () => {
+    // FIXME: This is not correct. We should not serialize garbage into the DOM.
+    //  This should fail on validation.
     const { getByText } = render(
       <ThisTest
         testPushURL="/path?something_to_deserialize"

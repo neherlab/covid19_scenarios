@@ -51,7 +51,7 @@ export const DataMarshal = ({
       return pick(row, ['ageGroup', 'confirmed', 'critical', 'fatal', 'isolated', 'severe'])
     })
 
-    if (!isEqual(ageGroupParameters, severity)) {
+    if (!isEqual(updatedSeverity, severity)) {
       setSeverity(updatedSeverity)
     }
 

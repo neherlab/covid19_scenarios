@@ -77,7 +77,7 @@ describe('AgeGroupParameters.DataMarshal', () => {
 
     const { getByText } = render(<ThisTest view={WrappedTest} />)
 
-    expect(getByText(`${ageDistribution[0].ageGroup}`)).not.toBeNull()
+    expect(getByText(ageDistribution[0].population.toString())).not.toBeNull()
   })
 
   it('propagates severity update', () => {
@@ -101,8 +101,8 @@ describe('AgeGroupParameters.DataMarshal', () => {
       return thisChange
     })
 
-    const expectedChange = { ...ageDistribution }
-    expectedChange[0].population = 99
+    const expectedChange = [...ageDistribution]
+    expectedChange[0] = { ...expectedChange[0], population: 99 }
 
     expect(setAgeDistribution).toHaveBeenCalledWith(expectedChange)
     expect(setSeverity).not.toHaveBeenCalled()
@@ -116,8 +116,8 @@ describe('AgeGroupParameters.DataMarshal', () => {
       return thisChange
     })
 
-    const expectedChange1 = { ...ageDistribution }
-    expectedChange1[0].population = 99
+    const expectedChange1 = [...ageDistribution]
+    expectedChange1[0] = { ...expectedChange1[0], population: 99 }
     const expectedChange2 = [...severity]
     expectedChange2[1] = { ...expectedChange2[1], confirmed: 88 }
 
