@@ -1,0 +1,21 @@
+# Data source: https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/prefectures.csv
+# Data provenance: https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html
+# License: MIT license
+time	cases	deaths	hospitalized	icu	recovered
+2020-04-10	1	0	1		0
+2020-04-11	1	0	1		0
+2020-04-12	1	0	1		0
+2020-04-13	1	0	1		0
+2020-04-14	1	0	1		0
+2020-04-15	1	0	1		0
+2020-04-16	1	0	1		0
+2020-04-17	1	0	1		0
+2020-04-18	3	0	3		0
+2020-04-19	3	0	3		0
+2020-04-20	3	0	3		0
+2020-04-21	3	0	3		0
+2020-04-22	3	0	3		0
+2020-04-23	3	0	3		0
+2020-04-24	3	0	3		0
+2020-04-25	3	0	2		1
+2020-04-26	3	0	2		1
