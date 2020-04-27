@@ -4,8 +4,7 @@ import copy
 import matplotlib.pyplot as plt
 sys.path.append('..')
 from model import POPDATA, AGES, Sub, DefaultRates, solve_ode, trace_ages, Params, Fracs, init_pop
-from R0_estimator import get_daily_counts, get_growth_rate, empty_data_list, growth_rate_to_R0
-
+from R0_estimator import get_daily_counts, get_growth_rate, empty_data_list
 
 def run_model(R0, nb_time_pts=30, initialCases=1000, key="USA-California"):
     time_points = np.arange(-21,nb_time_pts-21)
@@ -34,6 +33,7 @@ if __name__ == "__main__":
     R0s = np.linspace(0.2,5,50)
     growth_rate_step = 7
     gr = map_R0_GR(R0s, growth_rate_step)
+    print(np.round(gr, 5))
 
     plt.figure()
     plt.plot(R0s, gr, '.', label=f"gr_step={growth_rate_step}")
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     plt.ylabel("Growth rate")
     plt.grid()
     plt.title("Mapping R0 to model growth rate")
-    plt.savefig("R0_GR_mapping", format="png")
+    # plt.savefig("R0_GR_mapping", format="png")
 
     # tp, model = run_model(5)
     # plt.figure()

@@ -7,6 +7,7 @@ from scipy.signal import savgol_filter
 from scipy import optimize
 from enum import IntEnum
 import copy
+from mapping import R0s_mapping, GR_mapping
 
 compartments = ['S', 'E1', 'E2', 'E3', 'I', 'H', 'C', 'D', 'R', 'T', 'NUM']
 Sub = IntEnum('Sub', compartments, start=0)
@@ -28,7 +29,7 @@ def growth_rate_to_R0(data, serial_interval=6):
     R0_by_day = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            R0_by_day[ii] = 1+serial_interval*data[ii]
+            R0_by_day[ii] = np.ma.array(np.interp(data[ii], GR_mapping, R0s_mapping))
             R0_by_day[ii].mask = np.isnan(R0_by_day[ii])
         else:
             R0_by_day[ii] = None
@@ -114,8 +115,8 @@ if __name__ == "__main__":
     #     plt.legend(loc=3)
     #     # plt.ylim(0,3.5)
     #     # plt.savefig(f"{n}.png")4
-    plt.xlabel("R0")
-    plt.ylabel("Time [days]")
+    plt.ylabel("R0")
+    plt.xlabel("Time [days]")
     plt.legend(loc="best")
     plt.savefig("Stair_fit", format="png")
     plt.show()
