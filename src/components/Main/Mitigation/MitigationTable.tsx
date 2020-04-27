@@ -15,7 +15,7 @@ import { suggestNextMitigationInterval } from '../../../algorithms/utils/createM
 import { MitigationDatePicker } from './MitigationDatePicker'
 import { RangeSpinBox } from '../../Form/RangeSpinBox'
 
-import { getFormikError } from '../../../helpers/getFormikError'
+import { getErrorMessages } from '../../../helpers/getFormikError'
 
 import './MitigationTable.scss'
 
@@ -112,27 +112,30 @@ function MitigationIntervalComponent({
   const errorMessages = [
     { friendlyName: t('Intervention name'), identifier: `mitigation.mitigationIntervals[${index}].name` },
     {
-      friendlyName: t('Transmission reduction from'),
-      identifier: `mitigation.mitigationIntervals[${index}].transmissionReduction.begin`,
-    },
-    {
-      friendlyName: t('Transmission reduction to'),
-      identifier: `mitigation.mitigationIntervals[${index}].transmissionReduction.end`,
+      friendlyName: t('Transmission reduction'),
+      identifier: `mitigation.mitigationIntervals[${index}].transmissionReduction`,
     },
   ]
     .map(({ friendlyName, identifier }) => {
-      const message = getFormikError({ errors, touched, identifier })
-      return { friendlyName, message }
+      const { errorMessages, hasError } = getErrorMessages(identifier, errors, touched)
+      return { friendlyName, identifier, errorMessages, hasError }
     })
-    .filter(({ message }) => message && !isEmpty(message))
+    .filter(({ errorMessages }) => !isEmpty(errorMessages))
 
-  const errorComponents = errorMessages.map(({ friendlyName, message }) => (
+  const errorComponents = errorMessages.map(({ friendlyName, errorMessages, hasError }) => (
     <tr key={friendlyName}>
-      <p className="my-0 text-right text-danger">{`${friendlyName}: ${message}`}</p>
+      {errorMessages.map((message) => (
+        <div key={message} className="my-0 text-right text-danger">
+          {message}
+        </div>
+      ))}
     </tr>
   ))
 
-  const nameHasError = errorMessages.find(({ friendlyName }) => friendlyName === t('Intervention name'))
+  const nameHasError = errorMessages.some(({ identifier }) => identifier.includes('.name'))
+  const transmissionReductionHasError = errorMessages.some(({ identifier }) =>
+    identifier.includes('.transmissionReduction'),
+  )
 
   return (
     <>
@@ -158,6 +161,7 @@ function MitigationIntervalComponent({
             step={0.1}
             min={0}
             max={100}
+            hasError={transmissionReductionHasError}
           />
         </td>
         <td>

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { FormikErrors, FormikTouched } from 'formik'
 import { InputGroup } from 'reactstrap'
 
 import { SpinBox } from './SpinBox'
@@ -11,15 +10,16 @@ export interface RangeSpinBoxProps<T> {
   min?: number
   max?: number
   pattern?: string
-  errors?: FormikErrors<T>
-  touched?: FormikTouched<T>
+  hasError?: boolean
 }
 
-export function RangeSpinBox<T>({ identifier, step, min, max, pattern, errors, touched }: RangeSpinBoxProps<T>) {
+export function RangeSpinBox<T>({ identifier, step, min, max, pattern, hasError }: RangeSpinBoxProps<T>) {
+  const border = hasError ? 'border-danger' : ''
+
   return (
     <InputGroup>
       <SpinBox
-        className="form-control d-inline"
+        className={`form-control d-inline ${border}`}
         identifier={`${identifier}.begin`}
         type="number"
         step={step}
@@ -27,9 +27,9 @@ export function RangeSpinBox<T>({ identifier, step, min, max, pattern, errors, t
         max={max}
         pattern={pattern}
       />
-      <span className="h-100 pt-2 px-1 text-bold">{'-'}</span>
+      <span className="h-100 pt-2 px-1 text-bold">{' - '}</span>
       <SpinBox
-        className="form-control d-inline"
+        className={`form-control d-inline ${border}`}
         identifier={`${identifier}.end`}
         type="number"
         step={step}
