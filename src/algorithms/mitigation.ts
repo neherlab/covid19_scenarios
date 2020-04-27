@@ -46,7 +46,7 @@ function sampleMitigationRealizations(
 
   return [...Array(numberStochasticRuns).keys()].map(() =>
     intervals.map((interval) => ({
-      val: strength(sampleRandom([interval.transmissionReduction.begin, interval.transmissionReduction.end])),
+      val: strength(sampleRandom(interval.transmissionReduction)),
       tMin: interval.timeRange.begin.valueOf(),
       tMax: interval.timeRange.end.valueOf(),
     })),
