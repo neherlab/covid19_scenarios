@@ -41,6 +41,7 @@ if __name__ == "__main__":
     plt.ylabel("Growth rate")
     plt.grid()
     plt.title("Mapping R0 to model growth rate")
+    plt.savefig("R0_GR_mapping", format="png")
 
     # tp, model = run_model(5)
     # plt.figure()
