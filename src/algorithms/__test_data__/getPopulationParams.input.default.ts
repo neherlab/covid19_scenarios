@@ -16,7 +16,7 @@ export const mitigationIntervals: MitigationInterval[] = [
       end: new Date('2020-09-01T03:00:00.000Z'),
     },
     color: '#00ff00',
-    transmissionReduction: { begin: 38, end: 42 },
+    transmissionReduction: { begin: 38, end: 38 },
   },
   {
     id: '8310ae2f-8053-4eb6-a462-d542f06e01fb',
@@ -26,7 +26,7 @@ export const mitigationIntervals: MitigationInterval[] = [
       end: new Date('2020-07-20T03:00:00.000Z'),
     },
     color: '#ff0000',
-    transmissionReduction: { begin: 67, end: 75 },
+    transmissionReduction: { begin: 67, end: 67 },
   },
 ]
 
@@ -38,7 +38,7 @@ export const allParamsFlat: ScenarioFlat = {
   initialNumberOfCases: 213,
   importsPerDay: 0.1,
   caseCountsName: 'CHE-Basel-Stadt',
-  r0: { begin: 2.2, end: 2.5 },
+  r0: { begin: 2.2, end: 2.2 },
   latencyDays: 5,
   infectiousPeriodDays: 3,
   hospitalStayDays: 4,
@@ -50,7 +50,7 @@ export const allParamsFlat: ScenarioFlat = {
     begin: new Date('2020-03-01T04:00:00.000Z'),
     end: new Date('2020-09-01T03:00:00.000Z'),
   },
-  numberStochasticRuns: 0,
+  numberStochasticRuns: 1,
   mitigationIntervals,
 }
 
