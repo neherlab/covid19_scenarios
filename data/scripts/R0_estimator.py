@@ -24,7 +24,7 @@ def smooth(data):
                     savgol_filter(smoothed[ii][~np.isnan(smoothed[ii])], 9, 3, mode="mirror"))
     return smoothed
 
-def growth_rate_to_R0(data, serial_interval=9):
+def growth_rate_to_R0(data, serial_interval=6):
     R0_by_day = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
@@ -38,8 +38,9 @@ def get_daily_counts(data):
     diff_data = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            diff_data[ii] = np.concatenate(([np.nan],np.diff(data[ii])))
+            diff_data[ii] = np.ma.array(np.concatenate(([np.nan],np.diff(data[ii]))))
             diff_data[ii][diff_data[ii]==0] = np.nan
+            diff_data[ii].mask = np.isnan(diff_data[ii])
         else:
             diff_data[ii] = None
     return diff_data
@@ -68,6 +69,7 @@ def stair_fit(time, vec, guess=None, nb_value=3):
     return val_o, val_e, drop
 
 def get_Re_guess(time, cases, step=7, extremal_points=7, death_data=False):
+    #R_effective
     diff_data = get_daily_counts(cases)
     growth_rate = get_growth_rate(diff_data, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
@@ -84,8 +86,8 @@ if __name__ == "__main__":
     step = 7
     smoothing = 4
     country_list = ["Switzerland"]
-    country_list = ["Germany", "Switzerland", "Italy"]
-    country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
+    # country_list = ["Germany", "Switzerland", "Italy"]
+    # country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
 
     for ci, c in enumerate(country_list):
         time, data = load_data(c, case_counts[c])
@@ -97,7 +99,7 @@ if __name__ == "__main__":
 
         plt.figure(1)
         # plt.plot(t_smoothed, R0_cases_smoothed, label=c, ls='--', c=f"C{ci}")
-        plt.plot(dates, R0_by_day[Sub.T], label=f"{c}", c=f"C{ci}")
+        plt.plot(dates, R0_by_day[Sub.T], '--', label=f"{c}", c=f"C{ci}")
         plt.plot(dates, R0_smoothed[Sub.T], c=f"C{ci}")
         plt.plot(dates, stair_func(time, *fit), c=f"C{ci}")
         # plt.figure(2)
