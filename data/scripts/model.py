@@ -19,7 +19,7 @@ from paths import BASE_PATH
 # ------------------------------------------------------------------------
 # Globals
 
-PATH_UN_AGES   = os.path.join(BASE_PATH, "..//src/assets/data/country_age_distribution.json")
+PATH_UN_AGES   = os.path.join(BASE_PATH, "../src/assets/data/ageDistribution.json")
 PATH_UN_CODES  = os.path.join(BASE_PATH,"country_codes.csv")
 PATH_POP_DATA  = os.path.join(BASE_PATH,"populationData.tsv")
 JAN1_2019      = datetime.strptime("2019-01-01", "%Y-%m-%d").toordinal()
@@ -33,10 +33,10 @@ def load_distribution(path):
     dist = {}
     with open(path, 'r') as fd:
         db = json.load(fd)
-        for data in db:
-            key = data["country"]
-            ageDis = data["ageDistribution"]
-            dist[key] = np.array([float(ageDis[k]) for k in sorted(ageDis.keys())])
+        for data in db["all"]:
+            key    = data["name"]
+            ageDis = sorted(data["data"], key=lambda x: x["ageGroup"])
+            dist[key] = np.array([float(elt["population"]) for elt in ageDis])
             dist[key] = dist[key]/np.sum(dist[key])
 
     return dist
