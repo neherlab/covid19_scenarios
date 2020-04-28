@@ -118,6 +118,9 @@ class NumericRange(schema.NumericRangeNonNegative):
                 begin = float(max(1, round(.9*x, 2))),
                 end = float(max(1, round(1.1*x, 2))))
 
+    def mean(self):
+        return (self.begin + self.end)/2
+
 class DateRange(schema.DateRange):
     def __init__(self, tMin, tMax):
         super(DateRange, self).__init__( \
@@ -190,10 +193,10 @@ class SimulationParams(schema.ScenarioDatumSimulation):
 class AllParams(schema.ScenarioDatum):
     def __init__(self, region, country, population, beds, icus, hemisphere, srcPopulation, srcHospitalBeds, srcICUBeds, cases_key):
         super(AllParams, self).__init__( \
-                MitigationParams(),
-                EpidemiologicalParams(region, hemisphere),
-                PopulationParams(region, country, population, beds, icus, cases_key),
-                SimulationParams(region)
+                mitigation = MitigationParams(),
+                epidemiological = EpidemiologicalParams(region, hemisphere),
+                population = PopulationParams(region, country, population, beds, icus, cases_key),
+                simulation = SimulationParams(region)
         )
 
 # ------------------------------------------------------------------------
@@ -251,7 +254,7 @@ def set_mitigation(cases, scenario):
     case_counts = np.array([c['cases'] for c in valid_cases])
     levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served),10000))[0]
     levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served),50000))[0]
-    levelOneVal = round(1 - np.minimum(0.8, 1.8/np.mean(scenario.epidemiological.r0)), 1)
+    levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0.mean()), 1)
     levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
     for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
@@ -264,7 +267,7 @@ def set_mitigation(cases, scenario):
                 name=name,
                 tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
                 id=uuid4(),
-                tMax=scenario.simulation.simulation_time_range.t_max,
+                tMax=scenario.simulation.simulation_time_range.end,
                 color=mitigation_colors.get(name, "#cccccc"),
                 mitigationValue=PercentageRange(round(100*val))))
 
