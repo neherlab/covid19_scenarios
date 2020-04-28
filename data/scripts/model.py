@@ -365,7 +365,7 @@ def get_fit_data(days, data_original, confinement_start=None):
 
 
 
-def fit_population_iterative(key, time_points, data, confinement_start=None, guess=None, second_fit=False):
+def fit_population_iterative(key, time_points, data, guess=None, second_fit=False):
     if data is None or data[Sub.D] is None or len(data[Sub.D]) <= 5:
         return None
 
@@ -382,7 +382,6 @@ def fit_population_iterative(key, time_points, data, confinement_start=None, gue
         guess = { "reported" : 0.1,
                   "logInitial" : 1,
                 }
-    #bounds = ((0.01,0.8),(-5,3))
     bounds=None
 
     for ii in [Sub.T, Sub.D]:
@@ -479,7 +478,7 @@ if __name__ == "__main__":
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
     # Fitting over the pre-confinement days
-    res = fit_population(key, model_tps, fit_data)
+    res = fit_population_iterative(key, model_tps, fit_data)
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
     err = fit_error(fit_data, model)
     if confinement_start is not None:
@@ -546,6 +545,6 @@ if __name__ == "__main__":
     plt.ylabel("Number of people")
     plt.legend(loc="best")
     plt.tight_layout()
-    plt.yscale("log")
+    # plt.yscale("log")
     # plt.savefig(f"{key}-Poisson_max_likelihood", format="png")
     plt.show()
