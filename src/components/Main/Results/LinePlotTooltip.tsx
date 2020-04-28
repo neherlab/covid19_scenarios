@@ -92,7 +92,10 @@ export function LinePlotTooltip({
   return <ResponsiveTooltipContent formattedLabel={formattedLabel} tooltipItems={tooltipItems} />
 }
 
-const round = (value: number): number => Math.round(100 * value) / 100
+function round(value: number): number {
+  return Math.round(100 * value) / 100
+}
+
 export function R0PlotTooltip({
   active,
   payload,
