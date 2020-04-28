@@ -23,7 +23,7 @@ export interface R0PlotProps {
   tMin: number
   tMax: number
   labelFormatter: LabelFormatter
-  tooltipPosition: Coordinate | undefined
+  tooltipPosition?: Coordinate
   tooltipValueFormatter: (value: number | string) => string
 }
 

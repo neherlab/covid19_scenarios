@@ -107,14 +107,15 @@ export function R0PlotTooltip({
   }
   const formattedLabel = labelFormatter ? labelFormatter(label) : label
   const datum = payload.filter((elt) => typeof elt.dataKey === 'string' && itemsToDisplay.includes(elt.dataKey))[0]
+  const round = (value: number): number => Math.round(100 * value) / 100
 
   const tooltipItem: TooltipItem = {
     key: 'r0',
     name: 'effective reproductive number',
     color: datum.color || '#883322',
-    value: valueFormatter ? valueFormatter(datum.payload.median) : datum.payload.median,
-    lower: valueFormatter ? valueFormatter(datum.payload.median) : datum.payload.median,
-    upper: valueFormatter ? valueFormatter(datum.payload.median) : datum.payload.median,
+    value: valueFormatter ? valueFormatter(round(datum.payload.median)) : round(datum.payload.median),
+    lower: valueFormatter ? valueFormatter(round(datum.payload.range[0])) : round(datum.payload.range[0]),
+    upper: valueFormatter ? valueFormatter(round(datum.payload.range[1])) : round(datum.payload.range[1]),
   }
 
   return <ResponsiveTooltipContent formattedLabel={formattedLabel} tooltipItems={[tooltipItem]} />
