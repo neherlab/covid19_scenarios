@@ -111,24 +111,24 @@ def report_errors(x):
 
 class DateRange(schema.DateRange):
     def __init__(self, tMin, tMax):
-        return super(DateRange, self).__init__( \
+        super(DateRange, self).__init__( \
                 t_min = tMin,
                 t_max = tMax)
 
 class MitigationInterval(schema.MitigationInterval):
     def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
-        return super(MitigationInterval, self).__init__( \
+        super(MitigationInterval, self).__init__( \
                 color = color,
                 id = id,
                 mitigation_value = mitigationValue,
                 name = name,
                 time_range = DateRange(tMin, tMax))
 
-class PopulationParams(schema.PopulationData):
-    def __init__(self, region, country, population, beds, icus, cases_key):
-        return super(PopulationParams, self).__init__( \
-                cases=cases_key,
-                country=country,
+class PopulationParams(schema.ScenarioDatumPopulation):
+    def __init__(self, region, age_distribution_name, population, beds, icus, cases_key):
+        super(PopulationParams, self).__init__( \
+                case_counts_name=cases_key,
+                age_distribution_name=age_distribution_name,
                 hospital_beds=int(beds),
                 icu_beds=int(icus),
                 imports_per_day=0.1,
@@ -136,7 +136,7 @@ class PopulationParams(schema.PopulationData):
                 initial_number_of_cases=int(round(FIT_CASE_DATA[region]['initialCases']
                                               if region in FIT_CASE_DATA else Fitter.cases_on_tMin)))
 
-class EpidemiologicalParams(schema.EpidemiologicalData):
+class EpidemiologicalParams(schema.ScenarioDatumEpidemiological):
     def __init__(self, region, hemisphere):
         default = DEFAULTS["EpidemiologicalData"]
         if hemisphere:
@@ -152,24 +152,25 @@ class EpidemiologicalParams(schema.EpidemiologicalData):
             else:
                 print(f'Error: Could not parse hemisphere for {region} in scenarios.py')
 
-        return super(EpidemiologicalParams, self).__init__( \
-                infectious_period = default["infectiousPeriod"],
-                latency_time = default["latencyTime"],
-                length_hospital_stay = default["lengthHospitalStay"],
-                length_icu_stay = default["lengthICUStay"],
+        super(EpidemiologicalParams, self).__init__( \
+                infectious_period_days = default["infectiousPeriod"],
+                latency_days = default["latencyTime"],
+                hospital_stay_days = default["lengthHospitalStay"],
+                icu_stay_days = default["lengthICUStay"],
                 overflow_severity = default["overflowSeverity"],
                 peak_month = default["peakMonth"],
                 r0 = report_errors(FIT_CASE_DATA[region]['r0'] if region in FIT_CASE_DATA else default["r0"]),
                 seasonal_forcing = default["seasonalForcing"])
 
-class ContainmentParams(schema.ContainmentData):
+class ContainmentParams(schema.ScenarioDatumMitigation):
     def __init__(self):
         default = DEFAULTS["ContainmentData"]
-        return super(ContainmentParams, self).__init__([], default["numberPoints"])
+        super(ContainmentParams, self).__init__(
+                mitigation_intervals=[])
 
-class SimulationParams(schema.SimulationData):
+class SimulationParams(schema.ScenarioDatumSimulation):
     def __init__(self, region):
-        return super(SimulationParams, self).__init__( \
+        super(SimulationParams, self).__init__( \
                 simulation_time_range = DateRange( \
                     datetime.strptime(FIT_CASE_DATA[region]['tMin'] if region in FIT_CASE_DATA else "2020-03-01", '%Y-%m-%d').date(),
                     datetime.strptime("2020-09-01", '%Y-%m-%d').date()),
@@ -177,10 +178,9 @@ class SimulationParams(schema.SimulationData):
 
 # TODO: Region and country provide redudant information
 #       Condense the information into one field.
-class AllParams(schema.AllParams):
+class AllParams(schema.ScenarioDatum):
     def __init__(self, region, country, population, beds, icus, hemisphere, srcPopulation, srcHospitalBeds, srcICUBeds, cases_key):
-        #self.sources  = {'populationServed': srcPopulation, 'hospitalBeds': srcHospitalBeds, 'ICUBeds': srcICUBeds }
-        return super(AllParams, self).__init__( \
+        super(AllParams, self).__init__( \
                 ContainmentParams(),
                 EpidemiologicalParams(region, hemisphere),
                 PopulationParams(region, country, population, beds, icus, cases_key),
