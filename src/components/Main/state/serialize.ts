@@ -114,7 +114,7 @@ export function stateToURL(data: SerializableData): string {
   const serialized = serialize(data)
   const obj = JSON.parse(serialized)
   const url = jsurl.stringify(obj)
-  return `/${url}`
+  return `/?q=${url}`
 }
 
 export function stateFromUrl(url: string): SerializableData {
