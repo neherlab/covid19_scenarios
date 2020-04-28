@@ -36,6 +36,7 @@ def parse_tsv(tsv, location):
     data = defaultdict(list)
     for row in rdr:
         data[location].append({c:stoi(row[idx[c]]) if i > 0 else row[idx[c]] for i, c in enumerate(cols)})
+
     return data, True
 
 
