@@ -315,6 +315,7 @@ export default {
       ENV_NAME:
         getenv('TRAVIS_BRANCH', null) ??
         getenv('NOW_GITHUB_COMMIT_REF', null) ??
+        getenv('VERCEL_GITHUB_COMMIT_REF', null) ??
         require('child_process')
           .execSync('git rev-parse --abbrev-ref HEAD')
           .toString()
@@ -325,6 +326,7 @@ export default {
       REVISION:
         getenv('TRAVIS_COMMIT', null) ??
         getenv('NOW_GITHUB_COMMIT_SHA', null) ??
+        getenv('VERCEL_GITHUB_COMMIT_SHA', null) ??
         require('child_process')
           .execSync('git rev-parse HEAD')
           .toString()
