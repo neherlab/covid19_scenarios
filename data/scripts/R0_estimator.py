@@ -50,7 +50,7 @@ def get_growth_rate(data, step=7):
     log_diff = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            log_diff[ii] = (np.log(data[ii][step:]) - np.log(data[ii][:-step]))/step
+            log_diff[ii] = (np.ma.log(data[ii][step:]) - np.ma.log(data[ii][:-step]))/step
             nans = np.ma.repeat(np.nan, step)
             nans.mask = np.isnan(nans)
             log_diff[ii] = np.ma.concatenate((log_diff[ii], nans))
