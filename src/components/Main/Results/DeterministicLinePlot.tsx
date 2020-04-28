@@ -299,7 +299,7 @@ export function DeterministicLinePlot({
     tooltipItems = { ...tooltipItems, ...d }
   })
   const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(
-    (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey != 'ICUbeds',
+    (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey !== 'ICUbeds',
   )
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
@@ -330,6 +330,7 @@ export function DeterministicLinePlot({
                 tMin={tMin}
                 tMax={tMax}
                 labelFormatter={labelFormatter}
+                tooltipValueFormatter={tooltipValueFormatter}
                 tooltipPosition={tooltipPosition}
               />
               <MitigationPlot
