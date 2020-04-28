@@ -32,6 +32,10 @@ cases:
 
 scenarios:
 	python3 generate_data.py \
-		--output-scenarios ../src/assets/data/scenarios/scenarios.json \
+		--output-scenarios ../src/assets/data/scenarios/scenarios.json
+
+test-scenarios:
+	python3 generate_data.py \
+		--output-scenarios test.json
 
 data-for-app: cases scenarios
