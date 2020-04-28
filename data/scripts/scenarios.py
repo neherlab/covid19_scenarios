@@ -12,11 +12,12 @@ import generated.types as schema
 
 from datetime import datetime
 from scipy.stats import linregress
-from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARIOS
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS
 from scripts.tsv import parse as parse_tsv
 from scripts.model import fit_population
 from jsonschema import validate, FormatChecker
 
+from typing import List
 
 ##
 mitigation_colors = {
@@ -197,32 +198,24 @@ class AllParams(schema.ScenarioDatum):
                 simulation = SimulationParams(region)
         )
 
+class ScenarioData(schema.ScenarioData):
+    def __init__(self, all_params: AllParams, name: str):
+        super(ScenarioData, self).__init__(
+                data = all_params,
+                name = name)
+
+class ScenarioArray(schema.ScenarioArray):
+    def __init__(self, data: List[ScenarioData]):
+        super(ScenarioArray, self).__init__(all = data)
+
+    def marshalJSON(self, wtr=None):
+        if wtr is None:
+            return json.dumps(self.to_dict(), default=lambda x: x.__dict__, sort_keys=True, indent=2)
+        else:
+            return wtr.write(json.dumps(self.to_dict()))
+
 # ------------------------------------------------------------------------
 # Functions
-
-def marshalJSON(obj, wtr=None):
-    """ Validate and store data to .json file
-    Arguments:
-    - obj: a dict of allParams
-    """
-    if wtr is None:
-        return json.dumps(obj, default=lambda x: x.__dict__, sort_keys=True, indent=0)
-
-    newdata = []
-    for k in obj:
-        newdata.append({'country': k, 'allParams': obj[k].to_dict()})
-
-    newdata.sort(key = lambda x:x['country'])
-
-    # Serialize into json
-    news = json.dumps(newdata, default=lambda x: x.__dict__, sort_keys=True, indent=0)
-
-    # Validate the dict based on the json
-    with open(os.path.join(BASE_PATH, SCHEMA_SCENARIOS), "r") as f:
-        schema = yaml.load(f, Loader=yaml.FullLoader)
-        validate(json.loads(news), schema, format_checker=FormatChecker())
-
-    return wtr.write(news)
 
 def fit_one_case_data(args):
     Params = Fitter()
@@ -250,8 +243,8 @@ def set_mitigation(cases, scenario):
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served),10000))[0]
-    levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served),50000))[0]
+    levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served), 10000))[0]
+    levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served), 50000))[0]
     levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0.mean()), 1)
     levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
@@ -273,7 +266,7 @@ def set_mitigation(cases, scenario):
 # Main point of entry
 
 def generate(output_json, num_procs=1, recalculate=False):
-    scenario = {}
+    scenarios = []
     fit_fname = os.path.join(BASE_PATH,FIT_PARAMETERS)
     if recalculate or (not os.path.isfile(fit_fname)):
         fit_all_case_data(num_procs)
@@ -304,14 +297,17 @@ def generate(output_json, num_procs=1, recalculate=False):
         for region in rdr:
             region_name = region[idx['name']]
             entry = [region[idx[arg]] for arg in args]
-            scenario[region_name] = AllParams(*entry, region_name if region_name in case_counts else 'None')
+            scenario = AllParams(*entry, region_name if region_name in case_counts else 'None')
             if region_name in case_counts:
-                set_mitigation(case_counts[region_name], scenario[region_name])
+                set_mitigation(case_counts[region_name], scenario)
             else:
-                scenario[region_name].mitigation.mitigation_intervals = []
+                scenario.mitigation.mitigation_intervals = []
+
+            scenarios.append(ScenarioData(scenario, region_name))
 
     with open(output_json, "w+") as fd:
-        marshalJSON(scenario, fd)
+        output = ScenarioArray(scenarios)
+        output.marshalJSON(fd)
 
 if __name__ == '__main__':
     generate()

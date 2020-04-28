@@ -10,4 +10,4 @@ TMP_SCENARIOS = "scenario_defaults.json"
 PARSERS_LOG_FILE = 'parsers.log'
 FIT_PARAMETERS = 'fit_parameters.json'
 SCHEMA_CASECOUNTS = '../schemas/CaseCounts.yml'
-SCHEMA_SCENARIOS = '../schemas/Scenarios.yml'
+SCHEMA_DIR = '../schemas/ScenarioArray.yml'
