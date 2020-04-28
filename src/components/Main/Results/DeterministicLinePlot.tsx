@@ -329,6 +329,8 @@ export function DeterministicLinePlot({
                 height={(forcedHeight || height) / 4}
                 tMin={tMin}
                 tMax={tMax}
+                labelFormatter={labelFormatter}
+                tooltipPosition={tooltipPosition}
               />
               <MitigationPlot
                 mitigation={mitigationIntervals}
