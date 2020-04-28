@@ -6,7 +6,6 @@ import numpy as np
 import multiprocessing as multi
 import yaml
 
-from uuid import uuid4
 sys.path.append('..')
 
 import generated.types as schema
@@ -128,11 +127,10 @@ class DateRange(schema.DateRange):
                 end = tMax)
 
 class MitigationInterval(schema.MitigationInterval):
-    def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
+    def __init__(self, name='Intervention', tMin=None, tMax=None, color='#cccccc', mitigationValue=0):
         super(MitigationInterval, self).__init__( \
                 color = color,
-                id = id,
-                mitigation_value = mitigationValue,
+                transmission_reduction = PercentageRange(mitigationValue),
                 name = name,
                 time_range = DateRange(tMin, tMax))
 
@@ -266,10 +264,9 @@ def set_mitigation(cases, scenario):
             scenario.mitigation.mitigation_intervals.append(MitigationInterval(
                 name=name,
                 tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
-                id=uuid4(),
                 tMax=scenario.simulation.simulation_time_range.end,
                 color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=PercentageRange(round(100*val))))
+                mitigationValue=round(100*val)))
 
 
 # ------------------------------------------------------------------------
