@@ -105,6 +105,7 @@ module.exports = {
     'lodash/prefer-lodash-chain': 'off',
     'lodash/prefer-lodash-method': 'off',
     'lodash/prefer-lodash-typecheck': 'off',
+    'max-classes-per-file': 'off',
     'no-console': ['warn', { allow: ['info', 'warn', 'error'] }],
     'no-loops/no-loops': 'warn',
     'no-secrets/no-secrets': ['warn', { tolerance: 5 }],

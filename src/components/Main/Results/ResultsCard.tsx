@@ -5,16 +5,12 @@ import { useTranslation } from 'react-i18next'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import type {
-  AgeDistributionDatum,
-  CaseCountsDatum,
-  ScenarioDatum,
-  SeverityDistributionDatum,
-} from '../../../algorithms/types/Param.types'
+import type { CaseCountsDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 
-import { stateToURL } from '../state/serialization/v2.0.0/stateToURL'
+import { stateToURL } from '../state/serialize'
+import { State } from '../state/state'
 
 import LinkButton from '../../Buttons/LinkButton'
 import FormSwitch from '../../Form/FormSwitch'
@@ -35,9 +31,9 @@ interface ResultsCardProps {
   toggleAutorun: () => void
   canRun: boolean
   isRunning: boolean
-  scenarioData: ScenarioDatum
-  ageDistribution: AgeDistributionDatum[]
+  scenarioState: State
   severity: SeverityDistributionDatum[]
+  severityName: string
   caseCounts?: CaseCountsDatum[]
   result?: AlgorithmResult
   openPrintPreview: () => void
@@ -50,9 +46,9 @@ function ResultsCardFunction({
   isRunning,
   autorunSimulation,
   toggleAutorun,
-  scenarioData,
-  ageDistribution,
+  scenarioState,
   severity,
+  severityName,
   result,
   caseCounts,
   openPrintPreview,
@@ -80,6 +76,8 @@ function ResultsCardFunction({
   // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
   // href: https://reactjs.org/docs/hooks-rules.html
 
+  const { data: scenarioData, ageDistribution } = scenarioState
+
   const setPersistLogScale = (value: boolean) => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.LOG_SCALE, value)
     setLogScale(value)
@@ -94,12 +92,18 @@ function ResultsCardFunction({
 
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
 
-  const scenarioUrl = useMemo(() => stateToURL(scenarioData, ageDistribution, severity, caseCounts), [
-    scenarioData,
-    ageDistribution,
-    severity,
-    caseCounts,
-  ])
+  const scenarioUrl = useMemo(
+    () =>
+      stateToURL({
+        scenario: scenarioState.data,
+        scenarioName: scenarioState.current,
+        ageDistribution: scenarioState.ageDistribution,
+        ageDistributionName: scenarioState.data.population.ageDistributionName,
+        severity,
+        severityName,
+      }),
+    [scenarioState, severity, severityName],
+  )
 
   return (
     <>

@@ -1,6 +1,8 @@
-import { merge, omit } from 'lodash'
+import { omit } from 'lodash'
 
 import { v4 as uuidv4 } from 'uuid'
+
+import validateScenarioArray, { errors } from '../../../.generated/validateScenarioArray'
 
 import type {
   MitigationInterval,
@@ -13,8 +15,6 @@ import type {
 
 import { Convert } from '../../../algorithms/types/Param.types'
 
-import validateScenarioArray, { errors } from '../../../.generated/validateScenarioArray'
-
 import scenariosRaw from '../../../assets/data/scenarios.json'
 
 export function addId(interval: MitigationIntervalExternal): MitigationInterval {
@@ -26,19 +26,25 @@ export function removeId(interval: MitigationInterval): MitigationIntervalExtern
 }
 
 export function toInternal(scenario: ScenarioDatumExternal): ScenarioDatum {
-  return merge(scenario, {
+  const { mitigationIntervals } = scenario.mitigation
+  return {
+    ...scenario,
     mitigation: {
-      mitigationIntervals: scenario.mitigation.mitigationIntervals.map(addId),
+      ...scenario.mitigation,
+      mitigationIntervals: mitigationIntervals.map(addId),
     },
-  })
+  }
 }
 
 export function toExternal(scenario: ScenarioDatum): ScenarioDatumExternal {
-  return merge(scenario, {
+  const { mitigationIntervals } = scenario.mitigation
+  return {
+    ...scenario,
     mitigation: {
-      mitigationIntervals: scenario.mitigation.mitigationIntervals.map(removeId),
+      ...scenario.mitigation,
+      mitigationIntervals: mitigationIntervals.map(removeId),
     },
-  })
+  }
 }
 
 function validate(): ScenarioData[] {

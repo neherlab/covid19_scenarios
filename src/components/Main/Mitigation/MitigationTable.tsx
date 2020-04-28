@@ -57,6 +57,7 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
                     if (!interval) {
                       return null
                     }
+
                     return (
                       <MitigationIntervalComponent
                         key={interval.id}
@@ -125,7 +126,7 @@ function MitigationIntervalComponent({
   const errorComponents = errorMessages.map(({ friendlyName, errorMessages, hasError }) => (
     <tr key={friendlyName}>
       {errorMessages.map((message) => (
-        <div key={message} className="my-0 text-right text-danger">
+        <div key={`${friendlyName}: ${message}`} className="my-0 text-right text-danger">
           {message}
         </div>
       ))}

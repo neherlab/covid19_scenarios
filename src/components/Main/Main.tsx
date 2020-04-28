@@ -18,7 +18,7 @@ import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimul
 import { scenarioReducer } from './state/reducer'
 import { State } from './state/state'
 
-import { InitialStateComponentProps } from './HandleInitialState'
+import { DEFAULT_SEVERITY_DISTRIBUTION, InitialStateComponentProps } from './HandleInitialState'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import PrintPage from './PrintPage/PrintPage'
@@ -199,8 +199,8 @@ function Main({ initialState }: InitialStateComponentProps) {
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
-                      scenarioData={scenarioState.data}
-                      ageDistribution={scenarioState.ageDistribution}
+                      severityName={DEFAULT_SEVERITY_DISTRIBUTION}
+                      scenarioState={scenarioState}
                       result={result}
                       caseCounts={empiricalCases}
                       openPrintPreview={openPrintPreview}

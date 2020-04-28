@@ -12,11 +12,17 @@ required:
 
 properties:
   begin:
-    type: string
-    format: date
+    oneOf:
+      - type: string
+        format: date
+      - type: string
+        format: date-time
     formatMaximum:
       $data: '1/end'
 
   end:
-    type: string
-    format: date
+    oneOf:
+      - type: string
+        format: date
+      - type: string
+        format: date-time

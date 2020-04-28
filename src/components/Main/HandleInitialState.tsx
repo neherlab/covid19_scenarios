@@ -11,7 +11,7 @@ import { defaultScenarioState, State } from './state/state'
 
 import { getSeverityDistribution } from './state/getSeverityDistribution'
 
-const DEFAULT_SEVERITY_DISTRIBUTION = 'China CDC'
+export const DEFAULT_SEVERITY_DISTRIBUTION = 'China CDC'
 const severityDistribution = getSeverityDistribution(DEFAULT_SEVERITY_DISTRIBUTION)
 
 function deserializeScenarioFromURL(location: History.Location) {
@@ -21,6 +21,7 @@ function deserializeScenarioFromURL(location: History.Location) {
 
 interface InitialState {
   scenarioState: State
+  severityName: string
   severityTable: SeverityDistributionDatum[]
   isDefault: boolean
 }
@@ -51,6 +52,7 @@ function HandleInitialState({
     <Component
       initialState={{
         scenarioState,
+        severityName: DEFAULT_SEVERITY_DISTRIBUTION,
         severityTable: severityDistribution,
         isDefault: isEqual(scenarioState, defaultScenarioState),
       }}
