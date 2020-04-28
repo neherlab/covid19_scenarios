@@ -271,30 +271,30 @@ export default {
 
     !disableStylelint && !analyze && webpackStylelint(),
 
-    !disableChecks &&
-      !analyze &&
-      webpackTsChecker({
-        warningsAreErrors: production,
-        memoryLimit: 2048,
-        tsconfig: path.join(moduleRoot, 'tsconfig.json'),
-        reportFiles: [
-          'src/**/*.{js,jsx,ts,tsx}',
+    // !disableChecks &&
+    //   !analyze &&
+    //   webpackTsChecker({
+    //     warningsAreErrors: production,
+    //     memoryLimit: 2048,
+    //     tsconfig: path.join(moduleRoot, 'tsconfig.json'),
+    //     reportFiles: [
+    //       'src/**/*.{js,jsx,ts,tsx}',
 
-          // FIXME: errors in these files have to be resolved eventually
-          // begin
-          '!src/algorithms/model.ts', // FIXME
-          '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
-          '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
-          // end
+    //       // FIXME: errors in these files have to be resolved eventually
+    //       // begin
+    //       '!src/algorithms/model.ts', // FIXME
+    //       '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
+    //       '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
+    //       // end
 
-          '!src/**/*.(spec|test).{js,jsx,ts,tsx}',
-          '!src/**/__tests__/**/*.{js,jsx,ts,tsx}',
-          '!src/*generated*/**/*',
-          '!src/algorithms/__test_data__/**/*',
-          '!src/styles/**/*',
-          '!static/**/*',
-        ],
-      }),
+    //       '!src/**/*.(spec|test).{js,jsx,ts,tsx}',
+    //       '!src/**/__tests__/**/*.{js,jsx,ts,tsx}',
+    //       '!src/*generated*/**/*',
+    //       '!src/algorithms/__test_data__/**/*',
+    //       '!src/styles/**/*',
+    //       '!static/**/*',
+    //     ],
+    //   }),
 
     ...(fancyConsole && isInteractive()
       ? webpackFriendlyConsole({
