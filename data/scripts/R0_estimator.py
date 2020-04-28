@@ -51,7 +51,10 @@ def get_growth_rate(data, step=7):
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
             log_diff[ii] = (np.log(data[ii][step:]) - np.log(data[ii][:-step]))/step
-            log_diff[ii] = np.concatenate((log_diff[ii], np.repeat(np.nan, step)))
+            nans = np.ma.repeat(np.nan, step)
+            nans.mask = np.isnan(nans)
+            log_diff[ii] = np.ma.concatenate((log_diff[ii], nans))
+            log_diff[ii][log_diff[ii].mask] = np.nan
         else:
             log_diff[ii] = None
     return log_diff
@@ -75,6 +78,7 @@ def get_Re_guess(time, cases, step=7, extremal_points=7, death_data=False):
     growth_rate = get_growth_rate(diff_data, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
     return {"fit": stair_fit(time, R0_by_day[Sub.D if death_data else Sub.T], nb_value=extremal_points),
+            "diff_data": diff_data,
             "R0_by_day": R0_by_day,
             "R0_smoothed": smooth(R0_by_day)}
 
@@ -86,8 +90,8 @@ if __name__ == "__main__":
 
     step = 7
     smoothing = 4
-    country_list = ["Switzerland"]
-    # country_list = ["Germany", "Switzerland", "Italy"]
+    # country_list = ["Switzerland"]
+    country_list = ["Germany", "Switzerland", "Italy"]
     # country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
 
     for ci, c in enumerate(country_list):
@@ -99,22 +103,16 @@ if __name__ == "__main__":
         dates = [datetime.fromordinal(x) for x in time]
 
         plt.figure(1)
-        # plt.plot(t_smoothed, R0_cases_smoothed, label=c, ls='--', c=f"C{ci}")
         plt.plot(dates, R0_by_day[Sub.T], '--', label=f"{c}", c=f"C{ci}")
         plt.plot(dates, R0_smoothed[Sub.T], c=f"C{ci}")
         plt.plot(dates, stair_func(time, *fit), c=f"C{ci}")
-        # plt.figure(2)
-        # plt.plot(t_smoothed, R0_deaths_smoothed, label=c)
 
-    # for i,n in [(1,"cases"), (2, 'deaths')]:
-    #     plt.figure(i)
-    #     plt.title("Naive R0 estimate from smoothed new case reports 7 days apart")
-    #     plt.xlim(time[-40] if len(time)>40 else time[0], time[-1])
-    #     plt.plot(time, np.ones_like(time))
-    #     plt.ylabel("R0 estimate")
-    #     plt.legend(loc=3)
-    #     # plt.ylim(0,3.5)
-    #     # plt.savefig(f"{n}.png")4
+        plt.figure(2)
+        plt.title("New cases per day")
+        plt.plot(dates, res['diff_data'][Sub.T], label=c)
+        plt.grid()
+
+    plt.figure(1)
     plt.ylabel("R0")
     plt.xlabel("Time [days]")
     plt.legend(loc="best")

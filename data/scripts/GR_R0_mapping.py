@@ -11,7 +11,7 @@ def run_model(R0, nb_time_pts=30, initialCases=1000, key="USA-California"):
     rates = copy.deepcopy(DefaultRates)
     rates.logR0 = np.log(R0)
     rates.infectivity = np.exp(rates.logR0) * rates.infection
-    params = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=1e10,
+    params = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=1e12,
                     times=time_points, date=nb_time_pts, rates=rates, fracs=Fracs())
 
     model = trace_ages(solve_ode(params, init_pop(params.ages, params.size, initialCases)))
@@ -30,7 +30,7 @@ def map_R0_GR(R0s, growth_rate_step = 7):
     return gr
 
 if __name__ == "__main__":
-    R0s = np.linspace(0.2,5,50)
+    R0s = np.linspace(0.2,10,100)
     growth_rate_step = 7
     gr = map_R0_GR(R0s, growth_rate_step)
     print(np.round(gr, 5))
