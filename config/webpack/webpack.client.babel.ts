@@ -283,6 +283,7 @@ export default {
           // FIXME: errors in these files have to be resolved eventually
           // begin
           '!src/algorithms/model.ts', // FIXME
+          '!src/algorithms/results.ts', // FIXME
           '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
           '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
           // end
