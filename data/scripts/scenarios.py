@@ -106,14 +106,23 @@ class Fitter:
 # ------------------------------------------------------------------------
 # Parameter class constructors (with defaults)
 
-def report_errors(x):
-    return [float(max(1, round(alpha*x, 2))) for alpha in [.9, 1.1]]
+class PercentageRange(schema.PercentageRange):
+    def __init__(self, x):
+        super(PercentageRange, self).__init__( \
+                begin = float(max(1, round(.9*x, 2))),
+                end = float(max(1, round(1.1*x, 2))))
+
+class NumericRange(schema.NumericRangeNonNegative):
+    def __init__(self, x):
+        super(NumericRange, self).__init__( \
+                begin = float(max(1, round(.9*x, 2))),
+                end = float(max(1, round(1.1*x, 2))))
 
 class DateRange(schema.DateRange):
     def __init__(self, tMin, tMax):
         super(DateRange, self).__init__( \
-                t_min = tMin,
-                t_max = tMax)
+                begin = tMin,
+                end = tMax)
 
 class MitigationInterval(schema.MitigationInterval):
     def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
@@ -159,13 +168,13 @@ class EpidemiologicalParams(schema.ScenarioDatumEpidemiological):
                 icu_stay_days = default["lengthICUStay"],
                 overflow_severity = default["overflowSeverity"],
                 peak_month = default["peakMonth"],
-                r0 = report_errors(FIT_CASE_DATA[region]['r0'] if region in FIT_CASE_DATA else default["r0"]),
+                r0 = NumericRange(FIT_CASE_DATA[region]['r0'] if region in FIT_CASE_DATA else default["r0"]),
                 seasonal_forcing = default["seasonalForcing"])
 
-class ContainmentParams(schema.ScenarioDatumMitigation):
+class MitigationParams(schema.ScenarioDatumMitigation):
     def __init__(self):
         default = DEFAULTS["ContainmentData"]
-        super(ContainmentParams, self).__init__(
+        super(MitigationParams, self).__init__(
                 mitigation_intervals=[])
 
 class SimulationParams(schema.ScenarioDatumSimulation):
@@ -181,7 +190,7 @@ class SimulationParams(schema.ScenarioDatumSimulation):
 class AllParams(schema.ScenarioDatum):
     def __init__(self, region, country, population, beds, icus, hemisphere, srcPopulation, srcHospitalBeds, srcICUBeds, cases_key):
         super(AllParams, self).__init__( \
-                ContainmentParams(),
+                MitigationParams(),
                 EpidemiologicalParams(region, hemisphere),
                 PopulationParams(region, country, population, beds, icus, cases_key),
                 SimulationParams(region)
@@ -236,7 +245,7 @@ def fit_all_case_data(num_procs=4):
 def set_mitigation(cases, scenario):
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
-        scenario.containment.mitigation_intervals = []
+        scenario.mitigation.mitigation_intervals = []
         return
 
     case_counts = np.array([c['cases'] for c in valid_cases])
@@ -251,13 +260,13 @@ def set_mitigation(cases, scenario):
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.containment.mitigation_intervals.append(MitigationInterval(
+            scenario.mitigation.mitigation_intervals.append(MitigationInterval(
                 name=name,
                 tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
                 id=uuid4(),
                 tMax=scenario.simulation.simulation_time_range.t_max,
                 color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=report_errors(round(100*val))))
+                mitigationValue=PercentageRange(round(100*val))))
 
 
 # ------------------------------------------------------------------------
@@ -299,7 +308,7 @@ def generate(output_json, num_procs=1, recalculate=False):
             if region_name in case_counts:
                 set_mitigation(case_counts[region_name], scenario[region_name])
             else:
-                scenario[region_name].containment.mitigation_intervals = []
+                scenario[region_name].mitigation.mitigation_intervals = []
 
     with open(output_json, "w+") as fd:
         marshalJSON(scenario, fd)
