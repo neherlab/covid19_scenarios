@@ -39,9 +39,14 @@ def get_daily_counts(data):
     diff_data = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            diff_data[ii] = np.ma.array(np.concatenate(([np.nan],np.diff(data[ii]))))
-            diff_data[ii][diff_data[ii]==0] = np.nan
-            diff_data[ii].mask = np.isnan(diff_data[ii])
+            if ii in [Sub.T, Sub.D]:
+                diff_data[ii] = np.ma.array(np.concatenate(([np.nan],np.diff(data[ii]))))
+                diff_data[ii][diff_data[ii]==0] = np.nan
+                diff_data[ii].mask = np.isnan(diff_data[ii])
+            elif ii in [Sub.H, Sub.C]:
+                diff_data[ii] = np.ma.array(data[ii])
+                diff_data[ii][diff_data[ii]==0] = np.nan
+                diff_data[ii].mask = np.isnan(diff_data[ii])
         else:
             diff_data[ii] = None
     return diff_data
@@ -66,18 +71,30 @@ def err_function(x_drop, time, vec, val_o, val_e):
     # vec need to be masked to avoid nan
     return np.sum(np.abs(vec - stair_func(time, val_o, val_e, x_drop))**1)
 
-def stair_fit(time, vec, guess=None, nb_value=3):
+def stair_fit(time, vec, nb_value=3):
     val_o = np.mean(vec[~vec.mask][:nb_value])
     val_e = np.mean(vec[~vec.mask][-nb_value:])
     drop = time[np.argmin([err_function(x, time, vec, val_o, val_e) for x in time])]
     return val_o, val_e, drop
+
+def stair_fits(time, data, nb_value=3):
+    stair_fits = empty_data_list()
+    for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
+        if data[ii] is not None:
+            val_o = np.mean(data[ii][~data[ii].mask][:nb_value])
+            val_e = np.mean(data[ii][~data[ii].mask][-nb_value:])
+            drop = time[np.argmin([err_function(x, time, data[ii], val_o, val_e) for x in time])]
+            stair_fits[ii] = [val_o, val_e, drop]
+        else:
+            stair_fits[ii] = None
+    return stair_fits
 
 def get_Re_guess(time, cases, step=7, extremal_points=7, death_data=False):
     #R_effective
     diff_data = get_daily_counts(cases)
     growth_rate = get_growth_rate(diff_data, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
-    return {"fit": stair_fit(time, R0_by_day[Sub.D if death_data else Sub.T], nb_value=extremal_points),
+    return {"fits": stair_fits(time, R0_by_day, nb_value=extremal_points),
             "diff_data": diff_data,
             "R0_by_day": R0_by_day,
             "R0_smoothed": smooth(R0_by_day)}
@@ -90,31 +107,38 @@ if __name__ == "__main__":
 
     step = 7
     smoothing = 4
-    # country_list = ["Switzerland"]
-    country_list = ["Germany", "Switzerland", "Italy"]
+    country_list = ["Switzerland"]
+    # country_list = ["Germany", "Switzerland", "Italy"]
     # country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
 
     for ci, c in enumerate(country_list):
         time, data = load_data(c, case_counts[c])
         res = get_Re_guess(time, data, extremal_points=10, death_data=False)
-        fit = res["fit"]
+        fits = res["fits"]
         R0_by_day = res["R0_by_day"]
         R0_smoothed = res["R0_smoothed"]
         dates = [datetime.fromordinal(x) for x in time]
 
-        plt.figure(1)
-        plt.plot(dates, R0_by_day[Sub.T], '--', label=f"{c}", c=f"C{ci}")
-        plt.plot(dates, R0_smoothed[Sub.T], c=f"C{ci}")
-        plt.plot(dates, stair_func(time, *fit), c=f"C{ci}")
+        for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
+            if data[ii] is not None:
+                plt.figure(1)
+                # plt.plot(dates, R0_by_day[ii], '--', label=f"{c}", c=f"C{ii}")
+                plt.plot(dates, R0_smoothed[ii], c=f"C{ii}")
+                plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{ii}")
 
-        plt.figure(2)
-        plt.title("New cases per day")
-        plt.plot(dates, res['diff_data'][Sub.T], label=c)
-        plt.grid()
+                plt.figure(2)
+                plt.plot(dates, res['diff_data'][ii], label=f"data {ii}", c=f"C{ii}")
+
 
     plt.figure(1)
     plt.ylabel("R0")
     plt.xlabel("Time [days]")
     plt.legend(loc="best")
     plt.savefig("Stair_fit", format="png")
+
+    plt.figure(2)
+    plt.title("New cases per day")
+    plt.legend()
+    plt.grid()
+
     plt.show()
