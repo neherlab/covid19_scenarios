@@ -92,6 +92,7 @@ export function LinePlotTooltip({
   return <ResponsiveTooltipContent formattedLabel={formattedLabel} tooltipItems={tooltipItems} />
 }
 
+const round = (value: number): number => Math.round(100 * value) / 100
 export function R0PlotTooltip({
   active,
   payload,
@@ -107,7 +108,6 @@ export function R0PlotTooltip({
   }
   const formattedLabel = labelFormatter ? labelFormatter(label) : label
   const datum = payload.filter((elt) => typeof elt.dataKey === 'string' && itemsToDisplay.includes(elt.dataKey))[0]
-  const round = (value: number): number => Math.round(100 * value) / 100
 
   const tooltipItem: TooltipItem = {
     key: 'r0',
