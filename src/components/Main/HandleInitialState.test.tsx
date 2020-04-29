@@ -3,9 +3,9 @@ import React from 'react'
 import { render } from '@testing-library/react'
 
 import { Router } from 'react-router-dom'
-import { createMemoryHistory, Location } from 'history'
+import { createMemoryHistory } from 'history'
 
-import { State, DEFAULT_OVERALL_SCENARIO_NAME } from './state/state'
+import { DEFAULT_OVERALL_SCENARIO_NAME } from './state/state'
 
 import HandleInitialState, { HandleInitialStateProps } from './HandleInitialState'
 

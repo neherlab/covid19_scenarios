@@ -6,7 +6,6 @@ import {
   InternalCumulativeData,
   Trajectory,
   ExportedTimePoint,
-  AlgorithmResult,
 } from './types/Result.types'
 
 import { msPerDay } from './initialize'
