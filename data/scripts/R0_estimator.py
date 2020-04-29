@@ -112,9 +112,9 @@ if __name__ == "__main__":
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    # country_list = ["Germany"]
-    country_list = ["Germany", "Switzerland", "Italy"]
-    # country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium"]
+    # country_list = ["United Kingdom of Great Britain and Northern Ireland"]
+    # country_list = ["Germany", "Switzerland", "Italy"]
+    country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium", "United Kingdom of Great Britain and Northern Ireland"]
 
     for ci, c in enumerate(country_list):
         time, data = load_data(c, case_counts[c])
@@ -124,8 +124,8 @@ if __name__ == "__main__":
         R0_smoothed = res["R0_smoothed"]
         dates = [datetime.fromordinal(x) for x in time]
 
-        for ee, ii in enumerate([Sub.T]):
-        # for ee, ii in enumerate([Sub.T, Sub.D]):
+        # for ee, ii in enumerate([Sub.T]):
+        for ee, ii in enumerate([Sub.T, Sub.D]):
             if data[ii] is not None:
                 plt.figure(1)
                 # plt.plot(dates, R0_smoothed[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
@@ -150,5 +150,5 @@ if __name__ == "__main__":
 
     plt.show()
 
-    # lags = get_R0_estimate_lag(country_list)
-    # print(lags)
+    lags = get_R0_estimate_lag(country_list)
+    print(lags)
