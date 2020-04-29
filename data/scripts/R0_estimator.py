@@ -96,59 +96,74 @@ def get_Re_guess(time, cases, step=7, extremal_points=7):
             "R0_by_day": R0_by_day,
             "R0_smoothed": smooth(R0_by_day)}
 
-def get_R0_estimate_lag(country_list):
+def get_R0_comparison(country_list):
     lags = []
+    rdiffs_o = []
+    rdiffs_e = []
     for c in country_list:
         time, data = load_data(c, case_counts[c])
         res = get_Re_guess(time, data)
         fits = res["fits"]
-        lag = fits[Sub.D][2] - fits[Sub.T][2]
-        lags = lags + [lag]
-    return lags
+        if (fits[Sub.D] != None) and (fits[Sub.T] != None):
+            rdiff_o = (fits[Sub.D][0] - fits[Sub.T][0])/(0.5*(fits[Sub.D][0] + fits[Sub.T][0]))
+            rdiff_e = (fits[Sub.D][1] - fits[Sub.T][1])/(0.5*(fits[Sub.D][1] + fits[Sub.T][1]))
+            lag = fits[Sub.D][2] - fits[Sub.T][2]
+        else:
+            lag, rdiff_o, rdiff_e = np.nan, np.nan, np.nan
 
+        lags = lags + [lag]
+        rdiffs_o = rdiffs_o + [rdiff_o]
+        rdiffs_e = rdiffs_e + [rdiff_e]
+
+    for vec in [rdiffs_o, rdiffs_e, lags]:
+          vec = np.ma.array(vec)
+          vec.mask = np.isnan(vec)
+          print(vec)
+          print(np.ma.mean(vec))
+          print(np.ma.std(vec))
 
 if __name__ == "__main__":
     from scripts import tsv
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    # country_list = ["United Kingdom of Great Britain and Northern Ireland"]
+    # country_list = ["CHE-Zürich"]
     # country_list = ["Germany", "Switzerland", "Italy"]
-    country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium", "United Kingdom of Great Britain and Northern Ireland"]
+    country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium",
+    "United Kingdom of Great Britain and Northern Ireland", "CHE-Zürich", "CHE-Basel-Stadt",
+    "CHE-Geneva", "CHE-Valais", "CHE-Ticino", "USA-California", "USA-New York", "USA-New Jersey"]
 
-    for ci, c in enumerate(country_list):
-        time, data = load_data(c, case_counts[c])
-        res = get_Re_guess(time, data, extremal_points=10)
-        fits = res["fits"]
-        R0_by_day = res["R0_by_day"]
-        R0_smoothed = res["R0_smoothed"]
-        dates = [datetime.fromordinal(x) for x in time]
+    # for ci, c in enumerate(country_list):
+    #     time, data = load_data(c, case_counts[c])
+    #     res = get_Re_guess(time, data, extremal_points=10)
+    #     fits = res["fits"]
+    #     R0_by_day = res["R0_by_day"]
+    #     R0_smoothed = res["R0_smoothed"]
+    #     dates = [datetime.fromordinal(x) for x in time]
+    #
+    #     for ee, ii in enumerate([Sub.T, Sub.D]):
+    #         if data[ii] is not None:
+    #             plt.figure(1)
+    #             # plt.plot(dates, R0_smoothed[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
+    #             plt.plot(dates, R0_by_day[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
+    #             plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{2*ci+ee}")
+    #
+    #             plt.figure(2)
+    #             plt.plot(dates, res['diff_data'][ii], '--', label=f"{c} {ii}", c=f"C{2*ci+ee}")
+    #             plt.plot(dates, res['diff_data_smoothed'][ii] , label=f"{c} {ii}", c=f"C{2*ci+ee}")
+    #
+    #
+    # plt.figure(1)
+    # plt.ylabel("R0")
+    # plt.xlabel("Time [days]")
+    # plt.legend(loc="best")
+    # plt.savefig("Stair_fit", format="png")
+    #
+    # plt.figure(2)
+    # plt.title("New cases per day")
+    # plt.legend()
+    # plt.grid()
+    #
+    # plt.show()
 
-        # for ee, ii in enumerate([Sub.T]):
-        for ee, ii in enumerate([Sub.T, Sub.D]):
-            if data[ii] is not None:
-                plt.figure(1)
-                # plt.plot(dates, R0_smoothed[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
-                plt.plot(dates, R0_by_day[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
-                plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{2*ci+ee}")
-
-                plt.figure(2)
-                plt.plot(dates, res['diff_data'][ii], '--', label=f"{c} {ii}", c=f"C{2*ci+ee}")
-                plt.plot(dates, res['diff_data_smoothed'][ii] , label=f"{c} {ii}", c=f"C{2*ci+ee}")
-
-
-    plt.figure(1)
-    plt.ylabel("R0")
-    plt.xlabel("Time [days]")
-    plt.legend(loc="best")
-    plt.savefig("Stair_fit", format="png")
-
-    plt.figure(2)
-    plt.title("New cases per day")
-    plt.legend()
-    plt.grid()
-
-    plt.show()
-
-    lags = get_R0_estimate_lag(country_list)
-    print(lags)
+    get_R0_comparison(country_list)
