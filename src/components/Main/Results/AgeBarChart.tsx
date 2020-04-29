@@ -78,13 +78,13 @@ export function AgeBarChart({
   })
 
   const ages = Object.keys(normAgeDistribution)
-  const lastDataPoint = data.trajectory.mean[data.trajectory.mean.length - 1]
+  const lastDataPoint = data.trajectory.middle[data.trajectory.middle.length - 1]
   const plotData = ages.map((age) => ({
     name: age,
     fraction: Math.round(normAgeDistribution[age] * 1000) / 10,
-    peakSevere: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.severe[age]))),
-    peakCritical: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.critical[age]))),
-    peakOverflow: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.overflow[age]))),
+    peakSevere: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.severe[age]))),
+    peakCritical: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.critical[age]))),
+    peakOverflow: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.overflow[age]))),
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
   }))
 

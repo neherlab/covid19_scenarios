@@ -97,6 +97,17 @@ function verifyPositive(x: number): maybeNumber {
   return x > 0 ? Math.ceil(x) : undefined
 }
 
+function verifyTuple(x: [number | undefined, number | undefined]): [number | undefined, number | undefined] {
+  if (x[0] !== undefined && x[1] !== undefined) {
+    return x
+  }
+  if (x[0] === undefined && x[1] !== undefined) {
+    return [0, x[1]]
+  }
+
+  return [undefined, undefined]
+}
+
 export interface LinePlotProps {
   data?: AlgorithmResult
   params: ScenarioDatum
@@ -170,7 +181,7 @@ export function DeterministicLinePlot({
   const { upper, lower } = data.trajectory
 
   const plotData = [
-    ...data.trajectory.mean.map((x, i) => ({
+    ...data.trajectory.middle.map((x, i) => ({
       time: x.time,
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
         ? verifyPositive(x.current.susceptible.total)
@@ -196,25 +207,43 @@ export function DeterministicLinePlot({
 
       // Error bars
       susceptibleArea: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].current.susceptible.total),
+            verifyPositive(upper[i].current.susceptible.total),
+          ])
         : undefined,
       infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].current.infectious.total),
+            verifyPositive(upper[i].current.infectious.total),
+          ])
         : undefined,
       severeArea: enabledPlots.includes(DATA_POINTS.Severe)
-        ? [verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)]
+        ? verifyTuple([verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)])
         : undefined,
       criticalArea: enabledPlots.includes(DATA_POINTS.Critical)
-        ? [verifyPositive(lower[i].current.critical.total), verifyPositive(upper[i].current.critical.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].current.critical.total),
+            verifyPositive(upper[i].current.critical.total),
+          ])
         : undefined,
       overflowArea: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? [verifyPositive(lower[i].current.overflow.total), verifyPositive(upper[i].current.overflow.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].current.overflow.total),
+            verifyPositive(upper[i].current.overflow.total),
+          ])
         : undefined,
       recoveredArea: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? [verifyPositive(lower[i].cumulative.recovered.total), verifyPositive(upper[i].cumulative.recovered.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].cumulative.recovered.total),
+            verifyPositive(upper[i].cumulative.recovered.total),
+          ])
         : undefined,
       fatalityArea: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? [verifyPositive(lower[i].cumulative.fatality.total), verifyPositive(upper[i].cumulative.fatality.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].cumulative.fatality.total),
+            verifyPositive(upper[i].cumulative.fatality.total),
+          ])
         : undefined,
     })),
 
@@ -274,7 +303,7 @@ export function DeterministicLinePlot({
     tooltipItems = { ...tooltipItems, ...d }
   })
   const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(
-    (itemKey: string) => itemKey !== 'time' && tooltipItems[itemKey] !== undefined,
+    (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey !== 'ICUbeds',
   )
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
@@ -304,6 +333,9 @@ export function DeterministicLinePlot({
                 height={(forcedHeight || height) / 4}
                 tMin={tMin}
                 tMax={tMax}
+                labelFormatter={labelFormatter}
+                tooltipValueFormatter={tooltipValueFormatter}
+                tooltipPosition={tooltipPosition}
               />
               <MitigationPlot
                 mitigation={mitigationIntervals}

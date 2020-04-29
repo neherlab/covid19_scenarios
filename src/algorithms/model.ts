@@ -405,15 +405,15 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
   // TODO: Make the down sampling interval a parameter
 
   const categories = {
-    current: keys(result.mean[0].current),
-    cumulative: keys(result.mean[0].cumulative),
+    current: keys(result.middle[0].current),
+    cumulative: keys(result.middle[0].cumulative),
   }
   const header: string[] = ['time']
 
   categories.current.forEach((category) => {
     ageGroups.forEach((age) => {
       header.push(
-        `${title(category)} (${age}) mean`,
+        `${title(category)} (${age}) median`,
         `${title(category)} (${age}) lower bound`,
         `${title(category)} (${age}) upper bound`,
       )
@@ -423,7 +423,7 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
   categories.cumulative.forEach((category) => {
     ageGroups.forEach((age) => {
       header.push(
-        `cumulative ${title(category)} (${age}) mean`,
+        `cumulative ${title(category)} (${age}) median`,
         `cumulative ${title(category)} (${age}) lower bound`,
         `cumulative ${title(category)} (${age}) upper bound`,
       )
@@ -435,8 +435,8 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
   const seen: Record<string, boolean> = {}
   const { upper, lower } = result
 
-  result.mean.forEach((mean, i) => {
-    const t = new Date(mean.time).toISOString().slice(0, 10)
+  result.middle.forEach((mid, i) => {
+    const t = new Date(mid.time).toISOString().slice(0, 10)
     if (t in seen) {
       return
     }
@@ -445,14 +445,14 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
     let buf = t
     categories.current.forEach((k) => {
       ageGroups.forEach((age) => {
-        buf += `\t${Math.round(mean.current[k][age])}\t${Math.round(lower[i].current[k][age])}\t${Math.round(
+        buf += `\t${Math.round(mid.current[k][age])}\t${Math.round(lower[i].current[k][age])}\t${Math.round(
           upper[i].current[k][age],
         )}`
       })
     })
     categories.cumulative.forEach((k) => {
       ageGroups.forEach((age) => {
-        buf += `\t${Math.round(mean.cumulative[k][age])}\t${Math.round(lower[i].cumulative[k][age])}\t${Math.round(
+        buf += `\t${Math.round(mid.cumulative[k][age])}\t${Math.round(lower[i].cumulative[k][age])}\t${Math.round(
           upper[i].cumulative[k][age],
         )}`
       })

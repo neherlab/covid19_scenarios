@@ -200,50 +200,41 @@ function scaledStdDevTPs(
   return scaleTP(logstd, inv)
 }
 
-/*
- * NOTE(nnoll): Keep function as we will use this on detailed runs eventually
- * NOTE(nnoll): 0 <= prc <= 1
-function percentileTPs(tps: ExportedTimePoint[], prc: number): ExportedTimePoint {
-  const med: ExportedTimePoint = emptyTimePoint(tps[0].time)
+export function percentileTPs(tps: ExportedTimePoint[], prc: number): ExportedTimePoint {
+  const res: ExportedTimePoint = emptyTimePoint(tps[0].time)
   const idx = Math.ceil(prc * (tps.length - 1))
-  Object.keys(tps[0].current).forEach((k) => {
-    Object.keys(tps[0].current[k]).forEach((age) => {
-      med.current[k][age] = tps.map((d) => d.current[k][age]).sort()[idx]
+
+  Object.keys(tps[0]).forEach((kind) => {
+    Object.keys(tps[0][kind]).forEach((k) => {
+      Object.keys(tps[0][kind][k]).forEach((age) => {
+        res[kind][k][age] = tps.map((d) => d[kind][k][age]).sort((x, y) => x - y)[idx]
+      })
     })
   })
-  Object.keys(tps[0].cumulative).forEach((k) => {
-    Object.keys(tps[0].cumulative[k]).forEach((age) => {
-      med.cumulative[k][age] = tps.map((d) => d.cumulative[k][age]).sort()[idx]
-    })
-  })
-  return med
+
+  return res
 }
-*/
 
 // -----------------------------------------------------------------------
 // Operations on sets of realizations
 
-/*
- * NOTE(nnoll): Keep function as we will use this on detailed runs eventually
- *
-function percentileTrajectory(trajectories: ExportedTimePoint[][], prc: number): ExportedTimePoint[] {
-  return trajectories[0].map((_, i) => {
+export function percentileTrajectory(trajectories: ExportedTimePoint[][], prc: number): ExportedTimePoint[] {
+  return trajectories[0].map((_0, i) => {
     return percentileTPs(
-      trajectories.map((_, j) => trajectories[j][i]),
+      trajectories.map((traj) => traj[i]),
       prc,
     )
   })
 }
-*/
 
 const COUNT_FLOOR = 1e-1
 const fwdTransform = (x: number) => Math.log(x + COUNT_FLOOR)
 const invTransform = (x: number) => Math.exp(x)
 
 export function meanTrajectory(trajectories: ExportedTimePoint[][]): ExportedTimePoint[] {
-  return trajectories[0].map((_, i) => {
+  return trajectories[0].map((_0, i) => {
     return scaledMeanTPs(
-      trajectories.map((_, j) => trajectories[j][i]),
+      trajectories.map((_1, j) => trajectories[j][i]),
       fwdTransform,
       invTransform,
     )
@@ -251,9 +242,9 @@ export function meanTrajectory(trajectories: ExportedTimePoint[][]): ExportedTim
 }
 
 export function stddevTrajectory(trajectories: ExportedTimePoint[][], mean: ExportedTimePoint[]): ExportedTimePoint[] {
-  return trajectories[0].map((_, i) => {
+  return trajectories[0].map((_0, i) => {
     return scaledStdDevTPs(
-      trajectories.map((_, j) => trajectories[j][i]),
+      trajectories.map((_1, j) => trajectories[j][i]),
       mean[i],
       fwdTransform,
       invTransform,

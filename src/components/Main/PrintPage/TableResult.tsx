@@ -32,20 +32,14 @@ interface NumberWithUncertaintyProps {
 export function NumberWithUncertainty({ value, lower, upper }: NumberWithUncertaintyProps) {
   return (
     <div>
-      {Math.round(value)}{' '}
-      <div style={{ display: 'inline-block' }}>
-        <span style={{ display: 'inline-block' }}>
-          <sup style={{ display: 'block', position: 'relative' }}>+{Math.round(lower)}</sup>
-          <sub style={{ display: 'block', position: 'relative' }}>-{Math.round(upper)}</sub>
-        </span>
-      </div>
+      ({Math.round(lower)}, <b>{Math.round(value)}</b>, {Math.round(upper)})
     </div>
   )
 }
 
 export default function TableResult({ result }: TableResultProps) {
   const downSampled = {
-    mean: sampleEvery(result.trajectory.mean, STEP),
+    middle: sampleEvery(result.trajectory.middle, STEP),
     lower: sampleEvery(result.trajectory.lower, STEP),
     upper: sampleEvery(result.trajectory.upper, STEP),
   }
@@ -58,12 +52,13 @@ export default function TableResult({ result }: TableResultProps) {
             <td>date</td>
             <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex() }}>hospitalized</td>
             <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex() }}>ICU</td>
-            <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex() }}>recovered</td>
+            <td style={{ backgroundColor: chroma(colors.overflow).alpha(0.1).hex() }}>overflow</td>
             <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex() }}>deaths</td>
+            <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex() }}>recovered</td>
           </tr>
         </thead>
         <tbody>
-          {downSampled.mean.map((line, i) => (
+          {downSampled.middle.map((line, i) => (
             <tr key={line.time}>
               <td>{dateFormat(line.time)}</td>
               <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex() }}>
@@ -80,7 +75,7 @@ export default function TableResult({ result }: TableResultProps) {
                   upper={downSampled.upper[i].current.critical.total}
                 />
               </td>
-              <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex() }}>
+              <td style={{ backgroundColor: chroma(colors.overflow).alpha(0.1).hex() }}>
                 <NumberWithUncertainty
                   value={line.current.overflow.total}
                   lower={downSampled.lower[i].current.overflow.total}
