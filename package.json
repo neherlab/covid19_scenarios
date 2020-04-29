@@ -91,6 +91,7 @@
     "p-min-delay": "3.1.0",
     "papaparse": "5.2.0",
     "prop-types": "15.7.2",
+    "query-string": "6.12.1",
     "raf": "3.4.1",
     "react": "16.13.1",
     "react-awesome-popover": "6.1.1",

@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { last } from 'lodash'
+import { head, last } from 'lodash'
 
-import jsurl from 'jsurl'
-
+import queryString from 'query-string'
 import semver from 'semver'
 
 import type {
@@ -12,7 +11,9 @@ import type {
   SeverityDistributionDatum,
 } from '../../../algorithms/types/Param.types'
 
-import v1_0_0 from './serialization/v1.0.0/serialize'
+import urlv1 from './encoding/v1/encode'
+
+// import v1_0_0 from './serialization/v1.0.0/serialize'
 import v2_0_0 from './serialization/v2.0.0/serialize'
 
 export interface SerializableData {
@@ -34,14 +35,32 @@ export interface Serializers {
 
 export const SERIALIZERS = new Map<string, Serializers>(
   Object.entries({
-    '1.0.0': v1_0_0,
+    // '1.0.0': v1_0_0,
     '2.0.0': v2_0_0,
   }),
 )
 
-export const VERSIONS = semver.sort([...SERIALIZERS.keys()])
-export const LATEST_VERSION = last(VERSIONS) ?? '1.0.0'
-export const LATEST_SERIALIZERS = SERIALIZERS.get(LATEST_VERSION) ?? v1_0_0
+export const SERIALIZER_VERSIONS = semver.sort([...SERIALIZERS.keys()])
+export const SERIALIZER_VERSION_LATEST = last(SERIALIZER_VERSIONS) ?? '2.0.0'
+export const SERIALIZER_LATEST = SERIALIZERS.get(SERIALIZER_VERSION_LATEST) ?? v2_0_0
+
+export type UrlEncoder = (obj: object) => string
+export type UrlDecoder = (str: string) => object
+
+export interface UrlEncoders {
+  encode: UrlEncoder
+  decode: UrlDecoder
+}
+
+export const URL_ENCODERS = new Map<string, UrlEncoders>(
+  Object.entries({
+    '1': urlv1,
+  }),
+)
+
+export const URL_ENCODER_VERSIONS = [...URL_ENCODERS.keys()].sort()
+export const URL_ENCODER_VERSION_LATEST = last(URL_ENCODER_VERSIONS) ?? '1'
+export const URL_ENCODER_LATEST = URL_ENCODERS.get(URL_ENCODER_VERSION_LATEST) ?? urlv1
 
 export class ErrorSchemaVersionMissing extends Error {
   public constructor() {
@@ -51,32 +70,30 @@ export class ErrorSchemaVersionMissing extends Error {
 
 export class ErrorSchemaVersionInvalid extends Error {
   public schemaVer?: string
-
   public constructor(schemaVer?: string) {
-    const schemaVerExpected = SERIALIZERS.keys().toString()
-    super(
-      `Schema error: when deserializing expected \`schemaVer\` to be one of \`${schemaVerExpected}\`, but received: ${schemaVer}`,
-    )
-
+    super(`Schema error: when deserializing expected \`schemaVer\` to be one of \`[${SERIALIZER_VERSIONS}]\`, but received: ${schemaVer}`) // prettier-ignore
     this.schemaVer = schemaVer
   }
 }
 
 export class ErrorSchemaSerializerVersionNotLatest extends Error {
   public schemaVer: string
-
   public constructor(schemaVer: string) {
-    const schemaVerExpected = SERIALIZERS.keys().toString()
-    super(
-      `Schema error: when serializing expected \`schemaVer\` to be the latest among \`${schemaVerExpected}\`, but received: ${schemaVer}`,
-    )
-
+    super(`Schema error: when serializing expected \`schemaVer\` to be the latest among \`[${SERIALIZER_VERSIONS}]\`, but received: ${schemaVer}`) // prettier-ignore
     this.schemaVer = schemaVer
   }
 }
 
+export class ErrorURLSerializerVersionInvalid extends Error {
+  public urlVer?: string | null
+  public constructor(urlVer?: string | null) {
+    super(`URL error: when serializing expected \`v\` to be one of \`[${URL_ENCODER_VERSIONS}]\`, but received: ${urlVer}`) // prettier-ignore
+    this.urlVer = urlVer
+  }
+}
+
 export function serialize(data: SerializableData): string {
-  const serializerLatest = LATEST_SERIALIZERS.serialize
+  const serializerLatest = SERIALIZER_LATEST.serialize
   const serialized = serializerLatest(data)
 
   if (process.env.NODE_ENV !== 'production') {
@@ -86,9 +103,11 @@ export function serialize(data: SerializableData): string {
       throw new ErrorSchemaVersionInvalid(shareableDangerous?.schemaVer)
     }
 
-    if (schemaVer !== LATEST_VERSION) {
+    if (schemaVer !== SERIALIZER_VERSION_LATEST) {
       throw new ErrorSchemaSerializerVersionNotLatest(schemaVer)
     }
+
+    deserialize(serialized)
   }
 
   return serialized
@@ -96,29 +115,53 @@ export function serialize(data: SerializableData): string {
 
 export function deserialize(dataString: string): SerializableData {
   const shareableDangerous = JSON.parse(dataString) as { schemaVer?: string }
+
   const schemaVer = semver.valid(shareableDangerous?.schemaVer)
 
   if (!schemaVer) {
     throw new ErrorSchemaVersionMissing()
   }
 
-  const deserializer = SERIALIZERS.get(schemaVer)?.deserialize
-  if (!deserializer) {
+  const deserialize = SERIALIZERS.get(schemaVer)?.deserialize
+  if (!deserialize) {
     throw new ErrorSchemaVersionInvalid(schemaVer)
   }
 
-  return deserializer(dataString)
+  return deserialize(dataString)
 }
 
-export function stateToURL(data: SerializableData): string {
+export function dataToURL(data: SerializableData): string {
   const serialized = serialize(data)
   const obj = JSON.parse(serialized)
-  const url = jsurl.stringify(obj)
-  return `/?q=${url}`
+  const q = URL_ENCODER_LATEST.encode(obj)
+  const v = URL_ENCODER_VERSION_LATEST
+  const query = queryString.stringify({ v, q })
+  return `/?${query}`
 }
 
-export function stateFromUrl(url: string): SerializableData {
-  const obj = jsurl.parse(url)
+export function first<T>(a: T | T[]) {
+  return Array.isArray(a) ? head(a) : a
+}
+
+export function dataFromUrl(url: string): SerializableData | null {
+  const params = queryString.parse(url)
+  const v = first(params?.v)
+  const q = first(params?.q)
+
+  if (!q) {
+    return null
+  }
+
+  if (!v) {
+    throw new ErrorURLSerializerVersionInvalid(v)
+  }
+
+  const decode = URL_ENCODERS.get(v)?.decode
+  if (!decode) {
+    throw new ErrorURLSerializerVersionInvalid(v)
+  }
+
+  const obj = decode(q)
   const str = JSON.stringify(obj)
   return deserialize(str)
 }

@@ -9,7 +9,7 @@ import type { CaseCountsDatum, SeverityDistributionDatum } from '../../../algori
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 
-import { stateToURL } from '../state/serialize'
+import { dataToURL } from '../state/serialize'
 import { State } from '../state/state'
 
 import LinkButton from '../../Buttons/LinkButton'
@@ -94,7 +94,7 @@ function ResultsCardFunction({
 
   const scenarioUrl = useMemo(
     () =>
-      stateToURL({
+      dataToURL({
         scenario: scenarioState.data,
         scenarioName: scenarioState.current,
         ageDistribution: scenarioState.ageDistribution,
