@@ -47,7 +47,7 @@ export function NumberWithUncertainty({ value, lower, upper }: NumberWithUncerta
       </div>
     )
   }
-  return <div>{'0 - 0'}</div>
+  return <div>{'0'}</div>
 }
 
 export default function TableResult({ result }: TableResultProps) {
@@ -62,12 +62,24 @@ export default function TableResult({ result }: TableResultProps) {
       <table>
         <thead>
           <tr>
-            <td>date</td>
-            <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex() }}>hospitalized</td>
-            <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex() }}>ICU</td>
-            <td style={{ backgroundColor: chroma(colors.overflow).alpha(0.1).hex() }}>overflow</td>
-            <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex() }}>deaths</td>
-            <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex() }}>recovered</td>
+            <td style={{ width: '3cm' }}>
+              <b>date</b>
+            </td>
+            <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex(), width: '3cm' }}>
+              <b>hospitalized</b>
+            </td>
+            <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex(), width: '3cm' }}>
+              <b>ICU</b>
+            </td>
+            <td style={{ backgroundColor: chroma(colors.overflow).alpha(0.1).hex(), width: '3cm' }}>
+              <b>overflow</b>
+            </td>
+            <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex(), width: '3.5cm' }}>
+              <b>deaths</b>
+            </td>
+            <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex(), width: '4cm' }}>
+              <b>recovered</b>
+            </td>
           </tr>
         </thead>
         <tbody>
