@@ -2315,6 +2315,13 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
 
+"@types/proper-url-join@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/proper-url-join/-/proper-url-join-2.0.0.tgz#b63fed98a37631215586022de55353ba84384789"
+  integrity sha512-Q2MqlyNLYiqnJI01t/FRut17VURfCtbGzkavnfGueUQ9oM4a1cQwogjDUnCFxjaIfQBAomspYHuNGxhngVkfTQ==
+  dependencies:
+    query-string "^6.3.0"
+
 "@types/q@^1.5.1":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
@@ -13081,6 +13088,13 @@ prop-types@15.7.2, prop-types@15.x, prop-types@^15.0.0, prop-types@^15.5.10, pro
     object-assign "^4.1.1"
     react-is "^16.8.1"
 
+proper-url-join@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/proper-url-join/-/proper-url-join-2.1.1.tgz#ee4146edc08f512a0ee1053a355e06950691d06f"
+  integrity sha512-40x6taKMwsDn4TrWx4YvnVxv5mO1O9KUrbK/jx8N0oDYf38ZFUK/OHNSAwTvu7Aj+cQcjBuf5aDh5R328YrrXg==
+  dependencies:
+    query-string "^6.3.0"
+
 property-expr@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.2.tgz#fff2a43919135553a3bc2fdd94bdb841965b2330"
@@ -13224,7 +13238,7 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
-query-string@6.12.1:
+query-string@6.12.1, query-string@^6.3.0:
   version "6.12.1"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.12.1.tgz#2ae4d272db4fba267141665374e49a1de09e8a7c"
   integrity sha512-OHj+zzfRMyj3rmo/6G8a5Ifvw3AleL/EbcHMD27YA31Q+cO5lfmQxECkImuNVjcskLcvBRVHNAB3w6udMs1eAA==

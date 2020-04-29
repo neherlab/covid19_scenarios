@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import {
@@ -9,6 +10,8 @@ import {
   FacebookIcon,
   FacebookShareButton,
 } from 'react-share'
+
+import urlJoin from 'proper-url-join'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -47,8 +50,7 @@ export default function ExportSimulationDialog({
     openPrintPreview()
   }
 
-  // Assuming href and shareable link can be concatenated without other processing:
-  const shareableLink = `${window.location.href}${scenarioUrl}`
+  const shareableLink = urlJoin(window.location.href, scenarioUrl)
 
   // Size in pixels for the external icons like facebook, email
   const externalIconSize = 25
