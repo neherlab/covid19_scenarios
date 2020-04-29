@@ -40,7 +40,7 @@ export const SERIALIZERS = new Map<string, Serializers>(
   }),
 )
 
-export const SERIALIZER_VERSIONS = semver.sort([...SERIALIZERS.keys()])
+export const SERIALIZER_VERSIONS = semver.sort(Array.from(SERIALIZERS.keys()))
 export const SERIALIZER_VERSION_LATEST = last(SERIALIZER_VERSIONS) ?? '2.0.0'
 export const SERIALIZER_LATEST = SERIALIZERS.get(SERIALIZER_VERSION_LATEST) ?? v2_0_0
 
