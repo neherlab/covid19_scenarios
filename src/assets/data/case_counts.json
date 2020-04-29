@@ -881,6 +881,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1827,
+"deaths": 60,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -1291,6 +1299,14 @@
 "time": "2020-04-28",
 "cases": 736,
 "deaths": 28,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 750,
+"deaths": 30,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -2219,6 +2235,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 3649,
+"deaths": 437,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -2592,6 +2616,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 748,
+"deaths": 41,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -2901,6 +2933,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 27,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -3165,6 +3205,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 3,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 3,
 "deaths": 0,
 "hospitalized": null,
@@ -3490,6 +3538,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 24,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 24,
 "deaths": 3,
 "hospitalized": null,
@@ -3921,6 +3977,14 @@
 "time": "2020-04-28",
 "cases": 3990,
 "deaths": 197,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 4114,
+"deaths": 207,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -4817,6 +4881,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1932,
+"deaths": 30,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -5113,6 +5185,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 100,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 100,
 "deaths": 2,
 "hospitalized": null,
@@ -6083,6 +6163,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 6738,
+"deaths": 88,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -7048,6 +7136,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 15314,
+"deaths": 569,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -7957,6 +8053,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1717,
+"deaths": 22,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -8295,6 +8399,14 @@
 "time": "2020-04-27",
 "cases": 301,
 "deaths": 14,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 317,
+"deaths": 16,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -8687,6 +8799,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 777,
+"deaths": 36,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -9001,6 +9121,14 @@
 "time": "2020-04-27",
 "cases": 842,
 "deaths": 26,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 918,
+"deaths": 28,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -9750,6 +9878,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 2564,
+"deaths": 93,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -10096,6 +10232,14 @@
 "time": "2020-04-27",
 "cases": 6783,
 "deaths": 397,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 6985,
+"deaths": 417,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -10508,6 +10652,14 @@
 {
 "time": "2020-04-27",
 "cases": 1189,
+"deaths": 28,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 1230,
 "deaths": 28,
 "hospitalized": null,
 "icu": null,
@@ -10949,6 +11101,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 2164,
+"deaths": 77,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -11330,6 +11490,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 661,
+"deaths": 27,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -11647,6 +11815,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 2804,
+"deaths": 166,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -11937,6 +12113,14 @@
 "time": "2020-04-27",
 "cases": 256,
 "deaths": 10,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 263,
+"deaths": 11,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -12301,6 +12485,14 @@
 {
 "time": "2020-04-27",
 "cases": 238,
+"deaths": 9,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 240,
 "deaths": 9,
 "hospitalized": null,
 "icu": null,
@@ -13075,6 +13267,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 1286,
+"deaths": 79,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -13789,6 +13989,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 2319,
+"deaths": 132,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -14162,6 +14370,22 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-27",
+"cases": 5358,
+"deaths": 450,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 5724,
+"deaths": 508,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -14479,6 +14703,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 454,
+"deaths": 24,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -14777,6 +15009,22 @@
 "time": "2020-04-25",
 "cases": 825,
 "deaths": 44,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-26",
+"cases": 832,
+"deaths": 45,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-27",
+"cases": 857,
+"deaths": 48,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -15153,6 +15401,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 1350,
+"deaths": 49,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -15526,6 +15782,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 8504,
+"deaths": 738,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -15816,6 +16080,14 @@
 "time": "2020-04-27",
 "cases": 393,
 "deaths": 10,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 413,
+"deaths": 11,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -16509,6 +16781,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 1995,
+"deaths": 44,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -16790,6 +17070,14 @@
 {
 "time": "2020-04-27",
 "cases": 211,
+"deaths": 11,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 280,
 "deaths": 11,
 "hospitalized": null,
 "icu": null,
@@ -17287,6 +17575,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 24041,
+"deaths": 2049,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -17616,6 +17912,14 @@
 {
 "time": "2020-04-27",
 "cases": 79,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 116,
 "deaths": 2,
 "hospitalized": null,
 "icu": null,
@@ -17956,6 +18260,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 80,
+"deaths": 11,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 80,
 "deaths": 11,
 "hospitalized": null,
@@ -18918,6 +19230,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2811,
+"deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -19283,6 +19603,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 6462,
+"deaths": 155,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -19619,6 +19947,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 80,
+"deaths": 6,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 80,
 "deaths": 6,
 "hospitalized": null,
@@ -20522,6 +20858,14 @@
 "time": "2020-04-28",
 "cases": 11289,
 "deaths": 75,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 12208,
+"deaths": 79,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -21490,6 +21834,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 47334,
+"deaths": 7331,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -21778,6 +22130,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 18,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 18,
 "deaths": 2,
 "hospitalized": null,
@@ -22132,6 +22492,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 64,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -22452,6 +22820,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 110,
+"deaths": 6,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 110,
 "deaths": 6,
 "hospitalized": null,
@@ -22825,6 +23201,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 7,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 7,
 "deaths": 0,
 "hospitalized": null,
@@ -23211,6 +23595,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1053,
+"deaths": 55,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -23427,6 +23819,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 6,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 6,
 "deaths": 0,
 "hospitalized": null,
@@ -23813,6 +24213,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1588,
+"deaths": 62,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -24038,6 +24446,14 @@
 {
 "time": "2020-04-28",
 "cases": 22,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 23,
 "deaths": 1,
 "hospitalized": null,
 "icu": null,
@@ -25007,6 +25423,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 71886,
+"deaths": 5017,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -25399,6 +25823,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 138,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 138,
 "deaths": 1,
 "hospitalized": null,
@@ -25809,6 +26241,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1399,
+"deaths": 58,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -26190,6 +26630,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 638,
+"deaths": 42,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -26414,6 +26862,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 15,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 15,
 "deaths": 1,
 "hospitalized": null,
@@ -27011,7 +27467,7 @@
 },
 {
 "time": "2020-04-25",
-"cases": 4233,
+"cases": 4232,
 "deaths": 73,
 "hospitalized": null,
 "icu": null,
@@ -27019,7 +27475,7 @@
 },
 {
 "time": "2020-04-26",
-"cases": 4480,
+"cases": 4475,
 "deaths": 73,
 "hospitalized": null,
 "icu": null,
@@ -27027,11 +27483,19 @@
 },
 {
 "time": "2020-04-27",
-"cases": 4696,
+"cases": 4691,
 "deaths": 75,
 "hospitalized": null,
 "icu": null,
 "recovered": 1664
+},
+{
+"time": "2020-04-28",
+"cases": 4850,
+"deaths": 80,
+"hospitalized": null,
+"icu": null,
+"recovered": 1800
 }
 ]
 },
@@ -27669,6 +28133,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1190
+},
+{
+"time": "2020-04-28",
+"cases": 2053,
+"deaths": 105,
+"hospitalized": null,
+"icu": null,
+"recovered": 1231
 }
 ]
 },
@@ -28282,6 +28754,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 205
+},
+{
+"time": "2020-04-28",
+"cases": 272,
+"deaths": 6,
+"hospitalized": null,
+"icu": null,
+"recovered": 1
 }
 ]
 },
@@ -28890,6 +29370,14 @@
 },
 {
 "time": "2020-04-27",
+"cases": 5,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": 1
+},
+{
+"time": "2020-04-28",
 "cases": 5,
 "deaths": 0,
 "hospitalized": null,
@@ -29508,6 +29996,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1
+},
+{
+"time": "2020-04-28",
+"cases": 118,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": 1
 }
 ]
 },
@@ -30116,6 +30612,14 @@
 },
 {
 "time": "2020-04-27",
+"cases": 258,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": 1
+},
+{
+"time": "2020-04-28",
 "cases": 258,
 "deaths": 3,
 "hospitalized": null,
@@ -30734,6 +31238,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 509
+},
+{
+"time": "2020-04-28",
+"cases": 915,
+"deaths": 27,
+"hospitalized": null,
+"icu": null,
+"recovered": 522
 }
 ]
 },
@@ -31347,6 +31859,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1
+},
+{
+"time": "2020-04-28",
+"cases": 0,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": 1
 }
 ]
 },
@@ -31947,7 +32467,7 @@
 },
 {
 "time": "2020-04-23",
-"cases": 13996,
+"cases": 13995,
 "deaths": 798,
 "hospitalized": null,
 "icu": null,
@@ -31955,7 +32475,7 @@
 },
 {
 "time": "2020-04-24",
-"cases": 14487,
+"cases": 14485,
 "deaths": 850,
 "hospitalized": null,
 "icu": null,
@@ -31963,7 +32483,7 @@
 },
 {
 "time": "2020-04-25",
-"cases": 14915,
+"cases": 14913,
 "deaths": 898,
 "hospitalized": null,
 "icu": null,
@@ -31971,7 +32491,7 @@
 },
 {
 "time": "2020-04-26",
-"cases": 15413,
+"cases": 15411,
 "deaths": 945,
 "hospitalized": null,
 "icu": null,
@@ -31984,6 +32504,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 8525
+},
+{
+"time": "2020-04-28",
+"cases": 16337,
+"deaths": 1050,
+"hospitalized": null,
+"icu": null,
+"recovered": 8964
 }
 ]
 },
@@ -32597,6 +33125,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1
+},
+{
+"time": "2020-04-28",
+"cases": 27,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": 24
 }
 ]
 },
@@ -33189,7 +33725,7 @@
 },
 {
 "time": "2020-04-25",
-"cases": 23267,
+"cases": 23262,
 "deaths": 1446,
 "hospitalized": null,
 "icu": null,
@@ -33197,7 +33733,7 @@
 },
 {
 "time": "2020-04-26",
-"cases": 24107,
+"cases": 24102,
 "deaths": 1515,
 "hospitalized": null,
 "icu": null,
@@ -33205,11 +33741,19 @@
 },
 {
 "time": "2020-04-27",
-"cases": 24982,
+"cases": 24974,
 "deaths": 1599,
 "hospitalized": null,
 "icu": null,
 "recovered": 5517
+},
+{
+"time": "2020-04-28",
+"cases": 25757,
+"deaths": 1682,
+"hospitalized": null,
+"icu": null,
+"recovered": 5841
 }
 ]
 },
@@ -33892,6 +34436,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 288
+},
+{
+"time": "2020-04-28",
+"cases": 366,
+"deaths": 5,
+"hospitalized": null,
+"icu": null,
+"recovered": 291
 }
 ]
 },
@@ -34505,6 +35057,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1
+},
+{
+"time": "2020-04-28",
+"cases": 11,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": 1
 }
 ]
 },
@@ -34894,6 +35454,14 @@
 "hospitalized": 39,
 "icu": 12,
 "recovered": 840
+},
+{
+"time": "2020-04-29",
+"cases": 1099,
+"deaths": 33,
+"hospitalized": 38,
+"icu": 10,
+"recovered": 850
 }
 ]
 },
@@ -35195,6 +35763,14 @@
 "hospitalized": 4,
 "icu": 2,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 94,
+"deaths": 3,
+"hospitalized": 2,
+"icu": 2,
+"recovered": null
 }
 ]
 },
@@ -35459,6 +36035,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 25,
+"deaths": null,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 25,
 "deaths": null,
 "hospitalized": null,
@@ -35957,6 +36541,14 @@
 "hospitalized": 15,
 "icu": 1,
 "recovered": 747
+},
+{
+"time": "2020-04-29",
+"cases": 822,
+"deaths": 30,
+"hospitalized": 12,
+"icu": 1,
+"recovered": 752
 }
 ]
 },
@@ -36441,7 +37033,7 @@
 "deaths": 46,
 "hospitalized": null,
 "icu": null,
-"recovered": 815
+"recovered": null
 },
 {
 "time": "2020-04-28",
@@ -36449,7 +37041,15 @@
 "deaths": 49,
 "hospitalized": 28,
 "icu": 7,
-"recovered": 821
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 946,
+"deaths": 49,
+"hospitalized": 26,
+"icu": 7,
+"recovered": 810
 }
 ]
 },
@@ -36838,6 +37438,14 @@
 "deaths": 83,
 "hospitalized": 47,
 "icu": 7,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1741,
+"deaths": 83,
+"hospitalized": 44,
+"icu": 10,
 "recovered": null
 }
 ]
@@ -37573,7 +38181,7 @@
 {
 "time": "2020-03-31",
 "cases": 2902,
-"deaths": 67,
+"deaths": 68,
 "hospitalized": 405,
 "icu": 64,
 "recovered": 241
@@ -37581,7 +38189,7 @@
 {
 "time": "2020-04-01",
 "cases": 3059,
-"deaths": 76,
+"deaths": 77,
 "hospitalized": 406,
 "icu": 64,
 "recovered": 260
@@ -37589,7 +38197,7 @@
 {
 "time": "2020-04-02",
 "cases": 3270,
-"deaths": 84,
+"deaths": 85,
 "hospitalized": 424,
 "icu": 62,
 "recovered": 283
@@ -37597,7 +38205,7 @@
 {
 "time": "2020-04-03",
 "cases": 3456,
-"deaths": 91,
+"deaths": 92,
 "hospitalized": 424,
 "icu": 65,
 "recovered": 284
@@ -37605,7 +38213,7 @@
 {
 "time": "2020-04-04",
 "cases": 3584,
-"deaths": 104,
+"deaths": 106,
 "hospitalized": 421,
 "icu": 61,
 "recovered": 305
@@ -37613,7 +38221,7 @@
 {
 "time": "2020-04-05",
 "cases": 3649,
-"deaths": 111,
+"deaths": 113,
 "hospitalized": 424,
 "icu": 56,
 "recovered": 327
@@ -37621,7 +38229,7 @@
 {
 "time": "2020-04-06",
 "cases": 3768,
-"deaths": 123,
+"deaths": 125,
 "hospitalized": 418,
 "icu": 56,
 "recovered": 345
@@ -37629,7 +38237,7 @@
 {
 "time": "2020-04-07",
 "cases": 3928,
-"deaths": 134,
+"deaths": 136,
 "hospitalized": 412,
 "icu": 51,
 "recovered": 374
@@ -37637,7 +38245,7 @@
 {
 "time": "2020-04-08",
 "cases": 4059,
-"deaths": 148,
+"deaths": 150,
 "hospitalized": 402,
 "icu": 49,
 "recovered": 442
@@ -37645,7 +38253,7 @@
 {
 "time": "2020-04-09",
 "cases": 4152,
-"deaths": 157,
+"deaths": 159,
 "hospitalized": 393,
 "icu": 47,
 "recovered": null
@@ -37653,7 +38261,7 @@
 {
 "time": "2020-04-10",
 "cases": 4194,
-"deaths": 168,
+"deaths": 170,
 "hospitalized": 379,
 "icu": 47,
 "recovered": 448
@@ -37661,7 +38269,7 @@
 {
 "time": "2020-04-11",
 "cases": 4243,
-"deaths": 176,
+"deaths": 178,
 "hospitalized": 364,
 "icu": 48,
 "recovered": 463
@@ -37669,7 +38277,7 @@
 {
 "time": "2020-04-12",
 "cases": 4265,
-"deaths": 183,
+"deaths": 185,
 "hospitalized": 363,
 "icu": 47,
 "recovered": 479
@@ -37677,7 +38285,7 @@
 {
 "time": "2020-04-13",
 "cases": 4315,
-"deaths": 186,
+"deaths": 188,
 "hospitalized": 364,
 "icu": 47,
 "recovered": 490
@@ -37685,7 +38293,7 @@
 {
 "time": "2020-04-14",
 "cases": 4368,
-"deaths": 191,
+"deaths": 193,
 "hospitalized": 365,
 "icu": 46,
 "recovered": 490
@@ -37693,7 +38301,7 @@
 {
 "time": "2020-04-15",
 "cases": 4432,
-"deaths": 196,
+"deaths": 198,
 "hospitalized": 352,
 "icu": 41,
 "recovered": 502
@@ -37701,7 +38309,7 @@
 {
 "time": "2020-04-16",
 "cases": 4497,
-"deaths": 202,
+"deaths": 204,
 "hospitalized": 350,
 "icu": 38,
 "recovered": 520
@@ -37709,7 +38317,7 @@
 {
 "time": "2020-04-17",
 "cases": 4557,
-"deaths": 208,
+"deaths": 210,
 "hospitalized": 329,
 "icu": 39,
 "recovered": 532
@@ -37717,7 +38325,7 @@
 {
 "time": "2020-04-18",
 "cases": 4606,
-"deaths": 212,
+"deaths": 214,
 "hospitalized": 315,
 "icu": 34,
 "recovered": 553
@@ -37725,7 +38333,7 @@
 {
 "time": "2020-04-19",
 "cases": 4617,
-"deaths": 215,
+"deaths": 217,
 "hospitalized": 315,
 "icu": 35,
 "recovered": 558
@@ -37733,7 +38341,7 @@
 {
 "time": "2020-04-20",
 "cases": 4644,
-"deaths": 217,
+"deaths": 219,
 "hospitalized": 321,
 "icu": 34,
 "recovered": 561
@@ -37741,7 +38349,7 @@
 {
 "time": "2020-04-21",
 "cases": 4670,
-"deaths": 222,
+"deaths": 224,
 "hospitalized": 304,
 "icu": 32,
 "recovered": 581
@@ -37749,7 +38357,7 @@
 {
 "time": "2020-04-22",
 "cases": 4691,
-"deaths": 227,
+"deaths": 229,
 "hospitalized": 288,
 "icu": 30,
 "recovered": 589
@@ -37757,7 +38365,7 @@
 {
 "time": "2020-04-23",
 "cases": 4721,
-"deaths": 231,
+"deaths": 233,
 "hospitalized": 284,
 "icu": 29,
 "recovered": 592
@@ -37765,7 +38373,7 @@
 {
 "time": "2020-04-24",
 "cases": 4741,
-"deaths": 236,
+"deaths": 238,
 "hospitalized": 278,
 "icu": 26,
 "recovered": 600
@@ -37773,7 +38381,7 @@
 {
 "time": "2020-04-25",
 "cases": 4754,
-"deaths": 237,
+"deaths": 239,
 "hospitalized": 271,
 "icu": 27,
 "recovered": null
@@ -37781,18 +38389,34 @@
 {
 "time": "2020-04-26",
 "cases": 4760,
-"deaths": 239,
+"deaths": 241,
 "hospitalized": 271,
 "icu": 25,
 "recovered": 610
 },
 {
 "time": "2020-04-27",
-"cases": 4760,
-"deaths": null,
+"cases": 4769,
+"deaths": 243,
 "hospitalized": 270,
 "icu": 26,
 "recovered": 610
+},
+{
+"time": "2020-04-28",
+"cases": 4785,
+"deaths": 244,
+"hospitalized": 277,
+"icu": 23,
+"recovered": 617
+},
+{
+"time": "2020-04-29",
+"cases": 4785,
+"deaths": null,
+"hospitalized": 254,
+"icu": 21,
+"recovered": 634
 }
 ]
 },
@@ -38198,6 +38822,14 @@
 "hospitalized": 3,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 122,
+"deaths": 9,
+"hospitalized": 3,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -38527,16 +39159,24 @@
 {
 "time": "2020-04-26",
 "cases": 802,
-"deaths": 44,
+"deaths": 45,
 "hospitalized": 28,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-27",
-"cases": 806,
-"deaths": 44,
+"cases": 807,
+"deaths": 45,
 "hospitalized": 29,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 809,
+"deaths": 45,
+"hospitalized": 27,
 "icu": null,
 "recovered": null
 }
@@ -39381,6 +40021,14 @@
 "hospitalized": 29,
 "icu": 7,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 687,
+"deaths": 17,
+"hospitalized": 31,
+"icu": 8,
+"recovered": null
 }
 ]
 },
@@ -39669,7 +40317,7 @@
 },
 {
 "time": "2020-04-05",
-"cases": 464,
+"cases": 463,
 "deaths": 30,
 "hospitalized": 58,
 "icu": 12,
@@ -39677,7 +40325,7 @@
 },
 {
 "time": "2020-04-06",
-"cases": 486,
+"cases": 485,
 "deaths": 34,
 "hospitalized": 59,
 "icu": 10,
@@ -39685,7 +40333,7 @@
 },
 {
 "time": "2020-04-07",
-"cases": 510,
+"cases": 509,
 "deaths": 37,
 "hospitalized": 64,
 "icu": 10,
@@ -39693,7 +40341,7 @@
 },
 {
 "time": "2020-04-08",
-"cases": 515,
+"cases": 514,
 "deaths": 40,
 "hospitalized": 63,
 "icu": 10,
@@ -39701,7 +40349,7 @@
 },
 {
 "time": "2020-04-09",
-"cases": 547,
+"cases": 546,
 "deaths": 42,
 "hospitalized": 58,
 "icu": 10,
@@ -39709,7 +40357,7 @@
 },
 {
 "time": "2020-04-10",
-"cases": 567,
+"cases": 566,
 "deaths": 42,
 "hospitalized": 63,
 "icu": 11,
@@ -39717,146 +40365,154 @@
 },
 {
 "time": "2020-04-11",
-"cases": 576,
-"deaths": 44,
+"cases": 575,
+"deaths": 45,
 "hospitalized": 64,
 "icu": 11,
 "recovered": null
 },
 {
 "time": "2020-04-12",
-"cases": 586,
-"deaths": 49,
+"cases": 585,
+"deaths": 50,
 "hospitalized": 67,
 "icu": 10,
 "recovered": null
 },
 {
 "time": "2020-04-13",
-"cases": 592,
-"deaths": 51,
+"cases": 591,
+"deaths": 52,
 "hospitalized": 67,
 "icu": 10,
 "recovered": null
 },
 {
 "time": "2020-04-14",
-"cases": 603,
-"deaths": 54,
+"cases": 602,
+"deaths": 55,
 "hospitalized": 60,
 "icu": 11,
 "recovered": null
 },
 {
 "time": "2020-04-15",
-"cases": 616,
-"deaths": 55,
+"cases": 615,
+"deaths": 56,
 "hospitalized": 54,
 "icu": 12,
 "recovered": null
 },
 {
 "time": "2020-04-16",
-"cases": 625,
-"deaths": 56,
+"cases": 624,
+"deaths": 57,
 "hospitalized": 52,
 "icu": 11,
 "recovered": null
 },
 {
 "time": "2020-04-17",
-"cases": 634,
-"deaths": 59,
+"cases": 633,
+"deaths": 60,
 "hospitalized": 44,
 "icu": 10,
 "recovered": null
 },
 {
 "time": "2020-04-18",
-"cases": 637,
-"deaths": 59,
+"cases": 636,
+"deaths": 60,
 "hospitalized": 44,
 "icu": 10,
 "recovered": null
 },
 {
 "time": "2020-04-19",
-"cases": 638,
-"deaths": 61,
+"cases": 637,
+"deaths": 62,
 "hospitalized": 43,
 "icu": 9,
 "recovered": null
 },
 {
 "time": "2020-04-20",
-"cases": 648,
-"deaths": 63,
+"cases": 647,
+"deaths": 65,
 "hospitalized": 44,
 "icu": 10,
 "recovered": null
 },
 {
 "time": "2020-04-21",
-"cases": 653,
-"deaths": 64,
+"cases": 652,
+"deaths": 66,
 "hospitalized": 37,
 "icu": 7,
 "recovered": null
 },
 {
 "time": "2020-04-22",
-"cases": 660,
-"deaths": 66,
+"cases": 659,
+"deaths": 68,
 "hospitalized": 37,
 "icu": 6,
 "recovered": null
 },
 {
 "time": "2020-04-23",
-"cases": 667,
-"deaths": 66,
+"cases": 666,
+"deaths": 68,
 "hospitalized": 35,
 "icu": 6,
 "recovered": null
 },
 {
 "time": "2020-04-24",
-"cases": 670,
-"deaths": 68,
+"cases": 669,
+"deaths": 70,
 "hospitalized": 36,
 "icu": 6,
 "recovered": null
 },
 {
 "time": "2020-04-25",
-"cases": 671,
-"deaths": 69,
+"cases": 670,
+"deaths": 71,
 "hospitalized": 35,
 "icu": 4,
 "recovered": null
 },
 {
 "time": "2020-04-26",
-"cases": 672,
-"deaths": 70,
+"cases": 671,
+"deaths": 73,
 "hospitalized": 32,
 "icu": 3,
 "recovered": null
 },
 {
 "time": "2020-04-27",
-"cases": 675,
-"deaths": null,
+"cases": 676,
+"deaths": 73,
 "hospitalized": 28,
 "icu": 3,
 "recovered": null
 },
 {
 "time": "2020-04-28",
-"cases": 675,
-"deaths": null,
+"cases": 676,
+"deaths": 74,
 "hospitalized": 26,
 "icu": 3,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 676,
+"deaths": null,
+"hospitalized": 26,
+"icu": 4,
 "recovered": null
 }
 ]
@@ -40247,6 +40903,14 @@
 "hospitalized": 2,
 "icu": 0,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 111,
+"deaths": 3,
+"hospitalized": 2,
+"icu": 0,
+"recovered": null
 }
 ]
 },
@@ -40458,6 +41122,14 @@
 "cases": 78,
 "deaths": 0,
 "hospitalized": 1,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 78,
+"deaths": 0,
+"hospitalized": 2,
 "icu": null,
 "recovered": null
 }
@@ -40857,6 +41529,14 @@
 "hospitalized": 10,
 "icu": 2,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 74,
+"deaths": 6,
+"hospitalized": 12,
+"icu": 2,
+"recovered": null
 }
 ]
 },
@@ -41198,6 +41878,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 223
+},
+{
+"time": "2020-04-29",
+"cases": 295,
+"deaths": 20,
+"hospitalized": null,
+"icu": null,
+"recovered": 224
 }
 ]
 },
@@ -41513,6 +42201,14 @@
 "cases": 383,
 "deaths": 15,
 "hospitalized": 13,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 384,
+"deaths": 15,
+"hospitalized": 12,
 "icu": null,
 "recovered": null
 }
@@ -41863,6 +42559,14 @@
 "deaths": 33,
 "hospitalized": 44,
 "icu": 3,
+"recovered": 176
+},
+{
+"time": "2020-04-29",
+"cases": 776,
+"deaths": 33,
+"hospitalized": 44,
+"icu": 10,
 "recovered": 176
 }
 ]
@@ -42220,6 +42924,14 @@
 "deaths": 17,
 "hospitalized": 21,
 "icu": 8,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 363,
+"deaths": 17,
+"hospitalized": 15,
+"icu": 7,
 "recovered": null
 }
 ]
@@ -42738,6 +43450,14 @@
 "hospitalized": 186,
 "icu": 30,
 "recovered": 712
+},
+{
+"time": "2020-04-29",
+"cases": 3191,
+"deaths": 318,
+"hospitalized": 172,
+"icu": 29,
+"recovered": 728
 }
 ]
 },
@@ -43071,6 +43791,14 @@
 "hospitalized": 5,
 "icu": null,
 "recovered": 71
+},
+{
+"time": "2020-04-29",
+"cases": 85,
+"deaths": 5,
+"hospitalized": 5,
+"icu": null,
+"recovered": 71
 }
 ]
 },
@@ -43343,7 +44071,7 @@
 },
 {
 "time": "2020-04-01",
-"cases": 1281,
+"cases": 1282,
 "deaths": 40,
 "hospitalized": 145,
 "icu": 26,
@@ -43351,7 +44079,7 @@
 },
 {
 "time": "2020-04-02",
-"cases": 1333,
+"cases": 1334,
 "deaths": 47,
 "hospitalized": 145,
 "icu": 28,
@@ -43359,7 +44087,7 @@
 },
 {
 "time": "2020-04-03",
-"cases": 1382,
+"cases": 1383,
 "deaths": 51,
 "hospitalized": 145,
 "icu": 26,
@@ -43367,7 +44095,7 @@
 },
 {
 "time": "2020-04-04",
-"cases": 1415,
+"cases": 1416,
 "deaths": 53,
 "hospitalized": 148,
 "icu": 28,
@@ -43375,7 +44103,7 @@
 },
 {
 "time": "2020-04-05",
-"cases": 1430,
+"cases": 1431,
 "deaths": 57,
 "hospitalized": 145,
 "icu": 26,
@@ -43383,7 +44111,7 @@
 },
 {
 "time": "2020-04-06",
-"cases": 1496,
+"cases": 1497,
 "deaths": 60,
 "hospitalized": 132,
 "icu": 26,
@@ -43391,7 +44119,7 @@
 },
 {
 "time": "2020-04-07",
-"cases": 1535,
+"cases": 1536,
 "deaths": 68,
 "hospitalized": 129,
 "icu": 25,
@@ -43399,7 +44127,7 @@
 },
 {
 "time": "2020-04-08",
-"cases": 1569,
+"cases": 1570,
 "deaths": 71,
 "hospitalized": 122,
 "icu": 26,
@@ -43407,7 +44135,7 @@
 },
 {
 "time": "2020-04-09",
-"cases": 1597,
+"cases": 1598,
 "deaths": 77,
 "hospitalized": 117,
 "icu": 24,
@@ -43415,7 +44143,7 @@
 },
 {
 "time": "2020-04-10",
-"cases": 1626,
+"cases": 1627,
 "deaths": 83,
 "hospitalized": 115,
 "icu": 24,
@@ -43423,7 +44151,7 @@
 },
 {
 "time": "2020-04-11",
-"cases": 1652,
+"cases": 1653,
 "deaths": 85,
 "hospitalized": 112,
 "icu": 20,
@@ -43431,7 +44159,7 @@
 },
 {
 "time": "2020-04-12",
-"cases": 1665,
+"cases": 1666,
 "deaths": 91,
 "hospitalized": 110,
 "icu": 22,
@@ -43439,7 +44167,7 @@
 },
 {
 "time": "2020-04-13",
-"cases": 1679,
+"cases": 1680,
 "deaths": 93,
 "hospitalized": 106,
 "icu": 21,
@@ -43447,7 +44175,7 @@
 },
 {
 "time": "2020-04-14",
-"cases": 1706,
+"cases": 1707,
 "deaths": 94,
 "hospitalized": 100,
 "icu": 20,
@@ -43455,115 +44183,123 @@
 },
 {
 "time": "2020-04-15",
-"cases": 1722,
+"cases": 1723,
 "deaths": 94,
-"hospitalized": 93,
+"hospitalized": 94,
 "icu": 20,
 "recovered": 175
 },
 {
 "time": "2020-04-16",
-"cases": 1739,
+"cases": 1740,
 "deaths": 95,
-"hospitalized": 89,
+"hospitalized": 91,
 "icu": 17,
 "recovered": 178
 },
 {
 "time": "2020-04-17",
-"cases": 1758,
+"cases": 1759,
 "deaths": 99,
-"hospitalized": 83,
+"hospitalized": 84,
 "icu": 16,
 "recovered": 184
 },
 {
 "time": "2020-04-18",
-"cases": 1767,
+"cases": 1768,
 "deaths": 104,
-"hospitalized": 82,
+"hospitalized": 83,
 "icu": 18,
 "recovered": 185
 },
 {
 "time": "2020-04-19",
-"cases": 1774,
+"cases": 1775,
 "deaths": 107,
-"hospitalized": 80,
+"hospitalized": 81,
 "icu": 16,
 "recovered": 204
 },
 {
 "time": "2020-04-20",
-"cases": 1791,
+"cases": 1792,
 "deaths": 110,
-"hospitalized": 75,
+"hospitalized": 76,
 "icu": 15,
 "recovered": 206
 },
 {
 "time": "2020-04-21",
-"cases": 1798,
+"cases": 1799,
 "deaths": 115,
-"hospitalized": 72,
+"hospitalized": 73,
 "icu": 14,
 "recovered": 210
 },
 {
 "time": "2020-04-22",
-"cases": 1804,
+"cases": 1805,
 "deaths": 118,
-"hospitalized": 73,
+"hospitalized": 74,
 "icu": 13,
 "recovered": 210
 },
 {
 "time": "2020-04-23",
-"cases": 1820,
+"cases": 1821,
 "deaths": 123,
-"hospitalized": 69,
+"hospitalized": 70,
 "icu": 13,
 "recovered": 211
 },
 {
 "time": "2020-04-24",
-"cases": 1829,
+"cases": 1830,
 "deaths": 127,
-"hospitalized": 67,
+"hospitalized": 66,
 "icu": 14,
 "recovered": 218
 },
 {
 "time": "2020-04-25",
-"cases": 1834,
+"cases": 1835,
 "deaths": 129,
-"hospitalized": 69,
+"hospitalized": 68,
 "icu": 14,
 "recovered": 218
 },
 {
 "time": "2020-04-26",
-"cases": 1836,
+"cases": 1837,
 "deaths": 131,
-"hospitalized": 69,
+"hospitalized": 70,
 "icu": 15,
 "recovered": 218
 },
 {
 "time": "2020-04-27",
-"cases": 1836,
+"cases": 1850,
 "deaths": 132,
-"hospitalized": 68,
-"icu": 15,
+"hospitalized": 60,
+"icu": 14,
 "recovered": 220
 },
 {
 "time": "2020-04-28",
-"cases": 1841,
-"deaths": 132,
-"hospitalized": 58,
-"icu": 14,
+"cases": 1852,
+"deaths": 135,
+"hospitalized": 56,
+"icu": 13,
 "recovered": 233
+},
+{
+"time": "2020-04-29",
+"cases": 1853,
+"deaths": 136,
+"hospitalized": 56,
+"icu": 11,
+"recovered": 237
 }
 ]
 },
@@ -43660,7 +44396,7 @@
 },
 {
 "time": "2020-03-10",
-"cases": 129,
+"cases": 130,
 "deaths": 1,
 "hospitalized": 48,
 "icu": 8,
@@ -43668,7 +44404,7 @@
 },
 {
 "time": "2020-03-11",
-"cases": 202,
+"cases": 203,
 "deaths": 1,
 "hospitalized": 51,
 "icu": 7,
@@ -43676,7 +44412,7 @@
 },
 {
 "time": "2020-03-12",
-"cases": 276,
+"cases": 277,
 "deaths": 3,
 "hospitalized": 55,
 "icu": 6,
@@ -43684,7 +44420,7 @@
 },
 {
 "time": "2020-03-13",
-"cases": 368,
+"cases": 369,
 "deaths": 3,
 "hospitalized": 61,
 "icu": 7,
@@ -43700,7 +44436,7 @@
 },
 {
 "time": "2020-03-15",
-"cases": 560,
+"cases": 567,
 "deaths": 5,
 "hospitalized": 90,
 "icu": 10,
@@ -43782,7 +44518,7 @@
 "time": "2020-03-25",
 "cases": 2740,
 "deaths": 40,
-"hospitalized": 314,
+"hospitalized": 313,
 "icu": 51,
 "recovered": null
 },
@@ -43790,7 +44526,7 @@
 "time": "2020-03-26",
 "cases": 2945,
 "deaths": 57,
-"hospitalized": 325,
+"hospitalized": 324,
 "icu": 55,
 "recovered": null
 },
@@ -43798,7 +44534,7 @@
 "time": "2020-03-27",
 "cases": 3179,
 "deaths": 61,
-"hospitalized": 360,
+"hospitalized": 359,
 "icu": 59,
 "recovered": null
 },
@@ -43806,7 +44542,7 @@
 "time": "2020-03-28",
 "cases": 3310,
 "deaths": 72,
-"hospitalized": 369,
+"hospitalized": 368,
 "icu": 61,
 "recovered": null
 },
@@ -43814,7 +44550,7 @@
 "time": "2020-03-29",
 "cases": 3395,
 "deaths": 81,
-"hospitalized": 371,
+"hospitalized": 370,
 "icu": 62,
 "recovered": null
 },
@@ -43822,7 +44558,7 @@
 "time": "2020-03-30",
 "cases": 3607,
 "deaths": 93,
-"hospitalized": 374,
+"hospitalized": 373,
 "icu": 65,
 "recovered": null
 },
@@ -43830,7 +44566,7 @@
 "time": "2020-03-31",
 "cases": 3766,
 "deaths": 105,
-"hospitalized": 382,
+"hospitalized": 381,
 "icu": 68,
 "recovered": null
 },
@@ -43838,7 +44574,7 @@
 "time": "2020-04-01",
 "cases": 3918,
 "deaths": 116,
-"hospitalized": 388,
+"hospitalized": 387,
 "icu": 71,
 "recovered": null
 },
@@ -43846,7 +44582,7 @@
 "time": "2020-04-02",
 "cases": 4052,
 "deaths": 135,
-"hospitalized": 379,
+"hospitalized": 378,
 "icu": 72,
 "recovered": null
 },
@@ -43854,7 +44590,7 @@
 "time": "2020-04-03",
 "cases": 4188,
 "deaths": 153,
-"hospitalized": 370,
+"hospitalized": 369,
 "icu": 70,
 "recovered": null
 },
@@ -43862,7 +44598,7 @@
 "time": "2020-04-04",
 "cases": 4260,
 "deaths": 164,
-"hospitalized": 370,
+"hospitalized": 369,
 "icu": 70,
 "recovered": null
 },
@@ -43870,7 +44606,7 @@
 "time": "2020-04-05",
 "cases": 4299,
 "deaths": 176,
-"hospitalized": 381,
+"hospitalized": 380,
 "icu": 69,
 "recovered": null
 },
@@ -43878,168 +44614,168 @@
 "time": "2020-04-06",
 "cases": 4417,
 "deaths": 192,
-"hospitalized": 365,
+"hospitalized": 364,
 "icu": 67,
 "recovered": null
 },
 {
 "time": "2020-04-07",
-"cases": 4493,
+"cases": 4494,
 "deaths": 204,
-"hospitalized": 338,
+"hospitalized": 337,
 "icu": 66,
 "recovered": null
 },
 {
 "time": "2020-04-08",
-"cases": 4584,
+"cases": 4585,
 "deaths": 216,
-"hospitalized": 331,
+"hospitalized": 330,
 "icu": 65,
 "recovered": null
 },
 {
 "time": "2020-04-09",
-"cases": 4681,
+"cases": 4682,
 "deaths": 230,
-"hospitalized": 314,
+"hospitalized": 313,
 "icu": 65,
 "recovered": null
 },
 {
 "time": "2020-04-10",
-"cases": 4730,
+"cases": 4731,
 "deaths": 237,
-"hospitalized": 305,
+"hospitalized": 304,
 "icu": 67,
 "recovered": null
 },
 {
 "time": "2020-04-11",
-"cases": 4770,
+"cases": 4771,
 "deaths": 243,
-"hospitalized": 291,
+"hospitalized": 290,
 "icu": 67,
 "recovered": null
 },
 {
 "time": "2020-04-12",
-"cases": 4807,
+"cases": 4808,
 "deaths": 251,
-"hospitalized": 300,
+"hospitalized": 299,
 "icu": 66,
 "recovered": null
 },
 {
 "time": "2020-04-13",
-"cases": 4851,
+"cases": 4852,
 "deaths": 257,
-"hospitalized": 300,
+"hospitalized": 299,
 "icu": 62,
 "recovered": null
 },
 {
 "time": "2020-04-14",
-"cases": 4918,
+"cases": 4919,
 "deaths": 267,
-"hospitalized": 285,
+"hospitalized": 283,
 "icu": 61,
 "recovered": null
 },
 {
 "time": "2020-04-15",
-"cases": 4967,
+"cases": 4968,
 "deaths": 284,
-"hospitalized": 258,
+"hospitalized": 256,
 "icu": 58,
 "recovered": null
 },
 {
 "time": "2020-04-16",
-"cases": 4996,
+"cases": 4997,
 "deaths": 297,
-"hospitalized": 252,
+"hospitalized": 250,
 "icu": 57,
 "recovered": null
 },
 {
 "time": "2020-04-17",
-"cases": 5028,
-"deaths": 302,
-"hospitalized": 236,
+"cases": 5029,
+"deaths": 303,
+"hospitalized": 234,
 "icu": 55,
 "recovered": null
 },
 {
 "time": "2020-04-18",
-"cases": 5050,
-"deaths": 310,
-"hospitalized": 233,
+"cases": 5051,
+"deaths": 311,
+"hospitalized": 231,
 "icu": 52,
 "recovered": null
 },
 {
 "time": "2020-04-19",
-"cases": 5061,
-"deaths": 315,
-"hospitalized": 236,
+"cases": 5062,
+"deaths": 316,
+"hospitalized": 234,
 "icu": 52,
 "recovered": null
 },
 {
 "time": "2020-04-20",
-"cases": 5093,
-"deaths": 326,
-"hospitalized": 219,
-"icu": 49,
-"recovered": null
-},
-{
-"time": "2020-04-21",
-"cases": 5125,
-"deaths": 334,
-"hospitalized": 207,
+"cases": 5094,
+"deaths": 327,
+"hospitalized": 218,
 "icu": 48,
 "recovered": null
 },
 {
+"time": "2020-04-21",
+"cases": 5126,
+"deaths": 335,
+"hospitalized": 205,
+"icu": 47,
+"recovered": null
+},
+{
 "time": "2020-04-22",
-"cases": 5146,
-"deaths": 338,
-"hospitalized": 194,
+"cases": 5147,
+"deaths": 339,
+"hospitalized": 192,
 "icu": 46,
 "recovered": null
 },
 {
 "time": "2020-04-23",
 "cases": 5180,
-"deaths": 347,
-"hospitalized": 195,
+"deaths": 348,
+"hospitalized": 194,
 "icu": 44,
 "recovered": null
 },
 {
 "time": "2020-04-24",
-"cases": 5201,
-"deaths": 349,
+"cases": 5202,
+"deaths": 350,
 "hospitalized": 181,
-"icu": 39,
+"icu": 40,
 "recovered": null
 },
 {
 "time": "2020-04-25",
-"cases": 5212,
-"deaths": 354,
-"hospitalized": 185,
-"icu": 39,
+"cases": 5215,
+"deaths": 360,
+"hospitalized": 187,
+"icu": 40,
 "recovered": null
 },
 {
 "time": "2020-04-26",
-"cases": 5212,
-"deaths": 355,
-"hospitalized": 192,
-"icu": 38,
+"cases": 5226,
+"deaths": 362,
+"hospitalized": 196,
+"icu": 41,
 "recovered": null
 },
 {
@@ -44534,6 +45270,14 @@
 "hospitalized": 7,
 "icu": 3,
 "recovered": 134
+},
+{
+"time": "2020-04-29",
+"cases": 185,
+"deaths": 8,
+"hospitalized": 6,
+"icu": 3,
+"recovered": 135
 }
 ]
 },
@@ -45033,6 +45777,14 @@
 "cases": 3433,
 "deaths": 119,
 "hospitalized": 84,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 3462,
+"deaths": 119,
+"hospitalized": 82,
 "icu": null,
 "recovered": null
 }
@@ -47311,6 +48063,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 349
+},
+{
+"time": "2020-04-29",
+"cases": 355,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": 352
 }
 ]
 },
@@ -48601,6 +49361,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1547
+},
+{
+"time": "2020-04-29",
+"cases": 1588,
+"deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": 1554
 }
 ]
 },
@@ -50493,6 +51261,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 12
+},
+{
+"time": "2020-04-29",
+"cases": 12,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": 12
 }
 ]
 },
@@ -51218,6 +51994,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 586
+},
+{
+"time": "2020-04-29",
+"cases": 939,
+"deaths": 13,
+"hospitalized": null,
+"icu": null,
+"recovered": 587
 }
 ]
 },
@@ -52244,6 +53028,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 811
+},
+{
+"time": "2020-04-29",
+"cases": 1037,
+"deaths": 4,
+"hospitalized": null,
+"icu": null,
+"recovered": 830
 }
 ]
 },
@@ -54043,6 +54835,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 646
+},
+{
+"time": "2020-04-29",
+"cases": 653,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": 647
 }
 ]
 },
@@ -55871,6 +56671,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 32
+},
+{
+"time": "2020-04-29",
+"cases": 45,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": 34
 }
 ]
 },
@@ -56476,6 +57284,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 145
+},
+{
+"time": "2020-04-29",
+"cases": 199,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": 146
 }
 ]
 },
@@ -58152,6 +58968,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 768
+},
+{
+"time": "2020-04-29",
+"cases": 787,
+"deaths": 7,
+"hospitalized": null,
+"icu": null,
+"recovered": 771
 }
 ]
 },
@@ -58925,6 +59749,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 584
+},
+{
+"time": "2020-04-29",
+"cases": 645,
+"deaths": 7,
+"hospitalized": null,
+"icu": null,
+"recovered": 597
 }
 ]
 },
@@ -60724,6 +61556,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 182
+},
+{
+"time": "2020-04-29",
+"cases": 190,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": 183
 }
 ]
 },
@@ -62368,6 +63208,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1261
+},
+{
+"time": "2020-04-29",
+"cases": 1268,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": 1262
 }
 ]
 },
@@ -62681,6 +63529,14 @@
 {
 "time": "2020-04-28",
 "cases": 109,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 113,
 "deaths": 1,
 "hospitalized": null,
 "icu": null,
@@ -63578,6 +64434,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 122,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -63956,6 +64820,14 @@
 "time": "2020-04-28",
 "cases": 1621,
 "deaths": 58,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1806,
+"deaths": 59,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -64924,6 +65796,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 50015,
+"deaths": 2859,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -65766,6 +66646,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 70,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -66123,6 +67011,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 50,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -66445,6 +67341,14 @@
 "time": "2020-04-28",
 "cases": 46,
 "deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 52,
+"deaths": 2,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -66890,6 +67794,14 @@
 "time": "2020-04-28",
 "cases": 13813,
 "deaths": 198,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 14365,
+"deaths": 207,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -67501,363 +68413,379 @@
 },
 {
 "time": "2020-03-15",
-"cases": 80995,
-"deaths": 3203,
+"cases": 81062,
+"deaths": 3204,
 "hospitalized": null,
 "icu": null,
 "recovered": 67037
 },
 {
 "time": "2020-03-16",
-"cases": 81020,
-"deaths": 3216,
+"cases": 81099,
+"deaths": 3218,
 "hospitalized": null,
 "icu": null,
 "recovered": 67930
 },
 {
 "time": "2020-03-17",
-"cases": 81063,
-"deaths": 3225,
+"cases": 81135,
+"deaths": 3231,
 "hospitalized": null,
 "icu": null,
 "recovered": 68820
 },
 {
 "time": "2020-03-18",
-"cases": 81086,
-"deaths": 3241,
+"cases": 81202,
+"deaths": 3242,
 "hospitalized": null,
 "icu": null,
 "recovered": 69777
 },
 {
 "time": "2020-03-19",
-"cases": 81130,
-"deaths": 3249,
+"cases": 81263,
+"deaths": 3250,
 "hospitalized": null,
 "icu": null,
 "recovered": 70561
 },
 {
 "time": "2020-03-20",
-"cases": 81229,
-"deaths": 3253,
+"cases": 81385,
+"deaths": 3255,
 "hospitalized": null,
 "icu": null,
 "recovered": 71292
 },
 {
 "time": "2020-03-21",
-"cases": 81281,
-"deaths": 3259,
+"cases": 81457,
+"deaths": 3261,
 "hospitalized": null,
 "icu": null,
 "recovered": 71885
 },
 {
 "time": "2020-03-22",
-"cases": 81346,
-"deaths": 3265,
+"cases": 81566,
+"deaths": 3267,
 "hospitalized": null,
 "icu": null,
 "recovered": 72390
 },
 {
 "time": "2020-03-23",
-"cases": 81484,
-"deaths": 3274,
+"cases": 81691,
+"deaths": 3276,
 "hospitalized": null,
 "icu": null,
 "recovered": 72848
 },
 {
 "time": "2020-03-24",
-"cases": 81553,
-"deaths": 3281,
+"cases": 81806,
+"deaths": 3283,
 "hospitalized": null,
 "icu": null,
 "recovered": 73303
 },
 {
 "time": "2020-03-25",
-"cases": 81631,
-"deaths": 3285,
+"cases": 81896,
+"deaths": 3287,
 "hospitalized": null,
 "icu": null,
 "recovered": 73796
 },
 {
 "time": "2020-03-26",
-"cases": 81733,
-"deaths": 3291,
+"cases": 82034,
+"deaths": 3293,
 "hospitalized": null,
 "icu": null,
 "recovered": 74204
 },
 {
 "time": "2020-03-27",
-"cases": 81827,
-"deaths": 3296,
+"cases": 82164,
+"deaths": 3298,
 "hospitalized": null,
 "icu": null,
 "recovered": 74743
 },
 {
 "time": "2020-03-28",
-"cases": 81946,
-"deaths": 3299,
+"cases": 82282,
+"deaths": 3301,
 "hospitalized": null,
 "icu": null,
 "recovered": 75124
 },
 {
 "time": "2020-03-29",
-"cases": 82059,
-"deaths": 3304,
+"cases": 82421,
+"deaths": 3306,
 "hospitalized": null,
 "icu": null,
 "recovered": 75606
 },
 {
 "time": "2020-03-30",
-"cases": 82157,
-"deaths": 3306,
+"cases": 82505,
+"deaths": 3313,
 "hospitalized": null,
 "icu": null,
 "recovered": 75956
 },
 {
 "time": "2020-03-31",
-"cases": 82241,
-"deaths": 3309,
+"cases": 82601,
+"deaths": 3314,
 "hospitalized": null,
 "icu": null,
 "recovered": 76239
 },
 {
 "time": "2020-04-01",
-"cases": 82295,
-"deaths": 3310,
+"cases": 82691,
+"deaths": 3321,
 "hospitalized": null,
 "icu": null,
 "recovered": 76438
 },
 {
 "time": "2020-04-02",
-"cases": 82395,
-"deaths": 3316,
+"cases": 82772,
+"deaths": 3327,
 "hospitalized": null,
 "icu": null,
 "recovered": 76610
 },
 {
 "time": "2020-04-03",
-"cases": 82465,
-"deaths": 3326,
+"cases": 82857,
+"deaths": 3331,
 "hospitalized": null,
 "icu": null,
 "recovered": 76810
 },
 {
 "time": "2020-04-04",
-"cases": 82527,
-"deaths": 3330,
+"cases": 82899,
+"deaths": 3335,
 "hospitalized": null,
 "icu": null,
 "recovered": 76996
 },
 {
 "time": "2020-04-05",
-"cases": 82575,
-"deaths": 3333,
+"cases": 82966,
+"deaths": 3338,
 "hospitalized": null,
 "icu": null,
 "recovered": 77257
 },
 {
 "time": "2020-04-06",
-"cases": 82642,
-"deaths": 3335,
+"cases": 83039,
+"deaths": 3340,
 "hospitalized": null,
 "icu": null,
 "recovered": 77367
 },
 {
 "time": "2020-04-07",
-"cases": 82698,
-"deaths": 3335,
+"cases": 83095,
+"deaths": 3340,
 "hospitalized": null,
 "icu": null,
 "recovered": 77467
 },
 {
 "time": "2020-04-08",
-"cases": 82784,
-"deaths": 3337,
+"cases": 83189,
+"deaths": 3342,
 "hospitalized": null,
 "icu": null,
 "recovered": 77627
 },
 {
 "time": "2020-04-09",
-"cases": 82870,
-"deaths": 3339,
+"cases": 83264,
+"deaths": 3344,
 "hospitalized": null,
 "icu": null,
 "recovered": 77746
 },
 {
 "time": "2020-04-10",
-"cases": 82925,
-"deaths": 3340,
+"cases": 83324,
+"deaths": 3346,
 "hospitalized": null,
 "icu": null,
 "recovered": 77882
 },
 {
 "time": "2020-04-11",
-"cases": 83004,
-"deaths": 3343,
+"cases": 83400,
+"deaths": 3349,
 "hospitalized": null,
 "icu": null,
 "recovered": 77976
 },
 {
 "time": "2020-04-12",
-"cases": 83097,
-"deaths": 3343,
+"cases": 83523,
+"deaths": 3349,
 "hospitalized": null,
 "icu": null,
 "recovered": 78065
 },
 {
 "time": "2020-04-13",
-"cases": 83209,
-"deaths": 3345,
+"cases": 83607,
+"deaths": 3351,
 "hospitalized": null,
 "icu": null,
 "recovered": 78148
 },
 {
 "time": "2020-04-14",
-"cases": 83303,
-"deaths": 3345,
+"cases": 83700,
+"deaths": 3351,
 "hospitalized": null,
 "icu": null,
 "recovered": 78324
 },
 {
 "time": "2020-04-15",
-"cases": 83352,
-"deaths": 3346,
+"cases": 83752,
+"deaths": 3352,
 "hospitalized": null,
 "icu": null,
 "recovered": 78435
 },
 {
 "time": "2020-04-16",
-"cases": 83402,
-"deaths": 3346,
+"cases": 83799,
+"deaths": 3352,
 "hospitalized": null,
 "icu": null,
 "recovered": 78556
 },
 {
 "time": "2020-04-17",
-"cases": 83754,
-"deaths": 4636,
+"cases": 84156,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 77718
 },
 {
 "time": "2020-04-18",
-"cases": 83785,
-"deaths": 4636,
+"cases": 84186,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 77792
 },
 {
 "time": "2020-04-19",
-"cases": 83803,
-"deaths": 4636,
+"cases": 84225,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 77879
 },
 {
 "time": "2020-04-20",
-"cases": 83817,
-"deaths": 4636,
+"cases": 84239,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 77948
 },
 {
 "time": "2020-04-21",
-"cases": 83849,
-"deaths": 4636,
+"cases": 84278,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 78016
 },
 {
 "time": "2020-04-22",
-"cases": 83864,
-"deaths": 4636,
+"cases": 84294,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 78095
 },
 {
 "time": "2020-04-23",
-"cases": 83876,
-"deaths": 4636,
+"cases": 84305,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 78190
 },
 {
 "time": "2020-04-24",
-"cases": 83884,
-"deaths": 4636,
+"cases": 84313,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 78288
 },
 {
 "time": "2020-04-25",
-"cases": 83899,
-"deaths": 4636,
+"cases": 84330,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 78402
 },
 {
 "time": "2020-04-26",
-"cases": 83909,
-"deaths": 4636,
+"cases": 84338,
+"deaths": 4642,
 "hospitalized": null,
 "icu": null,
 "recovered": 78469
 },
 {
 "time": "2020-04-27",
-"cases": 83912,
-"deaths": 4637,
+"cases": 84341,
+"deaths": 4643,
 "hospitalized": null,
 "icu": null,
 "recovered": 78596
 },
 {
 "time": "2020-04-28",
-"cases": 83938,
-"deaths": 4637,
+"cases": 84367,
+"deaths": 4643,
 "hospitalized": null,
 "icu": null,
 "recovered": 78710
+},
+{
+"time": "2020-04-29",
+"cases": 84369,
+"deaths": 4643,
+"hospitalized": null,
+"icu": null,
+"recovered": 78766
+},
+{
+"time": "2020-04-30",
+"cases": 84369,
+"deaths": 4643,
+"hospitalized": null,
+"icu": null,
+"recovered": 78766
 }
 ]
 },
@@ -68255,6 +69183,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 5949,
+"deaths": 269,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -68607,6 +69543,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 207,
+"deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 207,
 "deaths": 8,
 "hospitalized": null,
@@ -68989,6 +69933,14 @@
 {
 "time": "2020-04-28",
 "cases": 471,
+"deaths": 30,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 491,
 "deaths": 30,
 "hospitalized": null,
 "icu": null,
@@ -69410,6 +70362,14 @@
 {
 "time": "2020-04-28",
 "cases": 697,
+"deaths": 6,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 705,
 "deaths": 6,
 "hospitalized": null,
 "icu": null,
@@ -70355,6 +71315,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2047,
+"deaths": 63,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -70720,6 +71688,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1437,
+"deaths": 58,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -71008,6 +71984,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 16,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 16,
 "deaths": 1,
 "hospitalized": null,
@@ -71398,6 +72382,14 @@
 {
 "time": "2020-04-28",
 "cases": 822,
+"deaths": 20,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 837,
 "deaths": 20,
 "hospitalized": null,
 "icu": null,
@@ -72367,6 +73359,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 7504,
+"deaths": 227,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -72736,6 +73736,14 @@
 {
 "time": "2020-04-28",
 "cases": 1164,
+"deaths": 14,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1183,
 "deaths": 14,
 "hospitalized": null,
 "icu": null,
@@ -73254,6 +74262,14 @@
 "time": "2020-04-28",
 "cases": 31196,
 "deaths": 1269,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 31336,
+"deaths": 1299,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -73782,6 +74798,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 41830,
+"deaths": 1754,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -74304,6 +75328,14 @@
 "time": "2020-04-28",
 "cases": 5669,
 "deaths": 127,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 5734,
+"deaths": 137,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -74832,6 +75864,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2768,
+"deaths": 109,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -75354,6 +76394,14 @@
 "time": "2020-04-28",
 "cases": 759,
 "deaths": 27,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 797,
+"deaths": 29,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -75882,6 +76930,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 4525,
+"deaths": 153,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -76407,6 +77463,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 8184,
+"deaths": 346,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -76928,6 +77992,14 @@
 {
 "time": "2020-04-28",
 "cases": 675,
+"deaths": 17,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 687,
 "deaths": 17,
 "hospitalized": null,
 "icu": null,
@@ -77457,6 +78529,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 9972,
+"deaths": 406,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -77979,6 +79059,14 @@
 "time": "2020-04-28",
 "cases": 32184,
 "deaths": 1171,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 32429,
+"deaths": 1200,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -78507,6 +79595,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 5982,
+"deaths": 161,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -79029,6 +80125,14 @@
 "time": "2020-04-28",
 "cases": 2509,
 "deaths": 123,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2514,
+"deaths": 129,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -79557,6 +80661,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 4509,
+"deaths": 153,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -80078,6 +81190,14 @@
 {
 "time": "2020-04-28",
 "cases": 1520,
+"deaths": 39,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1525,
 "deaths": 39,
 "hospitalized": null,
 "icu": null,
@@ -80607,6 +81727,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2679,
+"deaths": 103,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -81129,6 +82257,14 @@
 "time": "2020-04-28",
 "cases": 2144,
 "deaths": 78,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2170,
+"deaths": 80,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -82097,6 +83233,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 8851,
+"deaths": 434,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -82430,6 +83574,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1072,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -82726,6 +83878,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 16,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 16,
 "deaths": 0,
 "hospitalized": null,
@@ -83624,6 +84784,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 6416,
+"deaths": 286,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -84125,6 +85293,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 5039
+},
+{
+"time": "2020-04-29",
+"cases": 13501,
+"deaths": 1188,
+"hospitalized": null,
+"icu": null,
+"recovered": 5272
 }
 ]
 },
@@ -84626,6 +85802,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 2081
+},
+{
+"time": "2020-04-29",
+"cases": 5652,
+"deaths": 736,
+"hospitalized": null,
+"icu": null,
+"recovered": 2189
 }
 ]
 },
@@ -85127,6 +86311,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 700
+},
+{
+"time": "2020-04-29",
+"cases": 2797,
+"deaths": 266,
+"hospitalized": null,
+"icu": null,
+"recovered": 809
 }
 ]
 },
@@ -85628,6 +86820,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1166
+},
+{
+"time": "2020-04-29",
+"cases": 1950,
+"deaths": 185,
+"hospitalized": null,
+"icu": null,
+"recovered": 1196
 }
 ]
 },
@@ -86129,6 +87329,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 6423
+},
+{
+"time": "2020-04-29",
+"cases": 11816,
+"deaths": 1218,
+"hospitalized": null,
+"icu": null,
+"recovered": 6599
 }
 ]
 },
@@ -86630,6 +87838,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1075
+},
+{
+"time": "2020-04-29",
+"cases": 2202,
+"deaths": 134,
+"hospitalized": null,
+"icu": null,
+"recovered": 1107
 }
 ]
 },
@@ -87131,6 +88347,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1290
+},
+{
+"time": "2020-04-29",
+"cases": 2439,
+"deaths": 191,
+"hospitalized": null,
+"icu": null,
+"recovered": 1372
 }
 ]
 },
@@ -87632,6 +88856,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 6323
+},
+{
+"time": "2020-04-29",
+"cases": 19851,
+"deaths": 1736,
+"hospitalized": null,
+"icu": null,
+"recovered": 6448
 }
 ]
 },
@@ -88133,6 +89365,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 5306
+},
+{
+"time": "2020-04-29",
+"cases": 19795,
+"deaths": 2436,
+"hospitalized": null,
+"icu": null,
+"recovered": 5382
 }
 ]
 },
@@ -88634,6 +89874,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 18319
+},
+{
+"time": "2020-04-29",
+"cases": 49681,
+"deaths": 4905,
+"hospitalized": null,
+"icu": null,
+"recovered": 19060
 }
 ]
 },
@@ -89135,6 +90383,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 110
+},
+{
+"time": "2020-04-29",
+"cases": 139,
+"deaths": 4,
+"hospitalized": null,
+"icu": null,
+"recovered": 114
 }
 ]
 },
@@ -89636,6 +90892,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1733
+},
+{
+"time": "2020-04-29",
+"cases": 3513,
+"deaths": 440,
+"hospitalized": null,
+"icu": null,
+"recovered": 1797
 }
 ]
 },
@@ -90137,6 +91401,14 @@
 "hospitalized": null,
 "icu": 73,
 "recovered": 1841
+},
+{
+"time": "2020-04-29",
+"cases": 9466,
+"deaths": 547,
+"hospitalized": null,
+"icu": 308,
+"recovered": 5393
 }
 ]
 },
@@ -90638,6 +91910,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 2064
+},
+{
+"time": "2020-04-29",
+"cases": 5173,
+"deaths": 330,
+"hospitalized": null,
+"icu": null,
+"recovered": 2091
 }
 ]
 },
@@ -91139,6 +92419,14 @@
 "hospitalized": 39634,
 "icu": 3338,
 "recovered": 35841
+},
+{
+"time": "2020-04-29",
+"cases": 65146,
+"deaths": 8105,
+"hospitalized": 39850,
+"icu": 3355,
+"recovered": 36314
 }
 ]
 },
@@ -91640,6 +92928,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 92
+},
+{
+"time": "2020-04-29",
+"cases": 125,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": 95
 }
 ]
 },
@@ -92141,6 +93437,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1113
+},
+{
+"time": "2020-04-29",
+"cases": 1840,
+"deaths": 130,
+"hospitalized": null,
+"icu": null,
+"recovered": 1153
 }
 ]
 },
@@ -92642,6 +93946,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 1978
+},
+{
+"time": "2020-04-29",
+"cases": 5884,
+"deaths": 448,
+"hospitalized": null,
+"icu": null,
+"recovered": 2082
 }
 ]
 },
@@ -93143,6 +94455,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 9974
+},
+{
+"time": "2020-04-29",
+"cases": 15138,
+"deaths": 1274,
+"hospitalized": null,
+"icu": null,
+"recovered": 10474
 }
 ]
 },
@@ -94065,6 +95385,14 @@
 "time": "2020-04-28",
 "cases": 23240,
 "deaths": 663,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 24258,
+"deaths": 871,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -95001,6 +96329,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 5042,
+"deaths": 359,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -95331,6 +96667,14 @@
 "time": "2020-04-28",
 "cases": 323,
 "deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 345,
+"deaths": 9,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -95699,6 +97043,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 315,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -96003,6 +97355,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 39,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 39,
 "deaths": 0,
 "hospitalized": null,
@@ -96933,6 +98293,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1660,
+"deaths": 50,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -97294,6 +98662,14 @@
 {
 "time": "2020-04-28",
 "cases": 65,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 71,
 "deaths": 1,
 "hospitalized": null,
 "icu": null,
@@ -97667,6 +99043,14 @@
 {
 "time": "2020-04-28",
 "cases": 124,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 126,
 "deaths": 3,
 "hospitalized": null,
 "icu": null,
@@ -106710,6 +108094,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 13,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -107035,6 +108427,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 187,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -107355,6 +108755,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 18,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 18,
 "deaths": 0,
 "hospitalized": null,
@@ -108293,6 +109701,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 4740,
+"deaths": 199,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -108494,7 +109910,7 @@
 {
 "time": "2020-01-24",
 "cases": 3,
-"deaths": null,
+"deaths": 0,
 "hospitalized": 3,
 "icu": null,
 "recovered": null
@@ -108502,7 +109918,7 @@
 {
 "time": "2020-01-25",
 "cases": 3,
-"deaths": null,
+"deaths": 0,
 "hospitalized": 3,
 "icu": null,
 "recovered": null
@@ -108510,7 +109926,7 @@
 {
 "time": "2020-01-26",
 "cases": 3,
-"deaths": null,
+"deaths": 0,
 "hospitalized": 3,
 "icu": null,
 "recovered": null
@@ -108518,31 +109934,31 @@
 {
 "time": "2020-01-27",
 "cases": 3,
-"deaths": null,
+"deaths": 0,
 "hospitalized": 3,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-01-28",
-"cases": 3,
-"deaths": null,
+"cases": 4,
+"deaths": 0,
 "hospitalized": 4,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-01-29",
-"cases": 4,
-"deaths": null,
+"cases": 5,
+"deaths": 0,
 "hospitalized": 5,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-01-30",
-"cases": 5,
-"deaths": null,
+"cases": 6,
+"deaths": 0,
 "hospitalized": 6,
 "icu": null,
 "recovered": null
@@ -108550,7 +109966,7 @@
 {
 "time": "2020-01-31",
 "cases": 6,
-"deaths": null,
+"deaths": 0,
 "hospitalized": 6,
 "icu": null,
 "recovered": null
@@ -108574,7 +109990,7 @@
 {
 "time": "2020-02-03",
 "cases": 6,
-"deaths": null,
+"deaths": 0,
 "hospitalized": 6,
 "icu": null,
 "recovered": null
@@ -108590,7 +110006,7 @@
 {
 "time": "2020-02-05",
 "cases": 6,
-"deaths": null,
+"deaths": 0,
 "hospitalized": 6,
 "icu": null,
 "recovered": null
@@ -108598,14 +110014,14 @@
 {
 "time": "2020-02-06",
 "cases": 6,
-"deaths": null,
+"deaths": 0,
 "hospitalized": 6,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-02-07",
-"cases": 6,
+"cases": 11,
 "deaths": 0,
 "hospitalized": 11,
 "icu": null,
@@ -108757,7 +110173,7 @@
 },
 {
 "time": "2020-02-26",
-"cases": 14,
+"cases": 3,
 "deaths": 1,
 "hospitalized": null,
 "icu": null,
@@ -108765,7 +110181,7 @@
 },
 {
 "time": "2020-02-27",
-"cases": 17,
+"cases": 2,
 "deaths": 2,
 "hospitalized": null,
 "icu": null,
@@ -108773,7 +110189,7 @@
 },
 {
 "time": "2020-02-28",
-"cases": 38,
+"cases": 40,
 "deaths": 2,
 "hospitalized": null,
 "icu": null,
@@ -108781,7 +110197,7 @@
 },
 {
 "time": "2020-02-29",
-"cases": 57,
+"cases": 4,
 "deaths": 2,
 "hospitalized": null,
 "icu": null,
@@ -108789,7 +110205,7 @@
 },
 {
 "time": "2020-03-01",
-"cases": 100,
+"cases": 10,
 "deaths": 2,
 "hospitalized": null,
 "icu": null,
@@ -108797,7 +110213,7 @@
 },
 {
 "time": "2020-03-02",
-"cases": 130,
+"cases": 175,
 "deaths": 2,
 "hospitalized": null,
 "icu": null,
@@ -108805,7 +110221,7 @@
 },
 {
 "time": "2020-03-03",
-"cases": 178,
+"cases": 214,
 "deaths": 3,
 "hospitalized": null,
 "icu": null,
@@ -108813,7 +110229,7 @@
 },
 {
 "time": "2020-03-04",
-"cases": 212,
+"cases": 298,
 "deaths": 4,
 "hospitalized": 47,
 "icu": 4,
@@ -108821,71 +110237,71 @@
 },
 {
 "time": "2020-03-05",
-"cases": 285,
+"cases": 437,
 "deaths": 4,
 "hospitalized": null,
-"icu": 0,
+"icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-06",
-"cases": 423,
-"deaths": 7,
+"cases": 675,
+"deaths": 1,
 "hospitalized": null,
-"icu": 0,
+"icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-07",
-"cases": 613,
-"deaths": 9,
+"cases": 1047,
+"deaths": 2,
 "hospitalized": null,
 "icu": 1,
 "recovered": null
 },
 {
 "time": "2020-03-08",
-"cases": 716,
-"deaths": 10,
+"cases": 949,
+"deaths": 6,
 "hospitalized": null,
 "icu": 45,
 "recovered": null
 },
 {
 "time": "2020-03-09",
-"cases": 1126,
-"deaths": 19,
+"cases": 1380,
+"deaths": 25,
 "hospitalized": null,
 "icu": 4,
 "recovered": null
 },
 {
 "time": "2020-03-10",
-"cases": 1412,
-"deaths": 30,
+"cases": 1815,
+"deaths": 32,
 "hospitalized": null,
 "icu": 7,
 "recovered": null
 },
 {
 "time": "2020-03-11",
-"cases": 1784,
-"deaths": 33,
+"cases": 2359,
+"deaths": 24,
 "hospitalized": null,
 "icu": 24,
 "recovered": null
 },
 {
 "time": "2020-03-12",
-"cases": 2281,
-"deaths": 48,
+"cases": 2931,
+"deaths": 43,
 "hospitalized": 8,
 "icu": 31,
 "recovered": null
 },
 {
 "time": "2020-03-13",
-"cases": 2876,
+"cases": 3820,
 "deaths": 61,
 "hospitalized": 11,
 "icu": 45,
@@ -108893,168 +110309,168 @@
 },
 {
 "time": "2020-03-14",
-"cases": 3661,
-"deaths": 79,
+"cases": 4793,
+"deaths": 80,
 "hospitalized": 13,
 "icu": 194,
 "recovered": null
 },
 {
 "time": "2020-03-15",
-"cases": 4499,
-"deaths": 91,
+"cases": 5442,
+"deaths": 81,
 "hospitalized": 19,
 "icu": 50,
 "recovered": null
 },
 {
 "time": "2020-03-16",
-"cases": 5423,
-"deaths": 127,
+"cases": 6654,
+"deaths": 131,
 "hospitalized": 149,
 "icu": 55,
 "recovered": null
 },
 {
 "time": "2020-03-17",
-"cases": 6633,
-"deaths": 148,
+"cases": 7737,
+"deaths": 157,
 "hospitalized": 370,
 "icu": 100,
 "recovered": null
 },
 {
 "time": "2020-03-18",
-"cases": 7730,
-"deaths": 175,
+"cases": 9157,
+"deaths": 290,
 "hospitalized": 2993,
 "icu": 801,
 "recovered": null
 },
 {
 "time": "2020-03-19",
-"cases": 9134,
-"deaths": 244,
+"cases": 11062,
+"deaths": 385,
 "hospitalized": 4169,
 "icu": 1098,
 "recovered": null
 },
 {
 "time": "2020-03-20",
-"cases": 10995,
-"deaths": 372,
+"cases": 12608,
+"deaths": 491,
 "hospitalized": 5432,
 "icu": 1379,
 "recovered": null
 },
 {
 "time": "2020-03-21",
-"cases": 12612,
-"deaths": 450,
+"cases": 14517,
+"deaths": 615,
 "hospitalized": 6195,
 "icu": 1576,
 "recovered": null
 },
 {
 "time": "2020-03-22",
-"cases": 14459,
-"deaths": 562,
+"cases": 16737,
+"deaths": 705,
 "hospitalized": 7024,
 "icu": 1708,
 "recovered": null
 },
 {
 "time": "2020-03-23",
-"cases": 16018,
-"deaths": 674,
+"cases": 19897,
+"deaths": 911,
 "hospitalized": 9023,
 "icu": 2210,
 "recovered": null
 },
 {
 "time": "2020-03-24",
-"cases": 19856,
-"deaths": 860,
+"cases": 22296,
+"deaths": 1124,
 "hospitalized": 10519,
 "icu": 2615,
 "recovered": null
 },
 {
 "time": "2020-03-25",
-"cases": 22302,
-"deaths": 1100,
+"cases": 25240,
+"deaths": 1407,
 "hospitalized": 12443,
 "icu": 3033,
 "recovered": null
 },
 {
 "time": "2020-03-26",
-"cases": 25233,
-"deaths": 1331,
+"cases": 7205,
+"deaths": 1705,
 "hospitalized": 14211,
 "icu": 3419,
 "recovered": null
 },
 {
 "time": "2020-03-27",
-"cases": 29155,
-"deaths": 1696,
+"cases": 7362,
+"deaths": 2010,
 "hospitalized": 15723,
 "icu": 3765,
 "recovered": null
 },
 {
 "time": "2020-03-28",
-"cases": 32964,
-"deaths": 1995,
+"cases": 7079,
+"deaths": 2315,
 "hospitalized": 17626,
 "icu": 4247,
 "recovered": null
 },
 {
 "time": "2020-03-29",
-"cases": 37575,
-"deaths": 2314,
+"cases": 7888,
+"deaths": 2608,
 "hospitalized": 19321,
 "icu": 4594,
 "recovered": null
 },
 {
 "time": "2020-03-30",
-"cases": 40174,
-"deaths": 2606,
+"cases": 6071,
+"deaths": 3024,
 "hospitalized": 20956,
 "icu": 5059,
 "recovered": null
 },
 {
 "time": "2020-03-31",
-"cases": 44550,
-"deaths": 3024,
+"cases": 3384,
+"deaths": 3535,
 "hospitalized": 22695,
 "icu": 5500,
 "recovered": null
 },
 {
 "time": "2020-04-01",
-"cases": 52128,
-"deaths": 3523,
+"cases": 1122,
+"deaths": 4052,
 "hospitalized": 24554,
 "icu": 5942,
 "recovered": null
 },
 {
 "time": "2020-04-02",
-"cases": 56989,
-"deaths": 4032,
+"cases": 116,
+"deaths": 4503,
 "hospitalized": 26135,
 "icu": 6305,
 "recovered": null
 },
 {
 "time": "2020-04-03",
-"cases": 59105,
-"deaths": 4503,
+"cases": 128,
+"deaths": 5091,
 "hospitalized": 27302,
 "icu": 6556,
 "recovered": null
@@ -109062,7 +110478,7 @@
 {
 "time": "2020-04-04",
 "cases": 64338,
-"deaths": 6507,
+"deaths": 5532,
 "hospitalized": 28003,
 "icu": 6723,
 "recovered": null
@@ -109070,31 +110486,31 @@
 {
 "time": "2020-04-05",
 "cases": 68605,
-"deaths": 7560,
+"deaths": 5889,
 "hospitalized": 28747,
 "icu": 6859,
 "recovered": null
 },
 {
 "time": "2020-04-06",
-"cases": 70478,
-"deaths": 8078,
+"cases": 1412,
+"deaths": 6524,
 "hospitalized": 29569,
 "icu": 6948,
 "recovered": null
 },
 {
 "time": "2020-04-07",
-"cases": 74390,
-"deaths": 8911,
+"cases": 1494,
+"deaths": 7129,
 "hospitalized": 29871,
 "icu": 7004,
 "recovered": null
 },
 {
 "time": "2020-04-08",
-"cases": 78167,
-"deaths": 10328,
+"cases": 1630,
+"deaths": 7673,
 "hospitalized": 30217,
 "icu": 7019,
 "recovered": null
@@ -109102,7 +110518,7 @@
 {
 "time": "2020-04-09",
 "cases": 82048,
-"deaths": 10869,
+"deaths": 8044,
 "hospitalized": 30608,
 "icu": 6937,
 "recovered": null
@@ -109110,7 +110526,7 @@
 {
 "time": "2020-04-10",
 "cases": 86334,
-"deaths": 12210,
+"deaths": 8598,
 "hospitalized": 31108,
 "icu": 6875,
 "recovered": null
@@ -109118,7 +110534,7 @@
 {
 "time": "2020-04-11",
 "cases": 90676,
-"deaths": 13197,
+"deaths": 8943,
 "hospitalized": 31159,
 "icu": 6752,
 "recovered": null
@@ -109126,7 +110542,7 @@
 {
 "time": "2020-04-12",
 "cases": 93790,
-"deaths": 13832,
+"deaths": 9253,
 "hospitalized": 31665,
 "icu": 6714,
 "recovered": null
@@ -109134,7 +110550,7 @@
 {
 "time": "2020-04-13",
 "cases": 95403,
-"deaths": 14393,
+"deaths": 9588,
 "hospitalized": 31952,
 "icu": 6690,
 "recovered": null
@@ -109142,7 +110558,7 @@
 {
 "time": "2020-04-14",
 "cases": 98076,
-"deaths": 14967,
+"deaths": 10129,
 "hospitalized": 32131,
 "icu": 6599,
 "recovered": null
@@ -109150,7 +110566,7 @@
 {
 "time": "2020-04-15",
 "cases": 103573,
-"deaths": 15729,
+"deaths": 10643,
 "hospitalized": 31623,
 "icu": 6331,
 "recovered": null
@@ -109158,7 +110574,7 @@
 {
 "time": "2020-04-16",
 "cases": 106206,
-"deaths": 17167,
+"deaths": 11053,
 "hospitalized": 31172,
 "icu": 6139,
 "recovered": null
@@ -109166,7 +110582,7 @@
 {
 "time": "2020-04-17",
 "cases": 108847,
-"deaths": 17920,
+"deaths": 11470,
 "hospitalized": 31061,
 "icu": 5922,
 "recovered": null
@@ -109174,7 +110590,7 @@
 {
 "time": "2020-04-18",
 "cases": 109252,
-"deaths": 18681,
+"deaths": 11834,
 "hospitalized": 30515,
 "icu": 5733,
 "recovered": null
@@ -109182,7 +110598,7 @@
 {
 "time": "2020-04-19",
 "cases": 111821,
-"deaths": 19323,
+"deaths": 12061,
 "hospitalized": 30486,
 "icu": 5644,
 "recovered": null
@@ -109190,7 +110606,7 @@
 {
 "time": "2020-04-20",
 "cases": 112606,
-"deaths": 19718,
+"deaths": 12505,
 "hospitalized": 30462,
 "icu": 5584,
 "recovered": null
@@ -109198,7 +110614,7 @@
 {
 "time": "2020-04-21",
 "cases": 114657,
-"deaths": 20265,
+"deaths": 12892,
 "hospitalized": 29984,
 "icu": 5334,
 "recovered": null
@@ -109206,7 +110622,7 @@
 {
 "time": "2020-04-22",
 "cases": 117324,
-"deaths": 20796,
+"deaths": 13225,
 "hospitalized": 29627,
 "icu": 5127,
 "recovered": null
@@ -109214,7 +110630,7 @@
 {
 "time": "2020-04-23",
 "cases": 119151,
-"deaths": 21340,
+"deaths": 13536,
 "hospitalized": 29113,
 "icu": 4967,
 "recovered": null
@@ -109222,7 +110638,7 @@
 {
 "time": "2020-04-24",
 "cases": 120804,
-"deaths": 21856,
+"deaths": 13841,
 "hospitalized": 28554,
 "icu": 4785,
 "recovered": null
@@ -109230,7 +110646,7 @@
 {
 "time": "2020-04-25",
 "cases": 122577,
-"deaths": 22245,
+"deaths": 14039,
 "hospitalized": 28119,
 "icu": 4641,
 "recovered": null
@@ -109238,7 +110654,7 @@
 {
 "time": "2020-04-26",
 "cases": 124114,
-"deaths": 22614,
+"deaths": 14191,
 "hospitalized": 28114,
 "icu": 4598,
 "recovered": null
@@ -109246,17 +110662,25 @@
 {
 "time": "2020-04-27",
 "cases": 124575,
-"deaths": 22856,
+"deaths": 14486,
 "hospitalized": 27954,
 "icu": 4526,
 "recovered": null
 },
 {
 "time": "2020-04-28",
-"cases": 128339,
-"deaths": 23293,
+"cases": 125770,
+"deaths": 14676,
 "hospitalized": 27607,
 "icu": 4392,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 126835,
+"deaths": 23660,
+"hospitalized": null,
+"icu": null,
 "recovered": null
 }
 ]
@@ -109586,6 +111010,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 58,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 58,
 "deaths": 0,
 "hospitalized": null,
@@ -109964,6 +111396,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 238,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -110300,6 +111740,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 10,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 10,
 "deaths": 1,
 "hospitalized": null,
@@ -111242,6 +112690,14 @@
 {
 "time": "2020-04-28",
 "cases": 497,
+"deaths": 6,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 511,
 "deaths": 6,
 "hospitalized": null,
 "icu": null,
@@ -112211,6 +113667,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 157641,
+"deaths": 6115,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -112584,6 +114048,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1671,
+"deaths": 16,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -112904,6 +114376,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 141,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 141,
 "deaths": 0,
 "hospitalized": null,
@@ -113858,6 +115338,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2534,
+"deaths": 136,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -114183,6 +115671,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 11,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -114479,6 +115975,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 18,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 18,
 "deaths": 0,
 "hospitalized": null,
@@ -114813,6 +116317,14 @@
 {
 "time": "2020-04-28",
 "cases": 144,
+"deaths": 5,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 145,
 "deaths": 5,
 "hospitalized": null,
 "icu": null,
@@ -115182,6 +116694,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 557,
+"deaths": 16,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -115502,6 +117022,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 247,
+"deaths": 13,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 247,
 "deaths": 13,
 "hospitalized": null,
@@ -115872,6 +117400,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1240,
+"deaths": 7,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -116136,6 +117672,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 73,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 73,
 "deaths": 1,
 "hospitalized": null,
@@ -116506,6 +118050,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 75,
+"deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -116826,6 +118378,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 76,
+"deaths": 6,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 76,
 "deaths": 6,
 "hospitalized": null,
@@ -117191,6 +118751,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 9,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 9,
 "deaths": 0,
 "hospitalized": null,
@@ -117566,6 +119134,14 @@
 "time": "2020-04-28",
 "cases": 693,
 "deaths": 61,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 738,
+"deaths": 66,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -118006,6 +119582,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2727,
+"deaths": 300,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -118278,6 +119862,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 33,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 33,
 "deaths": 0,
 "hospitalized": null,
@@ -118664,6 +120256,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1332,
+"deaths": 31,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -118872,6 +120472,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 1,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 1,
 "deaths": 0,
 "hospitalized": null,
@@ -119101,6 +120709,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 38,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 38,
 "deaths": 1,
 "hospitalized": null,
@@ -119411,6 +121027,14 @@
 {
 "time": "2020-04-28",
 "cases": 346,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 383,
 "deaths": 2,
 "hospitalized": null,
 "icu": null,
@@ -119748,6 +121372,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 56,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -120077,6 +121709,14 @@
 {
 "time": "2020-04-28",
 "cases": 37,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 38,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
@@ -120486,6 +122126,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 3314,
+"deaths": 54,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -120758,6 +122406,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 7,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 7,
 "deaths": 0,
 "hospitalized": null,
@@ -121085,6 +122741,14 @@
 "time": "2020-04-28",
 "cases": 3548,
 "deaths": 162,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 3774,
+"deaths": 181,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -121493,6 +123157,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 310,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -121805,6 +123477,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 40,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 40,
 "deaths": 1,
 "hospitalized": null,
@@ -122215,6 +123895,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 565,
+"deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -122432,6 +124120,14 @@
 {
 "time": "2020-04-28",
 "cases": 103,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 105,
 "deaths": 3,
 "hospitalized": null,
 "icu": null,
@@ -122854,6 +124550,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 532,
+"deaths": 20,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -123255,6 +124959,14 @@
 {
 "time": "2020-04-28",
 "cases": 482,
+"deaths": 4,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 486,
 "deaths": 4,
 "hospitalized": null,
 "icu": null,
@@ -123664,6 +125376,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 22,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -123978,6 +125698,19 @@
 "time": "2020-04-28",
 "cases": 2368,
 "deaths": 113,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+}
+]
+},
+{
+"country": "IND-Madhya Pradesh#",
+"empiricalData": [
+{
+"time": "2020-04-29",
+"cases": 2561,
+"deaths": 119,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -124386,6 +126119,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 9318,
+"deaths": 400,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -124679,6 +126420,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -124799,6 +126548,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 12,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 12,
 "deaths": 1,
 "hospitalized": null,
@@ -125084,6 +126841,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 1,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 1,
 "deaths": 0,
 "hospitalized": null,
@@ -125528,6 +127293,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 119,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -125864,6 +127637,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 8,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 8,
 "deaths": 0,
 "hospitalized": null,
@@ -126274,6 +128055,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 322,
+"deaths": 19,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -126676,6 +128465,14 @@
 "time": "2020-04-28",
 "cases": 2262,
 "deaths": 46,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2364,
+"deaths": 51,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -127084,6 +128881,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2058,
+"deaths": 25,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -127489,6 +129294,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1012,
+"deaths": 26,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -127665,6 +129478,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 2,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 2,
 "deaths": 0,
 "hospitalized": null,
@@ -128075,6 +129896,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2115,
+"deaths": 36,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -128440,6 +130269,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 54,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -128778,6 +130615,14 @@
 "time": "2020-04-28",
 "cases": 697,
 "deaths": 20,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 725,
+"deaths": 22,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -129306,6 +131151,14 @@
 "hospitalized": 312,
 "icu": 21,
 "recovered": 599
+},
+{
+"time": "2020-04-29",
+"cases": 2923,
+"deaths": 315,
+"hospitalized": 309,
+"icu": 19,
+"recovered": 632
 }
 ]
 },
@@ -129831,6 +131684,14 @@
 "hospitalized": 56,
 "icu": 7,
 "recovered": 136
+},
+{
+"time": "2020-04-29",
+"cases": 366,
+"deaths": 25,
+"hospitalized": 51,
+"icu": 4,
+"recovered": 147
 }
 ]
 },
@@ -130356,6 +132217,14 @@
 "hospitalized": 113,
 "icu": 6,
 "recovered": 248
+},
+{
+"time": "2020-04-29",
+"cases": 1102,
+"deaths": 86,
+"hospitalized": 107,
+"icu": 6,
+"recovered": 263
 }
 ]
 },
@@ -130881,6 +132750,14 @@
 "hospitalized": 544,
 "icu": 33,
 "recovered": 1220
+},
+{
+"time": "2020-04-29",
+"cases": 4410,
+"deaths": 359,
+"hospitalized": 518,
+"icu": 31,
+"recovered": 1269
 }
 ]
 },
@@ -131406,6 +133283,14 @@
 "hospitalized": 2574,
 "icu": 228,
 "recovered": 9439
+},
+{
+"time": "2020-04-29",
+"cases": 25177,
+"deaths": 3512,
+"hospitalized": 2527,
+"icu": 226,
+"recovered": 9803
 }
 ]
 },
@@ -131931,6 +133816,14 @@
 "hospitalized": 136,
 "icu": 13,
 "recovered": 1478
+},
+{
+"time": "2020-04-29",
+"cases": 3010,
+"deaths": 285,
+"hospitalized": 134,
+"icu": 12,
+"recovered": 1498
 }
 ]
 },
@@ -132456,6 +134349,14 @@
 "hospitalized": 1468,
 "icu": 132,
 "recovered": 1491
+},
+{
+"time": "2020-04-29",
+"cases": 6545,
+"deaths": 431,
+"hospitalized": 1445,
+"icu": 130,
+"recovered": 1579
 }
 ]
 },
@@ -132981,6 +134882,14 @@
 "hospitalized": 718,
 "icu": 81,
 "recovered": 3060
+},
+{
+"time": "2020-04-29",
+"cases": 7889,
+"deaths": 1152,
+"hospitalized": 697,
+"icu": 70,
+"recovered": 3161
 }
 ]
 },
@@ -133506,6 +135415,14 @@
 "hospitalized": 7280,
 "icu": 655,
 "recovered": 25029
+},
+{
+"time": "2020-04-29",
+"cases": 75134,
+"deaths": 13679,
+"hospitalized": 7120,
+"icu": 634,
+"recovered": 25333
 }
 ]
 },
@@ -134031,6 +135948,14 @@
 "hospitalized": 666,
 "icu": 58,
 "recovered": 1948
+},
+{
+"time": "2020-04-29",
+"cases": 6210,
+"deaths": 899,
+"hospitalized": 640,
+"icu": 52,
+"recovered": 1964
 }
 ]
 },
@@ -134556,6 +136481,14 @@
 "hospitalized": 18,
 "icu": 1,
 "recovered": 81
+},
+{
+"time": "2020-04-29",
+"cases": 297,
+"deaths": 21,
+"hospitalized": 17,
+"icu": 1,
+"recovered": 83
 }
 ]
 },
@@ -135081,6 +137014,14 @@
 "hospitalized": 136,
 "icu": 15,
 "recovered": 1316
+},
+{
+"time": "2020-04-29",
+"cases": 2507,
+"deaths": 274,
+"hospitalized": 119,
+"icu": 14,
+"recovered": 1388
 }
 ]
 },
@@ -135606,6 +137547,14 @@
 "hospitalized": 182,
 "icu": 22,
 "recovered": 2048
+},
+{
+"time": "2020-04-29",
+"cases": 4069,
+"deaths": 416,
+"hospitalized": 165,
+"icu": 22,
+"recovered": 2190
 }
 ]
 },
@@ -136131,6 +138080,14 @@
 "hospitalized": 2701,
 "icu": 202,
 "recovered": 7008
+},
+{
+"time": "2020-04-29",
+"cases": 25861,
+"deaths": 3003,
+"hospitalized": 2637,
+"icu": 202,
+"recovered": 7337
 }
 ]
 },
@@ -136656,6 +138613,14 @@
 "hospitalized": 448,
 "icu": 51,
 "recovered": 654
+},
+{
+"time": "2020-04-29",
+"cases": 4029,
+"deaths": 410,
+"hospitalized": 449,
+"icu": 47,
+"recovered": 692
 }
 ]
 },
@@ -137181,6 +139146,14 @@
 "hospitalized": 96,
 "icu": 18,
 "recovered": 404
+},
+{
+"time": "2020-04-29",
+"cases": 1290,
+"deaths": 116,
+"hospitalized": 87,
+"icu": 17,
+"recovered": 413
 }
 ]
 },
@@ -137706,6 +139679,14 @@
 "hospitalized": 428,
 "icu": 34,
 "recovered": 745
+},
+{
+"time": "2020-04-29",
+"cases": 3140,
+"deaths": 232,
+"hospitalized": 415,
+"icu": 34,
+"recovered": 763
 }
 ]
 },
@@ -138231,6 +140212,14 @@
 "hospitalized": 619,
 "icu": 144,
 "recovered": 2524
+},
+{
+"time": "2020-04-29",
+"cases": 9292,
+"deaths": 827,
+"hospitalized": 576,
+"icu": 139,
+"recovered": 2802
 }
 ]
 },
@@ -138756,6 +140745,14 @@
 "hospitalized": 318,
 "icu": 37,
 "recovered": 3364
+},
+{
+"time": "2020-04-29",
+"cases": 6576,
+"deaths": 690,
+"hospitalized": 284,
+"icu": 36,
+"recovered": 3578
 }
 ]
 },
@@ -139281,6 +141278,14 @@
 "hospitalized": 80,
 "icu": 17,
 "recovered": 1039
+},
+{
+"time": "2020-04-29",
+"cases": 1391,
+"deaths": 66,
+"hospitalized": 77,
+"icu": 16,
+"recovered": 1064
 }
 ]
 },
@@ -139806,6 +141811,14 @@
 "hospitalized": 81,
 "icu": 5,
 "recovered": 775
+},
+{
+"time": "2020-04-29",
+"cases": 1124,
+"deaths": 137,
+"hospitalized": 78,
+"icu": 5,
+"recovered": 852
 }
 ]
 },
@@ -140331,6 +142344,14 @@
 "hospitalized": 1067,
 "icu": 120,
 "recovered": 7699
+},
+{
+"time": "2020-04-29",
+"cases": 17825,
+"deaths": 1437,
+"hospitalized": 1042,
+"icu": 114,
+"recovered": 8019
 }
 ]
 },
@@ -140807,7 +142828,7 @@
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
-"recovered": 0
+"recovered": null
 },
 {
 "time": "2020-02-28",
@@ -140815,7 +142836,7 @@
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
-"recovered": 0
+"recovered": null
 },
 {
 "time": "2020-02-29",
@@ -140823,115 +142844,115 @@
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
-"recovered": 0
+"recovered": null
 },
 {
 "time": "2020-03-01",
-"cases": 1,
+"cases": 4,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
-"recovered": 0
+"recovered": null
 },
 {
 "time": "2020-03-02",
-"cases": 3,
+"cases": 10,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
-"recovered": 0
+"recovered": null
 },
 {
 "time": "2020-03-03",
-"cases": 6,
+"cases": 15,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
-"recovered": 0
+"recovered": null
 },
 {
 "time": "2020-03-04",
-"cases": 16,
+"cases": 29,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
-"recovered": 0
+"recovered": null
 },
 {
 "time": "2020-03-05",
-"cases": 26,
+"cases": 37,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
-"recovered": 0
+"recovered": null
 },
 {
 "time": "2020-03-06",
-"cases": 35,
+"cases": 47,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
-"recovered": 0
+"recovered": null
 },
 {
 "time": "2020-03-07",
-"cases": 43,
+"cases": 54,
 "deaths": 0,
-"hospitalized": 0,
-"icu": 0,
-"recovered": 0
+"hospitalized": null,
+"icu": null,
+"recovered": null
 },
 {
 "time": "2020-03-08",
-"cases": 53,
+"cases": 59,
 "deaths": 0,
-"hospitalized": 0,
-"icu": 0,
-"recovered": 0
+"hospitalized": null,
+"icu": null,
+"recovered": null
 },
 {
 "time": "2020-03-09",
-"cases": 55,
+"cases": 68,
 "deaths": 0,
 "hospitalized": 1,
-"icu": 0,
-"recovered": 0
+"icu": null,
+"recovered": null
 },
 {
 "time": "2020-03-10",
-"cases": 65,
+"cases": 82,
 "deaths": 0,
 "hospitalized": 1,
-"icu": 0,
-"recovered": 0
+"icu": null,
+"recovered": null
 },
 {
 "time": "2020-03-11",
-"cases": 70,
+"cases": 106,
 "deaths": 0,
-"hospitalized": 0,
-"icu": 0,
-"recovered": 0
+"hospitalized": null,
+"icu": null,
+"recovered": null
 },
 {
 "time": "2020-03-12",
-"cases": 85,
+"cases": 122,
 "deaths": 0,
 "hospitalized": 2,
-"icu": 0,
-"recovered": 0
+"icu": null,
+"recovered": null
 },
 {
 "time": "2020-03-13",
-"cases": 117,
+"cases": 142,
 "deaths": 0,
 "hospitalized": 2,
-"icu": 0,
-"recovered": 0
+"icu": null,
+"recovered": null
 },
 {
 "time": "2020-03-14",
-"cases": 117,
+"cases": 166,
 "deaths": 0,
 "hospitalized": 2,
 "icu": 1,
@@ -140939,7 +142960,7 @@
 },
 {
 "time": "2020-03-15",
-"cases": 138,
+"cases": 186,
 "deaths": 0,
 "hospitalized": 3,
 "icu": 1,
@@ -140947,7 +142968,7 @@
 },
 {
 "time": "2020-03-16",
-"cases": 178,
+"cases": 211,
 "deaths": 0,
 "hospitalized": 3,
 "icu": 2,
@@ -140955,7 +142976,7 @@
 },
 {
 "time": "2020-03-17",
-"cases": 199,
+"cases": 264,
 "deaths": 0,
 "hospitalized": 4,
 "icu": 2,
@@ -140963,7 +142984,7 @@
 },
 {
 "time": "2020-03-18",
-"cases": 247,
+"cases": 342,
 "deaths": 0,
 "hospitalized": 5,
 "icu": 2,
@@ -140971,7 +142992,7 @@
 },
 {
 "time": "2020-03-19",
-"cases": 250,
+"cases": 419,
 "deaths": 0,
 "hospitalized": 7,
 "icu": 1,
@@ -140979,7 +143000,7 @@
 },
 {
 "time": "2020-03-20",
-"cases": 330,
+"cases": 479,
 "deaths": 1,
 "hospitalized": 6,
 "icu": 1,
@@ -140987,7 +143008,7 @@
 },
 {
 "time": "2020-03-21",
-"cases": 409,
+"cases": 570,
 "deaths": 1,
 "hospitalized": 12,
 "icu": 1,
@@ -140995,7 +143016,7 @@
 },
 {
 "time": "2020-03-22",
-"cases": 473,
+"cases": 592,
 "deaths": 1,
 "hospitalized": 14,
 "icu": 1,
@@ -141003,111 +143024,111 @@
 },
 {
 "time": "2020-03-23",
-"cases": 568,
+"cases": 659,
 "deaths": 1,
 "hospitalized": 13,
-"icu": 0,
+"icu": null,
 "recovered": 54
 },
 {
 "time": "2020-03-24",
-"cases": 588,
-"deaths": 2,
+"cases": 765,
+"deaths": 1,
 "hospitalized": 11,
 "icu": 2,
 "recovered": 63
 },
 {
 "time": "2020-03-25",
-"cases": 648,
-"deaths": 2,
+"cases": 807,
+"deaths": 1,
 "hospitalized": 15,
 "icu": 2,
 "recovered": 79
 },
 {
 "time": "2020-03-26",
-"cases": 737,
-"deaths": 2,
+"cases": 894,
+"deaths": 1,
 "hospitalized": 17,
 "icu": 3,
 "recovered": 94
 },
 {
 "time": "2020-03-27",
-"cases": 802,
-"deaths": 2,
+"cases": 964,
+"deaths": 1,
 "hospitalized": 18,
 "icu": 6,
 "recovered": 112
 },
 {
 "time": "2020-03-28",
-"cases": 890,
-"deaths": 2,
+"cases": 1020,
+"deaths": 1,
 "hospitalized": 19,
 "icu": 6,
 "recovered": 125
 },
 {
 "time": "2020-03-29",
-"cases": 963,
-"deaths": 2,
+"cases": 1086,
+"deaths": 1,
 "hospitalized": 25,
 "icu": 9,
 "recovered": 144
 },
 {
 "time": "2020-03-30",
-"cases": 1020,
-"deaths": 2,
+"cases": 1137,
+"deaths": 1,
 "hospitalized": 30,
 "icu": 10,
 "recovered": 178
 },
 {
 "time": "2020-03-31",
-"cases": 1086,
-"deaths": 2,
+"cases": 1220,
+"deaths": 1,
 "hospitalized": 35,
 "icu": 11,
 "recovered": 228
 },
 {
 "time": "2020-04-01",
-"cases": 1135,
-"deaths": 2,
+"cases": 1319,
+"deaths": 3,
 "hospitalized": 40,
 "icu": 11,
 "recovered": 270
 },
 {
 "time": "2020-04-02",
-"cases": 1220,
-"deaths": 2,
+"cases": 1364,
+"deaths": 3,
 "hospitalized": 42,
 "icu": 11,
 "recovered": 314
 },
 {
 "time": "2020-04-03",
-"cases": 1319,
-"deaths": 4,
+"cases": 1418,
+"deaths": 3,
 "hospitalized": 43,
 "icu": 11,
 "recovered": 396
 },
 {
 "time": "2020-04-04",
-"cases": 1364,
-"deaths": 4,
+"cases": 1488,
+"deaths": 3,
 "hospitalized": 42,
 "icu": 11,
 "recovered": 428
 },
 {
 "time": "2020-04-05",
-"cases": 1417,
+"cases": 1562,
 "deaths": 4,
 "hospitalized": 38,
 "icu": 12,
@@ -141292,6 +143313,14 @@
 {
 "time": "2020-04-28",
 "cases": 1792,
+"deaths": 10,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1795,
 "deaths": 10,
 "hospitalized": null,
 "icu": null,
@@ -142253,6 +144282,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 31332,
+"deaths": 1007,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -143159,6 +145196,14 @@
 "time": "2020-04-28",
 "cases": 9096,
 "deaths": 765,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 9511,
+"deaths": 773,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -144127,6 +146172,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 92584,
+"deaths": 5877,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -145071,6 +147124,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 1847,
+"deaths": 88,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 1847,
 "deaths": 88,
 "hospitalized": null,
@@ -146025,6 +148086,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 19877,
+"deaths": 1159,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -146339,6 +148408,14 @@
 "time": "2020-04-28",
 "cases": 308,
 "deaths": 18,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 309,
+"deaths": 21,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -147307,6 +149384,14 @@
 "hospitalized": null,
 "icu": 116,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 15589,
+"deaths": 208,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -147755,523 +149840,531 @@
 },
 {
 "time": "2020-02-24",
-"cases": 132,
-"deaths": 2,
+"cases": 229,
+"deaths": 7,
 "hospitalized": 101,
 "icu": 26,
 "recovered": 1
 },
 {
 "time": "2020-02-25",
-"cases": 229,
-"deaths": 6,
+"cases": 322,
+"deaths": 10,
 "hospitalized": 114,
 "icu": 35,
 "recovered": 1
 },
 {
 "time": "2020-02-26",
-"cases": 322,
-"deaths": 11,
+"cases": 400,
+"deaths": 12,
 "hospitalized": 128,
 "icu": 36,
 "recovered": 3
 },
 {
 "time": "2020-02-27",
-"cases": 400,
-"deaths": 12,
+"cases": 650,
+"deaths": 17,
 "hospitalized": 248,
 "icu": 56,
 "recovered": 45
 },
 {
 "time": "2020-02-28",
-"cases": 650,
-"deaths": 17,
+"cases": 888,
+"deaths": 21,
 "hospitalized": 345,
 "icu": 64,
 "recovered": 46
 },
 {
 "time": "2020-02-29",
-"cases": 888,
-"deaths": 21,
+"cases": 1128,
+"deaths": 29,
 "hospitalized": 401,
 "icu": 105,
 "recovered": 50
 },
 {
 "time": "2020-03-01",
-"cases": 1128,
-"deaths": 29,
+"cases": 1694,
+"deaths": 34,
 "hospitalized": 639,
 "icu": 140,
 "recovered": 83
 },
 {
 "time": "2020-03-02",
-"cases": 1689,
-"deaths": 35,
+"cases": 2036,
+"deaths": 52,
 "hospitalized": 742,
 "icu": 166,
 "recovered": 149
 },
 {
 "time": "2020-03-03",
-"cases": 2036,
-"deaths": 52,
+"cases": 2502,
+"deaths": 79,
 "hospitalized": 1034,
 "icu": 229,
 "recovered": 160
 },
 {
 "time": "2020-03-04",
-"cases": 2502,
-"deaths": 80,
+"cases": 3089,
+"deaths": 107,
 "hospitalized": 1346,
 "icu": 295,
 "recovered": 276
 },
 {
 "time": "2020-03-05",
-"cases": 3089,
-"deaths": 107,
+"cases": 3858,
+"deaths": 148,
 "hospitalized": 1790,
 "icu": 351,
 "recovered": 414
 },
 {
 "time": "2020-03-06",
-"cases": 3858,
-"deaths": 148,
+"cases": 4636,
+"deaths": 197,
 "hospitalized": 2394,
 "icu": 462,
 "recovered": 523
 },
 {
 "time": "2020-03-07",
-"cases": 4636,
-"deaths": 197,
+"cases": 5883,
+"deaths": 233,
 "hospitalized": 2651,
 "icu": 567,
 "recovered": 589
 },
 {
 "time": "2020-03-08",
-"cases": 5883,
-"deaths": 233,
+"cases": 7375,
+"deaths": 366,
 "hospitalized": 3557,
 "icu": 650,
 "recovered": 622
 },
 {
 "time": "2020-03-09",
-"cases": 7375,
-"deaths": 366,
+"cases": 9172,
+"deaths": 463,
 "hospitalized": 4316,
 "icu": 733,
 "recovered": 724
 },
 {
 "time": "2020-03-10",
-"cases": 9172,
-"deaths": 464,
+"cases": 10149,
+"deaths": 631,
 "hospitalized": 5038,
 "icu": 877,
 "recovered": 1004
 },
 {
 "time": "2020-03-11",
-"cases": 10149,
-"deaths": 631,
+"cases": 12462,
+"deaths": 827,
 "hospitalized": 5838,
 "icu": 1028,
 "recovered": 1045
 },
 {
 "time": "2020-03-12",
-"cases": 12462,
-"deaths": 827,
+"cases": 15113,
+"deaths": 1016,
 "hospitalized": 6650,
 "icu": 1153,
 "recovered": 1258
 },
 {
 "time": "2020-03-13",
-"cases": 15113,
-"deaths": 1016,
+"cases": 17660,
+"deaths": 1266,
 "hospitalized": 7426,
 "icu": 1328,
 "recovered": 1439
 },
 {
 "time": "2020-03-14",
-"cases": 17660,
-"deaths": 1268,
+"cases": 21157,
+"deaths": 1441,
 "hospitalized": 8372,
 "icu": 1518,
 "recovered": 1966
 },
 {
 "time": "2020-03-15",
-"cases": 21157,
-"deaths": 1441,
+"cases": 24747,
+"deaths": 1809,
 "hospitalized": 9663,
 "icu": 1672,
 "recovered": 2335
 },
 {
 "time": "2020-03-16",
-"cases": 23980,
-"deaths": 1811,
+"cases": 27980,
+"deaths": 2158,
 "hospitalized": 11025,
 "icu": 1851,
 "recovered": 2749
 },
 {
 "time": "2020-03-17",
-"cases": 27980,
-"deaths": 2158,
+"cases": 31506,
+"deaths": 2503,
 "hospitalized": 12894,
 "icu": 2060,
 "recovered": 2941
 },
 {
 "time": "2020-03-18",
-"cases": 31506,
-"deaths": 2505,
+"cases": 35713,
+"deaths": 2978,
 "hospitalized": 14363,
 "icu": 2257,
 "recovered": 4025
 },
 {
 "time": "2020-03-19",
-"cases": 35713,
-"deaths": 2978,
+"cases": 41035,
+"deaths": 3405,
 "hospitalized": 15757,
 "icu": 2498,
 "recovered": 4440
 },
 {
 "time": "2020-03-20",
-"cases": 41035,
-"deaths": 3407,
+"cases": 47021,
+"deaths": 4032,
 "hospitalized": 16020,
 "icu": 2655,
 "recovered": 5129
 },
 {
 "time": "2020-03-21",
-"cases": 47021,
-"deaths": 4032,
+"cases": 53578,
+"deaths": 4825,
 "hospitalized": 17708,
 "icu": 2857,
 "recovered": 6072
 },
 {
 "time": "2020-03-22",
-"cases": 53578,
-"deaths": 4827,
+"cases": 59138,
+"deaths": 5476,
 "hospitalized": 19846,
 "icu": 3009,
 "recovered": 7024
 },
 {
 "time": "2020-03-23",
-"cases": 59138,
-"deaths": 5476,
+"cases": 63927,
+"deaths": 6077,
 "hospitalized": 20692,
 "icu": 3204,
 "recovered": 7432
 },
 {
 "time": "2020-03-24",
-"cases": 63927,
-"deaths": 6077,
+"cases": 69176,
+"deaths": 6820,
 "hospitalized": 21937,
 "icu": 3396,
 "recovered": 8326
 },
 {
 "time": "2020-03-25",
-"cases": 69176,
-"deaths": 6820,
+"cases": 74386,
+"deaths": 7503,
 "hospitalized": 23112,
 "icu": 3489,
 "recovered": 9362
 },
 {
 "time": "2020-03-26",
-"cases": 74386,
-"deaths": 7505,
+"cases": 80539,
+"deaths": 8165,
 "hospitalized": 24753,
 "icu": 3612,
 "recovered": 10361
 },
 {
 "time": "2020-03-27",
-"cases": 80539,
-"deaths": 8165,
+"cases": 86498,
+"deaths": 9134,
 "hospitalized": 26029,
 "icu": 3732,
 "recovered": 10950
 },
 {
 "time": "2020-03-28",
-"cases": 86498,
-"deaths": 9136,
+"cases": 92472,
+"deaths": 10023,
 "hospitalized": 26676,
 "icu": 3856,
 "recovered": 12384
 },
 {
 "time": "2020-03-29",
-"cases": 92472,
-"deaths": 10023,
+"cases": 97689,
+"deaths": 10779,
 "hospitalized": 27386,
 "icu": 3906,
 "recovered": 13030
 },
 {
 "time": "2020-03-30",
-"cases": 97689,
-"deaths": 10781,
+"cases": 101739,
+"deaths": 11591,
 "hospitalized": 27795,
 "icu": 3981,
 "recovered": 14620
 },
 {
 "time": "2020-03-31",
-"cases": 101739,
-"deaths": 11591,
+"cases": 105792,
+"deaths": 12428,
 "hospitalized": 28192,
 "icu": 4023,
 "recovered": 15729
 },
 {
 "time": "2020-04-01",
-"cases": 105792,
-"deaths": 12430,
+"cases": 110574,
+"deaths": 13155,
 "hospitalized": 28403,
 "icu": 4035,
 "recovered": 16847
 },
 {
 "time": "2020-04-02",
-"cases": 110574,
-"deaths": 13157,
+"cases": 115242,
+"deaths": 13915,
 "hospitalized": 28540,
 "icu": 4053,
 "recovered": 18278
 },
 {
 "time": "2020-04-03",
-"cases": 115242,
-"deaths": 13917,
+"cases": 119827,
+"deaths": 14681,
 "hospitalized": 28741,
 "icu": 4068,
 "recovered": 19758
 },
 {
 "time": "2020-04-04",
-"cases": 119827,
-"deaths": 14681,
+"cases": 124632,
+"deaths": 15362,
 "hospitalized": 29010,
 "icu": 3994,
 "recovered": 20996
 },
 {
 "time": "2020-04-05",
-"cases": 124632,
-"deaths": 15362,
+"cases": 128948,
+"deaths": 15887,
 "hospitalized": 28949,
 "icu": 3977,
 "recovered": 21815
 },
 {
 "time": "2020-04-06",
-"cases": 128948,
-"deaths": 15889,
+"cases": 132547,
+"deaths": 16523,
 "hospitalized": 28976,
 "icu": 3898,
 "recovered": 22837
 },
 {
 "time": "2020-04-07",
-"cases": 132547,
-"deaths": 16525,
+"cases": 135586,
+"deaths": 17127,
 "hospitalized": 28718,
 "icu": 3792,
 "recovered": 24392
 },
 {
 "time": "2020-04-08",
-"cases": 135586,
-"deaths": 17129,
+"cases": 139422,
+"deaths": 17669,
 "hospitalized": 28485,
 "icu": 3693,
 "recovered": 26491
 },
 {
 "time": "2020-04-09",
-"cases": 139422,
-"deaths": 17669,
+"cases": 143626,
+"deaths": 18279,
 "hospitalized": 28399,
 "icu": 3605,
 "recovered": 28470
 },
 {
 "time": "2020-04-10",
-"cases": 143626,
-"deaths": 18281,
+"cases": 147577,
+"deaths": 18849,
 "hospitalized": 28242,
 "icu": 3497,
 "recovered": 30455
 },
 {
 "time": "2020-04-11",
-"cases": 147577,
-"deaths": 18851,
+"cases": 152271,
+"deaths": 19468,
 "hospitalized": 28144,
 "icu": 3381,
 "recovered": 32534
 },
 {
 "time": "2020-04-12",
-"cases": 152271,
-"deaths": 19470,
+"cases": 156363,
+"deaths": 19899,
 "hospitalized": 27847,
 "icu": 3343,
 "recovered": 34211
 },
 {
 "time": "2020-04-13",
-"cases": 156363,
-"deaths": 19901,
+"cases": 159516,
+"deaths": 20465,
 "hospitalized": 28023,
 "icu": 3260,
 "recovered": 35435
 },
 {
 "time": "2020-04-14",
-"cases": 159516,
-"deaths": 20465,
+"cases": 162488,
+"deaths": 21067,
 "hospitalized": 28011,
 "icu": 3186,
 "recovered": 37130
 },
 {
 "time": "2020-04-15",
-"cases": 162488,
-"deaths": 21069,
+"cases": 165155,
+"deaths": 21645,
 "hospitalized": 27643,
 "icu": 3079,
 "recovered": 38092
 },
 {
 "time": "2020-04-16",
-"cases": 165155,
-"deaths": 21647,
+"cases": 168941,
+"deaths": 22170,
 "hospitalized": 26893,
 "icu": 2936,
 "recovered": 40164
 },
 {
 "time": "2020-04-17",
-"cases": 168941,
-"deaths": 22172,
+"cases": 172434,
+"deaths": 22745,
 "hospitalized": 25786,
 "icu": 2812,
 "recovered": 42727
 },
 {
 "time": "2020-04-18",
-"cases": 172434,
-"deaths": 22747,
+"cases": 175925,
+"deaths": 23227,
 "hospitalized": 25007,
 "icu": 2733,
 "recovered": 44927
 },
 {
 "time": "2020-04-19",
-"cases": 175925,
-"deaths": 23227,
+"cases": 178972,
+"deaths": 23660,
 "hospitalized": 25033,
 "icu": 2635,
 "recovered": 47055
 },
 {
 "time": "2020-04-20",
-"cases": 178972,
-"deaths": 23660,
+"cases": 181228,
+"deaths": 24114,
 "hospitalized": 24906,
 "icu": 2573,
 "recovered": 48877
 },
 {
 "time": "2020-04-21",
-"cases": 181228,
-"deaths": 24114,
+"cases": 183957,
+"deaths": 24648,
 "hospitalized": 24134,
 "icu": 2471,
 "recovered": 51600
 },
 {
 "time": "2020-04-22",
-"cases": 183957,
-"deaths": 24648,
+"cases": 187327,
+"deaths": 25085,
 "hospitalized": 23805,
 "icu": 2384,
 "recovered": 54543
 },
 {
 "time": "2020-04-23",
-"cases": 187327,
-"deaths": 25085,
+"cases": 189973,
+"deaths": 25549,
 "hospitalized": 22871,
 "icu": 2267,
 "recovered": 57576
 },
 {
 "time": "2020-04-24",
-"cases": 189973,
-"deaths": 25549,
+"cases": 192994,
+"deaths": 25969,
 "hospitalized": 22068,
 "icu": 2173,
 "recovered": 60498
 },
 {
 "time": "2020-04-25",
-"cases": 192994,
-"deaths": 25969,
+"cases": 195351,
+"deaths": 26384,
 "hospitalized": 21533,
 "icu": 2102,
 "recovered": 63120
 },
 {
 "time": "2020-04-26",
-"cases": 195351,
-"deaths": 26384,
+"cases": 197675,
+"deaths": 26644,
 "hospitalized": 21372,
 "icu": 2009,
 "recovered": 64928
 },
 {
 "time": "2020-04-27",
-"cases": 197675,
-"deaths": 26644,
+"cases": 199414,
+"deaths": 26977,
 "hospitalized": 20353,
 "icu": 1956,
 "recovered": 66624
 },
 {
 "time": "2020-04-28",
-"cases": 199414,
-"deaths": 26977,
+"cases": 201505,
+"deaths": 27359,
 "hospitalized": 19723,
 "icu": 1863,
 "recovered": 68941
+},
+{
+"time": "2020-04-29",
+"cases": 203591,
+"deaths": 27682,
+"hospitalized": 19210,
+"icu": 1795,
+"recovered": 71252
 }
 ]
 },
@@ -149174,6 +151267,14 @@
 {
 "time": "2020-04-28",
 "cases": 364,
+"deaths": 7,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 381,
 "deaths": 7,
 "hospitalized": null,
 "icu": null,
@@ -150143,6 +152244,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 13852,
+"deaths": 389,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -150465,6 +152574,14 @@
 "time": "2020-04-28",
 "cases": 283,
 "deaths": 19,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 284,
+"deaths": 20,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -150849,6 +152966,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 449,
+"deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -151210,6 +153335,14 @@
 {
 "time": "2020-04-28",
 "cases": 2860,
+"deaths": 25,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 3063,
 "deaths": 25,
 "hospitalized": null,
 "icu": null,
@@ -151583,6 +153716,14 @@
 {
 "time": "2020-04-28",
 "cases": 363,
+"deaths": 14,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 374,
 "deaths": 14,
 "hospitalized": null,
 "icu": null,
@@ -152552,6 +154693,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 10761,
+"deaths": 246,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -152905,6 +155054,14 @@
 {
 "time": "2020-04-28",
 "cases": 780,
+"deaths": 22,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 790,
 "deaths": 22,
 "hospitalized": null,
 "icu": null,
@@ -153850,6 +156007,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 3440,
+"deaths": 23,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -154183,6 +156348,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 729,
+"deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -154463,6 +156636,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 19,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 19,
 "deaths": 0,
 "hospitalized": null,
@@ -154893,6 +157074,14 @@
 {
 "time": "2020-04-28",
 "cases": 818,
+"deaths": 13,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 836,
 "deaths": 13,
 "hospitalized": null,
 "icu": null,
@@ -155830,6 +158019,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 717,
+"deaths": 24,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -156179,6 +158376,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 141,
+"deaths": 16,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -156459,6 +158664,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 61,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 61,
 "deaths": 2,
 "hospitalized": null,
@@ -156912,6 +159125,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 82,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 82,
 "deaths": 1,
 "hospitalized": null,
@@ -157807,6 +160028,14 @@
 "time": "2020-04-28",
 "cases": 1449,
 "deaths": 41,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1449,
+"deaths": 44,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -158719,6 +160948,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 3741,
+"deaths": 89,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -159036,6 +161273,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 128,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -159244,6 +161489,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 36,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 36,
 "deaths": 3,
 "hospitalized": null,
@@ -160206,6 +162459,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 5851,
+"deaths": 100,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -160611,6 +162872,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 245,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -160885,6 +163154,14 @@
 "time": "2020-04-28",
 "cases": 408,
 "deaths": 23,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 424,
+"deaths": 24,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -161293,6 +163570,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 450,
+"deaths": 4,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -161658,6 +163943,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 7,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -161978,6 +164271,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 334,
+"deaths": 10,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 334,
 "deaths": 10,
 "hospitalized": null,
@@ -162884,6 +165185,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 16752,
+"deaths": 1569,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -163286,6 +165595,14 @@
 "time": "2020-04-28",
 "cases": 3481,
 "deaths": 102,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 3638,
+"deaths": 107,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -164158,6 +166475,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 95,
+"deaths": 4,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -164515,6 +166840,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 38,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -164856,6 +167189,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 321,
+"deaths": 7,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -165160,6 +167501,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 11,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 11,
 "deaths": 1,
 "hospitalized": null,
@@ -165570,6 +167919,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 4252,
+"deaths": 165,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -165866,6 +168223,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 76,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 76,
 "deaths": 0,
 "hospitalized": null,
@@ -166168,6 +168533,14 @@
 {
 "time": "2020-04-28",
 "cases": 146,
+"deaths": 5,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 150,
 "deaths": 5,
 "hospitalized": null,
 "icu": null,
@@ -166532,6 +168905,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 16,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 16,
 "deaths": 0,
 "hospitalized": null,
@@ -167398,6 +169779,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 54,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -167871,77 +170260,69 @@
 {
 "time": "2020-02-27",
 "cases": 1,
-"deaths": null,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-02-28",
-"cases": 1,
-"deaths": null,
+"cases": 2,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-02-29",
-"cases": 2,
-"deaths": null,
+"cases": 7,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-01",
-"cases": 7,
-"deaths": null,
+"cases": 10,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-02",
-"cases": 13,
-"deaths": null,
+"cases": 18,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-03",
-"cases": 18,
-"deaths": null,
+"cases": 24,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-04",
-"cases": 28,
-"deaths": null,
+"cases": 38,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-05",
-"cases": 38,
-"deaths": null,
+"cases": 82,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-06",
-"cases": 82,
-"deaths": 1,
-"hospitalized": null,
-"icu": null,
-"recovered": null
-},
-{
-"time": "2020-03-07",
 "cases": 128,
 "deaths": 1,
 "hospitalized": null,
@@ -167949,7 +170330,7 @@
 "recovered": null
 },
 {
-"time": "2020-03-08",
+"time": "2020-03-07",
 "cases": 188,
 "deaths": 1,
 "hospitalized": null,
@@ -167957,7 +170338,7 @@
 "recovered": null
 },
 {
-"time": "2020-03-09",
+"time": "2020-03-08",
 "cases": 265,
 "deaths": 3,
 "hospitalized": null,
@@ -167965,7 +170346,7 @@
 "recovered": null
 },
 {
-"time": "2020-03-10",
+"time": "2020-03-09",
 "cases": 321,
 "deaths": 3,
 "hospitalized": null,
@@ -167973,7 +170354,7 @@
 "recovered": null
 },
 {
-"time": "2020-03-11",
+"time": "2020-03-10",
 "cases": 382,
 "deaths": 4,
 "hospitalized": null,
@@ -167981,8 +170362,16 @@
 "recovered": null
 },
 {
-"time": "2020-03-12",
+"time": "2020-03-11",
 "cases": 503,
+"deaths": 5,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-03-12",
+"cases": 613,
 "deaths": 5,
 "hospitalized": 86,
 "icu": null,
@@ -167990,377 +170379,385 @@
 },
 {
 "time": "2020-03-13",
-"cases": 614,
-"deaths": 5,
+"cases": 804,
+"deaths": 10,
 "hospitalized": 115,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-14",
-"cases": 804,
-"deaths": 5,
+"cases": 959,
+"deaths": 12,
 "hospitalized": 136,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-15",
-"cases": 959,
-"deaths": 12,
+"cases": 1135,
+"deaths": 20,
 "hospitalized": 162,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-16",
-"cases": 1135,
-"deaths": 20,
+"cases": 1413,
+"deaths": 24,
 "hospitalized": 205,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-17",
-"cases": 1413,
-"deaths": 24,
+"cases": 1703,
+"deaths": 43,
 "hospitalized": 314,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-18",
-"cases": 1705,
-"deaths": 43,
+"cases": 2051,
+"deaths": 58,
 "hospitalized": 408,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-19",
-"cases": 2051,
-"deaths": 58,
+"cases": 2460,
+"deaths": 76,
 "hospitalized": 489,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-20",
-"cases": 2460,
-"deaths": 76,
+"cases": 2994,
+"deaths": 106,
 "hospitalized": 634,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-21",
-"cases": 2994,
-"deaths": 106,
+"cases": 3631,
+"deaths": 136,
 "hospitalized": 836,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-22",
-"cases": 3631,
-"deaths": 136,
+"cases": 4204,
+"deaths": 179,
 "hospitalized": 988,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-23",
-"cases": 4204,
-"deaths": 179,
+"cases": 4749,
+"deaths": 213,
 "hospitalized": 1230,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-24",
-"cases": 4749,
-"deaths": 213,
+"cases": 5560,
+"deaths": 276,
 "hospitalized": 1495,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-25",
-"cases": 5560,
-"deaths": 276,
+"cases": 6412,
+"deaths": 356,
 "hospitalized": 1836,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-26",
-"cases": 6412,
-"deaths": 356,
+"cases": 7431,
+"deaths": 434,
 "hospitalized": 2151,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-27",
-"cases": 7431,
-"deaths": 434,
+"cases": 8603,
+"deaths": 546,
 "hospitalized": 2500,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-28",
-"cases": 8603,
-"deaths": 546,
+"cases": 9762,
+"deaths": 639,
 "hospitalized": 2954,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-29",
-"cases": 9762,
-"deaths": 639,
+"cases": 10866,
+"deaths": 771,
 "hospitalized": 3483,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-30",
-"cases": 10866,
-"deaths": 771,
+"cases": 11750,
+"deaths": 864,
 "hospitalized": 3990,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-31",
-"cases": 11750,
-"deaths": 864,
+"cases": 12595,
+"deaths": 1039,
 "hospitalized": 4712,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-01",
-"cases": 12595,
-"deaths": 1039,
+"cases": 13614,
+"deaths": 1173,
 "hospitalized": 5159,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-02",
-"cases": 13614,
-"deaths": 1173,
+"cases": 14697,
+"deaths": 1339,
 "hospitalized": 5784,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-03",
-"cases": 14697,
-"deaths": 1339,
+"cases": 15723,
+"deaths": 1487,
 "hospitalized": 6286,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-04",
-"cases": 15723,
-"deaths": 1487,
+"cases": 16627,
+"deaths": 1651,
 "hospitalized": 6622,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-05",
-"cases": 16627,
-"deaths": 1651,
+"cases": 17851,
+"deaths": 1766,
 "hospitalized": 6875,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-06",
-"cases": 17851,
-"deaths": 1766,
+"cases": 18803,
+"deaths": 1867,
 "hospitalized": 7135,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-07",
-"cases": 18803,
-"deaths": 1867,
+"cases": 19580,
+"deaths": 2101,
 "hospitalized": 7427,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-08",
-"cases": 19580,
-"deaths": 2101,
+"cases": 20549,
+"deaths": 2248,
 "hospitalized": 7735,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-09",
-"cases": 20549,
-"deaths": 2248,
+"cases": 21762,
+"deaths": 2396,
 "hospitalized": 7972,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-10",
-"cases": 21762,
-"deaths": 2396,
+"cases": 23097,
+"deaths": 2511,
 "hospitalized": 8197,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-11",
-"cases": 23097,
-"deaths": 2511,
+"cases": 24413,
+"deaths": 2643,
 "hospitalized": 8386,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-12",
-"cases": 24413,
-"deaths": 2643,
+"cases": 25587,
+"deaths": 2737,
 "hospitalized": 8582,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-13",
-"cases": 25587,
-"deaths": 2737,
+"cases": 26551,
+"deaths": 2823,
 "hospitalized": 8729,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-14",
-"cases": 26551,
-"deaths": 2823,
+"cases": 27419,
+"deaths": 2945,
 "hospitalized": 8939,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-15",
-"cases": 27419,
-"deaths": 2945,
+"cases": 28153,
+"deaths": 3134,
 "hospitalized": 9127,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-16",
-"cases": 28153,
-"deaths": 3134,
+"cases": 29214,
+"deaths": 3315,
 "hospitalized": 9309,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-17",
-"cases": 29214,
-"deaths": 3315,
+"cases": 30449,
+"deaths": 3459,
 "hospitalized": 9465,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-18",
-"cases": 30449,
-"deaths": 3459,
+"cases": 31589,
+"deaths": 3601,
 "hospitalized": 9594,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-19",
-"cases": 31589,
-"deaths": 3601,
+"cases": 32655,
+"deaths": 3684,
 "hospitalized": 9704,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-20",
-"cases": 32655,
-"deaths": 3684,
+"cases": 33405,
+"deaths": 3751,
 "hospitalized": 9779,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-21",
-"cases": 33405,
-"deaths": 3751,
+"cases": 34134,
+"deaths": 3916,
 "hospitalized": 9897,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-22",
-"cases": 34134,
-"deaths": 3916,
+"cases": 34842,
+"deaths": 4054,
 "hospitalized": 10021,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-23",
-"cases": 34842,
-"deaths": 4054,
+"cases": 35729,
+"deaths": 4177,
 "hospitalized": 10158,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-24",
-"cases": 35729,
-"deaths": 4177,
+"cases": 36535,
+"deaths": 4289,
 "hospitalized": 10281,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-25",
-"cases": 36535,
-"deaths": 4289,
+"cases": 37190,
+"deaths": 4409,
 "hospitalized": 10381,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-26",
-"cases": 37190,
-"deaths": 4409,
+"cases": 37845,
+"deaths": 4475,
 "hospitalized": 10456,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-27",
-"cases": 37845,
-"deaths": 4475,
-"hospitalized": 10609,
+"cases": 38245,
+"deaths": 4518,
+"hospitalized": 10521,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-04-28",
-"cases": 38245,
-"deaths": 4518,
-"hospitalized": null,
+"cases": 38416,
+"deaths": 4566,
+"hospitalized": 10609,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 38802,
+"deaths": 4711,
+"hospitalized": 10685,
 "icu": null,
 "recovered": null
 }
@@ -168675,6 +171072,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 18,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 18,
 "deaths": 0,
 "hospitalized": null,
@@ -169573,6 +171978,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1126,
+"deaths": 19,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -169906,6 +172319,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 13,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -170220,6 +172641,14 @@
 "time": "2020-04-28",
 "cases": 701,
 "deaths": 29,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 709,
+"deaths": 31,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -171097,6 +173526,14 @@
 "time": "2020-04-28",
 "cases": 1337,
 "deaths": 40,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1532,
+"deaths": 44,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -171993,6 +174430,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1421,
+"deaths": 71,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -172225,6 +174670,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 14,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 14,
 "deaths": 2,
 "hospitalized": null,
@@ -173195,6 +175648,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 7605,
+"deaths": 195,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -174108,6 +176569,14 @@
 {
 "time": "2020-04-28",
 "cases": 2049,
+"deaths": 10,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2131,
 "deaths": 10,
 "hospitalized": null,
 "icu": null,
@@ -175037,6 +177506,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 14885,
+"deaths": 327,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -175450,6 +177927,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 495,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -175855,6 +178340,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 6200,
+"deaths": 176,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -176167,6 +178660,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 8,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 8,
 "deaths": 0,
 "hospitalized": null,
@@ -176557,6 +179058,14 @@
 {
 "time": "2020-04-28",
 "cases": 230,
+"deaths": 9,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 239,
 "deaths": 9,
 "hospitalized": null,
 "icu": null,
@@ -176979,6 +179488,14 @@
 "time": "2020-04-28",
 "cases": 28699,
 "deaths": 782,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 31190,
+"deaths": 854,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -177915,6 +180432,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 7958,
+"deaths": 530,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -178349,6 +180874,14 @@
 "time": "2020-04-28",
 "cases": 11902,
 "deaths": 562,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 12218,
+"deaths": 596,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -178813,6 +181346,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 24322,
+"deaths": 948,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -179071,6 +181612,14 @@
 "time": "2020-04-28",
 "cases": 1389,
 "deaths": 84,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1400,
+"deaths": 86,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -180003,6 +182552,14 @@
 {
 "time": "2020-04-28",
 "cases": 11244,
+"deaths": 10,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 11921,
 "deaths": 10,
 "hospitalized": null,
 "icu": null,
@@ -180953,6 +183510,14 @@
 "time": "2020-04-28",
 "cases": 11339,
 "deaths": 631,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 11616,
+"deaths": 650,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -181921,6 +184486,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 93558,
+"deaths": 867,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -182286,6 +184859,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 212,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -182571,6 +185152,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 15,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 15,
 "deaths": 0,
 "hospitalized": null,
@@ -182941,6 +185530,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 15,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -183230,6 +185827,14 @@
 {
 "time": "2020-04-28",
 "cases": 15,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 16,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
@@ -184191,6 +186796,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 553,
+"deaths": 41,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -184352,6 +186965,14 @@
 {
 "time": "2020-04-28",
 "cases": 8,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 11,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
@@ -184793,6 +187414,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 20077,
+"deaths": 152,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -185194,6 +187823,14 @@
 {
 "time": "2020-04-28",
 "cases": 735,
+"deaths": 9,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 823,
 "deaths": 9,
 "hospitalized": null,
 "icu": null,
@@ -185603,6 +188240,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 8497,
+"deaths": 168,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -185968,6 +188613,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 11,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -186194,6 +188847,14 @@
 "time": "2020-04-28",
 "cases": 99,
 "deaths": 4,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 104,
+"deaths": 5,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -187162,6 +189823,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 14951,
+"deaths": 14,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -187434,6 +190103,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 75,
+"deaths": 13,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 75,
 "deaths": 13,
 "hospitalized": null,
@@ -187857,6 +190534,14 @@
 "time": "2020-04-28",
 "cases": 1381,
 "deaths": 18,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1384,
+"deaths": 20,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -188297,6 +190982,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1408,
+"deaths": 86,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -188643,6 +191336,14 @@
 "time": "2020-04-28",
 "cases": 480,
 "deaths": 26,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 528,
+"deaths": 28,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -189067,6 +191768,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 4996,
+"deaths": 93,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -189252,6 +191961,14 @@
 {
 "time": "2020-04-28",
 "cases": 6,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 34,
 "deaths": 0,
 "hospitalized": null,
 "icu": null,
@@ -189728,24 +192445,24 @@
 },
 {
 "time": "2020-02-27",
-"cases": 12,
-"deaths": null,
+"cases": 16,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-02-28",
-"cases": 25,
-"deaths": null,
+"cases": 32,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-02-29",
-"cases": 34,
-"deaths": null,
+"cases": 44,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -189753,21 +192470,13 @@
 {
 "time": "2020-03-01",
 "cases": 66,
-"deaths": null,
+"deaths": 0,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-02",
-"cases": 83,
-"deaths": null,
-"hospitalized": null,
-"icu": null,
-"recovered": null
-},
-{
-"time": "2020-03-03",
 "cases": 114,
 "deaths": 0,
 "hospitalized": null,
@@ -189775,8 +192484,16 @@
 "recovered": null
 },
 {
+"time": "2020-03-03",
+"cases": 150,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
 "time": "2020-03-04",
-"cases": 151,
+"cases": 198,
 "deaths": 1,
 "hospitalized": null,
 "icu": null,
@@ -189784,86 +192501,78 @@
 },
 {
 "time": "2020-03-05",
-"cases": 200,
-"deaths": 1,
-"hospitalized": null,
-"icu": null,
-"recovered": null
-},
-{
-"time": "2020-03-06",
-"cases": 261,
+"cases": 237,
 "deaths": 3,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
-"time": "2020-03-07",
-"cases": 374,
+"time": "2020-03-06",
+"cases": 365,
 "deaths": 5,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-03-07",
+"cases": 430,
+"deaths": 8,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-08",
-"cases": 430,
-"deaths": 5,
+"cases": 589,
+"deaths": 17,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-09",
-"cases": 589,
-"deaths": 5,
+"cases": 999,
+"deaths": 17,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
 "time": "2020-03-10",
-"cases": 1204,
-"deaths": 28,
-"hospitalized": null,
-"icu": null,
-"recovered": null
-},
-{
-"time": "2020-03-11",
-"cases": 1639,
+"cases": 1622,
 "deaths": 35,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
-"time": "2020-03-12",
-"cases": 2140,
+"time": "2020-03-11",
+"cases": 2128,
 "deaths": 47,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
-"time": "2020-03-13",
-"cases": 3004,
+"time": "2020-03-12",
+"cases": 2950,
 "deaths": 84,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
-"time": "2020-03-14",
-"cases": 4231,
-"deaths": 121,
+"time": "2020-03-13",
+"cases": 4209,
+"deaths": 120,
 "hospitalized": null,
 "icu": null,
 "recovered": null
 },
 {
-"time": "2020-03-15",
+"time": "2020-03-14",
 "cases": 5753,
 "deaths": 136,
 "hospitalized": null,
@@ -189871,264 +192580,272 @@
 "recovered": null
 },
 {
-"time": "2020-03-16",
+"time": "2020-03-15",
 "cases": 7753,
 "deaths": 288,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-03-16",
+"cases": 9191,
+"deaths": 309,
 "hospitalized": null,
 "icu": null,
 "recovered": 530
 },
 {
 "time": "2020-03-17",
-"cases": 9191,
-"deaths": 309,
+"cases": 11178,
+"deaths": 491,
 "hospitalized": null,
 "icu": null,
 "recovered": 1028
 },
 {
 "time": "2020-03-18",
-"cases": 11178,
-"deaths": 491,
+"cases": 13716,
+"deaths": 598,
 "hospitalized": null,
 "icu": null,
 "recovered": 1081
 },
 {
 "time": "2020-03-19",
-"cases": 13716,
-"deaths": 598,
+"cases": 17147,
+"deaths": 767,
 "hospitalized": null,
 "icu": null,
 "recovered": 1107
 },
 {
 "time": "2020-03-20",
-"cases": 17147,
-"deaths": 767,
+"cases": 19980,
+"deaths": 1002,
 "hospitalized": null,
 "icu": null,
 "recovered": 1585
 },
 {
 "time": "2020-03-21",
-"cases": 19980,
-"deaths": 1002,
+"cases": 24926,
+"deaths": 1326,
 "hospitalized": null,
 "icu": null,
 "recovered": 2125
 },
 {
 "time": "2020-03-22",
-"cases": 24926,
-"deaths": 1326,
+"cases": 28572,
+"deaths": 1720,
 "hospitalized": null,
 "icu": null,
 "recovered": 2575
 },
 {
 "time": "2020-03-23",
-"cases": 28572,
-"deaths": 1720,
+"cases": 33089,
+"deaths": 2182,
 "hospitalized": null,
 "icu": null,
 "recovered": 3355
 },
 {
 "time": "2020-03-24",
-"cases": 33089,
-"deaths": 2182,
+"cases": 39673,
+"deaths": 2696,
 "hospitalized": null,
 "icu": null,
 "recovered": 3794
 },
 {
 "time": "2020-03-25",
-"cases": 39673,
-"deaths": 2696,
+"cases": 47610,
+"deaths": 3434,
 "hospitalized": null,
 "icu": null,
 "recovered": 5367
 },
 {
 "time": "2020-03-26",
-"cases": 47610,
-"deaths": 3434,
+"cases": 56188,
+"deaths": 4089,
 "hospitalized": null,
 "icu": null,
 "recovered": 7015
 },
 {
 "time": "2020-03-27",
-"cases": 56188,
-"deaths": 4089,
+"cases": 64059,
+"deaths": 4858,
 "hospitalized": null,
 "icu": null,
 "recovered": 9357
 },
 {
 "time": "2020-03-28",
-"cases": 64059,
-"deaths": 4858,
+"cases": 72248,
+"deaths": 5690,
 "hospitalized": null,
 "icu": null,
 "recovered": 12285
 },
 {
 "time": "2020-03-29",
-"cases": 72248,
-"deaths": 5690,
+"cases": 78797,
+"deaths": 6528,
 "hospitalized": null,
 "icu": null,
 "recovered": 14709
 },
 {
 "time": "2020-03-30",
-"cases": 78797,
-"deaths": 6528,
+"cases": 85195,
+"deaths": 7340,
 "hospitalized": null,
 "icu": null,
 "recovered": 16780
 },
 {
 "time": "2020-03-31",
-"cases": 85195,
-"deaths": 7340,
+"cases": 94417,
+"deaths": 8189,
 "hospitalized": null,
 "icu": null,
 "recovered": 19259
 },
 {
 "time": "2020-04-01",
-"cases": 94417,
-"deaths": 8189,
+"cases": 102136,
+"deaths": 9053,
 "hospitalized": null,
 "icu": null,
 "recovered": 22647
 },
 {
 "time": "2020-04-02",
-"cases": 102136,
-"deaths": 9053,
+"cases": 110238,
+"deaths": 10003,
 "hospitalized": null,
 "icu": null,
 "recovered": 26743
 },
 {
 "time": "2020-04-03",
-"cases": 110238,
-"deaths": 10003,
+"cases": 117710,
+"deaths": 10935,
 "hospitalized": null,
 "icu": null,
 "recovered": 30513
 },
 {
 "time": "2020-04-04",
-"cases": 117710,
-"deaths": 10935,
+"cases": 124736,
+"deaths": 11744,
 "hospitalized": null,
 "icu": null,
 "recovered": 34219
 },
 {
 "time": "2020-04-05",
-"cases": 124736,
-"deaths": 11744,
+"cases": 130759,
+"deaths": 12418,
 "hospitalized": null,
 "icu": null,
 "recovered": 38080
 },
 {
 "time": "2020-04-06",
-"cases": 130759,
-"deaths": 12418,
+"cases": 135032,
+"deaths": 13055,
 "hospitalized": null,
 "icu": null,
 "recovered": 40437
 },
 {
 "time": "2020-04-07",
-"cases": 135032,
-"deaths": 13055,
+"cases": 140510,
+"deaths": 13798,
 "hospitalized": null,
 "icu": null,
 "recovered": 43208
 },
 {
 "time": "2020-04-08",
-"cases": 140510,
-"deaths": 13798,
+"cases": 146690,
+"deaths": 14555,
 "hospitalized": null,
 "icu": null,
 "recovered": 48021
 },
 {
 "time": "2020-04-09",
-"cases": 146690,
-"deaths": 14555,
+"cases": 152446,
+"deaths": 15238,
 "hospitalized": null,
 "icu": null,
 "recovered": 52165
 },
 {
 "time": "2020-04-10",
-"cases": 152446,
-"deaths": 15238,
+"cases": 157022,
+"deaths": 15843,
 "hospitalized": null,
 "icu": null,
 "recovered": 55668
 },
 {
 "time": "2020-04-11",
-"cases": 157022,
-"deaths": 15843,
+"cases": 161852,
+"deaths": 16353,
 "hospitalized": null,
 "icu": null,
 "recovered": 59109
 },
 {
 "time": "2020-04-12",
-"cases": 161852,
-"deaths": 16353,
+"cases": 166019,
+"deaths": 16972,
 "hospitalized": null,
 "icu": null,
 "recovered": 62391
 },
 {
 "time": "2020-04-13",
-"cases": 166019,
-"deaths": 16972,
+"cases": 169496,
+"deaths": 17489,
 "hospitalized": null,
 "icu": null,
 "recovered": 64727
 },
 {
 "time": "2020-04-14",
-"cases": 169496,
-"deaths": 17489,
+"cases": 172541,
+"deaths": 18056,
 "hospitalized": null,
 "icu": null,
 "recovered": 67504
 },
 {
 "time": "2020-04-15",
-"cases": 177464,
-"deaths": 18276,
+"cases": 177633,
+"deaths": 18579,
 "hospitalized": null,
 "icu": null,
 "recovered": 70853
 },
 {
 "time": "2020-04-16",
-"cases": 181504,
-"deaths": 18893,
+"cases": 182816,
+"deaths": 19130,
 "hospitalized": null,
 "icu": null,
 "recovered": 74797
 },
 {
 "time": "2020-04-17",
-"cases": 185904,
+"cases": 188068,
 "deaths": 19478,
 "hospitalized": null,
 "icu": null,
@@ -190136,7 +192853,7 @@
 },
 {
 "time": "2020-04-18",
-"cases": 190008,
+"cases": 191726,
 "deaths": 20043,
 "hospitalized": null,
 "icu": null,
@@ -190144,7 +192861,7 @@
 },
 {
 "time": "2020-04-19",
-"cases": 188578,
+"cases": 195944,
 "deaths": 20453,
 "hospitalized": null,
 "icu": null,
@@ -190152,7 +192869,7 @@
 },
 {
 "time": "2020-04-20",
-"cases": 191163,
+"cases": 200210,
 "deaths": 20852,
 "hospitalized": null,
 "icu": null,
@@ -190160,7 +192877,7 @@
 },
 {
 "time": "2020-04-21",
-"cases": 194515,
+"cases": 204178,
 "deaths": 21282,
 "hospitalized": null,
 "icu": null,
@@ -190168,7 +192885,7 @@
 },
 {
 "time": "2020-04-22",
-"cases": 197142,
+"cases": 208389,
 "deaths": 21717,
 "hospitalized": null,
 "icu": null,
@@ -190176,7 +192893,7 @@
 },
 {
 "time": "2020-04-23",
-"cases": 200194,
+"cases": 213024,
 "deaths": 22157,
 "hospitalized": null,
 "icu": null,
@@ -190184,7 +192901,7 @@
 },
 {
 "time": "2020-04-24",
-"cases": 202961,
+"cases": 219764,
 "deaths": 22524,
 "hospitalized": null,
 "icu": null,
@@ -190192,7 +192909,7 @@
 },
 {
 "time": "2020-04-25",
-"cases": 205905,
+"cases": 223759,
 "deaths": 22902,
 "hospitalized": null,
 "icu": null,
@@ -190200,7 +192917,7 @@
 },
 {
 "time": "2020-04-26",
-"cases": 207634,
+"cases": 226629,
 "deaths": 23190,
 "hospitalized": null,
 "icu": null,
@@ -190208,8 +192925,8 @@
 },
 {
 "time": "2020-04-27",
-"cases": 209465,
-"deaths": 23190,
+"cases": 229422,
+"deaths": 23521,
 "hospitalized": null,
 "icu": null,
 "recovered": 100875
@@ -190221,6 +192938,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": 102548
+},
+{
+"time": "2020-04-29",
+"cases": 236108,
+"deaths": 24275,
+"hospitalized": null,
+"icu": null,
+"recovered": 108947
 }
 ]
 },
@@ -191114,6 +193839,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 619,
+"deaths": 7,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -191487,6 +194220,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 318,
+"deaths": 25,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -191807,6 +194548,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 10,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 10,
 "deaths": 1,
 "hospitalized": null,
@@ -192777,6 +195526,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 19621,
+"deaths": 2355,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -193742,6 +196499,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 29181,
+"deaths": 1379,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -194038,6 +196803,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 43,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 43,
 "deaths": 3,
 "hospitalized": null,
@@ -194992,6 +197765,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 429,
+"deaths": 6,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -195337,6 +198118,14 @@
 {
 "time": "2020-04-28",
 "cases": 300,
+"deaths": 10,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 306,
 "deaths": 10,
 "hospitalized": null,
 "icu": null,
@@ -196250,6 +199039,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 2938,
+"deaths": 54,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -196554,6 +199351,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 24,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 24,
 "deaths": 0,
 "hospitalized": null,
@@ -196927,6 +199732,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 99,
+"deaths": 6,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 99,
 "deaths": 6,
 "hospitalized": null,
@@ -197308,6 +200121,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 116,
+"deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 116,
 "deaths": 8,
 "hospitalized": null,
@@ -197726,6 +200547,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 975,
+"deaths": 40,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -198099,6 +200928,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 114653,
+"deaths": 2992,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -198379,6 +201216,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 12,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 12,
 "deaths": 1,
 "hospitalized": null,
@@ -198802,6 +201647,14 @@
 "time": "2020-04-27",
 "cases": 6499,
 "deaths": 222,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 6687,
+"deaths": 242,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -199234,6 +202087,14 @@
 "hospitalized": 10,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 351,
+"deaths": 9,
+"hospitalized": 16,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -199578,6 +202439,14 @@
 },
 {
 "time": "2020-04-27",
+"cases": 0,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
 "cases": 0,
 "deaths": 0,
 "hospitalized": null,
@@ -200028,6 +202897,14 @@
 "hospitalized": 647,
 "icu": 328,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 6948,
+"deaths": 293,
+"hospitalized": 737,
+"icu": 303,
+"recovered": null
 }
 ]
 },
@@ -200455,6 +203332,14 @@
 "cases": 3017,
 "deaths": 50,
 "hospitalized": 109,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 3111,
+"deaths": 52,
+"hospitalized": 104,
 "icu": null,
 "recovered": null
 }
@@ -200902,6 +203787,14 @@
 "hospitalized": 4878,
 "icu": 1499,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 45031,
+"deaths": 1809,
+"hospitalized": 4983,
+"icu": 1485,
+"recovered": null
 }
 ]
 },
@@ -201339,6 +204232,14 @@
 "hospitalized": 1007,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 13879,
+"deaths": 706,
+"hospitalized": 994,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -201758,6 +204659,14 @@
 "cases": 25269,
 "deaths": 1998,
 "hospitalized": 1758,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 26312,
+"deaths": 2089,
+"hospitalized": 1732,
 "icu": null,
 "recovered": null
 }
@@ -202187,6 +205096,14 @@
 "cases": 4162,
 "deaths": 125,
 "hospitalized": 325,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 4575,
+"deaths": 137,
+"hospitalized": 337,
 "icu": null,
 "recovered": null
 }
@@ -202624,6 +205541,14 @@
 "cases": 3892,
 "deaths": 185,
 "hospitalized": 402,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 3994,
+"deaths": 190,
+"hospitalized": null,
 "icu": null,
 "recovered": null
 }
@@ -203068,6 +205993,14 @@
 "time": "2020-04-27",
 "cases": 32138,
 "deaths": 1101,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 32846,
+"deaths": 1154,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -203516,6 +206449,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 24615,
+"deaths": 1026,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -203861,6 +206802,14 @@
 {
 "time": "2020-04-27",
 "cases": 144,
+"deaths": 5,
+"hospitalized": 3,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 145,
 "deaths": 5,
 "hospitalized": 3,
 "icu": null,
@@ -204286,6 +207235,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 607,
+"deaths": 16,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -204704,6 +207661,14 @@
 "time": "2020-04-27",
 "cases": 1897,
 "deaths": 56,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 1917,
+"deaths": 58,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -205152,6 +208117,14 @@
 "hospitalized": 4672,
 "icu": 1249,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 48102,
+"deaths": 2125,
+"hospitalized": 4738,
+"icu": 1245,
+"recovered": null
 }
 ]
 },
@@ -205580,6 +208553,14 @@
 "deaths": 844,
 "hospitalized": 1493,
 "icu": 581,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 16588,
+"deaths": 901,
+"hospitalized": 1518,
+"icu": 546,
 "recovered": null
 }
 ]
@@ -206010,6 +208991,14 @@
 "hospitalized": 300,
 "icu": 100,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 6376,
+"deaths": 136,
+"hospitalized": 304,
+"icu": 98,
+"recovered": null
 }
 ]
 },
@@ -206436,6 +209425,14 @@
 "time": "2020-04-27",
 "cases": 3328,
 "deaths": 120,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 3491,
+"deaths": 124,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -206868,6 +209865,14 @@
 "hospitalized": 308,
 "icu": 166,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 4146,
+"deaths": 213,
+"hospitalized": 313,
+"icu": 165,
+"recovered": null
 }
 ]
 },
@@ -207287,6 +210292,14 @@
 "cases": 27068,
 "deaths": 1670,
 "hospitalized": 1683,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 27286,
+"deaths": 1801,
+"hospitalized": 1666,
 "icu": null,
 "recovered": null
 }
@@ -207709,6 +210722,14 @@
 "deaths": 51,
 "hospitalized": 39,
 "icu": 16,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 1040,
+"deaths": 51,
+"hospitalized": 33,
+"icu": 17,
 "recovered": null
 }
 ]
@@ -208147,6 +211168,14 @@
 "hospitalized": 1513,
 "icu": 535,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 20113,
+"deaths": 1016,
+"hospitalized": 1528,
+"icu": 551,
+"recovered": null
 }
 ]
 },
@@ -208527,6 +211556,14 @@
 "deaths": 3003,
 "hospitalized": 3892,
 "icu": 1089,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 58302,
+"deaths": 3153,
+"hospitalized": 3875,
+"icu": 1005,
 "recovered": null
 }
 ]
@@ -208997,6 +212034,14 @@
 "hospitalized": 2667,
 "icu": 1059,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 39262,
+"deaths": 3567,
+"hospitalized": 2623,
+"icu": 1027,
+"recovered": null
 }
 ]
 },
@@ -209426,6 +212471,14 @@
 "hospitalized": 292,
 "icu": 122,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 4181,
+"deaths": 301,
+"hospitalized": 314,
+"icu": 120,
+"recovered": null
 }
 ]
 },
@@ -209846,6 +212899,14 @@
 "deaths": 229,
 "hospitalized": 590,
 "icu": 142,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 6342,
+"deaths": 239,
+"hospitalized": 639,
+"icu": 162,
 "recovered": null
 }
 ]
@@ -210268,6 +213329,14 @@
 "hospitalized": 679,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 7303,
+"deaths": 314,
+"hospitalized": 655,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -210687,6 +213756,14 @@
 "cases": 449,
 "deaths": 14,
 "hospitalized": 11,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 451,
+"deaths": 15,
+"hospitalized": 10,
 "icu": null,
 "recovered": null
 }
@@ -211126,6 +214203,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 3358,
+"deaths": 55,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -211560,6 +214645,14 @@
 "time": "2020-04-27",
 "cases": 4690,
 "deaths": 206,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 4805,
+"deaths": 219,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -212008,6 +215101,14 @@
 "hospitalized": 101,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 1938,
+"deaths": 60,
+"hospitalized": 99,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -212445,6 +215546,14 @@
 "hospitalized": 6407,
 "icu": 1801,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 113856,
+"deaths": 6442,
+"hospitalized": 6476,
+"icu": 1809,
+"recovered": null
 }
 ]
 },
@@ -212874,6 +215983,14 @@
 "hospitalized": 148,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 2823,
+"deaths": 104,
+"hospitalized": 155,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -212988,7 +216105,7 @@
 "time": "2020-03-17",
 "cases": 1700,
 "deaths": 7,
-"hospitalized": null,
+"hospitalized": 325,
 "icu": null,
 "recovered": null
 },
@@ -212996,7 +216113,7 @@
 "time": "2020-03-18",
 "cases": 2382,
 "deaths": 12,
-"hospitalized": null,
+"hospitalized": 416,
 "icu": null,
 "recovered": null
 },
@@ -213004,7 +216121,7 @@
 "time": "2020-03-19",
 "cases": 4152,
 "deaths": 12,
-"hospitalized": null,
+"hospitalized": 617,
 "icu": null,
 "recovered": null
 },
@@ -213012,7 +216129,7 @@
 "time": "2020-03-20",
 "cases": 7102,
 "deaths": 35,
-"hospitalized": null,
+"hospitalized": 1042,
 "icu": null,
 "recovered": null
 },
@@ -213020,7 +216137,7 @@
 "time": "2020-03-21",
 "cases": 10356,
 "deaths": 44,
-"hospitalized": null,
+"hospitalized": 1436,
 "icu": null,
 "recovered": null
 },
@@ -213028,7 +216145,7 @@
 "time": "2020-03-22",
 "cases": 15168,
 "deaths": 114,
-"hospitalized": null,
+"hospitalized": 2043,
 "icu": null,
 "recovered": null
 },
@@ -213036,7 +216153,7 @@
 "time": "2020-03-23",
 "cases": 20875,
 "deaths": 114,
-"hospitalized": null,
+"hospitalized": 2629,
 "icu": null,
 "recovered": null
 },
@@ -213044,7 +216161,7 @@
 "time": "2020-03-24",
 "cases": 25665,
 "deaths": 210,
-"hospitalized": null,
+"hospitalized": 3343,
 "icu": null,
 "recovered": null
 },
@@ -213052,7 +216169,7 @@
 "time": "2020-03-25",
 "cases": 30811,
 "deaths": 285,
-"hospitalized": null,
+"hospitalized": 4079,
 "icu": null,
 "recovered": null
 },
@@ -213220,7 +216337,7 @@
 "time": "2020-04-15",
 "cases": 213779,
 "deaths": 11586,
-"hospitalized": 18697,
+"hospitalized": 18535,
 "icu": 5225,
 "recovered": null
 },
@@ -213236,7 +216353,7 @@
 "time": "2020-04-17",
 "cases": 229642,
 "deaths": 12822,
-"hospitalized": 17156,
+"hospitalized": 17116,
 "icu": 5059,
 "recovered": null
 },
@@ -213268,7 +216385,7 @@
 "time": "2020-04-21",
 "cases": 251690,
 "deaths": 14828,
-"hospitalized": 16076,
+"hospitalized": 16044,
 "icu": 5016,
 "recovered": null
 },
@@ -213308,7 +216425,7 @@
 "time": "2020-04-26",
 "cases": 288045,
 "deaths": 16966,
-"hospitalized": 12819,
+"hospitalized": 12839,
 "icu": 5016,
 "recovered": null
 },
@@ -213317,6 +216434,14 @@
 "cases": 291996,
 "deaths": 17303,
 "hospitalized": 12819,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 295106,
+"deaths": 17638,
+"hospitalized": 12645,
 "icu": null,
 "recovered": null
 }
@@ -213764,6 +216889,14 @@
 "hospitalized": 473,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 9568,
+"deaths": 342,
+"hospitalized": 463,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -214185,6 +217318,14 @@
 "hospitalized": 23,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 991,
+"deaths": 19,
+"hospitalized": 25,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -214529,6 +217670,14 @@
 },
 {
 "time": "2020-04-27",
+"cases": 14,
+"deaths": 2,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
 "cases": 14,
 "deaths": 2,
 "hospitalized": null,
@@ -214971,6 +218120,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 16128,
+"deaths": 799,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -215391,6 +218548,14 @@
 "deaths": 197,
 "hospitalized": 306,
 "icu": 150,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 3410,
+"deaths": 207,
+"hospitalized": 288,
+"icu": 118,
 "recovered": null
 }
 ]
@@ -215837,6 +219002,14 @@
 "hospitalized": 249,
 "icu": 71,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 2354,
+"deaths": 92,
+"hospitalized": 249,
+"icu": 71,
+"recovered": null
 }
 ]
 },
@@ -216266,6 +219439,14 @@
 "hospitalized": 2800,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 43264,
+"deaths": 1716,
+"hospitalized": 2781,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -216612,6 +219793,14 @@
 "time": "2020-04-27",
 "cases": 1389,
 "deaths": 84,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 1400,
+"deaths": 86,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -217084,6 +220273,14 @@
 "hospitalized": 266,
 "icu": 81,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 7926,
+"deaths": 239,
+"hospitalized": 266,
+"icu": 84,
+"recovered": null
 }
 ]
 },
@@ -217529,6 +220726,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 5613,
+"deaths": 177,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -217948,6 +221153,14 @@
 "cases": 2245,
 "deaths": 11,
 "hospitalized": 61,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 2313,
+"deaths": 11,
+"hospitalized": 69,
 "icu": null,
 "recovered": null
 }
@@ -218384,6 +221597,14 @@
 "time": "2020-04-27",
 "cases": 9918,
 "deaths": 184,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 10052,
+"deaths": 188,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -218832,6 +222053,14 @@
 "hospitalized": 1563,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 26171,
+"deaths": 690,
+"hospitalized": 1682,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -219250,6 +222479,14 @@
 "time": "2020-04-27",
 "cases": 4233,
 "deaths": 41,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 4343,
+"deaths": 45,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -219682,6 +222919,14 @@
 "hospitalized": 33,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 862,
+"deaths": 47,
+"hospitalized": 29,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -220026,6 +223271,14 @@
 },
 {
 "time": "2020-04-27",
+"cases": 59,
+"deaths": 4,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-28",
 "cases": 59,
 "deaths": 4,
 "hospitalized": null,
@@ -220467,6 +223720,14 @@
 "deaths": 458,
 "hospitalized": 1455,
 "icu": 389,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 13794,
+"deaths": 492,
+"hospitalized": 1508,
+"icu": 376,
 "recovered": null
 }
 ]
@@ -221249,6 +224510,14 @@
 "hospitalized": 536,
 "icu": 115,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 13686,
+"deaths": 765,
+"hospitalized": 436,
+"icu": 158,
+"recovered": null
 }
 ]
 },
@@ -221677,6 +224946,14 @@
 "deaths": 36,
 "hospitalized": 100,
 "icu": 38,
+"recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 1079,
+"deaths": 37,
+"hospitalized": 87,
+"icu": 28,
 "recovered": null
 }
 ]
@@ -222123,6 +225400,14 @@
 "hospitalized": 337,
 "icu": 124,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 6289,
+"deaths": 300,
+"hospitalized": 544,
+"icu": 123,
+"recovered": null
 }
 ]
 },
@@ -222544,6 +225829,14 @@
 "hospitalized": 16,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-28",
+"cases": 389,
+"deaths": 7,
+"hospitalized": 16,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -222848,6 +226141,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 79,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 79,
 "deaths": 0,
 "hospitalized": null,
@@ -223223,6 +226524,14 @@
 "time": "2020-04-28",
 "cases": 9009,
 "deaths": 220,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 9410,
+"deaths": 239,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -224140,6 +227449,14 @@
 "time": "2020-04-28",
 "cases": 10839,
 "deaths": 82,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 11380,
+"deaths": 89,
 "hospitalized": null,
 "icu": null,
 "recovered": null
@@ -225108,6 +228425,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 161145,
+"deaths": 21678,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -226073,6 +229398,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1012583,
+"deaths": 58355,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -226438,6 +229771,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 625,
+"deaths": 15,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -226791,6 +230132,14 @@
 {
 "time": "2020-04-28",
 "cases": 1904,
+"deaths": 8,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 1939,
 "deaths": 8,
 "hospitalized": null,
 "icu": null,
@@ -227155,6 +230504,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 329,
+"deaths": 10,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 329,
 "deaths": 10,
 "hospitalized": null,
@@ -228093,6 +231450,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 270,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -228357,6 +231722,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 6,
+"deaths": 1,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 6,
 "deaths": 1,
 "hospitalized": null,
@@ -228647,6 +232020,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 59,
+"deaths": 4,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -228671,6 +232052,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 6,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 6,
 "deaths": 0,
 "hospitalized": null,
@@ -228828,6 +232217,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 1,
+"deaths": 0,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 1,
 "deaths": 0,
 "hospitalized": null,
@@ -229166,6 +232563,14 @@
 "hospitalized": null,
 "icu": null,
 "recovered": null
+},
+{
+"time": "2020-04-29",
+"cases": 95,
+"deaths": 3,
+"hospitalized": null,
+"icu": null,
+"recovered": null
 }
 ]
 },
@@ -229478,6 +232883,14 @@
 },
 {
 "time": "2020-04-28",
+"cases": 32,
+"deaths": 4,
+"hospitalized": null,
+"icu": null,
+"recovered": null
+},
+{
+"time": "2020-04-29",
 "cases": 32,
 "deaths": 4,
 "hospitalized": null,
