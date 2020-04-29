@@ -11,7 +11,7 @@ sys.path.append('..')
 
 import generated.types as schema
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from scipy.stats import linregress
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS, SCHEMA_SCENARIOS
 from scripts.tsv import parse as parse_tsv
@@ -255,7 +255,7 @@ def set_mitigation(cases, scenario):
                 name=name,
                 tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
                 id=uuid4(),
-                tMax=scenario.simulation.simulation_time_range.t_max,
+                tMax=scenario.simulation.simulation_time_range.t_max + timedelta(1),
                 color=mitigation_colors.get(name, "#cccccc"),
                 mitigationValue=report_errors(round(100*val))))
 
