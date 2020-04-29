@@ -96,6 +96,14 @@ def get_Re_guess(time, cases, step=7, extremal_points=7):
             "R0_by_day": R0_by_day,
             "R0_smoothed": smooth(R0_by_day)}
 
+def combine_fits(fits, drop_shift=10):
+    test1 = np.abs(fits[Sub.T][0] - fits[Sub.D][0]) / (0.5*(fits[Sub.T][0] + fits[Sub.D][0])) < 0.4
+    test2 = np.abs(fits[Sub.T][1] - fits[Sub.D][1]) / (0.5*(fits[Sub.T][1] + fits[Sub.D][1])) < 0.3
+    test3 = np.abs((fits[Sub.D][2]-drop_shift) - fits[Sub.T][2]) < drop_shift//2 + 1
+    print(test1, test2, test3)
+    print(fits[Sub.D][2]-drop_shift - fits[Sub.T][2])
+    #TODO
+
 def get_R0_comparison(country_list):
     lags = []
     rdiffs_o = []
@@ -127,43 +135,44 @@ if __name__ == "__main__":
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    # country_list = ["CHE-Zürich"]
+    country_list = ["Germany"]
     # country_list = ["Germany", "Switzerland", "Italy"]
-    country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium",
-    "United Kingdom of Great Britain and Northern Ireland", "CHE-Zürich", "CHE-Basel-Stadt",
-    "CHE-Geneva", "CHE-Valais", "CHE-Ticino", "USA-California", "USA-New York", "USA-New Jersey"]
+    # country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium",
+    # "United Kingdom of Great Britain and Northern Ireland", "CHE-Zürich", "CHE-Basel-Stadt",
+    # "CHE-Geneva", "CHE-Valais", "CHE-Ticino", "USA-California", "USA-New York", "USA-New Jersey"]
 
-    # for ci, c in enumerate(country_list):
-    #     time, data = load_data(c, case_counts[c])
-    #     res = get_Re_guess(time, data, extremal_points=10)
-    #     fits = res["fits"]
-    #     R0_by_day = res["R0_by_day"]
-    #     R0_smoothed = res["R0_smoothed"]
-    #     dates = [datetime.fromordinal(x) for x in time]
-    #
-    #     for ee, ii in enumerate([Sub.T, Sub.D]):
-    #         if data[ii] is not None:
-    #             plt.figure(1)
-    #             # plt.plot(dates, R0_smoothed[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
-    #             plt.plot(dates, R0_by_day[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
-    #             plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{2*ci+ee}")
-    #
-    #             plt.figure(2)
-    #             plt.plot(dates, res['diff_data'][ii], '--', label=f"{c} {ii}", c=f"C{2*ci+ee}")
-    #             plt.plot(dates, res['diff_data_smoothed'][ii] , label=f"{c} {ii}", c=f"C{2*ci+ee}")
-    #
-    #
-    # plt.figure(1)
-    # plt.ylabel("R0")
-    # plt.xlabel("Time [days]")
-    # plt.legend(loc="best")
-    # plt.savefig("Stair_fit", format="png")
-    #
-    # plt.figure(2)
-    # plt.title("New cases per day")
-    # plt.legend()
-    # plt.grid()
-    #
-    # plt.show()
+    for ci, c in enumerate(country_list):
+        time, data = load_data(c, case_counts[c])
+        res = get_Re_guess(time, data, extremal_points=10)
+        fits = res["fits"]
+        R0_by_day = res["R0_by_day"]
+        R0_smoothed = res["R0_smoothed"]
+        dates = [datetime.fromordinal(x) for x in time]
+        combine_fits(fits)
 
-    get_R0_comparison(country_list)
+        for ee, ii in enumerate([Sub.T, Sub.D]):
+            if data[ii] is not None:
+                plt.figure(1)
+                # plt.plot(dates, R0_smoothed[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
+                plt.plot(dates, R0_by_day[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
+                plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{2*ci+ee}")
+
+                plt.figure(2)
+                plt.plot(dates, res['diff_data'][ii], '--', label=f"{c} {ii}", c=f"C{2*ci+ee}")
+                plt.plot(dates, res['diff_data_smoothed'][ii] , label=f"{c} {ii}", c=f"C{2*ci+ee}")
+
+
+    plt.figure(1)
+    plt.ylabel("R0")
+    plt.xlabel("Time [days]")
+    plt.legend(loc="best")
+    plt.savefig("Stair_fit", format="png")
+
+    plt.figure(2)
+    plt.title("New cases per day")
+    plt.legend()
+    plt.grid()
+
+    plt.show()
+    #
+    # get_R0_comparison(country_list)
