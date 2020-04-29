@@ -82,6 +82,15 @@ exploration of parameters._
 
 ---
 
+**Q:** What do the parameter ranges correspond to?
+
+**A:** _Parameter ranges allow the user to specify the distribution of possible values. We assume a uniform prior, i.e. 
+any value within the range has an equal probability of being chosen. The model is then run from a Monte Carlo sampling from
+all specified parameter ranges for user tunable number of samples. The median trajectory, as well as the 20% and 80% percentiles
+are displayed as the shaded uncertainty region._
+
+---
+
 **Q:** Why do the curves sometimes have strange kinks?
 
 **A:** _The curves show the median of a number simulations sampled from the parameter ranges. If the simulations
@@ -90,9 +99,17 @@ resulting in a kink._
 
 ---
 
-**Q:** How do I get rid of the uncertainty bands?
+**Q:** What is a good number of simulations to run?
+
+**A:** _We chose 10 as the default as this is a good balance between sufficient sampling and maintaining interactivity.
+Once you find a set of parameters that you find reasonable, we suggest to increase the number to more accurately capture
+the statistics._
+
+---
+
+**Q:** Can I run a simulation with no uncertainty?
 
 **A:** _If you set the lower and upper bounds of each parameter to the same value, you'll only get one curve
-and no uncertainty bands._
+and no uncertainty bands. In this case the number of simulation runs is ignored._
 
 </Container>

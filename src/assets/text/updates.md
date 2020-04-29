@@ -14,17 +14,14 @@ two types of reasons
 We realize this can be confusing, but in this evolving situation, this is difficult to avoid. We try to summarize the
 most significant model changes below.
 
-
 ### 2020-04-29: Allow for parameter uncertainty
 
-Since release 1.2.0, parameters that affect the growth rate (R0 and the interventions) are specified as range.
-Simulation results are very sensitive to these parameters and we wanted to make this clear. 
-Instead of one number, the user now has to specify two numbers that indicated the lower and upper plausible range
-of the parameter. The model will then sample a number of combinations of the parameters, each uniformly from the 
-range, and run multiple simulations. The results graph show the median and a shaded area indicating the
-20th and 80th percentile. By setting upper and lower ranges of a parameter to the same value, the sampling from
-uncertainty can be switched off.
-
+Since release 1.2.0, parameters that affect the growth rate (R0 and the mitigation efficacy) are specified as ranges.
+Simulation results are very sensitive to these parameters and we wanted to make this clear. Instead of one number, the
+user now has to specify two numbers that indicated the plausible lower and upper values of the parameter. The model will
+then randomly sample a number of combinations of the parameters, each uniformly from the range and run multiple
+simulations. The results graph show the median and a shaded area indicating the 20th and 80th percentile. By setting
+upper and lower ranges of a parameter to the same value, the simulation will revert back to its previous version.
 
 ### 2020-04-06: Scenario parameters estimated from data
 
