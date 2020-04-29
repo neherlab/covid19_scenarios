@@ -39,7 +39,7 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
                 are gathering this information at the moment. For the time being please adjust, add, and remove to match
                 your community.
               </p>
-              <p>Each measure consists of name, start/end date, and an effectiveness in %.</p>
+              <p>Each measure consists of name, start/end date, and a lower/upper bound on effectiveness in %.</p>
 
               <Table>
                 <thead>
