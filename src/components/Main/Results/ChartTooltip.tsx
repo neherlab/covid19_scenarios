@@ -1,8 +1,8 @@
 import React from 'react'
-import { TooltipProps } from 'recharts'
+import { TooltipProps, TooltipPayload } from 'recharts'
 
 import { colors } from './ChartCommon'
-import { ResponsiveTooltipContent, TooltipItem, TooltipPayload } from './ResponsiveTooltipContent'
+import { ResponsiveTooltipContent, TooltipItem } from './ResponsiveTooltipContent'
 
 import './ResponsiveTooltipContent.scss'
 
