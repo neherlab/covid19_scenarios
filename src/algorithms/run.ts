@@ -16,7 +16,7 @@ export interface RunParams {
 export async function run({ params, severity, ageDistribution }: RunParams): Promise<AlgorithmResult> {
   const tMin: number = new Date(params.simulationTimeRange.begin).getTime()
   const tMax: number = new Date(params.simulationTimeRange.end).getTime()
-  const ageGroups = Object.keys(ageDistribution)
+  const ageGroups = ageDistribution.map((d) => d.ageGroup)
   const initialCases = params.initialNumberOfCases
 
   const modelParamsArray = getPopulationParams(params, severity, ageDistribution)
