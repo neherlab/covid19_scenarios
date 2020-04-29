@@ -109,8 +109,8 @@ class Fitter:
 # ------------------------------------------------------------------------
 # Parameter class constructors (with defaults)
 
-def report_errors(x):
-    return [float(max(1, round(alpha*x, 2))) for alpha in [.9, 1.1]]
+def report_errors(x, min_val=0, max_val=None):
+    return [float(min(max_val, max(min_val, round(alpha*x, 2)))) for alpha in [.9, 1.1]]
 
 class DateRange(schema.DateRange):
     def __init__(self, tMin, tMax):
@@ -162,7 +162,7 @@ class EpidemiologicalParams(schema.EpidemiologicalData):
                 length_icu_stay = default["lengthICUStay"],
                 overflow_severity = default["overflowSeverity"],
                 peak_month = default["peakMonth"],
-                r0 = report_errors(FIT_CASE_DATA[region]['r0'] if region in FIT_CASE_DATA else default["r0"]),
+                r0 = report_errors(FIT_CASE_DATA[region]['r0'] if region in FIT_CASE_DATA else default["r0"], 1, 6),
                 seasonal_forcing = default["seasonalForcing"])
 
 class ContainmentParams(schema.ContainmentData):
@@ -280,7 +280,7 @@ def set_mitigation(cases, scenario, fit_params):
             id=uuid4(),
             tMax=scenario.simulation.simulation_time_range.t_max,
             color=mitigation_colors.get(name, "#cccccc"),
-            mitigationValue=report_errors(round(100*fit_params['efficacy']))))
+            mitigationValue=report_errors(round(100*fit_params['efficacy']), 0, 100)))
     else:
         case_counts = np.array([c['cases'] for c in valid_cases])
         levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served),10000))[0]
@@ -300,7 +300,7 @@ def set_mitigation(cases, scenario, fit_params):
                     id=uuid4(),
                     tMax=scenario.simulation.simulation_time_range.t_max,
                     color=mitigation_colors.get(name, "#cccccc"),
-                    mitigationValue=report_errors(round(100*val))))
+                    mitigationValue=report_errors(round(100*val), 0, 100)))
 
 
 # ------------------------------------------------------------------------

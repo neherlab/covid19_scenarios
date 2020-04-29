@@ -80,7 +80,7 @@ export interface ModelParams {
 }
 
 export interface UserResult {
-  mean: ExportedTimePoint[]
+  middle: ExportedTimePoint[]
   lower: ExportedTimePoint[]
   upper: ExportedTimePoint[]
   percentile: Record<number, ExportedTimePoint[]>

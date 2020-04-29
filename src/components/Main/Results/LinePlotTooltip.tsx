@@ -11,9 +11,12 @@ interface LinePlotItem extends TooltipItem {
   displayUndefinedAs: string | number
 }
 
-export interface LinePlotTooltipProps extends TooltipProps {
+export interface R0PlotTooltipProps extends TooltipProps {
   valueFormatter: (value: number | string) => string
   itemsToDisplay?: string[]
+}
+
+export interface LinePlotTooltipProps extends R0PlotTooltipProps {
   deltaCaseDays: number
 }
 
@@ -75,11 +78,11 @@ export function LinePlotTooltip({
           value: valueFormatter ? valueFormatter(value) : value,
           lower:
             tooltipItem.name in uncertainty && typeof value === 'number'
-              ? valueFormatter(Math.abs(value - uncertainty[tooltipItem.name][0]))
+              ? valueFormatter(uncertainty[tooltipItem.name][0])
               : undefined,
           upper:
             tooltipItem.name in uncertainty && typeof value === 'number'
-              ? valueFormatter(Math.abs(uncertainty[tooltipItem.name][1] - value))
+              ? valueFormatter(uncertainty[tooltipItem.name][1])
               : undefined,
         }
       },
@@ -87,4 +90,36 @@ export function LinePlotTooltip({
     .filter((tooltipItem) => (tooltipItem.name ? !tooltipItem.name.includes('uncertainty') : true))
 
   return <ResponsiveTooltipContent formattedLabel={formattedLabel} tooltipItems={tooltipItems} />
+}
+
+function round(value: number): number {
+  return Math.round(100 * value) / 100
+}
+
+export function R0PlotTooltip({
+  active,
+  payload,
+  label,
+  valueFormatter,
+  labelFormatter,
+  itemsToDisplay,
+}: R0PlotTooltipProps) {
+  if (!active || !label || !payload || !itemsToDisplay || payload.length <= 2) {
+    // The tooltip gets some odd payloads intermittently
+    // https://github.com/neherlab/covid19_scenarios/issues/234#issuecomment-611279609
+    return null
+  }
+  const formattedLabel = labelFormatter ? labelFormatter(label) : label
+  const datum = payload.filter((elt) => typeof elt.dataKey === 'string' && itemsToDisplay.includes(elt.dataKey))[0]
+
+  const tooltipItem: TooltipItem = {
+    key: 'r0',
+    name: 'effective reproductive number',
+    color: datum.color || '#883322',
+    value: valueFormatter ? valueFormatter(round(datum.payload.median)) : round(datum.payload.median),
+    lower: valueFormatter ? valueFormatter(round(datum.payload.range[0])) : round(datum.payload.range[0]),
+    upper: valueFormatter ? valueFormatter(round(datum.payload.range[1])) : round(datum.payload.range[1]),
+  }
+
+  return <ResponsiveTooltipContent formattedLabel={formattedLabel} tooltipItems={[tooltipItem]} />
 }

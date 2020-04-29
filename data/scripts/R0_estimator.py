@@ -7,7 +7,7 @@ from scipy.signal import savgol_filter
 from scipy import optimize
 from enum import IntEnum
 import copy
-from mapping import R0s_mapping, GR_mapping
+from scripts.mapping import R0s_mapping, GR_mapping
 
 compartments = ['S', 'E1', 'E2', 'E3', 'I', 'H', 'C', 'D', 'R', 'T', 'NUM']
 Sub = IntEnum('Sub', compartments, start=0)
