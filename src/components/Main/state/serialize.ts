@@ -58,7 +58,7 @@ export const URL_ENCODERS = new Map<string, UrlEncoders>(
   }),
 )
 
-export const URL_ENCODER_VERSIONS = [...URL_ENCODERS.keys()].sort()
+export const URL_ENCODER_VERSIONS = Array.from(URL_ENCODERS.keys()).sort()
 export const URL_ENCODER_VERSION_LATEST = last(URL_ENCODER_VERSIONS) ?? '1'
 export const URL_ENCODER_LATEST = URL_ENCODERS.get(URL_ENCODER_VERSION_LATEST) ?? urlv1
 

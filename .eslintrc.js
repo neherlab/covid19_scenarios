@@ -129,6 +129,7 @@ module.exports = {
     'unicorn/no-abusive-eslint-disable': 'warn',
     'unicorn/no-zero-fractions': 'off',
     'unicorn/prefer-query-selector': 'off',
+    'unicorn/prefer-spread': 'off',
     'unicorn/prevent-abbreviations': 'off',
 
     'lines-between-class-members': ['warn', 'always', { exceptAfterSingleLine: true }],
