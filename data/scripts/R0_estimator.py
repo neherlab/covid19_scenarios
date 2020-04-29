@@ -13,7 +13,7 @@ compartments = ['S', 'E1', 'E2', 'E3', 'I', 'H', 'C', 'D', 'R', 'T', 'NUM']
 Sub = IntEnum('Sub', compartments, start=0)
 
 def empty_data_list():
-    return [np.array([]) if (i == Sub.D or i == Sub.T or i == Sub.H or i == Sub.C) else None for i in range(Sub.NUM)]
+    return [np.array([]) if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
 
 def smooth(data):
     # Uses a savgol_filter over the data ignoring the nan values. Just doing the fit removes each point where
@@ -27,7 +27,7 @@ def smooth(data):
 
 def growth_rate_to_R0(data, serial_interval=6):
     R0_by_day = empty_data_list()
-    for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
+    for ii in [Sub.T, Sub.D]:
         if data[ii] is not None:
             R0_by_day[ii] = np.ma.array(np.interp(data[ii], GR_mapping, R0s_mapping))
             R0_by_day[ii].mask = np.isnan(R0_by_day[ii])
@@ -37,23 +37,18 @@ def growth_rate_to_R0(data, serial_interval=6):
 
 def get_daily_counts(data):
     diff_data = empty_data_list()
-    for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
+    for ii in [Sub.T, Sub.D]:
         if data[ii] is not None:
-            if ii in [Sub.T, Sub.D]:
-                diff_data[ii] = np.ma.array(np.concatenate(([np.nan],np.diff(data[ii]))))
-                diff_data[ii][diff_data[ii]==0] = np.nan
-                diff_data[ii].mask = np.isnan(diff_data[ii])
-            elif ii in [Sub.H, Sub.C]:
-                diff_data[ii] = np.ma.array(data[ii])
-                diff_data[ii][diff_data[ii]==0] = np.nan
-                diff_data[ii].mask = np.isnan(diff_data[ii])
+            diff_data[ii] = np.ma.array(np.concatenate(([np.nan],np.diff(data[ii]))))
+            diff_data[ii][diff_data[ii]==0] = np.nan
+            diff_data[ii].mask = np.isnan(diff_data[ii])
         else:
             diff_data[ii] = None
     return diff_data
 
 def get_growth_rate(data, step=7):
     log_diff = empty_data_list()
-    for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
+    for ii in [Sub.T, Sub.D]:
         if data[ii] is not None:
             log_diff[ii] = (np.ma.log(data[ii][step:]) - np.ma.log(data[ii][:-step]))/step
             nans = np.ma.repeat(np.nan, step)
@@ -105,10 +100,8 @@ if __name__ == "__main__":
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    step = 7
-    smoothing = 4
-    country_list = ["Switzerland"]
-    # country_list = ["Germany", "Switzerland", "Italy"]
+    # country_list = ["France"]
+    country_list = ["Germany", "Switzerland", "Italy"]
     # country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
 
     for ci, c in enumerate(country_list):
@@ -119,15 +112,15 @@ if __name__ == "__main__":
         R0_smoothed = res["R0_smoothed"]
         dates = [datetime.fromordinal(x) for x in time]
 
-        for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
+        for ee, ii in enumerate([Sub.T, Sub.D]):
             if data[ii] is not None:
                 plt.figure(1)
                 # plt.plot(dates, R0_by_day[ii], '--', label=f"{c}", c=f"C{ii}")
-                plt.plot(dates, R0_smoothed[ii], c=f"C{ii}")
-                plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{ii}")
+                plt.plot(dates, R0_smoothed[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
+                plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{2*ci+ee}")
 
                 plt.figure(2)
-                plt.plot(dates, res['diff_data'][ii], label=f"data {ii}", c=f"C{ii}")
+                plt.plot(dates, res['diff_data'][ii], label=f"{c} {ii}", c=f"C{2*ci+ee}")
 
 
     plt.figure(1)
