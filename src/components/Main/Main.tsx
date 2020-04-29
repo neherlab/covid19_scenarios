@@ -14,7 +14,7 @@ import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
 import { schema } from './validation/schema'
 import { getCaseCountsData } from './state/getCaseCounts'
-import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
+import { setMitigationData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
 import { State } from './state/state'
 
@@ -128,7 +128,7 @@ function Main({ initialState }: InitialStateComponentProps) {
         // NOTE: deep object comparison!
         if (!isEqual(scenarioState.data.mitigation, validParams.mitigation)) {
           const mitigationIntervals = map(validParams.mitigation.mitigationIntervals, cloneDeep)
-          scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
+          scenarioDispatch(setMitigationData({ data: { mitigationIntervals } }))
         }
 
         return validParams

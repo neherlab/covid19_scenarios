@@ -246,7 +246,9 @@ function ResultsCardFunction({
         canExport={canExport}
         scenarioUrl={scenarioUrl}
         result={result}
-        params={scenarioData}
+        scenarioState={scenarioState}
+        severity={severity}
+        severityName={severityName}
       />
     </>
   )

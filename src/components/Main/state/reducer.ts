@@ -7,10 +7,11 @@ import immerCase from '../../../state/util/fsaImmerReducer'
 import {
   setPopulationData,
   setEpidemiologicalData,
-  setContainmentData,
+  setMitigationData,
   setSimulationData,
   setScenario,
   setAgeDistributionData,
+  setStateData,
 } from './actions'
 
 import { getScenario } from './getScenario'
@@ -71,7 +72,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   )
 
   .withHandling(
-    immerCase(setContainmentData, (draft, { data }) => {
+    immerCase(setMitigationData, (draft, { data }) => {
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.data.mitigation.mitigationIntervals = _.cloneDeep(data.mitigationIntervals)
@@ -92,5 +93,14 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.current = CUSTOM_SCENARIO_NAME
       draft.ageDistribution = data
       draft.data.population.ageDistributionName = CUSTOM_COUNTRY_NAME
+    }),
+  )
+
+  .withHandling(
+    immerCase(setStateData, (draft, { current, data, ageDistribution }) => {
+      draft.scenarios = maybeAdd(draft.scenarios, current)
+      draft.current = current
+      draft.data = data
+      draft.ageDistribution = ageDistribution
     }),
   )

@@ -9,17 +9,23 @@ import {
   FacebookIcon,
   FacebookShareButton,
 } from 'react-share'
-import { ScenarioDatum } from '../../../algorithms/types/Param.types'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
+
+import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { exportAll, exportScenario, exportResult } from '../../../algorithms/utils/exportResult'
+
 import ClipboardButton from '../../Buttons/ClipboardButton'
+
+import { State } from '../state/state'
 
 export interface ExportSimulationDialogProps {
   canExport: boolean
   showModal: boolean
   toggleShowModal: () => void
   openPrintPreview: () => void
-  params?: ScenarioDatum
+  scenarioState: State
+  severity: SeverityDistributionDatum[]
+  severityName: string
   result?: AlgorithmResult
   scenarioUrl: string
 }
@@ -28,7 +34,9 @@ export default function ExportSimulationDialog({
   showModal,
   toggleShowModal,
   openPrintPreview,
-  params,
+  scenarioState,
+  severity,
+  severityName,
   result,
   scenarioUrl,
 }: ExportSimulationDialogProps) {
@@ -68,8 +76,7 @@ export default function ExportSimulationDialog({
               <td>JSON</td>
               <td>
                 <Button
-                  disabled={!params}
-                  onClick={params ? () => exportParams(params) : undefined}
+                  onClick={() => exportScenario({ scenarioState, severity, severityName })}
                   color="primary"
                   size="sm"
                 >
@@ -84,7 +91,7 @@ export default function ExportSimulationDialog({
               <td>
                 <Button
                   disabled={!(result?.trajectory.middle ?? null)}
-                  onClick={() => result && exportResult(result, 'covid.summary.tsv')}
+                  onClick={() => result && exportResult({ scenarioState, result, detailed: false })}
                   color="primary"
                   size="sm"
                 >
@@ -99,14 +106,7 @@ export default function ExportSimulationDialog({
               <td>
                 <Button
                   disabled={!(result?.trajectory.middle ?? null)}
-                  onClick={() =>
-                    result &&
-                    exportResult(
-                      result,
-                      'covid.allresults.tsv',
-                      Object.keys(result.trajectory.middle[0].current.severe),
-                    )
-                  }
+                  onClick={() => result && exportResult({ scenarioState, result, detailed: true })}
                   color="primary"
                   size="sm"
                 >
@@ -156,8 +156,8 @@ export default function ExportSimulationDialog({
       <ModalFooter>
         <Button
           color="secondary"
-          disabled={!result || !params}
-          onClick={result && params ? () => exportAll(params, result) : undefined}
+          disabled={!result}
+          onClick={() => exportAll({ scenarioState, severity, severityName, result })}
         >
           {t('Download all as zip')}
         </Button>

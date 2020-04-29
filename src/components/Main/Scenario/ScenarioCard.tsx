@@ -60,8 +60,15 @@ function ScenarioCard({
       scenarioDispatch(setScenario({ name: newScenario }))
     }
 
-    return <PresetLoader data={scenarioOptions} onSelect={handleChangeScenario} />
-  }, [scenarioOptions, scenarioDispatch])
+    return (
+      <PresetLoader
+        data={scenarioOptions}
+        onSelect={handleChangeScenario}
+        scenarioDispatch={scenarioDispatch}
+        setSeverity={setSeverity}
+      />
+    )
+  }, [scenarioOptions, scenarioDispatch, setSeverity])
 
   return (
     <CardWithControls

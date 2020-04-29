@@ -4,8 +4,9 @@ import {
   SimulationTimePoint,
   InternalCurrentData,
   InternalCumulativeData,
-  UserResult,
+  Trajectory,
   ExportedTimePoint,
+  AlgorithmResult,
 } from './types/Result.types'
 
 import { msPerDay } from './initialize'
@@ -398,15 +399,29 @@ function title(name: string): string {
   return name === 'critical' ? 'ICU' : name
 }
 
-export function exportSimulation(result: UserResult, ageGroups: string[] = ['total']) {
+export interface SerializeTrajectoryParams {
+  trajectory: Trajectory
+  detailed: boolean
+}
+
+export function serializeTrajectory({ trajectory, detailed }: SerializeTrajectoryParams) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
+  let ageGroups = ['total']
+  if (detailed) {
+    // FIXME: these keys seem to be numbers. This works, but is not what we want to show in the headers
+    const ageGroupsDetailed = Object.keys(trajectory.middle[0].current.severe)
+
+    // FIXME: does detailed include summary or not?
+    ageGroups = [...ageGroups, ...ageGroupsDetailed]
+  }
+
   const categories = {
-    current: keys(result.middle[0].current),
-    cumulative: keys(result.middle[0].cumulative),
+    current: keys(trajectory.middle[0].current),
+    cumulative: keys(trajectory.middle[0].cumulative),
   }
   const header: string[] = ['time']
 
@@ -433,9 +448,9 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
   const tsv = [header.join('\t')]
 
   const seen: Record<string, boolean> = {}
-  const { upper, lower } = result
+  const { upper, lower } = trajectory
 
-  result.middle.forEach((mid, i) => {
+  trajectory.middle.forEach((mid, i) => {
     const t = new Date(mid.time).toISOString().slice(0, 10)
     if (t in seen) {
       return

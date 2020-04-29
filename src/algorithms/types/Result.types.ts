@@ -79,7 +79,7 @@ export interface ModelParams {
   rate: ModelRates
 }
 
-export interface UserResult {
+export interface Trajectory {
   middle: ExportedTimePoint[]
   lower: ExportedTimePoint[]
   upper: ExportedTimePoint[]
@@ -93,6 +93,6 @@ export interface TimeSeriesWithRange {
 }
 
 export interface AlgorithmResult {
-  trajectory: UserResult
+  trajectory: Trajectory
   R0: TimeSeriesWithRange
 }

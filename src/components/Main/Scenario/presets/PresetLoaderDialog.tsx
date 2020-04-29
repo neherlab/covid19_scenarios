@@ -1,18 +1,16 @@
 import React, { useEffect, useState, KeyboardEvent } from 'react'
+
 import { useTranslation } from 'react-i18next'
 import { useDebouncedCallback } from 'use-debounce'
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Table,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-} from 'reactstrap'
+import { Button, Modal, ModalBody, ModalHeader, Table, Input, InputGroup, InputGroupAddon, Col, Row } from 'reactstrap'
+import { MdClear } from 'react-icons/md'
+import type { AnyAction } from 'typescript-fsa'
+
+import type { SeverityDistributionDatum } from '../../../../algorithms/types/Param.types'
+
 import LoadPresetDialogRow, { LoadPresetDialogRecordProps } from './PresetLoaderDialogRow'
+import { ScenarioUploadDialog } from './ScenarioUploadDialog'
+
 import './PresetLoaderDialog.scss'
 
 const DEBOUNCE_DELAY = 500
@@ -22,9 +20,18 @@ export interface LoadPresetDialogProps {
   data: LoadPresetDialogRecordProps[]
   onLoadButtonClick: (id: string) => void
   onClose: () => void
+  setSeverity(severity: SeverityDistributionDatum[]): void
+  scenarioDispatch(action: AnyAction): void
 }
 
-const LoadPresetDialog = ({ data, visible, onLoadButtonClick, onClose }: LoadPresetDialogProps) => {
+const LoadPresetDialog = ({
+  data,
+  visible,
+  onLoadButtonClick,
+  onClose,
+  setSeverity,
+  scenarioDispatch,
+}: LoadPresetDialogProps) => {
   const { t } = useTranslation()
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredRows, setFilteredRows] = useState(data)
@@ -73,55 +80,62 @@ const LoadPresetDialog = ({ data, visible, onLoadButtonClick, onClose }: LoadPre
   // TODO find out how to translate "Showing {0} out of {1} entries"
   return (
     <Modal
-      className="height-fit preset-loader-dialog"
+      className="height-fit"
       centered
-      size="lg"
       isOpen={visible}
       toggle={onClose}
+      fade={false}
+      size="lg"
       data-testid="PresetLoaderDialog"
     >
       <ModalHeader toggle={onClose}>{t('Change scenario')}</ModalHeader>
       <ModalBody>
-        <InputGroup>
-          <Input
-            id="preset-loader-dialog-input"
-            data-testid="PresetLoaderDialogInput"
-            placeholder={t('Search')}
-            onChange={onChange}
-            value={searchTerm}
-            autoComplete="off"
-            onKeyDown={onKeyDown}
-          />
-          <InputGroupAddon addonType="append">
-            <Button
-              color="secondary"
-              data-testid="PresetLoaderDialogClearButton"
-              disabled={searchTerm === ''}
-              onClick={() => {
-                setSearchTerm('')
-                executeFilter('')
-              }}
-            >
-              {t('Clear')}
-            </Button>
-          </InputGroupAddon>
-        </InputGroup>
-        <Table className="preset-loader-dialog-table">
-          <thead>
-            <tr>
-              <th>
-                {t('Showing')} {filteredRows.length} {t('of')} {data.length} {t('entries')}
-              </th>
-            </tr>
-          </thead>
-          <tbody className="preset-loader-dialog-table-body">{rows}</tbody>
-        </Table>
+        <Row noGutters>
+          <Col md={6}>
+            <InputGroup>
+              <Input
+                id="preset-loader-dialog-input"
+                data-testid="PresetLoaderDialogInput"
+                placeholder={t('Search')}
+                onChange={onChange}
+                value={searchTerm}
+                autoComplete="off"
+                onKeyDown={onKeyDown}
+              />
+              <InputGroupAddon addonType="append">
+                <Button
+                  color="secondary"
+                  data-testid="PresetLoaderDialogClearButton"
+                  disabled={searchTerm === ''}
+                  onClick={() => {
+                    setSearchTerm('')
+                    executeFilter('')
+                  }}
+                >
+                  <MdClear />
+                </Button>
+              </InputGroupAddon>
+            </InputGroup>
+
+            <div className="preset-loader-dialog-table-container">
+              <Table className="preset-loader-dialog-table">
+                <thead>
+                  <tr>
+                    <th>
+                      {t('Showing')} {filteredRows.length} {t('of')} {data.length} {t('entries')}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="preset-loader-dialog-table-body">{rows}</tbody>
+              </Table>
+            </div>
+          </Col>
+
+          <Col md={6}>
+            <ScenarioUploadDialog setSeverity={setSeverity} scenarioDispatch={scenarioDispatch} />
+          </Col>
+        </Row>
       </ModalBody>
-      <ModalFooter>
-        <Button color="primary" onClick={onClose} data-testid="PresetLoaderDialogCloseButton">
-          {t('Done')}
-        </Button>
-      </ModalFooter>
     </Modal>
   )
 }
