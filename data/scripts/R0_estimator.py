@@ -15,14 +15,14 @@ Sub = IntEnum('Sub', compartments, start=0)
 def empty_data_list():
     return [np.array([]) if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
 
-def smooth(data):
+def smooth(data, nb_pts=9, order=3):
     # Uses a savgol_filter over the data ignoring the nan values. Just doing the fit removes each point where
     # a nan is found in the fiting window, thus removing a lot of points.
     smoothed = copy.deepcopy(data)
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if smoothed[ii] is not None:
             np.put(smoothed[ii], np.array(range(len(smoothed[ii])))[~np.isnan(smoothed[ii])],
-                    savgol_filter(smoothed[ii][~np.isnan(smoothed[ii])], 9, 3, mode="mirror"))
+                    savgol_filter(smoothed[ii][~np.isnan(smoothed[ii])], nb_pts, order, mode="mirror"))
     return smoothed
 
 def growth_rate_to_R0(data, serial_interval=6):
@@ -87,10 +87,12 @@ def stair_fits(time, data, nb_value=3):
 def get_Re_guess(time, cases, step=7, extremal_points=7):
     #R_effective
     diff_data = get_daily_counts(cases)
-    growth_rate = get_growth_rate(diff_data, step)
+    diff_data_smoothed = smooth(diff_data, 15, 1)
+    growth_rate = get_growth_rate(diff_data_smoothed, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
     return {"fits": stair_fits(time, R0_by_day, nb_value=extremal_points),
             "diff_data": diff_data,
+            "diff_data_smoothed": diff_data_smoothed,
             "R0_by_day": R0_by_day,
             "R0_smoothed": smooth(R0_by_day)}
 
@@ -111,8 +113,8 @@ if __name__ == "__main__":
     case_counts = tsv.parse()
 
     # country_list = ["Germany"]
-    # country_list = ["Germany", "Switzerland", "Italy"]
-    country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium"]
+    country_list = ["Germany", "Switzerland", "Italy"]
+    # country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium"]
 
     for ci, c in enumerate(country_list):
         time, data = load_data(c, case_counts[c])
@@ -130,8 +132,9 @@ if __name__ == "__main__":
                 plt.plot(dates, R0_by_day[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
                 plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{2*ci+ee}")
 
-                # plt.figure(2)
-                # plt.plot(dates, res['diff_data'][ii], label=f"{c} {ii}", c=f"C{2*ci+ee}")
+                plt.figure(2)
+                plt.plot(dates, res['diff_data'][ii], '--', label=f"{c} {ii}", c=f"C{2*ci+ee}")
+                plt.plot(dates, res['diff_data_smoothed'][ii] , label=f"{c} {ii}", c=f"C{2*ci+ee}")
 
 
     plt.figure(1)
@@ -140,10 +143,10 @@ if __name__ == "__main__":
     plt.legend(loc="best")
     plt.savefig("Stair_fit", format="png")
 
-    # plt.figure(2)
-    # plt.title("New cases per day")
-    # plt.legend()
-    # plt.grid()
+    plt.figure(2)
+    plt.title("New cases per day")
+    plt.legend()
+    plt.grid()
 
     plt.show()
 
