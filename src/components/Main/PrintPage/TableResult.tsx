@@ -25,11 +25,14 @@ export function sampleEvery(arr: ExportedTimePoint[], step: number): ExportedTim
 
 interface NumberWithUncertaintyProps {
   value: number
-  lower: number
-  upper: number
+  lower?: number
+  upper?: number
 }
 
 export function NumberWithUncertainty({ value, lower, upper }: NumberWithUncertaintyProps) {
+  if (!lower || !upper) {
+    return <div>{Math.round(value)}</div>
+  }
   return (
     <div>
       ({Math.round(lower)}, <b>{Math.round(value)}</b>, {Math.round(upper)})
@@ -62,39 +65,19 @@ export default function TableResult({ result }: TableResultProps) {
             <tr key={line.time}>
               <td>{dateFormat(line.time)}</td>
               <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex() }}>
-                <NumberWithUncertainty
-                  value={line.current.severe.total}
-                  lower={downSampled.lower[i].current.severe.total}
-                  upper={downSampled.upper[i].current.severe.total}
-                />
+                <NumberWithUncertainty value={line.current.severe.total} />
               </td>
               <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex() }}>
-                <NumberWithUncertainty
-                  value={line.current.critical.total}
-                  lower={downSampled.lower[i].current.critical.total}
-                  upper={downSampled.upper[i].current.critical.total}
-                />
+                <NumberWithUncertainty value={line.current.critical.total} />
               </td>
               <td style={{ backgroundColor: chroma(colors.overflow).alpha(0.1).hex() }}>
-                <NumberWithUncertainty
-                  value={line.current.overflow.total}
-                  lower={downSampled.lower[i].current.overflow.total}
-                  upper={downSampled.upper[i].current.overflow.total}
-                />
+                <NumberWithUncertainty value={line.current.overflow.total} />
               </td>
               <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex() }}>
-                <NumberWithUncertainty
-                  value={line.cumulative.fatality.total}
-                  lower={downSampled.lower[i].cumulative.fatality.total}
-                  upper={downSampled.upper[i].cumulative.fatality.total}
-                />
+                <NumberWithUncertainty value={line.cumulative.fatality.total} />
               </td>
               <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex() }}>
-                <NumberWithUncertainty
-                  value={line.cumulative.recovered.total}
-                  lower={downSampled.lower[i].cumulative.recovered.total}
-                  upper={downSampled.upper[i].cumulative.recovered.total}
-                />
+                <NumberWithUncertainty value={line.cumulative.recovered.total} />
               </td>
             </tr>
           ))}
