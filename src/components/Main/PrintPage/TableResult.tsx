@@ -47,7 +47,7 @@ export function NumberWithUncertainty({ value, lower, upper }: NumberWithUncerta
       </div>
     )
   }
-  return <div></div>
+  return <div>{'0 - 0'}</div>
 }
 
 export default function TableResult({ result }: TableResultProps) {
