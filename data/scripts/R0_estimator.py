@@ -84,7 +84,7 @@ def stair_fits(time, data, nb_value=3):
             stair_fits[ii] = None
     return stair_fits
 
-def get_Re_guess(time, cases, step=7, extremal_points=7, death_data=False):
+def get_Re_guess(time, cases, step=7, extremal_points=7):
     #R_effective
     diff_data = get_daily_counts(cases)
     growth_rate = get_growth_rate(diff_data, step)
@@ -94,33 +94,44 @@ def get_Re_guess(time, cases, step=7, extremal_points=7, death_data=False):
             "R0_by_day": R0_by_day,
             "R0_smoothed": smooth(R0_by_day)}
 
+def get_R0_estimate_lag(country_list):
+    lags = []
+    for c in country_list:
+        time, data = load_data(c, case_counts[c])
+        res = get_Re_guess(time, data)
+        fits = res["fits"]
+        lag = fits[Sub.D][2] - fits[Sub.T][2]
+        lags = lags + [lag]
+    return lags
+
 
 if __name__ == "__main__":
     from scripts import tsv
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    # country_list = ["France"]
-    country_list = ["Germany", "Switzerland", "Italy"]
-    # country_list = ["United States of America", "USA-New York", "USA-California", "USA-New Jersey", "Germany", "Italy"]
+    # country_list = ["Germany"]
+    # country_list = ["Germany", "Switzerland", "Italy"]
+    country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium"]
 
     for ci, c in enumerate(country_list):
         time, data = load_data(c, case_counts[c])
-        res = get_Re_guess(time, data, extremal_points=10, death_data=False)
+        res = get_Re_guess(time, data, extremal_points=10)
         fits = res["fits"]
         R0_by_day = res["R0_by_day"]
         R0_smoothed = res["R0_smoothed"]
         dates = [datetime.fromordinal(x) for x in time]
 
-        for ee, ii in enumerate([Sub.T, Sub.D]):
+        for ee, ii in enumerate([Sub.T]):
+        # for ee, ii in enumerate([Sub.T, Sub.D]):
             if data[ii] is not None:
                 plt.figure(1)
-                # plt.plot(dates, R0_by_day[ii], '--', label=f"{c}", c=f"C{ii}")
-                plt.plot(dates, R0_smoothed[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
+                # plt.plot(dates, R0_smoothed[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
+                plt.plot(dates, R0_by_day[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
                 plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{2*ci+ee}")
 
-                plt.figure(2)
-                plt.plot(dates, res['diff_data'][ii], label=f"{c} {ii}", c=f"C{2*ci+ee}")
+                # plt.figure(2)
+                # plt.plot(dates, res['diff_data'][ii], label=f"{c} {ii}", c=f"C{2*ci+ee}")
 
 
     plt.figure(1)
@@ -129,9 +140,12 @@ if __name__ == "__main__":
     plt.legend(loc="best")
     plt.savefig("Stair_fit", format="png")
 
-    plt.figure(2)
-    plt.title("New cases per day")
-    plt.legend()
-    plt.grid()
+    # plt.figure(2)
+    # plt.title("New cases per day")
+    # plt.legend()
+    # plt.grid()
 
     plt.show()
+
+    # lags = get_R0_estimate_lag(country_list)
+    # print(lags)
