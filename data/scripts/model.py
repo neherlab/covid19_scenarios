@@ -234,8 +234,13 @@ def assess_model(params, data, cases):
     model = trace_ages(sol)
 
     eps = 1e-2
-    case_cost =  np.ma.sum(poissonNegLogLH(data[Sub.T], model[:,Sub.T], eps))
-    death_cost = np.ma.sum(poissonNegLogLH(data[Sub.D], model[:,Sub.D], eps))
+    diff_cases = data[Sub.T][3:] - data[Sub.T][:-3]
+    diff_cases_model = model[3:, Sub.T] - model[:-3, Sub.T]
+    case_cost =  np.ma.sum(poissonNegLogLH(diff_cases, diff_cases_model, eps))
+
+    diff_deaths = data[Sub.D][3:] - data[Sub.D][:-3]
+    diff_deaths_model = model[3:, Sub.D] - model[:-3, Sub.D]
+    death_cost = np.ma.sum(poissonNegLogLH(diff_deaths, diff_deaths_model, eps))
 
     hospital_cost = 0
     ICU_cost = 0
@@ -370,13 +375,14 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
         return None
 
     res = get_Re_guess(time_points, data)
-    if res['fit'][0]<1 or res['fit'][0]>6 or res['fit'][1]>res['fit'][0] or res['fit'][1]<0:
+    case_fit = res['fits'][Sub.T]
+    if case_fit[0]<1 or case_fit[0]>6 or case_fit[1]>case_fit[0] or case_fit[1]<0:
         return None
 
     fixed_params = {}
-    fixed_params['logR0'] = np.log(res['fit'][0])
-    fixed_params['efficacy'] = 1-res['fit'][1]/res['fit'][0]
-    fixed_params['containment_start'] = res['fit'][2]
+    fixed_params['logR0'] = np.log(case_fit[0])
+    fixed_params['efficacy'] = 1-case_fit[1]/case_fit[0]
+    fixed_params['containment_start'] = case_fit[2]
 
     if guess is None:
         guess = { "reported" : 0.1,
