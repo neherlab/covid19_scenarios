@@ -15,7 +15,7 @@ Sub = IntEnum('Sub', compartments, start=0)
 def empty_data_list():
     return [np.array([]) if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
 
-def smooth(data, nb_pts=9, order=3):
+def smooth(data, as_int=False, nb_pts=9, order=3):
     # Uses a savgol_filter over the data ignoring the nan values. Just doing the fit removes each point where
     # a nan is found in the fiting window, thus removing a lot of points.
     smoothed = copy.deepcopy(data)
@@ -23,6 +23,8 @@ def smooth(data, nb_pts=9, order=3):
         if smoothed[ii] is not None:
             np.put(smoothed[ii], np.array(range(len(smoothed[ii])))[~np.isnan(smoothed[ii])],
                     savgol_filter(smoothed[ii][~np.isnan(smoothed[ii])], nb_pts, order, mode="mirror"))
+            if as_int:
+                smoothed[ii] = np.round(smoothed[ii]).astype(int)
     return smoothed
 
 def growth_rate_to_R0(data, serial_interval=6):
@@ -87,27 +89,35 @@ def stair_fits(time, data, nb_value=3):
 def get_Re_guess(time, cases, step=7, extremal_points=7):
     #R_effective
     diff_data = get_daily_counts(cases)
-    diff_data_smoothed = smooth(diff_data, 15, 1)
+    diff_data_smoothed = smooth(diff_data, True, 15, 1)
     growth_rate = get_growth_rate(diff_data_smoothed, step)
+    # growth_rate = get_growth_rate(diff_data, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
     fits = stair_fits(time, R0_by_day, nb_value=extremal_points)
-    return {"fit" : combine_fits(fits),
+    # return {"fit" : combine_fits(fits),
+    return {"fit" : fits[Sub.T],
             "diff_data": diff_data,
             "diff_data_smoothed": diff_data_smoothed,
             "R0_by_day": R0_by_day}
 
-def combine_fits(fits, drop_shift=10):
+def combine_fits(fits, drop_shift=9):
     # combine fits from cases and deaths if they are coherent, otherwise return fit from cases
-    test1 = np.abs(fits[Sub.T][0] - fits[Sub.D][0]) / (0.5*(fits[Sub.T][0] + fits[Sub.D][0])) < 0.4
-    test2 = np.abs(fits[Sub.T][1] - fits[Sub.D][1]) / (0.5*(fits[Sub.T][1] + fits[Sub.D][1])) < 0.3
-    test3 = np.abs((fits[Sub.D][2]-drop_shift) - fits[Sub.T][2]) < drop_shift//2 + 1
-    if test1 and test2 and test3:
-        val_o = 0.5*(fits[Sub.T][0] + fits[Sub.D][0])
-        val_e = 0.5*(fits[Sub.T][1] + fits[Sub.D][1])
-        drop = 0.5*(fits[Sub.T][2] + (fits[Sub.D][2] - drop_shift))
-        return [val_o, val_e, drop]
+    if fits[Sub.T] != None:
+        if fits[Sub.D] != None:
+            test1 = np.abs(fits[Sub.T][0] - fits[Sub.D][0]) / (0.5*(fits[Sub.T][0] + fits[Sub.D][0])) < 0.4
+            test2 = np.abs(fits[Sub.T][1] - fits[Sub.D][1]) / (0.5*(fits[Sub.T][1] + fits[Sub.D][1])) < 0.3
+            test3 = np.abs((fits[Sub.D][2]-drop_shift) - fits[Sub.T][2]) < drop_shift//2 + 1
+            if test1 and test2 and test3:
+                val_o = 0.5*(fits[Sub.T][0] + fits[Sub.D][0])
+                val_e = 0.5*(fits[Sub.T][1] + fits[Sub.D][1])
+                drop = 0.5*(fits[Sub.T][2] + (fits[Sub.D][2] - drop_shift))
+                return [val_o, val_e, drop]
+            else:
+                return fits[Sub.T]
+        else:
+            return fits[Sub.T]
     else:
-        return fits[Sub.T]
+        return None
 
 def get_R0_comparison(country_list):
     lags = []
@@ -149,24 +159,18 @@ if __name__ == "__main__":
     for ci, c in enumerate(country_list):
         time, data = load_data(c, case_counts[c])
         res = get_Re_guess(time, data, extremal_points=10)
-        fits = res["fits"]
+        fit = res["fit"]
         R0_by_day = res["R0_by_day"]
-        R0_smoothed = res["R0_smoothed"]
         dates = [datetime.fromordinal(x) for x in time]
-        combine_fits(fits)
 
+        plt.figure(1)
+        plt.plot(dates, R0_by_day[Sub.T], '--', c=f"C{2*ci}", label=f"{c}")
+        plt.plot(dates, stair_func(time, *fit), label=f"fit ", c=f"C{2*ci}")
         for ee, ii in enumerate([Sub.T, Sub.D]):
             if data[ii] is not None:
-                plt.figure(1)
-                # plt.plot(dates, R0_smoothed[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
-                plt.plot(dates, R0_by_day[ii], '--', c=f"C{2*ci+ee}", label=f"{c} {ii}")
-                plt.plot(dates, stair_func(time, *fits[ii]), label=f"fit {ii}", c=f"C{2*ci+ee}")
-
                 plt.figure(2)
                 plt.plot(dates, res['diff_data'][ii], '--', label=f"{c} {ii}", c=f"C{2*ci+ee}")
                 plt.plot(dates, res['diff_data_smoothed'][ii] , label=f"{c} {ii}", c=f"C{2*ci+ee}")
-        plt.figure(1)
-        plt.plot(dates, stair_func(time, *combine_fits(fits)), 'r-', label="combined")
 
     plt.figure(1)
     plt.ylabel("R0")
