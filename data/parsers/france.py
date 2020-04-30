@@ -53,17 +53,17 @@ def parse():
 
             if death is not None and (regions[region][date][2] is None or death > regions[region][date][2]):
                 regions[region][date][2] = death
-                
+
             if hospitalized is not None and (regions[region][date][3] is None or hospitalized > regions[region][date][3]):
                 regions[region][date][3] = hospitalized
-                
+
             if icu is not None and (regions[region][date][4] is None or icu > regions[region][date][4]):
                 regions[region][date][4] = icu
 
     regions2 = {}
     for reg, d in regions.items():
         regions2['-'.join(['FRA',reg])] = [d[day] for day in sorted(d.keys())]
-        
-    regions2 = add_cases(regions2, list(regions2.keys()), 'France', cols)
+
+    # regions2 = add_cases(regions2, list(regions2.keys()), 'France', cols)
 
     store_data(regions2, 'france',  cols)
