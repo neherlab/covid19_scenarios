@@ -6,11 +6,9 @@ import { ResponsiveTooltipContent, TooltipItem } from './ResponsiveTooltipConten
 
 import './ResponsiveTooltipContent.scss'
 
-export interface ChartTooltipProps extends TooltipProps {
-  valueFormatter: (value: number | string) => string
-}
+export type ValueFormatter = (value: number | string) => string
 
-function dispatch(key: string, item: TooltipPayload): [number | undefined, number | undefined] {
+export function dispatch(key: string, item: TooltipPayload): [number | undefined, number | undefined] {
   switch (key) {
     case 'peakOverflow':
       return item.payload.errorPeakOverflow
@@ -23,6 +21,22 @@ function dispatch(key: string, item: TooltipPayload): [number | undefined, numbe
     default:
       return [undefined, undefined]
   }
+}
+
+export function maybeFormatted(value?: string | number, valueFormatter?: ValueFormatter) {
+  if (value === undefined) {
+    return value
+  }
+
+  if (valueFormatter) {
+    return valueFormatter(value)
+  }
+
+  return value
+}
+
+export interface ChartTooltipProps extends TooltipProps {
+  valueFormatter: (value: number | string) => string
 }
 
 export function ChartTooltip({ active, payload, label, valueFormatter, labelFormatter }: ChartTooltipProps) {
@@ -44,9 +58,9 @@ export function ChartTooltip({ active, payload, label, valueFormatter, labelForm
           payloadItem.color ||
           ((payloadItem.dataKey as string) in colors ? colors[payloadItem.dataKey as string] : '#bbbbbb'),
         key: (payloadItem.dataKey as string) || payloadItem.name,
-        value: valueFormatter ? valueFormatter(value) : value,
-        lower: valueFormatter ? valueFormatter(lower) : lower,
-        upper: valueFormatter ? valueFormatter(upper) : upper,
+        value: maybeFormatted(value),
+        lower: maybeFormatted(lower),
+        upper: maybeFormatted(upper),
       }
     },
   )
