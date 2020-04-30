@@ -97,12 +97,17 @@ def get_Re_guess(time, cases, step=7, extremal_points=7):
             "R0_smoothed": smooth(R0_by_day)}
 
 def combine_fits(fits, drop_shift=10):
+    # combine fits from cases and deaths if they are coherent, otherwise return fit from cases
     test1 = np.abs(fits[Sub.T][0] - fits[Sub.D][0]) / (0.5*(fits[Sub.T][0] + fits[Sub.D][0])) < 0.4
     test2 = np.abs(fits[Sub.T][1] - fits[Sub.D][1]) / (0.5*(fits[Sub.T][1] + fits[Sub.D][1])) < 0.3
     test3 = np.abs((fits[Sub.D][2]-drop_shift) - fits[Sub.T][2]) < drop_shift//2 + 1
-    print(test1, test2, test3)
-    print(fits[Sub.D][2]-drop_shift - fits[Sub.T][2])
-    #TODO
+    if test1 and test2 and test3:
+        val_o = 0.5*(fits[Sub.T][0] + fits[Sub.D][0])
+        val_e = 0.5*(fits[Sub.T][1] + fits[Sub.D][1])
+        drop = 0.5*(fits[Sub.T][2] + (fits[Sub.D][2] - drop_shift))
+        return [val_o, val_e, drop]
+    else:
+        return fits[Sub.T]
 
 def get_R0_comparison(country_list):
     lags = []
@@ -135,7 +140,7 @@ if __name__ == "__main__":
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    country_list = ["Germany"]
+    country_list = ["Italy"]
     # country_list = ["Germany", "Switzerland", "Italy"]
     # country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium",
     # "United Kingdom of Great Britain and Northern Ireland", "CHE-Zürich", "CHE-Basel-Stadt",
@@ -160,7 +165,8 @@ if __name__ == "__main__":
                 plt.figure(2)
                 plt.plot(dates, res['diff_data'][ii], '--', label=f"{c} {ii}", c=f"C{2*ci+ee}")
                 plt.plot(dates, res['diff_data_smoothed'][ii] , label=f"{c} {ii}", c=f"C{2*ci+ee}")
-
+        plt.figure(1)
+        plt.plot(dates, stair_func(time, *combine_fits(fits)), 'r-', label="combined")
 
     plt.figure(1)
     plt.ylabel("R0")
