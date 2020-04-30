@@ -48,30 +48,27 @@ export const schema: yup.Schema<AllParams> = yup.object().shape({
   }),
 
   epidemiological: yup.object().shape({
-    'latencyTime': yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+    latencyTime: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    'infectiousPeriod': yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+    infectiousPeriod: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    'lengthHospitalStay': yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+    lengthHospitalStay: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    'lengthICUStay': yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+    lengthICUStay: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    'seasonalForcing': yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    seasonalForcing: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    'overflowSeverity': yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
+    overflowSeverity: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
 
-    'peakMonth': yup.number().required(MSG_REQUIRED).min(0, MSG_POSITIVE).max(11),
+    peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_POSITIVE).max(11),
 
-    'r0': yup
+    r0: yup
       .array()
       .of(yup.number().min(0, MSG_NON_NEGATIVE).required(MSG_REQUIRED))
       .min(2)
       .max(2)
       .required(MSG_REQUIRED)
       .test('valid numeric range', MSG_RANGE_INVALID, ([begin, end]) => begin <= end),
-
-    'r0[0]': yup.number().min(0, MSG_NON_NEGATIVE),
-    'r0[1]': yup.number().min(0, MSG_NON_NEGATIVE),
   }),
 
   containment: yup.object().shape({
