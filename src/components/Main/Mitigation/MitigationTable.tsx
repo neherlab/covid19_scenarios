@@ -89,6 +89,19 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
   )
 }
 
+export interface ErrorRowProps {
+  name: string
+  message: string
+}
+
+export function ErrorRow({ name, message }: ErrorRowProps) {
+  return (
+    <tr className="my-0 text-right text-danger">
+      <td colSpan={4}>{`${name}: ${message}`}</td>
+    </tr>
+  )
+}
+
 interface MitigationIntervalProps {
   width: number
   index: number
@@ -157,15 +170,11 @@ function MitigationIntervalComponent({
       </tr>
 
       {nameErrors.map((message) => (
-        <tr key={message} className="my-0 text-right text-danger">
-          <td colSpan={4}>{`${t('Intervention name')}: ${message}`}</td>
-        </tr>
+        <ErrorRow key={message} name={t('Intervention name')} message={message} />
       ))}
 
       {valueErrors.map((message) => (
-        <tr key={message} className="my-0 text-right text-danger">
-          <td colSpan={4}>{`${t('Mitigation strength')}: ${message}`}</td>
-        </tr>
+        <ErrorRow key={message} name={t('Mitigation strength')} message={message} />
       ))}
     </>
   )
