@@ -16,7 +16,7 @@ export function getFormikErrors({ identifier, errors, touched }: GetErrorParams)
     return []
   }
 
-  if (errorMessage && typeof errorMessage === 'string') {
+  if (typeof errorMessage === 'string') {
     return [errorMessage]
   }
 
