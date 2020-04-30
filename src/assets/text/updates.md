@@ -18,7 +18,7 @@ most significant model changes below.
 
 Since release 1.2.0, parameters that affect the growth rate (R0 and the mitigation efficacy) are specified as ranges.
 Simulation results are very sensitive to these parameters and we wanted to make this clear. Instead of one number, the
-user now has to specify two numbers that indicated the plausible lower and upper values of the parameter. The model will
+user now has to specify two numbers that indicate the plausible lower and upper values of the parameter. The model will
 then randomly sample a number of combinations of the parameters, each uniformly from the range and run multiple
 simulations. The results graph show the median and a shaded area indicating the 20th and 80th percentile. By setting
 upper and lower ranges of a parameter to the same value, the simulation will revert back to its previous version.
