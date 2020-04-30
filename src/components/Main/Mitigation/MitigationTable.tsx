@@ -14,7 +14,7 @@ import { suggestNextMitigationInterval } from '../../../algorithms/utils/createM
 import { MitigationDatePicker } from './MitigationDatePicker'
 import { RangeSpinBox } from '../../Form/RangeSpinBox'
 
-import { getFormikError } from '../../../helpers/getFormikError'
+import { getFormikErrors } from '../../../helpers/getFormikErrors'
 
 import './MitigationTable.scss'
 
@@ -108,13 +108,13 @@ function MitigationIntervalComponent({
 }: MitigationIntervalProps) {
   const { t } = useTranslation()
 
-  const nameError = getFormikError({
+  const nameErrors = getFormikErrors({
     errors,
     touched,
     identifier: `containment.mitigationIntervals[${index}].name`,
   })
 
-  const valueError = getFormikError({
+  const valueErrors = getFormikErrors({
     errors,
     touched,
     identifier: `containment.mitigationIntervals[${index}].mitigationValue`,
@@ -125,7 +125,7 @@ function MitigationIntervalComponent({
       <tr>
         <td>
           <FastField
-            className={`form-control ${nameError ? 'border-danger' : ''}`}
+            className={`form-control ${nameErrors.length > 0 ? 'border-danger' : ''}`}
             id={`containment.mitigationIntervals[${index}].name`}
             name={`containment.mitigationIntervals[${index}].name`}
             type="text"
@@ -140,6 +140,7 @@ function MitigationIntervalComponent({
         </td>
         <td>
           <RangeSpinBox
+            className={valueErrors.length > 0 ? 'border-danger' : ''}
             identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
             step={0.1}
             min={0}
@@ -155,12 +156,17 @@ function MitigationIntervalComponent({
         </td>
       </tr>
 
-      <tr>
-        <div className="w-100">
-          {nameError && <p className="my-0 text-right text-danger">{`${t('Intervention name')}: ${nameError}`}</p>}
-          {valueError && <p className="my-0 text-right text-danger">{`${t('Mitigation strength')}: ${valueError}`}</p>}
-        </div>
-      </tr>
+      {nameErrors.map((message) => (
+        <tr key={message} className="my-0 text-right text-danger">
+          <td colSpan={4}>{`${t('Intervention name')}: ${message}`}</td>
+        </tr>
+      ))}
+
+      {valueErrors.map((message) => (
+        <tr key={message} className="my-0 text-right text-danger">
+          <td colSpan={4}>{`${t('Mitigation strength')}: ${message}`}</td>
+        </tr>
+      ))}
     </>
   )
 }
