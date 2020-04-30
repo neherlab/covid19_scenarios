@@ -90,11 +90,11 @@ def get_Re_guess(time, cases, step=7, extremal_points=7):
     diff_data_smoothed = smooth(diff_data, 15, 1)
     growth_rate = get_growth_rate(diff_data_smoothed, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
-    return {"fits": stair_fits(time, R0_by_day, nb_value=extremal_points),
+    fits = stair_fits(time, R0_by_day, nb_value=extremal_points)
+    return {"fit" : combine_fits(fits),
             "diff_data": diff_data,
             "diff_data_smoothed": diff_data_smoothed,
-            "R0_by_day": R0_by_day,
-            "R0_smoothed": smooth(R0_by_day)}
+            "R0_by_day": R0_by_day}
 
 def combine_fits(fits, drop_shift=10):
     # combine fits from cases and deaths if they are coherent, otherwise return fit from cases
@@ -140,7 +140,7 @@ if __name__ == "__main__":
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    country_list = ["Italy"]
+    country_list = ["USA-New York"]
     # country_list = ["Germany", "Switzerland", "Italy"]
     # country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium",
     # "United Kingdom of Great Britain and Northern Ireland", "CHE-Zürich", "CHE-Basel-Stadt",

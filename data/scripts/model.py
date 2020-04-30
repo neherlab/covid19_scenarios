@@ -375,14 +375,14 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
         return None
 
     res = get_Re_guess(time_points, data)
-    case_fit = res['fits'][Sub.T]
-    if case_fit[0]<1 or case_fit[0]>6 or case_fit[1]>case_fit[0] or case_fit[1]<0:
+    fit = res['fit']
+    if fit[0]<1 or fit[0]>6 or fit[1]>fit[0] or fit[1]<0:
         return None
 
     fixed_params = {}
-    fixed_params['logR0'] = np.log(case_fit[0])
-    fixed_params['efficacy'] = 1-case_fit[1]/case_fit[0]
-    fixed_params['containment_start'] = case_fit[2]
+    fixed_params['logR0'] = np.log(fit[0])
+    fixed_params['efficacy'] = 1-fit[1]/fit[0]
+    fixed_params['containment_start'] = fit[2]
 
     if guess is None:
         guess = { "reported" : 0.1,
@@ -474,11 +474,6 @@ if __name__ == "__main__":
     key = args.key or "USA-New York"
     # key = "CHE-Basel-Stadt"
     # key = "DEU-Berlin"
-    confinement_start = datetime.strptime("2020-03-20", "%Y-%m-%d").toordinal()
-    # confinement_start = datetime.strptime("2020-03-13", "%Y-%m-%d").toordinal()
-    # confinement_start = datetime.strptime("2020-03-16", "%Y-%m-%d").toordinal()
-    # confinement_start = None
-
     # Raw data and time points
     time, data = load_data(key, CASE_DATA[key])
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
@@ -487,8 +482,6 @@ if __name__ == "__main__":
     res = fit_population_iterative(key, model_tps, fit_data)
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
     err = fit_error(fit_data, model)
-    if confinement_start is not None:
-        confinement_start -= res['params'].time[0]
     time -= res['params'].time[0]
     tp = res['params'].time - res['params'].time[0]
 
@@ -509,8 +502,6 @@ if __name__ == "__main__":
     # plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
     # plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
     #
-    # if confinement_start is not None:
-    #     plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
     #
     # plt.xlabel("Time [days]")
     # plt.ylabel("Number of people")
@@ -544,8 +535,6 @@ if __name__ == "__main__":
 
     plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
     plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
-    if confinement_start is not None:
-        plt.plot(confinement_start, data[Sub.T][time==confinement_start], 'kx', markersize=20, label="Confinement start")
 
     plt.xlabel("Time [days]")
     plt.ylabel("Number of people")
