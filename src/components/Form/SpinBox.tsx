@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Field, FormikErrors, FormikTouched } from 'formik'
 
-import { getFormikError } from '../../helpers/getFormikError'
+import { getFormikErrors } from '../../helpers/getFormikErrors'
 
 export interface FormSpinBoxProps<T> extends React.HTMLProps<HTMLInputElement> {
   identifier: string
@@ -24,8 +24,8 @@ export function SpinBox<T>({
   touched,
   ...restProps
 }: FormSpinBoxProps<T>) {
-  const errorMessage = getFormikError({ errors, touched, identifier: `${identifier}[0]` })
-  const borderDanger = errorMessage ? 'border-danger' : ''
+  const errorMessage = getFormikErrors({ errors, touched, identifier: `${identifier}[0]` })
+  const borderDanger = errorMessage.length > 0 ? 'border-danger' : ''
   return (
     <Field
       className={`form-control d-inline ${borderDanger}`}

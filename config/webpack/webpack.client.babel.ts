@@ -283,6 +283,7 @@ export default {
           // FIXME: errors in these files have to be resolved eventually
           // begin
           '!src/algorithms/model.ts', // FIXME
+          '!src/algorithms/results.ts', // FIXME
           '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
           '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
           // end
@@ -315,6 +316,7 @@ export default {
       ENV_NAME:
         getenv('TRAVIS_BRANCH', null) ??
         getenv('NOW_GITHUB_COMMIT_REF', null) ??
+        getenv('VERCEL_GITHUB_COMMIT_REF', null) ??
         require('child_process')
           .execSync('git rev-parse --abbrev-ref HEAD')
           .toString()
@@ -325,6 +327,7 @@ export default {
       REVISION:
         getenv('TRAVIS_COMMIT', null) ??
         getenv('NOW_GITHUB_COMMIT_SHA', null) ??
+        getenv('VERCEL_GITHUB_COMMIT_SHA', null) ??
         require('child_process')
           .execSync('git rev-parse HEAD')
           .toString()
