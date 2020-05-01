@@ -1,7 +1,8 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { Button, NavLink } from 'reactstrap'
-import './PresetLoaderDialog.scss'
+
+import { NavLink } from 'reactstrap'
+
+import './PresetLoader.scss'
 
 export interface LoadPresetDialogRecordProps {
   label: string
@@ -14,32 +15,18 @@ export interface LoadPresetDialogRowProps {
 }
 
 const PresetLoaderDialogRow = ({ data, onLoadButtonClick }: LoadPresetDialogRowProps) => {
-  const { t } = useTranslation()
-
   return (
-    <tr className="preset-loader-dialog-row">
-      <td className="preset-loader-dialog-row-label">
-        <NavLink
-          data-testid="PresetLoaderDialogRowLink"
-          onClick={(event) => {
-            event.preventDefault()
-            onLoadButtonClick(data.value)
-          }}
-        >
-          {data.label}
-        </NavLink>
-      </td>
-      <td>
-        <Button
-          data-testid="PresetLoaderDialogRowButton"
-          onClick={() => {
-            onLoadButtonClick(data.value)
-          }}
-        >
-          {t('Load')}
-        </Button>
-      </td>
-    </tr>
+    <div className="scenario-loader-row">
+      <NavLink
+        data-testid="PresetLoaderDialogRowLink"
+        onClick={(event) => {
+          event.preventDefault()
+          onLoadButtonClick(data.value)
+        }}
+      >
+        {data.label}
+      </NavLink>
+    </div>
   )
 }
 

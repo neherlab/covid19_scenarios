@@ -2,7 +2,19 @@ import React, { useEffect, useState, KeyboardEvent } from 'react'
 
 import { useTranslation } from 'react-i18next'
 import { useDebouncedCallback } from 'use-debounce'
-import { Button, Modal, ModalBody, ModalHeader, Table, Input, InputGroup, InputGroupAddon, Col, Row } from 'reactstrap'
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Table,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  Col,
+  Row,
+  Container,
+} from 'reactstrap'
 import { MdClear } from 'react-icons/md'
 import type { AnyAction } from 'typescript-fsa'
 
@@ -11,7 +23,7 @@ import type { SeverityDistributionDatum } from '../../../../algorithms/types/Par
 import LoadPresetDialogRow, { LoadPresetDialogRecordProps } from './PresetLoaderDialogRow'
 import { ScenarioUploadDialog } from './ScenarioUploadDialog'
 
-import './PresetLoaderDialog.scss'
+import './PresetLoader.scss'
 
 const DEBOUNCE_DELAY = 500
 
@@ -35,9 +47,7 @@ const LoadPresetDialog = ({
   const { t } = useTranslation()
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredRows, setFilteredRows] = useState(data)
-  const rows = filteredRows.map((item) => (
-    <LoadPresetDialogRow key={item.value} data={item} onLoadButtonClick={onLoadButtonClick} />
-  ))
+
   const executeFilter = (term: string) => {
     const hasSearchTerm = term.length > 0
     const filtered = hasSearchTerm ? data.filter((item) => item.label.toLowerCase().includes(term.toLowerCase())) : data
@@ -80,55 +90,58 @@ const LoadPresetDialog = ({
   // TODO find out how to translate "Showing {0} out of {1} entries"
   return (
     <Modal
-      className="height-fit"
+      id={'scenario-loader-modal'}
       centered
       isOpen={visible}
       toggle={onClose}
       fade={false}
-      size="lg"
       data-testid="PresetLoaderDialog"
     >
-      <ModalHeader toggle={onClose}>{t('Change scenario')}</ModalHeader>
-      <ModalBody>
-        <Row noGutters>
-          <Col md={6}>
-            <InputGroup>
-              <Input
-                id="preset-loader-dialog-input"
-                data-testid="PresetLoaderDialogInput"
-                placeholder={t('Search')}
-                onChange={onChange}
-                value={searchTerm}
-                autoComplete="off"
-                onKeyDown={onKeyDown}
-              />
-              <InputGroupAddon addonType="append">
-                <Button
-                  color="secondary"
-                  data-testid="PresetLoaderDialogClearButton"
-                  disabled={searchTerm === ''}
-                  onClick={() => {
-                    setSearchTerm('')
-                    executeFilter('')
-                  }}
-                >
-                  <MdClear />
-                </Button>
-              </InputGroupAddon>
-            </InputGroup>
+      <ModalHeader toggle={onClose}>{t(`Change scenario`)}</ModalHeader>
 
-            <div className="preset-loader-dialog-table-container">
-              <Table className="preset-loader-dialog-table">
-                <thead>
-                  <tr>
-                    <th>
-                      {t('Showing')} {filteredRows.length} {t('of')} {data.length} {t('entries')}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="preset-loader-dialog-table-body">{rows}</tbody>
-              </Table>
-            </div>
+      <ModalBody>
+        <Row className="scenario-loader-modal">
+          <Col className="h-100" md={6}>
+            <Row className="mb-2">
+              <Col>
+                <InputGroup>
+                  <Input
+                    className="input-search-scenario"
+                    name="search-scenario"
+                    data-testid="PresetLoaderDialogInput"
+                    placeholder={t('Search')}
+                    onChange={onChange}
+                    value={searchTerm}
+                    autoComplete="off"
+                    onKeyDown={onKeyDown}
+                  />
+                  <InputGroupAddon addonType="append">
+                    <Button
+                      color="secondary"
+                      className="btn-search-scenario"
+                      data-testid="PresetLoaderDialogClearButton"
+                      disabled={searchTerm === ''}
+                      onClick={() => {
+                        setSearchTerm('')
+                        executeFilter('')
+                      }}
+                    >
+                      <MdClear />
+                    </Button>
+                  </InputGroupAddon>
+                </InputGroup>
+              </Col>
+            </Row>
+
+            <Row className="h-100">
+              <Col className="h-100">
+                <div className="preset-loader-dialog-table-container">
+                  {filteredRows.map((item) => (
+                    <LoadPresetDialogRow key={item.value} data={item} onLoadButtonClick={onLoadButtonClick} />
+                  ))}
+                </div>
+              </Col>
+            </Row>
           </Col>
 
           <Col md={6}>

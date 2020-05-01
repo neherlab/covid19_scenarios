@@ -1,6 +1,32 @@
+@use "sass:map";
+
+@import '../../../../styles/variables';
+@import '../../../../styles/bootstrap-variables';
+
+$lg: map.get($grid-breakpoints, 'lg');
+
+#scenario-loader-modal {
+  width: 90vw;
+  max-width: 1200px;
+}
+
+.preset-loader-dialog-table-container {
+  height: 75vh;
+  overflow-y: scroll;
+}
+
+.scenario-loader-row {
+  cursor: pointer;
+
+  ::selection,
+  :active,
+  :hover {
+    background-color: lighten($primary, 33%);
+  }
+}
+
 .preset-loader-button {
-  padding: 0.375rem 0.75rem;
-  margin: 0 0.5em 0 0;
-  font-size: 16px;
-  text-transform: uppercase;
+  @media screen and (max-width: $lg) {
+    width: 100%;
+  }
 }

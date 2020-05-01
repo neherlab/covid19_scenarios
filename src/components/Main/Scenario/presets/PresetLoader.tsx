@@ -30,7 +30,7 @@ const PresetLoader = ({ data, onSelect, setSeverity, scenarioDispatch }: LoadPre
       data-testid="PresetLoaderButton"
       onClick={() => setShowDialog(true)}
     >
-      {t('Change scenario')}
+      {t('Choose')}
     </Button>
   )
   const dialog = (
