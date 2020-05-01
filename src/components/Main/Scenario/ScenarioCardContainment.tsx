@@ -23,7 +23,9 @@ function ScenarioCardContainment({ scenario, errors, touched }: ScenarioCardCont
     <CardWithControls
       identifier="containmentScenario"
       label={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}
-      help={t('Reduction of transmission through mitigation measures over time. Add or remove interventions.')}
+      help={t(
+        'Reduction of transmission through mitigation measures over time. Add or remove interventions. The intervention efficacy is specified as a range of plausible multiplicative reductions of the base growth rate',
+      )}
     >
       <div className="w-auto">
         <MitigationTable mitigationIntervals={mitigationIntervals} errors={errors} touched={touched} />

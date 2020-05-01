@@ -15,7 +15,7 @@ import { suggestNextMitigationInterval } from '../../../algorithms/utils/createM
 import { MitigationDatePicker } from './MitigationDatePicker'
 import { RangeSpinBox } from '../../Form/RangeSpinBox'
 
-import { getErrorMessages } from '../../../helpers/getFormikError'
+import { getFormikErrors } from '../../../helpers/getFormikErrors'
 
 import './MitigationTable.scss'
 
@@ -118,20 +118,23 @@ function MitigationIntervalComponent({
     },
   ]
     .map(({ friendlyName, identifier }) => {
-      const { errorMessages, hasError } = getErrorMessages(identifier, errors, touched)
-      return { friendlyName, identifier, errorMessages, hasError }
+      const errorMessages = getFormikErrors({ identifier, errors, touched })
+      return { friendlyName, identifier, errorMessages }
     })
     .filter(({ errorMessages }) => !isEmpty(errorMessages))
 
-  const errorComponents = errorMessages.map(({ friendlyName, errorMessages, hasError }) => (
-    <tr key={friendlyName}>
-      {errorMessages.map((message) => (
-        <div key={`${friendlyName}: ${message}`} className="my-0 text-right text-danger">
-          {message}
-        </div>
-      ))}
-    </tr>
-  ))
+  const errorComponents = errorMessages.map(({ friendlyName, errorMessages }) =>
+    errorMessages.map((message) => {
+      const content = `${friendlyName}: ${message}`
+      return (
+        <tr key={content}>
+          <div key={content} className="my-0 text-right text-danger">
+            {message}
+          </div>
+        </tr>
+      )
+    }),
+  )
 
   const nameHasError = errorMessages.some(({ identifier }) => identifier.includes('.name'))
   const transmissionReductionHasError = errorMessages.some(({ identifier }) =>

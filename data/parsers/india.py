@@ -43,9 +43,9 @@ def parse():
                 confirmedCases += i["confirmedCasesForeign"]
 
             deaths = i["deaths"]
-            locations = '-'.join(['IND',i['loc']])
+            location = '-'.join(['IND',i['loc'].replace('#','')])
             elt  = [ dates, confirmedCases, deaths, None, None, None ]
-            states[locations].append(elt)
+            states[location].append(elt)
 
     for cntry, data in states.items():
         states[cntry] = sorted_date(states[cntry])

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Col, FormGroup, Row } from 'reactstrap'
 
-import { getErrorMessages } from '../../helpers/getFormikError'
+import { getFormikErrors } from '../../helpers/getFormikErrors'
 
 import type { FormSpinBoxProps } from './FormSpinBox'
 
@@ -20,7 +20,8 @@ export function FormRangeSpinBox<T>({
   errors,
   touched,
 }: FormSpinBoxProps<T>) {
-  const { errorMessages, hasError } = getErrorMessages(identifier, errors, touched)
+  const errorMessages = getFormikErrors({ identifier, errors, touched })
+  const hasError = errorMessages.length > 0
 
   return (
     <FormGroup inline className="my-0">
@@ -31,13 +32,11 @@ export function FormRangeSpinBox<T>({
         <Col className="d-inline" xl={6}>
           <RangeSpinBox identifier={identifier} step={step} min={min} max={max} pattern={pattern} hasError={hasError} />
 
-          {hasError &&
-            errorMessages &&
-            errorMessages.map((message) => (
-              <div key={message} className="text-danger">
-                {message}
-              </div>
-            ))}
+          {errorMessages.map((message) => (
+            <div key={message} className="text-danger">
+              {message}
+            </div>
+          ))}
         </Col>
       </Row>
     </FormGroup>

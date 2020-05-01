@@ -192,7 +192,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
 
                   if (key === 'r0') {
                     const [lower, upper] = val.map((x: number) => Math.round(10 * x) / 10)
-                    value = `(${lower}, ${upper})`
+                    value = `${lower} - ${upper}`
                   }
 
                   return (

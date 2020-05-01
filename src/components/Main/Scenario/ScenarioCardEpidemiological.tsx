@@ -33,7 +33,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         identifier="epidemiological.r0"
         label={`${t('Annual average')} R\u2080`}
         help={t(
-          'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
+          'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0. You can specify a lower and upper plausible bound to explore the effect of uncertainty in this parameter. ',
         )}
         step={0.01}
         min={0.5}
