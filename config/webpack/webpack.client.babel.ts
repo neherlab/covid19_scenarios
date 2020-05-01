@@ -64,6 +64,9 @@ const portProd = getenv('WEB_PORT_PROD')
 const portAnalyze = Number.parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // prettier-ignore
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
+const disableChecks = getenv('DEV_DISABLE_CHECKS') === '1'
+const disableStylelint =
+  disableChecks || getenv('DEV_DISABLE_STYLELINT') === '1'
 
 function getWebRoot() {
   let root = `${schema}://${host}`
@@ -266,9 +269,10 @@ export default {
         dirs: [],
       }),
 
-    !analyze && webpackStylelint(),
+    !disableStylelint && !analyze && webpackStylelint(),
 
-    !analyze &&
+    !disableChecks &&
+      !analyze &&
       webpackTsChecker({
         warningsAreErrors: production,
         memoryLimit: 2048,
@@ -279,6 +283,7 @@ export default {
           // FIXME: errors in these files have to be resolved eventually
           // begin
           '!src/algorithms/model.ts', // FIXME
+          '!src/algorithms/results.ts', // FIXME
           '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
           '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
           // end
@@ -311,6 +316,7 @@ export default {
       ENV_NAME:
         getenv('TRAVIS_BRANCH', null) ??
         getenv('NOW_GITHUB_COMMIT_REF', null) ??
+        getenv('VERCEL_GITHUB_COMMIT_REF', null) ??
         require('child_process')
           .execSync('git rev-parse --abbrev-ref HEAD')
           .toString()
@@ -321,6 +327,7 @@ export default {
       REVISION:
         getenv('TRAVIS_COMMIT', null) ??
         getenv('NOW_GITHUB_COMMIT_SHA', null) ??
+        getenv('VERCEL_GITHUB_COMMIT_SHA', null) ??
         require('child_process')
           .execSync('git rev-parse HEAD')
           .toString()

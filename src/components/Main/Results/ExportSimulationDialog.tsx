@@ -83,7 +83,7 @@ export default function ExportSimulationDialog({
               <td>TSV</td>
               <td>
                 <Button
-                  disabled={!(result?.trajectory.mean ?? null)}
+                  disabled={!(result?.trajectory.middle ?? null)}
                   onClick={() => result && exportResult(result, 'covid.summary.tsv')}
                   color="primary"
                   size="sm"
@@ -98,10 +98,14 @@ export default function ExportSimulationDialog({
               <td>TSV</td>
               <td>
                 <Button
-                  disabled={!(result?.trajectory.mean ?? null)}
+                  disabled={!(result?.trajectory.middle ?? null)}
                   onClick={() =>
                     result &&
-                    exportResult(result, 'covid.allresults.tsv', Object.keys(result.trajectory.mean[0].current.severe))
+                    exportResult(
+                      result,
+                      'covid.allresults.tsv',
+                      Object.keys(result.trajectory.middle[0].current.severe),
+                    )
                   }
                   color="primary"
                   size="sm"
@@ -136,7 +140,12 @@ export default function ExportSimulationDialog({
               <td>{t('Print Preview (to print or save as PDF)')}</td>
               <td>HTML</td>
               <td>
-                <Button disabled={!(result?.trajectory.mean ?? null)} onClick={startPrinting} color="primary" size="sm">
+                <Button
+                  disabled={!(result?.trajectory.middle ?? null)}
+                  onClick={startPrinting}
+                  color="primary"
+                  size="sm"
+                >
                   {t('Preview')}
                 </Button>
               </td>
