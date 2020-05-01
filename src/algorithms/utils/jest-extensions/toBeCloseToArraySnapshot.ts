@@ -1,6 +1,6 @@
+import { ulpDistance } from '@eirba/ieee754'
 import type { Context } from './types'
 import State from './state'
-import { ulpDistance } from '@eirba/ieee754'
 
 function serialize(arr: number[]): string {
   return JSON.stringify(arr)
