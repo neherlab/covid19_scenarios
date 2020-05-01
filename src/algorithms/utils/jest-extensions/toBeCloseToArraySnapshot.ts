@@ -1,6 +1,6 @@
 import type { Context } from './types'
 import State from './state'
-import { absUlpDiff } from './comparators'
+import { ulpDistance } from '@eirba/ieee754'
 
 function serialize(arr: number[]): string {
   return JSON.stringify(arr)
@@ -25,7 +25,7 @@ function compare(want: number[], got: number[], maxUlp: bigint): boolean {
     return false
   }
 
-  return want.every((_, idx) => absUlpDiff(want[idx], got[idx]) <= maxUlp)
+  return want.every((_, idx) => ulpDistance(want[idx], got[idx]) <= maxUlp)
 }
 
 export default function toBeCloseToArraySnapshot(this: Context, received: number[]) {

@@ -60,6 +60,7 @@
     "@devexpress/dx-react-core": "2.6.2",
     "@devexpress/dx-react-grid": "2.6.2",
     "@devexpress/dx-react-grid-bootstrap4": "2.6.2",
+    "@eirba/ieee754": "0.1.0",
     "@loadable/component": "5.12.0",
     "@mdx-js/react": "1.5.8",
     "@types/mathjs": "6.0.5",
