@@ -97,7 +97,7 @@ export function ScenarioLoaderList({ items, onScenarioSelect, hidden }: Scenario
 
       <Row className="h-100">
         <Col className="h-100">
-          <div className="preset-loader-dialog-table-container">
+          <div className="mh-100 overflow-y-scroll">
             {filteredRows.map((item) => (
               <ScenarioLoaderListItem key={item.value} option={item} onItemClick={onScenarioSelect} />
             ))}

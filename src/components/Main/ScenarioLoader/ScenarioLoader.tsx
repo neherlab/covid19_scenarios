@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useTranslation } from 'react-i18next'
-import { Modal, ModalBody, ModalHeader, Col, Row } from 'reactstrap'
+import { Modal, ModalBody, ModalHeader, Col, Row, Container } from 'reactstrap'
 
 import type { AnyAction } from 'typescript-fsa'
 
@@ -42,19 +42,25 @@ export function ScenarioLoader({
       fade={false}
       data-testid="PresetLoaderDialog"
     >
-      <ModalHeader toggle={onClose}>{t(`Change scenario`)}</ModalHeader>
+      <Row>
+        <Col>
+          <ModalHeader toggle={onClose}>{t(`Change scenario`)}</ModalHeader>
+        </Col>
+      </Row>
 
-      <ModalBody>
-        <Row className="scenario-loader-modal">
-          <Col className="h-100" md={6}>
-            <ScenarioLoaderList items={scenarioOptions} onScenarioSelect={onScenarioSelect} hidden={!visible} />
-          </Col>
+      <Row className="h-100">
+        <Col className="h-100">
+          <Row className="h-100">
+            <Col className="scenario-loader-section" md={6}>
+              <ScenarioLoaderList items={scenarioOptions} onScenarioSelect={onScenarioSelect} hidden={!visible} />
+            </Col>
 
-          <Col md={6}>
-            <ScenarioLoaderUploader setSeverity={setSeverity} scenarioDispatch={scenarioDispatch} close={onClose} />
-          </Col>
-        </Row>
-      </ModalBody>
+            <Col className="scenario-loader-section" md={6}>
+              <ScenarioLoaderUploader setSeverity={setSeverity} scenarioDispatch={scenarioDispatch} close={onClose} />
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     </Modal>
   )
 }

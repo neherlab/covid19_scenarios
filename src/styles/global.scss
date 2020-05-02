@@ -119,6 +119,22 @@ p {
   white-space: nowrap;
 }
 
+.overflow-x-scroll {
+  overflow-x: scroll !important;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll !important;
+}
+
+.overflow-x-auto {
+  overflow-x: auto !important;
+}
+
+.overflow-y-auto {
+  overflow-y: auto !important;
+}
+
 .hide-native-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;

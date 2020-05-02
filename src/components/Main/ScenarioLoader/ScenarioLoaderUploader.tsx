@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 
 import ErrorBoundary from 'react-error-boundary'
 import { useTranslation } from 'react-i18next'
-import { Col, Row, Container, Card } from 'reactstrap'
+import { If, Then } from 'react-if'
+import { Col, Row, Container, Card, UncontrolledAlert } from 'reactstrap'
 import type { AnyAction } from 'typescript-fsa'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
@@ -14,6 +15,8 @@ import { setStateData } from '../state/actions'
 import { deserialize, DeserializationError } from '../state/serialize'
 
 import { ScenarioLoaderUploadZone } from './ScenarioLoaderUploadZone'
+
+import ScenarioLoaderUploadInstructionsText from './ScenarioLoaderUploadInstructionsText.mdx'
 
 class UploadErrorTooManyFiles extends Error {
   public readonly nFiles?: number
@@ -116,17 +119,33 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
 
   return (
     <Container>
+      <h3>{t(`Upload scenario`)}</h3>
+
+      <ScenarioLoaderUploadInstructionsText />
+
       <Row noGutters>
         <Col>
           <ScenarioLoaderUploadZone onDrop={onDrop} />
         </Col>
       </Row>
 
-      <Row noGutters>
+      <Row noGutters className="my-3">
         <Col>
-          {errors.map((error) => (
-            <div key={error}>{error}</div>
-          ))}
+          <If condition={hasErrors}>
+            <Then>
+              <>
+                <h4 className="text-danger">{t(`Errors`)}</h4>
+                <p className="text-danger">{t(`We detected the following errors while processing the file:`)}</p>
+                <section className="overflow-y-auto">
+                  {errors.map((error) => (
+                    <UncontrolledAlert color="danger" className="text-monospace small" key={error}>
+                      {error}
+                    </UncontrolledAlert>
+                  ))}
+                </section>
+              </>
+            </Then>
+          </If>
         </Col>
       </Row>
     </Container>

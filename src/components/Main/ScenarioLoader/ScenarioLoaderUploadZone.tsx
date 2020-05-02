@@ -27,9 +27,9 @@ export function ScenarioLoaderUploadZone({ onDrop }: ScenarioLoaderUploadZonePro
         </Row>
         <Row noGutters className="mb-5">
           <Col>
-            <p className="text-center">{t('Drag and drop scenario file here')}</p>
+            <p className="text-center">{t('Drag and drop a Scenario JSON File here')}</p>
             <p className="text-center">{t('-or-')}</p>
-            <p className="text-center">{t('Click to select scenario file')}</p>
+            <p className="text-center">{t('Click to select a Scenario JSON File')}</p>
           </Col>
         </Row>
       </div>

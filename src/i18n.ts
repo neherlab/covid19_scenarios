@@ -25,6 +25,7 @@ i18n
     fallbackLng: 'en',
     debug: process.env.DEV_ENABLE_I18N_DEBUG === '1',
     keySeparator: false, // Disable dots as key separators as we use dots in keys
+    nsSeparator: false,
 
     interpolation: {
       escapeValue: false,

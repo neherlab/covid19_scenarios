@@ -8,11 +8,25 @@ $lg: map.get($grid-breakpoints, 'lg');
 #scenario-loader-modal {
   width: 90vw;
   max-width: 1200px;
+  height: 75vh;
+  max-height: 75vh;
+
+  .modal-content {
+    display: flex;
+    height: 100%;
+  }
+
+  .modal-body {
+    height: available;
+  }
+
+  p {
+    text-align: left;
+  }
 }
 
-.preset-loader-dialog-table-container {
-  height: 75vh;
-  overflow-y: scroll;
+.scenario-loader-section {
+  height: 100%;
 }
 
 .scenario-loader-row {
@@ -47,4 +61,12 @@ $upload-zone-bg: $gray-100;
 
 .upload-icon {
   fill: $upload-zone-fg;
+}
+
+.scrollable {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
