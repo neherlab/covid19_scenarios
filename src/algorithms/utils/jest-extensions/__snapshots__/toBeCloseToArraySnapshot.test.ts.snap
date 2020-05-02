@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`extension-test matches snapshot of computed array 1`] = `[0,3.141592653589793,6.283185307179586,9.42477796076938,12.566370614359172,15.707963267948966,18.84955592153876,21.991148575128552,25.132741228718345,28.274333882308138]`;
-
-exports[`extension-test matches snapshot of literal array 1`] = `[1.234,6.5542,1.231,999.99999]`;

@@ -1084,10 +1084,17 @@
   dependencies:
     "@devexpress/dx-grid-core" "2.6.2"
 
-"@eirba/ieee754@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@eirba/ieee754/-/ieee754-0.1.0.tgz#b6658029c264343f1868572b1598800955982474"
-  integrity sha512-rj/JRKOcOL/HdjAgCLHCd///0AMgChorKJkdK3Adglzpw3FZVVN7elxQ/1OTC1qhFXliXld/tkw2hi472dJ8+A==
+"@eirba/ieee754@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@eirba/ieee754/-/ieee754-0.1.1.tgz#6f4149bd61592ea81713e60f6b6557cc2fa10a9b"
+  integrity sha512-GxiNHxC9pTkLIs1TFk10Y45vYBFJt+tHNUl76SEzPDqa8HS3/R/3FEvQ5koW6WUumVz/lNMFS8qMKpGHxzkezQ==
+
+"@eirba/jest-ieee754@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@eirba/jest-ieee754/-/jest-ieee754-0.1.1.tgz#bcd2fa59ec2b96d09218906b1333a93c4b8d0ed2"
+  integrity sha512-mjrxM+7/yKsR/56xuCMH5+eygkkniZSPHjZzdSuvl/1UVCYBcSqZRcDP57X4Ta7/5gAI0+VOfirR7ulzs95QgQ==
+  dependencies:
+    "@eirba/ieee754" "^0.1.1"
 
 "@emotion/cache@^10.0.27", "@emotion/cache@^10.0.9":
   version "10.0.29"
