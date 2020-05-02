@@ -39,10 +39,18 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
     close()
   }
 
-  async function onDrop(files: File[]) {
-    if (files.length > 0) {
-      await processParamJson(files[0])
+  async function onDrop(files: File[], filesRejected: File[]) {
+    const nFiles = files.length + filesRejected.length
+
+    if (nFiles > 1) {
+      throw new Error(`Only one file is expected`)
     }
+
+    if (files.length !== 1) {
+      throw new Error(`Upload failed`)
+    }
+
+    await processParamJson(files[0])
   }
 
   return <ScenarioLoaderUploadZone onDrop={onDrop} />
