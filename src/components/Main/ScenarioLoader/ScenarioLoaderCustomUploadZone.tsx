@@ -4,11 +4,11 @@ import { DropEvent, useDropzone } from 'react-dropzone'
 
 import { useTranslation } from 'react-i18next'
 
-export interface FileUploadZoneProps {
+export interface ScenarioLoaderCustomUploadZoneProps {
   onDrop<T extends File>(acceptedFiles: T[], rejectedFiles: T[], event: DropEvent): void
 }
 
-function FileUploadZone({ onDrop }: FileUploadZoneProps) {
+export function ScenarioLoaderCustomUploadZone({ onDrop }: ScenarioLoaderCustomUploadZoneProps) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, multiple: false })
   const { t } = useTranslation()
   return (
@@ -24,5 +24,3 @@ function FileUploadZone({ onDrop }: FileUploadZoneProps) {
     </div>
   )
 }
-
-export default FileUploadZone

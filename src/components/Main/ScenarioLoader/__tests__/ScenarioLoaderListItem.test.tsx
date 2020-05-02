@@ -1,14 +1,16 @@
 import React from 'react'
+
 import { noop } from 'lodash'
 import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
-import PresetLoaderDialogRow from './PresetLoaderDialogRow'
 
-const DATA = {
+import { ScenarioLoaderListItem, ScenarioOption } from '../ScenarioLoaderListItem'
+
+const DATA: ScenarioOption = {
   label: 'Some label',
   value: '123',
 }
 
-describe('PresetLoaderDialogRow', () => {
+describe('ScenarioLoaderListItem', () => {
   let onLoadButtonClick: (id: string) => void
   let wrapper: RenderResult
 
@@ -17,7 +19,7 @@ describe('PresetLoaderDialogRow', () => {
     console.error = noop
 
     onLoadButtonClick = jest.fn()
-    wrapper = render(<PresetLoaderDialogRow data={DATA} onLoadButtonClick={onLoadButtonClick} />)
+    wrapper = render(<ScenarioLoaderListItem option={DATA} onItemClick={onLoadButtonClick} />)
   })
 
   afterEach(cleanup)

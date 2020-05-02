@@ -10,15 +10,18 @@ import { useTranslation } from 'react-i18next'
 import { setScenario } from '../state/actions'
 import { State } from '../state/state'
 
+import { ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+
+import { ColCustom } from '../../Layout/ColCustom'
+import { CardWithControls } from '../../Form/CardWithControls'
+import { stringsToOptions } from '../../Form/FormDropdownOption'
+
+import { ScenarioLoaderModalButton } from '../ScenarioLoader/ScenarioLoaderModalButton'
+
 import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
-import { ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
-import { ColCustom } from '../../Layout/ColCustom'
-import { CardWithControls } from '../../Form/CardWithControls'
-import PresetLoader from './presets/PresetLoader'
-import { stringsToOptions } from '../../Form/FormDropdownOption'
 
 export function getColumnSizes(areResultsMaximized: boolean) {
   if (areResultsMaximized) {
@@ -61,9 +64,9 @@ function ScenarioCard({
     }
 
     return (
-      <PresetLoader
-        data={scenarioOptions}
-        onSelect={handleChangeScenario}
+      <ScenarioLoaderModalButton
+        scenarioOptions={scenarioOptions}
+        onScenarioSelect={handleChangeScenario}
         scenarioDispatch={scenarioDispatch}
         setSeverity={setSeverity}
       />

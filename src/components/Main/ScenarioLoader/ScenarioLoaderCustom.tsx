@@ -2,21 +2,21 @@ import React from 'react'
 
 import type { AnyAction } from 'typescript-fsa'
 
-import type { SeverityDistributionDatum } from '../../../../algorithms/types/Param.types'
+import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
-import { readFile } from '../../../../helpers/readFile'
+import { readFile } from '../../../helpers/readFile'
 
-import { setStateData } from '../../state/actions'
-import { deserialize } from '../../state/serialize'
+import { setStateData } from '../state/actions'
+import { deserialize } from '../state/serialize'
 
-import FileUploadZone from './FileUploadZone'
+import { ScenarioLoaderCustomUploadZone } from './ScenarioLoaderCustomUploadZone'
 
-export interface ScenarioUploadDialogProps {
+export interface ScenarioLoaderCustomProps {
   setSeverity(severity: SeverityDistributionDatum[]): void
   scenarioDispatch(action: AnyAction): void
 }
 
-function ScenarioUploadDialog({ scenarioDispatch, setSeverity }: ScenarioUploadDialogProps) {
+export function ScenarioLoaderCustom({ scenarioDispatch, setSeverity }: ScenarioLoaderCustomProps) {
   async function processParamJson(file: File) {
     const str = await readFile(file)
     const params = deserialize(str)
@@ -41,7 +41,5 @@ function ScenarioUploadDialog({ scenarioDispatch, setSeverity }: ScenarioUploadD
     }
   }
 
-  return <FileUploadZone onDrop={onDrop} />
+  return <ScenarioLoaderCustomUploadZone onDrop={onDrop} />
 }
-
-export { ScenarioUploadDialog }

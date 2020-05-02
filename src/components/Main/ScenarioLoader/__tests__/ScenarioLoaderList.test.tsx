@@ -1,9 +1,16 @@
 import React from 'react'
-import { cleanup, fireEvent, render, RenderResult, wait } from '@testing-library/react'
-import { noop } from 'lodash'
-import PresetLoaderDialog from './PresetLoaderDialog'
 
-const DATA = [
+import { noop } from 'lodash'
+import { cleanup, fireEvent, render, RenderResult, wait } from '@testing-library/react'
+import { AnyAction } from 'typescript-fsa'
+
+import type { SeverityDistributionDatum } from '../../../../algorithms/types/Param.types'
+
+import type { ScenarioOption } from '../ScenarioLoaderListItem'
+
+import { ScenarioLoader } from '../ScenarioLoader'
+
+const DATA: ScenarioOption[] = [
   {
     label: 'First row',
     value: '1',
@@ -22,10 +29,13 @@ const DATA = [
   },
 ]
 
-describe('PresetLoaderDialog', () => {
+describe('ScenarioLoaderList', () => {
   let onLoadButtonClick: (id: string) => void
   let onClose: () => void
   let wrapper: RenderResult
+
+  let setSeverity: (severity: SeverityDistributionDatum[]) => void
+  let scenarioDispatch: (action: AnyAction) => void
 
   beforeEach(() => {
     console.warn = noop
@@ -33,7 +43,19 @@ describe('PresetLoaderDialog', () => {
 
     onLoadButtonClick = jest.fn()
     onClose = jest.fn()
-    wrapper = render(<PresetLoaderDialog data={DATA} onLoadButtonClick={onLoadButtonClick} onClose={onClose} visible />)
+    setSeverity = jest.fn()
+    scenarioDispatch = jest.fn()
+
+    wrapper = render(
+      <ScenarioLoader
+        scenarioOptions={DATA}
+        onLoad={onLoadButtonClick}
+        onClose={onClose}
+        visible
+        setSeverity={setSeverity}
+        scenarioDispatch={scenarioDispatch}
+      />,
+    )
   })
 
   afterEach(cleanup)
