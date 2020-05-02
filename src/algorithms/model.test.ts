@@ -1,3 +1,4 @@
+import { toBeCloseToNumber } from '@eirba/jest-ieee754'
 import { AgeDistribution } from '../.generated/types'
 
 import { getPopulationParams, infectionRate, initializePopulation } from './initialize'
@@ -5,8 +6,6 @@ import { getPopulationParams, infectionRate, initializePopulation } from './init
 import { evolve } from './model'
 
 import { ageDisstribution, allParamsFlat, severity } from './__test_data__/getPopulationParams.input.default'
-
-import { toBeCloseToNumber } from '@eirba/jest-ieee754'
 
 const identity = (x: number) => x
 
