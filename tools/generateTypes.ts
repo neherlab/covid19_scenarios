@@ -88,7 +88,7 @@ function ajvGenerateOne(schemasRoot: string, ajv: AjvModule, outputDir: string) 
 }
 
 async function ajvGenerate(schemasRoot: string, schemaFilenames: string[], outputDir: string) {
-  const ajv = new Ajv({ sourceCode: true, $data: true, jsonPointers: true })
+  const ajv = new Ajv({ sourceCode: true, $data: true, jsonPointers: true, allErrors: true })
   await FA.concurrent.forEach(ajvAddSources(schemasRoot, ajv), schemaFilenames)
   return FA.concurrent.forEach(ajvGenerateOne(schemasRoot, ajv, outputDir), schemaFilenames)
 }

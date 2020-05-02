@@ -1,3 +1,8 @@
+import { trim } from 'lodash'
+
+import Ajv from 'ajv'
+import ajvLocalizers from 'ajv-i18n'
+
 import { Convert } from '../../../../../algorithms/types/Param.types'
 import type { Shareable } from '../../../../../algorithms/types/Param.types'
 
@@ -5,7 +10,11 @@ import validateShareable, { errors } from '../../../../../.generated/validateSha
 
 import { toExternal, toInternal } from '../../getScenario'
 
-import type { SerializableData } from '../../serialize'
+import {
+  SerializableData,
+  DeserializationErrorValidationFailed,
+  DeserializationErrorConversionFailed,
+} from '../../serialize'
 
 function serialize({
   scenario,
@@ -44,19 +53,41 @@ function deserialize(input: string): SerializableData {
   const shareableDangerous = JSON.parse(input)
 
   if (!validateShareable(shareableDangerous)) {
-    throw errors
+    const locale = 'en' // TODO: use current locale
+    const localize = ajvLocalizers[locale] ?? ajvLocalizers.en
+    localize(errors)
+
+    const ajv = Ajv({ allErrors: true })
+    const separator = '<<<NEWLINE>>>'
+    const errorString = ajv.errorsText(errors, { dataVar: '', separator })
+    if (typeof errorString === 'string') {
+      const errorStrings = errorString.split(separator).map(trim)
+      if (errorStrings.length > 0) {
+        throw new DeserializationErrorValidationFailed(errorStrings)
+      }
+    }
+
+    throw new DeserializationErrorValidationFailed(['Unknown validation error'])
   }
 
-  const shareable = Convert.toShareable(JSON.stringify(shareableDangerous))
-  const { scenarioData, ageDistributionData, severityDistributionData } = shareable
+  try {
+    const shareable = Convert.toShareable(JSON.stringify(shareableDangerous))
+    const { scenarioData, ageDistributionData, severityDistributionData } = shareable
 
-  return {
-    scenario: toInternal(scenarioData.data),
-    scenarioName: scenarioData.name,
-    ageDistribution: ageDistributionData.data,
-    ageDistributionName: ageDistributionData.name,
-    severity: severityDistributionData.data,
-    severityName: severityDistributionData.name,
+    return {
+      scenario: toInternal(scenarioData.data),
+      scenarioName: scenarioData.name,
+      ageDistribution: ageDistributionData.data,
+      ageDistributionName: ageDistributionData.name,
+      severity: severityDistributionData.data,
+      severityName: severityDistributionData.name,
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new DeserializationErrorConversionFailed(error.message)
+    }
+
+    throw new DeserializationErrorConversionFailed('Unknown conversion error')
   }
 }
 

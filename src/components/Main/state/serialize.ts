@@ -11,6 +11,8 @@ import type {
   SeverityDistributionDatum,
 } from '../../../algorithms/types/Param.types'
 
+import { appendDash } from '../../../helpers/appendDash'
+
 import urlv1 from './encoding/v1/encode'
 
 // import v1_0_0 from './serialization/v1.0.0/serialize'
@@ -62,33 +64,78 @@ export const URL_ENCODER_VERSIONS = Array.from(URL_ENCODERS.keys()).sort()
 export const URL_ENCODER_VERSION_LATEST = last(URL_ENCODER_VERSIONS) ?? '1'
 export const URL_ENCODER_LATEST = URL_ENCODERS.get(URL_ENCODER_VERSION_LATEST) ?? urlv1
 
-export class ErrorSchemaVersionMissing extends Error {
-  public constructor() {
-    super(`Error: when deserializing, \`schemaVer\` is missing`)
-  }
-}
+export class URLDecodingError extends Error {}
 
-export class ErrorSchemaVersionInvalid extends Error {
-  public schemaVer?: string
-  public constructor(schemaVer?: string) {
-    super(`Schema error: when deserializing expected \`schemaVer\` to be one of \`[${SERIALIZER_VERSIONS}]\`, but received: ${schemaVer}`) // prettier-ignore
-    this.schemaVer = schemaVer
-  }
-}
-
-export class ErrorSchemaSerializerVersionNotLatest extends Error {
-  public schemaVer: string
-  public constructor(schemaVer: string) {
-    super(`Schema error: when serializing expected \`schemaVer\` to be the latest among \`[${SERIALIZER_VERSIONS}]\`, but received: ${schemaVer}`) // prettier-ignore
-    this.schemaVer = schemaVer
-  }
-}
-
-export class ErrorURLSerializerVersionInvalid extends Error {
+export class ErrorURLSerializerVersionInvalid extends URLDecodingError {
   public urlVer?: string | null
   public constructor(urlVer?: string | null) {
     super(`URL error: when serializing expected \`v\` to be one of \`[${URL_ENCODER_VERSIONS}]\`, but received: ${urlVer}`) // prettier-ignore
     this.urlVer = urlVer
+  }
+}
+
+export class DeserializationError extends Error {
+  public readonly errors?: string[]
+}
+
+export class DeserializationErrorJsonSyntaxInvalid extends DeserializationError {
+  public readonly errors?: string[]
+
+  public constructor(syntaxErrorMessage: string) {
+    const error = `invalid JSON syntax: '${syntaxErrorMessage}'`
+    super(`when deserializing: ${error}`)
+    this.errors = [error]
+  }
+}
+
+export class DeserializationErrorSchemaVersionMissing extends DeserializationError {
+  public readonly errors?: string[]
+
+  public constructor() {
+    const error = `\`schemaVer\` is missing`
+    super(`when deserializing: ${error}`)
+    this.errors = [error]
+  }
+}
+
+export class DeserializationErrorSchemaVersionInvalid extends DeserializationError {
+  public readonly schemaVer?: string
+  public readonly errors?: string[]
+
+  public constructor(schemaVer?: string) {
+    const error = `expected \`schemaVer\` to be one of \`[${SERIALIZER_VERSIONS}]\`, but received: ${schemaVer}`
+    super(`when deserializing: ${error}`)
+    this.schemaVer = schemaVer
+    this.errors = [error]
+  }
+}
+
+export class DeserializationErrorValidationFailed extends DeserializationError {
+  public errors?: string[]
+  public constructor(errors?: string[]) {
+    super(`when deserializing: validation failed:\n${errors?.map(appendDash)?.join('\n')}`)
+    this.errors = errors
+  }
+}
+
+export class DeserializationErrorConversionFailed extends DeserializationError {
+  public errors?: string[]
+  public constructor(error?: string) {
+    super(`when deserializing: conversion failed: ${error}`)
+    this.errors = error ? [error] : ['unknown error']
+  }
+}
+
+export class SerializationError extends Error {}
+
+export class ErrorSchemaSerializerVersionNotLatest extends SerializationError {
+  public schemaVer: string
+  public errors?: string[]
+  public constructor(schemaVer: string) {
+    const error = `when serializing: expected \`schemaVer\` to be the latest among \`[${SERIALIZER_VERSIONS}]\`, but received: ${schemaVer}` // prettier-ignore
+    super(`when serializing: ${error}`)
+    this.schemaVer = schemaVer
+    this.errors = [error]
   }
 }
 
@@ -100,7 +147,7 @@ export function serialize(data: SerializableData): string {
     const shareableDangerous = JSON.parse(serialized) as { schemaVer?: string }
     const schemaVer = semver.valid(shareableDangerous?.schemaVer)
     if (!schemaVer) {
-      throw new ErrorSchemaVersionInvalid(shareableDangerous?.schemaVer)
+      throw new DeserializationErrorSchemaVersionInvalid(shareableDangerous?.schemaVer)
     }
 
     if (schemaVer !== SERIALIZER_VERSION_LATEST) {
@@ -114,20 +161,28 @@ export function serialize(data: SerializableData): string {
 }
 
 export function deserialize(dataString: string): SerializableData {
-  const shareableDangerous = JSON.parse(dataString) as { schemaVer?: string }
+  try {
+    const shareableDangerous = JSON.parse(dataString) as { schemaVer?: string }
 
-  const schemaVer = semver.valid(shareableDangerous?.schemaVer)
+    const schemaVer = semver.valid(shareableDangerous?.schemaVer)
 
-  if (!schemaVer) {
-    throw new ErrorSchemaVersionMissing()
+    if (!schemaVer) {
+      throw new DeserializationErrorSchemaVersionMissing()
+    }
+
+    const deserialize = SERIALIZERS.get(schemaVer)?.deserialize
+    if (!deserialize) {
+      throw new DeserializationErrorSchemaVersionInvalid(schemaVer)
+    }
+
+    return deserialize(dataString)
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      throw new DeserializationErrorJsonSyntaxInvalid(error.message)
+    } else {
+      throw error
+    }
   }
-
-  const deserialize = SERIALIZERS.get(schemaVer)?.deserialize
-  if (!deserialize) {
-    throw new ErrorSchemaVersionInvalid(schemaVer)
-  }
-
-  return deserialize(dataString)
 }
 
 export function dataToURL(data: SerializableData): string {
