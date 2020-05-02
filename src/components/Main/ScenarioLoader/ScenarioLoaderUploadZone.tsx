@@ -22,7 +22,7 @@ export function ScenarioLoaderUploadZone({ onDrop }: ScenarioLoaderUploadZonePro
       <div className={`upload-zone ${activeClass}`}>
         <Row noGutters className="mt-5 mb-5">
           <Col className="d-flex w-100">
-            <MdFileUpload className="mx-auto" size={50} />
+            <MdFileUpload className="upload-icon mx-auto" size={50} />
           </Col>
         </Row>
         <Row noGutters className="mb-5">

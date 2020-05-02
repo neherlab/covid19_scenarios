@@ -31,12 +31,20 @@ $lg: map.get($grid-breakpoints, 'lg');
   }
 }
 
+$upload-zone-fg: $gray-600;
+$upload-zone-bg: $gray-100;
+
 .upload-zone {
   min-height: 100px;
   cursor: pointer;
-  border: 5px $secondary dashed;
+  background-color: $upload-zone-bg;
+  border: 5px $upload-zone-fg dashed;
 
   &.upload-zone-active {
-    border: 5px $secondary dotted;
+    border-style: dotted;
   }
+}
+
+.upload-icon {
+  fill: $upload-zone-fg;
 }
