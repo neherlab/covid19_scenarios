@@ -43,7 +43,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "29992916-698d-4f96-ab26-d4646676cdad",
+"id": "7517457b-6525-4be5-aafd-3430173f1a4d",
 "mitigationValue": [
 18.0,
 22.0
@@ -133,7 +133,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "12e472f4-abe8-41d6-9fbc-0b28d340033a",
+"id": "44e76878-9229-4f6e-80f7-23fb6190aad2",
 "mitigationValue": [
 27.0,
 33.0
@@ -146,7 +146,7 @@
 },
 {
 "color": "#666666",
-"id": "74791ebd-c884-4f94-a2c9-e6d066203d9e",
+"id": "5737706a-0a89-4411-b69f-ddc55664c549",
 "mitigationValue": [
 54.0,
 66.0
@@ -198,7 +198,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1996e963-153e-41cb-9740-4f2c7977cdd2",
+"id": "5724e9bf-b947-41b5-ade1-c5a8713c3fd0",
 "mitigationValue": [
 18.0,
 22.0
@@ -288,7 +288,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "204735c9-09ed-4a86-ae11-702cc3098c12",
+"id": "e4080ed7-4390-4472-98eb-af36704c3934",
 "mitigationValue": [
 27.0,
 33.0
@@ -340,7 +340,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b981ef3c-26ef-4dde-b778-e7e85b31305e",
+"id": "b4af11cb-08d7-4176-ac64-21efc256a82f",
 "mitigationValue": [
 18.0,
 22.0
@@ -392,7 +392,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c31d2aa8-e7c6-4875-a719-46eb664bfa94",
+"id": "f1d083ff-4e5a-4815-b5e4-dcd6270462ff",
 "mitigationValue": [
 45.0,
 55.0
@@ -405,7 +405,7 @@
 },
 {
 "color": "#666666",
-"id": "eb1d8430-8626-4b9a-ba7a-8526a9d2e494",
+"id": "bb9343c2-d08f-4534-93fb-3d4d9a7460d9",
 "mitigationValue": [
 54.0,
 66.0
@@ -457,7 +457,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e53d70c5-25c3-4b55-89f9-6e2d659735b0",
+"id": "410a1e94-c5a9-4005-9093-eae5b4acacb7",
 "mitigationValue": [
 18.0,
 22.0
@@ -509,7 +509,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "10af3c57-e3ab-40a8-97f5-9af7b4ab3524",
+"id": "c744e83d-5d18-41ef-a798-8df449c2daed",
 "mitigationValue": [
 18.0,
 22.0
@@ -561,7 +561,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "00194a77-ef67-4ebe-9af8-eee9792ecba0",
+"id": "e4f59b35-1937-443f-9a0f-af3703bd72c9",
 "mitigationValue": [
 18.0,
 22.0
@@ -574,7 +574,7 @@
 },
 {
 "color": "#666666",
-"id": "506bdb74-446c-4f68-8b35-595194f4a461",
+"id": "7fde9468-794b-4cfa-b1c7-d8f3f455962d",
 "mitigationValue": [
 54.0,
 66.0
@@ -664,7 +664,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a67ee4a6-e1e0-436d-b0a4-14a77f3497c2",
+"id": "b9e1c70d-52e2-4316-b306-d488234abc30",
 "mitigationValue": [
 18.0,
 22.0
@@ -716,7 +716,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1d1576d1-c250-44d3-b24d-2a04e9093791",
+"id": "7adeca96-3cd6-42dd-82c2-2a5e79997831",
 "mitigationValue": [
 18.0,
 22.0
@@ -729,7 +729,7 @@
 },
 {
 "color": "#666666",
-"id": "414da48e-68bd-46f4-8ba9-68d2404e64a7",
+"id": "6df4b5fb-c579-4ba2-8831-d8699a578494",
 "mitigationValue": [
 54.0,
 66.0
@@ -781,7 +781,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "74c5338f-7513-4d9b-8d6a-06c8ffb7024e",
+"id": "96ac5130-633e-4c18-8193-560589e6d93c",
 "mitigationValue": [
 36.0,
 44.0
@@ -794,7 +794,7 @@
 },
 {
 "color": "#666666",
-"id": "be8f4fe0-4012-40e1-81af-5e71226e93df",
+"id": "a83e3152-f01e-4d7e-ac10-9478725d7432",
 "mitigationValue": [
 54.0,
 66.0
@@ -957,7 +957,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "1db93b80-8f47-405a-92f8-0db1072f6318",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -998,7 +1012,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "65b71274-b4b0-415b-a142-5cfc33d0dfc4",
+"id": "833ec76a-cb01-46d5-8989-37f6e7338ef6",
 "mitigationValue": [
 36.0,
 44.0
@@ -1088,7 +1102,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ef044839-f0d8-4df3-8b52-56cca75e9717",
+"id": "b47cabb3-797a-43fc-9f48-8ed2ce62d2ea",
 "mitigationValue": [
 54.0,
 66.0
@@ -1101,7 +1115,7 @@
 },
 {
 "color": "#666666",
-"id": "2b237278-3d66-42bb-9d6f-e21316a194cd",
+"id": "5e97bffa-ee66-4879-9c0e-361d4f4f22c7",
 "mitigationValue": [
 54.0,
 66.0
@@ -1153,7 +1167,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a21d979d-d515-4967-825c-3b1ed4f14c62",
+"id": "8d6907db-a33c-45aa-8956-fbd9ca9992e2",
 "mitigationValue": [
 18.0,
 22.0
@@ -1205,7 +1219,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "76d21fae-df7c-46ee-b94b-a56687f15dc3",
+"id": "5b1c72dc-9003-481a-ac80-feaad1f80b8a",
 "mitigationValue": [
 18.0,
 22.0
@@ -1333,7 +1347,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b67e7f98-9555-4b23-86f1-4602a2293989",
+"id": "01ada68f-fa2d-4de4-ad6b-fea53e1eb64f",
 "mitigationValue": [
 27.0,
 33.0
@@ -1346,7 +1360,7 @@
 },
 {
 "color": "#666666",
-"id": "55a2cbdf-5471-4bde-a018-f363435cfc3a",
+"id": "aa8ba92f-38d6-48ef-94c0-222613bce12b",
 "mitigationValue": [
 54.0,
 66.0
@@ -1398,7 +1412,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e1292dfc-c8e9-42dc-b90e-a5c2bbcfb2af",
+"id": "cbe698cd-b0ce-4c76-b5fe-e5203cde4930",
 "mitigationValue": [
 27.0,
 33.0
@@ -1450,7 +1464,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f2a1049d-9f14-40fe-8204-b5f910117169",
+"id": "9d5a1cfa-0fed-4733-9347-6d4401c727b7",
 "mitigationValue": [
 27.0,
 33.0
@@ -1540,7 +1554,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cbf0ce5f-b78f-4888-a8ad-d30baf468031",
+"id": "bcc3bf7e-b3ca-4a7e-85da-624195326b67",
 "mitigationValue": [
 18.0,
 22.0
@@ -1592,7 +1606,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9c56379e-8af6-4215-a636-fd766a6cc317",
+"id": "4000b51d-d7ac-4853-8aba-cd11c72480e3",
 "mitigationValue": [
 18.0,
 22.0
@@ -1644,7 +1658,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7747383f-d30a-48d2-9d48-29ce85809064",
+"id": "d8cf59c7-949d-4bdb-b363-32681ca65236",
 "mitigationValue": [
 27.0,
 33.0
@@ -1734,7 +1748,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "400283e6-ebd3-48ed-bae1-06d9c89db929",
+"id": "888e43cc-31f5-41f5-9db5-4d3aa2df2284",
 "mitigationValue": [
 27.0,
 33.0
@@ -1747,7 +1761,7 @@
 },
 {
 "color": "#666666",
-"id": "cf8e3659-952c-4461-b4dd-ba2ebf101efd",
+"id": "0e4e1fe5-6572-4ddf-9334-3bd7d8a8704a",
 "mitigationValue": [
 54.0,
 66.0
@@ -1799,7 +1813,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "307458d3-a829-4379-996f-1693ef5ec832",
+"id": "8155a291-8809-49bd-9bf9-3a802e352f1a",
 "mitigationValue": [
 18.0,
 22.0
@@ -1851,7 +1865,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4f6b9463-2b1c-4dfd-805e-e59ba0a40838",
+"id": "d00b7085-6147-44e1-bd76-2b80bd8b8b86",
 "mitigationValue": [
 54.0,
 66.0
@@ -1864,7 +1878,7 @@
 },
 {
 "color": "#666666",
-"id": "a212f6cf-4831-47fa-8536-fffd6eb61dbe",
+"id": "5610cb32-94ac-4c53-b303-92e545e06854",
 "mitigationValue": [
 54.0,
 66.0
@@ -1916,7 +1930,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7f199a9f-b565-4d09-8751-ce187f50a5aa",
+"id": "b10809e0-15a4-4233-9ccc-24e2507a9565",
 "mitigationValue": [
 27.0,
 33.0
@@ -1968,7 +1982,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "42f7f062-81d8-4ad4-92e9-d3c52c1daa17",
+"id": "c1b8fcfb-77a3-4c3e-86a3-fd888ec5bbfc",
 "mitigationValue": [
 18.0,
 22.0
@@ -2020,7 +2034,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5ada8b78-21af-43b6-8008-33f58138b21e",
+"id": "9be5fb9f-2511-4b07-8644-77c214d42a2c",
 "mitigationValue": [
 27.0,
 33.0
@@ -2033,7 +2047,7 @@
 },
 {
 "color": "#666666",
-"id": "e9e18b25-8978-4429-9590-2b1e459a913c",
+"id": "1e6cb9a0-41b2-474f-a140-5df30e53d731",
 "mitigationValue": [
 54.0,
 66.0
@@ -2085,7 +2099,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8312874e-468f-47c0-96f5-d518bbe79091",
+"id": "aecf20cd-076c-4fdd-8283-b0f7cfa2aef6",
 "mitigationValue": [
 18.0,
 22.0
@@ -2098,7 +2112,7 @@
 },
 {
 "color": "#666666",
-"id": "cfefdccc-ac51-4e38-a745-6f7fde0245b7",
+"id": "d684edba-3b62-41a8-912d-1d9275bc1304",
 "mitigationValue": [
 54.0,
 66.0
@@ -2150,7 +2164,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "15411200-763e-487e-8c9c-81189b30fe4a",
+"id": "5de3c210-79be-4a98-b454-29053d39803a",
 "mitigationValue": [
 18.0,
 22.0
@@ -2202,7 +2216,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8dfa4a9f-0b46-4fa8-9826-8c96f72b77d1",
+"id": "d4ac5803-19cb-47a9-bf4d-91818271ef6b",
 "mitigationValue": [
 18.0,
 22.0
@@ -2215,7 +2229,7 @@
 },
 {
 "color": "#666666",
-"id": "a217e350-6a26-407d-8db7-ca546f85f0cd",
+"id": "47b6b9f8-703f-4a78-82a5-e3d87970be98",
 "mitigationValue": [
 54.0,
 66.0
@@ -2267,7 +2281,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3e127196-fdb9-4785-84f2-bde7c31dd207",
+"id": "e425921a-88b9-45e8-b09b-956a24703d55",
 "mitigationValue": [
 36.0,
 44.0
@@ -2280,7 +2294,7 @@
 },
 {
 "color": "#666666",
-"id": "fea97729-750d-47a8-b711-fd4d4692e990",
+"id": "62382b6e-3481-4e1a-9b4c-ce4d800c34f2",
 "mitigationValue": [
 54.0,
 66.0
@@ -2332,7 +2346,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bfde18c9-13b3-4f82-b60e-2947972f39bc",
+"id": "5e7409c1-2f1c-4f7c-8169-1c04e8fb16fd",
 "mitigationValue": [
 36.0,
 44.0
@@ -2345,7 +2359,7 @@
 },
 {
 "color": "#666666",
-"id": "02b2391c-58b2-41ac-8ef4-ce17f6fd0620",
+"id": "30da8890-fcfe-487f-9756-c0c5de002b88",
 "mitigationValue": [
 54.0,
 66.0
@@ -2397,7 +2411,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "29e646f9-0f2c-42c7-ac8e-e33f420e7f23",
+"id": "e614aa68-4397-405c-a306-dd7b853542ac",
 "mitigationValue": [
 36.0,
 44.0
@@ -2410,7 +2424,7 @@
 },
 {
 "color": "#666666",
-"id": "75fd3040-b97b-4a76-8501-5938a734c0f9",
+"id": "8a120bd6-c5ae-40f1-9a96-6827fe692756",
 "mitigationValue": [
 54.0,
 66.0
@@ -2462,7 +2476,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6f3350d9-a7dd-4dc5-a53a-178adbbe64ed",
+"id": "273e8f1b-3c65-43b2-a8a6-dfa96f5c59f2",
 "mitigationValue": [
 45.0,
 55.0
@@ -2475,7 +2489,7 @@
 },
 {
 "color": "#666666",
-"id": "50085df0-83e8-4ff2-a000-c5c789663145",
+"id": "aa9b8292-fc5e-4977-8e83-5b89b715ba38",
 "mitigationValue": [
 54.0,
 66.0
@@ -2527,7 +2541,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "81721e01-5df0-4a9d-b54e-d34395cfd305",
+"id": "d94741aa-2203-48f7-b827-91b077a99816",
 "mitigationValue": [
 18.0,
 22.0
@@ -2540,7 +2554,7 @@
 },
 {
 "color": "#666666",
-"id": "840a12d1-219a-43d5-9286-47a342f9d4ab",
+"id": "e55104d7-c05e-4f97-afc5-00053d61de80",
 "mitigationValue": [
 54.0,
 66.0
@@ -2592,7 +2606,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a570d04b-8a68-4c3f-97ec-61b3344c3e4c",
+"id": "83a819d6-54af-4cdb-b447-744085ac969e",
 "mitigationValue": [
 45.0,
 55.0
@@ -2605,7 +2619,7 @@
 },
 {
 "color": "#666666",
-"id": "c575ffd8-692b-4a81-9cc0-931507a6f559",
+"id": "cdacd184-e141-46c5-a412-484286f2432e",
 "mitigationValue": [
 54.0,
 66.0
@@ -2657,7 +2671,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ddc53cbc-aa0a-48d3-8fc3-aeb57b28a4c8",
+"id": "459d3ea8-a7eb-40c4-ac5b-62e53d7196ad",
 "mitigationValue": [
 27.0,
 33.0
@@ -2670,7 +2684,7 @@
 },
 {
 "color": "#666666",
-"id": "25143510-d386-4663-87d2-7cecc56a87c3",
+"id": "b2e6a266-0168-4b71-b0da-1e684657ff62",
 "mitigationValue": [
 54.0,
 66.0
@@ -2722,7 +2736,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "36155484-35aa-453c-910e-bc4e9e5e7764",
+"id": "a2034fe3-01be-4253-bf8a-700a6860d33d",
 "mitigationValue": [
 27.0,
 33.0
@@ -2735,7 +2749,7 @@
 },
 {
 "color": "#666666",
-"id": "e90220d5-d870-4596-986b-44d80605ff8b",
+"id": "46685e0c-683f-4334-8e7f-2f711aac9ac2",
 "mitigationValue": [
 54.0,
 66.0
@@ -2787,7 +2801,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "78bcfff9-77e1-4f03-b1d2-31d2c9466031",
+"id": "9261a55c-26a9-4839-9aad-03547e1ad2cb",
 "mitigationValue": [
 27.0,
 33.0
@@ -2800,7 +2814,7 @@
 },
 {
 "color": "#666666",
-"id": "9d15d8b3-f1c8-4f37-b1a9-74eb04d3c5cc",
+"id": "f26e3429-63ed-4e7e-9718-baa1351c0fe2",
 "mitigationValue": [
 54.0,
 66.0
@@ -2852,7 +2866,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5f1f0f81-72eb-4d2d-aa69-fb86b44847e1",
+"id": "7ccf5f6e-acb2-48c0-a93b-73ce9bf84151",
 "mitigationValue": [
 27.0,
 33.0
@@ -2865,7 +2879,7 @@
 },
 {
 "color": "#666666",
-"id": "6b9df17e-caa3-4ee8-a988-08008122ef31",
+"id": "5293685e-7354-4265-8c6e-0d9c9bec858c",
 "mitigationValue": [
 54.0,
 66.0
@@ -2917,7 +2931,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4dc6b236-ef19-4016-b923-273cb0ff7069",
+"id": "38a579cc-7dd8-4b9d-bb6d-380b2d785ab9",
 "mitigationValue": [
 18.0,
 22.0
@@ -2930,7 +2944,7 @@
 },
 {
 "color": "#666666",
-"id": "4aa76df7-2c95-48a4-9824-68e533bf0d20",
+"id": "e4da785f-3056-4a1d-915e-bff39a084a56",
 "mitigationValue": [
 54.0,
 66.0
@@ -2982,7 +2996,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b291f2b1-b5fe-41dc-b592-e3646f323b37",
+"id": "e9bb2266-f7d3-43c6-b474-bf57459c9fa0",
 "mitigationValue": [
 18.0,
 22.0
@@ -3034,7 +3048,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e8cfea17-2788-43e3-ab55-55c742ab298c",
+"id": "92673fc0-72d9-4927-abff-59ffc9c618c1",
 "mitigationValue": [
 18.0,
 22.0
@@ -3047,7 +3061,7 @@
 },
 {
 "color": "#666666",
-"id": "3c9c99ab-932c-449f-aa63-97c3e579dbbf",
+"id": "9f2eea5e-1f1d-4e37-ad28-0e373c1de2f6",
 "mitigationValue": [
 54.0,
 66.0
@@ -3099,7 +3113,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5a3c9267-86ef-495d-b4d5-776a1ac8718b",
+"id": "828ac33d-e2f8-44be-82f9-29bcb3303d84",
 "mitigationValue": [
 18.0,
 22.0
@@ -3112,7 +3126,7 @@
 },
 {
 "color": "#666666",
-"id": "7bdb590e-19a1-4a2c-a210-86dacae8e3d9",
+"id": "3df07340-cfb6-4641-bb25-fe586d0dac60",
 "mitigationValue": [
 54.0,
 66.0
@@ -3164,7 +3178,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6f5f3263-d6a1-4d03-99f5-0a20f0c6b750",
+"id": "8d7e1038-8727-4bac-909b-74e6c131935d",
 "mitigationValue": [
 18.0,
 22.0
@@ -3177,7 +3191,7 @@
 },
 {
 "color": "#666666",
-"id": "4ea8808f-2635-4682-890f-abc97837869e",
+"id": "b474a5e3-65f9-4aef-bc76-0fd31a51bb07",
 "mitigationValue": [
 54.0,
 66.0
@@ -3229,7 +3243,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8031f629-f2d3-4ea1-a4fe-11b86113122d",
+"id": "e162aaaf-5f7c-4ae1-9bee-312394d1c974",
 "mitigationValue": [
 27.0,
 33.0
@@ -3242,7 +3256,7 @@
 },
 {
 "color": "#666666",
-"id": "94273caf-b0e9-4caa-bea4-b7e88dfc1972",
+"id": "25f9d9cf-3145-45c6-9b5c-5e3a50747867",
 "mitigationValue": [
 54.0,
 66.0
@@ -3294,7 +3308,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "79f19693-116e-4173-9443-6daf0e43c46a",
+"id": "7c6db15e-75e3-41db-a0b2-e7412e265d81",
 "mitigationValue": [
 45.0,
 55.0
@@ -3307,7 +3321,7 @@
 },
 {
 "color": "#666666",
-"id": "d3438bf7-2d3b-459c-8dba-ce4a3d121fdb",
+"id": "9bc1239a-72d3-4469-8d42-cf4028a15e6a",
 "mitigationValue": [
 54.0,
 66.0
@@ -3359,7 +3373,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5685042d-3755-4fa8-889d-1fd55b414ae4",
+"id": "77d299be-4c03-4943-9265-f144b8132861",
 "mitigationValue": [
 18.0,
 22.0
@@ -3372,7 +3386,7 @@
 },
 {
 "color": "#666666",
-"id": "9b7102a4-14f3-4e69-ab6a-4d503130c61c",
+"id": "3e7fa3e0-4129-408c-99d6-ee07fb3c300a",
 "mitigationValue": [
 54.0,
 66.0
@@ -3424,7 +3438,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6ad3aa72-6f7d-4bc4-a61f-459b70ee662a",
+"id": "b295cd28-88ff-4302-aac3-2960253a3197",
 "mitigationValue": [
 45.0,
 55.0
@@ -3437,7 +3451,7 @@
 },
 {
 "color": "#666666",
-"id": "a7dfd217-9d52-4742-8738-f397d6398404",
+"id": "3fa8d468-d6df-42e8-b05a-d97af18b57d5",
 "mitigationValue": [
 54.0,
 66.0
@@ -3489,7 +3503,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2199a37e-4f1e-47c3-b0ee-96ddc3037630",
+"id": "653b2584-df60-4c5d-9cc2-77001e057f21",
 "mitigationValue": [
 36.0,
 44.0
@@ -3502,7 +3516,7 @@
 },
 {
 "color": "#666666",
-"id": "8194b493-9d23-4eaa-a91d-16c3d07f5439",
+"id": "5b292a97-7144-4712-9ebd-5648d61b2c49",
 "mitigationValue": [
 54.0,
 66.0
@@ -3554,7 +3568,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c68dcd70-2ec5-4c24-baad-f64f3c828a8e",
+"id": "4cd00a93-1d70-4b6f-a623-8a378bc859db",
 "mitigationValue": [
 18.0,
 22.0
@@ -3567,7 +3581,7 @@
 },
 {
 "color": "#666666",
-"id": "73321670-2e4f-4963-9513-ebece25d9038",
+"id": "ef91b318-e5f7-4b7b-8252-5a50e1e7d0a5",
 "mitigationValue": [
 54.0,
 66.0
@@ -3619,7 +3633,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ee3ccb42-993b-4115-b7d7-7e31382f2643",
+"id": "d42f4f86-1fb7-43f2-a513-63b9b76d30f0",
 "mitigationValue": [
 36.0,
 44.0
@@ -3632,7 +3646,7 @@
 },
 {
 "color": "#666666",
-"id": "900d6723-2ab8-40ba-a48d-63ddf29c24bb",
+"id": "619a431c-5236-497f-b725-11dd9d4e5679",
 "mitigationValue": [
 54.0,
 66.0
@@ -3684,7 +3698,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0a946f65-628d-478b-8923-ea76cf145bc9",
+"id": "db7bf8f5-f14c-44e3-8005-e518a61e04c8",
 "mitigationValue": [
 18.0,
 22.0
@@ -3812,7 +3826,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "af78cb69-b44b-45c9-ac0d-f7a0b8bdbcca",
+"id": "1c678e5f-4095-49a8-8081-3bf04b94bc43",
 "mitigationValue": [
 36.0,
 44.0
@@ -3825,7 +3839,7 @@
 },
 {
 "color": "#666666",
-"id": "665a7b44-8ebf-46ea-8780-f24a8ffa845c",
+"id": "c71de0ed-f680-4f76-9af5-7231040fc60a",
 "mitigationValue": [
 54.0,
 66.0
@@ -3915,7 +3929,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "170b2e57-1b25-4e8f-bb63-0003ae2ee23c",
+"id": "46f0da96-4500-4f9b-9bd0-e8b7b5d8b2ad",
 "mitigationValue": [
 45.0,
 55.0
@@ -3967,7 +3981,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "df3bb265-64cb-47ee-8bf0-47d0af9b8bf1",
+"id": "bd9b0818-89be-41b8-a17e-63b0b3757f51",
 "mitigationValue": [
 36.0,
 44.0
@@ -3980,7 +3994,7 @@
 },
 {
 "color": "#666666",
-"id": "14d92536-c36b-48b6-957e-711272ed9c24",
+"id": "15feddc6-cad1-41e1-9054-2090d94194ca",
 "mitigationValue": [
 54.0,
 66.0
@@ -4032,7 +4046,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9c7b3e7d-685b-4397-988e-6005b94999f7",
+"id": "86d0cc7f-9a79-4e56-bd49-98eae3246063",
 "mitigationValue": [
 36.0,
 44.0
@@ -4122,7 +4136,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "88eecb23-81ed-4758-8ea0-634c64588751",
+"id": "0c158b5b-7f43-49ea-9d7f-8f204eb7d97f",
 "mitigationValue": [
 18.0,
 22.0
@@ -4174,7 +4188,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2e29c170-20d0-4a68-a96b-9ac721d5909f",
+"id": "75e56250-9990-4bc3-8231-11dbcf802bab",
 "mitigationValue": [
 36.0,
 44.0
@@ -4226,7 +4240,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f33ed2bf-4cec-4f65-a0bb-12d185cf31d0",
+"id": "88b04323-649f-49bd-abed-350b8e6c03ec",
 "mitigationValue": [
 18.0,
 22.0
@@ -4278,7 +4292,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b98c3f90-a858-4d73-8087-2a7b32e858be",
+"id": "88d3af3c-5b2f-4426-a064-59904288447f",
 "mitigationValue": [
 18.0,
 22.0
@@ -4330,7 +4344,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "55d5ca2b-3348-4608-9d11-7955ea386dd9",
+"id": "f7d3909a-0069-4f61-9d66-b1b0ef555df4",
 "mitigationValue": [
 45.0,
 55.0
@@ -4382,7 +4396,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3a355b77-9967-425a-b4b0-f947f89357e5",
+"id": "c7457706-7143-48d2-a54d-6d912ab6449f",
 "mitigationValue": [
 45.0,
 55.0
@@ -4395,7 +4409,7 @@
 },
 {
 "color": "#666666",
-"id": "d530092d-8d0b-43c0-86c2-8cfd60ae50ab",
+"id": "6927470d-e789-4f69-a6fe-b9e89ec139b2",
 "mitigationValue": [
 54.0,
 66.0
@@ -4447,7 +4461,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "876cb4b9-1cf7-4d69-b4ae-5900a9919621",
+"id": "a32ff94d-7745-49bc-84aa-28ddab429f5a",
 "mitigationValue": [
 36.0,
 44.0
@@ -4460,7 +4474,7 @@
 },
 {
 "color": "#666666",
-"id": "1ee01a29-8e48-45e2-bead-ef172da10a97",
+"id": "5d5c0edc-be23-440c-907e-3fc5f9b63762",
 "mitigationValue": [
 54.0,
 66.0
@@ -4512,7 +4526,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4fa4be69-58cb-4aca-a168-4f359f04ab12",
+"id": "a05f503a-6e13-4060-bc5b-1639b76e1966",
 "mitigationValue": [
 36.0,
 44.0
@@ -4525,7 +4539,7 @@
 },
 {
 "color": "#666666",
-"id": "bfa3cacd-f3a3-45a8-ad10-06107d42b26f",
+"id": "199be20c-47a8-428b-bce2-d3ec278252f5",
 "mitigationValue": [
 54.0,
 66.0
@@ -4577,7 +4591,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "343dd80a-8772-47cb-8ee4-d8d0a6a414cf",
+"id": "da152fee-3654-40e7-8502-3f382999af71",
 "mitigationValue": [
 27.0,
 33.0
@@ -4590,7 +4604,7 @@
 },
 {
 "color": "#666666",
-"id": "ab15b6cf-deeb-452b-aaba-421cbcf58982",
+"id": "e37f25c8-621a-4594-99a3-545d01801959",
 "mitigationValue": [
 54.0,
 66.0
@@ -4642,7 +4656,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "91f85c3e-a893-4dfb-93ba-869ec1c11da7",
+"id": "edb91eed-c1f7-45ff-b3a3-24469f69a2ee",
 "mitigationValue": [
 27.0,
 33.0
@@ -4655,7 +4669,7 @@
 },
 {
 "color": "#666666",
-"id": "c6f244bd-a90a-4dce-a365-f5454469ca16",
+"id": "2041b5c8-f776-470a-bf8c-835fcb2892d1",
 "mitigationValue": [
 54.0,
 66.0
@@ -4707,7 +4721,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0aa1217e-7b82-423b-a5f3-3527f0d4cfb8",
+"id": "7f9fd1cf-f750-4a28-868f-c310585ce4cd",
 "mitigationValue": [
 27.0,
 33.0
@@ -4720,7 +4734,7 @@
 },
 {
 "color": "#666666",
-"id": "5d7e7eb1-d11a-43ea-80ce-60b58f4c1777",
+"id": "137782df-0dbb-4a60-8948-d5bcd5c39f92",
 "mitigationValue": [
 54.0,
 66.0
@@ -4772,7 +4786,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f3337d77-a9be-466f-b843-f9eb9d19112b",
+"id": "ee772b18-41ca-4ecc-a773-1cc6f9a1e032",
 "mitigationValue": [
 45.0,
 55.0
@@ -4785,7 +4799,7 @@
 },
 {
 "color": "#666666",
-"id": "7eeaced5-641b-40bf-95dd-09ef730cb98f",
+"id": "e2dfc04c-d7ce-4a42-bd1d-187369315e5e",
 "mitigationValue": [
 54.0,
 66.0
@@ -4837,7 +4851,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fc730d71-0688-4079-ba2b-5838ab46f4ea",
+"id": "599ff9af-62c0-4d35-8abd-923603b9ac18",
 "mitigationValue": [
 27.0,
 33.0
@@ -4927,7 +4941,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3c8e4c52-b748-43eb-8c4a-8b53907c295b",
+"id": "c60d8f9c-3bc1-46f4-9770-00034a1c9408",
 "mitigationValue": [
 36.0,
 44.0
@@ -4940,7 +4954,7 @@
 },
 {
 "color": "#666666",
-"id": "f45b7548-2dd9-41b6-b713-21a19816b76c",
+"id": "eafab29d-93b5-44f6-9473-d916e19cf75c",
 "mitigationValue": [
 54.0,
 66.0
@@ -4992,7 +5006,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f092fb0e-c285-4522-a0f7-16b4645a4cf5",
+"id": "1dad39a5-9a3c-43ca-ba98-74df72ec91cc",
 "mitigationValue": [
 27.0,
 33.0
@@ -5005,7 +5019,7 @@
 },
 {
 "color": "#666666",
-"id": "03e2a710-3b6f-4295-915b-81bb555dd601",
+"id": "3d9d0928-592b-4bee-a605-eab78175e0ef",
 "mitigationValue": [
 54.0,
 66.0
@@ -5057,7 +5071,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cd24dc63-b5c2-4e4a-8e42-2bf50f8148fa",
+"id": "58eefeb1-ced6-498e-ba31-aaf018fd383f",
 "mitigationValue": [
 54.0,
 66.0
@@ -5070,7 +5084,7 @@
 },
 {
 "color": "#666666",
-"id": "6dda0174-5ade-4ce4-bcca-0602090b58a9",
+"id": "20c09b62-cc25-4f85-a0f5-e79019409e0f",
 "mitigationValue": [
 54.0,
 66.0
@@ -5122,7 +5136,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "504d8c75-a404-4cd6-bd8f-e17d586ee215",
+"id": "cd8e22ab-4a8a-47e2-96ff-7cbfba9df090",
 "mitigationValue": [
 27.0,
 33.0
@@ -5135,7 +5149,7 @@
 },
 {
 "color": "#666666",
-"id": "83b02db9-3444-4be5-a161-9598708095ec",
+"id": "7996b571-78e6-4bc3-a922-65174099407c",
 "mitigationValue": [
 54.0,
 66.0
@@ -5187,7 +5201,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "09270d65-178e-4a22-b807-5a5d4447eae2",
+"id": "7dc53018-dc9f-4f31-a7ed-910fdb8575d9",
 "mitigationValue": [
 36.0,
 44.0
@@ -5200,7 +5214,7 @@
 },
 {
 "color": "#666666",
-"id": "8f7009ec-b353-4d1b-92d0-ee69fa328a30",
+"id": "94d41a39-215c-4608-954a-d7ed170eeae8",
 "mitigationValue": [
 54.0,
 66.0
@@ -5252,7 +5266,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "63ff0eac-3ed9-44f7-9100-58c7062b30fc",
+"id": "168beb70-4888-437a-aa3a-d71105734c2c",
 "mitigationValue": [
 27.0,
 33.0
@@ -5304,7 +5318,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2679077f-bd3a-4329-a5be-3b738f91087d",
+"id": "4908c053-7b31-4e92-8b5e-13feae1be138",
 "mitigationValue": [
 36.0,
 44.0
@@ -5356,7 +5370,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "326bba34-195e-4b20-a4d8-5d69622369b0",
+"id": "db51369b-1249-4af6-b46f-e10fc8b043a2",
 "mitigationValue": [
 36.0,
 44.0
@@ -5369,7 +5383,7 @@
 },
 {
 "color": "#666666",
-"id": "7354f2f0-03f4-4b0b-90aa-d112e430cd9e",
+"id": "f8cae55b-73b3-463c-bd08-7dbbb62d6e2c",
 "mitigationValue": [
 54.0,
 66.0
@@ -5421,7 +5435,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ca2b328e-e5e6-4321-bfbe-3605e6ec086a",
+"id": "d9950cfb-d0c7-4b5f-ae9f-2d77292a4785",
 "mitigationValue": [
 18.0,
 22.0
@@ -5434,7 +5448,7 @@
 },
 {
 "color": "#666666",
-"id": "4eed52bf-59cf-4094-9207-46065c18feb1",
+"id": "839492d5-ef56-4526-8f65-e800586eff44",
 "mitigationValue": [
 54.0,
 66.0
@@ -5486,7 +5500,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6dd8d68f-73e0-4014-b3ce-546a707dbf49",
+"id": "92190ebf-9aca-4824-a40c-cd4d86580d52",
 "mitigationValue": [
 27.0,
 33.0
@@ -5499,7 +5513,7 @@
 },
 {
 "color": "#666666",
-"id": "0fdaa278-70b6-40aa-8c75-757bf8ab1b37",
+"id": "3b9b599b-a135-4033-ac17-fe519dabb16f",
 "mitigationValue": [
 54.0,
 66.0
@@ -5551,7 +5565,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "db9629ac-75d7-4499-a013-4851d320af90",
+"id": "679edd72-54f1-4e9d-95cf-9fc89bef7391",
 "mitigationValue": [
 18.0,
 22.0
@@ -5603,7 +5617,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "241d0f52-a742-48af-85ad-604ce70ee2c0",
+"id": "22dd4bac-a883-4116-9e6c-80cbe56a34b2",
 "mitigationValue": [
 54.0,
 66.0
@@ -5655,7 +5669,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b6c4e85d-e356-42a4-96b7-46098b9bea51",
+"id": "451b44ab-ad9d-4848-bff7-d8a3bbcb8724",
 "mitigationValue": [
 45.0,
 55.0
@@ -5668,7 +5682,7 @@
 },
 {
 "color": "#666666",
-"id": "7dc4e856-867c-4bd1-b995-fbd7c6652baf",
+"id": "a021c61f-18fa-4d74-9cd2-8efe7d482464",
 "mitigationValue": [
 54.0,
 66.0
@@ -5720,7 +5734,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7988a184-4f2e-4bd7-bd9d-7fb8830011dd",
+"id": "0a4158a6-3ef1-4ad0-9e07-865297f16f54",
 "mitigationValue": [
 27.0,
 33.0
@@ -5733,7 +5747,7 @@
 },
 {
 "color": "#666666",
-"id": "7a13db3c-7d56-41ff-b011-ee00e458e2d4",
+"id": "fa322504-d2a8-40ed-86f6-29cdeff5646a",
 "mitigationValue": [
 54.0,
 66.0
@@ -5785,7 +5799,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "62538de1-1d9a-48f5-86da-c57ea89255ec",
+"id": "56e2a443-1daf-4f65-b9a4-da13a58a38c5",
 "mitigationValue": [
 36.0,
 44.0
@@ -5798,7 +5812,7 @@
 },
 {
 "color": "#666666",
-"id": "453fb3b5-7585-400c-a5df-c47a5021c06f",
+"id": "63c0898d-3659-4fe1-8f03-1bd2b4408cbc",
 "mitigationValue": [
 54.0,
 66.0
@@ -5850,7 +5864,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e8c2ec08-5874-40eb-b549-0be07ff44ddf",
+"id": "78f96a25-936b-4c86-a797-93b6968bac36",
 "mitigationValue": [
 36.0,
 44.0
@@ -5863,7 +5877,7 @@
 },
 {
 "color": "#666666",
-"id": "928e6685-f8f1-4e9c-92d0-474a765f8573",
+"id": "43613092-b412-412c-be98-b3dc66cc6658",
 "mitigationValue": [
 54.0,
 66.0
@@ -5915,7 +5929,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "eea88858-e186-467e-95f1-597168c7d814",
+"id": "e2f20901-8b25-493e-9e4f-7aaff672419d",
 "mitigationValue": [
 45.0,
 55.0
@@ -5928,7 +5942,7 @@
 },
 {
 "color": "#666666",
-"id": "bfe23e58-f7ef-432d-bbf2-ec93b99ca88b",
+"id": "0a72fd63-ef5e-4e8e-93b3-404f7e3ef4e6",
 "mitigationValue": [
 54.0,
 66.0
@@ -5980,7 +5994,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a8f63052-9ee2-481f-be37-81843db5eab6",
+"id": "cba7daaa-328b-433b-a355-82d7354105b3",
 "mitigationValue": [
 36.0,
 44.0
@@ -5993,7 +6007,7 @@
 },
 {
 "color": "#666666",
-"id": "54bb02af-4903-4e80-8cbc-6f4e73933e98",
+"id": "69f8004a-ab96-422a-bd41-d1e5d7767415",
 "mitigationValue": [
 54.0,
 66.0
@@ -6045,7 +6059,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "90e3a130-2407-4b7d-a564-b6bcee75b238",
+"id": "851ba2ca-5204-4f78-b357-0560b661f00f",
 "mitigationValue": [
 45.0,
 55.0
@@ -6058,7 +6072,7 @@
 },
 {
 "color": "#666666",
-"id": "fa91be9c-c1b3-4e1f-99b6-c76d4f0a3f29",
+"id": "6637d453-59e0-45f2-a39e-0564bff08d9b",
 "mitigationValue": [
 54.0,
 66.0
@@ -6110,7 +6124,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4b600170-3c42-4985-9e99-58c27029109a",
+"id": "cca1eb58-1dce-4353-8676-e6a0ad7405d6",
 "mitigationValue": [
 54.0,
 66.0
@@ -6118,12 +6132,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-15"
+"tMin": "2020-03-16"
 }
 },
 {
 "color": "#666666",
-"id": "f641265a-59fd-4392-9105-977a0ac0679c",
+"id": "4517803b-19bc-4e27-942f-4a21b0971a36",
 "mitigationValue": [
 54.0,
 66.0
@@ -6172,34 +6186,7 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [
-{
-"color": "#bf5b17",
-"id": "cb6c5e77-7e73-4ad9-a207-e929708fd48d",
-"mitigationValue": [
-54.0,
-66.0
-],
-"name": "Intervention #1",
-"timeRange": {
-"tMax": "2020-09-01",
-"tMin": "2020-03-14"
-}
-},
-{
-"color": "#666666",
-"id": "90de6fe7-ecd0-411c-a99f-7aa1a62d2f31",
-"mitigationValue": [
-54.0,
-66.0
-],
-"name": "Intervention #2",
-"timeRange": {
-"tMax": "2020-09-01",
-"tMin": "2020-03-23"
-}
-}
-],
+"mitigationIntervals": [],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -6240,7 +6227,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "10ac4e38-782d-4800-88f6-473577ed7013",
+"id": "22e52e94-c680-40fc-8742-3e04b04eef05",
 "mitigationValue": [
 54.0,
 66.0
@@ -6253,7 +6240,7 @@
 },
 {
 "color": "#666666",
-"id": "de3c6983-804a-41f3-a42c-68b4f6882d9d",
+"id": "f35f7c97-2bb5-49b1-9683-2a91de9b1d4d",
 "mitigationValue": [
 54.0,
 66.0
@@ -6305,7 +6292,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8d1ff5f0-8dd0-41d7-8b4b-f28051e4bbc1",
+"id": "98f8164e-c183-41dc-a913-5d6402386e17",
 "mitigationValue": [
 18.0,
 22.0
@@ -6318,7 +6305,7 @@
 },
 {
 "color": "#666666",
-"id": "048f7c88-ec58-479b-b088-f1cf37412b4b",
+"id": "bdd0565a-36d3-4085-9add-c938673cf011",
 "mitigationValue": [
 54.0,
 66.0
@@ -6370,7 +6357,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "92fad525-3796-4cb4-bf23-2bf5700d8bed",
+"id": "fb0d73eb-fe09-47a4-aed9-a7251186e1f9",
 "mitigationValue": [
 45.0,
 55.0
@@ -6383,7 +6370,7 @@
 },
 {
 "color": "#666666",
-"id": "86442ea8-2f23-4375-9d3b-cacfaf0be7fe",
+"id": "df594696-319b-42d0-a5ab-f2c8f3993d53",
 "mitigationValue": [
 54.0,
 66.0
@@ -6435,7 +6422,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ee1a511a-5896-4633-8672-d47997b4a539",
+"id": "49d75852-2aeb-4324-b014-b3d393845920",
 "mitigationValue": [
 45.0,
 55.0
@@ -6448,7 +6435,7 @@
 },
 {
 "color": "#666666",
-"id": "4e27a43b-6577-4d8d-aa26-0aadb051cca0",
+"id": "4c30f175-50cf-4266-9c79-6969b5db2f3e",
 "mitigationValue": [
 54.0,
 66.0
@@ -6500,7 +6487,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "701de563-8e83-4c5f-888f-878f5af7bdcb",
+"id": "c90c0046-ec20-4178-b056-98bc8b19532b",
 "mitigationValue": [
 27.0,
 33.0
@@ -6513,7 +6500,7 @@
 },
 {
 "color": "#666666",
-"id": "7f2a5b14-d3f6-4b5a-b581-b1696b5f9659",
+"id": "ba8b224c-43b7-47e1-bf47-7862dc2e419a",
 "mitigationValue": [
 54.0,
 66.0
@@ -6565,7 +6552,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b9d38c6e-e676-4dc1-860b-182d6a1b9fbc",
+"id": "3b576162-4acf-4a72-807f-9d6cbc029674",
 "mitigationValue": [
 54.0,
 66.0
@@ -6573,12 +6560,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-10"
+"tMin": "2020-03-08"
 }
 },
 {
 "color": "#666666",
-"id": "287988f6-b409-446d-8b95-b7130878dfe9",
+"id": "38a0c1cc-9e34-4bc6-81e4-d995bb898208",
 "mitigationValue": [
 54.0,
 66.0
@@ -6586,7 +6573,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-19"
+"tMin": "2020-03-17"
 }
 }
 ],
@@ -6630,7 +6617,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f5afc1d9-dad7-4679-bbbd-25376d05009f",
+"id": "45c6bc57-dd2e-40ac-be4b-ff87341f1eb3",
 "mitigationValue": [
 18.0,
 22.0
@@ -6643,7 +6630,7 @@
 },
 {
 "color": "#666666",
-"id": "69155086-ee6a-434e-94b7-79c31a0b97bc",
+"id": "067e5fe9-dcad-4142-be13-e8c2188b8937",
 "mitigationValue": [
 54.0,
 66.0
@@ -6695,7 +6682,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0e010fea-30a9-4c72-9427-e4fa22503958",
+"id": "0dc7282d-33a5-4e24-bbdc-d9392755a20c",
 "mitigationValue": [
 36.0,
 44.0
@@ -6708,7 +6695,7 @@
 },
 {
 "color": "#666666",
-"id": "835e0141-9c0e-44f6-9a5f-ae2f26424e50",
+"id": "0ea38e53-e32b-49d0-919c-f0a561240f41",
 "mitigationValue": [
 54.0,
 66.0
@@ -6760,7 +6747,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7ba9f0d0-5348-4b1d-a52e-369658659966",
+"id": "a970b819-df54-455c-a228-9816d5dbac25",
 "mitigationValue": [
 45.0,
 55.0
@@ -6773,7 +6760,7 @@
 },
 {
 "color": "#666666",
-"id": "37337cd0-06bb-4362-9e86-5c638a3b1c93",
+"id": "e11b5404-6a76-4774-be98-65ca955ef841",
 "mitigationValue": [
 54.0,
 66.0
@@ -6825,7 +6812,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d5f4fccb-f3ed-446c-8443-aaa8181b3233",
+"id": "135de7d7-33c2-47aa-8937-6525e0276311",
 "mitigationValue": [
 36.0,
 44.0
@@ -6838,7 +6825,7 @@
 },
 {
 "color": "#666666",
-"id": "c02e4bfd-f666-45f3-88e0-3ac57218d18b",
+"id": "fb4d2054-0cdf-4ddf-a376-156ffe225d64",
 "mitigationValue": [
 54.0,
 66.0
@@ -6890,7 +6877,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "58bb4356-0856-42cf-835a-fd1de25dc9d0",
+"id": "64a1a4b1-f2ce-48f1-8cbf-c8971c370576",
 "mitigationValue": [
 45.0,
 55.0
@@ -6903,7 +6890,7 @@
 },
 {
 "color": "#666666",
-"id": "e239b497-efb9-4a16-b46d-c6f8614c53e1",
+"id": "0d985bec-35bb-4fce-892a-11fd1b3974d1",
 "mitigationValue": [
 54.0,
 66.0
@@ -7031,7 +7018,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "60506ac4-dc45-4cdf-b935-8aedfdf3d0c5",
+"id": "026559ed-49c6-44d7-83d7-3b144b157918",
 "mitigationValue": [
 18.0,
 22.0
@@ -7083,7 +7070,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "64801f94-bdc5-46a2-ab5e-3b5d118843c1",
+"id": "b5ade4e2-8b86-4690-a0ca-7abf72b38281",
 "mitigationValue": [
 27.0,
 33.0
@@ -7096,7 +7083,7 @@
 },
 {
 "color": "#666666",
-"id": "0487b53d-cbdd-4437-806e-6c5f0e5c6009",
+"id": "65aba4f6-9a57-4086-be48-1c3f39e6a419",
 "mitigationValue": [
 54.0,
 66.0
@@ -7224,7 +7211,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d3463c38-6a96-43a5-ba1d-da07f0366337",
+"id": "c445997f-9fed-4c1a-853a-3d595212826e",
 "mitigationValue": [
 27.0,
 33.0
@@ -7276,7 +7263,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9f5ed71a-051d-4d16-ba5a-ba421a7714cf",
+"id": "519438cb-7094-403f-bee8-838cd1e8afd7",
 "mitigationValue": [
 27.0,
 33.0
@@ -7328,7 +7315,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "21819a75-9043-47ce-9e0f-4cddea7bace3",
+"id": "2e8acb8a-3501-485e-9886-2a11a11a1ca9",
 "mitigationValue": [
 27.0,
 33.0
@@ -7380,7 +7367,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "436b6c5d-7e7d-4c85-bd38-6c55509fb102",
+"id": "249ea915-812a-4f50-bd70-ca9934a5dc66",
 "mitigationValue": [
 27.0,
 33.0
@@ -7432,7 +7419,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2e6bea9f-5760-488a-9c91-afe59b5da0f5",
+"id": "da86247f-c9da-4fbb-bd95-fb879344190e",
 "mitigationValue": [
 18.0,
 22.0
@@ -7484,7 +7471,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2aa5e0ad-a0b2-4483-8295-8c08b190534f",
+"id": "a9cff333-84b2-4b9a-92eb-d8a90f0e6969",
 "mitigationValue": [
 27.0,
 33.0
@@ -7536,7 +7523,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e97cccbe-fc45-4728-83e2-eb81faba58e2",
+"id": "c368e544-5033-440d-97f5-8a2b55a62e81",
 "mitigationValue": [
 18.0,
 22.0
@@ -7588,7 +7575,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a798e1a0-8094-43fe-8f5f-c5982cd94c8f",
+"id": "7e4a1041-5c60-419f-95bf-46e302929892",
 "mitigationValue": [
 18.0,
 22.0
@@ -7640,7 +7627,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a70fe66d-56f3-4a3c-aec9-76faebbc3118",
+"id": "fda27d0e-6fb0-4eef-8171-c9dd60b8cf46",
 "mitigationValue": [
 27.0,
 33.0
@@ -7692,7 +7679,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "472a2ddb-db0f-4172-8fb8-7afdc4dc51d0",
+"id": "b92823c2-2279-42b6-ac1f-cd2f354dd39f",
 "mitigationValue": [
 27.0,
 33.0
@@ -7744,7 +7731,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8384d652-691c-4d53-a259-bd1314273e88",
+"id": "19de2fb4-083e-40f2-894f-b5aa5d0e47aa",
 "mitigationValue": [
 27.0,
 33.0
@@ -7796,7 +7783,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7c7c9104-dc3c-4614-9951-90d545dfe4f4",
+"id": "7bbbdc2e-f7fc-445f-963a-84b4de7a92d8",
 "mitigationValue": [
 18.0,
 22.0
@@ -7848,7 +7835,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4b3ae4db-274c-405b-a1dc-9f8641a64428",
+"id": "27712589-3221-4910-b075-5ca66c99d2b6",
 "mitigationValue": [
 18.0,
 22.0
@@ -7900,7 +7887,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ae4b2f9d-f0e3-425a-85fb-d8e768884c51",
+"id": "0de9d96b-b6df-491e-aafe-fd109b8b11c2",
 "mitigationValue": [
 27.0,
 33.0
@@ -7952,7 +7939,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "62059e96-985b-4548-82de-7867e99ceda9",
+"id": "67245644-cd0f-4a94-b047-3dc4d95d1d74",
 "mitigationValue": [
 27.0,
 33.0
@@ -8004,7 +7991,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "028d8928-8244-4344-9064-22dc2448c76c",
+"id": "305fac0e-05ec-4b1f-925e-01cc53596441",
 "mitigationValue": [
 27.0,
 33.0
@@ -8056,7 +8043,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9060ff8d-b971-4a22-895c-688f39596de8",
+"id": "92445463-d120-4218-a596-cb1ea0ca9f63",
 "mitigationValue": [
 27.0,
 33.0
@@ -8108,7 +8095,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "486ddb98-b2d8-48aa-9bcd-f51ee2f2400b",
+"id": "1179bd99-8e6d-41bf-9061-b592c6ff232b",
 "mitigationValue": [
 27.0,
 33.0
@@ -8160,7 +8147,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a5b2905b-f45e-471e-8414-d339b45f9070",
+"id": "7d4bbeb8-2378-4e1d-8a1f-4f6cdaed4e95",
 "mitigationValue": [
 18.0,
 22.0
@@ -8173,7 +8160,7 @@
 },
 {
 "color": "#666666",
-"id": "84808282-4eff-44bd-8760-ba2f2d58c50b",
+"id": "f71869df-0809-434c-84ab-970de26b065c",
 "mitigationValue": [
 54.0,
 66.0
@@ -8263,7 +8250,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c01df63f-5af0-42ca-9d3a-c0cf69c474b1",
+"id": "3ed8c8b4-3053-4eaa-88b6-7912293227b0",
 "mitigationValue": [
 18.0,
 22.0
@@ -8315,7 +8302,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ddbf925d-3ec9-43fe-ab6a-d1a827376ab2",
+"id": "afffe1ea-bd88-44c8-b515-528b2ac86715",
 "mitigationValue": [
 45.0,
 55.0
@@ -8323,12 +8310,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-17"
+"tMin": "2020-03-18"
 }
 },
 {
 "color": "#666666",
-"id": "b3aae8e1-d5ce-4dbf-8fc3-de37479db9f7",
+"id": "32172faa-10d2-421d-ba91-52ead8899e2e",
 "mitigationValue": [
 54.0,
 66.0
@@ -8336,7 +8323,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-04-04"
+"tMin": "2020-04-01"
 }
 }
 ],
@@ -8380,7 +8367,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b810c9ad-9bda-4c08-b958-d77e31d948d2",
+"id": "1928a623-6a3b-4c1f-ba6b-877989c2b01c",
 "mitigationValue": [
 18.0,
 22.0
@@ -8470,7 +8457,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6f08774a-f1d1-4a13-b00e-127ba296a195",
+"id": "66a72812-2d6e-41a6-afa0-830c91cb51ab",
 "mitigationValue": [
 27.0,
 33.0
@@ -8522,7 +8509,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8912c678-617d-40a1-b657-18501ffee145",
+"id": "fa5c9fbc-70e6-426e-99d6-f64d25b25b1c",
 "mitigationValue": [
 45.0,
 55.0
@@ -8535,7 +8522,7 @@
 },
 {
 "color": "#666666",
-"id": "01abadcb-7689-467c-b1cf-9f294954e61a",
+"id": "835e363f-9a10-4c0d-aa2e-948273195366",
 "mitigationValue": [
 54.0,
 66.0
@@ -8625,7 +8612,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3e642198-3d31-4fbf-a762-bfa46d56c236",
+"id": "b6c6b611-2493-4c7d-b27a-d139fbdcddb5",
 "mitigationValue": [
 27.0,
 33.0
@@ -8677,7 +8664,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0bcad6ac-95e4-4d0a-bf29-d9f6434e9532",
+"id": "489447d6-8c38-4e2f-bbc2-01db910fe03f",
 "mitigationValue": [
 18.0,
 22.0
@@ -8729,7 +8716,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e099cac5-c42a-4343-9a4f-0d50e42ae61c",
+"id": "e8b0cee5-f980-4758-90a2-43e71501e127",
 "mitigationValue": [
 18.0,
 22.0
@@ -8816,7 +8803,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "da13a58e-95bb-4299-beaf-b511268d073f",
+"mitigationValue": [
+27.0,
+33.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -8854,7 +8855,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "8f63d776-a72f-48a3-a642-a3a7683dd3ee",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -8892,7 +8907,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "a2fd3919-b511-472a-af83-8d486f7664d7",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -9047,7 +9076,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5128dcc6-7be7-4dc3-8b9b-8663fc8a65e7",
+"id": "f9ea0180-504d-4ab2-89aa-d40678413c99",
 "mitigationValue": [
 27.0,
 33.0
@@ -9441,7 +9470,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2f75b5e1-73c6-4d08-b393-19ff0294113b",
+"id": "7a613f26-e0d1-45ee-8f31-67b66a6a2616",
 "mitigationValue": [
 18.0,
 22.0
@@ -9870,7 +9899,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "47c03f43-0ca1-4533-b184-f27ae23d4305",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -10481,7 +10524,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b62a2b97-530d-4d0c-a5f9-fa4b7d38bef9",
+"id": "e150ea39-f5f6-4923-9421-ec233d7a7b81",
 "mitigationValue": [
 45.0,
 55.0
@@ -10494,7 +10537,7 @@
 },
 {
 "color": "#666666",
-"id": "eeb6bc19-4225-421f-8060-d54eaf774211",
+"id": "bb77695b-1650-49d5-b710-afa20e3c6883",
 "mitigationValue": [
 54.0,
 66.0
@@ -10546,7 +10589,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fd056edc-1cd7-47f4-a027-16c78305457d",
+"id": "a4019058-d8b3-4cc8-9317-cd1e227f4882",
 "mitigationValue": [
 36.0,
 44.0
@@ -10598,7 +10641,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9db2aa1e-92bc-48af-8024-79d82d13760b",
+"id": "5547e11d-0129-41d6-aef3-68bfb837b006",
 "mitigationValue": [
 36.0,
 44.0
@@ -10650,7 +10693,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f24443a2-d5b9-40b1-a360-e05a2ca392db",
+"id": "858a13bc-a74a-4184-8cb6-df765786cde9",
 "mitigationValue": [
 27.0,
 33.0
@@ -10702,7 +10745,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "36d2c546-28d2-4078-a678-43dc14eb795f",
+"id": "fde78512-2233-4020-823d-5bc291928c46",
 "mitigationValue": [
 36.0,
 44.0
@@ -10715,7 +10758,7 @@
 },
 {
 "color": "#666666",
-"id": "45c70f5f-7c83-4e67-aa87-a9f01fc56607",
+"id": "462fe04e-f1ed-487d-911c-9583c397cf50",
 "mitigationValue": [
 54.0,
 66.0
@@ -10767,7 +10810,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "04fec022-5496-4894-ba0c-d3d3aada0e4d",
+"id": "b1d2f3f1-bc1f-455e-b6de-98edb3094097",
 "mitigationValue": [
 36.0,
 44.0
@@ -10780,7 +10823,7 @@
 },
 {
 "color": "#666666",
-"id": "666e2bdf-c50a-403e-a2b0-cbe3979b4b38",
+"id": "15a98c59-9372-46b3-8331-4f6bd83bf8d9",
 "mitigationValue": [
 54.0,
 66.0
@@ -10832,7 +10875,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5bbbf72b-4d3b-41e1-a637-95a14e516407",
+"id": "c4aab451-1f7d-4897-a9e8-be4771bc3076",
 "mitigationValue": [
 36.0,
 44.0
@@ -10845,7 +10888,7 @@
 },
 {
 "color": "#666666",
-"id": "0030d221-ce2b-4752-a84e-311d43e240c9",
+"id": "0dcc3ec3-a101-4536-a07c-c665ec19bb19",
 "mitigationValue": [
 54.0,
 66.0
@@ -10897,7 +10940,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bcc08b24-a1ab-4633-a046-15d0b76f6849",
+"id": "fe0e5dd9-85b7-43b4-ad4d-c527881b75c0",
 "mitigationValue": [
 36.0,
 44.0
@@ -10910,7 +10953,7 @@
 },
 {
 "color": "#666666",
-"id": "6594249d-c392-4d1b-a868-714928e9f9d9",
+"id": "c36e914d-6675-4259-a170-26b3e9acae26",
 "mitigationValue": [
 54.0,
 66.0
@@ -10962,7 +11005,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d84bad33-7f69-4d16-aa53-e173d742362f",
+"id": "88c90d64-1fd4-45a5-a391-c09b9b8b462a",
 "mitigationValue": [
 45.0,
 55.0
@@ -10975,7 +11018,7 @@
 },
 {
 "color": "#666666",
-"id": "9b4114f4-7b60-4ee9-bd7b-fe3f33e6ef38",
+"id": "34fbf100-4b97-4977-af67-38611f360c9b",
 "mitigationValue": [
 54.0,
 66.0
@@ -11027,7 +11070,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9d49c4ea-bbfb-4c7b-b64a-90700034b005",
+"id": "4154d335-e015-4deb-a292-32779aa05939",
 "mitigationValue": [
 45.0,
 55.0
@@ -11040,7 +11083,7 @@
 },
 {
 "color": "#666666",
-"id": "8e35b19c-5acd-4a8a-9620-30e72901a4a9",
+"id": "62cc46ee-a735-427d-95e3-536979fa9f3b",
 "mitigationValue": [
 54.0,
 66.0
@@ -11092,7 +11135,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7e7e7893-0f77-43d8-a739-0707ee5fa04e",
+"id": "f8f949b6-972e-4166-ad21-b52bb3ae6a19",
 "mitigationValue": [
 18.0,
 22.0
@@ -11144,7 +11187,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cda7e40b-947b-4e7a-81b3-b605d4b2a2a5",
+"id": "7630293e-1539-4bcf-b440-ae3a3cd17de2",
 "mitigationValue": [
 45.0,
 55.0
@@ -11157,7 +11200,7 @@
 },
 {
 "color": "#666666",
-"id": "90581bd6-7604-4bb2-adef-624cb26ac889",
+"id": "b5b8e7d6-feea-4e1f-b548-45902c485322",
 "mitigationValue": [
 54.0,
 66.0
@@ -11209,7 +11252,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8bbb116c-ddca-41b2-8a28-879677804c9e",
+"id": "0ea123d8-bbf2-4514-871f-b30c317741b7",
 "mitigationValue": [
 45.0,
 55.0
@@ -11222,7 +11265,7 @@
 },
 {
 "color": "#666666",
-"id": "39f572f9-9ca2-43eb-a43d-311fae412a67",
+"id": "8ccbe1d4-2320-4500-aff6-7c4d8071dc60",
 "mitigationValue": [
 54.0,
 66.0
@@ -11274,7 +11317,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cd2dc56a-e22b-4ca1-bc72-f143332d3831",
+"id": "59614b76-7d4c-4c7d-b629-d01e6e0bfe16",
 "mitigationValue": [
 36.0,
 44.0
@@ -11287,7 +11330,7 @@
 },
 {
 "color": "#666666",
-"id": "8a303293-2249-4ade-b834-12260060f79e",
+"id": "d7dd2f08-3c4c-4cc7-a817-d564cfda98b9",
 "mitigationValue": [
 54.0,
 66.0
@@ -11339,7 +11382,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7185d359-659e-4146-8a25-2b03121dd18e",
+"id": "26c9f69a-f6f2-49f9-9a10-ade733200d0b",
 "mitigationValue": [
 36.0,
 44.0
@@ -11348,6 +11391,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-19"
+}
+},
+{
+"color": "#666666",
+"id": "04649235-fa39-4e76-95b8-a101805df988",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
 }
 }
 ],
@@ -11391,7 +11447,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d12f2f8e-ef4b-4ba0-af70-f5705da534b7",
+"id": "75f2a918-9f44-4d69-9d61-115d69052c83",
 "mitigationValue": [
 36.0,
 44.0
@@ -11443,7 +11499,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "93e03339-c1ae-4002-aa10-467676374610",
+"id": "a624b35d-4e27-42ad-bce3-6008b5a5a73f",
 "mitigationValue": [
 27.0,
 33.0
@@ -11495,7 +11551,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "82a92d13-d5ae-4ac1-b966-c6da38428749",
+"id": "218a2abd-22ae-4729-976a-2215b33affb3",
 "mitigationValue": [
 45.0,
 55.0
@@ -11508,7 +11564,7 @@
 },
 {
 "color": "#666666",
-"id": "ed313fc4-6957-4431-8aad-bb69e66f8ce0",
+"id": "77c236d2-26be-4934-8f8f-ae2b7b63cb7c",
 "mitigationValue": [
 54.0,
 66.0
@@ -11560,7 +11616,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7204ddb8-81a3-4d29-a1ca-962aed6eddc5",
+"id": "56850229-df63-4734-9e5b-bb7ca1f9ac49",
 "mitigationValue": [
 54.0,
 66.0
@@ -11573,7 +11629,7 @@
 },
 {
 "color": "#666666",
-"id": "b6a4ad79-5d39-4354-bc3d-3599ea5daed3",
+"id": "5b57fc82-a26f-44fb-9285-5d0cb0edb64d",
 "mitigationValue": [
 54.0,
 66.0
@@ -11625,7 +11681,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "632b066d-1a15-4767-9ac2-e56cdca1727c",
+"id": "216d4b40-19f9-495c-b470-a0b3cb2fa2e8",
 "mitigationValue": [
 45.0,
 55.0
@@ -11638,7 +11694,7 @@
 },
 {
 "color": "#666666",
-"id": "1bcd0f81-f641-4a38-82f6-9fe7a4f854c9",
+"id": "2e067fd2-f797-4345-8f3b-67651c0f2b82",
 "mitigationValue": [
 54.0,
 66.0
@@ -11690,7 +11746,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "03c14a2d-327d-428a-adc6-aa434f81f705",
+"id": "7679a95a-4554-43c1-b4b3-9cd9cf1acd94",
 "mitigationValue": [
 45.0,
 55.0
@@ -11703,7 +11759,7 @@
 },
 {
 "color": "#666666",
-"id": "767be9e0-edbb-40f9-ac67-a4416047dd29",
+"id": "2db0c110-a535-46e1-b6d3-95ba9ea99f8a",
 "mitigationValue": [
 54.0,
 66.0
@@ -11755,7 +11811,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "63300c9e-9eea-43d9-ae04-948713775347",
+"id": "226023d5-f5d9-411a-85aa-7b2fb3cf05c6",
 "mitigationValue": [
 27.0,
 33.0
@@ -11768,7 +11824,7 @@
 },
 {
 "color": "#666666",
-"id": "836c2843-c204-407c-97be-8b0897975da6",
+"id": "5e94fb96-6af3-4f2c-acf7-b9f781bc2f4a",
 "mitigationValue": [
 54.0,
 66.0
@@ -11820,7 +11876,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2fd62f4d-a038-44dd-b44b-48d25027eed4",
+"id": "978f93b2-dc53-4715-bb33-8869b230655c",
 "mitigationValue": [
 18.0,
 22.0
@@ -11833,7 +11889,7 @@
 },
 {
 "color": "#666666",
-"id": "033bb8f5-7702-4830-8a0c-e2477fbe3c88",
+"id": "3f413e83-6afa-4d74-ac6a-792dbb85c807",
 "mitigationValue": [
 54.0,
 66.0
@@ -11885,7 +11941,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "479db683-d6ba-4334-bc6f-08bbbcefa505",
+"id": "d42cb11b-1285-47ee-a9d2-c7567b736792",
 "mitigationValue": [
 18.0,
 22.0
@@ -11934,7 +11990,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "d70be85d-c37e-4fdf-96ca-b38e5b7f3fe1",
+"mitigationValue": [
+27.0,
+33.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -11975,7 +12045,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "35e135ab-01ea-4838-95f6-19eda249d44b",
+"id": "3f97c8ec-5799-401c-8b57-5a9f118b0c8b",
 "mitigationValue": [
 72.0,
 88.0
@@ -11988,7 +12058,7 @@
 },
 {
 "color": "#666666",
-"id": "feff376c-c66f-4a60-867f-36f4d0fb04fb",
+"id": "15a67653-769f-495b-b5bd-9da8a23e6ddf",
 "mitigationValue": [
 54.0,
 66.0
@@ -12078,7 +12148,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fc400b48-9444-48b3-bcf5-cb88a95103d9",
+"id": "5f15159c-56c6-4637-93a9-8d47e363aac4",
 "mitigationValue": [
 36.0,
 44.0
@@ -12091,7 +12161,7 @@
 },
 {
 "color": "#666666",
-"id": "1b1b2d3d-c56d-470b-8760-b769a64377b6",
+"id": "2a430989-c824-428d-9594-c5c111222a26",
 "mitigationValue": [
 54.0,
 66.0
@@ -12143,7 +12213,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "50392d14-9dbb-4c61-90f1-55f1dabd5a01",
+"id": "305a4d67-3554-48fd-9de3-b0270457f226",
 "mitigationValue": [
 36.0,
 44.0
@@ -12156,7 +12226,7 @@
 },
 {
 "color": "#666666",
-"id": "bef72113-71f8-4ab9-b000-3e28815521b5",
+"id": "9087ec6b-31a1-4dcc-9383-f0baec99ac73",
 "mitigationValue": [
 54.0,
 66.0
@@ -12208,7 +12278,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d431873a-93db-488b-921d-8d8f4fbe86a1",
+"id": "dc5200ec-efda-4d7c-bec6-6ae578b08469",
 "mitigationValue": [
 45.0,
 55.0
@@ -12221,7 +12291,7 @@
 },
 {
 "color": "#666666",
-"id": "60e88bbd-12cc-40c1-9972-485eb8da6910",
+"id": "59d6de40-9682-40c1-9193-e419f7660e5e",
 "mitigationValue": [
 54.0,
 66.0
@@ -12311,7 +12381,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1c2e2a65-aed6-4e11-ad7f-e795b6c91bf4",
+"id": "44cad6ae-b036-46af-ac7a-5d48b67a5ad3",
 "mitigationValue": [
 18.0,
 22.0
@@ -12363,7 +12433,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0ccc97f7-f89e-470d-9db6-cbc4f3adfc95",
+"id": "fe685a8e-8ecc-4fc8-aac3-d0f506791534",
 "mitigationValue": [
 18.0,
 22.0
@@ -12453,7 +12523,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1d7579d9-3993-4152-8c03-b24a72cf5dc5",
+"id": "07e6fba1-44c1-4548-b90e-dd86bd402da7",
 "mitigationValue": [
 18.0,
 22.0
@@ -12619,7 +12689,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b38a47c4-a615-4bb6-ae17-a818b08e0ecb",
+"id": "d2491321-a30d-4699-a02b-f5d87f14b667",
 "mitigationValue": [
 36.0,
 44.0
@@ -12671,7 +12741,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "99967199-758c-4625-8f0f-e9d8b95add79",
+"id": "40cd9b78-702c-47cf-8cdb-f9bc91f6a0a4",
 "mitigationValue": [
 18.0,
 22.0
@@ -12723,7 +12793,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ccace35f-e7f9-4284-bbfe-8bae6f0d4dd2",
+"id": "872e1ae1-8302-485e-9b1c-973e5a310a40",
 "mitigationValue": [
 18.0,
 22.0
@@ -12775,7 +12845,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2aba8a11-4553-4cb3-8e39-fbf92a5a5cf6",
+"id": "558122ca-ed71-40bc-b627-8994d93d9625",
 "mitigationValue": [
 18.0,
 22.0
@@ -12865,7 +12935,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "43b6d933-56ec-4a08-bd3e-0fa873ae6588",
+"id": "3f3a0000-5428-45a3-9348-5464e27c7079",
 "mitigationValue": [
 27.0,
 33.0
@@ -12917,7 +12987,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "667a0105-f2c8-4795-97d3-8e7b940c65c7",
+"id": "483bcd2d-39a1-46f6-8710-b86dc4794ef7",
 "mitigationValue": [
 18.0,
 22.0
@@ -13045,7 +13115,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "24bee62c-8311-45a9-88e8-1ef3875c5490",
+"id": "84ebcd10-ab8c-4169-b288-e16d1a96fae2",
 "mitigationValue": [
 18.0,
 22.0
@@ -13058,7 +13128,7 @@
 },
 {
 "color": "#666666",
-"id": "0101a7fc-37ff-4574-8913-2e900b905e1c",
+"id": "374a4c11-f195-40b4-a27e-323c7437629b",
 "mitigationValue": [
 54.0,
 66.0
@@ -13110,7 +13180,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2695b66c-f9a0-49a7-b01e-1976ff0c73c2",
+"id": "63d74d2c-5963-4fad-bf89-3260f16f6ea1",
 "mitigationValue": [
 45.0,
 55.0
@@ -13162,7 +13232,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8604ea8c-ba1b-4061-887c-fb2311573dd4",
+"id": "029cb56e-7e47-4934-8613-9b8c9f421e30",
 "mitigationValue": [
 54.0,
 66.0
@@ -13175,7 +13245,7 @@
 },
 {
 "color": "#666666",
-"id": "7cbceda1-3e2e-4f65-be4e-2234c00afd35",
+"id": "64dc8483-54f8-4136-a158-fea498075efd",
 "mitigationValue": [
 54.0,
 66.0
@@ -13303,7 +13373,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3754232a-89bc-47e9-8ede-532b8429a1eb",
+"id": "d0b9237c-eb37-47a4-af8d-2f4e61605ff1",
 "mitigationValue": [
 18.0,
 22.0
@@ -13355,7 +13425,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c3e856a8-3207-4071-a55b-214442dd9d35",
+"id": "f31bab7c-6038-4342-a16c-c2608fe7939a",
 "mitigationValue": [
 18.0,
 22.0
@@ -13445,7 +13515,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4b339aac-ee80-4078-991d-56fdb016d2be",
+"id": "42ed0c3a-93b4-49ca-8d1d-ba9947232e0f",
 "mitigationValue": [
 27.0,
 33.0
@@ -13535,7 +13605,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b0bfc5bd-0f47-4a10-9759-421128696095",
+"id": "f9d92276-c7d2-443e-b072-62ff4f95b967",
 "mitigationValue": [
 63.0,
 77.0
@@ -13587,7 +13657,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "11a31859-c2dc-42de-97f0-473733b7922e",
+"id": "61c45279-60bc-49fe-96b1-d752791fcd10",
 "mitigationValue": [
 36.0,
 44.0
@@ -13677,7 +13747,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cc25fbb5-8f92-41c7-960c-b6d469d90a3a",
+"id": "9d2ca653-0ccc-4334-80ac-055a747d655b",
 "mitigationValue": [
 18.0,
 22.0
@@ -13690,7 +13760,7 @@
 },
 {
 "color": "#666666",
-"id": "853f6f5b-4a5e-48aa-88f6-30bb99222d0e",
+"id": "b44168d1-64af-42d5-b873-4064bbfc7f59",
 "mitigationValue": [
 54.0,
 66.0
@@ -13742,7 +13812,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "955bc6ac-6830-4463-bb7d-97364bb05e69",
+"id": "861164a0-8446-43b3-bb91-097a9a382de0",
 "mitigationValue": [
 27.0,
 33.0
@@ -13755,7 +13825,7 @@
 },
 {
 "color": "#666666",
-"id": "0f7ba4ff-992d-40c1-bf79-e5a16557f426",
+"id": "0cdd1847-8b42-4ef0-a75a-887368f2b8b3",
 "mitigationValue": [
 54.0,
 66.0
@@ -13845,7 +13915,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ff19ea67-5b33-44a7-b126-1feba0ccd66b",
+"id": "ea55bc7d-75fa-4e89-9eca-b59d02211b2a",
 "mitigationValue": [
 18.0,
 22.0
@@ -13897,7 +13967,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9af7f2ec-e684-4d06-9cba-4aa168b1ff53",
+"id": "9b5975c1-79d6-4279-8cf3-d799730acd18",
 "mitigationValue": [
 36.0,
 44.0
@@ -14139,7 +14209,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d61911ce-04a2-43b4-abb7-90729f6b01c9",
+"id": "01f6ea87-5855-4574-9613-0bc0502c65b3",
 "mitigationValue": [
 45.0,
 55.0
@@ -14152,7 +14222,7 @@
 },
 {
 "color": "#666666",
-"id": "b3c33c64-035c-400d-adfb-961febf8107e",
+"id": "4d3b4273-6261-4e19-b34d-e5a4dc1d241e",
 "mitigationValue": [
 54.0,
 66.0
@@ -14204,7 +14274,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5af7538d-7aa1-4807-bfe3-8089a89944ac",
+"id": "3c4edaee-ae52-485b-ab91-b644cbdd2e7c",
 "mitigationValue": [
 27.0,
 33.0
@@ -14294,7 +14364,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f30c09e6-486a-4520-9eef-45ffdf4792da",
+"id": "36327920-7371-47d4-a1e4-117c9c7d1c11",
 "mitigationValue": [
 27.0,
 33.0
@@ -14346,7 +14416,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8b0b9c02-5673-44a9-8f4d-cd0f0d90b5a5",
+"id": "4316d945-d63b-44db-96ef-86a1863f3b92",
 "mitigationValue": [
 36.0,
 44.0
@@ -14359,7 +14429,7 @@
 },
 {
 "color": "#666666",
-"id": "d016b89c-5524-46b8-bc1a-53abba00bd35",
+"id": "74c780d9-2cd6-47f3-9c5e-f852c372dac4",
 "mitigationValue": [
 54.0,
 66.0
@@ -14411,7 +14481,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6ce5fa34-cceb-4231-b2a2-20bbf9b2ac86",
+"id": "abc6b6d4-8c1a-4070-af7e-9835ec5bdd20",
 "mitigationValue": [
 18.0,
 22.0
@@ -15109,7 +15179,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f801a549-7423-470f-957e-a83ccd0a9776",
+"id": "6d6184c4-03a9-42b0-b5fb-8ee2ad615243",
 "mitigationValue": [
 27.0,
 33.0
@@ -15199,7 +15269,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e9f62469-3fae-401a-be85-a997f203cc3a",
+"id": "2bf84560-8ba5-4334-bf1e-f90713f155a7",
 "mitigationValue": [
 27.0,
 33.0
@@ -15212,7 +15282,7 @@
 },
 {
 "color": "#666666",
-"id": "0b20e5ad-ed76-4380-bb94-27dff0e275c7",
+"id": "06c1e43f-85fd-4047-935e-00e2949b7e3e",
 "mitigationValue": [
 54.0,
 66.0
@@ -15302,7 +15372,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "51dd380c-f862-4b47-b4d0-9be76087a55a",
+"id": "2957271f-cdde-46da-89f3-bc42bc289dbe",
 "mitigationValue": [
 27.0,
 33.0
@@ -15311,6 +15381,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-04-09"
+}
+},
+{
+"color": "#666666",
+"id": "9bb3675d-1910-4b5b-8639-2dc88bd669b2",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
 }
 }
 ],
@@ -15392,7 +15475,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d6fcdf7a-2524-44a4-9b00-9bd90c7d6e78",
+"id": "ce9f9dd2-9ac6-4bbb-b259-60699495ce21",
 "mitigationValue": [
 27.0,
 33.0
@@ -15444,7 +15527,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ade33ca6-ec0f-410f-9f2a-a6a2e17928bd",
+"id": "940538cf-9df9-421f-b628-2687ce36bbe7",
 "mitigationValue": [
 45.0,
 55.0
@@ -15457,7 +15540,7 @@
 },
 {
 "color": "#666666",
-"id": "b32a9302-d258-4402-94e3-426e7bf2e697",
+"id": "3f090011-863b-4c01-bd61-10fe2aa7230f",
 "mitigationValue": [
 54.0,
 66.0
@@ -15509,7 +15592,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8b288ced-88ff-4eb5-a3c4-703fdffcd2ad",
+"id": "099b3221-48f4-4e74-be38-93fef51d15fa",
 "mitigationValue": [
 18.0,
 22.0
@@ -15522,7 +15605,7 @@
 },
 {
 "color": "#666666",
-"id": "5e37780b-f4ca-4d5f-ad62-55d71214729b",
+"id": "ed38f5a9-054e-4e7b-aa66-e02512f36ac6",
 "mitigationValue": [
 54.0,
 66.0
@@ -15574,7 +15657,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5cd0a08d-dd11-4ee4-bd50-c80fcabc3c5a",
+"id": "6187ba90-d79d-4d60-8fa2-4493c6aab964",
 "mitigationValue": [
 27.0,
 33.0
@@ -15626,7 +15709,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "549b100c-28c4-4304-b83e-a2dde83f8447",
+"id": "9a4ea86e-a851-481d-bae7-83b4fb02eb33",
 "mitigationValue": [
 36.0,
 44.0
@@ -15639,7 +15722,7 @@
 },
 {
 "color": "#666666",
-"id": "037a3e65-4fa4-4293-9d48-38f80300407f",
+"id": "5f3c451a-ed47-442e-b134-7a364cd1fd79",
 "mitigationValue": [
 54.0,
 66.0
@@ -15729,7 +15812,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e4973416-1843-454d-920d-f623b6ca80d6",
+"id": "043fba04-eb35-41b2-8084-40d984a08018",
 "mitigationValue": [
 18.0,
 22.0
@@ -15819,7 +15902,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fc386eeb-2483-4250-a798-d94ab6da4356",
+"id": "08eca180-e962-4833-89ea-2d0adc298826",
 "mitigationValue": [
 18.0,
 22.0
@@ -15871,7 +15954,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ae62e3a1-86bf-4427-9da5-ff62e0aa7808",
+"id": "3a6b0c61-0e44-45ba-95cf-a1850cd18cf6",
 "mitigationValue": [
 27.0,
 33.0
@@ -15884,7 +15967,7 @@
 },
 {
 "color": "#666666",
-"id": "6175534c-a7b4-4cdb-a98c-880914cfb884",
+"id": "69ec4861-621b-44e8-a867-24c77a41015d",
 "mitigationValue": [
 54.0,
 66.0
@@ -15974,7 +16057,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bb34b852-c7d5-4330-9e1e-2589ee4dbb2f",
+"id": "f4b2d36e-34e6-4c82-b7e8-27311e9eb706",
 "mitigationValue": [
 27.0,
 33.0
@@ -16064,7 +16147,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "57f5eb20-1816-489f-88bd-1d0f8811b09d",
+"id": "3467f0ca-9a48-4559-8a21-fe9e8d6a610e",
 "mitigationValue": [
 27.0,
 33.0
@@ -16077,7 +16160,7 @@
 },
 {
 "color": "#666666",
-"id": "9821e4a4-63b6-45c6-871a-525dc30406b8",
+"id": "b6ff35ad-4573-4d06-8ca8-c73a554047dc",
 "mitigationValue": [
 54.0,
 66.0
@@ -16129,7 +16212,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e34b2274-c246-473c-9df8-07230cc9fc0c",
+"id": "bc977f57-712c-4d4e-9905-56832cba207f",
 "mitigationValue": [
 18.0,
 22.0
@@ -16181,7 +16264,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "dd05379c-0fb3-4dd2-84d0-5a9a17f3b388",
+"id": "b1fbb011-7f60-4538-96fa-4b49554ac7f2",
 "mitigationValue": [
 18.0,
 22.0
@@ -16194,7 +16277,7 @@
 },
 {
 "color": "#666666",
-"id": "6b300cab-7eb3-4bf6-a744-07bbef14c9f3",
+"id": "fa1a506a-57f8-44e6-a002-6ea7f27ad47e",
 "mitigationValue": [
 54.0,
 66.0
@@ -16246,7 +16329,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4113b34d-5068-4a9b-b876-8a7ca90baa70",
+"id": "0f2b7372-a6e3-4fea-b5d1-422c53e36e5d",
 "mitigationValue": [
 27.0,
 33.0
@@ -16298,7 +16381,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a0cfaa3c-d07a-49d0-94e6-2ad8da9a9a63",
+"id": "8e913e76-8f47-4220-8a71-c6faa1e2f959",
 "mitigationValue": [
 27.0,
 33.0
@@ -16464,7 +16547,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "48e8b0b9-67b8-4437-a940-019061c7bba5",
+"id": "0264fe3c-6a05-4a5c-a9e9-2b0cef11de61",
 "mitigationValue": [
 54.0,
 66.0
@@ -16472,12 +16555,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-14"
+"tMin": "2020-03-13"
 }
 },
 {
 "color": "#666666",
-"id": "c770ccd1-9781-4a02-a85b-34747c02af97",
+"id": "bba97840-6b84-4d97-ae16-fbe477c7a124",
 "mitigationValue": [
 54.0,
 66.0
@@ -16485,7 +16568,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-25"
+"tMin": "2020-03-24"
 }
 }
 ],
@@ -16643,7 +16726,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6ee378b9-274c-4889-95f4-1b68f6325f8d",
+"id": "18d9cb76-2b6c-4e4e-9d44-bdea68e96f2a",
 "mitigationValue": [
 27.0,
 33.0
@@ -16656,7 +16739,7 @@
 },
 {
 "color": "#666666",
-"id": "e7c72f91-6cce-4330-813b-ef3eca40ebbf",
+"id": "247467b9-f23a-41a7-89f8-78ef7814d3c1",
 "mitigationValue": [
 54.0,
 66.0
@@ -16708,7 +16791,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f18a7ab3-ab42-451c-973e-4b0275931b42",
+"id": "12bee730-efe9-459e-81f8-f43a5433393f",
 "mitigationValue": [
 45.0,
 55.0
@@ -16721,7 +16804,7 @@
 },
 {
 "color": "#666666",
-"id": "1c933d39-617e-4685-962b-aa75c7a10505",
+"id": "7feeff9d-5d8f-48c3-99c5-e45e8a6378f9",
 "mitigationValue": [
 54.0,
 66.0
@@ -16864,7 +16947,7 @@
 },
 "population": {
 "ICUBeds": 1058,
-"cases": "None",
+"cases": "Tajikistan",
 "country": "Tajikistan",
 "hospitalBeds": 35269,
 "importsPerDay": 0.1,
@@ -17153,7 +17236,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0830832d-0428-4e89-b544-8c1f3ab963dc",
+"id": "d7101daf-11ef-434b-bf33-25853bff23d3",
 "mitigationValue": [
 45.0,
 55.0
@@ -17166,7 +17249,7 @@
 },
 {
 "color": "#666666",
-"id": "9df94bc5-a0b0-445c-8db0-cb41400371a5",
+"id": "98f7e5d9-a6d8-479b-8b2a-3fb10cc07da1",
 "mitigationValue": [
 54.0,
 66.0
@@ -17256,7 +17339,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "be5b4e64-3234-439b-a6b7-af7e1c1405a0",
+"id": "761bf58c-31f1-4978-8e17-deda4e6723cd",
 "mitigationValue": [
 45.0,
 55.0
@@ -17269,7 +17352,7 @@
 },
 {
 "color": "#666666",
-"id": "38208761-c684-401a-aaad-e8f2f4f06ef5",
+"id": "683dacfb-9a4c-48e4-87fc-277658ee9652",
 "mitigationValue": [
 54.0,
 66.0
@@ -17321,7 +17404,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "da251023-be9a-4a0b-b3f7-599a85ac4001",
+"id": "e0571354-9792-4c55-9cc0-3e161f7270a1",
 "mitigationValue": [
 36.0,
 44.0
@@ -17373,7 +17456,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4ebf5903-dee6-42d6-be18-d490e5cc26a5",
+"id": "563c01fe-a549-436c-81aa-2f4308bfa142",
 "mitigationValue": [
 54.0,
 66.0
@@ -17382,6 +17465,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-28"
+}
+},
+{
+"color": "#666666",
+"id": "dcc7b566-a034-43ef-a898-8c81f28a662e",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
 }
 }
 ],
@@ -17425,7 +17521,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "499957b4-6777-4fc4-b848-30b16c8905a2",
+"id": "91fc90d9-ce6e-475e-bc90-1399d8128ac6",
 "mitigationValue": [
 45.0,
 55.0
@@ -17438,7 +17534,7 @@
 },
 {
 "color": "#666666",
-"id": "0f31d7d7-39c2-487f-bf6c-39bcf7db010e",
+"id": "7cddd3fa-47cf-4fcb-8eeb-6246d5ff84bd",
 "mitigationValue": [
 54.0,
 66.0
@@ -17490,7 +17586,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2dcecfe3-8b1d-4994-bbba-aa5b34b77a41",
+"id": "a8c94017-3053-435f-acce-d8b924641ab1",
 "mitigationValue": [
 27.0,
 33.0
@@ -17503,7 +17599,7 @@
 },
 {
 "color": "#666666",
-"id": "9677752e-2923-4973-a496-0717ea052554",
+"id": "b5f16906-b798-4bfe-b37c-fdb9635be253",
 "mitigationValue": [
 54.0,
 66.0
@@ -17555,7 +17651,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cc1f6f5e-4377-40e9-9643-bee63938613a",
+"id": "c3afd993-6f6d-4f67-918c-a3dbe058c215",
 "mitigationValue": [
 36.0,
 44.0
@@ -17568,7 +17664,7 @@
 },
 {
 "color": "#666666",
-"id": "ec46ca6d-7c9d-4fcc-95d9-7dec86a7ece2",
+"id": "84fe435f-dce1-49a3-bfbc-03a7e7e3d3bc",
 "mitigationValue": [
 54.0,
 66.0
@@ -17620,7 +17716,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d924247f-d7a3-4f2f-8807-d1b211c1d89e",
+"id": "054cdb57-e21d-4f82-8e42-bc6b47797600",
 "mitigationValue": [
 54.0,
 66.0
@@ -17633,7 +17729,7 @@
 },
 {
 "color": "#666666",
-"id": "cd307807-08f8-437d-becb-27a6b8b488d0",
+"id": "91c9aa0f-6cde-46d5-9156-67b7a902fa3c",
 "mitigationValue": [
 54.0,
 66.0
@@ -17685,7 +17781,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "687f265d-6d19-4fc8-8ec4-82f96ddaf13e",
+"id": "af6fa203-8a1b-4d4c-a335-3895bfb21c43",
 "mitigationValue": [
 27.0,
 33.0
@@ -17698,7 +17794,7 @@
 },
 {
 "color": "#666666",
-"id": "d3f0fbd5-27c6-4eba-9ab8-829f7549a93e",
+"id": "71531f65-eb5d-4bae-ad66-6bd105e0f696",
 "mitigationValue": [
 54.0,
 66.0
@@ -17750,7 +17846,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b1ceebad-1b48-4c6a-bc01-18474af3a3eb",
+"id": "346e3cd7-acd3-4062-9ba5-028884e9e36c",
 "mitigationValue": [
 27.0,
 33.0
@@ -17763,7 +17859,7 @@
 },
 {
 "color": "#666666",
-"id": "a7c8ffb5-0a9c-45d4-8fe5-05c09edbb42a",
+"id": "d050a1da-b727-401c-beac-f48187e23700",
 "mitigationValue": [
 54.0,
 66.0
@@ -17815,7 +17911,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b0abc35c-8444-4277-8f22-2a7f49a0463b",
+"id": "b5f79a4b-078a-4370-93cf-4aab817f6a55",
 "mitigationValue": [
 36.0,
 44.0
@@ -17828,7 +17924,7 @@
 },
 {
 "color": "#666666",
-"id": "5bd0c3b1-bf4b-4a55-a208-f0077c146884",
+"id": "b95a0900-43cf-44d4-b9d3-b12cbe35575e",
 "mitigationValue": [
 54.0,
 66.0
@@ -17880,7 +17976,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b14ca746-82bd-4ec1-a32d-d13f102822a1",
+"id": "56e42a25-7b5c-4adb-9577-a4e80f030362",
 "mitigationValue": [
 45.0,
 55.0
@@ -17893,7 +17989,7 @@
 },
 {
 "color": "#666666",
-"id": "11f11566-87c2-4ed3-93c9-352d6c715624",
+"id": "cafaa51a-0e6b-41c6-91a2-f2b6fa0ca66a",
 "mitigationValue": [
 54.0,
 66.0
@@ -17945,7 +18041,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6a238a37-5d86-49a3-b3f7-9406933510db",
+"id": "4b7bce99-bbbd-4757-be75-fd48849d81f2",
 "mitigationValue": [
 27.0,
 33.0
@@ -17997,7 +18093,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "52a9da88-a328-4cba-aa2a-19240e102fdb",
+"id": "1a0e79e8-d7e4-451c-99bd-a4f91a01cb2a",
 "mitigationValue": [
 45.0,
 55.0
@@ -18010,7 +18106,7 @@
 },
 {
 "color": "#666666",
-"id": "4bcbaa7c-097b-402e-beef-ec953e15e6e2",
+"id": "49eed39d-3295-4234-afbf-a3891c68e1be",
 "mitigationValue": [
 54.0,
 66.0
@@ -18062,7 +18158,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "56057bd1-d90a-4980-a387-9ead08d71c97",
+"id": "27485ca0-0268-4e38-b3be-d6e85021c164",
 "mitigationValue": [
 54.0,
 66.0
@@ -18075,7 +18171,7 @@
 },
 {
 "color": "#666666",
-"id": "8477b792-a4be-4b69-8eee-ab882cfafe07",
+"id": "a86d071b-5b16-4eea-83d5-266f892ef75c",
 "mitigationValue": [
 54.0,
 66.0
@@ -18127,7 +18223,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ffa56d4f-53c6-453e-afec-d4948b64262d",
+"id": "7cc25829-2479-458e-b497-b2577ed228dc",
 "mitigationValue": [
 45.0,
 55.0
@@ -18140,7 +18236,7 @@
 },
 {
 "color": "#666666",
-"id": "950d24ef-2f2e-4143-9441-017117c8b0b6",
+"id": "43d0806f-35fc-4bd5-83b7-8733464fac59",
 "mitigationValue": [
 54.0,
 66.0
@@ -18192,7 +18288,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8b9e1183-d034-4ac4-9c2f-1ef645dacdc6",
+"id": "7ac3d40d-87c0-48d8-b018-1b827e64da06",
 "mitigationValue": [
 36.0,
 44.0
@@ -18205,7 +18301,7 @@
 },
 {
 "color": "#666666",
-"id": "74e0af16-b8ac-4c38-b1a3-3ad62fded014",
+"id": "1ed0de5b-7e72-4a11-9755-ef25d8fdd982",
 "mitigationValue": [
 54.0,
 66.0
@@ -18257,7 +18353,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9701320e-fa03-416b-aa3b-16cdadc3e1b4",
+"id": "66fbec4c-1c34-4c07-accc-65cacb507505",
 "mitigationValue": [
 27.0,
 33.0
@@ -18270,7 +18366,7 @@
 },
 {
 "color": "#666666",
-"id": "1b23ba94-e089-4f67-8d82-268b7ceb9c00",
+"id": "1d59ac72-6ad7-42b5-9f6c-bf072260b224",
 "mitigationValue": [
 54.0,
 66.0
@@ -18322,7 +18418,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "70400cb2-975e-48a9-a3ef-86b91d094ffa",
+"id": "ce4d409e-ca81-47dd-a95d-91c95083008e",
 "mitigationValue": [
 27.0,
 33.0
@@ -18331,6 +18427,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-31"
+}
+},
+{
+"color": "#666666",
+"id": "aa800712-4dcb-40ad-bb4a-f309d16fe1dd",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
 }
 }
 ],
@@ -18374,7 +18483,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d3dec707-a42a-434a-aefb-5343404a873f",
+"id": "663283fd-63f5-45fb-83e9-cc32ce8b06de",
 "mitigationValue": [
 54.0,
 66.0
@@ -18387,7 +18496,7 @@
 },
 {
 "color": "#666666",
-"id": "d8dbdfc2-f23b-42eb-8c48-989c305a3f3f",
+"id": "d0531173-feac-41c4-b5bf-876dabc1d192",
 "mitigationValue": [
 54.0,
 66.0
@@ -18439,7 +18548,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e319dc88-8eb7-46d0-8eb6-1391322d6cd7",
+"id": "8fd0463f-25c6-486e-88b8-05aebe2e577b",
 "mitigationValue": [
 18.0,
 22.0
@@ -18491,7 +18600,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "121c0a1a-48f0-4e77-b827-f384052184bf",
+"id": "4020407e-b5cd-4f79-b9a2-5b47654e78e6",
 "mitigationValue": [
 36.0,
 44.0
@@ -18504,7 +18613,7 @@
 },
 {
 "color": "#666666",
-"id": "f1f3d542-d481-4ae6-a860-08fd14e18b0d",
+"id": "2e8416a9-0e94-4e03-969f-6439b8f00658",
 "mitigationValue": [
 54.0,
 66.0
@@ -18556,7 +18665,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "440f78c3-357d-47c1-b370-28662beb6b12",
+"id": "6339a040-bd4c-4f8d-b710-49423a00f6a4",
 "mitigationValue": [
 36.0,
 44.0
@@ -18569,7 +18678,7 @@
 },
 {
 "color": "#666666",
-"id": "223f7aed-8093-452e-9117-18a0df2d2537",
+"id": "864d7444-21ab-4829-92e6-b1df8fd064aa",
 "mitigationValue": [
 54.0,
 66.0
@@ -18621,7 +18730,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8e8b8218-a748-419a-836c-1ac560969392",
+"id": "d18733af-cca2-4534-8d13-576c94e353fa",
 "mitigationValue": [
 45.0,
 55.0
@@ -18634,7 +18743,7 @@
 },
 {
 "color": "#666666",
-"id": "8cb4ad47-5dec-4457-87fd-d4d532cbd473",
+"id": "1da3cbe5-8aac-4e48-b2f3-6c42c30b29dd",
 "mitigationValue": [
 54.0,
 66.0
@@ -18686,7 +18795,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5bd86d80-18f7-4a21-82e5-750e0d86c05f",
+"id": "04ed1753-56a1-49a4-8d8b-81aeccf30e9c",
 "mitigationValue": [
 36.0,
 44.0
@@ -18695,6 +18804,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-30"
+}
+},
+{
+"color": "#666666",
+"id": "49e30d07-4f0f-427b-8a56-f2f1a5a6f2af",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
 }
 }
 ],
@@ -18738,7 +18860,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d3c595e5-c62a-47c0-b547-b57018a40430",
+"id": "86261c20-2942-4bbe-9af5-2e4834e2603b",
 "mitigationValue": [
 54.0,
 66.0
@@ -18751,7 +18873,7 @@
 },
 {
 "color": "#666666",
-"id": "a795efe0-e193-4ecd-9321-4a017e58c1fe",
+"id": "f3c72dcc-de31-4091-9463-83604fe93dcd",
 "mitigationValue": [
 54.0,
 66.0
@@ -18803,7 +18925,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9b95911f-3de4-46d4-8ba0-c3058cf9ce94",
+"id": "6694f7e4-f691-471d-87e1-46051f26bff3",
 "mitigationValue": [
 45.0,
 55.0
@@ -18816,7 +18938,7 @@
 },
 {
 "color": "#666666",
-"id": "dce5edba-b843-4e90-a999-d4c7fc449929",
+"id": "4ec7ad12-771c-4b10-8400-b8f4d7d54542",
 "mitigationValue": [
 54.0,
 66.0
@@ -18868,7 +18990,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4ea058d2-4262-41ba-887c-67997f4d1837",
+"id": "06ac165d-8eca-4b02-9d3d-ad949ff50934",
 "mitigationValue": [
 45.0,
 55.0
@@ -18920,7 +19042,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "32c82b74-ba41-47d5-b61a-b77332734a05",
+"id": "1f8acd75-6a41-4b75-abb9-88180d05702e",
 "mitigationValue": [
 18.0,
 22.0
@@ -18933,7 +19055,7 @@
 },
 {
 "color": "#666666",
-"id": "5009d6e6-856d-4554-994e-13b8847395e4",
+"id": "513a8eee-1dd1-4fd0-bd3a-4536c328d4e6",
 "mitigationValue": [
 54.0,
 66.0
@@ -18985,7 +19107,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "32d5f05f-85a4-4269-9355-aa21e956f690",
+"id": "da34364e-e46c-4c3d-9938-9b0f5b330c6f",
 "mitigationValue": [
 36.0,
 44.0
@@ -18998,7 +19120,7 @@
 },
 {
 "color": "#666666",
-"id": "db6cdc77-2f10-401b-aeb5-a60d5d03d80c",
+"id": "7485c3e1-4fe5-4a05-afac-3312f072fe2d",
 "mitigationValue": [
 54.0,
 66.0
@@ -19050,7 +19172,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "52852375-8bfe-46a3-b8c0-29cd60f7f666",
+"id": "7b19e7e3-98ea-4acc-b143-35e6e9810e5a",
 "mitigationValue": [
 27.0,
 33.0
@@ -19063,7 +19185,7 @@
 },
 {
 "color": "#666666",
-"id": "e3904084-1368-4391-9205-bdb720166842",
+"id": "5110a043-d5a4-4f65-9059-754c70e6a44f",
 "mitigationValue": [
 54.0,
 66.0
@@ -19115,7 +19237,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "30720f98-bb7b-4926-a928-e6c375cfd9d7",
+"id": "08447a5f-e52b-4784-b83e-b1ac90116254",
 "mitigationValue": [
 54.0,
 66.0
@@ -19128,7 +19250,7 @@
 },
 {
 "color": "#666666",
-"id": "573752f9-f535-4f50-a510-e8f5e297ac21",
+"id": "0e1b7b2a-2bbf-4255-83df-f407726d006d",
 "mitigationValue": [
 54.0,
 66.0
@@ -19180,7 +19302,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fcc60cfd-5a56-4363-8799-6cbb3116fdc6",
+"id": "e80e5110-14dd-447f-b025-50dea5a43ca8",
 "mitigationValue": [
 27.0,
 33.0
@@ -19193,7 +19315,7 @@
 },
 {
 "color": "#666666",
-"id": "37086633-a0db-4d5c-8223-8731fba0b500",
+"id": "ed021c46-1fd0-48c4-bf9b-36ca3491a5c4",
 "mitigationValue": [
 54.0,
 66.0
@@ -19245,7 +19367,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "80fa6c57-3b7d-41ac-8035-5958dc1df35b",
+"id": "2a5c3b4f-500d-48d6-b1d2-0f2f9a1e135f",
 "mitigationValue": [
 63.0,
 77.0
@@ -19258,7 +19380,7 @@
 },
 {
 "color": "#666666",
-"id": "a388e0c2-60c8-4499-9b7c-b1c2a798f343",
+"id": "56c51d0a-b4b5-4257-91bb-53173d793ce8",
 "mitigationValue": [
 54.0,
 66.0
@@ -19310,7 +19432,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "49f4699b-f7ef-4642-b322-aa522430230f",
+"id": "d127276c-929b-4283-a565-a47373133e01",
 "mitigationValue": [
 45.0,
 55.0
@@ -19319,6 +19441,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-30"
+}
+},
+{
+"color": "#666666",
+"id": "f33580f6-4631-4a3a-b900-a41b3124024d",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
 }
 }
 ],
@@ -19362,7 +19497,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fcb21b27-3cec-4bb6-8dae-b5f5192a0776",
+"id": "5fcc32c8-0b08-471a-b58c-b2eff58a756e",
 "mitigationValue": [
 18.0,
 22.0
@@ -19375,7 +19510,7 @@
 },
 {
 "color": "#666666",
-"id": "8f41b559-fba9-4170-9ad9-ab22b8d0d8be",
+"id": "ae94cd15-bd56-41ee-8386-7cd09d8d679c",
 "mitigationValue": [
 54.0,
 66.0
@@ -19427,7 +19562,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "06f45fdf-a067-4472-9cb6-48088a1d5147",
+"id": "ae3cbee7-c546-4e4d-afad-4e4a0fcd2cc8",
 "mitigationValue": [
 45.0,
 55.0
@@ -19440,7 +19575,7 @@
 },
 {
 "color": "#666666",
-"id": "07e5d857-b612-4a51-88a6-1fa73c31becc",
+"id": "4560f531-6ae0-4f0a-8e1a-bba75df8002b",
 "mitigationValue": [
 54.0,
 66.0
@@ -19492,7 +19627,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "983e153c-272d-4f9e-b611-ef923fe383e2",
+"id": "21729ffa-f277-49b5-af92-cdc5ee35fe25",
 "mitigationValue": [
 45.0,
 55.0
@@ -19544,7 +19679,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9f0862bc-44c9-4660-9086-42e16f2a2782",
+"id": "bd1a00e0-384a-4eb2-a8a6-7fc57c7f7368",
 "mitigationValue": [
 27.0,
 33.0
@@ -19596,7 +19731,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "167393de-2700-4a29-9376-08613da4f840",
+"id": "40f308a3-eff0-4518-9b2e-1100bef1419b",
 "mitigationValue": [
 45.0,
 55.0
@@ -19609,7 +19744,7 @@
 },
 {
 "color": "#666666",
-"id": "d1cb0805-8e74-46c3-a698-d0ddd415f923",
+"id": "f4537c99-7d80-439b-a087-188bba01285a",
 "mitigationValue": [
 54.0,
 66.0
@@ -19661,7 +19796,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "53aa965f-2761-4c2e-92a6-887890422335",
+"id": "f4a1382b-a1ec-4d70-ac05-2f3040671b64",
 "mitigationValue": [
 36.0,
 44.0
@@ -19713,7 +19848,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0b469929-683d-4710-8115-6cae7db77929",
+"id": "dd8ba9b4-db5e-4785-9e51-f136fd2e70c8",
 "mitigationValue": [
 27.0,
 33.0
@@ -19726,7 +19861,7 @@
 },
 {
 "color": "#666666",
-"id": "12bb8802-a4b2-4723-8df6-71d077908f0d",
+"id": "c33955bd-2944-4b68-a5c7-8a9f75d76ba1",
 "mitigationValue": [
 54.0,
 66.0
@@ -19778,7 +19913,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ba47def2-2fa5-4256-a204-d3c3955e3242",
+"id": "bc671836-a39a-416b-b9c0-32c965ec47af",
 "mitigationValue": [
 36.0,
 44.0
@@ -19791,7 +19926,7 @@
 },
 {
 "color": "#666666",
-"id": "29d2fde3-891b-4d70-a983-90622ddd0893",
+"id": "9cc10523-7895-4da9-a73e-7542683ab28e",
 "mitigationValue": [
 54.0,
 66.0
@@ -19843,7 +19978,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a1d1fb58-1a5c-461d-8923-d15e3f4637dc",
+"id": "a72e9179-4644-40ef-8812-a8e08cb35b7f",
 "mitigationValue": [
 18.0,
 22.0
@@ -19856,7 +19991,7 @@
 },
 {
 "color": "#666666",
-"id": "422e7cdf-2d09-47a6-844d-f7e29c8f6d39",
+"id": "00d4d619-1851-4b51-a874-68bab84af99b",
 "mitigationValue": [
 54.0,
 66.0
@@ -19908,7 +20043,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6f16fdf6-bb09-494b-8508-fe188e9b9e4b",
+"id": "7b5da658-af33-4555-be4e-d0a142ad3373",
 "mitigationValue": [
 45.0,
 55.0
@@ -19921,7 +20056,7 @@
 },
 {
 "color": "#666666",
-"id": "855ba1ea-5dcd-42a7-a71f-ee07bc32b97b",
+"id": "86ec3ba7-ee80-4362-9595-500c18385703",
 "mitigationValue": [
 54.0,
 66.0
@@ -19973,7 +20108,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9665de29-5709-4462-bf4c-b754479d63a6",
+"id": "4fa4336d-36d6-4257-84ff-0eaec78819ce",
 "mitigationValue": [
 45.0,
 55.0
@@ -20025,7 +20160,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "df727023-0989-442e-84c4-ff80a3277c01",
+"id": "2b706037-ee05-40f4-9a87-a4f136a6111e",
 "mitigationValue": [
 36.0,
 44.0
@@ -20038,7 +20173,7 @@
 },
 {
 "color": "#666666",
-"id": "f58cac95-e4da-4048-aea4-ea5f52743145",
+"id": "640f11e3-79a0-4dbd-b410-e75ba9cc79c4",
 "mitigationValue": [
 54.0,
 66.0
@@ -20090,7 +20225,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "725ceb86-c931-4c36-864a-d5e02710239b",
+"id": "c3bbea14-a55c-473b-a2d8-8510f1926d16",
 "mitigationValue": [
 45.0,
 55.0
@@ -20103,7 +20238,7 @@
 },
 {
 "color": "#666666",
-"id": "5912cf25-a51e-4e92-b902-834218f622c2",
+"id": "0bbb236c-29bf-4739-9e9b-ba51c607d937",
 "mitigationValue": [
 54.0,
 66.0
@@ -20155,7 +20290,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "fd6f6521-ffb5-41af-bb9a-1222a167ef05",
+"id": "68975437-d390-444e-946b-68a53ccfdafe",
 "mitigationValue": [
 36.0,
 44.0
@@ -20168,7 +20303,7 @@
 },
 {
 "color": "#666666",
-"id": "ca8510e8-fbf6-4d83-90a8-dc0829548869",
+"id": "9aab517d-e728-4543-a442-e5edbd94ae78",
 "mitigationValue": [
 54.0,
 66.0
@@ -20220,7 +20355,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "baa0ad2c-ad88-4426-8827-c8a9d7b30f0f",
+"id": "9ca606fe-f2e9-43d2-80fb-bd220f62318f",
 "mitigationValue": [
 18.0,
 22.0
@@ -20233,7 +20368,7 @@
 },
 {
 "color": "#666666",
-"id": "75fecad8-7c90-4930-85af-770ce5924ecc",
+"id": "5754d046-cc99-4fb2-9e0e-dfe9e8dd4747",
 "mitigationValue": [
 54.0,
 66.0
@@ -20285,7 +20420,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0cfcbd37-7d06-4120-9ac7-2d7f0fc1f98a",
+"id": "4e6bec23-a474-4fc8-b12c-42b1ad8f53f1",
 "mitigationValue": [
 36.0,
 44.0
@@ -20337,7 +20472,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "38e429ee-5d7f-456c-89de-deddd2e30186",
+"id": "0cae144b-b7d9-4a46-aafb-53a9b6f271cc",
 "mitigationValue": [
 36.0,
 44.0
@@ -20350,7 +20485,7 @@
 },
 {
 "color": "#666666",
-"id": "edd84b4d-f706-4d07-8dfa-6bb235468131",
+"id": "4a99abdf-1b61-4fd6-9f95-b43b2352819c",
 "mitigationValue": [
 54.0,
 66.0
@@ -20402,7 +20537,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "22cb5f99-dab3-4af7-bfb4-dbb6257b23c8",
+"id": "4879a17f-5456-48af-9e07-c7904c712fc7",
 "mitigationValue": [
 27.0,
 33.0
@@ -20492,7 +20627,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "66f5d7ab-96f3-472d-bec4-48489b51186b",
+"id": "5a720c1c-7986-4e67-92ca-3718f60a17d4",
 "mitigationValue": [
 27.0,
 33.0
@@ -20544,7 +20679,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "69f14569-418e-43f6-9239-15035337c536",
+"id": "65c43391-861c-4cfa-b1c8-df21a0b8f886",
 "mitigationValue": [
 18.0,
 22.0
@@ -20557,7 +20692,7 @@
 },
 {
 "color": "#666666",
-"id": "50334056-8fdb-46e7-8cdc-c8d448aebada",
+"id": "fe27a6b2-8cf7-48eb-be0e-16a22a9cc326",
 "mitigationValue": [
 54.0,
 66.0
@@ -20609,7 +20744,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6be1b577-57da-4785-a5e9-b962ff472a43",
+"id": "78532e57-1f71-41d1-bfb0-b9cc5bde70f2",
 "mitigationValue": [
 36.0,
 44.0
@@ -20622,7 +20757,7 @@
 },
 {
 "color": "#666666",
-"id": "35ca2380-e2be-4b88-a925-c9af150aa0c1",
+"id": "279e4ecb-34ff-4074-8cf1-43a52fed9d8f",
 "mitigationValue": [
 54.0,
 66.0
@@ -20674,7 +20809,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "999d354d-fc89-465b-b6a3-32a60025be1d",
+"id": "e6ab57df-c7ba-45e4-aed6-455aa4b79a0e",
 "mitigationValue": [
 36.0,
 44.0
@@ -20687,7 +20822,7 @@
 },
 {
 "color": "#666666",
-"id": "50eb2d8b-6818-4586-a7e6-bcf747fe5149",
+"id": "80b16a4e-38bc-4717-b63d-803005cd614c",
 "mitigationValue": [
 54.0,
 66.0
@@ -20739,7 +20874,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6efa682a-7606-4bba-9631-56d7b2d4ff3f",
+"id": "215bbabd-6fb7-41c6-a55a-77cbb159b748",
 "mitigationValue": [
 27.0,
 33.0
