@@ -30,3 +30,13 @@ $lg: map.get($grid-breakpoints, 'lg');
     width: 100%;
   }
 }
+
+.upload-zone {
+  min-height: 100px;
+  cursor: pointer;
+  border: 5px $secondary dashed;
+
+  &.upload-zone-active {
+    border: 5px $secondary dotted;
+  }
+}

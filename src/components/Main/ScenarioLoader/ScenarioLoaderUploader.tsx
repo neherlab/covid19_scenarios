@@ -9,14 +9,15 @@ import { readFile } from '../../../helpers/readFile'
 import { setStateData } from '../state/actions'
 import { deserialize } from '../state/serialize'
 
-import { ScenarioLoaderCustomUploadZone } from './ScenarioLoaderCustomUploadZone'
+import { ScenarioLoaderUploadZone } from './ScenarioLoaderUploadZone'
 
-export interface ScenarioLoaderCustomProps {
+export interface ScenarioLoaderUploaderProps {
+  close(): void
   setSeverity(severity: SeverityDistributionDatum[]): void
   scenarioDispatch(action: AnyAction): void
 }
 
-export function ScenarioLoaderCustom({ scenarioDispatch, setSeverity }: ScenarioLoaderCustomProps) {
+export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }: ScenarioLoaderUploaderProps) {
   async function processParamJson(file: File) {
     const str = await readFile(file)
     const params = deserialize(str)
@@ -32,7 +33,10 @@ export function ScenarioLoaderCustom({ scenarioDispatch, setSeverity }: Scenario
         ageDistribution: params.ageDistribution,
       }),
     )
+
     setSeverity(params.severity)
+
+    close()
   }
 
   async function onDrop(files: File[]) {
@@ -41,5 +45,5 @@ export function ScenarioLoaderCustom({ scenarioDispatch, setSeverity }: Scenario
     }
   }
 
-  return <ScenarioLoaderCustomUploadZone onDrop={onDrop} />
+  return <ScenarioLoaderUploadZone onDrop={onDrop} />
 }

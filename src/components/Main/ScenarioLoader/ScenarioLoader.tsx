@@ -9,7 +9,7 @@ import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.
 
 import { ScenarioOption } from './ScenarioLoaderListItem'
 
-import { ScenarioLoaderCustom } from './ScenarioLoaderCustom'
+import { ScenarioLoaderUploader } from './ScenarioLoaderUploader'
 import { ScenarioLoaderList } from './ScenarioLoaderList'
 
 import './ScenarioLoader.scss'
@@ -51,7 +51,7 @@ export function ScenarioLoader({
           </Col>
 
           <Col md={6}>
-            <ScenarioLoaderCustom setSeverity={setSeverity} scenarioDispatch={scenarioDispatch} />
+            <ScenarioLoaderUploader setSeverity={setSeverity} scenarioDispatch={scenarioDispatch} close={onClose} />
           </Col>
         </Row>
       </ModalBody>
