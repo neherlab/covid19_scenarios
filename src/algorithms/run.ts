@@ -4,7 +4,7 @@ import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types
 
 import { getPopulationParams, initializePopulation } from './initialize'
 import { collectTotals, evolve } from './model'
-import { mulTP, divTP, meanTrajectory, stddevTrajectory } from './results'
+import { percentileTrajectory } from './results'
 
 const identity = (x: number) => x
 
@@ -38,43 +38,34 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
     return simulate(population, identity)
   })
 
-  const mean = meanTrajectory(trajectories)
-  const sdev = stddevTrajectory(trajectories, mean)
+  // const mean = meanTrajectory(trajectories)
+  // const sdev = stddevTrajectory(trajectories, mean)
 
+  const thresholds = [0.2, 0.5, 0.8]
+  const idxs = thresholds.map((d) => Math.ceil((trajectories.length - 1) * d))
   const R0Trajectories = trajectories[0].map((d) => {
     return {
       t: d.time,
-      y: modelParamsArray.map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriod),
+      y: modelParamsArray
+        .map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriod)
+        .sort((a, b) => a - b),
     }
-  })
-
-  const meanR0 = R0Trajectories.map((d) => {
-    return { t: d.t, y: d.y.reduce((a, b) => a + b, 0) / d.y.length }
-  })
-
-  const secondMomentR0 = R0Trajectories.map((d) => {
-    return { t: d.t, y: d.y.reduce((a, b) => a + b * b, 0) / d.y.length }
-  })
-
-  const stdR0 = secondMomentR0.map((d, i) => {
-    return { t: d.t, y: Math.sqrt(d.y - meanR0[i].y * meanR0[i].y) }
   })
 
   return {
     trajectory: {
-      mean,
-      upper: mean.map((m, i) => mulTP(m, sdev[i])),
-      lower: mean.map((m, i) => divTP(m, sdev[i])),
+      lower: percentileTrajectory(trajectories, 0.2),
+      middle: percentileTrajectory(trajectories, 0.5),
+      upper: percentileTrajectory(trajectories, 0.8),
+      // middle: mean,
+      // upper: mean.map((m, i) => mulTP(m, sdev[i])),
+      // lower: mean.map((m, i) => divTP(m, sdev[i])),
       percentile: {},
     },
     R0: {
-      mean: meanR0,
-      lower: meanR0.map((m, i) => {
-        return { t: m.t, y: m.y - stdR0[i].y }
-      }),
-      upper: meanR0.map((m, i) => {
-        return { t: m.t, y: m.y + stdR0[i].y }
-      }),
+      mean: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[1]] })),
+      lower: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[0]] })),
+      upper: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[2]] })),
     },
   }
 }

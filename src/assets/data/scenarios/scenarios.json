@@ -28,9 +28,9 @@
 "populationServed": 37172386
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -43,7 +43,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a47a26eb-9f1d-46ad-a794-b192430529aa",
+"id": "7517457b-6525-4be5-aafd-3430173f1a4d",
 "mitigationValue": [
 18.0,
 22.0
@@ -80,9 +80,9 @@
 "populationServed": 2866376
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -118,9 +118,9 @@
 "populationServed": 42228429
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -133,7 +133,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "372639c2-7f6d-484b-aadd-637bb24167fc",
+"id": "44e76878-9229-4f6e-80f7-23fb6190aad2",
 "mitigationValue": [
 27.0,
 33.0
@@ -146,7 +146,7 @@
 },
 {
 "color": "#666666",
-"id": "ecd9e717-fbf2-49b1-a051-03d2a596a22f",
+"id": "5737706a-0a89-4411-b69f-ddc55664c549",
 "mitigationValue": [
 54.0,
 66.0
@@ -183,9 +183,9 @@
 "populationServed": 77006
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -198,7 +198,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bac797f2-d574-421b-b55a-6aa2436b077d",
+"id": "5724e9bf-b947-41b5-ade1-c5a8713c3fd0",
 "mitigationValue": [
 18.0,
 22.0
@@ -235,9 +235,9 @@
 "populationServed": 96286
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-08"
 }
 }
@@ -273,9 +273,9 @@
 "populationServed": 44494502
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -288,7 +288,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "362abb38-264d-42af-baab-34fb75d299a6",
+"id": "e4080ed7-4390-4472-98eb-af36704c3934",
 "mitigationValue": [
 27.0,
 33.0
@@ -325,9 +325,9 @@
 "populationServed": 2951776
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -340,7 +340,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6eb17890-3c80-4581-ac60-74ff0822fc2d",
+"id": "b4af11cb-08d7-4176-ac64-21efc256a82f",
 "mitigationValue": [
 18.0,
 22.0
@@ -377,9 +377,9 @@
 "populationServed": 24992369
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-01"
 }
 }
@@ -392,7 +392,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6b7d32ac-4c8f-487a-9432-f51dcb828472",
+"id": "f1d083ff-4e5a-4815-b5e4-dcd6270462ff",
 "mitigationValue": [
 45.0,
 55.0
@@ -405,7 +405,7 @@
 },
 {
 "color": "#666666",
-"id": "c2039bb0-ec5f-4a86-a78c-bc826db296c3",
+"id": "bb9343c2-d08f-4534-93fb-3d4d9a7460d9",
 "mitigationValue": [
 54.0,
 66.0
@@ -442,9 +442,9 @@
 "populationServed": 8847037
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-12"
 }
 }
@@ -457,7 +457,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1b7641e5-4785-4d31-be00-28dd70fa3242",
+"id": "410a1e94-c5a9-4005-9093-eae5b4acacb7",
 "mitigationValue": [
 18.0,
 22.0
@@ -494,9 +494,9 @@
 "populationServed": 9942334
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -509,7 +509,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b6239ae1-1df5-49b4-8579-20cd7e527dc5",
+"id": "c744e83d-5d18-41ef-a798-8df449c2daed",
 "mitigationValue": [
 18.0,
 22.0
@@ -546,9 +546,9 @@
 "populationServed": 385640
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-15"
 }
 }
@@ -561,7 +561,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3d7849cf-c19c-4bdc-8fdf-de52ca630ecf",
+"id": "e4f59b35-1937-443f-9a0f-af3703bd72c9",
 "mitigationValue": [
 18.0,
 22.0
@@ -574,7 +574,7 @@
 },
 {
 "color": "#666666",
-"id": "5b915ccc-cacd-4bdf-b2e4-c29234f337f1",
+"id": "7fde9468-794b-4cfa-b1c7-d8f3f455962d",
 "mitigationValue": [
 54.0,
 66.0
@@ -611,9 +611,9 @@
 "populationServed": 1569439
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-05"
 }
 }
@@ -649,9 +649,9 @@
 "populationServed": 161356039
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -664,7 +664,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c42a4c81-3a21-4a3e-badc-bf252520cbef",
+"id": "b9e1c70d-52e2-4316-b306-d488234abc30",
 "mitigationValue": [
 18.0,
 22.0
@@ -701,9 +701,9 @@
 "populationServed": 286641
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-13"
 }
 }
@@ -716,7 +716,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6f46b070-5234-4528-bba9-cb4d779ed1e8",
+"id": "7adeca96-3cd6-42dd-82c2-2a5e79997831",
 "mitigationValue": [
 18.0,
 22.0
@@ -725,6 +725,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-04-09"
+}
+},
+{
+"color": "#666666",
+"id": "6df4b5fb-c579-4ba2-8831-d8699a578494",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-26"
 }
 }
 ],
@@ -753,9 +766,9 @@
 "populationServed": 9485386
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -768,7 +781,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7082c96a-6bef-4238-b433-3a97f1c4c2e1",
+"id": "96ac5130-633e-4c18-8193-560589e6d93c",
 "mitigationValue": [
 36.0,
 44.0
@@ -781,7 +794,7 @@
 },
 {
 "color": "#666666",
-"id": "dd4ad46c-89a6-4ddf-a753-05fee96be101",
+"id": "a83e3152-f01e-4d7e-ac10-9478725d7432",
 "mitigationValue": [
 54.0,
 66.0
@@ -818,9 +831,9 @@
 "populationServed": 11422068
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -856,9 +869,9 @@
 "populationServed": 383071
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-28"
 }
 }
@@ -894,9 +907,9 @@
 "populationServed": 11485048
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-16"
 }
 }
@@ -932,9 +945,9 @@
 "populationServed": 754394
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-04"
 }
 }
@@ -944,7 +957,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "1db93b80-8f47-405a-92f8-0db1072f6318",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -970,9 +997,9 @@
 "populationServed": 11353142
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -985,7 +1012,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0b11755c-18a2-4704-a097-b81a9441e229",
+"id": "833ec76a-cb01-46d5-8989-37f6e7338ef6",
 "mitigationValue": [
 36.0,
 44.0
@@ -1022,9 +1049,9 @@
 "populationServed": 3323929
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -1060,9 +1087,9 @@
 "populationServed": 2254126
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-25"
 }
 }
@@ -1075,7 +1102,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d49a9cf1-448f-4bc6-b06e-9694140ba38b",
+"id": "b47cabb3-797a-43fc-9f48-8ed2ce62d2ea",
 "mitigationValue": [
 54.0,
 66.0
@@ -1084,6 +1111,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-04-05"
+}
+},
+{
+"color": "#666666",
+"id": "5e97bffa-ee66-4879-9c0e-361d4f4f22c7",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-25"
 }
 }
 ],
@@ -1112,9 +1152,9 @@
 "populationServed": 209469333
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -1127,7 +1167,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c462ea9d-d266-4fbd-8bfa-890824723945",
+"id": "8d6907db-a33c-45aa-8956-fbd9ca9992e2",
 "mitigationValue": [
 18.0,
 22.0
@@ -1164,9 +1204,9 @@
 "populationServed": 428962
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2019-12-29"
 }
 }
@@ -1179,7 +1219,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b6a50268-0b85-4eb7-8bec-5313e9e859c7",
+"id": "5b1c72dc-9003-481a-ac80-feaad1f80b8a",
 "mitigationValue": [
 18.0,
 22.0
@@ -1216,9 +1256,9 @@
 "populationServed": 7024216
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -1254,9 +1294,9 @@
 "populationServed": 19751535
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -1292,9 +1332,9 @@
 "populationServed": 11175378
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-04-09"
 }
 }
@@ -1307,7 +1347,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3533e68a-4e26-4755-9455-dacb1e923e43",
+"id": "01ada68f-fa2d-4de4-ad6b-fea53e1eb64f",
 "mitigationValue": [
 27.0,
 33.0
@@ -1316,6 +1356,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-26"
+}
+},
+{
+"color": "#666666",
+"id": "aa8ba92f-38d6-48ef-94c0-222613bce12b",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-26"
 }
 }
 ],
@@ -1344,9 +1397,9 @@
 "populationServed": 4413146
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -1359,7 +1412,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7fe4686a-924a-4722-8a0a-e617157f8c14",
+"id": "cbe698cd-b0ce-4c76-b5fe-e5203cde4930",
 "mitigationValue": [
 27.0,
 33.0
@@ -1396,9 +1449,9 @@
 "populationServed": 5110917
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -1411,7 +1464,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c91ac5fb-eafd-443e-8b44-d4ba11af860d",
+"id": "9d5a1cfa-0fed-4733-9347-6d4401c727b7",
 "mitigationValue": [
 27.0,
 33.0
@@ -1448,9 +1501,9 @@
 "populationServed": 1377517
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-02"
 }
 }
@@ -1486,9 +1539,9 @@
 "populationServed": 44904
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-09"
 }
 }
@@ -1501,7 +1554,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9c5886c6-3259-485a-936c-f9079a80342b",
+"id": "bcc3bf7e-b3ca-4a7e-85da-624195326b67",
 "mitigationValue": [
 18.0,
 22.0
@@ -1538,9 +1591,9 @@
 "populationServed": 779993
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -1553,7 +1606,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d6eee064-d20b-4b7d-b943-4ba9c8508bef",
+"id": "4000b51d-d7ac-4853-8aba-cd11c72480e3",
 "mitigationValue": [
 18.0,
 22.0
@@ -1590,9 +1643,9 @@
 "populationServed": 521356
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-28"
 }
 }
@@ -1605,7 +1658,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bb257637-4cf5-43cc-98e9-5fd95819710c",
+"id": "d8cf59c7-949d-4bdb-b363-32681ca65236",
 "mitigationValue": [
 27.0,
 33.0
@@ -1642,9 +1695,9 @@
 "populationServed": 977457
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-29"
 }
 }
@@ -1680,9 +1733,9 @@
 "populationServed": 39097
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -1695,7 +1748,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9617eb20-ba02-443e-b63a-612b109a61af",
+"id": "888e43cc-31f5-41f5-9db5-4d3aa2df2284",
 "mitigationValue": [
 27.0,
 33.0
@@ -1704,6 +1757,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-30"
+}
+},
+{
+"color": "#666666",
+"id": "0e4e1fe5-6572-4ddf-9334-3bd7d8a8704a",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-25"
 }
 }
 ],
@@ -1732,9 +1798,9 @@
 "populationServed": 14711827
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-11"
 }
 }
@@ -1747,7 +1813,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "79ad3c63-840c-4238-871b-352d52fdd4f6",
+"id": "8155a291-8809-49bd-9bf9-3a802e352f1a",
 "mitigationValue": [
 18.0,
 22.0
@@ -1784,9 +1850,9 @@
 "populationServed": 158158
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -1799,7 +1865,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "712ed3cf-ee87-4bfa-82ee-ed3213e91d07",
+"id": "d00b7085-6147-44e1-bd76-2b80bd8b8b86",
 "mitigationValue": [
 54.0,
 66.0
@@ -1812,7 +1878,7 @@
 },
 {
 "color": "#666666",
-"id": "7aff185c-abad-457b-97c5-33962ccab4e9",
+"id": "5610cb32-94ac-4c53-b303-92e545e06854",
 "mitigationValue": [
 54.0,
 66.0
@@ -1849,9 +1915,9 @@
 "populationServed": 8484965
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -1864,7 +1930,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e97a5a74-8849-4e1e-ab78-d49e99260919",
+"id": "b10809e0-15a4-4233-9ccc-24e2507a9565",
 "mitigationValue": [
 27.0,
 33.0
@@ -1901,9 +1967,9 @@
 "populationServed": 1181666
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -1916,7 +1982,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "199e44d8-1b88-4fee-8815-fd097d0228f3",
+"id": "c1b8fcfb-77a3-4c3e-86a3-fd888ec5bbfc",
 "mitigationValue": [
 18.0,
 22.0
@@ -1953,9 +2019,9 @@
 "populationServed": 41078
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -1968,7 +2034,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c8d06bda-7d93-4840-b941-64c033a7616e",
+"id": "9be5fb9f-2511-4b07-8644-77c214d42a2c",
 "mitigationValue": [
 27.0,
 33.0
@@ -1981,7 +2047,7 @@
 },
 {
 "color": "#666666",
-"id": "ba1ea431-d499-4497-a4eb-1079af42260a",
+"id": "1e6cb9a0-41b2-474f-a140-5df30e53d731",
 "mitigationValue": [
 54.0,
 66.0
@@ -2018,9 +2084,9 @@
 "populationServed": 677000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -2033,7 +2099,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3abb969a-ff59-4df4-ba46-4b654d71c066",
+"id": "aecf20cd-076c-4fdd-8283-b0f7cfa2aef6",
 "mitigationValue": [
 18.0,
 22.0
@@ -2046,7 +2112,7 @@
 },
 {
 "color": "#666666",
-"id": "48a8c39e-d637-47e6-b4ee-d1a38d861e2d",
+"id": "d684edba-3b62-41a8-912d-1d9275bc1304",
 "mitigationValue": [
 54.0,
 66.0
@@ -2083,9 +2149,9 @@
 "populationServed": 55000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-11"
 }
 }
@@ -2098,7 +2164,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4a610e40-8bdf-4edf-bc65-ecf0ee75a06d",
+"id": "5de3c210-79be-4a98-b454-29053d39803a",
 "mitigationValue": [
 18.0,
 22.0
@@ -2135,9 +2201,9 @@
 "populationServed": 16000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -2150,7 +2216,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2afabaa5-bb23-4bb7-bba6-69e1cf223ba0",
+"id": "d4ac5803-19cb-47a9-bf4d-91818271ef6b",
 "mitigationValue": [
 18.0,
 22.0
@@ -2163,7 +2229,7 @@
 },
 {
 "color": "#666666",
-"id": "9918aaab-81d3-481c-bf62-b77337c95073",
+"id": "47b6b9f8-703f-4a78-82a5-e3d87970be98",
 "mitigationValue": [
 54.0,
 66.0
@@ -2200,9 +2266,9 @@
 "populationServed": 288000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -2215,7 +2281,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "737eab03-7a9d-4be6-94db-288e81bb5720",
+"id": "e425921a-88b9-45e8-b09b-956a24703d55",
 "mitigationValue": [
 36.0,
 44.0
@@ -2228,7 +2294,7 @@
 },
 {
 "color": "#666666",
-"id": "023a64ee-40cd-417f-adc5-3defd1d7e4a1",
+"id": "62382b6e-3481-4e1a-9b4c-ce4d800c34f2",
 "mitigationValue": [
 54.0,
 66.0
@@ -2265,9 +2331,9 @@
 "populationServed": 195000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-15"
 }
 }
@@ -2280,7 +2346,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "16ad3c36-89eb-429e-b0a7-7eec758b159e",
+"id": "5e7409c1-2f1c-4f7c-8169-1c04e8fb16fd",
 "mitigationValue": [
 36.0,
 44.0
@@ -2293,7 +2359,7 @@
 },
 {
 "color": "#666666",
-"id": "a26f1640-10df-4453-a34d-a01212fb8420",
+"id": "30da8890-fcfe-487f-9756-c0c5de002b88",
 "mitigationValue": [
 54.0,
 66.0
@@ -2330,9 +2396,9 @@
 "populationServed": 1035000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -2345,7 +2411,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ced1e530-d90f-4f75-bc92-9344fc33a291",
+"id": "e614aa68-4397-405c-a306-dd7b853542ac",
 "mitigationValue": [
 36.0,
 44.0
@@ -2358,7 +2424,7 @@
 },
 {
 "color": "#666666",
-"id": "2fe7d0e4-be3a-4bf4-bcc4-9474d9829e0b",
+"id": "8a120bd6-c5ae-40f1-9a96-6827fe692756",
 "mitigationValue": [
 54.0,
 66.0
@@ -2395,9 +2461,9 @@
 "populationServed": 319000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -2410,7 +2476,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f64a7950-1732-4ceb-a0d9-cb158c660f11",
+"id": "273e8f1b-3c65-43b2-a8a6-dfa96f5c59f2",
 "mitigationValue": [
 45.0,
 55.0
@@ -2423,7 +2489,7 @@
 },
 {
 "color": "#666666",
-"id": "eb6b5c43-6ea9-4dfe-b3ef-710aa49c3af8",
+"id": "aa9b8292-fc5e-4977-8e83-5b89b715ba38",
 "mitigationValue": [
 54.0,
 66.0
@@ -2460,9 +2526,9 @@
 "populationServed": 499000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-15"
 }
 }
@@ -2475,7 +2541,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "58657b6b-66ae-4efb-a109-82d1ed127f94",
+"id": "d94741aa-2203-48f7-b827-91b077a99816",
 "mitigationValue": [
 18.0,
 22.0
@@ -2483,12 +2549,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-17"
+"tMin": "2020-03-13"
 }
 },
 {
 "color": "#666666",
-"id": "294e7583-3e20-47ac-8383-ab7d048a184f",
+"id": "e55104d7-c05e-4f97-afc5-00053d61de80",
 "mitigationValue": [
 54.0,
 66.0
@@ -2496,7 +2562,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-31"
+"tMin": "2020-03-30"
 }
 }
 ],
@@ -2525,9 +2591,9 @@
 "populationServed": 40000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-04"
 }
 }
@@ -2540,7 +2606,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f93152ae-9894-4363-bc87-57a4234e8fae",
+"id": "83a819d6-54af-4cdb-b447-744085ac969e",
 "mitigationValue": [
 45.0,
 55.0
@@ -2548,12 +2614,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-18"
+"tMin": "2020-03-17"
 }
 },
 {
 "color": "#666666",
-"id": "beacaa00-2cfc-4ddc-a7e9-ea2e8015349e",
+"id": "cdacd184-e141-46c5-a412-484286f2432e",
 "mitigationValue": [
 54.0,
 66.0
@@ -2590,9 +2656,9 @@
 "populationServed": 198000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -2605,7 +2671,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "96935901-bf90-439f-848b-b9a45ea10320",
+"id": "459d3ea8-a7eb-40c4-ac5b-62e53d7196ad",
 "mitigationValue": [
 27.0,
 33.0
@@ -2618,7 +2684,7 @@
 },
 {
 "color": "#666666",
-"id": "971f5db9-f5dd-461c-9188-4ea186babe3d",
+"id": "b2e6a266-0168-4b71-b0da-1e684657ff62",
 "mitigationValue": [
 54.0,
 66.0
@@ -2655,9 +2721,9 @@
 "populationServed": 73000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -2670,7 +2736,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3f8793cb-5785-450f-bb89-894e5b12320e",
+"id": "a2034fe3-01be-4253-bf8a-700a6860d33d",
 "mitigationValue": [
 27.0,
 33.0
@@ -2683,7 +2749,7 @@
 },
 {
 "color": "#666666",
-"id": "7ef324f9-925d-4378-a8df-61f52da3ddc9",
+"id": "46685e0c-683f-4334-8e7f-2f711aac9ac2",
 "mitigationValue": [
 54.0,
 66.0
@@ -2720,9 +2786,9 @@
 "populationServed": 410000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -2735,7 +2801,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "742da47a-4e68-4d82-97fa-6c4addd71d4b",
+"id": "9261a55c-26a9-4839-9aad-03547e1ad2cb",
 "mitigationValue": [
 27.0,
 33.0
@@ -2748,7 +2814,7 @@
 },
 {
 "color": "#666666",
-"id": "d294dfda-cbca-4384-9324-04ff6a91dc75",
+"id": "f26e3429-63ed-4e7e-9718-baa1351c0fe2",
 "mitigationValue": [
 54.0,
 66.0
@@ -2785,9 +2851,9 @@
 "populationServed": 177000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -2800,7 +2866,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "43b11fa5-fe46-4431-91f8-9c998d45b6ef",
+"id": "7ccf5f6e-acb2-48c0-a93b-73ce9bf84151",
 "mitigationValue": [
 27.0,
 33.0
@@ -2808,12 +2874,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-19"
+"tMin": "2020-03-15"
 }
 },
 {
 "color": "#666666",
-"id": "25bf225b-8cc4-40f1-9bcc-03fb56fa0478",
+"id": "5293685e-7354-4265-8c6e-0d9c9bec858c",
 "mitigationValue": [
 54.0,
 66.0
@@ -2850,9 +2916,9 @@
 "populationServed": 43000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -2865,7 +2931,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "53374daf-86d6-4d7f-8d7a-5d3880c9cf10",
+"id": "38a579cc-7dd8-4b9d-bb6d-380b2d785ab9",
 "mitigationValue": [
 18.0,
 22.0
@@ -2878,7 +2944,7 @@
 },
 {
 "color": "#666666",
-"id": "c839d337-922b-4f43-9932-e3cc2150b690",
+"id": "e4da785f-3056-4a1d-915e-bff39a084a56",
 "mitigationValue": [
 54.0,
 66.0
@@ -2915,9 +2981,9 @@
 "populationServed": 38000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-17"
 }
 }
@@ -2930,7 +2996,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ef796fe3-7d35-4705-a544-f975f88d5820",
+"id": "e9bb2266-f7d3-43c6-b474-bf57459c9fa0",
 "mitigationValue": [
 18.0,
 22.0
@@ -2938,7 +3004,7 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-20"
+"tMin": "2020-03-19"
 }
 }
 ],
@@ -2967,9 +3033,9 @@
 "populationServed": 82000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2019-12-29"
 }
 }
@@ -2982,7 +3048,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "78e5c6f7-e788-4dbe-ac1c-265e09f9b78a",
+"id": "92673fc0-72d9-4927-abff-59ffc9c618c1",
 "mitigationValue": [
 18.0,
 22.0
@@ -2990,12 +3056,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-25"
+"tMin": "2020-03-24"
 }
 },
 {
 "color": "#666666",
-"id": "115e6074-bcf5-4a1c-83de-969cb78a2242",
+"id": "9f2eea5e-1f1d-4e37-ad28-0e373c1de2f6",
 "mitigationValue": [
 54.0,
 66.0
@@ -3032,9 +3098,9 @@
 "populationServed": 159000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-06"
 }
 }
@@ -3047,7 +3113,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e75b97a5-0660-4cfc-bbf3-b75adb396698",
+"id": "828ac33d-e2f8-44be-82f9-29bcb3303d84",
 "mitigationValue": [
 18.0,
 22.0
@@ -3060,7 +3126,7 @@
 },
 {
 "color": "#666666",
-"id": "2dc1451f-2808-4f50-a036-ab7a7d9c576c",
+"id": "3df07340-cfb6-4641-bb25-fe586d0dac60",
 "mitigationValue": [
 54.0,
 66.0
@@ -3097,9 +3163,9 @@
 "populationServed": 273000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-09"
 }
 }
@@ -3112,7 +3178,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "80758732-fac8-453b-9856-fa117d053fff",
+"id": "8d7e1038-8727-4bac-909b-74e6c131935d",
 "mitigationValue": [
 18.0,
 22.0
@@ -3125,7 +3191,7 @@
 },
 {
 "color": "#666666",
-"id": "76391c41-574a-44fa-99b2-d17b7277c215",
+"id": "b474a5e3-65f9-4aef-bc76-0fd31a51bb07",
 "mitigationValue": [
 54.0,
 66.0
@@ -3162,9 +3228,9 @@
 "populationServed": 508000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-30"
 }
 }
@@ -3177,7 +3243,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1a2cca3a-97e0-4246-a498-2a783a3c5775",
+"id": "e162aaaf-5f7c-4ae1-9bee-312394d1c974",
 "mitigationValue": [
 27.0,
 33.0
@@ -3190,7 +3256,7 @@
 },
 {
 "color": "#666666",
-"id": "9cbe67b9-c62a-4e59-b976-f6ee7089a384",
+"id": "25f9d9cf-3145-45c6-9b5c-5e3a50747867",
 "mitigationValue": [
 54.0,
 66.0
@@ -3227,9 +3293,9 @@
 "populationServed": 276000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -3242,7 +3308,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "79cecbe8-8a70-4d66-9738-4a2d58cd046c",
+"id": "7c6db15e-75e3-41db-a0b2-e7412e265d81",
 "mitigationValue": [
 45.0,
 55.0
@@ -3255,7 +3321,7 @@
 },
 {
 "color": "#666666",
-"id": "f7c99865-c753-42a3-a598-5a4ca42d859c",
+"id": "9bc1239a-72d3-4469-8d42-cf4028a15e6a",
 "mitigationValue": [
 54.0,
 66.0
@@ -3292,9 +3358,9 @@
 "populationServed": 353000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-15"
 }
 }
@@ -3307,7 +3373,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "47702113-f3d3-4005-a8ff-c94fc83b4928",
+"id": "77d299be-4c03-4943-9265-f144b8132861",
 "mitigationValue": [
 18.0,
 22.0
@@ -3320,7 +3386,7 @@
 },
 {
 "color": "#666666",
-"id": "301669bf-7446-4b3b-98c7-3b8f437dd187",
+"id": "3e7fa3e0-4129-408c-99d6-ee07fb3c300a",
 "mitigationValue": [
 54.0,
 66.0
@@ -3357,9 +3423,9 @@
 "populationServed": 36000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-11"
 }
 }
@@ -3372,7 +3438,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "93867281-c3f0-4824-8856-f44d816f2778",
+"id": "b295cd28-88ff-4302-aac3-2960253a3197",
 "mitigationValue": [
 45.0,
 55.0
@@ -3380,12 +3446,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-13"
+"tMin": "2020-03-12"
 }
 },
 {
 "color": "#666666",
-"id": "e118c0f0-2c67-4b71-a2e4-619e86bc4062",
+"id": "3fa8d468-d6df-42e8-b05a-d97af18b57d5",
 "mitigationValue": [
 54.0,
 66.0
@@ -3393,7 +3459,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-20"
+"tMin": "2020-03-19"
 }
 }
 ],
@@ -3422,9 +3488,9 @@
 "populationServed": 344000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -3437,7 +3503,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e75d42bd-9014-4d96-9473-87f62c481d9d",
+"id": "653b2584-df60-4c5d-9cc2-77001e057f21",
 "mitigationValue": [
 36.0,
 44.0
@@ -3450,7 +3516,7 @@
 },
 {
 "color": "#666666",
-"id": "d90646a5-811f-490d-b61b-c6e2741cb482",
+"id": "5b292a97-7144-4712-9ebd-5648d61b2c49",
 "mitigationValue": [
 54.0,
 66.0
@@ -3458,7 +3524,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-19"
+"tMin": "2020-03-17"
 }
 }
 ],
@@ -3487,9 +3553,9 @@
 "populationServed": 799000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-14"
 }
 }
@@ -3502,7 +3568,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cd83bbbf-3d41-44d0-b745-849e78602764",
+"id": "4cd00a93-1d70-4b6f-a623-8a378bc859db",
 "mitigationValue": [
 18.0,
 22.0
@@ -3510,12 +3576,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-13"
+"tMin": "2020-03-14"
 }
 },
 {
 "color": "#666666",
-"id": "8b418c01-22dc-4633-9161-500db4a56541",
+"id": "ef91b318-e5f7-4b7b-8252-5a50e1e7d0a5",
 "mitigationValue": [
 54.0,
 66.0
@@ -3552,9 +3618,9 @@
 "populationServed": 127000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-12"
 }
 }
@@ -3567,7 +3633,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "39ff9574-9531-403c-a518-23ac35c0ee9a",
+"id": "d42f4f86-1fb7-43f2-a513-63b9b76d30f0",
 "mitigationValue": [
 36.0,
 44.0
@@ -3580,7 +3646,7 @@
 },
 {
 "color": "#666666",
-"id": "a994d871-a815-4300-8230-fa70eddd1231",
+"id": "619a431c-5236-497f-b725-11dd9d4e5679",
 "mitigationValue": [
 54.0,
 66.0
@@ -3617,9 +3683,9 @@
 "populationServed": 1521000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -3632,7 +3698,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bbfe70cc-833d-4b3b-b810-52c49e181e1d",
+"id": "db7bf8f5-f14c-44e3-8005-e518a61e04c8",
 "mitigationValue": [
 18.0,
 22.0
@@ -3669,9 +3735,9 @@
 "populationServed": 543767
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-11"
 }
 }
@@ -3707,9 +3773,9 @@
 "populationServed": 16249798
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-06"
 }
 }
@@ -3745,9 +3811,9 @@
 "populationServed": 25216237
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-29"
 }
 }
@@ -3760,7 +3826,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1031557a-9668-4716-909e-0737fbebc868",
+"id": "1c678e5f-4095-49a8-8081-3bf04b94bc43",
 "mitigationValue": [
 36.0,
 44.0
@@ -3769,6 +3835,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-27"
+}
+},
+{
+"color": "#666666",
+"id": "c71de0ed-f680-4f76-9af5-7231040fc60a",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-22"
 }
 }
 ],
@@ -3797,9 +3876,9 @@
 "populationServed": 37058856
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-09"
 }
 }
@@ -3835,9 +3914,9 @@
 "populationServed": 4666377
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-03"
 }
 }
@@ -3850,7 +3929,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4b8b114c-672b-4f12-8bdd-69b8c2a04afb",
+"id": "46f0da96-4500-4f9b-9bd0-e8b7b5d8b2ad",
 "mitigationValue": [
 45.0,
 55.0
@@ -3887,9 +3966,9 @@
 "populationServed": 18729160
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -3902,7 +3981,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cdb408d4-8e51-418d-b66d-351b200f34f3",
+"id": "bd9b0818-89be-41b8-a17e-63b0b3757f51",
 "mitigationValue": [
 36.0,
 44.0
@@ -3915,7 +3994,7 @@
 },
 {
 "color": "#666666",
-"id": "fa797396-4415-4bff-aaa1-ba5c8eda364a",
+"id": "15feddc6-cad1-41e1-9054-2090d94194ca",
 "mitigationValue": [
 54.0,
 66.0
@@ -3952,9 +4031,9 @@
 "populationServed": 1392730000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2019-12-13"
 }
 }
@@ -3964,7 +4043,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "86d0cc7f-9a79-4e56-bd49-98eae3246063",
+"mitigationValue": [
+36.0,
+44.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-26"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -3990,9 +4083,9 @@
 "populationServed": 49648685
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -4028,9 +4121,9 @@
 "populationServed": 821164
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -4043,7 +4136,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "060c0e83-436e-4770-8136-31d08cef851f",
+"id": "0c158b5b-7f43-49ea-9d7f-8f204eb7d97f",
 "mitigationValue": [
 18.0,
 22.0
@@ -4080,9 +4173,9 @@
 "populationServed": 4999441
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -4095,7 +4188,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9d16e99b-7c4f-4fd2-81f3-331d66b27686",
+"id": "75e56250-9990-4bc3-8231-11dbcf802bab",
 "mitigationValue": [
 36.0,
 44.0
@@ -4132,9 +4225,9 @@
 "populationServed": 4089400
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -4144,7 +4237,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "88b04323-649f-49bd-abed-350b8e6c03ec",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-22"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -4170,9 +4277,9 @@
 "populationServed": 11338138
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-29"
 }
 }
@@ -4185,7 +4292,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a8cdebf8-7e51-4b28-be0d-afe60efdae60",
+"id": "88d3af3c-5b2f-4426-a064-59904288447f",
 "mitigationValue": [
 18.0,
 22.0
@@ -4222,9 +4329,9 @@
 "populationServed": 1189265
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -4237,7 +4344,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "03cb8440-5131-4b21-8ebc-729f34a97275",
+"id": "f7d3909a-0069-4f61-9d66-b1b0ef555df4",
 "mitigationValue": [
 45.0,
 55.0
@@ -4274,9 +4381,9 @@
 "populationServed": 10625695
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -4289,7 +4396,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d57364f0-af14-44e3-8f4f-2d8dc03f642a",
+"id": "c7457706-7143-48d2-a54d-6d912ab6449f",
 "mitigationValue": [
 45.0,
 55.0
@@ -4302,7 +4409,7 @@
 },
 {
 "color": "#666666",
-"id": "39e2c35f-e248-4eff-8eb0-93935ad263c7",
+"id": "6927470d-e789-4f69-a6fe-b9e89ec139b2",
 "mitigationValue": [
 54.0,
 66.0
@@ -4339,9 +4446,9 @@
 "populationServed": 11070000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-11"
 }
 }
@@ -4354,7 +4461,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f6267439-01d7-482f-bebd-46467a84c47b",
+"id": "a32ff94d-7745-49bc-84aa-28ddab429f5a",
 "mitigationValue": [
 36.0,
 44.0
@@ -4367,7 +4474,7 @@
 },
 {
 "color": "#666666",
-"id": "bb8f630d-e8ef-4037-9b5b-99e8593a8775",
+"id": "5d5c0edc-be23-440c-907e-3fc5f9b63762",
 "mitigationValue": [
 54.0,
 66.0
@@ -4404,9 +4511,9 @@
 "populationServed": 13077000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-10"
 }
 }
@@ -4419,7 +4526,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1c441d82-a17f-4bab-aa2f-948662a75826",
+"id": "a05f503a-6e13-4060-bc5b-1639b76e1966",
 "mitigationValue": [
 36.0,
 44.0
@@ -4432,7 +4539,7 @@
 },
 {
 "color": "#666666",
-"id": "35031a39-d9db-4220-bc08-10ef7ac53149",
+"id": "199be20c-47a8-428b-bce2-d3ec278252f5",
 "mitigationValue": [
 54.0,
 66.0
@@ -4469,9 +4576,9 @@
 "populationServed": 3645000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-15"
 }
 }
@@ -4484,7 +4591,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "efb7259d-83d1-4ce0-9dae-a26240af7b54",
+"id": "da152fee-3654-40e7-8502-3f382999af71",
 "mitigationValue": [
 27.0,
 33.0
@@ -4493,6 +4600,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-21"
+}
+},
+{
+"color": "#666666",
+"id": "e37f25c8-621a-4594-99a3-545d01801959",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-24"
 }
 }
 ],
@@ -4521,9 +4641,9 @@
 "populationServed": 2512000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -4536,7 +4656,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "eae78d15-2f07-4611-9e93-fcf77e852cbd",
+"id": "edb91eed-c1f7-45ff-b3a3-24469f69a2ee",
 "mitigationValue": [
 27.0,
 33.0
@@ -4545,6 +4665,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-18"
+}
+},
+{
+"color": "#666666",
+"id": "2041b5c8-f776-470a-bf8c-835fcb2892d1",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-24"
 }
 }
 ],
@@ -4573,9 +4706,9 @@
 "populationServed": 683000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -4588,7 +4721,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d44329b1-dadd-42e0-9743-04104b3baf69",
+"id": "7f9fd1cf-f750-4a28-868f-c310585ce4cd",
 "mitigationValue": [
 27.0,
 33.0
@@ -4601,7 +4734,7 @@
 },
 {
 "color": "#666666",
-"id": "3f4de669-0c7d-4207-a026-6834cc488004",
+"id": "137782df-0dbb-4a60-8948-d5bcd5c39f92",
 "mitigationValue": [
 54.0,
 66.0
@@ -4638,9 +4771,9 @@
 "populationServed": 1841000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-18"
 }
 }
@@ -4653,7 +4786,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8b61ed8e-cd93-4f09-91ad-4fc92eae4ac3",
+"id": "ee772b18-41ca-4ecc-a773-1cc6f9a1e032",
 "mitigationValue": [
 45.0,
 55.0
@@ -4666,7 +4799,7 @@
 },
 {
 "color": "#666666",
-"id": "86afd3aa-2a3b-4b78-becd-19f4e20a6fb6",
+"id": "e2dfc04c-d7ce-4a42-bd1d-187369315e5e",
 "mitigationValue": [
 54.0,
 66.0
@@ -4703,9 +4836,9 @@
 "populationServed": 6266000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -4718,7 +4851,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "64fd439c-d19f-4833-b178-6f253932dc00",
+"id": "599ff9af-62c0-4d35-8abd-923603b9ac18",
 "mitigationValue": [
 27.0,
 33.0
@@ -4755,9 +4888,9 @@
 "populationServed": 1610000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -4793,9 +4926,9 @@
 "populationServed": 600000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -4808,7 +4941,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a0b43620-9436-4889-8474-559fffa00227",
+"id": "c60d8f9c-3bc1-46f4-9770-00034a1c9408",
 "mitigationValue": [
 36.0,
 44.0
@@ -4821,7 +4954,7 @@
 },
 {
 "color": "#666666",
-"id": "7f363b31-1729-4e99-8342-718a69160391",
+"id": "eafab29d-93b5-44f6-9473-d916e19cf75c",
 "mitigationValue": [
 54.0,
 66.0
@@ -4858,9 +4991,9 @@
 "populationServed": 7982000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -4873,7 +5006,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "08d4d241-deb7-4db4-bd53-485699a9b012",
+"id": "1dad39a5-9a3c-43ca-ba98-74df72ec91cc",
 "mitigationValue": [
 27.0,
 33.0
@@ -4886,7 +5019,7 @@
 },
 {
 "color": "#666666",
-"id": "a196dea1-fa87-4225-8a36-190debfea2a5",
+"id": "3d9d0928-592b-4bee-a605-eab78175e0ef",
 "mitigationValue": [
 54.0,
 66.0
@@ -4923,9 +5056,9 @@
 "populationServed": 17933000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-07"
 }
 }
@@ -4938,7 +5071,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "775da6b9-c4c0-42fb-8a1b-60d63417a62a",
+"id": "58eefeb1-ced6-498e-ba31-aaf018fd383f",
 "mitigationValue": [
 54.0,
 66.0
@@ -4951,7 +5084,7 @@
 },
 {
 "color": "#666666",
-"id": "8f08d8ac-cc71-4a0a-82e9-35ffeb440405",
+"id": "20c09b62-cc25-4f85-a0f5-e79019409e0f",
 "mitigationValue": [
 54.0,
 66.0
@@ -4988,9 +5121,9 @@
 "populationServed": 4085000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-18"
 }
 }
@@ -5003,7 +5136,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7ae00646-9c06-4065-ab90-1aa999c1e416",
+"id": "cd8e22ab-4a8a-47e2-96ff-7cbfba9df090",
 "mitigationValue": [
 27.0,
 33.0
@@ -5016,7 +5149,7 @@
 },
 {
 "color": "#666666",
-"id": "36a1dfba-cc68-4e43-912d-b749a5dc9954",
+"id": "7996b571-78e6-4bc3-a922-65174099407c",
 "mitigationValue": [
 54.0,
 66.0
@@ -5053,9 +5186,9 @@
 "populationServed": 991000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -5068,7 +5201,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2c4f78fe-9462-4de7-8916-7b5c61b45298",
+"id": "7dc53018-dc9f-4f31-a7ed-910fdb8575d9",
 "mitigationValue": [
 36.0,
 44.0
@@ -5081,7 +5214,7 @@
 },
 {
 "color": "#666666",
-"id": "8f370052-5090-4dd6-9373-0147040c31d3",
+"id": "94d41a39-215c-4608-954a-d7ed170eeae8",
 "mitigationValue": [
 54.0,
 66.0
@@ -5118,9 +5251,9 @@
 "populationServed": 4078000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-18"
 }
 }
@@ -5133,7 +5266,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "eed019cd-8273-4c66-bbaf-aa8ea0da5c67",
+"id": "168beb70-4888-437a-aa3a-d71105734c2c",
 "mitigationValue": [
 27.0,
 33.0
@@ -5170,9 +5303,9 @@
 "populationServed": 2208000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -5185,7 +5318,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8d4c0f0f-4ade-4261-b793-1f459897b9ba",
+"id": "4908c053-7b31-4e92-8b5e-13feae1be138",
 "mitigationValue": [
 36.0,
 44.0
@@ -5222,9 +5355,9 @@
 "populationServed": 2897000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -5237,7 +5370,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f78d6c74-5739-433b-8095-ba99b9995896",
+"id": "db51369b-1249-4af6-b46f-e10fc8b043a2",
 "mitigationValue": [
 36.0,
 44.0
@@ -5246,6 +5379,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-22"
+}
+},
+{
+"color": "#666666",
+"id": "f8cae55b-73b3-463c-bd08-7dbbb62d6e2c",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-28"
 }
 }
 ],
@@ -5274,9 +5420,9 @@
 "populationServed": 2143000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -5289,7 +5435,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "88a82678-b87d-49a3-9f6a-8f54d556156b",
+"id": "d9950cfb-d0c7-4b5f-ae9f-2d77292a4785",
 "mitigationValue": [
 18.0,
 22.0
@@ -5302,7 +5448,7 @@
 },
 {
 "color": "#666666",
-"id": "bb8cafc6-b8aa-4943-9b41-6d1f55a5f870",
+"id": "839492d5-ef56-4526-8f65-e800586eff44",
 "mitigationValue": [
 54.0,
 66.0
@@ -5339,9 +5485,9 @@
 "populationServed": 5797446
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-14"
 }
 }
@@ -5354,7 +5500,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "eee44680-ac5a-4014-9ee1-12d45e940e50",
+"id": "92190ebf-9aca-4824-a40c-cd4d86580d52",
 "mitigationValue": [
 27.0,
 33.0
@@ -5363,6 +5509,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-04-08"
+}
+},
+{
+"color": "#666666",
+"id": "3b9b599b-a135-4033-ac17-fe519dabb16f",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-23"
 }
 }
 ],
@@ -5391,9 +5550,9 @@
 "populationServed": 958920
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-10"
 }
 }
@@ -5406,7 +5565,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6c063ff9-fb44-447a-a093-d3faa05fc7ec",
+"id": "679edd72-54f1-4e9d-95cf-9fc89bef7391",
 "mitigationValue": [
 18.0,
 22.0
@@ -5443,9 +5602,9 @@
 "populationServed": 71625
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-23"
 }
 }
@@ -5458,7 +5617,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2cc88ac7-87e6-4bd0-b9e5-2cacac00fb3f",
+"id": "22dd4bac-a883-4116-9e6c-80cbe56a34b2",
 "mitigationValue": [
 54.0,
 66.0
@@ -5495,9 +5654,9 @@
 "populationServed": 10627165
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -5510,7 +5669,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4376efb2-945e-42ff-bcbe-9bf26b748e20",
+"id": "451b44ab-ad9d-4848-bff7-d8a3bbcb8724",
 "mitigationValue": [
 45.0,
 55.0
@@ -5523,7 +5682,7 @@
 },
 {
 "color": "#666666",
-"id": "07145d08-025b-4f67-b7e4-dca2affa1a8b",
+"id": "a021c61f-18fa-4d74-9cd2-8efe7d482464",
 "mitigationValue": [
 54.0,
 66.0
@@ -5560,9 +5719,9 @@
 "populationServed": 8414240
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-14"
 }
 }
@@ -5575,7 +5734,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "af50c05f-8844-413c-8f85-0f8dc84e8aa8",
+"id": "0a4158a6-3ef1-4ad0-9e07-865297f16f54",
 "mitigationValue": [
 27.0,
 33.0
@@ -5588,7 +5747,7 @@
 },
 {
 "color": "#666666",
-"id": "ae30f6aa-f3a3-4ff1-8bfa-82a734fc91b4",
+"id": "fa322504-d2a8-40ed-86f6-29cdeff5646a",
 "mitigationValue": [
 54.0,
 66.0
@@ -5625,9 +5784,9 @@
 "populationServed": 1319291
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-18"
 }
 }
@@ -5640,7 +5799,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4f2f06fa-f9ab-4f7f-a42a-de59db8cb9de",
+"id": "56e2a443-1daf-4f65-b9a4-da13a58a38c5",
 "mitigationValue": [
 36.0,
 44.0
@@ -5653,7 +5812,7 @@
 },
 {
 "color": "#666666",
-"id": "79468016-3e7f-423e-b023-23135d635f5b",
+"id": "63c0898d-3659-4fe1-8f03-1bd2b4408cbc",
 "mitigationValue": [
 54.0,
 66.0
@@ -5690,9 +5849,9 @@
 "populationServed": 1022800
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-18"
 }
 }
@@ -5705,7 +5864,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7ccc1843-bf29-4451-8f3d-1139384d79ea",
+"id": "78f96a25-936b-4c86-a797-93b6968bac36",
 "mitigationValue": [
 36.0,
 44.0
@@ -5718,7 +5877,7 @@
 },
 {
 "color": "#666666",
-"id": "017c92b4-4a54-4992-ac98-a6f0e9826860",
+"id": "43613092-b412-412c-be98-b3dc66cc6658",
 "mitigationValue": [
 54.0,
 66.0
@@ -5755,9 +5914,9 @@
 "populationServed": 1149460
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -5770,7 +5929,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "93ca1de5-3405-4b0a-8155-e2a6da2e4012",
+"id": "e2f20901-8b25-493e-9e4f-7aaff672419d",
 "mitigationValue": [
 45.0,
 55.0
@@ -5783,7 +5942,7 @@
 },
 {
 "color": "#666666",
-"id": "e2d14f72-b9c2-44e9-a89f-ad3c75ecfa71",
+"id": "0a72fd63-ef5e-4e8e-93b3-404f7e3ef4e6",
 "mitigationValue": [
 54.0,
 66.0
@@ -5820,9 +5979,9 @@
 "populationServed": 5003769
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-14"
 }
 }
@@ -5835,7 +5994,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "161f6d09-18c3-45a5-8b0b-8ba906f65315",
+"id": "cba7daaa-328b-433b-a355-82d7354105b3",
 "mitigationValue": [
 36.0,
 44.0
@@ -5844,6 +6003,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-19"
+}
+},
+{
+"color": "#666666",
+"id": "69f8004a-ab96-422a-bd41-d1e5d7767415",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-25"
 }
 }
 ],
@@ -5872,9 +6044,9 @@
 "populationServed": 2153389
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -5887,7 +6059,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0259d9e4-a446-4699-a60d-1802add80688",
+"id": "851ba2ca-5204-4f78-b357-0560b661f00f",
 "mitigationValue": [
 45.0,
 55.0
@@ -5900,7 +6072,7 @@
 },
 {
 "color": "#666666",
-"id": "65d03e4c-de61-4b7e-a837-506938c8f23f",
+"id": "6637d453-59e0-45f2-a39e-0564bff08d9b",
 "mitigationValue": [
 54.0,
 66.0
@@ -5937,9 +6109,9 @@
 "populationServed": 581078
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -5952,7 +6124,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8d6f2b3b-988b-4f46-9887-7dba12dae9ed",
+"id": "cca1eb58-1dce-4353-8676-e6a0ad7405d6",
 "mitigationValue": [
 54.0,
 66.0
@@ -5960,12 +6132,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-15"
+"tMin": "2020-03-16"
 }
 },
 {
 "color": "#666666",
-"id": "b4cc35d9-ef67-452e-bd8d-1429664977fd",
+"id": "4517803b-19bc-4e27-942f-4a21b0971a36",
 "mitigationValue": [
 54.0,
 66.0
@@ -6002,9 +6174,9 @@
 "populationServed": 2399548
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -6014,34 +6186,7 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [
-{
-"color": "#bf5b17",
-"id": "9573dd72-e4ae-43a6-8be4-2e28a582662b",
-"mitigationValue": [
-54.0,
-66.0
-],
-"name": "Intervention #1",
-"timeRange": {
-"tMax": "2020-09-01",
-"tMin": "2020-03-14"
-}
-},
-{
-"color": "#666666",
-"id": "56872b2e-46ba-45fa-8dbc-e0e4848f09d4",
-"mitigationValue": [
-54.0,
-66.0
-],
-"name": "Intervention #2",
-"timeRange": {
-"tMax": "2020-09-01",
-"tMin": "2020-03-23"
-}
-}
-],
+"mitigationIntervals": [],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -6067,9 +6212,9 @@
 "populationServed": 2032863
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -6082,7 +6227,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9ae9f8fb-64ae-43c0-b220-231649cc20c9",
+"id": "22e52e94-c680-40fc-8742-3e04b04eef05",
 "mitigationValue": [
 54.0,
 66.0
@@ -6095,7 +6240,7 @@
 },
 {
 "color": "#666666",
-"id": "1a5932a2-c075-4e5b-b67e-70a2110f2f4c",
+"id": "f35f7c97-2bb5-49b1-9683-2a91de9b1d4d",
 "mitigationValue": [
 54.0,
 66.0
@@ -6132,9 +6277,9 @@
 "populationServed": 7675217
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -6147,7 +6292,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "80e5ac10-12ae-43d8-b950-1853011f3bee",
+"id": "98f8164e-c183-41dc-a913-5d6402386e17",
 "mitigationValue": [
 18.0,
 22.0
@@ -6160,7 +6305,7 @@
 },
 {
 "color": "#666666",
-"id": "6f796a7e-85f1-4220-b7c5-832fb4554ec7",
+"id": "bdd0565a-36d3-4085-9add-c938673cf011",
 "mitigationValue": [
 54.0,
 66.0
@@ -6197,9 +6342,9 @@
 "populationServed": 84777
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-11"
 }
 }
@@ -6212,7 +6357,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a53be144-f2d9-4fb2-a25a-0166cb1e4646",
+"id": "fb0d73eb-fe09-47a4-aed9-a7251186e1f9",
 "mitigationValue": [
 45.0,
 55.0
@@ -6225,7 +6370,7 @@
 },
 {
 "color": "#666666",
-"id": "ecb7cf40-01f4-421a-b2e4-52842ebd2bee",
+"id": "df594696-319b-42d0-a5ab-f2c8f3993d53",
 "mitigationValue": [
 54.0,
 66.0
@@ -6262,9 +6407,9 @@
 "populationServed": 1067710
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -6277,7 +6422,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "98bf66ce-0cc8-4314-ae14-e813008c511f",
+"id": "49d75852-2aeb-4324-b014-b3d393845920",
 "mitigationValue": [
 45.0,
 55.0
@@ -6290,7 +6435,7 @@
 },
 {
 "color": "#666666",
-"id": "688265ef-a47e-4053-b592-9673bb033c2a",
+"id": "4c30f175-50cf-4266-9c79-6969b5db2f3e",
 "mitigationValue": [
 54.0,
 66.0
@@ -6327,9 +6472,9 @@
 "populationServed": 2699499
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-18"
 }
 }
@@ -6342,7 +6487,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b2d7eece-6cba-4afb-930c-f87596e5e9fd",
+"id": "c90c0046-ec20-4178-b056-98bc8b19532b",
 "mitigationValue": [
 27.0,
 33.0
@@ -6355,7 +6500,7 @@
 },
 {
 "color": "#666666",
-"id": "9113396f-0dce-4826-b633-f3b0616ff052",
+"id": "ba8b224c-43b7-47e1-bf47-7862dc2e419a",
 "mitigationValue": [
 54.0,
 66.0
@@ -6392,9 +6537,9 @@
 "populationServed": 316798
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-14"
 }
 }
@@ -6407,7 +6552,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c77eb491-a00c-4b2a-84dc-56559271028b",
+"id": "3b576162-4acf-4a72-807f-9d6cbc029674",
 "mitigationValue": [
 54.0,
 66.0
@@ -6415,12 +6560,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-10"
+"tMin": "2020-03-08"
 }
 },
 {
 "color": "#666666",
-"id": "7f838d7c-5022-4dbd-a95d-f534daa98d75",
+"id": "38a0c1cc-9e34-4bc6-81e4-d995bb898208",
 "mitigationValue": [
 54.0,
 66.0
@@ -6428,7 +6573,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-19"
+"tMin": "2020-03-17"
 }
 }
 ],
@@ -6457,9 +6602,9 @@
 "populationServed": 6663394
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-10"
 }
 }
@@ -6472,7 +6617,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9f0c4839-71e6-44e5-aef1-8dda1ad03e75",
+"id": "45c6bc57-dd2e-40ac-be4b-ff87341f1eb3",
 "mitigationValue": [
 18.0,
 22.0
@@ -6485,7 +6630,7 @@
 },
 {
 "color": "#666666",
-"id": "76269084-3f45-46f4-9b8a-390900fde632",
+"id": "067e5fe9-dcad-4142-be13-e8c2188b8937",
 "mitigationValue": [
 54.0,
 66.0
@@ -6522,9 +6667,9 @@
 "populationServed": 86487
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -6537,7 +6682,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9f6c45eb-0163-4284-827d-c6bf82971ef7",
+"id": "0dc7282d-33a5-4e24-bbdc-d9392755a20c",
 "mitigationValue": [
 36.0,
 44.0
@@ -6550,7 +6695,7 @@
 },
 {
 "color": "#666666",
-"id": "2dcff4b4-391b-4a07-be59-092ad1a3381b",
+"id": "0ea38e53-e32b-49d0-919c-f0a561240f41",
 "mitigationValue": [
 54.0,
 66.0
@@ -6587,9 +6732,9 @@
 "populationServed": 1493898
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -6602,7 +6747,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "14d13805-120d-4952-92d5-79f420bd8613",
+"id": "a970b819-df54-455c-a228-9816d5dbac25",
 "mitigationValue": [
 45.0,
 55.0
@@ -6615,7 +6760,7 @@
 },
 {
 "color": "#666666",
-"id": "da316f0a-611a-4e9a-9fab-b86eb1b4a1c5",
+"id": "e11b5404-6a76-4774-be98-65ca955ef841",
 "mitigationValue": [
 54.0,
 66.0
@@ -6652,9 +6797,9 @@
 "populationServed": 654214
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -6667,7 +6812,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0d9a25e2-7415-4504-a311-304f85d65078",
+"id": "135de7d7-33c2-47aa-8937-6525e0276311",
 "mitigationValue": [
 36.0,
 44.0
@@ -6680,7 +6825,7 @@
 },
 {
 "color": "#666666",
-"id": "dad4c88e-c026-494b-9afc-c5ad189abd40",
+"id": "fb4d2054-0cdf-4ddf-a376-156ffe225d64",
 "mitigationValue": [
 54.0,
 66.0
@@ -6717,9 +6862,9 @@
 "populationServed": 2207776
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-14"
 }
 }
@@ -6732,7 +6877,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8ee58df7-f9e2-48ef-af7c-c85c9c4212a2",
+"id": "64a1a4b1-f2ce-48f1-8cbf-c8971c370576",
 "mitigationValue": [
 45.0,
 55.0
@@ -6741,6 +6886,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-29"
+}
+},
+{
+"color": "#666666",
+"id": "0d985bec-35bb-4fce-892a-11fd1b3974d1",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-27"
 }
 }
 ],
@@ -6769,9 +6927,9 @@
 "populationServed": 17084357
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -6807,9 +6965,9 @@
 "populationServed": 98423595
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -6845,9 +7003,9 @@
 "populationServed": 6420744
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-09"
 }
 }
@@ -6857,7 +7015,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "026559ed-49c6-44d7-83d7-3b144b157918",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-25"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -6883,9 +7055,9 @@
 "populationServed": 1308974
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -6898,7 +7070,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5a25efac-8bf4-424d-91d4-ad4aac5fdf61",
+"id": "b5ade4e2-8b86-4690-a0ca-7abf72b38281",
 "mitigationValue": [
 27.0,
 33.0
@@ -6911,7 +7083,7 @@
 },
 {
 "color": "#666666",
-"id": "4ddc710b-576a-4521-8198-7d827a76241c",
+"id": "65aba4f6-9a57-4086-be48-1c3f39e6a419",
 "mitigationValue": [
 54.0,
 66.0
@@ -6948,9 +7120,9 @@
 "populationServed": 1320884
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -6986,9 +7158,9 @@
 "populationServed": 1367000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-02"
 }
 }
@@ -7024,9 +7196,9 @@
 "populationServed": 109224559
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-10"
 }
 }
@@ -7039,7 +7211,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "12fcc0b0-462e-42ef-8373-55ae2425f23c",
+"id": "c445997f-9fed-4c1a-853a-3d595212826e",
 "mitigationValue": [
 27.0,
 33.0
@@ -7076,9 +7248,9 @@
 "populationServed": 8026685
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-10"
 }
 }
@@ -7091,7 +7263,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1f9e8fb4-874c-424d-b4a4-67302bbea0dd",
+"id": "519438cb-7094-403f-bee8-838cd1e8afd7",
 "mitigationValue": [
 27.0,
 33.0
@@ -7128,9 +7300,9 @@
 "populationServed": 2795301
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -7143,7 +7315,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "12c4ced4-e80a-48dd-b5aa-3fe7aacbe394",
+"id": "2e8acb8a-3501-485e-9886-2a11a11a1ca9",
 "mitigationValue": [
 27.0,
 33.0
@@ -7180,9 +7352,9 @@
 "populationServed": 3329395
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-12"
 }
 }
@@ -7195,7 +7367,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "14436c52-8c15-4a0e-b3a5-45f2b865ec84",
+"id": "249ea915-812a-4f50-bd70-ca9934a5dc66",
 "mitigationValue": [
 27.0,
 33.0
@@ -7232,9 +7404,9 @@
 "populationServed": 2566759
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -7247,7 +7419,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "671cf587-787f-41cf-b557-d826fb364b8a",
+"id": "da86247f-c9da-4fbb-bd95-fb879344190e",
 "mitigationValue": [
 18.0,
 22.0
@@ -7284,9 +7456,9 @@
 "populationServed": 339178
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -7299,7 +7471,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a12bfd18-2346-4e9b-b87e-f7907f8e286b",
+"id": "a9cff333-84b2-4b9a-92eb-d8a90f0e6969",
 "mitigationValue": [
 27.0,
 33.0
@@ -7336,9 +7508,9 @@
 "populationServed": 5518188
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-12"
 }
 }
@@ -7351,7 +7523,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e57778f1-2b48-4e0d-97df-1e286a2874d3",
+"id": "c368e544-5033-440d-97f5-8a2b55a62e81",
 "mitigationValue": [
 18.0,
 22.0
@@ -7388,9 +7560,9 @@
 "populationServed": 382704
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-03"
 }
 }
@@ -7403,7 +7575,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d855e41b-bc78-403b-9744-84f08d91084a",
+"id": "7e4a1041-5c60-419f-95bf-46e302929892",
 "mitigationValue": [
 18.0,
 22.0
@@ -7440,9 +7612,9 @@
 "populationServed": 296711
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -7455,7 +7627,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d14cf5a7-4978-49ad-aec0-649db429ea48",
+"id": "fda27d0e-6fb0-4eef-8171-c9dd60b8cf46",
 "mitigationValue": [
 27.0,
 33.0
@@ -7492,9 +7664,9 @@
 "populationServed": 5978266
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-10"
 }
 }
@@ -7507,7 +7679,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9e7a2730-feb6-49e9-88a0-14d07266221e",
+"id": "b92823c2-2279-42b6-ac1f-cd2f354dd39f",
 "mitigationValue": [
 27.0,
 33.0
@@ -7544,9 +7716,9 @@
 "populationServed": 12213364
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-10"
 }
 }
@@ -7559,7 +7731,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "47059dc9-504f-4471-9039-4f2c2f37c7e8",
+"id": "19de2fb4-083e-40f2-894f-b5aa5d0e47aa",
 "mitigationValue": [
 27.0,
 33.0
@@ -7596,9 +7768,9 @@
 "populationServed": 866506
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-08"
 }
 }
@@ -7611,7 +7783,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bfdf0526-11d3-4819-86be-07a87cc946e9",
+"id": "7bbbdc2e-f7fc-445f-963a-84b4de7a92d8",
 "mitigationValue": [
 18.0,
 22.0
@@ -7648,9 +7820,9 @@
 "populationServed": 364354
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-03"
 }
 }
@@ -7663,7 +7835,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a8ab51a0-1003-409d-b4e4-5ae4589ea035",
+"id": "27712589-3221-4910-b075-5ca66c99d2b6",
 "mitigationValue": [
 18.0,
 22.0
@@ -7700,9 +7872,9 @@
 "populationServed": 270372
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-10"
 }
 }
@@ -7715,7 +7887,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "237e4ec8-b95b-4de6-91d8-264f5671d61f",
+"id": "0de9d96b-b6df-491e-aafe-fd109b8b11c2",
 "mitigationValue": [
 27.0,
 33.0
@@ -7752,9 +7924,9 @@
 "populationServed": 3319067
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -7767,7 +7939,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ce113016-7391-4bf8-a1b3-3edb65e8b45e",
+"id": "67245644-cd0f-4a94-b047-3dc4d95d1d74",
 "mitigationValue": [
 27.0,
 33.0
@@ -7804,9 +7976,9 @@
 "populationServed": 5987014
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -7819,7 +7991,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "23a9d55b-ad07-483a-a42b-cbb62492bddb",
+"id": "305fac0e-05ec-4b1f-925e-01cc53596441",
 "mitigationValue": [
 27.0,
 33.0
@@ -7856,9 +8028,9 @@
 "populationServed": 5892817
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-15"
 }
 }
@@ -7871,7 +8043,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b54ce685-32da-4652-ac65-0321cf3b53c3",
+"id": "92445463-d120-4218-a596-cb1ea0ca9f63",
 "mitigationValue": [
 27.0,
 33.0
@@ -7908,9 +8080,9 @@
 "populationServed": 3786545
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -7923,7 +8095,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ac1e8f76-e694-4613-84f9-5947aea5252d",
+"id": "1179bd99-8e6d-41bf-9061-b592c6ff232b",
 "mitigationValue": [
 27.0,
 33.0
@@ -7960,9 +8132,9 @@
 "populationServed": 5059473
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -7975,7 +8147,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "38cc68db-0c55-4a10-9fc8-8bc682ae977a",
+"id": "7d4bbeb8-2378-4e1d-8a1f-4f6cdaed4e95",
 "mitigationValue": [
 18.0,
 22.0
@@ -7988,7 +8160,7 @@
 },
 {
 "color": "#666666",
-"id": "e57852de-8c04-416d-8c09-2b72badf9f32",
+"id": "f71869df-0809-434c-84ab-970de26b065c",
 "mitigationValue": [
 54.0,
 66.0
@@ -8025,9 +8197,9 @@
 "populationServed": 48497
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2019-10-21"
 }
 }
@@ -8063,9 +8235,9 @@
 "populationServed": 883483
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-11"
 }
 }
@@ -8078,7 +8250,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ed59f208-bf80-4af6-90c4-d8596f57b2ba",
+"id": "3ed8c8b4-3053-4eaa-88b6-7912293227b0",
 "mitigationValue": [
 18.0,
 22.0
@@ -8115,9 +8287,9 @@
 "populationServed": 5518050
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -8130,7 +8302,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5f842006-4746-4b2a-b8bf-d2cd07e639ab",
+"id": "afffe1ea-bd88-44c8-b515-528b2ac86715",
 "mitigationValue": [
 45.0,
 55.0
@@ -8138,12 +8310,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-17"
+"tMin": "2020-03-18"
 }
 },
 {
 "color": "#666666",
-"id": "6481818a-238e-4991-8be5-45295f5e6f69",
+"id": "32172faa-10d2-421d-ba91-52ead8899e2e",
 "mitigationValue": [
 54.0,
 66.0
@@ -8151,7 +8323,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-04-04"
+"tMin": "2020-04-01"
 }
 }
 ],
@@ -8180,9 +8352,9 @@
 "populationServed": 66987244
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-07"
 }
 }
@@ -8192,7 +8364,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "1928a623-6a3b-4c1f-ba6b-877989c2b01c",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-29"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -8218,9 +8404,9 @@
 "populationServed": 2119275
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-14"
 }
 }
@@ -8256,9 +8442,9 @@
 "populationServed": 2280102
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-19"
 }
 }
@@ -8271,7 +8457,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c15d456f-f7b4-4022-80a5-c225d88d1905",
+"id": "66a72812-2d6e-41a6-afa0-830c91cb51ab",
 "mitigationValue": [
 27.0,
 33.0
@@ -8308,9 +8494,9 @@
 "populationServed": 3731000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -8323,7 +8509,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c46d383d-e23a-44a3-b9c3-ae6f6a18938c",
+"id": "fa5c9fbc-70e6-426e-99d6-f64d25b25b1c",
 "mitigationValue": [
 45.0,
 55.0
@@ -8336,7 +8522,7 @@
 },
 {
 "color": "#666666",
-"id": "ce404219-2106-4327-89a5-5b473caf0acf",
+"id": "835e363f-9a10-4c0d-aa2e-948273195366",
 "mitigationValue": [
 54.0,
 66.0
@@ -8373,9 +8559,9 @@
 "populationServed": 82927922
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-06"
 }
 }
@@ -8411,9 +8597,9 @@
 "populationServed": 29767108
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -8426,7 +8612,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2482a3dd-2716-45f5-8d23-b5d609eb099b",
+"id": "b6c6b611-2493-4c7d-b27a-d139fbdcddb5",
 "mitigationValue": [
 27.0,
 33.0
@@ -8463,9 +8649,9 @@
 "populationServed": 10727668
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-14"
 }
 }
@@ -8478,7 +8664,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ed467820-557d-42c7-8373-0a8be3c38e72",
+"id": "489447d6-8c38-4e2f-bbc2-01db910fe03f",
 "mitigationValue": [
 18.0,
 22.0
@@ -8515,9 +8701,9 @@
 "populationServed": 56025
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-12"
 }
 }
@@ -8530,7 +8716,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "185b0b94-a8dd-4ba4-ace8-543a8e47817c",
+"id": "e8b0cee5-f980-4758-90a2-43e71501e127",
 "mitigationValue": [
 18.0,
 22.0
@@ -8567,9 +8753,9 @@
 "populationServed": 111454
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-08"
 }
 }
@@ -8605,9 +8791,9 @@
 "populationServed": 17247807
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-03"
 }
 }
@@ -8617,7 +8803,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "da13a58e-95bb-4299-beaf-b511268d073f",
+"mitigationValue": [
+27.0,
+33.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -8643,9 +8843,9 @@
 "populationServed": 12414318
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-12"
 }
 }
@@ -8655,7 +8855,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "8f63d776-a72f-48a3-a642-a3a7683dd3ee",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -8681,9 +8895,9 @@
 "populationServed": 1874309
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-15"
 }
 }
@@ -8693,7 +8907,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "a2fd3919-b511-472a-af83-8d486f7664d7",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -8719,9 +8947,9 @@
 "populationServed": 779004
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2019-12-12"
 }
 }
@@ -8757,9 +8985,9 @@
 "populationServed": 11123176
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-07"
 }
 }
@@ -8795,9 +9023,9 @@
 "populationServed": 9587522
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-28"
 }
 }
@@ -8833,9 +9061,9 @@
 "populationServed": 7213338
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -8848,7 +9076,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "af5eaa2b-ffe8-4e34-9fce-f34750a3bdca",
+"id": "f9ea0180-504d-4ab2-89aa-d40678413c99",
 "mitigationValue": [
 27.0,
 33.0
@@ -8885,9 +9113,9 @@
 "populationServed": 9768785
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -8923,9 +9151,9 @@
 "populationServed": 419978
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -8961,9 +9189,9 @@
 "populationServed": 52883163
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-09"
 }
 }
@@ -8999,9 +9227,9 @@
 "populationServed": 1528296
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9037,9 +9265,9 @@
 "populationServed": 34586234
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-02"
 }
 }
@@ -9075,9 +9303,9 @@
 "populationServed": 119461013
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-13"
 }
 }
@@ -9113,9 +9341,9 @@
 "populationServed": 1126705
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -9151,9 +9379,9 @@
 "populationServed": 28566990
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-12"
 }
 }
@@ -9189,9 +9417,9 @@
 "populationServed": 378979
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9227,9 +9455,9 @@
 "populationServed": 220084
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9242,7 +9470,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c757fd49-9d15-4a66-8352-00f698e47ef1",
+"id": "7a613f26-e0d1-45ee-8f31-67b66a6a2616",
 "mitigationValue": [
 18.0,
 22.0
@@ -9279,9 +9507,9 @@
 "populationServed": 18345784
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-29"
 }
 }
@@ -9317,9 +9545,9 @@
 "populationServed": 1542750
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-03"
 }
 }
@@ -9355,9 +9583,9 @@
 "populationServed": 63907200
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-02"
 }
 }
@@ -9393,9 +9621,9 @@
 "populationServed": 27388008
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9431,9 +9659,9 @@
 "populationServed": 7316708
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-24"
 }
 }
@@ -9469,9 +9697,9 @@
 "populationServed": 13635010
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-07"
 }
 }
@@ -9507,9 +9735,9 @@
 "populationServed": 37329128
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-04-01"
 }
 }
@@ -9545,9 +9773,9 @@
 "populationServed": 66165886
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9583,9 +9811,9 @@
 "populationServed": 35330888
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -9621,9 +9849,9 @@
 "populationServed": 71218
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9659,9 +9887,9 @@
 "populationServed": 82342793
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-05"
 }
 }
@@ -9671,7 +9899,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "47c03f43-0ca1-4533-b184-f27ae23d4305",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -9697,9 +9939,9 @@
 "populationServed": 120837347
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -9735,9 +9977,9 @@
 "populationServed": 3008546
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9773,9 +10015,9 @@
 "populationServed": 3276323
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9811,9 +10053,9 @@
 "populationServed": 1205974
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9849,9 +10091,9 @@
 "populationServed": 2189297
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -9887,9 +10129,9 @@
 "populationServed": 45429399
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-25"
 }
 }
@@ -9925,9 +10167,9 @@
 "populationServed": 1375592
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-04"
 }
 }
@@ -9963,9 +10205,9 @@
 "populationServed": 29611935
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -10001,9 +10243,9 @@
 "populationServed": 78230816
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -10039,9 +10281,9 @@
 "populationServed": 671720
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -10077,9 +10319,9 @@
 "populationServed": 76481545
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-05"
 }
 }
@@ -10115,9 +10357,9 @@
 "populationServed": 38472769
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -10153,9 +10395,9 @@
 "populationServed": 4057847
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -10191,9 +10433,9 @@
 "populationServed": 228959599
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-28"
 }
 }
@@ -10229,9 +10471,9 @@
 "populationServed": 11090425
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-16"
 }
 }
@@ -10267,9 +10509,9 @@
 "populationServed": 97694960
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-09"
 }
 }
@@ -10282,7 +10524,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4cc5b388-629b-4374-9f83-4bf05ffb4216",
+"id": "e150ea39-f5f6-4923-9421-ec233d7a7b81",
 "mitigationValue": [
 45.0,
 55.0
@@ -10295,7 +10537,7 @@
 },
 {
 "color": "#666666",
-"id": "26ee7149-74ce-4e2f-a8ad-f3dd23038b3d",
+"id": "bb77695b-1650-49d5-b710-afa20e3c6883",
 "mitigationValue": [
 54.0,
 66.0
@@ -10332,9 +10574,9 @@
 "populationServed": 1311580
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -10347,7 +10589,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "695bf59b-18d4-415c-aef2-fe9fdb2ea110",
+"id": "a4019058-d8b3-4cc8-9317-cd1e227f4882",
 "mitigationValue": [
 36.0,
 44.0
@@ -10384,9 +10626,9 @@
 "populationServed": 562869
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -10399,7 +10641,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "83725c55-8290-4791-9ead-e0c58690570e",
+"id": "5547e11d-0129-41d6-aef3-68bfb837b006",
 "mitigationValue": [
 36.0,
 44.0
@@ -10436,9 +10678,9 @@
 "populationServed": 1947131
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -10451,7 +10693,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "db4af362-f07e-422a-b9bc-1dfa9bce5ce7",
+"id": "858a13bc-a74a-4184-8cb6-df765786cde9",
 "mitigationValue": [
 27.0,
 33.0
@@ -10488,9 +10730,9 @@
 "populationServed": 5801692
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-11"
 }
 }
@@ -10503,7 +10745,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e16ebe22-a7b1-4c3a-a863-677e251f5fa2",
+"id": "fde78512-2233-4020-823d-5bc291928c46",
 "mitigationValue": [
 36.0,
 44.0
@@ -10516,7 +10758,7 @@
 },
 {
 "color": "#666666",
-"id": "766c32ec-31fd-49b8-800a-d47412f80aee",
+"id": "462fe04e-f1ed-487d-911c-9583c397cf50",
 "mitigationValue": [
 54.0,
 66.0
@@ -10553,9 +10795,9 @@
 "populationServed": 4459477
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-04"
 }
 }
@@ -10568,7 +10810,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "db3e3f43-f3ed-4d95-b803-1ad09234a05f",
+"id": "b1d2f3f1-bc1f-455e-b6de-98edb3094097",
 "mitigationValue": [
 36.0,
 44.0
@@ -10581,7 +10823,7 @@
 },
 {
 "color": "#666666",
-"id": "84cd09b3-80f8-4dc5-9761-e25c2eba2013",
+"id": "15a98c59-9372-46b3-8331-4f6bd83bf8d9",
 "mitigationValue": [
 54.0,
 66.0
@@ -10618,9 +10860,9 @@
 "populationServed": 1215220
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -10633,7 +10875,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9f560ba4-09f9-45fd-ad5d-8c0d3d9aaa96",
+"id": "c4aab451-1f7d-4897-a9e8-be4771bc3076",
 "mitigationValue": [
 36.0,
 44.0
@@ -10642,6 +10884,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-17"
+}
+},
+{
+"color": "#666666",
+"id": "0dcc3ec3-a101-4536-a07c-c665ec19bb19",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-21"
 }
 }
 ],
@@ -10670,9 +10925,9 @@
 "populationServed": 5879082
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-12"
 }
 }
@@ -10685,7 +10940,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "01f0499a-5a88-4025-a958-5106bc53b0cb",
+"id": "fe0e5dd9-85b7-43b4-ad4d-c527881b75c0",
 "mitigationValue": [
 36.0,
 44.0
@@ -10698,7 +10953,7 @@
 },
 {
 "color": "#666666",
-"id": "b691db08-2d1d-4444-918d-0955d3818b79",
+"id": "c36e914d-6675-4259-a170-26b3e9acae26",
 "mitigationValue": [
 54.0,
 66.0
@@ -10735,9 +10990,9 @@
 "populationServed": 1550640
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-08"
 }
 }
@@ -10750,7 +11005,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7c363654-9f3e-4d17-a716-105037d9285a",
+"id": "88c90d64-1fd4-45a5-a391-c09b9b8b462a",
 "mitigationValue": [
 45.0,
 55.0
@@ -10763,7 +11018,7 @@
 },
 {
 "color": "#666666",
-"id": "ce43a4fc-95c5-444d-a413-ae45e0acbf37",
+"id": "34fbf100-4b97-4977-af67-38611f360c9b",
 "mitigationValue": [
 54.0,
 66.0
@@ -10800,9 +11055,9 @@
 "populationServed": 10060574
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-03"
 }
 }
@@ -10815,7 +11070,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d9987067-80b8-476b-9ee8-c67c243b21ec",
+"id": "4154d335-e015-4deb-a292-32779aa05939",
 "mitigationValue": [
 45.0,
 55.0
@@ -10828,7 +11083,7 @@
 },
 {
 "color": "#666666",
-"id": "b3e42541-d153-4b23-b168-5d7b51c526bc",
+"id": "62cc46ee-a735-427d-95e3-536979fa9f3b",
 "mitigationValue": [
 54.0,
 66.0
@@ -10865,9 +11120,9 @@
 "populationServed": 1525271
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-09"
 }
 }
@@ -10880,7 +11135,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "dcb0d9f8-f7bd-40a0-9680-e80988fc4e92",
+"id": "f8f949b6-972e-4166-ad21-b52bb3ae6a19",
 "mitigationValue": [
 18.0,
 22.0
@@ -10917,9 +11172,9 @@
 "populationServed": 305617
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -10932,7 +11187,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f71591dd-bfb1-4332-b82f-195d0ec65ba3",
+"id": "7630293e-1539-4bcf-b440-ae3a3cd17de2",
 "mitigationValue": [
 45.0,
 55.0
@@ -10945,7 +11200,7 @@
 },
 {
 "color": "#666666",
-"id": "c347ebcf-6579-4645-9c51-938ee41601ec",
+"id": "b5b8e7d6-feea-4e1f-b548-45902c485322",
 "mitigationValue": [
 54.0,
 66.0
@@ -10982,9 +11237,9 @@
 "populationServed": 531178
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-18"
 }
 }
@@ -10997,7 +11252,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "20a02608-8bea-45c0-89af-da6591456475",
+"id": "0ea123d8-bbf2-4514-871f-b30c317741b7",
 "mitigationValue": [
 45.0,
 55.0
@@ -11010,7 +11265,7 @@
 },
 {
 "color": "#666666",
-"id": "05ba3f15-2661-4503-bb87-abbab185b97a",
+"id": "8ccbe1d4-2320-4500-aff6-7c4d8071dc60",
 "mitigationValue": [
 54.0,
 66.0
@@ -11047,9 +11302,9 @@
 "populationServed": 541098
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -11062,7 +11317,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6c533f55-fade-4224-8102-482e775c0b87",
+"id": "59614b76-7d4c-4c7d-b629-d01e6e0bfe16",
 "mitigationValue": [
 36.0,
 44.0
@@ -11075,7 +11330,7 @@
 },
 {
 "color": "#666666",
-"id": "1dd9edb7-ad3a-41f0-aba5-4d47bd532eeb",
+"id": "d7dd2f08-3c4c-4cc7-a817-d564cfda98b9",
 "mitigationValue": [
 54.0,
 66.0
@@ -11112,9 +11367,9 @@
 "populationServed": 4356406
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-09"
 }
 }
@@ -11127,7 +11382,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6787a1ec-12cc-481e-a822-64716748a201",
+"id": "26c9f69a-f6f2-49f9-9a10-ade733200d0b",
 "mitigationValue": [
 36.0,
 44.0
@@ -11136,6 +11391,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-19"
+}
+},
+{
+"color": "#666666",
+"id": "04649235-fa39-4e76-95b8-a101805df988",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
 }
 }
 ],
@@ -11164,9 +11432,9 @@
 "populationServed": 4029053
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-15"
 }
 }
@@ -11179,7 +11447,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "48a7cc60-7cd3-42a2-b31a-c07bf6f1da1c",
+"id": "75f2a918-9f44-4d69-9d61-115d69052c83",
 "mitigationValue": [
 36.0,
 44.0
@@ -11216,9 +11484,9 @@
 "populationServed": 1639591
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-18"
 }
 }
@@ -11231,7 +11499,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "59379745-3eac-4a35-815d-1234d852148d",
+"id": "a624b35d-4e27-42ad-bce3-6008b5a5a73f",
 "mitigationValue": [
 27.0,
 33.0
@@ -11268,9 +11536,9 @@
 "populationServed": 4999891
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-14"
 }
 }
@@ -11283,7 +11551,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "49461faf-499b-4aa2-b7aa-175e0681226a",
+"id": "218a2abd-22ae-4729-976a-2215b33affb3",
 "mitigationValue": [
 45.0,
 55.0
@@ -11296,7 +11564,7 @@
 },
 {
 "color": "#666666",
-"id": "bba26fc6-620f-4547-bb75-7a98d29c5a15",
+"id": "77c236d2-26be-4934-8f8f-ae2b7b63cb7c",
 "mitigationValue": [
 54.0,
 66.0
@@ -11333,9 +11601,9 @@
 "populationServed": 3729641
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-12"
 }
 }
@@ -11348,7 +11616,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4cb71319-3bbf-4307-97bb-ee8fde75212d",
+"id": "56850229-df63-4734-9e5b-bb7ca1f9ac49",
 "mitigationValue": [
 54.0,
 66.0
@@ -11361,7 +11629,7 @@
 },
 {
 "color": "#666666",
-"id": "27e12312-0d6a-4b46-aba9-11ad08f33cbc",
+"id": "5b57fc82-a26f-44fb-9285-5d0cb0edb64d",
 "mitigationValue": [
 54.0,
 66.0
@@ -11398,9 +11666,9 @@
 "populationServed": 1072276
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-15"
 }
 }
@@ -11413,7 +11681,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e23f41e4-3110-41db-8533-7ed2144c747d",
+"id": "216d4b40-19f9-495c-b470-a0b3cb2fa2e8",
 "mitigationValue": [
 45.0,
 55.0
@@ -11426,7 +11694,7 @@
 },
 {
 "color": "#666666",
-"id": "3f4ff9dd-a88b-4a37-b441-11c12e7651cd",
+"id": "2e067fd2-f797-4345-8f3b-67651c0f2b82",
 "mitigationValue": [
 54.0,
 66.0
@@ -11463,9 +11731,9 @@
 "populationServed": 882015
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-15"
 }
 }
@@ -11478,7 +11746,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "032e9843-e1fe-4d73-a1b9-d37f4db674e2",
+"id": "7679a95a-4554-43c1-b4b3-9cd9cf1acd94",
 "mitigationValue": [
 45.0,
 55.0
@@ -11491,7 +11759,7 @@
 },
 {
 "color": "#666666",
-"id": "1def4d16-0ab1-4f09-866c-2039db505c17",
+"id": "2db0c110-a535-46e1-b6d3-95ba9ea99f8a",
 "mitigationValue": [
 54.0,
 66.0
@@ -11528,9 +11796,9 @@
 "populationServed": 125666
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -11543,7 +11811,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1eba375e-fbe7-494e-892e-a0a6f8361177",
+"id": "226023d5-f5d9-411a-85aa-7b2fb3cf05c6",
 "mitigationValue": [
 27.0,
 33.0
@@ -11556,7 +11824,7 @@
 },
 {
 "color": "#666666",
-"id": "6e2c3e79-7412-4357-8b35-4d6acc027c6f",
+"id": "5e94fb96-6af3-4f2c-acf7-b9f781bc2f4a",
 "mitigationValue": [
 54.0,
 66.0
@@ -11593,9 +11861,9 @@
 "populationServed": 4905854
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-03"
 }
 }
@@ -11608,7 +11876,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "72604383-15c2-4abf-936a-8e79480b30e9",
+"id": "978f93b2-dc53-4715-bb33-8869b230655c",
 "mitigationValue": [
 18.0,
 22.0
@@ -11621,7 +11889,7 @@
 },
 {
 "color": "#666666",
-"id": "abe066fa-4d9b-47cf-b8c6-591f6f2d2316",
+"id": "3f413e83-6afa-4d74-ac6a-792dbb85c807",
 "mitigationValue": [
 54.0,
 66.0
@@ -11658,9 +11926,9 @@
 "populationServed": 353574
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -11673,7 +11941,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2d9c1f47-9973-4364-9e4b-ba61609954af",
+"id": "d42cb11b-1285-47ee-a9d2-c7567b736792",
 "mitigationValue": [
 18.0,
 22.0
@@ -11710,9 +11978,9 @@
 "populationServed": 1352617328
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -11722,7 +11990,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "d70be85d-c37e-4fdf-96ca-b38e5b7f3fe1",
+"mitigationValue": [
+27.0,
+33.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -11748,9 +12030,9 @@
 "populationServed": 267663435
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -11763,7 +12045,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9fe4034a-28af-42fe-b02f-e0aab48ead8d",
+"id": "3f97c8ec-5799-401c-8b57-5a9f118b0c8b",
 "mitigationValue": [
 72.0,
 88.0
@@ -11776,7 +12058,7 @@
 },
 {
 "color": "#666666",
-"id": "fd766f72-084b-4b29-9bb9-70504460a68b",
+"id": "15a67653-769f-495b-b5bd-9da8a23e6ddf",
 "mitigationValue": [
 54.0,
 66.0
@@ -11813,9 +12095,9 @@
 "populationServed": 81800269
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-02"
 }
 }
@@ -11851,9 +12133,9 @@
 "populationServed": 38433600
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-11"
 }
 }
@@ -11866,7 +12148,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0937f271-4bb1-4fd5-94aa-4d712ddb2e67",
+"id": "5f15159c-56c6-4637-93a9-8d47e363aac4",
 "mitigationValue": [
 36.0,
 44.0
@@ -11879,7 +12161,7 @@
 },
 {
 "color": "#666666",
-"id": "891ed886-1769-4abf-9272-d93902e2f4b6",
+"id": "2a430989-c824-428d-9594-c5c111222a26",
 "mitigationValue": [
 54.0,
 66.0
@@ -11916,9 +12198,9 @@
 "populationServed": 4853506
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -11931,7 +12213,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e6be580c-d2e8-4d4a-a86b-cc79550bd9ba",
+"id": "305a4d67-3554-48fd-9de3-b0270457f226",
 "mitigationValue": [
 36.0,
 44.0
@@ -11944,7 +12226,7 @@
 },
 {
 "color": "#666666",
-"id": "acd6c3de-472f-47e0-ae29-69e466ce2671",
+"id": "9087ec6b-31a1-4dcc-9383-f0baec99ac73",
 "mitigationValue": [
 54.0,
 66.0
@@ -11981,9 +12263,9 @@
 "populationServed": 8883800
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -11996,7 +12278,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "81e5e892-82f6-48e8-a301-552c0c09006f",
+"id": "dc5200ec-efda-4d7c-bec6-6ae578b08469",
 "mitigationValue": [
 45.0,
 55.0
@@ -12009,7 +12291,7 @@
 },
 {
 "color": "#666666",
-"id": "6dafbf2e-4b12-4e79-b40a-2dd7f6facf9e",
+"id": "59d6de40-9682-40c1-9193-e419f7660e5e",
 "mitigationValue": [
 54.0,
 66.0
@@ -12046,9 +12328,9 @@
 "populationServed": 60431283
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-02"
 }
 }
@@ -12084,9 +12366,9 @@
 "populationServed": 1433566
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-16"
 }
 }
@@ -12096,7 +12378,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "44cad6ae-b036-46af-ac7a-5d48b67a5ad3",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-26"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -12122,9 +12418,9 @@
 "populationServed": 2934855
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-04"
 }
 }
@@ -12137,7 +12433,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e79026d6-d469-4adf-9537-c0fd704836ee",
+"id": "fe685a8e-8ecc-4fc8-aac3-d0f506791534",
 "mitigationValue": [
 18.0,
 22.0
@@ -12174,9 +12470,9 @@
 "populationServed": 126529100
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-13"
 }
 }
@@ -12212,9 +12508,9 @@
 "populationServed": 9956011
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -12224,7 +12520,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "07e6fba1-44c1-4548-b90e-dd86bd402da7",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-21"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -12250,9 +12560,9 @@
 "populationServed": 18276499
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -12288,9 +12598,9 @@
 "populationServed": 51393010
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-04"
 }
 }
@@ -12326,9 +12636,9 @@
 "populationServed": 109367
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -12364,9 +12674,9 @@
 "populationServed": 25381085
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -12379,7 +12689,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1bfa4761-e44d-4aca-8608-b45dc2928b9c",
+"id": "d2491321-a30d-4699-a02b-f5d87f14b667",
 "mitigationValue": [
 36.0,
 44.0
@@ -12416,9 +12726,9 @@
 "populationServed": 51635256
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-16"
 }
 }
@@ -12431,7 +12741,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c0e15d9a-385f-4a95-91be-e3e51c4542e4",
+"id": "40cd9b78-702c-47cf-8cdb-f9bc91f6a0a4",
 "mitigationValue": [
 18.0,
 22.0
@@ -12468,9 +12778,9 @@
 "populationServed": 1845300
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-28"
 }
 }
@@ -12483,7 +12793,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2bdb8a1a-fe0e-4840-bdfd-8a97b9d5b06e",
+"id": "872e1ae1-8302-485e-9b1c-973e5a310a40",
 "mitigationValue": [
 18.0,
 22.0
@@ -12520,9 +12830,9 @@
 "populationServed": 4137309
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-06"
 }
 }
@@ -12532,7 +12842,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "558122ca-ed71-40bc-b627-8994d93d9625",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-24"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -12558,9 +12882,9 @@
 "populationServed": 6315800
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-04"
 }
 }
@@ -12596,9 +12920,9 @@
 "populationServed": 7061507
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-06"
 }
 }
@@ -12611,7 +12935,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2e9dadd6-4ff7-4a24-a874-b5e6dd07b69a",
+"id": "3f3a0000-5428-45a3-9348-5464e27c7079",
 "mitigationValue": [
 27.0,
 33.0
@@ -12648,9 +12972,9 @@
 "populationServed": 1926542
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -12660,7 +12984,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "483bcd2d-39a1-46f6-8710-b86dc4794ef7",
+"mitigationValue": [
+18.0,
+22.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-24"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -12686,9 +13024,9 @@
 "populationServed": 6848925
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-15"
 }
 }
@@ -12724,9 +13062,9 @@
 "populationServed": 4818977
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-11"
 }
 }
@@ -12762,9 +13100,9 @@
 "populationServed": 6678567
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-12"
 }
 }
@@ -12777,7 +13115,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8706ddff-5424-4f92-bac9-4128840a7531",
+"id": "84ebcd10-ab8c-4169-b288-e16d1a96fae2",
 "mitigationValue": [
 18.0,
 22.0
@@ -12790,7 +13128,7 @@
 },
 {
 "color": "#666666",
-"id": "d11a5abe-96f4-4735-b07f-c35c7ff33b47",
+"id": "374a4c11-f195-40b4-a27e-323c7437629b",
 "mitigationValue": [
 54.0,
 66.0
@@ -12827,9 +13165,9 @@
 "populationServed": 37910
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-02"
 }
 }
@@ -12842,7 +13180,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "997332e6-9a2a-4cf8-b6f4-75d1ec33c314",
+"id": "63d74d2c-5963-4fad-bf89-3260f16f6ea1",
 "mitigationValue": [
 45.0,
 55.0
@@ -12879,9 +13217,9 @@
 "populationServed": 2789533
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -12894,7 +13232,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5fce37e5-71c7-42a8-bbf7-d547ed5323ca",
+"id": "029cb56e-7e47-4934-8613-9b8c9f421e30",
 "mitigationValue": [
 54.0,
 66.0
@@ -12907,7 +13245,7 @@
 },
 {
 "color": "#666666",
-"id": "a9d08f84-5f21-4138-b727-188a6a3100aa",
+"id": "64dc8483-54f8-4136-a158-fea498075efd",
 "mitigationValue": [
 54.0,
 66.0
@@ -12944,9 +13282,9 @@
 "populationServed": 607728
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -12982,9 +13320,9 @@
 "populationServed": 26262368
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -13020,9 +13358,9 @@
 "populationServed": 18143315
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-29"
 }
 }
@@ -13035,7 +13373,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "867d40e9-14c3-4eb9-b08d-fbe73986cea1",
+"id": "d0b9237c-eb37-47a4-af8d-2f4e61605ff1",
 "mitigationValue": [
 18.0,
 22.0
@@ -13072,9 +13410,9 @@
 "populationServed": 31528585
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-25"
 }
 }
@@ -13087,7 +13425,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "98083be2-ff5d-4cb7-8336-cfc5b5180ed6",
+"id": "f31bab7c-6038-4342-a16c-c2608fe7939a",
 "mitigationValue": [
 18.0,
 22.0
@@ -13124,9 +13462,9 @@
 "populationServed": 515696
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-12"
 }
 }
@@ -13162,9 +13500,9 @@
 "populationServed": 19077690
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-12"
 }
 }
@@ -13177,7 +13515,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "43482210-a146-42d2-b209-74045c072fe4",
+"id": "42ed0c3a-93b4-49ca-8d1d-ba9947232e0f",
 "mitigationValue": [
 27.0,
 33.0
@@ -13214,9 +13552,9 @@
 "populationServed": 483530
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -13252,9 +13590,9 @@
 "populationServed": 75684
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -13267,7 +13605,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "237174e4-39c4-4ec4-a2dd-43f728ac267a",
+"id": "f9d92276-c7d2-443e-b072-62ff4f95b967",
 "mitigationValue": [
 63.0,
 77.0
@@ -13304,9 +13642,9 @@
 "populationServed": 1265303
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-02"
 }
 }
@@ -13316,7 +13654,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "61c45279-60bc-49fe-96b1-d752791fcd10",
+"mitigationValue": [
+36.0,
+44.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-23"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -13342,9 +13694,9 @@
 "populationServed": 126190788
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -13380,9 +13732,9 @@
 "populationServed": 103643
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -13395,7 +13747,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "32581063-5926-4a90-809d-954a44e305ab",
+"id": "9d2ca653-0ccc-4334-80ac-055a747d655b",
 "mitigationValue": [
 18.0,
 22.0
@@ -13404,6 +13756,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-04-02"
+}
+},
+{
+"color": "#666666",
+"id": "b44168d1-64af-42d5-b873-4064bbfc7f59",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-29"
 }
 }
 ],
@@ -13432,9 +13797,9 @@
 "populationServed": 3545883
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -13447,7 +13812,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6e31f85f-9559-451f-9206-9c18cae453e5",
+"id": "861164a0-8446-43b3-bb91-097a9a382de0",
 "mitigationValue": [
 27.0,
 33.0
@@ -13460,7 +13825,7 @@
 },
 {
 "color": "#666666",
-"id": "b39beebe-c48e-42e7-bb1c-7e2b71a575ab",
+"id": "0cdd1847-8b42-4ef0-a75a-887368f2b8b3",
 "mitigationValue": [
 54.0,
 66.0
@@ -13497,9 +13862,9 @@
 "populationServed": 38682
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-02"
 }
 }
@@ -13535,9 +13900,9 @@
 "populationServed": 3170208
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -13550,7 +13915,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7ff79bc9-0456-475b-8bb1-57173e1f4d95",
+"id": "ea55bc7d-75fa-4e89-9eca-b59d02211b2a",
 "mitigationValue": [
 18.0,
 22.0
@@ -13587,9 +13952,9 @@
 "populationServed": 622345
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-02"
 }
 }
@@ -13599,7 +13964,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "9b5975c1-79d6-4279-8cf3-d799730acd18",
+"mitigationValue": [
+36.0,
+44.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-25"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -13625,9 +14004,9 @@
 "populationServed": 36029138
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -13663,9 +14042,9 @@
 "populationServed": 29495962
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-21"
 }
 }
@@ -13701,9 +14080,9 @@
 "populationServed": 53708395
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-13"
 }
 }
@@ -13739,9 +14118,9 @@
 "populationServed": 2448255
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -13777,9 +14156,9 @@
 "populationServed": 9692
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -13815,9 +14194,9 @@
 "populationServed": 28087871
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-14"
 }
 }
@@ -13830,7 +14209,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1c4c7dd1-b4d7-4b3c-b597-2d325dafcdaf",
+"id": "01f6ea87-5855-4574-9613-0bc0502c65b3",
 "mitigationValue": [
 45.0,
 55.0
@@ -13843,7 +14222,7 @@
 },
 {
 "color": "#666666",
-"id": "ba0c5d40-9213-4d58-977e-a4736aff7e8d",
+"id": "4d3b4273-6261-4e19-b34d-e5a4dc1d241e",
 "mitigationValue": [
 54.0,
 66.0
@@ -13880,9 +14259,9 @@
 "populationServed": 17231017
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-11"
 }
 }
@@ -13895,7 +14274,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3a6eb6ff-4786-4143-9515-47b3cda84793",
+"id": "3c4edaee-ae52-485b-ab91-b644cbdd2e7c",
 "mitigationValue": [
 27.0,
 33.0
@@ -13932,9 +14311,9 @@
 "populationServed": 4885500
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -13970,9 +14349,9 @@
 "populationServed": 6465513
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-17"
 }
 }
@@ -13985,7 +14364,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0c495705-a62e-4dbf-a429-7781205e5081",
+"id": "36327920-7371-47d4-a1e4-117c9c7d1c11",
 "mitigationValue": [
 27.0,
 33.0
@@ -14022,9 +14401,9 @@
 "populationServed": 2082958
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -14037,7 +14416,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a57bc058-dedc-442d-9785-db4b2950bd9e",
+"id": "4316d945-d63b-44db-96ef-86a1863f3b92",
 "mitigationValue": [
 36.0,
 44.0
@@ -14050,7 +14429,7 @@
 },
 {
 "color": "#666666",
-"id": "c73a187a-16ff-4ed4-a5c6-89a30aa3c1f0",
+"id": "74c780d9-2cd6-47f3-9c5e-f852c372dac4",
 "mitigationValue": [
 54.0,
 66.0
@@ -14087,9 +14466,9 @@
 "populationServed": 5314336
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-11"
 }
 }
@@ -14102,7 +14481,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "621ca535-4c4c-409b-9157-3fe23b3828c1",
+"id": "abc6b6d4-8c1a-4070-af7e-9835ec5bdd20",
 "mitigationValue": [
 18.0,
 22.0
@@ -14139,9 +14518,9 @@
 "populationServed": 4829483
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -14177,9 +14556,9 @@
 "populationServed": 4089676
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14215,9 +14594,9 @@
 "populationServed": 1907454
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14253,9 +14632,9 @@
 "populationServed": 13152983
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14291,9 +14670,9 @@
 "populationServed": 5382803
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14329,9 +14708,9 @@
 "populationServed": 5001941
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14367,9 +14746,9 @@
 "populationServed": 5338223
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14405,9 +14784,9 @@
 "populationServed": 4958181
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14443,9 +14822,9 @@
 "populationServed": 2939578
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14481,9 +14860,9 @@
 "populationServed": 3687845
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14519,9 +14898,9 @@
 "populationServed": 11739028
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14557,9 +14936,9 @@
 "populationServed": 15179591
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14595,9 +14974,9 @@
 "populationServed": 3340861
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14633,9 +15012,9 @@
 "populationServed": 6506252
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14671,9 +15050,9 @@
 "populationServed": 8132584
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14709,9 +15088,9 @@
 "populationServed": 7928506
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14747,9 +15126,9 @@
 "populationServed": 4874138
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14785,9 +15164,9 @@
 "populationServed": 4026515
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14797,7 +15176,21 @@
 {
 "allParams": {
 "containment": {
-"mitigationIntervals": [],
+"mitigationIntervals": [
+{
+"color": "#bf5b17",
+"id": "6d6184c4-03a9-42b0-b5fb-8ee2ad615243",
+"mitigationValue": [
+27.0,
+33.0
+],
+"name": "Intervention #1",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-24"
+}
+}
+],
 "numberPoints": 15.0
 },
 "epidemiological": {
@@ -14823,9 +15216,9 @@
 "populationServed": 212215030
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -14861,9 +15254,9 @@
 "populationServed": 21516
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14876,7 +15269,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5a6b968f-6496-4aef-afa6-571dd93d4e1e",
+"id": "2bf84560-8ba5-4334-bf1e-f90713f155a7",
 "mitigationValue": [
 27.0,
 33.0
@@ -14889,7 +15282,7 @@
 },
 {
 "color": "#666666",
-"id": "c4c1c10b-217a-4162-b5e0-b6cd7becb892",
+"id": "06c1e43f-85fd-4047-935e-00e2949b7e3e",
 "mitigationValue": [
 54.0,
 66.0
@@ -14926,9 +15319,9 @@
 "populationServed": 4176873
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -14964,9 +15357,9 @@
 "populationServed": 6956071
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -14979,7 +15372,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7665cdda-2a03-4e1c-8188-b4ad4b6ccfc4",
+"id": "2957271f-cdde-46da-89f3-bc42bc289dbe",
 "mitigationValue": [
 27.0,
 33.0
@@ -14988,6 +15381,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-04-09"
+}
+},
+{
+"color": "#666666",
+"id": "9bb3675d-1910-4b5b-8639-2dc88bd669b2",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
 }
 }
 ],
@@ -15016,9 +15422,9 @@
 "populationServed": 31989256
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -15054,9 +15460,9 @@
 "populationServed": 106651922
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-18"
 }
 }
@@ -15069,7 +15475,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5ddf3029-1a26-4e09-a9c7-0ca842918d43",
+"id": "ce9f9dd2-9ac6-4bbb-b259-60699495ce21",
 "mitigationValue": [
 27.0,
 33.0
@@ -15106,9 +15512,9 @@
 "populationServed": 37978548
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -15121,7 +15527,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f759decc-d922-4ac7-8236-44ca40770cb5",
+"id": "940538cf-9df9-421f-b628-2687ce36bbe7",
 "mitigationValue": [
 45.0,
 55.0
@@ -15134,7 +15540,7 @@
 },
 {
 "color": "#666666",
-"id": "f8709dd0-2c70-4f3e-8681-8a49de587d52",
+"id": "3f090011-863b-4c01-bd61-10fe2aa7230f",
 "mitigationValue": [
 54.0,
 66.0
@@ -15171,9 +15577,9 @@
 "populationServed": 10281762
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -15186,7 +15592,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a15dab03-3380-4236-a3c4-0f9ef54f6aee",
+"id": "099b3221-48f4-4e74-be38-93fef51d15fa",
 "mitigationValue": [
 18.0,
 22.0
@@ -15199,7 +15605,7 @@
 },
 {
 "color": "#666666",
-"id": "b682606e-107c-458f-b9f9-04f282d87313",
+"id": "ed38f5a9-054e-4e7b-aa66-e02512f36ac6",
 "mitigationValue": [
 54.0,
 66.0
@@ -15236,9 +15642,9 @@
 "populationServed": 2781677
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -15251,7 +15657,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "466aee0f-b0d0-438f-8d29-5a37a8a601ae",
+"id": "6187ba90-d79d-4d60-8fa2-4493c6aab964",
 "mitigationValue": [
 27.0,
 33.0
@@ -15288,9 +15694,9 @@
 "populationServed": 19473936
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -15303,7 +15709,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bbe33d92-a9d8-4de9-bfa1-d55bffb4c10a",
+"id": "9a4ea86e-a851-481d-bae7-83b4fb02eb33",
 "mitigationValue": [
 36.0,
 44.0
@@ -15312,6 +15718,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-04-10"
+}
+},
+{
+"color": "#666666",
+"id": "5f3c451a-ed47-442e-b134-7a364cd1fd79",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-22"
 }
 }
 ],
@@ -15340,9 +15759,9 @@
 "populationServed": 144478050
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -15378,9 +15797,9 @@
 "populationServed": 2000000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -15393,7 +15812,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0ed13e27-c298-4a6a-88bb-763ddf3d30d8",
+"id": "043fba04-eb35-41b2-8084-40d984a08018",
 "mitigationValue": [
 18.0,
 22.0
@@ -15430,9 +15849,9 @@
 "populationServed": 52441
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -15468,9 +15887,9 @@
 "populationServed": 181889
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -15483,7 +15902,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1e7e7794-f9ed-4572-96d2-bdf04752b192",
+"id": "08eca180-e962-4833-89ea-2d0adc298826",
 "mitigationValue": [
 18.0,
 22.0
@@ -15520,9 +15939,9 @@
 "populationServed": 110210
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-11"
 }
 }
@@ -15535,7 +15954,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "70516791-bbed-439e-b51f-4617082fc141",
+"id": "3a6b0c61-0e44-45ba-95cf-a1850cd18cf6",
 "mitigationValue": [
 27.0,
 33.0
@@ -15548,7 +15967,7 @@
 },
 {
 "color": "#666666",
-"id": "98845cef-3f42-48d5-ab4e-712e2353d81f",
+"id": "69ec4861-621b-44e8-a867-24c77a41015d",
 "mitigationValue": [
 54.0,
 66.0
@@ -15585,9 +16004,9 @@
 "populationServed": 33785
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-14"
 }
 }
@@ -15623,9 +16042,9 @@
 "populationServed": 204454
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-04-08"
 }
 }
@@ -15638,7 +16057,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "aaceffa4-26a9-4b46-8282-73042d57c04f",
+"id": "f4b2d36e-34e6-4c82-b7e8-27311e9eb706",
 "mitigationValue": [
 27.0,
 33.0
@@ -15675,9 +16094,9 @@
 "populationServed": 33699947
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -15713,9 +16132,9 @@
 "populationServed": 15854360
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -15728,7 +16147,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d03111ad-3c8a-41ab-bc1d-d7116f909522",
+"id": "3467f0ca-9a48-4559-8a21-fe9e8d6a610e",
 "mitigationValue": [
 27.0,
 33.0
@@ -15737,6 +16156,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-30"
+}
+},
+{
+"color": "#666666",
+"id": "b6ff35ad-4573-4d06-8ca8-c73a554047dc",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-23"
 }
 }
 ],
@@ -15765,9 +16197,9 @@
 "populationServed": 6982084
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -15780,7 +16212,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ab2b8146-b11b-41bf-a29c-0c4e3595a500",
+"id": "bc977f57-712c-4d4e-9905-56832cba207f",
 "mitigationValue": [
 18.0,
 22.0
@@ -15817,9 +16249,9 @@
 "populationServed": 96762
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-29"
 }
 }
@@ -15832,7 +16264,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6355797c-bf6a-450a-8e4b-002e8120a521",
+"id": "b1fbb011-7f60-4538-96fa-4b49554ac7f2",
 "mitigationValue": [
 18.0,
 22.0
@@ -15845,7 +16277,7 @@
 },
 {
 "color": "#666666",
-"id": "6e90a39d-d190-400a-94be-7aec695b366b",
+"id": "fa1a506a-57f8-44e6-a002-6ea7f27ad47e",
 "mitigationValue": [
 54.0,
 66.0
@@ -15882,9 +16314,9 @@
 "populationServed": 5638676
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-15"
 }
 }
@@ -15897,7 +16329,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a9a61584-00c7-4a9e-b2d9-2ff444f97ffd",
+"id": "0f2b7372-a6e3-4fea-b5d1-422c53e36e5d",
 "mitigationValue": [
 27.0,
 33.0
@@ -15934,9 +16366,9 @@
 "populationServed": 5447011
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -15949,7 +16381,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "ab0a5d50-ae03-40a7-8ee2-fe5000526828",
+"id": "8e913e76-8f47-4220-8a71-c6faa1e2f959",
 "mitigationValue": [
 27.0,
 33.0
@@ -15986,9 +16418,9 @@
 "populationServed": 2067372
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -16024,9 +16456,9 @@
 "populationServed": 660121
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -16062,9 +16494,9 @@
 "populationServed": 15008154
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-21"
 }
 }
@@ -16100,9 +16532,9 @@
 "populationServed": 57779622
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -16115,7 +16547,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4ff4adf9-b5cf-4b29-9d64-2103c0ecbc62",
+"id": "0264fe3c-6a05-4a5c-a9e9-2b0cef11de61",
 "mitigationValue": [
 54.0,
 66.0
@@ -16123,12 +16555,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-14"
+"tMin": "2020-03-13"
 }
 },
 {
 "color": "#666666",
-"id": "69570f9b-e0bf-41d9-8071-8b87777a4c7a",
+"id": "bba97840-6b84-4d97-ae16-fbe477c7a124",
 "mitigationValue": [
 54.0,
 66.0
@@ -16136,7 +16568,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-25"
+"tMin": "2020-03-24"
 }
 }
 ],
@@ -16165,9 +16597,9 @@
 "populationServed": 46723749
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-07"
 }
 }
@@ -16203,9 +16635,9 @@
 "populationServed": 21670000
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2019-12-19"
 }
 }
@@ -16241,9 +16673,9 @@
 "populationServed": 41801533
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-18"
 }
 }
@@ -16279,9 +16711,9 @@
 "populationServed": 575991
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-16"
 }
 }
@@ -16294,7 +16726,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4265e88e-4a07-48c8-96c9-f937c35b7076",
+"id": "18d9cb76-2b6c-4e4e-9d44-bdea68e96f2a",
 "mitigationValue": [
 27.0,
 33.0
@@ -16307,7 +16739,7 @@
 },
 {
 "color": "#666666",
-"id": "55fc0933-bf6f-4f59-b732-6ac6a4c71dd7",
+"id": "247467b9-f23a-41a7-89f8-78ef7814d3c1",
 "mitigationValue": [
 54.0,
 66.0
@@ -16344,9 +16776,9 @@
 "populationServed": 10183175
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-12"
 }
 }
@@ -16359,7 +16791,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "41b5071a-0108-40b8-aa48-aa1c366724bd",
+"id": "12bee730-efe9-459e-81f8-f43a5433393f",
 "mitigationValue": [
 45.0,
 55.0
@@ -16372,7 +16804,7 @@
 },
 {
 "color": "#666666",
-"id": "56d96fdd-b948-4479-971d-8f29792c0859",
+"id": "7feeff9d-5d8f-48c3-99c5-e45e8a6378f9",
 "mitigationValue": [
 54.0,
 66.0
@@ -16409,9 +16841,9 @@
 "populationServed": 8516543
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-10"
 }
 }
@@ -16447,9 +16879,9 @@
 "populationServed": 16906283
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-11"
 }
 }
@@ -16485,9 +16917,9 @@
 "populationServed": 23780452
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-27"
 }
 }
@@ -16515,7 +16947,7 @@
 },
 "population": {
 "ICUBeds": 1058,
-"cases": "None",
+"cases": "Tajikistan",
 "country": "Tajikistan",
 "hospitalBeds": 35269,
 "importsPerDay": 0.1,
@@ -16523,9 +16955,9 @@
 "populationServed": 8604882
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -16561,9 +16993,9 @@
 "populationServed": 56318348
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-12"
 }
 }
@@ -16599,9 +17031,9 @@
 "populationServed": 69428524
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-15"
 }
 }
@@ -16637,9 +17069,9 @@
 "populationServed": 1267972
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -16675,9 +17107,9 @@
 "populationServed": 7889094
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -16713,9 +17145,9 @@
 "populationServed": 106398
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -16751,9 +17183,9 @@
 "populationServed": 1389858
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2019-10-27"
 }
 }
@@ -16789,9 +17221,9 @@
 "populationServed": 11565204
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -16804,7 +17236,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "605daf66-a32f-4fa0-b6e0-fb1744b978dc",
+"id": "d7101daf-11ef-434b-bf33-25853bff23d3",
 "mitigationValue": [
 45.0,
 55.0
@@ -16817,7 +17249,7 @@
 },
 {
 "color": "#666666",
-"id": "a719ed92-d219-4de8-a061-706cab4136e1",
+"id": "98f7e5d9-a6d8-479b-8b2a-3fb10cc07da1",
 "mitigationValue": [
 54.0,
 66.0
@@ -16854,9 +17286,9 @@
 "populationServed": 82319724
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -16892,9 +17324,9 @@
 "populationServed": 5411012
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -16907,7 +17339,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "6b3f4490-fde4-4933-9cf8-cf7f35a87d77",
+"id": "761bf58c-31f1-4978-8e17-deda4e6723cd",
 "mitigationValue": [
 45.0,
 55.0
@@ -16916,6 +17348,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-26"
+}
+},
+{
+"color": "#666666",
+"id": "683dacfb-9a4c-48e4-87fc-277658ee9652",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-20"
 }
 }
 ],
@@ -16944,9 +17389,9 @@
 "populationServed": 4908621
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -16959,7 +17404,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "04900e5a-8585-4dd7-89b5-0cf17f041770",
+"id": "e0571354-9792-4c55-9cc0-3e161f7270a1",
 "mitigationValue": [
 36.0,
 44.0
@@ -16996,9 +17441,9 @@
 "populationServed": 734002
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -17011,7 +17456,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b277f9ad-c27e-48e3-9dc9-4d4b288753fa",
+"id": "563c01fe-a549-436c-81aa-2f4308bfa142",
 "mitigationValue": [
 54.0,
 66.0
@@ -17020,6 +17465,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-28"
+}
+},
+{
+"color": "#666666",
+"id": "dcc7b566-a034-43ef-a898-8c81f28a662e",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
 }
 }
 ],
@@ -17048,9 +17506,9 @@
 "populationServed": 7378494
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -17063,7 +17521,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "dba5370d-0a76-431c-8803-d355a830a786",
+"id": "91fc90d9-ce6e-475e-bc90-1399d8128ac6",
 "mitigationValue": [
 45.0,
 55.0
@@ -17072,6 +17530,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-26"
+}
+},
+{
+"color": "#666666",
+"id": "7cddd3fa-47cf-4fcb-8eeb-6246d5ff84bd",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-28"
 }
 }
 ],
@@ -17100,9 +17571,9 @@
 "populationServed": 3038999
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -17115,7 +17586,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "16651a26-7df3-45f2-a49b-231c57ae0bee",
+"id": "a8c94017-3053-435f-acce-d8b924641ab1",
 "mitigationValue": [
 27.0,
 33.0
@@ -17124,6 +17595,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-28"
+}
+},
+{
+"color": "#666666",
+"id": "b5f16906-b798-4bfe-b37c-fdb9635be253",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-25"
 }
 }
 ],
@@ -17152,9 +17636,9 @@
 "populationServed": 39937489
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-12"
 }
 }
@@ -17167,7 +17651,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "7e540b2d-4764-49b7-8b73-2881a585b86e",
+"id": "c3afd993-6f6d-4f67-918c-a3dbe058c215",
 "mitigationValue": [
 36.0,
 44.0
@@ -17180,7 +17664,7 @@
 },
 {
 "color": "#666666",
-"id": "1228a1e5-b5b2-4603-94ec-5b7151f9075d",
+"id": "84fe435f-dce1-49a3-bfbc-03a7e7e3d3bc",
 "mitigationValue": [
 54.0,
 66.0
@@ -17217,9 +17701,9 @@
 "populationServed": 5845526
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -17232,7 +17716,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "dd45c8b6-4ba8-4b08-a578-41e9ac8225c6",
+"id": "054cdb57-e21d-4f82-8e42-bc6b47797600",
 "mitigationValue": [
 54.0,
 66.0
@@ -17245,7 +17729,7 @@
 },
 {
 "color": "#666666",
-"id": "c4314aa8-f771-42f9-af35-7d92af63e2e0",
+"id": "91c9aa0f-6cde-46d5-9156-67b7a902fa3c",
 "mitigationValue": [
 54.0,
 66.0
@@ -17282,9 +17766,9 @@
 "populationServed": 3563070
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -17297,7 +17781,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f54e5e05-1344-4f74-97f6-053388f480ef",
+"id": "af6fa203-8a1b-4d4c-a335-3895bfb21c43",
 "mitigationValue": [
 27.0,
 33.0
@@ -17310,7 +17794,7 @@
 },
 {
 "color": "#666666",
-"id": "18b67e24-5d19-483c-966f-9b16e9b83325",
+"id": "71531f65-eb5d-4bae-ad66-6bd105e0f696",
 "mitigationValue": [
 54.0,
 66.0
@@ -17347,9 +17831,9 @@
 "populationServed": 982895
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -17362,7 +17846,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f8bd9caf-8609-4dda-870a-2f5d8dc9c02f",
+"id": "346e3cd7-acd3-4062-9ba5-028884e9e36c",
 "mitigationValue": [
 27.0,
 33.0
@@ -17375,7 +17859,7 @@
 },
 {
 "color": "#666666",
-"id": "95a5fa29-72ed-454e-ac3c-e51f7eaa885c",
+"id": "d050a1da-b727-401c-beac-f48187e23700",
 "mitigationValue": [
 54.0,
 66.0
@@ -17412,9 +17896,9 @@
 "populationServed": 720687
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -17427,7 +17911,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "495f6bf5-1a2b-41b2-9dd0-dbe34cc6039c",
+"id": "b5f79a4b-078a-4370-93cf-4aab817f6a55",
 "mitigationValue": [
 36.0,
 44.0
@@ -17440,7 +17924,7 @@
 },
 {
 "color": "#666666",
-"id": "35ed73bf-f972-4cd3-9483-7757c0bd4099",
+"id": "b95a0900-43cf-44d4-b9d3-b12cbe35575e",
 "mitigationValue": [
 54.0,
 66.0
@@ -17477,9 +17961,9 @@
 "populationServed": 21992985
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -17492,7 +17976,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "dd4f7111-9a61-4198-a109-1f7cbff86d3b",
+"id": "56e42a25-7b5c-4adb-9577-a4e80f030362",
 "mitigationValue": [
 45.0,
 55.0
@@ -17505,7 +17989,7 @@
 },
 {
 "color": "#666666",
-"id": "b8897859-f549-42e3-9dab-7880c73facb5",
+"id": "cafaa51a-0e6b-41c6-91a2-f2b6fa0ca66a",
 "mitigationValue": [
 54.0,
 66.0
@@ -17542,9 +18026,9 @@
 "populationServed": 10736059
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -17557,7 +18041,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3f842764-acc8-426c-81e9-8eba2c81ec3b",
+"id": "4b7bce99-bbbd-4757-be75-fd48849d81f2",
 "mitigationValue": [
 27.0,
 33.0
@@ -17594,9 +18078,9 @@
 "populationServed": 1412687
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-28"
 }
 }
@@ -17609,7 +18093,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a9bc478c-31b6-40ba-97ee-6b472bc5e6bd",
+"id": "1a0e79e8-d7e4-451c-99bd-a4f91a01cb2a",
 "mitigationValue": [
 45.0,
 55.0
@@ -17618,6 +18102,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-27"
+}
+},
+{
+"color": "#666666",
+"id": "49eed39d-3295-4234-afbf-a3891c68e1be",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-24"
 }
 }
 ],
@@ -17646,9 +18143,9 @@
 "populationServed": 1826156
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-28"
 }
 }
@@ -17661,7 +18158,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e3f7f36f-a14f-4537-956f-c21995e8e71f",
+"id": "27485ca0-0268-4e38-b3be-d6e85021c164",
 "mitigationValue": [
 54.0,
 66.0
@@ -17674,7 +18171,7 @@
 },
 {
 "color": "#666666",
-"id": "5f2d2fda-52d5-427f-85a8-e6eceda4dd18",
+"id": "a86d071b-5b16-4eea-83d5-266f892ef75c",
 "mitigationValue": [
 54.0,
 66.0
@@ -17711,9 +18208,9 @@
 "populationServed": 12659682
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -17726,7 +18223,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "8edd04bb-0d57-43f6-a54f-2be0a09d5964",
+"id": "7cc25829-2479-458e-b497-b2577ed228dc",
 "mitigationValue": [
 45.0,
 55.0
@@ -17739,7 +18236,7 @@
 },
 {
 "color": "#666666",
-"id": "e65b9c07-b16d-43dd-a3ca-8d3a0f7e0826",
+"id": "43d0806f-35fc-4bd5-83b7-8733464fac59",
 "mitigationValue": [
 54.0,
 66.0
@@ -17776,9 +18273,9 @@
 "populationServed": 6745354
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -17791,7 +18288,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "29dcc338-7776-435a-95c2-b5a370020884",
+"id": "7ac3d40d-87c0-48d8-b018-1b827e64da06",
 "mitigationValue": [
 36.0,
 44.0
@@ -17800,6 +18297,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-29"
+}
+},
+{
+"color": "#666666",
+"id": "1ed0de5b-7e72-4a11-9755-ef25d8fdd982",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-21"
 }
 }
 ],
@@ -17828,9 +18338,9 @@
 "populationServed": 3179840
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -17843,7 +18353,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f971b027-ccd5-40d3-b8ce-00ce5e13d0b2",
+"id": "66fbec4c-1c34-4c07-accc-65cacb507505",
 "mitigationValue": [
 27.0,
 33.0
@@ -17852,6 +18362,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-29"
+}
+},
+{
+"color": "#666666",
+"id": "1d59ac72-6ad7-42b5-9f6c-bf072260b224",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-25"
 }
 }
 ],
@@ -17880,9 +18403,9 @@
 "populationServed": 2910357
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -17895,7 +18418,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5a646432-e979-47dd-8fd4-b721b2803e76",
+"id": "ce4d409e-ca81-47dd-a95d-91c95083008e",
 "mitigationValue": [
 27.0,
 33.0
@@ -17904,6 +18427,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-31"
+}
+},
+{
+"color": "#666666",
+"id": "aa800712-4dcb-40ad-bb4a-f309d16fe1dd",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-30"
 }
 }
 ],
@@ -17932,9 +18468,9 @@
 "populationServed": 4499692
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -17947,7 +18483,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "417291ee-f742-4b48-81d9-1796317bbcea",
+"id": "663283fd-63f5-45fb-83e9-cc32ce8b06de",
 "mitigationValue": [
 54.0,
 66.0
@@ -17960,7 +18496,7 @@
 },
 {
 "color": "#666666",
-"id": "d7a00e65-b1d5-4c69-bbbe-549b2c2fa693",
+"id": "d0531173-feac-41c4-b5bf-876dabc1d192",
 "mitigationValue": [
 54.0,
 66.0
@@ -17997,9 +18533,9 @@
 "populationServed": 4645184
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -18012,7 +18548,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "92ea9f4d-ffed-4b37-b6f0-83e49bb7f1a0",
+"id": "8fd0463f-25c6-486e-88b8-05aebe2e577b",
 "mitigationValue": [
 18.0,
 22.0
@@ -18049,9 +18585,9 @@
 "populationServed": 1345790
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -18064,7 +18600,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "097a70d4-49fc-4849-9e0c-dd083e00a59d",
+"id": "4020407e-b5cd-4f79-b9a2-5b47654e78e6",
 "mitigationValue": [
 36.0,
 44.0
@@ -18077,7 +18613,7 @@
 },
 {
 "color": "#666666",
-"id": "a690d507-dd7f-4c17-b6e3-61dabf131b8f",
+"id": "2e8416a9-0e94-4e03-969f-6439b8f00658",
 "mitigationValue": [
 54.0,
 66.0
@@ -18114,9 +18650,9 @@
 "populationServed": 6083116
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -18129,7 +18665,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "0e674785-0a96-444e-a6e2-b73d8e86e02e",
+"id": "6339a040-bd4c-4f8d-b710-49423a00f6a4",
 "mitigationValue": [
 36.0,
 44.0
@@ -18137,12 +18673,12 @@
 "name": "Intervention #1",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-03-23"
+"tMin": "2020-03-24"
 }
 },
 {
 "color": "#666666",
-"id": "22f0ab85-cb04-4cfd-b9ad-cd699269a09e",
+"id": "864d7444-21ab-4829-92e6-b1df8fd064aa",
 "mitigationValue": [
 54.0,
 66.0
@@ -18179,9 +18715,9 @@
 "populationServed": 6976597
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-17"
 }
 }
@@ -18194,7 +18730,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "26b45227-765a-4aac-a82a-b7182d253ae2",
+"id": "d18733af-cca2-4534-8d13-576c94e353fa",
 "mitigationValue": [
 45.0,
 55.0
@@ -18207,7 +18743,7 @@
 },
 {
 "color": "#666666",
-"id": "2b46bba2-bdc5-44ad-a72c-f451159b66d4",
+"id": "1da3cbe5-8aac-4e48-b2f3-6c42c30b29dd",
 "mitigationValue": [
 54.0,
 66.0
@@ -18244,9 +18780,9 @@
 "populationServed": 10045029
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-11"
 }
 }
@@ -18259,7 +18795,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "016641df-9918-48f9-9b65-01aedb1c7a19",
+"id": "04ed1753-56a1-49a4-8d8b-81aeccf30e9c",
 "mitigationValue": [
 36.0,
 44.0
@@ -18268,6 +18804,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-30"
+}
+},
+{
+"color": "#666666",
+"id": "49e30d07-4f0f-427b-8a56-f2f1a5a6f2af",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
 }
 }
 ],
@@ -18296,9 +18845,9 @@
 "populationServed": 5700671
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -18311,7 +18860,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "49b036e8-4f75-4218-9d8f-bc6c813cd91f",
+"id": "86261c20-2942-4bbe-9af5-2e4834e2603b",
 "mitigationValue": [
 54.0,
 66.0
@@ -18324,7 +18873,7 @@
 },
 {
 "color": "#666666",
-"id": "52df41ed-07d0-4df0-8cae-07789133120c",
+"id": "f3c72dcc-de31-4091-9463-83604fe93dcd",
 "mitigationValue": [
 54.0,
 66.0
@@ -18361,9 +18910,9 @@
 "populationServed": 2989260
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -18376,7 +18925,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "85e37bd1-398e-4e80-bd18-28469fb0e656",
+"id": "6694f7e4-f691-471d-87e1-46051f26bff3",
 "mitigationValue": [
 45.0,
 55.0
@@ -18385,6 +18934,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-27"
+}
+},
+{
+"color": "#666666",
+"id": "4ec7ad12-771c-4b10-8400-b8f4d7d54542",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-23"
 }
 }
 ],
@@ -18413,9 +18975,9 @@
 "populationServed": 6169270
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -18428,7 +18990,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "54754717-a63e-437c-ada4-02121c01f362",
+"id": "06ac165d-8eca-4b02-9d3d-ad949ff50934",
 "mitigationValue": [
 45.0,
 55.0
@@ -18465,9 +19027,9 @@
 "populationServed": 1086759
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-29"
 }
 }
@@ -18480,7 +19042,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "419be6e8-4cbf-4993-b216-1444438c2746",
+"id": "1f8acd75-6a41-4b75-abb9-88180d05702e",
 "mitigationValue": [
 18.0,
 22.0
@@ -18489,6 +19051,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-04-01"
+}
+},
+{
+"color": "#666666",
+"id": "513a8eee-1dd1-4fd0-bd3a-4536c328d4e6",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-24"
 }
 }
 ],
@@ -18517,9 +19092,9 @@
 "populationServed": 1952570
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -18532,7 +19107,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "b0d4d0d7-c68e-4e7a-84c0-8e4f1707af50",
+"id": "da34364e-e46c-4c3d-9938-9b0f5b330c6f",
 "mitigationValue": [
 36.0,
 44.0
@@ -18545,7 +19120,7 @@
 },
 {
 "color": "#666666",
-"id": "cec3b79b-ad17-4f80-8f0a-80477674b872",
+"id": "7485c3e1-4fe5-4a05-afac-3312f072fe2d",
 "mitigationValue": [
 54.0,
 66.0
@@ -18582,9 +19157,9 @@
 "populationServed": 3139658
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -18597,7 +19172,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "37a50e9e-d562-435f-9580-55bdd2487fbc",
+"id": "7b19e7e3-98ea-4acc-b143-35e6e9810e5a",
 "mitigationValue": [
 27.0,
 33.0
@@ -18606,6 +19181,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-27"
+}
+},
+{
+"color": "#666666",
+"id": "5110a043-d5a4-4f65-9059-754c70e6a44f",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-20"
 }
 }
 ],
@@ -18634,9 +19222,9 @@
 "populationServed": 1371246
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -18649,7 +19237,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "110157a0-4c87-4d4e-948c-d701d9d4af52",
+"id": "08447a5f-e52b-4784-b83e-b1ac90116254",
 "mitigationValue": [
 54.0,
 66.0
@@ -18662,7 +19250,7 @@
 },
 {
 "color": "#666666",
-"id": "92ca717e-391b-49c7-8cd8-f7d97f399bbb",
+"id": "0e1b7b2a-2bbf-4255-83df-f407726d006d",
 "mitigationValue": [
 54.0,
 66.0
@@ -18699,9 +19287,9 @@
 "populationServed": 8936574
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -18714,7 +19302,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "078790ce-4118-4af3-ad69-ba13a73375cb",
+"id": "e80e5110-14dd-447f-b025-50dea5a43ca8",
 "mitigationValue": [
 27.0,
 33.0
@@ -18723,6 +19311,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-29"
+}
+},
+{
+"color": "#666666",
+"id": "ed021c46-1fd0-48c4-bf9b-36ca3491a5c4",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-23"
 }
 }
 ],
@@ -18751,9 +19352,9 @@
 "populationServed": 2096640
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -18766,7 +19367,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "84c8679e-f04a-46c5-acf1-d059b70ccb7f",
+"id": "2a5c3b4f-500d-48d6-b1d2-0f2f9a1e135f",
 "mitigationValue": [
 63.0,
 77.0
@@ -18779,7 +19380,7 @@
 },
 {
 "color": "#666666",
-"id": "9f5b3ab4-8aca-437b-bd8e-1514b4be278c",
+"id": "56c51d0a-b4b5-4257-91bb-53173d793ce8",
 "mitigationValue": [
 54.0,
 66.0
@@ -18816,9 +19417,9 @@
 "populationServed": 19440469
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-13"
 }
 }
@@ -18831,7 +19432,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c6b40ade-0369-4b02-876e-f5f4429d40e8",
+"id": "d127276c-929b-4283-a565-a47373133e01",
 "mitigationValue": [
 45.0,
 55.0
@@ -18840,6 +19441,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-30"
+}
+},
+{
+"color": "#666666",
+"id": "f33580f6-4631-4a3a-b900-a41b3124024d",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-05-01"
 }
 }
 ],
@@ -18868,9 +19482,9 @@
 "populationServed": 10611862
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -18883,7 +19497,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "a1d69194-ec73-4f20-94b7-21ff899e742d",
+"id": "5fcc32c8-0b08-471a-b58c-b2eff58a756e",
 "mitigationValue": [
 18.0,
 22.0
@@ -18892,6 +19506,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-28"
+}
+},
+{
+"color": "#666666",
+"id": "ae94cd15-bd56-41ee-8386-7cd09d8d679c",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-25"
 }
 }
 ],
@@ -18920,9 +19547,9 @@
 "populationServed": 761723
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-28"
 }
 }
@@ -18935,7 +19562,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "9de1fbea-167a-4530-b595-336c9fa5427e",
+"id": "ae3cbee7-c546-4e4d-afad-4e4a0fcd2cc8",
 "mitigationValue": [
 45.0,
 55.0
@@ -18944,6 +19571,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-28"
+}
+},
+{
+"color": "#666666",
+"id": "4560f531-6ae0-4f0a-8e1a-bba75df8002b",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-20"
 }
 }
 ],
@@ -18972,9 +19612,9 @@
 "populationServed": 11747694
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -18987,7 +19627,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "854bad17-fb4e-4947-9767-bed67b0c809d",
+"id": "21729ffa-f277-49b5-af92-cdc5ee35fe25",
 "mitigationValue": [
 45.0,
 55.0
@@ -19024,9 +19664,9 @@
 "populationServed": 3954821
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-26"
 }
 }
@@ -19039,7 +19679,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "716f7ae0-922b-4145-902b-8df5ac67e877",
+"id": "bd1a00e0-384a-4eb2-a8a6-7fc57c7f7368",
 "mitigationValue": [
 27.0,
 33.0
@@ -19076,9 +19716,9 @@
 "populationServed": 4301089
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -19091,7 +19731,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "072d22bd-deee-4d2a-9950-f09f091e510d",
+"id": "40f308a3-eff0-4518-9b2e-1100bef1419b",
 "mitigationValue": [
 45.0,
 55.0
@@ -19104,7 +19744,7 @@
 },
 {
 "color": "#666666",
-"id": "f004083b-2da5-4472-a0e4-3a30992d647a",
+"id": "f4537c99-7d80-439b-a087-188bba01285a",
 "mitigationValue": [
 54.0,
 66.0
@@ -19141,9 +19781,9 @@
 "populationServed": 12820878
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-20"
 }
 }
@@ -19156,7 +19796,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "5103a80b-0ca8-4e84-948c-89a6bc7f3e8a",
+"id": "f4a1382b-a1ec-4d70-ac05-2f3040671b64",
 "mitigationValue": [
 36.0,
 44.0
@@ -19193,9 +19833,9 @@
 "populationServed": 3032160
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-29"
 }
 }
@@ -19208,7 +19848,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "bbae307f-b3fc-4b46-a88d-a734a9fc85e7",
+"id": "dd8ba9b4-db5e-4785-9e51-f136fd2e70c8",
 "mitigationValue": [
 27.0,
 33.0
@@ -19221,7 +19861,7 @@
 },
 {
 "color": "#666666",
-"id": "264e523d-fd3d-4bc6-8773-efcb1c6c73e1",
+"id": "c33955bd-2944-4b68-a5c7-8a9f75d76ba1",
 "mitigationValue": [
 54.0,
 66.0
@@ -19258,9 +19898,9 @@
 "populationServed": 1056161
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-22"
 }
 }
@@ -19273,7 +19913,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "d77d651b-c2f5-45a4-abb8-5ee38a613939",
+"id": "bc671836-a39a-416b-b9c0-32c965ec47af",
 "mitigationValue": [
 36.0,
 44.0
@@ -19282,6 +19922,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-28"
+}
+},
+{
+"color": "#666666",
+"id": "9cc10523-7895-4da9-a73e-7542683ab28e",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-25"
 }
 }
 ],
@@ -19310,9 +19963,9 @@
 "populationServed": 5210095
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-24"
 }
 }
@@ -19325,7 +19978,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f46a0263-fd8b-4eb2-8aa3-db28928f52c3",
+"id": "a72e9179-4644-40ef-8812-a8e08cb35b7f",
 "mitigationValue": [
 18.0,
 22.0
@@ -19338,7 +19991,7 @@
 },
 {
 "color": "#666666",
-"id": "5d6bc460-e22d-4fb9-bc30-253cddc0fdb8",
+"id": "00d4d619-1851-4b51-a874-68bab84af99b",
 "mitigationValue": [
 54.0,
 66.0
@@ -19375,9 +20028,9 @@
 "populationServed": 903027
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -19390,7 +20043,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "be9f101c-80d8-48a9-9116-539f9d27eb45",
+"id": "7b5da658-af33-4555-be4e-d0a142ad3373",
 "mitigationValue": [
 45.0,
 55.0
@@ -19403,7 +20056,7 @@
 },
 {
 "color": "#666666",
-"id": "5dfbbc56-37ae-4215-b8b1-a72434c92e45",
+"id": "86ec3ba7-ee80-4362-9595-500c18385703",
 "mitigationValue": [
 54.0,
 66.0
@@ -19440,9 +20093,9 @@
 "populationServed": 6897576
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -19455,7 +20108,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "1e0c2be5-b763-4b7f-b533-63012907196a",
+"id": "4fa4336d-36d6-4257-84ff-0eaec78819ce",
 "mitigationValue": [
 45.0,
 55.0
@@ -19492,9 +20145,9 @@
 "populationServed": 29472295
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-19"
 }
 }
@@ -19507,7 +20160,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c8a7f6d2-0357-444a-aeef-3c83cddc626f",
+"id": "2b706037-ee05-40f4-9a87-a4f136a6111e",
 "mitigationValue": [
 36.0,
 44.0
@@ -19516,6 +20169,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-25"
+}
+},
+{
+"color": "#666666",
+"id": "640f11e3-79a0-4dbd-b410-e75ba9cc79c4",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-21"
 }
 }
 ],
@@ -19544,9 +20210,9 @@
 "populationServed": 3282115
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -19559,7 +20225,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "4a611e56-4d32-46a3-b9c9-02bbf5aefd43",
+"id": "c3bbea14-a55c-473b-a2d8-8510f1926d16",
 "mitigationValue": [
 45.0,
 55.0
@@ -19572,7 +20238,7 @@
 },
 {
 "color": "#666666",
-"id": "109d1928-c621-411a-be48-2a348c6b3c23",
+"id": "0bbb236c-29bf-4739-9e9b-ba51c607d937",
 "mitigationValue": [
 54.0,
 66.0
@@ -19609,9 +20275,9 @@
 "populationServed": 628061
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -19624,7 +20290,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cadcaf42-fba7-4852-a7c8-da665f54fbf2",
+"id": "68975437-d390-444e-946b-68a53ccfdafe",
 "mitigationValue": [
 36.0,
 44.0
@@ -19633,6 +20299,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-29"
+}
+},
+{
+"color": "#666666",
+"id": "9aab517d-e728-4543-a442-e5edbd94ae78",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-20"
 }
 }
 ],
@@ -19661,9 +20340,9 @@
 "populationServed": 8626207
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -19676,7 +20355,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "38a34e93-3414-451d-be18-d2bd6ecfa2cb",
+"id": "9ca606fe-f2e9-43d2-80fb-bd220f62318f",
 "mitigationValue": [
 18.0,
 22.0
@@ -19689,7 +20368,7 @@
 },
 {
 "color": "#666666",
-"id": "66aa237d-45a5-4b2a-b1f6-bd67bb693ad8",
+"id": "5754d046-cc99-4fb2-9e0e-dfe9e8dd4747",
 "mitigationValue": [
 54.0,
 66.0
@@ -19697,7 +20376,7 @@
 "name": "Intervention #2",
 "timeRange": {
 "tMax": "2020-09-01",
-"tMin": "2020-04-04"
+"tMin": "2020-04-05"
 }
 }
 ],
@@ -19726,9 +20405,9 @@
 "populationServed": 7797095
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-09"
 }
 }
@@ -19741,7 +20420,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "261a7c82-bf8c-4c88-9e93-764b81363f53",
+"id": "4e6bec23-a474-4fc8-b12c-42b1ad8f53f1",
 "mitigationValue": [
 36.0,
 44.0
@@ -19778,9 +20457,9 @@
 "populationServed": 1778070
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-03"
 }
 }
@@ -19793,7 +20472,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "cf67ccc5-272f-42f2-a4e8-3e26146a7b5f",
+"id": "0cae144b-b7d9-4a46-aafb-53a9b6f271cc",
 "mitigationValue": [
 36.0,
 44.0
@@ -19802,6 +20481,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-03-26"
+}
+},
+{
+"color": "#666666",
+"id": "4a99abdf-1b61-4fd6-9f95-b43b2352819c",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-26"
 }
 }
 ],
@@ -19830,9 +20522,9 @@
 "populationServed": 5851754
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-23"
 }
 }
@@ -19845,7 +20537,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "3fd9730e-02b2-4288-bc75-00ebc639ce9f",
+"id": "4879a17f-5456-48af-9e07-c7904c712fc7",
 "mitigationValue": [
 27.0,
 33.0
@@ -19882,9 +20574,9 @@
 "populationServed": 567025
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-29"
 }
 }
@@ -19920,9 +20612,9 @@
 "populationServed": 42723139
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-21"
 }
 }
@@ -19935,7 +20627,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "e0d011bf-79ef-41da-998b-1f4ddf12bea5",
+"id": "5a720c1c-7986-4e67-92ca-3718f60a17d4",
 "mitigationValue": [
 27.0,
 33.0
@@ -19972,9 +20664,9 @@
 "populationServed": 44622516
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-28"
 }
 }
@@ -19987,7 +20679,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "f83e1264-f5c2-4dff-a02e-42a4c3302cca",
+"id": "65c43391-861c-4cfa-b1c8-df21a0b8f886",
 "mitigationValue": [
 18.0,
 22.0
@@ -19996,6 +20688,19 @@
 "timeRange": {
 "tMax": "2020-09-01",
 "tMin": "2020-04-03"
+}
+},
+{
+"color": "#666666",
+"id": "fe27a6b2-8cf7-48eb-be0e-16a22a9cc326",
+"mitigationValue": [
+54.0,
+66.0
+],
+"name": "Intervention #2",
+"timeRange": {
+"tMax": "2020-09-01",
+"tMin": "2020-04-26"
 }
 }
 ],
@@ -20024,9 +20729,9 @@
 "populationServed": 9630959
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-09"
 }
 }
@@ -20039,7 +20744,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "c76aee4a-e24c-4aa4-8f26-723a9d6425ca",
+"id": "78532e57-1f71-41d1-bfb0-b9cc5bde70f2",
 "mitigationValue": [
 36.0,
 44.0
@@ -20052,7 +20757,7 @@
 },
 {
 "color": "#666666",
-"id": "e404657f-042b-4398-8930-d4897f5b16a7",
+"id": "279e4ecb-34ff-4074-8cf1-43a52fed9d8f",
 "mitigationValue": [
 54.0,
 66.0
@@ -20089,9 +20794,9 @@
 "populationServed": 66488991
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-09"
 }
 }
@@ -20104,7 +20809,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "08414177-bb5c-4745-95a0-2f4cf0be95ee",
+"id": "e6ab57df-c7ba-45e4-aed6-455aa4b79a0e",
 "mitigationValue": [
 36.0,
 44.0
@@ -20117,7 +20822,7 @@
 },
 {
 "color": "#666666",
-"id": "7ded2f4d-5b12-47f2-8de0-ff9fd53692b1",
+"id": "80b16a4e-38bc-4717-b63d-803005cd614c",
 "mitigationValue": [
 54.0,
 66.0
@@ -20154,9 +20859,9 @@
 "populationServed": 327167434
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-01"
 }
 }
@@ -20169,7 +20874,7 @@
 "mitigationIntervals": [
 {
 "color": "#bf5b17",
-"id": "2da93d24-a82f-4a0d-81ae-2d39d3698394",
+"id": "215bbabd-6fb7-41c6-a55a-77cbb159b748",
 "mitigationValue": [
 27.0,
 33.0
@@ -20206,9 +20911,9 @@
 "populationServed": 3449299
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -20244,9 +20949,9 @@
 "populationServed": 32955400
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-27"
 }
 }
@@ -20282,9 +20987,9 @@
 "populationServed": 28870195
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-25"
 }
 }
@@ -20320,9 +21025,9 @@
 "populationServed": 95540395
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-02-16"
 }
 }
@@ -20358,9 +21063,9 @@
 "populationServed": 28667230
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-01"
 }
 }
@@ -20396,9 +21101,9 @@
 "populationServed": 17351822
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-01-31"
 }
 }
@@ -20434,9 +21139,9 @@
 "populationServed": 14439018
 },
 "simulation": {
-"numberStochasticRuns": 10,
+"numberStochasticRuns": 15,
 "simulationTimeRange": {
-"tMax": "2020-09-01",
+"tMax": "2020-08-31",
 "tMin": "2020-03-06"
 }
 }

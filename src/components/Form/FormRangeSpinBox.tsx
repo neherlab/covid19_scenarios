@@ -1,9 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
 
-import _ from 'lodash'
-
 import { Col, FormGroup, Row } from 'reactstrap'
+import { getFormikErrors } from '../../helpers/getFormikErrors'
 
 import type { FormSpinBoxProps } from './FormSpinBox'
 
@@ -21,9 +20,7 @@ export function FormRangeSpinBox<T>({
   errors,
   touched,
 }: FormSpinBoxProps<T>) {
-  const isTouched = _.get(touched, identifier)
-  const errorMessages = _.get(errors, identifier) as string[]
-  const showError = errorMessages && isTouched
+  const errorMessages = getFormikErrors({ identifier, errors, touched })
 
   return (
     <FormGroup inline className="my-0">
@@ -33,21 +30,18 @@ export function FormRangeSpinBox<T>({
         </Col>
         <Col className="d-inline" xl={6}>
           <RangeSpinBox
+            className={errorMessages.length > 0 ? 'border-danger' : ''}
             identifier={identifier}
             step={step}
             min={min}
             max={max}
             pattern={pattern}
-            errors={errors}
-            touched={touched}
           />
-          {showError
-            ? errorMessages.map((errorMessage, i) => (
-                <div key={`${errorMessage} ([${i}])`} className="text-danger">
-                  {errorMessage}
-                </div>
-              ))
-            : null}
+          {errorMessages.map((message, i) => (
+            <div key={`${message} ([${i}])`} className="text-danger">
+              {message}
+            </div>
+          ))}
         </Col>
       </Row>
     </FormGroup>

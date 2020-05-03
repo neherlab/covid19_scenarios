@@ -72,7 +72,7 @@ acronyms = {
     "VI": "Virgin Islands",
 }
 
-URL  = "https://covidtracking.com/api/states/daily"
+URL  = "https://covidtracking.com/api/v1/states/daily.json"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
 # ------------------------------------------------------------------------

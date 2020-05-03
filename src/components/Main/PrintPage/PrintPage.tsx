@@ -191,7 +191,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
 
                   if (key === 'r0') {
                     const [lower, upper] = val.map((x: number) => Math.round(10 * x) / 10)
-                    value = `(${lower}, ${upper})`
+                    value = `${lower} - ${upper}`
                   }
 
                   return (
@@ -227,7 +227,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
                       <td className="text-left pl-2 pr-4 py-0">{name}</td>
                       <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.tMin)}</td>
                       <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.tMax)}</td>
-                      <td className="text-right pl-2 pr-4 py-0">{`${mitigationValue}%`}</td>
+                      <td className="text-right pl-2 pr-4 py-0">{`${mitigationValue[0]}% - ${mitigationValue[1]}%`}</td>
                     </tr>
                   )
                 })}

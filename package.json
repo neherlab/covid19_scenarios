@@ -1,6 +1,6 @@
 {
   "name": "covid19_scenarios",
-  "version": "1.1.6",
+  "version": "1.2.1",
   "main": "index.js",
   "module": "src/index.tsx",
   "license": "MIT",
@@ -51,7 +51,9 @@
     "e2e": "cypress run",
     "e2e:dev": "cypress open",
     "i18n": "babel-node --extensions \".ts\" node_modules/.bin/i18next -c config/i18next/i18next.config.js",
-    "codeclimate": "UID=$(id -u) DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker/docker-compose.codeclimate.yml --compatibility up"
+    "codeclimate": "UID=$(id -u) DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker/docker-compose.codeclimate.yml --compatibility up",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "dependencies": {
     "@babel/runtime": "7.9.2",
@@ -120,7 +122,8 @@
     "url-join": "4.0.1",
     "use-debounce": "3.4.1",
     "uuid": "7.0.3",
-    "yup": "0.28.4"
+    "yup": "0.28.4",
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "@babel/code-frame": "7.8.3",
@@ -360,5 +363,6 @@
     "**/left-pad": "link:3rdparty/__empty-module",
     "node-sass": "link:node_modules/sass",
     "svgo": "1.3.2"
-  }
+  },
+  "snyk": true
 }
