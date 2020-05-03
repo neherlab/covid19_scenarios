@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import ErrorBoundary from 'react-error-boundary'
+import { FileRejection } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { If, Then } from 'react-if'
 import { Col, Row, Container, Card, UncontrolledAlert } from 'reactstrap'
@@ -73,7 +74,7 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
     }
   }
 
-  async function processFiles(acceptedFiles: File[], rejectedFiles: File[]) {
+  async function processFiles(acceptedFiles: File[], rejectedFiles: FileRejection[]) {
     const nFiles = acceptedFiles.length + rejectedFiles.length
 
     if (nFiles > 1) {
@@ -104,7 +105,7 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
     close()
   }
 
-  async function onDrop(acceptedFiles: File[], rejectedFiles: File[]) {
+  async function onDrop(acceptedFiles: File[], rejectedFiles: FileRejection[]) {
     setErrors([])
 
     try {

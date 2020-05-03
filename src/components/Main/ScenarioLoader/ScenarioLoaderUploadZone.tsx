@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { DropEvent, useDropzone } from 'react-dropzone'
+import { DropEvent, FileRejection, useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { MdFileUpload } from 'react-icons/md'
 import { Col, Row } from 'reactstrap'
 
 export interface ScenarioLoaderUploadZoneProps {
-  onDrop<T extends File>(acceptedFiles: T[], rejectedFiles: T[], event: DropEvent): void
+  onDrop<T extends File>(acceptedFiles: T[], fileRejections: FileRejection[], event: DropEvent): void
 }
 
 export function ScenarioLoaderUploadZone({ onDrop }: ScenarioLoaderUploadZoneProps) {
