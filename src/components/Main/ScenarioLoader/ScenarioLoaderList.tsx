@@ -16,7 +16,7 @@ export interface ScenarioLoaderListProps extends HTMLProps<HTMLDivElement> {
   onScenarioSelect(scenario: string): void
 }
 
-export function ScenarioLoaderList({ items, onScenarioSelect, hidden }: ScenarioLoaderListProps) {
+export function ScenarioLoaderList({ items, onScenarioSelect }: ScenarioLoaderListProps) {
   const { t } = useTranslation()
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredRows, setFilteredRows] = useState(items)
@@ -30,22 +30,6 @@ export function ScenarioLoaderList({ items, onScenarioSelect, hidden }: Scenario
     setFilteredRows(filtered)
   }
   const [executeFilterDebounced] = useDebouncedCallback(executeFilter, DEBOUNCE_DELAY)
-
-  useEffect(() => {
-    if (!hidden) {
-      /* TODO for some reason the useRef way doesn't work */
-      setTimeout(() => {
-        const element: HTMLInputElement | null = document.getElementById(
-          'preset-loader-dialog-input',
-        ) as HTMLInputElement
-
-        if (element) {
-          element.focus()
-          element.select()
-        }
-      }, 0)
-    }
-  }, [hidden])
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
@@ -76,6 +60,7 @@ export function ScenarioLoaderList({ items, onScenarioSelect, hidden }: Scenario
               value={searchTerm}
               autoComplete="off"
               onKeyDown={onKeyDown}
+              autoFocus
             />
             <InputGroupAddon addonType="append">
               <Button

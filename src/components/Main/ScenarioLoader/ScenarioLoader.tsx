@@ -41,6 +41,7 @@ export function ScenarioLoader({
       toggle={onClose}
       fade={false}
       data-testid="PresetLoaderDialog"
+      autoFocus={false}
     >
       <Row>
         <Col>
@@ -52,7 +53,7 @@ export function ScenarioLoader({
         <Col className="h-100">
           <Row className="h-100">
             <Col className="scenario-loader-section" md={6}>
-              <ScenarioLoaderList items={scenarioOptions} onScenarioSelect={onScenarioSelect} hidden={!visible} />
+              <ScenarioLoaderList items={scenarioOptions} onScenarioSelect={onScenarioSelect} />
             </Col>
 
             <Col className="scenario-loader-section" md={6}>
