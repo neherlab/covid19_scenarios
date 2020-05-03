@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
-import ErrorBoundary from 'react-error-boundary'
 import { FileRejection } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { If, Then } from 'react-if'
-import { Col, Row, Container, Card, UncontrolledAlert } from 'reactstrap'
+import { Col, Row, Container, UncontrolledAlert } from 'reactstrap'
 import type { AnyAction } from 'typescript-fsa'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
@@ -30,14 +29,6 @@ class UploadErrorTooManyFiles extends Error {
 class UploadErrorUnknown extends Error {
   constructor() {
     super(`when uploading: unknown error`)
-  }
-}
-
-class UploadErrorDeserializationFailed extends Error {
-  public readonly errors?: string[]
-  constructor(errors?: string[]) {
-    super(`when uploading: file validation failed:\n${errors?.map(appendDash)?.join('\n')}`)
-    this.errors = errors
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useTranslation } from 'react-i18next'
-import { Modal, ModalBody, ModalHeader, Col, Row, Container } from 'reactstrap'
+import { Modal, ModalHeader, Col, Row } from 'reactstrap'
 
 import type { AnyAction } from 'typescript-fsa'
 
