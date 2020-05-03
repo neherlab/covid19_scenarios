@@ -1,19 +1,33 @@
-import React, { HTMLProps, KeyboardEvent, useEffect, useState } from 'react'
+import React, { HTMLProps, KeyboardEvent, useState } from 'react'
 
 import { useTranslation } from 'react-i18next'
 import { MdClear } from 'react-icons/md'
 import { Button, Col, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { ScenarioLoaderListItem, ScenarioOption } from './ScenarioLoaderListItem'
-
 import './ScenarioLoader.scss'
+
+import { ScenarioLoaderListItem, ScenarioOption } from './ScenarioLoaderListItem'
 
 const DEBOUNCE_DELAY = 500
 
 export interface ScenarioLoaderListProps extends HTMLProps<HTMLDivElement> {
   items: ScenarioOption[]
   onScenarioSelect(scenario: string): void
+}
+
+export function includesLowerCase(candidate: string, searchTerm: string): boolean {
+  return candidate.toLowerCase().includes(searchTerm.toLowerCase())
+}
+
+export function startsWithLowerCase(candidate: string, searchTerm: string): boolean {
+  return candidate.toLowerCase().startsWith(searchTerm.toLowerCase())
+}
+
+export function searchOptions(items: ScenarioOption[], term: string): ScenarioOption[] {
+  const bestMatches = items.filter(({ label }) => startsWithLowerCase(label, term))
+  const restMatches = items.filter(({ label }) => includesLowerCase(label, term) && !startsWithLowerCase(label, term))
+  return [...bestMatches, ...restMatches]
 }
 
 export function ScenarioLoaderList({ items, onScenarioSelect }: ScenarioLoaderListProps) {
@@ -23,10 +37,7 @@ export function ScenarioLoaderList({ items, onScenarioSelect }: ScenarioLoaderLi
 
   const executeFilter = (term: string) => {
     const hasSearchTerm = term.length > 0
-    const filtered = hasSearchTerm
-      ? items.filter((item) => item.label.toLowerCase().includes(term.toLowerCase()))
-      : items
-
+    const filtered = hasSearchTerm ? searchOptions(items, term) : items
     setFilteredRows(filtered)
   }
   const [executeFilterDebounced] = useDebouncedCallback(executeFilter, DEBOUNCE_DELAY)
