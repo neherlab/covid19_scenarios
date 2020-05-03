@@ -1,5 +1,7 @@
 import React, { HTMLProps, KeyboardEvent, useState } from 'react'
 
+import { partition } from 'lodash'
+
 import { useTranslation } from 'react-i18next'
 import { MdClear } from 'react-icons/md'
 import { Button, Col, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap'
@@ -25,9 +27,9 @@ export function startsWithLowerCase(candidate: string, searchTerm: string): bool
 }
 
 export function searchOptions(items: ScenarioOption[], term: string): ScenarioOption[] {
-  const bestMatches = items.filter(({ label }) => startsWithLowerCase(label, term))
-  const restMatches = items.filter(({ label }) => includesLowerCase(label, term) && !startsWithLowerCase(label, term))
-  return [...bestMatches, ...restMatches]
+  const [itemsStartWith, itemsNotStartWith] = partition(items, ({ label }) => startsWithLowerCase(label, term))
+  const [itemsInclude] = partition(itemsNotStartWith, ({ label }) => includesLowerCase(label, term))
+  return [...itemsStartWith, ...itemsInclude]
 }
 
 export function ScenarioLoaderList({ items, onScenarioSelect }: ScenarioLoaderListProps) {
