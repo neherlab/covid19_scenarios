@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { FileRejection } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { If, Then } from 'react-if'
-import { Col, Row, Container, UncontrolledAlert } from 'reactstrap'
+import { Col, Row, Container, UncontrolledAlert, Card, CardHeader, CardBody } from 'reactstrap'
 import type { AnyAction } from 'typescript-fsa'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
@@ -110,9 +110,7 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
   }
 
   return (
-    <Container>
-      <h3>{t(`Upload scenario`)}</h3>
-
+    <>
       <ScenarioLoaderUploadInstructionsText />
 
       <Row noGutters>
@@ -121,7 +119,7 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
         </Col>
       </Row>
 
-      <Row noGutters className="my-3">
+      <Row noGutters>
         <Col>
           <If condition={hasErrors}>
             <Then>
@@ -140,6 +138,6 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
           </If>
         </Col>
       </Row>
-    </Container>
+    </>
   )
 }

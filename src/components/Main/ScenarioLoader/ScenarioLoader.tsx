@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useTranslation } from 'react-i18next'
-import { Modal, ModalHeader, Col, Row } from 'reactstrap'
+import { Modal, ModalHeader, Col, Row, ModalBody } from 'reactstrap'
 
 import type { AnyAction } from 'typescript-fsa'
 
@@ -9,8 +9,9 @@ import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.
 
 import { ScenarioOption } from './ScenarioLoaderListItem'
 
-import { ScenarioLoaderUploader } from './ScenarioLoaderUploader'
+import { ScenarioLoaderCard } from './ScenarioLoaderCard'
 import { ScenarioLoaderList } from './ScenarioLoaderList'
+import { ScenarioLoaderUploader } from './ScenarioLoaderUploader'
 
 import './ScenarioLoader.scss'
 
@@ -43,25 +44,31 @@ export function ScenarioLoader({
       data-testid="PresetLoaderDialog"
       autoFocus={false}
     >
-      <Row>
-        <Col>
-          <ModalHeader toggle={onClose}>{t(`Change scenario`)}</ModalHeader>
-        </Col>
-      </Row>
+      <ModalHeader toggle={onClose}>{t(`Change scenario`)}</ModalHeader>
 
-      <Row className="h-100">
-        <Col className="h-100">
-          <Row className="h-100">
-            <Col className="scenario-loader-section" md={6}>
-              <ScenarioLoaderList items={scenarioOptions} onScenarioSelect={onScenarioSelect} />
-            </Col>
+      <ModalBody>
+        <Row noGutters>
+          <Col>
+            <Row noGutters>
+              <Col className="scenario-loader-section px-1 py-1" md={6}>
+                <ScenarioLoaderCard header={<h3 className="text-center">{t(`Search predefined scenario`)}</h3>}>
+                  <ScenarioLoaderList items={scenarioOptions} onScenarioSelect={onScenarioSelect} />
+                </ScenarioLoaderCard>
+              </Col>
 
-            <Col className="scenario-loader-section" md={6}>
-              <ScenarioLoaderUploader setSeverity={setSeverity} scenarioDispatch={scenarioDispatch} close={onClose} />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+              <Col className="scenario-loader-section px-1 py-1" md={6}>
+                <ScenarioLoaderCard header={<h3 className="text-center">{t(`Load custom scenario`)}</h3>}>
+                  <ScenarioLoaderUploader
+                    setSeverity={setSeverity}
+                    scenarioDispatch={scenarioDispatch}
+                    close={onClose}
+                  />
+                </ScenarioLoaderCard>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </ModalBody>
     </Modal>
   )
 }

@@ -4,7 +4,7 @@ import { partition } from 'lodash'
 
 import { useTranslation } from 'react-i18next'
 import { MdClear } from 'react-icons/md'
-import { Button, Col, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap'
+import { Button, Card, CardHeader, Col, Container, Input, InputGroup, InputGroupAddon, Row, CardBody } from 'reactstrap'
 import { useDebouncedCallback } from 'use-debounce'
 
 import './ScenarioLoader.scss'
@@ -60,8 +60,8 @@ export function ScenarioLoaderList({ items, onScenarioSelect }: ScenarioLoaderLi
   }
 
   return (
-    <>
-      <Row className="mb-2">
+    <Container>
+      <Row noGutters>
         <Col>
           <InputGroup>
             <Input
@@ -93,15 +93,15 @@ export function ScenarioLoaderList({ items, onScenarioSelect }: ScenarioLoaderLi
         </Col>
       </Row>
 
-      <Row className="h-100">
-        <Col className="h-100">
-          <div className="mh-100 overflow-y-scroll">
+      <Row noGutters>
+        <Col>
+          <div className="overflow-y-scroll">
             {filteredRows.map((item) => (
               <ScenarioLoaderListItem key={item.value} option={item} onItemClick={onScenarioSelect} />
             ))}
           </div>
         </Col>
       </Row>
-    </>
+    </Container>
   )
 }
