@@ -413,7 +413,7 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     res = {'params': param, 'initialCases': init_cases, 'tMin': tMin, 'data': data, 'error':err}
     if param.date is not None:
-        res['containment_start'] = datetime.fromordinal(param.date).strftime('%Y-%m-%d')
+        res['containment_start'] = datetime.fromordinal(int(param.date)).strftime('%Y-%m-%d')
 
     return res
 
@@ -540,6 +540,6 @@ if __name__ == "__main__":
     plt.ylabel("Number of people")
     plt.legend(loc="best")
     plt.tight_layout()
-    # plt.yscale("log")
+    plt.yscale("log")
     # plt.savefig(f"{key}-Poisson_max_likelihood", format="png")
     plt.show()
