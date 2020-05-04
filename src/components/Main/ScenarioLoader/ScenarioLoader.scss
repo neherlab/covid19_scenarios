@@ -7,8 +7,20 @@ $lg: map.get($grid-breakpoints, 'lg');
 $md: map.get($grid-breakpoints, 'md');
 
 #scenario-loader-modal {
-  width: 90vw;
-  max-width: 1200px;
+  @media screen and (max-width: $md) {
+    .modal-content {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      overflow-y: scroll;
+    }
+  }
+
+  @media screen and (min-width: $md) {
+    width: 90vw;
+    max-width: 1200px;
+  }
 }
 
 .modal-content {
@@ -23,17 +35,13 @@ $md: map.get($grid-breakpoints, 'md');
   }
 
   @media screen and (max-width: $md) {
-    height: 40vh;
+    height: 75vh;
     margin-bottom: 4px;
   }
 
   @media screen and (min-width: $md) {
     height: 85vh;
   }
-}
-
-.scenario-loader-section {
-  height: 100%;
 }
 
 .scenario-loader-row {
