@@ -4,7 +4,7 @@ import { partition } from 'lodash'
 
 import { useTranslation } from 'react-i18next'
 import { MdClear } from 'react-icons/md'
-import { Button, Card, CardHeader, Col, Container, Input, InputGroup, InputGroupAddon, Row, CardBody } from 'reactstrap'
+import { Button, Col, Container, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap'
 import { useDebouncedCallback } from 'use-debounce'
 
 import './ScenarioLoader.scss'
