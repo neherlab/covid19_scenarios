@@ -5,12 +5,13 @@ this should be run from the top level of the repo.
 import sys
 import csv
 import os
+import json
 from glob import glob
 
 from collections import defaultdict
 from datetime import datetime, timedelta
 from parsers.utils import write_tsv, flatten, parse_countries, stoi, merge_cases, sorted_date, store_json
-from paths import BASE_PATH, JSON_DIR, TMP_CASES, TSV_DIR
+from paths import BASE_PATH, JSON_DIR, TMP_CASES, TSV_DIR, SOURCES_FILE
 
 # -----------------------------------------------------------------------------
 # Globals
@@ -48,15 +49,16 @@ def filter_tsv(fname):
 
 def parse(output=None):
     files = defaultdict(list)
+    srcs = list(json.load(open(os.path.join(BASE_PATH, SOURCES_FILE))).keys())
 
     for dirpath, dirnames, filenames in os.walk(os.path.join(BASE_PATH,TSV_DIR)):
-        files[dirpath] = [f for f in filenames if f.endswith(".tsv")]
+        files[os.path.basename(dirpath)] = [f for f in filenames if f.endswith(".tsv")]
     i = 0
     json_data = {}
-    for d in files:
+    for d in srcs:
         print(f'Now importing {len(files[d])} .tsv files for {d}')
         for f in files[d]:
-            data, ok = parse_tsv(filter_tsv(os.path.join(d,f)), f[:-4])
+            data, ok = parse_tsv(filter_tsv(os.path.join(BASE_PATH,TSV_DIR,d,f)), f[:-4])
             i += 1
             if ok:
                 json_data = merge_cases(json_data, data)
