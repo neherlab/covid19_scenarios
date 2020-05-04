@@ -10,10 +10,7 @@ export interface ScenarioLoaderCardProps {
 function ScenarioLoaderCard({ header, children }: React.PropsWithChildren<ScenarioLoaderCardProps>) {
   return (
     <Card className="scenario-loader-card">
-      <CardHeader className="py-2">
-        <h3 className="px-2">{header}</h3>
-      </CardHeader>
-
+      <CardHeader className="py-2">{header}</CardHeader>
       <CardBody>{children}</CardBody>
     </Card>
   )
