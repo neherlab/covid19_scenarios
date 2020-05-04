@@ -1163,10 +1163,10 @@
   resolved "https://registry.yarnpkg.com/@eirba/ieee754/-/ieee754-0.1.1.tgz#6f4149bd61592ea81713e60f6b6557cc2fa10a9b"
   integrity sha512-GxiNHxC9pTkLIs1TFk10Y45vYBFJt+tHNUl76SEzPDqa8HS3/R/3FEvQ5koW6WUumVz/lNMFS8qMKpGHxzkezQ==
 
-"@eirba/jest-ieee754@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@eirba/jest-ieee754/-/jest-ieee754-0.1.1.tgz#bcd2fa59ec2b96d09218906b1333a93c4b8d0ed2"
-  integrity sha512-mjrxM+7/yKsR/56xuCMH5+eygkkniZSPHjZzdSuvl/1UVCYBcSqZRcDP57X4Ta7/5gAI0+VOfirR7ulzs95QgQ==
+"@eirba/jest-ieee754@^0.1.1":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@eirba/jest-ieee754/-/jest-ieee754-0.1.2.tgz#8f6d9be36d8da86eb1d61c40dc7e87acd5ee1471"
+  integrity sha512-HmWpCXxibHKGwXeTcyjBtko5aPb3zh+4QMZoL+qUfewFYqaNxggJY2yF4YX01MMH3W0Ri/GDBwieSW/5d+xR2w==
   dependencies:
     "@eirba/ieee754" "^0.1.1"
 

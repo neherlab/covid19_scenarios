@@ -116,14 +116,14 @@
     "redux-saga": "1.1.3",
     "redux-saga-test-plan": "4.0.0-rc.3",
     "regenerator-runtime": "0.13.5",
+    "snyk": "^1.316.2",
     "typeface-source-sans-pro": "1.1.5",
     "typescript-fsa": "3.0.0",
     "typescript-fsa-reducers": "1.2.1",
     "url-join": "4.0.1",
     "use-debounce": "3.4.2",
     "uuid": "8.0.0",
-    "yup": "0.28.5",
-    "snyk": "^1.316.2"
+    "yup": "0.28.5"
   },
   "devDependencies": {
     "@babel/code-frame": "7.8.3",
@@ -141,7 +141,7 @@
     "@babel/register": "7.9.0",
     "@babel/runtime-corejs3": "7.9.6",
     "@cypress/webpack-preprocessor": "5.1.2",
-    "@eirba/jest-ieee754": "0.1.1",
+    "@eirba/jest-ieee754": "^0.1.1",
     "@loadable/babel-plugin": "5.12.0",
     "@mdx-js/loader": "1.6.1",
     "@nuxt/friendly-errors-webpack-plugin": "2.5.0",
