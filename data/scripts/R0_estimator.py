@@ -27,6 +27,21 @@ def smooth(data, as_int=False, nb_pts=9, order=3):
                 smoothed[ii] = np.round(smoothed[ii]).astype(int)
     return smoothed
 
+def get_logdiff(data):
+    log_diff = empty_data_list()
+    for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
+        if data[ii] is not None:
+            log_diff[ii] = np.ma.log(data[ii])
+    return log_diff
+
+def log_smooth(data):
+    log_smooth = empty_data_list()
+    smoothed_log_diff = smooth(get_logdiff(data), False, 11, 1)
+    for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
+        if smoothed_log_diff[ii] is not None:
+            log_smooth[ii] = np.ma.exp(smoothed_log_diff[ii])
+    return log_smooth
+
 def growth_rate_to_R0(data, serial_interval=6):
     R0_by_day = empty_data_list()
     for ii in [Sub.T, Sub.D]:
@@ -48,7 +63,7 @@ def get_daily_counts(data):
             diff_data[ii] = None
     return diff_data
 
-def get_growth_rate(data, step=7):
+def get_growth_rate(data, step=7, smooth=False):
     log_diff = empty_data_list()
     for ii in [Sub.T, Sub.D]:
         if data[ii] is not None:
@@ -89,15 +104,15 @@ def stair_fits(time, data, nb_value=3):
 def get_Re_guess(time, cases, step=7, extremal_points=7):
     #R_effective
     diff_data = get_daily_counts(cases)
-    diff_data_smoothed = smooth(diff_data, True, 15, 1)
-    growth_rate = get_growth_rate(diff_data_smoothed, step)
+    data_log_smoothed = log_smooth(diff_data)
+    growth_rate = get_growth_rate(data_log_smoothed, step)
     # growth_rate = get_growth_rate(diff_data, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
     fits = stair_fits(time, R0_by_day, nb_value=extremal_points)
     # return {"fit" : combine_fits(fits),
     return {"fit" : fits[Sub.T],
             "diff_data": diff_data,
-            "diff_data_smoothed": diff_data_smoothed,
+            "diff_data_smoothed": data_log_smoothed,
             "R0_by_day": R0_by_day}
 
 def combine_fits(fits, drop_shift=9):
@@ -150,7 +165,7 @@ if __name__ == "__main__":
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    country_list = ["USA-New York"]
+    country_list = ["USA-California"]
     # country_list = ["Germany", "Switzerland", "Italy"]
     # country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium",
     # "United Kingdom of Great Britain and Northern Ireland", "CHE-Zürich", "CHE-Basel-Stadt",
