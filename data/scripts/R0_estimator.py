@@ -109,8 +109,8 @@ def get_Re_guess(time, cases, step=7, extremal_points=7):
     # growth_rate = get_growth_rate(diff_data, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
     fits = stair_fits(time, R0_by_day, nb_value=extremal_points)
-    # return {"fit" : combine_fits(fits),
-    return {"fit" : fits[Sub.T],
+    return {"fit" : combine_fits(fits),
+    # return {"fits" : fits,
             "diff_data": diff_data,
             "diff_data_smoothed": data_log_smoothed,
             "R0_by_day": R0_by_day}
@@ -165,7 +165,7 @@ if __name__ == "__main__":
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    country_list = ["USA-California"]
+    country_list = ["Germany"]
     # country_list = ["Germany", "Switzerland", "Italy"]
     # country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium",
     # "United Kingdom of Great Britain and Northern Ireland", "CHE-Zürich", "CHE-Basel-Stadt",
@@ -178,16 +178,17 @@ if __name__ == "__main__":
         R0_by_day = res["R0_by_day"]
         dates = [datetime.fromordinal(x) for x in time]
 
-        plt.figure(1)
-        plt.plot(dates, R0_by_day[Sub.T], '--', c=f"C{2*ci}", label=f"{c}")
-        plt.plot(dates, stair_func(time, *fit), label=f"fit ", c=f"C{2*ci}")
         for ee, ii in enumerate([Sub.T, Sub.D]):
             if data[ii] is not None:
+                plt.figure(1)
+                plt.plot(dates, R0_by_day[ii], '--', c=f"C{2*ci+ee}", label=f"{c}")
+
                 plt.figure(2)
                 plt.plot(dates, res['diff_data'][ii], '--', label=f"{c} {ii}", c=f"C{2*ci+ee}")
                 plt.plot(dates, res['diff_data_smoothed'][ii] , label=f"{c} {ii}", c=f"C{2*ci+ee}")
 
     plt.figure(1)
+    plt.plot(dates, stair_func(time, *fit), label=f"fit")
     plt.ylabel("R0")
     plt.xlabel("Time [days]")
     plt.legend(loc="best")
@@ -199,5 +200,5 @@ if __name__ == "__main__":
     plt.grid()
 
     plt.show()
-    #
+
     # get_R0_comparison(country_list)
