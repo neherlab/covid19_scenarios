@@ -36,7 +36,7 @@ export function ScenarioLoader({
 
   return (
     <Modal
-      id={'scenario-loader-modal'}
+      className="scenario-loader-modal"
       centered
       isOpen={visible}
       toggle={onClose}

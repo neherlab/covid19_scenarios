@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 
 import { FileRejection } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
-import { If, Then } from 'react-if'
-import { Col, Row, UncontrolledAlert } from 'reactstrap'
+import { UncontrolledAlert } from 'reactstrap'
 import type { AnyAction } from 'typescript-fsa'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'

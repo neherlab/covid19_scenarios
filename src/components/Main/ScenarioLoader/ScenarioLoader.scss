@@ -3,11 +3,10 @@
 @import '../../../styles/variables';
 @import '../../../styles/bootstrap-variables';
 
-$xl: map.get($grid-breakpoints, 'xl');
 $lg: map.get($grid-breakpoints, 'lg');
 $md: map.get($grid-breakpoints, 'md');
 
-#scenario-loader-modal {
+.modal-dialog.scenario-loader-modal {
   @media screen and (min-width: $md) {
     width: 90vw;
     max-width: 1200px;
@@ -97,18 +96,12 @@ $md: map.get($grid-breakpoints, 'md');
 .scenario-loader-list-input-group {
   display: flex;
   flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .scenario-loader-list {
   display: flex;
   flex-grow: 1;
-}
-
-.scenario-loader-list-input-group {
-  flex-shrink: 0;
-}
-
-.scenario-loader-list {
   overflow: scroll;
   overflow: overlay;
   flex-direction: column;
