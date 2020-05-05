@@ -22,27 +22,38 @@ def smooth(data, as_int=False, nb_pts=9, order=3):
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if smoothed[ii] is not None:
             np.put(smoothed[ii], np.array(range(len(smoothed[ii])))[~np.isnan(smoothed[ii])],
-                    savgol_filter(smoothed[ii][~np.isnan(smoothed[ii])], nb_pts, order, mode="mirror"))
+                    savgol_filter(smoothed[ii][~np.isnan(smoothed[ii])], nb_pts, order, mode="interp"))
             if as_int:
                 smoothed[ii] = np.round(smoothed[ii]).astype(int)
     return smoothed
 
-def get_logdiff(data):
-    log_diff = empty_data_list()
+def get_log(data):
+    '''
+    return the logarithm of the data structure
+    '''
+    log_data = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            log_diff[ii] = np.ma.log(data[ii])
-    return log_diff
+            log_data[ii] = np.ma.log(data[ii])
+    return log_data
+
 
 def log_smooth(data):
+    '''
+    smooth the logarithm in two-week windows and return the exponential
+    '''
     log_smooth = empty_data_list()
-    smoothed_log_diff = smooth(get_logdiff(data), False, 11, 1)
+    smoothed_log_diff = smooth(get_log(data), as_int=False, nb_pts=15, order=1)
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if smoothed_log_diff[ii] is not None:
             log_smooth[ii] = np.ma.exp(smoothed_log_diff[ii])
     return log_smooth
 
+
 def growth_rate_to_R0(data, serial_interval=6):
+    '''
+    convert a growth rate estimate to R0 using a calibration table
+    '''
     R0_by_day = empty_data_list()
     for ii in [Sub.T, Sub.D]:
         if data[ii] is not None:
@@ -52,7 +63,11 @@ def growth_rate_to_R0(data, serial_interval=6):
             R0_by_day[ii] = None
     return R0_by_day
 
+
 def get_daily_counts(data):
+    '''
+    convert cumulative counts into daily counts
+    '''
     diff_data = empty_data_list()
     for ii in [Sub.T, Sub.D]:
         if data[ii] is not None:
@@ -63,7 +78,12 @@ def get_daily_counts(data):
             diff_data[ii] = None
     return diff_data
 
-def get_growth_rate(data, step=7, smooth=False):
+
+def get_growth_rate(data, step=3):
+    '''
+    take log derivative of the data over time intervals of step.
+    pad overhang with nan
+    '''
     log_diff = empty_data_list()
     for ii in [Sub.T, Sub.D]:
         if data[ii] is not None:
@@ -76,12 +96,15 @@ def get_growth_rate(data, step=7, smooth=False):
             log_diff[ii] = None
     return log_diff
 
+
 def stair_func(time, val_o, val_e, x_drop):
     return np.array([val_o if t <= x_drop else val_e for t in time])
+
 
 def err_function(x_drop, time, vec, val_o, val_e):
     # vec need to be masked to avoid nan
     return np.sum(np.abs(vec - stair_func(time, val_o, val_e, x_drop))**1)
+
 
 def stair_fit(time, vec, nb_value=3):
     val_o = np.mean(vec[~vec.mask][:nb_value])
@@ -101,7 +124,7 @@ def stair_fits(time, data, nb_value=3):
             stair_fits[ii] = None
     return stair_fits
 
-def get_Re_guess(time, cases, step=7, extremal_points=7):
+def get_Re_guess(time, cases, step=4, extremal_points=7):
     #R_effective
     diff_data = get_daily_counts(cases)
     data_log_smoothed = log_smooth(diff_data)
