@@ -135,6 +135,14 @@ p {
   overflow-y: auto !important;
 }
 
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden !important;
+}
+
 .hide-native-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;

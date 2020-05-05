@@ -60,48 +60,40 @@ export function ScenarioLoaderList({ items, onScenarioSelect }: ScenarioLoaderLi
   }
 
   return (
-    <Container>
-      <Row noGutters>
-        <Col>
-          <InputGroup>
-            <Input
-              className="input-search-scenario"
-              name="search-scenario"
-              data-testid="PresetLoaderDialogInput"
-              placeholder={t('Search')}
-              onChange={onChange}
-              value={searchTerm}
-              autoComplete="off"
-              onKeyDown={onKeyDown}
-              autoFocus
-            />
-            <InputGroupAddon addonType="append">
-              <Button
-                color="secondary"
-                className="btn-search-scenario"
-                data-testid="PresetLoaderDialogClearButton"
-                disabled={searchTerm === ''}
-                onClick={() => {
-                  setSearchTerm('')
-                  executeFilter('')
-                }}
-              >
-                <MdClear />
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
-        </Col>
-      </Row>
+    <div className="scenario-loader-list-container">
+      <InputGroup className="scenario-loader-list-input-group">
+        <Input
+          className="scenario-loader-list-search-input"
+          name="search-scenario"
+          data-testid="PresetLoaderDialogInput"
+          placeholder={t('Search')}
+          onChange={onChange}
+          value={searchTerm}
+          autoComplete="off"
+          onKeyDown={onKeyDown}
+          autoFocus
+        />
+        <InputGroupAddon addonType="append">
+          <Button
+            color="secondary"
+            className="btn-search-scenario"
+            data-testid="PresetLoaderDialogClearButton"
+            disabled={searchTerm === ''}
+            onClick={() => {
+              setSearchTerm('')
+              executeFilter('')
+            }}
+          >
+            <MdClear />
+          </Button>
+        </InputGroupAddon>
+      </InputGroup>
 
-      <Row noGutters>
-        <Col>
-          <div className="overflow-y-scroll">
-            {filteredRows.map((item) => (
-              <ScenarioLoaderListItem key={item.value} option={item} onItemClick={onScenarioSelect} />
-            ))}
-          </div>
-        </Col>
-      </Row>
-    </Container>
+      <div className="scenario-loader-list">
+        {filteredRows.map((item) => (
+          <ScenarioLoaderListItem key={item.value} option={item} onItemClick={onScenarioSelect} />
+        ))}
+      </div>
+    </div>
   )
 }

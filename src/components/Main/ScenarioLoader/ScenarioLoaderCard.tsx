@@ -11,7 +11,7 @@ function ScenarioLoaderCard({ header, children }: React.PropsWithChildren<Scenar
   return (
     <Card className="scenario-loader-card">
       <CardHeader className="py-2">{header}</CardHeader>
-      <CardBody>{children}</CardBody>
+      <CardBody className="h-100">{children}</CardBody>
     </Card>
   )
 }

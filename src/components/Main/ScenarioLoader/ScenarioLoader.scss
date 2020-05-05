@@ -44,7 +44,30 @@ $md: map.get($grid-breakpoints, 'md');
   }
 }
 
-.scenario-loader-row {
+.scenario-loader-list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.scenario-loader-list-input-group,
+.scenario-loader-list {
+  display: flex;
+  flex-grow: 1;
+}
+
+.scenario-loader-list-input-group {
+  flex-shrink: 0;
+}
+
+.scenario-loader-list {
+  flex-direction: column;
+  overflow: scroll; /* other browsers */
+  overflow: overlay; /* Chrome */
+}
+
+.scenario-loader-list-item {
   cursor: pointer;
 
   ::selection,
@@ -52,6 +75,18 @@ $md: map.get($grid-breakpoints, 'md');
   :hover {
     background-color: lighten($primary, 33%);
   }
+}
+
+.scenario-loader-uploader-error-list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.scenario-loader-uploader-error-list {
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .preset-loader-button {

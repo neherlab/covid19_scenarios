@@ -16,7 +16,7 @@ export interface ScenarioLoaderListItemProps {
 
 export function ScenarioLoaderListItem({ option, onItemClick }: ScenarioLoaderListItemProps) {
   return (
-    <div className="scenario-loader-row">
+    <div className="scenario-loader-list-item">
       <NavLink
         data-testid="PresetLoaderDialogRowLink"
         onClick={(event) => {

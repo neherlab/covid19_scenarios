@@ -110,34 +110,26 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
   }
 
   return (
-    <>
+    <div className="h-100">
       <ScenarioLoaderUploadInstructionsText />
 
-      <Row noGutters>
-        <Col>
-          <ScenarioLoaderUploadZone onDrop={onDrop} />
-        </Col>
-      </Row>
+      <ScenarioLoaderUploadZone onDrop={onDrop} />
 
-      <Row noGutters>
-        <Col>
-          <If condition={hasErrors}>
-            <Then>
-              <>
-                <h4 className="text-danger">{t(`Errors`)}</h4>
-                <p className="text-danger">{t(`We detected the following errors while processing the file:`)}</p>
-                <section className="overflow-y-auto">
-                  {errors.map((error) => (
-                    <UncontrolledAlert color="danger" className="text-monospace small" key={error}>
-                      {error}
-                    </UncontrolledAlert>
-                  ))}
-                </section>
-              </>
-            </Then>
-          </If>
-        </Col>
-      </Row>
-    </>
+      {hasErrors && (
+        <>
+          <h4 className="text-danger">{t(`Errors`)}</h4>
+          <p className="text-danger">{t(`We detected the following errors while processing the file:`)}</p>
+          <div className="scenario-loader-uploader-error-list-container">
+            <div className="scenario-loader-uploader-error-list">
+              {errors.map((error) => (
+                <UncontrolledAlert color="danger" className="text-monospace small" key={error}>
+                  {error}
+                </UncontrolledAlert>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   )
 }
