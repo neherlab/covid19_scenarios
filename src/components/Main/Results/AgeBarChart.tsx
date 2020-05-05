@@ -82,15 +82,11 @@ export function AgeBarChart({
 
   // Ensure age distribution is normalized
   const Z: number = sumBy(ageDistribution, ({ population }) => population)
-  const normAgeDistribution: Record<string, number> = {}
-  Object.keys(ageDistribution).forEach((k) => {
-    // @ts-ignore
-    normAgeDistribution[k] = ageDistribution[k] / Z
-  })
+  const normAgeDistribution = ageDistribution.map((d) => d.population / Z)
+  const ages = ageDistribution.map((d) => d.ageGroup)
 
-  const ages = Object.keys(normAgeDistribution)
   const lastDataPoint = data.trajectory.middle[data.trajectory.middle.length - 1]
-  const plotData = ages.map((age) => ({
+  const plotData = ages.map((age, i) => ({
     name: age,
     fraction: Math.round(normAgeDistribution[age] * 1000) / 10,
     peakSevere: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.severe[age]))),
