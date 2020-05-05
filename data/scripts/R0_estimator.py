@@ -21,8 +21,10 @@ def smooth(data, as_int=False, nb_pts=9, order=3):
     smoothed = copy.deepcopy(data)
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if smoothed[ii] is not None:
-            np.put(smoothed[ii], np.array(range(len(smoothed[ii])))[~np.isnan(smoothed[ii])],
-                    savgol_filter(smoothed[ii][~np.isnan(smoothed[ii])], nb_pts, order, mode="interp"))
+            good_idx = ~np.isnan(smoothed[ii])
+            np.put(smoothed[ii], np.where(good_idx)[0],
+                    savgol_filter(smoothed[ii][good_idx], nb_pts, order,
+                                  mode="interp" if np.sum(good_idx)>nb_pts else "mirror"))
             if as_int:
                 smoothed[ii] = np.round(smoothed[ii]).astype(int)
     return smoothed
@@ -38,12 +40,12 @@ def get_log(data):
     return log_data
 
 
-def log_smooth(data):
+def log_smooth(data, nb_pts=7):
     '''
     smooth the logarithm in two-week windows and return the exponential
     '''
     log_smooth = empty_data_list()
-    smoothed_log_diff = smooth(get_log(data), as_int=False, nb_pts=15, order=1)
+    smoothed_log_diff = smooth(get_log(data), as_int=False, nb_pts=nb_pts, order=1)
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if smoothed_log_diff[ii] is not None:
             log_smooth[ii] = np.ma.exp(smoothed_log_diff[ii])
