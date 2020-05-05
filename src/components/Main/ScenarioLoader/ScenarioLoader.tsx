@@ -48,24 +48,16 @@ export function ScenarioLoader({
 
       <ModalBody>
         <Row noGutters>
-          <Col>
-            <Row noGutters>
-              <Col className="scenario-loader-section px-1 py-1" md={6}>
-                <ScenarioLoaderCard header={<h3 className="text-center">{t(`Search predefined scenario`)}</h3>}>
-                  <ScenarioLoaderList items={scenarioOptions} onScenarioSelect={onScenarioSelect} />
-                </ScenarioLoaderCard>
-              </Col>
+          <Col className="scenario-loader-section px-1 py-1" md={6}>
+            <ScenarioLoaderCard header={<h3 className="text-center">{t(`Search predefined scenario`)}</h3>}>
+              <ScenarioLoaderList items={scenarioOptions} onScenarioSelect={onScenarioSelect} />
+            </ScenarioLoaderCard>
+          </Col>
 
-              <Col className="scenario-loader-section px-1 py-1" md={6}>
-                <ScenarioLoaderCard header={<h3 className="text-center">{t(`Load custom scenario`)}</h3>}>
-                  <ScenarioLoaderUploader
-                    setSeverity={setSeverity}
-                    scenarioDispatch={scenarioDispatch}
-                    close={onClose}
-                  />
-                </ScenarioLoaderCard>
-              </Col>
-            </Row>
+          <Col className="scenario-loader-section px-1 py-1" md={6}>
+            <ScenarioLoaderCard header={<h3 className="text-center">{t(`Load custom scenario`)}</h3>}>
+              <ScenarioLoaderUploader setSeverity={setSeverity} scenarioDispatch={scenarioDispatch} close={onClose} />
+            </ScenarioLoaderCard>
           </Col>
         </Row>
       </ModalBody>

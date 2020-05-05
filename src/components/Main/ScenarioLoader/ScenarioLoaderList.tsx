@@ -89,7 +89,7 @@ export function ScenarioLoaderList({ items, onScenarioSelect }: ScenarioLoaderLi
         </InputGroupAddon>
       </InputGroup>
 
-      <div className="scenario-loader-list">
+      <div className="mt-2 scenario-loader-list">
         {filteredRows.map((item) => (
           <ScenarioLoaderListItem key={item.value} option={item} onItemClick={onScenarioSelect} />
         ))}
