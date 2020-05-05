@@ -3,6 +3,7 @@
 @import '../../../styles/variables';
 @import '../../../styles/bootstrap-variables';
 
+$xl: map.get($grid-breakpoints, 'xl');
 $lg: map.get($grid-breakpoints, 'lg');
 $md: map.get($grid-breakpoints, 'md');
 
@@ -10,6 +11,10 @@ $md: map.get($grid-breakpoints, 'md');
   @media screen and (min-width: $md) {
     width: 90vw;
     max-width: 1200px;
+  }
+
+  .modal-header {
+    padding: 0.45em 0.85em;
   }
 
   @media screen and (max-width: $md) {
@@ -33,13 +38,12 @@ $md: map.get($grid-breakpoints, 'md');
       left: 0;
       z-index: 10000;
       width: 99vw;
-      padding: 0.5em 1em;
       background-color: $body-bg;
     }
 
     .modal-body {
       padding: 0;
-      margin-top: 55px;
+      margin-top: 45px;
     }
   }
 }
