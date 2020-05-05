@@ -14,8 +14,7 @@ required:
 
 properties:
   schemaVer:
-    type: string
-    const: 2.0.0
+    $ref: '_SchemaVer#'
 
   scenarioData:
     $ref: 'ScenarioData#'
