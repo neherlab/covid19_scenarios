@@ -90,7 +90,11 @@ $md: map.get($grid-breakpoints, 'md');
   flex-direction: column;
 }
 
-.scenario-loader-list-input-group,
+.scenario-loader-list-input-group {
+  display: flex;
+  flex-grow: 0;
+}
+
 .scenario-loader-list {
   display: flex;
   flex-grow: 1;
