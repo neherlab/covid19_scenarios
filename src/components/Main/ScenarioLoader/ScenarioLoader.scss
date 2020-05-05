@@ -143,6 +143,7 @@ $md: map.get($grid-breakpoints, 'md');
 
 .scenario-loader-uploader-error-list-item {
   margin: 0.25em 0;
+  overflow-wrap: anywhere;
 }
 
 .preset-loader-button {
