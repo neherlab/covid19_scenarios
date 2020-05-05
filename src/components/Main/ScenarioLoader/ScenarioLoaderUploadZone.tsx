@@ -20,12 +20,12 @@ export function ScenarioLoaderUploadZone({ onDrop }: ScenarioLoaderUploadZonePro
       <input type="file" {...getInputProps()} />
 
       <div className={`upload-zone ${activeClass}`}>
-        <Row noGutters className="mt-5 mb-5">
+        <Row noGutters>
           <Col className="d-flex w-100">
             <MdFileUpload className="upload-icon mx-auto" size={50} />
           </Col>
         </Row>
-        <Row noGutters className="mb-5">
+        <Row noGutters>
           <Col>
             <p className="text-center">{t('Drag and drop a Scenario JSON File here')}</p>
             <p className="text-center">{t('-or-')}</p>
