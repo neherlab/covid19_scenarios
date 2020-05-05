@@ -1,6 +1,7 @@
 require('./config/dotenv')
 
 module.exports = {
+  defaultSeverity: 'warning',
   extends: [
     'stylelint-config-standard',
     'stylelint-config-css-modules',
@@ -30,11 +31,6 @@ module.exports = {
     'plugin/stylelint-no-indistinguishable-colors': true,
     'prettier/prettier': true,
     'selector-max-type': null,
-    'no-descending-specificity': [
-      true,
-      {
-        ignore: ['selectors-within-list'], // DOM Limitations
-      },
-    ],
+    'no-descending-specificity': [true, { ignore: ['selectors-within-list'] }],
   },
 }
