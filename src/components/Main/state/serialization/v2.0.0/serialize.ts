@@ -90,4 +90,4 @@ function deserialize(input: string): SerializableData {
   }
 }
 
-export default { schemaVer: { serialize, deserialize } }
+export default { [schemaVer]: { serialize, deserialize } }
