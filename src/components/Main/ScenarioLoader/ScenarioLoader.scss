@@ -8,18 +8,37 @@ $md: map.get($grid-breakpoints, 'md');
 
 #scenario-loader-modal {
   @media screen and (max-width: $md) {
+    margin: 0;
+    padding: 0;
+
     .modal-content {
-      position: fixed;
+      margin: 0;
+      padding: 0;
+      position: absolute;
       top: 0;
-      right: 0;
-      left: 0;
-      overflow-y: scroll;
+      //right: 0;
+      //left: 0;
+      overflow: scroll;
+      overflow: overlay;
     }
+
+    width: 100vw;
+    height: 100vh;
   }
 
   @media screen and (min-width: $md) {
     width: 90vw;
     max-width: 1200px;
+  }
+
+  @media screen and (max-width: $md) {
+    .modal-header {
+      padding: 0.5em 1em;
+    }
+
+    .modal-body {
+      padding: 0;
+    }
   }
 }
 
@@ -32,15 +51,24 @@ $md: map.get($grid-breakpoints, 'md');
     background-color: $white;
     border-width: 0;
     box-shadow: 1px 1px 3px 3px $gray-400;
-  }
-
-  @media screen and (max-width: $md) {
-    height: 75vh;
-    margin-bottom: 4px;
+    margin: 0 auto;
   }
 
   @media screen and (min-width: $md) {
     height: 85vh;
+  }
+
+  @media screen and (max-width: $md) {
+    &.scenario-loader-card-list {
+      height: 75vh;
+      margin-bottom: 4px;
+    }
+
+    &.scenario-loader-card-uploader {
+      min-height: 50vh;
+      margin: 0;
+      margin-bottom: 4px;
+    }
   }
 }
 
