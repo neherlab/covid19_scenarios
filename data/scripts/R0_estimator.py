@@ -81,7 +81,7 @@ def get_daily_counts(data):
     return diff_data
 
 
-def get_growth_rate(data, step=3):
+def get_growth_rate(data, step=7):
     '''
     take log derivative of the data over time intervals of step.
     pad overhang with nan
@@ -126,7 +126,7 @@ def stair_fits(time, data, nb_value=3):
             stair_fits[ii] = None
     return stair_fits
 
-def get_Re_guess(time, cases, step=4, extremal_points=7):
+def get_Re_guess(time, cases, step=7, extremal_points=10):
     #R_effective
     diff_data = get_daily_counts(cases)
     data_log_smoothed = log_smooth(diff_data)

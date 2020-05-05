@@ -293,14 +293,14 @@ def set_mitigation(cases, scenario, fit_params):
                 level_idx = level[0]
                 cutoff_str = valid_cases[level_idx]["time"][:10]
                 cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
-            
-            scenario.containment.mitigation_intervals.append(MitigationInterval(
-                name=name,
-                tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
-                id=uuid4(),
-                tMax=scenario.simulation.simulation_time_range.t_max + timedelta(1),
-                color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=report_errors(round(100*val), 0, 100)))
+
+                scenario.containment.mitigation_intervals.append(MitigationInterval(
+                    name=name,
+                    tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
+                    id=uuid4(),
+                    tMax=scenario.simulation.simulation_time_range.t_max + timedelta(1),
+                    color=mitigation_colors.get(name, "#cccccc"),
+                    mitigationValue=report_errors(round(100*val), 0, 100)))
 
 
 # ------------------------------------------------------------------------
