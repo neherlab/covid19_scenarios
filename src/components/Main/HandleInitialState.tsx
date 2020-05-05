@@ -11,7 +11,7 @@ import type { SeverityDistributionDatum } from '../../algorithms/types/Param.typ
 import { State as AppState } from '../../state/reducer'
 
 import { scenarioNames } from './state/getScenario'
-import { dataFromUrl } from './state/serialize'
+import { dataFromUrl } from './state/serialization/serialize'
 
 import { defaultScenarioState, State } from './state/state'
 

@@ -7,7 +7,7 @@ import { State } from '../../components/Main/state/state'
 import type { SeverityDistributionDatum } from '../types/Param.types'
 import type { AlgorithmResult } from '../types/Result.types'
 
-import { serialize } from '../../components/Main/state/serialize'
+import { serialize } from '../../components/Main/state/serialization/serialize'
 
 import { serializeTrajectory } from '../model'
 

@@ -8,13 +8,12 @@ import type { Shareable } from '../../../../../algorithms/types/Param.types'
 
 import validateShareable, { errors } from '../../../../../.generated/validateShareable'
 
-import { toExternal, toInternal } from '../../getScenario'
+import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from '../errors'
 
-import {
-  SerializableData,
-  DeserializationErrorValidationFailed,
-  DeserializationErrorConversionFailed,
-} from '../../serialize'
+import { toExternal, toInternal } from '../../getScenario'
+import { SerializableData } from '../SerializableData'
+
+const schemaVer = '2.0.0'
 
 function serialize({
   scenario,
@@ -25,7 +24,7 @@ function serialize({
   severityName,
 }: SerializableData): string {
   const shareable: Shareable = {
-    schemaVer: '2.0.0',
+    schemaVer,
     scenarioData: {
       name: scenarioName,
       data: toExternal(scenario),
@@ -91,4 +90,4 @@ function deserialize(input: string): SerializableData {
   }
 }
 
-export default { serialize, deserialize }
+export default { schemaVer: { serialize, deserialize } }

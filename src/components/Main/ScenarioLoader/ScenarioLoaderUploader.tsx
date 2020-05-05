@@ -11,7 +11,8 @@ import { appendDash } from '../../../helpers/appendDash'
 import { readFile, FileReaderError } from '../../../helpers/readFile'
 
 import { setStateData } from '../state/actions'
-import { deserialize, DeserializationError } from '../state/serialize'
+import { DeserializationError } from '../state/serialization/errors'
+import { deserialize } from '../state/serialization/serialize'
 
 import { ScenarioLoaderUploadZone } from './ScenarioLoaderUploadZone'
 

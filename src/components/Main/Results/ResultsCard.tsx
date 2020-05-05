@@ -9,7 +9,7 @@ import type { CaseCountsDatum, SeverityDistributionDatum } from '../../../algori
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 
-import { dataToURL } from '../state/serialize'
+import { dataToURL } from '../state/serialization/serialize'
 import { State } from '../state/state'
 
 import LinkButton from '../../Buttons/LinkButton'
