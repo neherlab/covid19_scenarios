@@ -38,7 +38,7 @@ export function ScenarioLoaderModalButton({
         disabled={disabled}
         onClick={() => setShowDialog(true)}
       >
-        {t('Choose')}
+        {t('Load')}
       </Button>
 
       <ScenarioLoader
