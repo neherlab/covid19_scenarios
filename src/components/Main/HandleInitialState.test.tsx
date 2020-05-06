@@ -63,7 +63,7 @@ describe('HandleInitialState', () => {
   })
 
   it('retrieves state from the URL', () => {
-    const { getByText, debug } = render(
+    const { getByText } = render(
       <HandleInitialStateTestWrapper
         location={
           {
@@ -75,8 +75,6 @@ describe('HandleInitialState', () => {
         component={({ initialState }) => <span>{initialState.scenarioState.current}</span>}
       />,
     )
-
-    debug()
 
     expect(getByText('Italy')).toBeInTheDocument()
   })
