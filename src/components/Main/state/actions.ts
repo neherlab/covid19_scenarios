@@ -15,7 +15,8 @@ export interface SetScenarioParams {
   name: string
 }
 
-export const setScenario = action<SetScenarioParams>('SET_SCENARIO')
+export const renameCurrentScenario = action<SetScenarioParams>('RENAME_CURRENT_SCENARIO')
+export const setScenario = action<SetScenarioParams>('SET_SCENARIO_DATA')
 
 export interface SetPopulationData {
   data: ScenarioDatumPopulation

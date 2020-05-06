@@ -7,7 +7,7 @@ import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
 
-import { setScenario } from '../state/actions'
+import { setScenario, renameCurrentScenario } from '../state/actions'
 import { State } from '../state/state'
 
 import { ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
@@ -22,6 +22,7 @@ import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
+import { ScenarioTitle } from './ScenarioTitle'
 
 export function getColumnSizes(areResultsMaximized: boolean) {
   if (areResultsMaximized) {
@@ -58,6 +59,10 @@ function ScenarioCard({
 
   const title: string = scenarioState.current
 
+  function handleScenarioRename(newScenario: string) {
+    scenarioDispatch(renameCurrentScenario({ name: newScenario }))
+  }
+
   const presetLoader = useMemo(() => {
     function handleChangeScenario(newScenario: string) {
       scenarioDispatch(setScenario({ name: newScenario }))
@@ -82,11 +87,11 @@ function ScenarioCard({
       controls={presetLoader}
     >
       <>
-        <Row>
-          <Col xl={12} className="my-2">
-            <h1>{title}</h1>
-          </Col>
-        </Row>
+        {/* <Row> */}
+        {/*  <Col xl={12} className="my-2"> */}
+        <ScenarioTitle title={title} onRename={handleScenarioRename} />
+        {/* </Col> */}
+        {/* </Row> */}
         <Row>
           <ColCustom {...colPopulation} className="my-2">
             <ScenarioCardPopulation errors={errors} touched={touched} />

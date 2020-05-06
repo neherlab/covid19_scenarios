@@ -12,6 +12,7 @@ import {
   setScenario,
   setAgeDistributionData,
   setStateData,
+  renameCurrentScenario,
 } from './actions'
 
 import { getScenario } from './getScenario'
@@ -41,6 +42,12 @@ function maybeAdd<T>(where: T[], what: T): T[] {
  *
  */
 export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
+  .withHandling(
+    immerCase(renameCurrentScenario, (draft, { name }) => {
+      draft.current = name
+    }),
+  )
+
   .withHandling(
     immerCase(setScenario, (draft, { name }) => {
       draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
