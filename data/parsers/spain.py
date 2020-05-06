@@ -91,7 +91,10 @@ def parse():
                 d[cols.index('icu')] = None
 
     # For totals, we actually only use the recovered data in the end, as hosp+icu are None, and cases and deaths are taken from ecdc data
-    regions['Spain'] = regions['ESP-Total']
-    del regions['ESP-Total']
-    
+    try:
+        regions['Spain'] = regions['ESP-Total']
+        del regions['ESP-Total']
+    except:
+        print("Spain totals don't exist")
+
     store_data(regions, 'spain', cols)
