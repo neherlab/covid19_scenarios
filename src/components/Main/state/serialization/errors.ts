@@ -51,7 +51,7 @@ export class DeserializationErrorValidationFailed extends DeserializationError {
   public errors?: string[]
 
   public constructor(errors?: string[]) {
-    super(`when deserializing: validation failed:\n${errors?.map(appendDash)?.join('\n')}`)
+    super(`when deserializing: validation failed:\n${errors?.map(appendDash).join('\n')}`)
     this.errors = errors
   }
 }

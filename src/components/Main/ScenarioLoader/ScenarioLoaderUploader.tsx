@@ -56,7 +56,7 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
     } else if (error instanceof FileReaderError) {
       setErrors((prevErrors) => [...prevErrors, t('Unable to read file.')])
     } else if (error instanceof DeserializationError) {
-      const errors = error?.errors
+      const { errors } = error
       if (errors && errors.length > 0) {
         setErrors((prevErrors) => [...prevErrors, ...errors])
       }

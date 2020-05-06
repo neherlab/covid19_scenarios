@@ -1,4 +1,4 @@
-import type { AgeDistributionDatum } from '../.generated/types'
+import type { AgeDistributionDatum } from './types/Param.types'
 
 import { getPopulationParams, infectionRate, initializePopulation } from './initialize'
 
