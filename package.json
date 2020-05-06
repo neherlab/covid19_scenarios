@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "clear": "node lib/clear.js",
-    "schema:mkdir": "mkdirp 'src/.generated' 'data/generated'",
-    "schema:clean": "rimraf 'src/.generated{*,.*}' 'data/generated/{*,.*}'",
+    "schema:mkdir": "mkdirp 'src/.generated/latest' 'data/generated'",
+    "schema:clean": "rimraf 'src/.generated/latest/{*,.*}' 'data/generated/{*,.*}'",
     "schema:totypes": "yarn babel-node --extensions \".ts\" tools/generateTypes.ts",
     "dev": "nodemon --config config/nodemon/dev.json",
     "dev:start": "yarn install && yarn schema:totypes && yarn dev:nowatch || cd .",

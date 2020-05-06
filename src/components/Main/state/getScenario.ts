@@ -2,7 +2,7 @@ import { omit } from 'lodash'
 
 import { v4 as uuidv4 } from 'uuid'
 
-import validateScenarioArray, { errors } from '../../../.generated/validateScenarioArray'
+import validateScenarioArray, { errors } from '../../../.generated/latest/validateScenarioArray'
 
 import type {
   MitigationInterval,

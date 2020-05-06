@@ -6,7 +6,7 @@ import ajvLocalizers from 'ajv-i18n'
 import { Convert } from '../../../../../algorithms/types/Param.types'
 import type { Shareable } from '../../../../../algorithms/types/Param.types'
 
-import validateShareable, { errors } from '../../../../../.generated/validateShareable'
+import validateShareable, { errors } from '../../../../../.generated/latest/validateShareable'
 
 import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from '../errors'
 

@@ -9,7 +9,7 @@ import type {
   ScenarioDatumEpidemiological,
   ScenarioDatumPopulation,
   ScenarioDatumSimulation,
-} from '../../.generated/types'
+} from '../../.generated/latest/types'
 
 import type { ScenarioDatum, MitigationInterval, ScenarioDatumMitigation } from './restricted/ScenarioDatum'
 
@@ -24,11 +24,11 @@ export type {
   SeverityDistributionData,
   SeverityDistributionDatum,
   Shareable,
-} from '../../.generated/types'
+} from '../../.generated/latest/types'
 
-export type { DateRange, NumericRangeNonNegative, PercentageRange } from '../../.generated/types'
+export type { DateRange, NumericRangeNonNegative, PercentageRange } from '../../.generated/latest/types'
 
-export { Convert, AgeGroup } from '../../.generated/types'
+export { Convert, AgeGroup } from '../../.generated/latest/types'
 
 export type ScenarioArray = ScenarioArrayMutable
 export type ScenarioData = ScenarioDataMutable

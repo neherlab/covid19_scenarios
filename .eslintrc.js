@@ -154,11 +154,11 @@ module.exports = {
       'error',
       {
         paths: [
-          './.generated/types',
-          '../../.generated/types',
-          '../../../.generated/types',
-          '../../../../.generated/types',
-          '../../../../../.generated/types',
+          './.generated/latest/types',
+          '../../.generated/latest/types',
+          '../../../.generated/latest/types',
+          '../../../../.generated/latest/types',
+          '../../../../../.generated/latest/types',
           './algorithms/types/restricted/ScenarioDatumInternal',
           '../algorithms/types/restricted/ScenarioDatumInternal',
           '../../algorithms/types/restricted/ScenarioDatumInternal',

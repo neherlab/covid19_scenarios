@@ -1,5 +1,5 @@
 import { Convert, SeverityDistributionArray, SeverityDistributionData } from '../../../algorithms/types/Param.types'
-import validateSeverityDistributionArray, { errors } from '../../../.generated/validateSeverityDistributionArray'
+import validateSeverityDistributionArray, { errors } from '../../../.generated/latest/validateSeverityDistributionArray'
 import severityRaw from '../../../assets/data/severityDistributions.json'
 
 function validate(): SeverityDistributionData[] {

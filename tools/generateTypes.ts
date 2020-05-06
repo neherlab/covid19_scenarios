@@ -108,7 +108,7 @@ async function ajvGenerate(schemasRoot: string, schemaFilenames: string[], outpu
 export default async function generateTypes() {
   const { moduleRoot } = findModuleRoot()
   const schemasRoot = path.join(moduleRoot, 'schemas')
-  const tsOutputDir = path.join(moduleRoot, 'src', '.generated')
+  const tsOutputDir = path.join(moduleRoot, 'src', '.generated', 'latest')
   const pyOutputDir = path.join(moduleRoot, 'data', 'generated')
   const tsOutput = path.join(tsOutputDir, 'types.ts')
   const pyOutput = path.join(pyOutputDir, 'types.py')

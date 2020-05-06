@@ -1,5 +1,5 @@
 import { AgeDistributionArray, AgeDistributionData, Convert } from '../../../algorithms/types/Param.types'
-import validateAgeDistributionArray, { errors } from '../../../.generated/validateAgeDistributionArray'
+import validateAgeDistributionArray, { errors } from '../../../.generated/latest/validateAgeDistributionArray'
 import ageDistributionRaw from '../../../assets/data/ageDistribution.json'
 
 function validate(): AgeDistributionData[] {
