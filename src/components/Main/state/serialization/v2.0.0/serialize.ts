@@ -1,4 +1,4 @@
-import { trim } from 'lodash'
+import { trim, isEqual } from 'lodash'
 
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
@@ -72,6 +72,20 @@ function deserialize(input: string): SerializableData {
   try {
     const shareable = Convert.toShareable(JSON.stringify(shareableDangerous))
     const { scenarioData, ageDistributionData, severityDistributionData } = shareable
+
+    if (scenarioData.data.population.ageDistributionName !== ageDistributionData.name) {
+      throw new DeserializationErrorValidationFailed([
+        '/scenarioData/data/population/ageDistributionName should be equal to /ageDistributionData/name',
+      ])
+    }
+
+    const ageDistributionCategories = ageDistributionData.data.map(({ ageGroup }) => ageGroup)
+    const severityCategories = severityDistributionData.data.map(({ ageGroup }) => ageGroup)
+    if (!isEqual(ageDistributionCategories, severityCategories)) {
+      throw new DeserializationErrorValidationFailed([
+        'arrays /ageDistributionData/data[] and /severityDistributionData/data[] should contain the same number of the same values for ageGroup',
+      ])
+    }
 
     return {
       scenario: toInternal(scenarioData.data),
