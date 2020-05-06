@@ -134,8 +134,9 @@ def get_Re_guess(time, cases, step=7, extremal_points=10, only_deaths=False):
     # growth_rate = get_growth_rate(diff_data, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
     fits = stair_fits(time, R0_by_day, nb_value=extremal_points)
+    if only_deaths:
+        fits[Sub.D][2] -= 9
     return {"fit" : fits[Sub.D] if only_deaths else combine_fits(fits),
-    # return {"fits" : fits,
             "diff_data": diff_data,
             "diff_data_smoothed": data_log_smoothed,
             "R0_by_day": R0_by_day}
@@ -190,7 +191,7 @@ if __name__ == "__main__":
     from scripts.model import load_data
     case_counts = tsv.parse()
 
-    country_list = ["Germany"]
+    country_list = ["FRA-Auvergne-Rhône-Alpes"]
     # country_list = ["Germany", "Switzerland", "Italy"]
     # country_list = ["United States of America", "Spain", "Germany", "Italy", "Belgium",
     # "United Kingdom of Great Britain and Northern Ireland", "CHE-Zürich", "CHE-Basel-Stadt",
@@ -198,7 +199,7 @@ if __name__ == "__main__":
 
     for ci, c in enumerate(country_list):
         time, data = load_data(c, case_counts[c])
-        res = get_Re_guess(time, data, extremal_points=10)
+        res = get_Re_guess(time, data, extremal_points=10, only_deaths=True)
         fit = res["fit"]
         R0_by_day = res["R0_by_day"]
         dates = [datetime.fromordinal(x) for x in time]
