@@ -24,6 +24,8 @@ import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
 import { ScenarioTitle } from './ScenarioTitle'
 
+import './ScenarioTitle.scss'
+
 export function getColumnSizes(areResultsMaximized: boolean) {
   if (areResultsMaximized) {
     return { colPopulation: { xxl: 6 }, colEpidemiological: { xxl: 6 } }
@@ -87,11 +89,11 @@ function ScenarioCard({
       controls={presetLoader}
     >
       <>
-        {/* <Row> */}
-        {/*  <Col xl={12} className="my-2"> */}
-        <ScenarioTitle title={title} onRename={handleScenarioRename} />
-        {/* </Col> */}
-        {/* </Row> */}
+        <Row>
+          <Col xl={12} className="my-2">
+            <ScenarioTitle title={title} onRename={handleScenarioRename} />
+          </Col>
+        </Row>
         <Row>
           <ColCustom {...colPopulation} className="my-2">
             <ScenarioCardPopulation errors={errors} touched={touched} />

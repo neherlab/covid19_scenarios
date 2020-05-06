@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash'
 import classNames from 'classnames'
 import { If, Then, Else } from 'react-if'
 import { Button, Input, InputGroup, InputGroupAddon } from 'reactstrap'
-import { MdEdit, MdCheck } from 'react-icons/md'
+import { MdEdit, MdCheck, MdCancel } from 'react-icons/md'
 
 export interface ScenarioTitleProps {
   title: string
@@ -15,10 +15,11 @@ export interface ScenarioTitleProps {
 function ScenarioTitle({ title, onRename }: ScenarioTitleProps) {
   const inputRef: React.RefObject<HTMLInputElement | undefined> = useRef(undefined)
   const [isEditing, setIsEditing] = useState(false)
-  const [name, setName] = useState(title)
+  const [currentName, setCurrentName] = useState(title)
+  const [previousName, setPreviousName] = useState(title)
 
   useEffect(() => {
-    setName(title)
+    setCurrentName(title)
   }, [title])
 
   function handleStartEditing() {
@@ -35,18 +36,39 @@ function ScenarioTitle({ title, onRename }: ScenarioTitleProps) {
   }
 
   function handleKeyDown(event: React.KeyboardEvent) {
-    if (isEditing && event.keyCode === 27) {
-      event.preventDefault()
-      handleRename()
+    if (isEditing) {
+      if (event.keyCode === 13 /* Enter */) {
+        event.preventDefault()
+        handleRename()
+      } else if (event.keyCode === 27 /* Escape */) {
+        event.preventDefault()
+        handleCancel()
+      }
     }
   }
 
   function handleRename() {
-    if (!name || isEmpty(name)) {
+    if (!currentName || isEmpty(currentName)) {
       return
     }
 
-    onRename(name)
+    onRename(currentName)
+    setPreviousName(currentName)
+    setIsEditing(false)
+
+    const input = inputRef?.current
+    if (!input) {
+      return
+    }
+
+    // deselect and remove focus
+    window?.getSelection()?.empty()
+    window?.getSelection()?.removeAllRanges()
+    input.blur()
+  }
+
+  function handleCancel() {
+    setCurrentName(previousName)
     setIsEditing(false)
 
     const input = inputRef?.current
@@ -61,15 +83,14 @@ function ScenarioTitle({ title, onRename }: ScenarioTitleProps) {
   }
 
   return (
-    <InputGroup>
+    <InputGroup className="scenario-title-input-group">
       <Input
-        className={classNames('form-control', 'scenario-title-input')}
+        className={classNames('form-control', 'scenario-title-input', !isEditing && 'readonly')}
         style={{ display: 'inline', width: inputRef?.current?.scrollWidth }}
         type="text"
         readOnly={!isEditing}
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-        onBlur={handleRename}
+        value={currentName}
+        onChange={(event) => setCurrentName(event.target.value)}
         onDoubleClick={handleStartEditing}
         onKeyDown={handleKeyDown}
         // NOTE: This is a bug in @types/reactstrap typings:
@@ -81,13 +102,24 @@ function ScenarioTitle({ title, onRename }: ScenarioTitleProps) {
       <InputGroupAddon addonType="append">
         <If condition={!isEditing}>
           <Then>
-            <Button className="scenario-title-btn-edit" onClick={handleStartEditing}>
-              <MdEdit />
+            <Button
+              color="transparent"
+              className="scenario-title-btn scenario-title-btn-edit"
+              onClick={handleStartEditing}
+            >
+              <MdEdit className="scenario-title-icon scenario-title-icon-edit" />
             </Button>
           </Then>
           <Else>
-            <Button className="scenario-title-btn-confirm" onClick={handleRename}>
-              <MdCheck />
+            <Button color="transparent" className="scenario-title-btn scenario-title-btn-cancel" onClick={handleCancel}>
+              <MdCancel className="scenario-title-icon scenario-title-icon-cancel" />
+            </Button>
+            <Button
+              color="transparent"
+              className="scenario-title-btn scenario-title-btn-confirm"
+              onClick={handleRename}
+            >
+              <MdCheck className="scenario-title-icon scenario-title-icon-confirm" />
             </Button>
           </Else>
         </If>
