@@ -147,7 +147,9 @@ $md: map.get($grid-breakpoints, 'md');
   overflow-wrap: anywhere;
 }
 
-.preset-loader-button {
+.scenario-loader-button {
+  text-transform: uppercase;
+
   @media screen and (max-width: $lg) {
     width: 100%;
   }

@@ -31,7 +31,7 @@ export function ScenarioLoaderModalButton({
   return (
     <>
       <Button
-        className="preset-loader-button"
+        className="scenario-loader-button"
         color="primary"
         size="sm"
         data-testid="PresetLoaderButton"
