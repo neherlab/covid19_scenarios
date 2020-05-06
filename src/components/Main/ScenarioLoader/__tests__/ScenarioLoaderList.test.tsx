@@ -1,162 +1,73 @@
 import React from 'react'
 
 import { noop } from 'lodash'
-import { cleanup, fireEvent, render, RenderResult, wait } from '@testing-library/react'
-import { AnyAction } from 'typescript-fsa'
+import { cleanup, fireEvent, render } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import type { Optional } from 'utility-types'
 
-import type { SeverityDistributionDatum } from '../../../../algorithms/types/Param.types'
+import type { ScenarioOption } from '../ScenarioOption'
 
-import type { ScenarioOption } from '../ScenarioLoaderListItem'
+import { ScenarioLoaderList, ScenarioLoaderListProps } from '../ScenarioLoaderList'
 
-import { ScenarioLoader } from '../ScenarioLoader'
-
-const DATA: ScenarioOption[] = [
+const scenarioOptions: ScenarioOption[] = [
   {
-    label: 'First row',
+    label: 'United States of America',
+    value: '0',
+  },
+  {
+    label: 'Italy',
     value: '1',
   },
   {
-    label: 'Second row',
+    label: 'ITA-Lombardia',
     value: '2',
   },
   {
-    label: 'Third row',
+    label: 'Germany',
     value: '3',
-  },
-  {
-    label: 'ABC',
-    value: '4',
   },
 ]
 
+function renderScenarioList({
+  items = scenarioOptions,
+  onScenarioSelect = noop,
+}: Optional<ScenarioLoaderListProps> = {}) {
+  return render(<ScenarioLoaderList items={items} onScenarioSelect={onScenarioSelect} />)
+}
+
 describe('ScenarioLoaderList', () => {
-  let onLoadButtonClick: (id: string) => void
-  let onClose: () => void
-  let wrapper: RenderResult
+  afterAll(cleanup)
 
-  let setSeverity: (severity: SeverityDistributionDatum[]) => void
-  let scenarioDispatch: (action: AnyAction) => void
-
-  beforeEach(() => {
-    console.warn = noop
-    console.error = noop
-
-    onLoadButtonClick = jest.fn()
-    onClose = jest.fn()
-    setSeverity = jest.fn()
-    scenarioDispatch = jest.fn()
-
-    wrapper = render(
-      <ScenarioLoader
-        scenarioOptions={DATA}
-        onLoad={onLoadButtonClick}
-        onClose={onClose}
-        visible
-        setSeverity={setSeverity}
-        scenarioDispatch={scenarioDispatch}
-      />,
-    )
-  })
-
-  afterEach(cleanup)
-
-  it('matches snapshot', () => {
-    expect(wrapper.asFragment()).toMatchSnapshot()
-  })
-
-  it('renders title', () => {
-    expect(wrapper.getByText('Change scenario')).not.toBeNull()
-  })
-
-  it('displays scenarios', () => {
-    const loadButtons = wrapper.getAllByTestId('PresetLoaderDialogRowButton')
-
-    expect(wrapper.getByText('Showing 4 of 4 entries')).not.toBeNull()
-    expect(loadButtons).toHaveLength(4)
+  it('displays search query', async () => {
+    const { getByPlaceholderText } = renderScenarioList()
+    const input = getByPlaceholderText('Search')
+    await userEvent.type(input, 'foo')
+    expect(input).toHaveAttribute('value', 'foo')
   })
 
   it('filters scenarios', async () => {
-    const input = wrapper.getByTestId('PresetLoaderDialogInput')
-    let loadButtons
-
-    fireEvent.change(input, { target: { value: 'ABC' } })
-    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
-
-    await wait(() => wrapper.getByText('Showing 1 of 4 entries'))
-
-    loadButtons = wrapper.getAllByTestId('PresetLoaderDialogRowButton')
-    expect(loadButtons).toHaveLength(1)
-
-    const clearButton = wrapper.getByTestId('PresetLoaderDialogClearButton')
-    fireEvent.click(clearButton)
-
-    await wait(() => wrapper.getByText('Showing 4 of 4 entries'))
-
-    loadButtons = wrapper.getAllByTestId('PresetLoaderDialogRowButton')
-
-    expect(loadButtons).toHaveLength(4)
+    const { getByRole, queryByText } = renderScenarioList()
+    const input = getByRole('textbox')
+    await userEvent.type(input, 'ita')
+    expect(queryByText(scenarioOptions[0].label)).not.toBeInTheDocument()
+    expect(queryByText(scenarioOptions[3].label)).not.toBeInTheDocument()
   })
 
-  describe('row button click triggers onLoadButtonClick handler', () => {
-    it('when results not filtered', () => {
-      const loadButton = wrapper.getAllByTestId('PresetLoaderDialogRowButton')
-
-      fireEvent.click(loadButton[0])
-
-      expect(onLoadButtonClick).toHaveBeenCalledWith('1')
-
-      fireEvent.click(loadButton[1])
-
-      expect(onLoadButtonClick).toHaveBeenCalledWith('2')
+  describe('selects clicked scenario', () => {
+    it('when list is not filtered', () => {
+      const onScenarioSelect = jest.fn<void, [string]>()
+      const { getByText } = renderScenarioList({ onScenarioSelect })
+      fireEvent.click(getByText(scenarioOptions[2].label))
+      expect(onScenarioSelect).toHaveBeenCalledWith('2')
     })
 
-    it('when results filtered', async () => {
-      const input = wrapper.getByTestId('PresetLoaderDialogInput')
-
-      fireEvent.change(input, { target: { value: 'ABC' } })
-      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
-
-      await wait(() => wrapper.getByText('Showing 1 of 4 entries'))
-
-      const loadButtons = wrapper.getAllByTestId('PresetLoaderDialogRowButton')
-      fireEvent.click(loadButtons[0])
-
-      expect(onLoadButtonClick).toHaveBeenCalledWith('4')
+    it('when list is filtered', async () => {
+      const onScenarioSelect = jest.fn<void, [string]>()
+      const { getByPlaceholderText, getByText } = renderScenarioList({ onScenarioSelect })
+      const input = getByPlaceholderText('Search')
+      await userEvent.type(input, 'ita')
+      fireEvent.click(getByText('Italy'))
+      expect(onScenarioSelect).toHaveBeenCalledWith('1')
     })
-  })
-
-  describe('row link click triggers onLoadButtonClick handler', () => {
-    it('when results not filtered', () => {
-      const loadButton = wrapper.getAllByTestId('PresetLoaderDialogRowLink')
-
-      fireEvent.click(loadButton[0])
-
-      expect(onLoadButtonClick).toHaveBeenCalledWith('1')
-
-      fireEvent.click(loadButton[1])
-
-      expect(onLoadButtonClick).toHaveBeenCalledWith('2')
-    })
-
-    it('when results filtered', async () => {
-      const input = wrapper.getByTestId('PresetLoaderDialogInput')
-
-      fireEvent.change(input, { target: { value: 'ABC' } })
-      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
-
-      await wait(() => wrapper.getByText('Showing 1 of 4 entries'))
-
-      const loadButtons = wrapper.getAllByTestId('PresetLoaderDialogRowLink')
-      fireEvent.click(loadButtons[0])
-
-      expect(onLoadButtonClick).toHaveBeenCalledWith('4')
-    })
-  })
-
-  it('close button triggers the onClose handler', () => {
-    const closeButton = wrapper.getByTestId('PresetLoaderDialogCloseButton')
-    fireEvent.click(closeButton)
-
-    expect(onClose).toHaveBeenCalled()
   })
 })
