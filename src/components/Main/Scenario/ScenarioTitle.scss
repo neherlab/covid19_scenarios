@@ -1,0 +1,39 @@
+@import '../../../styles/variables';
+@import '../../../styles/bootstrap-variables';
+
+.scenario-title-input {
+  overflow: hidden;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:read-only {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.scenario-title-input-group {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.scenario-title-btn {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.scenario-title-icon {
+  font-size: 1.5em;
+  fill: $gray-600;
+
+  &.scenario-title-icon-cancel {
+    fill: $danger;
+  }
+
+  &.scenario-title-icon-confirm {
+    fill: $success;
+  }
+}

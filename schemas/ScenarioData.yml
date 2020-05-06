@@ -1,0 +1,19 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: ScenarioData
+title: ScenarioData
+
+type: object
+
+additionalProperties: false
+
+required:
+  - name
+  - data
+
+properties:
+  name:
+    type: string
+    minLength: 1
+
+  data:
+    $ref: 'ScenarioDatum#'

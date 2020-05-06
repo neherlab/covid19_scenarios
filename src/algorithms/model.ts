@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import {
   ModelParams,
   SimulationTimePoint,
   InternalCurrentData,
   InternalCumulativeData,
-  UserResult,
+  Trajectory,
   ExportedTimePoint,
 } from './types/Result.types'
 
@@ -61,13 +62,13 @@ function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number): Simulati
   const t2 = pop.time + dt * msPerDay
 
   const k1 = derivative(fluxes(t0, pop, P))
-  const k2 = derivative(fluxes(t1, advanceState(pop, k1, dt / 2, P.ICUBeds), P))
-  const k3 = derivative(fluxes(t1, advanceState(pop, k2, dt / 2, P.ICUBeds), P))
-  const k4 = derivative(fluxes(t2, advanceState(pop, k3, dt, P.ICUBeds), P))
+  const k2 = derivative(fluxes(t1, advanceState(pop, k1, dt / 2, P.icuBeds), P))
+  const k3 = derivative(fluxes(t1, advanceState(pop, k2, dt / 2, P.icuBeds), P))
+  const k4 = derivative(fluxes(t2, advanceState(pop, k3, dt, P.icuBeds), P))
 
   const tdot = sumDerivatives([k1, k2, k3, k4], [1 / 6, 1 / 3, 1 / 3, 1 / 6])
 
-  const state = advanceState(pop, tdot, dt, P.ICUBeds)
+  const state = advanceState(pop, tdot, dt, P.icuBeds)
   state.time = t2.valueOf()
 
   return state
@@ -106,11 +107,15 @@ function advanceState(
   }
 
   // TODO(nnoll): Sort out types
+  // @ts-ignore
   const update = (age, kind, compartment) => {
+    // @ts-ignore
     newPop[kind][compartment][age] = gz(pop[kind][compartment][age] + dt * tdot[kind][compartment][age])
   }
 
+  // @ts-ignore
   const updateAt = (age, kind, compartment, i) => {
+    // @ts-ignore
     newPop[kind][compartment][age][i] = gz(pop[kind][compartment][age][i] + dt * tdot[kind][compartment][age][i])
   }
 
@@ -366,16 +371,20 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
         })
       } else {
         ages.forEach((age, i) => {
+          // @ts-ignore
           tp.current[k][age] = d.current[k][i]
         })
+        // @ts-ignore
         tp.current[k].total = d.current[k].reduce((a, b) => a + b)
       }
     })
 
     Object.keys(tp.cumulative).forEach((k) => {
       ages.forEach((age, i) => {
+        // @ts-ignore
         tp.cumulative[k][age] = d.cumulative[k][i]
       })
+      // @ts-ignore
       tp.cumulative[k].total = d.cumulative[k].reduce((a, b) => a + b, 0)
     })
 
@@ -389,15 +398,29 @@ function title(name: string): string {
   return name === 'critical' ? 'ICU' : name
 }
 
-export function exportSimulation(result: UserResult, ageGroups: string[] = ['total']) {
+export interface SerializeTrajectoryParams {
+  trajectory: Trajectory
+  detailed: boolean
+}
+
+export function serializeTrajectory({ trajectory, detailed }: SerializeTrajectoryParams) {
   // Store parameter values
 
   // Down sample trajectory to once a day.
   // TODO: Make the down sampling interval a parameter
 
+  let ageGroups = ['total']
+  if (detailed) {
+    // FIXME: these keys seem to be numbers. This works, but is not what we want to show in the headers
+    const ageGroupsDetailed = Object.keys(trajectory.middle[0].current.severe)
+
+    // FIXME: does detailed include summary or not?
+    ageGroups = [...ageGroups, ...ageGroupsDetailed]
+  }
+
   const categories = {
-    current: keys(result.middle[0].current),
-    cumulative: keys(result.middle[0].cumulative),
+    current: keys(trajectory.middle[0].current),
+    cumulative: keys(trajectory.middle[0].cumulative),
   }
   const header: string[] = ['time']
 
@@ -424,9 +447,9 @@ export function exportSimulation(result: UserResult, ageGroups: string[] = ['tot
   const tsv = [header.join('\t')]
 
   const seen: Record<string, boolean> = {}
-  const { upper, lower } = result
+  const { upper, lower } = trajectory
 
-  result.middle.forEach((mid, i) => {
+  trajectory.middle.forEach((mid, i) => {
     const t = new Date(mid.time).toISOString().slice(0, 10)
     if (t in seen) {
       return

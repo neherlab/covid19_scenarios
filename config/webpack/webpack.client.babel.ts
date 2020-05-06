@@ -172,7 +172,7 @@ export default {
     publicPath: '/',
     quiet: false,
     logLevel: 'info',
-    clientLogLevel: 'warning',
+    clientLogLevel: 'error',
     writeToDisk: true,
   },
 

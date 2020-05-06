@@ -1,13 +1,13 @@
 import i18next from 'i18next'
-import { scenarioNames, getScenarioData } from './scenarioData'
-import { getCountryAgeDistribution } from './countryAgeDistributionData'
-import { AllParams, AgeDistribution } from '../../../algorithms/types/Param.types'
+import { scenarioNames, getScenario } from './getScenario'
+import { getAgeDistribution } from './getAgeDistribution'
+import { ScenarioDatum, AgeDistributionDatum } from '../../../algorithms/types/Param.types'
 
 export interface State {
   scenarios: string[]
   current: string
-  data: AllParams
-  ageDistribution: AgeDistribution
+  data: ScenarioDatum
+  ageDistribution: AgeDistributionDatum[]
 }
 
 // TODO: Add a default category to export
@@ -18,11 +18,11 @@ export const NONE_COUNTRY_NAME = 'None'
 
 export const defaultScenarioName = DEFAULT_OVERALL_SCENARIO_NAME
 
-const defaultScenarioData = getScenarioData(defaultScenarioName)
+const defaultScenarioData = getScenario(defaultScenarioName)
 
 export const defaultScenarioState: State = {
   scenarios: scenarioNames,
   current: defaultScenarioName,
   data: defaultScenarioData,
-  ageDistribution: getCountryAgeDistribution(defaultScenarioData.population.country),
+  ageDistribution: getAgeDistribution(defaultScenarioData.population.ageDistributionName),
 }
