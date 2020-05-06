@@ -2,12 +2,9 @@ import React from 'react'
 
 import { NavLink } from 'reactstrap'
 
-import './ScenarioLoader.scss'
+import type { ScenarioOption } from './ScenarioOption'
 
-export interface ScenarioOption {
-  label: string
-  value: string
-}
+import './ScenarioLoader.scss'
 
 export interface ScenarioLoaderListItemProps {
   option: ScenarioOption

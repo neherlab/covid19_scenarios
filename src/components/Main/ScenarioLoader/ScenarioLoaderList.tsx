@@ -7,9 +7,10 @@ import { MdClear } from 'react-icons/md'
 import { Button, Input, InputGroup, InputGroupAddon } from 'reactstrap'
 import { useDebouncedCallback } from 'use-debounce'
 
-import './ScenarioLoader.scss'
+import { ScenarioLoaderListItem } from './ScenarioLoaderListItem'
+import type { ScenarioOption } from './ScenarioOption'
 
-import { ScenarioLoaderListItem, ScenarioOption } from './ScenarioLoaderListItem'
+import './ScenarioLoader.scss'
 
 const DEBOUNCE_DELAY = 500
 

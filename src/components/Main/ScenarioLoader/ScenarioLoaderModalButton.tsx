@@ -5,8 +5,8 @@ import type { AnyAction } from 'typescript-fsa'
 import { Button } from 'reactstrap'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import type { ScenarioOption } from './ScenarioOption'
 
-import { ScenarioOption } from './ScenarioLoaderListItem'
 import { ScenarioLoader } from './ScenarioLoader'
 
 import './ScenarioLoader.scss'

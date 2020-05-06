@@ -7,8 +7,7 @@ import type { AnyAction } from 'typescript-fsa'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
-import { ScenarioOption } from './ScenarioLoaderListItem'
-
+import type { ScenarioOption } from './ScenarioOption'
 import { ScenarioLoaderCard } from './ScenarioLoaderCard'
 import { ScenarioLoaderList } from './ScenarioLoaderList'
 import { ScenarioLoaderUploader } from './ScenarioLoaderUploader'
