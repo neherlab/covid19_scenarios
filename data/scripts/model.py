@@ -328,7 +328,7 @@ def load_data(key, ts):
         data[Sub.C].append(tp['icu'] or np.nan)
 
     data = [ np.ma.array(d) if d is not None else d for d in data]
-    good_idx = np.array(case_min <= data[Sub.T])
+    good_idx = np.array(np.logical_or(case_min <= data[Sub.T], case_min <= data[Sub.D]))
 
     for ii in [Sub.D, Sub.T, Sub.H, Sub.C]:
         data[ii] = data[ii][good_idx]
