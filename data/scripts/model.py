@@ -370,11 +370,11 @@ def get_fit_data(days, data_original, confinement_start=None):
 
 
 
-def fit_population_iterative(key, time_points, data, guess=None, second_fit=False):
+def fit_population_iterative(key, time_points, data, guess=None, second_fit=False, FRA=False):
     if data is None or data[Sub.D] is None or len(data[Sub.D]) <= 5:
         return None
 
-    res = get_Re_guess(time_points, data)
+    res = get_Re_guess(time_points, data, only_deaths=FRA)
     fit = res['fit']
     if fit[0]<1 or fit[0]>6 or fit[1]>fit[0] or fit[1]<0:
         return None
