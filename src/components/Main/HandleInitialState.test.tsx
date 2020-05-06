@@ -1,43 +1,46 @@
+import { ConnectedRouter } from 'connected-react-router'
 import React from 'react'
 
 import { render } from '@testing-library/react'
+import { Provider } from 'react-redux'
 
-import { Router } from 'react-router-dom'
-import { createMemoryHistory } from 'history'
+import configureStore from '../../state/store'
 
 import { DEFAULT_OVERALL_SCENARIO_NAME } from './state/state'
 
-import HandleInitialState, { HandleInitialStateProps } from './HandleInitialState'
+import HandleInitialState, { InitialStateComponentProps } from './HandleInitialState'
 
 import { severity } from '../../algorithms/__test_data__/getPopulationParams.input.default'
 
-interface ThisTestProps extends HandleInitialStateProps {
-  testPushURL?: string
+interface ThisTestProps {
+  url?: string
+  location?: Location
+  component: React.FC<InitialStateComponentProps>
 }
 
-const ThisTest = ({ testPushURL, ...props }: ThisTestProps) => {
-  const history = createMemoryHistory()
-  if (testPushURL) {
-    history.push(testPushURL)
-  }
+function HandleInitialStateTestWrapper({ url, location, ...props }: ThisTestProps) {
+  const testLocation = location ?? ({ pathname: url } as Location)
+  const { store, history } = configureStore({ location: testLocation })
 
   return (
-    <Router history={history}>
-      <HandleInitialState {...props} />
-    </Router>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <HandleInitialState {...props} />
+      </ConnectedRouter>
+    </Provider>
   )
 }
 
 describe('HandleInitialState', () => {
   it('renders a component', () => {
-    const { getByText } = render(<ThisTest component={() => <span>wrapped</span>} />)
+    const { getByText } = render(<HandleInitialStateTestWrapper component={() => <span>wrapped</span>} />)
 
     expect(getByText('wrapped')).not.toBeNull()
   })
 
   it('passes initial scenario state', () => {
     const { getByText } = render(
-      <ThisTest
+      <HandleInitialStateTestWrapper
         component={({ initialState }) => (
           <span>
             {initialState.scenarioState.data.population.ageDistributionName} {initialState.isDefault ? 'true' : 'false'}
@@ -51,54 +54,45 @@ describe('HandleInitialState', () => {
 
   it('passes initial severity state', () => {
     const { getByText } = render(
-      <ThisTest component={({ initialState }) => <span>{initialState.severityTable[0].ageGroup}</span>} />,
+      <HandleInitialStateTestWrapper
+        component={({ initialState }) => <span>{initialState.severityTable[0].ageGroup}</span>}
+      />,
     )
 
     expect(getByText(severity[0].ageGroup)).not.toBeNull()
   })
 
-  it('may pull state from the URL', () => {
-    // FIXME: This is not correct. We should not serialize garbage into the DOM.
-    //  This should fail on validation.
-    const { getByText } = render(
-      <ThisTest
-        testPushURL="/path?something_to_deserialize"
-        component={({ initialState }) => (
-          <span>
-            {initialState.scenarioState.current} {initialState.isDefault ? 'true' : 'false'}
-          </span>
-        )}
+  it('retrieves state from the URL', () => {
+    const { getByText, debug } = render(
+      <HandleInitialStateTestWrapper
+        location={
+          {
+            pathname: '/',
+            search:
+              "q=~(ageDistributionData~(data~(~(ageGroup~'0-9~population~4994996)~(ageGroup~'10-19~population~5733447)~(ageGroup~'20-29~population~6103437)~(ageGroup~'30-39~population~6998434)~(ageGroup~'40-49~population~9022004)~(ageGroup~'50-59~population~9567192)~(ageGroup~'60-69~population~7484860)~(ageGroup~'70-79~population~6028907)~(ageGroup~'80*2b~population~4528548))~name~'Italy)~scenarioData~(data~(epidemiological~(hospitalStayDays~3~icuStayDays~14~infectiousPeriodDays~3~latencyDays~3~overflowSeverity~2~peakMonth~0~r0~(begin~3.14~end~3.83)~seasonalForcing~0)~mitigation~(mitigationIntervals~(~(color~'*23bf5b17~name~'Intervention*20*231~timeRange~(begin~'2020-03-08T00*3a00*3a00.000Z~end~'2020-09-01T00*3a00*3a00.000Z)~transmissionReduction~(begin~45~end~55))~(color~'*23666666~name~'Intervention*20*232~timeRange~(begin~'2020-03-21T00*3a00*3a00.000Z~end~'2020-09-01T00*3a00*3a00.000Z)~transmissionReduction~(begin~54~end~66))))~population~(ageDistributionName~'Italy~caseCountsName~'Italy~hospitalBeds~158891~icuBeds~7550~importsPerDay~0.1~initialNumberOfCases~66~populationServed~60431283)~simulation~(numberStochasticRuns~15~simulationTimeRange~(begin~'2020-02-02T00*3a00*3a00.000Z~end~'2020-08-31T00*3a00*3a00.000Z)))~name~'Italy)~schemaVer~'2.0.0~severityDistributionData~(data~(~(ageGroup~'0-9~confirmed~5~critical~5~fatal~30~isolated~0~severe~1)~(ageGroup~'10-19~confirmed~5~critical~10~fatal~30~isolated~0~severe~3)~(ageGroup~'20-29~confirmed~10~critical~10~fatal~30~isolated~0~severe~3)~(ageGroup~'30-39~confirmed~15~critical~15~fatal~30~isolated~0~severe~3)~(ageGroup~'40-49~confirmed~20~critical~20~fatal~30~isolated~0~severe~6)~(ageGroup~'50-59~confirmed~25~critical~25~fatal~40~isolated~0~severe~10)~(ageGroup~'60-69~confirmed~30~critical~35~fatal~40~isolated~0~severe~25)~(ageGroup~'70-79~confirmed~40~critical~45~fatal~50~isolated~0~severe~35)~(ageGroup~'80*2b~confirmed~50~critical~55~fatal~50~isolated~0~severe~50))~name~'China*20CDC))&v=1",
+          } as Location
+        }
+        component={({ initialState }) => <span>{initialState.scenarioState.current}</span>}
       />,
     )
 
-    expect(getByText('?something_to_deserialize false')).not.toBeNull()
+    debug()
+
+    expect(getByText('Italy')).toBeInTheDocument()
   })
 
   it('clears search parameters from the URL', () => {
-    const history = createMemoryHistory()
-    history.push('/somewhere?state')
-    history.push = jest.fn()
+    const { store, history } = configureStore({ location: { pathname: '/', search: '?clearthis' } as Location })
 
     render(
-      <Router history={history}>
-        <HandleInitialState component={() => <span>wrapped</span>} />
-      </Router>,
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <HandleInitialState component={() => <span>wrapped</span>} />
+        </ConnectedRouter>
+      </Provider>,
     )
 
-    expect(history.push).toHaveBeenCalledWith('/')
-  })
-
-  it('may not clear the URL when there is no search', () => {
-    const history = createMemoryHistory()
-    history.push('/somewhere')
-    history.push = jest.fn()
-
-    render(
-      <Router history={history}>
-        <HandleInitialState component={() => <span>wrapped</span>} />
-      </Router>,
-    )
-
-    expect(history.push).not.toHaveBeenCalled()
+    expect(store.getState().router.location.pathname).toBe('/')
+    expect(store.getState().router.location.search).toBe('')
   })
 })

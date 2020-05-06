@@ -4,11 +4,11 @@ import { isEqual, isEmpty } from 'lodash'
 
 import { connect } from 'react-redux'
 import type { Location } from 'history'
-import { push } from 'connected-react-router'
+import { push, Push } from 'connected-react-router'
 
 import type { SeverityDistributionDatum } from '../../algorithms/types/Param.types'
 
-import { State as AppState } from '../../state/reducer'
+import type { State as AppState } from '../../state/reducer'
 
 import { scenarioNames } from './state/getScenario'
 import { dataFromUrl } from './state/serialization/serialize'
@@ -52,18 +52,18 @@ export interface InitialStateComponentProps {
 
 export interface HandleInitialStateProps {
   location: Location
+  push: Push
   component: React.ComponentType<InitialStateComponentProps>
 }
 
-function HandleInitialState({ location, component: Component }: HandleInitialStateProps) {
+function HandleInitialState({ location, push, component: Component }: HandleInitialStateProps) {
   const [scenarioState] = useState<State>(deserializeScenarioFromURL(location))
 
   useEffect(() => {
     if (location.search) {
-      push('/')
+      push({ pathname: location.pathname, search: '' })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [location.pathname, location.search, push])
 
   return (
     <Component
@@ -77,8 +77,12 @@ function HandleInitialState({ location, component: Component }: HandleInitialSta
   )
 }
 
-const mapStateToProps = (state: AppState) => ({
+export const mapStateToProps = (state: AppState) => ({
   location: state.router.location,
 })
 
-export default connect(mapStateToProps)(HandleInitialState)
+export const mapDispatchToProps = {
+  push,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HandleInitialState)
