@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { isEqual, isEmpty } from 'lodash'
 
@@ -20,13 +20,19 @@ import { getSeverityDistribution } from './state/getSeverityDistribution'
 export const DEFAULT_SEVERITY_DISTRIBUTION = 'China CDC'
 const severityDistribution = getSeverityDistribution(DEFAULT_SEVERITY_DISTRIBUTION)
 
-const defaultSuperState = {
+interface SuperState {
+  scenarioState: State
+  severityName: string
+  severityTable: SeverityDistributionDatum[]
+}
+
+const defaultSuperState: SuperState = {
   scenarioState: defaultScenarioState,
   severityName: DEFAULT_SEVERITY_DISTRIBUTION,
   severityTable: severityDistribution,
 }
 
-function deserializeScenarioFromURL(location: Location) {
+function deserializeScenarioFromURL(location: Location): SuperState {
   const search = location?.search
   if (!search || isEmpty(search)) {
     return defaultSuperState
@@ -65,13 +71,14 @@ export interface HandleInitialStateProps {
 }
 
 function HandleInitialState({ location, push, component: Component }: HandleInitialStateProps) {
-  const { scenarioState, severityName, severityTable } = deserializeScenarioFromURL(location)
+  const [{ scenarioState, severityName, severityTable }] = useState<SuperState>(deserializeScenarioFromURL(location))
 
   useEffect(() => {
     if (location.search) {
       push({ pathname: location.pathname, search: '' })
     }
-  }, [location.pathname, location.search, push])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Component
