@@ -55,8 +55,8 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setScenario, (draft, { name }) => {
-      draft.current = maybeChangeTitle(draft)
-      draft.shouldRenameOnEdits = false
+      draft.current = name
+      draft.shouldRenameOnEdits = true
       draft.data = _.cloneDeep(getScenario(name))
       draft.ageDistribution = getAgeDistribution(draft.data.population.ageDistributionName)
     }),
