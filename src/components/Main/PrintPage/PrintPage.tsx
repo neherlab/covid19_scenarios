@@ -185,14 +185,15 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
               <tbody>
                 {Object.entries(params.epidemiological).map(([key, val]) => {
                   // NOTE: val can be of different types here
+                  // FIXME: This is a hole in type system, because the type of `val` is not checked (any)
                   let value = val
                   if (key === 'peakMonth') {
                     value = months[val]
                   }
 
                   if (key === 'r0') {
-                    const [lower, upper] = val.map((x: number) => Math.round(10 * x) / 10)
-                    value = `${lower} - ${upper}`
+                    const [begin, end] = Object.values(val).map((x) => Math.round(10 * (x as number)) / 10)
+                    value = `${begin} - ${end}`
                   }
 
                   return (
