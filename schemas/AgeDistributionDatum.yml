@@ -15,4 +15,4 @@ properties:
     $ref: 'AgeGroup#'
 
   population:
-    $ref: 'IntegerPositive#'
+    $ref: 'IntegerNonNegative#'
