@@ -87,7 +87,7 @@ export function AgeBarChart({
   const lastDataPoint = data.trajectory.middle[data.trajectory.middle.length - 1]
   const plotData = ages.map((age, i) => ({
     name: age,
-    fraction: Math.round(normAgeDistribution[age] * 1000) / 10,
+    fraction: Math.round(normAgeDistribution[i] * 1000) / 10,
     peakSevere: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.severe[age]))),
     errorPeakSevere: [
       Math.round(Math.max(...data.trajectory.lower.map((x) => x.current.severe[age]))),
