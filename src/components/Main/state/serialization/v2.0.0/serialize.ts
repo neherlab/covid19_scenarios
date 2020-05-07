@@ -48,9 +48,7 @@ function serialize({
   return serialized
 }
 
-function deserialize(input: string): SerializableData {
-  const shareableDangerous = JSON.parse(input)
-
+function validateSchema(shareableDangerous: object) {
   if (!validateShareable(shareableDangerous)) {
     const locale = 'en' // TODO: use current locale
     const localize = ajvLocalizers[locale] ?? ajvLocalizers.en
@@ -68,39 +66,55 @@ function deserialize(input: string): SerializableData {
 
     throw new DeserializationErrorValidationFailed(['Unknown validation error'])
   }
+}
 
+function convert(shareableDangerous: object): Shareable {
   try {
-    const shareable = Convert.toShareable(JSON.stringify(shareableDangerous))
-    const { scenarioData, ageDistributionData, severityDistributionData } = shareable
-
-    if (scenarioData.data.population.ageDistributionName !== ageDistributionData.name) {
-      throw new DeserializationErrorValidationFailed([
-        '/scenarioData/data/population/ageDistributionName should be equal to /ageDistributionData/name',
-      ])
-    }
-
-    const ageDistributionCategories = ageDistributionData.data.map(({ ageGroup }) => ageGroup)
-    const severityCategories = severityDistributionData.data.map(({ ageGroup }) => ageGroup)
-    if (!isEqual(ageDistributionCategories, severityCategories)) {
-      throw new DeserializationErrorValidationFailed([
-        'arrays /ageDistributionData/data[] and /severityDistributionData/data[] should contain the same number of the same values for ageGroup',
-      ])
-    }
-
-    return {
-      scenario: toInternal(scenarioData.data),
-      scenarioName: scenarioData.name,
-      ageDistribution: ageDistributionData.data,
-      ageDistributionName: ageDistributionData.name,
-      severity: severityDistributionData.data,
-      severityName: severityDistributionData.name,
-    }
+    return Convert.toShareable(JSON.stringify(shareableDangerous))
   } catch (error) {
     if (error instanceof Error) {
       throw new DeserializationErrorConversionFailed(error.message)
     }
 
     throw new DeserializationErrorConversionFailed('Unknown conversion error')
+  }
+}
+
+function validateMore(shareable: Shareable) {
+  const { scenarioData, ageDistributionData, severityDistributionData } = shareable
+
+  if (scenarioData.data.population.ageDistributionName !== ageDistributionData.name) {
+    throw new DeserializationErrorValidationFailed([
+      '/scenarioData/data/population/ageDistributionName should be equal to /ageDistributionData/name',
+    ])
+  }
+
+  const ageDistributionCategories = ageDistributionData.data.map(({ ageGroup }) => ageGroup)
+  const severityCategories = severityDistributionData.data.map(({ ageGroup }) => ageGroup)
+  if (!isEqual(ageDistributionCategories, severityCategories)) {
+    throw new DeserializationErrorValidationFailed([
+      'arrays /ageDistributionData/data[] and /severityDistributionData/data[] should contain the same number of the same values for ageGroup',
+    ])
+  }
+}
+
+function deserialize(input: string): SerializableData {
+  const shareableDangerous = JSON.parse(input)
+
+  validateSchema(shareableDangerous)
+
+  const shareable = convert(shareableDangerous)
+
+  validateMore(shareable)
+
+  const { scenarioData, ageDistributionData, severityDistributionData } = shareable
+  return {
+    scenario: toInternal(scenarioData.data),
+    scenarioName: scenarioData.name,
+    ageDistribution: ageDistributionData.data,
+    ageDistributionName: ageDistributionData.name,
+    severity: severityDistributionData.data,
+    severityName: severityDistributionData.name,
   }
 }
 
