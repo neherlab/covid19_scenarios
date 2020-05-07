@@ -1,13 +1,15 @@
+import { StrictOmit } from 'ts-essentials'
 import actionCreatorFactory from 'typescript-fsa'
 
 import type {
   AgeDistributionDatum,
-  ScenarioDatum,
   ScenarioDatumEpidemiological,
   ScenarioDatumMitigation,
   ScenarioDatumPopulation,
   ScenarioDatumSimulation,
 } from '../../../algorithms/types/Param.types'
+
+import type { State } from './state'
 
 const action = actionCreatorFactory('SCENARIO')
 
@@ -38,11 +40,7 @@ export interface SetAgeDistributionData {
   data: AgeDistributionDatum[]
 }
 
-export interface SetStateData {
-  current: string
-  data: ScenarioDatum
-  ageDistribution: AgeDistributionDatum[]
-}
+export type SetStateData = StrictOmit<State, 'scenarios'>
 
 export const setPopulationData = action<SetPopulationData>('SET_POPULATION_DATA')
 export const setEpidemiologicalData = action<SetEpidemiologicalData>('SET_EPIDEMIOLOGICAL_DATA')

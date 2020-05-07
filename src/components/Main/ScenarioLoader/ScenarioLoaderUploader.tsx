@@ -86,6 +86,7 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
     scenarioDispatch(
       setStateData({
         current: params.scenarioName,
+        shouldRenameOnEdits: false,
         data: params.scenario,
         ageDistribution: params.ageDistribution,
       }),

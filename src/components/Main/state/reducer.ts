@@ -18,10 +18,14 @@ import {
 import { getScenario } from './getScenario'
 import { getAgeDistribution } from './getAgeDistribution'
 
-import { CUSTOM_SCENARIO_NAME, CUSTOM_COUNTRY_NAME, defaultScenarioState } from './state'
+import { CUSTOM_COUNTRY_NAME, defaultScenarioState, State } from './state'
 
-function maybeAdd<T>(where: T[], what: T): T[] {
-  return _.uniq([...where, what])
+export function maybeChangeTitle(state: State) {
+  let name = state.current
+  if (state.shouldRenameOnEdits) {
+    name = `${name} (edited)`
+  }
+  return name
 }
 
 /**
@@ -45,24 +49,23 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
     immerCase(renameCurrentScenario, (draft, { name }) => {
       draft.current = name
+      draft.shouldRenameOnEdits = false
     }),
   )
 
   .withHandling(
     immerCase(setScenario, (draft, { name }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = name
-      if (name !== CUSTOM_SCENARIO_NAME) {
-        draft.data = _.cloneDeep(getScenario(name))
-        draft.ageDistribution = getAgeDistribution(draft.data.population.ageDistributionName)
-      }
+      draft.current = maybeChangeTitle(draft)
+      draft.shouldRenameOnEdits = false
+      draft.data = _.cloneDeep(getScenario(name))
+      draft.ageDistribution = getAgeDistribution(draft.data.population.ageDistributionName)
     }),
   )
 
   .withHandling(
     immerCase(setPopulationData, (draft, { data }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = CUSTOM_SCENARIO_NAME
+      draft.current = maybeChangeTitle(draft)
+      draft.shouldRenameOnEdits = false
       draft.data.population = _.cloneDeep(data)
       if (draft.data.population.ageDistributionName !== CUSTOM_COUNTRY_NAME) {
         draft.ageDistribution = getAgeDistribution(draft.data.population.ageDistributionName)
@@ -72,41 +75,41 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
 
   .withHandling(
     immerCase(setEpidemiologicalData, (draft, { data }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = CUSTOM_SCENARIO_NAME
+      draft.current = maybeChangeTitle(draft)
+      draft.shouldRenameOnEdits = false
       draft.data.epidemiological = _.cloneDeep(data)
     }),
   )
 
   .withHandling(
     immerCase(setMitigationData, (draft, { data }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = CUSTOM_SCENARIO_NAME
+      draft.current = maybeChangeTitle(draft)
+      draft.shouldRenameOnEdits = false
       draft.data.mitigation.mitigationIntervals = _.cloneDeep(data.mitigationIntervals)
     }),
   )
 
   .withHandling(
     immerCase(setSimulationData, (draft, { data }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = CUSTOM_SCENARIO_NAME
+      draft.current = maybeChangeTitle(draft)
+      draft.shouldRenameOnEdits = false
       draft.data.simulation = _.cloneDeep(data)
     }),
   )
 
   .withHandling(
     immerCase(setAgeDistributionData, (draft, { data }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, CUSTOM_SCENARIO_NAME)
-      draft.current = CUSTOM_SCENARIO_NAME
+      draft.current = maybeChangeTitle(draft)
+      draft.shouldRenameOnEdits = false
       draft.ageDistribution = data
       draft.data.population.ageDistributionName = CUSTOM_COUNTRY_NAME
     }),
   )
 
   .withHandling(
-    immerCase(setStateData, (draft, { current, data, ageDistribution }) => {
-      draft.scenarios = maybeAdd(draft.scenarios, current)
+    immerCase(setStateData, (draft, { current, data, shouldRenameOnEdits, ageDistribution }) => {
       draft.current = current
+      draft.shouldRenameOnEdits = shouldRenameOnEdits
       draft.data = data
       draft.ageDistribution = ageDistribution
     }),
