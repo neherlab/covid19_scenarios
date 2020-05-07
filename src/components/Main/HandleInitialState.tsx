@@ -34,6 +34,7 @@ function deserializeScenarioFromURL(location: Location) {
   return {
     scenarios: scenarioNames,
     current: data.scenarioName,
+    shouldRenameOnEdits: false,
     data: data.scenario,
     ageDistribution: data.ageDistribution,
   }
