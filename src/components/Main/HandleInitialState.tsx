@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { isEqual, isEmpty } from 'lodash'
 
@@ -20,24 +20,38 @@ import { getSeverityDistribution } from './state/getSeverityDistribution'
 export const DEFAULT_SEVERITY_DISTRIBUTION = 'China CDC'
 const severityDistribution = getSeverityDistribution(DEFAULT_SEVERITY_DISTRIBUTION)
 
-function deserializeScenarioFromURL(location: Location) {
+interface SuperState {
+  scenarioState: State
+  severityName: string
+  severityTable: SeverityDistributionDatum[]
+}
+
+const defaultSuperState: SuperState = {
+  scenarioState: defaultScenarioState,
+  severityName: DEFAULT_SEVERITY_DISTRIBUTION,
+  severityTable: severityDistribution,
+}
+
+function deserializeScenarioFromURL(location: Location): SuperState {
   const search = location?.search
   if (!search || isEmpty(search)) {
-    return defaultScenarioState
+    return defaultSuperState
   }
 
   const data = dataFromUrl(search)
   if (!data) {
-    return defaultScenarioState
+    return defaultSuperState
   }
 
-  return {
+  const scenarioState: State = {
     scenarios: scenarioNames,
     current: data.scenarioName,
     shouldRenameOnEdits: false,
     data: data.scenario,
     ageDistribution: data.ageDistribution,
   }
+
+  return { scenarioState, severityName: data.severityName, severityTable: data.severity }
 }
 
 interface InitialState {
@@ -58,20 +72,21 @@ export interface HandleInitialStateProps {
 }
 
 function HandleInitialState({ location, push, component: Component }: HandleInitialStateProps) {
-  const [scenarioState] = useState<State>(deserializeScenarioFromURL(location))
+  const [{ scenarioState, severityName, severityTable }] = useState<SuperState>(deserializeScenarioFromURL(location))
 
   useEffect(() => {
     if (location.search) {
       push({ pathname: location.pathname, search: '' })
     }
-  }, [location.pathname, location.search, push])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Component
       initialState={{
         scenarioState,
-        severityName: DEFAULT_SEVERITY_DISTRIBUTION,
-        severityTable: severityDistribution,
+        severityName,
+        severityTable,
         isDefault: isEqual(scenarioState, defaultScenarioState),
       }}
     />
