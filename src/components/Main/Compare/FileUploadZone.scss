@@ -1,7 +1,7 @@
-@import "../../../../node_modules/bootstrap/scss/functions";
-@import "../../../../node_modules/bootstrap/scss/variables";
+@import '../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../node_modules/bootstrap/scss/variables';
 
 .fileuploadzone-drop-area {
-    border: 3px $secondary dashed; 
-    cursor: pointer;
+  cursor: pointer;
+  border: 3px $secondary dashed;
 }

@@ -1,22 +1,17 @@
-import { cloneDeep } from 'lodash'
-import { AgeDistribution, Severity } from '../.generated/types'
-import { AllParamsFlat } from './types/Param.types'
+import { cloneDeep, sumBy } from 'lodash'
+import { containmentMeasures } from './mitigation'
+import { AgeDistributionDatum, AgeGroup, ScenarioFlat, SeverityDistributionDatum } from './types/Param.types'
 import { ModelParams, SimulationTimePoint } from './types/Result.types'
 
 import { sampleUniform } from './utils/sample'
-import { containmentMeasures } from './mitigation'
-
-// -----------------------------------------------------------------------
-// Globals
 
 const monthToDay = (m: number) => {
   return m * 30 + 15
 }
-const jan2020 = new Date('2020-01-01').valueOf() // time in ms
-export const msPerDay = 1000 * 60 * 60 * 24
 
-// -----------------------------------------------------------------------
-// Exported functions
+const jan2020 = new Date('2020-01-01').valueOf() // time in ms
+
+export const msPerDay = 1000 * 60 * 60 * 24
 
 /**
  *
@@ -38,13 +33,40 @@ export function infectionRate(
 }
 
 export function getPopulationParams(
-  params: AllParamsFlat,
-  severity: Severity[],
-  ageCounts: AgeDistribution,
+  scenario: ScenarioFlat,
+  severity: SeverityDistributionDatum[],
+  ageDistribution: AgeDistributionDatum[],
 ): ModelParams[] {
+  const {
+    hospitalBeds,
+    hospitalStayDays,
+    icuBeds,
+    icuStayDays,
+    importsPerDay,
+    infectiousPeriodDays,
+    latencyDays,
+    mitigationIntervals,
+    numberStochasticRuns,
+    overflowSeverity,
+    peakMonth,
+    populationServed,
+    r0,
+    seasonalForcing,
+  } = scenario
+
   // TODO: Make this a form-adjustable factor
   const sim: ModelParams = {
-    ageDistribution: {},
+    ageDistribution: [
+      { ageGroup: AgeGroup.The09, population: 0 },
+      { ageGroup: AgeGroup.The1019, population: 0 },
+      { ageGroup: AgeGroup.The2029, population: 0 },
+      { ageGroup: AgeGroup.The3039, population: 0 },
+      { ageGroup: AgeGroup.The4049, population: 0 },
+      { ageGroup: AgeGroup.The5059, population: 0 },
+      { ageGroup: AgeGroup.The6069, population: 0 },
+      { ageGroup: AgeGroup.The7079, population: 0 },
+      { ageGroup: AgeGroup.The80, population: 0 },
+    ],
     importsPerDay: [],
     timeDelta: 0,
     timeDeltaDays: 0,
@@ -55,7 +77,7 @@ export function getPopulationParams(
       isolated: [],
     },
     rate: {
-      latency: 1 / params.latencyTime,
+      latency: 1 / latencyDays,
       infection: () => -Infinity, // Dummy infectionRate function. This is set below.
       recovery: [],
       severe: [],
@@ -66,76 +88,61 @@ export function getPopulationParams(
       overflowFatality: [],
     },
 
-    populationServed: params.populationServed,
-    numberStochasticRuns: params.numberStochasticRuns,
-    hospitalBeds: params.hospitalBeds,
-    ICUBeds: params.ICUBeds,
+    populationServed,
+    numberStochasticRuns,
+    hospitalBeds,
+    icuBeds,
   }
 
-  // Compute age-stratified parameters
-  const total = severity.map((d) => d.ageGroup).reduce((a, b) => a + ageCounts[b], 0)
+  const total = sumBy(ageDistribution, ({ population }) => population)
 
-  // NOTE(nnoll): Assumes the age groups of severity table sorted lexiographically and numerically is equivalent
-  severity.sort((row1, row2) => {
-    if (row1.ageGroup < row2.ageGroup) {
-      return -1
-    }
-    if (row1.ageGroup > row2.ageGroup) {
-      return +1
-    }
-    return 0
-  })
-
-  severity.forEach((row, i) => {
-    const freq = (1.0 * ageCounts[row.ageGroup]) / total
-    sim.ageDistribution[row.ageGroup] = freq
-    sim.frac.severe[i] = (row.severe / 100) * (row.confirmed / 100)
-    sim.frac.critical[i] = sim.frac.severe[i] * (row.critical / 100)
-    sim.frac.fatal[i] = sim.frac.critical[i] * (row.fatal / 100)
+  severity.forEach(({ ageGroup, confirmed, critical, isolated, fatal, severe }, i) => {
+    const freq = (1.0 * ageDistribution[i].population) / total
+    sim.ageDistribution[i].population = freq
+    sim.frac.severe[i] = (severe / 100) * (confirmed / 100)
+    sim.frac.critical[i] = sim.frac.severe[i] * (critical / 100)
+    sim.frac.fatal[i] = sim.frac.critical[i] * (fatal / 100)
 
     const dHospital = sim.frac.severe[i]
-    const dCritical = row.critical / 100
-    const dFatal = row.fatal / 100
-
-    // d.isolated is possible undefined
-    const isolated = row.isolated ?? 0
+    const dCritical = critical / 100
+    const dFatal = fatal / 100
 
     // Age specific rates
     sim.frac.isolated[i] = isolated / 100
-    sim.rate.recovery[i] = (1 - dHospital) / params.infectiousPeriod
-    sim.rate.severe[i] = dHospital / params.infectiousPeriod
-    sim.rate.discharge[i] = (1 - dCritical) / params.lengthHospitalStay
-    sim.rate.critical[i] = dCritical / params.lengthHospitalStay
-    sim.rate.stabilize[i] = (1 - dFatal) / params.lengthICUStay
-    sim.rate.fatality[i] = dFatal / params.lengthICUStay
-    sim.rate.overflowFatality[i] = params.overflowSeverity * sim.rate.fatality[i]
+    sim.rate.recovery[i] = (1 - dHospital) / infectiousPeriodDays
+    sim.rate.severe[i] = dHospital / infectiousPeriodDays
+    sim.rate.discharge[i] = (1 - dCritical) / hospitalStayDays
+    sim.rate.critical[i] = dCritical / hospitalStayDays
+    sim.rate.stabilize[i] = (1 - dFatal) / icuStayDays
+    sim.rate.fatality[i] = dFatal / icuStayDays
+    sim.rate.overflowFatality[i] = overflowSeverity * sim.rate.fatality[i]
   })
 
   // Get import rates per age class (assume flat)
   const L = Object.keys(sim.rate.recovery).length
   sim.rate.recovery.forEach((_, i) => {
-    sim.importsPerDay[i] = params.importsPerDay / L
+    sim.importsPerDay[i] = importsPerDay / L
   })
 
   // Infectivity dynamics
   // interpolateTimeSeries(intervalsToTimeSeries(params.mitigationIntervals))
-  const containmentRealization = containmentMeasures(params.mitigationIntervals, params.numberStochasticRuns)
-  if (params.r0[0] === params.r0[1] && containmentRealization.length === 1) {
-    const avgInfectionRate = params.r0[0] / params.infectiousPeriod
+  const containmentRealization = containmentMeasures(mitigationIntervals, numberStochasticRuns)
+  if (r0.begin === r0.end && containmentRealization.length === 1) {
+    const avgInfectionRate = r0.begin / infectiousPeriodDays
     sim.rate.infection = (time: number) =>
-      containmentRealization[0](time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
+      containmentRealization[0](time) * infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing)
 
     return [sim]
   }
 
-  const r0s = sampleUniform([params.r0[0], params.r0[1]], params.numberStochasticRuns)
+  const r0s = sampleUniform(r0, numberStochasticRuns)
   return r0s.map((r0, i) => {
     const elt = cloneDeep(sim)
-    const avgInfectionRate = r0 / params.infectiousPeriod
+    const avgInfectionRate = r0 / infectiousPeriodDays
 
     const containment = containmentRealization.length > 1 ? containmentRealization[i] : containmentRealization[0]
     elt.rate.infection = (time: number) =>
-      containment(time) * infectionRate(time, avgInfectionRate, params.peakMonth, params.seasonalForcing)
+      containment(time) * infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing)
 
     return elt
   })
@@ -145,9 +152,9 @@ export function initializePopulation(
   N: number,
   numCases: number,
   t0: number,
-  ages: AgeDistribution,
+  ageDistribution: AgeDistributionDatum[],
 ): SimulationTimePoint {
-  const Z = Object.values(ages).reduce((a, b) => a + b)
+  const Z = sumBy(ageDistribution, ({ population }) => population)
   const pop: SimulationTimePoint = {
     time: t0,
     current: {
@@ -171,10 +178,8 @@ export function initializePopulation(
   // infectious as they propagate through the exposed categories.
   const initialInfectiousFraction = 0.3
 
-  // TODO: Ensure the sum is equal to N!
-  const ageGroups = Object.keys(ages).sort()
-  ageGroups.forEach((k, i) => {
-    const n = Math.round((ages[k] / Z) * N)
+  ageDistribution.forEach(({ population }, i) => {
+    const n = Math.round((population / Z) * N)
     pop.current.susceptible[i] = n
     pop.current.exposed[i] = [0, 0, 0]
     pop.current.infectious[i] = 0
@@ -185,7 +190,8 @@ export function initializePopulation(
     pop.cumulative.recovered[i] = 0
     pop.cumulative.critical[i] = 0
     pop.cumulative.fatality[i] = 0
-    if (i === Math.round(ageGroups.length / 2)) {
+
+    if (i === Math.round(ageDistribution.length / 2)) {
       pop.current.susceptible[i] -= numCases
       pop.current.infectious[i] = initialInfectiousFraction * numCases
       const e = ((1 - initialInfectiousFraction) * numCases) / pop.current.exposed[i].length

@@ -1,0 +1,34 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: SeverityDistributionDatum
+title: SeverityDistributionDatum
+
+additionalProperties: false
+
+type: object
+
+required:
+  - ageGroup
+  - isolated
+  - confirmed
+  - severe
+  - critical
+  - fatal
+
+properties:
+  ageGroup:
+    $ref: 'AgeGroup#'
+
+  isolated:
+    $ref: 'Percentage#'
+
+  confirmed:
+    $ref: 'Percentage#'
+
+  severe:
+    $ref: 'Percentage#'
+
+  critical:
+    $ref: 'Percentage#'
+
+  fatal:
+    $ref: 'Percentage#'

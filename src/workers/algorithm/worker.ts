@@ -1,13 +1,23 @@
 /* eslint-disable no-restricted-globals */
 /* Necessary because 'self' should be accepted as a global in webworkers. */
 
+import 'core-js'
+
 import 'regenerator-runtime'
-import { run } from '../../algorithms/run'
+
+import { run, RunParams } from '../../algorithms/run'
+
+import { EnvVarError } from '../../../lib/EnvVarError'
+
+const webRoot = process.env.WEB_ROOT
+if (!webRoot) {
+  throw new EnvVarError('WEB_ROOT', webRoot)
+}
 
 self.addEventListener('message', (event: MessageEvent) => {
-  const args = event.data
+  const args = event.data as RunParams
 
-  run(...args)
+  run(args)
     .then((result) => self.postMessage({ result }))
     .catch((error) => self.postMessage({ error: errorToString(error) }))
 })

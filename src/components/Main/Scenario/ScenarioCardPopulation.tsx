@@ -5,11 +5,11 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
-import { ageDistributionNames } from '../state/countryAgeDistributionData'
+import { ageDistributionNames } from '../state/getAgeDistribution'
 
 import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
-import { CardWithoutDropdown } from '../../Form/CardWithoutDropdown'
+import { CardWithControls } from '../../Form/CardWithControls'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
@@ -25,13 +25,9 @@ export interface ScenarioCardPopulationProps {
 
 function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
-  // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
-  // function handleChangePopulationScenario(newPopulationScenario: string) {
-  //   scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario }))
-  // }
 
   return (
-    <CardWithoutDropdown
+    <CardWithControls
       className="card--population h-100"
       identifier="populationScenario"
       label={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
@@ -47,7 +43,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormDropdown<string>
-        identifier="population.country"
+        identifier="population.ageDistributionName"
         label={t('Age distribution')}
         help={t('Country to determine the age distribution in the population')}
         options={countryOptions}
@@ -84,7 +80,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormSpinBox
-        identifier="population.ICUBeds"
+        identifier="population.icuBeds"
         label={`${t('ICU/ICMU')} (${t('est.')})`}
         help={t(
           'Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
@@ -109,11 +105,11 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
           'Perform multiple runs, to account for the uncertainty of parameters. More runs result in more accurate simulation, but take more time to finish.',
         )}
         step={1}
-        min={1}
+        min={10}
         errors={errors}
         touched={touched}
       />
-    </CardWithoutDropdown>
+    </CardWithControls>
   )
 }
 

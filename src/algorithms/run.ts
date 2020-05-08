@@ -1,29 +1,22 @@
-import { AgeDistribution, Severity } from '../.generated/types'
-import { AllParamsFlat } from './types/Param.types'
+import { AgeDistributionDatum, ScenarioFlat, SeverityDistributionDatum } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types/Result.types'
 
 import { getPopulationParams, initializePopulation } from './initialize'
 import { collectTotals, evolve } from './model'
-import { mulTP, divTP, meanTrajectory, stddevTrajectory } from './results'
+import { percentileTrajectory } from './results'
 
 const identity = (x: number) => x
 
-// -----------------------------------------------------------------------
-// Main function
+export interface RunParams {
+  params: ScenarioFlat
+  severity: SeverityDistributionDatum[]
+  ageDistribution: AgeDistributionDatum[]
+}
 
-/**
- *
- * Entry point for the algorithm
- *
- */
-export async function run(
-  params: AllParamsFlat,
-  severity: Severity[],
-  ageDistribution: AgeDistribution,
-): Promise<AlgorithmResult> {
-  const tMin: number = new Date(params.simulationTimeRange.tMin).getTime()
-  const tMax: number = new Date(params.simulationTimeRange.tMax).getTime()
-  const ageGroups = Object.keys(ageDistribution)
+export async function run({ params, severity, ageDistribution }: RunParams): Promise<AlgorithmResult> {
+  const tMin: number = new Date(params.simulationTimeRange.begin).getTime()
+  const tMax: number = new Date(params.simulationTimeRange.end).getTime()
+  const ageGroups = ageDistribution.map((d) => d.ageGroup)
   const initialCases = params.initialNumberOfCases
 
   const modelParamsArray = getPopulationParams(params, severity, ageDistribution)
@@ -44,43 +37,34 @@ export async function run(
     return simulate(population, identity)
   })
 
-  const mean = meanTrajectory(trajectories)
-  const sdev = stddevTrajectory(trajectories, mean)
+  // const mean = meanTrajectory(trajectories)
+  // const sdev = stddevTrajectory(trajectories, mean)
 
+  const thresholds = [0.2, 0.5, 0.8]
+  const idxs = thresholds.map((d) => Math.ceil((trajectories.length - 1) * d))
   const R0Trajectories = trajectories[0].map((d) => {
     return {
       t: d.time,
-      y: modelParamsArray.map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriod),
+      y: modelParamsArray
+        .map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriodDays)
+        .sort((a, b) => a - b),
     }
-  })
-
-  const meanR0 = R0Trajectories.map((d) => {
-    return { t: d.t, y: d.y.reduce((a, b) => a + b, 0) / d.y.length }
-  })
-
-  const secondMomentR0 = R0Trajectories.map((d) => {
-    return { t: d.t, y: d.y.reduce((a, b) => a + b * b, 0) / d.y.length }
-  })
-
-  const stdR0 = secondMomentR0.map((d, i) => {
-    return { t: d.t, y: Math.sqrt(d.y - meanR0[i].y * meanR0[i].y) }
   })
 
   return {
     trajectory: {
-      mean,
-      upper: mean.map((m, i) => mulTP(m, sdev[i])),
-      lower: mean.map((m, i) => divTP(m, sdev[i])),
+      lower: percentileTrajectory(trajectories, 0.2),
+      middle: percentileTrajectory(trajectories, 0.5),
+      upper: percentileTrajectory(trajectories, 0.8),
+      // middle: mean,
+      // upper: mean.map((m, i) => mulTP(m, sdev[i])),
+      // lower: mean.map((m, i) => divTP(m, sdev[i])),
       percentile: {},
     },
     R0: {
-      mean: meanR0,
-      lower: meanR0.map((m, i) => {
-        return { t: m.t, y: m.y - stdR0[i].y }
-      }),
-      upper: meanR0.map((m, i) => {
-        return { t: m.t, y: m.y + stdR0[i].y }
-      }),
+      mean: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[1]] })),
+      lower: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[0]] })),
+      upper: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[2]] })),
     },
   }
 }

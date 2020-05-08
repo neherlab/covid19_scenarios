@@ -6,7 +6,10 @@ import re
 import sys
 import yaml
 
-from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR, SCHEMA_CASECOUNTS
+from paths import TMP_CASES, BASE_PATH, JSON_DIR, SOURCES_FILE, TSV_DIR
+
+import generated.types as schema
+from typing import List, Optional
 
 from datetime import datetime
 from collections import defaultdict
@@ -19,6 +22,29 @@ with open(os.path.join(BASE_PATH, SOURCES_FILE)) as fh:
 
 default_cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 
+# ------------------------------------------------------------------------
+# Classes
+# NOTE(nnoll): All parsers should move to using these clases
+
+class CaseCountsDatum(schema.CaseCountsDatum):
+    def __init__(self, time: str, cases=None, deaths=None, hospitalized=None, icu=None, recovered=None):
+        return super(CaseCountsDatum, self).__init__(
+                time = datetime.strptime(time, "%Y-%m-%d").date(),
+                cases = cases,
+                deaths = deaths,
+                hospitalized = hospitalized,
+                icu = icu,
+                recovered = recovered)
+
+class CaseCountsData(schema.CaseCountsData):
+    def __init__(self, data: List[CaseCountsDatum], name: str):
+        return super(CaseCountsData, self).__init__(
+                data = data,
+                name = name)
+
+class CaseCountsArray(schema.CaseCountsArray):
+    def __init__(self, all: List[CaseCountsData]):
+        return super(CaseCountsArray, self).__init__(all = sorted(all, key = lambda x: x.name))
 
 # ------------------------------------------------------------------------
 # Functions
@@ -229,19 +255,16 @@ def store_json(case_counts, json_file):
     - json_file: name of file to store into
     """
 
-    #convert dict of lists of dicts to list of dicts of lists of dicts
+    # marshal case counts into our schema types
     newdata = []
-    for k in case_counts:
-        newdata.append({'country': k, 'empiricalData': case_counts[k]})
+    for region in case_counts:
+        newdata.append(CaseCountsData(name=region, data=[CaseCountsDatum(**d) for d in case_counts[region]]))
+        # newdata.append({'country': k, 'empiricalData': case_counts[k]})
 
-    newdata.sort(key=lambda x:x['country'])
-
-    with open(os.path.join(BASE_PATH, SCHEMA_CASECOUNTS), "r") as f:
-        schema = yaml.load(f, Loader=yaml.FullLoader)
-        validate(newdata, schema, format_checker=FormatChecker())
+    case_array = CaseCountsArray(all=newdata)
 
     with open(json_file, 'w') as fh:
-        json.dump(newdata, fh, indent=0)
+        json.dump(case_array.to_dict(), fh, indent=2)
 
 def sanitize(fname):
     # we sanitize to ASCII alphabetic here

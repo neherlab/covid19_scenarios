@@ -1,39 +1,46 @@
-import {
-  AllParams,
-  CaseCounts,
-  ContainmentData,
-  DateRange,
-  EmpiricalDatum,
-  EpidemiologicalData,
-  MitigationInterval,
-  PopulationData,
-  SimulationData,
-  AgeDistribution,
-  Severity,
-  AgeGroup,
-} from '../../.generated/types'
+/* eslint-disable no-restricted-imports */
 
-export {
-  CaseCounts,
-  AgeDistribution,
-  DateRange,
-  MitigationInterval,
-  AllParams,
-  EpidemiologicalData,
-  PopulationData,
-  SimulationData,
-  ContainmentData,
-  Severity,
-  AgeGroup,
-}
+import type {
+  ScenarioArray as ScenarioArrayMutable,
+  ScenarioData as ScenarioDataMutable,
+  ScenarioDatum as ScenarioDatumMutable,
+  ScenarioDatumMitigation as ScenarioDatumMitigationMutable,
+  MitigationInterval as MitigationIntervalMutable,
+  ScenarioDatumEpidemiological,
+  ScenarioDatumPopulation,
+  ScenarioDatumSimulation,
+} from '../../.generated/latest/types'
 
-export type MitigationIntervalWithoutId = Omit<MitigationInterval, 'id'>
+import type { ScenarioDatum, MitigationInterval, ScenarioDatumMitigation } from './restricted/ScenarioDatum'
 
-export type MitigationIntervals = MitigationInterval[]
+export type {
+  AgeDistributionArray,
+  AgeDistributionData,
+  AgeDistributionDatum,
+  CaseCountsArray,
+  CaseCountsData,
+  CaseCountsDatum,
+  SeverityDistributionArray,
+  SeverityDistributionData,
+  SeverityDistributionDatum,
+  Shareable,
+} from '../../.generated/latest/types'
 
-// FIXME: One of these should go away
-export type ScenarioData = AllParams
+export type { DateRange, NumericRangeNonNegative, PercentageRange } from '../../.generated/latest/types'
 
-export type AllParamsFlat = PopulationData & EpidemiologicalData & SimulationData & ContainmentData
+export { Convert, AgeGroup } from '../../.generated/latest/types'
 
-export type EmpiricalData = EmpiricalDatum[]
+export type ScenarioArray = ScenarioArrayMutable
+export type ScenarioData = ScenarioDataMutable
+
+export type { ScenarioDatum, MitigationInterval, ScenarioDatumMitigation }
+export type MitigationIntervalExternal = MitigationIntervalMutable
+export type ScenarioDatumExternal = ScenarioDatumMutable
+export type ScenarioDatumMitigationExternal = ScenarioDatumMitigationMutable
+
+export type { ScenarioDatumEpidemiological, ScenarioDatumPopulation, ScenarioDatumSimulation }
+
+export type ScenarioFlat = ScenarioDatumPopulation &
+  ScenarioDatumEpidemiological &
+  ScenarioDatumSimulation &
+  ScenarioDatumMitigation

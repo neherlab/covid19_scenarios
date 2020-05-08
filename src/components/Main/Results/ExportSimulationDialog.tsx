@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import {
@@ -9,17 +10,25 @@ import {
   FacebookIcon,
   FacebookShareButton,
 } from 'react-share'
-import { AllParams } from '../../../algorithms/types/Param.types'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { exportAll, exportParams, exportResult } from '../../../algorithms/utils/exportResult'
+
+import urlJoin from 'proper-url-join'
+
+import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { exportAll, exportScenario, exportResult } from '../../../algorithms/utils/exportResult'
+
 import ClipboardButton from '../../Buttons/ClipboardButton'
+
+import { State } from '../state/state'
 
 export interface ExportSimulationDialogProps {
   canExport: boolean
   showModal: boolean
   toggleShowModal: () => void
   openPrintPreview: () => void
-  params?: AllParams
+  scenarioState: State
+  severity: SeverityDistributionDatum[]
+  severityName: string
   result?: AlgorithmResult
   scenarioUrl: string
 }
@@ -28,7 +37,9 @@ export default function ExportSimulationDialog({
   showModal,
   toggleShowModal,
   openPrintPreview,
-  params,
+  scenarioState,
+  severity,
+  severityName,
   result,
   scenarioUrl,
 }: ExportSimulationDialogProps) {
@@ -39,8 +50,7 @@ export default function ExportSimulationDialog({
     openPrintPreview()
   }
 
-  // Assuming href and shareable link can be concatenated without other processing:
-  const shareableLink = `${window.location.href}${scenarioUrl}`
+  const shareableLink = urlJoin(window.location.href, scenarioUrl)
 
   // Size in pixels for the external icons like facebook, email
   const externalIconSize = 25
@@ -68,8 +78,7 @@ export default function ExportSimulationDialog({
               <td>JSON</td>
               <td>
                 <Button
-                  disabled={!params}
-                  onClick={params ? () => exportParams(params) : undefined}
+                  onClick={() => exportScenario({ scenarioState, severity, severityName })}
                   color="primary"
                   size="sm"
                 >
@@ -83,8 +92,8 @@ export default function ExportSimulationDialog({
               <td>TSV</td>
               <td>
                 <Button
-                  disabled={!(result?.trajectory.mean ?? null)}
-                  onClick={() => result && exportResult(result, 'covid.summary.tsv')}
+                  disabled={!(result?.trajectory.middle ?? null)}
+                  onClick={() => result && exportResult({ scenarioState, result, detailed: false })}
                   color="primary"
                   size="sm"
                 >
@@ -98,11 +107,8 @@ export default function ExportSimulationDialog({
               <td>TSV</td>
               <td>
                 <Button
-                  disabled={!(result?.trajectory.mean ?? null)}
-                  onClick={() =>
-                    result &&
-                    exportResult(result, 'covid.allresults.tsv', Object.keys(result.trajectory.mean[0].current.severe))
-                  }
+                  disabled={!(result?.trajectory.middle ?? null)}
+                  onClick={() => result && exportResult({ scenarioState, result, detailed: true })}
                   color="primary"
                   size="sm"
                 >
@@ -136,7 +142,12 @@ export default function ExportSimulationDialog({
               <td>{t('Print Preview (to print or save as PDF)')}</td>
               <td>HTML</td>
               <td>
-                <Button disabled={!(result?.trajectory.mean ?? null)} onClick={startPrinting} color="primary" size="sm">
+                <Button
+                  disabled={!(result?.trajectory.middle ?? null)}
+                  onClick={startPrinting}
+                  color="primary"
+                  size="sm"
+                >
                   {t('Preview')}
                 </Button>
               </td>
@@ -147,8 +158,8 @@ export default function ExportSimulationDialog({
       <ModalFooter>
         <Button
           color="secondary"
-          disabled={!result || !params}
-          onClick={result && params ? () => exportAll(params, result) : undefined}
+          disabled={!result}
+          onClick={() => exportAll({ scenarioState, severity, severityName, result })}
         >
           {t('Download all as zip')}
         </Button>

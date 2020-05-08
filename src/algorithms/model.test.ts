@@ -1,10 +1,11 @@
-import { AgeDistribution } from '../.generated/types'
+import { toBeCloseToNumber } from '@eirba/jest-ieee754'
+import type { AgeDistributionDatum } from './types/Param.types'
 
 import { getPopulationParams, infectionRate, initializePopulation } from './initialize'
 
 import { evolve } from './model'
 
-import { ageDisstribution, allParamsFlat, severity } from './__test_data__/getPopulationParams.input.default'
+import { ageDistribution, allParamsFlat, severity } from './__test_data__/getPopulationParams.input.default'
 
 const identity = (x: number) => x
 
@@ -20,46 +21,48 @@ interface InitializePopulationParams {
   N: number
   numCases: number
   t0: number
-  ages: AgeDistribution
+  ages: AgeDistributionDatum[]
 }
 
 const initializePopulationParams: InitializePopulationParams = {
   N: 195000,
   numCases: 213,
   t0: 1583049600000,
-  ages: ageDisstribution,
+  ages: ageDistribution,
 }
+
+expect.extend({ toBeCloseToNumber })
 
 describe('model', () => {
   describe('infectionRate', () => {
     it('baseline', () => {
-      expect(infectionRate(dec2020num, 0.9, 3, 0.2)).toEqual(0.7768945041075702)
+      expect(infectionRate(dec2020num, 0.9, 3, 0.2)).toBeCloseToNumber(0.7768945041075702)
     })
 
     it('accounts for time correctly', () => {
-      expect(infectionRate(jul2020num, 0.4, 3, 0.2)).toEqual(0.4194279777676749)
-      expect(infectionRate(feb2021num, 1.5, 3, 0.2)).toEqual(1.5927050983124844)
+      expect(infectionRate(jul2020num, 0.4, 3, 0.2)).toBeCloseToNumber(0.4194279777676749)
+      expect(infectionRate(feb2021num, 1.5, 3, 0.2)).toBeCloseToNumber(1.5927050983124844)
     })
 
     it('accounts for avgInfectionRate correctly', () => {
-      expect(infectionRate(dec2020num, 0.4, 3, 0.2)).toEqual(0.3452864462700312)
-      expect(infectionRate(dec2020num, 1.5, 3, 0.2)).toEqual(1.294824173512617)
+      expect(infectionRate(dec2020num, 0.4, 3, 0.2)).toBeCloseToNumber(0.3452864462700312)
+      expect(infectionRate(dec2020num, 1.5, 3, 0.2)).toBeCloseToNumber(1.294824173512617)
     })
 
     it('accounts for peakMonth correctly', () => {
-      expect(infectionRate(dec2020num, 0.9, 2, 0.2)).toEqual(0.8577915498773262)
-      expect(infectionRate(dec2020num, 0.9, 7, 0.2)).toEqual(0.842905568053961)
+      expect(infectionRate(dec2020num, 0.9, 2, 0.2)).toBeCloseToNumber(0.8577915498773262)
+      expect(infectionRate(dec2020num, 0.9, 7, 0.2)).toBeCloseToNumber(0.842905568053961)
     })
 
     it('accounts for seasonalForcing correctly', () => {
-      expect(infectionRate(dec2020num, 0.9, 3, 0.1)).toEqual(0.8384472520537851)
-      expect(infectionRate(dec2020num, 0.9, 3, 0.4)).toEqual(0.6537890082151402)
+      expect(infectionRate(dec2020num, 0.9, 3, 0.1)).toBeCloseToNumber(0.8384472520537851)
+      expect(infectionRate(dec2020num, 0.9, 3, 0.4)).toBeCloseToNumber(0.6537890082151402)
     })
   })
 
   describe('getPopulationParams', () => {
     it('calculates correct params', () => {
-      const params = getPopulationParams(allParamsFlat, severity, ageDisstribution)
+      const params = getPopulationParams(allParamsFlat, severity, ageDistribution)
       expect(params).toMatchSnapshot()
     })
   })
@@ -78,7 +81,7 @@ describe('model', () => {
 
   describe('evolve', () => {
     it('produces correct output for 10 days', () => {
-      const params = getPopulationParams(allParamsFlat, severity, ageDisstribution)
+      const params = getPopulationParams(allParamsFlat, severity, ageDistribution)
 
       const input = initializePopulation(
         initializePopulationParams.N,

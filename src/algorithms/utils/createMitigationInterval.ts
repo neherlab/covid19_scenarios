@@ -1,20 +1,21 @@
 import moment from 'moment'
 import { v4 as uuidv4 } from 'uuid'
 import createColor from 'create-color'
+import type { StrictOmit } from 'ts-essentials'
 
-import { MitigationInterval, MitigationIntervals } from '../types/Param.types'
+import type { MitigationInterval } from '../types/Param.types'
 
-export function suggestNextMitigationInterval(intervals: MitigationIntervals): MitigationInterval {
+export function suggestNextMitigationInterval(intervals: MitigationInterval[]): MitigationInterval {
   const tMinMoment = moment()
   const tMaxMoment = tMinMoment.clone().add(30, 'days')
 
-  const timeRange = { tMin: moment().toDate(), tMax: tMaxMoment.toDate() }
+  const timeRange = { begin: moment().toDate(), end: tMaxMoment.toDate() }
 
-  const interval: Omit<MitigationInterval, 'color'> = {
+  const interval: StrictOmit<MitigationInterval, 'color'> = {
     id: uuidv4(),
     name: `Intervention from ${tMinMoment.format('D MMM YYYY')}`,
     timeRange,
-    mitigationValue: [10, 30],
+    transmissionReduction: { begin: 10, end: 30 },
   }
 
   const color = createColor(interval)

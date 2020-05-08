@@ -1,0 +1,16 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: ScenarioDatumMitigation
+title: ScenarioDatumMitigation
+
+type: object
+
+additionalProperties: false
+
+required:
+  - mitigationIntervals
+
+properties:
+  mitigationIntervals:
+    type: array
+    items:
+      $ref: 'MitigationInterval#'

@@ -3,7 +3,7 @@ import { Button } from 'reactstrap'
 import { useTranslation, getI18n } from 'react-i18next'
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { FaTrash } from 'react-icons/fa'
-import { caseCountsNames, resetUserCaseCount, saveUserCaseCount, getUserCaseCount } from '../state/caseCountsData'
+import { caseCountsNames, resetUserCaseCount, saveUserCaseCount, getUserCaseCount } from '../state/getCaseCounts'
 import { NONE_COUNTRY_NAME } from '../state/state'
 import { FormDropdown } from '../../Form/FormDropdown'
 import ImportCaseCountDialog, { ImportedCaseCount } from '../Results/ImportCaseCountDialog'
@@ -14,7 +14,7 @@ export interface ConfirmedCasesDataPickerProps {
   touched?: FormikTouched<FormikValues>
 }
 
-const caseCountOptions = caseCountsNames.map((country) => ({ value: country, label: country }))
+const caseCountOptions = caseCountsNames.map((name) => ({ value: name, label: name }))
 caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: getI18n().t(NONE_COUNTRY_NAME) })
 
 export function ConfirmedCasesDataPicker({ errors, touched }: ConfirmedCasesDataPickerProps) {
@@ -40,7 +40,7 @@ export function ConfirmedCasesDataPicker({ errors, touched }: ConfirmedCasesData
   if (userImportedData) {
     return (
       <FormCustom
-        identifier="population.cases"
+        identifier="population.caseCountsName"
         label={t('Confirmed cases')}
         help={t('Select region for which to plot confirmed case and death counts.')}
       >
@@ -63,7 +63,7 @@ export function ConfirmedCasesDataPicker({ errors, touched }: ConfirmedCasesData
   return (
     <>
       <FormDropdown<string>
-        identifier="population.cases"
+        identifier="population.caseCountsName"
         label={t('Confirmed cases')}
         help={t('Select region for which to plot confirmed case and death counts.')}
         options={caseCountOptions}

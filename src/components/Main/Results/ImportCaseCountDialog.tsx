@@ -6,13 +6,13 @@ import FileUploadZone from '../Compare/FileUploadZone'
 import { processImportedData } from '../../../algorithms/utils/importedData'
 import Message from '../../Misc/Message'
 import { ProcessingError, ProcessingErrorCode } from '../../../algorithms/utils/exceptions'
-import { EmpiricalData } from '../../../algorithms/types/Param.types'
+import { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 
 const localizedErrorMessage = 'Error: {{message}}'
 
 export interface ImportedCaseCount {
   fileName: string
-  data: EmpiricalData
+  data: CaseCountsDatum[]
 }
 
 export interface ImportCaseCountDialogProps {
