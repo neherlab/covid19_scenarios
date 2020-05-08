@@ -135,7 +135,7 @@ class Params(Data):
 # ------------------------------------------------------------------------
 # Default parameters
 
-DefaultRates = Rates(latency=1/3.0, logR0=1.0, infection=1/3.0, hospital=1/4, critical=1/14, imports=.1, efficacy=0.5)
+DefaultRates = Rates(latency=1/3.0, logR0=1.0, infection=1/3.0, hospital=1/3.0, critical=1/14, imports=.1, efficacy=0.5)
 RateFields   = [ f for f in dir(DefaultRates) \
                     if not callable(getattr(DefaultRates, f)) \
                     and not f.startswith("__") ]
@@ -479,7 +479,7 @@ if __name__ == "__main__":
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
     # Fitting over the pre-confinement days
-    res = fit_population_iterative(key, model_tps, fit_data)
+    res = fit_population_iterative(key, model_tps, fit_data, FRA=True)
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
     err = fit_error(fit_data, model)
     time -= res['params'].time[0]

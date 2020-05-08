@@ -212,10 +212,26 @@ class ScenarioArray(schema.ScenarioArray):
         super(ScenarioArray, self).__init__(all = data)
 
     def marshalJSON(self, wtr=None):
+        """ Validate and store data to .json file """
         if wtr is None:
-            return json.dumps(self.to_dict(), default=lambda x: x.__dict__, sort_keys=True, indent=2)
-        else:
-            return wtr.write(json.dumps(self.to_dict()))
+            return json.dumps(self.to_dict(), default=lambda x: x.__dict__, sort_keys=True, indent=0)
+
+        newdata = []
+        print(self.to_dict())
+        for k in self.to_dict():
+            newdata.append({'country': k, 'allParams': self[k].to_dict()})
+
+        newdata.sort(key = lambda x:x['country'])
+
+        # Serialize into json
+        news = json.dumps(newdata, default=lambda x: x.__dict__, sort_keys=True, indent=0)
+
+        # Validate the dict based on the json
+        with open(os.path.join(BASE_PATH, SCHEMA_SCENARIOS), "r") as f:
+            schema = yaml.load(f, Loader=yaml.FullLoader)
+            validate(json.loads(news), schema, format_checker=FormatChecker())
+
+        return wtr.write(news)
 
 # ------------------------------------------------------------------------
 # Functions
@@ -232,6 +248,7 @@ def fit_one_case_data(args):
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
     if region[:4]=='FRA-': #french don't report case data anymore
+        print("BLABLA")
         r = fit_population_iterative(region, model_tps, fit_data, FRA=True)
     else:
         r = fit_population_iterative(region, model_tps, fit_data)
@@ -273,12 +290,12 @@ def set_mitigation(cases, scenario):
             cutoff_str = valid_cases[level_idx]["time"][:10]
             cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-        scenario.mitigation.mitigation_intervals.append(MitigationInterval(
-            name=name,
-            tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
-            tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
-            color=mitigation_colors.get(name, "#cccccc"),
-            mitigationValue=round(100*val)))
+            scenario.mitigation.mitigation_intervals.append(MitigationInterval(
+                name=name,
+                tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
+                tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
+                color=mitigation_colors.get(name, "#cccccc"),
+                mitigationValue=round(100*val)))
 
 
 # ------------------------------------------------------------------------

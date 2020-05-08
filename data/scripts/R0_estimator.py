@@ -105,7 +105,7 @@ def stair_func(time, val_o, val_e, x_drop):
 
 def err_function(x_drop, time, vec, val_o, val_e):
     # vec need to be masked to avoid nan
-    return np.sum(np.abs(vec - stair_func(time, val_o, val_e, x_drop))**1)
+    return np.sum(np.abs(vec - stair_func(time, val_o, val_e, x_drop)))
 
 
 def stair_fit(time, vec, nb_value=3):
@@ -131,7 +131,6 @@ def get_Re_guess(time, cases, step=7, extremal_points=10, only_deaths=False):
     diff_data = get_daily_counts(cases)
     data_log_smoothed = log_smooth(diff_data)
     growth_rate = get_growth_rate(data_log_smoothed, step)
-    # growth_rate = get_growth_rate(diff_data, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
     fits = stair_fits(time, R0_by_day, nb_value=extremal_points)
     if only_deaths:
