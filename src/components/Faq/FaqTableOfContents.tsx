@@ -7,7 +7,6 @@ const FaqTableOfContents = () => {
   useEffect(() => {
     const links: string[] = []
     setTimeout(() => {
-      // eslint-disable-next-line unicorn/prefer-spread
       Array.from(document.querySelectorAll('strong')).forEach((node) => {
         if (node.innerHTML === 'Q:') {
           // eslint-disable-next-line no-param-reassign

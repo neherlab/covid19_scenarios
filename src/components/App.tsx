@@ -12,4 +12,4 @@ function App() {
   return <Layout />
 }
 
-export default withErrorBoundary(App, ErrorPage)
+export default withErrorBoundary(App, { FallbackComponent: ErrorPage })

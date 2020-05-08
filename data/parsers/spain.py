@@ -60,7 +60,11 @@ def parse():
 
     for r in regions:
         if r == 'ESP-Madrid':
-            continue
+            for d in regions[r]:
+                stop = datetime.strptime('2020-04-26', '%Y-%m-%d')
+                if datetime.strptime(d[cols.index('time')], '%Y-%m-%d') >= stop:
+                    d[cols.index('hospitalized')] = None
+                    d[cols.index('icu')] = None
         elif r == 'ESP-Galicia':
             for d in regions[r]:
                 d[cols.index('hospitalized')] = None
@@ -91,7 +95,10 @@ def parse():
                 d[cols.index('icu')] = None
 
     # For totals, we actually only use the recovered data in the end, as hosp+icu are None, and cases and deaths are taken from ecdc data
-    regions['Spain'] = regions['ESP-Total']
-    del regions['ESP-Total']
-    
+    try:
+        regions['Spain'] = regions['ESP-Total']
+        del regions['ESP-Total']
+    except:
+        print("Spain totals don't exist")
+
     store_data(regions, 'spain', cols)

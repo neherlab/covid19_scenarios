@@ -37,4 +37,4 @@ const Loadable = loadable((props: LoadableProps) => {
   return pagePromise
 })
 
-export default withErrorBoundary(Loadable, ErrorPage)
+export default withErrorBoundary(Loadable, { FallbackComponent: ErrorPage })

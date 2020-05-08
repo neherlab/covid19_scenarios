@@ -105,6 +105,7 @@ module.exports = {
     'lodash/prefer-lodash-chain': 'off',
     'lodash/prefer-lodash-method': 'off',
     'lodash/prefer-lodash-typecheck': 'off',
+    'max-classes-per-file': 'off',
     'no-console': ['warn', { allow: ['info', 'warn', 'error'] }],
     'no-loops/no-loops': 'warn',
     'no-secrets/no-secrets': ['warn', { tolerance: 5 }],
@@ -116,18 +117,21 @@ module.exports = {
     'react/jsx-curly-brace-presence': 'off',
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
-    'sonarjs/cognitive-complexity': ['warn', 20],
     'react/prop-types': 'off',
     'react/state-in-constructor': 'off',
     'redux-saga/no-unhandled-errors': 'off',
     'security/detect-non-literal-fs-filename': 'off',
     'security/detect-object-injection': 'off',
+    'sonarjs/cognitive-complexity': ['warn', 20],
     'unicorn/escape-case': 'off',
     'unicorn/filename-case': 'off',
     'unicorn/new-for-builtins': 'off',
     'unicorn/no-abusive-eslint-disable': 'warn',
+    'unicorn/no-fn-reference-in-iterator': 'off',
+    'unicorn/no-null': 'off',
     'unicorn/no-zero-fractions': 'off',
     'unicorn/prefer-query-selector': 'off',
+    'unicorn/prefer-spread': 'off',
     'unicorn/prevent-abbreviations': 'off',
 
     'lines-between-class-members': ['warn', 'always', { exceptAfterSingleLine: true }],
@@ -140,8 +144,32 @@ module.exports = {
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': 'warn',
 
+    '@typescript-eslint/no-duplicate-imports': 'off',
+
     '@typescript-eslint/tslint/max-union-size': 'off',
+    '@typescript-eslint/tslint/no-duplicate-imports': 'off',
     '@typescript-eslint/tslint/prettier': 'off',
+
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          './.generated/latest/types',
+          '../../.generated/latest/types',
+          '../../../.generated/latest/types',
+          '../../../../.generated/latest/types',
+          '../../../../../.generated/latest/types',
+          './algorithms/types/restricted/ScenarioDatumInternal',
+          '../algorithms/types/restricted/ScenarioDatumInternal',
+          '../../algorithms/types/restricted/ScenarioDatumInternal',
+          '../../../algorithms/types/restricted/ScenarioDatumInternal',
+          '../../../../algorithms/types/restricted/ScenarioDatumInternal',
+        ].map((name) => ({
+          name,
+          message: `Reason: please don't import generated or restricted types directly, import adjusted types from 'src/algorithms/types/*.types.ts' instead`,
+        })),
+      },
+    ],
   },
   env: {
     browser: true,

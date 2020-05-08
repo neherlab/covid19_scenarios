@@ -1,9 +1,9 @@
 import React from 'react'
 
+import { sumBy } from 'lodash'
+
 import ReactResizeDetector from 'react-resize-detector'
-
 import { useTranslation } from 'react-i18next'
-
 import {
   Bar,
   BarChart,
@@ -17,15 +17,13 @@ import {
   TooltipProps,
 } from 'recharts'
 
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { AgeDistribution, Severity } from '../../../.generated/types'
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { colors } from './ChartCommon'
-
 import { calculatePosition, scrollToRef } from './chartHelper'
-
 import { ChartTooltip } from './ChartTooltip'
 
 const ASPECT_RATIO = 16 / 4
@@ -33,8 +31,8 @@ const ASPECT_RATIO = 16 / 4
 export interface SimProps {
   showHumanized?: boolean
   data?: AlgorithmResult
-  ageDistribution?: AgeDistribution
-  rates?: Severity[]
+  ageDistribution?: AgeDistributionDatum[]
+  rates?: SeverityDistributionDatum[]
   forcedWidth?: number
   forcedHeight?: number
   printLabel?: boolean
@@ -82,17 +80,14 @@ export function AgeBarChart({
   }
 
   // Ensure age distribution is normalized
-  const Z: number = Object.values(ageDistribution).reduce((a, b) => a + b, 0)
-  const normAgeDistribution: Record<string, number> = {}
-  Object.keys(ageDistribution).forEach((k) => {
-    normAgeDistribution[k] = ageDistribution[k] / Z
-  })
+  const Z: number = sumBy(ageDistribution, ({ population }) => population)
+  const normAgeDistribution = ageDistribution.map((d) => d.population / Z)
+  const ages = ageDistribution.map((d) => d.ageGroup)
 
-  const ages = Object.keys(normAgeDistribution)
   const lastDataPoint = data.trajectory.middle[data.trajectory.middle.length - 1]
-  const plotData = ages.map((age) => ({
+  const plotData = ages.map((age, i) => ({
     name: age,
-    fraction: Math.round(normAgeDistribution[age] * 1000) / 10,
+    fraction: Math.round(normAgeDistribution[i] * 1000) / 10,
     peakSevere: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.severe[age]))),
     errorPeakSevere: [
       Math.round(Math.max(...data.trajectory.lower.map((x) => x.current.severe[age]))),

@@ -3,10 +3,12 @@ import React from 'react'
 import _ from 'lodash'
 
 import { CartesianGrid, ComposedChart, Label, ReferenceArea, XAxis, YAxis } from 'recharts'
-import { MitigationInterval } from '../../../.generated/types'
 
-const intervalOpacity = (interval: MitigationInterval): number => {
-  return 0.1 + 0.006 * (100 - (interval.mitigationValue[1] - interval.mitigationValue[0]))
+import type { MitigationInterval, NumericRangeNonNegative } from '../../../algorithms/types/Param.types'
+
+const intervalOpacity = (transmissionReduction: NumericRangeNonNegative): number => {
+  const { begin, end } = transmissionReduction
+  return 0.1 + 0.006 * (100 - (end - begin))
 }
 
 export interface MitigationPlotProps {
@@ -45,21 +47,23 @@ export function MitigationPlot({ mitigation, width, height, tMin, tMax }: Mitiga
         label={{ value: 'Efficiency', angle: -90 }}
         domain={[0, 100]}
       />
-      {mitigation.map((interval, i) => (
-        <ReferenceArea
-          key={interval.id}
-          x1={_.clamp(interval.timeRange.tMin.getTime(), tMin, tMax)}
-          x2={_.clamp(interval.timeRange.tMax.getTime(), tMin, tMax)}
-          y1={_.clamp(interval.mitigationValue[0] - 2, 0, 100)}
-          y2={_.clamp(interval.mitigationValue[1] + 2, 0, 100)}
-          yAxisId={'mitigationStrengthAxis'}
-          fill={interval.color}
-          stroke={interval.color}
-          fillOpacity={intervalOpacity(interval)}
-        >
-          <Label value={interval.name} position={i % 2 ? 'insideRight' : 'insideLeft'} fill="#444444" />
-        </ReferenceArea>
-      ))}
+      {mitigation.map(({ id, name, timeRange, transmissionReduction, color }, i) => {
+        return (
+          <ReferenceArea
+            key={id}
+            x1={_.clamp(timeRange.begin.getTime(), tMin, tMax)}
+            x2={_.clamp(timeRange.end.getTime(), tMin, tMax)}
+            y1={_.clamp(transmissionReduction.begin - 2, 0, 100)}
+            y2={_.clamp(transmissionReduction.end + 2, 0, 100)}
+            yAxisId={'mitigationStrengthAxis'}
+            fill={color}
+            stroke={color}
+            fillOpacity={intervalOpacity(transmissionReduction)}
+          >
+            <Label value={name} position={i % 2 ? 'insideRight' : 'insideLeft'} fill="#444444" />
+          </ReferenceArea>
+        )
+      })}
     </ComposedChart>
   )
 }
