@@ -223,8 +223,7 @@ class ScenarioArray(schema.ScenarioArray):
 def fit_one_case_data(args):
     Params = Fitter()
     region, tmp_data = args
-    containment_start = get_containment_start(region)
-    print(f"starting fit for {region} with containment start date {containment_start}")
+    print(f"starting fit for {region}")
 
     time, data = load_data(region, tmp_data)
     if len(time)==0:
@@ -269,18 +268,18 @@ def set_mitigation(cases, scenario, fit_params):
     levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0.mean()), 1)
     levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
-        for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
-            if len(level):
-                level_idx = level[0]
-                cutoff_str = valid_cases[level_idx]["time"][:10]
-                cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
+    for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
+        if len(level):
+            level_idx = level[0]
+            cutoff_str = valid_cases[level_idx]["time"][:10]
+            cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.mitigation.mitigation_intervals.append(MitigationInterval(
-                name=name,
-                tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
-                tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
-                color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=round(100*val)))
+        scenario.mitigation.mitigation_intervals.append(MitigationInterval(
+            name=name,
+            tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
+            tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
+            color=mitigation_colors.get(name, "#cccccc"),
+            mitigationValue=round(100*val)))
 
 
 # ------------------------------------------------------------------------
