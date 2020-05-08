@@ -30,7 +30,8 @@
     "**/__tests__",
     ".build",
     "config/jest",
-    "node_modules"
+    "node_modules",
+    "src/.generated"
   ],
   "exec": "yarn clear && yarn install && yarn analyze || cd ."
 }

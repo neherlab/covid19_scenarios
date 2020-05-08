@@ -31,7 +31,8 @@
     "**/__tests__",
     ".build",
     "config/jest",
-    "node_modules"
+    "node_modules",
+    "src/.generated"
   ],
   "exec": "run-s -c clear prod:clean prod:start || cd ."
 }
