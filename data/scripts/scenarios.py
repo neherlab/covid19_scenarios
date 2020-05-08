@@ -255,8 +255,7 @@ def fit_all_case_data(num_procs=4):
         if v is not None:
             FIT_CASE_DATA[k] = v
 
-def set_mitigation(cases, scenario, fit_params):
-    print(fit_params)
+def set_mitigation(cases, scenario):
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
         scenario.mitigation.mitigation_intervals = []
