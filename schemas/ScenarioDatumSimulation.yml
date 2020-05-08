@@ -1,0 +1,21 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: ScenarioDatumSimulation
+title: ScenarioDatumSimulation
+
+type: object
+
+additionalProperties: false
+
+required:
+  - simulationTimeRange
+  - numberStochasticRuns
+
+properties:
+  simulationTimeRange:
+    $ref: 'DateRange#'
+
+  numberStochasticRuns:
+    allOf:
+      - $ref: 'Integer#'
+      - minimum: 10
+        maximum: 100

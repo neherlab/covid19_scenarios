@@ -1,62 +1,71 @@
-import path from 'path'
-
-import React, { useCallback } from 'react'
-
+import React, { useCallback, useReducer, Reducer } from 'react'
 import { useDropzone } from 'react-dropzone'
-
 import { useTranslation } from 'react-i18next'
-
-/* Adds relevant files to a Map to be dispatched */
-function reduceDroppedFiles(files: Map<FileType, File>, file: File) {
-  const ext = path.extname(file.name)
-  const type = fileExtToType(ext)
-  if (type) {
-    files.set(type, file)
-  }
-  return files
-}
+import './FileUploadZone.scss'
 
 export enum FileType {
   CSV = 'CSV',
-}
-
-/* Converts file extension to FileType enum */
-function fileExtToType(ext: string) {
-  const extMap = new Map<string, FileType>(Object.entries({ '.csv': FileType.CSV }))
-  return extMap.get(ext)
+  TSV = 'TSV',
 }
 
 export interface FileUploadZoneProps {
-  files: Map<FileType, File>
-  onFilesChange(files: Map<FileType, File>): void
+  onFilesUploaded(files: File[]): void
+  onFilesRejected?(): void
+  accept?: string | string[]
+  multiple?: boolean
+  dropZoneMessage: string
+  activeDropZoneMessage: string
 }
 
-function FileUploadZone({ files, onFilesChange }: FileUploadZoneProps) {
+/* Adds relevant files to a Map to be dispatched */
+function reduceDroppedFiles(files: File[], file: File) {
+  files.push(file)
+  return files
+}
+
+function FileUploadZone({
+  accept,
+  multiple,
+  onFilesUploaded,
+  onFilesRejected,
+  dropZoneMessage,
+  activeDropZoneMessage,
+}: FileUploadZoneProps) {
+  const [uploadedFiles, dispatchUploadedFile] = useReducer<Reducer<File[], File>>(reduceDroppedFiles, [])
   const onDrop = useCallback(
     (droppedFiles: File[]) => {
-      const files = droppedFiles.reduce(reduceDroppedFiles, new Map())
-      onFilesChange(files)
+      droppedFiles.forEach(dispatchUploadedFile)
+      onFilesUploaded(uploadedFiles)
     },
-    [onFilesChange],
+    [onFilesUploaded, uploadedFiles],
   )
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept,
+    multiple,
+    onDropAccepted: onDrop,
+    onDropRejected: onFilesRejected,
+  })
   const { t } = useTranslation()
+
   return (
     <div>
-      <div {...getRootProps()}>
+      <div {...getRootProps()} className="fileuploadzone-drop-area rounded p-3">
         <input type="file" {...getInputProps()} />
-        {isDragActive ? (
-          <p>{t('Drop the files here ...')}</p>
-        ) : (
-          <p>{t("Drag n' drop some files here, or click to select files")}</p>
-        )}
-        <ul>
-          {[...files.values()].map(({ name }: File) => (
-            <li key={name}>{name}</li>
-          ))}
-        </ul>
+        <p className="h5 text-secondary text-center m-0">{isDragActive ? activeDropZoneMessage : dropZoneMessage}</p>
       </div>
+      {uploadedFiles.length > 0 && (
+        <>
+          <h3 className="mt-4">{t('Your file', { count: uploadedFiles.length })}</h3>
+          <ul>
+            {uploadedFiles.map((file: File) => (
+              <li key={file.name}>
+                {t('{{fileName}} ({{fileSize}}Kb)', { fileName: file.name, fileSize: file.size / 1000 })}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   )
 }

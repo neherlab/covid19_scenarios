@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { useState } from 'react'
 
 import _ from 'lodash'
@@ -19,8 +20,11 @@ import {
 } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+
+import type { ScenarioDatum, CaseCountsDatum } from '../../../algorithms/types/Param.types'
+
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+
 import { numberFormatter } from '../../../helpers/numberFormat'
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
@@ -31,17 +35,6 @@ import { R0Plot } from './R0LinePlot'
 import './DeterministicLinePlot.scss'
 
 const ASPECT_RATIO = 16 / 9
-
-export interface LinePlotProps {
-  data?: AlgorithmResult
-  params: AllParams
-  mitigation: ContainmentData
-  logScale?: boolean
-  showHumanized?: boolean
-  caseCounts?: EmpiricalData
-  forcedWidth?: number
-  forcedHeight?: number
-}
 
 function xTickFormatter(tick: string | number): string {
   return new Date(tick).toISOString().slice(0, 10)
@@ -65,7 +58,7 @@ type maybeNumber = number | undefined
 function computeNewEmpiricalCases(
   timeWindow: number,
   verifyPositive: (x: number) => number | undefined,
-  cumulativeCounts?: EmpiricalData,
+  cumulativeCounts?: CaseCountsDatum[],
 ): [maybeNumber[], number] {
   const newEmpiricalCases: maybeNumber[] = []
   const deltaDay = Math.floor(timeWindow)
@@ -117,12 +110,21 @@ function verifyTuple(
   return undefined
 }
 
+export interface LinePlotProps {
+  data?: AlgorithmResult
+  params: ScenarioDatum
+  logScale?: boolean
+  showHumanized?: boolean
+  caseCounts?: CaseCountsDatum[]
+  forcedWidth?: number
+  forcedHeight?: number
+}
+
 // FIXME: this component has become too large
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function DeterministicLinePlot({
   data,
   params,
-  mitigation,
   logScale,
   showHumanized,
   caseCounts,
@@ -143,29 +145,27 @@ export function DeterministicLinePlot({
     return null
   }
 
-  const { mitigationIntervals } = mitigation
+  const { mitigationIntervals } = params.mitigation
 
   const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
-  const nICUBeds = verifyPositive(params.population.ICUBeds)
-
-  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
+  const nICUBeds = verifyPositive(params.population.icuBeds)
 
   const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
-    params.epidemiological.infectiousPeriod,
+    params.epidemiological.infectiousPeriodDays,
     verifyPositive,
-    nonEmptyCaseCounts,
+    caseCounts,
   )
 
   const countObservations = {
-    cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
-    observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: nonEmptyCaseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
-    hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
+    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
+    ICU: caseCounts?.filter((d) => d.icu).length ?? 0,
+    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
+    newCases: caseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
+    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
   const observations =
-    nonEmptyCaseCounts?.map((d, i) => ({
+    caseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
       cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
       observedDeaths: enabledPlots.includes(DATA_POINTS.ObservedDeaths) ? d.deaths || undefined : undefined,
@@ -270,6 +270,7 @@ export function DeterministicLinePlot({
 
   // determine the max of enabled plots w/o the hospital capacity
   const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
+  // @ts-ignore
   const yDataMax = _.max(consolidatedPlotData.map((d) => _.max(dataKeys.map((k) => d[k]))))
 
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
@@ -298,6 +299,7 @@ export function DeterministicLinePlot({
 
   let tooltipItems: { [key: string]: number | undefined } = {}
   consolidatedPlotData.forEach((d) => {
+    // @ts-ignore
     tooltipItems = { ...tooltipItems, ...d }
   })
   const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(

@@ -1,43 +1,47 @@
-import { Convert } from '../../../.generated/types'
+import { Convert } from '../../../algorithms/types/Param.types'
 
-import CaseCountsValidate from '../../../.generated/CaseCountsValidate'
-import rawCaseCounts from '../../../assets/data/case_counts.json'
+import validateCaseCountsArray from '../../../.generated/latest/validateCaseCountsArray'
+import rawCaseCounts from '../../../assets/data/caseCounts.json'
 
-import CountryAgeDistributionValidate from '../../../.generated/CountryAgeDistributionValidate'
-import rawCountryAgeDistribution from '../../../assets/data/country_age_distribution.json'
+import validateAgeDistributionArray from '../../../.generated/latest/validateAgeDistributionArray'
+import rawCountryAgeDistribution from '../../../assets/data/ageDistribution.json'
 
-import SeverityValidate from '../../../.generated/SeverityValidate'
-import rawSeverity from '../../../assets/data/severityData.json'
+import validateSeverityDistributionArray from '../../../.generated/latest/validateSeverityDistributionArray'
+import rawSeverity from '../../../assets/data/severityDistributions.json'
 
-import ScenariosValidate from '../../../.generated/ScenariosValidate'
-import rawScenarios from '../../../assets/data/scenarios/scenarios.json'
+import validateScenarioArray from '../../../.generated/latest/validateScenarioArray'
+import rawScenarios from '../../../assets/data/scenarios.json'
 
 describe('data', () => {
   it('CaseCounts should match schemas', () => {
-    const result = CaseCountsValidate(rawCaseCounts)
+    const result = validateCaseCountsArray(rawCaseCounts)
     expect(result).toBeTrue()
-    const converted = Convert.toCaseCounts(JSON.stringify(rawCaseCounts))
-    expect(converted).toBeArray()
+    const converted = Convert.toCaseCountsArray(JSON.stringify(rawCaseCounts))
+    expect(converted).toBeObject()
+    expect(converted.all).toBeArray()
   })
 
   it('CountryAgeDistribution should match schemas', () => {
-    const result = CountryAgeDistributionValidate(rawCountryAgeDistribution)
+    const result = validateAgeDistributionArray(rawCountryAgeDistribution)
     expect(result).toBeTrue()
-    const converted = Convert.toCountryAgeDistribution(JSON.stringify(rawCountryAgeDistribution))
-    expect(converted).toBeArray()
+    const converted = Convert.toAgeDistributionArray(JSON.stringify(rawCountryAgeDistribution))
+    expect(converted).toBeObject()
+    expect(converted.all).toBeArray()
   })
 
   it('Severity should match schemas', () => {
-    const result = SeverityValidate(rawSeverity)
+    const result = validateSeverityDistributionArray(rawSeverity)
     expect(result).toBeTrue()
-    const converted = Convert.toSeverity(JSON.stringify(rawSeverity))
-    expect(converted).toBeArray()
+    const converted = Convert.toSeverityDistributionArray(JSON.stringify(rawSeverity))
+    expect(converted).toBeObject()
+    expect(converted.all).toBeArray()
   })
 
   it('Scenarios should match schemas', () => {
-    const result = ScenariosValidate(rawScenarios)
+    const result = validateScenarioArray(rawScenarios)
     expect(result).toBeTrue()
-    const converted = Convert.toScenario(JSON.stringify(rawScenarios))
-    expect(converted).toBeArray()
+    const converted = Convert.toScenarioArray(JSON.stringify(rawScenarios))
+    expect(converted).toBeObject()
+    expect(converted.all).toBeArray()
   })
 })

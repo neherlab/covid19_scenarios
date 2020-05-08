@@ -16,21 +16,21 @@ export interface DateRangePickerProps extends Partial<DateRangePickerShape> {
 export function DateRangePicker({ identifier, value, allowPast, setValue, ...otherProps }: DateRangePickerProps) {
   const [focusedInput, setFocusedInput] = useState<FocusedInputShape | null>(null)
 
-  const { tMin, tMax } = value
+  const { begin, end } = value
 
   return (
     <AirbnbDateRangePicker
-      startDate={moment(tMin)}
+      startDate={moment(begin)}
       startDateId={`${identifier}_start_date_id`}
-      endDate={moment(tMax)}
+      endDate={moment(end)}
       endDateId={`${identifier}_end_date_id`}
       onDatesChange={({ startDate, endDate }) => {
         if (startDate && endDate) {
-          setValue({ tMin: startDate.toDate(), tMax: endDate.toDate() })
+          setValue({ begin: startDate.toDate(), end: endDate.toDate() })
         } else if (startDate) {
-          setValue({ ...value, tMin: startDate.toDate() })
+          setValue({ ...value, begin: startDate.toDate() })
         } else if (endDate) {
-          setValue({ ...value, tMax: endDate.toDate() })
+          setValue({ ...value, end: endDate.toDate() })
         }
       }}
       focusedInput={focusedInput}

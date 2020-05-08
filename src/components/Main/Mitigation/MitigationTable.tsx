@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { isEmpty } from 'lodash'
+
 import ReactResizeDetector from 'react-resize-detector'
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
@@ -7,8 +9,7 @@ import { Button, Table } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
-import { MitigationInterval, MitigationIntervals } from '../../../algorithms/types/Param.types'
-
+import type { MitigationInterval } from '../../../algorithms/types/Param.types'
 import { suggestNextMitigationInterval } from '../../../algorithms/utils/createMitigationInterval'
 
 import { MitigationDatePicker } from './MitigationDatePicker'
@@ -19,7 +20,7 @@ import { getFormikErrors } from '../../../helpers/getFormikErrors'
 import './MitigationTable.scss'
 
 export interface MitigationTableProps {
-  mitigationIntervals: MitigationIntervals
+  mitigationIntervals: MitigationInterval[]
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
@@ -31,7 +32,7 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
     <ReactResizeDetector handleWidth>
       {({ width }: { width?: number }) => (
         <FieldArray
-          name="containment.mitigationIntervals"
+          name="mitigation.mitigationIntervals"
           render={(arrayHelpers) => (
             <div className="mitigation-table">
               <p>
@@ -39,7 +40,7 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
                 are gathering this information at the moment. For the time being please adjust, add, and remove to match
                 your community.
               </p>
-              <p>Each measure consists of name, start/end date, and a lower/upper bound on effectiveness in %.</p>
+              <p>Each measure consists of name, start/end date, and an effectiveness in %.</p>
 
               <Table>
                 <thead>
@@ -56,6 +57,7 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
                     if (!interval) {
                       return null
                     }
+
                     return (
                       <MitigationIntervalComponent
                         key={interval.id}
@@ -89,20 +91,7 @@ export function MitigationTable({ mitigationIntervals, errors, touched }: Mitiga
   )
 }
 
-export interface ErrorRowProps {
-  name: string
-  message: string
-}
-
-export function ErrorRow({ name, message }: ErrorRowProps) {
-  return (
-    <tr className="my-0 text-right text-danger">
-      <td colSpan={4}>{`${name}: ${message}`}</td>
-    </tr>
-  )
-}
-
-interface MitigationIntervalProps {
+export interface MitigationIntervalProps {
   width: number
   index: number
   interval: MitigationInterval
@@ -121,43 +110,62 @@ function MitigationIntervalComponent({
 }: MitigationIntervalProps) {
   const { t } = useTranslation()
 
-  const nameErrors = getFormikErrors({
-    errors,
-    touched,
-    identifier: `containment.mitigationIntervals[${index}].name`,
-  })
+  const errorMessages = [
+    { friendlyName: t('Intervention name'), identifier: `mitigation.mitigationIntervals[${index}].name` },
+    {
+      friendlyName: t('Transmission reduction'),
+      identifier: `mitigation.mitigationIntervals[${index}].transmissionReduction`,
+    },
+  ]
+    .map(({ friendlyName, identifier }) => {
+      const errorMessages = getFormikErrors({ identifier, errors, touched })
+      return { friendlyName, identifier, errorMessages }
+    })
+    .filter(({ errorMessages }) => !isEmpty(errorMessages))
 
-  const valueErrors = getFormikErrors({
-    errors,
-    touched,
-    identifier: `containment.mitigationIntervals[${index}].mitigationValue`,
-  })
+  const errorComponents = errorMessages.map(({ friendlyName, errorMessages }) =>
+    errorMessages.map((message) => {
+      const content = `${friendlyName}: ${message}`
+      return (
+        <tr key={content}>
+          <div key={content} className="my-0 text-right text-danger">
+            {message}
+          </div>
+        </tr>
+      )
+    }),
+  )
+
+  const nameHasError = errorMessages.some(({ identifier }) => identifier.includes('.name'))
+  const transmissionReductionHasError = errorMessages.some(({ identifier }) =>
+    identifier.includes('.transmissionReduction'),
+  )
 
   return (
     <>
       <tr>
         <td>
           <FastField
-            className={`form-control ${nameErrors.length > 0 ? 'border-danger' : ''}`}
-            id={`containment.mitigationIntervals[${index}].name`}
-            name={`containment.mitigationIntervals[${index}].name`}
+            className={`form-control ${nameHasError ? 'border-danger' : ''}`}
+            id={`mitigation.mitigationIntervals[${index}].name`}
+            name={`mitigation.mitigationIntervals[${index}].name`}
             type="text"
           />
         </td>
         <td>
           <MitigationDatePicker
-            identifier={`containment.mitigationIntervals[${index}].timeRange`}
+            identifier={`mitigation.mitigationIntervals[${index}].timeRange`}
             value={interval.timeRange}
             allowPast
           />
         </td>
         <td>
           <RangeSpinBox
-            className={valueErrors.length > 0 ? 'border-danger' : ''}
-            identifier={`containment.mitigationIntervals[${index}].mitigationValue`}
+            identifier={`mitigation.mitigationIntervals[${index}].transmissionReduction`}
             step={0.1}
             min={0}
             max={100}
+            hasError={transmissionReductionHasError}
           />
         </td>
         <td>
@@ -169,13 +177,7 @@ function MitigationIntervalComponent({
         </td>
       </tr>
 
-      {nameErrors.map((message) => (
-        <ErrorRow key={message} name={t('Intervention name')} message={message} />
-      ))}
-
-      {valueErrors.map((message) => (
-        <ErrorRow key={message} name={t('Mitigation strength')} message={message} />
-      ))}
+      <tr>{errorComponents}</tr>
     </>
   )
 }

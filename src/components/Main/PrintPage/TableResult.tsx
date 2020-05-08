@@ -3,7 +3,7 @@ import React from 'react'
 import moment from 'moment'
 import chroma from 'chroma-js'
 
-import { AlgorithmResult, ExportedTimePoint } from '../../../algorithms/types/Result.types'
+import type { AlgorithmResult, ExportedTimePoint } from '../../../algorithms/types/Result.types'
 import { colors } from '../Results/ChartCommon'
 
 export interface TableResultProps {

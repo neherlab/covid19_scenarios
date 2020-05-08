@@ -1,7 +1,7 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react'
 
 import { Col, FormGroup, Row } from 'reactstrap'
+
 import { getFormikErrors } from '../../helpers/getFormikErrors'
 
 import type { FormSpinBoxProps } from './FormSpinBox'
@@ -21,6 +21,7 @@ export function FormRangeSpinBox<T>({
   touched,
 }: FormSpinBoxProps<T>) {
   const errorMessages = getFormikErrors({ identifier, errors, touched })
+  const hasError = errorMessages.length > 0
 
   return (
     <FormGroup inline className="my-0">
@@ -29,16 +30,10 @@ export function FormRangeSpinBox<T>({
           <FormLabel identifier={identifier} label={label} help={help} />
         </Col>
         <Col className="d-inline" xl={6}>
-          <RangeSpinBox
-            className={errorMessages.length > 0 ? 'border-danger' : ''}
-            identifier={identifier}
-            step={step}
-            min={min}
-            max={max}
-            pattern={pattern}
-          />
-          {errorMessages.map((message, i) => (
-            <div key={`${message} ([${i}])`} className="text-danger">
+          <RangeSpinBox identifier={identifier} step={step} min={min} max={max} pattern={pattern} hasError={hasError} />
+
+          {errorMessages.map((message) => (
+            <div key={message} className="text-danger">
               {message}
             </div>
           ))}

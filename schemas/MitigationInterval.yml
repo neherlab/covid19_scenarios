@@ -1,0 +1,27 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: MitigationInterval
+title: MitigationInterval
+
+type: object
+
+additionalProperties: false
+
+required:
+  - name
+  - color
+  - timeRange
+  - transmissionReduction
+
+properties:
+  name:
+    type: string
+    minLength: 1
+
+  color:
+    $ref: 'ColorHex#'
+
+  timeRange:
+    $ref: 'DateRange#'
+
+  transmissionReduction:
+    $ref: 'PercentageRange#'

@@ -19,8 +19,8 @@ recalculated-fits:
 	python3 generate_data.py \
 		--recalculate \
 		--num-threads 10 \
-		--output-scenarios ../src/assets/data/scenarios/scenarios.json \
-		--output-cases ../src/assets/data/case_counts.json
+		--output-scenarios ../src/assets/data/scenarios.json \
+		--output-cases ../src/assets/data/caseCounts.json
 
 population:
 	python3 generate_data.py \
@@ -28,10 +28,18 @@ population:
 
 cases:
 	python3 generate_data.py \
-		--output-cases ../src/assets/data/case_counts.json
+		--output-cases ../src/assets/data/caseCounts.json
 
 scenarios:
 	python3 generate_data.py \
-		--output-scenarios ../src/assets/data/scenarios/scenarios.json \
+		--output-scenarios ../src/assets/data/scenarios.json
+
+test-scenarios:
+	python3 generate_data.py \
+		--output-scenarios test.json
+
+test-cases:
+	python3 generate_data.py \
+		--output-cases test.json
 
 data-for-app: cases scenarios

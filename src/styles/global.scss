@@ -30,7 +30,7 @@ body {
   padding: 0 !important;
 
   @media not print {
-    background-color: #eee;
+    background-color: $body-bg;
   }
 }
 

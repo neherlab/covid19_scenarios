@@ -10,15 +10,16 @@ const development = process.env.NODE_ENV === 'development'
 const debug = development || process.env.DEBUGGABLE_PROD === '1'
 
 interface StoreParams {
-  url: string
+  location: Location
 }
 
 const storeDefaults: StoreParams = {
-  url: '/',
+  location: window?.location ?? { pathname: '/' },
 }
 
-export default function configureStore({ url }: StoreParams = storeDefaults) {
+export default function configureStore({ location = storeDefaults.location }: StoreParams = storeDefaults) {
   const history = createBrowserHistory()
+  history.push(location)
 
   const sagaMiddleware = createSagaMiddleware()
   const middlewares = [

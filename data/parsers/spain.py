@@ -60,7 +60,11 @@ def parse():
 
     for r in regions:
         if r == 'ESP-Madrid':
-            continue
+            for d in regions[r]:
+                stop = datetime.strptime('2020-04-26', '%Y-%m-%d')
+                if datetime.strptime(d[cols.index('time')], '%Y-%m-%d') >= stop:
+                    d[cols.index('hospitalized')] = None
+                    d[cols.index('icu')] = None
         elif r == 'ESP-Galicia':
             for d in regions[r]:
                 d[cols.index('hospitalized')] = None

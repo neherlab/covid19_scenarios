@@ -6,8 +6,9 @@ import { Button, Col, Container, Row, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FaWindowClose } from 'react-icons/fa'
 
-import { AllParams, EmpiricalData, Severity } from '../../../algorithms/types/Param.types'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import type { CaseCountsDatum, ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+
 import { DeterministicLinePlot } from '../Results/DeterministicLinePlot'
 import { OutcomeRatesTable } from '../Results/OutcomeRatesTable'
 import { AgeBarChart } from '../Results/AgeBarChart'
@@ -26,11 +27,11 @@ import logoUnibas from '../../../assets/img/unibas.svg'
 import './PrintPage.scss'
 
 interface PropsType {
-  params: AllParams
+  params: ScenarioDatum
   scenarioUsed: string
-  severity: Severity[]
+  severity: SeverityDistributionDatum[]
   result?: AlgorithmResult
-  caseCounts?: EmpiricalData
+  caseCounts?: CaseCountsDatum[]
   onClose: () => void
 }
 
@@ -184,14 +185,15 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
               <tbody>
                 {Object.entries(params.epidemiological).map(([key, val]) => {
                   // NOTE: val can be of different types here
+                  // FIXME: This is a hole in type system, because the type of `val` is not checked (any)
                   let value = val
                   if (key === 'peakMonth') {
                     value = months[val]
                   }
 
                   if (key === 'r0') {
-                    const [lower, upper] = val.map((x: number) => Math.round(10 * x) / 10)
-                    value = `${lower} - ${upper}`
+                    const [begin, end] = Object.values(val).map((x) => Math.round(10 * (x as number)) / 10)
+                    value = `${begin} - ${end}`
                   }
 
                   return (
@@ -221,13 +223,16 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
               </thead>
 
               <tbody>
-                {params.containment.mitigationIntervals.map(({ id, name, timeRange, mitigationValue }) => {
+                {params.mitigation.mitigationIntervals.map(({ id, name, timeRange, transmissionReduction }) => {
+                  const { begin: trMin, end: trMax } = transmissionReduction
+                  const tr = `${trMin}% - ${trMax}%`
+
                   return (
                     <tr key={id}>
                       <td className="text-left pl-2 pr-4 py-0">{name}</td>
-                      <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.tMin)}</td>
-                      <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.tMax)}</td>
-                      <td className="text-right pl-2 pr-4 py-0">{`${mitigationValue[0]}% - ${mitigationValue[1]}%`}</td>
+                      <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.begin)}</td>
+                      <td className="text-right pl-4 pr-2 py-0">{dateFormat(timeRange.end)}</td>
+                      <td className="text-right pl-2 pr-4 py-0">{tr}</td>
                     </tr>
                   )
                 })}
@@ -241,14 +246,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
             <Row>
               <Col>
                 <h2>{`Results`}</h2>
-                <DeterministicLinePlot
-                  data={result}
-                  params={params}
-                  mitigation={params.containment}
-                  logScale
-                  showHumanized
-                  caseCounts={caseCounts}
-                />
+                <DeterministicLinePlot data={result} params={params} logScale showHumanized caseCounts={caseCounts} />
               </Col>
             </Row>
 

@@ -1,6 +1,7 @@
 import json
 from pandasdmx import Request
 from transform_ages import flatten
+from transform_ages_v2 import expand
 
 # ------------------------------------------------------------------------
 # Globals
@@ -338,10 +339,10 @@ if __name__ == "__main__":
         tbl = to_table(d.write())
         table.update(tbl)
 
-    ftable = flatten(table)
+    ftable = expand(flatten(table))
 
     # add the Kosovo data, as the API does not provide this:
     ftable.append({'country': 'Kosovo', 'ageDistribution': {'0-9': 294038, '10-19': 306895, '20-29': 299672, '30-39': 237846, '40-49': 228757, '50-59': 189740, '60-69': 127956, '70-79': 71350, '80+': 32684}})
-    
+
     with open(PATH_UN_AGES, 'w') as f:
         json.dump(ftable, f)
