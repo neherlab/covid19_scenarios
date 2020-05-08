@@ -1,7 +1,10 @@
 import { CaseCountsArray, CaseCountsData, CaseCountsDatum, Convert } from '../../../algorithms/types/Param.types'
 import validateCaseCountsArray, { errors } from '../../../.generated/latest/validateCaseCountsArray'
 import caseCountsDataRaw from '../../../assets/data/caseCounts.json'
+import { ImportedCaseCount } from '../Results/ImportCaseCountDialog'
 import { NONE_COUNTRY_NAME } from './state'
+
+const CUSTOM_CASE_COUNT_KEY = 'customCaseCount'
 
 function validate(): CaseCountsData[] {
   const valid = validateCaseCountsArray(caseCountsDataRaw)
@@ -43,4 +46,17 @@ export function getSortedNonEmptyCaseCounts(key: string): CaseCountsDatum[] {
   return getCaseCountsData(key)
     .filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
     .sort((a, b) => (a.time > b.time ? 1 : -1))
+}
+
+export function getUserCaseCount(): ImportedCaseCount | undefined {
+  const data = sessionStorage.getItem(CUSTOM_CASE_COUNT_KEY)
+  return data ? JSON.parse(data) : undefined
+}
+
+export function saveUserCaseCount(userCaseCount: ImportedCaseCount): void {
+  sessionStorage.setItem(CUSTOM_CASE_COUNT_KEY, JSON.stringify(userCaseCount))
+}
+
+export function resetUserCaseCount(): void {
+  sessionStorage.removeItem(CUSTOM_CASE_COUNT_KEY)
 }
