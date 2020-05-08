@@ -4,8 +4,8 @@
   "theme_color": "#343a40",
   "background_color": "#000007",
   "display": "browser",
-  "Scope": "/covid19",
-  "start_url": "/covid19",
+  "Scope": "/",
+  "start_url": "/",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
