@@ -1,4 +1,4 @@
-import { CaseCountsArray, CaseCountsData, Convert } from '../../../algorithms/types/Param.types'
+import { CaseCountsArray, CaseCountsData, CaseCountsDatum, Convert } from '../../../algorithms/types/Param.types'
 import validateCaseCountsArray, { errors } from '../../../.generated/latest/validateCaseCountsArray'
 import caseCountsDataRaw from '../../../assets/data/caseCounts.json'
 import { NONE_COUNTRY_NAME } from './state'
@@ -37,4 +37,10 @@ export function getCaseCountsData(name: string) {
   // FIXME: this should be changed, too hacky
   const caseCounts = Convert.toCaseCountsData(JSON.stringify(caseCountFound))
   return caseCounts.data
+}
+
+export function getSortedNonEmptyCaseCounts(key: string): CaseCountsDatum[] {
+  return getCaseCountsData(key)
+    .filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
+    .sort((a, b) => (a.time > b.time ? 1 : -1))
 }
