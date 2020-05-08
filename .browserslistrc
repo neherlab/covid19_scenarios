@@ -2,6 +2,7 @@
 defaults
 cover 99.5%
 since 2013
+ie >= 10
 
 [development]
 last 5 Chrome versions
