@@ -1,0 +1,2832 @@
+{
+  "all": [
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 11088731 },
+        { "ageGroup": "10-19", "population": 9821561 },
+        { "ageGroup": "20-29", "population": 7035871 },
+        { "ageGroup": "30-39", "population": 4534646 },
+        { "ageGroup": "40-49", "population": 2963460 },
+        { "ageGroup": "50-59", "population": 1840199 },
+        { "ageGroup": "60-69", "population": 1057497 },
+        { "ageGroup": "70-79", "population": 480455 },
+        { "ageGroup": "80+", "population": 105925 }
+      ],
+      "name": "Afghanistan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 333832 },
+        { "ageGroup": "10-19", "population": 361777 },
+        { "ageGroup": "20-29", "population": 472678 },
+        { "ageGroup": "30-39", "population": 390771 },
+        { "ageGroup": "40-49", "population": 323020 },
+        { "ageGroup": "50-59", "population": 386091 },
+        { "ageGroup": "60-69", "population": 330244 },
+        { "ageGroup": "70-79", "population": 194668 },
+        { "ageGroup": "80+", "population": 84716 }
+      ],
+      "name": "Albania"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 9677492 },
+        { "ageGroup": "10-19", "population": 6731745 },
+        { "ageGroup": "20-29", "population": 6573711 },
+        { "ageGroup": "30-39", "population": 7275234 },
+        { "ageGroup": "40-49", "population": 5448620 },
+        { "ageGroup": "50-59", "population": 3800054 },
+        { "ageGroup": "60-69", "population": 2530543 },
+        { "ageGroup": "70-79", "population": 1237832 },
+        { "ageGroup": "80+", "population": 575811 }
+      ],
+      "name": "Algeria"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 10899167 },
+        { "ageGroup": "10-19", "population": 7881777 },
+        { "ageGroup": "20-29", "population": 5306039 },
+        { "ageGroup": "30-39", "population": 3699729 },
+        { "ageGroup": "40-49", "population": 2412736 },
+        { "ageGroup": "50-59", "population": 1464604 },
+        { "ageGroup": "60-69", "population": 785896 },
+        { "ageGroup": "70-79", "population": 331730 },
+        { "ageGroup": "80+", "population": 84594 }
+      ],
+      "name": "Angola"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 14582 },
+        { "ageGroup": "10-19", "population": 13868 },
+        { "ageGroup": "20-29", "population": 14895 },
+        { "ageGroup": "30-39", "population": 14095 },
+        { "ageGroup": "40-49", "population": 13860 },
+        { "ageGroup": "50-59", "population": 12832 },
+        { "ageGroup": "60-69", "population": 8042 },
+        { "ageGroup": "70-79", "population": 4101 },
+        { "ageGroup": "80+", "population": 1654 }
+      ],
+      "name": "Antigua and Barbuda"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 7446465 },
+        { "ageGroup": "10-19", "population": 7136712 },
+        { "ageGroup": "20-29", "population": 6997584 },
+        { "ageGroup": "30-39", "population": 6441412 },
+        { "ageGroup": "40-49", "population": 5727746 },
+        { "ageGroup": "50-59", "population": 4424939 },
+        { "ageGroup": "60-69", "population": 3528743 },
+        { "ageGroup": "70-79", "population": 2300637 },
+        { "ageGroup": "80+", "population": 1191536 }
+      ],
+      "name": "Argentina"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 418860 },
+        { "ageGroup": "10-19", "population": 368930 },
+        { "ageGroup": "20-29", "population": 408926 },
+        { "ageGroup": "30-39", "population": 503954 },
+        { "ageGroup": "40-49", "population": 353090 },
+        { "ageGroup": "50-59", "population": 362654 },
+        { "ageGroup": "60-69", "population": 328401 },
+        { "ageGroup": "70-79", "population": 126744 },
+        { "ageGroup": "80+", "population": 91684 }
+      ],
+      "name": "Armenia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 11758 },
+        { "ageGroup": "10-19", "population": 14010 },
+        { "ageGroup": "20-29", "population": 14980 },
+        { "ageGroup": "30-39", "population": 11241 },
+        { "ageGroup": "40-49", "population": 14271 },
+        { "ageGroup": "50-59", "population": 17207 },
+        { "ageGroup": "60-69", "population": 13753 },
+        { "ageGroup": "70-79", "population": 6956 },
+        { "ageGroup": "80+", "population": 2590 }
+      ],
+      "name": "Aruba"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3308972 },
+        { "ageGroup": "10-19", "population": 3130480 },
+        { "ageGroup": "20-29", "population": 3375453 },
+        { "ageGroup": "30-39", "population": 3718346 },
+        { "ageGroup": "40-49", "population": 3306061 },
+        { "ageGroup": "50-59", "population": 3107734 },
+        { "ageGroup": "60-69", "population": 2651187 },
+        { "ageGroup": "70-79", "population": 1846377 },
+        { "ageGroup": "80+", "population": 1055274 }
+      ],
+      "name": "Australia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 874182 },
+        { "ageGroup": "10-19", "population": 876207 },
+        { "ageGroup": "20-29", "population": 1115378 },
+        { "ageGroup": "30-39", "population": 1243414 },
+        { "ageGroup": "40-49", "population": 1178265 },
+        { "ageGroup": "50-59", "population": 1407001 },
+        { "ageGroup": "60-69", "population": 1033318 },
+        { "ageGroup": "70-79", "population": 790436 },
+        { "ageGroup": "80+", "population": 488197 }
+      ],
+      "name": "Austria"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1686038 },
+        { "ageGroup": "10-19", "population": 1335455 },
+        { "ageGroup": "20-29", "population": 1608982 },
+        { "ageGroup": "30-39", "population": 1766690 },
+        { "ageGroup": "40-49", "population": 1280804 },
+        { "ageGroup": "50-59", "population": 1281076 },
+        { "ageGroup": "60-69", "population": 804312 },
+        { "ageGroup": "70-79", "population": 242762 },
+        { "ageGroup": "80+", "population": 133058 }
+      ],
+      "name": "Azerbaijan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 53654 },
+        { "ageGroup": "10-19", "population": 63795 },
+        { "ageGroup": "20-29", "population": 66571 },
+        { "ageGroup": "30-39", "population": 55456 },
+        { "ageGroup": "40-49", "population": 56498 },
+        { "ageGroup": "50-59", "population": 49219 },
+        { "ageGroup": "60-69", "population": 29427 },
+        { "ageGroup": "70-79", "population": 13644 },
+        { "ageGroup": "80+", "population": 4980 }
+      ],
+      "name": "Bahamas"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 218134 },
+        { "ageGroup": "10-19", "population": 181855 },
+        { "ageGroup": "20-29", "population": 306667 },
+        { "ageGroup": "30-39", "population": 507735 },
+        { "ageGroup": "40-49", "population": 256720 },
+        { "ageGroup": "50-59", "population": 140231 },
+        { "ageGroup": "60-69", "population": 66573 },
+        { "ageGroup": "70-79", "population": 17815 },
+        { "ageGroup": "80+", "population": 5845 }
+      ],
+      "name": "Bahrain"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 28972611 },
+        { "ageGroup": "10-19", "population": 30674421 },
+        { "ageGroup": "20-29", "population": 29765032 },
+        { "ageGroup": "30-39", "population": 26511633 },
+        { "ageGroup": "40-49", "population": 20651269 },
+        { "ageGroup": "50-59", "population": 15005706 },
+        { "ageGroup": "60-69", "population": 7296839 },
+        { "ageGroup": "70-79", "population": 4095813 },
+        { "ageGroup": "80+", "population": 1716059 }
+      ],
+      "name": "Bangladesh"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 30617 },
+        { "ageGroup": "10-19", "population": 36514 },
+        { "ageGroup": "20-29", "population": 37578 },
+        { "ageGroup": "30-39", "population": 37124 },
+        { "ageGroup": "40-49", "population": 39068 },
+        { "ageGroup": "50-59", "population": 39936 },
+        { "ageGroup": "60-69", "population": 33573 },
+        { "ageGroup": "70-79", "population": 20154 },
+        { "ageGroup": "80+", "population": 12811 }
+      ],
+      "name": "Barbados"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1143840 },
+        { "ageGroup": "10-19", "population": 928884 },
+        { "ageGroup": "20-29", "population": 1077804 },
+        { "ageGroup": "30-39", "population": 1530347 },
+        { "ageGroup": "40-49", "population": 1285399 },
+        { "ageGroup": "50-59", "population": 1345792 },
+        { "ageGroup": "60-69", "population": 1243251 },
+        { "ageGroup": "70-79", "population": 525562 },
+        { "ageGroup": "80+", "population": 368444 }
+      ],
+      "name": "Belarus"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1302703 },
+        { "ageGroup": "10-19", "population": 1312253 },
+        { "ageGroup": "20-29", "population": 1386087 },
+        { "ageGroup": "30-39", "population": 1504000 },
+        { "ageGroup": "40-49", "population": 1518439 },
+        { "ageGroup": "50-59", "population": 1598741 },
+        { "ageGroup": "60-69", "population": 1369875 },
+        { "ageGroup": "70-79", "population": 939415 },
+        { "ageGroup": "80+", "population": 658110 }
+      ],
+      "name": "Belgium"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 78107 },
+        { "ageGroup": "10-19", "population": 77850 },
+        { "ageGroup": "20-29", "population": 75822 },
+        { "ageGroup": "30-39", "population": 59711 },
+        { "ageGroup": "40-49", "population": 43959 },
+        { "ageGroup": "50-59", "population": 31811 },
+        { "ageGroup": "60-69", "population": 17817 },
+        { "ageGroup": "70-79", "population": 8310 },
+        { "ageGroup": "80+", "population": 4240 }
+      ],
+      "name": "Belize"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3596952 },
+        { "ageGroup": "10-19", "population": 2779488 },
+        { "ageGroup": "20-29", "population": 2061769 },
+        { "ageGroup": "30-39", "population": 1436440 },
+        { "ageGroup": "40-49", "population": 981831 },
+        { "ageGroup": "50-59", "population": 650680 },
+        { "ageGroup": "60-69", "population": 379184 },
+        { "ageGroup": "70-79", "population": 184835 },
+        { "ageGroup": "80+", "population": 52021 }
+      ],
+      "name": "Benin"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 125825 },
+        { "ageGroup": "10-19", "population": 135992 },
+        { "ageGroup": "20-29", "population": 153315 },
+        { "ageGroup": "30-39", "population": 138679 },
+        { "ageGroup": "40-49", "population": 89605 },
+        { "ageGroup": "50-59", "population": 59011 },
+        { "ageGroup": "60-69", "population": 36910 },
+        { "ageGroup": "70-79", "population": 22235 },
+        { "ageGroup": "80+", "population": 10036 }
+      ],
+      "name": "Bhutan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2364587 },
+        { "ageGroup": "10-19", "population": 2297693 },
+        { "ageGroup": "20-29", "population": 2039536 },
+        { "ageGroup": "30-39", "population": 1639098 },
+        { "ageGroup": "40-49", "population": 1238341 },
+        { "ageGroup": "50-59", "population": 883592 },
+        { "ageGroup": "60-69", "population": 615318 },
+        { "ageGroup": "70-79", "population": 391940 },
+        { "ageGroup": "80+", "population": 202916 }
+      ],
+      "name": "Bolivia (Plurinational State of)"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 295215 },
+        { "ageGroup": "10-19", "population": 346276 },
+        { "ageGroup": "20-29", "population": 403273 },
+        { "ageGroup": "30-39", "population": 458386 },
+        { "ageGroup": "40-49", "population": 447738 },
+        { "ageGroup": "50-59", "population": 500181 },
+        { "ageGroup": "60-69", "population": 463795 },
+        { "ageGroup": "70-79", "population": 242499 },
+        { "ageGroup": "80+", "population": 123456 }
+      ],
+      "name": "Bosnia and Herzegovina"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 539004 },
+        { "ageGroup": "10-19", "population": 472033 },
+        { "ageGroup": "20-29", "population": 402508 },
+        { "ageGroup": "30-39", "population": 365289 },
+        { "ageGroup": "40-49", "population": 261017 },
+        { "ageGroup": "50-59", "population": 146580 },
+        { "ageGroup": "60-69", "population": 104252 },
+        { "ageGroup": "70-79", "population": 48560 },
+        { "ageGroup": "80+", "population": 12384 }
+      ],
+      "name": "Botswana"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 29076912 },
+        { "ageGroup": "10-19", "population": 31160447 },
+        { "ageGroup": "20-29", "population": 34104644 },
+        { "ageGroup": "30-39", "population": 34476764 },
+        { "ageGroup": "40-49", "population": 29462008 },
+        { "ageGroup": "50-59", "population": 24421199 },
+        { "ageGroup": "60-69", "population": 16896864 },
+        { "ageGroup": "70-79", "population": 8801551 },
+        { "ageGroup": "80+", "population": 4159028 }
+      ],
+      "name": "Brazil"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 66355 },
+        { "ageGroup": "10-19", "population": 65082 },
+        { "ageGroup": "20-29", "population": 69697 },
+        { "ageGroup": "30-39", "population": 76569 },
+        { "ageGroup": "40-49", "population": 68004 },
+        { "ageGroup": "50-59", "population": 50218 },
+        { "ageGroup": "60-69", "population": 28512 },
+        { "ageGroup": "70-79", "population": 9570 },
+        { "ageGroup": "80+", "population": 3471 }
+      ],
+      "name": "Brunei Darussalam"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 649382 },
+        { "ageGroup": "10-19", "population": 685881 },
+        { "ageGroup": "20-29", "population": 689917 },
+        { "ageGroup": "30-39", "population": 957591 },
+        { "ageGroup": "40-49", "population": 1061986 },
+        { "ageGroup": "50-59", "population": 944703 },
+        { "ageGroup": "60-69", "population": 922593 },
+        { "ageGroup": "70-79", "population": 710368 },
+        { "ageGroup": "80+", "population": 326024 }
+      ],
+      "name": "Bulgaria"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 6552186 },
+        { "ageGroup": "10-19", "population": 5029543 },
+        { "ageGroup": "20-29", "population": 3508067 },
+        { "ageGroup": "30-39", "population": 2428031 },
+        { "ageGroup": "40-49", "population": 1587132 },
+        { "ageGroup": "50-59", "population": 977489 },
+        { "ageGroup": "60-69", "population": 538877 },
+        { "ageGroup": "70-79", "population": 234236 },
+        { "ageGroup": "80+", "population": 47712 }
+      ],
+      "name": "Burkina Faso"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3872449 },
+        { "ageGroup": "10-19", "population": 2725292 },
+        { "ageGroup": "20-29", "population": 2029583 },
+        { "ageGroup": "30-39", "population": 1539545 },
+        { "ageGroup": "40-49", "population": 747634 },
+        { "ageGroup": "50-59", "population": 491973 },
+        { "ageGroup": "60-69", "population": 339630 },
+        { "ageGroup": "70-79", "population": 112127 },
+        { "ageGroup": "80+", "population": 32551 }
+      ],
+      "name": "Burundi"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 105077 },
+        { "ageGroup": "10-19", "population": 99937 },
+        { "ageGroup": "20-29", "population": 97847 },
+        { "ageGroup": "30-39", "population": 98288 },
+        { "ageGroup": "40-49", "population": 64905 },
+        { "ageGroup": "50-59", "population": 47913 },
+        { "ageGroup": "60-69", "population": 26368 },
+        { "ageGroup": "70-79", "population": 9054 },
+        { "ageGroup": "80+", "population": 6598 }
+      ],
+      "name": "Cabo Verde"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3530588 },
+        { "ageGroup": "10-19", "population": 3100069 },
+        { "ageGroup": "20-29", "population": 3117605 },
+        { "ageGroup": "30-39", "population": 2889268 },
+        { "ageGroup": "40-49", "population": 1429088 },
+        { "ageGroup": "50-59", "population": 1387484 },
+        { "ageGroup": "60-69", "population": 816774 },
+        { "ageGroup": "70-79", "population": 352443 },
+        { "ageGroup": "80+", "population": 95646 }
+      ],
+      "name": "Cambodia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 7846025 },
+        { "ageGroup": "10-19", "population": 6176460 },
+        { "ageGroup": "20-29", "population": 4551789 },
+        { "ageGroup": "30-39", "population": 3399844 },
+        { "ageGroup": "40-49", "population": 2141843 },
+        { "ageGroup": "50-59", "population": 1288476 },
+        { "ageGroup": "60-69", "population": 733298 },
+        { "ageGroup": "70-79", "population": 332733 },
+        { "ageGroup": "80+", "population": 75395 }
+      ],
+      "name": "Cameroon"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3970918 },
+        { "ageGroup": "10-19", "population": 3971318 },
+        { "ageGroup": "20-29", "population": 5096615 },
+        { "ageGroup": "30-39", "population": 5278663 },
+        { "ageGroup": "40-49", "population": 4846667 },
+        { "ageGroup": "50-59", "population": 5182430 },
+        { "ageGroup": "60-69", "population": 4712746 },
+        { "ageGroup": "70-79", "population": 3018677 },
+        { "ageGroup": "80+", "population": 1664120 }
+      ],
+      "name": "Canada"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1435610 },
+        { "ageGroup": "10-19", "population": 1264610 },
+        { "ageGroup": "20-29", "population": 839989 },
+        { "ageGroup": "30-39", "population": 501334 },
+        { "ageGroup": "40-49", "population": 339531 },
+        { "ageGroup": "50-59", "population": 232597 },
+        { "ageGroup": "60-69", "population": 139061 },
+        { "ageGroup": "70-79", "population": 61505 },
+        { "ageGroup": "80+", "population": 15530 }
+      ],
+      "name": "Central African Republic"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5452555 },
+        { "ageGroup": "10-19", "population": 4038729 },
+        { "ageGroup": "20-29", "population": 2781016 },
+        { "ageGroup": "30-39", "population": 1769644 },
+        { "ageGroup": "40-49", "population": 1082834 },
+        { "ageGroup": "50-59", "population": 654647 },
+        { "ageGroup": "60-69", "population": 417351 },
+        { "ageGroup": "70-79", "population": 180661 },
+        { "ageGroup": "80+", "population": 48427 }
+      ],
+      "name": "Chad"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 17565 },
+        { "ageGroup": "10-19", "population": 17778 },
+        { "ageGroup": "20-29", "population": 21767 },
+        { "ageGroup": "30-39", "population": 23888 },
+        { "ageGroup": "40-49", "population": 24915 },
+        { "ageGroup": "50-59", "population": 26180 },
+        { "ageGroup": "60-69", "population": 20014 },
+        { "ageGroup": "70-79", "population": 13295 },
+        { "ageGroup": "80+", "population": 8461 }
+      ],
+      "name": "Channel Islands"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2428078 },
+        { "ageGroup": "10-19", "population": 2493875 },
+        { "ageGroup": "20-29", "population": 2995538 },
+        { "ageGroup": "30-39", "population": 2945403 },
+        { "ageGroup": "40-49", "population": 2578406 },
+        { "ageGroup": "50-59", "population": 2352271 },
+        { "ageGroup": "60-69", "population": 1791785 },
+        { "ageGroup": "70-79", "population": 993127 },
+        { "ageGroup": "80+", "population": 537718 }
+      ],
+      "name": "Chile"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 170667621 },
+        { "ageGroup": "10-19", "population": 166604608 },
+        { "ageGroup": "20-29", "population": 185147173 },
+        { "ageGroup": "30-39", "population": 228830425 },
+        { "ageGroup": "40-49", "population": 216111764 },
+        { "ageGroup": "50-59", "population": 222185873 },
+        { "ageGroup": "60-69", "population": 151663904 },
+        { "ageGroup": "70-79", "population": 71494306 },
+        { "ageGroup": "80+", "population": 26618102 }
+      ],
+      "name": "China"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 68816 },
+        { "ageGroup": "10-19", "population": 46834 },
+        { "ageGroup": "20-29", "population": 88333 },
+        { "ageGroup": "30-39", "population": 129800 },
+        { "ageGroup": "40-49", "population": 93400 },
+        { "ageGroup": "50-59", "population": 99614 },
+        { "ageGroup": "60-69", "population": 78993 },
+        { "ageGroup": "70-79", "population": 29881 },
+        { "ageGroup": "80+", "population": 13664 }
+      ],
+      "name": "China, Macao Special Administrative Region"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 7414157 },
+        { "ageGroup": "10-19", "population": 8119877 },
+        { "ageGroup": "20-29", "population": 8847062 },
+        { "ageGroup": "30-39", "population": 7810299 },
+        { "ageGroup": "40-49", "population": 6450787 },
+        { "ageGroup": "50-59", "population": 5543982 },
+        { "ageGroup": "60-69", "population": 3771360 },
+        { "ageGroup": "70-79", "population": 1979762 },
+        { "ageGroup": "80+", "population": 945605 }
+      ],
+      "name": "Colombia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 237638 },
+        { "ageGroup": "10-19", "population": 191272 },
+        { "ageGroup": "20-29", "population": 150847 },
+        { "ageGroup": "30-39", "population": 117375 },
+        { "ageGroup": "40-49", "population": 77037 },
+        { "ageGroup": "50-59", "population": 50890 },
+        { "ageGroup": "60-69", "population": 29657 },
+        { "ageGroup": "70-79", "population": 11660 },
+        { "ageGroup": "80+", "population": 3225 }
+      ],
+      "name": "Comoros"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1592333 },
+        { "ageGroup": "10-19", "population": 1257962 },
+        { "ageGroup": "20-29", "population": 874259 },
+        { "ageGroup": "30-39", "population": 680079 },
+        { "ageGroup": "40-49", "population": 535815 },
+        { "ageGroup": "50-59", "population": 327893 },
+        { "ageGroup": "60-69", "population": 164736 },
+        { "ageGroup": "70-79", "population": 69397 },
+        { "ageGroup": "80+", "population": 15613 }
+      ],
+      "name": "Congo"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 29487305 },
+        { "ageGroup": "10-19", "population": 21000019 },
+        { "ageGroup": "20-29", "population": 14169239 },
+        { "ageGroup": "30-39", "population": 9762333 },
+        { "ageGroup": "40-49", "population": 6605529 },
+        { "ageGroup": "50-59", "population": 4347003 },
+        { "ageGroup": "60-69", "population": 2585842 },
+        { "ageGroup": "70-79", "population": 1268687 },
+        { "ageGroup": "80+", "population": 335446 }
+      ],
+      "name": "Congo, Democratic Republic of the"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 705597 },
+        { "ageGroup": "10-19", "population": 718839 },
+        { "ageGroup": "20-29", "population": 824456 },
+        { "ageGroup": "30-39", "population": 825655 },
+        { "ageGroup": "40-49", "population": 650563 },
+        { "ageGroup": "50-59", "population": 602394 },
+        { "ageGroup": "60-69", "population": 423012 },
+        { "ageGroup": "70-79", "population": 230865 },
+        { "ageGroup": "80+", "population": 112737 }
+      ],
+      "name": "Costa Rica"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 385776 },
+        { "ageGroup": "10-19", "population": 408108 },
+        { "ageGroup": "20-29", "population": 472201 },
+        { "ageGroup": "30-39", "population": 539290 },
+        { "ageGroup": "40-49", "population": 557001 },
+        { "ageGroup": "50-59", "population": 581382 },
+        { "ageGroup": "60-69", "population": 565376 },
+        { "ageGroup": "70-79", "population": 361956 },
+        { "ageGroup": "80+", "population": 234177 }
+      ],
+      "name": "Croatia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1199375 },
+        { "ageGroup": "10-19", "population": 1246736 },
+        { "ageGroup": "20-29", "population": 1421019 },
+        { "ageGroup": "30-39", "population": 1523032 },
+        { "ageGroup": "40-49", "population": 1561981 },
+        { "ageGroup": "50-59", "population": 1967294 },
+        { "ageGroup": "60-69", "population": 1174022 },
+        { "ageGroup": "70-79", "population": 804207 },
+        { "ageGroup": "80+", "population": 428950 }
+      ],
+      "name": "Cuba"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 19332 },
+        { "ageGroup": "10-19", "population": 21569 },
+        { "ageGroup": "20-29", "population": 19539 },
+        { "ageGroup": "30-39", "population": 18724 },
+        { "ageGroup": "40-49", "population": 20279 },
+        { "ageGroup": "50-59", "population": 24425 },
+        { "ageGroup": "60-69", "population": 20705 },
+        { "ageGroup": "70-79", "population": 13003 },
+        { "ageGroup": "80+", "population": 6517 }
+      ],
+      "name": "Cura\u00e7ao"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 132391 },
+        { "ageGroup": "10-19", "population": 141658 },
+        { "ageGroup": "20-29", "population": 191801 },
+        { "ageGroup": "30-39", "population": 188388 },
+        { "ageGroup": "40-49", "population": 166627 },
+        { "ageGroup": "50-59", "population": 147538 },
+        { "ageGroup": "60-69", "population": 120401 },
+        { "ageGroup": "70-79", "population": 78681 },
+        { "ageGroup": "80+", "population": 39873 }
+      ],
+      "name": "Cyprus"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1113645 },
+        { "ageGroup": "10-19", "population": 1061333 },
+        { "ageGroup": "20-29", "population": 1105336 },
+        { "ageGroup": "30-39", "population": 1478211 },
+        { "ageGroup": "40-49", "population": 1798356 },
+        { "ageGroup": "50-59", "population": 1351269 },
+        { "ageGroup": "60-69", "population": 1324617 },
+        { "ageGroup": "70-79", "population": 1031099 },
+        { "ageGroup": "80+", "population": 445115 }
+      ],
+      "name": "Czechia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 7750285 },
+        { "ageGroup": "10-19", "population": 6104859 },
+        { "ageGroup": "20-29", "population": 4660993 },
+        { "ageGroup": "30-39", "population": 3172218 },
+        { "ageGroup": "40-49", "population": 2117549 },
+        { "ageGroup": "50-59", "population": 1337227 },
+        { "ageGroup": "60-69", "population": 822065 },
+        { "ageGroup": "70-79", "population": 341744 },
+        { "ageGroup": "80+", "population": 71333 }
+      ],
+      "name": "C\u00f4te d'Ivoire"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3430376 },
+        { "ageGroup": "10-19", "population": 3561227 },
+        { "ageGroup": "20-29", "population": 3925716 },
+        { "ageGroup": "30-39", "population": 3641896 },
+        { "ageGroup": "40-49", "population": 3714317 },
+        { "ageGroup": "50-59", "population": 3622786 },
+        { "ageGroup": "60-69", "population": 2134680 },
+        { "ageGroup": "70-79", "population": 1303957 },
+        { "ageGroup": "80+", "population": 443861 }
+      ],
+      "name": "Democratic People's Republic of Korea"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 606028 },
+        { "ageGroup": "10-19", "population": 675946 },
+        { "ageGroup": "20-29", "population": 775962 },
+        { "ageGroup": "30-39", "population": 672290 },
+        { "ageGroup": "40-49", "population": 738209 },
+        { "ageGroup": "50-59", "population": 810126 },
+        { "ageGroup": "60-69", "population": 654530 },
+        { "ageGroup": "70-79", "population": 586139 },
+        { "ageGroup": "80+", "population": 272972 }
+      ],
+      "name": "Denmark"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 197110 },
+        { "ageGroup": "10-19", "population": 179320 },
+        { "ageGroup": "20-29", "population": 177326 },
+        { "ageGroup": "30-39", "population": 162418 },
+        { "ageGroup": "40-49", "population": 120923 },
+        { "ageGroup": "50-59", "population": 78074 },
+        { "ageGroup": "60-69", "population": 44336 },
+        { "ageGroup": "70-79", "population": 22330 },
+        { "ageGroup": "80+", "population": 6163 }
+      ],
+      "name": "Djibouti"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1999349 },
+        { "ageGroup": "10-19", "population": 1935877 },
+        { "ageGroup": "20-29", "population": 1854317 },
+        { "ageGroup": "30-39", "population": 1564383 },
+        { "ageGroup": "40-49", "population": 1274489 },
+        { "ageGroup": "50-59", "population": 1014335 },
+        { "ageGroup": "60-69", "population": 682138 },
+        { "ageGroup": "70-79", "population": 341500 },
+        { "ageGroup": "80+", "population": 181522 }
+      ],
+      "name": "Dominican Republic"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3277730 },
+        { "ageGroup": "10-19", "population": 3115981 },
+        { "ageGroup": "20-29", "population": 3036186 },
+        { "ageGroup": "30-39", "population": 2592840 },
+        { "ageGroup": "40-49", "population": 2088240 },
+        { "ageGroup": "50-59", "population": 1591141 },
+        { "ageGroup": "60-69", "population": 1087740 },
+        { "ageGroup": "70-79", "population": 570125 },
+        { "ageGroup": "80+", "population": 283071 }
+      ],
+      "name": "Ecuador"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 25028540 },
+        { "ageGroup": "10-19", "population": 18385431 },
+        { "ageGroup": "20-29", "population": 16511130 },
+        { "ageGroup": "30-39", "population": 15198348 },
+        { "ageGroup": "40-49", "population": 10948603 },
+        { "ageGroup": "50-59", "population": 7844894 },
+        { "ageGroup": "60-69", "population": 5122656 },
+        { "ageGroup": "70-79", "population": 2530981 },
+        { "ageGroup": "80+", "population": 763821 }
+      ],
+      "name": "Egypt"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1146823 },
+        { "ageGroup": "10-19", "population": 1165823 },
+        { "ageGroup": "20-29", "population": 1215815 },
+        { "ageGroup": "30-39", "population": 882443 },
+        { "ageGroup": "40-49", "population": 725144 },
+        { "ageGroup": "50-59", "population": 568072 },
+        { "ageGroup": "60-69", "population": 406296 },
+        { "ageGroup": "70-79", "population": 248393 },
+        { "ageGroup": "80+", "population": 127396 }
+      ],
+      "name": "El Salvador"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 371662 },
+        { "ageGroup": "10-19", "population": 265295 },
+        { "ageGroup": "20-29", "population": 286389 },
+        { "ageGroup": "30-39", "population": 248982 },
+        { "ageGroup": "40-49", "population": 115361 },
+        { "ageGroup": "50-59", "population": 62216 },
+        { "ageGroup": "60-69", "population": 34879 },
+        { "ageGroup": "70-79", "population": 14719 },
+        { "ageGroup": "80+", "population": 3482 }
+      ],
+      "name": "Equatorial Guinea"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 971768 },
+        { "ageGroup": "10-19", "population": 860627 },
+        { "ageGroup": "20-29", "population": 572233 },
+        { "ageGroup": "30-39", "population": 460764 },
+        { "ageGroup": "40-49", "population": 280838 },
+        { "ageGroup": "50-59", "population": 171949 },
+        { "ageGroup": "60-69", "population": 128327 },
+        { "ageGroup": "70-79", "population": 77079 },
+        { "ageGroup": "80+", "population": 22836 }
+      ],
+      "name": "Eritrea"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 143661 },
+        { "ageGroup": "10-19", "population": 137487 },
+        { "ageGroup": "20-29", "population": 145554 },
+        { "ageGroup": "30-39", "population": 193631 },
+        { "ageGroup": "40-49", "population": 184936 },
+        { "ageGroup": "50-59", "population": 165282 },
+        { "ageGroup": "60-69", "population": 169473 },
+        { "ageGroup": "70-79", "population": 107430 },
+        { "ageGroup": "80+", "population": 79081 }
+      ],
+      "name": "Estonia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 286620 },
+        { "ageGroup": "10-19", "population": 277020 },
+        { "ageGroup": "20-29", "population": 212889 },
+        { "ageGroup": "30-39", "population": 161329 },
+        { "ageGroup": "40-49", "population": 104399 },
+        { "ageGroup": "50-59", "population": 51716 },
+        { "ageGroup": "60-69", "population": 36524 },
+        { "ageGroup": "70-79", "population": 22581 },
+        { "ageGroup": "80+", "population": 7086 }
+      ],
+      "name": "Eswatini"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 32037548 },
+        { "ageGroup": "10-19", "population": 26828994 },
+        { "ageGroup": "20-29", "population": 21439043 },
+        { "ageGroup": "30-39", "population": 13792878 },
+        { "ageGroup": "40-49", "population": 9038652 },
+        { "ageGroup": "50-59", "population": 5704067 },
+        { "ageGroup": "60-69", "population": 3624557 },
+        { "ageGroup": "70-79", "population": 1929368 },
+        { "ageGroup": "80+", "population": 568479 }
+      ],
+      "name": "Ethiopia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 177143 },
+        { "ageGroup": "10-19", "population": 158135 },
+        { "ageGroup": "20-29", "population": 141943 },
+        { "ageGroup": "30-39", "population": 134953 },
+        { "ageGroup": "40-49", "population": 106524 },
+        { "ageGroup": "50-59", "population": 91436 },
+        { "ageGroup": "60-69", "population": 57120 },
+        { "ageGroup": "70-79", "population": 23633 },
+        { "ageGroup": "80+", "population": 5558 }
+      ],
+      "name": "Fiji"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 568681 },
+        { "ageGroup": "10-19", "population": 606659 },
+        { "ageGroup": "20-29", "population": 672353 },
+        { "ageGroup": "30-39", "population": 706581 },
+        { "ageGroup": "40-49", "population": 659560 },
+        { "ageGroup": "50-59", "population": 720555 },
+        { "ageGroup": "60-69", "population": 712327 },
+        { "ageGroup": "70-79", "population": 582988 },
+        { "ageGroup": "80+", "population": 311016 }
+      ],
+      "name": "Finland"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 7527473 },
+        { "ageGroup": "10-19", "population": 7883476 },
+        { "ageGroup": "20-29", "population": 7371030 },
+        { "ageGroup": "30-39", "population": 8011050 },
+        { "ageGroup": "40-49", "population": 8325670 },
+        { "ageGroup": "50-59", "population": 8635055 },
+        { "ageGroup": "60-69", "population": 7764785 },
+        { "ageGroup": "70-79", "population": 5727704 },
+        { "ageGroup": "80+", "population": 4027268 }
+      ],
+      "name": "France"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 66122 },
+        { "ageGroup": "10-19", "population": 57555 },
+        { "ageGroup": "20-29", "population": 46109 },
+        { "ageGroup": "30-39", "population": 38719 },
+        { "ageGroup": "40-49", "population": 36992 },
+        { "ageGroup": "50-59", "population": 26711 },
+        { "ageGroup": "60-69", "population": 17226 },
+        { "ageGroup": "70-79", "population": 7221 },
+        { "ageGroup": "80+", "population": 2027 }
+      ],
+      "name": "French Guiana"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 39637 },
+        { "ageGroup": "10-19", "population": 44133 },
+        { "ageGroup": "20-29", "population": 40379 },
+        { "ageGroup": "30-39", "population": 43366 },
+        { "ageGroup": "40-49", "population": 39589 },
+        { "ageGroup": "50-59", "population": 35650 },
+        { "ageGroup": "60-69", "population": 23042 },
+        { "ageGroup": "70-79", "population": 10823 },
+        { "ageGroup": "80+", "population": 4289 }
+      ],
+      "name": "French Polynesia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 600005 },
+        { "ageGroup": "10-19", "population": 422773 },
+        { "ageGroup": "20-29", "population": 367412 },
+        { "ageGroup": "30-39", "population": 350071 },
+        { "ageGroup": "40-49", "population": 232167 },
+        { "ageGroup": "50-59", "population": 134150 },
+        { "ageGroup": "60-69", "population": 71303 },
+        { "ageGroup": "70-79", "population": 36691 },
+        { "ageGroup": "80+", "population": 11162 }
+      ],
+      "name": "Gabon"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 762307 },
+        { "ageGroup": "10-19", "population": 556857 },
+        { "ageGroup": "20-29", "population": 429180 },
+        { "ageGroup": "30-39", "population": 283130 },
+        { "ageGroup": "40-49", "population": 174068 },
+        { "ageGroup": "50-59", "population": 115915 },
+        { "ageGroup": "60-69", "population": 59281 },
+        { "ageGroup": "70-79", "population": 30007 },
+        { "ageGroup": "80+", "population": 5923 }
+      ],
+      "name": "Gambia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 553163 },
+        { "ageGroup": "10-19", "population": 471056 },
+        { "ageGroup": "20-29", "population": 500696 },
+        { "ageGroup": "30-39", "population": 565077 },
+        { "ageGroup": "40-49", "population": 517944 },
+        { "ageGroup": "50-59", "population": 523623 },
+        { "ageGroup": "60-69", "population": 459856 },
+        { "ageGroup": "70-79", "population": 248784 },
+        { "ageGroup": "80+", "population": 148968 }
+      ],
+      "name": "Georgia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 7880902 },
+        { "ageGroup": "10-19", "population": 7930616 },
+        { "ageGroup": "20-29", "population": 9377359 },
+        { "ageGroup": "30-39", "population": 10872019 },
+        { "ageGroup": "40-49", "population": 10243351 },
+        { "ageGroup": "50-59", "population": 13488393 },
+        { "ageGroup": "60-69", "population": 10644140 },
+        { "ageGroup": "70-79", "population": 7471414 },
+        { "ageGroup": "80+", "population": 5875748 }
+      ],
+      "name": "Germany"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 8057871 },
+        { "ageGroup": "10-19", "population": 6616719 },
+        { "ageGroup": "20-29", "population": 5398591 },
+        { "ageGroup": "30-39", "population": 4190417 },
+        { "ageGroup": "40-49", "population": 3031249 },
+        { "ageGroup": "50-59", "population": 2134980 },
+        { "ageGroup": "60-69", "population": 1091069 },
+        { "ageGroup": "70-79", "population": 456786 },
+        { "ageGroup": "80+", "population": 95258 }
+      ],
+      "name": "Ghana"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 881128 },
+        { "ageGroup": "10-19", "population": 1068855 },
+        { "ageGroup": "20-29", "population": 1057214 },
+        { "ageGroup": "30-39", "population": 1336517 },
+        { "ageGroup": "40-49", "population": 1574408 },
+        { "ageGroup": "50-59", "population": 1505692 },
+        { "ageGroup": "60-69", "population": 1257161 },
+        { "ageGroup": "70-79", "population": 956084 },
+        { "ageGroup": "80+", "population": 785994 }
+      ],
+      "name": "Greece"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 18132 },
+        { "ageGroup": "10-19", "population": 16137 },
+        { "ageGroup": "20-29", "population": 18288 },
+        { "ageGroup": "30-39", "population": 18211 },
+        { "ageGroup": "40-49", "population": 12874 },
+        { "ageGroup": "50-59", "population": 12146 },
+        { "ageGroup": "60-69", "population": 9573 },
+        { "ageGroup": "70-79", "population": 4789 },
+        { "ageGroup": "80+", "population": 2373 }
+      ],
+      "name": "Grenada"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 44992 },
+        { "ageGroup": "10-19", "population": 58514 },
+        { "ageGroup": "20-29", "population": 46875 },
+        { "ageGroup": "30-39", "population": 33762 },
+        { "ageGroup": "40-49", "population": 49307 },
+        { "ageGroup": "50-59", "population": 62202 },
+        { "ageGroup": "60-69", "population": 50569 },
+        { "ageGroup": "70-79", "population": 32942 },
+        { "ageGroup": "80+", "population": 20961 }
+      ],
+      "name": "Guadeloupe"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 26981 },
+        { "ageGroup": "10-19", "population": 27159 },
+        { "ageGroup": "20-29", "population": 27031 },
+        { "ageGroup": "30-39", "population": 21837 },
+        { "ageGroup": "40-49", "population": 19935 },
+        { "ageGroup": "50-59", "population": 20162 },
+        { "ageGroup": "60-69", "population": 14330 },
+        { "ageGroup": "70-79", "population": 7777 },
+        { "ageGroup": "80+", "population": 3563 }
+      ],
+      "name": "Guam"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 4047466 },
+        { "ageGroup": "10-19", "population": 3871605 },
+        { "ageGroup": "20-29", "population": 3413158 },
+        { "ageGroup": "30-39", "population": 2532063 },
+        { "ageGroup": "40-49", "population": 1701991 },
+        { "ageGroup": "50-59", "population": 1053821 },
+        { "ageGroup": "60-69", "population": 718853 },
+        { "ageGroup": "70-79", "population": 382505 },
+        { "ageGroup": "80+", "population": 194106 }
+      ],
+      "name": "Guatemala"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3965625 },
+        { "ageGroup": "10-19", "population": 3199454 },
+        { "ageGroup": "20-29", "population": 2365739 },
+        { "ageGroup": "30-39", "population": 1470866 },
+        { "ageGroup": "40-49", "population": 898439 },
+        { "ageGroup": "50-59", "population": 614523 },
+        { "ageGroup": "60-69", "population": 408149 },
+        { "ageGroup": "70-79", "population": 171250 },
+        { "ageGroup": "80+", "population": 38750 }
+      ],
+      "name": "Guinea"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 582349 },
+        { "ageGroup": "10-19", "population": 450031 },
+        { "ageGroup": "20-29", "population": 342383 },
+        { "ageGroup": "30-39", "population": 254507 },
+        { "ageGroup": "40-49", "population": 156574 },
+        { "ageGroup": "50-59", "population": 92190 },
+        { "ageGroup": "60-69", "population": 60417 },
+        { "ageGroup": "70-79", "population": 24637 },
+        { "ageGroup": "80+", "population": 4913 }
+      ],
+      "name": "Guinea-Bissau"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 147626 },
+        { "ageGroup": "10-19", "population": 145351 },
+        { "ageGroup": "20-29", "population": 145302 },
+        { "ageGroup": "30-39", "population": 93113 },
+        { "ageGroup": "40-49", "population": 90525 },
+        { "ageGroup": "50-59", "population": 79336 },
+        { "ageGroup": "60-69", "population": 51355 },
+        { "ageGroup": "70-79", "population": 22936 },
+        { "ageGroup": "80+", "population": 11008 }
+      ],
+      "name": "Guyana"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2500777 },
+        { "ageGroup": "10-19", "population": 2346528 },
+        { "ageGroup": "20-29", "population": 2044459 },
+        { "ageGroup": "30-39", "population": 1731657 },
+        { "ageGroup": "40-49", "population": 1106487 },
+        { "ageGroup": "50-59", "population": 789624 },
+        { "ageGroup": "60-69", "population": 523931 },
+        { "ageGroup": "70-79", "population": 260217 },
+        { "ageGroup": "80+", "population": 98848 }
+      ],
+      "name": "Haiti"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2005992 },
+        { "ageGroup": "10-19", "population": 2064637 },
+        { "ageGroup": "20-29", "population": 1905416 },
+        { "ageGroup": "30-39", "population": 1470935 },
+        { "ageGroup": "40-49", "population": 1047736 },
+        { "ageGroup": "50-59", "population": 680012 },
+        { "ageGroup": "60-69", "population": 420079 },
+        { "ageGroup": "70-79", "population": 205312 },
+        { "ageGroup": "80+", "population": 104488 }
+      ],
+      "name": "Honduras"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 664195 },
+        { "ageGroup": "10-19", "population": 552658 },
+        { "ageGroup": "20-29", "population": 867629 },
+        { "ageGroup": "30-39", "population": 1122165 },
+        { "ageGroup": "40-49", "population": 1129131 },
+        { "ageGroup": "50-59", "population": 1207906 },
+        { "ageGroup": "60-69", "population": 1048879 },
+        { "ageGroup": "70-79", "population": 525082 },
+        { "ageGroup": "80+", "population": 379336 }
+      ],
+      "name": "Hong Kong"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 908567 },
+        { "ageGroup": "10-19", "population": 969206 },
+        { "ageGroup": "20-29", "population": 1151691 },
+        { "ageGroup": "30-39", "population": 1257140 },
+        { "ageGroup": "40-49", "population": 1588213 },
+        { "ageGroup": "50-59", "population": 1201387 },
+        { "ageGroup": "60-69", "population": 1306434 },
+        { "ageGroup": "70-79", "population": 846578 },
+        { "ageGroup": "80+", "population": 431135 }
+      ],
+      "name": "Hungary"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 43070 },
+        { "ageGroup": "10-19", "population": 44710 },
+        { "ageGroup": "20-29", "population": 47796 },
+        { "ageGroup": "30-39", "population": 46869 },
+        { "ageGroup": "40-49", "population": 42966 },
+        { "ageGroup": "50-59", "population": 42112 },
+        { "ageGroup": "60-69", "population": 37536 },
+        { "ageGroup": "70-79", "population": 23413 },
+        { "ageGroup": "80+", "population": 12771 }
+      ],
+      "name": "Iceland"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 234861633 },
+        { "ageGroup": "10-19", "population": 252201517 },
+        { "ageGroup": "20-29", "population": 239902073 },
+        { "ageGroup": "30-39", "population": 215636276 },
+        { "ageGroup": "40-49", "population": 169660176 },
+        { "ageGroup": "50-59", "population": 128132229 },
+        { "ageGroup": "60-69", "population": 87150813 },
+        { "ageGroup": "70-79", "population": 39175398 },
+        { "ageGroup": "80+", "population": 13284270 }
+      ],
+      "name": "India"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 47956444 },
+        { "ageGroup": "10-19", "population": 46303002 },
+        { "ageGroup": "20-29", "population": 43571426 },
+        { "ageGroup": "30-39", "population": 41166623 },
+        { "ageGroup": "40-49", "population": 37846723 },
+        { "ageGroup": "50-59", "population": 29155099 },
+        { "ageGroup": "60-69", "population": 17531210 },
+        { "ageGroup": "70-79", "population": 7574475 },
+        { "ageGroup": "80+", "population": 2418613 }
+      ],
+      "name": "Indonesia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 14565855 },
+        { "ageGroup": "10-19", "population": 11747928 },
+        { "ageGroup": "20-29", "population": 12342906 },
+        { "ageGroup": "30-39", "population": 16739444 },
+        { "ageGroup": "40-49", "population": 11655616 },
+        { "ageGroup": "50-59", "population": 8295330 },
+        { "ageGroup": "60-69", "population": 5396906 },
+        { "ageGroup": "70-79", "population": 2354607 },
+        { "ageGroup": "80+", "population": 894357 }
+      ],
+      "name": "Iran (Islamic Republic of)"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 10610228 },
+        { "ageGroup": "10-19", "population": 8710756 },
+        { "ageGroup": "20-29", "population": 7165589 },
+        { "ageGroup": "30-39", "population": 5403684 },
+        { "ageGroup": "40-49", "population": 3936617 },
+        { "ageGroup": "50-59", "population": 2341151 },
+        { "ageGroup": "60-69", "population": 1292393 },
+        { "ageGroup": "70-79", "population": 573718 },
+        { "ageGroup": "80+", "population": 188357 }
+      ],
+      "name": "Iraq"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 671943 },
+        { "ageGroup": "10-19", "population": 668746 },
+        { "ageGroup": "20-29", "population": 567336 },
+        { "ageGroup": "30-39", "population": 695926 },
+        { "ageGroup": "40-49", "population": 763226 },
+        { "ageGroup": "50-59", "population": 600934 },
+        { "ageGroup": "60-69", "population": 480783 },
+        { "ageGroup": "70-79", "population": 330663 },
+        { "ageGroup": "80+", "population": 158229 }
+      ],
+      "name": "Ireland"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1671094 },
+        { "ageGroup": "10-19", "population": 1405063 },
+        { "ageGroup": "20-29", "population": 1196974 },
+        { "ageGroup": "30-39", "population": 1122245 },
+        { "ageGroup": "40-49", "population": 1040178 },
+        { "ageGroup": "50-59", "population": 795495 },
+        { "ageGroup": "60-69", "population": 703645 },
+        { "ageGroup": "70-79", "population": 459660 },
+        { "ageGroup": "80+", "population": 261181 }
+      ],
+      "name": "Israel"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 4994996 },
+        { "ageGroup": "10-19", "population": 5733447 },
+        { "ageGroup": "20-29", "population": 6103437 },
+        { "ageGroup": "30-39", "population": 6998434 },
+        { "ageGroup": "40-49", "population": 9022004 },
+        { "ageGroup": "50-59", "population": 9567192 },
+        { "ageGroup": "60-69", "population": 7484860 },
+        { "ageGroup": "70-79", "population": 6028907 },
+        { "ageGroup": "80+", "population": 4528548 }
+      ],
+      "name": "Italy"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 464791 },
+        { "ageGroup": "10-19", "population": 466600 },
+        { "ageGroup": "20-29", "population": 515497 },
+        { "ageGroup": "30-39", "population": 443384 },
+        { "ageGroup": "40-49", "population": 357431 },
+        { "ageGroup": "50-59", "population": 320532 },
+        { "ageGroup": "60-69", "population": 214542 },
+        { "ageGroup": "70-79", "population": 119523 },
+        { "ageGroup": "80+", "population": 58867 }
+      ],
+      "name": "Jamaica"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 10179968 },
+        { "ageGroup": "10-19", "population": 11267171 },
+        { "ageGroup": "20-29", "population": 12147325 },
+        { "ageGroup": "30-39", "population": 14455415 },
+        { "ageGroup": "40-49", "population": 18473078 },
+        { "ageGroup": "50-59", "population": 16541516 },
+        { "ageGroup": "60-69", "population": 15875236 },
+        { "ageGroup": "70-79", "population": 16185375 },
+        { "ageGroup": "80+", "population": 11351377 }
+      ],
+      "name": "Japan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2212563 },
+        { "ageGroup": "10-19", "population": 2179854 },
+        { "ageGroup": "20-29", "population": 1802535 },
+        { "ageGroup": "30-39", "population": 1490607 },
+        { "ageGroup": "40-49", "population": 1141344 },
+        { "ageGroup": "50-59", "population": 755593 },
+        { "ageGroup": "60-69", "population": 366276 },
+        { "ageGroup": "70-79", "population": 190748 },
+        { "ageGroup": "80+", "population": 63614 }
+      ],
+      "name": "Jordan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3868009 },
+        { "ageGroup": "10-19", "population": 2720923 },
+        { "ageGroup": "20-29", "population": 2573190 },
+        { "ageGroup": "30-39", "population": 2993496 },
+        { "ageGroup": "40-49", "population": 2286423 },
+        { "ageGroup": "50-59", "population": 2039442 },
+        { "ageGroup": "60-69", "population": 1438908 },
+        { "ageGroup": "70-79", "population": 552508 },
+        { "ageGroup": "80+", "population": 303808 }
+      ],
+      "name": "Kazakhstan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 14013908 },
+        { "ageGroup": "10-19", "population": 12746880 },
+        { "ageGroup": "20-29", "population": 9594275 },
+        { "ageGroup": "30-39", "population": 7470149 },
+        { "ageGroup": "40-49", "population": 4903045 },
+        { "ageGroup": "50-59", "population": 2805603 },
+        { "ageGroup": "60-69", "population": 1518824 },
+        { "ageGroup": "70-79", "population": 574335 },
+        { "ageGroup": "80+", "population": 144277 }
+      ],
+      "name": "Kenya"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 29464 },
+        { "ageGroup": "10-19", "population": 23634 },
+        { "ageGroup": "20-29", "population": 20524 },
+        { "ageGroup": "30-39", "population": 16606 },
+        { "ageGroup": "40-49", "population": 11169 },
+        { "ageGroup": "50-59", "population": 9988 },
+        { "ageGroup": "60-69", "population": 5143 },
+        { "ageGroup": "70-79", "population": 2331 },
+        { "ageGroup": "80+", "population": 590 }
+      ],
+      "name": "Kiribati"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 4153813 },
+        { "ageGroup": "10-19", "population": 4753259 },
+        { "ageGroup": "20-29", "population": 6716295 },
+        { "ageGroup": "30-39", "population": 7079840 },
+        { "ageGroup": "40-49", "population": 8218845 },
+        { "ageGroup": "50-59", "population": 8476698 },
+        { "ageGroup": "60-69", "population": 6453706 },
+        { "ageGroup": "70-79", "population": 3560645 },
+        { "ageGroup": "80+", "population": 1856084 }
+      ],
+      "name": "Korea, Republic of"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 294038 },
+        { "ageGroup": "10-19", "population": 306895 },
+        { "ageGroup": "20-29", "population": 299672 },
+        { "ageGroup": "30-39", "population": 237846 },
+        { "ageGroup": "40-49", "population": 228757 },
+        { "ageGroup": "50-59", "population": 189740 },
+        { "ageGroup": "60-69", "population": 127956 },
+        { "ageGroup": "70-79", "population": 71350 },
+        { "ageGroup": "80+", "population": 32684 }
+      ],
+      "name": "Kosovo"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 608328 },
+        { "ageGroup": "10-19", "population": 533225 },
+        { "ageGroup": "20-29", "population": 444882 },
+        { "ageGroup": "30-39", "population": 878557 },
+        { "ageGroup": "40-49", "population": 965368 },
+        { "ageGroup": "50-59", "population": 561299 },
+        { "ageGroup": "60-69", "population": 220263 },
+        { "ageGroup": "70-79", "population": 48552 },
+        { "ageGroup": "80+", "population": 10095 }
+      ],
+      "name": "Kuwait"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1529449 },
+        { "ageGroup": "10-19", "population": 1100700 },
+        { "ageGroup": "20-29", "population": 1082940 },
+        { "ageGroup": "30-39", "population": 1014707 },
+        { "ageGroup": "40-49", "population": 686437 },
+        { "ageGroup": "50-59", "population": 581436 },
+        { "ageGroup": "60-69", "population": 363825 },
+        { "ageGroup": "70-79", "population": 111215 },
+        { "ageGroup": "80+", "population": 53484 }
+      ],
+      "name": "Kyrgyzstan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1566742 },
+        { "ageGroup": "10-19", "population": 1466251 },
+        { "ageGroup": "20-29", "population": 1362624 },
+        { "ageGroup": "30-39", "population": 1086530 },
+        { "ageGroup": "40-49", "population": 772683 },
+        { "ageGroup": "50-59", "population": 526580 },
+        { "ageGroup": "60-69", "population": 317973 },
+        { "ageGroup": "70-79", "population": 136165 },
+        { "ageGroup": "80+", "population": 40012 }
+      ],
+      "name": "Lao People's Democratic Republic"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 207770 },
+        { "ageGroup": "10-19", "population": 188723 },
+        { "ageGroup": "20-29", "population": 188221 },
+        { "ageGroup": "30-39", "population": 263219 },
+        { "ageGroup": "40-49", "population": 253889 },
+        { "ageGroup": "50-59", "population": 264241 },
+        { "ageGroup": "60-69", "population": 250143 },
+        { "ageGroup": "70-79", "population": 162705 },
+        { "ageGroup": "80+", "population": 107287 }
+      ],
+      "name": "Latvia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1152160 },
+        { "ageGroup": "10-19", "population": 1134997 },
+        { "ageGroup": "20-29", "population": 1176573 },
+        { "ageGroup": "30-39", "population": 1009647 },
+        { "ageGroup": "40-49", "population": 862746 },
+        { "ageGroup": "50-59", "population": 724776 },
+        { "ageGroup": "60-69", "population": 447766 },
+        { "ageGroup": "70-79", "population": 211573 },
+        { "ageGroup": "80+", "population": 105207 }
+      ],
+      "name": "Lebanon"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 478747 },
+        { "ageGroup": "10-19", "population": 428822 },
+        { "ageGroup": "20-29", "population": 395193 },
+        { "ageGroup": "30-39", "population": 327280 },
+        { "ageGroup": "40-49", "population": 210253 },
+        { "ageGroup": "50-59", "population": 140769 },
+        { "ageGroup": "60-69", "population": 96810 },
+        { "ageGroup": "70-79", "population": 48309 },
+        { "ageGroup": "80+", "population": 16066 }
+      ],
+      "name": "Lesotho"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1418817 },
+        { "ageGroup": "10-19", "population": 1175027 },
+        { "ageGroup": "20-29", "population": 840855 },
+        { "ageGroup": "30-39", "population": 629808 },
+        { "ageGroup": "40-49", "population": 444196 },
+        { "ageGroup": "50-59", "population": 283827 },
+        { "ageGroup": "60-69", "population": 168470 },
+        { "ageGroup": "70-79", "population": 76455 },
+        { "ageGroup": "80+", "population": 20226 }
+      ],
+      "name": "Liberia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1285422 },
+        { "ageGroup": "10-19", "population": 1185747 },
+        { "ageGroup": "20-29", "population": 1095417 },
+        { "ageGroup": "30-39", "population": 1163468 },
+        { "ageGroup": "40-49", "population": 1049198 },
+        { "ageGroup": "50-59", "population": 617153 },
+        { "ageGroup": "60-69", "population": 284261 },
+        { "ageGroup": "70-79", "population": 138926 },
+        { "ageGroup": "80+", "population": 51700 }
+      ],
+      "name": "Libya"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 300673 },
+        { "ageGroup": "10-19", "population": 242840 },
+        { "ageGroup": "20-29", "population": 316879 },
+        { "ageGroup": "30-39", "population": 337567 },
+        { "ageGroup": "40-49", "population": 355907 },
+        { "ageGroup": "50-59", "population": 420559 },
+        { "ageGroup": "60-69", "population": 352811 },
+        { "ageGroup": "70-79", "population": 223282 },
+        { "ageGroup": "80+", "population": 171771 }
+      ],
+      "name": "Lithuania"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 65905 },
+        { "ageGroup": "10-19", "population": 65903 },
+        { "ageGroup": "20-29", "population": 85535 },
+        { "ageGroup": "30-39", "population": 98316 },
+        { "ageGroup": "40-49", "population": 94599 },
+        { "ageGroup": "50-59", "population": 90857 },
+        { "ageGroup": "60-69", "population": 62121 },
+        { "ageGroup": "70-79", "population": 37874 },
+        { "ageGroup": "80+", "population": 24867 }
+      ],
+      "name": "Luxembourg"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 7762934 },
+        { "ageGroup": "10-19", "population": 6342928 },
+        { "ageGroup": "20-29", "population": 4898736 },
+        { "ageGroup": "30-39", "population": 3370908 },
+        { "ageGroup": "40-49", "population": 2387857 },
+        { "ageGroup": "50-59", "population": 1539765 },
+        { "ageGroup": "60-69", "population": 915207 },
+        { "ageGroup": "70-79", "population": 359863 },
+        { "ageGroup": "80+", "population": 112819 }
+      ],
+      "name": "Madagascar"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5662517 },
+        { "ageGroup": "10-19", "population": 4738054 },
+        { "ageGroup": "20-29", "population": 3377519 },
+        { "ageGroup": "30-39", "population": 2286024 },
+        { "ageGroup": "40-49", "population": 1436743 },
+        { "ageGroup": "50-59", "population": 846147 },
+        { "ageGroup": "60-69", "population": 480251 },
+        { "ageGroup": "70-79", "population": 244240 },
+        { "ageGroup": "80+", "population": 58457 }
+      ],
+      "name": "Malawi"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5143191 },
+        { "ageGroup": "10-19", "population": 5115769 },
+        { "ageGroup": "20-29", "population": 5770367 },
+        { "ageGroup": "30-39", "population": 5651218 },
+        { "ageGroup": "40-49", "population": 3990530 },
+        { "ageGroup": "50-59", "population": 3146037 },
+        { "ageGroup": "60-69", "population": 2151364 },
+        { "ageGroup": "70-79", "population": 1025182 },
+        { "ageGroup": "80+", "population": 372341 }
+      ],
+      "name": "Malaysia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 72820 },
+        { "ageGroup": "10-19", "population": 59438 },
+        { "ageGroup": "20-29", "population": 139684 },
+        { "ageGroup": "30-39", "population": 137607 },
+        { "ageGroup": "40-49", "population": 64647 },
+        { "ageGroup": "50-59", "population": 35317 },
+        { "ageGroup": "60-69", "population": 18164 },
+        { "ageGroup": "70-79", "population": 8467 },
+        { "ageGroup": "80+", "population": 4400 }
+      ],
+      "name": "Maldives"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 6760318 },
+        { "ageGroup": "10-19", "population": 5009462 },
+        { "ageGroup": "20-29", "population": 3203821 },
+        { "ageGroup": "30-39", "population": 2160455 },
+        { "ageGroup": "40-49", "population": 1485960 },
+        { "ageGroup": "50-59", "population": 849115 },
+        { "ageGroup": "60-69", "population": 501293 },
+        { "ageGroup": "70-79", "population": 231083 },
+        { "ageGroup": "80+", "population": 49326 }
+      ],
+      "name": "Mali"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 43103 },
+        { "ageGroup": "10-19", "population": 40926 },
+        { "ageGroup": "20-29", "population": 55214 },
+        { "ageGroup": "30-39", "population": 65354 },
+        { "ageGroup": "40-49", "population": 59448 },
+        { "ageGroup": "50-59", "population": 53214 },
+        { "ageGroup": "60-69", "population": 57678 },
+        { "ageGroup": "70-79", "population": 45166 },
+        { "ageGroup": "80+", "population": 21440 }
+      ],
+      "name": "Malta"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 35951 },
+        { "ageGroup": "10-19", "population": 47121 },
+        { "ageGroup": "20-29", "population": 41372 },
+        { "ageGroup": "30-39", "population": 34103 },
+        { "ageGroup": "40-49", "population": 44188 },
+        { "ageGroup": "50-59", "population": 62795 },
+        { "ageGroup": "60-69", "population": 52466 },
+        { "ageGroup": "70-79", "population": 33674 },
+        { "ageGroup": "80+", "population": 23595 }
+      ],
+      "name": "Martinique"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1307828 },
+        { "ageGroup": "10-19", "population": 1007554 },
+        { "ageGroup": "20-29", "population": 787903 },
+        { "ageGroup": "30-39", "population": 619780 },
+        { "ageGroup": "40-49", "population": 422633 },
+        { "ageGroup": "50-59", "population": 267150 },
+        { "ageGroup": "60-69", "population": 151072 },
+        { "ageGroup": "70-79", "population": 67185 },
+        { "ageGroup": "80+", "population": 18553 }
+      ],
+      "name": "Mauritania"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 132887 },
+        { "ageGroup": "10-19", "population": 175164 },
+        { "ageGroup": "20-29", "population": 196809 },
+        { "ageGroup": "30-39", "population": 175108 },
+        { "ageGroup": "40-49", "population": 182089 },
+        { "ageGroup": "50-59", "population": 175349 },
+        { "ageGroup": "60-69", "population": 137990 },
+        { "ageGroup": "70-79", "population": 69212 },
+        { "ageGroup": "80+", "population": 27160 }
+      ],
+      "name": "Mauritius"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 71475 },
+        { "ageGroup": "10-19", "population": 64566 },
+        { "ageGroup": "20-29", "population": 43626 },
+        { "ageGroup": "30-39", "population": 32985 },
+        { "ageGroup": "40-49", "population": 27349 },
+        { "ageGroup": "50-59", "population": 16167 },
+        { "ageGroup": "60-69", "population": 9373 },
+        { "ageGroup": "70-79", "population": 4999 },
+        { "ageGroup": "80+", "population": 2275 }
+      ],
+      "name": "Mayotte"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 22169248 },
+        { "ageGroup": "10-19", "population": 22350465 },
+        { "ageGroup": "20-29", "population": 21735593 },
+        { "ageGroup": "30-39", "population": 18880028 },
+        { "ageGroup": "40-49", "population": 16547760 },
+        { "ageGroup": "50-59", "population": 12757973 },
+        { "ageGroup": "60-69", "population": 8264954 },
+        { "ageGroup": "70-79", "population": 4188714 },
+        { "ageGroup": "80+", "population": 2038018 }
+      ],
+      "name": "Mexico"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 24050 },
+        { "ageGroup": "10-19", "population": 23299 },
+        { "ageGroup": "20-29", "population": 22347 },
+        { "ageGroup": "30-39", "population": 15087 },
+        { "ageGroup": "40-49", "population": 11429 },
+        { "ageGroup": "50-59", "population": 9786 },
+        { "ageGroup": "60-69", "population": 6733 },
+        { "ageGroup": "70-79", "population": 1930 },
+        { "ageGroup": "80+", "population": 362 }
+      ],
+      "name": "Micronesia (Federated States of)"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 424059 },
+        { "ageGroup": "10-19", "population": 419285 },
+        { "ageGroup": "20-29", "population": 570832 },
+        { "ageGroup": "30-39", "population": 773875 },
+        { "ageGroup": "40-49", "population": 562809 },
+        { "ageGroup": "50-59", "population": 521014 },
+        { "ageGroup": "60-69", "population": 488289 },
+        { "ageGroup": "70-79", "population": 184990 },
+        { "ageGroup": "80+", "population": 88810 }
+      ],
+      "name": "Moldova, Republic of"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 737476 },
+        { "ageGroup": "10-19", "population": 500441 },
+        { "ageGroup": "20-29", "population": 500018 },
+        { "ageGroup": "30-39", "population": 564279 },
+        { "ageGroup": "40-49", "population": 423046 },
+        { "ageGroup": "50-59", "population": 314050 },
+        { "ageGroup": "60-69", "population": 158364 },
+        { "ageGroup": "70-79", "population": 59891 },
+        { "ageGroup": "80+", "population": 20725 }
+      ],
+      "name": "Mongolia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 73945 },
+        { "ageGroup": "10-19", "population": 78536 },
+        { "ageGroup": "20-29", "population": 84197 },
+        { "ageGroup": "30-39", "population": 88348 },
+        { "ageGroup": "40-49", "population": 83921 },
+        { "ageGroup": "50-59", "population": 80322 },
+        { "ageGroup": "60-69", "population": 76947 },
+        { "ageGroup": "70-79", "population": 40438 },
+        { "ageGroup": "80+", "population": 21412 }
+      ],
+      "name": "Montenegro"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 6752613 },
+        { "ageGroup": "10-19", "population": 6097197 },
+        { "ageGroup": "20-29", "population": 5883282 },
+        { "ageGroup": "30-39", "population": 5606357 },
+        { "ageGroup": "40-49", "population": 4452433 },
+        { "ageGroup": "50-59", "population": 3743784 },
+        { "ageGroup": "60-69", "population": 2735019 },
+        { "ageGroup": "70-79", "population": 1197076 },
+        { "ageGroup": "80+", "population": 442799 }
+      ],
+      "name": "Morocco"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 9717781 },
+        { "ageGroup": "10-19", "population": 7595457 },
+        { "ageGroup": "20-29", "population": 5294496 },
+        { "ageGroup": "30-39", "population": 3588739 },
+        { "ageGroup": "40-49", "population": 2289290 },
+        { "ageGroup": "50-59", "population": 1400167 },
+        { "ageGroup": "60-69", "population": 843662 },
+        { "ageGroup": "70-79", "population": 420844 },
+        { "ageGroup": "80+", "population": 104999 }
+      ],
+      "name": "Mozambique"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 9021262 },
+        { "ageGroup": "10-19", "population": 9916644 },
+        { "ageGroup": "20-29", "population": 9163079 },
+        { "ageGroup": "30-39", "population": 8073003 },
+        { "ageGroup": "40-49", "population": 7219972 },
+        { "ageGroup": "50-59", "population": 5573219 },
+        { "ageGroup": "60-69", "population": 3603964 },
+        { "ageGroup": "70-79", "population": 1423032 },
+        { "ageGroup": "80+", "population": 415625 }
+      ],
+      "name": "Myanmar"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 654524 },
+        { "ageGroup": "10-19", "population": 526434 },
+        { "ageGroup": "20-29", "population": 472709 },
+        { "ageGroup": "30-39", "population": 356845 },
+        { "ageGroup": "40-49", "population": 237555 },
+        { "ageGroup": "50-59", "population": 150335 },
+        { "ageGroup": "60-69", "population": 87459 },
+        { "ageGroup": "70-79", "population": 41131 },
+        { "ageGroup": "80+", "population": 13913 }
+      ],
+      "name": "Namibia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5462982 },
+        { "ageGroup": "10-19", "population": 6120130 },
+        { "ageGroup": "20-29", "population": 5886374 },
+        { "ageGroup": "30-39", "population": 3792740 },
+        { "ageGroup": "40-49", "population": 3045655 },
+        { "ageGroup": "50-59", "population": 2307701 },
+        { "ageGroup": "60-69", "population": 1488078 },
+        { "ageGroup": "70-79", "population": 811531 },
+        { "ageGroup": "80+", "population": 221617 }
+      ],
+      "name": "Nepal"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1752759 },
+        { "ageGroup": "10-19", "population": 1953692 },
+        { "ageGroup": "20-29", "population": 2097478 },
+        { "ageGroup": "30-39", "population": 2097533 },
+        { "ageGroup": "40-49", "population": 2151439 },
+        { "ageGroup": "50-59", "population": 2524073 },
+        { "ageGroup": "60-69", "population": 2129499 },
+        { "ageGroup": "70-79", "population": 1591523 },
+        { "ageGroup": "80+", "population": 836876 }
+      ],
+      "name": "Netherlands"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 41312 },
+        { "ageGroup": "10-19", "population": 43203 },
+        { "ageGroup": "20-29", "population": 43195 },
+        { "ageGroup": "30-39", "population": 41492 },
+        { "ageGroup": "40-49", "population": 40824 },
+        { "ageGroup": "50-59", "population": 34952 },
+        { "ageGroup": "60-69", "population": 22796 },
+        { "ageGroup": "70-79", "population": 13302 },
+        { "ageGroup": "80+", "population": 4422 }
+      ],
+      "name": "New Caledonia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 615286 },
+        { "ageGroup": "10-19", "population": 624953 },
+        { "ageGroup": "20-29", "population": 671233 },
+        { "ageGroup": "30-39", "population": 619065 },
+        { "ageGroup": "40-49", "population": 591875 },
+        { "ageGroup": "50-59", "population": 628690 },
+        { "ageGroup": "60-69", "population": 522312 },
+        { "ageGroup": "70-79", "population": 361834 },
+        { "ageGroup": "80+", "population": 186985 }
+      ],
+      "name": "New Zealand"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1317147 },
+        { "ageGroup": "10-19", "population": 1240161 },
+        { "ageGroup": "20-29", "population": 1165998 },
+        { "ageGroup": "30-39", "population": 1055451 },
+        { "ageGroup": "40-49", "population": 763037 },
+        { "ageGroup": "50-59", "population": 507320 },
+        { "ageGroup": "60-69", "population": 348753 },
+        { "ageGroup": "70-79", "population": 150503 },
+        { "ageGroup": "80+", "population": 76184 }
+      ],
+      "name": "Nicaragua"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 8758024 },
+        { "ageGroup": "10-19", "population": 5901126 },
+        { "ageGroup": "20-29", "population": 3717358 },
+        { "ageGroup": "30-39", "population": 2259019 },
+        { "ageGroup": "40-49", "population": 1528697 },
+        { "ageGroup": "50-59", "population": 1046847 },
+        { "ageGroup": "60-69", "population": 644750 },
+        { "ageGroup": "70-79", "population": 295959 },
+        { "ageGroup": "80+", "population": 54863 }
+      ],
+      "name": "Niger"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 63852440 },
+        { "ageGroup": "10-19", "population": 47703190 },
+        { "ageGroup": "20-29", "population": 33177419 },
+        { "ageGroup": "30-39", "population": 24368050 },
+        { "ageGroup": "40-49", "population": 17037463 },
+        { "ageGroup": "50-59", "population": 10700169 },
+        { "ageGroup": "60-69", "population": 6258527 },
+        { "ageGroup": "70-79", "population": 2623704 },
+        { "ageGroup": "80+", "population": 418627 }
+      ],
+      "name": "Nigeria"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 227550 },
+        { "ageGroup": "10-19", "population": 233451 },
+        { "ageGroup": "20-29", "population": 282982 },
+        { "ageGroup": "30-39", "population": 325975 },
+        { "ageGroup": "40-49", "population": 299904 },
+        { "ageGroup": "50-59", "population": 282831 },
+        { "ageGroup": "60-69", "population": 244647 },
+        { "ageGroup": "70-79", "population": 133880 },
+        { "ageGroup": "80+", "population": 52154 }
+      ],
+      "name": "North Macedonia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 614323 },
+        { "ageGroup": "10-19", "population": 643032 },
+        { "ageGroup": "20-29", "population": 726383 },
+        { "ageGroup": "30-39", "population": 738722 },
+        { "ageGroup": "40-49", "population": 724932 },
+        { "ageGroup": "50-59", "population": 712508 },
+        { "ageGroup": "60-69", "population": 586156 },
+        { "ageGroup": "70-79", "population": 446446 },
+        { "ageGroup": "80+", "population": 228739 }
+      ],
+      "name": "Norway"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 832571 },
+        { "ageGroup": "10-19", "population": 530302 },
+        { "ageGroup": "20-29", "population": 1085546 },
+        { "ageGroup": "30-39", "population": 1439821 },
+        { "ageGroup": "40-49", "population": 684970 },
+        { "ageGroup": "50-59", "population": 315603 },
+        { "ageGroup": "60-69", "population": 142788 },
+        { "ageGroup": "70-79", "population": 53058 },
+        { "ageGroup": "80+", "population": 21967 }
+      ],
+      "name": "Oman"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 53462231 },
+        { "ageGroup": "10-19", "population": 45427436 },
+        { "ageGroup": "20-29", "population": 39930365 },
+        { "ageGroup": "30-39", "population": 30816025 },
+        { "ageGroup": "40-49", "population": 21248749 },
+        { "ageGroup": "50-59", "population": 15122610 },
+        { "ageGroup": "60-69", "population": 8902414 },
+        { "ageGroup": "70-79", "population": 4558931 },
+        { "ageGroup": "80+", "population": 1423578 }
+      ],
+      "name": "Pakistan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1364529 },
+        { "ageGroup": "10-19", "population": 1109494 },
+        { "ageGroup": "20-29", "population": 965726 },
+        { "ageGroup": "30-39", "population": 664295 },
+        { "ageGroup": "40-49", "population": 448138 },
+        { "ageGroup": "50-59", "population": 297319 },
+        { "ageGroup": "60-69", "population": 151853 },
+        { "ageGroup": "70-79", "population": 77833 },
+        { "ageGroup": "80+", "population": 22227 }
+      ],
+      "name": "Palestine, State of"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 773776 },
+        { "ageGroup": "10-19", "population": 726611 },
+        { "ageGroup": "20-29", "population": 678255 },
+        { "ageGroup": "30-39", "population": 618598 },
+        { "ageGroup": "40-49", "population": 556394 },
+        { "ageGroup": "50-59", "population": 432978 },
+        { "ageGroup": "60-69", "population": 282630 },
+        { "ageGroup": "70-79", "population": 157808 },
+        { "ageGroup": "80+", "population": 87717 }
+      ],
+      "name": "Panama"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2150349 },
+        { "ageGroup": "10-19", "population": 1917879 },
+        { "ageGroup": "20-29", "population": 1554186 },
+        { "ageGroup": "30-39", "population": 1220537 },
+        { "ageGroup": "40-49", "population": 938383 },
+        { "ageGroup": "50-59", "population": 629120 },
+        { "ageGroup": "60-69", "population": 372086 },
+        { "ageGroup": "70-79", "population": 136653 },
+        { "ageGroup": "80+", "population": 27831 }
+      ],
+      "name": "Papua New Guinea"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1383914 },
+        { "ageGroup": "10-19", "population": 1336278 },
+        { "ageGroup": "20-29", "population": 1321044 },
+        { "ageGroup": "30-39", "population": 1109127 },
+        { "ageGroup": "40-49", "population": 727641 },
+        { "ageGroup": "50-59", "population": 548361 },
+        { "ageGroup": "60-69", "population": 402162 },
+        { "ageGroup": "70-79", "population": 213726 },
+        { "ageGroup": "80+", "population": 90284 }
+      ],
+      "name": "Paraguay"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5445401 },
+        { "ageGroup": "10-19", "population": 5134606 },
+        { "ageGroup": "20-29", "population": 5375787 },
+        { "ageGroup": "30-39", "population": 5231161 },
+        { "ageGroup": "40-49", "population": 4346665 },
+        { "ageGroup": "50-59", "population": 3313880 },
+        { "ageGroup": "60-69", "population": 2276639 },
+        { "ageGroup": "70-79", "population": 1255406 },
+        { "ageGroup": "80+", "population": 592307 }
+      ],
+      "name": "Peru"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 22014291 },
+        { "ageGroup": "10-19", "population": 21369694 },
+        { "ageGroup": "20-29", "population": 19584112 },
+        { "ageGroup": "30-39", "population": 15501925 },
+        { "ageGroup": "40-49", "population": 12311228 },
+        { "ageGroup": "50-59", "population": 9366918 },
+        { "ageGroup": "60-69", "population": 5878871 },
+        { "ageGroup": "70-79", "population": 2639622 },
+        { "ageGroup": "80+", "population": 914417 }
+      ],
+      "name": "Philippines"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3784870 },
+        { "ageGroup": "10-19", "population": 3709138 },
+        { "ageGroup": "20-29", "population": 4431561 },
+        { "ageGroup": "30-39", "population": 6004923 },
+        { "ageGroup": "40-49", "population": 5535441 },
+        { "ageGroup": "50-59", "population": 4563170 },
+        { "ageGroup": "60-69", "population": 5174147 },
+        { "ageGroup": "70-79", "population": 2900526 },
+        { "ageGroup": "80+", "population": 1742835 }
+      ],
+      "name": "Poland"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 841075 },
+        { "ageGroup": "10-19", "population": 1015167 },
+        { "ageGroup": "20-29", "population": 1073698 },
+        { "ageGroup": "30-39", "population": 1215310 },
+        { "ageGroup": "40-49", "population": 1575910 },
+        { "ageGroup": "50-59", "population": 1481008 },
+        { "ageGroup": "60-69", "population": 1293823 },
+        { "ageGroup": "70-79", "population": 1018315 },
+        { "ageGroup": "80+", "population": 682403 }
+      ],
+      "name": "Portugal"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 240324 },
+        { "ageGroup": "10-19", "population": 394671 },
+        { "ageGroup": "20-29", "population": 288754 },
+        { "ageGroup": "30-39", "population": 331516 },
+        { "ageGroup": "40-49", "population": 399245 },
+        { "ageGroup": "50-59", "population": 414187 },
+        { "ageGroup": "60-69", "population": 361026 },
+        { "ageGroup": "70-79", "population": 273683 },
+        { "ageGroup": "80+", "population": 157447 }
+      ],
+      "name": "Puerto Rico"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 270534 },
+        { "ageGroup": "10-19", "population": 228399 },
+        { "ageGroup": "20-29", "population": 717369 },
+        { "ageGroup": "30-39", "population": 846180 },
+        { "ageGroup": "40-49", "population": 461797 },
+        { "ageGroup": "50-59", "population": 254159 },
+        { "ageGroup": "60-69", "population": 81798 },
+        { "ageGroup": "70-79", "population": 16725 },
+        { "ageGroup": "80+", "population": 4092 }
+      ],
+      "name": "Qatar"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1905045 },
+        { "ageGroup": "10-19", "population": 2075305 },
+        { "ageGroup": "20-29", "population": 2086267 },
+        { "ageGroup": "30-39", "population": 2585899 },
+        { "ageGroup": "40-49", "population": 3026469 },
+        { "ageGroup": "50-59", "population": 2569160 },
+        { "ageGroup": "60-69", "population": 2535949 },
+        { "ageGroup": "70-79", "population": 1530270 },
+        { "ageGroup": "80+", "population": 923327 }
+      ],
+      "name": "Romania"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 18622607 },
+        { "ageGroup": "10-19", "population": 15256035 },
+        { "ageGroup": "20-29", "population": 15607785 },
+        { "ageGroup": "30-39", "population": 24468554 },
+        { "ageGroup": "40-49", "population": 20375320 },
+        { "ageGroup": "50-59", "population": 18897667 },
+        { "ageGroup": "60-69", "population": 18501370 },
+        { "ageGroup": "70-79", "population": 8549716 },
+        { "ageGroup": "80+", "population": 5655408 }
+      ],
+      "name": "Russian Federation"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3561022 },
+        { "ageGroup": "10-19", "population": 2905796 },
+        { "ageGroup": "20-29", "population": 2211046 },
+        { "ageGroup": "30-39", "population": 1812553 },
+        { "ageGroup": "40-49", "population": 1070096 },
+        { "ageGroup": "50-59", "population": 728451 },
+        { "ageGroup": "60-69", "population": 445152 },
+        { "ageGroup": "70-79", "population": 174816 },
+        { "ageGroup": "80+", "population": 43285 }
+      ],
+      "name": "Rwanda"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 132395 },
+        { "ageGroup": "10-19", "population": 138862 },
+        { "ageGroup": "20-29", "population": 118273 },
+        { "ageGroup": "30-39", "population": 99451 },
+        { "ageGroup": "40-49", "population": 117324 },
+        { "ageGroup": "50-59", "population": 125415 },
+        { "ageGroup": "60-69", "population": 90557 },
+        { "ageGroup": "70-79", "population": 47535 },
+        { "ageGroup": "80+", "population": 25500 }
+      ],
+      "name": "R\u00e9union"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 21813 },
+        { "ageGroup": "10-19", "population": 24336 },
+        { "ageGroup": "20-29", "population": 32816 },
+        { "ageGroup": "30-39", "population": 28448 },
+        { "ageGroup": "40-49", "population": 25516 },
+        { "ageGroup": "50-59", "population": 23375 },
+        { "ageGroup": "60-69", "population": 14556 },
+        { "ageGroup": "70-79", "population": 8355 },
+        { "ageGroup": "80+", "population": 4412 }
+      ],
+      "name": "Saint Lucia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 15945 },
+        { "ageGroup": "10-19", "population": 17425 },
+        { "ageGroup": "20-29", "population": 17503 },
+        { "ageGroup": "30-39", "population": 15712 },
+        { "ageGroup": "40-49", "population": 14485 },
+        { "ageGroup": "50-59", "population": 13587 },
+        { "ageGroup": "60-69", "population": 9176 },
+        { "ageGroup": "70-79", "population": 4503 },
+        { "ageGroup": "80+", "population": 2604 }
+      ],
+      "name": "Saint Vincent and the Grenadines"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 51121 },
+        { "ageGroup": "10-19", "population": 42003 },
+        { "ageGroup": "20-29", "population": 31297 },
+        { "ageGroup": "30-39", "population": 22010 },
+        { "ageGroup": "40-49", "population": 19559 },
+        { "ageGroup": "50-59", "population": 16472 },
+        { "ageGroup": "60-69", "population": 9961 },
+        { "ageGroup": "70-79", "population": 4578 },
+        { "ageGroup": "80+", "population": 1413 }
+      ],
+      "name": "Samoa"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 62410 },
+        { "ageGroup": "10-19", "population": 54109 },
+        { "ageGroup": "20-29", "population": 33623 },
+        { "ageGroup": "30-39", "population": 26630 },
+        { "ageGroup": "40-49", "population": 18680 },
+        { "ageGroup": "50-59", "population": 12781 },
+        { "ageGroup": "60-69", "population": 7083 },
+        { "ageGroup": "70-79", "population": 2763 },
+        { "ageGroup": "80+", "population": 1080 }
+      ],
+      "name": "Sao Tome and Principe"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5956215 },
+        { "ageGroup": "10-19", "population": 4860281 },
+        { "ageGroup": "20-29", "population": 5354763 },
+        { "ageGroup": "30-39", "population": 6980363 },
+        { "ageGroup": "40-49", "population": 6408790 },
+        { "ageGroup": "50-59", "population": 3216573 },
+        { "ageGroup": "60-69", "population": 1373521 },
+        { "ageGroup": "70-79", "population": 493856 },
+        { "ageGroup": "80+", "population": 169509 }
+      ],
+      "name": "Saudi Arabia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5032581 },
+        { "ageGroup": "10-19", "population": 3863701 },
+        { "ageGroup": "20-29", "population": 2823536 },
+        { "ageGroup": "30-39", "population": 2051292 },
+        { "ageGroup": "40-49", "population": 1331829 },
+        { "ageGroup": "50-59", "population": 834697 },
+        { "ageGroup": "60-69", "population": 505761 },
+        { "ageGroup": "70-79", "population": 239181 },
+        { "ageGroup": "80+", "population": 61349 }
+      ],
+      "name": "Senegal"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 855818 },
+        { "ageGroup": "10-19", "population": 999733 },
+        { "ageGroup": "20-29", "population": 1102466 },
+        { "ageGroup": "30-39", "population": 1214888 },
+        { "ageGroup": "40-49", "population": 1229894 },
+        { "ageGroup": "50-59", "population": 1121507 },
+        { "ageGroup": "60-69", "population": 1142469 },
+        { "ageGroup": "70-79", "population": 729682 },
+        { "ageGroup": "80+", "population": 340914 }
+      ],
+      "name": "Serbia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 15935 },
+        { "ageGroup": "10-19", "population": 13867 },
+        { "ageGroup": "20-29", "population": 13431 },
+        { "ageGroup": "30-39", "population": 14488 },
+        { "ageGroup": "40-49", "population": 14873 },
+        { "ageGroup": "50-59", "population": 12978 },
+        { "ageGroup": "60-69", "population": 7911 },
+        { "ageGroup": "70-79", "population": 3205 },
+        { "ageGroup": "80+", "population": 1659 }
+      ],
+      "name": "Seychelles"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2225885 },
+        { "ageGroup": "10-19", "population": 1867195 },
+        { "ageGroup": "20-29", "population": 1405514 },
+        { "ageGroup": "30-39", "population": 1017051 },
+        { "ageGroup": "40-49", "population": 672892 },
+        { "ageGroup": "50-59", "population": 419133 },
+        { "ageGroup": "60-69", "population": 234027 },
+        { "ageGroup": "70-79", "population": 108809 },
+        { "ageGroup": "80+", "population": 26477 }
+      ],
+      "name": "Sierra Leone"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 479039 },
+        { "ageGroup": "10-19", "population": 505791 },
+        { "ageGroup": "20-29", "population": 833056 },
+        { "ageGroup": "30-39", "population": 896616 },
+        { "ageGroup": "40-49", "population": 964875 },
+        { "ageGroup": "50-59", "population": 946223 },
+        { "ageGroup": "60-69", "population": 799325 },
+        { "ageGroup": "70-79", "population": 289630 },
+        { "ageGroup": "80+", "population": 135787 }
+      ],
+      "name": "Singapore"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 566590 },
+        { "ageGroup": "10-19", "population": 545493 },
+        { "ageGroup": "20-29", "population": 655787 },
+        { "ageGroup": "30-39", "population": 847604 },
+        { "ageGroup": "40-49", "population": 861400 },
+        { "ageGroup": "50-59", "population": 709218 },
+        { "ageGroup": "60-69", "population": 695209 },
+        { "ageGroup": "70-79", "population": 398709 },
+        { "ageGroup": "80+", "population": 179632 }
+      ],
+      "name": "Slovakia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 210171 },
+        { "ageGroup": "10-19", "population": 196378 },
+        { "ageGroup": "20-29", "population": 205492 },
+        { "ageGroup": "30-39", "population": 283648 },
+        { "ageGroup": "40-49", "population": 305327 },
+        { "ageGroup": "50-59", "population": 301204 },
+        { "ageGroup": "60-69", "population": 284942 },
+        { "ageGroup": "70-79", "population": 177497 },
+        { "ageGroup": "80+", "population": 114279 }
+      ],
+      "name": "Slovenia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 196169 },
+        { "ageGroup": "10-19", "population": 148827 },
+        { "ageGroup": "20-29", "population": 111830 },
+        { "ageGroup": "30-39", "population": 82051 },
+        { "ageGroup": "40-49", "population": 68670 },
+        { "ageGroup": "50-59", "population": 40695 },
+        { "ageGroup": "60-69", "population": 22979 },
+        { "ageGroup": "70-79", "population": 11993 },
+        { "ageGroup": "80+", "population": 3670 }
+      ],
+      "name": "Solomon Islands"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5215365 },
+        { "ageGroup": "10-19", "population": 3937588 },
+        { "ageGroup": "20-29", "population": 2693878 },
+        { "ageGroup": "30-39", "population": 1534402 },
+        { "ageGroup": "40-49", "population": 1053897 },
+        { "ageGroup": "50-59", "population": 733973 },
+        { "ageGroup": "60-69", "population": 462792 },
+        { "ageGroup": "70-79", "population": 210106 },
+        { "ageGroup": "80+", "population": 51221 }
+      ],
+      "name": "Somalia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 11585606 },
+        { "ageGroup": "10-19", "population": 10409174 },
+        { "ageGroup": "20-29", "population": 10141490 },
+        { "ageGroup": "30-39", "population": 10155325 },
+        { "ageGroup": "40-49", "population": 7043274 },
+        { "ageGroup": "50-59", "population": 4911530 },
+        { "ageGroup": "60-69", "population": 3164440 },
+        { "ageGroup": "70-79", "population": 1476055 },
+        { "ageGroup": "80+", "population": 421796 }
+      ],
+      "name": "South Africa"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3245684 },
+        { "ageGroup": "10-19", "population": 2581903 },
+        { "ageGroup": "20-29", "population": 1962948 },
+        { "ageGroup": "30-39", "population": 1334152 },
+        { "ageGroup": "40-49", "population": 896838 },
+        { "ageGroup": "50-59", "population": 595522 },
+        { "ageGroup": "60-69", "population": 344938 },
+        { "ageGroup": "70-79", "population": 182625 },
+        { "ageGroup": "80+", "population": 49115 }
+      ],
+      "name": "South Sudan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 4234486 },
+        { "ageGroup": "10-19", "population": 4736076 },
+        { "ageGroup": "20-29", "population": 4617599 },
+        { "ageGroup": "30-39", "population": 5901992 },
+        { "ageGroup": "40-49", "population": 7938499 },
+        { "ageGroup": "50-59", "population": 7046327 },
+        { "ageGroup": "60-69", "population": 5340654 },
+        { "ageGroup": "70-79", "population": 4015304 },
+        { "ageGroup": "80+", "population": 2923841 }
+      ],
+      "name": "Spain"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3350035 },
+        { "ageGroup": "10-19", "population": 3386220 },
+        { "ageGroup": "20-29", "population": 2901858 },
+        { "ageGroup": "30-39", "population": 2820020 },
+        { "ageGroup": "40-49", "population": 2881105 },
+        { "ageGroup": "50-59", "population": 2554817 },
+        { "ageGroup": "60-69", "population": 2013196 },
+        { "ageGroup": "70-79", "population": 1146337 },
+        { "ageGroup": "80+", "population": 359661 }
+      ],
+      "name": "Sri Lanka"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 12128803 },
+        { "ageGroup": "10-19", "population": 10123658 },
+        { "ageGroup": "20-29", "population": 7627155 },
+        { "ageGroup": "30-39", "population": 5203245 },
+        { "ageGroup": "40-49", "population": 3727317 },
+        { "ageGroup": "50-59", "population": 2552951 },
+        { "ageGroup": "60-69", "population": 1535958 },
+        { "ageGroup": "70-79", "population": 733051 },
+        { "ageGroup": "80+", "population": 217121 }
+      ],
+      "name": "Sudan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 104833 },
+        { "ageGroup": "10-19", "population": 102229 },
+        { "ageGroup": "20-29", "population": 95774 },
+        { "ageGroup": "30-39", "population": 82789 },
+        { "ageGroup": "40-49", "population": 72724 },
+        { "ageGroup": "50-59", "population": 64826 },
+        { "ageGroup": "60-69", "population": 36928 },
+        { "ageGroup": "70-79", "population": 18682 },
+        { "ageGroup": "80+", "population": 7847 }
+      ],
+      "name": "Suriname"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1193952 },
+        { "ageGroup": "10-19", "population": 1127126 },
+        { "ageGroup": "20-29", "population": 1276929 },
+        { "ageGroup": "30-39", "population": 1320296 },
+        { "ageGroup": "40-49", "population": 1264123 },
+        { "ageGroup": "50-59", "population": 1296645 },
+        { "ageGroup": "60-69", "population": 1093869 },
+        { "ageGroup": "70-79", "population": 994243 },
+        { "ageGroup": "80+", "population": 532082 }
+      ],
+      "name": "Sweden"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 884945 },
+        { "ageGroup": "10-19", "population": 834866 },
+        { "ageGroup": "20-29", "population": 1039727 },
+        { "ageGroup": "30-39", "population": 1219227 },
+        { "ageGroup": "40-49", "population": 1166590 },
+        { "ageGroup": "50-59", "population": 1320623 },
+        { "ageGroup": "60-69", "population": 977436 },
+        { "ageGroup": "70-79", "population": 751994 },
+        { "ageGroup": "80+", "population": 459214 }
+      ],
+      "name": "Switzerland"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 3635906 },
+        { "ageGroup": "10-19", "population": 3325125 },
+        { "ageGroup": "20-29", "population": 3099981 },
+        { "ageGroup": "30-39", "population": 2907195 },
+        { "ageGroup": "40-49", "population": 1928900 },
+        { "ageGroup": "50-59", "population": 1285347 },
+        { "ageGroup": "60-69", "population": 822366 },
+        { "ageGroup": "70-79", "population": 355547 },
+        { "ageGroup": "80+", "population": 140291 }
+      ],
+      "name": "Syrian Arab Republic"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2052885 },
+        { "ageGroup": "10-19", "population": 2188808 },
+        { "ageGroup": "20-29", "population": 3120353 },
+        { "ageGroup": "30-39", "population": 3548586 },
+        { "ageGroup": "40-49", "population": 3787845 },
+        { "ageGroup": "50-59", "population": 3659220 },
+        { "ageGroup": "60-69", "population": 3101016 },
+        { "ageGroup": "70-79", "population": 1488802 },
+        { "ageGroup": "80+", "population": 869260 }
+      ],
+      "name": "Taiwan, Province of China"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2577608 },
+        { "ageGroup": "10-19", "population": 1788370 },
+        { "ageGroup": "20-29", "population": 1648520 },
+        { "ageGroup": "30-39", "population": 1390332 },
+        { "ageGroup": "40-49", "population": 882400 },
+        { "ageGroup": "50-59", "population": 700892 },
+        { "ageGroup": "60-69", "population": 387890 },
+        { "ageGroup": "70-79", "population": 117606 },
+        { "ageGroup": "80+", "population": 44027 }
+      ],
+      "name": "Tajikistan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 18362315 },
+        { "ageGroup": "10-19", "population": 14089046 },
+        { "ageGroup": "20-29", "population": 9846249 },
+        { "ageGroup": "30-39", "population": 7161926 },
+        { "ageGroup": "40-49", "population": 4820729 },
+        { "ageGroup": "50-59", "population": 2926636 },
+        { "ageGroup": "60-69", "population": 1622801 },
+        { "ageGroup": "70-79", "population": 741234 },
+        { "ageGroup": "80+", "population": 163282 }
+      ],
+      "name": "Tanzania, United Republic of"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 7439833 },
+        { "ageGroup": "10-19", "population": 8492312 },
+        { "ageGroup": "20-29", "population": 9630311 },
+        { "ageGroup": "30-39", "population": 9229726 },
+        { "ageGroup": "40-49", "population": 10914254 },
+        { "ageGroup": "50-59", "population": 10681391 },
+        { "ageGroup": "60-69", "population": 7624358 },
+        { "ageGroup": "70-79", "population": 3866567 },
+        { "ageGroup": "80+", "population": 1921226 }
+      ],
+      "name": "Thailand"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 331877 },
+        { "ageGroup": "10-19", "population": 306717 },
+        { "ageGroup": "20-29", "population": 244908 },
+        { "ageGroup": "30-39", "population": 159027 },
+        { "ageGroup": "40-49", "population": 100789 },
+        { "ageGroup": "50-59", "population": 88473 },
+        { "ageGroup": "60-69", "population": 50144 },
+        { "ageGroup": "70-79", "population": 28916 },
+        { "ageGroup": "80+", "population": 7594 }
+      ],
+      "name": "Timor-Leste"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2340180 },
+        { "ageGroup": "10-19", "population": 1914993 },
+        { "ageGroup": "20-29", "population": 1375262 },
+        { "ageGroup": "30-39", "population": 1064553 },
+        { "ageGroup": "40-49", "population": 744517 },
+        { "ageGroup": "50-59", "population": 450710 },
+        { "ageGroup": "60-69", "population": 255935 },
+        { "ageGroup": "70-79", "population": 111491 },
+        { "ageGroup": "80+", "population": 21083 }
+      ],
+      "name": "Togo"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 24640 },
+        { "ageGroup": "10-19", "population": 23525 },
+        { "ageGroup": "20-29", "population": 17138 },
+        { "ageGroup": "30-39", "population": 12181 },
+        { "ageGroup": "40-49", "population": 10289 },
+        { "ageGroup": "50-59", "population": 8701 },
+        { "ageGroup": "60-69", "population": 5304 },
+        { "ageGroup": "70-79", "population": 2791 },
+        { "ageGroup": "80+", "population": 1126 }
+      ],
+      "name": "Tonga"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 184450 },
+        { "ageGroup": "10-19", "population": 185807 },
+        { "ageGroup": "20-29", "population": 183001 },
+        { "ageGroup": "30-39", "population": 242864 },
+        { "ageGroup": "40-49", "population": 191443 },
+        { "ageGroup": "50-59", "population": 175059 },
+        { "ageGroup": "60-69", "population": 135895 },
+        { "ageGroup": "70-79", "population": 73653 },
+        { "ageGroup": "80+", "population": 27316 }
+      ],
+      "name": "Trinidad and Tobago"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 2017758 },
+        { "ageGroup": "10-19", "population": 1639937 },
+        { "ageGroup": "20-29", "population": 1725345 },
+        { "ageGroup": "30-39", "population": 1914066 },
+        { "ageGroup": "40-49", "population": 1572474 },
+        { "ageGroup": "50-59", "population": 1361507 },
+        { "ageGroup": "60-69", "population": 962594 },
+        { "ageGroup": "70-79", "population": 424105 },
+        { "ageGroup": "80+", "population": 200832 }
+      ],
+      "name": "Tunisia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 13419270 },
+        { "ageGroup": "10-19", "population": 13595150 },
+        { "ageGroup": "20-29", "population": 13174164 },
+        { "ageGroup": "30-39", "population": 12774732 },
+        { "ageGroup": "40-49", "population": 11446581 },
+        { "ageGroup": "50-59", "population": 8908423 },
+        { "ageGroup": "60-69", "population": 6192391 },
+        { "ageGroup": "70-79", "population": 3353577 },
+        { "ageGroup": "80+", "population": 1474778 }
+      ],
+      "name": "Turkey"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1332932 },
+        { "ageGroup": "10-19", "population": 1008742 },
+        { "ageGroup": "20-29", "population": 1009792 },
+        { "ageGroup": "30-39", "population": 957887 },
+        { "ageGroup": "40-49", "population": 697821 },
+        { "ageGroup": "50-59", "population": 535461 },
+        { "ageGroup": "60-69", "population": 334447 },
+        { "ageGroup": "70-79", "population": 103460 },
+        { "ageGroup": "80+", "population": 50658 }
+      ],
+      "name": "Turkmenistan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 14855951 },
+        { "ageGroup": "10-19", "population": 11449426 },
+        { "ageGroup": "20-29", "population": 7872675 },
+        { "ageGroup": "30-39", "population": 5101102 },
+        { "ageGroup": "40-49", "population": 3133402 },
+        { "ageGroup": "50-59", "population": 1852437 },
+        { "ageGroup": "60-69", "population": 974327 },
+        { "ageGroup": "70-79", "population": 411999 },
+        { "ageGroup": "80+", "population": 89688 }
+      ],
+      "name": "Uganda"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 4589511 },
+        { "ageGroup": "10-19", "population": 4383518 },
+        { "ageGroup": "20-29", "population": 4898491 },
+        { "ageGroup": "30-39", "population": 7208959 },
+        { "ageGroup": "40-49", "population": 6406401 },
+        { "ageGroup": "50-59", "population": 5906740 },
+        { "ageGroup": "60-69", "population": 5539857 },
+        { "ageGroup": "70-79", "population": 2983432 },
+        { "ageGroup": "80+", "population": 1816853 }
+      ],
+      "name": "Ukraine"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 1011712 },
+        { "ageGroup": "10-19", "population": 842993 },
+        { "ageGroup": "20-29", "population": 2149345 },
+        { "ageGroup": "30-39", "population": 3169316 },
+        { "ageGroup": "40-49", "population": 1608106 },
+        { "ageGroup": "50-59", "population": 797911 },
+        { "ageGroup": "60-69", "population": 242705 },
+        { "ageGroup": "70-79", "population": 55883 },
+        { "ageGroup": "80+", "population": 12431 }
+      ],
+      "name": "United Arab Emirates"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 8044056 },
+        { "ageGroup": "10-19", "population": 7642475 },
+        { "ageGroup": "20-29", "population": 8558707 },
+        { "ageGroup": "30-39", "population": 9295025 },
+        { "ageGroup": "40-49", "population": 8604251 },
+        { "ageGroup": "50-59", "population": 9173467 },
+        { "ageGroup": "60-69", "population": 7286778 },
+        { "ageGroup": "70-79", "population": 5830636 },
+        { "ageGroup": "80+", "population": 3450616 }
+      ],
+      "name": "United Kingdom of Great Britain and Northern Ireland"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 39721484 },
+        { "ageGroup": "10-19", "population": 42332393 },
+        { "ageGroup": "20-29", "population": 46094077 },
+        { "ageGroup": "30-39", "population": 44668271 },
+        { "ageGroup": "40-49", "population": 40348398 },
+        { "ageGroup": "50-59", "population": 42120077 },
+        { "ageGroup": "60-69", "population": 38488173 },
+        { "ageGroup": "70-79", "population": 24082598 },
+        { "ageGroup": "80+", "population": 13147180 }
+      ],
+      "name": "United States of America"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 473071 },
+        { "ageGroup": "10-19", "population": 478929 },
+        { "ageGroup": "20-29", "population": 511559 },
+        { "ageGroup": "30-39", "population": 461146 },
+        { "ageGroup": "40-49", "population": 455021 },
+        { "ageGroup": "50-59", "population": 391074 },
+        { "ageGroup": "60-69", "population": 327921 },
+        { "ageGroup": "70-79", "population": 220267 },
+        { "ageGroup": "80+", "population": 154741 }
+      ],
+      "name": "Uruguay"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 6713724 },
+        { "ageGroup": "10-19", "population": 5460857 },
+        { "ageGroup": "20-29", "population": 5946988 },
+        { "ageGroup": "30-39", "population": 5577195 },
+        { "ageGroup": "40-49", "population": 3930502 },
+        { "ageGroup": "50-59", "population": 3068759 },
+        { "ageGroup": "60-69", "population": 1939630 },
+        { "ageGroup": "70-79", "population": 572151 },
+        { "ageGroup": "80+", "population": 259397 }
+      ],
+      "name": "Uzbekistan"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 80884 },
+        { "ageGroup": "10-19", "population": 66925 },
+        { "ageGroup": "20-29", "population": 50769 },
+        { "ageGroup": "30-39", "population": 41001 },
+        { "ageGroup": "40-49", "population": 29192 },
+        { "ageGroup": "50-59", "population": 20541 },
+        { "ageGroup": "60-69", "population": 11438 },
+        { "ageGroup": "70-79", "population": 4837 },
+        { "ageGroup": "80+", "population": 1558 }
+      ],
+      "name": "Vanuatu"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5094601 },
+        { "ageGroup": "10-19", "population": 5158570 },
+        { "ageGroup": "20-29", "population": 4130338 },
+        { "ageGroup": "30-39", "population": 4027919 },
+        { "ageGroup": "40-49", "population": 3564976 },
+        { "ageGroup": "50-59", "population": 3014982 },
+        { "ageGroup": "60-69", "population": 2042554 },
+        { "ageGroup": "70-79", "population": 989858 },
+        { "ageGroup": "80+", "population": 412141 }
+      ],
+      "name": "Venezuela (Bolivarian Republic of)"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 15478572 },
+        { "ageGroup": "10-19", "population": 13599041 },
+        { "ageGroup": "20-29", "population": 15389495 },
+        { "ageGroup": "30-39", "population": 16200926 },
+        { "ageGroup": "40-49", "population": 13572964 },
+        { "ageGroup": "50-59", "population": 11109965 },
+        { "ageGroup": "60-69", "population": 7342685 },
+        { "ageGroup": "70-79", "population": 2778470 },
+        { "ageGroup": "80+", "population": 1866461 }
+      ],
+      "name": "Viet Nam"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 12866 },
+        { "ageGroup": "10-19", "population": 14018 },
+        { "ageGroup": "20-29", "population": 12732 },
+        { "ageGroup": "30-39", "population": 9733 },
+        { "ageGroup": "40-49", "population": 11766 },
+        { "ageGroup": "50-59", "population": 14450 },
+        { "ageGroup": "60-69", "population": 14020 },
+        { "ageGroup": "70-79", "population": 10901 },
+        { "ageGroup": "80+", "population": 3939 }
+      ],
+      "name": "Virgin Islands (U. S.)"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 112592 },
+        { "ageGroup": "10-19", "population": 98369 },
+        { "ageGroup": "20-29", "population": 104987 },
+        { "ageGroup": "30-39", "population": 108717 },
+        { "ageGroup": "40-49", "population": 82796 },
+        { "ageGroup": "50-59", "population": 51955 },
+        { "ageGroup": "60-69", "population": 28373 },
+        { "ageGroup": "70-79", "population": 7614 },
+        { "ageGroup": "80+", "population": 1936 }
+      ],
+      "name": "Western Sahara"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 8033406 },
+        { "ageGroup": "10-19", "population": 6750274 },
+        { "ageGroup": "20-29", "population": 5732747 },
+        { "ageGroup": "30-39", "population": 4140438 },
+        { "ageGroup": "40-49", "population": 2362805 },
+        { "ageGroup": "50-59", "population": 1422834 },
+        { "ageGroup": "60-69", "population": 879448 },
+        { "ageGroup": "70-79", "population": 403471 },
+        { "ageGroup": "80+", "population": 100540 }
+      ],
+      "name": "Yemen"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 5663541 },
+        { "ageGroup": "10-19", "population": 4550182 },
+        { "ageGroup": "20-29", "population": 3180383 },
+        { "ageGroup": "30-39", "population": 2185196 },
+        { "ageGroup": "40-49", "population": 1413887 },
+        { "ageGroup": "50-59", "population": 761262 },
+        { "ageGroup": "60-69", "population": 403835 },
+        { "ageGroup": "70-79", "population": 179963 },
+        { "ageGroup": "80+", "population": 45706 }
+      ],
+      "name": "Zambia"
+    },
+    {
+      "data": [
+        { "ageGroup": "0-9", "population": 4308157 },
+        { "ageGroup": "10-19", "population": 3559952 },
+        { "ageGroup": "20-29", "population": 2482990 },
+        { "ageGroup": "30-39", "population": 1867477 },
+        { "ageGroup": "40-49", "population": 1257821 },
+        { "ageGroup": "50-59", "population": 698090 },
+        { "ageGroup": "60-69", "population": 425415 },
+        { "ageGroup": "70-79", "population": 200359 },
+        { "ageGroup": "80+", "population": 62663 }
+      ],
+      "name": "Zimbabwe"
+    }
+  ]
+}

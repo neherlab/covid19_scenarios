@@ -1,0 +1,21 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: NumericRangeNonNegative
+title: NumericRangeNonNegative
+
+type: object
+
+additionalProperties: false
+
+required:
+  - begin
+  - end
+
+properties:
+  begin:
+    type: number
+    minimum: 0
+    maximum:
+      $data: '1/end'
+
+  end:
+    type: number

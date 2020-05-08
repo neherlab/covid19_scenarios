@@ -1,11 +1,11 @@
 import { toBeCloseToNumber } from '@eirba/jest-ieee754'
-import { AgeDistribution } from '../.generated/types'
+import type { AgeDistributionDatum } from './types/Param.types'
 
 import { getPopulationParams, infectionRate, initializePopulation } from './initialize'
 
 import { evolve } from './model'
 
-import { ageDisstribution, allParamsFlat, severity } from './__test_data__/getPopulationParams.input.default'
+import { ageDistribution, allParamsFlat, severity } from './__test_data__/getPopulationParams.input.default'
 
 const identity = (x: number) => x
 
@@ -21,14 +21,14 @@ interface InitializePopulationParams {
   N: number
   numCases: number
   t0: number
-  ages: AgeDistribution
+  ages: AgeDistributionDatum[]
 }
 
 const initializePopulationParams: InitializePopulationParams = {
   N: 195000,
   numCases: 213,
   t0: 1583049600000,
-  ages: ageDisstribution,
+  ages: ageDistribution,
 }
 
 expect.extend({ toBeCloseToNumber })
@@ -62,7 +62,7 @@ describe('model', () => {
 
   describe('getPopulationParams', () => {
     it('calculates correct params', () => {
-      const params = getPopulationParams(allParamsFlat, severity, ageDisstribution)
+      const params = getPopulationParams(allParamsFlat, severity, ageDistribution)
       expect(params).toMatchSnapshot()
     })
   })
@@ -81,7 +81,7 @@ describe('model', () => {
 
   describe('evolve', () => {
     it('produces correct output for 10 days', () => {
-      const params = getPopulationParams(allParamsFlat, severity, ageDisstribution)
+      const params = getPopulationParams(allParamsFlat, severity, ageDistribution)
 
       const input = initializePopulation(
         initializePopulationParams.N,

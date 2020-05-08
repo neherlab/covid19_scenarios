@@ -5,8 +5,8 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
-import { caseCountsNames } from '../state/caseCountsData'
-import { ageDistributionNames } from '../state/countryAgeDistributionData'
+import { caseCountsNames } from '../state/getCaseCounts'
+import { ageDistributionNames } from '../state/getAgeDistribution'
 
 import { CUSTOM_COUNTRY_NAME, NONE_COUNTRY_NAME } from '../state/state'
 
@@ -28,10 +28,6 @@ export interface ScenarioCardPopulationProps {
 
 function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
-  // const populationScenarioOptions = stringsToOptions(scenarioState.population.scenarios)
-  // function handleChangePopulationScenario(newPopulationScenario: string) {
-  //   scenarioDispatch(setPopulationScenario({ scenarioName: newPopulationScenario }))
-  // }
 
   return (
     <CardWithControls
@@ -50,7 +46,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormDropdown<string>
-        identifier="population.country"
+        identifier="population.ageDistributionName"
         label={t('Age distribution')}
         help={t('Country to determine the age distribution in the population')}
         options={countryOptions}
@@ -87,7 +83,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormSpinBox
-        identifier="population.ICUBeds"
+        identifier="population.icuBeds"
         label={`${t('ICU/ICMU')} (${t('est.')})`}
         help={t(
           'Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
@@ -98,7 +94,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         touched={touched}
       />
       <FormDropdown<string>
-        identifier="population.cases"
+        identifier="population.caseCountsName"
         label={t('Confirmed cases')}
         help={t('Select region for which to plot confirmed case and death counts.')}
         options={caseCountOptions}

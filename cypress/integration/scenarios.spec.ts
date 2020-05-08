@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { getScenarioData, scenarioNames } from '../../src/components/Main/state/scenarioData'
+import { getScenario, scenarioNames } from '../../src/components/Main/state/getScenario'
 
 // testing all the scenarios would be extremely long
 const someScenarios = ['Switzerland', 'Germany', 'France', 'Australia']
@@ -39,7 +39,7 @@ context('Scenario selector', () => {
   })
 
   someScenarios.forEach((scenarioKey) => {
-    const { epidemiological, population } = getScenarioData(scenarioKey)
+    const { epidemiological, population } = getScenario(scenarioKey)
 
     describe(`Switching to "${scenarioKey}"`, () => {
       it(`should change the text on selector to "${scenarioKey}" correctly`, () => {

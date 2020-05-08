@@ -1,18 +1,63 @@
-import React, { useState, useEffect } from 'react'
-import { withRouter, RouteComponentProps } from 'react-router'
-import _ from 'lodash'
+import React, { useEffect, useState } from 'react'
+
+import { isEqual, isEmpty } from 'lodash'
+
+import { connect } from 'react-redux'
+import type { Location } from 'history'
+import { push, Push } from 'connected-react-router'
+
+import type { SeverityDistributionDatum } from '../../algorithms/types/Param.types'
+
+import type { State as AppState } from '../../state/reducer'
+
+import { scenarioNames } from './state/getScenario'
+import { dataFromUrl } from './state/serialization/serialize'
 
 import { defaultScenarioState, State } from './state/state'
-import { Convert } from '../../.generated/types'
-import rawSeverityData from '../../assets/data/severityData.json'
-import { deserializeScenarioFromURL } from './state/serialization/URLSerializer'
-import { Severity } from '../../algorithms/types/Param.types'
 
-const severityData = Convert.toSeverity(JSON.stringify(rawSeverityData))
+import { getSeverityDistribution } from './state/getSeverityDistribution'
+
+export const DEFAULT_SEVERITY_DISTRIBUTION = 'China CDC'
+const severityDistribution = getSeverityDistribution(DEFAULT_SEVERITY_DISTRIBUTION)
+
+interface SuperState {
+  scenarioState: State
+  severityName: string
+  severityTable: SeverityDistributionDatum[]
+}
+
+const defaultSuperState: SuperState = {
+  scenarioState: defaultScenarioState,
+  severityName: DEFAULT_SEVERITY_DISTRIBUTION,
+  severityTable: severityDistribution,
+}
+
+function deserializeScenarioFromURL(location: Location): SuperState {
+  const search = location?.search
+  if (!search || isEmpty(search)) {
+    return defaultSuperState
+  }
+
+  const data = dataFromUrl(search)
+  if (!data) {
+    return defaultSuperState
+  }
+
+  const scenarioState: State = {
+    scenarios: scenarioNames,
+    current: data.scenarioName,
+    shouldRenameOnEdits: false,
+    data: data.scenario,
+    ageDistribution: data.ageDistribution,
+  }
+
+  return { scenarioState, severityName: data.severityName, severityTable: data.severity }
+}
 
 interface InitialState {
   scenarioState: State
-  severityTable: Severity[]
+  severityName: string
+  severityTable: SeverityDistributionDatum[]
   isDefault: boolean
 }
 
@@ -21,19 +66,17 @@ export interface InitialStateComponentProps {
 }
 
 export interface HandleInitialStateProps {
+  location: Location
+  push: Push
   component: React.ComponentType<InitialStateComponentProps>
 }
 
-function HandleInitialState({
-  history,
-  location,
-  component: Component,
-}: RouteComponentProps<{}> & HandleInitialStateProps) {
-  const [scenarioState] = useState<State>(deserializeScenarioFromURL(location, defaultScenarioState))
+function HandleInitialState({ location, push, component: Component }: HandleInitialStateProps) {
+  const [{ scenarioState, severityName, severityTable }] = useState<SuperState>(deserializeScenarioFromURL(location))
 
   useEffect(() => {
     if (location.search) {
-      history.push('/')
+      push({ pathname: location.pathname, search: '' })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -42,11 +85,20 @@ function HandleInitialState({
     <Component
       initialState={{
         scenarioState,
-        severityTable: severityData,
-        isDefault: _.isEqual(scenarioState, defaultScenarioState),
+        severityName,
+        severityTable,
+        isDefault: isEqual(scenarioState, defaultScenarioState),
       }}
     />
   )
 }
 
-export default withRouter(HandleInitialState)
+export const mapStateToProps = (state: AppState) => ({
+  location: state.router.location,
+})
+
+export const mapDispatchToProps = {
+  push,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HandleInitialState)

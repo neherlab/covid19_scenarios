@@ -1,29 +1,24 @@
 import React, { useReducer, useState, useEffect } from 'react'
+
+import { cloneDeep, map, isEqual } from 'lodash'
+
 import { useDebouncedCallback } from 'use-debounce'
-
-import _ from 'lodash'
-
 import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
-
 import { Col, Row } from 'reactstrap'
 
-import { AllParams, EmpiricalData, Severity } from '../../algorithms/types/Param.types'
-import { AlgorithmResult } from '../../algorithms/types/Result.types'
-import { run } from '../../workers/algorithm'
+import type { AlgorithmResult } from '../../algorithms/types/Result.types'
+import type { ScenarioDatum, SeverityDistributionDatum, CaseCountsDatum } from '../../algorithms/types/Param.types'
 
+import { run } from '../../workers/algorithm'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
 
-import { getCaseCountsData } from './state/caseCountsData'
-
 import { schema } from './validation/schema'
-
-import { setContainmentData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
+import { getCaseCountsData } from './state/getCaseCounts'
+import { setMitigationData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
 import { scenarioReducer } from './state/reducer'
-
 import { State } from './state/state'
-import { buildLocationSearch } from './state/serialization/URLSerializer'
 
-import { InitialStateComponentProps } from './HandleInitialState'
+import { DEFAULT_SEVERITY_DISTRIBUTION, InitialStateComponentProps } from './HandleInitialState'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 import PrintPage from './PrintPage/PrintPage'
@@ -36,11 +31,11 @@ interface FormikValidationErrors extends Error {
 }
 
 async function runSimulation(
-  params: AllParams,
+  params: ScenarioDatum,
   scenarioState: State,
-  severity: Severity[],
+  severity: SeverityDistributionDatum[],
   setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
-  setEmpiricalCases: React.Dispatch<React.SetStateAction<EmpiricalData | undefined>>,
+  setEmpiricalCases: React.Dispatch<React.SetStateAction<CaseCountsDatum[] | undefined>>,
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
   setIsRunning(true)
@@ -49,10 +44,10 @@ async function runSimulation(
       ...params.population,
       ...params.epidemiological,
       ...params.simulation,
-      ...params.containment,
+      ...params.mitigation,
     }
 
-    const caseCounts = getCaseCountsData(params.population.cases)
+    const caseCounts = getCaseCountsData(params.population.caseCountsName)
     const newResult = await run({ params: paramsFlat, severity, ageDistribution: scenarioState.ageDistribution })
     setResult(newResult)
     caseCounts.sort((a, b) => (a.time > b.time ? 1 : -1))
@@ -82,11 +77,11 @@ function Main({ initialState }: InitialStateComponentProps) {
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, initialState.scenarioState)
 
   // TODO: Can this complex state be handled by formik too?
-  const [severity, setSeverity] = useState<Severity[]>(initialState.severityTable)
+  const [severity, setSeverity] = useState<SeverityDistributionDatum[]>(initialState.severityTable)
   const [printable, setPrintable] = useState(false)
   const openPrintPreview = () => setPrintable(true)
 
-  const [empiricalCases, setEmpiricalCases] = useState<EmpiricalData | undefined>()
+  const [empiricalCases, setEmpiricalCases] = useState<CaseCountsDatum[] | undefined>()
 
   const togglePersistAutorun = () => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
@@ -95,15 +90,8 @@ function Main({ initialState }: InitialStateComponentProps) {
 
   const [isRunning, setIsRunning] = useState(false)
 
-  const allParams: AllParams = {
-    population: scenarioState.data.population,
-    epidemiological: scenarioState.data.epidemiological,
-    simulation: scenarioState.data.simulation,
-    containment: scenarioState.data.containment,
-  }
-
   const [debouncedRun] = useDebouncedCallback(
-    (params: AllParams, scenarioState: State, severity: Severity[]) =>
+    (params: ScenarioDatum, scenarioState: State, severity: SeverityDistributionDatum[]) =>
       runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning),
     500,
   )
@@ -111,36 +99,36 @@ function Main({ initialState }: InitialStateComponentProps) {
   useEffect(() => {
     // runs only once, when the component is mounted
     if (!initialState.isDefault) {
-      debouncedRun(allParams, scenarioState, severity)
+      debouncedRun(scenarioState.data, scenarioState, severity)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (autorunSimulation && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)) {
-      debouncedRun(allParams, scenarioState, severity)
+      debouncedRun(scenarioState.data, scenarioState, severity)
     }
-  }, [autorunSimulation, debouncedRun, scenarioState, severity]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [autorunSimulation, debouncedRun, scenarioState, severity])
 
-  const [validateFormAndUpdateState] = useDebouncedCallback((newParams: AllParams) => {
+  const [validateFormAndUpdateState] = useDebouncedCallback((newParams: ScenarioDatum) => {
     return schema
       .validate(newParams)
       .then((validParams) => {
         // NOTE: deep object comparison!
-        if (!_.isEqual(allParams.population, validParams.population)) {
+        if (!isEqual(scenarioState.data.population, validParams.population)) {
           scenarioDispatch(setPopulationData({ data: validParams.population }))
         }
         // NOTE: deep object comparison!
-        if (!_.isEqual(allParams.epidemiological, validParams.epidemiological)) {
+        if (!isEqual(scenarioState.data.epidemiological, validParams.epidemiological)) {
           scenarioDispatch(setEpidemiologicalData({ data: validParams.epidemiological }))
         }
         // NOTE: deep object comparison!
-        if (!_.isEqual(allParams.simulation, validParams.simulation)) {
+        if (!isEqual(scenarioState.data.simulation, validParams.simulation)) {
           scenarioDispatch(setSimulationData({ data: validParams.simulation }))
         }
         // NOTE: deep object comparison!
-        if (!_.isEqual(allParams.containment, validParams.containment)) {
-          const mitigationIntervals = _.map(validParams.containment.mitigationIntervals, _.cloneDeep)
-          scenarioDispatch(setContainmentData({ data: { mitigationIntervals } }))
+        if (!isEqual(scenarioState.data.mitigation, validParams.mitigation)) {
+          const mitigationIntervals = map(validParams.mitigation.mitigationIntervals, cloneDeep)
+          scenarioDispatch(setMitigationData({ data: { mitigationIntervals } }))
         }
 
         return validParams
@@ -148,7 +136,7 @@ function Main({ initialState }: InitialStateComponentProps) {
       .catch((error: FormikValidationErrors) => error.errors)
   }, 1000)
 
-  function handleSubmit(params: AllParams, { setSubmitting }: FormikHelpers<AllParams>) {
+  function handleSubmit(params: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
     runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning)
     setSubmitting(false)
   }
@@ -162,7 +150,7 @@ function Main({ initialState }: InitialStateComponentProps) {
   if (printable) {
     return (
       <PrintPage
-        params={allParams}
+        params={scenarioState.data}
         scenarioUsed={scenarioState.current}
         severity={severity}
         result={result}
@@ -179,19 +167,21 @@ function Main({ initialState }: InitialStateComponentProps) {
       <Col md={12}>
         <Formik
           enableReinitialize
-          initialValues={allParams}
+          initialValues={scenarioState.data}
           onSubmit={handleSubmit}
           validate={validateFormAndUpdateState}
           validationSchema={schema}
+          validateOnMount
         >
           {({ values, errors, touched, isValid, isSubmitting }) => {
             const canRun = isValid && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)
+
             return (
               <Form noValidate className="form">
                 <Row>
                   <Col lg={4} {...colScenario} className="py-1 animate-flex-width">
                     <ScenarioCard
-                      values={values}
+                      scenario={values}
                       severity={severity}
                       setSeverity={setSeverity}
                       scenarioState={scenarioState}
@@ -209,12 +199,10 @@ function Main({ initialState }: InitialStateComponentProps) {
                       autorunSimulation={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
-                      params={allParams}
-                      ageDistribution={scenarioState.ageDistribution}
-                      mitigation={allParams.containment}
+                      severityName={DEFAULT_SEVERITY_DISTRIBUTION}
+                      scenarioState={scenarioState}
                       result={result}
                       caseCounts={empiricalCases}
-                      scenarioUrl={buildLocationSearch(scenarioState)}
                       openPrintPreview={openPrintPreview}
                       areResultsMaximized={areResultsMaximized}
                       toggleResultsMaximized={toggleResultsMaximized}

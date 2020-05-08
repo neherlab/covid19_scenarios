@@ -2,15 +2,16 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { AnyAction } from 'typescript-fsa'
 
+import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import AgeGroupParameters from './AgeGroupParameters'
 import { State } from '../state/state'
-import { Severity, AgeDistribution } from '../../../algorithms/types/Param.types'
 import { setAgeDistributionData } from '../state/actions'
 
 export interface SeverityCardProps {
-  severity: Severity[]
-  setSeverity(severity: Severity[]): void
+  severity: SeverityDistributionDatum[]
+  setSeverity(severity: SeverityDistributionDatum[]): void
   scenarioState: State
   scenarioDispatch(action: AnyAction): void
 }
@@ -33,7 +34,7 @@ function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }
         severity={severity}
         setSeverity={setSeverity}
         ageDistribution={scenarioState.ageDistribution}
-        setAgeDistribution={(ageDistribution: AgeDistribution) =>
+        setAgeDistribution={(ageDistribution: AgeDistributionDatum[]) =>
           scenarioDispatch(setAgeDistributionData({ data: ageDistribution }))
         }
       />

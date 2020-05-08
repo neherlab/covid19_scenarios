@@ -1,5 +1,5 @@
-import { AgeDistribution } from '../../.generated/types'
 import { TimeSeries } from './TimeSeries.types'
+import { AgeDistributionDatum } from './Param.types'
 
 export interface InternalCurrentData {
   susceptible: number[]
@@ -67,19 +67,19 @@ export interface ModelRates {
 }
 
 export interface ModelParams {
-  ageDistribution: AgeDistribution
+  ageDistribution: AgeDistributionDatum[]
   importsPerDay: number[]
   timeDelta: number
   timeDeltaDays: number
   populationServed: number
   numberStochasticRuns: number
   hospitalBeds: number
-  ICUBeds: number
+  icuBeds: number
   frac: ModelFracs
   rate: ModelRates
 }
 
-export interface UserResult {
+export interface Trajectory {
   middle: ExportedTimePoint[]
   lower: ExportedTimePoint[]
   upper: ExportedTimePoint[]
@@ -93,6 +93,6 @@ export interface TimeSeriesWithRange {
 }
 
 export interface AlgorithmResult {
-  trajectory: UserResult
+  trajectory: Trajectory
   R0: TimeSeriesWithRange
 }
