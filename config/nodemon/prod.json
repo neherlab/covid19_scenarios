@@ -13,7 +13,6 @@
     ".prettierrc",
     "babel.config.js",
     "config",
-    "infra/lambda-at-edge/modifyOutgoingHeaders.lambda.js",
     "package.json",
     "postcss.config.js",
     "schemas",
@@ -31,8 +30,8 @@
     "**/*.test.*sx",
     "**/__tests__",
     ".build",
-    "node_modules",
-    "src/.generated"
+    "config/jest",
+    "node_modules"
   ],
   "exec": "run-s -c clear prod:clean prod:start || cd ."
 }

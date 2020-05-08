@@ -29,8 +29,8 @@
     "**/*.test.*sx",
     "**/__tests__",
     ".build",
-    "node_modules",
-    "src/.generated"
+    "config/jest",
+    "node_modules"
   ],
   "exec": "yarn clear && yarn install && yarn analyze || cd ."
 }
