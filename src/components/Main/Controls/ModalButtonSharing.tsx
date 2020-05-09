@@ -116,52 +116,52 @@ function ModalButtonSharing({ shareableLink }: ModalButtonSharingProps) {
               <Row>
                 <Col className="text-center">
                   <EmailShareButton subject={`COVID-19 Scenarios`} url={shareableLink}>
-                    <Button color="transparent" className="btn-sharing" title={`Send in an Email`}>
+                    <div className="btn-sharing" title={`Send in an Email`}>
                       <EmailIcon size={SOCIAL_ICON_SIZE} />
                       <div>{`Email`}</div>
-                    </Button>
+                    </div>
                   </EmailShareButton>
 
                   <TwitterShareButton url={shareableLink}>
-                    <Button color="transparent" className="btn-sharing" title={`Share on Twitter`}>
+                    <div className="btn-sharing" title={`Share on Twitter`}>
                       <TwitterIcon size={SOCIAL_ICON_SIZE} />
                       <div>{`Twitter`}</div>
-                    </Button>
+                    </div>
                   </TwitterShareButton>
 
                   <FacebookShareButton url={shareableLink}>
-                    <Button color="transparent" className="btn-sharing" title={`Share on Facebook`}>
+                    <div className="btn-sharing" title={`Share on Facebook`}>
                       <FacebookIcon size={SOCIAL_ICON_SIZE} />
                       <div>{`Facebook`}</div>
-                    </Button>
+                    </div>
                   </FacebookShareButton>
 
                   <WhatsappShareButton url={shareableLink}>
-                    <Button color="transparent" className="btn-sharing" title={`Share on WhatsApp`}>
+                    <div className="btn-sharing" title={`Share on WhatsApp`}>
                       <WhatsappIcon size={SOCIAL_ICON_SIZE} />
                       <div>{`WhatsApp`}</div>
-                    </Button>
+                    </div>
                   </WhatsappShareButton>
 
                   <LinkedinShareButton url={shareableLink}>
-                    <Button color="transparent" className="btn-sharing" title={`Share on LinkedIn`}>
+                    <div className="btn-sharing" title={`Share on LinkedIn`}>
                       <LinkedinIcon size={SOCIAL_ICON_SIZE} />
                       <div>{`LinkedIn`}</div>
-                    </Button>
+                    </div>
                   </LinkedinShareButton>
 
                   <VKShareButton url={shareableLink}>
-                    <Button color="transparent" className="btn-sharing" title={`Share on VK`}>
+                    <div className="btn-sharing" title={`Share on VK`}>
                       <VKIcon size={SOCIAL_ICON_SIZE} />
                       <div>{`VK`}</div>
-                    </Button>
+                    </div>
                   </VKShareButton>
 
                   <WeiboShareButton url={shareableLink}>
-                    <Button color="transparent" className="btn-sharing" title={`Share on Weibo`}>
+                    <div className="btn-sharing" title={`Share on Weibo`}>
                       <WeiboIcon size={SOCIAL_ICON_SIZE} />
                       <div>{`Weibo`}</div>
-                    </Button>
+                    </div>
                   </WeiboShareButton>
                 </Col>
               </Row>
