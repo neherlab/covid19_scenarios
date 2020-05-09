@@ -113,8 +113,8 @@ class Fitter:
 class PercentageRange(schema.PercentageRange):
     def __init__(self, x):
         super(PercentageRange, self).__init__( \
-                begin = float(max(1, round(.9*x, 2))),
-                end = float(max(1, round(1.1*x, 2))))
+                begin = float(min(99,max(1, round(.9*x, 2)))),
+                end = float(min(99,max(1, round(1.1*x, 2)))))
 
 class NumericRange(schema.NumericRangeNonNegative):
     def __init__(self, x):
@@ -270,7 +270,7 @@ def set_mitigation(cases, scenario, fit_params):
             name=name,
             tMin=datetime.strptime(fit_params['containment_start'], '%Y-%m-%d').date(),
             id=uuid4(),
-            tMax=scenario.simulation.simulation_time_range.end,
+            tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
             color=mitigation_colors.get(name, "#cccccc"),
             # mitigationValue=report_errors(round(100*fit_params['efficacy']), 0, 100)))
             mitigationValue=round(100*fit_params['efficacy'])))
