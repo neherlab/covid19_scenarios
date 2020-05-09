@@ -77,6 +77,7 @@ function SimulationControls({
       />
 
       <Button
+        type="button"
         className="btn-simulation-controls"
         disabled={!canExport}
         onClick={openPrintPreview}
@@ -88,7 +89,7 @@ function SimulationControls({
 
       <ModalButtonSharing shareableLink={scenarioUrl} />
 
-      <Button className="btn-simulation-controls" title={t('Open settings window')}>
+      <Button type="button" className="btn-simulation-controls" title={t('Open settings window')}>
         <MdSettings size={35} />
         <div>{`Settings`}</div>
       </Button>
