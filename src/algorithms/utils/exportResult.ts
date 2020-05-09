@@ -11,11 +11,6 @@ import { serialize } from '../../components/Main/state/serialization/serialize'
 
 import { serializeTrajectory } from '../model'
 
-export const FILENAME_PARAMS = 'c19s.params.json'
-export const FILENAME_RESULTS_SUMMARY = 'c19s.results.summary.tsv'
-export const FILENAME_RESULTS_DETAILED = 'c19s.results.detailed.tsv'
-export const FILENAME_ZIP = 'c19s.zip'
-
 export class ExportErrorBlobApiNotSupported extends Error {
   constructor() {
     super('Error: when exporting: `Blob()` API is not supported by this browser')
@@ -48,9 +43,10 @@ export interface ExportResultsParams {
   scenarioState: State
   result?: AlgorithmResult
   detailed: boolean
+  filename: string
 }
 
-export function exportResult({ scenarioState, result, detailed }: ExportResultsParams) {
+export function exportResult({ scenarioState, result, detailed, filename }: ExportResultsParams) {
   checkBlobSupport()
 
   const trajectory = result?.trajectory
@@ -59,16 +55,17 @@ export function exportResult({ scenarioState, result, detailed }: ExportResultsP
   }
 
   const str = serializeTrajectory({ trajectory, detailed })
-  saveFile(str, FILENAME_RESULTS_DETAILED)
+  saveFile(str, filename)
 }
 
 export interface ExportScenarioParams {
   scenarioState: State
   severity: SeverityDistributionDatum[]
   severityName: string
+  filename: string
 }
 
-export function exportScenario({ scenarioState, severity, severityName }: ExportScenarioParams) {
+export function exportScenario({ scenarioState, severity, severityName, filename }: ExportScenarioParams) {
   checkBlobSupport()
 
   const str = serialize({
@@ -80,12 +77,31 @@ export function exportScenario({ scenarioState, severity, severityName }: Export
     severityName,
   })
 
-  saveFile(str, FILENAME_PARAMS)
+  saveFile(str, filename)
 }
 
-export type ExportAllParams = StrictOmit<ExportScenarioParams & ExportResultsParams, 'detailed'>
+export interface Filenames {
+  filenameParams: string
+  filenameResultsSummary: string
+  filenameResultsDetailed: string
+  filenameZip: string
+}
 
-export async function exportAll({ scenarioState, severity, severityName, result }: ExportAllParams) {
+export type ExportAllParams = StrictOmit<
+  ExportScenarioParams & ExportResultsParams & Filenames,
+  'detailed' | 'filename'
+>
+
+export async function exportAll({
+  scenarioState,
+  severity,
+  severityName,
+  result,
+  filenameParams,
+  filenameResultsSummary,
+  filenameResultsDetailed,
+  filenameZip,
+}: ExportAllParams) {
   checkBlobSupport()
 
   const trajectory = result?.trajectory
@@ -106,10 +122,10 @@ export async function exportAll({ scenarioState, severity, severityName, result 
   const detailedStr = serializeTrajectory({ trajectory, detailed: true })
 
   const zip = new JSZip()
-  zip.file(FILENAME_PARAMS, paramStr)
-  zip.file(FILENAME_RESULTS_SUMMARY, summaryStr)
-  zip.file(FILENAME_RESULTS_DETAILED, detailedStr)
+  zip.file(filenameParams, paramStr)
+  zip.file(filenameResultsSummary, summaryStr)
+  zip.file(filenameResultsDetailed, detailedStr)
 
   const zipFile = await zip.generateAsync({ type: 'blob' })
-  saveAs(zipFile, FILENAME_ZIP)
+  saveAs(zipFile, filenameZip)
 }
