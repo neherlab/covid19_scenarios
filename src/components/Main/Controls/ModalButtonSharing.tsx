@@ -113,7 +113,7 @@ function ModalButtonSharing({ shareableLink }: ModalButtonSharingProps) {
                 </Col>
               </Row>
 
-              <Row>
+              <Row className="mt-3">
                 <Col className="text-center">
                   <EmailShareButton subject={`COVID-19 Scenarios`} url={shareableLink}>
                     <div className="btn-sharing" title={`Send in an Email`}>
