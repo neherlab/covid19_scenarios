@@ -83,10 +83,10 @@ function ScenarioCard({
   return (
     <CardWithControls
       identifier="scenarioName"
-      label={<h2 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h2>}
+      labelComponent={<h2 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h2>}
       help={t('Combination of population, epidemiology, and mitigation scenarios')}
       className="card--main"
-      controls={presetLoader}
+      constrolsComponent={presetLoader}
     >
       <>
         <Row>

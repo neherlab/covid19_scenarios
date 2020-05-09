@@ -197,7 +197,7 @@ function Main({ initialState }: InitialStateComponentProps) {
                     <ResultsCard
                       canRun={canRun}
                       isRunning={isRunning}
-                      autorunSimulation={autorunSimulation}
+                      isAutorunEnabled={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
                       severityName={DEFAULT_SEVERITY_DISTRIBUTION}

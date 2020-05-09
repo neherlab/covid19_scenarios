@@ -1,0 +1,21 @@
+@use "sass:map";
+
+@import '../../../styles/variables';
+@import '../../../styles/bootstrap-variables';
+
+$lg: map.get($grid-breakpoints, 'lg');
+
+.url-copy-button {
+  min-width: 120px;
+}
+
+.btn-sharing {
+  min-width: 100px;
+  min-height: 100px;
+}
+
+.shareable-link-explanation {
+  @media screen and (min-width: $lg) {
+    width: 75%;
+  }
+}

@@ -121,13 +121,14 @@
   }
 }
 
-$button-width: 100px;
-$button-spacing: 5px;
+$btn-size: 85px;
 
-.compare-button,
-.export-button,
-.new-tab-button,
-.run-button {
-  width: $button-width;
-  margin-left: $button-spacing;
+.btn-simulation-controls {
+  width: $btn-size;
+  height: $btn-size;
+  margin-left: 3px;
+
+  &.btn-run {
+    width: $btn-size * 2;
+  }
 }

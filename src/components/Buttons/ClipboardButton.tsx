@@ -1,34 +1,33 @@
-import React, { useState, ReactNode } from 'react'
-import { Button } from 'reactstrap'
+import React, { useState } from 'react'
+
+import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
+import { Button, ButtonProps } from 'reactstrap'
+import { MdContentCopy } from 'react-icons/md'
+
 import { copyToClipboard } from '../../helpers/copyToClipboard'
 
-interface ClipboardButtonProps {
-  disabled: boolean
-  children: ReactNode
-  doneMessage?: ReactNode
+interface ClipboardButtonProps extends ButtonProps {
   textToCopy?: string
 }
 
 /**
  * When clicked, copies textToCopy to clipboard
- * The user could then paste this text somewhere else
  */
-const ClipboardButton = ({ disabled, children, textToCopy, doneMessage = 'Copied!' }: ClipboardButtonProps) => {
-  const [popoverOpen, setPopoverOpen] = useState(false)
+export function ClipboardButton({ textToCopy, className, ...restProps }: ClipboardButtonProps) {
+  const { t } = useTranslation()
+  const [isCopied, setIsCopied] = useState(false)
   const onClick = () => {
     if (textToCopy) {
       copyToClipboard(String(textToCopy))
-      setPopoverOpen(true)
+      setIsCopied(true)
     }
   }
 
   return (
-    <>
-      <Button disabled={disabled} onClick={onClick} color="primary" size="sm">
-        {popoverOpen ? doneMessage : children}
-      </Button>
-    </>
+    <Button className={classNames(className, 'clipboard-button')} onClick={onClick} {...restProps}>
+      <MdContentCopy />
+      <span className="ml-1">{isCopied ? t('Copied!') : t('Copy link')}</span>
+    </Button>
   )
 }
-
-export default ClipboardButton

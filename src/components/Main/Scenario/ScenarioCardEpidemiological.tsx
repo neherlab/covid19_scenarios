@@ -24,7 +24,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
     <CardWithControls
       className="card--epidemiology h-100"
       identifier="epidemiologicalScenario"
-      label={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
+      labelComponent={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
       help={t(
         'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).',
       )}
