@@ -21,6 +21,11 @@ import ClipboardButton from '../../Buttons/ClipboardButton'
 
 import { State } from '../state/state'
 
+export const FILENAME_PARAMS = 'c19s.params.json'
+export const FILENAME_RESULTS_SUMMARY = 'c19s.results.summary.tsv'
+export const FILENAME_RESULTS_DETAILED = 'c19s.results.detailed.tsv'
+export const FILENAME_ZIP = 'c19s.zip'
+
 export interface ExportSimulationDialogProps {
   canExport: boolean
   showModal: boolean
@@ -73,12 +78,12 @@ export default function ExportSimulationDialog({
           </thead>
           <tbody>
             <tr>
-              <td>covid.params.json</td>
+              <td>{FILENAME_PARAMS}</td>
               <td>{t('The simulation parameters')}</td>
               <td>JSON</td>
               <td>
                 <Button
-                  onClick={() => exportScenario({ scenarioState, severity, severityName })}
+                  onClick={() => exportScenario({ scenarioState, severity, severityName, filename: FILENAME_PARAMS })}
                   color="primary"
                   size="sm"
                 >
@@ -87,13 +92,16 @@ export default function ExportSimulationDialog({
               </td>
             </tr>
             <tr>
-              <td>covid.summary.tsv</td>
+              <td>{FILENAME_RESULTS_SUMMARY}</td>
               <td>{t('The summarized results of the simulation')}</td>
               <td>TSV</td>
               <td>
                 <Button
                   disabled={!(result?.trajectory.middle ?? null)}
-                  onClick={() => result && exportResult({ scenarioState, result, detailed: false })}
+                  onClick={() =>
+                    result &&
+                    exportResult({ scenarioState, result, filename: FILENAME_RESULTS_SUMMARY, detailed: false })
+                  }
                   color="primary"
                   size="sm"
                 >
@@ -102,13 +110,16 @@ export default function ExportSimulationDialog({
               </td>
             </tr>
             <tr>
-              <td>covid.allresults.tsv</td>
+              <td>{FILENAME_RESULTS_DETAILED}</td>
               <td>{t('The full age-stratified results of the simulation')}</td>
               <td>TSV</td>
               <td>
                 <Button
                   disabled={!(result?.trajectory.middle ?? null)}
-                  onClick={() => result && exportResult({ scenarioState, result, detailed: true })}
+                  onClick={() =>
+                    result &&
+                    exportResult({ scenarioState, result, filename: FILENAME_RESULTS_DETAILED, detailed: true })
+                  }
                   color="primary"
                   size="sm"
                 >
@@ -159,7 +170,18 @@ export default function ExportSimulationDialog({
         <Button
           color="secondary"
           disabled={!result}
-          onClick={() => exportAll({ scenarioState, severity, severityName, result })}
+          onClick={() =>
+            exportAll({
+              scenarioState,
+              severity,
+              severityName,
+              result,
+              filenameParams: FILENAME_PARAMS,
+              filenameResultsDetailed: FILENAME_RESULTS_DETAILED,
+              filenameResultsSummary: FILENAME_RESULTS_SUMMARY,
+              filenameZip: FILENAME_ZIP,
+            })
+          }
         >
           {t('Download all as zip')}
         </Button>
