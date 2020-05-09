@@ -113,7 +113,7 @@ function ResultsCardFunction({
         className="card--main card--results"
         label={
           <h2 className="p-0 m-0 text-truncate d-flex align-items-center" data-testid="ResultsCardTitle">
-            <Button onClick={toggleResultsMaximized} className="btn-dark mr-2">
+            <Button onClick={toggleResultsMaximized} className="btn-dark mr-2 d-none d-xl-block">
               {areResultsMaximized ? <FiChevronRight /> : <FiChevronLeft />}
             </Button>
             <span>{t('Results')}</span>
