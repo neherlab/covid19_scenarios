@@ -133,6 +133,10 @@ function ResultsCardFunction({
               scenarioUrl={scenarioUrl}
               toggleAutorun={toggleAutorun}
               openPrintPreview={openPrintPreview}
+              scenarioState={scenarioState}
+              severityName={severityName}
+              severity={severity}
+              result={result}
             />
           </Col>
         </Row>
