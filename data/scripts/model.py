@@ -376,7 +376,8 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
 
     res = get_Re_guess(time_points, data, only_deaths=FRA)
     fit = res['fit']
-    if fit[0]<1 or fit[0]>6 or fit[1]>fit[0] or fit[1]<0:
+
+    if fit is None or fit[0]<1 or fit[0]>6 or fit[1]>fit[0] or fit[1]<0:
         return None
 
     fixed_params = {}
@@ -479,7 +480,7 @@ if __name__ == "__main__":
     model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
 
     # Fitting over the pre-confinement days
-    res = fit_population_iterative(key, model_tps, fit_data, FRA=True)
+    res = fit_population_iterative(key, model_tps, fit_data, FRA=False)
     model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
     err = fit_error(fit_data, model)
     time -= res['params'].time[0]

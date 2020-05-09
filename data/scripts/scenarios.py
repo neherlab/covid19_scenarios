@@ -327,7 +327,8 @@ def generate(output_json, num_procs=1, recalculate=False):
                'srcHospitalBeds' : hdr.index('srcHospitalBeds'),
                'srcICUBeds' : hdr.index('srcICUBeds')}
 
-        args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere', 'srcPopulation', 'srcHospitalBeds', 'srcICUBeds']
+        args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere',
+                'srcPopulation', 'srcHospitalBeds', 'srcICUBeds']
         for region in rdr:
             region_name = region[idx['name']]
             entry = [region[idx[arg]] for arg in args]

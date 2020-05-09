@@ -120,21 +120,26 @@ def stair_fits(time, data, nb_value=3):
         if data[ii] is not None:
             val_o = np.mean(data[ii][~data[ii].mask][:nb_value])
             val_e = np.mean(data[ii][~data[ii].mask][-nb_value:])
-            drop = time[np.argmin([err_function(x, time, data[ii], val_o, val_e) for x in time])]
-            stair_fits[ii] = [val_o, val_e, drop]
+            if len(data[ii][~data[ii].mask][:nb_value]) and len(data[ii][~data[ii].mask][-nb_value:]):
+                drop = time[np.argmin([err_function(x, time, data[ii], val_o, val_e) for x in time])]
+                stair_fits[ii] = [val_o, val_e, drop]
+            else:
+                stair_fits[ii] = None
         else:
             stair_fits[ii] = None
     return stair_fits
 
 def get_Re_guess(time, cases, step=7, extremal_points=10, only_deaths=False):
     #R_effective
+    death_delay = 9
     diff_data = get_daily_counts(cases)
     data_log_smoothed = log_smooth(diff_data)
     growth_rate = get_growth_rate(data_log_smoothed, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
     fits = stair_fits(time, R0_by_day, nb_value=extremal_points)
     if only_deaths:
-        fits[Sub.D][2] -= 9
+        fits[Sub.D][2] -= death_delay
+
     return {"fit" : fits[Sub.D] if only_deaths else combine_fits(fits),
             "diff_data": diff_data,
             "diff_data_smoothed": data_log_smoothed,
