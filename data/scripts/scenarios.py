@@ -6,6 +6,7 @@ import numpy as np
 import multiprocessing as multi
 import yaml
 
+from uuid import uuid4
 sys.path.append('..')
 
 import generated.types as schema
@@ -131,7 +132,7 @@ class DateRange(schema.DateRange):
                 end = tMax)
 
 class MitigationInterval(schema.MitigationInterval):
-    def __init__(self, name='Intervention', tMin=None, tMax=None, color='#cccccc', mitigationValue=0):
+    def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
         super(MitigationInterval, self).__init__( \
                 color = color,
                 transmission_reduction = PercentageRange(mitigationValue),
@@ -212,26 +213,11 @@ class ScenarioArray(schema.ScenarioArray):
         super(ScenarioArray, self).__init__(all = data)
 
     def marshalJSON(self, wtr=None):
-        """ Validate and store data to .json file """
         if wtr is None:
-            return json.dumps(self.to_dict(), default=lambda x: x.__dict__, sort_keys=True, indent=0)
+            return json.dumps(self.to_dict(), default=lambda x: x.__dict__, sort_keys=True, indent=2)
+        else:
+            return wtr.write(json.dumps(self.to_dict()))
 
-        newdata = []
-        print(self.to_dict())
-        for k in self.to_dict():
-            newdata.append({'country': k, 'allParams': self[k].to_dict()})
-
-        newdata.sort(key = lambda x:x['country'])
-
-        # Serialize into json
-        news = json.dumps(newdata, default=lambda x: x.__dict__, sort_keys=True, indent=0)
-
-        # Validate the dict based on the json
-        with open(os.path.join(BASE_PATH, SCHEMA_SCENARIOS), "r") as f:
-            schema = yaml.load(f, Loader=yaml.FullLoader)
-            validate(json.loads(news), schema, format_checker=FormatChecker())
-
-        return wtr.write(news)
 
 # ------------------------------------------------------------------------
 # Functions
@@ -272,30 +258,42 @@ def fit_all_case_data(num_procs=4):
         if v is not None:
             FIT_CASE_DATA[k] = v
 
-def set_mitigation(cases, scenario):
+def set_mitigation(cases, scenario, fit_params):
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
         scenario.mitigation.mitigation_intervals = []
         return
 
-    case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served), 10000))[0]
-    levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served), 50000))[0]
-    levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0.mean()), 1)
-    levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
+    if fit_params and "efficacy" in fit_params and fit_params["efficacy"]>0:
+        name = "Intervention 1"
+        scenario.mitigation.mitigation_intervals.append(MitigationInterval(
+            name=name,
+            tMin=datetime.strptime(fit_params['containment_start'], '%Y-%m-%d').date(),
+            id=uuid4(),
+            tMax=scenario.simulation.simulation_time_range.end,
+            color=mitigation_colors.get(name, "#cccccc"),
+            # mitigationValue=report_errors(round(100*fit_params['efficacy']), 0, 100)))
+            mitigationValue=round(100*fit_params['efficacy'])))
+    else:
+        case_counts = np.array([c['cases'] for c in valid_cases])
+        levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served), 10000))[0]
+        levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served), 50000))[0]
+        levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0.mean()), 1)
+        levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
-    for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
-        if len(level):
-            level_idx = level[0]
-            cutoff_str = valid_cases[level_idx]["time"][:10]
-            cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
+        for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
+            if len(level):
+                level_idx = level[0]
+                cutoff_str = valid_cases[level_idx]["time"][:10]
+                cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.mitigation.mitigation_intervals.append(MitigationInterval(
-                name=name,
-                tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
-                tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
-                color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=round(100*val)))
+                scenario.mitigation.mitigation_intervals.append(MitigationInterval(
+                    name=name,
+                    tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
+                    id=uuid4(),
+                    tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
+                    color=mitigation_colors.get(name, "#cccccc"),
+                    mitigationValue=round(100*val)))
 
 
 # ------------------------------------------------------------------------
@@ -335,7 +333,7 @@ def generate(output_json, num_procs=1, recalculate=False):
             entry = [region[idx[arg]] for arg in args]
             scenario = AllParams(*entry, region_name if region_name in case_counts else 'None')
             if region_name in case_counts:
-                set_mitigation(case_counts[region_name], scenario)
+                set_mitigation(case_counts[region_name], scenario, FIT_CASE_DATA.get(region_name, None))
             else:
                 scenario.mitigation.mitigation_intervals = []
 
