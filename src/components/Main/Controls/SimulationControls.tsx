@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useTranslation } from 'react-i18next'
 import { AiFillFilePdf } from 'react-icons/ai'
-import { MdSettings, MdTab } from 'react-icons/md'
+import { MdTab } from 'react-icons/md'
 import { Button, CustomInput, FormGroup } from 'reactstrap'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
@@ -13,7 +13,9 @@ import type { State } from '../state/state'
 import LinkButton from '../../Buttons/LinkButton'
 import { ModalButtonExport } from './ModalButtonExport'
 import { ModalButtonSharing } from './ModalButtonSharing'
+import { PlotControls } from './PlotControls'
 import { RunButtonContent } from './RunButtonContent'
+import { ModalbuttonSettings } from './ModalButtonSettings'
 
 const ICON_SIZE = 25
 
@@ -23,12 +25,16 @@ export interface SimulationControlsProps {
   severityName: string
   result?: AlgorithmResult
   isRunning: boolean
-  isAutorunEnabled: boolean
   canRun: boolean
   canExport: boolean
   scenarioUrl: string
-  toggleAutorun(): void
   openPrintPreview(): void
+  isLogScale: boolean
+  toggleLogScale(): void
+  shouldFormatNumbers: boolean
+  toggleFormatNumbers(): void
+  isAutorunEnabled: boolean
+  toggleAutorun(): void
 }
 
 function SimulationControls({
@@ -37,12 +43,16 @@ function SimulationControls({
   severityName,
   result,
   isRunning,
-  isAutorunEnabled,
   canRun,
   canExport,
   scenarioUrl,
-  toggleAutorun,
   openPrintPreview,
+  isLogScale,
+  toggleLogScale,
+  shouldFormatNumbers,
+  toggleFormatNumbers,
+  isAutorunEnabled,
+  toggleAutorun,
 }: SimulationControlsProps) {
   const { t } = useTranslation()
 
@@ -92,23 +102,15 @@ function SimulationControls({
 
       <ModalButtonSharing buttonSize={ICON_SIZE} shareableLink={scenarioUrl} />
 
-      <Button type="button" className="btn-simulation-controls" title={t('Open settings window')}>
-        <MdSettings size={ICON_SIZE} />
-        <div>{`Settings`}</div>
-      </Button>
-
-      <FormGroup inline className="ml-auto">
-        <label htmlFor="autorun-checkbox" className="d-flex">
-          <CustomInput
-            id="autorun-checkbox"
-            type="checkbox"
-            onChange={toggleAutorun}
-            checked={isAutorunEnabled}
-            aria-checked={isAutorunEnabled}
-          />
-          {t(`Run automatically`)}
-        </label>
-      </FormGroup>
+      <ModalbuttonSettings
+        buttonSize={ICON_SIZE}
+        isLogScale={isLogScale}
+        toggleLogScale={toggleLogScale}
+        shouldFormatNumbers={shouldFormatNumbers}
+        toggleFormatNumbers={toggleFormatNumbers}
+        isAutorunEnabled={isAutorunEnabled}
+        toggleAutorun={toggleAutorun}
+      />
     </>
   )
 }

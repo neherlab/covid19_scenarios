@@ -123,20 +123,24 @@ function ResultsCardFunction({
         help={t('This section contains simulation results')}
         ref={scrollTargetRef}
       >
-        <Row className="mb-0">
+        <Row noGutters className="mb-1">
           <Col>
             <SimulationControls
               isRunning={isRunning}
-              isAutorunEnabled={isAutorunEnabled}
               canRun={canRun}
               canExport={canExport}
               scenarioUrl={scenarioUrl}
-              toggleAutorun={toggleAutorun}
               openPrintPreview={openPrintPreview}
               scenarioState={scenarioState}
               severityName={severityName}
               severity={severity}
               result={result}
+              isLogScale={logScale}
+              toggleLogScale={toggleLogScale}
+              shouldFormatNumbers={showHumanized}
+              toggleFormatNumbers={toggleFormatNumbers}
+              isAutorunEnabled={isAutorunEnabled}
+              toggleAutorun={toggleAutorun}
             />
           </Col>
         </Row>
@@ -146,16 +150,6 @@ function ResultsCardFunction({
           labelComponent={<h3 className="p-0 m-0 d-inline text-truncate">{t('Outbreak trajectories')}</h3>}
           help={t('Outbreak trajectories.')}
         >
-          <Row noGutters hidden={!result} className="mb-0">
-            <Col>
-              <PlotControls
-                isLogScale={logScale}
-                toggleLogScale={toggleLogScale}
-                shouldFormatNumbers={showHumanized}
-                toggleFormatNumbers={toggleFormatNumbers}
-              />
-            </Col>
-          </Row>
           <Row noGutters>
             <Col>
               <DeterministicLinePlot
