@@ -32,6 +32,8 @@ import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'
 
+import { verifyPositive } from './Utils'
+
 import './DeterministicLinePlot.scss'
 
 const ASPECT_RATIO = 16 / 9
@@ -91,10 +93,6 @@ function computeNewEmpiricalCases(
   })
 
   return [newEmpiricalCases, deltaDay]
-}
-
-function verifyPositive(x: number): maybeNumber {
-  return x > 0 ? Math.ceil(x) : undefined
 }
 
 function verifyTuple(
