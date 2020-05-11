@@ -69,10 +69,8 @@ function ModalButtonSharing({ shareableLink }: ModalButtonSharingProps) {
         size="lg"
       >
         <ModalHeader toggle={close}>
-          <div>
-            <MdShare size={20} />
-            <span className="ml-2">{t(`Share`)}</span>
-          </div>
+          <MdShare size={20} />
+          <span className="ml-2">{t(`Share`)}</span>
         </ModalHeader>
         <ModalBody>
           <Row>

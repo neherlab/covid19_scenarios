@@ -104,7 +104,7 @@ function ResultsCardFunction({
       severityName,
     })
 
-    return urlJoin(window.location.href, url)
+    return decodeURI(urlJoin(window.location.href, url))
   }, [scenarioState, severity, severityName])
 
   return (

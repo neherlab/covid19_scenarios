@@ -103,6 +103,7 @@
     "react-dates": "21.8.0",
     "react-dom": "16.13.1",
     "react-error-boundary": "2.2.1",
+    "react-file-icon": "0.2.0",
     "react-grid-layout": "0.18.3",
     "react-i18next": "11.4.0",
     "react-icons": "3.10.0",
