@@ -29,6 +29,7 @@ import { FILENAME_PARAMS, FILENAME_RESULTS_DETAILED, FILENAME_RESULTS_SUMMARY, F
 import './ModalButtonExport.scss'
 
 export interface ModalButtonExportProps {
+  buttonSize: number
   scenarioState: State
   severity: SeverityDistributionDatum[]
   severityName: string
@@ -112,7 +113,7 @@ export function ExportFileElement({
   )
 }
 
-function ModalButtonExport({ scenarioState, severity, severityName, result }: ModalButtonExportProps) {
+function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, result }: ModalButtonExportProps) {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -185,7 +186,7 @@ function ModalButtonExport({ scenarioState, severity, severityName, result }: Mo
         onClick={open}
         title={t(`Download parameters and results`)}
       >
-        <MdFileDownload size={35} />
+        <MdFileDownload size={buttonSize} />
         <div>{t(`Export`)}</div>
       </Button>
       <Modal className="export-modal" centered isOpen={isOpen} toggle={toggleOpen} fade={false} size="lg">

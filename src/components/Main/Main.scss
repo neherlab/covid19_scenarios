@@ -121,14 +121,14 @@
   }
 }
 
-$btn-size: 85px;
+$btn-size: 70px;
 
 .btn-simulation-controls {
-  width: $btn-size;
+  width: $btn-size * 1.2;
   height: $btn-size;
   margin-left: 3px;
 
   &.btn-run {
-    width: $btn-size * 2;
+    width: $btn-size * 1.7;
   }
 }

@@ -111,7 +111,7 @@ function ResultsCardFunction({
     <>
       <CardWithControls
         identifier="results-card"
-        className="card--main card--results"
+        className="card--main"
         labelComponent={
           <h2 className="p-0 m-0 text-truncate d-flex align-items-center" data-testid="ResultsCardTitle">
             <Button onClick={toggleResultsMaximized} className="btn-dark mr-2 d-none d-xl-block">
@@ -140,42 +140,50 @@ function ResultsCardFunction({
             />
           </Col>
         </Row>
-        <Row noGutters hidden={!result} className="mb-0">
-          <Col>
-            <PlotControls
-              isLogScale={logScale}
-              toggleLogScale={toggleLogScale}
-              shouldFormatNumbers={showHumanized}
-              toggleFormatNumbers={toggleFormatNumbers}
-            />
-          </Col>
-        </Row>
-        <Row noGutters>
-          <Col>
-            <DeterministicLinePlot
-              data={result}
-              params={scenarioData}
-              logScale={logScale}
-              showHumanized={showHumanized}
-              caseCounts={caseCounts}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <AgeBarChart
-              showHumanized={showHumanized}
-              data={result}
-              rates={severity}
-              ageDistribution={ageDistribution}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
-          </Col>
-        </Row>
+
+        <CardWithControls
+          identifier="trajectories"
+          labelComponent={<h3 className="p-0 m-0 d-inline text-truncate">{t('Outbreak trajectories')}</h3>}
+          help={t('Outbreak trajectories.')}
+        >
+          <Row noGutters hidden={!result} className="mb-0">
+            <Col>
+              <PlotControls
+                isLogScale={logScale}
+                toggleLogScale={toggleLogScale}
+                shouldFormatNumbers={showHumanized}
+                toggleFormatNumbers={toggleFormatNumbers}
+              />
+            </Col>
+          </Row>
+          <Row noGutters>
+            <Col>
+              <DeterministicLinePlot
+                data={result}
+                params={scenarioData}
+                logScale={logScale}
+                showHumanized={showHumanized}
+                caseCounts={caseCounts}
+              />
+            </Col>
+          </Row>
+        </CardWithControls>
+
+        <CardWithControls
+          identifier="age-distribution"
+          labelComponent={<h3 className="p-0 m-0 d-inline text-truncate">{t('Distribution across age groups')}</h3>}
+          help={t('Distribution across age groups')}
+        >
+          <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} ageDistribution={ageDistribution} />
+        </CardWithControls>
+
+        <CardWithControls
+          identifier="outcomes"
+          labelComponent={<h3 className="p-0 m-0 d-inline text-truncate">{t('Outcomes')}</h3>}
+          help={t('Outcomes')}
+        >
+          <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
+        </CardWithControls>
       </CardWithControls>
       {result && (
         <Button className="goToResultsBtn" color="primary" onClick={scrollToResults}>

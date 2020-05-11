@@ -127,8 +127,6 @@ export function AgeBarChart({
 
           return (
             <>
-              <h3>{t('Distribution across age groups')}</h3>
-
               <div ref={casesChartRef} />
               <BarChart
                 onClick={() => scrollToRef(casesChartRef)}

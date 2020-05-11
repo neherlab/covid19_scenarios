@@ -15,6 +15,8 @@ import { ModalButtonExport } from './ModalButtonExport'
 import { ModalButtonSharing } from './ModalButtonSharing'
 import { RunButtonContent } from './RunButtonContent'
 
+const ICON_SIZE = 25
+
 export interface SimulationControlsProps {
   scenarioState: State
   severity: SeverityDistributionDatum[]
@@ -54,7 +56,7 @@ function SimulationControls({
         data-testid="RunResults"
         title={isAutorunEnabled ? t('Refresh the simulation') : t('Run the simulation')}
       >
-        <RunButtonContent isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={35} />
+        <RunButtonContent isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
       </Button>
 
       <LinkButton
@@ -65,11 +67,12 @@ function SimulationControls({
         data-testid="RunResultsInNewTab"
         title={t('Run in a new tab')}
       >
-        <MdTab size={35} />
+        <MdTab size={ICON_SIZE} />
         <div>{t(`New tab`)}</div>
       </LinkButton>
 
       <ModalButtonExport
+        buttonSize={ICON_SIZE}
         scenarioState={scenarioState}
         severity={severity}
         severityName={severityName}
@@ -83,14 +86,14 @@ function SimulationControls({
         onClick={openPrintPreview}
         title={t('Open Print Preview (Save as PDF or print)')}
       >
-        <AiFillFilePdf size={35} />
+        <AiFillFilePdf size={ICON_SIZE} />
         <div>{`PDF`}</div>
       </Button>
 
-      <ModalButtonSharing shareableLink={scenarioUrl} />
+      <ModalButtonSharing buttonSize={ICON_SIZE} shareableLink={scenarioUrl} />
 
       <Button type="button" className="btn-simulation-controls" title={t('Open settings window')}>
-        <MdSettings size={35} />
+        <MdSettings size={ICON_SIZE} />
         <div>{`Settings`}</div>
       </Button>
 

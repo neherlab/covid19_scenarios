@@ -29,10 +29,11 @@ import './ModalButtonSharing.scss'
 const SOCIAL_ICON_SIZE = 44
 
 export interface ModalButtonSharingProps {
+  buttonSize: number
   shareableLink: string
 }
 
-function ModalButtonSharing({ shareableLink }: ModalButtonSharingProps) {
+function ModalButtonSharing({ buttonSize, shareableLink }: ModalButtonSharingProps) {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -56,7 +57,7 @@ function ModalButtonSharing({ shareableLink }: ModalButtonSharingProps) {
         onClick={open}
         title={t(`Share a direct link to this simulation`)}
       >
-        <MdShare size={35} />
+        <MdShare size={buttonSize} />
         <div>{t(`Share`)}</div>
       </Button>
       <Modal
