@@ -90,7 +90,14 @@ function ModalbuttonSettings({
               </div>
             </Col>
           </Row>
+
+          <Row>
+            <Col className="text-right">
+              <small>{t('Note that these settings are applied instantly upon change')}</small>
+            </Col>
+          </Row>
         </ModalBody>
+
         <ModalFooter>
           <Button className="close-button" type="button" onClick={close} title={t('OK')}>
             <div>{t('Close')}</div>
