@@ -32,7 +32,7 @@ import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'
 
-import { verifyPositive } from './Utils'
+import { verifyPositive, verifyTuple } from './Utils'
 
 import './DeterministicLinePlot.scss'
 
@@ -93,19 +93,6 @@ function computeNewEmpiricalCases(
   })
 
   return [newEmpiricalCases, deltaDay]
-}
-
-function verifyTuple(
-  x: [number | undefined, number | undefined],
-): [number | undefined, number | undefined] | undefined {
-  if (x[0] !== undefined && x[1] !== undefined) {
-    return x
-  }
-  if (x[0] === undefined && x[1] !== undefined) {
-    return [0.0001, x[1]]
-  }
-
-  return undefined
 }
 
 export interface LinePlotProps {
