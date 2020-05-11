@@ -93,7 +93,7 @@ function ModalbuttonSettings({
         </ModalBody>
         <ModalFooter>
           <Button className="close-button" type="button" onClick={close} title={t('OK')}>
-            <div>{t('OK')}</div>
+            <div>{t('Close')}</div>
           </Button>
         </ModalFooter>
       </Modal>

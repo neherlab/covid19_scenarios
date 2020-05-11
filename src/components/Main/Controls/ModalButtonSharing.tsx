@@ -168,8 +168,8 @@ function ModalButtonSharing({ buttonSize, shareableLink }: ModalButtonSharingPro
           </Row>
         </ModalBody>
         <ModalFooter>
-          <Button className="close-button" type="button" onClick={open} title={t(`Cancel`)}>
-            <div>{t(`Cancel`)}</div>
+          <Button className="close-button" type="button" onClick={close} title={t(`Cancel`)}>
+            <div>{t(`Close`)}</div>
           </Button>
         </ModalFooter>
       </Modal>
