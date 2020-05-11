@@ -9,6 +9,7 @@
   white-space: nowrap;
 
   &:read-only {
+    background-color: $body-bg;
     border-color: transparent;
     box-shadow: none;
   }
