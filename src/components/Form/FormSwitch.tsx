@@ -25,7 +25,7 @@ export default function FormSwitch({
   return (
     <CustomInput
       type="checkbox"
-      className="form-control custom-switch"
+      className="custom-switch"
       id={identifier}
       name={identifier}
       label={<FormLabel identifier={identifier} label={label} help={help} />}
