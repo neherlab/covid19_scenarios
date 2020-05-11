@@ -375,6 +375,7 @@
     "**/core-js": "3.6.4",
     "**/json3": "link:3rdparty/__empty-module",
     "**/left-pad": "link:3rdparty/__empty-module",
+    "jszip": "3.4.0",
     "moment": "2.25.3",
     "node-sass": "link:node_modules/sass",
     "svgo": "1.3.2"
