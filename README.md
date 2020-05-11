@@ -1,3 +1,5 @@
+<p>IGNORE ME</p>
+
 <h1 id="covid19_scenarios" align="center">
   COVID-19 Scenarios
 </h1>
@@ -74,7 +76,6 @@ Models of COVID-19 outbreak trajectories and hospital demand
   <a href="https://codeclimate.com/github/neherlab/covid19_scenarios">
     <img src="https://img.shields.io/codeclimate/tech-debt/neherlab/covid19_scenarios" />
   </a>
-
 
   <a href="https://codecov.io/gh/neherlab/covid19_scenarios">
     <img src="https://codecov.io/gh/neherlab/covid19_scenarios/branch/master/graph/badge.svg" />
@@ -632,6 +633,7 @@ otherwise. Thanks goes to these wonderful people ([emoji key](https://allcontrib
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.
