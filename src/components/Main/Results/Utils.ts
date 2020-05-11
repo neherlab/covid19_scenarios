@@ -26,7 +26,6 @@ export function computeNewEmpiricalCases(
   const deltaInt = timeWindow - deltaDay
 
   if (!cumulativeCounts) {
-    console.log(timeWindow, cumulativeCounts, newEmpiricalCases, deltaDay)
     return [newEmpiricalCases, deltaDay]
   }
 
@@ -52,6 +51,5 @@ export function computeNewEmpiricalCases(
     newEmpiricalCases[day] = undefined
   })
 
-  console.log(timeWindow, cumulativeCounts, newEmpiricalCases, deltaDay)
   return [newEmpiricalCases, deltaDay]
 }
