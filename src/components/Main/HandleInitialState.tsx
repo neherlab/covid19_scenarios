@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { isEqual, isEmpty } from 'lodash'
+import { isEmpty } from 'lodash'
 
 import { connect } from 'react-redux'
 import type { Location } from 'history'
@@ -58,7 +58,6 @@ interface InitialState {
   scenarioState: State
   severityName: string
   severityTable: SeverityDistributionDatum[]
-  isDefault: boolean
 }
 
 export interface InitialStateComponentProps {
@@ -87,7 +86,6 @@ function HandleInitialState({ location, push, component: Component }: HandleInit
         scenarioState,
         severityName,
         severityTable,
-        isDefault: isEqual(scenarioState, defaultScenarioState),
       }}
     />
   )

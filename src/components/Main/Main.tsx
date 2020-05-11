@@ -72,7 +72,7 @@ function getColumnSizes(areResultsMaximized: boolean) {
 function Main({ initialState }: InitialStateComponentProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(
-    LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? false,
+    LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? true,
   )
   const [areResultsMaximized, setAreResultsMaximized] = useState(false)
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, initialState.scenarioState)
@@ -94,14 +94,12 @@ function Main({ initialState }: InitialStateComponentProps) {
   const [debouncedRun] = useDebouncedCallback(
     (params: ScenarioDatum, scenarioState: State, severity: SeverityDistributionDatum[]) =>
       runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning),
-    500,
+    50,
   )
 
   useEffect(() => {
     // runs only once, when the component is mounted
-    if (!initialState.isDefault) {
-      debouncedRun(scenarioState.data, scenarioState, severity)
-    }
+    debouncedRun(scenarioState.data, scenarioState, severity)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -135,7 +133,7 @@ function Main({ initialState }: InitialStateComponentProps) {
         return validParams
       })
       .catch((error: FormikValidationErrors) => error.errors)
-  }, 1000)
+  }, 50)
 
   function handleSubmit(params: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
     runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning)
