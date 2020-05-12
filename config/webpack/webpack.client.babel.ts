@@ -191,9 +191,15 @@ export default {
           'immer',
           'lodash',
           'p-min-delay',
+          'proper-url-join',
+          'query-string',
           'react-router',
+          'react-share',
           'recharts',
           'redux/es',
+          'semver',
+          'split-on-first',
+          'strict-uri-encode',
         ],
         nonTranspiledLibs: production && ['d3-array/src/cumsum.js'],
       }),
@@ -379,23 +385,6 @@ export default {
       shorthands: true,
       unicode: false,
     }),
-
-    // Setup for `moment` locales
-    new webpack.ContextReplacementPlugin(
-      /^\.\/locale$/,
-      (context: { context: string }) => {
-        if (!context.context.includes('/moment/')) {
-          return
-        }
-        // context needs to be modified in place
-        Object.assign(context, {
-          // include only CJK
-          regExp: /^\.\/(en|de)/,
-          // point to the locale data folder relative to moment's src/lib/locale
-          request: '../../locale',
-        })
-      },
-    ),
 
     new webpack.optimize.AggressiveMergingPlugin(),
 

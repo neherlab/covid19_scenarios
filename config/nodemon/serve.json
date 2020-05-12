@@ -13,11 +13,12 @@
   ],
   "ext": "js,jsx,ts,tsx,json,flow,css,scss,sass,styl,html,ejs,d,txt,yml,sh",
   "ignore": [
-    ".build",
-    "node_modules",
-    "**/__tests__",
+    "**/*.test.*s",
     "**/*.test.*sx",
-    "**/*.test.*s"
+    "**/__tests__",
+    ".build",
+    "config/jest",
+    "node_modules"
   ],
   "exec": "yarn prod:serve:nowatch || cd ."
 }
