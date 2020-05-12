@@ -13,11 +13,15 @@ compartments = ['S', 'E1', 'E2', 'E3', 'I', 'H', 'C', 'D', 'R', 'T', 'NUM']
 Sub = IntEnum('Sub', compartments, start=0)
 
 def empty_data_list():
+    """
+    Base data structure, a list containing vectors of data
+    """
     return [np.array([]) if (i == Sub.D or i == Sub.T) else None for i in range(Sub.NUM)]
 
 def smooth(data, as_int=False, nb_pts=9, order=3):
-    # Uses a savgol_filter over the data ignoring the nan values. Just doing the fit removes each point where
-    # a nan is found in the fiting window, thus removing a lot of points.
+    """
+    Smooth data using a savgol filter ignoring the nan values. The missing data points stay nans
+    """
     smoothed = copy.deepcopy(data)
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if smoothed[ii] is not None:
@@ -42,7 +46,7 @@ def get_log(data):
 
 def log_smooth(data, nb_pts=7):
     '''
-    smooth the logarithm in two-week windows and return the exponential
+    smooth the logarithm in week windows and return the exponential
     '''
     log_smooth = empty_data_list()
     smoothed_log_diff = smooth(get_log(data), as_int=False, nb_pts=nb_pts, order=1)
@@ -100,6 +104,9 @@ def get_growth_rate(data, step=7):
 
 
 def stair_func(time, val_o, val_e, x_drop):
+    """
+    Stair function used to fit R_0
+    """
     return np.array([val_o if t <= x_drop else val_e for t in time])
 
 
@@ -108,21 +115,27 @@ def err_function(x_drop, time, vec, val_o, val_e):
     return np.sum(np.abs(vec - stair_func(time, val_o, val_e, x_drop)))
 
 
-def stair_fit(time, vec, nb_value=3):
+def stair_fit(time, vec, nb_value=3, dropshift=4):
+    """
+    Estimate the 3 parameters to best fit R_0 with a stair function. The origin and end values are estimated
+    using an average over the first/list nb_value points. The drop position is choosen to minimize the error function.
+    The shift of 4 days in the drop is here to compensate the shift cause by growth rate estimation (difference over 7 days)
+    """
     val_o = np.mean(vec[~vec.mask][:nb_value])
     val_e = np.mean(vec[~vec.mask][-nb_value:])
     drop = time[np.argmin([err_function(x, time, vec, val_o, val_e) for x in time])]
-    return val_o, val_e, drop
+    return val_o, val_e, drop+dropshift
 
-def stair_fits(time, data, nb_value=3, dropshift=4):
+def stair_fits(time, data, nb_value=3):
+    """
+    Uses the stair_fit procedure on all the present data and returns the fitting parameters in the base
+    structure list format
+    """
     stair_fits = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            val_o = np.mean(data[ii][~data[ii].mask][:nb_value])
-            val_e = np.mean(data[ii][~data[ii].mask][-nb_value:])
             if len(data[ii][~data[ii].mask][:nb_value]) and len(data[ii][~data[ii].mask][-nb_value:]):
-                drop = time[np.argmin([err_function(x, time, data[ii], val_o, val_e) for x in time])]
-                stair_fits[ii] = [val_o, val_e, drop+dropshift]
+                stair_fits[ii] = stair_fit(time, data[ii], nb_value)
             else:
                 stair_fits[ii] = None
         else:
@@ -130,7 +143,9 @@ def stair_fits(time, data, nb_value=3, dropshift=4):
     return stair_fits
 
 def get_Re_guess(time, cases, step=7, extremal_points=10, only_deaths=False):
-    #R_effective
+    """
+    Compute R_effective from the data and estimate the stair function fit parameters for this R_effective
+    """
     death_delay = 9
     diff_data = get_daily_counts(cases)
     data_log_smoothed = log_smooth(diff_data)
@@ -147,6 +162,10 @@ def get_Re_guess(time, cases, step=7, extremal_points=10, only_deaths=False):
             "gr":growth_rate}
 
 def combine_fits(fits, drop_shift=9):
+    """
+    Combine fits coming from cases and deaths if they are coherent with one another and returns it. If they
+    are not coherent, return the fit from the case data.
+    """
     # combine fits from cases and deaths if they are coherent, otherwise return fit from cases
     if fits[Sub.T] != None:
         if fits[Sub.D] != None:
@@ -166,6 +185,9 @@ def combine_fits(fits, drop_shift=9):
         return None
 
 def get_R0_comparison(country_list):
+    """
+    Get statistics on the fitting parameters over a list of countries.
+    """
     lags = []
     rdiffs_o = []
     rdiffs_e = []
