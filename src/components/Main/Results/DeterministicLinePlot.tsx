@@ -32,7 +32,7 @@ import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'
 
-import { verifyPositive, verifyTuple } from './Utils'
+import { verifyPositive, verifyTuple, computeNewEmpiricalCases } from './Utils'
 
 import './DeterministicLinePlot.scss'
 
@@ -53,46 +53,6 @@ function legendFormatter(enabledPlots: string[], value?: LegendPayload['value'],
   }
 
   return <span className={activeClassName}>{value}</span>
-}
-
-type maybeNumber = number | undefined
-
-function computeNewEmpiricalCases(
-  timeWindow: number,
-  verifyPositive: (x: number) => number | undefined,
-  cumulativeCounts?: CaseCountsDatum[],
-): [maybeNumber[], number] {
-  const newEmpiricalCases: maybeNumber[] = []
-  const deltaDay = Math.floor(timeWindow)
-  const deltaInt = timeWindow - deltaDay
-
-  if (!cumulativeCounts) {
-    return [newEmpiricalCases, deltaDay]
-  }
-
-  cumulativeCounts.forEach((_0, day) => {
-    if (day < deltaDay) {
-      newEmpiricalCases[day] = undefined
-      return
-    }
-
-    const startDay = day - deltaDay
-    const startDayPlus = day - deltaDay - 1
-
-    const nowCases = cumulativeCounts[day].cases
-    const oldCases = cumulativeCounts[startDay].cases
-    const olderCases = cumulativeCounts[startDayPlus]?.cases
-    if (oldCases && nowCases) {
-      const newCases = verifyPositive(
-        olderCases ? (1 - deltaInt) * (nowCases - oldCases) + deltaInt * (nowCases - olderCases) : nowCases - oldCases,
-      )
-      newEmpiricalCases.push(newCases)
-      return
-    }
-    newEmpiricalCases[day] = undefined
-  })
-
-  return [newEmpiricalCases, deltaDay]
 }
 
 export interface LinePlotProps {
@@ -137,7 +97,6 @@ export function DeterministicLinePlot({
 
   const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
     params.epidemiological.infectiousPeriodDays,
-    verifyPositive,
     caseCounts,
   )
 

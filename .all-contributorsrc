@@ -717,6 +717,34 @@
         "code",
         "data"
       ]
+    },
+    {
+      "login": "ceporche",
+      "name": "ceporche",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/63005817?v=4",
+      "profile": "https://github.com/ceporche",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "victorandcode",
+      "name": "Victor Cordova",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/18427801?v=4",
+      "profile": "http://victorandcode.com",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "davihans",
+      "name": "David Hansen",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/17601012?v=4",
+      "profile": "https://github.com/davihans",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "repoType": "github",
