@@ -114,7 +114,7 @@ def stair_fit(time, vec, nb_value=3):
     drop = time[np.argmin([err_function(x, time, vec, val_o, val_e) for x in time])]
     return val_o, val_e, drop
 
-def stair_fits(time, data, nb_value=3):
+def stair_fits(time, data, nb_value=3, dropshift=4):
     stair_fits = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
@@ -122,7 +122,7 @@ def stair_fits(time, data, nb_value=3):
             val_e = np.mean(data[ii][~data[ii].mask][-nb_value:])
             if len(data[ii][~data[ii].mask][:nb_value]) and len(data[ii][~data[ii].mask][-nb_value:]):
                 drop = time[np.argmin([err_function(x, time, data[ii], val_o, val_e) for x in time])]
-                stair_fits[ii] = [val_o, val_e, drop]
+                stair_fits[ii] = [val_o, val_e, drop+dropshift]
             else:
                 stair_fits[ii] = None
         else:
@@ -143,7 +143,8 @@ def get_Re_guess(time, cases, step=7, extremal_points=10, only_deaths=False):
     return {"fit" : fits[Sub.D] if only_deaths else combine_fits(fits),
             "diff_data": diff_data,
             "diff_data_smoothed": data_log_smoothed,
-            "R0_by_day": R0_by_day}
+            "R0_by_day": R0_by_day,
+            "gr":growth_rate}
 
 def combine_fits(fits, drop_shift=9):
     # combine fits from cases and deaths if they are coherent, otherwise return fit from cases
