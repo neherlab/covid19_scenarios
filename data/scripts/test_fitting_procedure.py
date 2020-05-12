@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 
 
 def generate_data(params, initialCases):
+    """
+    Generates fake data using the model.py with the given parameters and initial number of cases
+    """
     data = empty_data_list()
     pop = model.init_pop(params.ages, params.size, initialCases)
     res = model.trace_ages(model.solve_ode(params, pop))
@@ -18,6 +21,9 @@ def generate_data(params, initialCases):
     return data
 
 def check_fit(data, data_fit, time_points):
+    """
+    Compare fake data curves to the fitted curves
+    """
     plt.figure()
     for jj,(ii,lab) in enumerate(zip([Sub.T, Sub.D, Sub.H, Sub.C],["Cases", "Deaths", "Hospitalized", "ICU"])):
         if data[ii] is not None:
@@ -47,17 +53,16 @@ if __name__ == "__main__":
     data[Sub.C] = None
     Re_guess = get_Re_guess(time_points, data)
     res = model.fit_population_iterative(key, time_points, data)
-    # setattr(res["params"], "containment_start", 20)
     data_fit = generate_data(res["params"], res["initialCases"])
 
-    # print(params)
-    # print(res['params'])
-    # check_fit(data, data_fit, time_points)
-    plt.plot(time_points, stair_func(time_points, *Re_guess["fit"]), label="Fit stair function")
-    plt.plot(time_points, stair_func(time_points, 3, 3*0.3, containement_start), label="Input stair function")
-    plt.plot(time_points, Re_guess["R0_by_day"][Sub.T], label="R_0 by day")
-    plt.plot(time_points, Re_guess["gr"][Sub.T])
-    plt.grid()
-    plt.legend()
-    plt.savefig("R0_estimation", format="png")
-    plt.show()
+    print(params)
+    print(res['params'])
+    check_fit(data, data_fit, time_points)
+    # plt.plot(time_points, stair_func(time_points, *Re_guess["fit"]), label="Fit stair function")
+    # plt.plot(time_points, stair_func(time_points, 3, 3*0.3, containement_start), label="Input stair function")
+    # plt.plot(time_points, Re_guess["R0_by_day"][Sub.T], label="R_0 by day")
+    # plt.plot(time_points, Re_guess["gr"][Sub.T])
+    # plt.grid()
+    # plt.legend()
+    # plt.savefig("R0_estimation", format="png")
+    # plt.show()
