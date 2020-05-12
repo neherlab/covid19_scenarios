@@ -114,28 +114,20 @@ def err_function(x_drop, time, vec, val_o, val_e):
     # vec need to be masked to avoid nan
     return np.sum(np.abs(vec - stair_func(time, val_o, val_e, x_drop)))
 
-
-def stair_fit(time, vec, nb_value=3, dropshift=4):
+def stair_fits(time, data, nb_value=3, dropshift=4):
     """
     Estimate the 3 parameters to best fit R_0 with a stair function. The origin and end values are estimated
     using an average over the first/list nb_value points. The drop position is choosen to minimize the error function.
-    The shift of 4 days in the drop is here to compensate the shift cause by growth rate estimation (difference over 7 days)
-    """
-    val_o = np.mean(vec[~vec.mask][:nb_value])
-    val_e = np.mean(vec[~vec.mask][-nb_value:])
-    drop = time[np.argmin([err_function(x, time, vec, val_o, val_e) for x in time])]
-    return val_o, val_e, drop+dropshift
-
-def stair_fits(time, data, nb_value=3):
-    """
-    Uses the stair_fit procedure on all the present data and returns the fitting parameters in the base
-    structure list format
+    The shift of 4 days in the drop is here to compensate the shift caused by growth rate estimation (difference over 7 days)
     """
     stair_fits = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
+            val_o = np.mean(data[ii][~data[ii].mask][:nb_value])
+            val_e = np.mean(data[ii][~data[ii].mask][-nb_value:])
             if len(data[ii][~data[ii].mask][:nb_value]) and len(data[ii][~data[ii].mask][-nb_value:]):
-                stair_fits[ii] = stair_fit(time, data[ii], nb_value)
+                drop = time[np.argmin([err_function(x, time, data[ii], val_o, val_e) for x in time])]
+                stair_fits[ii] = [val_o, val_e, drop+dropshift]
             else:
                 stair_fits[ii] = None
         else:

@@ -231,7 +231,7 @@ def fit_one_case_data(args):
     if len(time)==0:
         return (region, None)
 
-    model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
+    model_tps, fit_data = get_fit_data(time, data)
 
     if region[:4]=='FRA-': #french don't report case data anymore
         print("BLABLA")
