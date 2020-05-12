@@ -21,6 +21,7 @@ module.exports = {
   },
   transform: {
     '^.+\\.(js|jsx)?$': 'babel-jest',
+    '^.+\\.(md|mdx)$': 'jest-transformer-mdx',
   },
   testMatch: [
     '<rootDir>/src/**/*.(spec|test).{js,jsx,ts,tsx}',
@@ -35,10 +36,13 @@ module.exports = {
   ],
   moduleNameMapper: {
     '\\.(eot|otf|webp|ttf|woff\\d?|svg|png|jpe?g|gif)$':
-      '<rootDir>/src/__mocks__/fileMock.js',
+      '<rootDir>/config/jest/mocks/fileMock.js',
     '\\.(css|scss)$': 'identity-obj-proxy',
     'react-children-utilities':
-      '<rootDir>/config/jest/mockReactChildrenUtilities.js',
+      '<rootDir>/config/jest/mocks/mockReactChildrenUtilities.js',
+    'react-i18next': '<rootDir>/config/jest/mocks/mockReactI18next.js',
+    'popper-js': '<rootDir>/config/jest/mockPopperJS.js',
+    'use-debounce': '<rootDir>/config/jest/mocks/mockUseDebounce.js',
   },
   setupFilesAfterEnv: [
     '<rootDir>/config/jest/setupDotenv.js',
@@ -47,7 +51,6 @@ module.exports = {
     'jest-axe/extend-expect',
     '@testing-library/jest-dom/extend-expect',
   ],
-  setupFiles: ['<rootDir>/config/jest/mockPopperJS.js'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',

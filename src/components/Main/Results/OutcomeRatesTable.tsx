@@ -6,19 +6,39 @@ import { Col, Row } from 'reactstrap'
 
 import * as d3 from 'd3'
 
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { Severity } from '../../../.generated/types'
+import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
+
+interface RowProps {
+  entry: number[]
+  fmt: (x: number) => string
+}
+
+function TableRow({ entry, fmt }: RowProps) {
+  switch (entry.length) {
+    case 1:
+      return <td>{fmt(entry[0])}</td>
+    case 3:
+      return (
+        <td>
+          ({fmt(entry[0])}, <b>{fmt(entry[1])}</b>, {fmt(entry[2])})
+        </td>
+      )
+    default:
+      return <td />
+  }
+}
+
+const percentageFormatter = (v: number) => d3.format('.2f')(v * 100)
 
 export interface TableProps {
   showHumanized?: boolean
   result?: AlgorithmResult
-  rates?: Severity[]
+  rates?: SeverityDistributionDatum[]
   printable?: boolean
 }
-
-const percentageFormatter = (v: number) => d3.format('.2f')(v * 100)
 
 export function OutcomeRatesTable({ showHumanized, result, rates, printable }: TableProps) {
   const { t } = useTranslation()
@@ -29,38 +49,48 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
 
   const formatNumber = numberFormatter(!!showHumanized, false)
 
-  /*
-  // FIXME: This looks like a prefix sum. Should we use `Array.reduce()` or a library instead?
-  let deathFrac    = 0
-  let severeFrac   = 0
-  let criticalFrac = 0
+  const endResult = {
+    lower: result.trajectory.lower[result.trajectory.middle.length - 1],
+    value: result.trajectory.middle[result.trajectory.middle.length - 1],
+    upper: result.trajectory.upper[result.trajectory.middle.length - 1],
+  }
 
-  const { params } = result
+  const totalDeath = [
+    endResult.lower.cumulative.fatality.total,
+    endResult.value.cumulative.fatality.total,
+    endResult.upper.cumulative.fatality.total,
+  ]
+  const totalSevere = [
+    endResult.lower.cumulative.hospitalized.total,
+    endResult.value.cumulative.hospitalized.total,
+    endResult.upper.cumulative.hospitalized.total,
+  ]
+  const totalCritical = [
+    endResult.lower.cumulative.critical.total,
+    endResult.value.cumulative.critical.total,
+    endResult.upper.cumulative.critical.total,
+  ]
+  const totalCases = [
+    endResult.lower.cumulative.recovered.total + endResult.lower.cumulative.fatality.total,
+    endResult.value.cumulative.recovered.total + endResult.value.cumulative.fatality.total,
+    endResult.upper.cumulative.recovered.total + endResult.upper.cumulative.fatality.total,
+  ]
 
-  rates.forEach(d => {
-    const freq    = params.ageDistribution[d.ageGroup]
-    severeFrac   += freq * params.infectionSeverityRatio[d.ageGroup]
-    criticalFrac += freq * params.infectionSeverityRatio[d.ageGroup] * (d.critical / 100)
-    deathFrac    += freq * params.infectionSeverityRatio[d.ageGroup] * (d.critical / 100) * (d.fatal / 100)
-  })
+  const severeFrac = totalSevere.map((x, i) => (1.0 * x) / totalCases[i])
+  const criticalFrac = totalCritical.map((x, i) => (1.0 * x) / totalCases[i])
+  const deathFrac = totalDeath.map((x, i) => (1.0 * x) / totalCases[i])
+  const mildFrac = severeFrac.map((x, i) => 1 - x - criticalFrac[i] - deathFrac[i])
 
-  let mildFrac = 1 - severeFrac - criticalFrac - deathFrac
-  */
-
-  const endResult = result.trajectory.mean[result.trajectory.mean.length - 1]
-
-  const totalDeath = endResult.cumulative.fatality.total
-  const totalSevere = endResult.cumulative.hospitalized.total
-  const totalCritical = endResult.cumulative.critical.total
-  const totalCases = endResult.cumulative.recovered.total + endResult.cumulative.fatality.total
-
-  const severeFrac = (1.0 * totalSevere) / totalCases
-  const criticalFrac = (1.0 * totalCritical) / totalCases
-  const deathFrac = (1.0 * totalDeath) / totalCases
-  const mildFrac = 1 - severeFrac - criticalFrac - deathFrac
-
-  const peakSevere = Math.round(Math.max(...result.trajectory.mean.map((x) => x.current.severe.total)))
-  const peakCritical = Math.round(Math.max(...result.trajectory.mean.map((x) => x.current.critical.total + x.current.overflow.total))) // prettier-ignore
+  const peakSevere = [
+    Math.round(Math.max(...result.trajectory.lower.map((x) => x.current.severe.total))),
+    Math.round(Math.max(...result.trajectory.middle.map((x) => x.current.severe.total))),
+    Math.round(Math.max(...result.trajectory.upper.map((x) => x.current.severe.total))),
+  ]
+  const peakCritical = [
+    Math.round(Math.max(...result.trajectory.lower.map((x) => x.current.critical.total + x.current.overflow.total))),
+    Math.round(Math.max(...result.trajectory.middle.map((x) => x.current.critical.total + x.current.overflow.total))),
+    Math.round(Math.max(...result.trajectory.upper.map((x) => x.current.critical.total + x.current.overflow.total))),
+  ]
 
   const totalFormatter = (value: number) => formatNumber(value)
 
@@ -78,19 +108,19 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
           <tbody>
             <tr>
               <td>{t('Mild')} [%]: </td>
-              <td>{percentageFormatter(mildFrac)}</td>
+              <TableRow entry={mildFrac.slice(1, 2)} fmt={percentageFormatter} />
             </tr>
             <tr>
               <td>{t('Severe')} [%]: </td>
-              <td>{percentageFormatter(severeFrac)}</td>
+              <TableRow entry={severeFrac.slice(1, 2)} fmt={percentageFormatter} />
             </tr>
             <tr>
               <td>{t('Critical')} [%]: </td>
-              <td>{percentageFormatter(criticalFrac)}</td>
+              <TableRow entry={criticalFrac.slice(1, 2)} fmt={percentageFormatter} />
             </tr>
             <tr>
               <td>{t('Fatal')} [%]: </td>
-              <td>{percentageFormatter(deathFrac)}</td>
+              <TableRow entry={deathFrac.slice(1, 2)} fmt={percentageFormatter} />
             </tr>
           </tbody>
         </table>
@@ -105,19 +135,19 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
           <tbody>
             <tr>
               <td>{t('Total death')}: </td>
-              <td>{totalFormatter(totalDeath)}</td>
+              <TableRow entry={totalDeath} fmt={totalFormatter} />
             </tr>
             <tr>
               <td>{t('Total severe')}: </td>
-              <td>{totalFormatter(totalSevere)}</td>
+              <TableRow entry={totalSevere} fmt={totalFormatter} />
             </tr>
             <tr>
               <td>{t('Peak severe')}: </td>
-              <td>{totalFormatter(peakSevere)}</td>
+              <TableRow entry={peakSevere} fmt={totalFormatter} />
             </tr>
             <tr>
               <td>{t('Peak critical')}: </td>
-              <td>{totalFormatter(peakCritical)}</td>
+              <TableRow entry={peakCritical} fmt={totalFormatter} />
             </tr>
           </tbody>
         </table>
@@ -140,19 +170,19 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
           <tbody>
             <tr>
               <td>{t('Mild')} [%]: </td>
-              <td>{percentageFormatter(mildFrac)}</td>
+              <TableRow entry={mildFrac.slice(1, 2)} fmt={percentageFormatter} />
             </tr>
             <tr>
               <td>{t('Severe')} [%]: </td>
-              <td>{percentageFormatter(severeFrac)}</td>
+              <TableRow entry={severeFrac.slice(1, 2)} fmt={percentageFormatter} />
             </tr>
             <tr>
               <td>{t('Critical')} [%]: </td>
-              <td>{percentageFormatter(criticalFrac)}</td>
+              <TableRow entry={criticalFrac.slice(1, 2)} fmt={percentageFormatter} />
             </tr>
             <tr>
               <td>{t('Fatal')} [%]: </td>
-              <td>{percentageFormatter(deathFrac)}</td>
+              <TableRow entry={deathFrac.slice(1, 2)} fmt={percentageFormatter} />
             </tr>
           </tbody>
         </table>
@@ -169,19 +199,19 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
           <tbody>
             <tr>
               <td>{t('Total death')}: </td>
-              <td>{totalFormatter(totalDeath)}</td>
+              <TableRow entry={totalDeath} fmt={totalFormatter} />
             </tr>
             <tr>
               <td>{t('Total severe')}: </td>
-              <td>{totalFormatter(totalSevere)}</td>
+              <TableRow entry={totalSevere} fmt={totalFormatter} />
             </tr>
             <tr>
               <td>{t('Peak severe')}: </td>
-              <td>{totalFormatter(peakSevere)}</td>
+              <TableRow entry={peakSevere} fmt={totalFormatter} />
             </tr>
             <tr>
               <td>{t('Peak critical')}: </td>
-              <td>{totalFormatter(peakCritical)}</td>
+              <TableRow entry={peakCritical} fmt={totalFormatter} />
             </tr>
           </tbody>
         </table>

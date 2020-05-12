@@ -1,8 +1,9 @@
 import * as yup from 'yup'
 
 import i18next from 'i18next'
+import { ScenarioDatum } from '../../../algorithms/types/Param.types'
 
-import { ageDistributionNames } from '../state/countryAgeDistributionData'
+import { ageDistributionNames } from '../state/getAgeDistribution'
 import { CUSTOM_COUNTRY_NAME } from '../state/state'
 
 const ageRegions = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]
@@ -13,40 +14,64 @@ const MSG_POSITIVE = i18next.t('Should be strictly positive (non-zero)')
 const MSG_AT_LEAST_TEN = i18next.t('Should be at least ten')
 const MSG_AT_LEAST_ONE_DAY = i18next.t('Should be at least one day or greater')
 const MSG_INTEGER = i18next.t('Should be a whole number')
+const MSG_MAX_100 = i18next.t('Should be 100 at most')
 const MSG_TOO_MANY_RUNS = i18next.t('Too many runs')
+const MSG_RANGE_INVALID = i18next.t('Range begin should be less or equal to range end')
 
-export function dateRange() {
-  return yup.object({
-    tMin: yup.date().required(MSG_REQUIRED),
-    tMax: yup.date().required(MSG_REQUIRED),
-  })
+// TODO: all this validation should be replaced with JSON-schema-based validation
+
+export function numericRangeNonNegative() {
+  return yup
+    .object({
+      begin: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+      end: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    })
+    .test('valid numeric range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
 }
 
-export const schema = yup.object().shape({
+export function percentageRange() {
+  return yup
+    .object({
+      begin: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE).max(100, MSG_MAX_100),
+      end: yup.number().max(100, MSG_MAX_100),
+    })
+    .test('valid percentage range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
+}
+
+export function dateRange() {
+  return yup
+    .object({
+      begin: yup.date().required(MSG_REQUIRED),
+      end: yup.date().required(MSG_REQUIRED),
+    })
+    .test('valid percentage range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
+}
+
+export const schema: yup.Schema<ScenarioDatum> = yup.object().shape({
   population: yup.object().shape({
     populationServed: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    country: yup.string().required(MSG_REQUIRED).oneOf(ageRegions, i18next.t('No such region in our data')),
+    ageDistributionName: yup.string().required(MSG_REQUIRED).oneOf(ageRegions, i18next.t('No such region in our data')),
 
     initialNumberOfCases: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
     importsPerDay: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    cases: yup.string().required(MSG_REQUIRED),
+    caseCountsName: yup.string().required(MSG_REQUIRED),
 
     hospitalBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    ICUBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+    icuBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
   }),
 
   epidemiological: yup.object().shape({
-    latencyTime: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+    latencyDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    infectiousPeriod: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+    infectiousPeriodDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    lengthHospitalStay: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+    hospitalStayDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    lengthICUStay: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+    icuStayDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
     seasonalForcing: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
@@ -54,19 +79,15 @@ export const schema = yup.object().shape({
 
     peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_POSITIVE).max(11),
 
-    r0: yup.array().of(yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE)).min(2).max(2),
+    r0: numericRangeNonNegative().required(MSG_REQUIRED),
   }),
 
-  containment: yup.object().shape({
+  mitigation: yup.object().shape({
     mitigationIntervals: yup.array().of(
       yup.object({
         color: yup.string().required(MSG_REQUIRED),
         id: yup.string().required(MSG_REQUIRED),
-        mitigationValue: yup
-          .array()
-          .of(yup.number().min(0, MSG_NON_NEGATIVE).max(100).required(MSG_REQUIRED))
-          .min(2)
-          .max(2),
+        transmissionReduction: percentageRange().required(MSG_REQUIRED),
         name: yup.string().required(MSG_REQUIRED),
         timeRange: dateRange().required(MSG_REQUIRED),
       }),

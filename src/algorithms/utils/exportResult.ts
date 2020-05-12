@@ -1,14 +1,36 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
-import { AllParams } from '../types/Param.types'
-import { AlgorithmResult } from '../types/Result.types'
-import { exportSimulation } from '../model'
+import { StrictOmit } from 'ts-essentials'
 
-export function isBlobApiSupported() {
+import { State } from '../../components/Main/state/state'
+
+import type { SeverityDistributionDatum } from '../types/Param.types'
+import type { AlgorithmResult } from '../types/Result.types'
+
+import { serialize } from '../../components/Main/state/serialization/serialize'
+
+import { serializeTrajectory } from '../model'
+
+export class ExportErrorBlobApiNotSupported extends Error {
+  constructor() {
+    super('Error: when exporting: `Blob()` API is not supported by this browser')
+  }
+}
+
+export class ExportErrorResultsInvalid extends Error {
+  public result?: AlgorithmResult
+
+  constructor(result?: AlgorithmResult) {
+    super('Error: when exporting: algorithm results are invalid')
+    this.result = result
+  }
+}
+
+export function checkBlobSupport() {
   try {
     return !!new Blob()
   } catch (error) {
-    return false
+    throw new ExportErrorBlobApiNotSupported()
   }
 }
 
@@ -17,68 +39,93 @@ export function saveFile(content: string, filename: string) {
   saveAs(blob, filename)
 }
 
-export async function exportAll(params: AllParams, result: AlgorithmResult) {
-  if (!result) {
-    throw new Error(`Algorithm result expected, but got ${result}`)
+export interface ExportResultsParams {
+  scenarioState: State
+  result?: AlgorithmResult
+  detailed: boolean
+  filename: string
+}
+
+export function exportResult({ scenarioState, result, detailed, filename }: ExportResultsParams) {
+  checkBlobSupport()
+
+  const trajectory = result?.trajectory
+  if (!result || !trajectory) {
+    throw new ExportErrorResultsInvalid(result)
   }
 
-  const { trajectory } = result
+  const str = serializeTrajectory({ trajectory, detailed })
+  saveFile(str, filename)
+}
 
-  if (!(trajectory || params)) {
-    console.error('Error: the results, and params, of the simulation cannot be exported')
-    return
+export interface ExportScenarioParams {
+  scenarioState: State
+  severity: SeverityDistributionDatum[]
+  severityName: string
+  filename: string
+}
+
+export function exportScenario({ scenarioState, severity, severityName, filename }: ExportScenarioParams) {
+  checkBlobSupport()
+
+  const str = serialize({
+    scenario: scenarioState.data,
+    scenarioName: scenarioState.current,
+    ageDistribution: scenarioState.ageDistribution,
+    ageDistributionName: scenarioState.data.population.ageDistributionName,
+    severity,
+    severityName,
+  })
+
+  saveFile(str, filename)
+}
+
+export interface Filenames {
+  filenameParams: string
+  filenameResultsSummary: string
+  filenameResultsDetailed: string
+  filenameZip: string
+}
+
+export type ExportAllParams = StrictOmit<
+  ExportScenarioParams & ExportResultsParams & Filenames,
+  'detailed' | 'filename'
+>
+
+export async function exportAll({
+  scenarioState,
+  severity,
+  severityName,
+  result,
+  filenameParams,
+  filenameResultsSummary,
+  filenameResultsDetailed,
+  filenameZip,
+}: ExportAllParams) {
+  checkBlobSupport()
+
+  const trajectory = result?.trajectory
+  if (!result || !trajectory) {
+    throw new ExportErrorResultsInvalid(result)
   }
+
+  const paramStr = serialize({
+    scenario: scenarioState.data,
+    scenarioName: scenarioState.current,
+    ageDistribution: scenarioState.ageDistribution,
+    ageDistributionName: scenarioState.data.population.ageDistributionName,
+    severity,
+    severityName,
+  })
+
+  const summaryStr = serializeTrajectory({ trajectory, detailed: false })
+  const detailedStr = serializeTrajectory({ trajectory, detailed: true })
 
   const zip = new JSZip()
-
-  if (!params) {
-    console.error('Error: the params of the simulation cannot be exported because they are null')
-  } else {
-    zip.file('covid.params.json', JSON.stringify(params, null, 2))
-  }
-
-  if (!trajectory) {
-    console.error('Error: the results of the simulation cannot be exported because they are nondeterministic')
-  } else {
-    const path = 'covid.summary.tsv'
-    zip.file(path, exportSimulation(trajectory))
-  }
+  zip.file(filenameParams, paramStr)
+  zip.file(filenameResultsSummary, summaryStr)
+  zip.file(filenameResultsDetailed, detailedStr)
 
   const zipFile = await zip.generateAsync({ type: 'blob' })
-  saveAs(zipFile, 'covid.params.results.zip')
-}
-
-export function exportResult(result: AlgorithmResult, fileName: string, ageGroups?: string[]) {
-  if (!result) {
-    throw new Error(`Algorithm result expected, but got ${result}`)
-  }
-
-  const { trajectory } = result
-
-  if (!isBlobApiSupported()) {
-    // TODO: Display an error popup
-    console.error('Error: export is not supported in this browser: `Blob()` API is not implemented')
-    return
-  }
-
-  if (!trajectory) {
-    console.error('Error: the results of the simulation cannot be exported because they are nondeterministic')
-    return
-  }
-
-  saveFile(exportSimulation(trajectory, ageGroups), fileName)
-}
-
-export function exportParams(params: AllParams) {
-  if (!params) {
-    throw new Error(`Algorithm params expected, but got ${params}`)
-  }
-
-  if (!isBlobApiSupported()) {
-    // TODO: Display an error popup
-    console.error('Error: export is not supported in this browser: `Blob()` API is not implemented')
-    return
-  }
-
-  saveFile(JSON.stringify(params, null, 2), 'covid.params.json')
+  saveAs(zipFile, filenameZip)
 }

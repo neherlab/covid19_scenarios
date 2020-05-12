@@ -1,20 +1,29 @@
 import React from 'react'
 
+import { sumBy } from 'lodash'
+
 import ReactResizeDetector from 'react-resize-detector'
-
 import { useTranslation } from 'react-i18next'
+import {
+  Bar,
+  BarChart,
+  ErrorBar,
+  CartesianGrid,
+  Legend,
+  Tooltip,
+  XAxis,
+  YAxis,
+  LabelProps,
+  TooltipProps,
+} from 'recharts'
 
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, LabelProps, TooltipProps } from 'recharts'
-
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { AgeDistribution, Severity } from '../../../.generated/types'
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import { colors } from './ChartCommon'
-
 import { calculatePosition, scrollToRef } from './chartHelper'
-
 import { ChartTooltip } from './ChartTooltip'
 
 const ASPECT_RATIO = 16 / 4
@@ -22,8 +31,8 @@ const ASPECT_RATIO = 16 / 4
 export interface SimProps {
   showHumanized?: boolean
   data?: AlgorithmResult
-  ageDistribution?: AgeDistribution
-  rates?: Severity[]
+  ageDistribution?: AgeDistributionDatum[]
+  rates?: SeverityDistributionDatum[]
   forcedWidth?: number
   forcedHeight?: number
   printLabel?: boolean
@@ -71,21 +80,34 @@ export function AgeBarChart({
   }
 
   // Ensure age distribution is normalized
-  const Z: number = Object.values(ageDistribution).reduce((a, b) => a + b, 0)
-  const normAgeDistribution: Record<string, number> = {}
-  Object.keys(ageDistribution).forEach((k) => {
-    normAgeDistribution[k] = ageDistribution[k] / Z
-  })
+  const Z: number = sumBy(ageDistribution, ({ population }) => population)
+  const normAgeDistribution = ageDistribution.map((d) => d.population / Z)
+  const ages = ageDistribution.map((d) => d.ageGroup)
 
-  const ages = Object.keys(normAgeDistribution)
-  const lastDataPoint = data.trajectory.mean[data.trajectory.mean.length - 1]
-  const plotData = ages.map((age) => ({
+  const lastDataPoint = data.trajectory.middle[data.trajectory.middle.length - 1]
+  const plotData = ages.map((age, i) => ({
     name: age,
-    fraction: Math.round(normAgeDistribution[age] * 1000) / 10,
-    peakSevere: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.severe[age]))),
-    peakCritical: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.critical[age]))),
-    peakOverflow: Math.round(Math.max(...data.trajectory.mean.map((x) => x.current.overflow[age]))),
+    fraction: Math.round(normAgeDistribution[i] * 1000) / 10,
+    peakSevere: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.severe[age]))),
+    errorPeakSevere: [
+      Math.round(Math.max(...data.trajectory.lower.map((x) => x.current.severe[age]))),
+      Math.round(Math.max(...data.trajectory.upper.map((x) => x.current.severe[age]))),
+    ],
+    peakCritical: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.critical[age]))),
+    errorPeakCritical: [
+      Math.round(Math.max(...data.trajectory.lower.map((x) => x.current.critical[age]))),
+      Math.round(Math.max(...data.trajectory.upper.map((x) => x.current.critical[age]))),
+    ],
+    peakOverflow: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.overflow[age]))),
+    errorPeakOverflow: [
+      Math.round(Math.max(...data.trajectory.lower.map((x) => x.current.overflow[age]))),
+      Math.round(Math.max(...data.trajectory.upper.map((x) => x.current.overflow[age]))),
+    ],
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
+    errorFatalities: [
+      Math.round(Math.max(...data.trajectory.lower.map((x) => x.cumulative.fatality[age]))),
+      Math.round(Math.max(...data.trajectory.upper.map((x) => x.cumulative.fatality[age]))),
+    ],
   }))
 
   const tooltipValueFormatter = (value: number | string) => (typeof value === 'number' ? formatNumber(value) : value)
@@ -147,28 +169,36 @@ export function AgeBarChart({
                   fill={colors.severe}
                   name={t('peak severe')}
                   label={label}
-                />
+                >
+                  <ErrorBar dataKey="errorPeakSevere" stroke={colors.severe} width={2} strokeWidth={1} />
+                </Bar>
                 <Bar
                   isAnimationActive={false}
                   dataKey="peakCritical"
                   fill={colors.critical}
                   name={t('peak critical')}
                   label={label}
-                />
+                >
+                  <ErrorBar dataKey="errorPeakCritical" stroke={colors.critical} width={2} strokeWidth={1} />
+                </Bar>
                 <Bar
                   isAnimationActive={false}
                   dataKey="peakOverflow"
                   fill={colors.overflow}
                   name={t('peak overflow')}
                   label={label}
-                />
+                >
+                  <ErrorBar dataKey="errorPeakOverflow" stroke={colors.overflow} width={2} strokeWidth={1} />
+                </Bar>
                 <Bar
                   isAnimationActive={false}
                   dataKey="totalFatalities"
                   fill={colors.fatality}
                   name={t('total deaths')}
                   label={label}
-                />
+                >
+                  <ErrorBar dataKey="errorFatalities" stroke={colors.fatality} width={2} strokeWidth={1} />
+                </Bar>
                 <Bar
                   isAnimationActive={false}
                   dataKey="fraction"

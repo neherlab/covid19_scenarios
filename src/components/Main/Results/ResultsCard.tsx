@@ -1,19 +1,27 @@
-import React, { createRef, useEffect, useState } from 'react'
+import React, { createRef, useEffect, useMemo, useState } from 'react'
+
 import { Button, Col, CustomInput, FormGroup, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
-import ExportSimulationDialog from './ExportSimulationDialog'
-import FormSwitch from '../../Form/FormSwitch'
+
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import type { CaseCountsDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
-import { AgeBarChart } from './AgeBarChart'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { DeterministicLinePlot } from './DeterministicLinePlot'
-import { AllParams, ContainmentData, EmpiricalData, Severity } from '../../../algorithms/types/Param.types'
-import { AgeDistribution } from '../../../.generated/types'
-import { OutcomeRatesTable } from './OutcomeRatesTable'
+
+import { dataToURL } from '../state/serialization/serialize'
+import { State } from '../state/state'
+
 import LinkButton from '../../Buttons/LinkButton'
-import './ResultsCard.scss'
+import FormSwitch from '../../Form/FormSwitch'
 import { CardWithControls } from '../../Form/CardWithControls'
+
+import ExportSimulationDialog from './ExportSimulationDialog'
+import { AgeBarChart } from './AgeBarChart'
+import { DeterministicLinePlot } from './DeterministicLinePlot'
+import { OutcomeRatesTable } from './OutcomeRatesTable'
+
+import './ResultsCard.scss'
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
@@ -23,13 +31,11 @@ interface ResultsCardProps {
   toggleAutorun: () => void
   canRun: boolean
   isRunning: boolean
-  params: AllParams
-  ageDistribution: AgeDistribution
-  mitigation: ContainmentData
-  severity: Severity[]
+  scenarioState: State
+  severity: SeverityDistributionDatum[]
+  severityName: string
+  caseCounts?: CaseCountsDatum[]
   result?: AlgorithmResult
-  caseCounts?: EmpiricalData
-  scenarioUrl: string
   openPrintPreview: () => void
   areResultsMaximized: boolean
   toggleResultsMaximized: () => void
@@ -40,13 +46,11 @@ function ResultsCardFunction({
   isRunning,
   autorunSimulation,
   toggleAutorun,
-  params,
-  ageDistribution,
-  mitigation,
+  scenarioState,
   severity,
+  severityName,
   result,
   caseCounts,
-  scenarioUrl,
   openPrintPreview,
   areResultsMaximized,
   toggleResultsMaximized,
@@ -54,6 +58,8 @@ function ResultsCardFunction({
   const { t } = useTranslation()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
   const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
+  const [canExport, setCanExport] = useState<boolean>(false)
+  const [showExportModal, setShowExportModal] = useState<boolean>(false)
 
   useEffect(() => {
     const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
@@ -62,6 +68,15 @@ function ResultsCardFunction({
     const persistedShowHumanized = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS)
     setShowHumanized(persistedShowHumanized ?? SHOW_HUMANIZED_DEFAULT)
   }, [])
+
+  useEffect(() => {
+    setCanExport((result && !!result.trajectory) || false)
+  }, [result])
+
+  // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
+  // href: https://reactjs.org/docs/hooks-rules.html
+
+  const { data: scenarioData, ageDistribution } = scenarioState
 
   const setPersistLogScale = (value: boolean) => {
     LocalStorage.set(LOCAL_STORAGE_KEYS.LOG_SCALE, value)
@@ -73,16 +88,22 @@ function ResultsCardFunction({
     setShowHumanized(value)
   }
 
-  const [canExport, setCanExport] = useState<boolean>(false)
-  const [showExportModal, setShowExportModal] = useState<boolean>(false)
-
   const scrollTargetRef = createRef<HTMLSpanElement>()
 
   const toggleShowExportModal = () => setShowExportModal(!showExportModal)
 
-  useEffect(() => {
-    setCanExport((result && !!result.trajectory) || false)
-  }, [result])
+  const scenarioUrl = useMemo(
+    () =>
+      dataToURL({
+        scenario: scenarioState.data,
+        scenarioName: scenarioState.current,
+        ageDistribution: scenarioState.ageDistribution,
+        ageDistributionName: scenarioState.data.population.ageDistributionName,
+        severity,
+        severityName,
+      }),
+    [scenarioState, severity, severityName],
+  )
 
   return (
     <>
@@ -92,7 +113,7 @@ function ResultsCardFunction({
         className="card--main card--results"
         label={
           <h2 className="p-0 m-0 text-truncate d-flex align-items-center" data-testid="ResultsCardTitle">
-            <Button onClick={toggleResultsMaximized} className="btn-dark mr-2">
+            <Button onClick={toggleResultsMaximized} className="btn-dark mr-2 d-none d-xl-block">
               {areResultsMaximized ? <FiChevronRight /> : <FiChevronLeft />}
             </Button>
             <span>{t('Results')}</span>
@@ -179,8 +200,7 @@ function ResultsCardFunction({
           <Col>
             <DeterministicLinePlot
               data={result}
-              params={params}
-              mitigation={mitigation}
+              params={scenarioData}
               logScale={logScale}
               showHumanized={showHumanized}
               caseCounts={caseCounts}
@@ -224,9 +244,11 @@ function ResultsCardFunction({
         openPrintPreview={openPrintPreview}
         toggleShowModal={toggleShowExportModal}
         canExport={canExport}
-        result={result}
-        params={params}
         scenarioUrl={scenarioUrl}
+        result={result}
+        scenarioState={scenarioState}
+        severity={severity}
+        severityName={severityName}
       />
     </>
   )

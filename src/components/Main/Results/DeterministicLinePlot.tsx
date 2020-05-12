@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { useState } from 'react'
 
 import _ from 'lodash'
@@ -19,8 +20,11 @@ import {
 } from 'recharts'
 
 import { useTranslation } from 'react-i18next'
-import { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { AllParams, ContainmentData, EmpiricalData } from '../../../algorithms/types/Param.types'
+
+import type { ScenarioDatum, CaseCountsDatum } from '../../../algorithms/types/Param.types'
+
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+
 import { numberFormatter } from '../../../helpers/numberFormat'
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
@@ -28,20 +32,11 @@ import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'
 
+import { verifyPositive, verifyTuple, computeNewEmpiricalCases } from './Utils'
+
 import './DeterministicLinePlot.scss'
 
 const ASPECT_RATIO = 16 / 9
-
-export interface LinePlotProps {
-  data?: AlgorithmResult
-  params: AllParams
-  mitigation: ContainmentData
-  logScale?: boolean
-  showHumanized?: boolean
-  caseCounts?: EmpiricalData
-  forcedWidth?: number
-  forcedHeight?: number
-}
 
 function xTickFormatter(tick: string | number): string {
   return new Date(tick).toISOString().slice(0, 10)
@@ -60,48 +55,14 @@ function legendFormatter(enabledPlots: string[], value?: LegendPayload['value'],
   return <span className={activeClassName}>{value}</span>
 }
 
-type maybeNumber = number | undefined
-
-function computeNewEmpiricalCases(
-  timeWindow: number,
-  verifyPositive: (x: number) => number | undefined,
-  cumulativeCounts?: EmpiricalData,
-): [maybeNumber[], number] {
-  const newEmpiricalCases: maybeNumber[] = []
-  const deltaDay = Math.floor(timeWindow)
-  const deltaInt = timeWindow - deltaDay
-
-  if (!cumulativeCounts) {
-    return [newEmpiricalCases, deltaDay]
-  }
-
-  cumulativeCounts.forEach((_0, day) => {
-    if (day < deltaDay) {
-      newEmpiricalCases[day] = undefined
-      return
-    }
-
-    const startDay = day - deltaDay
-    const startDayPlus = day - deltaDay - 1
-
-    const nowCases = cumulativeCounts[day].cases
-    const oldCases = cumulativeCounts[startDay].cases
-    const olderCases = cumulativeCounts[startDayPlus]?.cases
-    if (oldCases && nowCases) {
-      const newCases = verifyPositive(
-        olderCases ? (1 - deltaInt) * (nowCases - oldCases) + deltaInt * (nowCases - olderCases) : nowCases - oldCases,
-      )
-      newEmpiricalCases.push(newCases)
-      return
-    }
-    newEmpiricalCases[day] = undefined
-  })
-
-  return [newEmpiricalCases, deltaDay]
-}
-
-function verifyPositive(x: number): maybeNumber {
-  return x > 0 ? Math.ceil(x) : undefined
+export interface LinePlotProps {
+  data?: AlgorithmResult
+  params: ScenarioDatum
+  logScale?: boolean
+  showHumanized?: boolean
+  caseCounts?: CaseCountsDatum[]
+  forcedWidth?: number
+  forcedHeight?: number
 }
 
 // FIXME: this component has become too large
@@ -109,7 +70,6 @@ function verifyPositive(x: number): maybeNumber {
 export function DeterministicLinePlot({
   data,
   params,
-  mitigation,
   logScale,
   showHumanized,
   caseCounts,
@@ -130,29 +90,26 @@ export function DeterministicLinePlot({
     return null
   }
 
-  const { mitigationIntervals } = mitigation
+  const { mitigationIntervals } = params.mitigation
 
   const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
-  const nICUBeds = verifyPositive(params.population.ICUBeds)
-
-  const nonEmptyCaseCounts = caseCounts?.filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
+  const nICUBeds = verifyPositive(params.population.icuBeds)
 
   const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
-    params.epidemiological.infectiousPeriod,
-    verifyPositive,
-    nonEmptyCaseCounts,
+    params.epidemiological.infectiousPeriodDays,
+    caseCounts,
   )
 
   const countObservations = {
-    cases: nonEmptyCaseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: nonEmptyCaseCounts?.filter((d) => d.icu).length ?? 0,
-    observedDeaths: nonEmptyCaseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: nonEmptyCaseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
-    hospitalized: nonEmptyCaseCounts?.filter((d) => d.hospitalized).length ?? 0,
+    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
+    ICU: caseCounts?.filter((d) => d.icu).length ?? 0,
+    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
+    newCases: caseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
+    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
   }
 
   const observations =
-    nonEmptyCaseCounts?.map((d, i) => ({
+    caseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
       cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
       observedDeaths: enabledPlots.includes(DATA_POINTS.ObservedDeaths) ? d.deaths || undefined : undefined,
@@ -168,7 +125,7 @@ export function DeterministicLinePlot({
   const { upper, lower } = data.trajectory
 
   const plotData = [
-    ...data.trajectory.mean.map((x, i) => ({
+    ...data.trajectory.middle.map((x, i) => ({
       time: x.time,
       susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
         ? verifyPositive(x.current.susceptible.total)
@@ -194,25 +151,43 @@ export function DeterministicLinePlot({
 
       // Error bars
       susceptibleArea: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].current.susceptible.total),
+            verifyPositive(upper[i].current.susceptible.total),
+          ])
         : undefined,
       infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].current.infectious.total),
+            verifyPositive(upper[i].current.infectious.total),
+          ])
         : undefined,
       severeArea: enabledPlots.includes(DATA_POINTS.Severe)
-        ? [verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)]
+        ? verifyTuple([verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)])
         : undefined,
       criticalArea: enabledPlots.includes(DATA_POINTS.Critical)
-        ? [verifyPositive(lower[i].current.critical.total), verifyPositive(upper[i].current.critical.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].current.critical.total),
+            verifyPositive(upper[i].current.critical.total),
+          ])
         : undefined,
       overflowArea: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? [verifyPositive(lower[i].current.overflow.total), verifyPositive(upper[i].current.overflow.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].current.overflow.total),
+            verifyPositive(upper[i].current.overflow.total),
+          ])
         : undefined,
       recoveredArea: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? [verifyPositive(lower[i].cumulative.recovered.total), verifyPositive(upper[i].cumulative.recovered.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].cumulative.recovered.total),
+            verifyPositive(upper[i].cumulative.recovered.total),
+          ])
         : undefined,
       fatalityArea: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? [verifyPositive(lower[i].cumulative.fatality.total), verifyPositive(upper[i].cumulative.fatality.total)]
+        ? verifyTuple([
+            verifyPositive(lower[i].cumulative.fatality.total),
+            verifyPositive(upper[i].cumulative.fatality.total),
+          ])
         : undefined,
     })),
 
@@ -239,6 +214,7 @@ export function DeterministicLinePlot({
 
   // determine the max of enabled plots w/o the hospital capacity
   const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
+  // @ts-ignore
   const yDataMax = _.max(consolidatedPlotData.map((d) => _.max(dataKeys.map((k) => d[k]))))
 
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
@@ -267,10 +243,11 @@ export function DeterministicLinePlot({
 
   let tooltipItems: { [key: string]: number | undefined } = {}
   consolidatedPlotData.forEach((d) => {
+    // @ts-ignore
     tooltipItems = { ...tooltipItems, ...d }
   })
   const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(
-    (itemKey: string) => itemKey !== 'time' && tooltipItems[itemKey] !== undefined,
+    (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey !== 'ICUbeds',
   )
 
   const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
@@ -300,6 +277,9 @@ export function DeterministicLinePlot({
                 height={(forcedHeight || height) / 4}
                 tMin={tMin}
                 tMax={tMax}
+                labelFormatter={labelFormatter}
+                tooltipValueFormatter={tooltipValueFormatter}
+                tooltipPosition={tooltipPosition}
               />
               <MitigationPlot
                 mitigation={mitigationIntervals}
@@ -386,7 +366,7 @@ export function DeterministicLinePlot({
                   <Area
                     key={d.key}
                     type="monotone"
-                    fillOpacity={0.075}
+                    fillOpacity={0.12}
                     dataKey={d.key}
                     isAnimationActive={false}
                     name={d.name}

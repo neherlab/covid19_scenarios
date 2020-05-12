@@ -1,0 +1,21 @@
+$schema: http://json-schema.org/draft-07/schema
+$id: CaseCountsData
+title: CaseCountsData
+
+type: object
+
+additionalProperties: false
+
+required:
+  - name
+  - data
+
+properties:
+  name:
+    type: string
+    minLength: 1
+
+  data:
+    type: array
+    items:
+      $ref: 'CaseCountsDatum#'

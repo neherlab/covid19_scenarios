@@ -13,7 +13,6 @@
     ".prettierrc",
     "babel.config.js",
     "config",
-    "infra/lambda-at-edge/modifyOutgoingHeaders.lambda.js",
     "package.json",
     "postcss.config.js",
     "schemas",
@@ -31,6 +30,7 @@
     "**/*.test.*sx",
     "**/__tests__",
     ".build",
+    "config/jest",
     "node_modules",
     "src/.generated"
   ],

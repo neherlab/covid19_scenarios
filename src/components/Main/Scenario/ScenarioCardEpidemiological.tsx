@@ -19,9 +19,6 @@ export interface ScenarioCardEpidemiologicalProps {
 
 function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiologicalProps) {
   const { t } = useTranslation()
-  // function handleChangeEpidemiologicalScenario(newEpidemiologicalScenario: string) {
-  //   scenarioDispatch(setEpidemiologicalScenario({ scenarioName: newEpidemiologicalScenario }))
-  // }
 
   return (
     <CardWithControls
@@ -36,7 +33,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         identifier="epidemiological.r0"
         label={`${t('Annual average')} R\u2080`}
         help={t(
-          'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0.',
+          'Average number of secondary infections per case. When R0 varies throughout the year (seasonal forcing), this value is the mean R0. You can specify a lower and upper plausible bound to explore the effect of uncertainty in this parameter. ',
         )}
         step={0.01}
         min={0.5}
@@ -44,7 +41,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         touched={touched}
       />
       <FormSpinBox
-        identifier="epidemiological.latencyTime"
+        identifier="epidemiological.latencyDays"
         label={`${t('Latency')} [${t('days')}]`}
         help={t('Time from infection to onset of symptoms (here onset of infectiousness)')}
         step={0.1}
@@ -53,7 +50,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         touched={touched}
       />
       <FormSpinBox
-        identifier="epidemiological.infectiousPeriod"
+        identifier="epidemiological.infectiousPeriodDays"
         label={`${t('Infectious period')} [${t('days')}]`}
         help={t(
           'Average number of days a person is infectious. Over this time, R0 infections happen on average. Together with the latency time, this defines the serial interval. The longer the serial interval, the slower the outbreak.',
@@ -81,7 +78,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         touched={touched}
       />
       <FormSpinBox
-        identifier="epidemiological.lengthHospitalStay"
+        identifier="epidemiological.hospitalStayDays"
         label={`${t('Hospital stay')} [${t('days')}]`}
         help={t('Average number of days a severe case stays in regular hospital beds')}
         step={0.1}
@@ -90,7 +87,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         touched={touched}
       />
       <FormSpinBox
-        identifier="epidemiological.lengthICUStay"
+        identifier="epidemiological.icuStayDays"
         label={`${t('ICU stay')} [${t('days')}]`}
         help={t('Average number of days a critical case stays in the ICU')}
         step={0.1}

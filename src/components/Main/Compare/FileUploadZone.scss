@@ -1,0 +1,7 @@
+@import '../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../node_modules/bootstrap/scss/variables';
+
+.fileuploadzone-drop-area {
+  cursor: pointer;
+  border: 3px $secondary dashed;
+}

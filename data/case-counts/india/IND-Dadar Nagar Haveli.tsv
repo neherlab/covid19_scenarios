@@ -1,0 +1,10 @@
+# Data source: https://api.rootnet.in/covid19-in/stats/daily
+# Data provenance: https://github.com/amodm/api-covid19-in
+# License: Scraped from Ministry of Health and Family Welfare plus other sources, no clear license
+time	cases	deaths	hospitalized	icu	recovered
+2020-05-06	1	0			
+2020-05-07	1	0			
+2020-05-08	1	0			
+2020-05-09	1	0			
+2020-05-10	1	0			
+2020-05-11	1	0			

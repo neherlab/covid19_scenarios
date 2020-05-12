@@ -29,6 +29,7 @@
     "**/*.test.*sx",
     "**/__tests__",
     ".build",
+    "config/jest",
     "node_modules",
     "src/.generated"
   ],

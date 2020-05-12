@@ -7,18 +7,24 @@ import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
 
-import { setScenario } from '../state/actions'
+import { setScenario, renameCurrentScenario } from '../state/actions'
 import { State } from '../state/state'
+
+import { ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+
+import { ColCustom } from '../../Layout/ColCustom'
+import { CardWithControls } from '../../Form/CardWithControls'
+import { stringsToOptions } from '../../Form/FormDropdownOption'
+
+import { ScenarioLoaderModalButton } from '../ScenarioLoader/ScenarioLoaderModalButton'
 
 import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
 import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
-import { AllParams, Severity } from '../../../algorithms/types/Param.types'
-import { ColCustom } from '../../Layout/ColCustom'
-import { CardWithControls } from '../../Form/CardWithControls'
-import PresetLoader from './presets/PresetLoader'
-import { stringsToOptions } from '../../Form/FormDropdownOption'
+import { ScenarioTitle } from './ScenarioTitle'
+
+import './ScenarioTitle.scss'
 
 export function getColumnSizes(areResultsMaximized: boolean) {
   if (areResultsMaximized) {
@@ -29,18 +35,18 @@ export function getColumnSizes(areResultsMaximized: boolean) {
 }
 
 export interface ScenarioCardProps {
-  values: AllParams
-  severity: Severity[]
+  scenario: ScenarioDatum
+  severity: SeverityDistributionDatum[]
   scenarioState: State
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
-  setSeverity(severity: Severity[]): void
+  setSeverity(severity: SeverityDistributionDatum[]): void
   scenarioDispatch(action: AnyAction): void
   areResultsMaximized: boolean
 }
 
 function ScenarioCard({
-  values,
+  scenario,
   severity,
   scenarioState,
   errors,
@@ -55,13 +61,24 @@ function ScenarioCard({
 
   const title: string = scenarioState.current
 
+  function handleScenarioRename(newScenario: string) {
+    scenarioDispatch(renameCurrentScenario({ name: newScenario }))
+  }
+
   const presetLoader = useMemo(() => {
     function handleChangeScenario(newScenario: string) {
       scenarioDispatch(setScenario({ name: newScenario }))
     }
 
-    return <PresetLoader data={scenarioOptions} onSelect={handleChangeScenario} />
-  }, [scenarioOptions, scenarioDispatch])
+    return (
+      <ScenarioLoaderModalButton
+        scenarioOptions={scenarioOptions}
+        onScenarioSelect={handleChangeScenario}
+        scenarioDispatch={scenarioDispatch}
+        setSeverity={setSeverity}
+      />
+    )
+  }, [scenarioOptions, scenarioDispatch, setSeverity])
 
   return (
     <CardWithControls
@@ -74,7 +91,7 @@ function ScenarioCard({
       <>
         <Row>
           <Col xl={12} className="my-2">
-            <h1>{title}</h1>
+            <ScenarioTitle title={title} onRename={handleScenarioRename} />
           </Col>
         </Row>
         <Row>
@@ -89,7 +106,7 @@ function ScenarioCard({
 
         <Row noGutters>
           <Col className="my-2">
-            <ScenarioCardContainment values={values} errors={errors} touched={touched} />
+            <ScenarioCardContainment scenario={scenario} errors={errors} touched={touched} />
           </Col>
         </Row>
 

@@ -1,7 +1,20 @@
 import React from 'react'
 
-import { CartesianGrid, XAxis, YAxis, Line, Area, ComposedChart } from 'recharts'
+import {
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Line,
+  Area,
+  Tooltip,
+  TooltipProps,
+  LabelFormatter,
+  Coordinate,
+  ComposedChart,
+} from 'recharts'
 import { TimeSeriesWithRange } from '../../../algorithms/types/Result.types'
+
+import { R0PlotTooltip } from './LinePlotTooltip'
 
 export interface R0PlotProps {
   R0Trajectory: TimeSeriesWithRange
@@ -9,19 +22,38 @@ export interface R0PlotProps {
   height: number
   tMin: number
   tMax: number
+  labelFormatter: LabelFormatter
+  tooltipPosition?: Coordinate
+  tooltipValueFormatter: (value: number | string) => string
 }
 
-export function R0Plot({ R0Trajectory, width, height, tMin, tMax }: R0PlotProps) {
+export function R0Plot({
+  R0Trajectory,
+  width,
+  height,
+  tMin,
+  tMax,
+  labelFormatter,
+  tooltipPosition,
+  tooltipValueFormatter,
+}: R0PlotProps) {
   const plotData = R0Trajectory.mean.map((d, i) => {
     return {
       time: d.t,
       one: 1.0,
-      mean: d.y,
+      median: d.y,
       range: [R0Trajectory.lower[i].y, R0Trajectory.upper[i].y],
     }
   })
   const R0Color = '#883322'
   const dataMax = Math.ceil(Math.max(...plotData.map((d) => d.range[1])))
+
+  let tooltipItems: { [key: string]: number | number[] | undefined } = {}
+  plotData.forEach((d) => {
+    tooltipItems = { ...tooltipItems, ...d }
+  })
+
+  const tooltipItemToDisplay = ['median']
 
   return (
     <ComposedChart
@@ -51,13 +83,20 @@ export function R0Plot({ R0Trajectory, width, height, tMin, tMax }: R0PlotProps)
         label={{ value: 'Rt', angle: -90 }}
         domain={[0, dataMax]}
       />
+      <Tooltip
+        labelFormatter={labelFormatter}
+        position={tooltipPosition}
+        content={(props: TooltipProps) => (
+          <R0PlotTooltip valueFormatter={tooltipValueFormatter} itemsToDisplay={tooltipItemToDisplay} {...props} />
+        )}
+      />
       <Line
-        key={'mean'}
+        key={'median'}
         dot={false}
         isAnimationActive={false}
         type="monotone"
         strokeWidth={3}
-        dataKey={'mean'}
+        dataKey={'median'}
         stroke={R0Color}
         name={'Average R0'}
         yAxisId="R0Axis"
