@@ -340,18 +340,17 @@ def load_data(key, ts):
     return days[good_idx], data
 
 
-def get_fit_data(days, data_original, confinement_start=None):
+def get_fit_data(days, data_original, end_discard=3):
+    """
+    Select the relevant part of the data for the fitting procedure. The early datapoints where there is less
+    than 20 cases are removed. The last 3 days are also removed (due to latency of reporting)
+    """
     data = copy.deepcopy(data_original)
     case_min = 20
-
-    if confinement_start is None:
-        fit_stop_day = days[-1]
-    else:
-        fit_stop_day = confinement_start + 1.0/DefaultRates.latency + 1.0/DefaultRates.infection
     day0 = days[case_min <= data[Sub.T]][0]
 
     # Filter points
-    good_idx = np.bitwise_and(days >= day0, days <= fit_stop_day)
+    good_idx = np.bitwise_and(days >= day0, days < days[-1] - end_discard)
     for idx in [Sub.D, Sub.T, Sub.H, Sub.C]:
         if data[idx] is None:
             data[idx] = np.ma.array([np.nan])
@@ -371,6 +370,12 @@ def get_fit_data(days, data_original, confinement_start=None):
 
 
 def fit_population_iterative(key, time_points, data, guess=None, second_fit=False, FRA=False):
+    """
+    Iterative fitting procedure. First, R_effective is estimated from the data and fitted using a stair
+    function to deduce R0, the containment start date and the efficacy of the containement. Secondly, these
+    parameters are used to optimize the reported fraction and the initial number of infected people using the
+    fit_params function.
+    """
     if data is None or data[Sub.D] is None or len(data[Sub.D]) <= 14:
         return None
 
@@ -477,7 +482,7 @@ if __name__ == "__main__":
     # key = "DEU-Berlin"
     # Raw data and time points
     time, data = load_data(key, CASE_DATA[key])
-    model_tps, fit_data = get_fit_data(time, data, confinement_start=None)
+    model_tps, fit_data = get_fit_data(time, data)
 
     # Fitting over the pre-confinement days
     res = fit_population_iterative(key, model_tps, fit_data, FRA=False)
