@@ -115,41 +115,43 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
   )
 
   return (
-    <Row noGutters className="mb-1">
-      <Col xs={11} sm={11} md={11} lg={10} xl={11}>
-        <Row noGutters className="pr-1 pr-sm-1 pr-md-1 pr-lg-1 pr-xl-1">
-          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-            <FastField
-              className={`form-control ${nameHasError ? 'border-danger' : ''}`}
-              id={`mitigation.mitigationIntervals[${index}].name`}
-              name={`mitigation.mitigationIntervals[${index}].name`}
-              type="text"
-            />
-          </Col>
-          <Col xs="auto" sm="auto" md="auto" lg="5" xl="auto" className="align-self-center">
-            <MitigationDatePicker
-              identifier={`mitigation.mitigationIntervals[${index}].timeRange`}
-              value={interval.timeRange}
-              allowPast
-            />
-          </Col>
-          <Col className="align-self-center">
-            <RangeSpinBox
-              identifier={`mitigation.mitigationIntervals[${index}].transmissionReduction`}
-              step={0.1}
-              min={0}
-              max={100}
-              hasError={transmissionReductionHasError}
-            />
-          </Col>
-        </Row>
-      </Col>
-      <Col classname="align-self-center">
-        <Button type="button" onClick={() => arrayHelpers.remove(index)}>
-          <FaTrash />
-        </Button>
-      </Col>
+    <>
+      <Row noGutters className="mb-1">
+        <Col xs={11} sm={11} md={11} lg={10} xl={11} style={{ border: '1px solid black' }}>
+          <Row noGutters className="pr-1 pr-sm-1 pr-md-1 pr-lg-1 pr-xl-1">
+            <Col xs="12" sm="12" md="auto" lg="auto" xl="12" className="p-1 align-self-center">
+              <MitigationDatePicker
+                identifier={`mitigation.mitigationIntervals[${index}].timeRange`}
+                value={interval.timeRange}
+                allowPast
+              />
+            </Col>
+            <Col xs={12} sm={12} md={5} lg={12} xl={12} className="p-1">
+              <FastField
+                className={`form-control ${nameHasError ? 'border-danger' : ''}`}
+                id={`mitigation.mitigationIntervals[${index}].name`}
+                name={`mitigation.mitigationIntervals[${index}].name`}
+                type="text"
+              />
+            </Col>
+            <Col className="p-1 align-self-center">
+              <RangeSpinBox
+                identifier={`mitigation.mitigationIntervals[${index}].transmissionReduction`}
+                step={0.1}
+                min={0}
+                max={100}
+                hasError={transmissionReductionHasError}
+              />
+            </Col>
+          </Row>
+        </Col>
+        <Col classname="align-self-center">
+          <Button size="sm" onClick={() => arrayHelpers.remove(index)}>
+            <FaTrash />
+          </Button>
+        </Col>
+      </Row>
       <Row>{errorComponents}</Row>
-    </Row>
+    </>
   )
 }
