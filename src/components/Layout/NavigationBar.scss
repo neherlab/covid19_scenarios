@@ -1,7 +1,16 @@
+@import '../../styles/variables';
+
 .navbar {
+  min-width: 2em;
+  box-shadow: 2px 2px 5px 5px $gray-400;
+
+  &.navbar-dark.bg-dark {
+    background-color: $gray-700 !important;
+  }
+
   .navbar-brand-image {
-    height: 35px;
-    padding: 0;
+    height: 50px;
+    padding: 0 auto;
   }
 }
 

@@ -28,7 +28,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
 
   return (
     <CardWithControls
-      className="card--population h-100"
+      className="card-population h-100"
       identifier="populationScenario"
       labelComponent={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
       help={t('Parameters of the population in the health care system.')}

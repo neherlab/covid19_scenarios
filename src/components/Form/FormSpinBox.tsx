@@ -7,6 +7,8 @@ import { Col, FormGroup, Row } from 'reactstrap'
 
 import FormLabel from './FormLabel'
 
+import './FormSpinBox.scss'
+
 export interface FormSpinBoxProps<T> {
   identifier: string
   label: string
@@ -55,7 +57,7 @@ export function FormSpinBox<T>({
             </Col>
             <Col xl={5}>
               <Field
-                className={`form-control ${borderDanger}`}
+                className={`form-control form-spinbox ${borderDanger}`}
                 id={identifier}
                 name={identifier}
                 type="number"

@@ -1,7 +1,6 @@
 @use "sass:map";
 
 @import '../../../styles/variables';
-@import '../../../styles/bootstrap-variables';
 
 $lg: map.get($grid-breakpoints, 'lg');
 $md: map.get($grid-breakpoints, 'md');
@@ -37,7 +36,7 @@ $md: map.get($grid-breakpoints, 'md');
       left: 0;
       z-index: 10000;
       width: 99vw;
-      background-color: $body-bg;
+      background-color: $body-background;
     }
 
     .modal-body {
@@ -48,7 +47,7 @@ $md: map.get($grid-breakpoints, 'md');
 }
 
 .modal-content {
-  background-color: $body-bg;
+  background-color: $body-background;
 }
 
 .scenario-loader-card {
@@ -148,8 +147,8 @@ $md: map.get($grid-breakpoints, 'md');
 }
 
 .scenario-loader-button {
-  min-width: 100px;
-  text-transform: uppercase;
+  width: 80px;
+  min-height: 45px;
 
   @media screen and (max-width: $lg) {
     width: 100%;

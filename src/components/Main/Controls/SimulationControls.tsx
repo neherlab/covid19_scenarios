@@ -17,6 +17,8 @@ import { PlotControls } from './PlotControls'
 import { RunButtonContent } from './RunButtonContent'
 import { ModalbuttonSettings } from './ModalButtonSettings'
 
+import './SimulationControls.scss'
+
 const ICON_SIZE = 25
 
 export interface SimulationControlsProps {
@@ -78,7 +80,7 @@ function SimulationControls({
         title={t('Run in a new tab')}
       >
         <MdTab size={ICON_SIZE} />
-        <div>{t(`New tab`)}</div>
+        <div className="btn-text">{t(`New tab`)}</div>
       </LinkButton>
 
       <ModalButtonExport
@@ -97,7 +99,7 @@ function SimulationControls({
         title={t('Open Print Preview (Save as PDF or print)')}
       >
         <AiFillFilePdf size={ICON_SIZE} />
-        <div>{`PDF`}</div>
+        <div className="btn-text">{`PDF`}</div>
       </Button>
 
       <ModalButtonSharing buttonSize={ICON_SIZE} shareableLink={scenarioUrl} />

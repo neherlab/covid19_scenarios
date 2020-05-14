@@ -2,8 +2,8 @@
 @import './font-family-system';
 
 @import './variables';
-
 @import './bootstrap';
+@import './theme';
 
 @import '~@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
@@ -30,7 +30,7 @@ body {
   padding: 0 !important;
 
   @media not print {
-    background-color: $body-bg;
+    background-color: $body-background;
   }
 }
 
@@ -147,4 +147,9 @@ p {
 
 .btn-shadow {
   box-shadow: 4px 4px 10px 1px #222;
+}
+
+input[type='number'].form-control {
+  padding-left: 20px;
+  text-align: right;
 }

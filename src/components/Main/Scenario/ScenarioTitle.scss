@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
-@import '../../../styles/bootstrap-variables';
 
 .scenario-title-input {
+  min-height: 70px;
   overflow: hidden;
   font-size: 1.5em;
   font-weight: bold;
@@ -9,7 +9,7 @@
   white-space: nowrap;
 
   &:read-only {
-    background-color: $body-bg;
+    background-color: $body-background;
     border-color: transparent;
     box-shadow: none;
   }

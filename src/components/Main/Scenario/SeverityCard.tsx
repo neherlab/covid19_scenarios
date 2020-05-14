@@ -20,6 +20,7 @@ function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }
   const { t } = useTranslation()
   return (
     <CollapsibleCard
+      className="card-severity"
       identifier="severity-card"
       title={
         <>
@@ -28,7 +29,7 @@ function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }
         </>
       }
       help={t('Assumptions on severity which are informed by epidemiological and clinical observations in China')}
-      defaultCollapsed
+      defaultCollapsed={false}
     >
       <AgeGroupParameters
         severity={severity}

@@ -162,8 +162,8 @@ function Main({ initialState }: InitialStateComponentProps) {
   }
 
   return (
-    <Row>
-      <Col md={12}>
+    <Row noGutters className="row-main">
+      <Col>
         <Formik
           enableReinitialize
           initialValues={scenarioState.data}
@@ -176,9 +176,9 @@ function Main({ initialState }: InitialStateComponentProps) {
             const canRun = isValid && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)
 
             return (
-              <Form noValidate className="form">
-                <Row>
-                  <Col lg={4} {...colScenario} className="py-1 animate-flex-width">
+              <Form noValidate className="form form-main">
+                <Row className="row-form-main">
+                  <Col lg={4} {...colScenario} className="col-wrapper-scenario animate-flex-width">
                     <ScenarioCard
                       scenario={values}
                       severity={severity}
@@ -191,7 +191,7 @@ function Main({ initialState }: InitialStateComponentProps) {
                     />
                   </Col>
 
-                  <Col lg={8} {...colResults} className="py-1 animate-flex-width">
+                  <Col lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
                     <ResultsCard
                       canRun={canRun}
                       isRunning={isRunning}

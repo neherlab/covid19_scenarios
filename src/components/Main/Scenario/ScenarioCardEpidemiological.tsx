@@ -22,7 +22,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
 
   return (
     <CardWithControls
-      className="card--epidemiology h-100"
+      className="card-epidemiology h-100"
       identifier="epidemiologicalScenario"
       labelComponent={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
       help={t(

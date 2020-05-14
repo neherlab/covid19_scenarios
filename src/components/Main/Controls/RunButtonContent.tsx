@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 import { MdPlayArrow, MdRefresh } from 'react-icons/md'
 import Loader from 'react-loader-spinner'
 
@@ -12,6 +12,41 @@ export function RunningSpinner({ size }: RunningSpinerProps) {
   return <Loader type="ThreeDots" color="white" height={size} width={size} />
 }
 
+export interface ButtonState {
+  Icon: React.ElementType
+  text: string
+}
+
+const states: Record<'normalIdling' | 'normalRunning' | 'autorunIdling' | 'autorunRunning', ButtonState> = {
+  normalIdling: {
+    Icon: MdPlayArrow,
+    text: i18next.t(`Run`),
+  },
+  normalRunning: {
+    Icon: RunningSpinner,
+    text: i18next.t(`Running...`),
+  },
+  autorunIdling: {
+    Icon: MdRefresh,
+    text: i18next.t(`Refresh`),
+  },
+  autorunRunning: {
+    Icon: RunningSpinner,
+    text: i18next.t(`Refreshing...`),
+  },
+}
+
+export function RunButtonContentConcrete({ state, size }: { state: ButtonState; size: number }) {
+  const { Icon, text } = state
+
+  return (
+    <>
+      <Icon size={size} />
+      <div className="btn-text">{text}</div>
+    </>
+  )
+}
+
 export interface RunButtonContentProps {
   isRunning: boolean
   isAutorunEnabled: boolean
@@ -19,30 +54,14 @@ export interface RunButtonContentProps {
 }
 
 export function RunButtonContent({ isRunning, isAutorunEnabled, size = 35 }: RunButtonContentProps) {
-  const { t } = useTranslation()
-
-  if (isRunning) {
-    return (
-      <>
-        <RunningSpinner size={size} />
-        <div>{t(`Running...`)}</div>
-      </>
-    )
+  let state = states.autorunIdling
+  if (isAutorunEnabled && isRunning) {
+    state = states.autorunRunning
+  } else if (!isAutorunEnabled && !isRunning) {
+    state = states.normalIdling
+  } else if (!isAutorunEnabled && isRunning) {
+    state = states.normalRunning
   }
 
-  if (isRunning) {
-    return (
-      <>
-        <MdRefresh size={size} />
-        <div>{t(`Refresh`)}</div>
-      </>
-    )
-  }
-
-  return (
-    <>
-      <MdPlayArrow size={size} />
-      <div>{t(`Run`)}</div>
-    </>
-  )
+  return <RunButtonContentConcrete state={state} size={size} />
 }

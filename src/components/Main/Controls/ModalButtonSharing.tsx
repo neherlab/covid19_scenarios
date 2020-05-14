@@ -70,8 +70,8 @@ function ModalButtonSharing({ buttonSize, shareableLink }: ModalButtonSharingPro
         size="lg"
       >
         <ModalHeader toggle={close}>
-          <MdShare size={20} />
-          <span className="ml-2">{t(`Share`)}</span>
+          <MdShare size={30} />
+          <h3 className="ml-2 d-inline align-middle">{t('Share')}</h3>
         </ModalHeader>
         <ModalBody>
           <Row>
@@ -94,7 +94,7 @@ function ModalButtonSharing({ buttonSize, shareableLink }: ModalButtonSharingPro
               <Row className="mt-3">
                 <Col>
                   <InputGroup>
-                    <UrlTextInput text={shareableLink} />
+                    <UrlTextInput className="h-100" text={shareableLink} />
                     <InputGroupAddon addonType="append">
                       <ClipboardButton textToCopy={shareableLink} className="url-copy-button" />
                     </InputGroupAddon>

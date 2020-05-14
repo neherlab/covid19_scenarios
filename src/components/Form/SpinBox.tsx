@@ -1,8 +1,11 @@
 import React from 'react'
 
+import classNames from 'classnames'
 import { Field, FormikErrors, FormikTouched } from 'formik'
 
 import { getFormikErrors } from '../../helpers/getFormikErrors'
+
+import './SpinBox.scss'
 
 export interface FormSpinBoxProps<T> extends React.HTMLProps<HTMLInputElement> {
   identifier: string
@@ -25,10 +28,10 @@ export function SpinBox<T>({
   ...restProps
 }: FormSpinBoxProps<T>) {
   const errorMessage = getFormikErrors({ errors, touched, identifier: `${identifier}[0]` })
-  const borderDanger = errorMessage.length > 0 ? 'border-danger' : ''
+  const hasError = errorMessage.length > 0
   return (
     <Field
-      className={`form-control d-inline ${borderDanger}`}
+      className={classNames('form-control', 'd-inline', hasError && 'border-danger')}
       id={identifier}
       name={identifier}
       type="number"

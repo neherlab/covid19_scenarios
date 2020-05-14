@@ -1,11 +1,12 @@
 import React from 'react'
+
 import { Card, CardBody, CardHeader, Row, Col } from 'reactstrap'
+import classNames from 'classnames'
+
 import FormLabel from './FormLabel'
 
-export interface CardWithControlsProps extends React.HTMLProps<HTMLDivElement> {
-  children?: React.ReactNode | React.ReactNode[]
-  constrolsComponent?: React.ReactNode | React.ReactNode[]
-  className?: string
+export interface CardWithControlsProps extends React.PropsWithChildren<React.HTMLProps<HTMLDivElement>> {
+  controlsComponent?: React.ReactNode | React.ReactNode[]
   identifier: string
   labelComponent: string | React.ReactNode
   help?: string | React.ReactNode
@@ -13,9 +14,9 @@ export interface CardWithControlsProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 export function CardWithControls({
-  children,
-  constrolsComponent,
   className,
+  children,
+  controlsComponent,
   identifier,
   labelComponent,
   help,
@@ -25,18 +26,18 @@ export function CardWithControls({
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
-    <Card ref={ref} className={className ?? ''} {...restProps}>
-      <CardHeader className="py-1 px-2">
+    <Card itemRef={ref} className={classNames(className, 'card-with-controls')} {...restProps}>
+      <CardHeader className="card-with-controls-header">
         <Row>
-          <Col lg={7}>
+          <Col lg={8} className="d-flex">
             <FormLabel identifier={identifier} label={labelComponent} help={help} />
           </Col>
-          <Col lg={3} className="ml-auto text-right">
-            {constrolsComponent}
+          <Col lg={3} className="ml-auto text-right px-0">
+            {controlsComponent}
           </Col>
         </Row>
       </CardHeader>
-      <CardBody>{children}</CardBody>
+      <CardBody className="card-with-controls-body">{children}</CardBody>
     </Card>
   )
 }

@@ -1,13 +1,13 @@
 import React, { useRef } from 'react'
 
 import classNames from 'classnames'
-import { Input } from 'reactstrap'
+import { Input, InputProps } from 'reactstrap'
 
-export interface UrlTextInputProps {
+export interface UrlTextInputProps extends InputProps {
   text: string
 }
 
-function UrlTextInput({ text }: UrlTextInputProps) {
+function UrlTextInput({ text, className, ...restProps }: UrlTextInputProps) {
   const inputRef: React.RefObject<HTMLInputElement | undefined> = useRef(undefined)
 
   function selectAll() {
@@ -20,7 +20,7 @@ function UrlTextInput({ text }: UrlTextInputProps) {
 
   return (
     <Input
-      className={classNames('form-control', 'url-text-input')}
+      className={classNames('form-control', 'url-text-input', 'h-100', className)}
       type="text"
       value={text}
       onFocus={selectAll}
@@ -32,6 +32,7 @@ function UrlTextInput({ text }: UrlTextInputProps) {
       // @ts-ignore
       innerRef={inputRef}
       readOnly
+      {...restProps}
     />
   )
 }

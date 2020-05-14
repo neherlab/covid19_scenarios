@@ -21,6 +21,7 @@ function ScenarioCardContainment({ scenario, errors, touched }: ScenarioCardCont
 
   return (
     <CollapsibleCard
+      className="card-mitigation"
       defaultCollapsed={false}
       identifier="containmentScenario"
       title={<h3 className="p-0 d-inline text-truncate">{t('Mitigation')}</h3>}

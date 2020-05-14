@@ -98,7 +98,7 @@ export function ExportFileElement({
       <span className="export-file-icon-container">
         <Icon />
       </span>
-      <div className="ml-3 d-inline-block">
+      <div className="mx-3 d-inline-block">
         <pre className="mb-0 export-file-filename">{filename}</pre>
         <p className="my-0 small">{HelpMain}</p>
         <p className="my-0 small">{HelpDetails}</p>
@@ -187,12 +187,12 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
         title={t(`Download parameters and results`)}
       >
         <MdFileDownload size={buttonSize} />
-        <div>{t(`Export`)}</div>
+        <div className="btn-text">{t(`Export`)}</div>
       </Button>
       <Modal className="export-modal" centered isOpen={isOpen} toggle={toggleOpen} fade={false} size="lg">
         <ModalHeader toggle={close}>
-          <MdFileDownload size={20} />
-          <span className="ml-2">{t(`Export`)}</span>
+          <MdFileDownload size={30} />
+          <h3 className="ml-2 d-inline align-middle">{t(`Export`)}</h3>
         </ModalHeader>
         <ModalBody>
           <Row>

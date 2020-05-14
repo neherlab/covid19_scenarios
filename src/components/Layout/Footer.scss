@@ -1,10 +1,12 @@
+@import '../../styles/variables';
+
 .main-wrapper {
   min-height: 100vh;
 }
 
 .footer {
   bottom: -1px;
-  min-height: 40px;
-  color: #ccc;
-  background-color: #343a40;
+  min-height: 3em;
+  color: $gray-200;
+  background-color: $gray-700;
 }

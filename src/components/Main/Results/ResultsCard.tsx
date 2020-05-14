@@ -111,10 +111,10 @@ function ResultsCardFunction({
     <>
       <CardWithControls
         identifier="results-card"
-        className="card--main"
+        className="card-results"
         labelComponent={
           <h2 className="p-0 m-0 text-truncate d-flex align-items-center" data-testid="ResultsCardTitle">
-            <Button onClick={toggleResultsMaximized} className="btn-dark mr-2 d-none d-xl-block">
+            <Button onClick={toggleResultsMaximized} className="btn-dark btn-results-expand mr-2 d-none d-xl-block">
               {areResultsMaximized ? <FiChevronRight /> : <FiChevronLeft />}
             </Button>
             <span>{t('Results')}</span>
@@ -123,7 +123,7 @@ function ResultsCardFunction({
         help={t('This section contains simulation results')}
         ref={scrollTargetRef}
       >
-        <Row noGutters className="mb-1">
+        <Row noGutters className="row-results-simulation-controls">
           <Col>
             <SimulationControls
               isRunning={isRunning}
@@ -145,40 +145,61 @@ function ResultsCardFunction({
           </Col>
         </Row>
 
-        <CardWithControls
-          identifier="trajectories"
-          labelComponent={<h3 className="p-0 m-0 d-inline text-truncate">{t('Outbreak trajectories')}</h3>}
-          help={t('Outbreak trajectories.')}
-        >
-          <Row noGutters>
-            <Col>
-              <DeterministicLinePlot
-                data={result}
-                params={scenarioData}
-                logScale={logScale}
+        <Row noGutters className="row-results-trajectories">
+          <Col>
+            <CardWithControls
+              className="card-trajectories"
+              identifier="trajectories"
+              labelComponent={<h3 className="d-inline text-truncate">{t('Outbreak trajectories')}</h3>}
+              help={t('Outbreak trajectories.')}
+            >
+              <Row noGutters>
+                <Col>
+                  <DeterministicLinePlot
+                    data={result}
+                    params={scenarioData}
+                    logScale={logScale}
+                    showHumanized={showHumanized}
+                    caseCounts={caseCounts}
+                  />
+                </Col>
+              </Row>
+            </CardWithControls>
+          </Col>
+        </Row>
+
+        <Row noGutters className="row-results-age-distribution">
+          <Col>
+            <CardWithControls
+              className="card-age-distribution"
+              identifier="age-distribution"
+              labelComponent={<h3 className="d-inline text-truncate">{t('Distribution across age groups')}</h3>}
+              help={t('Distribution across age groups')}
+            >
+              <AgeBarChart
                 showHumanized={showHumanized}
-                caseCounts={caseCounts}
+                data={result}
+                rates={severity}
+                ageDistribution={ageDistribution}
               />
-            </Col>
-          </Row>
-        </CardWithControls>
+            </CardWithControls>
+          </Col>
+        </Row>
 
-        <CardWithControls
-          identifier="age-distribution"
-          labelComponent={<h3 className="p-0 m-0 d-inline text-truncate">{t('Distribution across age groups')}</h3>}
-          help={t('Distribution across age groups')}
-        >
-          <AgeBarChart showHumanized={showHumanized} data={result} rates={severity} ageDistribution={ageDistribution} />
-        </CardWithControls>
-
-        <CardWithControls
-          identifier="outcomes"
-          labelComponent={<h3 className="p-0 m-0 d-inline text-truncate">{t('Outcomes')}</h3>}
-          help={t('Outcomes')}
-        >
-          <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
-        </CardWithControls>
+        <Row noGutters className="row-results-outcomes">
+          <Col>
+            <CardWithControls
+              className="card-outcomes"
+              identifier="outcomes"
+              labelComponent={<h3 className="d-inline text-truncate">{t('Outcomes')}</h3>}
+              help={t('Outcomes')}
+            >
+              <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
+            </CardWithControls>
+          </Col>
+        </Row>
       </CardWithControls>
+
       {result && (
         <Button className="goToResultsBtn" color="primary" onClick={scrollToResults}>
           {t('Go to results')}
