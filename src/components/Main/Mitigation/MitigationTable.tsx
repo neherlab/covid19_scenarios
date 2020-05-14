@@ -131,7 +131,11 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                   className="align-self-center"
                   style={{ minWidth: '2rem', maxWidth: '2rem' }}
                 >
-                  <FormLabel identifier="" label="" help={t('Time period of mitigation effect')} />
+                  <FormLabel
+                    identifier={`mitigation.mitigationIntervals[${index}].timeRange`}
+                    label=""
+                    help={t('Time period of mitigation effect')}
+                  />
                 </Col>
                 <Col>
                   <MitigationDatePicker
@@ -153,7 +157,11 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                   style={{ minWidth: '2rem', maxWidth: '2rem' }}
                   className="align-self-center"
                 >
-                  <FormLabel identifier="" label="" help={t('A description of the mitigation')} />
+                  <FormLabel
+                    identifier={`mitigation.mitigationIntervals[${index}].name`}
+                    label=""
+                    help={t('A description of the mitigation')}
+                  />
                 </Col>
                 <Col>
                   <FastField
@@ -176,7 +184,11 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                   style={{ minWidth: '2rem', maxWidth: '2rem' }}
                   className="align-self-center"
                 >
-                  <FormLabel identifier="" label="" help={t('The effectiveness of the mitigation.')} />
+                  <FormLabel
+                    identifier={`mitigation.mitigationIntervals[${index}].transmissionReduction`}
+                    label=""
+                    help={t('The effectiveness of the mitigation.')}
+                  />
                 </Col>
                 <Col>
                   <RangeSpinBox
