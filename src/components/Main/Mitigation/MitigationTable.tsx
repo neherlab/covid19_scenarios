@@ -120,28 +120,67 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
         <Col xs={11} sm={11} md={11} lg={10} xl={11} style={{ border: '1px solid black' }}>
           <Row noGutters className="pr-1 pr-sm-1 pr-md-1 pr-lg-1 pr-xl-1">
             <Col xs="12" sm="12" md="auto" lg="auto" xl="12" className="p-1 align-self-center">
-              <MitigationDatePicker
-                identifier={`mitigation.mitigationIntervals[${index}].timeRange`}
-                value={interval.timeRange}
-                allowPast
-              />
+              <Row noGutters>
+                <Col
+                  xs={2}
+                  sm={2}
+                  xl={1}
+                  className="d-md-none d-lg-none align-self-center"
+                  style={{ maxWidth: '5rem' }}
+                >
+                  Dates
+                </Col>
+                <Col>
+                  <MitigationDatePicker
+                    identifier={`mitigation.mitigationIntervals[${index}].timeRange`}
+                    value={interval.timeRange}
+                    allowPast
+                  />
+                </Col>
+              </Row>
             </Col>
             <Col xs={12} sm={12} md={5} lg={12} xl={12} className="p-1">
-              <FastField
-                className={`form-control ${nameHasError ? 'border-danger' : ''}`}
-                id={`mitigation.mitigationIntervals[${index}].name`}
-                name={`mitigation.mitigationIntervals[${index}].name`}
-                type="text"
-              />
+              <Row noGutters>
+                <Col
+                  xs={2}
+                  sm={2}
+                  xl={1}
+                  className="d-md-none d-lg-none align-self-center"
+                  style={{ maxWidth: '5rem' }}
+                >
+                  Label
+                </Col>
+                <Col>
+                  <FastField
+                    className={`form-control ${nameHasError ? 'border-danger' : ''}`}
+                    id={`mitigation.mitigationIntervals[${index}].name`}
+                    name={`mitigation.mitigationIntervals[${index}].name`}
+                    type="text"
+                  />
+                </Col>
+              </Row>
             </Col>
             <Col className="p-1 align-self-center">
-              <RangeSpinBox
-                identifier={`mitigation.mitigationIntervals[${index}].transmissionReduction`}
-                step={0.1}
-                min={0}
-                max={100}
-                hasError={transmissionReductionHasError}
-              />
+              <Row noGutters>
+                <Col
+                  xs={2}
+                  sm={2}
+                  xl={1}
+                  className="d-md-none d-lg-none align-self-center"
+                  style={{ maxWidth: '5rem' }}
+                >
+                  Strength
+                </Col>
+                <Col>
+                  <RangeSpinBox
+                    identifier={`mitigation.mitigationIntervals[${index}].transmissionReduction`}
+                    step={0.1}
+                    min={0}
+                    max={100}
+                    hasError={transmissionReductionHasError}
+                  />
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Col>
