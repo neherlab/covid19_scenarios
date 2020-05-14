@@ -96,10 +96,10 @@ Quantitatively, we solve the following system of equations to estimate hospital 
 $$
 \begin{aligned}
 \frac{dS_{a}(t)}{dt} & = - N^{-1}\beta_a(t) S_a(t)\sum_{b}I_b(t) \\
-\frac{dE_{a1}(t)}{dt} & = N^{-1}\beta_a(t) S_a(t)\sum_{b}I_b(t) - 3E_{a1}(t)/t_l \\
-\frac{dE_{a2}(t)}{dt} & =  3E_{a1}(t)/t_l - 3E_{a2}(t)/t_l \\
-\frac{dE_{a3}(t)}{dt} & =  3E_{a2}(t)/t_l - 3E_{a3}(t)/t_l \\
-\frac{dI_{a}(t)}{dt} & = 3E_{a3}(t)/t_l - I_a(t)/t_i \\
+\frac{dE_{a}^1(t)}{dt} & = N^{-1}\beta_a(t) S_a(t)\sum_{b}I_b(t) - 3E_{a}^2(t)/t_l \\
+\frac{dE_{a}^2(t)}{dt} & =  3E_{a}^1(t)/t_l - 3E_{a}^2(t)/t_l \\
+\frac{dE_{a}^3(t)}{dt} & =  3E_{a}^2(t)/t_l - 3E_{a}^3(t)/t_l \\
+\frac{dI_{a}(t)}{dt} & = 3E_{a}^3(t)/t_l - I_a(t)/t_i \\
 \frac{dH_{a}(t)}{dt} & = (1-m_a) I_a(t)/t_i + (1-f_a) C_a(t)/t_c - H_a(t)/t_h \\
 \frac{dC_{a}(t)}{dt} & = c_a H_a(t)/t_h - C_a(t)/t_c \\
 \frac{dR_{a}(t)}{dt} & = m_a I_a(t)/t_i + (1-c_a)H_a(t)/t_h \\
