@@ -123,13 +123,15 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
             <Col xs="12" sm="12" md="auto" lg="auto" xl="12" className="p-1 align-self-center">
               <Row noGutters>
                 <Col
-                  xs={2}
-                  sm={2}
+                  xs={1}
+                  sm={1}
+                  md={1}
+                  lg={1}
                   xl={1}
-                  className="d-md-none d-lg-none align-self-center"
-                  style={{ minWidth: '6rem', maxWidth: '6rem' }}
+                  className="align-self-center"
+                  style={{ minWidth: '2rem', maxWidth: '2rem' }}
                 >
-                  <FormLabel identifier={''} label={t('Dates')} help={t('Time period of mitigation effect')} />
+                  <FormLabel identifier="" label="" help={t('Time period of mitigation effect')} />
                 </Col>
                 <Col>
                   <MitigationDatePicker
@@ -143,13 +145,15 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
             <Col xs={12} sm={12} md={5} lg={12} xl={12} className="p-1">
               <Row noGutters>
                 <Col
-                  xs={2}
-                  sm={2}
+                  xs={1}
+                  sm={1}
+                  md={1}
+                  lg={1}
                   xl={1}
-                  className="d-md-none d-lg-none align-self-center"
-                  style={{ minWidth: '6rem', maxWidth: '6rem' }}
+                  style={{ minWidth: '2rem', maxWidth: '2rem' }}
+                  className="align-self-center"
                 >
-                  <FormLabel identifier={''} label={t('Label')} help={t('A description of the mitigation')} />
+                  <FormLabel identifier="" label="" help={t('A description of the mitigation')} />
                 </Col>
                 <Col>
                   <FastField
@@ -164,13 +168,15 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
             <Col className="p-1 align-self-center">
               <Row noGutters>
                 <Col
-                  xs={2}
-                  sm={2}
+                  xs={1}
+                  sm={1}
+                  md={1}
+                  lg={1}
                   xl={1}
-                  className="d-md-none d-lg-none align-self-center"
-                  style={{ minWidth: '6rem', maxWidth: '6rem' }}
+                  style={{ minWidth: '2rem', maxWidth: '2rem' }}
+                  className="align-self-center"
                 >
-                  <FormLabel identifier={''} label={t('Strength')} help={t('The effectiveness of the mitigation.')} />
+                  <FormLabel identifier="" label="" help={t('The effectiveness of the mitigation.')} />
                 </Col>
                 <Col>
                   <RangeSpinBox
@@ -185,7 +191,7 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
             </Col>
           </Row>
         </Col>
-        <Col classname="align-self-center">
+        <Col className="pl-1 align-self-center">
           <Button size="sm" onClick={() => arrayHelpers.remove(index)}>
             <FaTrash />
           </Button>
