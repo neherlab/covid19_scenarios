@@ -134,7 +134,7 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                   <FormLabel
                     identifier={`mitigation.mitigationIntervals[${index}].timeRange`}
                     label=""
-                    help={t('Time period of mitigation effect')}
+                    help={t('Start and end date of the mitigation measure.')}
                   />
                 </Col>
                 <Col>
@@ -160,7 +160,7 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                   <FormLabel
                     identifier={`mitigation.mitigationIntervals[${index}].name`}
                     label=""
-                    help={t('A description of the mitigation')}
+                    help={t('A descriptive name for the mitigation measure.')}
                   />
                 </Col>
                 <Col>
@@ -187,7 +187,7 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                   <FormLabel
                     identifier={`mitigation.mitigationIntervals[${index}].transmissionReduction`}
                     label=""
-                    help={t('The effectiveness of the mitigation.')}
+                    help={t('The % effectiveness of the mitigation measure.')}
                   />
                 </Col>
                 <Col>
