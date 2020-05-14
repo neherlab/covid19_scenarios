@@ -13,6 +13,7 @@ import { suggestNextMitigationInterval } from '../../../algorithms/utils/createM
 
 import { MitigationDatePicker } from './MitigationDatePicker'
 import { RangeSpinBox } from '../../Form/RangeSpinBox'
+import FormLabel from '../../Form/FormLabel'
 
 import { getFormikErrors } from '../../../helpers/getFormikErrors'
 
@@ -126,9 +127,9 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                   sm={2}
                   xl={1}
                   className="d-md-none d-lg-none align-self-center"
-                  style={{ maxWidth: '5rem' }}
+                  style={{ minWidth: '6rem', maxWidth: '6rem' }}
                 >
-                  Dates
+                  <FormLabel identifier={''} label={t('Dates')} help={t('Time period of mitigation effect')} />
                 </Col>
                 <Col>
                   <MitigationDatePicker
@@ -146,9 +147,9 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                   sm={2}
                   xl={1}
                   className="d-md-none d-lg-none align-self-center"
-                  style={{ maxWidth: '5rem' }}
+                  style={{ minWidth: '6rem', maxWidth: '6rem' }}
                 >
-                  Label
+                  <FormLabel identifier={''} label={t('Label')} help={t('A description of the mitigation')} />
                 </Col>
                 <Col>
                   <FastField
@@ -167,9 +168,9 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                   sm={2}
                   xl={1}
                   className="d-md-none d-lg-none align-self-center"
-                  style={{ maxWidth: '5rem' }}
+                  style={{ minWidth: '6rem', maxWidth: '6rem' }}
                 >
-                  Strength
+                  <FormLabel identifier={''} label={t('Strength')} help={t('The effectiveness of the mitigation.')} />
                 </Col>
                 <Col>
                   <RangeSpinBox
