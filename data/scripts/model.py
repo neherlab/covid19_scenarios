@@ -364,7 +364,7 @@ def get_fit_data(days, data_original, end_discard=3):
             data[ii] = None
 
     # start the model 3 weeks prior.
-    time = np.concatenate(([day0-21], days[good_idx]))
+    time = np.concatenate(([day0-14], days[good_idx]))
     return time, data
 
 

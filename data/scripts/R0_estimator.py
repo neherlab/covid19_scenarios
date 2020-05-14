@@ -114,7 +114,7 @@ def err_function(x_drop, time, vec, val_o, val_e):
     # vec need to be masked to avoid nan
     return np.sum(np.abs(vec - stair_func(time, val_o, val_e, x_drop)))
 
-def stair_fits(time, data, nb_value=3, dropshift=4):
+def stair_fits(time, data, n_start_value=3, n_end_values=3, dropshift=4):
     """
     Estimate the 3 parameters to best fit R_0 with a stair function. The origin and end values are estimated
     using an average over the first/list nb_value points. The drop position is choosen to minimize the error function.
@@ -123,9 +123,9 @@ def stair_fits(time, data, nb_value=3, dropshift=4):
     stair_fits = empty_data_list()
     for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
         if data[ii] is not None:
-            val_o = np.mean(data[ii][~data[ii].mask][:nb_value])
-            val_e = np.mean(data[ii][~data[ii].mask][-nb_value:])
-            if len(data[ii][~data[ii].mask][:nb_value]) and len(data[ii][~data[ii].mask][-nb_value:]):
+            val_o = np.mean(data[ii][~data[ii].mask][:n_start_value])
+            val_e = np.mean(data[ii][~data[ii].mask][-n_end_values:])
+            if len(data[ii][~data[ii].mask][:n_start_value]) and len(data[ii][~data[ii].mask][-n_end_values:]):
                 drop = time[np.argmin([err_function(x, time, data[ii], val_o, val_e) for x in time])]
                 stair_fits[ii] = [val_o, val_e, drop+dropshift]
             else:
@@ -134,7 +134,7 @@ def stair_fits(time, data, nb_value=3, dropshift=4):
             stair_fits[ii] = None
     return stair_fits
 
-def get_Re_guess(time, cases, step=7, extremal_points=10, only_deaths=False):
+def get_Re_guess(time, cases, step=7, extremal_points_start=10, extremal_points_end=21, only_deaths=False):
     """
     Compute R_effective from the data and estimate the stair function fit parameters for this R_effective
     """
@@ -143,7 +143,7 @@ def get_Re_guess(time, cases, step=7, extremal_points=10, only_deaths=False):
     data_log_smoothed = log_smooth(diff_data)
     growth_rate = get_growth_rate(data_log_smoothed, step)
     R0_by_day = growth_rate_to_R0(growth_rate)
-    fits = stair_fits(time, R0_by_day, nb_value=extremal_points)
+    fits = stair_fits(time, R0_by_day, n_start_value=extremal_points_start, n_end_values=extremal_points_end)
     if only_deaths:
         fits[Sub.D][2] -= death_delay
 
@@ -218,7 +218,7 @@ if __name__ == "__main__":
 
     for ci, c in enumerate(country_list):
         time, data = load_data(c, case_counts[c])
-        res = get_Re_guess(time, data, extremal_points=10, only_deaths=True)
+        res = get_Re_guess(time, data, extremal_points_start=10, extremal_points_end=20, only_deaths=True)
         fit = res["fit"]
         R0_by_day = res["R0_by_day"]
         dates = [datetime.fromordinal(x) for x in time]
