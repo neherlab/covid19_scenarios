@@ -11,6 +11,7 @@ import type { ScenarioDatum, SeverityDistributionDatum, CaseCountsDatum } from '
 
 import { run } from '../../workers/algorithm'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
+import { ColCustom } from '../Layout/ColCustom'
 
 import { schema } from './validation/schema'
 
@@ -74,7 +75,7 @@ function Main({ initialState }: InitialStateComponentProps) {
   const [autorunSimulation, setAutorunSimulation] = useState(
     LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? true,
   )
-  const [areResultsMaximized, setAreResultsMaximized] = useState(false)
+  const [areResultsMaximized, setAreResultsMaximized] = useState(window?.innerWidth > 2000)
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, initialState.scenarioState)
 
   // TODO: Can this complex state be handled by formik too?
@@ -178,7 +179,7 @@ function Main({ initialState }: InitialStateComponentProps) {
             return (
               <Form noValidate className="form form-main">
                 <Row className="row-form-main">
-                  <Col lg={4} {...colScenario} className="col-wrapper-scenario animate-flex-width">
+                  <ColCustom lg={4} {...colScenario} className="col-wrapper-scenario animate-flex-width">
                     <ScenarioCard
                       scenario={values}
                       severity={severity}
@@ -189,9 +190,9 @@ function Main({ initialState }: InitialStateComponentProps) {
                       touched={touched}
                       areResultsMaximized={areResultsMaximized}
                     />
-                  </Col>
+                  </ColCustom>
 
-                  <Col lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
+                  <ColCustom lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
                     <ResultsCard
                       canRun={canRun}
                       isRunning={isRunning}
@@ -206,7 +207,7 @@ function Main({ initialState }: InitialStateComponentProps) {
                       areResultsMaximized={areResultsMaximized}
                       toggleResultsMaximized={toggleResultsMaximized}
                     />
-                  </Col>
+                  </ColCustom>
                 </Row>
               </Form>
             )
