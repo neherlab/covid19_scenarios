@@ -100,6 +100,14 @@ export function DeterministicLinePlot({
     caseCounts,
   )
 
+  const hasObservations = {
+    [DATA_POINTS.ObservedCases]: caseCounts && caseCounts.some((d) => d.cases),
+    [DATA_POINTS.ObservedICU]: caseCounts && caseCounts.some((d) => d.icu),
+    [DATA_POINTS.ObservedDeaths]: caseCounts && caseCounts.some((d) => d.deaths),
+    [DATA_POINTS.ObservedNewCases]: newEmpiricalCases && newEmpiricalCases.some((d) => d),
+    [DATA_POINTS.ObservedHospitalized]: caseCounts && caseCounts.some((d) => d.hospitalized),
+  }
+
   const observations =
     caseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
@@ -212,36 +220,14 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const hasObservations = {
-    cases: caseCounts && caseCounts.some((d) => d.cases),
-    ICU: caseCounts && caseCounts.some((d) => d.icu),
-    observedDeaths: caseCounts && caseCounts.some((d) => d.deaths),
-    newCases: newEmpiricalCases && newEmpiricalCases.some((d) => d),
-    hospitalized: caseCounts && caseCounts.some((d) => d.hospitalized),
-  }
-
-  const observationsWithDataToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
-    if (observations.length !== 0) {
-      if (hasObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
-        return true
-      }
-      if (hasObservations.newCases && itemToPlot.key === DATA_POINTS.ObservedNewCases) {
-        return true
-      }
-      if (hasObservations.hospitalized && itemToPlot.key === DATA_POINTS.ObservedHospitalized) {
-        return true
-      }
-      if (hasObservations.ICU && itemToPlot.key === DATA_POINTS.ObservedICU) {
-        return true
-      }
-      if (hasObservations.observedDeaths && itemToPlot.key === DATA_POINTS.ObservedDeaths) {
-        return true
-      }
+  const observationsHavingDataToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
+    if (observations.length) {
+      return hasObservations[itemToPlot.key]
     }
     return false
   })
 
-  const translatedPlots = translatePlots(t, observationsWithDataToPlot)
+  const translatedPlots = translatePlots(t, observationsHavingDataToPlot)
 
   let tooltipItems: { [key: string]: number | undefined } = {}
   consolidatedPlotData.forEach((d) => {
