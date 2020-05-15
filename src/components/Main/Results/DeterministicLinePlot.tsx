@@ -348,7 +348,7 @@ export function DeterministicLinePlot({
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
 
-                {translatePlots(t, linesToPlot).map((d) => (
+                {linesToPlot.map((d) => (
                   <Line
                     key={d.key}
                     dot={false}

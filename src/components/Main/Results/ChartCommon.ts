@@ -45,15 +45,15 @@ export const colors = {
 }
 
 export const linesToPlot: LineProps[] = [
-  { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: 'Susceptible', legendType: 'line' },
-  { key: DATA_POINTS.Recovered, color: colors.recovered, name: 'Recovered', legendType: 'line' },
-  { key: DATA_POINTS.Infectious, color: colors.infectious, name: 'Infectious', legendType: 'line' },
-  { key: DATA_POINTS.Severe, color: colors.severe, name: 'Severely ill', legendType: 'line' },
-  { key: DATA_POINTS.Critical, color: colors.critical, name: 'Patients in ICU (model)', legendType: 'line' },
-  { key: DATA_POINTS.Overflow, color: colors.overflow, name: 'ICU overflow', legendType: 'line' },
-  { key: DATA_POINTS.Fatalities, color: colors.fatality, name: 'Cumulative deaths (model)', legendType: 'line' },
-  { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: 'Total hospital beds', legendType: 'none' },
-  { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: 'Total ICU/ICM beds', legendType: 'none' },
+  { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
+  { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
+  { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
+  { key: DATA_POINTS.Severe, color: colors.severe, name: t('Severely ill'), legendType: 'line' },
+  { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU (model)'), legendType: 'line' },
+  { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
+  { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths (model)'), legendType: 'line' },
+  { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
+  { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
 ]
 
 export const areasToPlot: LineProps[] = [
@@ -103,11 +103,11 @@ export const areasToPlot: LineProps[] = [
 
 export function observationsToPlot(casesDelta: number): LineProps[] {
   return [
-    { key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: 'Cumulative cases (data)' },
-    { key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: `Cases past ${casesDelta} day(s) (data)` },
-    { key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: 'Patients in hospital (data)' },
-    { key: DATA_POINTS.ObservedICU, color: colors.critical, name: 'Patients in ICU (data)' },
-    { key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: 'Cumulative deaths (data)' },
+    { key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative cases (data)') },
+    { key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t(`Cases past ${casesDelta} day(s) (data)`) },
+    { key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital (data)') },
+    { key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU (data)') },
+    { key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative deaths (data)') },
   ]
 }
 
