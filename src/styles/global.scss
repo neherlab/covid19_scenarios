@@ -97,6 +97,11 @@ p {
   transform: rotate(-90deg);
 }
 
+.icon-rotate-180 {
+  transition: transform linear 0.25s;
+  transform: rotate(180deg);
+}
+
 .btn.disabled,
 .btn:disabled {
   cursor: not-allowed;

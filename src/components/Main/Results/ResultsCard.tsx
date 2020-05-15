@@ -1,8 +1,9 @@
 import React, { createRef, useEffect, useMemo, useState } from 'react'
 
+import classNames from 'classnames'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { FiChevronLeft } from 'react-icons/fi'
 import urlJoin from 'proper-url-join'
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -18,7 +19,6 @@ import { CardWithControls } from '../../Form/CardWithControls'
 import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
-import { PlotControls } from '../Controls/PlotControls'
 import { SimulationControls } from '../Controls/SimulationControls'
 
 import './ResultsCard.scss'
@@ -114,8 +114,11 @@ function ResultsCardFunction({
         className="card-results"
         labelComponent={
           <h2 className="p-0 m-0 text-truncate d-flex align-items-center" data-testid="ResultsCardTitle">
-            <Button onClick={toggleResultsMaximized} className="btn-dark btn-results-expand mr-2 d-none d-xl-block">
-              {areResultsMaximized ? <FiChevronRight /> : <FiChevronLeft />}
+            <Button
+              onClick={toggleResultsMaximized}
+              className="btn-dark btn-results-expand mr-2 pt-1 pb-2 d-none d-xl-block"
+            >
+              <FiChevronLeft className={classNames(areResultsMaximized ? 'icon-rotate-180' : 'icon-rotate-0')} />
             </Button>
             <span>{t('Results')}</span>
           </h2>
