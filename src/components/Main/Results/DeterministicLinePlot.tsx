@@ -221,7 +221,7 @@ export function DeterministicLinePlot({
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
   const observationsHavingDataToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
-    if (observations.length) {
+    if (observations.length !== 0) {
       return hasObservations[itemToPlot.key]
     }
     return false
