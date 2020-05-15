@@ -362,7 +362,7 @@ export function DeterministicLinePlot({
                   />
                 ))}
 
-                {translatePlots(t, areasToPlot).map((d) => (
+                {areasToPlot.map((d) => (
                   <Area
                     key={d.key}
                     type="monotone"
