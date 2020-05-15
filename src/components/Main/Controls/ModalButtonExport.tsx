@@ -187,7 +187,6 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
         title={t(`Download parameters and results`)}
       >
         <MdFileDownload size={buttonSize} />
-        <div className="btn-text">{t(`Export`)}</div>
       </Button>
       <Modal className="export-modal" centered isOpen={isOpen} toggle={toggleOpen} fade={false} size="lg">
         <ModalHeader toggle={close}>

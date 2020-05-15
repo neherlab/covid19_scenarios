@@ -58,7 +58,6 @@ function ModalButtonSharing({ buttonSize, shareableLink }: ModalButtonSharingPro
         title={t(`Share a direct link to this simulation`)}
       >
         <MdShare size={buttonSize} />
-        <div>{t(`Share`)}</div>
       </Button>
       <Modal
         className="sharing-modal"

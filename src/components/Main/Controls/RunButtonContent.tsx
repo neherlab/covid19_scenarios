@@ -37,14 +37,9 @@ const states: Record<'normalIdling' | 'normalRunning' | 'autorunIdling' | 'autor
 }
 
 export function RunButtonContentConcrete({ state, size }: { state: ButtonState; size: number }) {
-  const { Icon, text } = state
+  const { Icon } = state
 
-  return (
-    <>
-      <Icon size={size} />
-      <div className="btn-text">{text}</div>
-    </>
-  )
+  return <Icon size={size} />
 }
 
 export interface RunButtonContentProps {

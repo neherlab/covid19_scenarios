@@ -3,7 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillFilePdf } from 'react-icons/ai'
 import { MdTab } from 'react-icons/md'
-import { Button, CustomInput, FormGroup } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -13,9 +13,8 @@ import type { State } from '../state/state'
 import LinkButton from '../../Buttons/LinkButton'
 import { ModalButtonExport } from './ModalButtonExport'
 import { ModalButtonSharing } from './ModalButtonSharing'
-import { PlotControls } from './PlotControls'
 import { RunButtonContent } from './RunButtonContent'
-import { ModalbuttonSettings } from './ModalButtonSettings'
+import { SettingsControls } from './SettingsControls'
 
 import './SimulationControls.scss'
 
@@ -80,7 +79,6 @@ function SimulationControls({
         title={t('Run in a new tab')}
       >
         <MdTab size={ICON_SIZE} />
-        <div className="btn-text">{t(`New tab`)}</div>
       </LinkButton>
 
       <ModalButtonExport
@@ -99,13 +97,11 @@ function SimulationControls({
         title={t('Open Print Preview (Save as PDF or print)')}
       >
         <AiFillFilePdf size={ICON_SIZE} />
-        <div className="btn-text">{`PDF`}</div>
       </Button>
 
       <ModalButtonSharing buttonSize={ICON_SIZE} shareableLink={scenarioUrl} />
 
-      <ModalbuttonSettings
-        buttonSize={ICON_SIZE}
+      <SettingsControls
         isLogScale={isLogScale}
         toggleLogScale={toggleLogScale}
         shouldFormatNumbers={shouldFormatNumbers}
