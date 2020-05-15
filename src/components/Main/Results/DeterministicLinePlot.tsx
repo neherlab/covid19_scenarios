@@ -212,29 +212,29 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const countObservations = {
+  const hasObservations = {
     cases: caseCounts && caseCounts.some((d) => d.cases),
     ICU: caseCounts && caseCounts.some((d) => d.icu),
     observedDeaths: caseCounts && caseCounts.some((d) => d.deaths),
     newCases: newEmpiricalCases && newEmpiricalCases.some((d) => d),
-    hospitalized: caseCounts && caseCounts.somw((d) => d.hospitalized),
+    hospitalized: caseCounts && caseCounts.some((d) => d.hospitalized),
   }
 
   const reducedObservationsToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
     if (observations.length !== 0) {
-      if (countObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
+      if (hasObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
         return true
       }
-      if (countObservations.newCases && itemToPlot.key === DATA_POINTS.ObservedNewCases) {
+      if (hasObservations.newCases && itemToPlot.key === DATA_POINTS.ObservedNewCases) {
         return true
       }
-      if (countObservations.hospitalized && itemToPlot.key === DATA_POINTS.ObservedHospitalized) {
+      if (hasObservations.hospitalized && itemToPlot.key === DATA_POINTS.ObservedHospitalized) {
         return true
       }
-      if (countObservations.ICU && itemToPlot.key === DATA_POINTS.ObservedICU) {
+      if (hasObservations.ICU && itemToPlot.key === DATA_POINTS.ObservedICU) {
         return true
       }
-      if (countObservations.observedDeaths && itemToPlot.key === DATA_POINTS.ObservedDeaths) {
+      if (hasObservations.observedDeaths && itemToPlot.key === DATA_POINTS.ObservedDeaths) {
         return true
       }
     }
