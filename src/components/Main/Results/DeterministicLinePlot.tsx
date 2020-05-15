@@ -100,14 +100,6 @@ export function DeterministicLinePlot({
     caseCounts,
   )
 
-  const countObservations = {
-    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: caseCounts?.filter((d) => d.icu).length ?? 0,
-    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: caseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
-    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
-  }
-
   const observations =
     caseCounts?.map((d, i) => ({
       time: new Date(d.time).getTime(),
@@ -219,6 +211,14 @@ export function DeterministicLinePlot({
 
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
+
+  const countObservations = {
+    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
+    ICU: caseCounts?.filter((d) => d.icu).length ?? 0,
+    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
+    newCases: caseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
+    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
+  }
 
   const reducedObservationsToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
     if (observations.length !== 0) {
