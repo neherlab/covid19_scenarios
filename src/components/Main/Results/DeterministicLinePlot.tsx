@@ -227,8 +227,6 @@ export function DeterministicLinePlot({
     return false
   })
 
-  const translatedPlots = translatePlots(t, observationsHavingDataToPlot)
-
   let tooltipItems: { [key: string]: number | undefined } = {}
   consolidatedPlotData.forEach((d) => {
     // @ts-ignore
@@ -332,7 +330,7 @@ export function DeterministicLinePlot({
                   }}
                 />
 
-                {translatedPlots.map((d) => (
+                {translatePlots(t, observationsHavingDataToPlot).map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
 
