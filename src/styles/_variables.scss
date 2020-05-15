@@ -20,12 +20,12 @@ $container-max-widths: (
   xxl: 1800px,
 );
 
-$font-family-sans-serif: 'Roboto', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial',
+$font-family-sans-serif: 'Source Sans Pro', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial',
   'system-ui', 'system-sans', 'sans-serif';
 $font-family-monospace: 'Roboto Mono', 'system-mono';
 $font-family-default: $font-family-sans-serif;
 $font-family-base: $font-family-default;
-$font-size-base: 0.875rem;
+$font-size-base: 1rem;
 
 $white: #fff;
 $gray-100: #f8f9fa; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
