@@ -220,7 +220,7 @@ export function DeterministicLinePlot({
     hospitalized: caseCounts && caseCounts.some((d) => d.hospitalized),
   }
 
-  const reducedObservationsToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
+  const observationsWithDataToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
     if (observations.length !== 0) {
       if (hasObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
         return true
@@ -241,7 +241,7 @@ export function DeterministicLinePlot({
     return false
   })
 
-  const translatedPlots = translatePlots(t, reducedObservationsToPlot)
+  const translatedPlots = translatePlots(t, observationsWithDataToPlot)
 
   let tooltipItems: { [key: string]: number | undefined } = {}
   consolidatedPlotData.forEach((d) => {
