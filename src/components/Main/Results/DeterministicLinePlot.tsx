@@ -220,7 +220,7 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const reducedObservationsToPlot = translatePlots(t, observationsToPlot(caseTimeWindow)).filter((itemToPlot) => {
+  const reducedObservationsToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
     if (observations.length !== 0) {
       if (countObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
         return true
@@ -240,6 +240,8 @@ export function DeterministicLinePlot({
     }
     return false
   })
+
+  const translatedPlots = translatePlots(t, reducedObservationsToPlot)
 
   let tooltipItems: { [key: string]: number | undefined } = {}
   consolidatedPlotData.forEach((d) => {
@@ -344,7 +346,7 @@ export function DeterministicLinePlot({
                   }}
                 />
 
-                {reducedObservationsToPlot.map((d) => (
+                {translatedPlots.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
 
