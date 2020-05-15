@@ -27,7 +27,7 @@ import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 import { calculatePosition, scrollToRef } from './chartHelper'
-import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
+import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS } from './ChartCommon'
 import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'

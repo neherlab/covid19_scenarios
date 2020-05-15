@@ -60,43 +60,43 @@ export const areasToPlot: LineProps[] = [
   {
     key: `${DATA_POINTS.Susceptible}Area`,
     color: colors.susceptible,
-    name: 'Susceptible uncertainty',
+    name: t('Susceptible uncertainty'),
     legendType: 'none',
   },
   {
     key: `${DATA_POINTS.Infectious}Area`,
     color: colors.infectious,
-    name: 'Infectious uncertainty',
+    name: t('Infectious uncertainty'),
     legendType: 'none',
   },
   {
     key: `${DATA_POINTS.Severe}Area`,
     color: colors.severe,
-    name: 'Severely ill uncertainty',
+    name: t('Severely ill uncertainty'),
     legendType: 'none',
   },
   {
     key: `${DATA_POINTS.Critical}Area`,
     color: colors.critical,
-    name: 'Patients in ICU (model) uncertainty',
+    name: t('Patients in ICU (model) uncertainty'),
     legendType: 'none',
   },
   {
     key: `${DATA_POINTS.Overflow}Area`,
     color: colors.overflow,
-    name: 'ICU overflow uncertainty',
+    name: t('ICU overflow uncertainty'),
     legendType: 'none',
   },
   {
     key: `${DATA_POINTS.Recovered}Area`,
     color: colors.recovered,
-    name: 'Recovered uncertainty',
+    name: t('Recovered uncertainty'),
     legendType: 'none',
   },
   {
     key: `${DATA_POINTS.Fatalities}Area`,
     color: colors.fatality,
-    name: 'Cumulative deaths (model) uncertainty',
+    name: t('Cumulative deaths (model) uncertainty'),
     legendType: 'none',
   },
 ]
@@ -109,10 +109,4 @@ export function observationsToPlot(casesDelta: number): LineProps[] {
     { key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU (data)') },
     { key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative deaths (data)') },
   ]
-}
-
-export function translatePlots(t: TFunction, lines: LineProps[]): LineProps[] {
-  return lines.map((line) => {
-    return { ...line, name: t(line.name) }
-  })
 }
