@@ -213,11 +213,11 @@ export function DeterministicLinePlot({
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
   const countObservations = {
-    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: caseCounts?.filter((d) => d.icu).length ?? 0,
-    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: caseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
-    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
+    cases: caseCounts && caseCounts.some((d) => d.cases),
+    ICU: caseCounts && caseCounts.some((d) => d.icu),
+    observedDeaths: caseCounts && caseCounts.some((d) => d.deaths),
+    newCases: newEmpiricalCases && newEmpiricalCases.some((d) => d),
+    hospitalized: caseCounts && caseCounts.somw((d) => d.hospitalized),
   }
 
   const reducedObservationsToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
