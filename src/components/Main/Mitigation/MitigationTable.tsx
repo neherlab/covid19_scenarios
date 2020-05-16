@@ -118,9 +118,9 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
   return (
     <>
       <Row noGutters className="mb-1">
-        <Col xs={11} sm={11} md={11} lg={10} xl={11} style={{ border: '1px solid black' }}>
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} style={{ border: '1px solid black' }}>
           <Row noGutters className="pr-1 pr-sm-1 pr-md-1 pr-lg-1 pr-xl-1">
-            <Col xs="12" sm="12" md="auto" lg="auto" xl="12" className="p-1 align-self-center">
+            <Col xs={12} sm={12} md={12} lg={12} xl={12} className="p-1 align-self-center">
               <Row noGutters>
                 <Col
                   xs={1}
@@ -143,6 +143,11 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
                     value={interval.timeRange}
                     allowPast
                   />
+                </Col>
+                <Col className="pl-1 align-self-center">
+                  <Button size="sm" className="float-right" onClick={() => arrayHelpers.remove(index)}>
+                    <FaTrash />
+                  </Button>
                 </Col>
               </Row>
             </Col>
@@ -202,11 +207,6 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
               </Row>
             </Col>
           </Row>
-        </Col>
-        <Col className="pl-1 align-self-center">
-          <Button size="sm" onClick={() => arrayHelpers.remove(index)}>
-            <FaTrash />
-          </Button>
         </Col>
       </Row>
       <Row>{errorComponents}</Row>
