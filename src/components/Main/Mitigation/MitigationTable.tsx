@@ -117,7 +117,7 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
 
   return (
     <>
-      <Row noGutters className="mb-1">
+      <Row noGutters className="mb-2">
         <Col xs={12} sm={12} md={12} lg={12} xl={12} style={{ border: '1px solid black' }}>
           <Row noGutters className="pr-1 pr-sm-1 pr-md-1 pr-lg-1 pr-xl-1">
             <Col xs={12} sm={12} md={12} lg={12} xl={12} className="p-1 align-self-center">
