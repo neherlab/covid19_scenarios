@@ -3,7 +3,6 @@
 # License: none specified
 time	cases	deaths	hospitalized	icu	recovered
 2020-03-06	1				
-2020-03-18	43				
 2020-03-20	66				
 2020-03-23	95	1			
 2020-03-24	104	1			
@@ -55,3 +54,4 @@ time	cases	deaths	hospitalized	icu	recovered
 2020-05-12	421	15	12		
 2020-05-13	423	15	12		
 2020-05-14	425	15	11		
+2020-05-15	427	15	6		
