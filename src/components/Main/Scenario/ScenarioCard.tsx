@@ -85,7 +85,9 @@ function ScenarioCard({
       identifier="scenarioName"
       className="card-scenario"
       labelComponent={<h2 className="p-0 m-0 text-truncate d-flex align-items-center">{t('Scenario')}</h2>}
-      help={t('Combination of population, epidemiology, and mitigation scenarios')}
+      help={t(
+        `This section allows to setup a scenario. A "scenario" is a set of parameters that describes a combination of population and epidemiological factors as well as a set of mitigation measures and severity assumptions to be used by the simulator.`,
+      )}
       controlsComponent={presetLoader}
     >
       <>

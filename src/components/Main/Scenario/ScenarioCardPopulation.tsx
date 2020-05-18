@@ -31,12 +31,12 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
       className="card-population h-100"
       identifier="populationScenario"
       labelComponent={<h3 className="p-0 m-0 d-inline text-truncate">{t('Population')}</h3>}
-      help={t('Parameters of the population in the health care system.')}
+      help={t('Parameters of the population served by the healthcare system.')}
     >
       <FormSpinBox
         identifier="population.populationServed"
         label={t('Population')}
-        help={t('Number of people served by health care system.')}
+        help={t('Number of people served by the healthcare system.')}
         step={1}
         min={0}
         errors={errors}
@@ -72,7 +72,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         identifier="population.hospitalBeds"
         label={`${t('Hospital Beds')} (${t('est.')})`}
         help={t(
-          'Number of hospital beds available in health care system. Presets are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
+          'Number of hospital beds available. The default values are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
         )}
         step={1}
         min={0}
@@ -83,7 +83,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         identifier="population.icuBeds"
         label={`${t('ICU/ICMU')} (${t('est.')})`}
         help={t(
-          'Number of ICU/ICMUs available in health care system. Presets are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
+          'Number of available beds in Intensive Care Units (ICUs). The default values are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
         )}
         step={1}
         min={0}

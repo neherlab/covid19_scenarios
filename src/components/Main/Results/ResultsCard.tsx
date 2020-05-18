@@ -154,7 +154,7 @@ function ResultsCardFunction({
               className="card-trajectories"
               identifier="trajectories"
               labelComponent={<h3 className="d-inline text-truncate">{t('Outbreak trajectories')}</h3>}
-              help={t('Outbreak trajectories.')}
+              help={t(`Simulation results over time`)}
             >
               <Row noGutters>
                 <Col>
@@ -177,7 +177,7 @@ function ResultsCardFunction({
               className="card-age-distribution"
               identifier="age-distribution"
               labelComponent={<h3 className="d-inline text-truncate">{t('Distribution across age groups')}</h3>}
-              help={t('Distribution across age groups')}
+              help={t('Summary of outcomes per age group')}
             >
               <AgeBarChart
                 showHumanized={showHumanized}
@@ -195,7 +195,7 @@ function ResultsCardFunction({
               className="card-outcomes"
               identifier="outcomes"
               labelComponent={<h3 className="d-inline text-truncate">{t('Outcomes')}</h3>}
-              help={t('Outcomes')}
+              help={t('Summary of outcomes for the entire population')}
             >
               <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
             </CardWithControls>

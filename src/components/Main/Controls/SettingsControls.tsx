@@ -33,7 +33,7 @@ function SettingsControls({
           <FormSwitch
             identifier="autorun"
             label={t('Run automatically')}
-            help={t('Run simulation automatically on parameter change')}
+            help={t('Run simulation automatically when any of the parameters change')}
             checked={isAutorunEnabled}
             onValueChanged={toggleAutorun}
           />
@@ -51,7 +51,7 @@ function SettingsControls({
           <FormSwitch
             identifier="showHumanized"
             label={t('Format numbers')}
-            help={t('Show numerical results in a human friendly format')}
+            help={t('Show numerical results in a human-friendly format')}
             checked={shouldFormatNumbers}
             onValueChanged={toggleFormatNumbers}
           />
