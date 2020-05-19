@@ -26,8 +26,8 @@ function SettingsControls({
 
   return (
     <Row noGutters className="mt-1 ml-2">
-      <Col className="d-flex my-auto">
-        <span className="mr-4" data-testid="AutorunSwitch">
+      <Col className="d-flex flex-wrap my-auto">
+        <span className="mr-4 flex-1" data-testid="AutorunSwitch">
           <FormSwitch
             identifier="autorun"
             label={t('Run automatically')}
@@ -36,7 +36,7 @@ function SettingsControls({
             onValueChanged={toggleAutorun}
           />
         </span>
-        <span className="mr-4" data-testid="LogScaleSwitch">
+        <span className="mr-4 flex-1" data-testid="LogScaleSwitch">
           <FormSwitch
             identifier="logScale"
             label={t('Log scale')}
@@ -45,7 +45,7 @@ function SettingsControls({
             onValueChanged={toggleLogScale}
           />
         </span>
-        <span data-testid="HumanizedValuesSwitch">
+        <span className="flex-1" data-testid="HumanizedValuesSwitch">
           <FormSwitch
             identifier="showHumanized"
             label={t('Format numbers')}
