@@ -25,9 +25,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
       className="card-epidemiology h-100"
       identifier="epidemiologicalScenario"
       labelComponent={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
-      help={t(
-        'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay.',
-      )}
+      help={t('Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay.')}
     >
       <FormRangeSpinBox
         identifier="epidemiological.r0"
