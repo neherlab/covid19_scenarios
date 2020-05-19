@@ -20,13 +20,12 @@ export function CardWithControls({
   identifier,
   labelComponent,
   help,
-  ref,
   ...restProps
 }: CardWithControlsProps) {
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
-    <Card itemRef={ref} className={classNames(className, 'card-with-controls')} {...restProps}>
+    <Card className={classNames(className, 'card-with-controls')} {...restProps}>
       <CardHeader className="card-with-controls-header">
         <Row>
           <Col lg={8} className="d-flex">
