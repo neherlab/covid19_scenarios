@@ -6,6 +6,7 @@ import numpy as np
 import multiprocessing as multi
 import yaml
 
+from uuid import uuid4
 sys.path.append('..')
 
 import generated.types as schema
@@ -14,7 +15,7 @@ from datetime import datetime, timedelta
 from scipy.stats import linregress
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS
 from scripts.tsv import parse as parse_tsv
-from scripts.model import fit_population
+from scripts.model import fit_population, load_data, get_fit_data, fit_population_iterative
 from jsonschema import validate, FormatChecker
 
 from typing import List
@@ -87,8 +88,11 @@ class Fitter:
 
         # ----------------------------------
         # Body
-
-        data = np.array([ ([to_ms(dp['time']), dp['cases'] or np.nan, dp['deaths'] or np.nan]) for dp in pop ])
+        try:
+            data = np.array([ ([to_ms(dp['time']), dp['cases'] or np.nan, dp['deaths'] or np.nan]) for dp in pop ])
+        except:
+            print(pop)
+            return None
 
         # Try to fit on death
         p = fit_cumulative(data[:,0], data[:,2])
@@ -109,8 +113,8 @@ class Fitter:
 class PercentageRange(schema.PercentageRange):
     def __init__(self, x):
         super(PercentageRange, self).__init__( \
-                begin = float(max(1, round(.9*x, 2))),
-                end = float(max(1, round(1.1*x, 2))))
+                begin = float(min(99,max(1, round(.9*x, 2)))),
+                end = float(min(99,max(1, round(1.1*x, 2)))))
 
 class NumericRange(schema.NumericRangeNonNegative):
     def __init__(self, x):
@@ -128,7 +132,7 @@ class DateRange(schema.DateRange):
                 end = tMax)
 
 class MitigationInterval(schema.MitigationInterval):
-    def __init__(self, name='Intervention', tMin=None, tMax=None, color='#cccccc', mitigationValue=0):
+    def __init__(self, name='Intervention', tMin=None, tMax=None, id='', color='#cccccc', mitigationValue=0):
         super(MitigationInterval, self).__init__( \
                 color = color,
                 transmission_reduction = PercentageRange(mitigationValue),
@@ -214,52 +218,82 @@ class ScenarioArray(schema.ScenarioArray):
         else:
             return wtr.write(json.dumps(self.to_dict()))
 
+
 # ------------------------------------------------------------------------
 # Functions
 
 def fit_one_case_data(args):
     Params = Fitter()
-    region, data = args
+    region, tmp_data = args
+    print(f"starting fit for {region}")
 
-    r = fit_population(region)
-    if r is None:
-        return (region, Params.fit(data))
+    time, data = load_data(region, tmp_data)
+    if len(time)==0:
+        return (region, None)
 
-    param = {"tMin": r['tMin'], "r0": np.exp(r['params'].rates.logR0), "initialCases": r["initialCases"]}
+    model_tps, fit_data = get_fit_data(time, data)
+
+    if region[:4]=='FRA-': #french don't report case data anymore
+        print("BLABLA")
+        r = fit_population_iterative(region, model_tps, fit_data, FRA=True)
+    else:
+        r = fit_population_iterative(region, model_tps, fit_data)
+    if r is None or np.exp(r['params'].rates.logR0)>6 or np.exp(r['params'].rates.logR0)<1.5:
+        return (region, Params.fit(tmp_data))
+
+    param = {"tMin": str(r['tMin']), "r0": float(np.exp(r['params'].rates.logR0)),
+             "initialCases": float(r["initialCases"])}
+    if "containment_start" in r:
+        param["efficacy"] = float(r["params"].rates.efficacy)
+        param["containment_start"] = str(r["containment_start"])
+
     return (region, param)
 
 def fit_all_case_data(num_procs=4):
     pool = multi.Pool(num_procs)
+    print(f"Pooling with {num_procs} processors")
     case_counts = parse_tsv()
     results = pool.map(fit_one_case_data, list(case_counts.items()))
     for k, v in results:
         if v is not None:
             FIT_CASE_DATA[k] = v
 
-def set_mitigation(cases, scenario):
+def set_mitigation(cases, scenario, fit_params):
     valid_cases = [c for c in cases if c['cases'] is not None]
     if len(valid_cases)==0:
         scenario.mitigation.mitigation_intervals = []
         return
 
-    case_counts = np.array([c['cases'] for c in valid_cases])
-    levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served), 10000))[0]
-    levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served), 50000))[0]
-    levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0.mean()), 1)
-    levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
+    if fit_params and "efficacy" in fit_params and fit_params["efficacy"]>0:
+        name = "Intervention 1"
+        scenario.mitigation.mitigation_intervals.append(MitigationInterval(
+            name=name,
+            tMin=datetime.strptime(fit_params['containment_start'], '%Y-%m-%d').date(),
+            id=uuid4(),
+            tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
+            color=mitigation_colors.get(name, "#cccccc"),
+            # mitigationValue=report_errors(round(100*fit_params['efficacy']), 0, 100)))
+            mitigationValue=round(100*fit_params['efficacy'])))
+    else:
+        case_counts = np.array([c['cases'] for c in valid_cases])
+        levelOne = np.where(case_counts > min(max(5, 1e-4*scenario.population.population_served), 10000))[0]
+        levelTwo = np.where(case_counts > min(max(50, 1e-3*scenario.population.population_served), 50000))[0]
+        levelOneVal = round(1 - np.minimum(0.8, 1.8/scenario.epidemiological.r0.mean()), 1)
+        levelTwoVal = round(1 - np.minimum(0.4, 0.5), 1)
 
-    for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
-        if len(level):
-            level_idx = level[0]
-            cutoff_str = valid_cases[level_idx]["time"][:10]
-            cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
+        for name, level, val in [("Intervention #1", levelOne, levelOneVal), ('Intervention #2', levelTwo, levelTwoVal)]:
+            if len(level):
+                level_idx = level[0]
+                cutoff_str = valid_cases[level_idx]["time"][:10]
+                cutoff = datetime.strptime(cutoff_str, '%Y-%m-%d').toordinal()
 
-            scenario.mitigation.mitigation_intervals.append(MitigationInterval(
-                name=name,
-                tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
-                tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
-                color=mitigation_colors.get(name, "#cccccc"),
-                mitigationValue=round(100*val)))
+                scenario.mitigation.mitigation_intervals.append(MitigationInterval(
+                    name=name,
+                    tMin=datetime.strptime(cutoff_str, '%Y-%m-%d').date(),
+                    id=uuid4(),
+                    tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
+                    color=mitigation_colors.get(name, "#cccccc"),
+                    mitigationValue=round(100*val)))
 
 
 # ------------------------------------------------------------------------
@@ -293,13 +327,14 @@ def generate(output_json, num_procs=1, recalculate=False):
                'srcHospitalBeds' : hdr.index('srcHospitalBeds'),
                'srcICUBeds' : hdr.index('srcICUBeds')}
 
-        args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere', 'srcPopulation', 'srcHospitalBeds', 'srcICUBeds']
+        args = ['name', 'ages', 'size', 'beds', 'icus', 'hemisphere',
+                'srcPopulation', 'srcHospitalBeds', 'srcICUBeds']
         for region in rdr:
             region_name = region[idx['name']]
             entry = [region[idx[arg]] for arg in args]
             scenario = AllParams(*entry, region_name if region_name in case_counts else 'None')
             if region_name in case_counts:
-                set_mitigation(case_counts[region_name], scenario)
+                set_mitigation(case_counts[region_name], scenario, FIT_CASE_DATA.get(region_name, None))
             else:
                 scenario.mitigation.mitigation_intervals = []
 
@@ -309,5 +344,6 @@ def generate(output_json, num_procs=1, recalculate=False):
         output = ScenarioArray(scenarios)
         output.marshalJSON(fd)
 
+
 if __name__ == '__main__':
-    generate()
+    res = generate(recalculate=True, num_procs=6)
