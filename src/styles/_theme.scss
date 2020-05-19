@@ -1,28 +1,30 @@
 // Some of the things are borrowed from bootswatch Materia theme
 // https://github.com/thomaspark/bootswatch
 
+/* stylelint-disable selector-no-qualifying-type, plugin/stylelint-no-indistinguishable-colors, plugin/no-low-performance-animation-properties */
+
 @mixin ripple($color) {
   position: relative;
 
-  &:after {
-    content: '';
-    display: block;
+  &::after {
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
     margin-left: 0;
-    @include gradient-radial($color 10%, transparent 10.01%);
-    background-size: 1000% 1000%;
-    background-position: 50%;
-    border: none;
-    opacity: 0;
     pointer-events: none;
+    content: '';
+    background-position: 50%;
+    background-size: 1000% 1000%;
+    border: 0;
+    opacity: 0;
     transition: background 0.5s, opacity 1s;
+    @include gradient-radial($color 10%, transparent 10.01%);
   }
 
-  &:active:after {
+  &:active::after {
     background-size: 0 0;
     opacity: 0.2;
     transition: 0s;
@@ -30,7 +32,7 @@
 
   &.disabled,
   &[disabled] {
-    &:after {
+    &::after {
       display: none;
     }
   }
@@ -39,7 +41,7 @@
 // Navbar ======================================================================
 
 .navbar {
-  border: none;
+  border: 0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 
   &-brand {
@@ -109,19 +111,19 @@
 
 .btn {
   text-transform: uppercase;
-  border: none;
+  border: 0;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-  transition: all 0.4s;
+  transition: all 0.4s; // stylelint-disable-line declaration-property-value-blacklist
 
   &-link {
-    box-shadow: none;
     color: $link-color;
+    box-shadow: none;
 
     &:hover,
     &:focus {
-      box-shadow: none;
       color: $link-hover-color;
       text-decoration: $link-hover-decoration;
+      box-shadow: none;
     }
 
     &.disabled, // Although btn-link is intended for buttons, which want to look like link, I include here a.disable for the sake of consistency
@@ -139,8 +141,8 @@
     &.disabled,
     &[disabled],
     fieldset[disabled] & {
-      background-color: rgba(0, 0, 0, 0.1);
       color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.1);
       opacity: 1;
 
       &:hover,
@@ -151,8 +153,8 @@
   }
 
   &-outline-secondary {
-    border-color: $gray-200;
     color: $gray-300;
+    border-color: $gray-200;
   }
 
   &-warning {
@@ -213,7 +215,7 @@ p {
 }
 
 a {
-  transition: all 0.2s;
+  transition: all 0.2s; // stylelint-disable-line declaration-property-value-blacklist
 }
 
 .text-secondary {
@@ -226,13 +228,13 @@ a {
   > tbody > tr,
   > tbody > tr > th,
   > tbody > tr > td {
-    transition: all 0.2s;
+    transition: all 0.2s; // stylelint-disable-line declaration-property-value-blacklist
   }
 }
 
 .thead-inverse th {
-  background-color: $primary;
   color: $white;
+  background-color: $primary;
 }
 
 // Forms =======================================================================
@@ -261,16 +263,17 @@ input[type='number'],
 [type='email'].form-control,
 [type='tel'].form-control,
 [contenteditable].form-control {
-  border: 1px solid $gray-300;
   background-color: $white;
-
-  &:focus {
-    //border: 1px solid $primary;
-    //box-shadow: inset 0 -3px 0 $primary;
-  }
+  border: 1px solid $gray-300;
 }
 
 // Navs ========================================================================
+
+.dropdown-menu {
+  margin-top: 0;
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
 
 .nav-tabs {
   .nav-item + .nav-item {
@@ -280,28 +283,28 @@ input[type='number'],
   .nav-link,
   .nav-link:focus {
     margin-right: 0;
-    background-color: transparent;
-    border: none;
     color: $body-color;
+    background-color: transparent;
+    border: 0;
     box-shadow: inset 0 -1px 0 #ddd;
-    transition: all 0.2s;
+    transition: all 0.2s; // stylelint-disable-line declaration-property-value-blacklist
 
     &:hover {
+      color: $primary;
       background-color: transparent;
       box-shadow: inset 0 -2px 0 $primary;
-      color: $primary;
     }
   }
 
   .nav-link.active,
   .nav-link.active:focus {
-    border: none;
-    box-shadow: inset 0 -2px 0 $primary;
     color: $primary;
+    border: 0;
+    box-shadow: inset 0 -2px 0 $primary;
 
     &:hover {
-      border: none;
       color: $primary;
+      border: 0;
     }
   }
 
@@ -316,7 +319,7 @@ input[type='number'],
     .nav-link.active,
     .nav-link.active:hover,
     .nav-link.active:focus {
-      border: none;
+      border: 0;
     }
   }
 
@@ -325,16 +328,10 @@ input[type='number'],
   }
 }
 
-.dropdown-menu {
-  margin-top: 0;
-  border: none;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-}
-
 .badge {
   &-secondary {
-    background-color: $gray-500;
     color: $white;
+    background-color: $gray-500;
   }
 
   &-light {
@@ -347,7 +344,7 @@ input[type='number'],
 }
 
 .tag {
-  padding: 4px 6px 4px;
+  padding: 4px 6px;
 }
 
 // Containers ==================================================================
@@ -355,7 +352,7 @@ input[type='number'],
 .close {
   line-height: 0.5;
   opacity: 0.6;
-  transition: all 0.2s;
+  transition: all 0.2s; // stylelint-disable-line declaration-property-value-blacklist
 
   &:hover {
     opacity: 1;
@@ -402,7 +399,7 @@ input[type='number'],
 }
 
 .popover {
-  border: none;
+  border: 0;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 

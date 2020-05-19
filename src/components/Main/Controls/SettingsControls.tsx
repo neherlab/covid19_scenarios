@@ -5,9 +5,7 @@ import { Col, Row } from 'reactstrap'
 
 import FormSwitch from '../../Form/FormSwitch'
 
-import './ModalButtonSettings.scss'
-
-export interface ModalbuttonSettingsProps {
+export interface SettingsControlsProps {
   isLogScale: boolean
   toggleLogScale(): void
   shouldFormatNumbers: boolean
@@ -23,7 +21,7 @@ function SettingsControls({
   toggleFormatNumbers,
   isAutorunEnabled,
   toggleAutorun,
-}: ModalbuttonSettingsProps) {
+}: SettingsControlsProps) {
   const { t } = useTranslation()
 
   return (

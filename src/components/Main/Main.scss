@@ -2,9 +2,6 @@
 
 .form-main {
   .animate-flex-width {
-    // prettier-ignore
-    // NOTE: performance issue to fix
-
     transition: flex-basis 250ms ease, width 250ms ease, max-width 250ms ease; // stylelint-disable-line plugin/no-low-performance-animation-properties
   }
 
@@ -45,9 +42,6 @@
 
     h2,
     h3 {
-      //font-family: $font-family-sans-serif;
-      //font-style: normal;
-      //font-weight: bold;
       text-transform: uppercase;
     }
 
@@ -68,10 +62,6 @@
   .card-scenario,
   .card-results {
     margin-top: 1em;
-  }
-
-  .card-scenario,
-  .card-results {
     border: 0;
     box-shadow: none;
 
@@ -110,15 +100,6 @@
     margin-bottom: 0.66em;
   }
 
-  .col-scenario-population,
-  .col-scenario-epidemiology,
-  .col-scenario-mitigation,
-  .col-scenario-severity,
-  .col-scenario-trajectories,
-  .col-scenario-age-distribution,
-  .col-scenario-outcomes {
-  }
-
   .card-population,
   .card-epidemiology,
   .card-mitigation,
@@ -135,10 +116,6 @@
       display: flex;
       margin-bottom: 0.5em;
     }
-  }
-
-  .col-wrapper-scenario,
-  .col-wrapper-results {
   }
 
   .row.row-form-main {

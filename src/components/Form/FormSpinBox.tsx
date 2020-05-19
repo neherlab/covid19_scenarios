@@ -7,8 +7,6 @@ import { Col, FormGroup, Row } from 'reactstrap'
 
 import FormLabel from './FormLabel'
 
-import './FormSpinBox.scss'
-
 export interface FormSpinBoxProps<T> {
   identifier: string
   label: string
