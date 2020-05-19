@@ -100,12 +100,12 @@ export function DeterministicLinePlot({
     caseCounts,
   )
 
-  const countObservations = {
-    cases: caseCounts?.filter((d) => d.cases).length ?? 0,
-    ICU: caseCounts?.filter((d) => d.icu).length ?? 0,
-    observedDeaths: caseCounts?.filter((d) => d.deaths).length ?? 0,
-    newCases: caseCounts?.filter((_0, i) => newEmpiricalCases[i]).length ?? 0,
-    hospitalized: caseCounts?.filter((d) => d.hospitalized).length ?? 0,
+  const hasObservations = {
+    [DATA_POINTS.ObservedCases]: caseCounts && caseCounts.some((d) => d.cases),
+    [DATA_POINTS.ObservedICU]: caseCounts && caseCounts.some((d) => d.icu),
+    [DATA_POINTS.ObservedDeaths]: caseCounts && caseCounts.some((d) => d.deaths),
+    [DATA_POINTS.ObservedNewCases]: newEmpiricalCases && newEmpiricalCases.some((d) => d),
+    [DATA_POINTS.ObservedHospitalized]: caseCounts && caseCounts.some((d) => d.hospitalized),
   }
 
   const observations =
@@ -220,23 +220,9 @@ export function DeterministicLinePlot({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const reducedObservationsToPlot = translatePlots(t, observationsToPlot(caseTimeWindow)).filter((itemToPlot) => {
+  const observationsHavingDataToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
     if (observations.length !== 0) {
-      if (countObservations.cases && itemToPlot.key === DATA_POINTS.ObservedCases) {
-        return true
-      }
-      if (countObservations.newCases && itemToPlot.key === DATA_POINTS.ObservedNewCases) {
-        return true
-      }
-      if (countObservations.hospitalized && itemToPlot.key === DATA_POINTS.ObservedHospitalized) {
-        return true
-      }
-      if (countObservations.ICU && itemToPlot.key === DATA_POINTS.ObservedICU) {
-        return true
-      }
-      if (countObservations.observedDeaths && itemToPlot.key === DATA_POINTS.ObservedDeaths) {
-        return true
-      }
+      return hasObservations[itemToPlot.key]
     }
     return false
   })
@@ -344,7 +330,7 @@ export function DeterministicLinePlot({
                   }}
                 />
 
-                {reducedObservationsToPlot.map((d) => (
+                {translatePlots(t, observationsHavingDataToPlot).map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
 
