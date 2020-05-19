@@ -1,8 +1,11 @@
 @import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 $input-padding: 4px;
 
-.mitigation-table {
+.mitigation-table-wrapper {
+  width: 100%;
+
   .form-group {
     padding: 4px 2px;
     margin-bottom: 10px;
@@ -18,55 +21,52 @@ $input-padding: 4px;
 .mitigation-interval {
   display: flex;
   width: 100%;
-
-  .DateRangePickerInput {
-    width: max-content;
-  }
-
-  .DateInput_input {
-    // make the date range input similar to bootstrap inputs
-    height: calc(1.5em + 0.75rem + 1px);
-  }
 }
 
-.mitigation-inputs {
+.mitigation-item {
+  padding: 1em;
+  margin: 0.5em 0.25em;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px 2px $gray-400;
+}
+
+.mitigation-item-container {
   display: flex;
-  flex-grow: 1;
-
-  > * {
-    margin-right: $input-padding;
-  }
-
-  &.narrow,
-  &.very-narrow {
-    flex-wrap: wrap;
-  }
-
-  &.narrow {
-    .mitigation-name {
-      margin-bottom: $input-padding;
-    }
-  }
-
-  &.very-narrow {
-    margin-right: $input-padding;
-
-    > * {
-      margin-right: 0;
-      margin-bottom: $input-padding;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    .DateRangePicker,
-    .DateRangePickerInput {
-      width: 100%;
-    }
-  }
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
 }
 
-.mitigation-value {
-  width: auto;
+.mitigation-item-datum {
+  margin-bottom: 1em;
+}
+
+.mitigation-item-name-wrapper {
+  min-width: 140px;
+  margin-right: 1em;
+  flex: 6;
+}
+
+.mitigation-item-time-range-wrapper {
+  min-width: 120px;
+  margin-right: 1em;
+  flex: 4;
+}
+
+.mitigation-item-efficiency-wrapper {
+  min-width: 200px;
+  margin-right: 1em;
+  flex: 4;
+}
+
+.mitigation-item-controls {
+  width: 50px;
+  flex: 0;
+
+  .mitigation-item-btn-remove {
+    svg {
+      fill: $gray-600;
+    }
+  }
 }
