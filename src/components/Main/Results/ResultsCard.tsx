@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState, useRef } from 'react'
 
 import classNames from 'classnames'
 import { Button, Col, Row } from 'reactstrap'
@@ -56,10 +56,11 @@ function ResultsCardFunction({
   toggleResultsMaximized,
 }: ResultsCardProps) {
   const { t } = useTranslation()
-  const scrollTargetRef = createRef<HTMLDivElement>()
   const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
   const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
   const [canExport, setCanExport] = useState<boolean>(false)
+
+  const scrollTargetRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
@@ -124,7 +125,6 @@ function ResultsCardFunction({
           </h2>
         }
         help={t('This section contains simulation results')}
-        ref={scrollTargetRef}
       >
         <Row noGutters className="row-results-simulation-controls">
           <Col>
@@ -150,6 +150,7 @@ function ResultsCardFunction({
 
         <Row noGutters className="row-results-trajectories">
           <Col>
+            <div ref={scrollTargetRef} />
             <CardWithControls
               className="card-trajectories"
               identifier="trajectories"
@@ -204,9 +205,11 @@ function ResultsCardFunction({
       </CardWithControls>
 
       {result && (
-        <Button className="goToResultsBtn" color="primary" onClick={scrollToResults}>
-          {t('Go to results')}
-        </Button>
+        <div className="container-goto-results d-flex d-md-none w-100">
+          <Button className="btn-goto-results mx-auto" color="primary" onClick={scrollToResults}>
+            {t('Go to results')}
+          </Button>
+        </div>
       )}
     </>
   )
