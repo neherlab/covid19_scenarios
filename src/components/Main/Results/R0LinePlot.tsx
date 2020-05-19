@@ -80,7 +80,7 @@ export function R0Plot({
         allowDataOverflow
         orientation={'left'}
         type="number"
-        label={{ value: 'Rt', angle: -90 }}
+        label={{ value: 'Rt', angle: -90, dx: -12, fill: '#495057' }}
         domain={[0, dataMax]}
       />
       <Tooltip

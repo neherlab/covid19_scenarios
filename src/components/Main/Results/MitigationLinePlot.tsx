@@ -44,7 +44,7 @@ export function MitigationPlot({ mitigation, width, height, tMin, tMax }: Mitiga
         allowDataOverflow
         orientation={'left'}
         type="number"
-        label={{ value: 'Efficiency', angle: -90 }}
+        label={{ value: 'Efficiency', angle: -90, dx: -12, fill: '#495057' }}
         domain={[0, 100]}
       />
       {mitigation.map(({ id, name, timeRange, transmissionReduction, color }, i) => {

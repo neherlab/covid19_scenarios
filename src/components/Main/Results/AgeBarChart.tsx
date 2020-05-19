@@ -143,14 +143,26 @@ export function AgeBarChart({
               >
                 <XAxis
                   dataKey="name"
-                  label={{ value: t('Age'), textAnchor: 'middle', position: 'insideBottom', offset: -3 }}
+                  label={{
+                    value: t('Age'),
+                    textAnchor: 'middle',
+                    position: 'insideBottom',
+                    offset: -7,
+                    fill: '#495057',
+                  }}
                 />
                 <YAxis
-                  label={{ value: t('Cases'), angle: -90, position: 'insideLeft' }}
+                  label={{ value: t('Cases'), angle: -90, position: 'insideLeft', fill: '#495057' }}
                   tickFormatter={tickFormatter}
                 />
                 <YAxis
-                  label={{ value: t('Age distribution [%]'), textAnchor: 'middle', angle: 90, position: 'insideRight' }}
+                  label={{
+                    value: t('Age distribution [%]'),
+                    textAnchor: 'middle',
+                    angle: 90,
+                    position: 'insideRight',
+                    fill: '#495057',
+                  }}
                   orientation={'right'}
                   yAxisId="ageDisAxis"
                   tickFormatter={tickFormatter}
@@ -159,7 +171,7 @@ export function AgeBarChart({
                   position={tooltipPosition}
                   content={(props: TooltipProps) => <ChartTooltip valueFormatter={tooltipValueFormatter} {...props} />}
                 />
-                <Legend verticalAlign="bottom" />
+                <Legend verticalAlign="bottom" wrapperStyle={{ paddingTop: '12px' }} />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar
                   isAnimationActive={false}
