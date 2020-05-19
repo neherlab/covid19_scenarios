@@ -23,15 +23,15 @@ export function CollapsibleCard({
   defaultCollapsed = true,
 }: CollapsibleCardProps) {
   const [collapsed, setCollapsed] = useState(defaultCollapsed)
-  const toggle = () => setCollapsed(!collapsed)
+  const toggle = () => setCollapsed((collapsed) => !collapsed)
 
   return (
     <Card className={`h-100 ${className || ''}`}>
-      <CardHeader className="py-1 px-2" onClick={toggle}>
+      <CardHeader className="card-header-collapsible" onClick={toggle}>
         <div className="w-100 h-100 text-left p-0" color="default">
           <div className="d-flex">
             <span className="mx-1 my-auto">
-              <MdArrowDropDown size={30} className={`${collapsed ? 'icon-rotate-90' : 'icon-rotate-0'}`} />
+              <MdArrowDropDown color="#ccc" size={30} className={`${collapsed ? 'icon-rotate-90' : 'icon-rotate-0'}`} />
             </span>
             <HelpLabel identifier={identifier} label={title} help={help} />
           </div>

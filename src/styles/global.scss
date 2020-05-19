@@ -2,8 +2,8 @@
 @import './font-family-system';
 
 @import './variables';
-
 @import './bootstrap';
+@import './theme';
 
 @import '~@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
@@ -30,7 +30,7 @@ body {
   padding: 0 !important;
 
   @media not print {
-    background-color: $body-bg;
+    background-color: $body-background;
   }
 }
 
@@ -95,6 +95,11 @@ p {
 .icon-rotate-90 {
   transition: transform linear 0.25s;
   transform: rotate(-90deg);
+}
+
+.icon-rotate-180 {
+  transition: transform linear 0.25s;
+  transform: rotate(180deg);
 }
 
 .btn.disabled,

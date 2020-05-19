@@ -41,15 +41,11 @@ describe('HandleInitialState', () => {
   it('passes initial scenario state', () => {
     const { getByText } = render(
       <HandleInitialStateTestWrapper
-        component={({ initialState }) => (
-          <span>
-            {initialState.scenarioState.data.population.ageDistributionName} {initialState.isDefault ? 'true' : 'false'}
-          </span>
-        )}
+        component={({ initialState }) => <span>{initialState.scenarioState.data.population.ageDistributionName}</span>}
       />,
     )
 
-    expect(getByText(`${DEFAULT_OVERALL_SCENARIO_NAME} true`)).not.toBeNull()
+    expect(getByText(`${DEFAULT_OVERALL_SCENARIO_NAME}`)).not.toBeNull()
   })
 
   it('passes initial severity state', () => {

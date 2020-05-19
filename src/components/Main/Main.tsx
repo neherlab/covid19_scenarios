@@ -11,6 +11,7 @@ import type { ScenarioDatum, SeverityDistributionDatum, CaseCountsDatum } from '
 
 import { run } from '../../workers/algorithm'
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
+import { ColCustom } from '../Layout/ColCustom'
 
 import { schema } from './validation/schema'
 
@@ -72,9 +73,9 @@ function getColumnSizes(areResultsMaximized: boolean) {
 function Main({ initialState }: InitialStateComponentProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
   const [autorunSimulation, setAutorunSimulation] = useState(
-    LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? false,
+    LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? true,
   )
-  const [areResultsMaximized, setAreResultsMaximized] = useState(false)
+  const [areResultsMaximized, setAreResultsMaximized] = useState(window?.innerWidth > 2000)
   const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, initialState.scenarioState)
 
   // TODO: Can this complex state be handled by formik too?
@@ -94,14 +95,12 @@ function Main({ initialState }: InitialStateComponentProps) {
   const [debouncedRun] = useDebouncedCallback(
     (params: ScenarioDatum, scenarioState: State, severity: SeverityDistributionDatum[]) =>
       runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning),
-    500,
+    50,
   )
 
   useEffect(() => {
     // runs only once, when the component is mounted
-    if (!initialState.isDefault) {
-      debouncedRun(scenarioState.data, scenarioState, severity)
-    }
+    debouncedRun(scenarioState.data, scenarioState, severity)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -135,7 +134,7 @@ function Main({ initialState }: InitialStateComponentProps) {
         return validParams
       })
       .catch((error: FormikValidationErrors) => error.errors)
-  }, 1000)
+  }, 50)
 
   function handleSubmit(params: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
     runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning)
@@ -164,8 +163,8 @@ function Main({ initialState }: InitialStateComponentProps) {
   }
 
   return (
-    <Row>
-      <Col md={12}>
+    <Row noGutters className="row-main">
+      <Col>
         <Formik
           enableReinitialize
           initialValues={scenarioState.data}
@@ -178,9 +177,9 @@ function Main({ initialState }: InitialStateComponentProps) {
             const canRun = isValid && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)
 
             return (
-              <Form noValidate className="form">
-                <Row>
-                  <Col lg={4} {...colScenario} className="py-1 animate-flex-width">
+              <Form noValidate className="form form-main">
+                <Row className="row-form-main">
+                  <ColCustom lg={4} {...colScenario} className="col-wrapper-scenario animate-flex-width">
                     <ScenarioCard
                       scenario={values}
                       severity={severity}
@@ -191,13 +190,13 @@ function Main({ initialState }: InitialStateComponentProps) {
                       touched={touched}
                       areResultsMaximized={areResultsMaximized}
                     />
-                  </Col>
+                  </ColCustom>
 
-                  <Col lg={8} {...colResults} className="py-1 animate-flex-width">
+                  <ColCustom lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
                     <ResultsCard
                       canRun={canRun}
                       isRunning={isRunning}
-                      autorunSimulation={autorunSimulation}
+                      isAutorunEnabled={autorunSimulation}
                       toggleAutorun={togglePersistAutorun}
                       severity={severity}
                       severityName={DEFAULT_SEVERITY_DISTRIBUTION}
@@ -208,7 +207,7 @@ function Main({ initialState }: InitialStateComponentProps) {
                       areResultsMaximized={areResultsMaximized}
                       toggleResultsMaximized={toggleResultsMaximized}
                     />
-                  </Col>
+                  </ColCustom>
                 </Row>
               </Form>
             )

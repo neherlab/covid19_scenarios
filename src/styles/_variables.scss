@@ -1,63 +1,106 @@
+// Some of the things are borrowed from bootswatch Materia theme
+// https://github.com/thomaspark/bootswatch
+
 /* stylelint-disable primer/no-unused-vars */
 
-$font-family-sans-serif: 'Source Sans Pro', system-ui, system-sans !default;
-$font-family-serif: system-serif !default;
-$font-family-monospace: system-mono !default;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 2000px,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1950px,
+);
+
+$font-family-sans-serif: 'Source Sans Pro', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial',
+  'system-ui', 'system-sans', 'sans-serif';
+$font-family-monospace: 'Roboto Mono', 'system-mono';
 $font-family-default: $font-family-sans-serif;
 $font-family-base: $font-family-default;
+$font-size-base: 1rem;
 
-$white: #fff !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
-$gray-100: #f8f9fa !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
-$gray-200: #e9ecef !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
-$gray-300: #dee2e6 !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #6c757d !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
-$black: #000 !default;
+$white: #fff;
+$gray-100: #f8f9fa; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
+$gray-200: #e9ecef;
+$gray-300: #dee2e6; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
 
-$blue: #007bff !default;
-$indigo: #6610f2 !default;
-$purple: #6f42c1 !default;
-$pink: #e83e8c !default;
-$red: #dc3545 !default;
-$orange: #fd7e14 !default;
-$yellow: #ffc107 !default;
-$green: #28a745 !default;
-$teal: #20c997 !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
-$cyan: #17a2b8 !default;
+$blue: #2196f3;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #e51c23;
+$orange: #fd7e14;
+$yellow: #ff9800;
+$green: #4caf50;
+$teal: #20c997;
+$cyan: #9c27b0;
 
-$primary: #1ad09a !default; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
-$secondary: $gray-600 !default;
-$success: $green !default;
-$info: $cyan !default;
-$warning: $yellow !default;
-$danger: $red !default;
-$light: $gray-100 !default;
-$dark: $gray-800 !default;
+$primary: $blue;
+$secondary: $gray-100;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$light: $white; // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
+$dark: $gray-700;
 
-$enable-gradients: false !default;
-$enable-print-styles: false !default;
-$enable-rounded: false !default;
-$enable-shadows: true !default;
+$yiq-contrasted-threshold: 170;
 
-$body-bg: $gray-200 !default;
-$body-color: $gray-800 !default;
-$code-color: #222 !default;
-$code-font-size: 0.75rem !default;
-$blockquote-font-size: 0.9rem !default;
-$blockquote-bg-color: #fff7df !default;
+$enable-gradients: true;
+$enable-print-styles: true;
+$enable-rounded: true;
+$enable-shadows: true;
 
-// stylelint-disable-next-line plugin/stylelint-no-indistinguishable-colors
-$navbar-dark-hover-color: rgba($white, 1) !default;
+$body-background: $gray-200;
+$body-color: $gray-700;
+$code-color: $body-color;
+$code-font-size: $font-size-base * 0.9;
+$blockquote-font-size: $font-size-base * 0.9;
+$blockquote-bg-color: #fff7df;
 
-// stylelint-disable-next-line plugin/stylelint-no-indistinguishable-colors
-$navbar-light-hover-color: rgba($black, 0.9) !default;
+$navbar-dark-color: rgba($white, 0.75); // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
+$navbar-dark-hover-color: rgba($white, 1); // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
 
-$alert-border-width: 0 !default;
-$progress-height: 0.5rem !default;
+$navbar-light-hover-color: rgba($black, 0.9); // stylelint-disable-line plugin/stylelint-no-indistinguishable-colors
 
-$link-color: $blue !default;
-$link-decoration: none !default;
+$alert-border-width: 0;
+$progress-height: 0.5rem;
+
+$link-color: $blue;
+$link-decoration: none;
+
+$navbar-padding-y: unset;
+
+$input-padding-y: 0.5rem;
+
+$nav-link-disabled-color: $gray-500;
+
+$nav-tabs-border-color: transparent;
+
+$card-border-width: 0;
+$card-border-color: transparent;
+
+$tooltip-bg: $gray-700;
+
+$modal-content-border-color: transparent;
+
+$progress-height: 0.375rem;
+$progress-border-radius: 0;
+
+$close-font-size: 2.125rem;
+$close-font-weight: 300;

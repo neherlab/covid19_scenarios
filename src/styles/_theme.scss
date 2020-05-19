@@ -1,0 +1,417 @@
+// Some of the things are borrowed from bootswatch Materia theme
+// https://github.com/thomaspark/bootswatch
+
+/* stylelint-disable selector-no-qualifying-type, plugin/stylelint-no-indistinguishable-colors, plugin/no-low-performance-animation-properties */
+
+@mixin ripple($color) {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    pointer-events: none;
+    content: '';
+    background-position: 50%;
+    background-size: 1000% 1000%;
+    border: 0;
+    opacity: 0;
+    transition: background 0.5s, opacity 1s;
+    @include gradient-radial($color 10%, transparent 10.01%);
+  }
+
+  &:active::after {
+    background-size: 0 0;
+    opacity: 0.2;
+    transition: 0s;
+  }
+
+  &.disabled,
+  &[disabled] {
+    &::after {
+      display: none;
+    }
+  }
+}
+
+// Navbar ======================================================================
+
+.navbar {
+  border: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+  &-brand {
+    font-size: 24px;
+  }
+
+  &-nav .nav-link {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+
+  &.bg-dark,
+  &.bg-primary {
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='number'],
+    input[type='tel'] {
+      color: #fff;
+      box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+
+      &:focus {
+        box-shadow: inset 0 -2px 0 #fff;
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+}
+
+// Buttons =====================================================================
+
+@mixin btn($class, $bg, $color) {
+  .btn-#{$class} {
+    &:focus {
+      background-color: $bg;
+      box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5);
+    }
+
+    &:hover,
+    &:active:hover {
+      background-color: darken($bg, 6%);
+    }
+
+    &:active {
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    @include ripple($color);
+  }
+
+  .btn-outline-#{$class} {
+    @include ripple($color);
+  }
+}
+
+@include btn(primary, $primary, $white);
+@include btn(secondary, $secondary, $gray-500);
+@include btn(success, $success, $white);
+@include btn(info, $info, $white);
+@include btn(warning, $warning, $white);
+@include btn(danger, $danger, $white);
+@include btn(dark, $dark, $white);
+@include btn(light, $light, $white);
+
+.btn {
+  text-transform: uppercase;
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s; // stylelint-disable-line declaration-property-value-blacklist
+
+  &-link {
+    color: $link-color;
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+      color: $link-hover-color;
+      text-decoration: $link-hover-decoration;
+      box-shadow: none;
+    }
+
+    &.disabled, // Although btn-link is intended for buttons, which want to look like link, I include here a.disable for the sake of consistency
+    &[disabled],
+    fieldset[disabled] & {
+      &:hover,
+      &:active:hover {
+        color: $btn-link-disabled-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &-secondary {
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.1);
+      opacity: 1;
+
+      &:hover,
+      &:focus {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  &-outline-secondary {
+    color: $gray-300;
+    border-color: $gray-200;
+  }
+
+  &-warning {
+    color: $white;
+  }
+
+  &.dropdown-toggle::before {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.3em;
+    vertical-align: middle;
+    content: '';
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-left: 0.3em solid transparent;
+  }
+}
+
+.btn-group {
+  .btn + .btn,
+  .btn + .btn-group,
+  .btn-group + .btn,
+  .btn-group + .btn-group {
+    margin-left: 0;
+  }
+
+  &-vertical {
+    > .btn + .btn,
+    > .btn + .btn-group,
+    > .btn-group + .btn,
+    > .btn-group + .btn-group {
+      margin-top: 0;
+    }
+  }
+
+  .btn + .btn,
+  .btn + .btn-group > .dropdown-toggle {
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.border-secondary {
+  border: 1px solid #dfdfdf !important;
+}
+
+// Typography ==================================================================
+
+body,
+input,
+button {
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.1px;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  transition: all 0.2s; // stylelint-disable-line declaration-property-value-blacklist
+}
+
+.text-secondary {
+  color: $gray-500 !important;
+}
+
+// Tables ======================================================================
+
+.table-hover {
+  > tbody > tr,
+  > tbody > tr > th,
+  > tbody > tr > td {
+    transition: all 0.2s; // stylelint-disable-line declaration-property-value-blacklist
+  }
+}
+
+.thead-inverse th {
+  color: $white;
+  background-color: $primary;
+}
+
+// Forms =======================================================================
+
+.col-form-label {
+  font-size: 16px;
+
+  &-sm {
+    font-size: $font-size-sm;
+  }
+
+  &-lg {
+    font-size: $font-size-lg;
+  }
+}
+
+textarea,
+textarea.form-control,
+input.form-control,
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+[type='text'].form-control,
+[type='password'].form-control,
+[type='email'].form-control,
+[type='tel'].form-control,
+[contenteditable].form-control {
+  background-color: $white;
+  border: 1px solid $gray-300;
+}
+
+// Navs ========================================================================
+
+.dropdown-menu {
+  margin-top: 0;
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.nav-tabs {
+  .nav-item + .nav-item {
+    margin-left: 0;
+  }
+
+  .nav-link,
+  .nav-link:focus {
+    margin-right: 0;
+    color: $body-color;
+    background-color: transparent;
+    border: 0;
+    box-shadow: inset 0 -1px 0 #ddd;
+    transition: all 0.2s; // stylelint-disable-line declaration-property-value-blacklist
+
+    &:hover {
+      color: $primary;
+      background-color: transparent;
+      box-shadow: inset 0 -2px 0 $primary;
+    }
+  }
+
+  .nav-link.active,
+  .nav-link.active:focus {
+    color: $primary;
+    border: 0;
+    box-shadow: inset 0 -2px 0 $primary;
+
+    &:hover {
+      color: $primary;
+      border: 0;
+    }
+  }
+
+  .nav-link.disabled {
+    box-shadow: inset 0 -1px 0 #ddd;
+  }
+
+  &.nav-justified {
+    .nav-link,
+    .nav-link:hover,
+    .nav-link:focus,
+    .nav-link.active,
+    .nav-link.active:hover,
+    .nav-link.active:focus {
+      border: 0;
+    }
+  }
+
+  .dropdown-menu {
+    margin-top: 0;
+  }
+}
+
+.badge {
+  &-secondary {
+    color: $white;
+    background-color: $gray-500;
+  }
+
+  &-light {
+    background-color: $gray-200;
+  }
+
+  &-warning {
+    color: $white;
+  }
+}
+
+.tag {
+  padding: 4px 6px;
+}
+
+// Containers ==================================================================
+
+.close {
+  line-height: 0.5;
+  opacity: 0.6;
+  transition: all 0.2s; // stylelint-disable-line declaration-property-value-blacklist
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.card {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+  &.border-primary,
+  &.border-secondary,
+  &.border-success,
+  &.border-info,
+  &.border-warning,
+  &.border-danger,
+  &.border-light,
+  &.border-dark {
+    border-width: 1px;
+  }
+}
+
+.alert-dismissible {
+  .close {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+.list-group {
+  &-item-action.active {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $white;
+    }
+  }
+}
+
+.modal-content {
+  border-radius: 0.2rem;
+  box-shadow: 0 6px 36px rgba(0, 0, 0, 0.3);
+}
+
+.popover {
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.carousel {
+  &-caption {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: inherit;
+    }
+  }
+}

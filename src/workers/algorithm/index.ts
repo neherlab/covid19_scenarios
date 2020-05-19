@@ -3,10 +3,10 @@ import { MessageData } from './worker.types'
 
 import { RunParams } from '../../algorithms/run'
 
+const worker = new Worker('./worker.ts', { type: 'module' })
+
 export async function run(args: RunParams) {
   return new Promise<AlgorithmResult>((resolve, reject) => {
-    const worker = new Worker('./worker.ts', { type: 'module' })
-
     worker.addEventListener('message', (message: MessageEvent) => {
       const { result, error }: MessageData = message.data
 

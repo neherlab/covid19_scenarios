@@ -83,35 +83,38 @@ function ScenarioCard({
   return (
     <CardWithControls
       identifier="scenarioName"
-      label={<h2 className="p-0 m-0 d-inline text-truncate">{t('Scenario')}</h2>}
-      help={t('Combination of population, epidemiology, and mitigation scenarios')}
-      className="card--main"
-      controls={presetLoader}
+      className="card-scenario"
+      labelComponent={<h2 className="p-0 m-0 text-truncate d-flex align-items-center">{t('Scenario')}</h2>}
+      help={t(
+        `This section allows to setup a scenario. A "scenario" is a set of parameters that describes a combination of population and epidemiological factors as well as a set of mitigation measures and severity assumptions to be used by the simulator.`,
+      )}
+      controlsComponent={presetLoader}
     >
       <>
-        <Row>
-          <Col xl={12} className="my-2">
+        <Row noGutters className="row-scenario-title">
+          <Col xl={12} className="col-scenario-title">
             <ScenarioTitle title={title} onRename={handleScenarioRename} />
           </Col>
         </Row>
-        <Row>
-          <ColCustom {...colPopulation} className="my-2">
+
+        <Row noGutters className="row-scenario-population-epidemiological">
+          <ColCustom {...colPopulation} className="col-scenario-population">
             <ScenarioCardPopulation errors={errors} touched={touched} />
           </ColCustom>
 
-          <ColCustom {...colEpidemiological} className="my-2">
+          <ColCustom {...colEpidemiological} className="col-scenario-epidemiological">
             <ScenarioCardEpidemiological errors={errors} touched={touched} />
           </ColCustom>
         </Row>
 
-        <Row noGutters>
-          <Col className="my-2">
+        <Row noGutters className="row-scenario-mitigation">
+          <Col className="col-scenario-mitigation">
             <ScenarioCardContainment scenario={scenario} errors={errors} touched={touched} />
           </Col>
         </Row>
 
-        <Row noGutters>
-          <Col className="my-2">
+        <Row noGutters className="row-scenario-severity">
+          <Col className="col-scenario-severity">
             <SeverityCard
               severity={severity}
               setSeverity={setSeverity}

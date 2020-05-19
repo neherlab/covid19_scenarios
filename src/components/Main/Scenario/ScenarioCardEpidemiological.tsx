@@ -22,12 +22,10 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
 
   return (
     <CardWithControls
-      className="card--epidemiology h-100"
+      className="card-epidemiology h-100"
       identifier="epidemiologicalScenario"
-      label={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
-      help={t(
-        'Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay. The presets are combinations of speed and geography (speed/region).',
-      )}
+      labelComponent={<h3 className="p-0 d-inline text-truncate">{t('Epidemiology')}</h3>}
+      help={t('Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay.')}
     >
       <FormRangeSpinBox
         identifier="epidemiological.r0"
@@ -89,7 +87,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
       <FormSpinBox
         identifier="epidemiological.icuStayDays"
         label={`${t('ICU stay')} [${t('days')}]`}
-        help={t('Average number of days a critical case stays in the ICU')}
+        help={t('Average number of days a critical case stays in the Intensive Care Unit (ICU)')}
         step={0.1}
         min={1}
         errors={errors}
@@ -99,7 +97,7 @@ function ScenarioCardEpidemiological({ errors, touched }: ScenarioCardEpidemiolo
         identifier="epidemiological.overflowSeverity"
         label={t('Severity of ICU overflow')}
         help={t(
-          'A multiplicative factor to death rate to patients that require but do not have access to an ICU bed relative to those who do.',
+          'A multiplicative factor to death rate to patients that require but do not have access to an Intensive Care Unit (ICU) bed relative to those who do.',
         )}
         step={0.1}
         min={0}
