@@ -116,8 +116,8 @@
   transition: all 0.4s; // stylelint-disable-line declaration-property-value-blacklist
 
   &-link {
-    text-transform: none;
     color: $link-color;
+    text-transform: none;
     box-shadow: none;
 
     &:hover,
