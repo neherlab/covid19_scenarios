@@ -113,8 +113,8 @@ class Fitter:
 class PercentageRange(schema.PercentageRange):
     def __init__(self, x):
         super(PercentageRange, self).__init__( \
-                begin = float(min(99,max(1, round(.9*x, 2)))),
-                end = float(min(99,max(1, round(1.1*x, 2)))))
+                begin = float(min(99,max(1, round((1-0.4*x*(100-x)*1e-4)*x, 1)))),
+                end =   float(min(99,max(1, round((1+0.4*x*(100-x)*1e-4)*x, 1)))))
 
 class NumericRange(schema.NumericRangeNonNegative):
     def __init__(self, x):
