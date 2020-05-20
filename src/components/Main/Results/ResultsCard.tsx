@@ -10,11 +10,14 @@ import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import type { CaseCountsDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
 import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
+import { CollapsibleCard } from '../../Form/CollapsibleCard'
 
 import { dataToURL } from '../state/serialization/serialize'
 import { State } from '../state/state'
 
 import { CardWithControls } from '../../Form/CardWithControls'
+
+import TableResult from '../PrintPage/TableResult'
 
 import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
@@ -191,6 +194,20 @@ function ResultsCardFunction({
         </Row>
 
         <Row noGutters className="row-results-outcomes">
+          <Col>
+            <CollapsibleCard
+              className="card-outcomes-table"
+              identifier="outcomes-table"
+              title={<h3 className="d-inline text-truncate">{t('Outcomes summary table')}</h3>}
+              help={t('Summary table of outcomes for the entire population')}
+              defaultCollapsed
+            >
+              <TableResult result={result} />
+            </CollapsibleCard>
+          </Col>
+        </Row>
+
+        <Row noGutters className="row-results-outcomes-table">
           <Col>
             <CardWithControls
               className="card-outcomes"
