@@ -129,6 +129,8 @@ module.exports = {
     'unicorn/no-abusive-eslint-disable': 'warn',
     'unicorn/no-fn-reference-in-iterator': 'off',
     'unicorn/no-null': 'off',
+    'unicorn/no-reduce': 'off',
+    'unicorn/no-useless-undefined': 'off',
     'unicorn/no-zero-fractions': 'off',
     'unicorn/prefer-query-selector': 'off',
     'unicorn/prefer-spread': 'off',

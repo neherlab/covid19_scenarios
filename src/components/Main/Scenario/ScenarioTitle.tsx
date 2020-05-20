@@ -13,7 +13,7 @@ export interface ScenarioTitleProps {
 }
 
 function ScenarioTitle({ title, onRename }: ScenarioTitleProps) {
-  const inputRef: React.RefObject<HTMLInputElement | undefined> = useRef(undefined)
+  const inputRef = useRef<HTMLInputElement>()
   const [isEditing, setIsEditing] = useState(false)
   const [currentName, setCurrentName] = useState(title)
   const [previousName, setPreviousName] = useState(title)
