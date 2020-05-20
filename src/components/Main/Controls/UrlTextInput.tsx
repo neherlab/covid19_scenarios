@@ -8,7 +8,7 @@ export interface UrlTextInputProps extends InputProps {
 }
 
 function UrlTextInput({ text, className, ...restProps }: UrlTextInputProps) {
-  const inputRef: React.RefObject<HTMLInputElement | undefined> = useRef(undefined)
+  const inputRef = useRef<HTMLInputElement>()
 
   function selectAll() {
     const input = inputRef?.current

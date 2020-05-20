@@ -29,7 +29,7 @@ export class ExportErrorResultsInvalid extends Error {
 export function checkBlobSupport() {
   try {
     return !!new Blob()
-  } catch (error) {
+  } catch {
     throw new ExportErrorBlobApiNotSupported()
   }
 }
