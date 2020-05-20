@@ -33,7 +33,7 @@ export function percentageRange() {
   return yup
     .object({
       begin: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE).max(100, MSG_MAX_100),
-      end: yup.number().max(100, MSG_MAX_100),
+      end: yup.number().required(MSG_REQUIRED).max(100, MSG_MAX_100),
     })
     .test('valid percentage range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
 }
@@ -47,61 +47,84 @@ export function dateRange() {
     .test('valid percentage range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
 }
 
-export const schema: yup.Schema<ScenarioDatum> = yup.object().shape({
-  population: yup.object().shape({
-    populationServed: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+export const schema: yup.Schema<ScenarioDatum> = yup
+  .object()
+  .shape({
+    population: yup
+      .object()
+      .shape({
+        populationServed: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    ageDistributionName: yup.string().required(MSG_REQUIRED).oneOf(ageRegions, i18next.t('No such region in our data')),
+        ageDistributionName: yup
+          .string()
+          .required(MSG_REQUIRED)
+          .oneOf(ageRegions, i18next.t('No such region in our data')),
 
-    initialNumberOfCases: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+        initialNumberOfCases: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    importsPerDay: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+        importsPerDay: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    caseCountsName: yup.string().required(MSG_REQUIRED),
+        caseCountsName: yup.string().required(MSG_REQUIRED),
 
-    hospitalBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+        hospitalBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    icuBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
-  }),
+        icuBeds: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+      })
+      .required(MSG_REQUIRED),
 
-  epidemiological: yup.object().shape({
-    latencyDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+    epidemiological: yup
+      .object()
+      .shape({
+        latencyDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    infectiousPeriodDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+        infectiousPeriodDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    hospitalStayDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+        hospitalStayDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    icuStayDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
+        icuStayDays: yup.number().required(MSG_REQUIRED).min(1, MSG_AT_LEAST_ONE_DAY),
 
-    seasonalForcing: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
+        seasonalForcing: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
-    overflowSeverity: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
+        overflowSeverity: yup.number().required(MSG_REQUIRED).positive(MSG_POSITIVE),
 
-    peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_POSITIVE).max(11),
+        peakMonth: yup.number().required(MSG_REQUIRED).min(0, MSG_POSITIVE).max(11),
 
-    r0: numericRangeNonNegative().required(MSG_REQUIRED),
-  }),
+        r0: numericRangeNonNegative().required(MSG_REQUIRED),
+      })
+      .required(MSG_REQUIRED),
 
-  mitigation: yup.object().shape({
-    mitigationIntervals: yup.array().of(
-      yup.object({
-        color: yup.string().required(MSG_REQUIRED),
-        id: yup.string().required(MSG_REQUIRED),
-        transmissionReduction: percentageRange().required(MSG_REQUIRED),
-        name: yup.string().required(MSG_REQUIRED),
-        timeRange: dateRange().required(MSG_REQUIRED),
-      }),
-    ),
-  }),
+    mitigation: yup
+      .object()
+      .shape({
+        mitigationIntervals: yup
+          .array()
+          .of(
+            yup
+              .object({
+                color: yup.string().required(MSG_REQUIRED),
+                id: yup.string().required(MSG_REQUIRED),
+                transmissionReduction: percentageRange().required(MSG_REQUIRED),
+                name: yup.string().required(MSG_REQUIRED),
+                timeRange: dateRange().required(MSG_REQUIRED),
+              })
+              .required(MSG_REQUIRED),
+          )
+          .required(MSG_REQUIRED),
+      })
+      .required(MSG_REQUIRED),
 
-  simulation: yup.object().shape({
-    numberStochasticRuns: yup
-      .number()
-      .integer(MSG_INTEGER)
-      .required(MSG_REQUIRED)
-      .min(10, MSG_AT_LEAST_TEN)
-      .max(100, MSG_TOO_MANY_RUNS),
+    simulation: yup
+      .object()
+      .shape({
+        numberStochasticRuns: yup
+          .number()
+          .integer(MSG_INTEGER)
+          .required(MSG_REQUIRED)
+          .min(10, MSG_AT_LEAST_TEN)
+          .max(100, MSG_TOO_MANY_RUNS),
 
-    simulationTimeRange: dateRange().required(MSG_REQUIRED),
-  }),
-})
+        simulationTimeRange: dateRange().required(MSG_REQUIRED),
+      })
+      .required(MSG_REQUIRED),
+  })
+  .required(MSG_REQUIRED)

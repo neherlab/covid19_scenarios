@@ -81,7 +81,7 @@ export default function CaseCountsUploader({ onDataImported }: ImportCaseCountDi
     let content = ''
     try {
       content = await readFile(file)
-    } catch (error) {
+    } catch {
       throw new FileReaderError(file)
     }
 
