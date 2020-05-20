@@ -1,0 +1,11 @@
+Here you can import custom Case Counts data to display alongside the results of the simulation. Case counts are
+displayed as dots on the trajectories plot. This allows to compare the results of the model with real-world statistics.
+
+The uploaded files are expected in CSV (comma-separated values) or TSV (tab-separated values) format. You can check out
+some concrete examples of case counts files in our data directory, for example:
+[USA-New York.tsv](https://github.com/neherlab/covid19_scenarios/blob/release/data/case-counts/unitedstates/USA-New%20York.tsv)
+
+After internal conversion, each row will be validated according to this JSON schema:
+[CaseCountsDatum.yml](https://github.com/neherlab/covid19_scenarios/blob/release/schemas/CaseCountsDatum.yml).
+
+You can omit the missing values. But don't forget to put the appropriate number of columns (with consecutive tabs or commas).

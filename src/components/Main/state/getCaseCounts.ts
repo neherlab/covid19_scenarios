@@ -1,22 +1,59 @@
+import { trim } from 'lodash'
+
+import Ajv from 'ajv'
+import ajvLocalizers from 'ajv-i18n'
+
 import { CaseCountsArray, CaseCountsData, CaseCountsDatum, Convert } from '../../../algorithms/types/Param.types'
 import validateCaseCountsArray, { errors } from '../../../.generated/latest/validateCaseCountsArray'
+import validateCaseCountsData, { errors as dataErrors } from '../../../.generated/latest/validateCaseCountsData'
+
 import caseCountsDataRaw from '../../../assets/data/caseCounts.json'
-import { ImportedCaseCount } from '../Results/ImportCaseCountDialog'
+import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from './serialization/errors'
+
 import { NONE_COUNTRY_NAME } from './state'
 
-const CUSTOM_CASE_COUNT_KEY = 'customCaseCount'
-
-function validate(): CaseCountsData[] {
+export function validateAll(): CaseCountsData[] {
   const valid = validateCaseCountsArray(caseCountsDataRaw)
   if (!valid) {
     throw errors
   }
 
-  // FIXME: we cannot afford to Convert.toCaseCounts(), too slow
   return ((caseCountsDataRaw as unknown) as CaseCountsArray).all
 }
 
-const caseCountsData = validate()
+export function validate(caseCountsDataDangerous: object): void {
+  if (!validateCaseCountsData(caseCountsDataDangerous)) {
+    const locale = 'en' // TODO: use current locale
+    const localize = ajvLocalizers[locale] ?? ajvLocalizers.en
+    localize(dataErrors)
+
+    const ajv = Ajv({ allErrors: true })
+    const separator = '<<<NEWLINE>>>'
+    const errorString = ajv.errorsText(dataErrors, { dataVar: '', separator })
+    if (typeof errorString === 'string') {
+      const errorStrings = errorString.split(separator).map(trim)
+      if (errorStrings.length > 0) {
+        throw new DeserializationErrorValidationFailed(errorStrings)
+      }
+    }
+
+    throw new DeserializationErrorValidationFailed(['Unknown validation error'])
+  }
+}
+
+export function convert(caseCountsDangerous: object): CaseCountsDatum[] {
+  try {
+    return Convert.toCaseCountsData(JSON.stringify(caseCountsDangerous)).data
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new DeserializationErrorConversionFailed(error.message)
+    }
+
+    throw new DeserializationErrorConversionFailed('Unknown conversion error')
+  }
+}
+
+const caseCountsData = validateAll()
 export const caseCountsNames = caseCountsData.map((cc) => cc.name)
 
 export function getCaseCountsData(name: string) {
@@ -37,26 +74,11 @@ export function getCaseCountsData(name: string) {
     return []
   }
 
-  // FIXME: this should be changed, too hacky
-  const caseCounts = Convert.toCaseCountsData(JSON.stringify(caseCountFound))
-  return caseCounts.data
+  return convert(caseCountFound)
 }
 
 export function getSortedNonEmptyCaseCounts(key: string): CaseCountsDatum[] {
   return getCaseCountsData(key)
     .filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
     .sort((a, b) => (a.time > b.time ? 1 : -1))
-}
-
-export function getUserCaseCount(): ImportedCaseCount | undefined {
-  const data = sessionStorage.getItem(CUSTOM_CASE_COUNT_KEY)
-  return data ? JSON.parse(data) : undefined
-}
-
-export function saveUserCaseCount(userCaseCount: ImportedCaseCount): void {
-  sessionStorage.setItem(CUSTOM_CASE_COUNT_KEY, JSON.stringify(userCaseCount))
-}
-
-export function resetUserCaseCount(): void {
-  sessionStorage.removeItem(CUSTOM_CASE_COUNT_KEY)
 }

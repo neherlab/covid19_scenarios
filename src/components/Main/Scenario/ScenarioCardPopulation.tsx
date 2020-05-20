@@ -5,6 +5,8 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
+import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
+
 import { ageDistributionNames } from '../state/getAgeDistribution'
 
 import { CUSTOM_COUNTRY_NAME } from '../state/state'
@@ -19,11 +21,12 @@ const countryOptions = ageDistributionNames.map((country) => ({ value: country, 
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
 export interface ScenarioCardPopulationProps {
+  setCaseCounts(caseCounts: CaseCountsDatum[]): void
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
 
-function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
+function ScenarioCardPopulation({ setCaseCounts, errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
 
   return (
@@ -90,7 +93,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         errors={errors}
         touched={touched}
       />
-      <ConfirmedCasesDataPicker errors={errors} touched={touched} />
+      <ConfirmedCasesDataPicker errors={errors} touched={touched} setCaseCounts={setCaseCounts} />
       <FormDatePicker
         identifier="simulation.simulationTimeRange"
         label={t('Simulation time range')}
