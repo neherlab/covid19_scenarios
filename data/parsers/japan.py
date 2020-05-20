@@ -26,6 +26,10 @@ def parse():
     dataframe['hospital']=None
     dataframe_region=dataframe[['date', 'testedPositive', 'deaths', 'hospital', 'icu', 'discharged']].copy()
     dataframe_region['date']=dataframe_region['date'].astype(str)
+    cols_int=['testedPositive', 'deaths', 'discharged']
+    for col in cols_int:
+        dataframe_region[col] = dataframe_region[col].apply(lambda x: int(x) if x == x else "")
+    dataframe_region = dataframe_region.where(pd.notnull(dataframe_region), None)
 
     region_tables = {}
     for region in regions_name:
@@ -41,12 +45,9 @@ def parse():
     dataframe['date']=dataframe['date'].astype(str)
 
     dataframe_japan=dataframe[['date', 'pcr_tested_positive', 'death', 'hospitalized', 'serious', 'discharged']].copy()
+    cols_int=['pcr_tested_positive', 'death', 'hospitalized', 'serious', 'discharged']
+    for col in cols_int:
+        dataframe_japan[col] = dataframe_japan[col].apply(lambda x: int(x) if x == x else "")
+    dataframe_japan = dataframe_japan.where(pd.notnull(dataframe_japan), None)
     region_tables['Japan']=dataframe_japan.values.tolist()
     store_data(region_tables, 'japan', cols)
-    
-    
-    
-    
-    
-    
-    
