@@ -43,7 +43,7 @@ function exceptionsToStrings(error: Error): string[] {
     return [i18next.t('Unable to read file.')]
   }
   if (error instanceof ErrorArray) {
-    return error?.errors ?? []
+    return error.errors ?? []
   }
 
   throw error
