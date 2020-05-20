@@ -350,7 +350,10 @@ export default {
 
     production &&
       !analyze &&
-      new CopyWebpackPlugin([{ from: './static', to: './' }]),
+      // TODO: remove ignores when typings update to v6.x.x
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      new CopyWebpackPlugin({ patterns: [{ from: './static', to: './' }] }),
 
     ...(production && !analyze
       ? webpackCompression({
