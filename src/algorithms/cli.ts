@@ -1,3 +1,4 @@
+/* eslint-disable no-console, unicorn/no-process-exit */
 import * as fs from 'fs'
 import { run } from './run'
 import { ScenarioFlat, ScenarioData } from './types/Param.types'
