@@ -1,11 +1,13 @@
 import React from 'react'
 
+import { isNil } from 'lodash'
+
 import moment from 'moment'
 import chroma from 'chroma-js'
 import { useTranslation } from 'react-i18next'
 import { Table } from 'reactstrap'
 
-import type { AlgorithmResult, ExportedTimePoint } from '../../../algorithms/types/Result.types'
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 import { colors } from '../Results/ChartCommon'
 
@@ -13,15 +15,22 @@ import './TableResult.scss'
 
 const STEP = 7
 
-const dateFormat = (time: number) => moment(time).format('MMM DD YYYY')
+const formatter = numberFormatter(true, true)
 
-export function sampleEvery(arr: ExportedTimePoint[], step: number): ExportedTimePoint[] {
-  return arr.reduce<ExportedTimePoint[]>((acc, curr, i) => {
-    if (i % step === 0) {
-      return [...acc, curr]
-    }
-    return acc
-  }, [])
+function numberFormat(x?: number): string {
+  return formatter(x ?? 0)
+}
+
+function dateFormat(time: number) {
+  return moment(time).format('MMM DD YYYY')
+}
+
+/**
+ * Samples array values with a given step.
+ * For example, if step is 7, it will return an array with every 7th value from the original array.
+ */
+export function sampleEvery<T>(arr: T[], step: number): T[] {
+  return arr.filter((_0, i) => i % step === 0)
 }
 
 interface NumberWithUncertaintyProps {
@@ -31,25 +40,34 @@ interface NumberWithUncertaintyProps {
 }
 
 export function NumberWithUncertainty({ value, lower, upper }: NumberWithUncertaintyProps) {
-  const formatter = numberFormatter(true, true)
+  const lowerFinite = !isNil(lower) && Number.isFinite(lower)
+  const valueFinite = !isNil(value) && Number.isFinite(value)
+  const upperFinite = !isNil(upper) && Number.isFinite(upper)
 
-  if ((!lower || !upper) && value) {
-    return <div>{formatter(value)}</div>
-  }
-  if (!value && lower && upper) {
+  if (valueFinite && lowerFinite && upperFinite) {
     return (
       <div>
-        {formatter(lower)} - {formatter(upper)}
+        ({numberFormat(lower)}, <b>{numberFormat(value)}</b>, {numberFormat(upper)})
       </div>
     )
   }
-  if (value && lower && upper) {
+
+  if ((!lowerFinite || !upperFinite) && valueFinite) {
+    return <div>{numberFormat(value)}</div>
+  }
+
+  if (!valueFinite && lowerFinite && upperFinite) {
+    if (lower === upper) {
+      return <div>{numberFormat(lower)}</div>
+    }
+
     return (
       <div>
-        ({formatter(lower)}, <b>{formatter(value)}</b>, {formatter(upper)})
+        {numberFormat(lower)} - {numberFormat(upper)}
       </div>
     )
   }
+
   return <div>{'0'}</div>
 }
 
@@ -75,49 +93,26 @@ export default function TableResult({ result, formatter = Number.toString }: Tab
     upper: sampleEvery(result.trajectory.upper, STEP),
   }
 
-  console.log({ result })
-  console.log({ downsampled })
-
   return (
     <Table className="outcomes-table">
       <thead>
         <tr>
-          <th scope="col" className="text-center col-auto" style={{ width: '3cm' }}>
+          <th scope="col" className="text-center col-auto" style={{ width: '3.5cm' }}>
             <b>{t(`Date`)}</b>
           </th>
-          <th
-            scope="col"
-            className="text-center col-auto"
-            style={{ backgroundColor: pale(colors.severe), width: '3cm' }}
-          >
+          <th scope="col" className="text-center col-auto" style={{ backgroundColor: pale(colors.severe) }}>
             <b>{t(`Severe`)}</b>
           </th>
-          <th
-            scope="col"
-            className="text-center col-auto"
-            style={{ backgroundColor: pale(colors.critical), width: '3cm' }}
-          >
+          <th scope="col" className="text-center col-auto" style={{ backgroundColor: pale(colors.critical) }}>
             <b>{t(`Critical`)}</b>
           </th>
-          <th
-            scope="col"
-            className="text-center col-auto"
-            style={{ backgroundColor: pale(colors.overflow), width: '3cm' }}
-          >
+          <th scope="col" className="text-center col-auto" style={{ backgroundColor: pale(colors.overflow) }}>
             <b>{t(`ICU Overflow`)}</b>
           </th>
-          <th
-            scope="col"
-            className="text-center col-auto"
-            style={{ backgroundColor: pale(colors.fatality), width: '3.5cm' }}
-          >
+          <th scope="col" className="text-center col-auto" style={{ backgroundColor: pale(colors.fatality) }}>
             <b>{t(`Deaths`)}</b>
           </th>
-          <th
-            scope="col"
-            className="text-center col-auto"
-            style={{ backgroundColor: pale(colors.recovered), width: '4cm' }}
-          >
+          <th scope="col" className="text-center col-auto" style={{ backgroundColor: pale(colors.recovered) }}>
             <b>{t(`Recovered`)}</b>
           </th>
         </tr>
