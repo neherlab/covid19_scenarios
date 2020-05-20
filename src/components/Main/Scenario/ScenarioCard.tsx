@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import { setScenario, renameCurrentScenario } from '../state/actions'
 import { State } from '../state/state'
 
-import { ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import { CaseCountsDatum, ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
 import { ColCustom } from '../../Layout/ColCustom'
 import { CardWithControls } from '../../Form/CardWithControls'
@@ -42,6 +42,7 @@ export interface ScenarioCardProps {
   touched?: FormikTouched<FormikValues>
   setSeverity(severity: SeverityDistributionDatum[]): void
   scenarioDispatch(action: AnyAction): void
+  setCaseCounts(caseCounts: CaseCountsDatum[]): void
   areResultsMaximized: boolean
 }
 
@@ -53,6 +54,7 @@ function ScenarioCard({
   touched,
   setSeverity,
   scenarioDispatch,
+  setCaseCounts,
   areResultsMaximized,
 }: ScenarioCardProps) {
   const { t } = useTranslation()
@@ -99,7 +101,7 @@ function ScenarioCard({
 
         <Row noGutters className="row-scenario-population-epidemiological">
           <ColCustom {...colPopulation} className="col-scenario-population">
-            <ScenarioCardPopulation errors={errors} touched={touched} />
+            <ScenarioCardPopulation errors={errors} touched={touched} setCaseCounts={setCaseCounts} />
           </ColCustom>
 
           <ColCustom {...colEpidemiological} className="col-scenario-epidemiological">

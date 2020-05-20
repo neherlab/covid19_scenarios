@@ -186,6 +186,7 @@ function Main({ initialState }: InitialStateComponentProps) {
                       setSeverity={setSeverity}
                       scenarioState={scenarioState}
                       scenarioDispatch={scenarioDispatch}
+                      setCaseCounts={setEmpiricalCases}
                       errors={errors}
                       touched={touched}
                       areResultsMaximized={areResultsMaximized}

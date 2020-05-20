@@ -1,5 +1,9 @@
 import { appendDash } from '../../../../helpers/appendDash'
 
+export class ErrorArray extends Error {
+  public readonly errors?: string[]
+}
+
 export class URLDecodingError extends Error {}
 
 export class ErrorURLSerializerVersionInvalid extends URLDecodingError {
@@ -11,7 +15,7 @@ export class ErrorURLSerializerVersionInvalid extends URLDecodingError {
   }
 }
 
-export class DeserializationError extends Error {
+export class DeserializationError extends ErrorArray {
   public readonly errors?: string[]
 }
 
@@ -59,9 +63,13 @@ export class DeserializationErrorValidationFailed extends DeserializationError {
 export class DeserializationErrorConversionFailed extends DeserializationError {
   public errors?: string[]
 
-  public constructor(error?: string) {
-    super(`when deserializing: conversion failed: ${error}`)
-    this.errors = error ? [error] : ['unknown error']
+  public constructor(conversionError?: string) {
+    let error = `conversion failed`
+    if (conversionError) {
+      error = `${error}: ${conversionError}`
+    }
+    super(`when deserializing: ${error}`)
+    this.errors = [error]
   }
 }
 
@@ -76,5 +84,18 @@ export class ErrorSchemaSerializerVersionNotLatest extends SerializationError {
     super(`when serializing: ${error}`)
     this.schemaVer = schemaVer
     this.errors = [error]
+  }
+}
+
+export class CSVParserError extends ErrorArray {
+  public readonly errors?: string[]
+}
+
+export class CSVParserErrorCSVSyntaxInvalid extends CSVParserError {
+  public errors?: string[]
+
+  public constructor(errors?: string[]) {
+    super(`when parsing CSV: syntax error:\n${errors?.map(appendDash).join('\n')}`)
+    this.errors = errors
   }
 }
