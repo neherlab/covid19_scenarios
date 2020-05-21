@@ -1,26 +1,35 @@
 import React from 'react'
 
+import { isNil } from 'lodash'
+
 import moment from 'moment'
-import chroma from 'chroma-js'
+import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
+import { Table } from 'reactstrap'
 
-import type { AlgorithmResult, ExportedTimePoint } from '../../../algorithms/types/Result.types'
-import { colors } from '../Results/ChartCommon'
+import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { numberFormatter } from '../../../helpers/numberFormat'
 
-export interface TableResultProps {
-  result: AlgorithmResult
-}
+import './TableResult.scss'
 
 const STEP = 7
 
-const dateFormat = (time: number) => moment(time).format('MMM DD YYYY')
+const formatter = numberFormatter(true, true)
 
-export function sampleEvery(arr: ExportedTimePoint[], step: number): ExportedTimePoint[] {
-  return arr.reduce<ExportedTimePoint[]>((acc, curr, i) => {
-    if (i % step === 0) {
-      return [...acc, curr]
-    }
-    return acc
-  }, [])
+function numberFormat(x?: number): string {
+  return formatter(x ?? 0)
+}
+
+function dateFormat(time: number) {
+  return moment(time).format('MMM DD YYYY')
+}
+
+/**
+ * Samples array values with a given step.
+ * For example, if step is 7, it will return an array with every 7th value from the original array.
+ */
+export function sampleEvery<T>(arr: T[], step: number): T[] {
+  return arr.filter((_0, i) => i % step === 0)
 }
 
 interface NumberWithUncertaintyProps {
@@ -30,96 +39,128 @@ interface NumberWithUncertaintyProps {
 }
 
 export function NumberWithUncertainty({ value, lower, upper }: NumberWithUncertaintyProps) {
-  if ((!lower || !upper) && value) {
-    return <div>{Math.round(value)}</div>
-  }
-  if (!value && lower && upper) {
+  const lowerFinite = !isNil(lower) && Number.isFinite(lower)
+  const valueFinite = !isNil(value) && Number.isFinite(value)
+  const upperFinite = !isNil(upper) && Number.isFinite(upper)
+
+  // Three-way range
+  if (valueFinite && lowerFinite && upperFinite) {
     return (
       <div>
-        {Math.round(lower)} - {Math.round(upper)}
+        ({numberFormat(lower)}, <b>{numberFormat(value)}</b>, {numberFormat(upper)})
       </div>
     )
   }
-  if (value && lower && upper) {
+
+  // Just value
+  if ((!lowerFinite || !upperFinite) && valueFinite) {
+    return <div>{numberFormat(value)}</div>
+  }
+
+  // Two-way range ("from - $to")
+  if (!valueFinite && lowerFinite && upperFinite) {
+    const lowerFormatted = numberFormat(lower)
+    const upperFormatted = numberFormat(upper)
+
+    // Avoid formats like "0 - 0" and "5k - 5k"
+    if (lowerFormatted === upperFormatted) {
+      return <div>{lowerFormatted}</div>
+    }
+
     return (
       <div>
-        ({Math.round(lower)}, <b>{Math.round(value)}</b>, {Math.round(upper)})
+        {numberFormat(lower)} - {numberFormat(upper)}
       </div>
     )
   }
+
+  // Catch-all value is zero
   return <div>{'0'}</div>
 }
 
-export default function TableResult({ result }: TableResultProps) {
-  const downSampled = {
+export interface TableResultProps {
+  result?: AlgorithmResult
+  forPrint?: boolean
+  formatter?: (num: number) => string
+}
+
+export default function TableResult({ result, forPrint, formatter = Number.toString }: TableResultProps) {
+  const { t } = useTranslation()
+
+  if (!result) {
+    return null
+  }
+
+  const downsampled = {
     middle: sampleEvery(result.trajectory.middle, STEP),
     lower: sampleEvery(result.trajectory.lower, STEP),
     upper: sampleEvery(result.trajectory.upper, STEP),
   }
 
   return (
-    <div className="tableResult">
-      <table>
+    <div className={classNames('outcomes-table-wrapper', forPrint && 'print-preview')}>
+      <Table className={classNames('outcomes-table', forPrint && 'print-preview')} bordered>
         <thead>
           <tr>
-            <td style={{ width: '3cm' }}>
-              <b>date</b>
-            </td>
-            <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex(), width: '3cm' }}>
-              <b>hospitalized</b>
-            </td>
-            <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex(), width: '3cm' }}>
-              <b>ICU</b>
-            </td>
-            <td style={{ backgroundColor: chroma(colors.overflow).alpha(0.1).hex(), width: '3cm' }}>
-              <b>overflow</b>
-            </td>
-            <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex(), width: '3.5cm' }}>
-              <b>deaths</b>
-            </td>
-            <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex(), width: '4cm' }}>
-              <b>recovered</b>
-            </td>
+            <th scope="col" className="outcome-table-th outcome-table-th-date">
+              {t(`Date`)}
+            </th>
+            <th scope="col" className="outcome-table-th bg-severe">
+              {t(`Severe`)}
+            </th>
+            <th scope="col" className="outcome-table-th bg-critical">
+              {t(`Critical`)}
+            </th>
+            <th scope="col" className="outcome-table-th bg-overflow">
+              {t(`ICU Overflow`)}
+            </th>
+            <th scope="col" className="outcome-table-th bg-fatality">
+              {t(`Deaths`)}
+            </th>
+            <th scope="col" className="outcome-table-th bg-recovered">
+              {t(`Recovered`)}
+            </th>
           </tr>
         </thead>
-        <tbody>
-          {downSampled.middle.map((line, i) => (
+
+        <tbody className="outcomes-table-body">
+          {downsampled.middle.map((line, i) => (
             <tr key={line.time}>
-              <td>{dateFormat(line.time)}</td>
-              <td style={{ backgroundColor: chroma(colors.severe).alpha(0.1).hex() }}>
+              <th scope="row">{dateFormat(line.time)}</th>
+              <td className="bg-severe">
                 <NumberWithUncertainty
-                  lower={downSampled.lower[i].current.severe.total}
-                  upper={downSampled.upper[i].current.severe.total}
+                  lower={downsampled.lower[i].current.severe.total}
+                  upper={downsampled.upper[i].current.severe.total}
                 />
               </td>
-              <td style={{ backgroundColor: chroma(colors.critical).alpha(0.1).hex() }}>
+              <td className="bg-critical">
                 <NumberWithUncertainty
-                  lower={downSampled.lower[i].current.critical.total}
-                  upper={downSampled.upper[i].current.critical.total}
+                  lower={downsampled.lower[i].current.critical.total}
+                  upper={downsampled.upper[i].current.critical.total}
                 />
               </td>
-              <td style={{ backgroundColor: chroma(colors.overflow).alpha(0.1).hex() }}>
+              <td className="bg-overflow">
                 <NumberWithUncertainty
-                  lower={downSampled.lower[i].current.overflow.total}
-                  upper={downSampled.upper[i].current.overflow.total}
+                  lower={downsampled.lower[i].current.overflow.total}
+                  upper={downsampled.upper[i].current.overflow.total}
                 />
               </td>
-              <td style={{ backgroundColor: chroma(colors.fatality).alpha(0.1).hex() }}>
+              <td className="bg-fatality">
                 <NumberWithUncertainty
-                  lower={downSampled.lower[i].cumulative.fatality.total}
-                  upper={downSampled.upper[i].cumulative.fatality.total}
+                  lower={downsampled.lower[i].cumulative.fatality.total}
+                  upper={downsampled.upper[i].cumulative.fatality.total}
                 />
               </td>
-              <td style={{ backgroundColor: chroma(colors.recovered).alpha(0.1).hex() }}>
+              <td className="bg-recovered">
                 <NumberWithUncertainty
-                  lower={downSampled.lower[i].cumulative.recovered.total}
-                  upper={downSampled.upper[i].cumulative.recovered.total}
+                  lower={downsampled.lower[i].cumulative.recovered.total}
+                  upper={downsampled.upper[i].cumulative.recovered.total}
                 />
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }

@@ -17,6 +17,7 @@ More info on https://getbootstrap.com/docs/4.0/utilities/display/
 @import '../../../styles/variables';
 
 .container-print {
+  width: 210mm;
   background-color: $white;
 
   .page {

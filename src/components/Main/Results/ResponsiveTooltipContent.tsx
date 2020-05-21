@@ -1,4 +1,6 @@
 import React, { ReactNode } from 'react'
+
+import { isNil } from 'lodash'
 import { TooltipProps } from 'recharts'
 
 import { LineProps } from './ChartCommon'
@@ -20,7 +22,7 @@ interface TooltipContentItemProps {
 }
 
 function TooltipContentItem({ name, value, lower, upper, color }: TooltipContentItemProps) {
-  if (lower && upper) {
+  if (!isNil(lower) && !isNil(upper)) {
     return (
       <div style={{ color }} className="responsive-tooltip-content-item">
         {name}

@@ -59,7 +59,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
   const { t } = useTranslation()
   if (result && caseCounts) {
     return (
-      <Container className="container-print" style={{ maxWidth: '20cm' }}>
+      <Container className="container-print">
         <Row className="d-print-none">
           <Col className="w-100 d-flex">
             <Button className="mr-auto" onClick={() => window.print()} color="primary">
@@ -99,53 +99,57 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
                 </blockquote>
               </Col>
             </Row>
+
+            <Row>
+              <Col>
+                <Table className="w-75 center mx-auto table-layout-fixed">
+                  <tbody>
+                    <tr>
+                      <td className="w-100 text-center">
+                        <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
+                          <img className="mx-auto" height={'50px'} alt="NeherLab logo" src={logoNeherlab} />
+                        </LinkExternal>
+                      </td>
+
+                      <td className="w-100 text-center">
+                        <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
+                          <img className="mx-auto" height={'50px'} alt="Logo of Biozentrum" src={logoBiozentrum} />
+                        </LinkExternal>
+                      </td>
+
+                      <td className="w-100 text-center">
+                        <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of University of Basel">
+                          <img className="mx-auto" height={'50px'} alt="Logo of University of Basel" src={logoUnibas} />
+                        </LinkExternal>
+                      </td>
+                    </tr>
+                  </tbody>
+
+                  <tbody>
+                    <tr>
+                      <td className="w-100 text-center">
+                        <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
+                          {`neherlab.org`}
+                        </LinkExternal>
+                      </td>
+
+                      <td className="w-100 text-center">
+                        <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
+                          {`biozentrum.unibas.ch`}
+                        </LinkExternal>
+                      </td>
+
+                      <td className="w-100 text-center">
+                        <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of Biozentrum Basel">
+                          {`unibas.ch`}
+                        </LinkExternal>
+                      </td>
+                    </tr>
+                  </tbody>
+                </Table>
+              </Col>
+            </Row>
           </Col>
-
-          <Table className="w-75 center mx-auto table-layout-fixed">
-            <tbody>
-              <tr>
-                <td className="w-100 text-center">
-                  <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
-                    <img className="mx-auto" height={'50px'} alt="NeherLab logo" src={logoNeherlab} />
-                  </LinkExternal>
-                </td>
-
-                <td className="w-100 text-center">
-                  <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
-                    <img className="mx-auto" height={'50px'} alt="Logo of Biozentrum" src={logoBiozentrum} />
-                  </LinkExternal>
-                </td>
-
-                <td className="w-100 text-center">
-                  <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of University of Basel">
-                    <img className="mx-auto" height={'50px'} alt="Logo of University of Basel" src={logoUnibas} />
-                  </LinkExternal>
-                </td>
-              </tr>
-            </tbody>
-
-            <tbody>
-              <tr>
-                <td className="w-100 text-center">
-                  <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
-                    {`neherlab.org`}
-                  </LinkExternal>
-                </td>
-
-                <td className="w-100 text-center">
-                  <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
-                    {`biozentrum.unibas.ch`}
-                  </LinkExternal>
-                </td>
-
-                <td className="w-100 text-center">
-                  <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of Biozentrum Basel">
-                    {`unibas.ch`}
-                  </LinkExternal>
-                </td>
-              </tr>
-            </tbody>
-          </Table>
         </Row>
 
         <Row className="page" style={{ breakBefore: 'always', pageBreakBefore: 'always' }}>
@@ -253,7 +257,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
             <Row>
               <Col>
                 <h2>{`Results summary`}</h2>
-                <TableResult result={result} />
+                <TableResult result={result} forPrint />
               </Col>
             </Row>
           </Col>
