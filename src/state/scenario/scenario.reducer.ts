@@ -14,8 +14,8 @@ import {
   setSimulationData,
 } from './scenario.actions'
 
-import { getAgeDistributionData } from './getAgeDistributionData'
-import { getScenarioData } from './getScenarioData'
+import { getAgeDistributionData } from '../../io/defaults/getAgeDistributionData'
+import { getScenarioData } from '../../io/defaults/getScenarioData'
 
 import { ScenarioState, defaultScenarioState, CUSTOM_COUNTRY_NAME } from './scenario.state'
 

@@ -8,7 +8,6 @@ function validate(): SeverityDistributionData[] {
     throw errors
   }
 
-  // FIXME: we cannot afford to use `Converter` here, too slow
   return ((severityRaw as unknown) as SeverityDistributionArray).all
 }
 

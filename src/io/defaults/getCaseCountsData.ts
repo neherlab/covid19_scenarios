@@ -7,13 +7,10 @@ import { CaseCountsArray, CaseCountsData, CaseCountsDatum, Convert } from '../..
 import validateCaseCountsArray, { errors } from '../../.generated/latest/validateCaseCountsArray'
 import validateCaseCountsData, { errors as dataErrors } from '../../.generated/latest/validateCaseCountsData'
 
-import {
-  DeserializationErrorValidationFailed,
-  DeserializationErrorConversionFailed,
-} from '../../io/serialization/errors'
+import { DeserializationErrorValidationFailed, DeserializationErrorConversionFailed } from '../serialization/errors'
 
 import caseCountsDataRaw from '../../assets/data/caseCounts.json'
-import { NONE_COUNTRY_NAME } from './scenario.state'
+import { NONE_COUNTRY_NAME } from '../../state/scenario/scenario.state'
 
 export function validateAll(): CaseCountsData[] {
   const valid = validateCaseCountsArray(caseCountsDataRaw)

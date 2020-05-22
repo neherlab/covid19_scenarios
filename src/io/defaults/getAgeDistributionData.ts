@@ -8,7 +8,6 @@ function validate(): AgeDistributionData[] {
     throw errors
   }
 
-  // FIXME: we cannot afford to Convert.toCountryAgeDistribution(), too slow
   return ((ageDistributionRaw as unknown) as AgeDistributionArray).all
 }
 

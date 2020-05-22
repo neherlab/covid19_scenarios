@@ -1,8 +1,8 @@
 import type { ScenarioParameters } from '../../algorithms/types/Param.types'
 
-import { scenarioNames, getScenarioData } from './getScenarioData'
-import { getAgeDistributionData } from './getAgeDistributionData'
-import { getSeverityDistributionData } from './getSeverityDistributionData'
+import { scenarioNames, getScenarioData } from '../../io/defaults/getScenarioData'
+import { getAgeDistributionData } from '../../io/defaults/getAgeDistributionData'
+import { getSeverityDistributionData } from '../../io/defaults/getSeverityDistributionData'
 
 export interface ScenarioState extends ScenarioParameters {
   defaultScenariosNames: string[]
