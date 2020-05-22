@@ -2,7 +2,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
 import immerCase from '../util/fsaImmerReducer'
 
-import { toggleAutorun, toggleLogScale, toggleFormatNumbers } from './settings.actions'
+import { toggleAutorun, toggleLogScale, toggleFormatNumbers, toggleResultsMaximized } from './settings.actions'
 
 import { settingsDefaultState } from './settings.state'
 
@@ -22,5 +22,11 @@ export const settingsReducer = reducerWithInitialState(settingsDefaultState)
   .withHandling(
     immerCase(toggleFormatNumbers, (draft) => {
       draft.shouldFormatNumbers = !draft.shouldFormatNumbers
+    }),
+  )
+
+  .withHandling(
+    immerCase(toggleResultsMaximized, (draft) => {
+      draft.areResultsMaximized = !draft.areResultsMaximized
     }),
   )
