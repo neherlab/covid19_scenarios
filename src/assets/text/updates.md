@@ -14,16 +14,16 @@ two types of reasons
 We realize this can be confusing, but in this evolving situation, this is difficult to avoid. We try to summarize the
 most significant model changes below.
 
-### 2020-05-18: Changes to the parameter presets
+### 2020-05-22: Changes to the parameter presets
 
-Our parameter presets for R0, the initial number of cases, and interventions are meant to facilitate adjusting a 
+Our parameter presets for R0, the initial number of cases, and interventions are meant to facilitate adjusting a
 scenario to the developments in your community. They are not sophisticated inferences -- this would
 require dedicated procedures for different regions that each come with their own peculiarities in reporting.
-But with more data available, we can estimate more parameters directly from data that should result in better 
-starting points. 
+But with more data available, we can estimate more parameters directly from data that should result in better
+starting points.
 
 We now estimate the initial R0, the Re in the last three weeks of available data, and time point at which the R0 changed.
-Together with estimates of the initial number of cases, the resulting fits track data for communities with 
+Together with estimates of the initial number of cases, the resulting fits track data for communities with
 robust data fairly well. We hope this facilitates further manual optimization.
 
 

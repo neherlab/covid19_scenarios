@@ -69,6 +69,11 @@
     "dataProvenance": "https://okinawa.stopcovid19.jp/en/?fbclid=IwAR2MxJ3yYdpGJn7gb3OXc4JzX8CMHSHUWjtwU3t7JnuoNXv1OQI64zz0VsU",
     "license": "MIT"
   },
+  "japan": {
+    "primarySource": "https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/prefectures.csv",
+    "dataProvenance": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html",
+    "license": "MIT license"
+  },
   "ecdc": {
     "primarySource": "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-<DATE>-xlsx",
     "dataProvenance": "European Centre for Disease Prevention and Control",

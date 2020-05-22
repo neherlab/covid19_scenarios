@@ -234,12 +234,15 @@ def fit_one_case_data(args):
     model_tps, fit_data = get_fit_data(time, data)
 
     if region[:4]=='FRA-': #french don't report case data anymore
-        print("BLABLA")
         r = fit_population_iterative(region, model_tps, fit_data, FRA=True)
     else:
         r = fit_population_iterative(region, model_tps, fit_data)
     if r is None or np.exp(r['params'].rates.logR0)>6 or np.exp(r['params'].rates.logR0)<1.5:
-        return (region, Params.fit(tmp_data))
+        refit = Params.fit(tmp_data)
+        if (refit is None) or (1.5<refit["r0"]<6) or refit["tMin"]<"2020-01-15":
+            return (region, None)
+
+        return (region, refit)
 
     param = {"tMin": str(r['tMin']), "r0": float(np.exp(r['params'].rates.logR0)),
              "initialCases": float(r["initialCases"])}
