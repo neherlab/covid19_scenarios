@@ -3,6 +3,8 @@ import { all, call, put } from 'redux-saga/effects'
 
 import { errorAdd } from './error/error.actions'
 
+import scenarioSagas from './scenario/scenario.sagas'
+
 function autoRestart(generator: Saga, handleError: Saga<[Error]>) {
   return function* autoRestarting() {
     while (true) {
@@ -17,7 +19,7 @@ function autoRestart(generator: Saga, handleError: Saga<[Error]>) {
 }
 
 function* rootSaga() {
-  yield all([])
+  yield all([...scenarioSagas])
 }
 
 function* rootErrorHandler(error: Error) {

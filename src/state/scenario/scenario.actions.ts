@@ -52,5 +52,5 @@ export const setSimulationData = action<SetSimulationData>('SET_SIMULATION_DATA'
 export const setAgeDistributionData = action<SetAgeDistributionData>('SET_AGE_DISTRIBUTION_DATA')
 export const setSeverityDistributionData = action<SetSeverityDistributionData>('SET_SEVERITY_DISTRIBUTION_DATA')
 
-export type SetScenarioStateData = StrictOmit<ScenarioState, 'defaultScenariosNames'>
+export type SetScenarioStateData = StrictOmit<ScenarioState, 'defaultScenariosNames' | 'shouldRenameOnEdits'>
 export const setScenarioState = action<SetScenarioStateData>('SET_STATE_DATA')
