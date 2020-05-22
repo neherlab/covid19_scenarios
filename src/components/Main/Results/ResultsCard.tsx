@@ -1,21 +1,30 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react'
 
 import classNames from 'classnames'
+import { connect } from 'react-redux'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FiChevronLeft } from 'react-icons/fi'
 import urlJoin from 'proper-url-join'
+import { toUrl } from '../../../io/serialization/toUrl'
+import { selectIsRunning } from '../../../state/algorithm/algorithm.selectors'
+import { State } from '../../../state/reducer'
+import {
+  selectAgeDistributionData,
+  selectScenarioData,
+  selectSeverityDistributionData,
+} from '../../../state/scenario/scenario.selectors'
+import {
+  selectAreResultsMaximized,
+  selectIsAutorunEnabled,
+  selectIsLogScale,
+  selectShouldFormatNumbers,
+} from '../../../state/settings/settings.selectors'
 
-import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import type { CaseCountsDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
-
-import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../../helpers/localStorage'
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 
-import { dataToURL } from '../state/serialization/serialize'
-import { State } from '../state/state'
-
 import { CardWithControls } from '../../Form/CardWithControls'
+import { Main } from '../Main'
 
 import TableResult from '../PrintPage/TableResult'
 
@@ -26,23 +35,31 @@ import { SimulationControls } from '../Controls/SimulationControls'
 
 import './ResultsCard.scss'
 
-const LOG_SCALE_DEFAULT = true
-const SHOW_HUMANIZED_DEFAULT = true
-
 interface ResultsCardProps {
+  canRun: boolean
+
   isAutorunEnabled: boolean
   toggleAutorun: () => void
-  canRun: boolean
   isRunning: boolean
-  scenarioState: State
-  severity: SeverityDistributionDatum[]
-  severityName: string
-  caseCounts?: CaseCountsDatum[]
-  result?: AlgorithmResult
+
   openPrintPreview: () => void
   areResultsMaximized: boolean
   toggleResultsMaximized: () => void
 }
+
+const mapStateToProps = (state: State) => ({
+  scenarioData: selectScenarioData(state),
+  ageDistributionData: selectAgeDistributionData(state),
+  severityDistributionData: selectSeverityDistributionData(state),
+
+  isRunning: selectIsRunning(state),
+  isAutorunEnabled: selectIsAutorunEnabled(state),
+  isLogScale: selectIsLogScale(state),
+  shouldFormatNumbers: selectShouldFormatNumbers(state),
+  areResultsMaximized: selectAreResultsMaximized(state),
+})
+
+const mapDispatchToProps = {}
 
 function ResultsCardFunction({
   canRun,
@@ -59,57 +76,15 @@ function ResultsCardFunction({
   toggleResultsMaximized,
 }: ResultsCardProps) {
   const { t } = useTranslation()
-  const [logScale, setLogScale] = useState(LOG_SCALE_DEFAULT)
-  const [showHumanized, setShowHumanized] = useState(SHOW_HUMANIZED_DEFAULT)
-  const [canExport, setCanExport] = useState<boolean>(false)
-
   const scrollTargetRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    const persistedLogScale = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.LOG_SCALE)
-    setLogScale(persistedLogScale ?? LOG_SCALE_DEFAULT)
+  const canExport = result && !!result.trajectory
 
-    const persistedShowHumanized = LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS)
-    setShowHumanized(persistedShowHumanized ?? SHOW_HUMANIZED_DEFAULT)
-  }, [])
-
-  useEffect(() => {
-    setCanExport((result && !!result.trajectory) || false)
-  }, [result])
-
-  // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
-  // href: https://reactjs.org/docs/hooks-rules.html
-
-  const { data: scenarioData, ageDistribution } = scenarioState
-
-  const toggleLogScale = () => {
-    const value = !logScale
-    LocalStorage.set(LOCAL_STORAGE_KEYS.LOG_SCALE, value)
-    setLogScale(value)
-  }
-
-  const toggleFormatNumbers = () => {
-    const value = !showHumanized
-    LocalStorage.set(LOCAL_STORAGE_KEYS.SHOW_HUMANIZED_RESULTS, value)
-    setShowHumanized(value)
-  }
+  const scenarioUrl = decodeURI(urlJoin(window.location.href, toUrl()))
 
   function scrollToResults() {
     scrollTargetRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
   }
-
-  const scenarioUrl = useMemo(() => {
-    const url = dataToURL({
-      scenario: scenarioState.data,
-      scenarioName: scenarioState.current,
-      ageDistribution: scenarioState.ageDistribution,
-      ageDistributionName: scenarioState.data.population.ageDistributionName,
-      severity,
-      severityName,
-    })
-
-    return decodeURI(urlJoin(window.location.href, url))
-  }, [scenarioState, severity, severityName])
 
   return (
     <>
@@ -162,13 +137,7 @@ function ResultsCardFunction({
             >
               <Row noGutters>
                 <Col>
-                  <DeterministicLinePlot
-                    data={result}
-                    params={scenarioData}
-                    logScale={logScale}
-                    showHumanized={showHumanized}
-                    caseCounts={caseCounts}
-                  />
+                  <DeterministicLinePlot />
                 </Col>
               </Row>
             </CardWithControls>
@@ -233,3 +202,5 @@ function ResultsCardFunction({
 }
 
 export const ResultsCard = React.memo(ResultsCardFunction)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsCard)

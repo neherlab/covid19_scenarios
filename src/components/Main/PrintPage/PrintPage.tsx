@@ -250,7 +250,13 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
             <Row>
               <Col>
                 <h2>{`Results`}</h2>
-                <DeterministicLinePlot data={result} params={params} logScale showHumanized caseCounts={caseCounts} />
+                <DeterministicLinePlot
+                  data={result}
+                  scenarioData={params}
+                  logScale
+                  showHumanized
+                  caseCounts={caseCounts}
+                />
               </Col>
             </Row>
 

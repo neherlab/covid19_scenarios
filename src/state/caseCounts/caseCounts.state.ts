@@ -5,7 +5,7 @@ import { getCaseCountsData } from '../../io/defaults/getCaseCountsData'
 import { defaultScenarioState } from '../scenario/scenario.state'
 
 export interface CaseCountsState {
-  caseCountsData: CaseCountsData
+  caseCountsData?: CaseCountsData
 }
 
 const defaultCaseCountsName = defaultScenarioState.scenarioData.data.population.caseCountsName

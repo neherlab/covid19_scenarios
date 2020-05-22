@@ -1,14 +1,23 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { AiFillFilePdf } from 'react-icons/ai'
 import { MdTab } from 'react-icons/md'
 import { Button } from 'reactstrap'
+import { CaseCountsDatum, ScenarioDatum } from '../../../algorithms/types/Param.types'
 
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
-
-import type { State } from '../state/state'
+import { selectIsRunning, selectResult } from '../../../state/algorithm/algorithm.selectors'
+import { selectCaseCountsData } from '../../../state/caseCounts/caseCounts.selectors'
+import { State } from '../../../state/reducer'
+import { selectScenarioData } from '../../../state/scenario/scenario.selectors'
+import {
+  selectIsAutorunEnabled,
+  selectIsLogScale,
+  selectShouldFormatNumbers,
+} from '../../../state/settings/settings.selectors'
 
 import LinkButton from '../../Buttons/LinkButton'
 import { ModalButtonExport } from './ModalButtonExport'
@@ -38,23 +47,20 @@ export interface SimulationControlsProps {
   toggleAutorun(): void
 }
 
-function SimulationControls({
-  scenarioState,
-  severity,
-  severityName,
-  result,
-  isRunning,
-  canRun,
-  canExport,
-  scenarioUrl,
-  openPrintPreview,
-  isLogScale,
-  toggleLogScale,
-  shouldFormatNumbers,
-  toggleFormatNumbers,
-  isAutorunEnabled,
-  toggleAutorun,
-}: SimulationControlsProps) {
+export interface DeterministicLinePlotProps {
+  isRunning: boolean
+  isAutorunEnabled: boolean
+  canRun: boolean
+}
+
+const mapStateToProps = (state: State) => ({
+  isRunning: selectIsRunning(state),
+  isAutorunEnabled: selectIsAutorunEnabled(state),
+})
+
+const mapDispatchToProps = {}
+
+function SimulationControls({ isRunning, isAutorunEnabled, canRun }: SimulationControlsProps) {
   const { t } = useTranslation()
 
   return (
@@ -81,13 +87,7 @@ function SimulationControls({
         <MdTab size={ICON_SIZE} />
       </LinkButton>
 
-      <ModalButtonExport
-        buttonSize={ICON_SIZE}
-        scenarioState={scenarioState}
-        severity={severity}
-        severityName={severityName}
-        result={result}
-      />
+      <ModalButtonExport buttonSize={ICON_SIZE} />
 
       <Button
         type="button"
@@ -101,16 +101,11 @@ function SimulationControls({
 
       <ModalButtonSharing buttonSize={ICON_SIZE} shareableLink={scenarioUrl} />
 
-      <SettingsControls
-        isLogScale={isLogScale}
-        toggleLogScale={toggleLogScale}
-        shouldFormatNumbers={shouldFormatNumbers}
-        toggleFormatNumbers={toggleFormatNumbers}
-        isAutorunEnabled={isAutorunEnabled}
-        toggleAutorun={toggleAutorun}
-      />
+      <SettingsControls />
     </>
   )
 }
 
-export { SimulationControls }
+const SimulationControlsConnected = connect(mapStateToProps, mapDispatchToProps)(SimulationControls)
+
+export { SimulationControlsConnected as SimulationControls }

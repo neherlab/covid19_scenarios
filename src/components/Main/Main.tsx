@@ -61,6 +61,19 @@ export interface MainProps {
   triggerRun(): void
 }
 
+const mapStateToProps = (state: State) => ({
+  scenarioData: selectScenarioData(state),
+  ageDistributionData: selectAgeDistributionData(state),
+  severityDistributionData: selectSeverityDistributionData(state),
+  isRunning: selectIsRunning(state),
+  isAutorunEnabled: selectIsAutorunEnabled(state),
+  isLogScale: selectIsLogScale(state),
+  shouldFormatNumbers: selectShouldFormatNumbers(state),
+  areResultsMaximized: selectAreResultsMaximized(state),
+})
+
+const mapDispatchToProps = {}
+
 export function Main({
   scenarioData,
   ageDistributionData,
@@ -72,8 +85,7 @@ export function Main({
   shouldFormatNumbers,
   areResultsMaximized,
 }: MainProps) {
-  const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [printable, setPrintable] = useState(false)
+  // const [printable, setPrintable] = useState(false)
 
   function handleSubmit(_0: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
     setSubmitting(true)
@@ -91,7 +103,7 @@ export function Main({
       .catch((error: FormikValidationErrors) => error.errors)
   }
 
-  const openPrintPreview = () => setPrintable(true)
+  // const openPrintPreview = () => setPrintable(true)
   const { colScenario, colResults } = getColumnSizes(areResultsMaximized)
 
   // if (printable) {
@@ -138,18 +150,5 @@ export function Main({
     </Row>
   )
 }
-
-const mapStateToProps = (state: State) => ({
-  scenarioData: selectScenarioData(state),
-  ageDistributionData: selectAgeDistributionData(state),
-  severityDistributionData: selectSeverityDistributionData(state),
-  isRunning: selectIsRunning(state),
-  isAutorunEnabled: selectIsAutorunEnabled(state),
-  isLogScale: selectIsLogScale(state),
-  shouldFormatNumbers: selectShouldFormatNumbers(state),
-  areResultsMaximized: selectAreResultsMaximized(state),
-})
-
-const mapDispatchToProps = {}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
