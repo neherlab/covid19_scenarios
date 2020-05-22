@@ -26,19 +26,24 @@ Brunei Darussalam	428962	Brunei Darussalam	1234	58		ECDC	https://doi.org/10.1097
 Bulgaria	7024216	Bulgaria	43646	913	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Burkina Faso	19751535	Burkina Faso	7897	236		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191013091950/https://www.cia.gov/library/publications/the-world-factbook/geos/uv.html	Estimated based on 3% of hospital beds
 Burundi	11175378	Burundi	9475	284		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20190912232021/https://www.cia.gov/library/publications/the-world-factbook/geos/by.html	Estimated based on 3% of hospital beds
+Cabo Verde	543767	Cabo Verde	1193	35		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191002150310/https://www.cia.gov/library/publications/the-world-factbook/geos/cv.html	Estimated based on 3% of hospital beds
+Cambodia	16249798	Cambodia	13159	394		ECDC	Computed from 2015 data in CIA fact book https://web.archive.org/web/20190912232024/https://www.cia.gov/library/publications/the-world-factbook/geos/cb.html	Estimated based on 3% of hospital beds
+Cameroon	25216237	Cameroon	33333	999		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191121205813/https://www.cia.gov/library/publications/the-world-factbook/geos/cm.html	Estimated based on 3% of hospital beds
 CAN-Alberta	4413146	Canada	5819	700	Northern	None	None	None
 CAN-British Columbia	5110917	Canada	6074	680	Northern	None	None	None
 CAN-Manitoba	1377517	Canada	2885	246	Northern	None	None	None
-CAN-NWT	44904	Canada	156	4	Northern	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx
 CAN-New Brunswick	779993	Canada	1448	144	Northern	None	None	None
 CAN-Newfoundland and Labrador	521356	Canada	1090	121	Northern	None	None	None
 CAN-Nova Scotia	977457	Canada	1896	128	Northern	None	None	None
 CAN-Nunavut	39097	Canada	30	4	Northern	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx
+CAN-NWT	44904	Canada	156	4	Northern	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx	https://www.cihi.ca/sites/default/files/document/icu_datatables_en.xlsx
 CAN-Ontario	14711827	Canada	15485	1723	Northern	None	None	None
 CAN-Prince Edward Island	158158	Canada	295	24	Northern	None	None	None
 CAN-Quebec	8484965	Canada	7000	633	Northern	https://www.stat.gouv.qc.ca/statistiques/population-demographie/structure/qc_1971-20xx.htm	https://www.cbc.ca/news/canada/montreal/numbers-covid-19-coronavirus-quebec-april-1-1.5518397	https://www.cbc.ca/news/canada/montreal/numbers-covid-19-coronavirus-quebec-april-1-1.5518397
 CAN-Saskatchewan	1181666	Canada	2198	106	Northern	None	None	None
 CAN-Yukon	41078	Canada	106	1	Northern	None	None	None
+Canada	37058856	Canada	72264	4800	Northern	ECDC	Computed from acute care OECD numbers and population size	None
+Central African Republic	4666377	Central African Republic	5745	172		ECDC	Computed from 2011 data in CIA fact book https://web.archive.org/web/20190912232034/https://www.cia.gov/library/publications/the-world-factbook/geos/ct.html	Estimated based on 3% of hospital beds
 CHE-Aargau	677000	Switzerland	2424	110	Northern	None	None	None
 CHE-Appenzell Ausserrhoden	55000	Switzerland	196	8	Northern	None	None	None
 CHE-Appenzell Innerrhoden	16000	Switzerland	57	2	Northern	None	None	None
@@ -65,11 +70,6 @@ CHE-Valais	344000	Switzerland	1231	56	Northern	None	None	None
 CHE-Vaud	799000	Switzerland	2861	130	Northern	None	None	None
 CHE-Zug	127000	Switzerland	454	20	Northern	None	None	None
 CHE-Zürich	1521000	Switzerland	5447	247	Northern	None	None	None
-Cabo Verde	543767	Cabo Verde	1193	35		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191002150310/https://www.cia.gov/library/publications/the-world-factbook/geos/cv.html	Estimated based on 3% of hospital beds
-Cambodia	16249798	Cambodia	13159	394		ECDC	Computed from 2015 data in CIA fact book https://web.archive.org/web/20190912232024/https://www.cia.gov/library/publications/the-world-factbook/geos/cb.html	Estimated based on 3% of hospital beds
-Cameroon	25216237	Cameroon	33333	999		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191121205813/https://www.cia.gov/library/publications/the-world-factbook/geos/cm.html	Estimated based on 3% of hospital beds
-Canada	37058856	Canada	72264	4800	Northern	ECDC	Computed from acute care OECD numbers and population size	None
-Central African Republic	4666377	Central African Republic	5745	172		ECDC	Computed from 2011 data in CIA fact book https://web.archive.org/web/20190912232034/https://www.cia.gov/library/publications/the-world-factbook/geos/ct.html	Estimated based on 3% of hospital beds
 Chile	18729160	Chile	37271	1118		ECDC	Computed from acute care OECD numbers and population size	Estimated based on 3% of hospital beds
 China	1392730000	China	5494778	49453		ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Colombia	49648685	Colombia	84899	2546		ECDC	Computed from total bed OECD numbers and population size	Estimated based on 3% of hospital beds
@@ -79,6 +79,7 @@ Croatia	4089400	Croatia	14475	650	Northern	ECDC	https://ec.europa.eu/eurostat/tg
 Cuba	11338138	Cuba	57805	1734		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191014005431/https://www.cia.gov/library/publications/the-world-factbook/geos/cu.html	Estimated based on 3% of hospital beds
 Cyprus	1189265	Cyprus	2922	92	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Czechia	10625695	Czechia	43531	1227	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Denmark	5797446	Denmark	14621	372	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 DEU-Baden-Württemberg	11070000	Germany	66152	3156	Northern	None	None	None
 DEU-Bayern	13077000	Germany	78146	3728	Northern	None	None	None
 DEU-Berlin	3645000	Germany	21781	1039	Northern	None	None	None
@@ -96,10 +97,13 @@ DEU-Sachsen	4078000	Germany	24369	1162	Northern	None	None	None
 DEU-Sachsen-Anhalt	2208000	Germany	13194	629	Northern	None	None	None
 DEU-Schleswig-Holstein	2897000	Germany	17312	826	Northern	None	None	None
 DEU-Thüringen	2143000	Germany	12806	611	Northern	None	None	None
-Denmark	5797446	Denmark	14621	372	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Djibouti	958920	Djibouti	1237	37		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20190918213315/https://www.cia.gov/library/publications/the-world-factbook/geos/dj.html	Estimated based on 3% of hospital beds
 Dominica	71625	Switzerland	281	8		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20190912232122/https://www.cia.gov/library/publications/the-world-factbook/geos/do.html	Estimated based on 3% of hospital beds
 Dominican Republic	10627165	Dominican Republic	16478	494		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191005025757/https://www.cia.gov/library/publications/the-world-factbook/geos/dr.html	Estimated based on 3% of hospital beds
+Ecuador	17084357	Ecuador	24747	742		ECDC	Computed from 2013 data in CIA fact book https://web.archive.org/web/20191005025831/https://www.cia.gov/library/publications/the-world-factbook/geos/ec.html	Estimated based on 3% of hospital beds
+Egypt	98423595	Egypt	159061	4771		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191026224536/https://www.cia.gov/library/publications/the-world-factbook/geos/eg.html	Estimated based on 3% of hospital beds
+El Salvador	6420744	El Salvador	8043	241		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191005025802/https://www.cia.gov/library/publications/the-world-factbook/geos/es.html	Estimated based on 3% of hospital beds
+Equatorial Guinea	1308974	Equatorial Guinea	1674	50		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191014010044/https://www.cia.gov/library/publications/the-world-factbook/geos/ek.html	Estimated based on 3% of hospital beds
 ESP-Andalucía	8414240	Spain	19744	801	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Aragón	1319291	Spain	3096	125	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Asturias	1022800	Spain	2400	97	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
@@ -119,13 +123,12 @@ ESP-Melilla	86487	Spain	203	8	Northern	None	Beds are estimated multiplying the t
 ESP-Murcia	1493898	Spain	3505	142	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-Navarra	654214	Spain	1535	62	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
 ESP-País Vasco	2207776	Spain	5180	210	Northern	None	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region	Beds are estimated multiplying the total number of beds (already in the sheet) by % population in the region
-Ecuador	17084357	Ecuador	24747	742		ECDC	Computed from 2013 data in CIA fact book https://web.archive.org/web/20191005025831/https://www.cia.gov/library/publications/the-world-factbook/geos/ec.html	Estimated based on 3% of hospital beds
-Egypt	98423595	Egypt	159061	4771		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191026224536/https://www.cia.gov/library/publications/the-world-factbook/geos/eg.html	Estimated based on 3% of hospital beds
-El Salvador	6420744	El Salvador	8043	241		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191005025802/https://www.cia.gov/library/publications/the-world-factbook/geos/es.html	Estimated based on 3% of hospital beds
-Equatorial Guinea	1308974	Equatorial Guinea	1674	50		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191014010044/https://www.cia.gov/library/publications/the-world-factbook/geos/ek.html	Estimated based on 3% of hospital beds
 Estonia	1320884	Estonia	4539	196	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Eswatini	1367000	Eswatini	2283	68		ECDC	Computed from 2011 data in CIA fact book https://web.archive.org/web/20190912232622/https://www.cia.gov/library/publications/the-world-factbook/geos/wz.html	Estimated based on 3% of hospital beds
 Ethiopia	109224559	Ethiopia	32515	975		ECDC	Computed from 2015 data in CIA fact book https://web.archive.org/web/20191117060752/https://www.cia.gov/library/publications/the-world-factbook/geos/et.html	Estimated based on 3% of hospital beds
+Faroe Islands	48497	Switzerland	209	6		ECDC	Computed from 2015 data in CIA fact book https://web.archive.org/web/20190825062208/https://www.cia.gov/library/publications/the-world-factbook/geos/fo.html	Estimated based on 3% of hospital beds
+Fiji	883483	Fiji	2130	63		ECDC	Computed from 2011 data in CIA fact book https://web.archive.org/web/20190930034406/https://www.cia.gov/library/publications/the-world-factbook/geos/fj.html	Estimated based on 3% of hospital beds
+Finland	5518050	Finland	15397	329	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 FRA-Auvergne-Rhône-Alpes	8026685	France	16641	555	Northern	None	None	None
 FRA-Bourgogne-Franche-Comté	2795301	France	7095	121	Northern	None	None	None
 FRA-Bretagne	3329395	France	7361	109	Northern	None	None	None
@@ -144,9 +147,6 @@ FRA-Nouvelle-Aquitaine	5987014	France	12491	449	Northern	None	None	None
 FRA-Occitanie	5892817	France	9851	466	Northern	None	None	None
 FRA-Pays-de-la-Loire	3786545	France	6570	181	Northern	None	None	None
 FRA-Provence-Alpes-Côte-dAzur	5059473	France	9909	460	Northern	None	None	None
-Faroe Islands	48497	Switzerland	209	6		ECDC	Computed from 2015 data in CIA fact book https://web.archive.org/web/20190825062208/https://www.cia.gov/library/publications/the-world-factbook/geos/fo.html	Estimated based on 3% of hospital beds
-Fiji	883483	Fiji	2130	63		ECDC	Computed from 2011 data in CIA fact book https://web.archive.org/web/20190930034406/https://www.cia.gov/library/publications/the-world-factbook/geos/fj.html	Estimated based on 3% of hospital beds
-Finland	5518050	Finland	15397	329	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 France	66987244	France	206619	7540	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Gabon	2119275	Gabon	13349	400		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191022033559/https://www.cia.gov/library/publications/the-world-factbook/geos/gb.html	Estimated based on 3% of hospital beds
 Gambia	2280102	Gambia	2302	69		ECDC	Computed from 2011 data in CIA fact book https://web.archive.org/web/20190912232157/https://www.cia.gov/library/publications/the-world-factbook/geos/ga.html	Estimated based on 3% of hospital beds
@@ -164,6 +164,7 @@ Haiti	11123176	Haiti	7551	226		ECDC	Computed from 2013 data in CIA fact book htt
 Honduras	9587522	Honduras	6427	192		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191005025843/https://www.cia.gov/library/publications/the-world-factbook/geos/ho.html	Estimated based on 3% of hospital beds
 Hong Kong	7213338	Hong Kong	18926	511		2018-07-01 data in CIA fact book https://web.archive.org/web/20191116042037/https://www.cia.gov/library/publications/the-world-factbook/geos/hk.html	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Hungary	9768785	Hungary	41803	1374	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Iceland	353574	Iceland	862	29	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 IND-Andaman & Nicobar Islands	419978	India	1075	105	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Andhra Pradesh	52883163	India	23138	2278	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Arunachal Pradesh	1528296	India	2404	236	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
@@ -200,6 +201,12 @@ IND-Tripura	4057847	India	4417	435	Northern	None	None	ICU beds not available at 
 IND-Uttar Pradesh	228959599	India	76260	7510	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-Uttarakhand	11090425	India	8512	838	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
 IND-West Bengal	97694960	India	78566	7737	Northern	None	None	ICU beds not available at state level for India, estimated using India’s approx 70,000 ICU beds and state population size
+India	1352617328	India	810730	29997	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Indonesia	267663435	Indonesia	308435	7094	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Iran (Islamic Republic of)	81800269	Iran (Islamic Republic of)	130690	3790	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Iraq	38433600	Iraq	56271	1688		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191103194856/https://www.cia.gov/library/publications/the-world-factbook/geos/iz.html	Estimated based on 3% of hospital beds
+Ireland	4853506	Ireland	13297	289	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+Israel	8883800	Israel	19133	758	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	None
 ITA-Abruzzo	1311580	Italy	3872	70	Northern	None	None	None
 ITA-Basilicata	562869	Italy	1681	5	Northern	None	None	None
 ITA-Calabria	1947131	Italy	4901	107	Northern	None	None	None
@@ -222,18 +229,58 @@ ITA-TrentinoAltoAdige	1072276	Italy	3763	75	Northern	None	None	None
 ITA-Umbria	882015	Italy	2652	69	Northern	None	None	None
 ITA-Valle d'Aosta	125666	Italy	449	0	Northern	None	None	None
 ITA-Veneto	4905854	Italy	15857	825	Northern	None	None	None
-Iceland	353574	Iceland	862	29	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-India	1352617328	India	810730	29997	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Indonesia	267663435	Indonesia	308435	7094	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Iran (Islamic Republic of)	81800269	Iran (Islamic Republic of)	130690	3790	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Iraq	38433600	Iraq	56271	1688		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191103194856/https://www.cia.gov/library/publications/the-world-factbook/geos/iz.html	Estimated based on 3% of hospital beds
-Ireland	4853506	Ireland	13297	289	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-Israel	8883800	Israel	19133	758	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	None
 Italy	60431283	Italy	158891	7550	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-JPN-Okinawa	1433566	Japan	100	24	Tropical	None	None	https://www.stopcovid19.jp
 Jamaica	2934855	Jamaica	4780	143		ECDC	Computed from 2013 data in CIA fact book https://web.archive.org/web/20191029041844/https://www.cia.gov/library/publications/the-world-factbook/geos/jm.html	Estimated based on 3% of hospital beds
 Japan	126529100	Japan	710846	9241	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Jordan	9956011	Jordan	14641	439		ECDC	Computed from 2015 data in CIA fact book https://web.archive.org/web/20191104022033/https://www.cia.gov/library/publications/the-world-factbook/geos/jo.html	Estimated based on 3% of hospital beds
+JPN-Aichi	7539185	Japan	1800	551	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.youtube.com/watch?v=9gj2zhgPy-g&t=1013	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Akita	980684	Japan	121	72	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Aomori	1262823	Japan	129	92	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Chiba	6268585	Japan	1333	458	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Ehime	1351510	Japan	137	99	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Fukui	773731	Japan	237	57	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Fukuoka	5111494	Japan	1256	373	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Fukushima	1862705	Japan	429	136	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Gifu	1999406	Japan	618	146	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Gunma	1949440	Japan	302	142	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Hiroshima	2819962	Japan	324	206	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Hokkaido	5285430	Japan	759	386	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Hyogo	5483450	Japan	1087	401	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Ibaraki	2882943	Japan	326	211	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Ishikawa	1142965	Japan	340	83	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Iwate	1240522	Japan	38	91	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Kagawa	961900	Japan	144	70	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Kagoshima	1613969	Japan	441	118	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Kanagawa	9179835	Japan	3385	671	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Kochi	705880	Japan	93	52	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Kumamoto	1756442	Japan	1023	128	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.pref.kumamoto.jp/kiji_32898.html	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Kyoto	2591779	Japan	590	189	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.pref.kyoto.jp/koho/kaiken/documents/20050101.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Mie	1790376	Japan	235	131	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Miyagi	2313215	Japan	588	169	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Miyazaki	1079727	Japan	256	79	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Nagano	2063865	Japan	500	151	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Nagasaki	1339438	Japan	102	98	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Nara	1340070	Japan	348	98	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Niigata	2245057	Japan	450	164	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.pref.niigata.lg.jp/sec/kikitaisaku/byosyonoseibijokyo.html	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Oita	1142943	Japan	323	83	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Okayama	1899739	Japan	117	139	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Okinawa	1448101	Japan	487	106	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Osaka	8824566	Japan	2639	645	Northern	http://www.citypopulation.de/Japan-Cities.html	http://www.pref.osaka.lg.jp/attach/38215/00362682/031_shiryo3.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Saga	819110	Japan	341	60	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Saitama	7322645	Japan	1630	535	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Shiga	1412881	Japan	171	103	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Shimane	679626	Japan	298	50	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Shizuoka	3656487	Japan	200	267	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.pref.shizuoka.jp/kinkyu/documents/honnbuinnkaigisiryou9.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Tochigi	1952926	Japan	241	143	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Tokushima	736475	Japan	330	54	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Tokyo	13843403	Japan	4800	1011	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.youtube.com/watch?v=JVCYiUVV5q0#t=770	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Tottori	560517	Japan	734	41	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Toyama	1050246	Japan	305	77	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Wakayama	934051	Japan	117	68	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Yamagata	1089806	Japan	150	80	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Yamaguchi	1368495	Japan	914	100	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Yamanashi	818391	Japan	101	60	Northern	http://www.citypopulation.de/Japan-Cities.html	https://www.mhlw.go.jp/content/10900000/000628694.pdf	Beds are estimated multiplying the total number of beds (https://doi.org/10.1097/CCM.0000000000004222) by % population in the region
+JPN-Okinawa	1433566	Japan	100	24	Tropical	None	None	https://www.stopcovid19.jp
 Kazakhstan	18276499	Kazakhstan	101231	3948	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Kenya	51393010	Kenya	67756	2032		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20190912232310/https://www.cia.gov/library/publications/the-world-factbook/geos/ke.html	Estimated based on 3% of hospital beds
 Kiribati	109367	Kiribati	207	6		2018-07-01 data in CIA fact book https://web.archive.org/web/20190923155848/https://www.cia.gov/library/publications/the-world-factbook/geos/kr.html	Computed from 2015 data in CIA fact book https://web.archive.org/web/20190923155848/https://www.cia.gov/library/publications/the-world-factbook/geos/kr.html	Estimated based on 3% of hospital beds
@@ -276,6 +323,12 @@ Nicaragua	6465513	Nicaragua	5476	164		ECDC	Computed from 2014 data in CIA fact b
 North Macedonia	2082958	North Macedonia	5937	178		ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	Estimated based on 3% of hospital beds
 Norway	5314336	Norway	16885	395	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Oman	4829483	Oman	5736	499	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Pakistan	212215030	Pakistan	125680	3142	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
+Palau	21516	Switzerland	103	3		2018-07-01 data in CIA fact book https://web.archive.org/web/20190924103300/https://www.cia.gov/library/publications/the-world-factbook/geos/ps.html	Computed from 2010 data in CIA fact book https://web.archive.org/web/20190924103300/https://www.cia.gov/library/publications/the-world-factbook/geos/ps.html	Estimated based on 3% of hospital beds
+Panama	4176873	Panama	8741	262		ECDC	Computed from 2013 data in CIA fact book https://web.archive.org/web/20190912232505/https://www.cia.gov/library/publications/the-world-factbook/geos/pm.html	Estimated based on 3% of hospital beds
+Paraguay	6956071	Paraguay	9133	273		ECDC	Computed from 2011 data in CIA fact book https://web.archive.org/web/20190912232510/https://www.cia.gov/library/publications/the-world-factbook/geos/pa.html	Estimated based on 3% of hospital beds
+Peru	31989256	Peru	50129	1503		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191005025820/https://www.cia.gov/library/publications/the-world-factbook/geos/pe.html	Estimated based on 3% of hospital beds
+Philippines	106651922	Philippines	63108	2335	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 PHL-BARMM	4089676	Philippines	915	16	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
 PHL-CAR (Cordillera Administrative Region)	1907454	Philippines	1962	16	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
 PHL-NCR	13152983	Philippines	29723	104	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
@@ -293,18 +346,11 @@ PHL-Region 6 (Western Visayas)	8132584	Philippines	5798	39	Northern	2015 Family 
 PHL-Region 7 (Central Visayas)	7928506	Philippines	6436	38	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
 PHL-Region 8 (Eastern Visayas)	4874138	Philippines	2962	29	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
 PHL-Region 9 (Zamboanga Peninsula)	4026515	Philippines	3004	28	Northern	2015 Family Income and Expenditure Survey	https://apps.searo.who.int/PDS_DOCS/B5438.pdf	ICU beds not available at regional level, estimated using average hospital beds, number of hospitals at levels 2 and 3, and assumption that 2.2% of hospital beds can be ICU beds (consulted with DOH)
-Pakistan	212215030	Pakistan	125680	3142	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
-Palau	21516	Switzerland	103	3		2018-07-01 data in CIA fact book https://web.archive.org/web/20190924103300/https://www.cia.gov/library/publications/the-world-factbook/geos/ps.html	Computed from 2010 data in CIA fact book https://web.archive.org/web/20190924103300/https://www.cia.gov/library/publications/the-world-factbook/geos/ps.html	Estimated based on 3% of hospital beds
-Panama	4176873	Panama	8741	262		ECDC	Computed from 2013 data in CIA fact book https://web.archive.org/web/20190912232505/https://www.cia.gov/library/publications/the-world-factbook/geos/pm.html	Estimated based on 3% of hospital beds
-Paraguay	6956071	Paraguay	9133	273		ECDC	Computed from 2011 data in CIA fact book https://web.archive.org/web/20190912232510/https://www.cia.gov/library/publications/the-world-factbook/geos/pa.html	Estimated based on 3% of hospital beds
-Peru	31989256	Peru	50129	1503		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191005025820/https://www.cia.gov/library/publications/the-world-factbook/geos/pe.html	Estimated based on 3% of hospital beds
-Philippines	106651922	Philippines	63108	2335	Northern	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Poland	37978548	Poland	184230	2635	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Portugal	10281762	Portugal	33447	451	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Qatar	2781677	Qatar	2836	85		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191102204309/https://www.cia.gov/library/publications/the-world-factbook/geos/qa.html	Estimated based on 3% of hospital beds
 Romania	19473936	Romania	102899	4574	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Russian Federation	144478050	Russian Federation	915124	27453		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	Estimated based on 3% of hospital beds
-SWE-Stockholm	2000000	Sweden	4506	108	Northern	None	None	None
 Saint Kitts and Nevis	52441	Switzerland	254	7		ECDC	Computed from 2012 data in CIA fact book https://web.archive.org/web/20190912232534/https://www.cia.gov/library/publications/the-world-factbook/geos/sc.html	Estimated based on 3% of hospital beds
 Saint Lucia	181889	Saint Lucia	215	6		ECDC	Computed from 2013 data in CIA fact book https://web.archive.org/web/20190912232536/https://www.cia.gov/library/publications/the-world-factbook/geos/st.html	Estimated based on 3% of hospital beds
 Saint Vincent and the Grenadines	110210	Saint Vincent and the Grenadines	264	7		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20190912232612/https://www.cia.gov/library/publications/the-world-factbook/geos/vc.html	Estimated based on 3% of hospital beds
@@ -324,6 +370,7 @@ Spain	46723749	Spain	113042	4479	Northern	ECDC	https://ec.europa.eu/eurostat/tgm
 Sri Lanka	21670000	Sri Lanka	86500	519	Tropical	ECDC	https://doi.org/10.1097/CCM.0000000000004222	https://doi.org/10.1097/CCM.0000000000004222
 Sudan	41801533	Sudan	34496	1034		ECDC	Computed from 2013 data in CIA fact book https://web.archive.org/web/20191104054651/https://www.cia.gov/library/publications/the-world-factbook/geos/su.html	Estimated based on 3% of hospital beds
 Suriname	575991	Suriname	1853	55		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20190912232617/https://www.cia.gov/library/publications/the-world-factbook/geos/ns.html	Estimated based on 3% of hospital beds
+SWE-Stockholm	2000000	Sweden	4506	108	Northern	None	None	None
 Sweden	10183175	Sweden	20477	550	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Switzerland	8516543	Switzerland	30057	1400	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
 Syrian Arab Republic	16906283	Syrian Arab Republic	29181	875		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191121164147/https://www.cia.gov/library/publications/the-world-factbook/geos/sy.html	Estimated based on 3% of hospital beds
@@ -338,6 +385,12 @@ Trinidad and Tobago	1389858	Trinidad and Tobago	3646	109		ECDC	Computed from 201
 Tunisia	11565204	Tunisia	25335	760		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191103155710/https://www.cia.gov/library/publications/the-world-factbook/geos/ts.html	Estimated based on 3% of hospital beds
 Turkey	82319724	Turkey	223386	6701		ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	Estimated based on 3% of hospital beds
 Turkmenistan	5411012	Turkmenistan	16261	487		2018-07-01 data in CIA fact book https://web.archive.org/web/20191102091103/https://www.cia.gov/library/publications/the-world-factbook/geos/tx.html	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	Estimated based on 3% of hospital beds
+Uganda	42723139	Uganda	20426	612		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191104063644/https://www.cia.gov/library/publications/the-world-factbook/geos/ug.html	Estimated based on 3% of hospital beds
+Ukraine	44622516	Ukraine	276004	2646	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	https://youcontrol.com.ua/virus/
+United Arab Emirates	9630959	United Arab Emirates	11641	349		ECDC	Computed from 2013 data in CIA fact book https://web.archive.org/web/20191014021444/https://www.cia.gov/library/publications/the-world-factbook/geos/ae.html	Estimated based on 3% of hospital beds
+United Kingdom of Great Britain and Northern Ireland	66488991	United Kingdom of Great Britain and Northern Ireland	139647	4114	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
+United States of America	327167434	United States of America	798288	49499	Northern	ECDC	Computed from acute care OECD numbers and population size	None
+Uruguay	3449299	Uruguay	9434	283		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20190912232716/https://www.cia.gov/library/publications/the-world-factbook/geos/uy.html	Estimated based on 3% of hospital beds
 USA-Alabama	4908621	United States of America	15217	507	Northern	None	None	None
 USA-Alaska	734002	United States of America	1615	54	Northern	None	None	None
 USA-Arizona	7378494	United States of America	14019	467	Northern	None	None	None
@@ -390,12 +443,6 @@ USA-Washington	7797095	United States of America	13255	442	Northern	None	None	Non
 USA-West Virginia	1778070	United States of America	6757	225	Northern	None	None	None
 USA-Wisconsin	5851754	United States of America	12289	410	Northern	None	None	None
 USA-Wyoming	567025	United States of America	1985	66	Northern	None	None	None
-Uganda	42723139	Uganda	20426	612		ECDC	Computed from 2010 data in CIA fact book https://web.archive.org/web/20191104063644/https://www.cia.gov/library/publications/the-world-factbook/geos/ug.html	Estimated based on 3% of hospital beds
-Ukraine	44622516	Ukraine	276004	2646	Northern	ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	https://youcontrol.com.ua/virus/
-United Arab Emirates	9630959	United Arab Emirates	11641	349		ECDC	Computed from 2013 data in CIA fact book https://web.archive.org/web/20191014021444/https://www.cia.gov/library/publications/the-world-factbook/geos/ae.html	Estimated based on 3% of hospital beds
-United Kingdom of Great Britain and Northern Ireland	66488991	United Kingdom of Great Britain and Northern Ireland	139647	4114	Northern	ECDC	https://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tps00046	http://dx.doi.org/10.1007/s00134-012-2627-8
-United States of America	327167434	United States of America	798288	49499	Northern	ECDC	Computed from acute care OECD numbers and population size	None
-Uruguay	3449299	Uruguay	9434	283		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20190912232716/https://www.cia.gov/library/publications/the-world-factbook/geos/uy.html	Estimated based on 3% of hospital beds
 Uzbekistan	32955400	Uzbekistan	98390	2951		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	Estimated based on 3% of hospital beds
 Venezuela (Bolivarian Republic of)	28870195	Venezuela (Bolivarian Republic of)	25351	760		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191111144806/https://www.cia.gov/library/publications/the-world-factbook/geos/ve.html	Estimated based on 3% of hospital beds
 Viet Nam	95540395	Viet Nam	252304	7569		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20190912232724/https://www.cia.gov/library/publications/the-world-factbook/geos/vm.html	Estimated based on 3% of hospital beds
