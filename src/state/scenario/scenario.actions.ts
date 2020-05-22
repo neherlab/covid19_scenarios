@@ -1,5 +1,5 @@
-import { StrictOmit } from 'ts-essentials'
 import actionCreatorFactory from 'typescript-fsa'
+import { ScenarioParameters } from '../../algorithms/types/Param.types'
 
 import type {
   AgeDistributionDatum,
@@ -9,8 +9,6 @@ import type {
   ScenarioDatumSimulation,
   SeverityDistributionDatum,
 } from '../../algorithms/types/Param.types'
-
-import type { ScenarioState } from './scenario.state'
 
 const action = actionCreatorFactory('SCENARIO')
 
@@ -51,6 +49,4 @@ export const setMitigationData = action<SetMitigationData>('SET_MITIGATION_DATA'
 export const setSimulationData = action<SetSimulationData>('SET_SIMULATION_DATA')
 export const setAgeDistributionData = action<SetAgeDistributionData>('SET_AGE_DISTRIBUTION_DATA')
 export const setSeverityDistributionData = action<SetSeverityDistributionData>('SET_SEVERITY_DISTRIBUTION_DATA')
-
-export type SetScenarioStateData = StrictOmit<ScenarioState, 'defaultScenariosNames' | 'shouldRenameOnEdits'>
-export const setScenarioState = action<SetScenarioStateData>('SET_STATE_DATA')
+export const setScenarioState = action<ScenarioParameters>('SET_STATE_DATA')

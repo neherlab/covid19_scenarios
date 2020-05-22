@@ -3,7 +3,7 @@ import { trim } from 'lodash'
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
 
-import { CaseCountsArray, CaseCountsData, CaseCountsDatum, Convert } from '../../algorithms/types/Param.types'
+import { CaseCountsArray, CaseCountsData, Convert } from '../../algorithms/types/Param.types'
 import validateCaseCountsArray, { errors } from '../../.generated/latest/validateCaseCountsArray'
 import validateCaseCountsData, { errors as dataErrors } from '../../.generated/latest/validateCaseCountsData'
 
@@ -41,9 +41,9 @@ export function validate(caseCountsDataDangerous: object): void {
   }
 }
 
-export function convert(caseCountsDangerous: object): CaseCountsDatum[] {
+export function convert(caseCountsDangerous: object): CaseCountsData {
   try {
-    return Convert.toCaseCountsData(JSON.stringify(caseCountsDangerous)).data
+    return Convert.toCaseCountsData(JSON.stringify(caseCountsDangerous))
   } catch (error) {
     if (error instanceof Error) {
       throw new DeserializationErrorConversionFailed(error.message)
@@ -53,15 +53,15 @@ export function convert(caseCountsDangerous: object): CaseCountsDatum[] {
   }
 }
 
-const caseCountsData = validateAll()
-export const caseCountsNames = caseCountsData.map((cc) => cc.name)
+const manyCaseCountsData = validateAll()
+export const caseCountsNames = manyCaseCountsData.map((cc) => cc.name)
 
 export function getCaseCountsData(name: string) {
   if (name === NONE_COUNTRY_NAME) {
-    return []
+    return { name, data: [] }
   }
 
-  const caseCountFound = caseCountsData.find((cc) => cc.name === name)
+  const caseCountFound = manyCaseCountsData.find((cc) => cc.name === name)
   if (!caseCountFound) {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(`
@@ -71,14 +71,15 @@ export function getCaseCountsData(name: string) {
         Returning an empty case counts array. However the app state will not be adjusted.
         This means that the incorrect name "${name}" will be visible in the UI, but no actual case data will be present`)
     }
-    return []
+
+    return { name, data: [] }
   }
 
-  return convert(caseCountFound)
-}
+  const caseCountsData = convert(caseCountFound)
 
-export function getSortedNonEmptyCaseCounts(key: string): CaseCountsDatum[] {
-  return getCaseCountsData(key)
+  const data = caseCountsData.data
     .filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)
     .sort((a, b) => (a.time > b.time ? 1 : -1))
+
+  return { name, data }
 }

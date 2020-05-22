@@ -3,8 +3,8 @@ import * as yup from 'yup'
 import i18next from 'i18next'
 import { ScenarioDatum } from '../../../algorithms/types/Param.types'
 
-import { ageDistributionNames } from '../state/getAgeDistribution'
-import { CUSTOM_COUNTRY_NAME } from '../state/state'
+import { ageDistributionNames } from '../../../io/defaults/getAgeDistributionData'
+import { CUSTOM_COUNTRY_NAME } from '../../../state/scenario/scenario.state'
 
 const ageRegions = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]
 

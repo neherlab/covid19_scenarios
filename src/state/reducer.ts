@@ -2,6 +2,9 @@ import { connectRouter, RouterState } from 'connected-react-router'
 import { History } from 'history'
 import { combineReducers } from 'redux'
 
+import { algorithmReducer } from './algorithm/algorithm.reducer'
+import { AlgorithmState } from './algorithm/algorithm.state'
+
 import type { ScenarioState } from './scenario/scenario.state'
 import { scenarioReducer } from './scenario/scenario.reducer'
 
@@ -14,6 +17,7 @@ import type { CaseCountsState } from './caseCounts/caseCounts.state'
 import { caseCountsReducer } from './caseCounts/caseCounts.reducer'
 
 export interface State {
+  algorithm: AlgorithmState
   error: ErrorState
   scenario: ScenarioState
   settings: SettingsState
@@ -23,6 +27,7 @@ export interface State {
 
 const rootReducer = (history: History) =>
   combineReducers({
+    algorithm: algorithmReducer,
     error: errorReducer,
     scenario: scenarioReducer,
     settings: settingsReducer,

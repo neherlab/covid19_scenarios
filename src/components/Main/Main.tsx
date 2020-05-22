@@ -1,65 +1,44 @@
-import React, { useReducer, useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
-import { cloneDeep, map, isEqual } from 'lodash'
-
-import { useDebouncedCallback } from 'use-debounce'
+import { connect } from 'react-redux'
 import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
 import { Col, Row } from 'reactstrap'
 
 import type { AlgorithmResult } from '../../algorithms/types/Result.types'
-import type { ScenarioDatum, SeverityDistributionDatum, CaseCountsDatum } from '../../algorithms/types/Param.types'
+import type {
+  ScenarioDatum,
+  SeverityDistributionDatum,
+  CaseCountsDatum,
+  AgeDistributionDatum,
+} from '../../algorithms/types/Param.types'
 
-import { run } from '../../workers/algorithm'
-import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
+import type { State } from '../../state/reducer'
+import { selectIsRunning } from '../../state/algorithm/algorithm.selectors'
+import {
+  selectScenarioData,
+  selectAgeDistributionData,
+  selectSeverityDistributionData,
+} from '../../state/scenario/scenario.selectors'
+import {
+  selectIsAutorunEnabled,
+  selectIsLogScale,
+  selectShouldFormatNumbers,
+  selectAreResultsMaximized,
+} from '../../state/settings/settings.selectors'
+
 import { ColCustom } from '../Layout/ColCustom'
 
+import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
 import { schema } from './validation/schema'
 
-import { getSortedNonEmptyCaseCounts } from './state/getCaseCounts'
-import { setMitigationData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
-import { scenarioReducer } from './state/reducer'
-import { State } from './state/state'
-
-import { DEFAULT_SEVERITY_DISTRIBUTION, InitialStateComponentProps } from './HandleInitialState'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
-import PrintPage from './PrintPage/PrintPage'
+// import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
-import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
 
 interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
-}
-
-async function runSimulation(
-  params: ScenarioDatum,
-  scenarioState: State,
-  severity: SeverityDistributionDatum[],
-  setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
-  setEmpiricalCases: React.Dispatch<React.SetStateAction<CaseCountsDatum[] | undefined>>,
-  setIsRunning: React.Dispatch<React.SetStateAction<boolean>>,
-) {
-  setIsRunning(true)
-  try {
-    const paramsFlat = {
-      ...params.population,
-      ...params.epidemiological,
-      ...params.simulation,
-      ...params.mitigation,
-    }
-
-    const newResult = await run({ params: paramsFlat, severity, ageDistribution: scenarioState.ageDistribution })
-    setResult(newResult)
-
-    const caseCounts = getSortedNonEmptyCaseCounts(params.population.caseCountsName)
-    setEmpiricalCases(caseCounts)
-  } catch (error) {
-    // Rejected promises are thrown by await functions.
-    // Catch and log the error message to console.
-    console.error(error)
-  }
-  setIsRunning(false)
 }
 
 function getColumnSizes(areResultsMaximized: boolean) {
@@ -70,144 +49,85 @@ function getColumnSizes(areResultsMaximized: boolean) {
   return { colScenario: { xl: 6 }, colResults: { xl: 6 } }
 }
 
-function Main({ initialState }: InitialStateComponentProps) {
+export interface MainProps {
+  scenarioData: ScenarioDatum
+  ageDistributionData: AgeDistributionDatum[]
+  severityDistributionData: SeverityDistributionDatum[]
+  isRunning: boolean
+  isAutorunEnabled: boolean
+  isLogScale: boolean
+  shouldFormatNumbers: boolean
+  areResultsMaximized: boolean
+  triggerRun(): void
+}
+
+export function Main({
+  scenarioData,
+  ageDistributionData,
+  severityDistributionData,
+  triggerRun,
+  isRunning,
+  isAutorunEnabled,
+  isLogScale,
+  shouldFormatNumbers,
+  areResultsMaximized,
+}: MainProps) {
   const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [autorunSimulation, setAutorunSimulation] = useState(
-    LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? true,
-  )
-  const [areResultsMaximized, setAreResultsMaximized] = useState(window?.innerWidth > 2000)
-  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, initialState.scenarioState)
-
-  // TODO: Can this complex state be handled by formik too?
-  const [severity, setSeverity] = useState<SeverityDistributionDatum[]>(initialState.severityTable)
   const [printable, setPrintable] = useState(false)
-  const openPrintPreview = () => setPrintable(true)
 
-  const [empiricalCases, setEmpiricalCases] = useState<CaseCountsDatum[] | undefined>()
-
-  const togglePersistAutorun = () => {
-    LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
-    setAutorunSimulation(!autorunSimulation)
-  }
-
-  const [isRunning, setIsRunning] = useState(false)
-
-  const [debouncedRun] = useDebouncedCallback(
-    (params: ScenarioDatum, scenarioState: State, severity: SeverityDistributionDatum[]) =>
-      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning),
-    50,
-  )
-
-  useEffect(() => {
-    // runs only once, when the component is mounted
-    debouncedRun(scenarioState.data, scenarioState, severity)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    if (autorunSimulation && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)) {
-      debouncedRun(scenarioState.data, scenarioState, severity)
-    }
-  }, [autorunSimulation, debouncedRun, scenarioState, severity])
-
-  const [validateFormAndUpdateState] = useDebouncedCallback((newParams: ScenarioDatum) => {
-    return schema
-      .validate(newParams)
-      .then((validParams) => {
-        // NOTE: deep object comparison!
-        if (!isEqual(scenarioState.data.population, validParams.population)) {
-          scenarioDispatch(setPopulationData({ data: validParams.population }))
-        }
-        // NOTE: deep object comparison!
-        if (!isEqual(scenarioState.data.epidemiological, validParams.epidemiological)) {
-          scenarioDispatch(setEpidemiologicalData({ data: validParams.epidemiological }))
-        }
-        // NOTE: deep object comparison!
-        if (!isEqual(scenarioState.data.simulation, validParams.simulation)) {
-          scenarioDispatch(setSimulationData({ data: validParams.simulation }))
-        }
-        // NOTE: deep object comparison!
-        if (!isEqual(scenarioState.data.mitigation, validParams.mitigation)) {
-          const mitigationIntervals = map(validParams.mitigation.mitigationIntervals, cloneDeep)
-          scenarioDispatch(setMitigationData({ data: { mitigationIntervals } }))
-        }
-
-        return validParams
-      })
-      .catch((error: FormikValidationErrors) => error.errors)
-  }, 50)
-
-  function handleSubmit(params: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
-    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning)
+  function handleSubmit(_0: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
+    setSubmitting(true)
+    triggerRun()
     setSubmitting(false)
   }
 
-  function toggleResultsMaximized() {
-    setAreResultsMaximized(!areResultsMaximized)
+  function validateFormAndUpdateState(newParams: ScenarioDatum) {
+    return schema
+      .validate(newParams)
+      .then((validParams) => {
+        triggerRun()
+        return validParams
+      })
+      .catch((error: FormikValidationErrors) => error.errors)
   }
 
+  const openPrintPreview = () => setPrintable(true)
   const { colScenario, colResults } = getColumnSizes(areResultsMaximized)
 
-  if (printable) {
-    return (
-      <PrintPage
-        params={scenarioState.data}
-        scenarioUsed={scenarioState.current}
-        severity={severity}
-        result={result}
-        caseCounts={empiricalCases}
-        onClose={() => {
-          setPrintable(false)
-        }}
-      />
-    )
-  }
+  // if (printable) {
+  //   return (
+  //     <PrintPage
+  //       result={result}
+  //       onClose={() => {
+  //         setPrintable(false)
+  //       }}
+  //     />
+  //   )
+  // }
 
   return (
     <Row noGutters className="row-main">
       <Col>
         <Formik
           enableReinitialize
-          initialValues={scenarioState.data}
+          initialValues={scenarioData}
           onSubmit={handleSubmit}
           validate={validateFormAndUpdateState}
           validationSchema={schema}
           validateOnMount
         >
           {({ values, errors, touched, isValid, isSubmitting }) => {
-            const canRun = isValid && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)
+            const canRun = isValid && areAgeGroupParametersValid(severityDistributionData, ageDistributionData)
 
             return (
               <Form noValidate className="form form-main">
                 <Row className="row-form-main">
                   <ColCustom lg={4} {...colScenario} className="col-wrapper-scenario animate-flex-width">
-                    <ScenarioCard
-                      scenario={values}
-                      severity={severity}
-                      setSeverity={setSeverity}
-                      scenarioState={scenarioState}
-                      scenarioDispatch={scenarioDispatch}
-                      setCaseCounts={setEmpiricalCases}
-                      errors={errors}
-                      touched={touched}
-                      areResultsMaximized={areResultsMaximized}
-                    />
+                    <ScenarioCard errors={errors} touched={touched} />
                   </ColCustom>
 
                   <ColCustom lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
-                    <ResultsCard
-                      canRun={canRun}
-                      isRunning={isRunning}
-                      isAutorunEnabled={autorunSimulation}
-                      toggleAutorun={togglePersistAutorun}
-                      severity={severity}
-                      severityName={DEFAULT_SEVERITY_DISTRIBUTION}
-                      scenarioState={scenarioState}
-                      result={result}
-                      caseCounts={empiricalCases}
-                      openPrintPreview={openPrintPreview}
-                      areResultsMaximized={areResultsMaximized}
-                      toggleResultsMaximized={toggleResultsMaximized}
-                    />
+                    <ResultsCard canRun={canRun} openPrintPreview={openPrintPreview} />
                   </ColCustom>
                 </Row>
               </Form>
@@ -219,4 +139,17 @@ function Main({ initialState }: InitialStateComponentProps) {
   )
 }
 
-export default Main
+const mapStateToProps = (state: State) => ({
+  scenarioData: selectScenarioData(state),
+  ageDistributionData: selectAgeDistributionData(state),
+  severityDistributionData: selectSeverityDistributionData(state),
+  isRunning: selectIsRunning(state),
+  isAutorunEnabled: selectIsAutorunEnabled(state),
+  isLogScale: selectIsLogScale(state),
+  shouldFormatNumbers: selectShouldFormatNumbers(state),
+  areResultsMaximized: selectAreResultsMaximized(state),
+})
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main)

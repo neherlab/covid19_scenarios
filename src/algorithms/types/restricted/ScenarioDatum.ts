@@ -13,17 +13,17 @@ export interface MitigationInterval extends MitigationIntervalExternal {
   id: string
 }
 
-interface ScenarioDatumMitigationInternalMutable extends ScenarioDatumMitigationExternal {
+export interface ScenarioDatumMitigationInternalMutable extends ScenarioDatumMitigationExternal {
   mitigationIntervals: MitigationInterval[]
 }
 
 export type ScenarioDatumMitigation = ScenarioDatumMitigationInternalMutable
 
-interface ScenarioDatumSubsetOfMitigationWithIds extends ScenarioDatumExternal {
+export interface ScenarioDatumSubsetOfMitigationWithIds extends ScenarioDatumExternal {
   mitigation: ScenarioDatumMitigation
 }
 
-type ScenarioDatumWithoutMitigation = StrictOmit<ScenarioDatumExternal, 'mitigation'>
+export type ScenarioDatumWithoutMitigation = StrictOmit<ScenarioDatumExternal, 'mitigation'>
 
 export type ScenarioDatum = Merge<ScenarioDatumWithoutMitigation, ScenarioDatumSubsetOfMitigationWithIds>
 

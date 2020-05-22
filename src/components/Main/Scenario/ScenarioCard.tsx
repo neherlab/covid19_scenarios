@@ -1,20 +1,36 @@
 import React, { useMemo } from 'react'
 
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
+import { connect } from 'react-redux'
 
 import { Row, Col } from 'reactstrap'
 import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
+import { selectIsRunning } from '../../../state/algorithm/algorithm.selectors'
 
-import { setScenario, renameCurrentScenario } from '../state/actions'
-import { State } from '../state/state'
+import { setScenario, renameCurrentScenario, SetScenarioParams } from '../../../state/scenario/scenario.actions'
+import { State } from '../../../state/reducer'
 
 import { CaseCountsDatum, ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import {
+  selectAgeDistributionData,
+  selectScenarioData,
+  selectScenarioNames,
+  selectSeverityDistributionData,
+  selectCurrentScenarioName,
+} from '../../../state/scenario/scenario.selectors'
+import {
+  selectAreResultsMaximized,
+  selectIsAutorunEnabled,
+  selectIsLogScale,
+  selectShouldFormatNumbers,
+} from '../../../state/settings/settings.selectors'
 
 import { ColCustom } from '../../Layout/ColCustom'
 import { CardWithControls } from '../../Form/CardWithControls'
 import { stringsToOptions } from '../../Form/FormDropdownOption'
+import { Main } from '../Main'
 
 import { ScenarioLoaderModalButton } from '../ScenarioLoader/ScenarioLoaderModalButton'
 
@@ -35,52 +51,29 @@ export function getColumnSizes(areResultsMaximized: boolean) {
 }
 
 export interface ScenarioCardProps {
-  scenario: ScenarioDatum
-  severity: SeverityDistributionDatum[]
-  scenarioState: State
+  scenarioNames: string[]
+  currentScenarioName: string
+  areResultsMaximized: boolean
+  renameCurrentScenario(params: SetScenarioParams): void
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
-  setSeverity(severity: SeverityDistributionDatum[]): void
-  scenarioDispatch(action: AnyAction): void
-  setCaseCounts(caseCounts: CaseCountsDatum[]): void
-  areResultsMaximized: boolean
 }
 
 function ScenarioCard({
-  scenario,
-  severity,
-  scenarioState,
+  scenarioNames,
+  currentScenarioName,
+  renameCurrentScenario,
+  areResultsMaximized,
   errors,
   touched,
-  setSeverity,
-  scenarioDispatch,
-  setCaseCounts,
-  areResultsMaximized,
 }: ScenarioCardProps) {
   const { t } = useTranslation()
-  const scenarioOptions = stringsToOptions(scenarioState.scenarios)
+  const scenarioOptions = stringsToOptions(scenarioNames)
   const { colPopulation, colEpidemiological } = getColumnSizes(areResultsMaximized)
 
-  const title: string = scenarioState.current
-
   function handleScenarioRename(newScenario: string) {
-    scenarioDispatch(renameCurrentScenario({ name: newScenario }))
+    renameCurrentScenario({ name: newScenario })
   }
-
-  const presetLoader = useMemo(() => {
-    function handleChangeScenario(newScenario: string) {
-      scenarioDispatch(setScenario({ name: newScenario }))
-    }
-
-    return (
-      <ScenarioLoaderModalButton
-        scenarioOptions={scenarioOptions}
-        onScenarioSelect={handleChangeScenario}
-        scenarioDispatch={scenarioDispatch}
-        setSeverity={setSeverity}
-      />
-    )
-  }, [scenarioOptions, scenarioDispatch, setSeverity])
 
   return (
     <CardWithControls
@@ -90,12 +83,12 @@ function ScenarioCard({
       help={t(
         `This section allows to setup a scenario. A "scenario" is a set of parameters that describes a combination of population and epidemiological factors as well as a set of mitigation measures and severity assumptions to be used by the simulator.`,
       )}
-      controlsComponent={presetLoader}
+      controlsComponent={<ScenarioLoaderModalButton />}
     >
       <>
         <Row noGutters className="row-scenario-title">
           <Col xl={12} className="col-scenario-title">
-            <ScenarioTitle title={title} onRename={handleScenarioRename} />
+            <ScenarioTitle title={currentScenarioName} onRename={handleScenarioRename} />
           </Col>
         </Row>
 
@@ -130,4 +123,19 @@ function ScenarioCard({
   )
 }
 
-export { ScenarioCard }
+const mapStateToProps = (state: State) => ({
+  scenarioNames: selectScenarioNames(state),
+  currentScenarioName: selectCurrentScenarioName(state),
+  scenarioData: selectScenarioData(state),
+  ageDistributionData: selectAgeDistributionData(state),
+  severityDistributionData: selectSeverityDistributionData(state),
+  areResultsMaximized: selectAreResultsMaximized(state),
+})
+
+const mapDispatchToProps = {
+  renameCurrentScenario,
+}
+
+const ScenarioCardConnected = connect(mapStateToProps, mapDispatchToProps)(ScenarioCard)
+
+export { ScenarioCardConnected as ScenarioCard }
