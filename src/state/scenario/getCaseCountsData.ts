@@ -3,14 +3,14 @@ import { trim } from 'lodash'
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
 
-import { CaseCountsArray, CaseCountsData, CaseCountsDatum, Convert } from '../../../algorithms/types/Param.types'
-import validateCaseCountsArray, { errors } from '../../../.generated/latest/validateCaseCountsArray'
-import validateCaseCountsData, { errors as dataErrors } from '../../../.generated/latest/validateCaseCountsData'
+import { CaseCountsArray, CaseCountsData, CaseCountsDatum, Convert } from '../../algorithms/types/Param.types'
+import validateCaseCountsArray, { errors } from '../../.generated/latest/validateCaseCountsArray'
+import validateCaseCountsData, { errors as dataErrors } from '../../.generated/latest/validateCaseCountsData'
 
-import caseCountsDataRaw from '../../../assets/data/caseCounts.json'
+import caseCountsDataRaw from '../../assets/data/caseCounts.json'
 import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from './serialization/errors'
 
-import { NONE_COUNTRY_NAME } from './state'
+import { NONE_COUNTRY_NAME } from './scenario.reducer'
 
 export function validateAll(): CaseCountsData[] {
   const valid = validateCaseCountsArray(caseCountsDataRaw)

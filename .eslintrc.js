@@ -108,6 +108,7 @@ module.exports = {
     'max-classes-per-file': 'off',
     'no-console': ['warn', { allow: ['info', 'warn', 'error'] }],
     'no-loops/no-loops': 'warn',
+    'no-param-reassign': ['warn', { ignorePropertyModificationsFor: ['draft'] }],
     'no-secrets/no-secrets': ['warn', { tolerance: 5 }],
     'no-shadow': 'off',
     'only-ascii/only-ascii': 'warn',
@@ -300,12 +301,6 @@ module.exports = {
       ],
       rules: {
         'jest/expect-expect': 'off',
-      },
-    },
-    {
-      files: ['**/*reducer.*', '**/*reducers.*'],
-      rules: {
-        'no-param-reassign': ['warn', { ignorePropertyModificationsFor: ['draft'] }],
       },
     },
     {

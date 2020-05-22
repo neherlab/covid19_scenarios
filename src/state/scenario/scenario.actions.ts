@@ -7,9 +7,10 @@ import type {
   ScenarioDatumMitigation,
   ScenarioDatumPopulation,
   ScenarioDatumSimulation,
-} from '../../../algorithms/types/Param.types'
+  SeverityDistributionDatum,
+} from '../../algorithms/types/Param.types'
 
-import type { State } from './state'
+import type { ScenarioState } from './scenario.state'
 
 const action = actionCreatorFactory('SCENARIO')
 
@@ -40,11 +41,16 @@ export interface SetAgeDistributionData {
   data: AgeDistributionDatum[]
 }
 
-export type SetStateData = StrictOmit<State, 'scenarios'>
+export interface SetSeverityDistributionData {
+  data: SeverityDistributionDatum[]
+}
 
 export const setPopulationData = action<SetPopulationData>('SET_POPULATION_DATA')
 export const setEpidemiologicalData = action<SetEpidemiologicalData>('SET_EPIDEMIOLOGICAL_DATA')
 export const setMitigationData = action<SetMitigationData>('SET_MITIGATION_DATA')
 export const setSimulationData = action<SetSimulationData>('SET_SIMULATION_DATA')
 export const setAgeDistributionData = action<SetAgeDistributionData>('SET_AGE_DISTRIBUTION_DATA')
-export const setStateData = action<SetStateData>('SET_STATE_DATA')
+export const setSeverityDistributionData = action<SetSeverityDistributionData>('SET_SEVERITY_DISTRIBUTION_DATA')
+
+export type SetScenarioStateData = StrictOmit<ScenarioState, 'defaultScenariosNames'>
+export const setScenarioState = action<SetScenarioStateData>('SET_STATE_DATA')

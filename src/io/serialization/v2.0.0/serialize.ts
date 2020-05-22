@@ -3,39 +3,23 @@ import { trim, isEqual } from 'lodash'
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
 
-import { Convert } from '../../../../../algorithms/types/Param.types'
-import type { Shareable } from '../../../../../algorithms/types/Param.types'
+import validateShareable, { errors } from '../../../.generated/latest/validateShareable'
 
-import validateShareable, { errors } from '../../../../../.generated/latest/validateShareable'
+import type { ScenarioParameters, Shareable } from '../../../algorithms/types/Param.types'
+import { Convert } from '../../../algorithms/types/Param.types'
+import { toExternal, toInternal } from '../../../algorithms/types/convert'
 
 import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from '../errors'
 
-import { toExternal, toInternal } from '../../getScenario'
-import { SerializableData } from '../SerializableData'
-
 const schemaVer = '2.0.0'
 
-function serialize({
-  scenario,
-  scenarioName,
-  ageDistribution,
-  ageDistributionName,
-  severity,
-  severityName,
-}: SerializableData): string {
+function serialize(scenarioParameters: ScenarioParameters): string {
   const shareable: Shareable = {
+    ...scenarioParameters,
     schemaVer,
     scenarioData: {
-      name: scenarioName,
-      data: toExternal(scenario),
-    },
-    ageDistributionData: {
-      name: ageDistributionName,
-      data: ageDistribution,
-    },
-    severityDistributionData: {
-      name: severityName,
-      data: severity,
+      ...scenarioParameters.scenarioData,
+      data: toExternal(scenarioParameters.scenarioData.data),
     },
   }
 
@@ -98,7 +82,7 @@ function validateMore(shareable: Shareable) {
   }
 }
 
-function deserialize(input: string): SerializableData {
+function deserialize(input: string): ScenarioParameters {
   const shareableDangerous = JSON.parse(input)
 
   validateSchema(shareableDangerous)
@@ -108,13 +92,14 @@ function deserialize(input: string): SerializableData {
   validateMore(shareable)
 
   const { scenarioData, ageDistributionData, severityDistributionData } = shareable
+
   return {
-    scenario: toInternal(scenarioData.data),
-    scenarioName: scenarioData.name,
-    ageDistribution: ageDistributionData.data,
-    ageDistributionName: ageDistributionData.name,
-    severity: severityDistributionData.data,
-    severityName: severityDistributionData.name,
+    scenarioData: {
+      ...scenarioData,
+      data: toInternal(scenarioData.data),
+    },
+    ageDistributionData,
+    severityDistributionData,
   }
 }
 

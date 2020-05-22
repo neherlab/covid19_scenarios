@@ -1,4 +1,4 @@
-import { getSortedNonEmptyCaseCounts } from './getCaseCounts'
+import { getSortedNonEmptyCaseCounts } from './getCaseCountsData'
 
 describe('getSortedNonEmptyCaseCounts', () => {
   it('sorts by ascending time', () => {

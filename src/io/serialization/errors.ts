@@ -1,19 +1,5 @@
-import { appendDash } from '../../../../helpers/appendDash'
-
-export class ErrorArray extends Error {
-  public readonly errors?: string[]
-}
-
-export class URLDecodingError extends Error {}
-
-export class ErrorURLSerializerVersionInvalid extends URLDecodingError {
-  public urlVer?: string | null
-
-  public constructor(urlVer?: string | null, urlEncoderVersions?: string[]) {
-    super(`when serializing expected \`v\` to be one of \`[${urlEncoderVersions}]\`, but received: ${urlVer}`) // prettier-ignore
-    this.urlVer = urlVer
-  }
-}
+import { appendDash } from '../../helpers/appendDash'
+import { ErrorArray } from '../../helpers/ErrorArray'
 
 export class DeserializationError extends ErrorArray {
   public readonly errors?: string[]
@@ -73,9 +59,9 @@ export class DeserializationErrorConversionFailed extends DeserializationError {
   }
 }
 
-export class SerializationError extends Error {}
+export class SerializationError extends ErrorArray {}
 
-export class ErrorSchemaSerializerVersionNotLatest extends SerializationError {
+export class SerializationErrorSchemaVersionNotLatest extends SerializationError {
   public schemaVer: string
   public errors?: string[]
 
@@ -84,18 +70,5 @@ export class ErrorSchemaSerializerVersionNotLatest extends SerializationError {
     super(`when serializing: ${error}`)
     this.schemaVer = schemaVer
     this.errors = [error]
-  }
-}
-
-export class CSVParserError extends ErrorArray {
-  public readonly errors?: string[]
-}
-
-export class CSVParserErrorCSVSyntaxInvalid extends CSVParserError {
-  public errors?: string[]
-
-  public constructor(errors?: string[]) {
-    super(`when parsing CSV: syntax error:\n${errors?.map(appendDash).join('\n')}`)
-    this.errors = errors
   }
 }

@@ -26,3 +26,8 @@ interface ScenarioDatumSubsetOfMitigationWithIds extends ScenarioDatumExternal {
 type ScenarioDatumWithoutMitigation = StrictOmit<ScenarioDatumExternal, 'mitigation'>
 
 export type ScenarioDatum = Merge<ScenarioDatumWithoutMitigation, ScenarioDatumSubsetOfMitigationWithIds>
+
+export interface ScenarioData {
+  name: string
+  data: ScenarioDatum
+}
