@@ -3,17 +3,17 @@ import validateScenarioArray, { errors } from '../../.generated/latest/validateS
 import type { ScenarioArray, ScenarioData } from '../../algorithms/types/Param.types'
 
 import { Convert } from '../../algorithms/types/Param.types'
-import { toInternal } from '../../algorithms/types/convert'
 
 import scenariosRaw from '../../assets/data/scenarios.json'
 
-function validate(): ScenarioData[] {
+import { toInternal } from '../../algorithms/types/convert'
+
+function validate() {
   const valid = validateScenarioArray(scenariosRaw)
   if (!valid) {
     throw errors
   }
 
-  // FIXME: we cannot afford to Convert.toScenario(), too slow
   return ((scenariosRaw as unknown) as ScenarioArray).all
 }
 
