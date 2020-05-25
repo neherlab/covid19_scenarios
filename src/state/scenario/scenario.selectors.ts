@@ -5,6 +5,7 @@ import createCachedSelector from 're-reselect'
 import type { RunParams } from '../../algorithms/run'
 import type {
   AgeDistributionDatum,
+  MitigationInterval,
   ScenarioDatum,
   SeverityDistributionDatum,
   ScenarioParameters,
@@ -43,5 +44,8 @@ export const selectScenarioParameters = ({
   severityDistributionData,
   ageDistributionData,
 })
+
+export const selectMitigationIntervals = (state: State): MitigationInterval[] =>
+  state.scenario.scenarioData.data.mitigation.mitigationIntervals
 
 export const selectCanRun = (state: State): boolean => state.scenario.canRun

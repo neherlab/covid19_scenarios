@@ -4,12 +4,16 @@ import { isEmpty } from 'lodash'
 
 import { FastField, FieldArray, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
 import { Button, Row, Col } from 'reactstrap'
 
 import { FaTrash, FaPlus } from 'react-icons/fa'
 
 import type { MitigationInterval } from '../../../algorithms/types/Param.types'
 import { suggestNextMitigationInterval } from '../../../algorithms/utils/createMitigationInterval'
+
+import type { State } from '../../../state/reducer'
+import { selectMitigationIntervals } from '../../../state/scenario/scenario.selectors'
 
 import { MitigationDatePicker } from './MitigationDatePicker'
 import { RangeSpinBox } from '../../Form/RangeSpinBox'
@@ -24,7 +28,15 @@ export interface MitigationTableProps {
   touched?: FormikTouched<FormikValues>
 }
 
-export function MitigationTable({ mitigationIntervals, errors, touched }: MitigationTableProps) {
+const mapStateToProps = (state: State) => ({
+  mitigationIntervals: selectMitigationIntervals(state),
+})
+
+const mapDispatchToProps = {}
+
+export const MitigationTable = connect(mapStateToProps, mapDispatchToProps)(MitigationTableDisconnected)
+
+export function MitigationTableDisconnected({ mitigationIntervals, errors, touched }: MitigationTableProps) {
   const { t } = useTranslation()
 
   return (

@@ -6,18 +6,14 @@ import { useTranslation } from 'react-i18next'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { MitigationTable } from '../Mitigation/MitigationTable'
-import { ScenarioDatum } from '../../../algorithms/types/Param.types'
 
 export interface ScenarioCardContainmentProps {
-  scenario: ScenarioDatum
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
 
-function ScenarioCardContainment({ scenario, errors, touched }: ScenarioCardContainmentProps) {
+function ScenarioCardContainment({ errors, touched }: ScenarioCardContainmentProps) {
   const { t } = useTranslation()
-
-  const { mitigationIntervals } = scenario.mitigation
 
   return (
     <CollapsibleCard
@@ -30,7 +26,7 @@ function ScenarioCardContainment({ scenario, errors, touched }: ScenarioCardCont
       )}
     >
       <div className="w-auto">
-        <MitigationTable mitigationIntervals={mitigationIntervals} errors={errors} touched={touched} />
+        <MitigationTable errors={errors} touched={touched} />
       </div>
     </CollapsibleCard>
   )
