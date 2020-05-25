@@ -4,7 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import numbro from 'numbro'
 
 import resources from './locales'
-import { getCurrentLang } from './components/Layout/LanguageSwitcher'
+// import { getCurrentLang } from './components/Layout/LanguageSwitcher'
 
 import SupportedLocales, { SupportedLocale } from './langs'
 
@@ -14,7 +14,8 @@ Object.values(require('numbro/dist/languages.min.js')).forEach((l) =>
   numbro.registerLanguage(l as numbro.NumbroLanguage),
 )
 
-const lang = getCurrentLang()
+// const lang = getCurrentLang()
+const lang = 'en'
 
 i18n
   .use(LanguageDetector)
