@@ -23,3 +23,12 @@ services:
     init: true
     user: '${UID}'
     tty: true
+
+    networks:
+      - network-covid19_scenarios-dev-data
+
+networks:
+  network-covid19_scenarios-dev-data:
+    ipam:
+      config:
+        - subnet: 172.16.238.0/24
