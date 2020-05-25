@@ -22,7 +22,7 @@ import { selectAreResultsMaximized } from '../../../state/settings/settings.sele
 import { ColCustom } from '../../Layout/ColCustom'
 import { CardWithControls } from '../../Form/CardWithControls'
 
-import { ScenarioLoaderModalButton } from '../ScenarioLoader/ScenarioLoaderModalButton'
+import { ScenarioLoader } from '../ScenarioLoader/ScenarioLoader'
 
 import { ScenarioCardContainment } from './ScenarioCardContainment'
 import { ScenarioCardEpidemiological } from './ScenarioCardEpidemiological'
@@ -87,7 +87,7 @@ export function ScenarioCardDiconnected({
       help={t(
         `This section allows to setup a scenario. A "scenario" is a set of parameters that describes a combination of population and epidemiological factors as well as a set of mitigation measures and severity assumptions to be used by the simulator.`,
       )}
-      controlsComponent={<ScenarioLoaderModalButton />}
+      controlsComponent={<ScenarioLoader />}
     >
       <>
         <Row noGutters className="row-scenario-title">
