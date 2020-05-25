@@ -74,6 +74,11 @@
     "dataProvenance": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html",
     "license": "MIT license"
   },
+  "singapore": {
+    "primarySource": "https://github.com/hxchua/datadoubleconfirm/blob/master/datasets/covid19_sg.csv",
+    "dataProvenance": "https://data.world/hxchua/covid-19-singapore",
+    "license": "MIT license"
+  },
   "ecdc": {
     "primarySource": "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-<DATE>-xlsx",
     "dataProvenance": "European Centre for Disease Prevention and Control",
