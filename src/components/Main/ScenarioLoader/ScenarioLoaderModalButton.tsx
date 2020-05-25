@@ -11,7 +11,7 @@ import { ScenarioLoader } from './ScenarioLoader'
 
 import './ScenarioLoader.scss'
 
-interface ScenarioLoaderModalButtonProps extends HTMLProps<HTMLButtonElement> {}
+type ScenarioLoaderModalButtonProps = HTMLProps<HTMLButtonElement>
 
 export function ScenarioLoaderModalButton({ scenarioNames }: ScenarioLoaderModalButtonProps) {
   const { t } = useTranslation()
