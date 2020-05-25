@@ -47,7 +47,10 @@ def parse():
             elif state == 'CAN-PEI':
                 state = 'CAN-Prince Edward Island'
 
-            
+            # Ontario is handled in its own parser `canada.ontario.py`
+            if state == 'CAN-Ontario':
+                continue
+
             # Hack: recovered currently has no county-level data.            
             county = None
             # county-level removed as requested in https://github.com/neherlab/covid19_scenarios_data/pull/42#issuecomment-603427339

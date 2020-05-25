@@ -44,6 +44,11 @@
     "dataProvenance": "Offical government data",
     "license": "none specified"
   },
+  "canada-ontario": {
+    "primarySource": "https://data.ontario.ca/api/3/action/datastore_search?resource_id=ed270bb8-340b-41f9-a7c6-e8ef587e6d11",
+    "dataProvenance": "Ontario.ca - official website of the Ontario Government. Dataset: \"Confirmed positive cases of COVID19 in Ontario\".",
+    "license": "Open Government Licence – Ontario (https://www.ontario.ca/page/open-government-licence-ontario)"
+  },
   "unitedstates": {
     "primarySource": "https://covidtracking.com/api/states/daily",
     "dataProvenance": "The COVID Tracking Project",
