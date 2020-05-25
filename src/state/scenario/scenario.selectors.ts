@@ -1,7 +1,3 @@
-import { noop } from 'lodash'
-
-import createCachedSelector from 're-reselect'
-
 import type { RunParams } from '../../algorithms/run'
 import type {
   AgeDistributionDatum,
@@ -12,7 +8,7 @@ import type {
 } from '../../algorithms/types/Param.types'
 import type { State } from '../reducer'
 
-export const selectRunParams = createCachedSelector((state: State): RunParams => {
+export const selectRunParams = (state: State): RunParams => {
   const { scenarioData, ageDistributionData, severityDistributionData } = state.scenario
 
   const params = {
@@ -23,7 +19,7 @@ export const selectRunParams = createCachedSelector((state: State): RunParams =>
   }
 
   return { params, ageDistribution: ageDistributionData.data, severity: severityDistributionData.data }
-}, noop)
+}
 
 export const selectScenarioNames = (state: State): string[] => state.scenario.defaultScenariosNames
 
