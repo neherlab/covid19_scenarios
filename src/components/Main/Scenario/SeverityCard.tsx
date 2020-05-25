@@ -1,22 +1,43 @@
 import React from 'react'
+
+import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { AnyAction } from 'typescript-fsa'
+import type { ActionCreator } from 'typescript-fsa'
 
 import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import { setAgeDistributionData, setSeverityDistributionData } from '../../../state/scenario/scenario.actions'
+
+import { State } from '../../../state/reducer'
+import { selectAgeDistributionData, selectSeverityDistributionData } from '../../../state/scenario/scenario.selectors'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import AgeGroupParameters from './AgeGroupParameters'
-import { State } from '../state/state'
-import { setAgeDistributionData } from '../state/actions'
 
 export interface SeverityCardProps {
-  severity: SeverityDistributionDatum[]
-  setSeverity(severity: SeverityDistributionDatum[]): void
-  scenarioState: State
-  scenarioDispatch(action: AnyAction): void
+  ageDistributionData: AgeDistributionDatum[]
+  severityDistributionData: SeverityDistributionDatum[]
+  setAgeDistributionData: ActionCreator<AgeDistributionDatum[]>
+  setSeverityDistributionData: ActionCreator<SeverityDistributionDatum[]>
 }
 
-function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }: SeverityCardProps) {
+const mapStateToProps = (state: State) => ({
+  ageDistributionData: selectAgeDistributionData(state),
+  severityDistributionData: selectSeverityDistributionData(state),
+})
+
+const mapDispatchToProps = {
+  setAgeDistributionData,
+  setSeverityDistributionData,
+}
+
+export const SeverityCard = connect(mapStateToProps, mapDispatchToProps)(SeverityCardDisconnected)
+
+function SeverityCardDisconnected({
+  ageDistributionData,
+  severityDistributionData,
+  setAgeDistributionData,
+  setSeverityDistributionData,
+}: SeverityCardProps) {
   const { t } = useTranslation()
   return (
     <CollapsibleCard
@@ -32,12 +53,10 @@ function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }
       defaultCollapsed={false}
     >
       <AgeGroupParameters
-        severity={severity}
-        setSeverity={setSeverity}
-        ageDistribution={scenarioState.ageDistribution}
-        setAgeDistribution={(ageDistribution: AgeDistributionDatum[]) =>
-          scenarioDispatch(setAgeDistributionData({ data: ageDistribution }))
-        }
+        severity={severityDistributionData}
+        setSeverity={setSeverityDistributionData}
+        ageDistribution={ageDistributionData}
+        setAgeDistribution={setAgeDistributionData}
       />
       <p>
         {t('Summary of demographics and age-dependent parameters.')} &nbsp;
@@ -56,5 +75,3 @@ function SeverityCard({ severity, setSeverity, scenarioState, scenarioDispatch }
     </CollapsibleCard>
   )
 }
-
-export { SeverityCard }

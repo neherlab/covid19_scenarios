@@ -35,20 +35,12 @@ export interface SetSimulationData {
   data: ScenarioDatumSimulation
 }
 
-export interface SetAgeDistributionData {
-  data: AgeDistributionDatum[]
-}
-
-export interface SetSeverityDistributionData {
-  data: SeverityDistributionDatum[]
-}
-
 export const setPopulationData = action<SetPopulationData>('SET_POPULATION_DATA')
 export const setEpidemiologicalData = action<SetEpidemiologicalData>('SET_EPIDEMIOLOGICAL_DATA')
 export const setMitigationData = action<SetMitigationData>('SET_MITIGATION_DATA')
 export const setSimulationData = action<SetSimulationData>('SET_SIMULATION_DATA')
-export const setAgeDistributionData = action<SetAgeDistributionData>('SET_AGE_DISTRIBUTION_DATA')
-export const setSeverityDistributionData = action<SetSeverityDistributionData>('SET_SEVERITY_DISTRIBUTION_DATA')
+export const setAgeDistributionData = action<AgeDistributionDatum[]>('SET_AGE_DISTRIBUTION_DATA')
+export const setSeverityDistributionData = action<SeverityDistributionDatum[]>('SET_SEVERITY_DISTRIBUTION_DATA')
 export const setScenarioState = action<ScenarioParameters>('SET_STATE_DATA')
 
 export const setCanRun = action<boolean>('SET_CAN_RUN')
