@@ -9,7 +9,7 @@ import { ScenarioLoaderUploader } from './ScenarioLoaderUploader'
 
 import './ScenarioLoader.scss'
 
-export function ScenarioLoaderModalButtonDisconnected() {
+export function ScenarioLoader() {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const open = useCallback(() => setIsOpen(true), [setIsOpen])

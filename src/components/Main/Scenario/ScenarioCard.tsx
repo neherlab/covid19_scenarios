@@ -62,7 +62,7 @@ const mapDispatchToProps = {
   renameCurrentScenario,
 }
 
-export function ScenarioCardDiconnected({
+export function ScenarioCardDisconnected({
   currentScenarioName,
   renameCurrentScenario,
   areResultsMaximized,
@@ -122,6 +122,6 @@ export function ScenarioCardDiconnected({
   )
 }
 
-const ScenarioCard = connect(mapStateToProps, mapDispatchToProps)(ScenarioCardDiconnected)
+const ScenarioCard = connect(mapStateToProps, mapDispatchToProps)(ScenarioCardDisconnected)
 
 export { ScenarioCard }
