@@ -30,3 +30,5 @@ export const selectAgeDistributionData = (state: State): AgeDistributionDatum[] 
 
 export const selectSeverityDistributionData = (state: State): SeverityDistributionDatum[] =>
   state.scenario.severityDistributionData.data
+
+export const selectCanRun = (state: State): boolean => state.scenario.canRun

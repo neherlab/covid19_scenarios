@@ -7,6 +7,7 @@ import { getSeverityDistributionData } from '../../io/defaults/getSeverityDistri
 export interface ScenarioState extends ScenarioParameters {
   defaultScenariosNames: string[]
   shouldRenameOnEdits: boolean
+  canRun: boolean
 }
 
 export const DEFAULT_SCENARIO_NAME = 'United States of America'
@@ -24,4 +25,5 @@ export const defaultScenarioState: ScenarioState = {
   ageDistributionData: defaultAgeDistribution,
   severityDistributionData: defaultSeverityDistribution,
   shouldRenameOnEdits: true,
+  canRun: false,
 }

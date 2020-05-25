@@ -1,30 +1,21 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react'
+import React, { useRef, useCallback } from 'react'
 
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FiChevronLeft } from 'react-icons/fi'
-import urlJoin from 'proper-url-join'
-import { toUrl } from '../../../io/serialization/toUrl'
-import { selectIsRunning } from '../../../state/algorithm/algorithm.selectors'
+import { ActionCreator } from 'typescript-fsa'
+
+import { selectHasResult } from '../../../state/algorithm/algorithm.selectors'
 import { State } from '../../../state/reducer'
-import {
-  selectAgeDistributionData,
-  selectScenarioData,
-  selectSeverityDistributionData,
-} from '../../../state/scenario/scenario.selectors'
-import {
-  selectAreResultsMaximized,
-  selectIsAutorunEnabled,
-  selectIsLogScale,
-  selectShouldFormatNumbers,
-} from '../../../state/settings/settings.selectors'
+import { selectCanRun } from '../../../state/scenario/scenario.selectors'
+import { selectAreResultsMaximized } from '../../../state/settings/settings.selectors'
+import { toggleResultsMaximized } from '../../../state/settings/settings.actions'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 
 import { CardWithControls } from '../../Form/CardWithControls'
-import { Main } from '../Main'
 
 import TableResult from '../PrintPage/TableResult'
 
@@ -37,50 +28,25 @@ import './ResultsCard.scss'
 
 interface ResultsCardProps {
   canRun: boolean
-
-  isAutorunEnabled: boolean
-  toggleAutorun: () => void
-  isRunning: boolean
-
-  openPrintPreview: () => void
+  hasResult: boolean
   areResultsMaximized: boolean
-  toggleResultsMaximized: () => void
+  toggleResultsMaximized: ActionCreator<void>
 }
 
 const mapStateToProps = (state: State) => ({
-  scenarioData: selectScenarioData(state),
-  ageDistributionData: selectAgeDistributionData(state),
-  severityDistributionData: selectSeverityDistributionData(state),
-
-  isRunning: selectIsRunning(state),
-  isAutorunEnabled: selectIsAutorunEnabled(state),
-  isLogScale: selectIsLogScale(state),
-  shouldFormatNumbers: selectShouldFormatNumbers(state),
+  canRun: selectCanRun(state),
+  hasResult: selectHasResult(state),
   areResultsMaximized: selectAreResultsMaximized(state),
 })
 
-const mapDispatchToProps = {}
-
-function ResultsCardFunction({
-  canRun,
-  isRunning,
-  isAutorunEnabled,
-  toggleAutorun,
-  scenarioState,
-  severity,
-  severityName,
-  result,
-  caseCounts,
-  openPrintPreview,
-  areResultsMaximized,
+const mapDispatchToProps = {
   toggleResultsMaximized,
-}: ResultsCardProps) {
+}
+
+function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggleResultsMaximized }: ResultsCardProps) {
   const { t } = useTranslation()
   const scrollTargetRef = useRef<HTMLDivElement | null>(null)
-
-  const canExport = result && !!result.trajectory
-
-  const scenarioUrl = decodeURI(urlJoin(window.location.href, toUrl()))
+  const toggleResultsMaximizedLocal = useCallback(() => toggleResultsMaximized, [toggleResultsMaximized])
 
   function scrollToResults() {
     scrollTargetRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
@@ -94,7 +60,7 @@ function ResultsCardFunction({
         labelComponent={
           <h2 className="p-0 m-0 text-truncate d-flex align-items-center" data-testid="ResultsCardTitle">
             <Button
-              onClick={toggleResultsMaximized}
+              onClick={toggleResultsMaximizedLocal}
               className="btn-dark btn-results-expand mr-2 pt-1 pb-2 d-none d-xl-block"
             >
               <FiChevronLeft className={classNames(areResultsMaximized ? 'icon-rotate-180' : 'icon-rotate-0')} />
@@ -106,23 +72,7 @@ function ResultsCardFunction({
       >
         <Row noGutters className="row-results-simulation-controls">
           <Col>
-            <SimulationControls
-              isRunning={isRunning}
-              canRun={canRun}
-              canExport={canExport}
-              scenarioUrl={scenarioUrl}
-              openPrintPreview={openPrintPreview}
-              scenarioState={scenarioState}
-              severityName={severityName}
-              severity={severity}
-              result={result}
-              isLogScale={logScale}
-              toggleLogScale={toggleLogScale}
-              shouldFormatNumbers={showHumanized}
-              toggleFormatNumbers={toggleFormatNumbers}
-              isAutorunEnabled={isAutorunEnabled}
-              toggleAutorun={toggleAutorun}
-            />
+            <SimulationControls />
           </Col>
         </Row>
 
@@ -152,12 +102,7 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Distribution across age groups')}</h3>}
               help={t('Summary of outcomes per age group')}
             >
-              <AgeBarChart
-                showHumanized={showHumanized}
-                data={result}
-                rates={severity}
-                ageDistribution={ageDistribution}
-              />
+              <AgeBarChart />
             </CardWithControls>
           </Col>
         </Row>
@@ -171,7 +116,7 @@ function ResultsCardFunction({
               help={t('Summary table of outcomes for the entire population')}
               defaultCollapsed
             >
-              <TableResult result={result} />
+              <TableResult />
             </CollapsibleCard>
           </Col>
         </Row>
@@ -184,13 +129,13 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Outcomes')}</h3>}
               help={t('Summary of outcomes for the entire population')}
             >
-              <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
+              <OutcomeRatesTable />
             </CardWithControls>
           </Col>
         </Row>
       </CardWithControls>
 
-      {result && (
+      {hasResult && (
         <div className="container-goto-results d-flex d-md-none w-100">
           <Button className="btn-goto-results mx-auto" color="primary" onClick={scrollToResults}>
             {t('Go to results')}
@@ -201,6 +146,6 @@ function ResultsCardFunction({
   )
 }
 
-export const ResultsCard = React.memo(ResultsCardFunction)
+const ResultsCard = connect(mapStateToProps, mapDispatchToProps)(ResultsCardDisconnected)
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsCard)
+export { ResultsCard }

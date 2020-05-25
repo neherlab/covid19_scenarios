@@ -1,25 +1,18 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { AiFillFilePdf } from 'react-icons/ai'
 import { MdTab } from 'react-icons/md'
 import { Button } from 'reactstrap'
-import { CaseCountsDatum, ScenarioDatum } from '../../../algorithms/types/Param.types'
+import { ActionCreator } from 'typescript-fsa'
 
-import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
-import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import { selectIsRunning, selectResult } from '../../../state/algorithm/algorithm.selectors'
-import { selectCaseCountsData } from '../../../state/caseCounts/caseCounts.selectors'
-import { State } from '../../../state/reducer'
-import { selectScenarioData } from '../../../state/scenario/scenario.selectors'
-import {
-  selectIsAutorunEnabled,
-  selectIsLogScale,
-  selectShouldFormatNumbers,
-} from '../../../state/settings/settings.selectors'
+import type { State } from '../../../state/reducer'
+import { selectIsRunning, selectHasResult } from '../../../state/algorithm/algorithm.selectors'
+import { selectIsAutorunEnabled } from '../../../state/settings/settings.selectors'
+import { selectCanRun } from '../../../state/scenario/scenario.selectors'
+import { newTabOpenTrigger, printPreviewOpenTrigger } from '../../../state/ui/ui.actions'
 
-import LinkButton from '../../Buttons/LinkButton'
 import { ModalButtonExport } from './ModalButtonExport'
 import { ModalButtonSharing } from './ModalButtonSharing'
 import { RunButtonContent } from './RunButtonContent'
@@ -30,38 +23,37 @@ import './SimulationControls.scss'
 const ICON_SIZE = 25
 
 export interface SimulationControlsProps {
-  scenarioState: State
-  severity: SeverityDistributionDatum[]
-  severityName: string
-  result?: AlgorithmResult
-  isRunning: boolean
   canRun: boolean
-  canExport: boolean
-  scenarioUrl: string
-  openPrintPreview(): void
-  isLogScale: boolean
-  toggleLogScale(): void
-  shouldFormatNumbers: boolean
-  toggleFormatNumbers(): void
-  isAutorunEnabled: boolean
-  toggleAutorun(): void
-}
-
-export interface DeterministicLinePlotProps {
+  hasResult: boolean
   isRunning: boolean
   isAutorunEnabled: boolean
-  canRun: boolean
+  newTabOpen: ActionCreator<void>
+  printPreviewOpen: ActionCreator<void>
 }
 
 const mapStateToProps = (state: State) => ({
+  canRun: selectCanRun(state),
+  hasResult: selectHasResult(state),
   isRunning: selectIsRunning(state),
   isAutorunEnabled: selectIsAutorunEnabled(state),
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  newTabOpen: newTabOpenTrigger,
+  printPreviewOpen: printPreviewOpenTrigger,
+}
 
-function SimulationControls({ isRunning, isAutorunEnabled, canRun }: SimulationControlsProps) {
+function SimulationControls({
+  canRun,
+  hasResult,
+  isRunning,
+  isAutorunEnabled,
+  newTabOpen,
+  printPreviewOpen,
+}: SimulationControlsProps) {
   const { t } = useTranslation()
+  const newTabOpenCallback = useCallback(() => newTabOpen(), [newTabOpen])
+  const printPreviewOpenCallback = useCallback(() => printPreviewOpen(), [printPreviewOpen])
 
   return (
     <>
@@ -76,30 +68,29 @@ function SimulationControls({ isRunning, isAutorunEnabled, canRun }: SimulationC
         <RunButtonContent isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
       </Button>
 
-      <LinkButton
+      <Button
         className="btn-simulation-controls"
         disabled={!canRun}
-        href={scenarioUrl}
-        target="_blank"
+        onClick={newTabOpenCallback}
         data-testid="RunResultsInNewTab"
         title={t('Run in a new tab')}
       >
         <MdTab size={ICON_SIZE} />
-      </LinkButton>
+      </Button>
 
       <ModalButtonExport buttonSize={ICON_SIZE} />
 
       <Button
         type="button"
         className="btn-simulation-controls"
-        disabled={!canExport}
-        onClick={openPrintPreview}
+        disabled={!hasResult}
+        onClick={printPreviewOpenCallback}
         title={t('Open Print Preview (Save as PDF or print)')}
       >
         <AiFillFilePdf size={ICON_SIZE} />
       </Button>
 
-      <ModalButtonSharing buttonSize={ICON_SIZE} shareableLink={scenarioUrl} />
+      <ModalButtonSharing buttonSize={ICON_SIZE} />
 
       <SettingsControls />
     </>

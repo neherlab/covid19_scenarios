@@ -18,23 +18,15 @@ import {
 import { MdFileDownload } from 'react-icons/md'
 import FileIcon, { defaultStyles } from 'react-file-icon'
 
+import type { State } from '../../../state/reducer'
 import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import type { State } from '../state/state'
 
 import { exportAll, exportResult, exportScenario } from '../../../algorithms/utils/exportResult'
 
 import { FILENAME_PARAMS, FILENAME_RESULTS_DETAILED, FILENAME_RESULTS_SUMMARY, FILENAME_ZIP } from './filenames'
 
 import './ModalButtonExport.scss'
-
-export interface ModalButtonExportProps {
-  buttonSize: number
-  scenarioState: State
-  severity: SeverityDistributionDatum[]
-  severityName: string
-  result?: AlgorithmResult
-}
 
 export const FileIconJson = () => (
   <FileIcon
@@ -111,6 +103,14 @@ export function ExportFileElement({
       </div>
     </ListGroupItem>
   )
+}
+
+export interface ModalButtonExportProps {
+  buttonSize: number
+  scenarioState: State
+  severity: SeverityDistributionDatum[]
+  severityName: string
+  result?: AlgorithmResult
 }
 
 function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, result }: ModalButtonExportProps) {

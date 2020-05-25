@@ -5,6 +5,7 @@ import immerCase from '../util/fsaImmerReducer'
 import {
   renameCurrentScenario,
   setAgeDistributionData,
+  setCanRun,
   setEpidemiologicalData,
   setMitigationData,
   setPopulationData,
@@ -108,5 +109,11 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarioData = scenarioData
       draft.shouldRenameOnEdits = false
       draft.ageDistributionData = ageDistributionData
+    }),
+  )
+
+  .withHandling(
+    immerCase(setCanRun, (draft, canRun) => {
+      draft.canRun = canRun
     }),
   )

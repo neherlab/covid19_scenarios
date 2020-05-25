@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next'
 
 import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 
-import { ageDistributionNames } from '../state/getAgeDistribution'
+import { ageDistributionNames } from '../../../io/defaults/getAgeDistributionData'
 
-import { CUSTOM_COUNTRY_NAME } from '../state/state'
+import { CUSTOM_COUNTRY_NAME } from '../../../state/scenario/scenario.state'
 
 import { CardWithControls } from '../../Form/CardWithControls'
 import { FormDatePicker } from '../../Form/FormDatePicker'

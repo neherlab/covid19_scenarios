@@ -1,18 +1,15 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { connect } from 'react-redux'
 
 import { Row, Col } from 'reactstrap'
-import { AnyAction } from 'typescript-fsa'
 
 import { useTranslation } from 'react-i18next'
-import { selectIsRunning } from '../../../state/algorithm/algorithm.selectors'
 
-import { setScenario, renameCurrentScenario, SetScenarioParams } from '../../../state/scenario/scenario.actions'
+import { renameCurrentScenario, SetScenarioParams } from '../../../state/scenario/scenario.actions'
 import { State } from '../../../state/reducer'
 
-import { CaseCountsDatum, ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 import {
   selectAgeDistributionData,
   selectScenarioData,
@@ -20,17 +17,10 @@ import {
   selectSeverityDistributionData,
   selectCurrentScenarioName,
 } from '../../../state/scenario/scenario.selectors'
-import {
-  selectAreResultsMaximized,
-  selectIsAutorunEnabled,
-  selectIsLogScale,
-  selectShouldFormatNumbers,
-} from '../../../state/settings/settings.selectors'
+import { selectAreResultsMaximized } from '../../../state/settings/settings.selectors'
 
 import { ColCustom } from '../../Layout/ColCustom'
 import { CardWithControls } from '../../Form/CardWithControls'
-import { stringsToOptions } from '../../Form/FormDropdownOption'
-import { Main } from '../Main'
 
 import { ScenarioLoaderModalButton } from '../ScenarioLoader/ScenarioLoaderModalButton'
 
@@ -59,8 +49,20 @@ export interface ScenarioCardProps {
   touched?: FormikTouched<FormikValues>
 }
 
-function ScenarioCard({
-  scenarioNames,
+const mapStateToProps = (state: State) => ({
+  scenarioNames: selectScenarioNames(state),
+  currentScenarioName: selectCurrentScenarioName(state),
+  scenarioData: selectScenarioData(state),
+  ageDistributionData: selectAgeDistributionData(state),
+  severityDistributionData: selectSeverityDistributionData(state),
+  areResultsMaximized: selectAreResultsMaximized(state),
+})
+
+const mapDispatchToProps = {
+  renameCurrentScenario,
+}
+
+export function ScenarioCardDiconnected({
   currentScenarioName,
   renameCurrentScenario,
   areResultsMaximized,
@@ -68,12 +70,14 @@ function ScenarioCard({
   touched,
 }: ScenarioCardProps) {
   const { t } = useTranslation()
-  const scenarioOptions = stringsToOptions(scenarioNames)
+
   const { colPopulation, colEpidemiological } = getColumnSizes(areResultsMaximized)
 
-  function handleScenarioRename(newScenario: string) {
-    renameCurrentScenario({ name: newScenario })
-  }
+  // prettier-ignore
+  const handleScenarioRename = useCallback(
+    (newScenario: string) => renameCurrentScenario({ name: newScenario }),
+    [renameCurrentScenario],
+  )
 
   return (
     <CardWithControls
@@ -94,7 +98,7 @@ function ScenarioCard({
 
         <Row noGutters className="row-scenario-population-epidemiological">
           <ColCustom {...colPopulation} className="col-scenario-population">
-            <ScenarioCardPopulation errors={errors} touched={touched} setCaseCounts={setCaseCounts} />
+            <ScenarioCardPopulation errors={errors} touched={touched} />
           </ColCustom>
 
           <ColCustom {...colEpidemiological} className="col-scenario-epidemiological">
@@ -104,18 +108,13 @@ function ScenarioCard({
 
         <Row noGutters className="row-scenario-mitigation">
           <Col className="col-scenario-mitigation">
-            <ScenarioCardContainment scenario={scenario} errors={errors} touched={touched} />
+            <ScenarioCardContainment errors={errors} touched={touched} />
           </Col>
         </Row>
 
         <Row noGutters className="row-scenario-severity">
           <Col className="col-scenario-severity">
-            <SeverityCard
-              severity={severity}
-              setSeverity={setSeverity}
-              scenarioState={scenarioState}
-              scenarioDispatch={scenarioDispatch}
-            />
+            <SeverityCard />
           </Col>
         </Row>
       </>
@@ -123,19 +122,6 @@ function ScenarioCard({
   )
 }
 
-const mapStateToProps = (state: State) => ({
-  scenarioNames: selectScenarioNames(state),
-  currentScenarioName: selectCurrentScenarioName(state),
-  scenarioData: selectScenarioData(state),
-  ageDistributionData: selectAgeDistributionData(state),
-  severityDistributionData: selectSeverityDistributionData(state),
-  areResultsMaximized: selectAreResultsMaximized(state),
-})
+const ScenarioCard = connect(mapStateToProps, mapDispatchToProps)(ScenarioCardDiconnected)
 
-const mapDispatchToProps = {
-  renameCurrentScenario,
-}
-
-const ScenarioCardConnected = connect(mapStateToProps, mapDispatchToProps)(ScenarioCard)
-
-export { ScenarioCardConnected as ScenarioCard }
+export { ScenarioCard }

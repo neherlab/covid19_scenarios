@@ -61,7 +61,7 @@ export function ScenarioLoader({
               className="scenario-loader-card-uploader"
               header={<h3 className="text-center">{t(`Load custom scenario`)}</h3>}
             >
-              <ScenarioLoaderUploader setSeverity={setSeverity} scenarioDispatch={scenarioDispatch} close={onClose} />
+              <ScenarioLoaderUploader close={onClose} />
             </ScenarioLoaderCard>
           </Col>
         </Row>

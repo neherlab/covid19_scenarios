@@ -1,4 +1,4 @@
-import React, { HTMLProps, useState } from 'react'
+import React, { HTMLProps, useState, useMemo } from 'react'
 
 import { useTranslation } from 'react-i18next'
 import type { AnyAction } from 'typescript-fsa'
@@ -11,22 +11,13 @@ import { ScenarioLoader } from './ScenarioLoader'
 
 import './ScenarioLoader.scss'
 
-interface ScenarioLoaderModalButtonProps extends HTMLProps<HTMLButtonElement> {
-  scenarioOptions: ScenarioOption[]
-  onScenarioSelect: (id: string) => void
-  setSeverity(severity: SeverityDistributionDatum[]): void
-  scenarioDispatch(action: AnyAction): void
-}
+interface ScenarioLoaderModalButtonProps extends HTMLProps<HTMLButtonElement> {}
 
-export function ScenarioLoaderModalButton({
-  disabled,
-  scenarioOptions,
-  onScenarioSelect,
-  setSeverity,
-  scenarioDispatch,
-}: ScenarioLoaderModalButtonProps) {
+export function ScenarioLoaderModalButton({ scenarioNames }: ScenarioLoaderModalButtonProps) {
   const { t } = useTranslation()
   const [showDialog, setShowDialog] = useState(false)
+
+  const scenarioOptions = useMemo(stringsToOptions(scenarioNames), [scenarioNames])
 
   return (
     <>
@@ -35,7 +26,6 @@ export function ScenarioLoaderModalButton({
         color="primary"
         size="sm"
         data-testid="PresetLoaderButton"
-        disabled={disabled}
         onClick={() => setShowDialog(true)}
       >
         {t('Load')}

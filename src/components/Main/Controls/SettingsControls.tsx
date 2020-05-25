@@ -13,17 +13,17 @@ import {
   selectIsAutorunEnabled,
 } from '../../../state/settings/settings.selectors'
 
-import { toggleAutorun, toggleLogScale, toggleFormatNumbers } from '../../../state/settings/settings.actions'
+import { setAutorun, setFormatNumbers, setLogScale } from '../../../state/settings/settings.actions'
 
 import FormSwitch from '../../Form/FormSwitch'
 
 export interface SettingsControlsProps {
   isAutorunEnabled: boolean
   isLogScale: boolean
-  shouldFormatNumbers: boolean
   setAutorun: ActionCreator<boolean>
-  setLogScale: ActionCreator<boolean>
   setFormatNumbers: ActionCreator<boolean>
+  setLogScale: ActionCreator<boolean>
+  shouldFormatNumbers: boolean
 }
 
 const mapStateToProps = (state: State) => ({
@@ -33,18 +33,18 @@ const mapStateToProps = (state: State) => ({
 })
 
 const mapDispatchToProps = {
-  toggleAutorun,
-  toggleLogScale,
-  toggleFormatNumbers,
+  setAutorun,
+  setFormatNumbers,
+  setLogScale,
 }
 
-function SettingsControls({
-  isLogScale,
-  shouldFormatNumbers,
+export function SettingsControlsDisconnected({
   isAutorunEnabled,
+  isLogScale,
   setAutorun,
-  setLogScale,
   setFormatNumbers,
+  setLogScale,
+  shouldFormatNumbers,
 }: SettingsControlsProps) {
   const { t } = useTranslation()
 
@@ -83,6 +83,6 @@ function SettingsControls({
   )
 }
 
-const SettingsControlsConnected = connect(mapStateToProps, mapDispatchToProps)(SettingsControls)
+const SettingsControls = connect(mapStateToProps, mapDispatchToProps)(SettingsControlsDisconnected)
 
-export { SettingsControlsConnected as SettingsControls }
+export { SettingsControls }

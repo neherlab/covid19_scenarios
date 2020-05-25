@@ -1,16 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { connect } from 'react-redux'
 import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
 import { Col, Row } from 'reactstrap'
 
-import type { AlgorithmResult } from '../../algorithms/types/Result.types'
-import type {
-  ScenarioDatum,
-  SeverityDistributionDatum,
-  CaseCountsDatum,
-  AgeDistributionDatum,
-} from '../../algorithms/types/Param.types'
+import type { ScenarioDatum, SeverityDistributionDatum, AgeDistributionDatum } from '../../algorithms/types/Param.types'
 
 import type { State } from '../../state/reducer'
 import { selectIsRunning } from '../../state/algorithm/algorithm.selectors'
@@ -25,6 +19,7 @@ import {
   selectShouldFormatNumbers,
   selectAreResultsMaximized,
 } from '../../state/settings/settings.selectors'
+import { setCanRun } from '../../state/scenario/scenario.actions'
 
 import { ColCustom } from '../Layout/ColCustom'
 
@@ -128,8 +123,10 @@ export function Main({
           validationSchema={schema}
           validateOnMount
         >
-          {({ values, errors, touched, isValid, isSubmitting }) => {
+          {({ values, errors, touched, isValid }) => {
             const canRun = isValid && areAgeGroupParametersValid(severityDistributionData, ageDistributionData)
+
+            setCanRun(canRun)
 
             return (
               <Form noValidate className="form form-main">
@@ -139,7 +136,7 @@ export function Main({
                   </ColCustom>
 
                   <ColCustom lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
-                    <ResultsCard canRun={canRun} openPrintPreview={openPrintPreview} />
+                    <ResultsCard />
                   </ColCustom>
                 </Row>
               </Form>

@@ -82,7 +82,7 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = {}
 
-export function DeterministicLinePlot({
+export function DeterministicLinePlotDiconnected({
   scenarioData,
   result,
   caseCountsData,
@@ -382,4 +382,6 @@ export function DeterministicLinePlot({
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeterministicLinePlot)
+const DeterministicLinePlot = connect(mapStateToProps, mapDispatchToProps)(DeterministicLinePlotDiconnected)
+
+export { DeterministicLinePlot }
