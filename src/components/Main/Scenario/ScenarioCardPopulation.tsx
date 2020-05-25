@@ -15,18 +15,17 @@ import { CardWithControls } from '../../Form/CardWithControls'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
-import { ConfirmedCasesDataPicker } from './ConfirmedCasesDataPicker'
+import { CaseCountsDataPicker } from './CaseCountsDataPicker'
 
 const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
 export interface ScenarioCardPopulationProps {
-  setCaseCounts(caseCounts: CaseCountsDatum[]): void
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
 
-function ScenarioCardPopulation({ setCaseCounts, errors, touched }: ScenarioCardPopulationProps) {
+function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
 
   return (
@@ -93,7 +92,7 @@ function ScenarioCardPopulation({ setCaseCounts, errors, touched }: ScenarioCard
         errors={errors}
         touched={touched}
       />
-      <ConfirmedCasesDataPicker errors={errors} touched={touched} setCaseCounts={setCaseCounts} />
+      <CaseCountsDataPicker errors={errors} touched={touched} />
       <FormDatePicker
         identifier="simulation.simulationTimeRange"
         label={t('Simulation time range')}
