@@ -1,14 +1,11 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
-import { StrictOmit } from 'ts-essentials'
 
-import { State } from '../../components/Main/state/state'
-
-import type { SeverityDistributionDatum } from '../types/Param.types'
+import type { StrictOmit } from 'ts-essentials'
+import type { ScenarioParameters } from '../types/Param.types'
 import type { AlgorithmResult } from '../types/Result.types'
 
-import { serialize } from '../../components/Main/state/serialization/serialize'
-
+import { serialize } from '../../io/serialization/serialize'
 import { serializeTrajectory } from '../model'
 
 export class ExportErrorBlobApiNotSupported extends Error {
@@ -40,13 +37,13 @@ export function saveFile(content: string, filename: string) {
 }
 
 export interface ExportResultsParams {
-  scenarioState: State
+  scenarioParameters: ScenarioParameters
   result?: AlgorithmResult
   detailed: boolean
   filename: string
 }
 
-export function exportResult({ scenarioState, result, detailed, filename }: ExportResultsParams) {
+export function exportResult({ scenarioParameters, result, detailed, filename }: ExportResultsParams) {
   checkBlobSupport()
 
   const trajectory = result?.trajectory
@@ -59,24 +56,13 @@ export function exportResult({ scenarioState, result, detailed, filename }: Expo
 }
 
 export interface ExportScenarioParams {
-  scenarioState: State
-  severity: SeverityDistributionDatum[]
-  severityName: string
+  scenarioParameters: ScenarioParameters
   filename: string
 }
 
-export function exportScenario({ scenarioState, severity, severityName, filename }: ExportScenarioParams) {
+export function exportScenario({ scenarioParameters, filename }: ExportScenarioParams) {
   checkBlobSupport()
-
-  const str = serialize({
-    scenario: scenarioState.data,
-    scenarioName: scenarioState.current,
-    ageDistribution: scenarioState.ageDistribution,
-    ageDistributionName: scenarioState.data.population.ageDistributionName,
-    severity,
-    severityName,
-  })
-
+  const str = serialize(scenarioParameters)
   saveFile(str, filename)
 }
 
@@ -93,9 +79,7 @@ export type ExportAllParams = StrictOmit<
 >
 
 export async function exportAll({
-  scenarioState,
-  severity,
-  severityName,
+  scenarioParameters,
   result,
   filenameParams,
   filenameResultsSummary,
@@ -109,15 +93,7 @@ export async function exportAll({
     throw new ExportErrorResultsInvalid(result)
   }
 
-  const paramStr = serialize({
-    scenario: scenarioState.data,
-    scenarioName: scenarioState.current,
-    ageDistribution: scenarioState.ageDistribution,
-    ageDistributionName: scenarioState.data.population.ageDistributionName,
-    severity,
-    severityName,
-  })
-
+  const paramStr = serialize(scenarioParameters)
   const summaryStr = serializeTrajectory({ trajectory, detailed: false })
   const detailedStr = serializeTrajectory({ trajectory, detailed: true })
 

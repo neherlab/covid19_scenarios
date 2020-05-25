@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
-import { isEmpty } from 'lodash'
-
+import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
@@ -17,10 +16,12 @@ import {
 } from 'reactstrap'
 import { MdFileDownload } from 'react-icons/md'
 import FileIcon, { defaultStyles } from 'react-file-icon'
+import { selectHasResult, selectResult } from '../../../state/algorithm/algorithm.selectors'
 
 import type { State } from '../../../state/reducer'
-import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import type { ScenarioParameters } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { selectScenarioParameters } from '../../../state/scenario/scenario.selectors'
 
 import { exportAll, exportResult, exportScenario } from '../../../algorithms/utils/exportResult'
 
@@ -107,13 +108,25 @@ export function ExportFileElement({
 
 export interface ModalButtonExportProps {
   buttonSize: number
-  scenarioState: State
-  severity: SeverityDistributionDatum[]
-  severityName: string
+  scenarioParameters: ScenarioParameters
+  hasResult: boolean
   result?: AlgorithmResult
 }
 
-function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, result }: ModalButtonExportProps) {
+const mapStateToProps = (state: State) => ({
+  scenarioParameters: selectScenarioParameters(state),
+  hasResult: selectHasResult(state),
+  result: selectResult(state),
+})
+
+const mapDispatchToProps = {}
+
+export function ModalButtonExportDisconnected({
+  buttonSize,
+  scenarioParameters,
+  hasResult,
+  result,
+}: ModalButtonExportProps) {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -129,18 +142,16 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
     setIsOpen(false)
   }
 
-  const canExportResult = isEmpty(result)
-
   function exportScenarioParameters() {
-    exportScenario({ scenarioState, severity, severityName, filename: FILENAME_PARAMS })
+    exportScenario({ scenarioParameters, filename: FILENAME_PARAMS })
   }
 
   function maybeExportResultSummary() {
-    if (canExportResult) {
+    if (!hasResult) {
       return
     }
     exportResult({
-      scenarioState,
+      scenarioParameters,
       result,
       filename: FILENAME_RESULTS_SUMMARY,
       detailed: false,
@@ -148,12 +159,12 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
   }
 
   function maybeExportResultDetailed() {
-    if (canExportResult) {
+    if (!hasResult) {
       return
     }
 
     exportResult({
-      scenarioState,
+      scenarioParameters,
       result,
       filename: FILENAME_RESULTS_DETAILED,
       detailed: true,
@@ -161,14 +172,12 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
   }
 
   function maybeExportAll() {
-    if (canExportResult) {
+    if (!hasResult) {
       return
     }
 
     exportAll({
-      scenarioState,
-      severity,
-      severityName,
+      scenarioParameters,
       result,
       filenameParams: FILENAME_PARAMS,
       filenameResultsDetailed: FILENAME_RESULTS_DETAILED,
@@ -253,5 +262,7 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
     </>
   )
 }
+
+const ModalButtonExport = connect(mapStateToProps, mapDispatchToProps)(ModalButtonExportDisconnected)
 
 export { ModalButtonExport }
