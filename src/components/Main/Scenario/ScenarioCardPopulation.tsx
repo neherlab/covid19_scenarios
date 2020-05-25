@@ -5,8 +5,6 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
-import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
-
 import { ageDistributionNames } from '../../../io/defaults/getAgeDistributionData'
 
 import { CUSTOM_COUNTRY_NAME } from '../../../state/scenario/scenario.state'
@@ -15,7 +13,8 @@ import { CardWithControls } from '../../Form/CardWithControls'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
-import { CaseCountsDataPicker } from './CaseCountsDataPicker'
+
+import { CaseCountsDataPicker } from '../CaseCounts/CaseCountsDataPicker'
 
 const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
