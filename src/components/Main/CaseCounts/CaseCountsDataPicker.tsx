@@ -14,7 +14,7 @@ import { SetCaseCountsData, setCaseCountsData } from '../../../state/caseCounts/
 
 import { FormCustom } from '../../Form/FormCustom'
 import { FormDropdown } from '../../Form/FormDropdown'
-import CaseCountsUploader, { ImportedCaseCounts } from '../CaseCounts/CaseCountsUploader'
+import CaseCountsUploader, { ImportedCaseCounts } from './CaseCountsUploader'
 
 const caseCountOptions = caseCountsNames.map((name) => ({ value: name, label: name }))
 caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: getI18n().t(NONE_COUNTRY_NAME) })
