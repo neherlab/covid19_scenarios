@@ -3,23 +3,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
 import { Col, Row } from 'reactstrap'
+import { ActionCreator } from 'typescript-fsa'
 
 import type { ScenarioDatum, SeverityDistributionDatum, AgeDistributionDatum } from '../../algorithms/types/Param.types'
 
 import type { State } from '../../state/reducer'
-import { selectIsRunning } from '../../state/algorithm/algorithm.selectors'
 import {
   selectScenarioData,
   selectAgeDistributionData,
   selectSeverityDistributionData,
 } from '../../state/scenario/scenario.selectors'
-import {
-  selectIsAutorunEnabled,
-  selectIsLogScale,
-  selectShouldFormatNumbers,
-  selectAreResultsMaximized,
-} from '../../state/settings/settings.selectors'
+import { selectAreResultsMaximized } from '../../state/settings/settings.selectors'
 import { setCanRun } from '../../state/scenario/scenario.actions'
+import { algorithmRunTrigger } from '../../state/algorithm/algorithm.actions'
 
 import { ColCustom } from '../Layout/ColCustom'
 
@@ -48,43 +44,35 @@ export interface MainProps {
   scenarioData: ScenarioDatum
   ageDistributionData: AgeDistributionDatum[]
   severityDistributionData: SeverityDistributionDatum[]
-  isRunning: boolean
-  isAutorunEnabled: boolean
-  isLogScale: boolean
-  shouldFormatNumbers: boolean
   areResultsMaximized: boolean
-  triggerRun(): void
+  algorithmRunTrigger: ActionCreator<void>
 }
 
 const mapStateToProps = (state: State) => ({
   scenarioData: selectScenarioData(state),
   ageDistributionData: selectAgeDistributionData(state),
   severityDistributionData: selectSeverityDistributionData(state),
-  isRunning: selectIsRunning(state),
-  isAutorunEnabled: selectIsAutorunEnabled(state),
-  isLogScale: selectIsLogScale(state),
-  shouldFormatNumbers: selectShouldFormatNumbers(state),
   areResultsMaximized: selectAreResultsMaximized(state),
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  algorithmRunTrigger,
+}
 
-export function Main({
+export const Main = connect(mapStateToProps, mapDispatchToProps)(MainDisconnected)
+
+export function MainDisconnected({
   scenarioData,
   ageDistributionData,
   severityDistributionData,
-  triggerRun,
-  isRunning,
-  isAutorunEnabled,
-  isLogScale,
-  shouldFormatNumbers,
   areResultsMaximized,
+  algorithmRunTrigger,
 }: MainProps) {
   // const [printable, setPrintable] = useState(false)
 
   function handleSubmit(_0: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
     setSubmitting(true)
-    triggerRun()
+    algorithmRunTrigger()
     setSubmitting(false)
   }
 
@@ -92,7 +80,7 @@ export function Main({
     return schema
       .validate(newParams)
       .then((validParams) => {
-        triggerRun()
+        algorithmRunTrigger()
         return validParams
       })
       .catch((error: FormikValidationErrors) => error.errors)
@@ -147,5 +135,3 @@ export function Main({
     </Row>
   )
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
