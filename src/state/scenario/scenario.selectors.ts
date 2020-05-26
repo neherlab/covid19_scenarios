@@ -44,4 +44,4 @@ export const selectScenarioParameters = ({
 export const selectMitigationIntervals = (state: State): MitigationInterval[] =>
   state.scenario.scenarioData.data.mitigation.mitigationIntervals
 
-export const selectCanRun = (state: State): boolean => state.scenario.canRun
+export const selectCanRun = (state: State): boolean => state.scenario.canRun && !state.algorithm.isRunning

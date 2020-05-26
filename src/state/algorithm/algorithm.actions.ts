@@ -20,5 +20,3 @@ export interface AlgorithmRunError {
 }
 
 export const algorithmRunAsync = action.async<void, AlgorithmRunResults, AlgorithmRunError>('RUN')
-
-export const setResults = action<AlgorithmRunResults>('SET_RESULTS')

@@ -1,7 +1,7 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
 import immerCase from '../util/fsaImmerReducer'
-import { algorithmRunAsync, setResults } from './algorithm.actions'
+import { algorithmRunAsync } from './algorithm.actions'
 import { defaultAlgorithmState } from './algorithm.state'
 
 export const algorithmReducer = reducerWithInitialState(defaultAlgorithmState) // prettier-ignore
@@ -12,19 +12,14 @@ export const algorithmReducer = reducerWithInitialState(defaultAlgorithmState) /
   )
 
   .withHandling(
-    immerCase(algorithmRunAsync.done, (draft) => {
+    immerCase(algorithmRunAsync.done, (draft, { result }) => {
       draft.isRunning = false
+      draft.result = result.result
     }),
   )
 
   .withHandling(
     immerCase(algorithmRunAsync.failed, (draft) => {
       draft.isRunning = false
-    }),
-  )
-
-  .withHandling(
-    immerCase(setResults, (draft, { result }) => {
-      draft.result = result
     }),
   )

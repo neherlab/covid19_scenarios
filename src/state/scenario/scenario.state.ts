@@ -25,5 +25,5 @@ export const defaultScenarioState: ScenarioState = {
   ageDistributionData: defaultAgeDistribution,
   severityDistributionData: defaultSeverityDistribution,
   shouldRenameOnEdits: true,
-  canRun: false,
+  canRun: true,
 }
