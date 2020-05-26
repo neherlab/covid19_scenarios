@@ -3,10 +3,11 @@
 // @ts-ignore
 import { appendDash } from './appendDash'
 
+// @ts-ignore
 if (!Error.prototype.toJSON) {
   function toJSON(this: Error) {
     const { message, name, stack } = this
-    const stackPretty = stack.split('\n').map(appendDash)
+    const stackPretty = stack?.split('\n').map(appendDash)
     return { message, name, stack: stackPretty }
   }
   if (Object.defineProperty) {
