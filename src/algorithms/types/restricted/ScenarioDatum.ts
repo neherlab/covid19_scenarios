@@ -25,7 +25,8 @@ export interface ScenarioDatumSubsetOfMitigationWithIds extends ScenarioDatumExt
 
 export type ScenarioDatumWithoutMitigation = StrictOmit<ScenarioDatumExternal, 'mitigation'>
 
-export type ScenarioDatum = Merge<ScenarioDatumWithoutMitigation, ScenarioDatumSubsetOfMitigationWithIds>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ScenarioDatum extends Merge<ScenarioDatumWithoutMitigation, ScenarioDatumSubsetOfMitigationWithIds> {}
 
 export interface ScenarioData {
   name: string
