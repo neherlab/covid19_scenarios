@@ -49,6 +49,8 @@ export interface MainProps {
   severityDistributionData: SeverityDistributionDatum[]
   areResultsMaximized: boolean
   algorithmRunTrigger: ActionCreator<void>
+  setCanRun: ActionCreator<boolean>
+  setScenarioData: ActionCreator<ScenarioDatum>
 }
 
 const mapStateToProps = (state: State) => ({
@@ -60,6 +62,8 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = {
   algorithmRunTrigger,
+  setCanRun,
+  setScenarioData,
 }
 
 export const Main = connect(mapStateToProps, mapDispatchToProps)(MainDisconnected)
@@ -69,6 +73,8 @@ export function MainDisconnected({
   ageDistributionData,
   severityDistributionData,
   areResultsMaximized,
+  setCanRun,
+  setScenarioData,
   algorithmRunTrigger,
 }: MainProps) {
   // const [printable, setPrintable] = useState(false)
