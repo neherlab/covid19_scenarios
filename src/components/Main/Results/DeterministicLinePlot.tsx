@@ -27,7 +27,7 @@ import type { ScenarioDatum, CaseCountsDatum } from '../../../algorithms/types/P
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
-import { selectIsRunning, selectResult } from '../../../state/algorithm/algorithm.selectors'
+import { selectResult } from '../../../state/algorithm/algorithm.selectors'
 import { State } from '../../../state/reducer'
 import { selectScenarioData } from '../../../state/scenario/scenario.selectors'
 import { selectIsLogScale, selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
@@ -66,7 +66,6 @@ export interface DeterministicLinePlotProps {
   scenarioData: ScenarioDatum
   result?: AlgorithmResult
   caseCountsData?: CaseCountsDatum[]
-  isRunning: boolean
   isLogScale: boolean
   shouldFormatNumbers: boolean
 }
@@ -75,7 +74,6 @@ const mapStateToProps = (state: State) => ({
   scenarioData: selectScenarioData(state),
   result: selectResult(state),
   caseCountsData: selectCaseCountsData(state),
-  isRunning: selectIsRunning(state),
   isLogScale: selectIsLogScale(state),
   shouldFormatNumbers: selectShouldFormatNumbers(state),
 })
@@ -86,7 +84,6 @@ export function DeterministicLinePlotDiconnected({
   scenarioData,
   result,
   caseCountsData,
-  isRunning,
   isLogScale,
   shouldFormatNumbers,
 }: DeterministicLinePlotProps) {
