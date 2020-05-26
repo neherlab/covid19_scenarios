@@ -81,7 +81,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   )
 
   .withHandling(
-    immerCase(setAgeDistributionData, (draft, { data }) => {
+    immerCase(setAgeDistributionData, (draft, data) => {
       draft.scenarioData.name = maybeChangeTitle(draft)
       draft.shouldRenameOnEdits = false
       draft.ageDistributionData.data = data
@@ -93,7 +93,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   )
 
   .withHandling(
-    immerCase(setSeverityDistributionData, (draft, { data }) => {
+    immerCase(setSeverityDistributionData, (draft, data) => {
       draft.scenarioData.name = maybeChangeTitle(draft)
       draft.shouldRenameOnEdits = false
       draft.severityDistributionData.data = data
