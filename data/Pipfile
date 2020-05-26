@@ -13,6 +13,7 @@ requests = "*"
 xlrd = "*"
 schemapi = {editable = true,git = "https://github.com/altair-viz/schemapi.git"}
 ipython = "*"
+pandas
 
 [requires]
 python_version = "3.8"
