@@ -1,9 +1,12 @@
 import React from 'react'
 
+import { cloneDeep } from 'lodash'
+
 import { connect } from 'react-redux'
-import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
+import { Form, Formik, FormikErrors, FormikValues, FormikHelpers } from 'formik'
 import { Col, Row } from 'reactstrap'
 import { ActionCreator } from 'typescript-fsa'
+import { useDebouncedCallback } from 'use-debounce'
 
 import type { ScenarioDatum, SeverityDistributionDatum, AgeDistributionDatum } from '../../algorithms/types/Param.types'
 
@@ -14,12 +17,12 @@ import {
   selectSeverityDistributionData,
 } from '../../state/scenario/scenario.selectors'
 import { selectAreResultsMaximized } from '../../state/settings/settings.selectors'
-import { setCanRun } from '../../state/scenario/scenario.actions'
+import { setCanRun, setScenarioData } from '../../state/scenario/scenario.actions'
 import { algorithmRunTrigger } from '../../state/algorithm/algorithm.actions'
 
 import { ColCustom } from '../Layout/ColCustom'
 
-import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
+// import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
 import { schema } from './validation/schema'
 
 import { ResultsCard } from './Results/ResultsCard'
@@ -71,20 +74,23 @@ export function MainDisconnected({
   // const [printable, setPrintable] = useState(false)
 
   function handleSubmit(_0: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
-    setSubmitting(true)
     algorithmRunTrigger()
     setSubmitting(false)
   }
 
-  function validateFormAndUpdateState(newParams: ScenarioDatum) {
+  const [validateFormAndUpdateState] = useDebouncedCallback((scenarioDatum: ScenarioDatum) => {
     return schema
-      .validate(newParams)
+      .validate(scenarioDatum)
       .then((validParams) => {
+        setCanRun(true)
+        setScenarioData(scenarioDatum)
         algorithmRunTrigger()
-        return validParams
       })
-      .catch((error: FormikValidationErrors) => error.errors)
-  }
+      .catch((error: FormikValidationErrors) => {
+        setCanRun(false)
+        return error.errors
+      })
+  }, 200)
 
   // const openPrintPreview = () => setPrintable(true)
   const { colScenario, colResults } = getColumnSizes(areResultsMaximized)
@@ -105,16 +111,15 @@ export function MainDisconnected({
       <Col>
         <Formik
           enableReinitialize
-          initialValues={scenarioData}
+          initialValues={cloneDeep(scenarioData)}
           onSubmit={handleSubmit}
           validate={validateFormAndUpdateState}
           validationSchema={schema}
           validateOnMount
         >
           {({ values, errors, touched, isValid }) => {
-            const canRun = isValid && areAgeGroupParametersValid(severityDistributionData, ageDistributionData)
-
-            setCanRun(canRun)
+            // const canRun = isValid && areAgeGroupParametersValid(severityDistributionData, ageDistributionData)
+            // setCanRun(canRun)
 
             return (
               <Form noValidate className="form form-main">

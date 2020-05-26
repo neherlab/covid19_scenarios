@@ -6,13 +6,10 @@ import {
   renameCurrentScenario,
   setAgeDistributionData,
   setCanRun,
-  setEpidemiologicalData,
-  setMitigationData,
-  setPopulationData,
   setScenario,
+  setScenarioData,
   setScenarioState,
   setSeverityDistributionData,
-  setSimulationData,
 } from './scenario.actions'
 
 import { getAgeDistributionData } from '../../io/defaults/getAgeDistributionData'
@@ -46,37 +43,13 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   )
 
   .withHandling(
-    immerCase(setPopulationData, (draft, { data }) => {
+    immerCase(setScenarioData, (draft, data) => {
       draft.scenarioData.name = maybeChangeTitle(draft)
       draft.shouldRenameOnEdits = false
-      draft.scenarioData.data.population = data
+      draft.scenarioData.data = data
       if (draft.scenarioData.data.population.ageDistributionName !== CUSTOM_COUNTRY_NAME) {
         draft.ageDistributionData = getAgeDistributionData(draft.scenarioData.data.population.ageDistributionName)
       }
-    }),
-  )
-
-  .withHandling(
-    immerCase(setEpidemiologicalData, (draft, { data }) => {
-      draft.scenarioData.name = maybeChangeTitle(draft)
-      draft.shouldRenameOnEdits = false
-      draft.scenarioData.data.epidemiological = data
-    }),
-  )
-
-  .withHandling(
-    immerCase(setMitigationData, (draft, { data }) => {
-      draft.scenarioData.name = maybeChangeTitle(draft)
-      draft.shouldRenameOnEdits = false
-      draft.scenarioData.data.mitigation = data
-    }),
-  )
-
-  .withHandling(
-    immerCase(setSimulationData, (draft, { data }) => {
-      draft.scenarioData.name = maybeChangeTitle(draft)
-      draft.shouldRenameOnEdits = false
-      draft.scenarioData.data.simulation = data
     }),
   )
 

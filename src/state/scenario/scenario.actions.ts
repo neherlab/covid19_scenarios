@@ -1,12 +1,9 @@
 import actionCreatorFactory from 'typescript-fsa'
-import { ScenarioParameters } from '../../algorithms/types/Param.types'
 
 import type {
   AgeDistributionDatum,
-  ScenarioDatumEpidemiological,
-  ScenarioDatumMitigation,
-  ScenarioDatumPopulation,
-  ScenarioDatumSimulation,
+  ScenarioDatum,
+  ScenarioParameters,
   SeverityDistributionDatum,
 } from '../../algorithms/types/Param.types'
 
@@ -17,28 +14,9 @@ export interface SetScenarioParams {
 }
 
 export const renameCurrentScenario = action<SetScenarioParams>('RENAME_CURRENT_SCENARIO')
-export const setScenario = action<SetScenarioParams>('SET_SCENARIO_DATA')
+export const setScenario = action<SetScenarioParams>('SET_SCENARIO')
 
-export interface SetPopulationData {
-  data: ScenarioDatumPopulation
-}
-
-export interface SetEpidemiologicalData {
-  data: ScenarioDatumEpidemiological
-}
-
-export interface SetMitigationData {
-  data: ScenarioDatumMitigation
-}
-
-export interface SetSimulationData {
-  data: ScenarioDatumSimulation
-}
-
-export const setPopulationData = action<SetPopulationData>('SET_POPULATION_DATA')
-export const setEpidemiologicalData = action<SetEpidemiologicalData>('SET_EPIDEMIOLOGICAL_DATA')
-export const setMitigationData = action<SetMitigationData>('SET_MITIGATION_DATA')
-export const setSimulationData = action<SetSimulationData>('SET_SIMULATION_DATA')
+export const setScenarioData = action<ScenarioDatum>('SET_SCENARIO_DATA')
 export const setAgeDistributionData = action<AgeDistributionDatum[]>('SET_AGE_DISTRIBUTION_DATA')
 export const setSeverityDistributionData = action<SeverityDistributionDatum[]>('SET_SEVERITY_DISTRIBUTION_DATA')
 export const setScenarioState = action<ScenarioParameters>('SET_STATE_DATA')
