@@ -51,7 +51,6 @@ export interface MainProps {
   setCanRun: ActionCreator<boolean>
   setScenarioData: ActionCreator<ScenarioDatum>
   algorithmRunTrigger: ActionCreator<void>
-  algorithmRunDebouncedTrigger: ActionCreator<void>
 }
 
 const mapStateToProps = (state: State) => ({
@@ -75,7 +74,6 @@ export function MainDisconnected({
   severityDistributionData,
   areResultsMaximized,
   algorithmRunTrigger,
-  algorithmRunDebouncedTrigger,
   setCanRun,
   setScenarioData,
 }: MainProps) {
