@@ -123,10 +123,9 @@ export function MainDisconnected({
           initialValues={scenarioData}
           onSubmit={handleSubmit}
           validate={validateFormAndUpdateState}
-          validationSchema={schema}
           validateOnMount
         >
-          {({ values, errors, touched, isValid }) => {
+          {({ errors, touched, isValid }) => {
             // const canRun = isValid && areAgeGroupParametersValid(severityDistributionData, ageDistributionData)
             // setCanRun(canRun)
 
