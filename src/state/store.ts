@@ -3,6 +3,8 @@ import { createBrowserHistory } from 'history'
 import { applyMiddleware, createStore, StoreEnhancer } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
+import { persistStore } from 'redux-persist'
+
 import createRootReducer from './reducer'
 import createRootSaga from './sagas'
 
@@ -41,6 +43,7 @@ export default function configureStore({ location = storeDefaults.location }: St
   }
 
   const store = createStore(createRootReducer(history), {}, enhancer)
+  const persistor = persistStore(store)
 
   let rootSagaTask = sagaMiddleware.run(createRootSaga())
 
@@ -65,7 +68,7 @@ export default function configureStore({ location = storeDefaults.location }: St
     })
   }
 
-  return { store, history }
+  return { store, history, persistor }
 }
 
 declare const window: Window & {

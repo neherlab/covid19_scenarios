@@ -6,6 +6,7 @@ import './helpers/errorPrototypeTojson' // to visualize Error in Redux Dev Tools
 
 import 'react-dates/initialize'
 
+import { PersistGate } from 'redux-persist/integration/react'
 import { enableES5 } from 'immer'
 
 import React from 'react'
@@ -24,12 +25,14 @@ import configureStore from './state/store'
 
 enableES5()
 
-const { store, history } = configureStore()
+const { store, history, persistor } = configureStore()
 const Root = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <MDXProvider components={{ a: LinkExternal }}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </MDXProvider>
     </ConnectedRouter>
   </Provider>

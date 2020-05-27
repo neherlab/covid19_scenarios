@@ -1,6 +1,8 @@
 import { connectRouter, RouterState } from 'connected-react-router'
 import { History } from 'history'
 import { combineReducers } from 'redux'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 import { algorithmReducer } from './algorithm/algorithm.reducer'
 import { AlgorithmState } from './algorithm/algorithm.state'
@@ -16,6 +18,12 @@ import { settingsReducer } from './settings/settings.reducer'
 import type { CaseCountsState } from './caseCounts/caseCounts.state'
 import { caseCountsReducer } from './caseCounts/caseCounts.reducer'
 
+const SETTINGS_VERSION = 1
+const settingsReducerPersisted = persistReducer(
+  { key: 'settings', version: SETTINGS_VERSION, storage, timeout: 3000 },
+  settingsReducer,
+)
+
 export interface State {
   algorithm: AlgorithmState
   error: ErrorState
@@ -30,7 +38,7 @@ const rootReducer = (history: History) =>
     algorithm: algorithmReducer,
     error: errorReducer,
     scenario: scenarioReducer,
-    settings: settingsReducer,
+    settings: settingsReducerPersisted,
     caseCounts: caseCountsReducer,
     router: connectRouter(history),
   })
