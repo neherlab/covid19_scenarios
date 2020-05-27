@@ -10,7 +10,7 @@ import { Table } from 'reactstrap'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { numberFormatter } from '../../../helpers/numberFormat'
 
-import './TableResult.scss'
+import './OutcomesDetailsTable.scss'
 
 const STEP = 7
 
@@ -78,13 +78,17 @@ export function NumberWithUncertainty({ value, lower, upper }: NumberWithUncerta
   return <div>{'0'}</div>
 }
 
-export interface TableResultProps {
+export interface OutcomesDetailsTableProps {
   result?: AlgorithmResult
   forPrint?: boolean
   formatter?: (num: number) => string
 }
 
-export default function TableResult({ result, forPrint, formatter = Number.toString }: TableResultProps) {
+export default function OutcomesDetailsTable({
+  result,
+  forPrint,
+  formatter = Number.toString,
+}: OutcomesDetailsTableProps) {
   const { t } = useTranslation()
 
   if (!result) {

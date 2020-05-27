@@ -17,11 +17,10 @@ import { CollapsibleCard } from '../../Form/CollapsibleCard'
 
 import { CardWithControls } from '../../Form/CardWithControls'
 
-import TableResult from '../PrintPage/TableResult'
-
 import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
+import OutcomesDetailsTable from './OutcomesDetailsTable'
 import { SimulationControls } from '../Controls/SimulationControls'
 
 import './ResultsCard.scss'
@@ -116,7 +115,7 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
               help={t('Summary table of outcomes for the entire population')}
               defaultCollapsed
             >
-              <TableResult />
+              <OutcomesDetailsTable />
             </CollapsibleCard>
           </Col>
         </Row>

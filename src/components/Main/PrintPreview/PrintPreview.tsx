@@ -1,19 +1,35 @@
 import React from 'react'
 
-import _ from 'lodash'
+import { get } from 'lodash'
+
 import moment from 'moment'
+import { goBack } from 'connected-react-router'
+import { connect } from 'react-redux'
 import { Button, Col, Container, Row, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FaWindowClose } from 'react-icons/fa'
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import type { CaseCountsDatum, ScenarioDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import type {
+  ScenarioDatum,
+  SeverityDistributionDatum,
+  AgeDistributionDatum,
+} from '../../../algorithms/types/Param.types'
+import { selectHasResult, selectResult } from '../../../state/algorithm/algorithm.selectors'
+import {
+  selectAgeDistributionData,
+  selectCurrentScenarioName,
+  selectScenarioData,
+  selectSeverityDistributionData,
+} from '../../../state/scenario/scenario.selectors'
 
 import { DeterministicLinePlot } from '../Results/DeterministicLinePlot'
 import { OutcomeRatesTable } from '../Results/OutcomeRatesTable'
 import { AgeBarChart } from '../Results/AgeBarChart'
-import TableResult from './TableResult'
+import OutcomesDetailsTable from '../Results/OutcomesDetailsTable'
 import { dateFormat, dateTimeFormat } from './dateFormat'
+
+import type { State } from '../../../state/reducer'
 
 import LinkExternal from '../../Router/LinkExternal'
 
@@ -24,16 +40,7 @@ import logoNeherlab from '../../../assets/img/neherlab.svg'
 import logoBiozentrum from '../../../assets/img/biozentrum.svg'
 import logoUnibas from '../../../assets/img/unibas.svg'
 
-import './PrintPage.scss'
-
-interface PropsType {
-  params: ScenarioDatum
-  scenarioUsed: string
-  severity: SeverityDistributionDatum[]
-  result?: AlgorithmResult
-  caseCounts?: CaseCountsDatum[]
-  onClose: () => void
-}
+import './PrintPreview.scss'
 
 const months = moment.months()
 
@@ -55,18 +62,54 @@ const parameterExplanations = {
   peakMonth: 'Seasonal peak in transmissibility',
 }
 
-export default function PrintPage({ params, scenarioUsed, severity, result, caseCounts, onClose }: PropsType) {
+const print = () => typeof window !== 'undefined' && window.print()
+
+export interface PrintPreviewDisconnectedProps {
+  scenarioData: ScenarioDatum
+  scenarioName: string
+  ageDistributionData: AgeDistributionDatum[]
+  severityDistributionData: SeverityDistributionDatum[]
+  hasResult: boolean
+  result?: AlgorithmResult
+  goBack(): void
+}
+
+const mapStateToProps = (state: State) => ({
+  scenarioData: selectScenarioData(state),
+  scenarioName: selectCurrentScenarioName(state),
+  ageDistributionData: selectAgeDistributionData(state),
+  severityDistributionData: selectSeverityDistributionData(state),
+  hasResult: selectHasResult(state),
+  result: selectResult(state),
+})
+
+const mapDispatchToProps = {
+  goBack,
+}
+
+export const PrintPreview = connect(mapStateToProps, mapDispatchToProps)(PrintPreviewDisconnected)
+
+export function PrintPreviewDisconnected({
+  scenarioData,
+  scenarioName,
+  ageDistributionData,
+  severityDistributionData,
+  hasResult,
+  result,
+  goBack,
+}: PrintPreviewDisconnectedProps) {
   const { t } = useTranslation()
-  if (result && caseCounts) {
+
+  if (hasResult) {
     return (
       <Container className="container-print">
         <Row className="d-print-none">
           <Col className="w-100 d-flex">
-            <Button className="mr-auto" onClick={() => window.print()} color="primary">
+            <Button className="mr-auto" onClick={print} color="primary">
               {t('Save as PDF or Print')}
             </Button>
 
-            <Button className="ml-auto" color="transparent" onClick={onClose}>
+            <Button className="ml-auto" color="transparent" onClick={goBack}>
               <FaWindowClose />
             </Button>
           </Col>
@@ -154,7 +197,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
 
         <Row className="page" style={{ breakBefore: 'always', pageBreakBefore: 'always' }}>
           <Col>
-            <h2>{`Scenario: ${scenarioUsed}`}</h2>
+            <h2>{`Scenario: ${scenarioName}`}</h2>
 
             <h2>{`Parameters`}</h2>
 
@@ -169,9 +212,9 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
               </thead>
 
               <tbody>
-                {Object.entries(params.population).map(([key, val]) => (
+                {Object.entries(scenarioData.population).map(([key, val]) => (
                   <tr key={key}>
-                    <td className="text-left pl-2 pr-4 py-0">{_.get(parameterExplanations, key) || key}</td>
+                    <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations, key) || key}</td>
                     <td className="text-right pl-4 pr-2 py-0">{val}</td>
                   </tr>
                 ))}
@@ -187,7 +230,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
               </thead>
 
               <tbody>
-                {Object.entries(params.epidemiological).map(([key, val]) => {
+                {Object.entries(scenarioData.epidemiological).map(([key, val]) => {
                   // NOTE: val can be of different types here
                   // FIXME: This is a hole in type system, because the type of `val` is not checked (any)
                   let value = val
@@ -202,7 +245,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
 
                   return (
                     <tr key={key}>
-                      <td className="text-left pl-2 pr-4 py-0">{_.get(parameterExplanations, key) || key}</td>
+                      <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations, key) || key}</td>
                       <td className="text-right pl-4 pr-2 py-0">{value}</td>
                     </tr>
                   )
@@ -227,7 +270,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
               </thead>
 
               <tbody>
-                {params.mitigation.mitigationIntervals.map(({ id, name, timeRange, transmissionReduction }) => {
+                {scenarioData.mitigation.mitigationIntervals.map(({ id, name, timeRange, transmissionReduction }) => {
                   const { begin: trMin, end: trMax } = transmissionReduction
                   const tr = `${trMin}% - ${trMax}%`
 
@@ -257,7 +300,7 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
             <Row>
               <Col>
                 <h2>{`Results summary`}</h2>
-                <TableResult result={result} forPrint />
+                <OutcomesDetailsTable result={result} forPrint />
               </Col>
             </Row>
           </Col>
@@ -267,13 +310,13 @@ export default function PrintPage({ params, scenarioUsed, severity, result, case
           <Col>
             <Row>
               <Col>
-                <AgeBarChart showHumanized data={result} rates={severity} printLabel />
+                <AgeBarChart showHumanized data={result} rates={severityDistributionData} printLabel />
               </Col>
             </Row>
 
             <Row>
               <Col>
-                <OutcomeRatesTable showHumanized result={result} rates={severity} printable />
+                <OutcomeRatesTable showHumanized result={result} rates={severityDistributionData} printable />
               </Col>
             </Row>
           </Col>

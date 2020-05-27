@@ -1,7 +1,6 @@
 import { push } from 'connected-react-router'
-import { select, takeEvery } from 'redux-saga/effects'
-
 import urlJoin from 'proper-url-join'
+import { select, takeEvery, put } from 'redux-saga/effects'
 
 import { toUrl } from '../../io/serialization/toUrl'
 
@@ -16,7 +15,7 @@ export function* newTabOpen() {
 }
 
 export function* printPreviewOpen() {
-  yield push('/print')
+  yield put(push('/print'))
 }
 
 export default [takeEvery(newTabOpenTrigger, newTabOpen), takeEvery(printPreviewOpenTrigger, printPreviewOpen)]
