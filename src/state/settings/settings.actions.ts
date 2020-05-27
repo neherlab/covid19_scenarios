@@ -11,3 +11,6 @@ export const setAutorun = action<boolean>('SET_AUTORUN')
 export const setLogScale = action<boolean>('SET_LOG_SCALE')
 export const setFormatNumbers = action<boolean>('SET_FORMAT_NUMBERS')
 export const setResultsMaximized = action<boolean>('SET_RESULTS_MAXIMIZED')
+
+export const setDisclaimerVersionAccepted = action<number>('SET_DISCLAIMER_VERSION_ACCEPTED')
+export const toggleDisclaimerShouldSuppress = action('TOGGLE_DISCLAIMER_SHOULD_SUPPRESS')

@@ -21,6 +21,7 @@ import { setCanRun, setScenarioData } from '../../state/scenario/scenario.action
 import { algorithmRunTrigger } from '../../state/algorithm/algorithm.actions'
 
 import { ColCustom } from '../Layout/ColCustom'
+import { Disclaimer } from './Disclaimer'
 
 // import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
 import { schema } from './validation/schema'
@@ -114,35 +115,38 @@ export function MainDisconnected({
   // }
 
   return (
-    <Row noGutters className="row-main">
-      <Col>
-        <Formik
-          enableReinitialize
-          initialValues={scenarioData}
-          onSubmit={handleSubmit}
-          validate={validateFormAndUpdateState}
-          validateOnMount
-        >
-          {({ errors, touched, isValid }) => {
-            // const canRun = isValid && areAgeGroupParametersValid(severityDistributionData, ageDistributionData)
-            // setCanRun(canRun)
+    <>
+      <Disclaimer />
+      <Row noGutters className="row-main">
+        <Col>
+          <Formik
+            enableReinitialize
+            initialValues={scenarioData}
+            onSubmit={handleSubmit}
+            validate={validateFormAndUpdateState}
+            validateOnMount
+          >
+            {({ errors, touched, isValid }) => {
+              // const canRun = isValid && areAgeGroupParametersValid(severityDistributionData, ageDistributionData)
+              // setCanRun(canRun)
 
-            return (
-              <Form noValidate className="form form-main">
-                <Row className="row-form-main">
-                  <ColCustom lg={4} {...colScenario} className="col-wrapper-scenario animate-flex-width">
-                    <ScenarioCard errors={errors} touched={touched} />
-                  </ColCustom>
+              return (
+                <Form noValidate className="form form-main">
+                  <Row className="row-form-main">
+                    <ColCustom lg={4} {...colScenario} className="col-wrapper-scenario animate-flex-width">
+                      <ScenarioCard errors={errors} touched={touched} />
+                    </ColCustom>
 
-                  <ColCustom lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
-                    <ResultsCard />
-                  </ColCustom>
-                </Row>
-              </Form>
-            )
-          }}
-        </Formik>
-      </Col>
-    </Row>
+                    <ColCustom lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
+                      <ResultsCard />
+                    </ColCustom>
+                  </Row>
+                </Form>
+              )
+            }}
+          </Formik>
+        </Col>
+      </Row>
+    </>
   )
 }

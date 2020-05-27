@@ -1,57 +1,61 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col, CustomInput, Form, FormGroup } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
+import { Button, Col, CustomInput, Form, FormGroup, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap'
+import { ActionCreator } from 'typescript-fsa'
+
+import type { State } from '../../state/reducer'
+import {
+  selectDisclaimerShouldSuppress,
+  selectDisclaimerVersionAccepted,
+} from '../../state/settings/settings.selectors'
+import { setDisclaimerVersionAccepted, toggleDisclaimerShouldSuppress } from '../../state/settings/settings.actions'
 
 import './Disclaimer.scss'
 
-const disclaimerVersion = 0
+const DISCLAIMER_CURRENT_VERSION = 1
 
-export interface SuppressShowAgain {
-  version: number
-  suppressShowAgain: boolean
+export interface DisclaimerProps {
+  disclaimerVersionAccepted?: number
+  disclaimerShouldSuppress: boolean
+  setDisclaimerVersionAccepted: ActionCreator<number>
+  toggleDisclaimerShouldSuppress: ActionCreator<void>
 }
 
-function onDialogClosed(suppressShowAgain: boolean) {
-  localStorage.set('suppressDisclaimer', {
-    version: disclaimerVersion,
-    suppressShowAgain,
-  })
+const mapStateToProps = (state: State) => ({
+  disclaimerVersionAccepted: selectDisclaimerVersionAccepted(state),
+  disclaimerShouldSuppress: selectDisclaimerShouldSuppress(state),
+})
+
+const mapDispatchToProps = {
+  setDisclaimerVersionAccepted,
+  toggleDisclaimerShouldSuppress,
 }
 
-export default function DisclaimerProps() {
-  return null
+export const Disclaimer = connect(mapStateToProps, mapDispatchToProps)(DisclaimerDisconnected)
 
+export function DisclaimerDisconnected({
+  disclaimerVersionAccepted,
+  disclaimerShouldSuppress,
+  setDisclaimerVersionAccepted,
+  toggleDisclaimerShouldSuppress,
+}: DisclaimerProps) {
   const { t } = useTranslation()
-  const [showModal, setShowModal] = useState(false)
-  const [suppressShowAgain, setsuppressShowAgain] = useState(false)
 
-  useEffect(() => {
-    const persistedSuppressShowAgain: SuppressShowAgain = localStorage.get('suppressDisclaimer')
+  const [isOpen, setIsOpen] = useState(
+    !(disclaimerShouldSuppress && disclaimerVersionAccepted && disclaimerVersionAccepted <= DISCLAIMER_CURRENT_VERSION),
+  )
 
-    if (persistedSuppressShowAgain !== null) {
-      setsuppressShowAgain(persistedSuppressShowAgain.suppressShowAgain)
-      setShowModal(
-        !persistedSuppressShowAgain.suppressShowAgain || persistedSuppressShowAgain.version < disclaimerVersion,
-      )
-    } else {
-      setShowModal(true)
-    }
-  }, [])
+  function onAccept() {
+    setDisclaimerVersionAccepted(DISCLAIMER_CURRENT_VERSION)
+    setIsOpen(false)
+  }
 
-  const toggle = () => setShowModal(!showModal)
-  const toggleChecked = () => setsuppressShowAgain(!suppressShowAgain)
+  const toggleDisclaimerShouldSuppressLocal = () => toggleDisclaimerShouldSuppress()
 
   return (
-    <Modal
-      isOpen={showModal}
-      backdrop="static"
-      fade={false}
-      centered
-      autoFocus
-      toggle={toggle}
-      onClosed={() => onDialogClosed(suppressShowAgain)}
-    >
+    <Modal isOpen={isOpen} backdrop="static" fade={false} centered autoFocus>
       <ModalHeader>{t(`COVID-19 Scenarios`)}</ModalHeader>
       <ModalBody>
         <Row>
@@ -77,8 +81,8 @@ export default function DisclaimerProps() {
                   <CustomInput
                     id="dont-show-again"
                     type="checkbox"
-                    onChange={toggleChecked}
-                    checked={suppressShowAgain}
+                    onChange={toggleDisclaimerShouldSuppressLocal}
+                    checked={disclaimerShouldSuppress}
                   />
                   {t(`Don't show again`)}
                 </label>
@@ -88,7 +92,7 @@ export default function DisclaimerProps() {
         </Row>
       </ModalBody>
       <ModalFooter>
-        <Button color="danger" onClick={toggle}>
+        <Button color="danger" onClick={onAccept}>
           Accept
         </Button>
       </ModalFooter>

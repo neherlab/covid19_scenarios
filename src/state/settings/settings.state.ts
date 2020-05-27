@@ -3,6 +3,8 @@ export interface SettingsState {
   shouldFormatNumbers: boolean
   isLogScale: boolean
   areResultsMaximized: boolean
+  disclaimerVersionAccepted?: number
+  disclaimerShouldSuppress: boolean
 }
 
 export const settingsDefaultState: SettingsState = {
@@ -10,4 +12,6 @@ export const settingsDefaultState: SettingsState = {
   shouldFormatNumbers: true,
   isLogScale: true,
   areResultsMaximized: typeof window !== 'undefined' && window?.innerWidth > 2000,
+  disclaimerVersionAccepted: undefined,
+  disclaimerShouldSuppress: false,
 }

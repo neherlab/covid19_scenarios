@@ -11,6 +11,8 @@ import {
   toggleLogScale,
   toggleFormatNumbers,
   toggleResultsMaximized,
+  setDisclaimerVersionAccepted,
+  toggleDisclaimerShouldSuppress,
 } from './settings.actions'
 
 import { settingsDefaultState } from './settings.state'
@@ -61,5 +63,17 @@ export const settingsReducer = reducerWithInitialState(settingsDefaultState)
   .withHandling(
     immerCase(setResultsMaximized, (draft, areResultsMaximized) => {
       draft.areResultsMaximized = areResultsMaximized
+    }),
+  )
+
+  .withHandling(
+    immerCase(setDisclaimerVersionAccepted, (draft, version) => {
+      draft.disclaimerVersionAccepted = version
+    }),
+  )
+
+  .withHandling(
+    immerCase(toggleDisclaimerShouldSuppress, (draft) => {
+      draft.disclaimerShouldSuppress = !draft.disclaimerShouldSuppress
     }),
   )
