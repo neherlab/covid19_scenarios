@@ -23,7 +23,8 @@ export default function configureStore({ location = storeDefaults.location }: St
 
   const sagaMiddleware = createSagaMiddleware()
   const middlewares = [
-    debug && require('redux-immutable-state-invariant').default(),
+    process.env.DEV_ENABLE_REDUX_IMMUTABLE_STATE_INVARIANT === '1' &&
+      require('redux-immutable-state-invariant').default(),
     routerMiddleware(history),
     sagaMiddleware,
   ].filter(Boolean)
