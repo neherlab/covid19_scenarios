@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { cloneDeep } from 'lodash'
+import { isEqual } from 'lodash'
 
 import { connect } from 'react-redux'
 import { Form, Formik, FormikErrors, FormikValues, FormikHelpers } from 'formik'
@@ -48,9 +48,10 @@ export interface MainProps {
   ageDistributionData: AgeDistributionDatum[]
   severityDistributionData: SeverityDistributionDatum[]
   areResultsMaximized: boolean
-  algorithmRunTrigger: ActionCreator<void>
   setCanRun: ActionCreator<boolean>
   setScenarioData: ActionCreator<ScenarioDatum>
+  algorithmRunTrigger: ActionCreator<void>
+  algorithmRunDebouncedTrigger: ActionCreator<void>
 }
 
 const mapStateToProps = (state: State) => ({
@@ -73,30 +74,32 @@ export function MainDisconnected({
   ageDistributionData,
   severityDistributionData,
   areResultsMaximized,
+  algorithmRunTrigger,
+  algorithmRunDebouncedTrigger,
   setCanRun,
   setScenarioData,
-  algorithmRunTrigger,
 }: MainProps) {
   // const [printable, setPrintable] = useState(false)
+
+  const [validateFormAndUpdateState] = useDebouncedCallback(async (scenarioDataNew: ScenarioDatum) => {
+    try {
+      const scenarioDataNewValidated = await schema.validate(scenarioDataNew)
+      setCanRun(true)
+      if (!isEqual(scenarioDataNewValidated, scenarioData)) {
+        setScenarioData(scenarioDataNew)
+        algorithmRunTrigger()
+      }
+    } catch (error) {
+      setCanRun(false)
+      return error.errors
+    }
+    return {}
+  }, 200)
 
   function handleSubmit(_0: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
     algorithmRunTrigger()
     setSubmitting(false)
   }
-
-  const [validateFormAndUpdateState] = useDebouncedCallback((scenarioDatum: ScenarioDatum) => {
-    return schema
-      .validate(scenarioDatum)
-      .then((validParams) => {
-        setCanRun(true)
-        setScenarioData(scenarioDatum)
-        algorithmRunTrigger()
-      })
-      .catch((error: FormikValidationErrors) => {
-        setCanRun(false)
-        return error.errors
-      })
-  }, 200)
 
   // const openPrintPreview = () => setPrintable(true)
   const { colScenario, colResults } = getColumnSizes(areResultsMaximized)
@@ -117,7 +120,7 @@ export function MainDisconnected({
       <Col>
         <Formik
           enableReinitialize
-          initialValues={cloneDeep(scenarioData)}
+          initialValues={scenarioData}
           onSubmit={handleSubmit}
           validate={validateFormAndUpdateState}
           validationSchema={schema}
