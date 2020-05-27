@@ -20,7 +20,7 @@ function Lang({ lang }: { lang: Locale }) {
 export default function LanguageSwitcher() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const toggle = () => setDropdownOpen((prevState) => !prevState)
-  const selectedLang = 'en' // TODO: get language
+  const selectedLang = DEFAULT_LOCALE // TODO: get language
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} data-testid="LanguageSwitcher">
