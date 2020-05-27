@@ -92,7 +92,7 @@ export function MainDisconnected({
       return error.errors
     }
     return {}
-  }, 200)
+  }, 500)
 
   function handleSubmit(_0: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
     algorithmRunTrigger()
