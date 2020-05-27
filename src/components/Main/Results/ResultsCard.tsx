@@ -23,11 +23,13 @@ import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { SimulationControls } from '../Controls/SimulationControls'
+import { PlotSpinner } from './PlotSpinner'
 
 import './ResultsCard.scss'
 
 const LOG_SCALE_DEFAULT = true
 const SHOW_HUMANIZED_DEFAULT = true
+const ICON_SIZE = 50
 
 interface ResultsCardProps {
   isAutorunEnabled: boolean
@@ -160,17 +162,27 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Outbreak trajectories')}</h3>}
               help={t(`Simulation results over time`)}
             >
-              <Row noGutters>
-                <Col>
-                  <DeterministicLinePlot
-                    data={result}
-                    params={scenarioData}
-                    logScale={logScale}
-                    showHumanized={showHumanized}
-                    caseCounts={caseCounts}
-                  />
-                </Col>
-              </Row>
+              {isRunning ? (
+                <Row>
+                  <Col>
+                    <div className="spinner-container">
+                      <PlotSpinner isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                    </div>
+                  </Col>
+                </Row>
+              ) : (
+                <Row noGutters>
+                  <Col>
+                    <DeterministicLinePlot
+                      data={result}
+                      params={scenarioData}
+                      logScale={logScale}
+                      showHumanized={showHumanized}
+                      caseCounts={caseCounts}
+                    />
+                  </Col>
+                </Row>
+              )}
             </CardWithControls>
           </Col>
         </Row>
@@ -183,12 +195,22 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Distribution across age groups')}</h3>}
               help={t('Summary of outcomes per age group')}
             >
-              <AgeBarChart
-                showHumanized={showHumanized}
-                data={result}
-                rates={severity}
-                ageDistribution={ageDistribution}
-              />
+              {isRunning ? (
+                <Row>
+                  <Col>
+                    <div className="spinner-container">
+                      <PlotSpinner isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                    </div>
+                  </Col>
+                </Row>
+              ) : (
+                <AgeBarChart
+                  showHumanized={showHumanized}
+                  data={result}
+                  rates={severity}
+                  ageDistribution={ageDistribution}
+                />
+              )}
             </CardWithControls>
           </Col>
         </Row>
@@ -202,7 +224,17 @@ function ResultsCardFunction({
               help={t('Summary table of outcomes for the entire population')}
               defaultCollapsed
             >
-              <TableResult result={result} />
+              {isRunning ? (
+                <Row>
+                  <Col>
+                    <div className="spinner-container">
+                      <PlotSpinner isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                    </div>
+                  </Col>
+                </Row>
+              ) : (
+                <TableResult result={result} />
+              )}
             </CollapsibleCard>
           </Col>
         </Row>
@@ -215,7 +247,17 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Outcomes')}</h3>}
               help={t('Summary of outcomes for the entire population')}
             >
-              <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
+              {isRunning ? (
+                <Row>
+                  <Col>
+                    <div className="spinner-container">
+                      <PlotSpinner isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                    </div>
+                  </Col>
+                </Row>
+              ) : (
+                <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
+              )}
             </CardWithControls>
           </Col>
         </Row>
