@@ -13,6 +13,7 @@ import {
   toggleResultsMaximized,
   setDisclaimerVersionAccepted,
   toggleDisclaimerShouldSuppress,
+  setLocale,
 } from './settings.actions'
 
 import { settingsDefaultState } from './settings.state'
@@ -75,5 +76,11 @@ export const settingsReducer = reducerWithInitialState(settingsDefaultState)
   .withHandling(
     immerCase(toggleDisclaimerShouldSuppress, (draft) => {
       draft.disclaimerShouldSuppress = !draft.disclaimerShouldSuppress
+    }),
+  )
+
+  .withHandling(
+    immerCase(setLocale, (draft, locale) => {
+      draft.locale = locale
     }),
   )

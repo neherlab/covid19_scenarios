@@ -1,3 +1,5 @@
+import { DEFAULT_LOCALE, Locale } from '../../i18n/i18n'
+
 export interface SettingsState {
   isAutorunEnabled: boolean
   shouldFormatNumbers: boolean
@@ -5,6 +7,7 @@ export interface SettingsState {
   areResultsMaximized: boolean
   disclaimerVersionAccepted?: number
   disclaimerShouldSuppress: boolean
+  locale: Locale
 }
 
 export const settingsDefaultState: SettingsState = {
@@ -14,4 +17,5 @@ export const settingsDefaultState: SettingsState = {
   areResultsMaximized: typeof window !== 'undefined' && window?.innerWidth > 2000,
   disclaimerVersionAccepted: undefined,
   disclaimerShouldSuppress: false,
+  locale: DEFAULT_LOCALE,
 }
