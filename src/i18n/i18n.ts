@@ -21,6 +21,7 @@ export type LocaleKey = keyof typeof translations
 
 export const DEFAULT_LOCALE_KEY: LocaleKey = 'en'
 export const resources = mapValues(translations, (value) => ({ translation: value }))
+export const localeKeys = Object.keys(translations) as LocaleKey[]
 
 export interface Locale {
   readonly full: string
