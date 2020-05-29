@@ -45,7 +45,9 @@ if __name__ == "__main__":
 
     rates = model.DefaultRates
     params = model.Params(ages=model.AGES[model.POPDATA[key]["ageDistribution"]], size=model.POPDATA[key]["size"],
-                    date=containement_start, times=time_points, logR0=np.log(R0), efficacy=efficacy)
+                    date=containement_start, times=time_points, logR0=np.log(R0))
+    params.efficacy = efficacy
+    params.reported = frac_reported
     data = generate_data(params, InitialCases)
     data[Sub.H] = None
     data[Sub.C] = None

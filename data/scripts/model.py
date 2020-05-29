@@ -101,7 +101,7 @@ class TimeRange(Data):
 
 class Params(Data):
     "Parameters needed to run the model. Initialized to default values."
-    def __init__(self, ages=None, size=None, date=None, times=None, logR0=DefaultRates["logR0"], efficacy=DefaultRates["efficacy"]):
+    def __init__(self, ages=None, size=None, date=None, times=None, logR0=None):
         self.ages  = ages
         self.size  = size
         self.time  = times
@@ -109,23 +109,23 @@ class Params(Data):
 
         # Rates
         self.latency     = DefaultRates["latency"]
-        self.logR0       = logR0
+        self.logR0       = logR0 or DefaultRates["logR0"]
         self.infection   = DefaultRates["infection"]
         self.infectivity = np.exp(self.logR0) * self.infection
         self.hospital    = DefaultRates["hospital"]
         self.critical    = DefaultRates["critical"]
         self.imports     = DefaultRates["imports"]
-        self.efficacy    = efficacy
+        self.efficacy    = DefaultRates["efficacy"]
 
         # Fracs
         self.confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
         self.severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
         self.severe   *= self.confirmed
-        self.critical  = np.array([5, 10, 10, 15, 20, 25, 35, 45, 55]) / 100
+        self.icu  = np.array([5, 10, 10, 15, 20, 25, 35, 45, 55]) / 100
         self.fatality  = np.array([30, 30, 30, 30, 30, 40, 40, 50, 50]) / 100
 
         self.recovery  = 1 - self.severe
-        self.discharge = 1 - self.critical
+        self.discharge = 1 - self.icu
         self.stabilize = 1 - self.fatality
 
         self.reported = 1/30
@@ -154,7 +154,7 @@ def make_evolve(params):
         flux_I_R = params.infection*params.recovery*pop2d[Sub.I]
         flux_I_H = params.infection*params.severe*pop2d[Sub.I]
         flux_H_R = params.hospital*params.discharge*pop2d[Sub.H]
-        flux_H_C = params.hospital*params.critical*pop2d[Sub.H]
+        flux_H_C = params.hospital*params.icu*pop2d[Sub.H]
         flux_C_H = params.critical*params.stabilize*pop2d[Sub.C]
         flux_C_D = params.critical*params.fatality*pop2d[Sub.C]
 
