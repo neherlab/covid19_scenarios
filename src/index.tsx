@@ -17,7 +17,7 @@ import { Provider } from 'react-redux'
 import { MDXProvider } from '@mdx-js/react'
 import LinkExternal from './components/Router/LinkExternal'
 
-import './i18n'
+import './i18n/i18n'
 
 import App from './components/App'
 

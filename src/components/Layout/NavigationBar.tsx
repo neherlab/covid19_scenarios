@@ -1,6 +1,8 @@
 import React from 'react'
 
 import { RouteComponentProps, withRouter } from 'react-router-dom'
+import ReactFlagsSelect from 'react-flags-select'
+import 'react-flags-select/scss/react-flags-select.scss'
 
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
@@ -59,7 +61,11 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
           </LinkExternal>
         </div>
 
-        {/* <LanguageSwitcher /> */}
+        <ReactFlagsSelect
+          defaultCountry="US"
+          countries={['US', 'DE', 'FR', 'PL', 'PT']}
+          customLabels={{ US: 'EN-US', GB: 'EN-GB', FR: 'FR', DE: 'DE', IT: 'IT' }}
+        />
       </div>
     </nav>
   )

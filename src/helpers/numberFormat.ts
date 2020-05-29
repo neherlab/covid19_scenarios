@@ -1,4 +1,4 @@
-import { numbro } from '../i18n'
+import { numbro } from '../i18n/i18n'
 
 export function numberFormatter(humanize: boolean, round: boolean) {
   return (value: number) =>

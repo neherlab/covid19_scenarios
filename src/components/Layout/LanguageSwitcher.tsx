@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'react-select'
 import i18next from 'i18next'
 
-import SupportedLocales, { Locale, SupportedLocale } from '../../langs'
+import SupportedLocales, { Locale, SupportedLocale } from '../../locales/langs'
 
 import './LanguageSwitcher.scss'
 

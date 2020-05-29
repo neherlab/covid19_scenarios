@@ -2733,6 +2733,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-flags-select@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@types/react-flags-select/-/react-flags-select-1.1.2.tgz#7e700a9cd4e65824453f8befa29e15acda89c046"
+  integrity sha512-y3KDRk9c2fgyUcSN0d8iNsQTxWQkd6Frt/ByS1fonZcuCImOXGCCNntVynWJiAt8QzqYPv1YjK1Shd08jmMQEg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-loader-spinner@3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@types/react-loader-spinner/-/react-loader-spinner-3.1.0.tgz#87100b00f9052395dfd27ec762713c32dd7e6f9e"
@@ -14312,6 +14319,13 @@ react-file-icon@0.2.0:
     react "^16.2.0"
     react-dom "^16.2.0"
     tinycolor2 "^1.4.1"
+
+react-flags-select@1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/react-flags-select/-/react-flags-select-1.1.12.tgz#428b34f928eab875e8e0296046410d30d75cb818"
+  integrity sha512-icWC8pHdfTQTIqpLTgPcd4tFlfgUdiwzUJaSkPMzP6BEMRrh8yAJC55IkgmJV8PIX8qTUrEETZ6+6115hGjR7g==
+  dependencies:
+    prop-types "^15.5.8"
 
 react-grid-layout@0.18.3:
   version "0.18.3"
