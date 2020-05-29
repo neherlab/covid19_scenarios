@@ -162,27 +162,18 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Outbreak trajectories')}</h3>}
               help={t(`Simulation results over time`)}
             >
-              {isRunning ? (
-                <Row>
-                  <Col>
-                    <div className="spinner-container">
-                      <PlotSpinner isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
-                    </div>
-                  </Col>
-                </Row>
-              ) : (
-                <Row noGutters>
-                  <Col>
-                    <DeterministicLinePlot
-                      data={result}
-                      params={scenarioData}
-                      logScale={logScale}
-                      showHumanized={showHumanized}
-                      caseCounts={caseCounts}
-                    />
-                  </Col>
-                </Row>
-              )}
+              <Row noGutters>
+                <Col>
+                  <DeterministicLinePlot
+                    data={result}
+                    params={scenarioData}
+                    logScale={logScale}
+                    showHumanized={showHumanized}
+                    caseCounts={caseCounts}
+                  />
+                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                </Col>
+              </Row>
             </CardWithControls>
           </Col>
         </Row>
@@ -195,22 +186,17 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Distribution across age groups')}</h3>}
               help={t('Summary of outcomes per age group')}
             >
-              {isRunning ? (
-                <Row>
-                  <Col>
-                    <div className="spinner-container">
-                      <PlotSpinner isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
-                    </div>
-                  </Col>
-                </Row>
-              ) : (
+            <Row>
+              <Col>
                 <AgeBarChart
                   showHumanized={showHumanized}
                   data={result}
                   rates={severity}
                   ageDistribution={ageDistribution}
-                />
-              )}
+                  />
+                <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+              </Col>
+            </Row>
             </CardWithControls>
           </Col>
         </Row>
@@ -224,17 +210,12 @@ function ResultsCardFunction({
               help={t('Summary table of outcomes for the entire population')}
               defaultCollapsed
             >
-              {isRunning ? (
-                <Row>
-                  <Col>
-                    <div className="spinner-container">
-                      <PlotSpinner isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
-                    </div>
-                  </Col>
-                </Row>
-              ) : (
+            <Row>
+              <Col>
                 <TableResult result={result} />
-              )}
+                <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+              </Col>
+            </Row>
             </CollapsibleCard>
           </Col>
         </Row>
@@ -247,17 +228,12 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Outcomes')}</h3>}
               help={t('Summary of outcomes for the entire population')}
             >
-              {isRunning ? (
-                <Row>
-                  <Col>
-                    <div className="spinner-container">
-                      <PlotSpinner isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
-                    </div>
-                  </Col>
-                </Row>
-              ) : (
+            <Row>
+              <Col>
                 <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
-              )}
+                <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+              </Col>
+            </Row>
             </CardWithControls>
           </Col>
         </Row>
