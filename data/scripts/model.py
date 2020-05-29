@@ -242,14 +242,7 @@ def assess_model(params, data, cases):
     diff_deaths_model = model[3:, Sub.D] - model[:-3, Sub.D]
     death_cost = np.ma.sum(poissonNegLogLH(diff_deaths, diff_deaths_model, eps))
 
-    hospital_cost = 0
-    ICU_cost = 0
-    if data[Sub.H] is not None:
-        hospital_cost = np.ma.sum(poissonNegLogLH(data[Sub.H], model[:,Sub.H], eps))
-    if data[Sub.C] is not None:
-        ICU_cost = np.ma.sum(poissonNegLogLH(data[Sub.C], model[:,Sub.C], eps))
-
-    return case_cost + 10*death_cost # + hospital_cost + ICU_cost
+    return case_cost + 10*death_cost
 
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
