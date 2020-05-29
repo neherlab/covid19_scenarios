@@ -186,17 +186,17 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Distribution across age groups')}</h3>}
               help={t('Summary of outcomes per age group')}
             >
-            <Row>
-              <Col>
-                <AgeBarChart
-                  showHumanized={showHumanized}
-                  data={result}
-                  rates={severity}
-                  ageDistribution={ageDistribution}
-                  />
-                <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
-              </Col>
-            </Row>
+              <Row>
+                <Col>
+                  <AgeBarChart
+                    showHumanized={showHumanized}
+                    data={result}
+                    rates={severity}
+                    ageDistribution={ageDistribution}
+                    />
+                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                </Col>
+              </Row>
             </CardWithControls>
           </Col>
         </Row>
@@ -210,12 +210,12 @@ function ResultsCardFunction({
               help={t('Summary table of outcomes for the entire population')}
               defaultCollapsed
             >
-            <Row>
-              <Col>
-                <TableResult result={result} />
-                <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
-              </Col>
-            </Row>
+              <Row>
+                <Col>
+                  <TableResult result={result} />
+                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                </Col>
+              </Row>
             </CollapsibleCard>
           </Col>
         </Row>
@@ -228,12 +228,12 @@ function ResultsCardFunction({
               labelComponent={<h3 className="d-inline text-truncate">{t('Outcomes')}</h3>}
               help={t('Summary of outcomes for the entire population')}
             >
-            <Row>
-              <Col>
-                <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
-                <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
-              </Col>
-            </Row>
+              <Row>
+                <Col>
+                  <OutcomeRatesTable showHumanized={showHumanized} result={result} rates={severity} />
+                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                </Col>
+              </Row>
             </CardWithControls>
           </Col>
         </Row>
