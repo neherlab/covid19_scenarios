@@ -9,33 +9,42 @@ import 'react-dates/initialize'
 import { PersistGate } from 'redux-persist/integration/react'
 import { enableES5 } from 'immer'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import { render } from 'react-dom'
 
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
 import { MDXProvider } from '@mdx-js/react'
-import LinkExternal from './components/Router/LinkExternal'
 
-import './i18n/i18n'
+import LinkExternal from './components/Router/LinkExternal'
 
 import App from './components/App'
 
-import configureStore from './state/store'
+import { configureStore } from './state/store'
+import { initialize } from './initialize'
 
 enableES5()
 
-const { store, history, persistor } = configureStore()
-const Root = (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <MDXProvider components={{ a: LinkExternal }}>
-        <PersistGate loading={null} persistor={persistor}>
-          <App />
-        </PersistGate>
-      </MDXProvider>
-    </ConnectedRouter>
-  </Provider>
-)
+configureStore()
+  .then(({ store, history, persistor }) => {
+    initialize({ store })
+    return { store, history, persistor }
+  })
+  .then(({ store, history, persistor }) => {
+    const Root = (
+      <Suspense fallback="loading">
+        <Provider store={store}>
+          <ConnectedRouter history={history}>
+            <MDXProvider components={{ a: LinkExternal }}>
+              <PersistGate loading={null} persistor={persistor}>
+                <App />
+              </PersistGate>
+            </MDXProvider>
+          </ConnectedRouter>
+        </Provider>
+      </Suspense>
+    )
 
-render(Root, document.getElementById('root'))
+    return render(Root, document.getElementById('root'))
+  })
+  .catch(console.error)

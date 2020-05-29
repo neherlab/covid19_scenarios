@@ -1,13 +1,12 @@
 import React from 'react'
 
 import { RouteComponentProps, withRouter } from 'react-router-dom'
-import ReactFlagsSelect from 'react-flags-select'
-import 'react-flags-select/scss/react-flags-select.scss'
 
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 // import LanguageSwitcher from './LanguageSwitcher'
 import LinkExternal from '../Router/LinkExternal'
+import { LanguageSwitcher } from './LanguageSwitcher'
 import NavigationLink from './NavigationLink'
 
 import logo from '../../assets/img/neherlab.svg'
@@ -61,11 +60,7 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
           </LinkExternal>
         </div>
 
-        <ReactFlagsSelect
-          defaultCountry="US"
-          countries={['US', 'DE', 'FR', 'PL', 'PT']}
-          customLabels={{ US: 'EN-US', GB: 'EN-GB', FR: 'FR', DE: 'DE', IT: 'IT' }}
-        />
+        <LanguageSwitcher className="mx-2" />
       </div>
     </nav>
   )

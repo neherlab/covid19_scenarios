@@ -1,46 +1,62 @@
 import React, { useState } from 'react'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'react-select'
-import i18next from 'i18next'
 
-import SupportedLocales, { Locale, SupportedLocale } from '../../locales/langs'
+import classNames from 'classnames'
+import { connect } from 'react-redux'
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, DropdownProps } from 'reactstrap'
+import { ActionCreator } from 'typescript-fsa'
+import { MdCheck } from 'react-icons/md'
 
-import './LanguageSwitcher.scss'
+import { LocaleWithKey, localesArray, LocaleKey } from '../../i18n/i18n'
 
-const DEFAULT_LOCALE: SupportedLocale = 'en'
+import type { State } from '../../state/reducer'
+import { selectLocale } from '../../state/settings/settings.selectors'
+import { setLocale } from '../../state/settings/settings.actions'
 
-/**
- * Displays a Styled span with the lang name.
- * Flag next?
- * @param lang
- */
-function Lang({ lang }: { lang: Locale }) {
-  return <span className="language-switcher-lang">{lang.name}</span>
+export interface LanguageSwitcherProps extends DropdownProps {
+  currentLocale: LocaleWithKey
+  setLocale: ActionCreator<LocaleKey>
 }
 
-export default function LanguageSwitcher() {
+const mapStateToProps = (state: State) => ({
+  currentLocale: selectLocale(state),
+})
+
+const mapDispatchToProps = {
+  setLocale,
+}
+
+export const LanguageSwitcher = connect(mapStateToProps, mapDispatchToProps)(LanguageSwitcherDisconnected)
+
+export function LanguageSwitcherDisconnected({ currentLocale, setLocale, ...restProps }: LanguageSwitcherProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const toggle = () => setDropdownOpen((prevState) => !prevState)
-  const selectedLang = DEFAULT_LOCALE // TODO: get language
+  const setLocaleLocal = (key: LocaleKey) => () => setLocale(key)
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle} data-testid="LanguageSwitcher">
-      <DropdownToggle caret>
-        <Lang lang={SupportedLocales[selectedLang]} />
+    <Dropdown isOpen={dropdownOpen} toggle={toggle} {...restProps}>
+      <DropdownToggle nav caret>
+        <LanguageSwitcherItem locale={currentLocale} />
       </DropdownToggle>
       <DropdownMenu positionFixed>
-        {(Object.keys(SupportedLocales) as SupportedLocale[]).map((key: SupportedLocale) => (
-          <DropdownItem
-            key={key}
-            onClick={() => {
-              i18next.changeLanguage(SupportedLocales[key].lang, () => {
-                // TODO: set language
-              })
-            }}
-          >
-            <Lang lang={SupportedLocales[key]} />
-          </DropdownItem>
-        ))}
+        {localesArray.map((locale) => {
+          const isCurrent = locale.key === currentLocale.key
+          return (
+            <DropdownItem key={locale.key} onClick={setLocaleLocal(locale.key)}>
+              {isCurrent ? <MdCheck /> : <span className="language-switcher-check-filler" />}
+              <LanguageSwitcherItem locale={locale} />
+            </DropdownItem>
+          )
+        })}
       </DropdownMenu>
     </Dropdown>
+  )
+}
+
+export function LanguageSwitcherItem({ locale }: { locale: LocaleWithKey }) {
+  return (
+    <>
+      <span className={classNames(`flag-icon flag-icon-${locale.flag}`)} />
+      <span>{locale.name}</span>
+    </>
   )
 }

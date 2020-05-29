@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, Locale } from '../../i18n/i18n'
+import { DEFAULT_LOCALE_KEY, LocaleKey } from '../../i18n/i18n'
 
 export interface SettingsState {
   isAutorunEnabled: boolean
@@ -7,7 +7,7 @@ export interface SettingsState {
   areResultsMaximized: boolean
   disclaimerVersionAccepted?: number
   disclaimerShouldSuppress: boolean
-  locale: Locale
+  localeKey: LocaleKey
 }
 
 export const settingsDefaultState: SettingsState = {
@@ -17,5 +17,5 @@ export const settingsDefaultState: SettingsState = {
   areResultsMaximized: typeof window !== 'undefined' && window?.innerWidth > 2000,
   disclaimerVersionAccepted: undefined,
   disclaimerShouldSuppress: false,
-  locale: DEFAULT_LOCALE,
+  localeKey: DEFAULT_LOCALE_KEY,
 }

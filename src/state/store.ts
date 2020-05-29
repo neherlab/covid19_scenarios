@@ -1,6 +1,7 @@
 import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
-import { applyMiddleware, createStore, StoreEnhancer } from 'redux'
+import { applyMiddleware, createStore, StoreEnhancer, Store } from 'redux'
+import { PersistorOptions, Persistor } from 'redux-persist/es/types'
 import createSagaMiddleware from 'redux-saga'
 
 import { persistStore } from 'redux-persist'
@@ -19,7 +20,13 @@ const storeDefaults: StoreParams = {
   location: window?.location ?? { pathname: '/' },
 }
 
-export default function configureStore({ location = storeDefaults.location }: StoreParams = storeDefaults) {
+export function persistStoreAsync(store: Store, options: PersistorOptions): Promise<Persistor> {
+  return new Promise((resolve) => {
+    const persistor = persistStore(store, options, () => resolve(persistor))
+  })
+}
+
+export async function configureStore({ location = storeDefaults.location }: StoreParams = storeDefaults) {
   const history = createBrowserHistory()
   history.push(location)
 
@@ -43,7 +50,7 @@ export default function configureStore({ location = storeDefaults.location }: St
   }
 
   const store = createStore(createRootReducer(history), {}, enhancer)
-  const persistor = persistStore(store)
+  const persistor = await persistStoreAsync(store, {})
 
   let rootSagaTask = sagaMiddleware.run(createRootSaga())
 

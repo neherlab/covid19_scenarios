@@ -80,7 +80,7 @@ export const settingsReducer = reducerWithInitialState(settingsDefaultState)
   )
 
   .withHandling(
-    immerCase(setLocale, (draft, locale) => {
-      draft.locale = locale
+    immerCase(setLocale, (draft, localeKey) => {
+      draft.localeKey = localeKey
     }),
   )

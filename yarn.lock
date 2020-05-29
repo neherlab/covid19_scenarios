@@ -8022,6 +8022,11 @@ findup-sync@3.0.0:
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
 
+flag-icon-css@3.4.6:
+  version "3.4.6"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.4.6.tgz#7e51099c85648c65f86d9ebb9c0ec6f5d8826714"
+  integrity sha512-rF69rt19Hr63SRQTiPBzQABaYB20LAgZhDkr/AxqSdgmCIN+tC5PRMz56Y0gxehFXJmdRwv55+GMi7R1fCRTwg==
+
 flat-cache@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-2.0.1.tgz#5d296d6f04bda44a4630a301413bdbc2ec085ec0"
@@ -14319,13 +14324,6 @@ react-file-icon@0.2.0:
     react "^16.2.0"
     react-dom "^16.2.0"
     tinycolor2 "^1.4.1"
-
-react-flags-select@1.1.12:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/react-flags-select/-/react-flags-select-1.1.12.tgz#428b34f928eab875e8e0296046410d30d75cb818"
-  integrity sha512-icWC8pHdfTQTIqpLTgPcd4tFlfgUdiwzUJaSkPMzP6BEMRrh8yAJC55IkgmJV8PIX8qTUrEETZ6+6115hGjR7g==
-  dependencies:
-    prop-types "^15.5.8"
 
 react-grid-layout@0.18.3:
   version "0.18.3"
