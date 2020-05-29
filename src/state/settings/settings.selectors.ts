@@ -7,6 +7,8 @@ export const selectIsLogScale = (state: State): boolean => state.settings.isLogS
 
 export const selectShouldFormatNumbers = (state: State): boolean => state.settings.shouldFormatNumbers
 
+export const selectShouldShowPlotLabels = (state: State): boolean => state.settings.selectShouldShowPlotLabels
+
 export const selectAreResultsMaximized = (state: State): boolean => state.settings.areResultsMaximized
 
 export const selectDisclaimerVersionAccepted = (state: State): number | undefined =>

@@ -1,6 +1,8 @@
+import { TFunction, TFunctionResult } from 'i18next'
 import React from 'react'
 
 import { sumBy } from 'lodash'
+import { connect } from 'react-redux'
 
 import ReactResizeDetector from 'react-resize-detector'
 import { useTranslation } from 'react-i18next'
@@ -21,6 +23,10 @@ import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
+import { State } from '../../../state/reducer'
+import { selectAgeDistributionData, selectSeverityDistributionData } from '../../../state/scenario/scenario.selectors'
+import { selectResult } from '../../../state/algorithm/algorithm.selectors'
+import { selectShouldFormatNumbers, selectShouldShowPlotLabels } from '../../../state/settings/settings.selectors'
 
 import { colors } from './ChartCommon'
 import { calculatePosition, scrollToRef } from './chartHelper'
@@ -28,85 +34,95 @@ import { ChartTooltip } from './ChartTooltip'
 
 const ASPECT_RATIO = 16 / 4
 
-export interface SimProps {
-  showHumanized?: boolean
-  data?: AlgorithmResult
-  ageDistribution?: AgeDistributionDatum[]
-  rates?: SeverityDistributionDatum[]
-  forcedWidth?: number
-  forcedHeight?: number
-  printLabel?: boolean
+export type SafeTFunction = (...args: Parameters<TFunction>) => Exclude<TFunctionResult, null | object>
+
+export interface AgeBarChartProps {
+  result?: AlgorithmResult
+  ageDistributionData: AgeDistributionDatum[]
+  severityDisctributionData: SeverityDistributionDatum[]
+  shouldFormatNumbers: boolean
 }
 
-export function AgeBarChart({
-  printLabel,
-  showHumanized,
-  data,
-  ageDistribution,
-  rates,
-  forcedWidth,
-  forcedHeight,
-}: SimProps) {
+const mapStateToProps = (state: State) => ({
+  result: selectResult(state),
+  ageDistributionData: selectAgeDistributionData(state),
+  severityDistributionData: selectSeverityDistributionData(state),
+  shouldFormatNumbers: selectShouldFormatNumbers(state),
+  shouldShowPlotLabels: selectShouldShowPlotLabels(state),
+})
+
+const mapDispatchToProps = {}
+
+export const AgeBarChart = connect(mapStateToProps, mapDispatchToProps)(AgeBarChartDisconnected)
+
+export function AgeBarChartDisconnected({
+  result,
+  ageDistributionData,
+  severityDisctributionData,
+  shouldFormatNumbers,
+}: AgeBarChartProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
-  const percentageChartRef = React.useRef(null)
 
-  const label: LabelProps | undefined = printLabel
-    ? {
-        position: 'top',
-        fill: '#444444',
-        fontSize: '11px',
-        formatter: (label: string | number) => (label > 0 ? label : null),
+  const t = unsafeT as SafeTFunction
+
+  const label: LabelProps = {
+    position: 'top',
+    fill: '#444444',
+    fontSize: '11px',
+    formatter: (label: string | number) => {
+      if (label <= 0) {
+        return undefined
       }
-    : undefined
 
-  if (!data || !rates || !ageDistribution) {
+      if (!shouldFormatNumbers) {
+        return label
+      }
+
+      let num = label
+      if (typeof num === 'string') {
+        num = Number.parseFloat(num)
+      }
+
+      return numberFormatter(true, false)(num)
+    },
+  }
+
+  if (!result) {
     return null
   }
 
-  const formatNumber = numberFormatter(!!showHumanized, false)
-  const formatNumberRounded = numberFormatter(!!showHumanized, true)
-
-  const t = (...args: Parameters<typeof unsafeT>) => {
-    const translation = unsafeT(...args)
-    if (typeof translation === 'string' || typeof translation === 'undefined') {
-      return translation
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn('Translation incomatible in AgeBarChart.tsx', ...args)
-    }
-    return String(translation)
-  }
+  const formatNumber = numberFormatter(shouldFormatNumbers, false)
+  const formatNumberRounded = numberFormatter(shouldFormatNumbers, true)
 
   // Ensure age distribution is normalized
-  const Z: number = sumBy(ageDistribution, ({ population }) => population)
-  const normAgeDistribution = ageDistribution.map((d) => d.population / Z)
-  const ages = ageDistribution.map((d) => d.ageGroup)
+  const Z: number = sumBy(ageDistributionData, ({ population }) => population)
+  const normAgeDistribution = ageDistributionData.map((d) => d.population / Z)
+  const ages = ageDistributionData.map((d) => d.ageGroup)
 
-  const lastDataPoint = data.trajectory.middle[data.trajectory.middle.length - 1]
+  const lastDataPoint = result.trajectory.middle[result.trajectory.middle.length - 1]
   const plotData = ages.map((age, i) => ({
     name: age,
     fraction: Math.round(normAgeDistribution[i] * 1000) / 10,
-    peakSevere: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.severe[age]))),
+    peakSevere: Math.round(Math.max(...result.trajectory.middle.map((x) => x.current.severe[age]))),
     errorPeakSevere: [
-      Math.round(Math.max(...data.trajectory.lower.map((x) => x.current.severe[age]))),
-      Math.round(Math.max(...data.trajectory.upper.map((x) => x.current.severe[age]))),
+      Math.round(Math.max(...result.trajectory.lower.map((x) => x.current.severe[age]))),
+      Math.round(Math.max(...result.trajectory.upper.map((x) => x.current.severe[age]))),
     ],
-    peakCritical: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.critical[age]))),
+    peakCritical: Math.round(Math.max(...result.trajectory.middle.map((x) => x.current.critical[age]))),
     errorPeakCritical: [
-      Math.round(Math.max(...data.trajectory.lower.map((x) => x.current.critical[age]))),
-      Math.round(Math.max(...data.trajectory.upper.map((x) => x.current.critical[age]))),
+      Math.round(Math.max(...result.trajectory.lower.map((x) => x.current.critical[age]))),
+      Math.round(Math.max(...result.trajectory.upper.map((x) => x.current.critical[age]))),
     ],
-    peakOverflow: Math.round(Math.max(...data.trajectory.middle.map((x) => x.current.overflow[age]))),
+    peakOverflow: Math.round(Math.max(...result.trajectory.middle.map((x) => x.current.overflow[age]))),
     errorPeakOverflow: [
-      Math.round(Math.max(...data.trajectory.lower.map((x) => x.current.overflow[age]))),
-      Math.round(Math.max(...data.trajectory.upper.map((x) => x.current.overflow[age]))),
+      Math.round(Math.max(...result.trajectory.lower.map((x) => x.current.overflow[age]))),
+      Math.round(Math.max(...result.trajectory.upper.map((x) => x.current.overflow[age]))),
     ],
     totalFatalities: Math.round(lastDataPoint.cumulative.fatality[age]),
     errorFatalities: [
-      Math.round(Math.max(...data.trajectory.lower.map((x) => x.cumulative.fatality[age]))),
-      Math.round(Math.max(...data.trajectory.upper.map((x) => x.cumulative.fatality[age]))),
+      Math.round(Math.max(...result.trajectory.lower.map((x) => x.cumulative.fatality[age]))),
+      Math.round(Math.max(...result.trajectory.upper.map((x) => x.cumulative.fatality[age]))),
     ],
   }))
 
@@ -130,8 +146,8 @@ export function AgeBarChart({
               <div ref={casesChartRef} />
               <BarChart
                 onClick={() => scrollToRef(casesChartRef)}
-                width={forcedWidth || width}
-                height={forcedHeight || height}
+                width={width}
+                height={height}
                 data={plotData}
                 throttleDelay={75}
                 margin={{
@@ -217,8 +233,6 @@ export function AgeBarChart({
                   yAxisId={'ageDisAxis'}
                 />
               </BarChart>
-
-              <div ref={percentageChartRef} />
             </>
           )
         }}

@@ -60,8 +60,8 @@ export async function i18nInit({ localeKey }: I18NInitParams) {
 
   await i18n.use(initReactI18next).init({
     resources,
-    lng: localeKey,
-    fallbackLng: DEFAULT_LOCALE_KEY,
+    lng: 'en',
+    fallbackLng: 'en',
     debug: process.env.DEV_ENABLE_I18N_DEBUG === '1',
     keySeparator: false, // Disable dots as key separators as we use dots in keys
     nsSeparator: false,
