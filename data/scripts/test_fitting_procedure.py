@@ -44,10 +44,8 @@ if __name__ == "__main__":
     R0=3
 
     rates = model.DefaultRates
-    rates.infectivity = R0 * 1/3
-    rates.efficacy = efficacy
     params = model.Params(ages=model.AGES[model.POPDATA[key]["ageDistribution"]], size=model.POPDATA[key]["size"],
-                    date=containement_start, times=time_points, rates=rates, fracs=model.Fracs(frac_reported))
+                    date=containement_start, times=time_points, logR0=np.log(R0), efficacy=efficacy)
     data = generate_data(params, InitialCases)
     data[Sub.H] = None
     data[Sub.C] = None
