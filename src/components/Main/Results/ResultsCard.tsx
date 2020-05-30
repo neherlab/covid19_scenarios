@@ -193,7 +193,7 @@ function ResultsCardFunction({
                     data={result}
                     rates={severity}
                     ageDistribution={ageDistribution}
-                    />
+                  />
                   <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
                 </Col>
               </Row>
