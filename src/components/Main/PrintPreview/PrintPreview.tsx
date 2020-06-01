@@ -310,7 +310,7 @@ export function PrintPreviewDisconnected({
           <Col>
             <Row>
               <Col>
-                <AgeBarChart showHumanized data={result} rates={severityDistributionData} printLabel />
+                <AgeBarChart />
               </Col>
             </Row>
 
