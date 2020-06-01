@@ -39,7 +39,7 @@ export type SafeTFunction = (...args: Parameters<TFunction>) => Exclude<TFunctio
 export interface AgeBarChartProps {
   result?: AlgorithmResult
   ageDistributionData: AgeDistributionDatum[]
-  severityDisctributionData: SeverityDistributionDatum[]
+  severityDistributionData: SeverityDistributionDatum[]
   shouldFormatNumbers: boolean
 }
 
@@ -58,7 +58,7 @@ export const AgeBarChart = connect(mapStateToProps, mapDispatchToProps)(AgeBarCh
 export function AgeBarChartDisconnected({
   result,
   ageDistributionData,
-  severityDisctributionData,
+  severityDistributionData,
   shouldFormatNumbers,
 }: AgeBarChartProps) {
   const { t: unsafeT } = useTranslation()
