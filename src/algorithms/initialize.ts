@@ -36,6 +36,7 @@ export function getPopulationParams(
   scenario: ScenarioFlat,
   severity: SeverityDistributionDatum[],
   ageDistribution: AgeDistributionDatum[],
+  meanOnly: boolean,
 ): ModelParams[] {
   const {
     hospitalBeds,
@@ -126,9 +127,9 @@ export function getPopulationParams(
 
   // Infectivity dynamics
   // interpolateTimeSeries(intervalsToTimeSeries(params.mitigationIntervals))
-  const containmentRealization = containmentMeasures(mitigationIntervals, numberStochasticRuns)
-  if (r0.begin === r0.end && containmentRealization.length === 1) {
-    const avgInfectionRate = r0.begin / infectiousPeriodDays
+  const containmentRealization = containmentMeasures(mitigationIntervals, numberStochasticRuns, meanOnly)
+  if ((meanOnly || r0.begin === r0.end) && containmentRealization.length === 1) {
+    const avgInfectionRate = (0.5 * (r0.begin + r0.end)) / infectiousPeriodDays
     sim.rate.infection = (time: number) =>
       containmentRealization[0](time) * infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing)
 

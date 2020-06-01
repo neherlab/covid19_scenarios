@@ -30,7 +30,18 @@ function strength(mitigation: number): number {
 function sampleMitigationRealizations(
   intervals: MitigationInterval[],
   numberStochasticRuns: number,
+  meanOnly: boolean,
 ): MitigationMeasure[][] {
+  if (meanOnly) {
+    return [
+      intervals.map((interval) => ({
+        val: strength(0.5 * (interval.transmissionReduction.begin + interval.transmissionReduction.end)),
+        tMin: interval.timeRange.begin.valueOf(),
+        tMax: interval.timeRange.end.valueOf(),
+      })),
+    ]
+  }
+
   const noRanges = intervals.every(
     (interval) => interval.transmissionReduction.begin === interval.transmissionReduction.end,
   )
@@ -120,8 +131,12 @@ function interpolateTimeSeries(containment: TimeSeries): Func {
 // -----------------------------------------------------------------------
 // Exported functions
 
-export function containmentMeasures(intervals: MitigationInterval[], numberStochasticRuns: number): Func[] {
-  return sampleMitigationRealizations(intervals, numberStochasticRuns).map((sample) =>
+export function containmentMeasures(
+  intervals: MitigationInterval[],
+  numberStochasticRuns: number,
+  meanOnly: boolean,
+): Func[] {
+  return sampleMitigationRealizations(intervals, numberStochasticRuns, meanOnly).map((sample) =>
     interpolateTimeSeries(timeSeriesOf(sample)),
   )
 }
