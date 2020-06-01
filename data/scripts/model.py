@@ -239,6 +239,23 @@ def assess_model(params, data, cases):
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
+    def fit(x):
+        if POPDATA[key]["ageDistribution"] in AGES:
+            ages = AGES[POPDATA[key]["ageDistribution"]]
+        else:
+            ages = AGES["Switzerland"]
+
+        param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], date=fixed_params.get('containment_start', None), times=time_points)
+        for ii in fixed_params.keys(): # Setting the fixed params
+            if ii in param.__dict__.keys():
+                setattr(param, ii, fixed_params[ii])
+        for idx,name in enumerate(params_to_fit): # Setting the params for fitting
+            if name in param.__dict__.keys():
+                setattr(param, name, x[idx])
+
+        return assess_model(param, data, np.exp(x[list(params_to_fit).index("logInitial")]))
+
+
     if fixed_params is None:
         fixed_params = {}
 
@@ -246,40 +263,13 @@ def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
         return (Params(ages=None, size=None, date=None, times=None),
                 10, (False, "Not within population database"))
 
-    params_to_fit = {key : i for i, key in enumerate(guess.keys())}
-    def pack(x, as_list=False):
-        data = [x[key] for key in params_to_fit.keys()]
-        if not as_list:
-            return np.array(data)
-        return data
-
-    def unpack(x):
-        vals = {}
-        for f in RateFields:
-            if f in guess:
-                vals[f] = x[params_to_fit[f]]
-            elif f in fixed_params:
-                vals[f] = fixed_params[f]
-            else:
-                vals[f] = getattr(DefaultRates, f)
-
-        return Rates(**vals), Fracs(x[params_to_fit['reported']]) if 'reported' in params_to_fit else Fracs()
-
-    def fit(x):
-        # TODO(nnoll): Need a better default here!
-        if POPDATA[key]["ageDistribution"] in AGES:
-            ages = AGES[POPDATA[key]["ageDistribution"]]
-        else:
-            ages = AGES["Switzerland"]
-        rates, fracs = unpack(x)
-        param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"],
-                       date=fixed_params.get('containment_start', None), times=time_points, rates=rates, fracs=fracs)
-        return assess_model(param, data, np.exp(x[params_to_fit['logInitial']]))
+    params_to_fit = guess.keys()
+    guess = np.array([guess[key] for key in guess.keys()])
 
     if bounds is None:
-        fit_param = opt.minimize(fit, pack(guess), method='Nelder-Mead')
+        fit_param = opt.minimize(fit, guess, method='Nelder-Mead')
     else:
-        fit_param = opt.minimize(fit, pack(guess), method='L-BFGS-B', bounds=bounds)
+        fit_param = opt.minimize(fit, guess, method='L-BFGS-B', bounds=bounds)
 
     err = (fit_param.success, fit_param.message)
     print(key, fit_param.x)
@@ -288,10 +278,16 @@ def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
     else:
         ages = AGES["Switzerland"]
 
-    rates, fracs = unpack(fit_param.x)
-    return (Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"],
-                   date=fixed_params.get('containment_start', None), times=time_points, rates=rates, fracs=fracs),
-           np.exp(fit_param.x[params_to_fit['logInitial']]), err)
+    params = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], date=fixed_params.get('containment_start', None), times=time_points)
+
+    for ii in fixed_params.keys(): # Setting the fixed params
+        if ii in params.__dict__.keys():
+            setattr(params, ii, fixed_params[ii])
+    for idx,name in enumerate(params_to_fit): # Setting the params for fitting
+        if name in params.__dict__.keys():
+            setattr(params, name, fit_param.x[idx])
+
+    return (params, np.exp(fit_param.x[list(params_to_fit).index("logInitial")]), err)
 
 # ------------------------------------------
 # Data loading
