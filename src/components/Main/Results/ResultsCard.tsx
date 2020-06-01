@@ -22,8 +22,11 @@ import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import OutcomesDetailsTable from './OutcomesDetailsTable'
 import { SimulationControls } from '../Controls/SimulationControls'
+import { PlotSpinner } from './PlotSpinner'
 
 import './ResultsCard.scss'
+
+const ICON_SIZE = 50
 
 interface ResultsCardProps {
   canRun: boolean
@@ -87,6 +90,7 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
               <Row noGutters>
                 <Col>
                   <DeterministicLinePlot />
+                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
                 </Col>
               </Row>
             </CardWithControls>
@@ -101,7 +105,11 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
               labelComponent={<h3 className="d-inline text-truncate">{t('Distribution across age groups')}</h3>}
               help={t('Summary of outcomes per age group')}
             >
-              <AgeBarChart />
+              <Row>
+                <Col>
+                  <AgeBarChart /><PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                </Col>
+              </Row>
             </CardWithControls>
           </Col>
         </Row>
@@ -115,7 +123,12 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
               help={t('Summary table of outcomes for the entire population')}
               defaultCollapsed
             >
-              <OutcomesDetailsTable />
+              <Row>
+                <Col>
+                  <OutcomesDetailsTable />
+                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                </Col>
+              </Row>
             </CollapsibleCard>
           </Col>
         </Row>
@@ -128,7 +141,12 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
               labelComponent={<h3 className="d-inline text-truncate">{t('Outcomes')}</h3>}
               help={t('Summary of outcomes for the entire population')}
             >
-              <OutcomeRatesTable />
+              <Row>
+                <Col>
+                  <OutcomeRatesTable />
+                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                </Col>
+              </Row>
             </CardWithControls>
           </Col>
         </Row>
