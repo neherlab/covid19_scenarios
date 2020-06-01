@@ -20,7 +20,8 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
   const ageGroups = ageDistribution.map((d) => d.ageGroup)
   const initialCases = params.initialNumberOfCases
 
-  const modelParamsArray = getPopulationParams(params, severity, ageDistribution)
+  const modelParamsArray = getPopulationParams(params, severity, ageDistribution, false)
+  modelParamsArray.push(...getPopulationParams(params, severity, ageDistribution, true))
 
   const trajectories = modelParamsArray.map((modelParams) => {
     const population = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
@@ -47,22 +48,30 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
     return {
       t: d.time,
       y: modelParamsArray
+        .slice(0, -1)
         .map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriodDays)
         .sort((a, b) => a - b),
     }
   })
 
+  const meanTrajectory = trajectories[trajectories.length - 1]
+  const stochasticTrajectories = trajectories.slice(0, -1)
+  const meanR0Trajectory = meanTrajectory.map((d) => {
+    return {
+      t: d.time,
+      y: modelParamsArray[modelParamsArray.length - 1].rate.infection(d.time) * params.infectiousPeriodDays,
+    }
+  })
   const resultsTrajectory = {
     lower: percentileTrajectory(trajectories, 0.2),
     middle: percentileTrajectory(trajectories, 0.5),
     upper: percentileTrajectory(trajectories, 0.8),
     percentile: {},
   }
-
   return {
     trajectory: resultsTrajectory,
     R0: {
-      mean: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[1]] })),
+      mean: meanR0Trajectory,
       lower: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[0]] })),
       upper: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[2]] })),
     },
