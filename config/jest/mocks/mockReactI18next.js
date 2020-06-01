@@ -21,6 +21,7 @@ const renderNodes = (reactNodes) => {
     }
     if (hasChildren(child)) {
       const inner = renderNodes(getChildren(child))
+      // eslint-disable-next-line react/no-array-index-key
       return React.cloneElement(child, { ...child.props, key: i }, inner)
     }
     if (typeof child === 'object' && !isElement) {

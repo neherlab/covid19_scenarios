@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { connect } from 'react-redux'

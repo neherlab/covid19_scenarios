@@ -80,6 +80,7 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = {}
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function DeterministicLinePlotDiconnected({
   scenarioData,
   result,
