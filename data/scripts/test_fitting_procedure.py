@@ -31,7 +31,7 @@ def check_fit(data, data_fit, time_points):
             plt.plot(time_points, data_fit[ii], '--', c=f"C{jj}", label=f"{lab} fit")
     plt.yscale("log")
     plt.legend()
-    plt.savefig("Test_fitting", format="png")
+    # plt.savefig("Test_fitting", format="png")
     plt.show()
 
 if __name__ == "__main__":
