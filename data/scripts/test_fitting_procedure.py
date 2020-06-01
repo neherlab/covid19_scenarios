@@ -36,7 +36,7 @@ def check_fit(data, data_fit, time_points):
 
 if __name__ == "__main__":
     key = "Switzerland"
-    containement_start = 20
+    containment_start = 20
     efficacy = 0.7
     time_points = range(1, 50)
     frac_reported = 0.2
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
     rates = model.DefaultRates
     params = model.Params(ages=model.AGES[model.POPDATA[key]["ageDistribution"]], size=model.POPDATA[key]["size"],
-                    date=containement_start, times=time_points, logR0=np.log(R0))
+                    containment_start=containment_start, times=time_points, logR0=np.log(R0))
     params.efficacy = efficacy
     params.reported = frac_reported
     data = generate_data(params, InitialCases)
@@ -55,8 +55,6 @@ if __name__ == "__main__":
     res = model.fit_population_iterative(key, time_points, data)
     data_fit = generate_data(res["params"], res["initialCases"])
 
-    print(params)
-    print(res['params'])
     check_fit(data, data_fit, time_points)
     # plt.plot(time_points, stair_func(time_points, *Re_guess["fit"]), label="Fit stair function")
     # plt.plot(time_points, stair_func(time_points, 3, 3*0.3, containement_start), label="Input stair function")

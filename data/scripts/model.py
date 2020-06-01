@@ -101,11 +101,11 @@ class TimeRange(Data):
 
 class Params(Data):
     "Parameters needed to run the model. Initialized to default values."
-    def __init__(self, ages=None, size=None, date=None, times=None, logR0=None):
-        self.ages  = ages
-        self.size  = size
-        self.time  = times
-        self.date  = date
+    def __init__(self, ages=None, size=None, containment_start=None, times=None, logR0=None, logInitial=None):
+        self.ages               = ages
+        self.size               = size
+        self.time               = times
+        self.containment_start  = containment_start
 
         # Rates
         self.latency     = DefaultRates["latency"]
@@ -121,17 +121,18 @@ class Params(Data):
         self.confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
         self.severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
         self.severe   *= self.confirmed
-        self.icu  = np.array([5, 10, 10, 15, 20, 25, 35, 45, 55]) / 100
+        self.icu       = np.array([5, 10, 10, 15, 20, 25, 35, 45, 55]) / 100
         self.fatality  = np.array([30, 30, 30, 30, 30, 40, 40, 50, 50]) / 100
 
         self.recovery  = 1 - self.severe
         self.discharge = 1 - self.icu
         self.stabilize = 1 - self.fatality
 
-        self.reported = 1/30
+        self.reported   = 1/30
+        self.logInitial = logInitial or 1
         # Make infection function
         beta = self.infectivity
-        self.infectivity = lambda t,date,eff : beta if t<date else beta*(1-eff)
+        self.infectivity = lambda t,containment_start,eff : beta if t<containment_start else beta*(1-eff)
 
 # ------------------------------------------------------------------------
 # Functions
@@ -145,7 +146,7 @@ def make_evolve(params):
         fracI = pop2d[Sub.I, :].sum() / params.size
         dpop = np.zeros_like(pop2d)
 
-        flux_S   = params.infectivity(t, params.date, params.efficacy)*fracI*pop2d[Sub.S] + (params.imports / Sub.NUM)
+        flux_S   = params.infectivity(t, params.containment_start, params.efficacy)*fracI*pop2d[Sub.S] + (params.imports / Sub.NUM)
 
         flux_E1  = params.latency*pop2d[Sub.E1]*3
         flux_E2  = params.latency*pop2d[Sub.E2]*3
@@ -221,8 +222,8 @@ def poissonNegLogLH(n,lam, eps=0.1):
     N = np.abs(n)
     return (L-N) - N*np.log((L+eps)/(N+eps))
 
-def assess_model(params, data, cases):
-    sol = solve_ode(params, init_pop(params.ages, params.size, cases))
+def assess_model(params, data):
+    sol = solve_ode(params, init_pop(params.ages, params.size, np.exp(params.logInitial)))
     model = trace_ages(sol)
 
     eps = 1e-2
@@ -245,22 +246,20 @@ def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
         else:
             ages = AGES["Switzerland"]
 
-        param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], date=fixed_params.get('containment_start', None), times=time_points)
+        param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], containment_start=fixed_params['containment_start'], times=time_points)
         for ii in fixed_params.keys(): # Setting the fixed params
-            if ii in param.__dict__.keys():
-                setattr(param, ii, fixed_params[ii])
+            setattr(param, ii, fixed_params[ii])
         for idx,name in enumerate(params_to_fit): # Setting the params for fitting
-            if name in param.__dict__.keys():
-                setattr(param, name, x[idx])
+            setattr(param, name, x[idx])
 
-        return assess_model(param, data, np.exp(x[list(params_to_fit).index("logInitial")]))
+        return assess_model(param, data)
 
 
     if fixed_params is None:
         fixed_params = {}
 
     if key not in POPDATA:
-        return (Params(ages=None, size=None, date=None, times=None),
+        return (Params(ages=None, size=None, containment_start=None, times=None),
                 10, (False, "Not within population database"))
 
     params_to_fit = guess.keys()
@@ -272,22 +271,20 @@ def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
         fit_param = opt.minimize(fit, guess, method='L-BFGS-B', bounds=bounds)
 
     err = (fit_param.success, fit_param.message)
-    print(key, fit_param.x)
+
     if POPDATA[key]["ageDistribution"] in AGES:
         ages = AGES[POPDATA[key]["ageDistribution"]]
     else:
         ages = AGES["Switzerland"]
 
-    params = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], date=fixed_params.get('containment_start', None), times=time_points)
+    params = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], times=time_points)
 
     for ii in fixed_params.keys(): # Setting the fixed params
-        if ii in params.__dict__.keys():
-            setattr(params, ii, fixed_params[ii])
+        setattr(params, ii, fixed_params[ii])
     for idx,name in enumerate(params_to_fit): # Setting the params for fitting
-        if name in params.__dict__.keys():
-            setattr(params, name, fit_param.x[idx])
+        setattr(params, name, fit_param.x[idx])
 
-    return (params, np.exp(fit_param.x[list(params_to_fit).index("logInitial")]), err)
+    return (params, np.exp(params.logInitial), err)
 
 # ------------------------------------------
 # Data loading
@@ -384,7 +381,7 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
     t1 = datetime.now().timestamp()
     param, init_cases, err = fit_params(key, time_points, data, guess, fixed_params, bounds=bounds)
     t2 = datetime.now().timestamp()
-    print(round(t2 - t1,2), fixed_params)
+
     if second_fit:
       guess = { "reported" : param.fracs.reported,
                 "logInitial" : np.log(init_cases),
@@ -395,13 +392,14 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
                                           {'containment_start':fixed_params['containment_start']}, bounds=None)
 
       t3 = datetime.now().timestamp()
-      print(round(t3 - t2, 2), fixed_params)
 
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     res = {'params': param, 'initialCases': init_cases, 'tMin': tMin, 'data': data, 'error':err}
-    if param.date is not None:
-        res['containment_start'] = datetime.fromordinal(int(param.date)).strftime('%Y-%m-%d')
+    if param.containment_start is not None:
+        res['containment_start'] = datetime.fromordinal(int(param.containment_start)).strftime('%Y-%m-%d')
 
+
+    print(key, fixed_params, ", reported:", param.reported, ", Initial cases", np.exp(param.logInitial))
     return res
 
 def fit_population(key, time_points, data, containment_start=None, guess=None):
