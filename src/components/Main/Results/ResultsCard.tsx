@@ -90,7 +90,7 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
               <Row noGutters>
                 <Col>
                   <DeterministicLinePlot />
-                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                  <PlotSpinner size={ICON_SIZE} />
                 </Col>
               </Row>
             </CardWithControls>
@@ -107,7 +107,8 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
             >
               <Row>
                 <Col>
-                  <AgeBarChart /><PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                  <AgeBarChart />
+                  <PlotSpinner size={ICON_SIZE} />
                 </Col>
               </Row>
             </CardWithControls>
@@ -126,7 +127,7 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
               <Row>
                 <Col>
                   <OutcomesDetailsTable />
-                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                  <PlotSpinner size={ICON_SIZE} />
                 </Col>
               </Row>
             </CollapsibleCard>
@@ -144,7 +145,7 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
               <Row>
                 <Col>
                   <OutcomeRatesTable />
-                  <PlotSpinner isRunning={isRunning} isAutorunEnabled={isAutorunEnabled} size={ICON_SIZE} />
+                  <PlotSpinner size={ICON_SIZE} />
                 </Col>
               </Row>
             </CardWithControls>
