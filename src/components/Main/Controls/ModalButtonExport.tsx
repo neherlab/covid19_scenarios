@@ -32,7 +32,7 @@ import './ModalButtonExport.scss'
 export const FileIconJson = () => (
   <FileIcon
     {...defaultStyles.json}
-    classname="mr-2 export-file-icon"
+    className="mr-2 export-file-icon"
     size={45}
     extension="json"
     type="code"
@@ -45,7 +45,7 @@ export const FileIconJson = () => (
 export const FileIconTsv = ({ color = '#2e7ec9' }: { color: string }) => (
   <FileIcon
     {...defaultStyles.csv}
-    classname="mr-2 export-file-icon"
+    className="mr-2 export-file-icon"
     size={45}
     extension="tsv"
     type="spreadsheet"
@@ -60,7 +60,7 @@ export const FileIconTsvDetailed = () => <FileIconTsv color="#801f1d" />
 export const FileIconZip = () => (
   <FileIcon
     {...defaultStyles.zip}
-    classname="mr-2 export-file-icon"
+    className="mr-2 export-file-icon"
     size={45}
     extension="zip"
     labelColor="#91640f"
