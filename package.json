@@ -27,6 +27,7 @@
     "lint:watch": "nodemon --config config/nodemon/lint.json",
     "lint:fix:watch": "nodemon --config config/nodemon/lint.fix.json",
     "eslint": "eslint --format codeframe \"**/*.{js,jsx,ts,tsx}\"",
+    "eslint:i18n": "eslint --config .eslintrc.i18next.js --format codeframe \"src/{components,pages}/**/*.{js,jsx,ts,tsx}\"",
     "eslint:fix": "yarn eslint --fix",
     "eslint:watch": "nodemon --config config/nodemon/eslint.json",
     "eslint:fix:watch": "nodemon --config config/nodemon/eslint.fix.json",
