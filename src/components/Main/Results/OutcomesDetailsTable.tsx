@@ -5,9 +5,14 @@ import { isNil } from 'lodash'
 import moment from 'moment'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+
+import { State } from '../../../state/reducer'
+import { selectResult } from '../../../state/algorithm/algorithm.selectors'
+
 import { numberFormatter } from '../../../helpers/numberFormat'
 
 import './OutcomesDetailsTable.scss'
@@ -84,7 +89,15 @@ export interface OutcomesDetailsTableProps {
   formatter?: (num: number) => string
 }
 
-export default function OutcomesDetailsTable({
+const mapStateToProps = (state: State) => ({
+  result: selectResult(state),
+})
+
+const mapDispatchToProps = {}
+
+export const OutcomesDetailsTable = connect(mapStateToProps, mapDispatchToProps)(OutcomesDetailsTableDisconnected)
+
+export function OutcomesDetailsTableDisconnected({
   result,
   forPrint,
   formatter = Number.toString,

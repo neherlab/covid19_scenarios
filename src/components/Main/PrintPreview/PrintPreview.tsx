@@ -26,7 +26,7 @@ import {
 import { DeterministicLinePlot } from '../Results/DeterministicLinePlot'
 import { OutcomeRatesTable } from '../Results/OutcomeRatesTable'
 import { AgeBarChart } from '../Results/AgeBarChart'
-import OutcomesDetailsTable from '../Results/OutcomesDetailsTable'
+import { OutcomesDetailsTable } from '../Results/OutcomesDetailsTable'
 import { dateFormat, dateTimeFormat } from './dateFormat'
 
 import type { State } from '../../../state/reducer'
@@ -300,7 +300,7 @@ export function PrintPreviewDisconnected({
             <Row>
               <Col>
                 <h2>{`Results summary`}</h2>
-                <OutcomesDetailsTable result={result} forPrint />
+                <OutcomesDetailsTable forPrint />
               </Col>
             </Row>
           </Col>
@@ -316,7 +316,7 @@ export function PrintPreviewDisconnected({
 
             <Row>
               <Col>
-                <OutcomeRatesTable showHumanized result={result} rates={severityDistributionData} printable />
+                <OutcomeRatesTable forPrint />
               </Col>
             </Row>
           </Col>

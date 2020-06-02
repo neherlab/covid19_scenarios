@@ -20,7 +20,7 @@ import { CardWithControls } from '../../Form/CardWithControls'
 import { AgeBarChart } from './AgeBarChart'
 import { DeterministicLinePlot } from './DeterministicLinePlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
-import OutcomesDetailsTable from './OutcomesDetailsTable'
+import { OutcomesDetailsTable } from './OutcomesDetailsTable'
 import { SimulationControls } from '../Controls/SimulationControls'
 import { PlotSpinner } from './PlotSpinner'
 
