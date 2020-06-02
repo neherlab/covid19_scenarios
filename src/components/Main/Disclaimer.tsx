@@ -62,12 +62,12 @@ export function DisclaimerDisconnected({
           <Col>
             <p>
               {t(
-                `This tool uses a mathematical model to simulate a variety of COVID-19 outcomes based on user-defined parameters. This output of the model depends on model assumptions and parameter choices.`,
+                'This tool uses a mathematical model to simulate a variety of COVID-19 outcomes based on user-defined parameters. This output of the model depends on model assumptions and parameter choices.',
               )}
             </p>
             <p>
               {t(
-                `It is not a medical predictor, and should be used for informational and research purposes only. Please carefully consider the parameters you choose. Interpret and use the simulated results responsibly. Authors are not liable for any direct or indirect consequences of this usage.`,
+                'It is not a medical predictor, and should be used for informational and research purposes only. Please carefully consider the parameters you choose. Interpret and use the simulated results responsibly. Authors are not liable for any direct or indirect consequences of this usage.',
               )}
             </p>
           </Col>
@@ -93,7 +93,7 @@ export function DisclaimerDisconnected({
       </ModalBody>
       <ModalFooter>
         <Button color="danger" onClick={onAccept}>
-          Accept
+          {t('Accept')}
         </Button>
       </ModalFooter>
     </Modal>

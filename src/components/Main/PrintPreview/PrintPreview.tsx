@@ -9,6 +9,8 @@ import { Button, Col, Container, Row, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FaWindowClose } from 'react-icons/fa'
 
+import i18n from '../../../i18n/i18n'
+
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import type {
   ScenarioDatum,
@@ -45,21 +47,21 @@ import './PrintPreview.scss'
 const months = moment.months()
 
 const parameterExplanations = {
-  cases: 'Case counts for',
-  country: 'Age distribution for',
-  populationServed: 'Population size',
-  hospitalBeds: 'Number of hospital beds',
-  ICUBeds: 'Number of available ICU beds',
-  importsPerDay: 'Cases imported into community per day',
-  initialNumberOfCases: 'Number of cases at the start of the simulation',
-  infectiousPeriod: 'Infectious period [days]',
-  latencyTime: 'Latency [days]',
-  lengthHospitalStay: 'Average time in regular ward [days]',
-  lengthICUStay: 'Average time in ICU ward [days]',
-  overflowSeverity: 'Increase in death rate when ICUs are overcrowded',
-  r0: 'R0 at the beginning of the outbreak',
-  seasonalForcing: 'Seasonal variation in transmissibility',
-  peakMonth: 'Seasonal peak in transmissibility',
+  cases: i18n.t('Case counts for'),
+  country: i18n.t('Age distribution for'),
+  populationServed: i18n.t('Population size'),
+  hospitalBeds: i18n.t('Number of hospital beds'),
+  ICUBeds: i18n.t('Number of available ICU beds'),
+  importsPerDay: i18n.t('Cases imported into community per day'),
+  initialNumberOfCases: i18n.t('Number of cases at the start of the simulation'),
+  infectiousPeriod: i18n.t('Infectious period [days]'),
+  latencyTime: i18n.t('Latency [days]'),
+  lengthHospitalStay: i18n.t('Average time in regular ward [days]'),
+  lengthICUStay: i18n.t('Average time in ICU ward [days]'),
+  overflowSeverity: i18n.t('Increase in death rate when ICUs are overcrowded'),
+  r0: i18n.t('R0 at the beginning of the outbreak'),
+  seasonalForcing: i18n.t('Seasonal variation in transmissibility'),
+  peakMonth: i18n.t('Seasonal peak in transmissibility'),
 }
 
 const print = () => typeof window !== 'undefined' && window.print()
@@ -100,6 +102,9 @@ export function PrintPreviewDisconnected({
 }: PrintPreviewDisconnectedProps) {
   const { t } = useTranslation()
 
+  const linkComponent = <LinkExternal url="https://covid19-scenarios.org">{t('covid19-scenarios.org')}</LinkExternal>
+  const formattedDate = dateTimeFormat(new Date())
+
   if (hasResult) {
     return (
       <Container className="container-print">
@@ -119,15 +124,9 @@ export function PrintPreviewDisconnected({
           <Col>
             <Row>
               <Col>
-                <h1 className="heading-main text-center text-bold">{`COVID-19 Scenarios`}</h1>
-
-                <p className="text-center text-bold mb-0">{`Printable report`}</p>
-                <p className="text-center text-bold">
-                  {`Generated from `}
-                  <LinkExternal url="https://covid19-scenarios.org">{`covid19-scenarios.org`}</LinkExternal>
-                  {` on `}
-                  {dateTimeFormat(new Date())}
-                </p>
+                <h1 className="heading-main text-center text-bold">{t(`COVID-19 Scenarios`)}</h1>
+                <p className="text-center text-bold mb-0">{t(`Printable report`)}</p>
+                <p className="text-center text-bold">{t(`Generated from ${linkComponent} on ${formattedDate}`)}</p>
               </Col>
             </Row>
 
@@ -172,19 +171,19 @@ export function PrintPreviewDisconnected({
                     <tr>
                       <td className="w-100 text-center">
                         <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
-                          {`neherlab.org`}
+                          {t('neherlab.org')}
                         </LinkExternal>
                       </td>
 
                       <td className="w-100 text-center">
                         <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
-                          {`biozentrum.unibas.ch`}
+                          {t('biozentrum.unibas.ch')}
                         </LinkExternal>
                       </td>
 
                       <td className="w-100 text-center">
                         <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of Biozentrum Basel">
-                          {`unibas.ch`}
+                          {t('unibas.ch')}
                         </LinkExternal>
                       </td>
                     </tr>
@@ -197,17 +196,17 @@ export function PrintPreviewDisconnected({
 
         <Row className="page" style={{ breakBefore: 'always', pageBreakBefore: 'always' }}>
           <Col>
-            <h2>{`Scenario: ${scenarioName}`}</h2>
+            <h2>{t(`Scenario: ${scenarioName}`)}</h2>
 
-            <h2>{`Parameters`}</h2>
+            <h2>{t('Parameters')}</h2>
 
-            <h4 className="pt-3">{`Population`}</h4>
+            <h4 className="pt-3">{t('Population')}</h4>
 
             <Table className="table-parameters">
               <thead>
                 <tr>
-                  <th>{`Parameter`}</th>
-                  <th>{`Value`}</th>
+                  <th>{t('Parameter')}</th>
+                  <th>{t('Value')}</th>
                 </tr>
               </thead>
 
@@ -224,8 +223,8 @@ export function PrintPreviewDisconnected({
 
               <thead>
                 <tr>
-                  <th>{`Parameter`}</th>
-                  <th>{`Value`}</th>
+                  <th>{t('Parameter')}</th>
+                  <th>{t('Value')}</th>
                 </tr>
               </thead>
 
@@ -253,19 +252,15 @@ export function PrintPreviewDisconnected({
               </tbody>
             </Table>
 
-            <h4 className="pt-3">{`Mitigation`}</h4>
+            <h4 className="pt-3">{t(`Mitigation`)}</h4>
 
             <Table className="table-parameters">
               <thead>
                 <tr>
-                  <th>{`Intervention name`}</th>
-                  <th>{`From`}</th>
-                  <th>{`To`}</th>
-                  <th>
-                    {`Reduction of`}
-                    <br />
-                    {`transmission`}
-                  </th>
+                  <th>{t('Intervention name')}</th>
+                  <th>{t('From')}</th>
+                  <th>{t('To')}</th>
+                  <th>{t('Reduction of transmission')}</th>
                 </tr>
               </thead>
 
@@ -292,14 +287,14 @@ export function PrintPreviewDisconnected({
           <Col>
             <Row>
               <Col>
-                <h2>{`Results`}</h2>
+                <h2>{t('Results')}</h2>
                 <DeterministicLinePlot />
               </Col>
             </Row>
 
             <Row>
               <Col>
-                <h2>{`Results summary`}</h2>
+                <h2>{t('Results summary')}</h2>
                 <OutcomesDetailsTable forPrint />
               </Col>
             </Row>

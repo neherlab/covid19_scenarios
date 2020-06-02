@@ -59,7 +59,7 @@ export function CaseCountsDataPickerDisconnected({ setCaseCountsData, errors, to
           outline
           size="sm"
           onClick={reset}
-          title={'Delete the imported case count data'}
+          title={t('Delete the imported case counts data')}
           className="ml-2"
         >
           <FaTrash />

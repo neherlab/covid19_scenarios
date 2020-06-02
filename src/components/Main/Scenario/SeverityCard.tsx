@@ -12,6 +12,7 @@ import { selectAgeDistributionData, selectSeverityDistributionData } from '../..
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import AgeGroupParameters from './AgeGroupParameters'
+import SeverityCardInfo from './SeverityCardInfo.mdx'
 
 export interface SeverityCardProps {
   ageDistributionData: AgeDistributionDatum[]
@@ -58,20 +59,7 @@ function SeverityCardDisconnected({
         ageDistribution={ageDistributionData}
         setAgeDistribution={setAgeDistributionData}
       />
-      <p>
-        {t('Summary of demographics and age-dependent parameters.')} &nbsp;
-        {t('The second column shows how many people fall into each age group.')} &nbsp;
-        {t(
-          'The following columns summarize COVID19 severity informed by epidemiological and clinical observations from China. ',
-        )}
-        &nbsp;
-        {t(
-          'The column "Confirmed" reflects our assumption on what fraction of infections are reflected in the statistics, the following columns contain the assumption on what fraction of the previous category deteriorates to the next. ',
-        )}
-        &nbsp;
-        {t('Most fields are editable and can be adjusted to different assumptions.')} &nbsp;
-        {t('The last column can be used to specify age-group-specific isolation measures.')}
-      </p>
+      <SeverityCardInfo />
     </CollapsibleCard>
   )
 }

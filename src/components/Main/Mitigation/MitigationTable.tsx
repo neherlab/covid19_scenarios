@@ -177,7 +177,7 @@ function MitigationIntervalComponent({ index, interval, arrayHelpers, errors, to
 
         <div className="mitigation-item-datum mitigation-item-controls">
           <div>
-            <label htmlFor={`mitigation-interval-${index}-btn-remove`}>{'Remove'}</label>
+            <label htmlFor={`mitigation-interval-${index}-btn-remove`}>{t('Remove')}</label>
           </div>
 
           <div>

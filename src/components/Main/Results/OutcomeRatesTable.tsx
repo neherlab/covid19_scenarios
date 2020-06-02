@@ -112,7 +112,7 @@ export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, for
         <table>
           <thead>
             <tr>
-              <th>{t('Outcome')} &emsp; </th>
+              <th>{t('Outcome')}</th>
               <th>{t('Population average')}</th>
             </tr>
           </thead>
@@ -139,7 +139,7 @@ export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, for
         <table>
           <thead>
             <tr>
-              <th>{t('Quantity')} &emsp; </th>
+              <th>{t('Quantity')}</th>
               <th>{t('Peak/total value')}</th>
             </tr>
           </thead>
@@ -174,7 +174,7 @@ export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, for
         <table>
           <thead>
             <tr>
-              <th>{t('Outcome')} &emsp; </th>
+              <th>{t('Outcome')}</th>
               <th>{t('Population average')}</th>
             </tr>
           </thead>
@@ -203,7 +203,7 @@ export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, for
         <table>
           <thead>
             <tr>
-              <th>{t('Quantity')} &emsp; </th>
+              <th>{t('Quantity')}</th>
               <th>{t('Peak/total value')}</th>
             </tr>
           </thead>
