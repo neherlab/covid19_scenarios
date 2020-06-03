@@ -284,8 +284,7 @@ def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
     else:
         ages = AGES["Switzerland"]
 
-    params = create_params(fixed_params, fit_param.x)
-    return (params, err)
+    return (create_params(fixed_params, fit_param.x), err)
 
 # ------------------------------------------
 # Data loading
@@ -307,7 +306,10 @@ def load_data(key, ts):
         data[Sub.C].append(tp['icu'] or np.nan)
 
     data = [ np.ma.array(d) if d is not None else d for d in data]
-    good_idx = np.array(np.logical_or(case_min <= data[Sub.T], case_min <= data[Sub.D]))
+    # good_idx = np.array(np.logical_or(case_min <= data[Sub.T], case_min <= data[Sub.D]))
+    good_idx1 = np.concatenate((np.zeros_like(data[Sub.T][np.isnan(data[Sub.T])]), case_min <= data[Sub.T][~np.isnan(data[Sub.T])]))
+    good_idx2 = np.concatenate((np.zeros_like(data[Sub.D][np.isnan(data[Sub.D])]), case_min <= data[Sub.D][~np.isnan(data[Sub.D])]))
+    good_idx = np.logical_or(good_idx1, good_idx2)
 
     for ii in [Sub.D, Sub.T, Sub.H, Sub.C]:
         data[ii] = data[ii][good_idx]
@@ -403,32 +405,6 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
     print(key, fixed_params, ", reported:", param.reported, ", Initial cases", np.exp(param.logInitial))
     return res
 
-def fit_population(key, time_points, data, containment_start=None, guess=None):
-    if data is None or data[Sub.D] is None or len(data[Sub.D]) <= 5:
-        return None
-
-    if guess is None:
-        guess = { "logR0": 1.0,
-                  "reported" : 0.2,
-                  "logInitial" : 1,
-                  "efficacy" : 0.8
-                }
-    # bounds = ((0.4,2),(0.01,0.8),(1,None),(0,1))
-    bounds=None
-
-    for ii in [Sub.T, Sub.D]:
-        if not is_cumulative(data[ii]):
-            print("Cases / deaths count is not cumulative.", data[ii])
-
-    param, init_cases, err = fit_params(key, time_points, data, guess,
-                                        {'containment_start':containment_start}, bounds=bounds)
-    tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
-    res = {'params': param, 'initialCases': init_cases, 'tMin': tMin, 'data': data, 'error':err}
-    if param.date is not None:
-        res['containment_start'] = datetime.fromordinal(param.date).strftime('%Y-%m-%d')
-
-    return res
-
 
 # ------------------------------------------------------------------------
 # Testing entry
@@ -450,13 +426,6 @@ if __name__ == "__main__":
     parser.add_argument('--key', type=str, help="key for region, e.g 'USA-California'")
     args = parser.parse_args()
 
-    # NOTE: For debugging purposes only
-    # rates = DefaultRates
-    # fracs = Fracs()
-    # times = TimeRange(0, 100)
-    # param = Params(AGES[COUNTRY], POPDATA[make_key(COUNTRY, REGION)], times, rates, fracs)
-    # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
-
     key = args.key or "USA-New York"
     # key = "CHE-Basel-Stadt"
     # key = "DEU-Berlin"
@@ -470,33 +439,6 @@ if __name__ == "__main__":
     err = fit_error(fit_data, model)
     time -= res['params'].time[0]
     tp = res['params'].time - res['params'].time[0]
-
-    # plt.figure()
-    # plt.title(f"{key}")
-    # plt.plot(time, data[Sub.T], 'o', color='#a9a9a9', label="cases")
-    # plt.plot(tp, model[:,Sub.T], color="#a9a9a9", label="predicted cases")
-    #
-    # plt.plot(time, data[Sub.D], 'o', color="#cab2d6", label="deaths")
-    # plt.plot(tp, model[:,Sub.D], color="#cab2d6", label="predicated deaths")
-    #
-    # plt.plot(time, data[Sub.H], 'o', color="#fb9a98", label="Hospitalized")
-    # plt.plot(tp, model[:,Sub.H], color="#fb9a98", label="Predicted hospitalized")
-    #
-    # plt.plot(time, data[Sub.C], 'o', color="#e31a1c", label="ICU")
-    # plt.plot(tp, model[:,Sub.C], color="#e31a1c", label="Predicted ICU")
-    #
-    # plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
-    # plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
-    #
-    #
-    # plt.xlabel("Time [days]")
-    # plt.ylabel("Number of people")
-    # plt.legend(loc="best")
-    # plt.tight_layout()
-    # # plt.yscale('log')
-    # # plt.ylim([-100,1000])
-    # plt.savefig("Basel-Stadt", format="png")
-    # plt.show()
 
     plt.figure()
     plt.title(f"{key}")
