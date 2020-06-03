@@ -4,7 +4,7 @@ export type maybeNumber = number | undefined
 
 export function verifyPositive(x: number): maybeNumber {
   const xRounded = Math.round(x)
-  return xRounded > 0 ? x : undefined
+  return xRounded > 0 ? xRounded : undefined
 }
 
 export function verifyTuple(x: [maybeNumber, maybeNumber], center: maybeNumber): [number, number] | undefined {
