@@ -58,8 +58,8 @@ export function ScenarioLoaderListDisconnected({ scenarioNames, setScenario, clo
   const [filteredRows, setFilteredRows] = useState(scenarioOptions)
 
   const onScenarioSelect = useCallback(
-    (scenarioName) => {
-      setScenario(scenarioName)
+    (scenarioName: string) => {
+      setScenario({ name: scenarioName })
       close()
     },
     [close, setScenario],
