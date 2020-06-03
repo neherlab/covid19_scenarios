@@ -21,14 +21,10 @@ import { setCanRun, setScenarioData } from '../../state/scenario/scenario.action
 import { algorithmRunTrigger } from '../../state/algorithm/algorithm.actions'
 
 import { ColCustom } from '../Layout/ColCustom'
-import { Disclaimer } from './Disclaimer'
-
-// import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
 import { schema } from './validation/schema'
-
+import { Disclaimer } from './Disclaimer'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
-// import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
 
@@ -78,8 +74,6 @@ export function MainDisconnected({
   setCanRun,
   setScenarioData,
 }: MainProps) {
-  // const [printable, setPrintable] = useState(false)
-
   const [validateFormAndUpdateState] = useDebouncedCallback((newParams: ScenarioDatum) => {
     return schema
       .validate(newParams)
@@ -99,19 +93,7 @@ export function MainDisconnected({
     setSubmitting(false)
   }
 
-  // const openPrintPreview = () => setPrintable(true)
   const { colScenario, colResults } = getColumnSizes(areResultsMaximized)
-
-  // if (printable) {
-  //   return (
-  //     <PrintPage
-  //       result={result}
-  //       onClose={() => {
-  //         setPrintable(false)
-  //       }}
-  //     />
-  //   )
-  // }
 
   return (
     <>
