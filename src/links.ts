@@ -1,11 +1,11 @@
-import i18next from 'i18next'
+import i18n from './i18n/i18n'
 
 const links = {
-  '/': 'COVID-19 Scenarios',
-  '/about': i18next.t('About'),
-  '/faq': i18next.t('FAQ'),
-  '/updates': i18next.t('Updates'),
-  '/team': i18next.t('Team'),
+  '/': i18n.t('COVID-19 Scenarios'),
+  '/about': i18n.t('About'),
+  '/faq': i18n.t('FAQ'),
+  '/updates': i18n.t('Updates'),
+  '/team': i18n.t('Team'),
 }
 
 export default links
