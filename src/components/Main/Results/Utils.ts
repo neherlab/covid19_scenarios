@@ -15,7 +15,7 @@ export function verifyTuple(x: [maybeNumber, maybeNumber], center: maybeNumber):
     return [x[0], x[1]]
   }
   if (x[0] === undefined && x[1] !== undefined && centerVal !== undefined) {
-    return [0.0001, centerVal ? x[1] : centerVal]
+    return [0.0001, x[1] > centerVal ? x[1] : centerVal]
   }
   if (x[0] === undefined && x[1] !== undefined) {
     return [0.0001, x[1]]
