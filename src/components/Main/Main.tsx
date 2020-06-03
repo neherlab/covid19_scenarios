@@ -80,20 +80,19 @@ export function MainDisconnected({
 }: MainProps) {
   // const [printable, setPrintable] = useState(false)
 
-  const [validateFormAndUpdateState] = useDebouncedCallback(async (scenarioDataNew: ScenarioDatum) => {
-    try {
-      const scenarioDataNewValidated = await schema.validate(scenarioDataNew)
-      setCanRun(true)
-      if (!isEqual(scenarioDataNewValidated, scenarioData)) {
-        setScenarioData(scenarioDataNew)
-        algorithmRunTrigger()
-      }
-    } catch (error) {
-      setCanRun(false)
-      return error.errors
-    }
-    return {}
-  }, 500)
+  const [validateFormAndUpdateState] = useDebouncedCallback((newParams: ScenarioDatum) => {
+    return schema
+      .validate(newParams)
+      .then((validParams) => {
+        setCanRun(true)
+        if (!isEqual(validParams, scenarioData)) {
+          setScenarioData(newParams)
+          algorithmRunTrigger()
+        }
+        return validParams
+      })
+      .catch((error: FormikValidationErrors) => error.errors)
+  }, 50)
 
   function handleSubmit(_0: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
     algorithmRunTrigger()
@@ -124,9 +123,10 @@ export function MainDisconnected({
             initialValues={scenarioData}
             onSubmit={handleSubmit}
             validate={validateFormAndUpdateState}
+            validationSchema={schema}
             validateOnMount
           >
-            {({ errors, touched, isValid }) => {
+            {({ values, errors, touched, isValid, isSubmitting }) => {
               // const canRun = isValid && areAgeGroupParametersValid(severityDistributionData, ageDistributionData)
               // setCanRun(canRun)
 
