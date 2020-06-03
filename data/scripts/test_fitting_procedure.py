@@ -49,13 +49,14 @@ if __name__ == "__main__":
     params.efficacy = efficacy
     params.reported = frac_reported
     data = generate_data(params, InitialCases)
-    data[Sub.H] = None
-    data[Sub.C] = None
-    Re_guess = get_Re_guess(time_points, data)
-    res = model.fit_population_iterative(key, time_points, data)
-    data_fit = generate_data(res["params"], res["initialCases"])
-
-    check_fit(data, data_fit, time_points)
+    print(data[Sub.T])
+    # data[Sub.H] = None
+    # data[Sub.C] = None
+    # Re_guess = get_Re_guess(time_points, data)
+    # res = model.fit_population_iterative(key, time_points, data)
+    # data_fit = generate_data(res["params"], res["initialCases"])
+    #
+    # check_fit(data, data_fit, time_points)
     # plt.plot(time_points, stair_func(time_points, *Re_guess["fit"]), label="Fit stair function")
     # plt.plot(time_points, stair_func(time_points, 3, 3*0.3, containement_start), label="Input stair function")
     # plt.plot(time_points, Re_guess["R0_by_day"][Sub.T], label="R_0 by day")
