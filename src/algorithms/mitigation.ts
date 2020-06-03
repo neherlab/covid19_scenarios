@@ -42,19 +42,6 @@ function sampleMitigationRealizations(
     ]
   }
 
-  const noRanges = intervals.every(
-    (interval) => interval.transmissionReduction.begin === interval.transmissionReduction.end,
-  )
-  if (noRanges) {
-    return [
-      intervals.map((interval) => ({
-        val: strength(interval.transmissionReduction.begin),
-        tMin: interval.timeRange.begin.valueOf(),
-        tMax: interval.timeRange.end.valueOf(),
-      })),
-    ]
-  }
-
   return [...Array(numberStochasticRuns).keys()].map(() =>
     intervals.map((interval) => ({
       val: strength(sampleRandom(interval.transmissionReduction)),
