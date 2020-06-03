@@ -284,7 +284,8 @@ def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
     else:
         ages = AGES["Switzerland"]
 
-    return (create_params(fixed_params, fit_param.x), np.exp(params.logInitial), err)
+    params = create_params(fixed_params, fit_param.x)
+    return (params, err)
 
 # ------------------------------------------
 # Data loading
@@ -379,7 +380,7 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
             print("Cases / deaths count is not cumulative.", data[ii])
 
     t1 = datetime.now().timestamp()
-    param, init_cases, err = fit_params(key, time_points, data, guess, fixed_params, bounds=bounds)
+    param, err = fit_params(key, time_points, data, guess, fixed_params, bounds=bounds)
     t2 = datetime.now().timestamp()
 
     if second_fit:
@@ -388,13 +389,13 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
                 "logR0": param.rates.logR0,
                 "efficacy": param.rates.efficacy
               }
-      param, init_cases, err = fit_params(key, time_points, data, guess,
+      param, err = fit_params(key, time_points, data, guess,
                                           {'containment_start':fixed_params['containment_start']}, bounds=None)
 
       t3 = datetime.now().timestamp()
 
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
-    res = {'params': param, 'initialCases': init_cases, 'tMin': tMin, 'data': data, 'error':err}
+    res = {'params': param, 'tMin': tMin, 'data': data, 'error':err}
     if param.containment_start is not None:
         res['containment_start'] = datetime.fromordinal(int(param.containment_start)).strftime('%Y-%m-%d')
 
@@ -465,7 +466,7 @@ if __name__ == "__main__":
 
     # Fitting over the pre-confinement days
     res = fit_population_iterative(key, model_tps, fit_data, FRA=False)
-    model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
+    model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, np.exp(res['params'].logInitial))))
     err = fit_error(fit_data, model)
     time -= res['params'].time[0]
     tp = res['params'].time - res['params'].time[0]
