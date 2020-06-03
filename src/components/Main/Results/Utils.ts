@@ -3,7 +3,8 @@ import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 export type maybeNumber = number | undefined
 
 export function verifyPositive(x: number): maybeNumber {
-  return x > 0 ? Math.ceil(x) : undefined
+  const xRounded = Math.round(x)
+  return xRounded > 0 ? x : undefined
 }
 
 export function verifyTuple(x: [maybeNumber, maybeNumber], center: maybeNumber): [number, number] | undefined {
