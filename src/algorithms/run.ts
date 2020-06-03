@@ -54,7 +54,7 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
   const population = initializePopulation(deterministicParams.populationServed, initialCases, tMin, ageDistribution)
   const deterministicTrajectory = simulate(population, deterministicParams, tMax, ageGroups, identity)
 
-  const thresholds = [0.2, 0.5, 0.8]
+  const thresholds = [0.2, 0.8]
   const idxs = thresholds.map((d) => Math.ceil((stochasticTrajectories.length - 1) * d))
   const R0Trajectories = stochastic
     ? deterministicTrajectory.map((d) => {
@@ -84,7 +84,7 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
     R0: {
       mean: meanR0Trajectory,
       lower: stochastic ? R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[0]] })) : meanR0Trajectory,
-      upper: stochastic ? R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[2]] })) : meanR0Trajectory,
+      upper: stochastic ? R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[1]] })) : meanR0Trajectory,
     },
     plotData: preparePlotData(resultsTrajectory),
   }
