@@ -100,8 +100,11 @@ class TimeRange(Data):
         self.delta = delta
 
 class Params(Data):
-    "Parameters needed to run the model. Initialized to default values."
-    def __init__(self, ages=None, size=None, containment_start=None, times=None, logR0=None, logInitial=None):
+    """
+    Parameters needed to run the model. Initialized to default values. No default value for logR0 as if it
+    is not set the self.infectivity function doesn't give proper values.
+    """
+    def __init__(self, logR0, ages=None, size=None, containment_start=None, times=None, logInitial=None):
         self.ages               = ages
         self.size               = size
         self.time               = times
@@ -240,19 +243,23 @@ def assess_model(params, data):
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
+    """
+    Fitting function used to estimate logInitial and reported fraction with the given fixed parameters.
+    """
+    def create_params(fixed_params, fit_params):
+        param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], logR0=fixed_params['logR0'], times=time_points)
+        for ii in fixed_params.keys(): # Setting the fixed params
+            setattr(param, ii, fixed_params[ii])
+        for idx,name in enumerate(params_to_fit): # Setting the params for/from fitting
+            setattr(param, name, fit_params[idx])
+        return param
+
     def fit(x):
         if POPDATA[key]["ageDistribution"] in AGES:
             ages = AGES[POPDATA[key]["ageDistribution"]]
         else:
             ages = AGES["Switzerland"]
-
-        param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], containment_start=fixed_params['containment_start'], times=time_points)
-        for ii in fixed_params.keys(): # Setting the fixed params
-            setattr(param, ii, fixed_params[ii])
-        for idx,name in enumerate(params_to_fit): # Setting the params for fitting
-            setattr(param, name, x[idx])
-
-        return assess_model(param, data)
+        return assess_model(create_params(fixed_params, x), data)
 
 
     if fixed_params is None:
@@ -277,14 +284,7 @@ def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
     else:
         ages = AGES["Switzerland"]
 
-    params = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], times=time_points)
-
-    for ii in fixed_params.keys(): # Setting the fixed params
-        setattr(params, ii, fixed_params[ii])
-    for idx,name in enumerate(params_to_fit): # Setting the params for fitting
-        setattr(params, name, fit_param.x[idx])
-
-    return (params, np.exp(params.logInitial), err)
+    return (create_params(fixed_params, fit_param.x), np.exp(params.logInitial), err)
 
 # ------------------------------------------
 # Data loading
