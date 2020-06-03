@@ -4,13 +4,14 @@ import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, DropdownProps } from 'reactstrap'
 import { ActionCreator } from 'typescript-fsa'
-import { MdCheck } from 'react-icons/md'
 
 import { LocaleWithKey, localesArray, LocaleKey } from '../../i18n/i18n'
 
 import type { State } from '../../state/reducer'
 import { selectLocale } from '../../state/settings/settings.selectors'
 import { setLocale } from '../../state/settings/settings.actions'
+
+import './LanguageSwitcher.scss'
 
 export interface LanguageSwitcherProps extends DropdownProps {
   currentLocale: LocaleWithKey
@@ -33,16 +34,15 @@ export function LanguageSwitcherDisconnected({ currentLocale, setLocale, ...rest
   const setLocaleLocal = (key: LocaleKey) => () => setLocale(key)
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle} {...restProps}>
+    <Dropdown className="language-switcher" isOpen={dropdownOpen} toggle={toggle} {...restProps}>
       <DropdownToggle nav caret>
         <LanguageSwitcherItem locale={currentLocale} />
       </DropdownToggle>
-      <DropdownMenu positionFixed>
+      <DropdownMenu className="language-switcher-menu" positionFixed>
         {localesArray.map((locale) => {
           const isCurrent = locale.key === currentLocale.key
           return (
-            <DropdownItem key={locale.key} onClick={setLocaleLocal(locale.key)}>
-              {isCurrent ? <MdCheck /> : <span className="language-switcher-check-filler" />}
+            <DropdownItem active={isCurrent} key={locale.key} onClick={setLocaleLocal(locale.key)}>
               <LanguageSwitcherItem locale={locale} />
             </DropdownItem>
           )
@@ -55,8 +55,8 @@ export function LanguageSwitcherDisconnected({ currentLocale, setLocale, ...rest
 export function LanguageSwitcherItem({ locale }: { locale: LocaleWithKey }) {
   return (
     <>
-      <span className={classNames(`flag-icon flag-icon-${locale.flag}`)} />
-      <span>{locale.name}</span>
+      <span className={classNames(`language-switcher-flag flag-icon flag-icon-${locale.flag} flag-icon-squared`)} />
+      <span className="pl-2">{locale.name}</span>
     </>
   )
 }

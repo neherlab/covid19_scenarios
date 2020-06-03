@@ -38,20 +38,24 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
         })}
       </ul>
 
-      <div className="navbar-nav ml-auto">
-        <div className="mx-2">
+      <div className="navbar-nav ml-auto d-flex">
+        <div className="mx-2 my-auto">
+          <LanguageSwitcher />
+        </div>
+
+        <div className="mx-2 my-auto">
           <LinkExternal url="https://neherlab.org/" alt="Link to webpage of NeherLab at University of Basel">
             <img height={'28px'} alt="NeherLab logo" src={logo} />
           </LinkExternal>
         </div>
 
-        <div className="mx-2">
+        <div className="mx-2 my-auto">
           <LinkExternal url="https://twitter.com/richardneher" alt="Link to Twitter page of Richard Neher">
             <FaTwitter size={28} color="#aaa" />
           </LinkExternal>
         </div>
 
-        <div className="mx-2">
+        <div className="mx-2 my-auto">
           <LinkExternal
             url="https://github.com/neherlab/covid19_scenarios"
             alt="Link to Github page of the COVID-19 Scenarios project"
@@ -59,8 +63,6 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
             <FaGithub size={28} color="#aaa" />
           </LinkExternal>
         </div>
-
-        <LanguageSwitcher className="mx-2" />
       </div>
     </nav>
   )
