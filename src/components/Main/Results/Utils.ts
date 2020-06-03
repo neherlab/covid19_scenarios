@@ -6,9 +6,16 @@ export function verifyPositive(x: number): maybeNumber {
   return x > 0 ? Math.ceil(x) : undefined
 }
 
-export function verifyTuple(x: [maybeNumber, maybeNumber]): [number, number] | undefined {
+export function verifyTuple(x: [maybeNumber, maybeNumber], center: maybeNumber): [number, number] | undefined {
+  const centerVal = center ? verifyPositive(center) : undefined
+  if (x[0] !== undefined && x[1] !== undefined && centerVal !== undefined) {
+    return [x[0] < centerVal ? x[0] : centerVal, x[1] > centerVal ? x[1] : centerVal]
+  }
   if (x[0] !== undefined && x[1] !== undefined) {
     return [x[0], x[1]]
+  }
+  if (x[0] === undefined && x[1] !== undefined && centerVal !== undefined) {
+    return [0.0001, centerVal ? x[1] : centerVal]
   }
   if (x[0] === undefined && x[1] !== undefined) {
     return [0.0001, x[1]]
