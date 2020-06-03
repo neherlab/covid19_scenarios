@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { RouteComponentProps, withRouter, Link } from 'react-router-dom'
 
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
@@ -9,7 +9,7 @@ import LinkExternal from '../Router/LinkExternal'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import NavigationLink from './NavigationLink'
 
-import logo from '../../assets/img/neherlab.svg'
+import BrandLogo from '../../assets/img/neherlab.svg'
 
 import './NavigationBar.scss'
 
@@ -28,9 +28,9 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
       role="navigation"
       data-testid="NavigationBar"
     >
-      <a className="navbar-brand" href="/">
-        <img className="navbar-brand-image" alt="logo" src={logo} />
-      </a>
+      <Link className="navbar-brand" to="/" role="button">
+        <BrandLogo viewBox="0 0 354.325 354.325" className="navigation-bar-product-logo" />
+      </Link>
 
       <ul className="navbar-nav">
         {Object.entries(navLinks).map(([url, text]) => {
@@ -45,7 +45,7 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
 
         <div className="mx-2 my-auto">
           <LinkExternal url="https://neherlab.org/" alt="Link to webpage of NeherLab at University of Basel">
-            <img height={'28px'} alt="NeherLab logo" src={logo} />
+            <BrandLogo viewBox="0 0 354.325 354.325" className="navigation-bar-company-logo" />
           </LinkExternal>
         </div>
 

@@ -5,11 +5,12 @@
     background-color: $body-background;
   }
 
-  .language-switcher-flag.flag-icon {
+  .language-switcher-flag {
     width: 20px;
     height: 20px;
+    margin-bottom: 5px;
     background-size: cover;
-    border-radius: 10px;
+    border-radius: 2px;
     box-shadow: 1px 1px 1px 1px #2222;
   }
 }

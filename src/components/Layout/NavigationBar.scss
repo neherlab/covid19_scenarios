@@ -8,9 +8,8 @@
     background-color: $gray-800 !important;
   }
 
-  .navbar-brand-image {
-    height: 35px;
-    padding-left: 1rem;
+  .navbar-brand {
+    padding: 0;
   }
 }
 
@@ -18,4 +17,15 @@
   overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+}
+
+.navigation-bar-product-logo {
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+}
+
+.navigation-bar-company-logo {
+  width: 26px;
+  height: 26px;
 }

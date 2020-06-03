@@ -38,9 +38,9 @@ import LinkExternal from '../../Router/LinkExternal'
 import PrintIntroduction from './PrintIntroduction.mdx'
 import PrintDisclaimer from './PrintDisclaimer.mdx'
 
-import logoNeherlab from '../../../assets/img/neherlab.svg'
-import logoBiozentrum from '../../../assets/img/biozentrum.svg'
-import logoUnibas from '../../../assets/img/unibas.svg'
+import LogoNeherlab from '../../../assets/img/neherlab.svg'
+import LogoBiozentrum from '../../../assets/img/biozentrum.svg'
+import LogoUnibas from '../../../assets/img/unibas.svg'
 
 import './PrintPreview.scss'
 
@@ -149,19 +149,19 @@ export function PrintPreviewDisconnected({
                     <tr>
                       <td className="w-100 text-center">
                         <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
-                          <img className="mx-auto" height={'50px'} alt="NeherLab logo" src={logoNeherlab} />
+                          <LogoNeherlab viewBox="0 0 354.325 354.325" className="mx-auto" width="50" height="50" />
                         </LinkExternal>
                       </td>
 
                       <td className="w-100 text-center">
                         <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
-                          <img className="mx-auto" height={'50px'} alt="Logo of Biozentrum" src={logoBiozentrum} />
+                          <LogoBiozentrum viewBox="0 0 88 40" className="mx-auto" height="50" />
                         </LinkExternal>
                       </td>
 
                       <td className="w-100 text-center">
                         <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of University of Basel">
-                          <img className="mx-auto" height={'50px'} alt="Logo of University of Basel" src={logoUnibas} />
+                          <LogoUnibas viewBox="0 0 172 57" className="mx-auto" height="50" />
                         </LinkExternal>
                       </td>
                     </tr>

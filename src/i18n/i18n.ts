@@ -7,6 +7,13 @@ import { initReactI18next } from 'react-i18next'
 import moment from 'moment'
 import numbro from 'numbro'
 
+import US from 'flag-icon-css/flags/1x1/us.svg'
+import DE from 'flag-icon-css/flags/1x1/de.svg'
+import ES from 'flag-icon-css/flags/1x1/es.svg'
+import FR from 'flag-icon-css/flags/1x1/fr.svg'
+import PL from 'flag-icon-css/flags/1x1/pl.svg'
+import PT from 'flag-icon-css/flags/1x1/pt.svg'
+
 import en from './resources/en.json'
 import de from './resources/de.json'
 import es from './resources/es.json'
@@ -16,6 +23,7 @@ import pt from './resources/pt.json'
 
 export const localized = { number: '{{value, localizedNumber}}' } as const
 export const translations = { en, pt, fr, de, es, pl }
+export const flags = new Map()
 
 export type LocaleKey = keyof typeof translations
 
@@ -27,6 +35,7 @@ export interface Locale {
   readonly full: string
   readonly flag: string
   readonly name: string
+  readonly Flag: React.ElementType
 }
 
 export interface LocaleWithKey extends Locale {
@@ -34,12 +43,12 @@ export interface LocaleWithKey extends Locale {
 }
 
 export const locales: Record<LocaleKey, Locale> = {
-  en: { full: 'en-US', flag: 'us', name: 'English' },
-  de: { full: 'de-DE', flag: 'de', name: 'Deutsch' },
-  es: { full: 'es-ES', flag: 'es', name: 'Español' },
-  fr: { full: 'fr-FR', flag: 'fr', name: 'Français' },
-  pl: { full: 'pl-PL', flag: 'pl', name: 'Polski' },
-  pt: { full: 'pt-PT', flag: 'pt', name: 'Português' },
+  en: { full: 'en-US', flag: 'us', name: 'English', Flag: US },
+  de: { full: 'de-DE', flag: 'de', name: 'Deutsch', Flag: DE },
+  es: { full: 'es-ES', flag: 'es', name: 'Español', Flag: ES },
+  fr: { full: 'fr-FR', flag: 'fr', name: 'Français', Flag: FR },
+  pl: { full: 'pl-PL', flag: 'pl', name: 'Polski', Flag: PL },
+  pt: { full: 'pt-PT', flag: 'pt', name: 'Português', Flag: PT },
 } as const
 
 export const localesArray: LocaleWithKey[] = Object.entries(locales).map(([key, value]) => ({

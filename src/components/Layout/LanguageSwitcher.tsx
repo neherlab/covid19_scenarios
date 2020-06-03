@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, DropdownProps } from 'reactstrap'
 import { ActionCreator } from 'typescript-fsa'
@@ -53,10 +52,11 @@ export function LanguageSwitcherDisconnected({ currentLocale, setLocale, ...rest
 }
 
 export function LanguageSwitcherItem({ locale }: { locale: LocaleWithKey }) {
+  const { Flag, name } = locale
   return (
     <>
-      <span className={classNames(`language-switcher-flag flag-icon flag-icon-${locale.flag} flag-icon-squared`)} />
-      <span className="pl-2">{locale.name}</span>
+      <Flag className="language-switcher-flag" />
+      <span className="pl-2">{name}</span>
     </>
   )
 }
