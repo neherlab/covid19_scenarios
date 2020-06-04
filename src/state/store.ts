@@ -12,23 +12,14 @@ import createRootSaga from './sagas'
 const development = process.env.NODE_ENV === 'development'
 const debug = development || process.env.DEBUGGABLE_PROD === '1'
 
-interface StoreParams {
-  location: Location
-}
-
-const storeDefaults: StoreParams = {
-  location: window?.location ?? { pathname: '/' },
-}
-
 export function persistStoreAsync(store: Store, options: PersistorOptions): Promise<Persistor> {
   return new Promise((resolve) => {
     const persistor = persistStore(store, options, () => resolve(persistor))
   })
 }
 
-export async function configureStore({ location = storeDefaults.location }: StoreParams = storeDefaults) {
+export async function configureStore() {
   const history = createBrowserHistory()
-  history.push(location)
 
   const sagaMiddleware = createSagaMiddleware()
   const middlewares = [

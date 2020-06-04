@@ -83,11 +83,13 @@ export async function i18nInit({ localeKey }: I18NInitParams) {
     },
 
     react: {
-      useSuspense: false,
+      useSuspense: true,
     },
   })
 
-  return changeLocale(localeKey)
+  await changeLocale(localeKey)
+
+  return i18n
 }
 
 export function getLocaleWithKey(key: LocaleKey) {

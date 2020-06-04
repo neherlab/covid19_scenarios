@@ -1,27 +1,47 @@
-import React from 'react'
+import React, { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import { RouteComponentProps, withRouter, Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
-// import LanguageSwitcher from './LanguageSwitcher'
 import LinkExternal from '../Router/LinkExternal'
+import { State } from '../../state/reducer'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import NavigationLink from './NavigationLink'
+
+import { selectPathname } from '../../state/router/router.selectors'
 
 import BrandLogo from '../../assets/img/neherlab.svg'
 
 import './NavigationBar.scss'
 
-export interface NavLinkMap {
-  [s: string]: string
+export interface NavigationBarProps {
+  pathname: string
 }
 
-export interface NavigationBarProps extends RouteComponentProps<{}> {
-  navLinks: NavLinkMap
-}
+const mapStateToProps = (state: State) => ({
+  pathname: selectPathname(state),
+})
 
-function NavigationBar({ navLinks, location }: NavigationBarProps) {
+const mapDispatchToProps = {}
+
+export const NavigationBar = connect(mapStateToProps, mapDispatchToProps)(NavigationBarDisconnected)
+
+export function NavigationBarDisconnected({ pathname }: NavigationBarProps) {
+  const { t } = useTranslation()
+
+  const navLinks = useMemo(
+    () => ({
+      '/': t('COVID-19 Scenarios'),
+      '/about': t('About'),
+      '/faq': t('FAQ'),
+      '/updates': t('Updates'),
+      '/team': t('Team'),
+    }),
+    [t],
+  )
+
   return (
     <nav
       className="navbar navbar-expand navbar-dark bg-dark navbar-scroll hide-native-scrollbar"
@@ -34,7 +54,7 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
 
       <ul className="navbar-nav">
         {Object.entries(navLinks).map(([url, text]) => {
-          return <NavigationLink key={url} url={url} content={text} active={location.pathname === url} />
+          return <NavigationLink key={url} url={url} content={text} active={pathname === url} />
         })}
       </ul>
 
@@ -67,5 +87,3 @@ function NavigationBar({ navLinks, location }: NavigationBarProps) {
     </nav>
   )
 }
-
-export default withRouter(NavigationBar)
