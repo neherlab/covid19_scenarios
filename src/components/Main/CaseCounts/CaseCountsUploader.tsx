@@ -4,7 +4,8 @@ import { FileRejection } from 'react-dropzone'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, UncontrolledAlert } from 'reactstrap'
 import i18next from 'i18next'
 import { useTranslation } from 'react-i18next'
-import Papa from 'papaparse'
+// import Papa from 'papaparse'
+import parse from 'csv-parse'
 
 import { appendDash } from '../../../helpers/appendDash'
 
@@ -52,6 +53,18 @@ function exceptionsToStrings(error: Error): string[] {
   throw error
 }
 
+async function parseCSV(content: string) {
+  return new Promise((resolve, reject) => {
+    parse(content, { comment: '#', delimiter: '\t', columns: true }, (error, output) => {
+      if (error) {
+        reject(error.message)
+      }
+
+      resolve(output)
+    })
+  })
+}
+
 export interface ImportedCaseCounts {
   fileName: string
   data: CaseCountsDatum[]
@@ -88,21 +101,30 @@ export default function CaseCountsUploader({ onDataImported }: ImportCaseCountDi
       throw new FileReaderError(file)
     }
 
-    const { data, errors, meta } = Papa.parse(content, {
-      header: true,
-      skipEmptyLines: 'greedy',
-      trimHeaders: true,
-      dynamicTyping: true,
-      comments: '#',
-    })
+    // const { data, errors, meta } = Papa.parse(content, {
+    //   header: true,
+    //   skipEmptyLines: 'greedy',
+    //   trimHeaders: true,
+    //   dynamicTyping: true,
+    //   comments: '#',
+    // })
 
-    if (errors.length > 0) {
-      throw new CSVParserErrorCSVSyntaxInvalid(errors.map((error) => error.message))
-    } else if (meta.aborted || !data?.length) {
-      throw new CSVParserErrorCSVSyntaxInvalid([`Aborted`])
-    } else if (!data?.length) {
-      throw new CSVParserErrorCSVSyntaxInvalid([`There was no data`])
+    // if (errors.length > 0) {
+    //   throw new CSVParserErrorCSVSyntaxInvalid(errors.map((error) => error.message))
+    // } else if (meta.aborted || !data?.length) {
+    //   throw new CSVParserErrorCSVSyntaxInvalid([`Aborted`])
+    // } else if (!data?.length) {
+    //   throw new CSVParserErrorCSVSyntaxInvalid([`There was no data`])
+    // }
+
+    let data = {}
+    try {
+      data = await parseCSV(content)
+    } catch (error) {
+      throw new CSVParserErrorCSVSyntaxInvalid([error])
     }
+
+    console.log({ data })
 
     const dataDangerous = { data, name: file.name }
     validate(dataDangerous)

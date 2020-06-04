@@ -75,6 +75,7 @@
     "connected-react-router": "6.8.0",
     "core-js": "3.6.5",
     "create-color": "2.0.2",
+    "csv-parse": "4.10.1",
     "d3": "5.16.0",
     "d3-array": "2.4.0",
     "d3-format": "1.4.4",
