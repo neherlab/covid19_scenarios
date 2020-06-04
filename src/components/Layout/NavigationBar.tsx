@@ -12,7 +12,7 @@ import NavigationLink from './NavigationLink'
 
 import { selectPathname } from '../../state/router/router.selectors'
 
-import BrandLogo from '../../assets/img/neherlab.svg'
+import { ReactComponent as BrandLogo } from '../../assets/img/neherlab.svg'
 
 import './NavigationBar.scss'
 

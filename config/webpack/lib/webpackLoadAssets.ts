@@ -23,17 +23,28 @@ export default function webpackLoadAssets({
   return [
     {
       test: /\.svg(\?.*)?$/i,
-      // issuer: { test: /\.[jt]sx?$/ },
-      loader: '@svgr/webpack',
-      options: {
-        svgoConfig: {
-          plugins: [
-            {
-              removeViewBox: false,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  removeViewBox: false,
+                },
+              ],
             },
-          ],
+          },
         },
-      },
+        {
+          loader: 'url-loader',
+          options: {
+            limit: inlineSmallerThan,
+            name,
+            publicPath,
+          },
+        },
+      ],
     },
     {
       test: /\.(eot|otf|webp|ttf|woff\d?|png|jpe?g|gif)(\?.*)?$/i,

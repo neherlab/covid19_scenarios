@@ -38,9 +38,9 @@ import LinkExternal from '../../Router/LinkExternal'
 import PrintIntroduction from './PrintIntroduction.mdx'
 import PrintDisclaimer from './PrintDisclaimer.mdx'
 
-import LogoNeherlab from '../../../assets/img/neherlab.svg'
-import LogoBiozentrum from '../../../assets/img/biozentrum.svg'
-import LogoUnibas from '../../../assets/img/unibas.svg'
+import { ReactComponent as LogoNeherlab } from '../../../assets/img/neherlab.svg'
+import { ReactComponent as LogoBiozentrum } from '../../../assets/img/biozentrum.svg'
+import { ReactComponent as LogoUnibas } from '../../../assets/img/unibas.svg'
 
 import './PrintPreview.scss'
 
