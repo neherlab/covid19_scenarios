@@ -68,21 +68,30 @@ export function NavigationBarDisconnected({ pathname }: NavigationBarProps) {
         </li>
 
         <li className="nav-item mx-2 my-auto">
-          <LinkExternal url="https://neherlab.org/" alt="Link to webpage of NeherLab at University of Basel">
+          <LinkExternal
+            title={t('neherlab')}
+            url="https://neherlab.org/"
+            alt={t('Link to webpage of NeherLab at University of Basel')}
+          >
             <BrandLogo viewBox="0 0 354.325 354.325" className="navigation-bar-company-logo" />
           </LinkExternal>
         </li>
 
         <li className="nav-item mx-2 my-auto">
-          <LinkExternal url="https://twitter.com/richardneher" alt="Link to Twitter page of Richard Neher">
+          <LinkExternal
+            title={t('Twitter')}
+            url="https://twitter.com/richardneher"
+            alt={t('Link to Twitter page of Richard Neher')}
+          >
             <FaTwitter size={28} color="#aaa" />
           </LinkExternal>
         </li>
 
         <li className="nav-item mx-2 my-auto">
           <LinkExternal
+            title={t('GitHub')}
             url="https://github.com/neherlab/covid19_scenarios"
-            alt="Link to Github page of the COVID-19 Scenarios project"
+            alt={t('Link to Github page of the COVID-19 Scenarios project')}
           >
             <FaGithub size={28} color="#aaa" />
           </LinkExternal>
