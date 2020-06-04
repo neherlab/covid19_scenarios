@@ -56,7 +56,7 @@ def stoi(x):
     return int(x)
 
 def write_tsv(path, cols, rows, region):
-    with open(path, 'w+') as fd:
+    with open(path, 'w+', newline='') as fd:
         fd.write(get_header(region))
         wtr = csv.writer(fd, delimiter='\t')
         wtr.writerow(cols)
