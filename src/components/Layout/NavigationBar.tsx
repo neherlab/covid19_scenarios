@@ -54,7 +54,11 @@ export function NavigationBarDisconnected({ pathname }: NavigationBarProps) {
 
       <ul className="navbar-nav">
         {Object.entries(navLinks).map(([url, text]) => {
-          return <NavigationLink key={url} url={url} content={text} active={pathname === url} />
+          return (
+            <NavigationLink key={url} url={url} active={pathname === url}>
+              {text}
+            </NavigationLink>
+          )
         })}
       </ul>
 
