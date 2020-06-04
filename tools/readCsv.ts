@@ -9,7 +9,10 @@ const { moduleRoot } = findModuleRoot()
 
 async function main() {
   const filePath = path.join(moduleRoot, 'data/case-counts/switzerland/CHE-Bern.tsv')
-  const content = (await fs.readFile(filePath)).toString('utf-8')
+  let content = (await fs.readFile(filePath)).toString('utf-8')
+  content = content.replace(/\r\n/g, '\n')
+
+  // console.log({ content })
 
   const { data, errors, meta } = Papa.parse(content, {
     header: true,
