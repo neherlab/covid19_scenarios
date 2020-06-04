@@ -84,6 +84,9 @@ export default function CaseCountsUploader({ onDataImported }: ImportCaseCountDi
     let content = ''
     try {
       content = await readFile(file)
+
+      // NOTE: this should protect from parsing failures when file is using DOS-style newlines
+      content = content.replace(/\r\n/g, '\n')
     } catch {
       throw new FileReaderError(file)
     }
