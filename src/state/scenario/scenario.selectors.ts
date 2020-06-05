@@ -33,7 +33,7 @@ export const selectAgeDistributionData = (state: State): AgeDistributionDatum[] 
 export const selectSeverityDistributionData = (state: State): SeverityDistributionDatum[] =>
   state.scenario.severityDistributionData.data
 
-export const selectCaseCountsData = (state: State) => state.scenario.caseCountsData.data
+export const selectCaseCountsData = (state: State) => state.scenario.caseCountsData?.data
 
 export const selectScenarioParameters = ({
   scenario: { scenarioData, severityDistributionData, ageDistributionData },

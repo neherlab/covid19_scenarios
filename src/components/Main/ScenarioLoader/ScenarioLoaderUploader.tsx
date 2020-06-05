@@ -42,6 +42,8 @@ const mapDispatchToProps = {
   setScenarioState,
 }
 
+export const ScenarioLoaderUploader = connect(mapStateToProps, mapDispatchToProps)(ScenarioLoaderUploaderDisconnected)
+
 export function ScenarioLoaderUploaderDisconnected({ setScenarioState, close }: ScenarioLoaderUploaderProps) {
   const { t } = useTranslation()
   const [errors, setErrors] = useState<string[]>([])
@@ -126,7 +128,3 @@ export function ScenarioLoaderUploaderDisconnected({ setScenarioState, close }: 
     </div>
   )
 }
-
-const ScenarioLoaderUploader = connect(mapStateToProps, mapDispatchToProps)(ScenarioLoaderUploaderDisconnected)
-
-export { ScenarioLoaderUploader }

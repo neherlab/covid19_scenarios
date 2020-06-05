@@ -1,6 +1,9 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import { getCaseCountsData } from '../../io/defaults/getCaseCountsData'
 
 import immerCase from '../util/fsaImmerReducer'
+
+import { CUSTOM_COUNTRY_NAME } from '../../constants'
 
 import {
   renameCurrentScenario,
@@ -16,7 +19,7 @@ import {
 import { getAgeDistributionData } from '../../io/defaults/getAgeDistributionData'
 import { getScenarioData } from '../../io/defaults/getScenarioData'
 
-import { ScenarioState, defaultScenarioState, CUSTOM_COUNTRY_NAME } from './scenario.state'
+import { ScenarioState, defaultScenarioState } from './scenario.state'
 
 export function maybeChangeTitle(state: ScenarioState) {
   let { name } = state.scenarioData
@@ -71,9 +74,6 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarioData.name = maybeChangeTitle(draft)
       draft.shouldRenameOnEdits = false
       draft.severityDistributionData.data = data
-
-      // FIXME: these are duplicated
-      draft.severityDistributionData.name = CUSTOM_COUNTRY_NAME
       draft.severityDistributionData.name = CUSTOM_COUNTRY_NAME
     }),
   )
@@ -89,6 +89,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarioData = scenarioData
       draft.shouldRenameOnEdits = false
       draft.ageDistributionData = ageDistributionData
+      draft.caseCountsData = getCaseCountsData(scenarioData.data.population.caseCountsName)
     }),
   )
 

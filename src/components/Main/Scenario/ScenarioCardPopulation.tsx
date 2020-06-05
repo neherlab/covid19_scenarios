@@ -5,9 +5,9 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
-import { ageDistributionNames } from '../../../io/defaults/getAgeDistributionData'
+import { CUSTOM_COUNTRY_NAME } from '../../../constants'
 
-import { CUSTOM_COUNTRY_NAME } from '../../../state/scenario/scenario.state'
+import { ageDistributionNames } from '../../../io/defaults/getAgeDistributionData'
 
 import { CardWithControls } from '../../Form/CardWithControls'
 import { FormDatePicker } from '../../Form/FormDatePicker'
