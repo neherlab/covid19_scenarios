@@ -327,8 +327,7 @@ def get_fit_data(days, data_original, end_discard=3):
     than 20 cases are removed. The last 3 days are also removed (due to latency of reporting)
     """
     data = copy.deepcopy(data_original)
-    case_min = 20
-    day0 = days[case_min <= data[Sub.T]][0]
+    day0 = days[0]
 
     # Filter points
     good_idx = np.bitwise_and(days >= day0, days < days[-1] - end_discard)
