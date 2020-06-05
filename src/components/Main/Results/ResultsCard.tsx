@@ -48,7 +48,7 @@ const mapDispatchToProps = {
 function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggleResultsMaximized }: ResultsCardProps) {
   const { t } = useTranslation()
   const scrollTargetRef = useRef<HTMLDivElement | null>(null)
-  const toggleResultsMaximizedLocal = useCallback(() => toggleResultsMaximized, [toggleResultsMaximized])
+  const toggleResultsMaximizedLocal = useCallback(() => toggleResultsMaximized(), [toggleResultsMaximized])
 
   function scrollToResults() {
     scrollTargetRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
