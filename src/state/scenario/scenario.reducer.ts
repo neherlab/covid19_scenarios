@@ -43,6 +43,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.shouldRenameOnEdits = true
       draft.scenarioData = getScenarioData(name)
       draft.ageDistributionData = getAgeDistributionData(draft.scenarioData.data.population.ageDistributionName)
+      draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
     }),
   )
 
@@ -54,6 +55,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       if (draft.scenarioData.data.population.ageDistributionName !== CUSTOM_COUNTRY_NAME) {
         draft.ageDistributionData = getAgeDistributionData(draft.scenarioData.data.population.ageDistributionName)
       }
+      draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
     }),
   )
 
