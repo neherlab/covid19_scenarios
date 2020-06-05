@@ -85,7 +85,10 @@ export function MainDisconnected({
         }
         return validParams
       })
-      .catch((error: FormikValidationErrors) => error.errors)
+      .catch((error: FormikValidationErrors) => {
+        setCanRun(false)
+        return error.errors
+      })
   }, 50)
 
   function handleSubmit(_0: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
