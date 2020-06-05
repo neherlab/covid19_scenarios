@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 from scipy.stats import linregress
 from paths import TMP_CASES, BASE_PATH, JSON_DIR, FIT_PARAMETERS
 from scripts.tsv import parse as parse_tsv
-from scripts.model import fit_population, load_data, get_fit_data, fit_population_iterative
+from scripts.model import load_data, get_fit_data, fit_population_iterative
 from jsonschema import validate, FormatChecker
 
 from typing import List
@@ -237,17 +237,17 @@ def fit_one_case_data(args):
         r = fit_population_iterative(region, model_tps, fit_data, FRA=True)
     else:
         r = fit_population_iterative(region, model_tps, fit_data)
-    if r is None or np.exp(r['params'].rates.logR0)>6 or np.exp(r['params'].rates.logR0)<1.5:
+    if r is None or np.exp(r['params'].logR0)>6 or np.exp(r['params'].logR0)<1.5:
         refit = Params.fit(tmp_data)
         if (refit is None) or (1.5<refit["r0"]<6) or refit["tMin"]<"2020-01-15":
             return (region, None)
 
         return (region, refit)
 
-    param = {"tMin": str(r['tMin']), "r0": float(np.exp(r['params'].rates.logR0)),
-             "initialCases": float(r["initialCases"])}
+    param = {"tMin": str(r['tMin']), "r0": float(np.exp(r['params'].logR0)),
+             "initialCases": float(np.exp(r["params"].logInitial))}
     if "containment_start" in r:
-        param["efficacy"] = float(r["params"].rates.efficacy)
+        param["efficacy"] = float(r["params"].efficacy)
         param["containment_start"] = str(r["containment_start"])
 
     return (region, param)

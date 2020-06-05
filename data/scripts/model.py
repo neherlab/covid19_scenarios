@@ -267,7 +267,7 @@ def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
 
     if key not in POPDATA:
         return (Params(None, ages=None, size=None, containment_start=None, times=None),
-                10, (False, "Not within population database"))
+                (False, "Not within population database"))
 
 
     params_to_fit = guess.keys()
