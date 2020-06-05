@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { connect } from 'react-redux'
 import { Button } from 'reactstrap'
@@ -12,7 +12,8 @@ import type { CaseCountsData } from '../../../algorithms/types/Param.types'
 import { NONE_COUNTRY_NAME } from '../../../constants'
 
 import type { State } from '../../../state/reducer'
-import { setCaseCountsData, resetCaseCounts } from '../../../state/scenario/scenario.actions'
+import { setCaseCountsDataCustom, resetCaseCounts } from '../../../state/scenario/scenario.actions'
+import { selectCaseCountsNameCustom } from '../../../state/scenario/scenario.selectors'
 import { caseCountsNames } from '../../../io/defaults/getCaseCountsData'
 
 import { FormCustom } from '../../Form/FormCustom'
@@ -23,48 +24,49 @@ const caseCountOptions = caseCountsNames.map((name) => ({ value: name, label: na
 caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: getI18n().t(NONE_COUNTRY_NAME) })
 
 export interface CaseCountsDataPickerProps {
-  setCaseCountsData: ActionCreator<CaseCountsData>
+  caseCountsNameCustom?: string
+  setCaseCountsDataCustom: ActionCreator<CaseCountsData>
   resetCaseCounts: ActionCreator<void>
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
 
-const mapStateToProps = (state: State) => ({})
+const mapStateToProps = (state: State) => ({
+  caseCountsNameCustom: selectCaseCountsNameCustom(state),
+})
 
 const mapDispatchToProps = {
-  setCaseCountsData,
+  setCaseCountsDataCustom,
   resetCaseCounts,
 }
 
 export const CaseCountsDataPicker = connect(mapStateToProps, mapDispatchToProps)(CaseCountsDataPickerDisconnected)
 
 export function CaseCountsDataPickerDisconnected({
-  setCaseCountsData,
+  caseCountsNameCustom,
+  setCaseCountsDataCustom,
   resetCaseCounts,
   errors,
   touched,
 }: CaseCountsDataPickerProps) {
   const { t } = useTranslation()
-  const [customFilename, setCustomFilename] = useState<string | undefined>()
 
   function onDataImported(imported: ImportedCaseCounts) {
-    setCustomFilename(imported.fileName)
-    setCaseCountsData({ data: imported.data, name: imported.fileName })
+    setCaseCountsDataCustom({ data: imported.data, name: imported.fileName })
   }
 
   function reset() {
-    setCustomFilename(undefined)
     resetCaseCounts()
   }
 
-  if (customFilename) {
+  if (caseCountsNameCustom) {
     return (
       <FormCustom
         identifier="population.caseCountsName"
         label={t('Confirmed cases')}
         help={t('Select region for which to plot confirmed case and death counts.')}
       >
-        <span className="truncate-ellipsis">{customFilename}</span>
+        <span className="truncate-ellipsis">{caseCountsNameCustom}</span>
         <Button
           color="secondary"
           outline

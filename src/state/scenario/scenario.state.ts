@@ -12,6 +12,7 @@ export interface ScenarioState extends ScenarioParameters {
   shouldRenameOnEdits: boolean
   canRun: boolean
   caseCountsData?: CaseCountsData
+  caseCountsNameCustom?: string
 }
 
 const defaultScenarioData = getScenarioData(DEFAULT_SCENARIO_NAME)

@@ -10,7 +10,7 @@ import {
   resetCaseCounts,
   setAgeDistributionData,
   setCanRun,
-  setCaseCountsData,
+  setCaseCountsDataCustom,
   setScenario,
   setScenarioData,
   setScenarioState,
@@ -44,6 +44,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.shouldRenameOnEdits = true
       draft.scenarioData = getScenarioData(name)
       draft.ageDistributionData = getAgeDistributionData(draft.scenarioData.data.population.ageDistributionName)
+      draft.caseCountsNameCustom = undefined
       draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
     }),
   )
@@ -56,7 +57,10 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       if (draft.scenarioData.data.population.ageDistributionName !== CUSTOM_COUNTRY_NAME) {
         draft.ageDistributionData = getAgeDistributionData(draft.scenarioData.data.population.ageDistributionName)
       }
-      draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
+
+      if (!draft.caseCountsNameCustom) {
+        draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
+      }
     }),
   )
 
@@ -82,14 +86,16 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   )
 
   .withHandling(
-    immerCase(setCaseCountsData, (draft, data) => {
+    immerCase(setCaseCountsDataCustom, (draft, data) => {
       draft.caseCountsData = data
+      draft.caseCountsNameCustom = data.name
     }),
   )
 
   .withHandling(
     immerCase(resetCaseCounts, (draft) => {
       draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
+      draft.caseCountsNameCustom = undefined
     }),
   )
 
@@ -99,6 +105,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.shouldRenameOnEdits = false
       draft.ageDistributionData = ageDistributionData
       draft.caseCountsData = getCaseCountsData(scenarioData.data.population.caseCountsName)
+      draft.caseCountsNameCustom = undefined
     }),
   )
 
