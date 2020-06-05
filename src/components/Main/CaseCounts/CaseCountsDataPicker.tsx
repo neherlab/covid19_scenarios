@@ -5,12 +5,15 @@ import { Button } from 'reactstrap'
 import { useTranslation, getI18n } from 'react-i18next'
 import type { FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { FaTrash } from 'react-icons/fa'
-import { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'typescript-fsa'
+
+import type { CaseCountsData } from '../../../algorithms/types/Param.types'
+
+import { NONE_COUNTRY_NAME } from '../../../constants'
 
 import type { State } from '../../../state/reducer'
-import { NONE_COUNTRY_NAME } from '../../../state/scenario/scenario.state'
+import { setCaseCountsData } from '../../../state/scenario/scenario.actions'
 import { caseCountsNames } from '../../../io/defaults/getCaseCountsData'
-import { SetCaseCountsData, setCaseCountsData } from '../../../state/caseCounts/caseCounts.actions'
 
 import { FormCustom } from '../../Form/FormCustom'
 import { FormDropdown } from '../../Form/FormDropdown'
@@ -20,7 +23,7 @@ const caseCountOptions = caseCountsNames.map((name) => ({ value: name, label: na
 caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: getI18n().t(NONE_COUNTRY_NAME) })
 
 export interface CaseCountsDataPickerProps {
-  setCaseCountsData: ActionCreator<SetCaseCountsData>
+  setCaseCountsData: ActionCreator<CaseCountsData>
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
@@ -39,7 +42,7 @@ export function CaseCountsDataPickerDisconnected({ setCaseCountsData, errors, to
 
   function onDataImported(imported: ImportedCaseCounts) {
     setCustomFilename(imported.fileName)
-    setCaseCountsData({ data: { data: imported.data, name: imported.fileName } })
+    setCaseCountsData({ data: imported.data, name: imported.fileName })
   }
 
   function reset() {

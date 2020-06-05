@@ -10,7 +10,7 @@ import validateCaseCountsData, { errors as dataErrors } from '../../.generated/l
 import { DeserializationErrorValidationFailed, DeserializationErrorConversionFailed } from '../serialization/errors'
 
 import caseCountsDataRaw from '../../assets/data/caseCounts.json'
-import { NONE_COUNTRY_NAME } from '../../state/scenario/scenario.state'
+import { NONE_COUNTRY_NAME } from '../../constants'
 
 export function validateAll(): CaseCountsData[] {
   const valid = validateCaseCountsArray(caseCountsDataRaw)

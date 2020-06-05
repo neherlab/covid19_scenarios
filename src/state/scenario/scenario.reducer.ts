@@ -10,6 +10,7 @@ import {
   setScenarioData,
   setScenarioState,
   setSeverityDistributionData,
+  setCaseCountsData,
 } from './scenario.actions'
 
 import { getAgeDistributionData } from '../../io/defaults/getAgeDistributionData'
@@ -74,6 +75,12 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       // FIXME: these are duplicated
       draft.severityDistributionData.name = CUSTOM_COUNTRY_NAME
       draft.severityDistributionData.name = CUSTOM_COUNTRY_NAME
+    }),
+  )
+
+  .withHandling(
+    immerCase(setCaseCountsData, (draft, data) => {
+      draft.caseCountsData = data
     }),
   )
 

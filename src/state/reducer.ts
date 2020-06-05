@@ -15,9 +15,6 @@ import { errorReducer, ErrorState } from './error/error.reducer'
 import type { SettingsState } from './settings/settings.state'
 import { settingsReducer } from './settings/settings.reducer'
 
-import type { CaseCountsState } from './caseCounts/caseCounts.state'
-import { caseCountsReducer } from './caseCounts/caseCounts.reducer'
-
 const SETTINGS_VERSION = 1
 const settingsReducerPersisted = persistReducer(
   { key: 'settings', version: SETTINGS_VERSION, storage, timeout: 3000 },
@@ -29,7 +26,6 @@ export interface State {
   error: ErrorState
   scenario: ScenarioState
   settings: SettingsState
-  caseCounts: CaseCountsState
   router: RouterState
 }
 
@@ -39,7 +35,6 @@ const rootReducer = (history: History) =>
     error: errorReducer,
     scenario: scenarioReducer,
     settings: settingsReducerPersisted,
-    caseCounts: caseCountsReducer,
     router: connectRouter(history),
   })
 
