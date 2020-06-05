@@ -12,7 +12,7 @@ import type { CaseCountsData } from '../../../algorithms/types/Param.types'
 import { NONE_COUNTRY_NAME } from '../../../constants'
 
 import type { State } from '../../../state/reducer'
-import { setCaseCountsData } from '../../../state/scenario/scenario.actions'
+import { setCaseCountsData, resetCaseCounts } from '../../../state/scenario/scenario.actions'
 import { caseCountsNames } from '../../../io/defaults/getCaseCountsData'
 
 import { FormCustom } from '../../Form/FormCustom'
@@ -24,6 +24,7 @@ caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: getI18n().t(NONE_COUNTR
 
 export interface CaseCountsDataPickerProps {
   setCaseCountsData: ActionCreator<CaseCountsData>
+  resetCaseCounts: ActionCreator<void>
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
@@ -32,11 +33,17 @@ const mapStateToProps = (state: State) => ({})
 
 const mapDispatchToProps = {
   setCaseCountsData,
+  resetCaseCounts,
 }
 
 export const CaseCountsDataPicker = connect(mapStateToProps, mapDispatchToProps)(CaseCountsDataPickerDisconnected)
 
-export function CaseCountsDataPickerDisconnected({ setCaseCountsData, errors, touched }: CaseCountsDataPickerProps) {
+export function CaseCountsDataPickerDisconnected({
+  setCaseCountsData,
+  resetCaseCounts,
+  errors,
+  touched,
+}: CaseCountsDataPickerProps) {
   const { t } = useTranslation()
   const [customFilename, setCustomFilename] = useState<string | undefined>()
 
@@ -47,6 +54,7 @@ export function CaseCountsDataPickerDisconnected({ setCaseCountsData, errors, to
 
   function reset() {
     setCustomFilename(undefined)
+    resetCaseCounts()
   }
 
   if (customFilename) {

@@ -7,13 +7,14 @@ import { CUSTOM_COUNTRY_NAME } from '../../constants'
 
 import {
   renameCurrentScenario,
+  resetCaseCounts,
   setAgeDistributionData,
   setCanRun,
+  setCaseCountsData,
   setScenario,
   setScenarioData,
   setScenarioState,
   setSeverityDistributionData,
-  setCaseCountsData,
 } from './scenario.actions'
 
 import { getAgeDistributionData } from '../../io/defaults/getAgeDistributionData'
@@ -83,6 +84,12 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
   .withHandling(
     immerCase(setCaseCountsData, (draft, data) => {
       draft.caseCountsData = data
+    }),
+  )
+
+  .withHandling(
+    immerCase(resetCaseCounts, (draft) => {
+      draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
     }),
   )
 
