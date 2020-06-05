@@ -1,9 +1,10 @@
-import { put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
 import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router'
 import { fromUrl } from '../../io/serialization/fromUrl'
 import { algorithmRunTrigger } from '../algorithm/algorithm.actions'
 import { setScenario, setScenarioData, setScenarioState } from './scenario.actions'
+import { selectIsAutorunEnabled } from '../settings/settings.selectors'
 
 export function* processUrl({ payload: { location } }: LocationChangeAction) {
   const { pathname, search } = location
@@ -15,7 +16,10 @@ export function* processUrl({ payload: { location } }: LocationChangeAction) {
 }
 
 export function* triggerAlgorithm() {
-  yield put(algorithmRunTrigger())
+  const isAutorunEnabled: boolean = yield select(selectIsAutorunEnabled)
+  if (isAutorunEnabled) {
+    yield put(algorithmRunTrigger())
+  }
 }
 
 export default [

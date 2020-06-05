@@ -81,7 +81,6 @@ export function MainDisconnected({
         setCanRun(true)
         if (!isEqual(validParams, scenarioData)) {
           setScenarioData(newParams)
-          algorithmRunTrigger()
         }
         return validParams
       })
