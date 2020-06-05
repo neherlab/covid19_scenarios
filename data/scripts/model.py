@@ -266,8 +266,9 @@ def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
         fixed_params = {}
 
     if key not in POPDATA:
-        return (Params(ages=None, size=None, containment_start=None, times=None),
+        return (Params(None, ages=None, size=None, containment_start=None, times=None),
                 10, (False, "Not within population database"))
+
 
     params_to_fit = guess.keys()
     guess = np.array([guess[key] for key in guess.keys()])
@@ -384,22 +385,10 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
     param, err = fit_params(key, time_points, data, guess, fixed_params, bounds=bounds)
     t2 = datetime.now().timestamp()
 
-    if second_fit:
-      guess = { "reported" : param.fracs.reported,
-                "logInitial" : np.log(init_cases),
-                "logR0": param.rates.logR0,
-                "efficacy": param.rates.efficacy
-              }
-      param, err = fit_params(key, time_points, data, guess,
-                                          {'containment_start':fixed_params['containment_start']}, bounds=None)
-
-      t3 = datetime.now().timestamp()
-
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
     res = {'params': param, 'tMin': tMin, 'data': data, 'error':err}
     if param.containment_start is not None:
         res['containment_start'] = datetime.fromordinal(int(param.containment_start)).strftime('%Y-%m-%d')
-
 
     print(key, fixed_params, ", reported:", param.reported, ", Initial cases", np.exp(param.logInitial))
     return res
