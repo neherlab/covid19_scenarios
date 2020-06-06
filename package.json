@@ -53,7 +53,8 @@
     "i18n": "babel-node --extensions \".ts\" node_modules/.bin/i18next -c config/i18next/i18next.config.js",
     "codeclimate": "UID=$(id -u) DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker/docker-compose.codeclimate.yml --compatibility up",
     "snyk-protect": "snyk protect",
-    "prepare": "yarn run snyk-protect"
+    "prepare": "yarn run snyk-protect",
+    "cli": "yarn babel-node --extensions \".ts\" src/algorithms/cli.ts",
   },
   "dependencies": {
     "@babel/runtime": "7.9.6",
@@ -370,7 +371,8 @@
     "webpack-hot-middleware": "2.25.0",
     "webpackbar": "4.0.0",
     "worker-plugin": "4.0.3",
-    "yaml-loader": "0.6.0"
+    "yaml-loader": "0.6.0",
+    "yargs": "15.3.1"
   },
   "resolutions": {
     "**/babel-polyfill": "link:3rdparty/__empty-module",
