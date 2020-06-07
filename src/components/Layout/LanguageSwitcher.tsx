@@ -10,8 +10,6 @@ import type { State } from '../../state/reducer'
 import { selectLocale } from '../../state/settings/settings.selectors'
 import { setLocale } from '../../state/settings/settings.actions'
 
-import './LanguageSwitcher.scss'
-
 export interface LanguageSwitcherProps extends DropdownProps {
   currentLocale: LocaleWithKey
   setLocale: ActionCreator<LocaleKey>

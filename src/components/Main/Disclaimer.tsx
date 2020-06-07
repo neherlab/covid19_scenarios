@@ -12,8 +12,6 @@ import {
 } from '../../state/settings/settings.selectors'
 import { setDisclaimerVersionAccepted, toggleDisclaimerShouldSuppress } from '../../state/settings/settings.actions'
 
-import './Disclaimer.scss'
-
 const DISCLAIMER_CURRENT_VERSION = 1
 
 export interface DisclaimerProps {

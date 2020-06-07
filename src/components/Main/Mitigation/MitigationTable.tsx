@@ -13,8 +13,6 @@ import type { State } from '../../../state/reducer'
 import { selectMitigationIntervals } from '../../../state/scenario/scenario.selectors'
 import { MitigationIntervalComponent } from './MitigationIntervalComponent'
 
-import './MitigationTable.scss'
-
 export interface MitigationTableProps {
   mitigationIntervals: MitigationInterval[]
   errors?: FormikErrors<FormikValues>

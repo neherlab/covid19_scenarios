@@ -13,6 +13,7 @@
     ".prettierrc",
     "babel.config.js",
     "config",
+    "next.config.js",
     "package.json",
     "postcss.config.js",
     "schemas",

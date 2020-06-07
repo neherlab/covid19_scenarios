@@ -153,3 +153,27 @@ p {
 .btn-shadow {
   box-shadow: 4px 4px 10px 1px #222;
 }
+
+@import './components/AgeGroupParameters.scss';
+@import './components/CaseCountsUploader.scss';
+@import './components/DeterministicLinePlot.scss';
+@import './components/Disclaimer.scss';
+@import './components/Footer.scss';
+@import './components/FormHelpButton.scss';
+@import './components/LanguageSwitcher.scss';
+@import './components/Layout.scss';
+@import './components/Loading.scss';
+@import './components/Main.scss';
+@import './components/MitigationTable.scss';
+@import './components/ModalButtonExport.scss';
+@import './components/ModalButtonSharing.scss';
+@import './components/NavigationBar.scss';
+@import './components/OutcomesDetailsTable.scss';
+@import './components/Popover.scss';
+@import './components/PrintPreview.scss';
+@import './components/ResponsiveTooltipContent.scss';
+@import './components/ResultsCard.scss';
+@import './components/ScenarioLoader.scss';
+@import './components/ScenarioTitle.scss';
+@import './components/SimulationControls.scss';
+@import './components/SpinBox.scss';

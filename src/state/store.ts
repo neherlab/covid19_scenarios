@@ -1,5 +1,5 @@
 import { routerMiddleware } from 'connected-react-router'
-import { createBrowserHistory } from 'history'
+import { createBrowserHistory, createMemoryHistory } from 'history'
 import { applyMiddleware, createStore, StoreEnhancer, Store } from 'redux'
 import { PersistorOptions, Persistor } from 'redux-persist/es/types'
 import createSagaMiddleware from 'redux-saga'
@@ -19,7 +19,7 @@ export function persistStoreAsync(store: Store, options: PersistorOptions): Prom
 }
 
 export async function configureStore() {
-  const history = createBrowserHistory()
+  const history = typeof window === 'undefined' ? createMemoryHistory() : createBrowserHistory()
 
   const sagaMiddleware = createSagaMiddleware()
   const middlewares = [

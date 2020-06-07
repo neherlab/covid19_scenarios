@@ -5,8 +5,6 @@ import { TooltipProps } from 'recharts'
 
 import { LineProps } from './ChartCommon'
 
-import './ResponsiveTooltipContent.scss'
-
 export interface TooltipItem extends LineProps {
   value: React.ReactNode
   lower?: ReactNode

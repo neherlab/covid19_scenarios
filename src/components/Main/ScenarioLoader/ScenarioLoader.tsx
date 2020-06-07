@@ -7,8 +7,6 @@ import { ScenarioLoaderCard } from './ScenarioLoaderCard'
 import { ScenarioLoaderList } from './ScenarioLoaderList'
 import { ScenarioLoaderUploader } from './ScenarioLoaderUploader'
 
-import './ScenarioLoader.scss'
-
 export function ScenarioLoader() {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)

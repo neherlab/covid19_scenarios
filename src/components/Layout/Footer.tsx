@@ -5,8 +5,6 @@ import { Col, Container, Row } from 'reactstrap'
 
 import { getVersionString } from '../../helpers/getVersionString'
 
-import './Footer.scss'
-
 export default function Footer() {
   const { t } = useTranslation()
 

@@ -40,8 +40,6 @@ import { R0Plot } from './R0LinePlot'
 
 import { verifyPositive, computeNewEmpiricalCases } from './Utils'
 
-import './DeterministicLinePlot.scss'
-
 const ASPECT_RATIO = 16 / 9
 
 function xTickFormatter(tick: string | number): string {

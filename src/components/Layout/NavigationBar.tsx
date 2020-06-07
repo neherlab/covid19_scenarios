@@ -14,8 +14,6 @@ import { selectPathname } from '../../state/router/router.selectors'
 
 import { ReactComponent as BrandLogo } from '../../assets/img/neherlab.svg'
 
-import './NavigationBar.scss'
-
 export interface NavigationBarProps {
   pathname: string
 }

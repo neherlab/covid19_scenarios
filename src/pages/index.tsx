@@ -2,10 +2,6 @@ import React from 'react'
 
 import { Main } from '../components/Main/Main'
 
-import './Home.scss'
-
-function Home() {
+export default function Index() {
   return <Main />
 }
-
-export default Home

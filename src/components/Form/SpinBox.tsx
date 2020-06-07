@@ -5,8 +5,6 @@ import { Field, FormikErrors, FormikTouched } from 'formik'
 
 import { getFormikErrors } from '../../helpers/getFormikErrors'
 
-import './SpinBox.scss'
-
 export interface FormSpinBoxProps<T> extends React.HTMLProps<HTMLInputElement> {
   identifier: string
   step?: number | string

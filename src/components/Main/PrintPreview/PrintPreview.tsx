@@ -42,8 +42,6 @@ import { ReactComponent as LogoNeherlab } from '../../../assets/img/neherlab.svg
 import { ReactComponent as LogoBiozentrum } from '../../../assets/img/biozentrum.svg'
 import { ReactComponent as LogoUnibas } from '../../../assets/img/unibas.svg'
 
-import './PrintPreview.scss'
-
 const months = moment.months()
 
 const parameterExplanations = {

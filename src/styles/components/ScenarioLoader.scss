@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@import '../../../styles/variables';
+@import '../styles/variables';
 
 $lg: map.get($grid-breakpoints, 'lg');
 $md: map.get($grid-breakpoints, 'md');

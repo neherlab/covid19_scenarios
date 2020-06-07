@@ -27,8 +27,6 @@ import { exportAll, exportResult, exportScenario } from '../../../algorithms/uti
 
 import { FILENAME_PARAMS, FILENAME_RESULTS_DETAILED, FILENAME_RESULTS_SUMMARY, FILENAME_ZIP } from './filenames'
 
-import './ModalButtonExport.scss'
-
 export const FileIconJson = () => (
   <FileIcon
     {...defaultStyles.json}

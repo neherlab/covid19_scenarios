@@ -7,7 +7,7 @@
     "target": "esnext",
     "module": "esnext",
     "lib": ["esnext", "dom", "webworker"],
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -24,7 +24,9 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
   },
   "include": [
     "./*.js",
@@ -49,7 +51,7 @@
     "covid19_scenarios_data",
     "cypress",
     "node_modules",
-    "static",
+    "public/static",
     "tsconfig.json",
     "src/.generated"
   ]

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import { selectLocation } from '../../state/router/router.selectors'
 
-import Loading from '../../pages/Loading'
+import Loading from '../PageSwitcher/Loading'
 import PageSwitcher from '../PageSwitcher/PageSwitcher'
 import { NavigationBar } from './NavigationBar'
 
@@ -14,8 +14,6 @@ import routes from '../../routes'
 import { State } from '../../state/reducer'
 
 import Footer from './Footer'
-
-import './Layout.scss'
 
 interface LayoutProps {
   location: Location

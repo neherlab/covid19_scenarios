@@ -26,8 +26,6 @@ import { Disclaimer } from './Disclaimer'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
 
-import './Main.scss'
-
 interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
 }
@@ -64,6 +62,7 @@ const mapDispatchToProps = {
 }
 
 export const Main = connect(mapStateToProps, mapDispatchToProps)(MainDisconnected)
+export default Main
 
 export function MainDisconnected({
   scenarioData,

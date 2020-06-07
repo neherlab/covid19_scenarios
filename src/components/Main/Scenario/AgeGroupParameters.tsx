@@ -21,8 +21,6 @@ import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress
 
 import type { AgeDistributionDatum, AgeGroup, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
-import './AgeGroupParameters.scss'
-
 const AgeGroupParameters = (props: Omit<DataMarshalProps, 'view'>) => <DataMarshal view={View} {...props} />
 export default AgeGroupParameters
 

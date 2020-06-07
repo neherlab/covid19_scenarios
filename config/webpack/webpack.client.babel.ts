@@ -37,7 +37,7 @@ import { findModuleRoot } from '../../lib/findModuleRoot'
 import { getenv } from '../../lib/getenv'
 // import htmlTags from './lib/htmlTags'
 
-import babelConfig from '../../babel.config'
+import babelConfig from 'babel.config.js'
 
 process.once('SIGINT', () => {
   kill(process.pid, 'SIGTERM')

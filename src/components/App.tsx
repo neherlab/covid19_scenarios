@@ -6,8 +6,6 @@ import ErrorPage from '../pages/ErrorPage'
 
 import Layout from './Layout/Layout'
 
-import '../styles/global.scss'
-
 function App() {
   return <Layout />
 }
