@@ -1,6 +1,7 @@
+import path from 'path'
+
 import { isEmpty } from 'lodash'
 import Webpack from 'webpack'
-import WorkerPlugin from 'worker-plugin'
 
 import nextRuntimeDotenv from 'next-runtime-dotenv'
 import withBundleAnalyzer from '@zeit/next-bundle-analyzer'
@@ -11,6 +12,7 @@ import { withWorker } from './config/next/withWorker'
 
 import { getenv } from './lib/getenv'
 import { findModuleRoot } from './lib/findModuleRoot'
+import { withFriendlyConsole } from './config/next/withFriendlyConsole'
 
 const withMDX = getWithMDX({ extension: /\.mdx?$/ })
 
@@ -128,8 +130,6 @@ function withSvg(nextConfig = {}) {
   }
 }
 
-function withFriendlyConsole() {}
-
 const nextConfig = {
   distDir: `.build/${process.env.NODE_ENV}/web`,
   experimental: {
@@ -154,6 +154,14 @@ module.exports = withConfig(
       [withWorker],
       [withSvg],
       [withBundleAnalyzer],
+      [
+        withFriendlyConsole({
+          clearConsole: !analyze && fancyClearConsole,
+          projectRoot: path.resolve(moduleRoot),
+          packageName: pkg.name || 'web',
+          progressBarColor: 'red',
+        }),
+      ],
       [withMDX, { pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'] }],
     ],
     nextConfig,
