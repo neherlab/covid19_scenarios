@@ -15,6 +15,62 @@ export interface NextWebpackOptions {
   entrypoints: WebpackEntrypoints
 }
 
+export type WebpackFunction = (webpackConfig: WebpackOptions, options: NextWebpackOptions) => WebpackOptions
+
+export type Target = 'server' | 'serverless' | 'experimental-serverless-trace'
+
+export type ReactMode = 'legacy' | 'blocking' | 'concurrent'
+
+export type SassOptions = object
+
+export type ServerRuntimeConfig = object
+
+export type PublicRuntimeConfig = object
+
 export interface NextConfig {
-  webpack?: (webpackConfig: WebpackOptions, options: NextWebpackOptions) => WebpackOptions
+  env?: object
+  webpack?: WebpackFunction | null
+  webpackDevMiddleware?: any
+  distDir?: string
+  assetPrefix?: string
+  configOrigin?: string
+  useFileSystemPublicRoutes?: boolean
+  generateBuildId?: () => string
+  generateEtags?: boolean
+  pageExtensions?: string[]
+  target?: Target
+  poweredByHeader?: boolean
+  compress?: boolean
+  devIndicators?: {
+    buildActivity?: boolean
+    autoPrerender?: boolean
+  }
+  onDemandEntries?: {
+    maxInactiveAge?: number
+    pagesBufferLength?: number
+  }
+  amp?: {
+    canonicalBase: string
+  }
+  exportTrailingSlash?: boolean
+  sassOptions?: SassOptions
+  experimental?: {
+    cpus?: number
+    modern?: boolean
+    plugins?: boolean
+    profiling?: boolean
+    sprFlushToDisk?: boolean
+    reactMode?: ReactMode
+    workerThreads?: boolean
+    basePath?: string
+    pageEnv?: boolean
+    productionBrowserSourceMaps?: boolean
+    optionalCatchAll?: boolean
+  }
+  future?: {
+    excludeDefaultMomentLocales?: boolean
+  }
+  serverRuntimeConfig?: ServerRuntimeConfig
+  publicRuntimeConfig?: PublicRuntimeConfig
+  reactStrictMode?: boolean
 }

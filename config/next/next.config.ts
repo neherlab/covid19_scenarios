@@ -1,5 +1,6 @@
 import path from 'path'
 
+import type { NextConfig } from 'next'
 import getWithMDX from '@next/mdx'
 import withBundleAnalyzer from '@zeit/next-bundle-analyzer'
 
@@ -56,8 +57,12 @@ function getWebRoot() {
   return root
 }
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   distDir: `.build/${process.env.NODE_ENV}/web`,
+  onDemandEntries: {
+    maxInactiveAge: 60 * 1000,
+    pagesBufferLength: 2,
+  },
   experimental: {
     modern: true,
     productionBrowserSourceMaps: true,
