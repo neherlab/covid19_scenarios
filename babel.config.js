@@ -19,7 +19,7 @@ module.exports = (api) => {
   const webpack = api.caller(isWebpack)
 
   return {
-    // compact: false,
+    compact: false,
     // sourceType: 'unambiguous',
     presets: ['next/babel'],
     // web
