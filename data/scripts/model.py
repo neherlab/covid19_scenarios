@@ -88,10 +88,6 @@ class Data(object):
     def __str__(self):
         return str({k : str(v) for k, v in self.__dict__.items()})
 
-# NOTE: Pulled from default severe table on neherlab.org/covid19
-#       Keep in sync!
-# TODO: Allow custom values?
-
 class TimeRange(Data):
     def __init__(self, day0, start, end, delta=1):
         self.day0  = day0
@@ -114,7 +110,7 @@ class Params(Data):
         self.latency     = DefaultRates["latency"]
         self.logR0       = logR0 or DefaultRates["logR0"]
         self.infection   = DefaultRates["infection"]
-        self.infectivity = np.exp(self.logR0) * self.infection
+        self.beta = np.exp(self.logR0) * self.infection
         self.hospital    = DefaultRates["hospital"]
         self.critical    = DefaultRates["critical"]
         self.imports     = DefaultRates["imports"]
@@ -134,8 +130,7 @@ class Params(Data):
         self.reported   = 1/30
         self.logInitial = logInitial or 1
         # Make infection function
-        beta = self.infectivity
-        self.infectivity = lambda t,containment_start,eff : beta if t<containment_start else beta*(1-eff)
+        self.infectivity = lambda t,containment_start,eff,beta : beta if t<containment_start else beta*(1-eff)
 
 # ------------------------------------------------------------------------
 # Functions
@@ -149,7 +144,7 @@ def make_evolve(params):
         fracI = pop2d[Sub.I, :].sum() / params.size
         dpop = np.zeros_like(pop2d)
 
-        flux_S   = params.infectivity(t, params.containment_start, params.efficacy)*fracI*pop2d[Sub.S] + (params.imports / Sub.NUM)
+        flux_S   = params.infectivity(t, params.containment_start, params.efficacy, params.beta)*fracI*pop2d[Sub.S] + (params.imports / Sub.NUM)
 
         flux_E1  = params.latency*pop2d[Sub.E1]*3
         flux_E2  = params.latency*pop2d[Sub.E2]*3
