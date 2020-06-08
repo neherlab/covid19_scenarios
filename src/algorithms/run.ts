@@ -74,9 +74,9 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
     }
   })
   const resultsTrajectory = {
-    lower: percentileTrajectory(trajectories, 0.2),
-    middle: percentileTrajectory(trajectories, 0.5),
-    upper: percentileTrajectory(trajectories, 0.8),
+    lower: stochastic ? percentileTrajectory(stochasticTrajectories, 0.2) : deterministicTrajectory,
+    middle: deterministicTrajectory,
+    upper: stochastic ? percentileTrajectory(stochasticTrajectories, 0.8) : deterministicTrajectory,
     percentile: {},
   }
   return {
