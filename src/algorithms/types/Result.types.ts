@@ -92,7 +92,14 @@ export interface TimeSeriesWithRange {
   upper: TimeSeries
 }
 
+export interface PlotDatum {
+  time: number
+  lines: Record<string, number | undefined>
+  areas: Record<string, [number, number] | undefined>
+}
+
 export interface AlgorithmResult {
   trajectory: Trajectory
   R0: TimeSeriesWithRange
+  plotData: PlotDatum[]
 }
