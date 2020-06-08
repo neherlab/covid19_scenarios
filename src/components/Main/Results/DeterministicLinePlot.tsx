@@ -38,7 +38,7 @@ import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'
 
-import { verifyPositive, verifyTuple, computeNewEmpiricalCases } from './Utils'
+import { verifyPositive, computeNewEmpiricalCases } from './Utils'
 
 import './DeterministicLinePlot.scss'
 
@@ -130,75 +130,17 @@ export function DeterministicLinePlotDiconnected({
       ICUbeds: nICUBeds,
     })) ?? []
 
-  const { upper, lower } = result.trajectory
-
   const plotData = [
-    ...result.trajectory.middle.map((x, i) => ({
-      time: x.time,
-      susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? verifyPositive(x.current.susceptible.total)
-        : undefined,
-      infectious: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? verifyPositive(x.current.infectious.total)
-        : undefined,
-      severe: enabledPlots.includes(DATA_POINTS.Severe) ? Math.round(x.current.severe.total) || undefined : undefined,
-      critical: enabledPlots.includes(DATA_POINTS.Critical)
-        ? verifyPositive(Math.round(x.current.critical.total))
-        : undefined,
-      overflow: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? verifyPositive(Math.round(x.current.overflow.total))
-        : undefined,
-      recovered: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? verifyPositive(Math.round(x.cumulative.recovered.total))
-        : undefined,
-      fatality: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? verifyPositive(Math.round(x.cumulative.fatality.total))
-        : undefined,
-      hospitalBeds: nHospitalBeds,
-      ICUbeds: nICUBeds,
-
-      // Error bars
-      susceptibleArea: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.susceptible.total),
-            verifyPositive(upper[i].current.susceptible.total),
-          ])
-        : undefined,
-      infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.infectious.total),
-            verifyPositive(upper[i].current.infectious.total),
-          ])
-        : undefined,
-      severeArea: enabledPlots.includes(DATA_POINTS.Severe)
-        ? verifyTuple([verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)])
-        : undefined,
-      criticalArea: enabledPlots.includes(DATA_POINTS.Critical)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.critical.total),
-            verifyPositive(upper[i].current.critical.total),
-          ])
-        : undefined,
-      overflowArea: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.overflow.total),
-            verifyPositive(upper[i].current.overflow.total),
-          ])
-        : undefined,
-      recoveredArea: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? verifyTuple([
-            verifyPositive(lower[i].cumulative.recovered.total),
-            verifyPositive(upper[i].cumulative.recovered.total),
-          ])
-        : undefined,
-      fatalityArea: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? verifyTuple([
-            verifyPositive(lower[i].cumulative.fatality.total),
-            verifyPositive(upper[i].cumulative.fatality.total),
-          ])
-        : undefined,
-    })),
-
+    ...result.plotData.map((x) => {
+      const dpoint = { time: x.time, hospitalBeds: nHospitalBeds, ICUbeds: nICUBeds }
+      Object.keys(x.lines).forEach((d) => {
+        dpoint[d] = enabledPlots.includes(d) ? x.lines[d] : undefined
+      })
+      Object.keys(x.areas).forEach((d) => {
+        dpoint[`${d}Area`] = enabledPlots.includes(d) ? x.areas[d] : undefined
+      })
+      return dpoint
+    }),
     ...observations,
   ]
 
