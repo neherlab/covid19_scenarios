@@ -9,10 +9,7 @@ import { PluginOptions } from '@babel/core'
  * https://github.com/webpack/webpack/issues/2031#issuecomment-317589620
  *
  */
-function excludeNodeModulesExcept(
-  transpiledLibs?: string[] | boolean,
-  nonTranspiledLibs?: string[] | boolean,
-) {
+function excludeNodeModulesExcept(transpiledLibs?: string[] | boolean, nonTranspiledLibs?: string[] | boolean) {
   if (!transpiledLibs || !Array.isArray(transpiledLibs)) {
     return /node_modules/
   }

@@ -65,8 +65,7 @@ const portAnalyze = Number.parseInt(getenv('WEB_ANALYZER_PORT', '8888'), 10) // 
 const fancyConsole = getenv('DEV_FANCY_CONSOLE', '0') === '1'
 const fancyClearConsole = getenv('DEV_FANCY_CLEAR_CONSOLE', '0') === '1'
 const disableChecks = getenv('DEV_DISABLE_CHECKS') === '1'
-const disableStylelint =
-  disableChecks || getenv('DEV_DISABLE_STYLELINT') === '1'
+const disableStylelint = disableChecks || getenv('DEV_DISABLE_STYLELINT') === '1'
 
 function getWebRoot() {
   let root = `${schema}://${host}`
@@ -235,19 +234,7 @@ export default {
       'main',
       'source',
     ],
-    extensions: [
-      '.wasm',
-      '.ts',
-      '.tsx',
-      '.es.js',
-      '.mjs',
-      '.web.js',
-      '.web.jsx',
-      '.js',
-      '.jsx',
-      '.md',
-      '.mdx',
-    ],
+    extensions: ['.wasm', '.ts', '.tsx', '.es.js', '.mjs', '.web.js', '.web.jsx', '.js', '.jsx', '.md', '.mdx'],
 
     alias: alias(development),
   },
@@ -324,10 +311,7 @@ export default {
         getenv('TRAVIS_BRANCH', null) ??
         getenv('NOW_GITHUB_COMMIT_REF', null) ??
         getenv('VERCEL_GITHUB_COMMIT_REF', null) ??
-        require('child_process')
-          .execSync('git rev-parse --abbrev-ref HEAD')
-          .toString()
-          .trim(),
+        require('child_process').execSync('git rev-parse --abbrev-ref HEAD').toString().trim(),
       PACKAGE_VERSION: pkg.version,
       BUILD_NUMBER: getenv('TRAVIS_BUILD_NUMBER', null),
       TRAVIS_BUILD_WEB_URL: getenv('TRAVIS_BUILD_WEB_URL', null),
@@ -335,10 +319,7 @@ export default {
         getenv('TRAVIS_COMMIT', null) ??
         getenv('NOW_GITHUB_COMMIT_SHA', null) ??
         getenv('VERCEL_GITHUB_COMMIT_SHA', null) ??
-        require('child_process')
-          .execSync('git rev-parse HEAD')
-          .toString()
-          .trim(),
+        require('child_process').execSync('git rev-parse HEAD').toString().trim(),
       WEB_ROOT: getWebRoot(),
     }),
 
@@ -393,10 +374,7 @@ export default {
     new webpack.optimize.AggressiveMergingPlugin(),
 
     new ExtraWatchWebpackPlugin({
-      files: [
-        path.join(moduleRoot, 'src/.generated/**'),
-        path.join(moduleRoot, 'src/types/**/*.d.ts'),
-      ],
+      files: [path.join(moduleRoot, 'src/.generated/**'), path.join(moduleRoot, 'src/types/**/*.d.ts')],
       dirs: [],
     }),
 

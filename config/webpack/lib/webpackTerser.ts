@@ -9,11 +9,7 @@ export interface WebpackTerserParams {
   profile: boolean
 }
 
-export default function webpackTerser({
-  sourceMaps,
-  node,
-  profile = false,
-}: WebpackTerserParams) {
+export default function webpackTerser({ sourceMaps, node, profile = false }: WebpackTerserParams) {
   const minify: MinifyOptions = {
     parse: {
       ecma: 9,

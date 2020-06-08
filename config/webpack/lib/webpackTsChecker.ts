@@ -6,11 +6,7 @@ import chalk from 'chalk'
 import isInteractive from 'is-interactive'
 import { codeFrameColumns } from '@babel/code-frame'
 
-import {
-  Issue,
-  IssueSeverity,
-  IssueOrigin,
-} from 'fork-ts-checker-webpack-plugin/lib/issue'
+import { Issue, IssueSeverity, IssueOrigin } from 'fork-ts-checker-webpack-plugin/lib/issue'
 import { createInternalFormatter } from 'fork-ts-checker-webpack-plugin/lib/formatter'
 
 function identity<T>(t: T) {

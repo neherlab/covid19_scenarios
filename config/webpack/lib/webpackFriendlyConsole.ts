@@ -9,17 +9,14 @@ interface FriendlyErrorsWebpackPluginError {
 function cleanup() {
   return (error: FriendlyErrorsWebpackPluginError) => ({
     ...error,
-    message: error.message
-      .replace(/.*ERROR in.*\n/, '')
-      .replace(/.*WARNING in.*\n/, ''),
+    message: error.message.replace(/.*ERROR in.*\n/, '').replace(/.*WARNING in.*\n/, ''),
   })
 }
 
 function stripProjectRoot(projectRoot: string) {
   return (error: FriendlyErrorsWebpackPluginError) => ({
     ...error,
-    message:
-      error && error.message && error.message.replace(`${projectRoot}/`, ''),
+    message: error && error.message && error.message.replace(`${projectRoot}/`, ''),
     file: error && error.file && error.file.replace(`${projectRoot}/`, ''),
   })
 }
