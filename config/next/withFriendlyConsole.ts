@@ -30,7 +30,7 @@ export interface WithFriendlyConsoleParams {
   progressBarColor: string
 }
 
-export const withFriendlyConsole = ({
+const getWithFriendlyConsole = ({
   clearConsole,
   projectRoot,
   packageName,
@@ -47,3 +47,5 @@ export const withFriendlyConsole = ({
 
   return addWebpackPlugin(cfg, new WebpackBar({ name: packageName, color: progressBarColor }))
 }
+
+export default getWithFriendlyConsole
