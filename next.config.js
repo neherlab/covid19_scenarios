@@ -1,19 +1,20 @@
-/* eslint-disable @typescript-eslint/no-var-requires,security/detect-child-process,global-require */
+import { isEmpty } from 'lodash'
+import Webpack from 'webpack'
+import WorkerPlugin from 'worker-plugin'
 
-const { isEmpty } = require('lodash')
-const Webpack = require('webpack')
-const WorkerPlugin = require('worker-plugin')
+import nextRuntimeDotenv from 'next-runtime-dotenv'
+import withBundleAnalyzer from '@zeit/next-bundle-analyzer'
+import getWithMDX from '@next/mdx'
+import withPlugins from 'next-compose-plugins'
 
-const nextRuntimeDotenv = require('next-runtime-dotenv')
-const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
-const withMDX = require('@next/mdx')({ extension: /\.mdx?$/ })
-const withPlugins = require('next-compose-plugins')
+import { withWorker } from './config/next/withWorker'
 
-const { getenv } = require('./lib/getenv')
-const { findModuleRoot } = require('./lib/findModuleRoot')
+import { getenv } from './lib/getenv'
+import { findModuleRoot } from './lib/findModuleRoot'
+
+const withMDX = getWithMDX({ extension: /\.mdx?$/ })
 
 const MODE = getenv('NODE_ENV') === 'development' ? 'development' : 'production' // prettier-ignore
-
 const production = MODE === 'production'
 const development = MODE === 'development'
 const analyze = getenv('ANALYZE', '0') === '1'
@@ -127,22 +128,7 @@ function withSvg(nextConfig = {}) {
   }
 }
 
-function withWorker(nextConfig = {}) {
-  return {
-    ...nextConfig,
-    webpack: (config, { isServer }) => {
-      if (!isServer) {
-        config.plugins.push(new WorkerPlugin({ globalObject: 'self' }))
-      }
-
-      if (typeof nextConfig.webpack === 'function') {
-        return nextConfig.webpack(config, nextConfig)
-      }
-
-      return config
-    },
-  }
-}
+function withFriendlyConsole() {}
 
 const nextConfig = {
   distDir: `.build/${process.env.NODE_ENV}/web`,
