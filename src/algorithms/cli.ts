@@ -1,12 +1,15 @@
 /* eslint-disable no-console, unicorn/no-process-exit */
-import * as fs from 'fs'
-import * as yargs from 'yargs'
+import fs from 'fs'
+import yargs from 'yargs'
+
+import { DEFAULT_SEVERITY_DISTRIBUTION } from '../constants'
 
 import { run } from './run'
-import { ScenarioFlat, ScenarioData } from './types/Param.types'
-import { getAgeDistribution } from '../components/Main/state/getAgeDistribution'
-import { getSeverityDistribution } from '../components/Main/state/getSeverityDistribution'
-import { toInternal } from '../components/Main/state/getScenario'
+import { getAgeDistributionData } from '../io/defaults/getAgeDistributionData'
+import { getSeverityDistributionData } from '../io/defaults/getSeverityDistributionData'
+
+import type { ScenarioFlat, ScenarioData, SeverityDistributionData, AgeDistributionData } from './types/Param.types'
+import { toInternal } from './types/convert'
 
 const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
   console.error(err)
@@ -21,10 +24,9 @@ process.on('unhandledRejection', handleRejection)
  * @param inputFilename The path to the file.
  */
 function readJsonFromFile<T>(inputFilename: string) {
-  console.log('Reading data from file ' + inputFilename)
+  console.log(`Reading data from file ${inputFilename}`)
   const inputData = fs.readFileSync(inputFilename, 'utf8')
-  const inputJson = JSON.parse(inputData) as T
-  return inputJson
+  return JSON.parse(inputData) as T
 }
 
 /**
@@ -35,13 +37,11 @@ function readJsonFromFile<T>(inputFilename: string) {
  */
 function getSeverity(inputFilename: string | undefined) {
   if (inputFilename) {
-    const data = readJsonFromFile<any>(inputFilename)
+    const data = readJsonFromFile<SeverityDistributionData>(inputFilename)
     return data.data
   }
-  else {
-    const DEFAULT_SEVERITY_DISTRIBUTION = 'China CDC'
-    return getSeverityDistribution(DEFAULT_SEVERITY_DISTRIBUTION)
-  }
+
+  return getSeverityDistributionData(DEFAULT_SEVERITY_DISTRIBUTION).data
 }
 
 /**
@@ -55,39 +55,34 @@ function getSeverity(inputFilename: string | undefined) {
  */
 function getAge(inputFilename: string | undefined, name: string) {
   if (inputFilename) {
-    const data = readJsonFromFile<any>(inputFilename)
+    const data = readJsonFromFile<AgeDistributionData>(inputFilename)
     return data.data
   }
-  else {
-    return getAgeDistribution(name)
-  }
+
+  return getAgeDistributionData(name).data
 }
 
 async function main() {
   // Command line argument processing.
-  const argv = yargs.options({
-    scenario: {type: 'string', demandOption: true,
-               describe: 'Path to scenario parameters JSON file.'},
-    age:      {type: 'string',
-               describe: 'Path to age distribution JSON file.'},
-    severity: {type: 'string',
-               describe: 'Path to severity JSON file.'},
-    out:      {type: 'string', demandOption: true,
-               describe: 'Path to output file.'},
-  })
+  const { argv } = yargs
+    .options({
+      scenario: { type: 'string', demandOption: true, describe: 'Path to scenario parameters JSON file.' },
+      age: { type: 'string', describe: 'Path to age distribution JSON file.' },
+      severity: { type: 'string', describe: 'Path to severity JSON file.' },
+      out: { type: 'string', demandOption: true, describe: 'Path to output file.' },
+    })
     .help()
     .version(false)
     .alias('h', 'help')
-    .argv
 
   // Read the scenario data.
   const scenarioData = readJsonFromFile<ScenarioData>(argv.scenario)
   const scenario = toInternal(scenarioData.data)
   const params: ScenarioFlat = {
-     ...scenario.population,
-     ...scenario.epidemiological,
-     ...scenario.simulation,
-     ...scenario.mitigation,
+    ...scenario.population,
+    ...scenario.epidemiological,
+    ...scenario.simulation,
+    ...scenario.mitigation,
   }
 
   // Load severity and age data.
