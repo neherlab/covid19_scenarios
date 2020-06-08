@@ -1,15 +1,14 @@
 import path from 'path'
 
+import { isEmpty } from 'lodash'
+
 import type { NextConfig } from 'next'
 import getWithMDX from '@next/mdx'
 import withBundleAnalyzer from '@zeit/next-bundle-analyzer'
-
-import { isEmpty } from 'lodash'
 import withPlugins from 'next-compose-plugins'
-
 import nextRuntimeDotenv from 'next-runtime-dotenv'
-import { findModuleRoot } from '../../lib/findModuleRoot'
 
+import { findModuleRoot } from '../../lib/findModuleRoot'
 import { getenv } from '../../lib/getenv'
 import { getGitCommitHash } from '../../lib/getGitCommitHash'
 import { getBuildUrl } from '../../lib/getBuildUrl'
@@ -18,8 +17,8 @@ import { getBuildNumber } from '../../lib/getBuildNumber'
 
 import getWithEnvironment from './withEnvironment'
 import getWithFriendlyConsole from './withFriendlyConsole'
+import getWithLodash from './withLodash'
 import withSvg from './withSvg'
-
 import withWorker from './withWorker'
 
 const MODE = getenv('NODE_ENV') === 'development' ? 'development' : 'production' // prettier-ignore
@@ -103,6 +102,8 @@ const withEnvironment = getWithEnvironment({
   WEB_ROOT: getWebRoot(),
 })
 
+const withLodash = getWithLodash({ unicode: false })
+
 const config = withConfig(
   withPlugins(
     [
@@ -112,6 +113,7 @@ const config = withConfig(
       [withBundleAnalyzer],
       [withFriendlyConsole],
       [withMDX, { pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'] }],
+      [withLodash],
     ],
     nextConfig,
   ),
