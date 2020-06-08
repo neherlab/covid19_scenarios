@@ -73,4 +73,8 @@ export interface NextConfig {
   serverRuntimeConfig?: ServerRuntimeConfig
   publicRuntimeConfig?: PublicRuntimeConfig
   reactStrictMode?: boolean
+  typescript?: {
+    ignoreDevErrors?: boolean
+    ignoreBuildErrors?: boolean
+  }
 }

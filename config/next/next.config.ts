@@ -73,6 +73,10 @@ const nextConfig: NextConfig = {
     buildActivity: false,
     autoPrerender: true,
   },
+  typescript: {
+    ignoreDevErrors: false,
+    ignoreBuildErrors: false,
+  },
 }
 
 const withConfig = nextRuntimeDotenv()
