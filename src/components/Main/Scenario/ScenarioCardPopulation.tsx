@@ -71,7 +71,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
       />
       <FormSpinBox
         identifier="population.hospitalBeds"
-        label={`${t('Hospital Beds')} (${t('est.')})`}
+        label={t('Hospital Beds (est.)')}
         help={t(
           'Number of hospital beds available. The default values are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
         )}
@@ -82,7 +82,7 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
       />
       <FormSpinBox
         identifier="population.icuBeds"
-        label={`${t('ICU/ICMU')} (${t('est.')})`}
+        label={t('ICU/ICMU (est.)')}
         help={t(
           'Number of available beds in Intensive Care Units (ICUs). The default values are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
         )}
