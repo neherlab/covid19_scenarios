@@ -216,7 +216,7 @@ class ScenarioArray(schema.ScenarioArray):
         if wtr is None:
             return json.dumps(self.to_dict(), default=lambda x: x.__dict__, sort_keys=True, indent=2)
         else:
-            return wtr.write(json.dumps(self.to_dict()))
+            return wtr.write(json.dumps(self.to_dict(), sort_keys=True, indent=2))
 
 
 # ------------------------------------------------------------------------
