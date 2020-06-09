@@ -58,7 +58,7 @@ export const linesToPlot: LineProps[] = [
   {
     key: DATA_POINTS.WeeklyFatalities,
     color: colors.weeklyFatality,
-    name: 'weekly deaths (model)',
+    name: 'Weekly deaths (model)',
     legendType: 'line',
   },
   { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: 'Total hospital beds', legendType: 'none' },
