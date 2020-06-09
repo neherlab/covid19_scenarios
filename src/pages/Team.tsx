@@ -25,14 +25,14 @@ export default function Team() {
 
           <h2>{t('Support')}</h2>
 
-          <p>{'We want to thank the companies that reached out and helped us to build this tool:'}</p>
+          <p>{t('We want to thank the companies that reached out and helped us to build this tool:')}</p>
 
           <p>
-            {`ZEIT sponsored to build and host all of your pull requests on their now.sh platform.
-             This has helped us enormously, especially when working with external collaborators`}
+            {t(`Vercel (previously known as ZEIT) sponsored to build and host all of your pull requests on their now.sh platform.
+             This has helped us enormously, especially when working with external collaborators`)}
           </p>
 
-          <p>{'Github kindly allowed us to use their new Discussions feature'}</p>
+          <p>{t('Github kindly allowed us to use their new Discussions feature')}</p>
         </Col>
       </Row>
     </Container>

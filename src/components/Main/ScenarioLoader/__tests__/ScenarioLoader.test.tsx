@@ -39,7 +39,7 @@ describe('ScenarioLoader', () => {
       <ScenarioLoader
         scenarioOptions={[]}
         onScenarioSelect={onScenarioSelect}
-        onClose={onClose}
+        close={onClose}
         visible
         setSeverity={setSeverity}
         scenarioDispatch={scenarioDispatch}

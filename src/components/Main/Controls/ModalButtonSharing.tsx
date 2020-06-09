@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import urlJoin from 'proper-url-join'
+import React, { useState, useMemo } from 'react'
 
+import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Button, Col, Modal, ModalBody, ModalHeader, Row, ModalFooter, InputGroup, InputGroupAddon } from 'reactstrap'
 import { MdShare } from 'react-icons/md'
@@ -21,6 +23,12 @@ import {
   WhatsappShareButton,
 } from 'react-share'
 
+import { ScenarioParameters } from '../../../algorithms/types/Param.types'
+import { toUrl } from '../../../io/serialization/toUrl'
+
+import type { State } from '../../../state/reducer'
+import { selectScenarioParameters } from '../../../state/scenario/scenario.selectors'
+
 import { ClipboardButton } from '../../Buttons/ClipboardButton'
 import { UrlTextInput } from './UrlTextInput'
 
@@ -30,12 +38,21 @@ const SOCIAL_ICON_SIZE = 44
 
 export interface ModalButtonSharingProps {
   buttonSize: number
-  shareableLink: string
+  senarioParameters: ScenarioParameters
 }
 
-function ModalButtonSharing({ buttonSize, shareableLink }: ModalButtonSharingProps) {
+const mapStateToProps = (state: State) => ({
+  senarioParameters: selectScenarioParameters(state),
+})
+
+const mapDispatchToProps = {}
+
+export function ModalButtonSharingDisconnected({ buttonSize, senarioParameters }: ModalButtonSharingProps) {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const shareableLink = useMemo(() => decodeURI(urlJoin(window?.location.href, toUrl(senarioParameters))), [
+    senarioParameters,
+  ])
 
   function toggleOpen() {
     setIsOpen(!isOpen)
@@ -176,4 +193,4 @@ function ModalButtonSharing({ buttonSize, shareableLink }: ModalButtonSharingPro
   )
 }
 
-export { ModalButtonSharing }
+export const ModalButtonSharing = connect(mapStateToProps, mapDispatchToProps)(ModalButtonSharingDisconnected)

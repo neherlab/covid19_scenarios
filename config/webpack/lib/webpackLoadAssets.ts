@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-unsafe-regex */
 import urljoin from 'url-join'
 
 export interface WebpackLoadAssetsParams {
@@ -21,8 +22,32 @@ export default function webpackLoadAssets({
 
   return [
     {
-      // eslint-disable-next-line security/detect-unsafe-regex
-      test: /\.(eot|otf|webp|ttf|woff\d?|svg|png|jpe?g|gif)(\?.*)?$/i,
+      test: /\.svg(\?.*)?$/i,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  removeViewBox: false,
+                },
+              ],
+            },
+          },
+        },
+        {
+          loader: 'url-loader',
+          options: {
+            limit: inlineSmallerThan,
+            name,
+            publicPath,
+          },
+        },
+      ],
+    },
+    {
+      test: /\.(eot|otf|webp|ttf|woff\d?|png|jpe?g|gif)(\?.*)?$/i,
       loader: 'url-loader',
       options: {
         limit: inlineSmallerThan,

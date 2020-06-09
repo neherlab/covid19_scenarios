@@ -1,20 +1,18 @@
-import React from 'react'
+import React, { HTMLProps, PropsWithChildren } from 'react'
 
+import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
-export interface NavigationLinkProps<T> {
+export interface NavigationLinkProps extends PropsWithChildren<HTMLProps<HTMLDataListElement>> {
   active?: boolean
-  content: T
   url: string
 }
 
-export default function NavigationLink<T>({ active, content, url }: NavigationLinkProps<T>) {
-  const activeClass = active ? 'active' : ''
-
+export default function NavigationLink<T>({ active, url, children }: NavigationLinkProps) {
   return (
-    <li className={`nav-item ${activeClass}`}>
+    <li className={classNames('nav-item', active && 'active')}>
       <Link className="nav-link" to={url}>
-        {content}
+        {children}
       </Link>
     </li>
   )

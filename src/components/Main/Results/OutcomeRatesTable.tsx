@@ -2,12 +2,15 @@ import React from 'react'
 
 import { useTranslation } from 'react-i18next'
 
-import { Col, Row } from 'reactstrap'
-
 import * as d3 from 'd3'
+import { Col, Row } from 'reactstrap'
+import { connect } from 'react-redux'
 
-import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+
+import type { State } from '../../../state/reducer'
+import { selectResult } from '../../../state/algorithm/algorithm.selectors'
+import { selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
@@ -34,20 +37,28 @@ function TableRow({ entry, fmt }: RowProps) {
 const percentageFormatter = (v: number) => d3.format('.2f')(v * 100)
 
 export interface TableProps {
-  showHumanized?: boolean
   result?: AlgorithmResult
-  rates?: SeverityDistributionDatum[]
-  printable?: boolean
+  shouldFormatNumbers: boolean
+  forPrint?: boolean
 }
 
-export function OutcomeRatesTable({ showHumanized, result, rates, printable }: TableProps) {
+const mapStateToProps = (state: State) => ({
+  result: selectResult(state),
+  shouldFormatNumbers: selectShouldFormatNumbers(state),
+})
+
+const mapDispatchToProps = {}
+
+export const OutcomeRatesTable = connect(mapStateToProps, mapDispatchToProps)(OutcomeRatesTableDisconnected)
+
+export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, forPrint }: TableProps) {
   const { t } = useTranslation()
 
-  if (!result || !rates) {
+  if (!result) {
     return null
   }
 
-  const formatNumber = numberFormatter(!!showHumanized, false)
+  const formatNumber = numberFormatter(shouldFormatNumbers, false)
 
   const endResult = {
     lower: result.trajectory.lower[result.trajectory.middle.length - 1],
@@ -94,14 +105,14 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
 
   const totalFormatter = (value: number) => formatNumber(value)
 
-  if (printable) {
+  if (forPrint) {
     return (
       <div>
         <h3>{t('Proportions')}</h3>
         <table>
           <thead>
             <tr>
-              <th>{t('Outcome')} &emsp; </th>
+              <th>{t('Outcome')}</th>
               <th>{t('Population average')}</th>
             </tr>
           </thead>
@@ -128,7 +139,7 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
         <table>
           <thead>
             <tr>
-              <th>{t('Quantity')} &emsp; </th>
+              <th>{t('Quantity')}</th>
               <th>{t('Peak/total value')}</th>
             </tr>
           </thead>
@@ -163,7 +174,7 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
         <table>
           <thead>
             <tr>
-              <th>{t('Outcome')} &emsp; </th>
+              <th>{t('Outcome')}</th>
               <th>{t('Population average')}</th>
             </tr>
           </thead>
@@ -192,7 +203,7 @@ export function OutcomeRatesTable({ showHumanized, result, rates, printable }: T
         <table>
           <thead>
             <tr>
-              <th>{t('Quantity')} &emsp; </th>
+              <th>{t('Quantity')}</th>
               <th>{t('Peak/total value')}</th>
             </tr>
           </thead>

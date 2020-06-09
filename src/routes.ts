@@ -5,6 +5,7 @@ const routes: PageRouteDesc[] = [
   { path: '/about', page: 'About' },
   { path: '/team', page: 'Team' },
   { path: '/faq', page: 'Faq' },
+  { path: '/print', page: 'Print' },
   { path: '/updates', page: 'Updates' },
 ]
 

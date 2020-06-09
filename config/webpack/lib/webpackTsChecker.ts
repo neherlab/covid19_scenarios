@@ -32,11 +32,9 @@ export function createFormatter({ warningsAreErrors }: CreateFormatterParams) {
     const useColors = isInteractive()
 
     // NOTE: this forces all issues to become warnings
-    // eslint-disable-next-line no-param-reassign
     issue.severity = IssueSeverity.WARNING
     if (warningsAreErrors) {
       // NOTE: this forces all issues to become errors
-      // eslint-disable-next-line no-param-reassign
       issue.severity = IssueSeverity.WARNING
     }
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
-import { isEmpty } from 'lodash'
-
+import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
@@ -17,10 +16,12 @@ import {
 } from 'reactstrap'
 import { MdFileDownload } from 'react-icons/md'
 import FileIcon, { defaultStyles } from 'react-file-icon'
+import { selectHasResult, selectResult } from '../../../state/algorithm/algorithm.selectors'
 
-import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import type { State } from '../../../state/reducer'
+import type { ScenarioParameters } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
-import type { State } from '../state/state'
+import { selectScenarioParameters } from '../../../state/scenario/scenario.selectors'
 
 import { exportAll, exportResult, exportScenario } from '../../../algorithms/utils/exportResult'
 
@@ -28,18 +29,10 @@ import { FILENAME_PARAMS, FILENAME_RESULTS_DETAILED, FILENAME_RESULTS_SUMMARY, F
 
 import './ModalButtonExport.scss'
 
-export interface ModalButtonExportProps {
-  buttonSize: number
-  scenarioState: State
-  severity: SeverityDistributionDatum[]
-  severityName: string
-  result?: AlgorithmResult
-}
-
 export const FileIconJson = () => (
   <FileIcon
     {...defaultStyles.json}
-    classname="mr-2 export-file-icon"
+    className="mr-2 export-file-icon"
     size={45}
     extension="json"
     type="code"
@@ -52,7 +45,7 @@ export const FileIconJson = () => (
 export const FileIconTsv = ({ color = '#2e7ec9' }: { color: string }) => (
   <FileIcon
     {...defaultStyles.csv}
-    classname="mr-2 export-file-icon"
+    className="mr-2 export-file-icon"
     size={45}
     extension="tsv"
     type="spreadsheet"
@@ -67,7 +60,7 @@ export const FileIconTsvDetailed = () => <FileIconTsv color="#801f1d" />
 export const FileIconZip = () => (
   <FileIcon
     {...defaultStyles.zip}
-    classname="mr-2 export-file-icon"
+    className="mr-2 export-file-icon"
     size={45}
     extension="zip"
     labelColor="#91640f"
@@ -113,7 +106,27 @@ export function ExportFileElement({
   )
 }
 
-function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, result }: ModalButtonExportProps) {
+export interface ModalButtonExportProps {
+  buttonSize: number
+  scenarioParameters: ScenarioParameters
+  hasResult: boolean
+  result?: AlgorithmResult
+}
+
+const mapStateToProps = (state: State) => ({
+  scenarioParameters: selectScenarioParameters(state),
+  hasResult: selectHasResult(state),
+  result: selectResult(state),
+})
+
+const mapDispatchToProps = {}
+
+export function ModalButtonExportDisconnected({
+  buttonSize,
+  scenarioParameters,
+  hasResult,
+  result,
+}: ModalButtonExportProps) {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -129,18 +142,16 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
     setIsOpen(false)
   }
 
-  const canExportResult = isEmpty(result)
-
   function exportScenarioParameters() {
-    exportScenario({ scenarioState, severity, severityName, filename: FILENAME_PARAMS })
+    exportScenario({ scenarioParameters, filename: FILENAME_PARAMS })
   }
 
   function maybeExportResultSummary() {
-    if (canExportResult) {
+    if (!hasResult) {
       return
     }
     exportResult({
-      scenarioState,
+      scenarioParameters,
       result,
       filename: FILENAME_RESULTS_SUMMARY,
       detailed: false,
@@ -148,12 +159,12 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
   }
 
   function maybeExportResultDetailed() {
-    if (canExportResult) {
+    if (!hasResult) {
       return
     }
 
     exportResult({
-      scenarioState,
+      scenarioParameters,
       result,
       filename: FILENAME_RESULTS_DETAILED,
       detailed: true,
@@ -161,14 +172,12 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
   }
 
   function maybeExportAll() {
-    if (canExportResult) {
+    if (!hasResult) {
       return
     }
 
     exportAll({
-      scenarioState,
-      severity,
-      severityName,
+      scenarioParameters,
       result,
       filenameParams: FILENAME_PARAMS,
       filenameResultsDetailed: FILENAME_RESULTS_DETAILED,
@@ -253,5 +262,7 @@ function ModalButtonExport({ buttonSize, scenarioState, severity, severityName, 
     </>
   )
 }
+
+const ModalButtonExport = connect(mapStateToProps, mapDispatchToProps)(ModalButtonExportDisconnected)
 
 export { ModalButtonExport }

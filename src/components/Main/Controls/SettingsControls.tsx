@@ -1,26 +1,50 @@
 import React from 'react'
 
 import { useTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
 import { Col, Row } from 'reactstrap'
+import { ActionCreator } from 'typescript-fsa'
+
+import type { State } from '../../../state/reducer'
+
+import {
+  selectIsLogScale,
+  selectShouldFormatNumbers,
+  selectIsAutorunEnabled,
+} from '../../../state/settings/settings.selectors'
+
+import { setAutorun, setFormatNumbers, setLogScale } from '../../../state/settings/settings.actions'
 
 import FormSwitch from '../../Form/FormSwitch'
 
 export interface SettingsControlsProps {
-  isLogScale: boolean
-  toggleLogScale(): void
-  shouldFormatNumbers: boolean
-  toggleFormatNumbers(): void
   isAutorunEnabled: boolean
-  toggleAutorun(): void
+  isLogScale: boolean
+  setAutorun: ActionCreator<boolean>
+  setFormatNumbers: ActionCreator<boolean>
+  setLogScale: ActionCreator<boolean>
+  shouldFormatNumbers: boolean
 }
 
-function SettingsControls({
-  isLogScale,
-  toggleLogScale,
-  shouldFormatNumbers,
-  toggleFormatNumbers,
+const mapStateToProps = (state: State) => ({
+  isAutorunEnabled: selectIsAutorunEnabled(state),
+  isLogScale: selectIsLogScale(state),
+  shouldFormatNumbers: selectShouldFormatNumbers(state),
+})
+
+const mapDispatchToProps = {
+  setAutorun,
+  setFormatNumbers,
+  setLogScale,
+}
+
+export function SettingsControlsDisconnected({
   isAutorunEnabled,
-  toggleAutorun,
+  isLogScale,
+  setAutorun,
+  setFormatNumbers,
+  setLogScale,
+  shouldFormatNumbers,
 }: SettingsControlsProps) {
   const { t } = useTranslation()
 
@@ -33,7 +57,7 @@ function SettingsControls({
             label={t('Run automatically')}
             help={t('Run simulation automatically when any of the parameters change')}
             checked={isAutorunEnabled}
-            onValueChanged={toggleAutorun}
+            onValueChanged={setAutorun}
           />
         </span>
         <span className="mr-4 flex-1" data-testid="LogScaleSwitch">
@@ -42,7 +66,7 @@ function SettingsControls({
             label={t('Log scale')}
             help={t('Toggle between logarithmic and linear scale on vertical axis of the plot')}
             checked={isLogScale}
-            onValueChanged={toggleLogScale}
+            onValueChanged={setLogScale}
           />
         </span>
         <span className="flex-1" data-testid="HumanizedValuesSwitch">
@@ -51,12 +75,14 @@ function SettingsControls({
             label={t('Format numbers')}
             help={t('Show numerical results in a human-friendly format')}
             checked={shouldFormatNumbers}
-            onValueChanged={toggleFormatNumbers}
+            onValueChanged={setFormatNumbers}
           />
         </span>
       </Col>
     </Row>
   )
 }
+
+const SettingsControls = connect(mapStateToProps, mapDispatchToProps)(SettingsControlsDisconnected)
 
 export { SettingsControls }

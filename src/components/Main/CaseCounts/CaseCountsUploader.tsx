@@ -11,8 +11,11 @@ import { appendDash } from '../../../helpers/appendDash'
 import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 
 import { FileReaderError, readFile } from '../../../helpers/readFile'
-import { convert, validate } from '../state/getCaseCounts'
-import { CSVParserErrorCSVSyntaxInvalid, ErrorArray } from '../state/serialization/errors'
+import { ErrorArray } from '../../../helpers/ErrorArray'
+
+import { CSVParserErrorCSVSyntaxInvalid } from '../../../io/parsingCsv/errors'
+import { convert, validate } from '../../../io/defaults/getCaseCountsData'
+
 import CaseCountsUploaderInstructionsText from './CaseCountsUploaderInstructionsText.mdx'
 import { CaseCountsLoaderUploadZone } from './CaseCountsUploadZone'
 
@@ -81,6 +84,9 @@ export default function CaseCountsUploader({ onDataImported }: ImportCaseCountDi
     let content = ''
     try {
       content = await readFile(file)
+
+      // NOTE: this should protect from parsing failures when file is using DOS-style newlines
+      content = content.replace(/\r\n/g, '\n')
     } catch {
       throw new FileReaderError(file)
     }
@@ -101,10 +107,10 @@ export default function CaseCountsUploader({ onDataImported }: ImportCaseCountDi
       throw new CSVParserErrorCSVSyntaxInvalid([`There was no data`])
     }
 
-    const dataDangerous = { data, name: 'Custom' }
+    const dataDangerous = { data, name: file.name }
     validate(dataDangerous)
     const converted = convert(dataDangerous)
-    onDataImported({ fileName: file.name, data: converted })
+    onDataImported({ fileName: file.name, data: converted.data })
     close()
   }
 

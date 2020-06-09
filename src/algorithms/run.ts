@@ -4,6 +4,7 @@ import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint } from './types
 import { getPopulationParams, initializePopulation } from './initialize'
 import { collectTotals, evolve } from './model'
 import { percentileTrajectory } from './results'
+import { preparePlotData } from './preparePlotData'
 
 const identity = (x: number) => x
 
@@ -51,20 +52,20 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
     }
   })
 
+  const resultsTrajectory = {
+    lower: percentileTrajectory(trajectories, 0.2),
+    middle: percentileTrajectory(trajectories, 0.5),
+    upper: percentileTrajectory(trajectories, 0.8),
+    percentile: {},
+  }
+
   return {
-    trajectory: {
-      lower: percentileTrajectory(trajectories, 0.2),
-      middle: percentileTrajectory(trajectories, 0.5),
-      upper: percentileTrajectory(trajectories, 0.8),
-      // middle: mean,
-      // upper: mean.map((m, i) => mulTP(m, sdev[i])),
-      // lower: mean.map((m, i) => divTP(m, sdev[i])),
-      percentile: {},
-    },
+    trajectory: resultsTrajectory,
     R0: {
       mean: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[1]] })),
       lower: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[0]] })),
       upper: R0Trajectories.map((d) => ({ t: d.t, y: d.y[idxs[2]] })),
     },
+    plotData: preparePlotData(resultsTrajectory),
   }
 }
