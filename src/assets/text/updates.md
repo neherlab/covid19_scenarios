@@ -14,6 +14,15 @@ two types of reasons
 We realize this can be confusing, but in this evolving situation, this is difficult to avoid. We try to summarize the
 most significant model changes below.
 
+### 2020-06-09: Bugfix in mitigationInterval sampling.
+Our simulations include parameter uncertainty by sampling parameters from user-specified ranges.
+For somewhat subtle reasons, this sampling procedure behaved differently in the production and the development
+environment which result in using only one realization of the mitigation parameters.
+This was patched in [commit](https://github.com/neherlab/covid19_scenarios/pull/729/commits/35ba172229c944fa0b88efbd1e112ecdcd71e97f).
+As a result, you should expect that the confidence intervals increased, while the jumpiness from one realization to another
+should be reduced.
+
+
 ### 2020-05-22: Changes to the parameter presets
 
 Our parameter presets for R0, the initial number of cases, and interventions are meant to facilitate adjusting a
