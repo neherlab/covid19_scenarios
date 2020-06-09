@@ -1,0 +1,183 @@
+{
+  "ageDistributionData": {
+    "data": [
+      {
+        "ageGroup": "0-9",
+        "population": 39721484
+      },
+      {
+        "ageGroup": "10-19",
+        "population": 42332393
+      },
+      {
+        "ageGroup": "20-29",
+        "population": 46094077
+      },
+      {
+        "ageGroup": "30-39",
+        "population": 44668271
+      },
+      {
+        "ageGroup": "40-49",
+        "population": 40348398
+      },
+      {
+        "ageGroup": "50-59",
+        "population": 42120077
+      },
+      {
+        "ageGroup": "60-69",
+        "population": 38488173
+      },
+      {
+        "ageGroup": "70-79",
+        "population": 24082598
+      },
+      {
+        "ageGroup": "80+",
+        "population": 13147180
+      }
+    ],
+    "name": "United States of America"
+  },
+  "scenarioData": {
+    "data": {
+      "epidemiological": {
+        "hospitalStayDays": 3,
+        "icuStayDays": 14,
+        "infectiousPeriodDays": 3,
+        "latencyDays": 3,
+        "overflowSeverity": 2,
+        "peakMonth": 0,
+        "r0": {
+          "begin": 4.08,
+          "end": 4.98
+        },
+        "seasonalForcing": 0
+      },
+      "mitigation": {
+        "mitigationIntervals": [
+          {
+            "color": "#cccccc",
+            "name": "Intervention 1",
+            "timeRange": {
+              "begin": "2020-03-24T00:00:00.000Z",
+              "end": "2020-09-01T00:00:00.000Z"
+            },
+            "transmissionReduction": {
+              "begin": 73.8,
+              "end": 84.2
+            }
+          },
+          {
+            "color": "#d31c99",
+            "name": "Intervention from 9 Jun 2020",
+            "timeRange": {
+              "begin": "2020-06-09T07:32:30.912Z",
+              "end": "2020-07-09T07:32:30.905Z"
+            },
+            "transmissionReduction": {
+              "begin": 10,
+              "end": 90
+            }
+          }
+        ]
+      },
+      "population": {
+        "ageDistributionName": "United States of America",
+        "caseCountsName": "United States of America",
+        "hospitalBeds": 798288,
+        "icuBeds": 49499,
+        "importsPerDay": 0.1,
+        "initialNumberOfCases": 1,
+        "populationServed": 327167434
+      },
+      "simulation": {
+        "numberStochasticRuns": 15,
+        "simulationTimeRange": {
+          "begin": "2020-02-08T00:00:00.000Z",
+          "end": "2020-08-31T00:00:00.000Z"
+        }
+      }
+    },
+    "name": "United States of America (edited)"
+  },
+  "schemaVer": "2.0.0",
+  "severityDistributionData": {
+    "data": [
+      {
+        "ageGroup": "0-9",
+        "confirmed": 5,
+        "critical": 5,
+        "fatal": 30,
+        "isolated": 0,
+        "severe": 1
+      },
+      {
+        "ageGroup": "10-19",
+        "confirmed": 5,
+        "critical": 10,
+        "fatal": 30,
+        "isolated": 0,
+        "severe": 3
+      },
+      {
+        "ageGroup": "20-29",
+        "confirmed": 10,
+        "critical": 10,
+        "fatal": 30,
+        "isolated": 0,
+        "severe": 3
+      },
+      {
+        "ageGroup": "30-39",
+        "confirmed": 15,
+        "critical": 15,
+        "fatal": 30,
+        "isolated": 0,
+        "severe": 3
+      },
+      {
+        "ageGroup": "40-49",
+        "confirmed": 20,
+        "critical": 20,
+        "fatal": 30,
+        "isolated": 0,
+        "severe": 6
+      },
+      {
+        "ageGroup": "50-59",
+        "confirmed": 25,
+        "critical": 25,
+        "fatal": 40,
+        "isolated": 0,
+        "severe": 10
+      },
+      {
+        "ageGroup": "60-69",
+        "confirmed": 30,
+        "critical": 35,
+        "fatal": 40,
+        "isolated": 0,
+        "severe": 25
+      },
+      {
+        "ageGroup": "70-79",
+        "confirmed": 40,
+        "critical": 45,
+        "fatal": 50,
+        "isolated": 0,
+        "severe": 35
+      },
+      {
+        "ageGroup": "80+",
+        "confirmed": 50,
+        "critical": 55,
+        "fatal": 50,
+        "isolated": 0,
+        "severe": 50
+      }
+    ],
+    "name": "China CDC"
+  }
+}
