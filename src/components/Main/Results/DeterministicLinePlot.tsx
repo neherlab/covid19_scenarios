@@ -134,7 +134,7 @@ export function DeterministicLinePlotDiconnected({
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
-  console.log(observations)
+
   const plotData = [
     ...result.plotData.map((x) => {
       const dpoint = { time: x.time, hospitalBeds: nHospitalBeds, ICUbeds: nICUBeds }
@@ -175,7 +175,7 @@ export function DeterministicLinePlotDiconnected({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const observationsHavingDataToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
+  const observationsHavingDataToPlot = observationsToPlot().filter((itemToPlot) => {
     if (observations.length !== 0) {
       return hasObservations[itemToPlot.key]
     }

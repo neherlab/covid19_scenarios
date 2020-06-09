@@ -116,14 +116,14 @@ export const areasToPlot: LineProps[] = [
   },
 ]
 
-export function observationsToPlot(casesDelta: number): LineProps[] {
+export function observationsToPlot(): LineProps[] {
   return [
     { key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: 'Cumulative cases (data)' },
-    { key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: `Cases past ${casesDelta} day(s) (data)` },
+    { key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: `Weekly cases (data)` },
     { key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: 'Patients in hospital (data)' },
     { key: DATA_POINTS.ObservedICU, color: colors.critical, name: 'Patients in ICU (data)' },
     { key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: 'Cumulative deaths (data)' },
-    { key: DATA_POINTS.ObservedWeeklyDeaths, color: colors.weeklyFatality, name: 'weekly deaths (data)' },
+    { key: DATA_POINTS.ObservedWeeklyDeaths, color: colors.weeklyFatality, name: 'Weekly deaths (data)' },
   ]
 }
 
