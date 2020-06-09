@@ -6,7 +6,7 @@
 \.ignore
 \.reports
 \.vscode
-cypress/integration/language.spec.ts
+cypress
 data
 node_modules
 schemas
