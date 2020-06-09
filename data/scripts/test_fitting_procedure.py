@@ -31,12 +31,12 @@ def check_fit(data, data_fit, time_points):
             plt.plot(time_points, data_fit[ii], '--', c=f"C{jj}", label=f"{lab} fit")
     plt.yscale("log")
     plt.legend()
-    plt.savefig("Test_fitting", format="png")
+    # plt.savefig("Test_fitting", format="png")
     plt.show()
 
 if __name__ == "__main__":
     key = "Switzerland"
-    containement_start = 20
+    containment_start = 20
     efficacy = 0.7
     time_points = range(1, 50)
     frac_reported = 0.2
@@ -44,25 +44,24 @@ if __name__ == "__main__":
     R0=3
 
     rates = model.DefaultRates
-    rates.infectivity = R0 * 1/3
-    rates.efficacy = efficacy
     params = model.Params(ages=model.AGES[model.POPDATA[key]["ageDistribution"]], size=model.POPDATA[key]["size"],
-                    date=containement_start, times=time_points, rates=rates, fracs=model.Fracs(frac_reported))
+                    containment_start=containment_start, times=time_points, logR0=np.log(R0))
+    params.efficacy = efficacy
+    params.reported = frac_reported
     data = generate_data(params, InitialCases)
+
     data[Sub.H] = None
     data[Sub.C] = None
     Re_guess = get_Re_guess(time_points, data)
     res = model.fit_population_iterative(key, time_points, data)
-    data_fit = generate_data(res["params"], res["initialCases"])
+    data_fit = generate_data(res["params"], np.exp(res["params"].logInitial))
 
-    print(params)
-    print(res['params'])
     check_fit(data, data_fit, time_points)
-    # plt.plot(time_points, stair_func(time_points, *Re_guess["fit"]), label="Fit stair function")
-    # plt.plot(time_points, stair_func(time_points, 3, 3*0.3, containement_start), label="Input stair function")
-    # plt.plot(time_points, Re_guess["R0_by_day"][Sub.T], label="R_0 by day")
-    # plt.plot(time_points, Re_guess["gr"][Sub.T])
-    # plt.grid()
-    # plt.legend()
+    plt.plot(time_points, stair_func(time_points, *Re_guess["fit"]), label="Fit stair function")
+    plt.plot(time_points, stair_func(time_points, 3, 3*0.3, containment_start), label="Input stair function")
+    plt.plot(time_points, Re_guess["R0_by_day"][Sub.T], label="R_0 by day")
+    plt.plot(time_points, Re_guess["gr"][Sub.T])
+    plt.grid()
+    plt.legend()
     # plt.savefig("R0_estimation", format="png")
-    # plt.show()
+    plt.show()
