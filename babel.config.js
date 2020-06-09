@@ -12,7 +12,6 @@ const development = process.env.NODE_ENV === 'development'
 const production = process.env.NODE_ENV === 'production'
 const analyze = process.env.ANALYZE === '1'
 const debuggableProd = process.env.DEBUGGABLE_PROD === '1'
-const loose = true
 
 module.exports = (api) => {
   const web = api.caller(isWebTarget)
@@ -30,8 +29,6 @@ module.exports = (api) => {
           corejs: web ? 'core-js@3' : false,
           targets: !web ? { node: 'current' } : undefined,
           modules: webpack ? false : 'commonjs',
-          loose,
-          shippedProposals: development,
           exclude: ['transform-typeof-symbol'],
         },
       ],
@@ -39,7 +36,7 @@ module.exports = (api) => {
     ],
     plugins: [
       development && web && 'react-refresh/babel',
-      ['@babel/plugin-proposal-numeric-separator', { loose }],
+      ['@babel/plugin-proposal-numeric-separator'],
       'babel-plugin-lodash',
       (development || debuggableProd) && web && !analyze && ['babel-plugin-typescript-to-proptypes', { typeCheck: './src/**/*.ts' }], // prettier-ignore
       (development || debuggableProd) && web && !analyze && 'babel-plugin-redux-saga', // prettier-ignore

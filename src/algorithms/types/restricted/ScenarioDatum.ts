@@ -13,16 +13,22 @@ export interface MitigationInterval extends MitigationIntervalExternal {
   id: string
 }
 
-interface ScenarioDatumMitigationInternalMutable extends ScenarioDatumMitigationExternal {
+export interface ScenarioDatumMitigationInternalMutable extends ScenarioDatumMitigationExternal {
   mitigationIntervals: MitigationInterval[]
 }
 
 export type ScenarioDatumMitigation = ScenarioDatumMitigationInternalMutable
 
-interface ScenarioDatumSubsetOfMitigationWithIds extends ScenarioDatumExternal {
+export interface ScenarioDatumSubsetOfMitigationWithIds extends ScenarioDatumExternal {
   mitigation: ScenarioDatumMitigation
 }
 
-type ScenarioDatumWithoutMitigation = StrictOmit<ScenarioDatumExternal, 'mitigation'>
+export type ScenarioDatumWithoutMitigation = StrictOmit<ScenarioDatumExternal, 'mitigation'>
 
-export type ScenarioDatum = Merge<ScenarioDatumWithoutMitigation, ScenarioDatumSubsetOfMitigationWithIds>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ScenarioDatum extends Merge<ScenarioDatumWithoutMitigation, ScenarioDatumSubsetOfMitigationWithIds> {}
+
+export interface ScenarioData {
+  name: string
+  data: ScenarioDatum
+}

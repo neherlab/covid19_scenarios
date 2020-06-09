@@ -2,20 +2,19 @@ import React, { useState } from 'react'
 
 import { FileRejection } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
 import { UncontrolledAlert } from 'reactstrap'
-import type { AnyAction } from 'typescript-fsa'
+import type { ActionCreator } from 'typescript-fsa'
+import { ScenarioParameters } from '../../../algorithms/types/Param.types'
 
-import type { SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 import { appendDash } from '../../../helpers/appendDash'
 
+import { deserialize } from '../../../io/serialization/deserialize'
+import { DeserializationError } from '../../../io/serialization/errors'
 import { readFile, FileReaderError } from '../../../helpers/readFile'
-
-import { setStateData } from '../state/actions'
-import { DeserializationError } from '../state/serialization/errors'
-import { deserialize } from '../state/serialization/serialize'
+import { setScenarioState } from '../../../state/scenario/scenario.actions'
 
 import { ScenarioLoaderUploadZone } from './ScenarioLoaderUploadZone'
-
 import ScenarioLoaderUploadInstructionsText from './ScenarioLoaderUploadInstructionsText.mdx'
 
 class UploadErrorTooManyFiles extends Error {
@@ -34,11 +33,18 @@ class UploadErrorUnknown extends Error {
 
 export interface ScenarioLoaderUploaderProps {
   close(): void
-  setSeverity(severity: SeverityDistributionDatum[]): void
-  scenarioDispatch(action: AnyAction): void
+  setScenarioState: ActionCreator<ScenarioParameters>
 }
 
-export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }: ScenarioLoaderUploaderProps) {
+const mapStateToProps = undefined
+
+const mapDispatchToProps = {
+  setScenarioState,
+}
+
+export const ScenarioLoaderUploader = connect(mapStateToProps, mapDispatchToProps)(ScenarioLoaderUploaderDisconnected)
+
+export function ScenarioLoaderUploaderDisconnected({ setScenarioState, close }: ScenarioLoaderUploaderProps) {
   const { t } = useTranslation()
   const [errors, setErrors] = useState<string[]>([])
 
@@ -83,17 +89,7 @@ export function ScenarioLoaderUploader({ scenarioDispatch, setSeverity, close }:
       throw new UploadErrorUnknown()
     }
 
-    scenarioDispatch(
-      setStateData({
-        current: params.scenarioName,
-        shouldRenameOnEdits: false,
-        data: params.scenario,
-        ageDistribution: params.ageDistribution,
-      }),
-    )
-
-    setSeverity(params.severity)
-
+    setScenarioState(params)
     close()
   }
 

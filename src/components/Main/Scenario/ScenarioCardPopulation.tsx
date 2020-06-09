@@ -5,28 +5,26 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 
 import { useTranslation } from 'react-i18next'
 
-import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
+import { CUSTOM_COUNTRY_NAME } from '../../../constants'
 
-import { ageDistributionNames } from '../state/getAgeDistribution'
-
-import { CUSTOM_COUNTRY_NAME } from '../state/state'
+import { ageDistributionNames } from '../../../io/defaults/getAgeDistributionData'
 
 import { CardWithControls } from '../../Form/CardWithControls'
 import { FormDatePicker } from '../../Form/FormDatePicker'
 import { FormDropdown } from '../../Form/FormDropdown'
 import { FormSpinBox } from '../../Form/FormSpinBox'
-import { ConfirmedCasesDataPicker } from './ConfirmedCasesDataPicker'
+
+import { CaseCountsDataPicker } from '../CaseCounts/CaseCountsDataPicker'
 
 const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
 countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18next.t(CUSTOM_COUNTRY_NAME) })
 
 export interface ScenarioCardPopulationProps {
-  setCaseCounts(caseCounts: CaseCountsDatum[]): void
   errors?: FormikErrors<FormikValues>
   touched?: FormikTouched<FormikValues>
 }
 
-function ScenarioCardPopulation({ setCaseCounts, errors, touched }: ScenarioCardPopulationProps) {
+function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
 
   return (
@@ -73,7 +71,7 @@ function ScenarioCardPopulation({ setCaseCounts, errors, touched }: ScenarioCard
       />
       <FormSpinBox
         identifier="population.hospitalBeds"
-        label={`${t('Hospital Beds')} (${t('est.')})`}
+        label={t('Hospital Beds (est.)')}
         help={t(
           'Number of hospital beds available. The default values are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
         )}
@@ -84,7 +82,7 @@ function ScenarioCardPopulation({ setCaseCounts, errors, touched }: ScenarioCard
       />
       <FormSpinBox
         identifier="population.icuBeds"
-        label={`${t('ICU/ICMU')} (${t('est.')})`}
+        label={t('ICU/ICMU (est.)')}
         help={t(
           'Number of available beds in Intensive Care Units (ICUs). The default values are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
         )}
@@ -93,7 +91,7 @@ function ScenarioCardPopulation({ setCaseCounts, errors, touched }: ScenarioCard
         errors={errors}
         touched={touched}
       />
-      <ConfirmedCasesDataPicker errors={errors} touched={touched} setCaseCounts={setCaseCounts} />
+      <CaseCountsDataPicker errors={errors} touched={touched} />
       <FormDatePicker
         identifier="simulation.simulationTimeRange"
         label={t('Simulation time range')}

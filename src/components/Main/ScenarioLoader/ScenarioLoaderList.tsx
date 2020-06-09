@@ -1,11 +1,18 @@
-import React, { HTMLProps, KeyboardEvent, useState } from 'react'
+import React, { HTMLProps, KeyboardEvent, useCallback, useMemo, useState } from 'react'
 
 import { partition } from 'lodash'
 
 import { useTranslation } from 'react-i18next'
 import { MdClear } from 'react-icons/md'
+import { connect } from 'react-redux'
 import { Button, Input, InputGroup, InputGroupAddon } from 'reactstrap'
+import { ActionCreator } from 'typescript-fsa'
 import { useDebouncedCallback } from 'use-debounce'
+
+import { State } from '../../../state/reducer'
+import { SetScenarioParams, setScenario } from '../../../state/scenario/scenario.actions'
+import { selectScenarioNames } from '../../../state/scenario/scenario.selectors'
+import { stringsToOptions } from '../../Form/FormDropdownOption'
 
 import { ScenarioLoaderListItem } from './ScenarioLoaderListItem'
 import type { ScenarioOption } from './ScenarioOption'
@@ -13,11 +20,6 @@ import type { ScenarioOption } from './ScenarioOption'
 import './ScenarioLoader.scss'
 
 const DEBOUNCE_DELAY = 500
-
-export interface ScenarioLoaderListProps extends HTMLProps<HTMLDivElement> {
-  items: ScenarioOption[]
-  onScenarioSelect(scenario: string): void
-}
 
 export function includesLowerCase(candidate: string, searchTerm: string): boolean {
   return candidate.toLowerCase().includes(searchTerm.toLowerCase())
@@ -33,14 +35,39 @@ export function searchOptions(items: ScenarioOption[], term: string): ScenarioOp
   return [...itemsStartWith, ...itemsInclude]
 }
 
-export function ScenarioLoaderList({ items, onScenarioSelect }: ScenarioLoaderListProps) {
+export interface ScenarioLoaderListProps extends HTMLProps<HTMLDivElement> {
+  scenarioNames: string[]
+  setScenario: ActionCreator<SetScenarioParams>
+  close(): void
+}
+
+const mapStateToProps = (state: State) => ({
+  scenarioNames: selectScenarioNames(state),
+})
+
+const mapDispatchToProps = {
+  setScenario,
+}
+
+export const ScenarioLoaderList = connect(mapStateToProps, mapDispatchToProps)(ScenarioLoaderListDisconnected)
+
+export function ScenarioLoaderListDisconnected({ scenarioNames, setScenario, close }: ScenarioLoaderListProps) {
   const { t } = useTranslation()
   const [searchTerm, setSearchTerm] = useState('')
-  const [filteredRows, setFilteredRows] = useState(items)
+  const scenarioOptions = useMemo(() => stringsToOptions(scenarioNames), [scenarioNames])
+  const [filteredRows, setFilteredRows] = useState(scenarioOptions)
+
+  const onScenarioSelect = useCallback(
+    (scenarioName: string) => {
+      setScenario({ name: scenarioName })
+      close()
+    },
+    [close, setScenario],
+  )
 
   const executeFilter = (term: string) => {
     const hasSearchTerm = term.length > 0
-    const filtered = hasSearchTerm ? searchOptions(items, term) : items
+    const filtered = hasSearchTerm ? searchOptions(scenarioOptions, term) : scenarioOptions
     setFilteredRows(filtered)
   }
   const [executeFilterDebounced] = useDebouncedCallback(executeFilter, DEBOUNCE_DELAY)

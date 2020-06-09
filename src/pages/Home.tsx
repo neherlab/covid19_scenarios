@@ -1,18 +1,11 @@
 import React from 'react'
 
-import Main from '../components/Main/Main'
-import HandleInitialState from '../components/Main/HandleInitialState'
-import Disclaimer from '../components/Main/Disclaimer'
+import { Main } from '../components/Main/Main'
 
 import './Home.scss'
 
 function Home() {
-  return (
-    <>
-      <Disclaimer />
-      <HandleInitialState component={Main} />
-    </>
-  )
+  return <Main />
 }
 
 export default Home

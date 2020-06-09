@@ -3,11 +3,12 @@ import React from 'react'
 import { Location } from 'history'
 import { connect } from 'react-redux'
 
+import { selectLocation } from '../../state/router/router.selectors'
+
 import Loading from '../../pages/Loading'
 import PageSwitcher from '../PageSwitcher/PageSwitcher'
-import NavigationBar from './NavigationBar'
+import { NavigationBar } from './NavigationBar'
 
-import links from '../../links'
 import routes from '../../routes'
 
 import { State } from '../../state/reducer'
@@ -20,11 +21,17 @@ interface LayoutProps {
   location: Location
 }
 
+const mapStateToProps = (state: State) => ({
+  location: selectLocation(state),
+})
+
+export default connect(mapStateToProps)(Layout)
+
 function Layout({ location }: LayoutProps) {
   return (
     <div className="container-fluid">
       <header className="row d-print-none">
-        <NavigationBar navLinks={links} />
+        <NavigationBar />
       </header>
 
       <div className="row main-wrapper">
@@ -39,9 +46,3 @@ function Layout({ location }: LayoutProps) {
     </div>
   )
 }
-
-const mapStateToProps = (state: State) => ({
-  location: state.router.location,
-})
-
-export default connect(mapStateToProps)(Layout)

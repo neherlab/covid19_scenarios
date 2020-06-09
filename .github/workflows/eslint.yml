@@ -20,10 +20,12 @@ jobs:
       - uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          eslint_flags: '**/*.{js,jsx,ts,tsx,json}'
+          eslint_flags: '**/*.{js,jsx,ts,tsx} --max-warnings=0'
+          fail_on_error: true
 
       - uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
-          eslint_flags: '**/*.{js,jsx,ts,tsx,json}'
+          eslint_flags: '**/*.{js,jsx,ts,tsx} --max-warnings=0'
+          fail_on_error: true

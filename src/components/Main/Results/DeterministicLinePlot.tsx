@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 
 import _ from 'lodash'
+import { connect } from 'react-redux'
 
 import ReactResizeDetector from 'react-resize-detector'
 import {
@@ -26,13 +27,18 @@ import type { ScenarioDatum, CaseCountsDatum } from '../../../algorithms/types/P
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
+import { selectResult } from '../../../state/algorithm/algorithm.selectors'
+import { State } from '../../../state/reducer'
+import { selectScenarioData, selectCaseCountsData } from '../../../state/scenario/scenario.selectors'
+import { selectIsLogScale, selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
+
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
 import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'
 
-import { verifyPositive, verifyTuple, computeNewEmpiricalCases } from './Utils'
+import { verifyPositive, computeNewEmpiricalCases } from './Utils'
 
 import './DeterministicLinePlot.scss'
 
@@ -55,61 +61,63 @@ function legendFormatter(enabledPlots: string[], value?: LegendPayload['value'],
   return <span className={activeClassName}>{value}</span>
 }
 
-export interface LinePlotProps {
-  data?: AlgorithmResult
-  params: ScenarioDatum
-  logScale?: boolean
-  showHumanized?: boolean
-  caseCounts?: CaseCountsDatum[]
-  forcedWidth?: number
-  forcedHeight?: number
+export interface DeterministicLinePlotProps {
+  scenarioData: ScenarioDatum
+  result?: AlgorithmResult
+  caseCountsData?: CaseCountsDatum[]
+  isLogScale: boolean
+  shouldFormatNumbers: boolean
 }
 
-// FIXME: this component has become too large
+const mapStateToProps = (state: State) => ({
+  scenarioData: selectScenarioData(state),
+  result: selectResult(state),
+  caseCountsData: selectCaseCountsData(state),
+  isLogScale: selectIsLogScale(state),
+  shouldFormatNumbers: selectShouldFormatNumbers(state),
+})
+
+const mapDispatchToProps = {}
+
 // eslint-disable-next-line sonarjs/cognitive-complexity
-export function DeterministicLinePlot({
-  data,
-  params,
-  logScale,
-  showHumanized,
-  caseCounts,
-  forcedWidth,
-  forcedHeight,
-}: LinePlotProps) {
+export function DeterministicLinePlotDiconnected({
+  scenarioData,
+  result,
+  caseCountsData,
+  isLogScale,
+  shouldFormatNumbers,
+}: DeterministicLinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
 
-  // RULE OF HOOKS #1: hooks go before anything else. Hooks ^, ahything else v.
-  // href: https://reactjs.org/docs/hooks-rules.html
+  const formatNumber = numberFormatter(!!shouldFormatNumbers, false)
+  const formatNumberRounded = numberFormatter(!!shouldFormatNumbers, true)
 
-  const formatNumber = numberFormatter(!!showHumanized, false)
-  const formatNumberRounded = numberFormatter(!!showHumanized, true)
-
-  if (!data) {
+  if (!result) {
     return null
   }
 
-  const { mitigationIntervals } = params.mitigation
+  const { mitigationIntervals } = scenarioData.mitigation
 
-  const nHospitalBeds = verifyPositive(params.population.hospitalBeds)
-  const nICUBeds = verifyPositive(params.population.icuBeds)
+  const nHospitalBeds = verifyPositive(scenarioData.population.hospitalBeds)
+  const nICUBeds = verifyPositive(scenarioData.population.icuBeds)
 
   const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
-    params.epidemiological.infectiousPeriodDays,
-    caseCounts,
+    scenarioData.epidemiological.infectiousPeriodDays,
+    caseCountsData,
   )
 
   const hasObservations = {
-    [DATA_POINTS.ObservedCases]: caseCounts && caseCounts.some((d) => d.cases),
-    [DATA_POINTS.ObservedICU]: caseCounts && caseCounts.some((d) => d.icu),
-    [DATA_POINTS.ObservedDeaths]: caseCounts && caseCounts.some((d) => d.deaths),
+    [DATA_POINTS.ObservedCases]: caseCountsData && caseCountsData.some((d) => d.cases),
+    [DATA_POINTS.ObservedICU]: caseCountsData && caseCountsData.some((d) => d.icu),
+    [DATA_POINTS.ObservedDeaths]: caseCountsData && caseCountsData.some((d) => d.deaths),
     [DATA_POINTS.ObservedNewCases]: newEmpiricalCases && newEmpiricalCases.some((d) => d),
-    [DATA_POINTS.ObservedHospitalized]: caseCounts && caseCounts.some((d) => d.hospitalized),
+    [DATA_POINTS.ObservedHospitalized]: caseCountsData && caseCountsData.some((d) => d.hospitalized),
   }
 
   const observations =
-    caseCounts?.map((d, i) => ({
+    caseCountsData?.map((d, i) => ({
       time: new Date(d.time).getTime(),
       cases: enabledPlots.includes(DATA_POINTS.ObservedCases) ? d.cases || undefined : undefined,
       observedDeaths: enabledPlots.includes(DATA_POINTS.ObservedDeaths) ? d.deaths || undefined : undefined,
@@ -122,75 +130,17 @@ export function DeterministicLinePlot({
       ICUbeds: nICUBeds,
     })) ?? []
 
-  const { upper, lower } = data.trajectory
-
   const plotData = [
-    ...data.trajectory.middle.map((x, i) => ({
-      time: x.time,
-      susceptible: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? verifyPositive(x.current.susceptible.total)
-        : undefined,
-      infectious: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? verifyPositive(x.current.infectious.total)
-        : undefined,
-      severe: enabledPlots.includes(DATA_POINTS.Severe) ? Math.round(x.current.severe.total) || undefined : undefined,
-      critical: enabledPlots.includes(DATA_POINTS.Critical)
-        ? verifyPositive(Math.round(x.current.critical.total))
-        : undefined,
-      overflow: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? verifyPositive(Math.round(x.current.overflow.total))
-        : undefined,
-      recovered: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? verifyPositive(Math.round(x.cumulative.recovered.total))
-        : undefined,
-      fatality: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? verifyPositive(Math.round(x.cumulative.fatality.total))
-        : undefined,
-      hospitalBeds: nHospitalBeds,
-      ICUbeds: nICUBeds,
-
-      // Error bars
-      susceptibleArea: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.susceptible.total),
-            verifyPositive(upper[i].current.susceptible.total),
-          ])
-        : undefined,
-      infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.infectious.total),
-            verifyPositive(upper[i].current.infectious.total),
-          ])
-        : undefined,
-      severeArea: enabledPlots.includes(DATA_POINTS.Severe)
-        ? verifyTuple([verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)])
-        : undefined,
-      criticalArea: enabledPlots.includes(DATA_POINTS.Critical)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.critical.total),
-            verifyPositive(upper[i].current.critical.total),
-          ])
-        : undefined,
-      overflowArea: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.overflow.total),
-            verifyPositive(upper[i].current.overflow.total),
-          ])
-        : undefined,
-      recoveredArea: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? verifyTuple([
-            verifyPositive(lower[i].cumulative.recovered.total),
-            verifyPositive(upper[i].cumulative.recovered.total),
-          ])
-        : undefined,
-      fatalityArea: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? verifyTuple([
-            verifyPositive(lower[i].cumulative.fatality.total),
-            verifyPositive(upper[i].cumulative.fatality.total),
-          ])
-        : undefined,
-    })),
-
+    ...result.plotData.map((x) => {
+      const dpoint = { time: x.time, hospitalBeds: nHospitalBeds, ICUbeds: nICUBeds }
+      Object.keys(x.lines).forEach((d) => {
+        dpoint[d] = enabledPlots.includes(d) ? x.lines[d] : undefined
+      })
+      Object.keys(x.areas).forEach((d) => {
+        dpoint[`${d}Area`] = enabledPlots.includes(d) ? x.areas[d] : undefined
+      })
+      return dpoint
+    }),
     ...observations,
   ]
 
@@ -236,7 +186,7 @@ export function DeterministicLinePlot({
     (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey !== 'ICUbeds',
   )
 
-  const logScaleString: YAxisProps['scale'] = logScale ? 'log' : 'linear'
+  const logScaleString: YAxisProps['scale'] = isLogScale ? 'log' : 'linear'
 
   const tooltipValueFormatter = (value: number | string) =>
     typeof value === 'number' ? formatNumber(Number(value)) : value
@@ -258,9 +208,9 @@ export function DeterministicLinePlot({
             <>
               <div ref={chartRef} />
               <R0Plot
-                R0Trajectory={data.R0}
-                width={forcedWidth || width}
-                height={(forcedHeight || height) / 4}
+                R0Trajectory={result.R0}
+                width={width}
+                height={height / 4}
                 tMin={tMin}
                 tMax={tMax}
                 labelFormatter={labelFormatter}
@@ -269,15 +219,15 @@ export function DeterministicLinePlot({
               />
               <MitigationPlot
                 mitigation={mitigationIntervals}
-                width={forcedWidth || width}
-                height={(forcedHeight || height) / 4}
+                width={width}
+                height={height / 4}
                 tMin={tMin}
                 tMax={tMax}
               />
               <ComposedChart
                 onClick={() => scrollToRef(chartRef)}
-                width={forcedWidth || width}
-                height={forcedHeight || height}
+                width={width}
+                height={height}
                 data={consolidatedPlotData}
                 throttleDelay={75}
                 margin={{
@@ -301,7 +251,7 @@ export function DeterministicLinePlot({
                   allowDataOverflow
                   scale={logScaleString}
                   type="number"
-                  domain={logScale ? [1, yDataMax * 1.1] : [0, yDataMax * 1.1]}
+                  domain={isLogScale ? [1, yDataMax * 1.1] : [0, yDataMax * 1.1]}
                   tickFormatter={yTickFormatter}
                 />
 
@@ -370,3 +320,7 @@ export function DeterministicLinePlot({
     </div>
   )
 }
+
+const DeterministicLinePlot = connect(mapStateToProps, mapDispatchToProps)(DeterministicLinePlotDiconnected)
+
+export { DeterministicLinePlot }

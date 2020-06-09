@@ -11,6 +11,16 @@ const monthToDay = (m: number) => {
 
 const jan2020 = new Date('2020-01-01').valueOf() // time in ms
 
+export function withUncertainty(scenario: ScenarioFlat): boolean {
+  const noRanges = scenario.mitigationIntervals.every(
+    (interval) => interval.transmissionReduction.begin === interval.transmissionReduction.end,
+  )
+  if (scenario.r0.begin === scenario.r0.end && noRanges) {
+    return false
+  }
+  return true
+}
+
 export const msPerDay = 1000 * 60 * 60 * 24
 
 /**
@@ -36,6 +46,7 @@ export function getPopulationParams(
   scenario: ScenarioFlat,
   severity: SeverityDistributionDatum[],
   ageDistribution: AgeDistributionDatum[],
+  meanOnly: boolean,
 ): ModelParams[] {
   const {
     hospitalBeds,
@@ -126,19 +137,12 @@ export function getPopulationParams(
 
   // Infectivity dynamics
   // interpolateTimeSeries(intervalsToTimeSeries(params.mitigationIntervals))
-  const containmentRealization = containmentMeasures(mitigationIntervals, numberStochasticRuns)
-  if (r0.begin === r0.end && containmentRealization.length === 1) {
-    const avgInfectionRate = r0.begin / infectiousPeriodDays
-    sim.rate.infection = (time: number) =>
-      containmentRealization[0](time) * infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing)
+  const containmentRealization = containmentMeasures(mitigationIntervals, numberStochasticRuns, meanOnly)
 
-    return [sim]
-  }
-
-  const r0s = sampleUniform(r0, numberStochasticRuns)
-  return r0s.map((r0, i) => {
+  const r0s = meanOnly ? [0.5 * (r0.begin + r0.end)] : sampleUniform(r0, numberStochasticRuns)
+  return r0s.map((tmpR0, i) => {
     const elt = cloneDeep(sim)
-    const avgInfectionRate = r0 / infectiousPeriodDays
+    const avgInfectionRate = tmpR0 / infectiousPeriodDays
 
     const containment = containmentRealization.length > 1 ? containmentRealization[i] : containmentRealization[0]
     elt.rate.infection = (time: number) =>

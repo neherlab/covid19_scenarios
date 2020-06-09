@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import langs from '../../src/langs'
+import langs from '../../src/locales/langs'
 
 const availableLangs = Object.entries(langs)
 const languageMap: { [key: string]: string } = {

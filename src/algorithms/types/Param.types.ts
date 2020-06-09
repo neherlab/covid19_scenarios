@@ -1,17 +1,24 @@
 /* eslint-disable no-restricted-imports */
 
 import type {
-  ScenarioArray as ScenarioArrayMutable,
-  ScenarioData as ScenarioDataMutable,
-  ScenarioDatum as ScenarioDatumMutable,
-  ScenarioDatumMitigation as ScenarioDatumMitigationMutable,
-  MitigationInterval as MitigationIntervalMutable,
+  ScenarioArray,
+  ScenarioData as ScenarioDataExternal,
+  ScenarioDatum as ScenarioDatumExternal,
+  ScenarioDatumMitigation as ScenarioDatumMitigationExternal,
+  MitigationInterval as MitigationIntervalExternal,
   ScenarioDatumEpidemiological,
   ScenarioDatumPopulation,
   ScenarioDatumSimulation,
+  AgeDistributionData,
+  SeverityDistributionData,
 } from '../../.generated/latest/types'
 
-import type { ScenarioDatum, MitigationInterval, ScenarioDatumMitigation } from './restricted/ScenarioDatum'
+import type {
+  ScenarioData,
+  ScenarioDatum,
+  MitigationInterval,
+  ScenarioDatumMitigation,
+} from './restricted/ScenarioDatum'
 
 export type {
   AgeDistributionArray,
@@ -30,15 +37,23 @@ export type { DateRange, NumericRangeNonNegative, PercentageRange } from '../../
 
 export { Convert, AgeGroup } from '../../.generated/latest/types'
 
-export type ScenarioArray = ScenarioArrayMutable
-export type ScenarioData = ScenarioDataMutable
-
-export type { ScenarioDatum, MitigationInterval, ScenarioDatumMitigation }
-export type MitigationIntervalExternal = MitigationIntervalMutable
-export type ScenarioDatumExternal = ScenarioDatumMutable
-export type ScenarioDatumMitigationExternal = ScenarioDatumMitigationMutable
+export type { ScenarioData, ScenarioDatum, MitigationInterval, ScenarioDatumMitigation }
 
 export type { ScenarioDatumEpidemiological, ScenarioDatumPopulation, ScenarioDatumSimulation }
+
+export type {
+  ScenarioArray,
+  ScenarioDataExternal,
+  ScenarioDatumExternal,
+  ScenarioDatumMitigationExternal,
+  MitigationIntervalExternal,
+}
+
+export interface ScenarioParameters {
+  scenarioData: ScenarioData
+  ageDistributionData: AgeDistributionData
+  severityDistributionData: SeverityDistributionData
+}
 
 export type ScenarioFlat = ScenarioDatumPopulation &
   ScenarioDatumEpidemiological &

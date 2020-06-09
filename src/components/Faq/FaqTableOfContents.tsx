@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import { get } from 'lodash'
+
 // FIXME: this has t be refactored. Remove DOM manipulation,
 //  reliance on HTML content, forEach() should be a map
 const FaqTableOfContents = () => {
@@ -9,11 +11,10 @@ const FaqTableOfContents = () => {
     setTimeout(() => {
       Array.from(document.querySelectorAll('strong')).forEach((node) => {
         if (node.innerHTML === 'Q:') {
-          // eslint-disable-next-line no-param-reassign
           node.id = `q${links.length}`
-          // eslint-disable-next-line lodash/prefer-get
-          if (node.parentNode && node.parentNode.lastChild && node.parentNode.lastChild.textContent) {
-            links.push(node.parentNode.lastChild.textContent)
+          const textContent = get(node, 'parentNode.lastChild.textContent')
+          if (textContent) {
+            links.push(textContent)
           }
         }
       })

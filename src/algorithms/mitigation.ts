@@ -30,27 +30,31 @@ function strength(mitigation: number): number {
 function sampleMitigationRealizations(
   intervals: MitigationInterval[],
   numberStochasticRuns: number,
+  meanOnly: boolean,
 ): MitigationMeasure[][] {
   const noRanges = intervals.every(
     (interval) => interval.transmissionReduction.begin === interval.transmissionReduction.end,
   )
-  if (noRanges) {
+
+  if (noRanges || meanOnly) {
     return [
       intervals.map((interval) => ({
-        val: strength(interval.transmissionReduction.begin),
+        val: strength(0.5 * (interval.transmissionReduction.begin + interval.transmissionReduction.end)),
         tMin: interval.timeRange.begin.valueOf(),
         tMax: interval.timeRange.end.valueOf(),
       })),
     ]
   }
 
-  return [...Array(numberStochasticRuns).keys()].map(() =>
-    intervals.map((interval) => ({
-      val: strength(sampleRandom(interval.transmissionReduction)),
-      tMin: interval.timeRange.begin.valueOf(),
-      tMax: interval.timeRange.end.valueOf(),
-    })),
-  )
+  return Array(numberStochasticRuns)
+    .fill(1)
+    .map(() =>
+      intervals.map((interval) => ({
+        val: strength(sampleRandom(interval.transmissionReduction)),
+        tMin: interval.timeRange.begin.valueOf(),
+        tMax: interval.timeRange.end.valueOf(),
+      })),
+    )
 }
 
 function timeSeriesOf(measures: MitigationMeasure[]): TimeSeries {
@@ -120,8 +124,12 @@ function interpolateTimeSeries(containment: TimeSeries): Func {
 // -----------------------------------------------------------------------
 // Exported functions
 
-export function containmentMeasures(intervals: MitigationInterval[], numberStochasticRuns: number): Func[] {
-  return sampleMitigationRealizations(intervals, numberStochasticRuns).map((sample) =>
+export function containmentMeasures(
+  intervals: MitigationInterval[],
+  numberStochasticRuns: number,
+  meanOnly: boolean,
+): Func[] {
+  return sampleMitigationRealizations(intervals, numberStochasticRuns, meanOnly).map((sample) =>
     interpolateTimeSeries(timeSeriesOf(sample)),
   )
 }

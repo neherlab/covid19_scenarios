@@ -1,8 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
-import '../../../i18n'
-
 import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
 import { severity, ageDistribution } from '../../../algorithms/__test_data__/getPopulationParams.input.default'

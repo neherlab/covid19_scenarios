@@ -1,65 +1,35 @@
-import React, { useReducer, useState, useEffect } from 'react'
+import React from 'react'
 
-import { cloneDeep, map, isEqual } from 'lodash'
+import { isEqual } from 'lodash'
 
-import { useDebouncedCallback } from 'use-debounce'
-import { Form, Formik, FormikHelpers, FormikErrors, FormikValues } from 'formik'
+import { connect } from 'react-redux'
+import { Form, Formik, FormikErrors, FormikValues, FormikHelpers } from 'formik'
 import { Col, Row } from 'reactstrap'
+import { ActionCreator } from 'typescript-fsa'
+import { useDebouncedCallback } from 'use-debounce'
 
-import type { AlgorithmResult } from '../../algorithms/types/Result.types'
-import type { ScenarioDatum, SeverityDistributionDatum, CaseCountsDatum } from '../../algorithms/types/Param.types'
+import type { ScenarioDatum, SeverityDistributionDatum, AgeDistributionDatum } from '../../algorithms/types/Param.types'
 
-import { run } from '../../workers/algorithm'
-import LocalStorage, { LOCAL_STORAGE_KEYS } from '../../helpers/localStorage'
+import type { State } from '../../state/reducer'
+import {
+  selectScenarioData,
+  selectAgeDistributionData,
+  selectSeverityDistributionData,
+} from '../../state/scenario/scenario.selectors'
+import { selectAreResultsMaximized } from '../../state/settings/settings.selectors'
+import { setCanRun, setScenarioData } from '../../state/scenario/scenario.actions'
+import { algorithmRunTrigger } from '../../state/algorithm/algorithm.actions'
+
 import { ColCustom } from '../Layout/ColCustom'
-
 import { schema } from './validation/schema'
-
-import { getSortedNonEmptyCaseCounts } from './state/getCaseCounts'
-import { setMitigationData, setPopulationData, setEpidemiologicalData, setSimulationData } from './state/actions'
-import { scenarioReducer } from './state/reducer'
-import { State } from './state/state'
-
-import { DEFAULT_SEVERITY_DISTRIBUTION, InitialStateComponentProps } from './HandleInitialState'
+import { Disclaimer } from './Disclaimer'
 import { ResultsCard } from './Results/ResultsCard'
 import { ScenarioCard } from './Scenario/ScenarioCard'
-import PrintPage from './PrintPage/PrintPage'
 
 import './Main.scss'
-import { areAgeGroupParametersValid } from './Scenario/AgeGroupParameters'
 
 interface FormikValidationErrors extends Error {
   errors: FormikErrors<FormikValues>
-}
-
-async function runSimulation(
-  params: ScenarioDatum,
-  scenarioState: State,
-  severity: SeverityDistributionDatum[],
-  setResult: React.Dispatch<React.SetStateAction<AlgorithmResult | undefined>>,
-  setEmpiricalCases: React.Dispatch<React.SetStateAction<CaseCountsDatum[] | undefined>>,
-  setIsRunning: React.Dispatch<React.SetStateAction<boolean>>,
-) {
-  setIsRunning(true)
-  try {
-    const paramsFlat = {
-      ...params.population,
-      ...params.epidemiological,
-      ...params.simulation,
-      ...params.mitigation,
-    }
-
-    const newResult = await run({ params: paramsFlat, severity, ageDistribution: scenarioState.ageDistribution })
-    setResult(newResult)
-
-    const caseCounts = getSortedNonEmptyCaseCounts(params.population.caseCountsName)
-    setEmpiricalCases(caseCounts)
-  } catch (error) {
-    // Rejected promises are thrown by await functions.
-    // Catch and log the error message to console.
-    console.error(error)
-  }
-  setIsRunning(false)
 }
 
 function getColumnSizes(areResultsMaximized: boolean) {
@@ -70,153 +40,97 @@ function getColumnSizes(areResultsMaximized: boolean) {
   return { colScenario: { xl: 6 }, colResults: { xl: 6 } }
 }
 
-function Main({ initialState }: InitialStateComponentProps) {
-  const [result, setResult] = useState<AlgorithmResult | undefined>()
-  const [autorunSimulation, setAutorunSimulation] = useState(
-    LocalStorage.get<boolean>(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION) ?? true,
-  )
-  const [areResultsMaximized, setAreResultsMaximized] = useState(window?.innerWidth > 2000)
-  const [scenarioState, scenarioDispatch] = useReducer(scenarioReducer, initialState.scenarioState)
+export interface MainProps {
+  scenarioData: ScenarioDatum
+  ageDistributionData: AgeDistributionDatum[]
+  severityDistributionData: SeverityDistributionDatum[]
+  areResultsMaximized: boolean
+  setCanRun: ActionCreator<boolean>
+  setScenarioData: ActionCreator<ScenarioDatum>
+  algorithmRunTrigger: ActionCreator<void>
+}
 
-  // TODO: Can this complex state be handled by formik too?
-  const [severity, setSeverity] = useState<SeverityDistributionDatum[]>(initialState.severityTable)
-  const [printable, setPrintable] = useState(false)
-  const openPrintPreview = () => setPrintable(true)
+const mapStateToProps = (state: State) => ({
+  scenarioData: selectScenarioData(state),
+  ageDistributionData: selectAgeDistributionData(state),
+  severityDistributionData: selectSeverityDistributionData(state),
+  areResultsMaximized: selectAreResultsMaximized(state),
+})
 
-  const [empiricalCases, setEmpiricalCases] = useState<CaseCountsDatum[] | undefined>()
+const mapDispatchToProps = {
+  algorithmRunTrigger,
+  setCanRun,
+  setScenarioData,
+}
 
-  const togglePersistAutorun = () => {
-    LocalStorage.set(LOCAL_STORAGE_KEYS.AUTORUN_SIMULATION, !autorunSimulation)
-    setAutorunSimulation(!autorunSimulation)
-  }
+export const Main = connect(mapStateToProps, mapDispatchToProps)(MainDisconnected)
 
-  const [isRunning, setIsRunning] = useState(false)
-
-  const [debouncedRun] = useDebouncedCallback(
-    (params: ScenarioDatum, scenarioState: State, severity: SeverityDistributionDatum[]) =>
-      runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning),
-    50,
-  )
-
-  useEffect(() => {
-    // runs only once, when the component is mounted
-    debouncedRun(scenarioState.data, scenarioState, severity)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    if (autorunSimulation && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)) {
-      debouncedRun(scenarioState.data, scenarioState, severity)
-    }
-  }, [autorunSimulation, debouncedRun, scenarioState, severity])
-
+export function MainDisconnected({
+  scenarioData,
+  ageDistributionData,
+  severityDistributionData,
+  areResultsMaximized,
+  algorithmRunTrigger,
+  setCanRun,
+  setScenarioData,
+}: MainProps) {
   const [validateFormAndUpdateState] = useDebouncedCallback((newParams: ScenarioDatum) => {
     return schema
       .validate(newParams)
       .then((validParams) => {
-        // NOTE: deep object comparison!
-        if (!isEqual(scenarioState.data.population, validParams.population)) {
-          scenarioDispatch(setPopulationData({ data: validParams.population }))
+        setCanRun(true)
+        if (!isEqual(validParams, scenarioData)) {
+          setScenarioData(newParams)
         }
-        // NOTE: deep object comparison!
-        if (!isEqual(scenarioState.data.epidemiological, validParams.epidemiological)) {
-          scenarioDispatch(setEpidemiologicalData({ data: validParams.epidemiological }))
-        }
-        // NOTE: deep object comparison!
-        if (!isEqual(scenarioState.data.simulation, validParams.simulation)) {
-          scenarioDispatch(setSimulationData({ data: validParams.simulation }))
-        }
-        // NOTE: deep object comparison!
-        if (!isEqual(scenarioState.data.mitigation, validParams.mitigation)) {
-          const mitigationIntervals = map(validParams.mitigation.mitigationIntervals, cloneDeep)
-          scenarioDispatch(setMitigationData({ data: { mitigationIntervals } }))
-        }
-
         return validParams
       })
-      .catch((error: FormikValidationErrors) => error.errors)
-  }, 50)
+      .catch((error: FormikValidationErrors) => {
+        setCanRun(false)
+        return error.errors
+      })
+  }, 250)
 
-  function handleSubmit(params: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
-    runSimulation(params, scenarioState, severity, setResult, setEmpiricalCases, setIsRunning)
+  function handleSubmit(_0: ScenarioDatum, { setSubmitting }: FormikHelpers<ScenarioDatum>) {
+    algorithmRunTrigger()
     setSubmitting(false)
-  }
-
-  function toggleResultsMaximized() {
-    setAreResultsMaximized(!areResultsMaximized)
   }
 
   const { colScenario, colResults } = getColumnSizes(areResultsMaximized)
 
-  if (printable) {
-    return (
-      <PrintPage
-        params={scenarioState.data}
-        scenarioUsed={scenarioState.current}
-        severity={severity}
-        result={result}
-        caseCounts={empiricalCases}
-        onClose={() => {
-          setPrintable(false)
-        }}
-      />
-    )
-  }
-
   return (
-    <Row noGutters className="row-main">
-      <Col>
-        <Formik
-          enableReinitialize
-          initialValues={scenarioState.data}
-          onSubmit={handleSubmit}
-          validate={validateFormAndUpdateState}
-          validationSchema={schema}
-          validateOnMount
-        >
-          {({ values, errors, touched, isValid, isSubmitting }) => {
-            const canRun = isValid && areAgeGroupParametersValid(severity, scenarioState.ageDistribution)
+    <>
+      <Disclaimer />
+      <Row noGutters className="row-main">
+        <Col>
+          <Formik
+            enableReinitialize
+            initialValues={scenarioData}
+            onSubmit={handleSubmit}
+            validate={validateFormAndUpdateState}
+            validationSchema={schema}
+            validateOnMount
+          >
+            {({ values, errors, touched, isValid, isSubmitting }) => {
+              // const canRun = isValid && areAgeGroupParametersValid(severityDistributionData, ageDistributionData)
+              // setCanRun(canRun)
 
-            return (
-              <Form noValidate className="form form-main">
-                <Row className="row-form-main">
-                  <ColCustom lg={4} {...colScenario} className="col-wrapper-scenario animate-flex-width">
-                    <ScenarioCard
-                      scenario={values}
-                      severity={severity}
-                      setSeverity={setSeverity}
-                      scenarioState={scenarioState}
-                      scenarioDispatch={scenarioDispatch}
-                      setCaseCounts={setEmpiricalCases}
-                      errors={errors}
-                      touched={touched}
-                      areResultsMaximized={areResultsMaximized}
-                    />
-                  </ColCustom>
+              return (
+                <Form noValidate className="form form-main">
+                  <Row className="row-form-main">
+                    <ColCustom lg={4} {...colScenario} className="col-wrapper-scenario animate-flex-width">
+                      <ScenarioCard errors={errors} touched={touched} />
+                    </ColCustom>
 
-                  <ColCustom lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
-                    <ResultsCard
-                      canRun={canRun}
-                      isRunning={isRunning}
-                      isAutorunEnabled={autorunSimulation}
-                      toggleAutorun={togglePersistAutorun}
-                      severity={severity}
-                      severityName={DEFAULT_SEVERITY_DISTRIBUTION}
-                      scenarioState={scenarioState}
-                      result={result}
-                      caseCounts={empiricalCases}
-                      openPrintPreview={openPrintPreview}
-                      areResultsMaximized={areResultsMaximized}
-                      toggleResultsMaximized={toggleResultsMaximized}
-                    />
-                  </ColCustom>
-                </Row>
-              </Form>
-            )
-          }}
-        </Formik>
-      </Col>
-    </Row>
+                    <ColCustom lg={8} {...colResults} className="col-wrapper-results animate-flex-width">
+                      <ResultsCard />
+                    </ColCustom>
+                  </Row>
+                </Form>
+              )
+            }}
+          </Formik>
+        </Col>
+      </Row>
+    </>
   )
 }
-
-export default Main
