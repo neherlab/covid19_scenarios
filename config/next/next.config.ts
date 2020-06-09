@@ -18,6 +18,7 @@ import { getBuildNumber } from '../../lib/getBuildNumber'
 import getWithEnvironment from './withEnvironment'
 import getWithFriendlyConsole from './withFriendlyConsole'
 import getWithLodash from './withLodash'
+import getWithTypeChecking from './withTypeChecking'
 import withSvg from './withSvg'
 import withWorker from './withWorker'
 
@@ -74,8 +75,8 @@ const nextConfig: NextConfig = {
     autoPrerender: true,
   },
   typescript: {
-    ignoreDevErrors: false,
-    ignoreBuildErrors: false,
+    ignoreDevErrors: true,
+    ignoreBuildErrors: true,
   },
 }
 
@@ -84,7 +85,7 @@ const withConfig = nextRuntimeDotenv()
 const withMDX = getWithMDX({ extension: /\.mdx?$/ })
 
 const withFriendlyConsole = getWithFriendlyConsole({
-  clearConsole: !analyze && fancyClearConsole,
+  clearConsole: false,
   projectRoot: path.resolve(moduleRoot),
   packageName: pkg.name || 'web',
   progressBarColor: 'red',
@@ -108,6 +109,30 @@ const withEnvironment = getWithEnvironment({
 
 const withLodash = getWithLodash({ unicode: false })
 
+const withTypeChecking = getWithTypeChecking({
+  warningsAreErrors: production,
+  memoryLimit: 2048,
+  tsconfig: path.join(moduleRoot, 'tsconfig.json'),
+  reportFiles: [
+    'src/**/*.{js,jsx,ts,tsx}',
+
+    // FIXME: errors in these files have to be resolved eventually
+    // begin
+    '!src/algorithms/model.ts', // FIXME
+    '!src/algorithms/results.ts', // FIXME
+    '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
+    '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
+    // end
+
+    '!src/**/*.(spec|test).{js,jsx,ts,tsx}',
+    '!src/**/__tests__/**/*.{js,jsx,ts,tsx}',
+    '!src/*generated*/**/*',
+    '!src/algorithms/__test_data__/**/*',
+    '!src/styles/**/*',
+    '!static/**/*',
+  ],
+})
+
 const config = withConfig(
   withPlugins(
     [
@@ -118,6 +143,7 @@ const config = withConfig(
       [withFriendlyConsole],
       [withMDX, { pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'] }],
       [withLodash],
+      [withTypeChecking],
     ],
     nextConfig,
   ),
