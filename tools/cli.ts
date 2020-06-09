@@ -2,10 +2,9 @@ import { readJSON, writeJSON } from 'fs-extra'
 import yargs from 'yargs'
 import { inspect } from 'util'
 
-import type { Shareable, ScenarioFlat } from './types/Param.types'
-import type { AlgorithmResult } from './types/Result.types'
-import { toInternal } from '../components/Main/state/getScenario'
-import { run } from './run'
+import type { Shareable, ScenarioFlat } from '../src/algorithms/types/Param.types'
+import { toInternal } from '../src/algorithms/types/convert'
+import { run } from '../src/algorithms/run'
 
 async function main() {
   const { argv } = yargs
@@ -21,7 +20,6 @@ async function main() {
   const { scenarioData, ageDistributionData, severityDistributionData } = data
 
   const scenario = toInternal(scenarioData.data)
-
   const params: ScenarioFlat = {
     ...scenario.population,
     ...scenario.epidemiological,
@@ -29,15 +27,15 @@ async function main() {
     ...scenario.mitigation,
   }
 
-  const severity = severityDistributionData.data
-
-  const ageDistribution = ageDistributionData.data
-
-  const result: AlgorithmResult = await run({ params, severity, ageDistribution })
+  const result = await run({
+    params,
+    severity: severityDistributionData.data,
+    ageDistribution: ageDistributionData.data,
+  })
 
   const whatToWrite = result.R0
   console.info(inspect(whatToWrite, { colors: true, depth: null }))
-  writeJSON(argv.out, whatToWrite, { spaces: 2 })
+  writeJSON(argv.out, whatToWrite)
 }
 
 main()
