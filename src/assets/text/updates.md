@@ -14,6 +14,16 @@ two types of reasons
 We realize this can be confusing, but in this evolving situation, this is difficult to avoid. We try to summarize the
 most significant model changes below.
 
+### 2020-06-01: Median curve is now deterministic
+
+Several users were surprised that the median curve is quite variable from run to run despite the parameter inputs
+being deterministic. The underlying reason for this behavior is that the app samples parameters from the parameter ranges
+and plots the median of this often small sample. Since these parameters affect exponential growth, small variation in
+the sample can result in large variation in the output. We now generate an additional trajectory where each
+parameter is set to its median value. This trajectory should behave like the median trajectory in a large sample
+and is plotted instead of the sample median.
+
+
 ### 2020-05-22: Changes to the parameter presets
 
 Our parameter presets for R0, the initial number of cases, and interventions are meant to facilitate adjusting a

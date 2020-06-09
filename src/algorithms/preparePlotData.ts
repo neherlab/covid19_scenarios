@@ -18,34 +18,34 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
     },
     // Error bars
     areas: {
-      susceptible: verifyTuple([
-        verifyPositive(lower[i].current.susceptible.total),
-        verifyPositive(upper[i].current.susceptible.total),
-      ]),
-      infectious: verifyTuple([
-        verifyPositive(lower[i].current.infectious.total),
-        verifyPositive(upper[i].current.infectious.total),
-      ]),
-      severe: verifyTuple([
-        verifyPositive(lower[i].current.severe.total),
-        verifyPositive(upper[i].current.severe.total),
-      ]),
-      critical: verifyTuple([
-        verifyPositive(lower[i].current.critical.total),
-        verifyPositive(upper[i].current.critical.total),
-      ]),
-      overflow: verifyTuple([
-        verifyPositive(lower[i].current.overflow.total),
-        verifyPositive(upper[i].current.overflow.total),
-      ]),
-      recovered: verifyTuple([
-        verifyPositive(lower[i].cumulative.recovered.total),
-        verifyPositive(upper[i].cumulative.recovered.total),
-      ]),
-      fatality: verifyTuple([
-        verifyPositive(lower[i].cumulative.fatality.total),
-        verifyPositive(upper[i].cumulative.fatality.total),
-      ]),
+      susceptible: verifyTuple(
+        [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)],
+        x.current.susceptible.total,
+      ),
+      infectious: verifyTuple(
+        [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)],
+        x.current.infectious.total,
+      ),
+      severe: verifyTuple(
+        [verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)],
+        x.current.severe.total,
+      ),
+      critical: verifyTuple(
+        [verifyPositive(lower[i].current.critical.total), verifyPositive(upper[i].current.critical.total)],
+        x.current.critical.total,
+      ),
+      overflow: verifyTuple(
+        [verifyPositive(lower[i].current.overflow.total), verifyPositive(upper[i].current.overflow.total)],
+        x.current.overflow.total,
+      ),
+      recovered: verifyTuple(
+        [verifyPositive(lower[i].cumulative.recovered.total), verifyPositive(upper[i].cumulative.recovered.total)],
+        x.cumulative.recovered.total,
+      ),
+      fatality: verifyTuple(
+        [verifyPositive(lower[i].cumulative.fatality.total), verifyPositive(upper[i].cumulative.fatality.total)],
+        x.cumulative.fatality.total,
+      ),
     },
   }))
 }
