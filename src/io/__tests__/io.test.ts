@@ -1,16 +1,16 @@
-import { Convert } from '../../../algorithms/types/Param.types'
+import { Convert } from '../../algorithms/types/Param.types'
 
-import validateCaseCountsArray from '../../../.generated/latest/validateCaseCountsArray'
-import rawCaseCounts from '../../../assets/data/caseCounts.json'
+import validateCaseCountsArray from '../../.generated/latest/validateCaseCountsArray'
+import rawCaseCounts from '../../assets/data/caseCounts.json'
 
-import validateAgeDistributionArray from '../../../.generated/latest/validateAgeDistributionArray'
-import rawCountryAgeDistribution from '../../../assets/data/ageDistribution.json'
+import validateAgeDistributionArray from '../../.generated/latest/validateAgeDistributionArray'
+import rawCountryAgeDistribution from '../../assets/data/ageDistribution.json'
 
-import validateSeverityDistributionArray from '../../../.generated/latest/validateSeverityDistributionArray'
-import rawSeverity from '../../../assets/data/severityDistributions.json'
+import validateSeverityDistributionArray from '../../.generated/latest/validateSeverityDistributionArray'
+import rawSeverity from '../../assets/data/severityDistributions.json'
 
-import validateScenarioArray from '../../../.generated/latest/validateScenarioArray'
-import rawScenarios from '../../../assets/data/scenarios.json'
+import validateScenarioArray from '../../.generated/latest/validateScenarioArray'
+import rawScenarios from '../../assets/data/scenarios.json'
 
 describe('data', () => {
   it('CaseCounts should match schemas', () => {

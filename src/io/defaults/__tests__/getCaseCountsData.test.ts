@@ -1,8 +1,8 @@
-import { getSortedNonEmptyCaseCounts } from './getCaseCountsData'
+import { getCaseCountsData } from '../getCaseCountsData'
 
 describe('getSortedNonEmptyCaseCounts', () => {
   it('sorts by ascending time', () => {
-    const got = getSortedNonEmptyCaseCounts('United States of America')
+    const got = getCaseCountsData('United States of America').data
     got.forEach((entry, index) => {
       if (index > 0) {
         expect(entry.time.getTime()).toBeGreaterThan(got[index - 1].time.getTime())
@@ -11,7 +11,7 @@ describe('getSortedNonEmptyCaseCounts', () => {
   })
 
   it('returns no empty entries', () => {
-    const got = getSortedNonEmptyCaseCounts('United States of America')
+    const got = getCaseCountsData('United States of America').data
     got.forEach((entry) => {
       const notEmpty = entry.cases || entry.deaths || entry.icu || entry.hospitalized
       expect(notEmpty).toBeTruthy()

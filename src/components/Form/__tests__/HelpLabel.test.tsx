@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import HelpLabel from './HelpLabel'
+import HelpLabel from '../HelpLabel'
 
 describe('HelpLabel', () => {
   it('displays the label', () => {
