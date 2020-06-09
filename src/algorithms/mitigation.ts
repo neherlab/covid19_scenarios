@@ -32,7 +32,11 @@ function sampleMitigationRealizations(
   numberStochasticRuns: number,
   meanOnly: boolean,
 ): MitigationMeasure[][] {
-  if (meanOnly) {
+  const noRanges = intervals.every(
+    (interval) => interval.transmissionReduction.begin === interval.transmissionReduction.end,
+  )
+
+  if (noRanges || meanOnly) {
     return [
       intervals.map((interval) => ({
         val: strength(0.5 * (interval.transmissionReduction.begin + interval.transmissionReduction.end)),
@@ -42,13 +46,15 @@ function sampleMitigationRealizations(
     ]
   }
 
-  return [...Array(numberStochasticRuns).keys()].map(() =>
-    intervals.map((interval) => ({
-      val: strength(sampleRandom(interval.transmissionReduction)),
-      tMin: interval.timeRange.begin.valueOf(),
-      tMax: interval.timeRange.end.valueOf(),
-    })),
-  )
+  return Array(numberStochasticRuns)
+    .fill(1)
+    .map(() =>
+      intervals.map((interval) => ({
+        val: strength(sampleRandom(interval.transmissionReduction)),
+        tMin: interval.timeRange.begin.valueOf(),
+        tMax: interval.timeRange.end.valueOf(),
+      })),
+    )
 }
 
 function timeSeriesOf(measures: MitigationMeasure[]): TimeSeries {
