@@ -104,14 +104,18 @@ export function DeterministicLinePlotDiconnected({
   const nICUBeds = verifyPositive(scenarioData.population.icuBeds)
 
   const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
-    scenarioData.epidemiological.infectiousPeriodDays,
+    7, //scenarioData.epidemiological.infectiousPeriodDays,
+    'cases',
     caseCountsData,
   )
+
+  const [weeklyEmpiricalDeaths, deathsTimeWindow] = computeNewEmpiricalCases(7, 'deaths', caseCountsData)
 
   const hasObservations = {
     [DATA_POINTS.ObservedCases]: caseCountsData && caseCountsData.some((d) => d.cases),
     [DATA_POINTS.ObservedICU]: caseCountsData && caseCountsData.some((d) => d.icu),
     [DATA_POINTS.ObservedDeaths]: caseCountsData && caseCountsData.some((d) => d.deaths),
+    [DATA_POINTS.ObservedWeeklyDeaths]: caseCountsData && caseCountsData.some((d) => d.deaths),
     [DATA_POINTS.ObservedNewCases]: newEmpiricalCases && newEmpiricalCases.some((d) => d),
     [DATA_POINTS.ObservedHospitalized]: caseCountsData && caseCountsData.some((d) => d.hospitalized),
   }
@@ -126,10 +130,11 @@ export function DeterministicLinePlotDiconnected({
         : undefined,
       ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.icu || undefined : undefined,
       newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newEmpiricalCases[i] : undefined,
+      weeklyDeaths: enabledPlots.includes(DATA_POINTS.ObservedWeeklyDeaths) ? weeklyEmpiricalDeaths[i] : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
-
+  console.log(observations)
   const plotData = [
     ...result.plotData.map((x) => {
       const dpoint = { time: x.time, hospitalBeds: nHospitalBeds, ICUbeds: nICUBeds }

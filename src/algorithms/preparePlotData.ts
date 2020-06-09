@@ -15,6 +15,7 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
       overflow: verifyPositive(x.current.overflow.total),
       recovered: verifyPositive(x.cumulative.recovered.total),
       fatality: verifyPositive(x.cumulative.fatality.total),
+      weeklyFatality: verifyPositive(x.cumulative.fatality.total - middle[i > 6 ? i - 7 : 0].cumulative.fatality.total),
     },
     // Error bars
     areas: {
@@ -45,6 +46,13 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
       fatality: verifyTuple(
         [verifyPositive(lower[i].cumulative.fatality.total), verifyPositive(upper[i].cumulative.fatality.total)],
         x.cumulative.fatality.total,
+      ),
+      weeklyFatality: verifyTuple(
+        [
+          verifyPositive(lower[i].cumulative.fatality.total - middle[i > 6 ? i - 7 : 0].cumulative.fatality.total),
+          verifyPositive(upper[i].cumulative.fatality.total - middle[i > 6 ? i - 7 : 0].cumulative.fatality.total),
+        ],
+        x.cumulative.fatality.total - middle[i > 6 ? i - 7 : 0].cumulative.fatality.total,
       ),
     },
   }))
