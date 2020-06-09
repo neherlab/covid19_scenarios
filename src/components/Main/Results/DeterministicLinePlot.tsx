@@ -267,7 +267,6 @@ export function DeterministicLinePlotDiconnected({
                     <LinePlotTooltip
                       valueFormatter={tooltipValueFormatter}
                       itemsToDisplay={tooltipItemsToDisplay}
-                      deltaCaseDays={caseTimeWindow}
                       {...props}
                     />
                   )}
