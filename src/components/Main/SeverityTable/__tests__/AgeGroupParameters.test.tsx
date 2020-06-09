@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
-import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../../algorithms/types/Param.types'
 
-import { severity, ageDistribution } from '../../../algorithms/__test_data__/getPopulationParams.input.default'
+import { severity, ageDistribution } from '../../../../algorithms/__test_data__/getPopulationParams.input.default'
 
 import {
   DataMarshal,
@@ -14,7 +14,7 @@ import {
   validateAndTransform,
   AgeGroupParameterError,
   areAgeGroupParametersValid,
-} from './AgeGroupParameters'
+} from '../AgeGroupParameters'
 
 const ThisTest = (props: Pick<DataMarshalProps, 'view'> & Partial<DataMarshalProps>) => (
   <DataMarshal
