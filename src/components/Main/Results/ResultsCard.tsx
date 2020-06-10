@@ -18,7 +18,7 @@ import { CollapsibleCard } from '../../Form/CollapsibleCard'
 import { CardWithControls } from '../../Form/CardWithControls'
 
 import { AgeBarChart } from './AgeBarChart'
-import { DeterministicLinePlot } from './DeterministicLinePlot'
+import { ResultsTrajectoriesPlot } from '../ResultsTrajectoriesPlot/ResultsTrajectoriesPlot'
 import { OutcomeRatesTable } from './OutcomeRatesTable'
 import { OutcomesDetailsTable } from './OutcomesDetailsTable'
 import { SimulationControls } from '../Controls/SimulationControls'
@@ -89,7 +89,7 @@ function ResultsCardDisconnected({ canRun, hasResult, areResultsMaximized, toggl
             >
               <Row noGutters>
                 <Col>
-                  <DeterministicLinePlot />
+                  <ResultsTrajectoriesPlot />
                   <PlotSpinner size={ICON_SIZE} />
                 </Col>
               </Row>

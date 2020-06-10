@@ -32,7 +32,7 @@ import { State } from '../../../state/reducer'
 import { selectScenarioData, selectCaseCountsData } from '../../../state/scenario/scenario.selectors'
 import { selectIsLogScale, selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
 
-import { calculatePosition, scrollToRef } from './chartHelper'
+import { calculatePosition, scrollToRef } from '../Results/chartHelper'
 import {
   linesToPlot,
   areasToPlot,
@@ -40,14 +40,14 @@ import {
   DATA_POINTS,
   translatePlots,
   defaultEnabledPlots,
-} from './ChartCommon'
-import { LinePlotTooltip } from './LinePlotTooltip'
-import { MitigationPlot } from './MitigationLinePlot'
-import { R0Plot } from './R0LinePlot'
+} from '../Results/ChartCommon'
+import { LinePlotTooltip } from '../Results/LinePlotTooltip'
+import { MitigationPlot } from '../Results/MitigationLinePlot'
+import { R0Plot } from '../Results/R0LinePlot'
 
-import { verifyPositive, computeNewEmpiricalCases } from './Utils'
+import { verifyPositive, computeNewEmpiricalCases } from '../Results/Utils'
 
-import './DeterministicLinePlot.scss'
+import './ResultsTrajectoriesPlot.scss'
 
 const ASPECT_RATIO = 16 / 9
 
@@ -68,7 +68,7 @@ function legendFormatter(enabledPlots: string[], value?: LegendPayload['value'],
   return <span className={activeClassName}>{value}</span>
 }
 
-export interface DeterministicLinePlotProps {
+export interface ResultsTrajectoriesPlotProps {
   scenarioData: ScenarioDatum
   result?: AlgorithmResult
   caseCountsData?: CaseCountsDatum[]
@@ -87,13 +87,13 @@ const mapStateToProps = (state: State) => ({
 const mapDispatchToProps = {}
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
-export function DeterministicLinePlotDiconnected({
+export function ResultsTrajectoriesPlotDiconnected({
   scenarioData,
   result,
   caseCountsData,
   isLogScale,
   shouldFormatNumbers,
-}: DeterministicLinePlotProps) {
+}: ResultsTrajectoriesPlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(defaultEnabledPlots)
@@ -204,7 +204,7 @@ export function DeterministicLinePlotDiconnected({
   const yTickFormatter = (value: number) => formatNumberRounded(value)
 
   return (
-    <div className="w-100 h-100" data-testid="DeterministicLinePlot">
+    <div className="w-100 h-100" data-testid="ResultsTrajectoriesPlot">
       <ReactResizeDetector handleWidth handleHeight refreshRate={300} refreshMode="debounce">
         {({ width }: { width?: number }) => {
           if (!width) {
@@ -330,6 +330,6 @@ export function DeterministicLinePlotDiconnected({
   )
 }
 
-const DeterministicLinePlot = connect(mapStateToProps, mapDispatchToProps)(DeterministicLinePlotDiconnected)
+const ResultsTrajectoriesPlot = connect(mapStateToProps, mapDispatchToProps)(ResultsTrajectoriesPlotDiconnected)
 
-export { DeterministicLinePlot }
+export { ResultsTrajectoriesPlot }
