@@ -1,8 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 
 export = Popover
 
-// eslint-disable-next-line react/prefer-stateless-function
 declare class Popover extends React.Component<Popover.PopoverProps> {}
 
 declare namespace Popover {
