@@ -51,23 +51,6 @@ import './ResultsTrajectoriesPlot.scss'
 
 const ASPECT_RATIO = 16 / 9
 
-function xTickFormatter(tick: string | number): string {
-  return new Date(tick).toISOString().slice(0, 10)
-}
-
-function labelFormatter(value: string | number): React.ReactNode {
-  return xTickFormatter(value)
-}
-
-function legendFormatter(enabledPlots: string[], value?: LegendPayload['value'], entry?: LegendPayload) {
-  let activeClassName = 'legend-inactive'
-  if (entry?.dataKey && enabledPlots.includes(entry.dataKey)) {
-    activeClassName = 'legend'
-  }
-
-  return <span className={activeClassName}>{value}</span>
-}
-
 export interface ResultsTrajectoriesPlotProps {
   scenarioData: ScenarioDatum
   result?: AlgorithmResult
@@ -192,16 +175,28 @@ export function ResultsTrajectoriesPlotDiconnected({
     // @ts-ignore
     tooltipItems = { ...tooltipItems, ...d }
   })
+
   const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(
     (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey !== 'ICUbeds',
   )
 
   const logScaleString: YAxisProps['scale'] = isLogScale ? 'log' : 'linear'
 
-  const tooltipValueFormatter = (value: number | string) =>
-    typeof value === 'number' ? formatNumber(Number(value)) : value
+  const xTickFormatter = (tick: string | number) => new Date(tick).toISOString().slice(0, 10)
 
   const yTickFormatter = (value: number) => formatNumberRounded(value)
+
+  const legendFormatter = (enabledPlots: string[]) => (value?: LegendPayload['value'], entry?: LegendPayload) => {
+    let activeClassName = 'legend-inactive'
+    if (entry?.dataKey && enabledPlots.includes(entry.dataKey)) {
+      activeClassName = 'legend'
+    }
+
+    return <span className={activeClassName}>{value}</span>
+  }
+
+  const tooltipValueFormatter = (value: number | string) =>
+    typeof value === 'number' ? formatNumber(Number(value)) : value
 
   return (
     <div className="w-100 h-100" data-testid="ResultsTrajectoriesPlot">
@@ -223,7 +218,7 @@ export function ResultsTrajectoriesPlotDiconnected({
                 height={height / 4}
                 tMin={tMin}
                 tMax={tMax}
-                labelFormatter={labelFormatter}
+                labelFormatter={xTickFormatter}
                 tooltipValueFormatter={tooltipValueFormatter}
                 tooltipPosition={tooltipPosition}
               />
@@ -266,7 +261,7 @@ export function ResultsTrajectoriesPlotDiconnected({
                 />
 
                 <Tooltip
-                  labelFormatter={labelFormatter}
+                  labelFormatter={xTickFormatter}
                   position={tooltipPosition}
                   content={(props: TooltipProps) => (
                     <LinePlotTooltip
@@ -279,9 +274,7 @@ export function ResultsTrajectoriesPlotDiconnected({
 
                 <Legend
                   verticalAlign="bottom"
-                  formatter={(value?: LegendPayload['value'], entry?: LegendPayload) =>
-                    legendFormatter(enabledPlots, value, entry)
-                  }
+                  formatter={legendFormatter(enabledPlots)}
                   onClick={(e) => {
                     const plots = enabledPlots.slice(0)
                     enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)
