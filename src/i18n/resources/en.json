@@ -52,6 +52,7 @@
   "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay.": "Epidemiological parameters specifing growth rate, seasonal variation, and duration of hospital stay.",
   "Epidemiology": "Epidemiology",
   "Error": "Error",
+  "Error in column \"{{column}}\", row \"{{ageGroup}}\": {{message}}": "Error in column \"{{column}}\", row \"{{ageGroup}}\": {{message}}",
   "FAQ": "FAQ",
   "Fatal": "Fatal",
   "Format numbers": "Format numbers",

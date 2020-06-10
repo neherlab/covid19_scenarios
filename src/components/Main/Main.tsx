@@ -1,20 +1,14 @@
 import React, { useCallback, useMemo } from 'react'
 
-import { isEqual, omit, pick, zip, zipWith } from 'lodash'
+import { isEqual, omit, pick, zipWith } from 'lodash'
 
 import { connect } from 'react-redux'
 import { Form, Formik, FormikErrors, FormikValues, FormikHelpers } from 'formik'
 import { Col, Row } from 'reactstrap'
 import { ActionCreator } from 'typescript-fsa'
 import { useDebouncedCallback } from 'use-debounce'
-import { AgeDistributionData, ScenarioData, SeverityDistributionData } from '../../algorithms/types/Param.types'
 
-import type {
-  ScenarioDatum,
-  SeverityDistributionDatum,
-  AgeDistributionDatum,
-  ScenarioParameters,
-} from '../../algorithms/types/Param.types'
+import type { ScenarioDatum, SeverityDistributionDatum, AgeDistributionDatum } from '../../algorithms/types/Param.types'
 
 import type { State } from '../../state/reducer'
 import {
@@ -53,24 +47,6 @@ function getColumnSizes(areResultsMaximized: boolean) {
 
   return { colScenario: { xl: 6 }, colResults: { xl: 6 } }
 }
-
-// function marshalData(severity: SeverityDistributionDatum[], ageDistribution: AgeDistributionDatum[]) {
-//   return severity.map(
-//     (severityRow, i) =>
-//       ({ id: severityRow.ageGroup, ...severityRow, population: ageDistribution[i].population } as AgeGroupRow),
-//   )
-// }
-//
-// function unmarshalData(
-//   rows: AgeGroupRow[],
-// ): { severity: SeverityDistributionDatum[]; ageDistribution: AgeDistributionDatum[] } {
-//   const severity = rows.map((row) => omit(row, ['id', 'population']))
-//   const ageDistribution = rows.map((row) => pick(row, ['ageGroup', 'population']))
-//
-//   console.log({ severity, ageDistribution })
-//
-//   return { severity, ageDistribution }
-// }
 
 export interface ScenarioParams {
   scenarioData: ScenarioDatum

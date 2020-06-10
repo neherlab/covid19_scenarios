@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { omit } from 'lodash'
 
 import {
@@ -10,20 +12,20 @@ import {
   EditingState,
 } from '@devexpress/dx-react-grid'
 
+import type { TFunction } from 'i18next'
 import { format as d3format } from 'd3-format'
-import React from 'react'
-
-import { Field, FieldProps, FormikErrors, useField } from 'formik'
+import { FormikErrors, useField } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress/dx-react-grid-bootstrap4'
-import { AgeGroup } from '../../../algorithms/types/Param.types'
 
+import { AgeGroup } from '../../../algorithms/types/Param.types'
 import type {
   AgeDistributionDatum,
   SeverityDistributionDatum,
   ScenarioDatum,
 } from '../../../algorithms/types/Param.types'
+
 import i18n from '../../../i18n/i18n'
 
 import {
@@ -33,13 +35,13 @@ import {
 } from '../../../state/scenario/scenario.selectors'
 import { State } from '../../../state/reducer'
 
-import './AgeGroupParameters.scss'
+import './SeverityTable.scss'
 
 export interface AgeGroupRow extends SeverityDistributionDatum, AgeDistributionDatum {
   id: string
 }
 
-export interface AgeGroupRowWithTotals {
+export interface AgeGroupRowWithTotals extends AgeGroupRow {
   totalFatal: number
 }
 
@@ -104,6 +106,26 @@ const DecimalTypeProvider = (props: DataTypeProviderProps) => (
   <DataTypeProvider formatterComponent={DecimalFormatter} {...props} />
 )
 
+export function getErrorMessages(t: TFunction, errors?: FormikErrors<AgeGroupRow[]>): string[] {
+  if (!errors) {
+    return []
+  }
+
+  return Object.entries(errors).reduce((result, [i, err]) => {
+    const rowNum = Number.parseInt(i, 10)
+    const ageGroup = Object.values(AgeGroup)[rowNum]
+
+    if (err) {
+      const messages = Object.entries(err).map(([column, message]) =>
+        t('Error in column "{{column}}", row "{{ageGroup}}": {{message}}', { column, ageGroup, message }),
+      )
+      return [...result, ...messages]
+    }
+
+    return result
+  }, new Array<string>())
+}
+
 export interface SeverityTableProps {
   scenarioData: ScenarioDatum
   ageDistributionData: AgeDistributionDatum[]
@@ -126,31 +148,14 @@ function SeverityTableDisconnected({
   severityDistributionData,
 }: SeverityTableProps) {
   const { t } = useTranslation()
-  const [{ value }, { error, touched }, { setValue }] = useField<AgeGroupRow[]>('severity')
-
-  const errors: FormikErrors<AgeGroupRow[]> = ((error as unknown) as FormikErrors<AgeGroupRow[]>) ?? []
-
-  console.log({ entries: Object.entries(errors) })
-
-  const errorMessages: string[] = Object.entries(errors).reduce((result, [i, err]) => {
-    const rowNum = Number.parseInt(i, 10)
-    const ageGroup = Object.values(AgeGroup)[rowNum]
-
-    if (err) {
-      const messages = Object.entries(err).map(
-        ([column, message]) => `Column "${column}", row "${ageGroup}": ${message}`,
-      )
-      return [...result, ...messages]
-    }
-
-    return result
-  }, new Array<string>())
+  const [{ value }, { error }, { setValue }] = useField<AgeGroupRow[]>('severity')
+  const errorMessages = getErrorMessages(t, error)
 
   if (!value) {
     return null
   }
 
-  const parametersWithTotals = value.map((row) => ({
+  const parametersWithTotals: AgeGroupRowWithTotals[] = value.map((row) => ({
     ...row,
     totalFatal: row.confirmed * row.severe * row.critical * row.fatal * 1e-6,
   }))
@@ -160,10 +165,8 @@ function SeverityTableDisconnected({
       return
     }
 
-    let newValue = value
-      .map((row) => (changed[row.id] ? { ...row, ...changed[row.id] } : row))
-      .map((row) => omit(row, ['totalFatal']))
-
+    let newValue = value.map((row) => (changed[row.id] ? { ...row, ...changed[row.id] } : row))
+    newValue = newValue.map((row) => omit(row, ['totalFatal']))
     setValue(newValue)
   }
 
