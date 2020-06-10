@@ -32,6 +32,23 @@ export const DATA_POINTS = {
   ObservedWeeklyDeaths: 'weeklyDeaths',
 }
 
+export const defaultEnabledPlots = [
+  /* Computed */
+  'susceptible',
+  'infectious',
+  'severe',
+  'recovered',
+  'weeklyFatality',
+  'hospitalBeds',
+  'ICUbeds',
+  /* Observed */
+  'cases',
+  'currentHospitalized',
+  'ICU',
+  'newCases',
+  'weeklyDeaths',
+]
+
 export const colors = {
   [DATA_POINTS.Susceptible]: '#a6cee3',
   [DATA_POINTS.Infectious]: '#fdbf6f',
@@ -40,9 +57,9 @@ export const colors = {
   [DATA_POINTS.Overflow]: '#900d2c',
   [DATA_POINTS.Recovered]: '#33a02c',
   [DATA_POINTS.Fatalities]: '#5e506a',
-  [DATA_POINTS.WeeklyFatalities]: '#5e505a',
+  [DATA_POINTS.WeeklyFatalities]: '#6e607a',
   [DATA_POINTS.CumulativeCases]: '#aaaaaa',
-  [DATA_POINTS.NewCases]: '#fdbf6f',
+  [DATA_POINTS.NewCases]: '#edaf5f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
   [DATA_POINTS.ICUbeds]: '#cccccc',
 }

@@ -33,7 +33,14 @@ import { selectScenarioData, selectCaseCountsData } from '../../../state/scenari
 import { selectIsLogScale, selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
-import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
+import {
+  linesToPlot,
+  areasToPlot,
+  observationsToPlot,
+  DATA_POINTS,
+  translatePlots,
+  defaultEnabledPlots,
+} from './ChartCommon'
 import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'
@@ -89,7 +96,7 @@ export function DeterministicLinePlotDiconnected({
 }: DeterministicLinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
-  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+  const [enabledPlots, setEnabledPlots] = useState(defaultEnabledPlots)
 
   const formatNumber = numberFormatter(!!shouldFormatNumbers, false)
   const formatNumberRounded = numberFormatter(!!shouldFormatNumbers, true)
@@ -103,13 +110,11 @@ export function DeterministicLinePlotDiconnected({
   const nHospitalBeds = verifyPositive(scenarioData.population.hospitalBeds)
   const nICUBeds = verifyPositive(scenarioData.population.icuBeds)
 
-  const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
-    7, //scenarioData.epidemiological.infectiousPeriodDays,
-    'cases',
-    caseCountsData,
-  )
+  // NOTE: this used to use scenarioData.epidemiological.infectiousPeriodDays as
+  // time interval but a weekly interval makes more sense given reporting practices
+  const [newEmpiricalCases] = computeNewEmpiricalCases(7, 'cases', caseCountsData)
 
-  const [weeklyEmpiricalDeaths, deathsTimeWindow] = computeNewEmpiricalCases(7, 'deaths', caseCountsData)
+  const [weeklyEmpiricalDeaths] = computeNewEmpiricalCases(7, 'deaths', caseCountsData)
 
   const hasObservations = {
     [DATA_POINTS.ObservedCases]: caseCountsData && caseCountsData.some((d) => d.cases),
