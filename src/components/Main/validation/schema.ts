@@ -3,11 +3,9 @@ import * as yup from 'yup'
 import i18next from 'i18next'
 import { AgeGroup } from '../../../algorithms/types/Param.types'
 
-import type { ScenarioDatum } from '../../../algorithms/types/Param.types'
 import type { FormData } from '../Main'
 
 import { CUSTOM_COUNTRY_NAME } from '../../../constants'
-import i18n from '../../../i18n/i18n'
 
 import { ageDistributionNames } from '../../../io/defaults/getAgeDistributionData'
 
