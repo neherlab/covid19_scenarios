@@ -1,5 +1,7 @@
 import actionCreatorFactory from 'typescript-fsa'
 
+import type { UUIDv4 } from '../../helpers/uuid'
+
 import type {
   AgeDistributionDatum,
   ScenarioDatum,
@@ -23,5 +25,7 @@ export const setSeverityDistributionData = action<SeverityDistributionDatum[]>('
 export const setCaseCountsDataCustom = action<CaseCountsData>('SET_CASE_COUNTS_DATA_CUSTOM')
 export const resetCaseCounts = action<void>('RESET_CASE_COUNTS')
 export const setScenarioState = action<ScenarioParameters>('SET_STATE_DATA')
+export const addMitigationInterval = action<void>('ADD_MITIGATION_INTERVAL')
+export const removeMitigationInterval = action<UUIDv4>('REMOVE_MITIGATION_INTERVAL')
 
 export const setCanRun = action<boolean>('SET_CAN_RUN')

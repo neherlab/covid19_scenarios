@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export declare type PotentialPromise<T> = T | Promise<T>
 export declare type MapperFn<I, O> = (value: I, idx: number, arr: I[]) => PotentialPromise<O>
 export declare type EachFn<I> = MapperFn<I, any>

@@ -77,40 +77,16 @@ groups = ['_0', '_1', '_2', '_3', '_4', '_5', '_6', '_7', '_8', 'NUM']
 Age = IntEnum('Age', groups , start=0)
 
 # ------------------------------------------------------------------------
+# Default parameters
+DefaultRates = {"latency":1/3.0, "logR0":1.0, "infection":1/3.0, "hospital":1/3.0, "critical":1/14, "imports":.1, "efficacy":0.5}
+RateFields   = list(DefaultRates.keys())
+
+# ------------------------------------------------------------------------
 # Organizational classes
 
 class Data(object):
     def __str__(self):
         return str({k : str(v) for k, v in self.__dict__.items()})
-
-class Rates(Data):
-    def __init__(self, latency, logR0, infection, hospital, critical, imports, efficacy):
-        self.latency     = latency
-        self.logR0       = logR0
-        self.infectivity = np.exp(self.logR0) * infection
-        self.infection   = infection
-        self.hospital    = hospital
-        self.critical    = critical
-        self.imports     = imports
-        self.efficacy    = efficacy
-
-# NOTE: Pulled from default severe table on neherlab.org/covid19
-#       Keep in sync!
-# TODO: Allow custom values?
-
-class Fracs(Data):
-    confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
-    severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
-    severe   *= confirmed
-    critical  = np.array([5, 10, 10, 15, 20, 25, 35, 45, 55]) / 100
-    fatality  = np.array([30, 30, 30, 30, 30, 40, 40, 50, 50]) / 100
-
-    recovery  = 1 - severe
-    discharge = 1 - critical
-    stabilize = 1 - fatality
-
-    def __init__(self, reported=1/30):
-        self.reported = reported
 
 class TimeRange(Data):
     def __init__(self, day0, start, end, delta=1):
@@ -120,26 +96,41 @@ class TimeRange(Data):
         self.delta = delta
 
 class Params(Data):
-    def __init__(self, ages=None, size=None, date=None, times=None, rates=None, fracs=None):
-        self.ages  = ages
-        self.rates = rates
-        self.fracs = fracs
-        self.size  = size
-        self.time  = times
-        self.date  = date
+    """
+    Parameters needed to run the model. Initialized to default values. No default value for logR0 as if it
+    is not set the self.infectivity function doesn't give proper values.
+    """
+    def __init__(self, logR0, ages=None, size=None, containment_start=None, times=None, logInitial=None):
+        self.ages               = ages
+        self.size               = size
+        self.time               = times
+        self.containment_start  = containment_start
 
+        # Rates
+        self.latency     = DefaultRates["latency"]
+        self.logR0       = logR0 or DefaultRates["logR0"]
+        self.infection   = DefaultRates["infection"]
+        self.beta = np.exp(self.logR0) * self.infection
+        self.hospital    = DefaultRates["hospital"]
+        self.critical    = DefaultRates["critical"]
+        self.imports     = DefaultRates["imports"]
+        self.efficacy    = DefaultRates["efficacy"]
+
+        # Fracs
+        self.confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
+        self.severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
+        self.severe   *= self.confirmed
+        self.icu       = np.array([5, 10, 10, 15, 20, 25, 35, 45, 55]) / 100
+        self.fatality  = np.array([30, 30, 30, 30, 30, 40, 40, 50, 50]) / 100
+
+        self.recovery  = 1 - self.severe
+        self.discharge = 1 - self.icu
+        self.stabilize = 1 - self.fatality
+
+        self.reported   = 1/30
+        self.logInitial = logInitial or 1
         # Make infection function
-        beta = self.rates.infectivity
-        self.rates.infectivity = lambda t,date,eff : beta if t<date else beta*(1-eff)
-
-# ------------------------------------------------------------------------
-# Default parameters
-
-DefaultRates = Rates(latency=1/3.0, logR0=1.0, infection=1/3.0, hospital=1/3.0, critical=1/14, imports=.1, efficacy=0.5)
-RateFields   = [ f for f in dir(DefaultRates) \
-                    if not callable(getattr(DefaultRates, f)) \
-                    and not f.startswith("__") ]
-RateFields.remove('infectivity')
+        self.infectivity = lambda t,containment_start,eff,beta : beta if t<containment_start else beta*(1-eff)
 
 # ------------------------------------------------------------------------
 # Functions
@@ -153,18 +144,18 @@ def make_evolve(params):
         fracI = pop2d[Sub.I, :].sum() / params.size
         dpop = np.zeros_like(pop2d)
 
-        flux_S   = params.rates.infectivity(t, params.date, params.rates.efficacy)*fracI*pop2d[Sub.S] + (params.rates.imports / Sub.NUM)
+        flux_S   = params.infectivity(t, params.containment_start, params.efficacy, params.beta)*fracI*pop2d[Sub.S] + (params.imports / Sub.NUM)
 
-        flux_E1  = params.rates.latency*pop2d[Sub.E1]*3
-        flux_E2  = params.rates.latency*pop2d[Sub.E2]*3
-        flux_E3  = params.rates.latency*pop2d[Sub.E3]*3
+        flux_E1  = params.latency*pop2d[Sub.E1]*3
+        flux_E2  = params.latency*pop2d[Sub.E2]*3
+        flux_E3  = params.latency*pop2d[Sub.E3]*3
 
-        flux_I_R = params.rates.infection*params.fracs.recovery*pop2d[Sub.I]
-        flux_I_H = params.rates.infection*params.fracs.severe*pop2d[Sub.I]
-        flux_H_R = params.rates.hospital*params.fracs.discharge*pop2d[Sub.H]
-        flux_H_C = params.rates.hospital*params.fracs.critical*pop2d[Sub.H]
-        flux_C_H = params.rates.critical*params.fracs.stabilize*pop2d[Sub.C]
-        flux_C_D = params.rates.critical*params.fracs.fatality*pop2d[Sub.C]
+        flux_I_R = params.infection*params.recovery*pop2d[Sub.I]
+        flux_I_H = params.infection*params.severe*pop2d[Sub.I]
+        flux_H_R = params.hospital*params.discharge*pop2d[Sub.H]
+        flux_H_C = params.hospital*params.icu*pop2d[Sub.H]
+        flux_C_H = params.critical*params.stabilize*pop2d[Sub.C]
+        flux_C_D = params.critical*params.fatality*pop2d[Sub.C]
 
         # Add fluxes to states
         dpop[Sub.S]  = -flux_S
@@ -176,7 +167,7 @@ def make_evolve(params):
         dpop[Sub.C]  = +flux_H_C - flux_C_D - flux_C_H
         dpop[Sub.R]  = +flux_H_R + flux_I_R
         dpop[Sub.D]  = +flux_C_D
-        dpop[Sub.T]  = +flux_E3*params.fracs.reported
+        dpop[Sub.T]  = +flux_E3*params.reported
 
         return np.reshape(dpop, Sub.NUM*Age.NUM)
 
@@ -229,8 +220,8 @@ def poissonNegLogLH(n,lam, eps=0.1):
     N = np.abs(n)
     return (L-N) - N*np.log((L+eps)/(N+eps))
 
-def assess_model(params, data, cases):
-    sol = solve_ode(params, init_pop(params.ages, params.size, cases))
+def assess_model(params, data):
+    sol = solve_ode(params, init_pop(params.ages, params.size, np.exp(params.logInitial)))
     model = trace_ages(sol)
 
     eps = 1e-2
@@ -242,71 +233,54 @@ def assess_model(params, data, cases):
     diff_deaths_model = model[3:, Sub.D] - model[:-3, Sub.D]
     death_cost = np.ma.sum(poissonNegLogLH(diff_deaths, diff_deaths_model, eps))
 
-    hospital_cost = 0
-    ICU_cost = 0
-    if data[Sub.H] is not None:
-        hospital_cost = np.ma.sum(poissonNegLogLH(data[Sub.H], model[:,Sub.H], eps))
-    if data[Sub.C] is not None:
-        ICU_cost = np.ma.sum(poissonNegLogLH(data[Sub.C], model[:,Sub.C], eps))
-
-    return case_cost + 10*death_cost # + hospital_cost + ICU_cost
+    return case_cost + 10*death_cost
 
 
 # Any parameters given in guess are fit. The remaining are fixed and set by DefaultRates
 def fit_params(key, time_points, data, guess, fixed_params=None, bounds=None):
-    if fixed_params is None:
-        fixed_params = {}
-
-    if key not in POPDATA:
-        return (Params(ages=None, size=None, date=None, times=None, rates=DefaultRates, fracs=Fracs()),
-                10, (False, "Not within population database"))
-
-    params_to_fit = {key : i for i, key in enumerate(guess.keys())}
-    def pack(x, as_list=False):
-        data = [x[key] for key in params_to_fit.keys()]
-        if not as_list:
-            return np.array(data)
-        return data
-
-    def unpack(x):
-        vals = {}
-        for f in RateFields:
-            if f in guess:
-                vals[f] = x[params_to_fit[f]]
-            elif f in fixed_params:
-                vals[f] = fixed_params[f]
-            else:
-                vals[f] = getattr(DefaultRates, f)
-
-        return Rates(**vals), Fracs(x[params_to_fit['reported']]) if 'reported' in params_to_fit else Fracs()
+    """
+    Fitting function used to estimate logInitial and reported fraction with the given fixed parameters.
+    """
+    def create_params(fixed_params, fit_params):
+        param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"], logR0=fixed_params['logR0'], times=time_points)
+        for ii in fixed_params.keys(): # Setting the fixed params
+            setattr(param, ii, fixed_params[ii])
+        for idx,name in enumerate(params_to_fit): # Setting the params for/from fitting
+            setattr(param, name, fit_params[idx])
+        return param
 
     def fit(x):
-        # TODO(nnoll): Need a better default here!
         if POPDATA[key]["ageDistribution"] in AGES:
             ages = AGES[POPDATA[key]["ageDistribution"]]
         else:
             ages = AGES["Switzerland"]
-        rates, fracs = unpack(x)
-        param = Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"],
-                       date=fixed_params.get('containment_start', None), times=time_points, rates=rates, fracs=fracs)
-        return assess_model(param, data, np.exp(x[params_to_fit['logInitial']]))
+        return assess_model(create_params(fixed_params, x), data)
+
+
+    if fixed_params is None:
+        fixed_params = {}
+
+    if key not in POPDATA:
+        return (Params(None, ages=None, size=None, containment_start=None, times=None),
+                (False, "Not within population database"))
+
+
+    params_to_fit = guess.keys()
+    guess = np.array([guess[key] for key in guess.keys()])
 
     if bounds is None:
-        fit_param = opt.minimize(fit, pack(guess), method='Nelder-Mead')
+        fit_param = opt.minimize(fit, guess, method='Nelder-Mead')
     else:
-        fit_param = opt.minimize(fit, pack(guess), method='L-BFGS-B', bounds=bounds)
+        fit_param = opt.minimize(fit, guess, method='L-BFGS-B', bounds=bounds)
 
     err = (fit_param.success, fit_param.message)
-    print(key, fit_param.x)
+
     if POPDATA[key]["ageDistribution"] in AGES:
         ages = AGES[POPDATA[key]["ageDistribution"]]
     else:
         ages = AGES["Switzerland"]
 
-    rates, fracs = unpack(fit_param.x)
-    return (Params(ages=AGES[POPDATA[key]["ageDistribution"]], size=POPDATA[key]["size"],
-                   date=fixed_params.get('containment_start', None), times=time_points, rates=rates, fracs=fracs),
-           np.exp(fit_param.x[params_to_fit['logInitial']]), err)
+    return (create_params(fixed_params, fit_param.x), err)
 
 # ------------------------------------------
 # Data loading
@@ -328,7 +302,9 @@ def load_data(key, ts):
         data[Sub.C].append(tp['icu'] or np.nan)
 
     data = [ np.ma.array(d) if d is not None else d for d in data]
-    good_idx = np.array(np.logical_or(case_min <= data[Sub.T], case_min <= data[Sub.D]))
+    good_idx1 = np.concatenate((np.zeros_like(data[Sub.T][np.isnan(data[Sub.T])]), case_min <= data[Sub.T][~np.isnan(data[Sub.T])]))
+    good_idx2 = np.concatenate((np.zeros_like(data[Sub.D][np.isnan(data[Sub.D])]), case_min <= data[Sub.D][~np.isnan(data[Sub.D])]))
+    good_idx = np.logical_or(good_idx1, good_idx2)
 
     for ii in [Sub.D, Sub.T, Sub.H, Sub.C]:
         data[ii] = data[ii][good_idx]
@@ -346,8 +322,7 @@ def get_fit_data(days, data_original, end_discard=3):
     than 20 cases are removed. The last 3 days are also removed (due to latency of reporting)
     """
     data = copy.deepcopy(data_original)
-    case_min = 20
-    day0 = days[case_min <= data[Sub.T]][0]
+    day0 = days[0]
 
     # Filter points
     good_idx = np.bitwise_and(days >= day0, days < days[-1] - end_discard)
@@ -363,7 +338,7 @@ def get_fit_data(days, data_original, end_discard=3):
         if False not in data[ii].mask:
             data[ii] = None
 
-    # start the model 3 weeks prior.
+    # start the model 2 weeks prior.
     time = np.concatenate(([day0-14], days[good_idx]))
     return time, data
 
@@ -401,52 +376,15 @@ def fit_population_iterative(key, time_points, data, guess=None, second_fit=Fals
             print("Cases / deaths count is not cumulative.", data[ii])
 
     t1 = datetime.now().timestamp()
-    param, init_cases, err = fit_params(key, time_points, data, guess, fixed_params, bounds=bounds)
+    param, err = fit_params(key, time_points, data, guess, fixed_params, bounds=bounds)
     t2 = datetime.now().timestamp()
-    print(round(t2 - t1,2), fixed_params)
-    if second_fit:
-      guess = { "reported" : param.fracs.reported,
-                "logInitial" : np.log(init_cases),
-                "logR0": param.rates.logR0,
-                "efficacy": param.rates.efficacy
-              }
-      param, init_cases, err = fit_params(key, time_points, data, guess,
-                                          {'containment_start':fixed_params['containment_start']}, bounds=None)
-
-      t3 = datetime.now().timestamp()
-      print(round(t3 - t2, 2), fixed_params)
 
     tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
-    res = {'params': param, 'initialCases': init_cases, 'tMin': tMin, 'data': data, 'error':err}
-    if param.date is not None:
-        res['containment_start'] = datetime.fromordinal(int(param.date)).strftime('%Y-%m-%d')
+    res = {'params': param, 'tMin': tMin, 'data': data, 'error':err}
+    if param.containment_start is not None:
+        res['containment_start'] = datetime.fromordinal(int(param.containment_start)).strftime('%Y-%m-%d')
 
-    return res
-
-def fit_population(key, time_points, data, containment_start=None, guess=None):
-    if data is None or data[Sub.D] is None or len(data[Sub.D]) <= 5:
-        return None
-
-    if guess is None:
-        guess = { "logR0": 1.0,
-                  "reported" : 0.2,
-                  "logInitial" : 1,
-                  "efficacy" : 0.8
-                }
-    # bounds = ((0.4,2),(0.01,0.8),(1,None),(0,1))
-    bounds=None
-
-    for ii in [Sub.T, Sub.D]:
-        if not is_cumulative(data[ii]):
-            print("Cases / deaths count is not cumulative.", data[ii])
-
-    param, init_cases, err = fit_params(key, time_points, data, guess,
-                                        {'containment_start':containment_start}, bounds=bounds)
-    tMin = datetime.strftime(datetime.fromordinal(time_points[0]), '%Y-%m-%d')
-    res = {'params': param, 'initialCases': init_cases, 'tMin': tMin, 'data': data, 'error':err}
-    if param.date is not None:
-        res['containment_start'] = datetime.fromordinal(param.date).strftime('%Y-%m-%d')
-
+    print(key, fixed_params, ", reported:", param.reported, ", Initial cases", np.exp(param.logInitial))
     return res
 
 
@@ -470,13 +408,6 @@ if __name__ == "__main__":
     parser.add_argument('--key', type=str, help="key for region, e.g 'USA-California'")
     args = parser.parse_args()
 
-    # NOTE: For debugging purposes only
-    # rates = DefaultRates
-    # fracs = Fracs()
-    # times = TimeRange(0, 100)
-    # param = Params(AGES[COUNTRY], POPDATA[make_key(COUNTRY, REGION)], times, rates, fracs)
-    # model = trace_ages(solve_ode(param, init_pop(param.ages, param.size, 1)))
-
     key = args.key or "USA-New York"
     # key = "CHE-Basel-Stadt"
     # key = "DEU-Berlin"
@@ -486,37 +417,10 @@ if __name__ == "__main__":
 
     # Fitting over the pre-confinement days
     res = fit_population_iterative(key, model_tps, fit_data, FRA=False)
-    model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, res['initialCases'])))
+    model = trace_ages(solve_ode(res['params'], init_pop(res['params'].ages, res['params'].size, np.exp(res['params'].logInitial))))
     err = fit_error(fit_data, model)
     time -= res['params'].time[0]
     tp = res['params'].time - res['params'].time[0]
-
-    # plt.figure()
-    # plt.title(f"{key}")
-    # plt.plot(time, data[Sub.T], 'o', color='#a9a9a9', label="cases")
-    # plt.plot(tp, model[:,Sub.T], color="#a9a9a9", label="predicted cases")
-    #
-    # plt.plot(time, data[Sub.D], 'o', color="#cab2d6", label="deaths")
-    # plt.plot(tp, model[:,Sub.D], color="#cab2d6", label="predicated deaths")
-    #
-    # plt.plot(time, data[Sub.H], 'o', color="#fb9a98", label="Hospitalized")
-    # plt.plot(tp, model[:,Sub.H], color="#fb9a98", label="Predicted hospitalized")
-    #
-    # plt.plot(time, data[Sub.C], 'o', color="#e31a1c", label="ICU")
-    # plt.plot(tp, model[:,Sub.C], color="#e31a1c", label="Predicted ICU")
-    #
-    # plt.plot(tp, model[:,Sub.I], color="#fdbe6e", label="infected")
-    # plt.plot(tp, model[:,Sub.R], color="#36a130", label="recovered")
-    #
-    #
-    # plt.xlabel("Time [days]")
-    # plt.ylabel("Number of people")
-    # plt.legend(loc="best")
-    # plt.tight_layout()
-    # # plt.yscale('log')
-    # # plt.ylim([-100,1000])
-    # plt.savefig("Basel-Stadt", format="png")
-    # plt.show()
 
     plt.figure()
     plt.title(f"{key}")

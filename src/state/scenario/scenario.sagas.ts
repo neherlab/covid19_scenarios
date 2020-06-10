@@ -3,7 +3,15 @@ import { put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router'
 import { fromUrl } from '../../io/serialization/fromUrl'
 import { algorithmRunTrigger } from '../algorithm/algorithm.actions'
-import { setScenario, setScenarioData, setScenarioState } from './scenario.actions'
+import {
+  addMitigationInterval,
+  removeMitigationInterval,
+  setAgeDistributionData,
+  setScenario,
+  setScenarioData,
+  setScenarioState,
+  setSeverityDistributionData,
+} from './scenario.actions'
 import { selectIsAutorunEnabled } from '../settings/settings.selectors'
 
 export function* processUrl({ payload: { location } }: LocationChangeAction) {
@@ -27,4 +35,8 @@ export default [
   takeLatest(setScenario, triggerAlgorithm),
   takeLatest(setScenarioData, triggerAlgorithm),
   takeLatest(setScenarioState, triggerAlgorithm),
+  takeLatest(setSeverityDistributionData, triggerAlgorithm),
+  takeLatest(setAgeDistributionData, triggerAlgorithm),
+  takeLatest(addMitigationInterval, triggerAlgorithm),
+  takeLatest(removeMitigationInterval, triggerAlgorithm),
 ]

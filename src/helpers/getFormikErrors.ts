@@ -5,14 +5,14 @@ import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 export interface GetErrorParams {
   identifier: string
   errors?: FormikErrors<FormikValues>
-  touched?: FormikTouched<FormikValues>
+  touched?: FormikTouched<FormikValues> | true
 }
 
 export function getFormikErrors({ identifier, errors, touched }: GetErrorParams): string[] {
-  const isTouched = get(touched, identifier)
+  // const isTouched = (typeof touched === 'boolean' && touched === true) || get(touched, identifier)
   const errorMessage = get(errors, identifier)
 
-  if (!errorMessage || isEmpty(errorMessage) || !isTouched) {
+  if (!errorMessage || isEmpty(errorMessage) /* || !isTouched */) {
     return []
   }
 

@@ -11,7 +11,7 @@ import { State } from '../../../state/reducer'
 import { selectAgeDistributionData, selectSeverityDistributionData } from '../../../state/scenario/scenario.selectors'
 
 import { CollapsibleCard } from '../../Form/CollapsibleCard'
-import AgeGroupParameters from './AgeGroupParameters'
+import { SeverityTable } from '../SeverityTable/SeverityTable'
 import SeverityCardInfo from './SeverityCardInfo.mdx'
 
 export interface SeverityCardProps {
@@ -53,12 +53,7 @@ function SeverityCardDisconnected({
       help={t('Assumptions on severity which are informed by epidemiological and clinical observations in China')}
       defaultCollapsed={false}
     >
-      <AgeGroupParameters
-        severity={severityDistributionData}
-        setSeverity={setSeverityDistributionData}
-        ageDistribution={ageDistributionData}
-        setAgeDistribution={setAgeDistributionData}
-      />
+      <SeverityTable />
       <SeverityCardInfo />
     </CollapsibleCard>
   )

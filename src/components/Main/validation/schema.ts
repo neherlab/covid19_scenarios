@@ -1,7 +1,10 @@
 import * as yup from 'yup'
 
 import i18next from 'i18next'
-import { ScenarioDatum } from '../../../algorithms/types/Param.types'
+import { AgeGroup } from '../../../algorithms/types/Param.types'
+import { UUIDv4 } from '../../../helpers/uuid'
+
+import type { FormData } from '../Main'
 
 import { CUSTOM_COUNTRY_NAME } from '../../../constants'
 
@@ -20,6 +23,20 @@ const MSG_TOO_MANY_RUNS = i18next.t('Too many runs')
 const MSG_RANGE_INVALID = i18next.t('Range begin should be less or equal to range end')
 
 // TODO: all this validation should be replaced with JSON-schema-based validation
+
+const percentageSchema = yup
+  .number()
+  .required(i18next.t(MSG_REQUIRED))
+  .min(0, i18next.t('Percentage should be non-negative'))
+  .max(100, i18next.t('Percentage cannot be greater than 100'))
+  .typeError(i18next.t('Percentage should be a number'))
+
+const positiveIntegerSchema = yup
+  .number()
+  .required(i18next.t(MSG_REQUIRED))
+  .integer(i18next.t('This value should be an integer'))
+  .min(0, i18next.t('This value should be non-negative'))
+  .typeError(i18next.t('This value should be an integer'))
 
 export function numericRangeNonNegative() {
   return yup
@@ -48,7 +65,7 @@ export function dateRange() {
     .test('valid percentage range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
 }
 
-export const schema: yup.Schema<ScenarioDatum> = yup
+export const schema: yup.Schema<FormData> = yup
   .object()
   .shape({
     population: yup
@@ -103,14 +120,14 @@ export const schema: yup.Schema<ScenarioDatum> = yup
             yup
               .object({
                 color: yup.string().required(MSG_REQUIRED),
-                id: yup.string().required(MSG_REQUIRED),
+                id: (yup.string().required(MSG_REQUIRED) as unknown) as yup.Schema<UUIDv4>,
                 transmissionReduction: percentageRange().required(MSG_REQUIRED),
                 name: yup.string().required(MSG_REQUIRED),
                 timeRange: dateRange().required(MSG_REQUIRED),
               })
               .required(MSG_REQUIRED),
           )
-          .required(MSG_REQUIRED),
+          .defined(),
       })
       .required(MSG_REQUIRED),
 
@@ -127,5 +144,24 @@ export const schema: yup.Schema<ScenarioDatum> = yup
         simulationTimeRange: dateRange().required(MSG_REQUIRED),
       })
       .required(MSG_REQUIRED),
+
+    severity: yup
+      .array()
+      .of(
+        yup
+          .object()
+          .shape({
+            id: yup.string().required(MSG_REQUIRED),
+            ageGroup: yup.string().oneOf(Object.values(AgeGroup)).required(MSG_REQUIRED),
+            population: positiveIntegerSchema.required(MSG_REQUIRED),
+            confirmed: percentageSchema.required(MSG_REQUIRED),
+            severe: percentageSchema.required(MSG_REQUIRED),
+            critical: percentageSchema.required(MSG_REQUIRED),
+            fatal: percentageSchema.required(MSG_REQUIRED),
+            isolated: percentageSchema.required(MSG_REQUIRED),
+          })
+          .required(MSG_REQUIRED),
+      )
+      .defined(),
   })
   .required(MSG_REQUIRED)
