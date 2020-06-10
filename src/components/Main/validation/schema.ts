@@ -2,6 +2,7 @@ import * as yup from 'yup'
 
 import i18next from 'i18next'
 import { AgeGroup } from '../../../algorithms/types/Param.types'
+import { UUIDv4 } from '../../../helpers/uuid'
 
 import type { FormData } from '../Main'
 
@@ -119,14 +120,14 @@ export const schema: yup.Schema<FormData> = yup
             yup
               .object({
                 color: yup.string().required(MSG_REQUIRED),
-                id: yup.string().required(MSG_REQUIRED),
+                id: (yup.string().required(MSG_REQUIRED) as unknown) as yup.Schema<UUIDv4>,
                 transmissionReduction: percentageRange().required(MSG_REQUIRED),
                 name: yup.string().required(MSG_REQUIRED),
                 timeRange: dateRange().required(MSG_REQUIRED),
               })
               .required(MSG_REQUIRED),
           )
-          .required(MSG_REQUIRED),
+          .defined(),
       })
       .required(MSG_REQUIRED),
 
@@ -161,6 +162,6 @@ export const schema: yup.Schema<FormData> = yup
           })
           .required(MSG_REQUIRED),
       )
-      .required(MSG_REQUIRED),
+      .defined(),
   })
   .required(MSG_REQUIRED)

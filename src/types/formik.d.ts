@@ -1,6 +1,6 @@
 declare module 'formik' {
   import type { FieldHookConfig } from 'formik/dist/Field'
-  import type { FormikErrors, FieldHelperProps, FieldInputProps } from 'formik/dist/types'
+  import type { FormikErrors, FieldHelperProps, FieldInputProps, FormikTouched } from 'formik/dist/types'
 
   export * from 'formik/dist/index'
 
@@ -10,7 +10,7 @@ declare module 'formik' {
     /** Error message of the field */
     error?: FormikErrors<Value>
     /** Has the field been visited? */
-    touched: boolean
+    touched: FormikTouched<Value>
     /** Initial value of the field */
     initialValue?: Value
     /** Initial touched state of the field */

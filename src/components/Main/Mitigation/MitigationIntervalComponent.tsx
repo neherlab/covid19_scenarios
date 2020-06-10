@@ -1,37 +1,43 @@
 import React from 'react'
-import { FastField, FieldArrayRenderProps, FormikErrors, FormikTouched, FormikValues } from 'formik'
+
+import { connect } from 'react-redux'
+import { FastField, useField } from 'formik'
 import { isEmpty } from 'lodash'
 import { useTranslation } from 'react-i18next'
 import { FaTrash } from 'react-icons/fa'
 import { Button } from 'reactstrap'
+
 import { MitigationInterval } from '../../../algorithms/types/restricted/ScenarioDatum'
 import { getFormikErrors } from '../../../helpers/getFormikErrors'
+
+import { State } from '../../../state/reducer'
+
 import { RangeSpinBox } from '../../Form/RangeSpinBox'
 import { MitigationDatePicker } from './MitigationDatePicker'
 
 export interface MitigationIntervalProps {
-  index: number
   interval: MitigationInterval
-  arrayHelpers: FieldArrayRenderProps
-  errors?: FormikErrors<FormikValues>
-  touched?: FormikTouched<FormikValues>
+  index: number
+  onRemove(): void
 }
 
-export function MitigationIntervalComponent({
-  index,
-  interval,
-  arrayHelpers,
-  errors,
-  touched,
-}: MitigationIntervalProps) {
+const mapStateToProps = (state: State) => ({})
+
+const mapDispatchToProps = {}
+
+export const MitigationIntervalComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MitigationIntervalComponentDisconnected)
+
+export function MitigationIntervalComponentDisconnected({ interval, index, onRemove }: MitigationIntervalProps) {
   const { t } = useTranslation()
+  const [, { error: errors, touched }] = useField(`mitigation.mitigationIntervals[${index}]`)
 
   const errorMessages = [
-    { friendlyName: t('Intervention name'), identifier: `mitigation.mitigationIntervals[${index}].name` },
-    {
-      friendlyName: t('Transmission reduction'),
-      identifier: `mitigation.mitigationIntervals[${index}].transmissionReduction`,
-    },
+    { friendlyName: t('Intervention name'), identifier: `name` },
+    { friendlyName: t('Transmission reduction'), identifier: `transmissionReduction` },
+    { friendlyName: t('Date range'), identifier: `timeRange` },
   ]
     .map(({ friendlyName, identifier }) => {
       const errorMessages = getFormikErrors({ identifier, errors, touched })
@@ -43,19 +49,15 @@ export function MitigationIntervalComponent({
     errorMessages.map((message) => {
       const content = `${friendlyName}: ${message}`
       return (
-        <tr key={content}>
-          <div key={content} className="my-0 text-right text-danger">
-            {message}
-          </div>
-        </tr>
+        <div key={content} className="my-0 text-right text-danger">
+          {content}
+        </div>
       )
     }),
   )
 
-  const nameHasError = errorMessages.some(({ identifier }) => identifier.includes('.name'))
-  const transmissionReductionHasError = errorMessages.some(({ identifier }) =>
-    identifier.includes('.transmissionReduction'),
-  )
+  const nameHasError = errorMessages.some(({ identifier }) => identifier === 'name')
+  const transmissionReductionHasError = errorMessages.some(({ identifier }) => identifier === 'transmissionReduction')
 
   return (
     <div className="mitigation-item">
@@ -91,7 +93,9 @@ export function MitigationIntervalComponent({
 
         <div className="mitigation-item-datum mitigation-item-efficiency-wrapper">
           <div>
-            <label htmlFor={`mitigation.mitigationIntervals[${index}].transmissionReduction`}>{t(`Efficiency`)}</label>
+            <label htmlFor={`mitigation.mitigationIntervals[${index}].transmissionReduction`}>
+              {t(`Transmission reduction`)}
+            </label>
           </div>
 
           <div>
@@ -115,7 +119,7 @@ export function MitigationIntervalComponent({
               className="mitigation-item-btn-remove"
               type="button"
               id={`mitigation-interval-${index}-btn-remove`}
-              onClick={() => arrayHelpers.remove(index)}
+              onClick={onRemove}
             >
               <FaTrash size={20} />
             </Button>

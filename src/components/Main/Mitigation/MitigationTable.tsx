@@ -1,79 +1,67 @@
 import React from 'react'
 
-import { FieldArray, FormikErrors, FormikTouched, FormikValues } from 'formik'
+import { useField } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { FaPlus } from 'react-icons/fa'
 import { connect } from 'react-redux'
 import { Button, Col, Row } from 'reactstrap'
+import { ActionCreator } from 'typescript-fsa'
 
 import type { MitigationInterval } from '../../../algorithms/types/Param.types'
-import { suggestNextMitigationInterval } from '../../../algorithms/utils/createMitigationInterval'
-
+import { UUIDv4 } from '../../../helpers/uuid'
 import type { State } from '../../../state/reducer'
-import { selectMitigationIntervals } from '../../../state/scenario/scenario.selectors'
+import { addMitigationInterval, removeMitigationInterval } from '../../../state/scenario/scenario.actions'
 import { MitigationIntervalComponent } from './MitigationIntervalComponent'
 
 import './MitigationTable.scss'
 
 export interface MitigationTableProps {
-  mitigationIntervals: MitigationInterval[]
-  errors?: FormikErrors<FormikValues>
-  touched?: FormikTouched<FormikValues>
+  addMitigationInterval: ActionCreator<void>
+  removeMitigationInterval: ActionCreator<UUIDv4>
 }
 
-const mapStateToProps = (state: State) => ({
-  mitigationIntervals: selectMitigationIntervals(state),
-})
+const mapStateToProps = (state: State) => ({})
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  addMitigationInterval,
+  removeMitigationInterval,
+}
 
 export const MitigationTable = connect(mapStateToProps, mapDispatchToProps)(MitigationTableDisconnected)
 
-export function MitigationTableDisconnected({ mitigationIntervals, errors, touched }: MitigationTableProps) {
+export function MitigationTableDisconnected({ addMitigationInterval, removeMitigationInterval }: MitigationTableProps) {
   const { t } = useTranslation()
+  const [{ value: mitigationIntervals }] = useField<MitigationInterval[]>('mitigation.mitigationIntervals') // prettier-ignore
 
   return (
-    <FieldArray
-      name="mitigation.mitigationIntervals"
-      render={(arrayHelpers) => (
-        <>
-          <Row>
-            <Col>
-              <div className="mitigation-table-wrapper">
-                {mitigationIntervals.map((interval: MitigationInterval, index: number) => {
-                  return (
-                    <MitigationIntervalComponent
-                      key={interval.id}
-                      interval={interval}
-                      index={index}
-                      arrayHelpers={arrayHelpers}
-                      errors={errors}
-                      touched={touched}
-                    />
-                  )
-                })}
-              </div>
-            </Col>
-          </Row>
+    <>
+      <Row>
+        <Col>
+          <div className="mitigation-table-wrapper">
+            {mitigationIntervals.map((interval, index) => {
+              return (
+                <MitigationIntervalComponent
+                  key={interval.id}
+                  interval={interval}
+                  index={index}
+                  onRemove={() => removeMitigationInterval(interval.id)}
+                />
+              )
+            })}
+          </div>
+        </Col>
+      </Row>
 
-          <Row>
-            <Col>
-              <div className="table-controls text-right align-middle">
-                <Button
-                  type="button"
-                  onClick={() => {
-                    const interval = suggestNextMitigationInterval(mitigationIntervals)
-                    arrayHelpers.push(interval)
-                  }}
-                >
-                  <FaPlus size={20} />
-                  <span className="ml-2 d-inline align-middle">{t(`Add`)}</span>
-                </Button>
-              </div>
-            </Col>
-          </Row>
-        </>
-      )}
-    />
+      <Row>
+        <Col>
+          <div className="table-controls text-right align-middle">
+            <Button type="button" onClick={() => addMitigationInterval()}>
+              <FaPlus size={20} />
+              <span className="ml-2 d-inline align-middle">{t(`Add`)}</span>
+            </Button>
+          </div>
+        </Col>
+      </Row>
+    </>
   )
 }
