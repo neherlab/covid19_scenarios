@@ -277,6 +277,78 @@ and Totals/Peak.
 
 The model's results can be exported in CSV format by clicking the "export" button in the right hand corner.
 
+### Custom Scenarios
+
+	Steps to running the application: 
+
+1) In order to run the application in its current state, the first step is to visit the website at: https://covid19-scenarios.org/
+
+2) The next screen, by default, will list the data for the United States of America. This is the default scenario upon loading, but luckily, it can be changed! Current scenarios can be seen given the latest data.
+
+	Changing the scenarios:
+
+3) In order to change the scenarios, press the "Load" button at the top of the screen in the middle. This should trigger a pop up within the same window.
+
+4) At this point, there are two options for the user. The first option is to use a predefined scenario. If you wish to do this, then on the left side of the popup select the Country or Place of interest and the data will update with the current known data.
+
+	Custom scenarios:
+
+5) On the other hand, you can also upload custom parameters for a given scenanario you wish to see. There are a few steps and a few files you will need to provide / edit.
+
+6) First, you will need to provide a "example.yml" file, where "example" is a camel cased scenario name. This document should resemble the following structure to some degree, but will change based on what you want the scenario to be. "Example" will be the title you give the scenario.
+
+Code:
+{	
+	$schema: http://json-schema.org/draft-07/schema
+	$id: Example
+	title: Example
+
+	additionalProperties: false
+
+	type: object
+
+	required:
+ 	 - ageGroup
+
+	properties:
+  	ageGroup:
+   	 $ref: 'AgeGroup#'
+
+}
+End Code.
+
+7) The schema will remain unchanged, unless the draft number is revised. 
+
+8) The $id and title will change based on the name assigned to the given scenario, which is up to the user. The only exceptions come in ensuring you do not use a name already assigned to a scenario. 
+
+9) The "required" designation will list what other files are required for this given scenario. In the example, "ageGroup" is required. This is another file, "AgeGroup.yml", and is required for this scenario. Similarly, you can do this with other parameters. 
+
+10) Going further, this also applies to the "properties" section. Whatever is listed in the required section must also specify in the properties which aspects are required. In "ageGroup", the "AgeGroup#" is a property. The property will always be in a similar
+structure of "$ref: 'exampleProperty#'", where the "#" is always following the name of the file.
+
+	Inputting the custom scenarios
+
+11) After the custom scenario file is complete, there is one final step for utilizing it with the program. That is, it needs to be inputted into the "Shareable.yml" file for viewing. This file will bring up the listed scenarios and use their properties and assigned rules in generating data.
+
+12) To update the file, the fields that need to be altered are "required" and "properties". The rest can remain the same.
+
+13) In the "required" field, the name of the new scenario file, without the ".yml" extension, should be listed. If the name is "Example.yml", the listing should read "example". 
+
+14) In the properties field, a similar trend occurs. For "Example.yml", the properties section should have:
+
+Code:
+{
+	properties:
+	 example:
+	  $ref: 'example#'
+}
+End Code.
+
+	This will be the trend for any custom scenario added into the program!
+
+15) Finally, the application must be reset on the server side to apply the new changes and scenario. Upon doing so, updated scenario will be able to be listed and visualized by the user.
+
+
 <h1 align="center" />
 
 <h2 id="developers_guide" align="center">
