@@ -16,10 +16,6 @@ export interface R0PlotTooltipProps extends TooltipProps {
   itemsToDisplay?: string[]
 }
 
-export interface LinePlotTooltipProps extends R0PlotTooltipProps {
-  deltaCaseDays: number
-}
-
 export function LinePlotTooltip({
   active,
   payload,
@@ -27,8 +23,7 @@ export function LinePlotTooltip({
   valueFormatter,
   labelFormatter,
   itemsToDisplay,
-  deltaCaseDays,
-}: LinePlotTooltipProps) {
+}: R0PlotTooltipProps) {
   const { t } = useTranslation()
 
   if (!active || !label || !payload || payload.length <= 2) {
@@ -49,7 +44,7 @@ export function LinePlotTooltip({
 
   const tooltipItems = []
     .concat(
-      translatePlots(t, observationsToPlot(deltaCaseDays)).map((observationToPlot) => ({
+      translatePlots(t, observationsToPlot()).map((observationToPlot) => ({
         ...observationToPlot,
         displayUndefinedAs: '-',
       })) as never,

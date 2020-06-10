@@ -18,6 +18,7 @@ export const DATA_POINTS = {
   Overflow: 'overflow',
   Recovered: 'recovered',
   Fatalities: 'fatality',
+  WeeklyFatalities: 'weeklyFatality',
   CumulativeCases: 'cumulativeCases',
   NewCases: 'newCases',
   HospitalBeds: 'hospitalBeds',
@@ -28,7 +29,25 @@ export const DATA_POINTS = {
   ObservedHospitalized: 'currentHospitalized',
   ObservedICU: 'ICU',
   ObservedNewCases: 'newCases',
+  ObservedWeeklyDeaths: 'weeklyDeaths',
 }
+
+export const defaultEnabledPlots = [
+  /* Computed */
+  'susceptible',
+  'infectious',
+  'severe',
+  'recovered',
+  'weeklyFatality',
+  'hospitalBeds',
+  'ICUbeds',
+  /* Observed */
+  'cases',
+  'currentHospitalized',
+  'ICU',
+  'newCases',
+  'weeklyDeaths',
+]
 
 export const colors = {
   [DATA_POINTS.Susceptible]: '#a6cee3',
@@ -38,8 +57,9 @@ export const colors = {
   [DATA_POINTS.Overflow]: '#900d2c',
   [DATA_POINTS.Recovered]: '#33a02c',
   [DATA_POINTS.Fatalities]: '#5e506a',
+  [DATA_POINTS.WeeklyFatalities]: '#6e607a',
   [DATA_POINTS.CumulativeCases]: '#aaaaaa',
-  [DATA_POINTS.NewCases]: '#fdbf6f',
+  [DATA_POINTS.NewCases]: '#edaf5f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
   [DATA_POINTS.ICUbeds]: '#cccccc',
 }
@@ -52,6 +72,12 @@ export const linesToPlot: LineProps[] = [
   { key: DATA_POINTS.Critical, color: colors.critical, name: 'Patients in ICU (model)', legendType: 'line' },
   { key: DATA_POINTS.Overflow, color: colors.overflow, name: 'ICU overflow', legendType: 'line' },
   { key: DATA_POINTS.Fatalities, color: colors.fatality, name: 'Cumulative deaths (model)', legendType: 'line' },
+  {
+    key: DATA_POINTS.WeeklyFatalities,
+    color: colors.weeklyFatality,
+    name: 'Weekly deaths (model)',
+    legendType: 'line',
+  },
   { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: 'Total hospital beds', legendType: 'none' },
   { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: 'Total ICU/ICM beds', legendType: 'none' },
 ]
@@ -99,15 +125,22 @@ export const areasToPlot: LineProps[] = [
     name: 'Cumulative deaths (model) uncertainty',
     legendType: 'none',
   },
+  {
+    key: `${DATA_POINTS.WeeklyFatalities}Area`,
+    color: colors.weeklyFatality,
+    name: 'Weekly deaths (model) uncertainty',
+    legendType: 'none',
+  },
 ]
 
-export function observationsToPlot(casesDelta: number): LineProps[] {
+export function observationsToPlot(): LineProps[] {
   return [
     { key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: 'Cumulative cases (data)' },
-    { key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: `Cases past ${casesDelta} day(s) (data)` },
+    { key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: `Weekly cases (data)` },
     { key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: 'Patients in hospital (data)' },
     { key: DATA_POINTS.ObservedICU, color: colors.critical, name: 'Patients in ICU (data)' },
     { key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: 'Cumulative deaths (data)' },
+    { key: DATA_POINTS.ObservedWeeklyDeaths, color: colors.weeklyFatality, name: 'Weekly deaths (data)' },
   ]
 }
 

@@ -27,6 +27,7 @@ export function verifyTuple(x: [maybeNumber, maybeNumber], center: maybeNumber):
 
 export function computeNewEmpiricalCases(
   timeWindow: number,
+  field: string,
   cumulativeCounts?: CaseCountsDatum[],
 ): [maybeNumber[], number] {
   const newEmpiricalCases: maybeNumber[] = []
@@ -46,18 +47,17 @@ export function computeNewEmpiricalCases(
     const startDay = day - deltaDay
     const startDayPlus = day - deltaDay - 1
 
-    const nowCases = cumulativeCounts[day].cases
-    const oldCases = cumulativeCounts[startDay].cases
-    const olderCases = cumulativeCounts[startDayPlus]?.cases
+    const nowCases = cumulativeCounts[day][field]
+    const oldCases = cumulativeCounts[startDay][field]
+    const olderCases = cumulativeCounts[startDayPlus] ? cumulativeCounts[startDayPlus][field] : undefined
     if (oldCases && nowCases) {
       const newCases = verifyPositive(
         olderCases ? (1 - deltaInt) * (nowCases - oldCases) + deltaInt * (nowCases - olderCases) : nowCases - oldCases,
       )
-      newEmpiricalCases.push(newCases)
+      newEmpiricalCases[day] = newCases
       return
     }
     newEmpiricalCases[day] = undefined
   })
-
   return [newEmpiricalCases, deltaDay]
 }

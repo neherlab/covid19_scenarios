@@ -33,7 +33,14 @@ import { selectScenarioData, selectCaseCountsData } from '../../../state/scenari
 import { selectIsLogScale, selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
-import { linesToPlot, areasToPlot, observationsToPlot, DATA_POINTS, translatePlots } from './ChartCommon'
+import {
+  linesToPlot,
+  areasToPlot,
+  observationsToPlot,
+  DATA_POINTS,
+  translatePlots,
+  defaultEnabledPlots,
+} from './ChartCommon'
 import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'
@@ -89,7 +96,7 @@ export function DeterministicLinePlotDiconnected({
 }: DeterministicLinePlotProps) {
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
-  const [enabledPlots, setEnabledPlots] = useState(Object.values(DATA_POINTS))
+  const [enabledPlots, setEnabledPlots] = useState(defaultEnabledPlots)
 
   const formatNumber = numberFormatter(!!shouldFormatNumbers, false)
   const formatNumberRounded = numberFormatter(!!shouldFormatNumbers, true)
@@ -103,15 +110,17 @@ export function DeterministicLinePlotDiconnected({
   const nHospitalBeds = verifyPositive(scenarioData.population.hospitalBeds)
   const nICUBeds = verifyPositive(scenarioData.population.icuBeds)
 
-  const [newEmpiricalCases, caseTimeWindow] = computeNewEmpiricalCases(
-    scenarioData.epidemiological.infectiousPeriodDays,
-    caseCountsData,
-  )
+  // NOTE: this used to use scenarioData.epidemiological.infectiousPeriodDays as
+  // time interval but a weekly interval makes more sense given reporting practices
+  const [newEmpiricalCases] = computeNewEmpiricalCases(7, 'cases', caseCountsData)
+
+  const [weeklyEmpiricalDeaths] = computeNewEmpiricalCases(7, 'deaths', caseCountsData)
 
   const hasObservations = {
     [DATA_POINTS.ObservedCases]: caseCountsData && caseCountsData.some((d) => d.cases),
     [DATA_POINTS.ObservedICU]: caseCountsData && caseCountsData.some((d) => d.icu),
     [DATA_POINTS.ObservedDeaths]: caseCountsData && caseCountsData.some((d) => d.deaths),
+    [DATA_POINTS.ObservedWeeklyDeaths]: caseCountsData && caseCountsData.some((d) => d.deaths),
     [DATA_POINTS.ObservedNewCases]: newEmpiricalCases && newEmpiricalCases.some((d) => d),
     [DATA_POINTS.ObservedHospitalized]: caseCountsData && caseCountsData.some((d) => d.hospitalized),
   }
@@ -126,6 +135,7 @@ export function DeterministicLinePlotDiconnected({
         : undefined,
       ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.icu || undefined : undefined,
       newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newEmpiricalCases[i] : undefined,
+      weeklyDeaths: enabledPlots.includes(DATA_POINTS.ObservedWeeklyDeaths) ? weeklyEmpiricalDeaths[i] : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
     })) ?? []
@@ -170,7 +180,7 @@ export function DeterministicLinePlotDiconnected({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const observationsHavingDataToPlot = observationsToPlot(caseTimeWindow).filter((itemToPlot) => {
+  const observationsHavingDataToPlot = observationsToPlot().filter((itemToPlot) => {
     if (observations.length !== 0) {
       return hasObservations[itemToPlot.key]
     }
@@ -262,7 +272,6 @@ export function DeterministicLinePlotDiconnected({
                     <LinePlotTooltip
                       valueFormatter={tooltipValueFormatter}
                       itemsToDisplay={tooltipItemsToDisplay}
-                      deltaCaseDays={caseTimeWindow}
                       {...props}
                     />
                   )}
