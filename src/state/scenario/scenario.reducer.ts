@@ -1,4 +1,5 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import { suggestNextMitigationInterval } from '../../algorithms/utils/suggestNextMitigationInterval'
 import { getCaseCountsData } from '../../io/defaults/getCaseCountsData'
 
 import immerCase from '../util/fsaImmerReducer'
@@ -6,6 +7,8 @@ import immerCase from '../util/fsaImmerReducer'
 import { CUSTOM_COUNTRY_NAME } from '../../constants'
 
 import {
+  addMitigationInterval,
+  removeMitigationInterval,
   renameCurrentScenario,
   resetCaseCounts,
   setAgeDistributionData,
@@ -106,6 +109,20 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.ageDistributionData = ageDistributionData
       draft.caseCountsData = getCaseCountsData(scenarioData.data.population.caseCountsName)
       draft.caseCountsNameCustom = undefined
+    }),
+  )
+
+  .withHandling(
+    immerCase(addMitigationInterval, (draft) => {
+      draft.scenarioData.data.mitigation.mitigationIntervals.push(suggestNextMitigationInterval())
+    }),
+  )
+
+  .withHandling(
+    immerCase(removeMitigationInterval, (draft, id) => {
+      // prettier-ignore
+      draft.scenarioData.data.mitigation.mitigationIntervals =
+        draft.scenarioData.data.mitigation.mitigationIntervals.filter((interval) => interval.id !== id)
     }),
   )
 

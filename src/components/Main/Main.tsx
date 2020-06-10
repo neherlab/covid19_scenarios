@@ -151,7 +151,7 @@ export function MainDisconnected({
         }
         return error.errors
       })
-  }, 250)
+  }, 500)
 
   const formData = useMemo(() => toFormData({ scenarioData, ageDistributionData, severityDistributionData }), [
     ageDistributionData,

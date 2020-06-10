@@ -1,11 +1,12 @@
 import moment from 'moment'
-import { v4 as uuidv4 } from 'uuid'
+
 import createColor from 'create-color'
 import type { StrictOmit } from 'ts-essentials'
+import { uuidv4 } from '../../helpers/uuid'
 
 import type { MitigationInterval } from '../types/Param.types'
 
-export function suggestNextMitigationInterval(intervals: MitigationInterval[]): MitigationInterval {
+export function suggestNextMitigationInterval(): MitigationInterval {
   const tMinMoment = moment()
   const tMaxMoment = tMinMoment.clone().add(30, 'days')
 

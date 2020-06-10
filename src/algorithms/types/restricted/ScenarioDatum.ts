@@ -6,11 +6,11 @@
  */
 
 import type { Merge, StrictOmit } from 'ts-essentials'
-
+import type { UUIDv4 } from '../../../helpers/uuid'
 import type { MitigationIntervalExternal, ScenarioDatumExternal, ScenarioDatumMitigationExternal } from '../Param.types'
 
 export interface MitigationInterval extends MitigationIntervalExternal {
-  id: string
+  id: UUIDv4
 }
 
 export interface ScenarioDatumMitigationInternalMutable extends ScenarioDatumMitigationExternal {
