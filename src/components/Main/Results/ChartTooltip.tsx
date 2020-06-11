@@ -10,6 +10,7 @@ export type ValueFormatter = (value: number | string) => string
 
 export function dispatch(key: string, item: TooltipPayload): [number | undefined, number | undefined] {
   switch (key) {
+    /* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return */
     case 'peakOverflow':
       return item.payload.errorPeakOverflow
     case 'peakCritical':
@@ -18,6 +19,7 @@ export function dispatch(key: string, item: TooltipPayload): [number | undefined
       return item.payload.errorPeakSevere
     case 'totalFatalities':
       return item.payload.errorFatalities
+    /* eslint-enable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return */
     default:
       return [undefined, undefined]
   }

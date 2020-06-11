@@ -8,7 +8,7 @@ import {
   DeserializationErrorSchemaVersionMissing,
 } from './errors'
 
-import { SERIALIZERS } from './versioning'
+import { SERIALIZER_VERSIONS, SERIALIZERS } from './versioning'
 
 export function deserialize(dataString: string): ScenarioParameters {
   try {
@@ -16,16 +16,16 @@ export function deserialize(dataString: string): ScenarioParameters {
 
     const schemaVer = semver.valid(shareableDangerous?.schemaVer)
 
-    if (!schemaVer) {
-      throw new DeserializationErrorSchemaVersionMissing()
+    if (schemaVer) {
+      const deserialize = SERIALIZERS.get(schemaVer)?.deserialize
+      if (deserialize) {
+        return deserialize(dataString)
+      }
+
+      throw new DeserializationErrorSchemaVersionInvalid(schemaVer, SERIALIZER_VERSIONS)
     }
 
-    const deserialize = SERIALIZERS.get(schemaVer)?.deserialize
-    if (!deserialize) {
-      throw new DeserializationErrorSchemaVersionInvalid(schemaVer)
-    }
-
-    return deserialize(dataString)
+    throw new DeserializationErrorSchemaVersionMissing()
   } catch (error) {
     if (error instanceof SyntaxError) {
       throw new DeserializationErrorJsonSyntaxInvalid(error.message)

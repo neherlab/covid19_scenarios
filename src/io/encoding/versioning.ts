@@ -9,8 +9,8 @@ import urlv1 from './v1/encode'
 export type Serializer = (input: ScenarioParameters) => string
 export type Deserializer = (input: string) => ScenarioParameters
 
-export type UrlEncoder = (obj: object) => string
-export type UrlDecoder = (str: string) => object
+export type UrlEncoder = (obj: Record<string, unknown>) => string
+export type UrlDecoder = (str: string) => Record<string, unknown>
 
 export interface UrlEncoders {
   encode: UrlEncoder

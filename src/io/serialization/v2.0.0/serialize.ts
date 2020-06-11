@@ -32,7 +32,7 @@ function serialize(scenarioParameters: ScenarioParameters): string {
   return serialized
 }
 
-function validateSchema(shareableDangerous: object) {
+function validateSchema(shareableDangerous: Record<string, unknown>) {
   if (!validateShareable(shareableDangerous)) {
     const locale = 'en' // TODO: use current locale
     const localize = ajvLocalizers[locale] ?? ajvLocalizers.en
@@ -52,7 +52,7 @@ function validateSchema(shareableDangerous: object) {
   }
 }
 
-function convert(shareableDangerous: object): Shareable {
+function convert(shareableDangerous: Record<string, unknown>): Shareable {
   try {
     return Convert.toShareable(JSON.stringify(shareableDangerous))
   } catch (error) {
@@ -83,7 +83,7 @@ function validateMore(shareable: Shareable) {
 }
 
 function deserialize(input: string): ScenarioParameters {
-  const shareableDangerous = JSON.parse(input)
+  const shareableDangerous = JSON.parse(input) as Record<string, unknown>
 
   validateSchema(shareableDangerous)
 

@@ -34,6 +34,7 @@ import { ChartTooltip } from './ChartTooltip'
 
 const ASPECT_RATIO = 16 / 4
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type SafeTFunction = (...args: Parameters<TFunction>) => Exclude<TFunctionResult, null | object>
 
 export interface AgeBarChartProps {

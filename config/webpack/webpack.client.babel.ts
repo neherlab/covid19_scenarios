@@ -292,6 +292,7 @@ export default {
           '!src/algorithms/results.ts', // FIXME
           '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
           '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
+          '!src/components/Main/Results/Utils.ts', // FIXME
           // end
 
           '!src/**/*.(spec|test).{js,jsx,ts,tsx}',

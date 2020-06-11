@@ -6,9 +6,9 @@ export class CSVParserError extends ErrorArray {
 }
 
 export class CSVParserErrorCSVSyntaxInvalid extends CSVParserError {
-  public errors?: string[]
+  public readonly errors: string[]
 
-  public constructor(errors?: string[]) {
+  public constructor(errors: string[]) {
     super(`when parsing CSV: syntax error:\n${errors?.map(appendDash).join('\n')}`)
     this.errors = errors
   }

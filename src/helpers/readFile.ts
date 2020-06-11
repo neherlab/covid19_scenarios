@@ -1,7 +1,7 @@
 export class FileReaderError extends Error {
-  public readonly file?: File
-  constructor(file?: File) {
-    super(`Error: file "${file?.name}" cannot be read.`)
+  public readonly file: File
+  constructor(file: File) {
+    super(`Error: file "${file.name}" cannot be read.`)
     this.file = file
   }
 }
@@ -16,7 +16,12 @@ export function readFile(file: File): Promise<string> {
     })
 
     reader.addEventListener('load', () => {
-      resolve(reader.result as string) // HACK
+      const content = reader?.result?.toString?.()
+      if (content) {
+        resolve(content)
+      } else {
+        reject(new FileReaderError(file))
+      }
     })
 
     reader.readAsText(file)

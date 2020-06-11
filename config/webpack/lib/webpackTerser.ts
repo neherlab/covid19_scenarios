@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import { MinifyOptions } from 'terser'
 
 import TerserPlugin from 'terser-webpack-plugin'

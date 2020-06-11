@@ -20,13 +20,13 @@ describe('ScenarioLoader', () => {
 
   beforeAll(() => {
     useDebounceMock = jest.mock('use-debounce', () => ({
-      useDebouncedCallback: (f: () => {}) => f,
+      useDebouncedCallback: (f: () => unknown) => f,
     }))
   })
 
-  afterAll(() => {
+  afterAll(async () => {
     useDebounceMock.clearAllMocks()
-    cleanup()
+    await cleanup()
   })
 
   beforeEach(() => {
