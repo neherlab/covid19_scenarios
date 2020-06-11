@@ -14,7 +14,7 @@ export function filterPositiveValues<T extends { [key: string]: number }>(obj: T
 }
 
 export function roundValues<T extends { [key: string]: number }>(obj: T) {
-  return mapValues(obj, verifyPositive) as T
+  return mapValues(obj, Math.round)
 }
 
 export function verifyPositive(x: number): MaybeNumber {
