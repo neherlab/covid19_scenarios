@@ -1,3 +1,5 @@
+import { min, max, isNumeric } from 'mathjs'
+
 import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 
 export type MaybeNumber = number | undefined
@@ -8,27 +10,23 @@ export function verifyPositive(x: number): MaybeNumber {
 }
 
 export function verifyTuple(x: [MaybeNumber, MaybeNumber], center: MaybeNumber): [number, number] | undefined {
-  const [lo, up] = x
-  const mi = center ? verifyPositive(center) : undefined
+  const [low, upp] = x
+  const mid = center ? verifyPositive(center) : undefined
 
-  if (lo !== undefined && up !== undefined && mi !== undefined) {
-    // prettier-ignore
-    return [
-      lo < mi ? lo : mi,
-      up > mi ? up : mi,
-    ]
+  if (isNumeric(low) && isNumeric(upp) && isNumeric(mid)) {
+    return [min(low, mid), max(mid, upp)]
   }
 
-  if (lo !== undefined && up !== undefined) {
-    return [lo, up]
+  if (isNumeric(low) && isNumeric(upp)) {
+    return [low, upp]
   }
 
-  if (lo === undefined && up !== undefined && mi !== undefined) {
-    return [0.0001, up > mi ? up : mi]
+  if (!isNumeric(low) && isNumeric(upp) && isNumeric(mid)) {
+    return [0.0001, max(mid, upp)]
   }
 
-  if (lo === undefined && up !== undefined) {
-    return [0.0001, up]
+  if (!isNumeric(low) && isNumeric(upp)) {
+    return [0.0001, upp]
   }
 
   return undefined
