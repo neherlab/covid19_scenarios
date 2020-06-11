@@ -17,21 +17,23 @@ export function roundValues<T extends { [key: string]: number }>(obj: T) {
 export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
   const { lower, middle, upper } = trajectory
 
-  return middle.map((x, day) => {
+  return middle.map((_0, day) => {
     const previousDay = day > 6 ? day - 7 : 0
-    let weeklyFatalityMiddle = x.cumulative.fatality.total - middle[previousDay].cumulative.fatality.total
-    let weeklyFatalityLower = lower[day].cumulative.fatality.total - lower[previousDay].cumulative.fatality.total // prettier-ignore
-    let weeklyFatalityUpper = upper[day].cumulative.fatality.total - upper[previousDay].cumulative.fatality.total // prettier-ignore
+
+    let weeklyFatalityMiddle = middle[day].cumulative.fatality.total - middle[previousDay].cumulative.fatality.total // prettier-ignore
+    let weeklyFatalityLower  = lower[day].cumulative.fatality.total  - lower[previousDay].cumulative.fatality.total // prettier-ignore
+    let weeklyFatalityUpper  = upper[day].cumulative.fatality.total  - upper[previousDay].cumulative.fatality.total // prettier-ignore
+
     ;[weeklyFatalityLower, weeklyFatalityMiddle, weeklyFatalityUpper] = sort(weeklyFatalityLower, weeklyFatalityMiddle, weeklyFatalityUpper) // prettier-ignore
 
     let lines = {
-      susceptible: x.current.susceptible.total,
-      infectious: x.current.infectious.total,
-      severe: x.current.severe.total,
-      critical: x.current.critical.total,
-      overflow: x.current.overflow.total,
-      recovered: x.cumulative.recovered.total,
-      fatality: x.cumulative.fatality.total,
+      susceptible: middle[day].current.susceptible.total,
+      infectious: middle[day].current.infectious.total,
+      severe: middle[day].current.severe.total,
+      critical: middle[day].current.critical.total,
+      overflow: middle[day].current.overflow.total,
+      recovered: middle[day].cumulative.recovered.total,
+      fatality: middle[day].cumulative.fatality.total,
       weeklyFatality: weeklyFatalityMiddle,
     }
 
@@ -39,16 +41,16 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
     lines = roundValues(lines)
 
     return {
-      time: x.time,
+      time: middle[day].time,
       lines,
       areas: {
-        susceptible:    verifyTuple([verifyPositive(lower[day].current.susceptible.total),  verifyPositive(upper[day].current.susceptible.total)],  x.current.susceptible.total), // prettier-ignore
-        infectious:     verifyTuple([verifyPositive(lower[day].current.infectious.total),   verifyPositive(upper[day].current.infectious.total)],   x.current.infectious.total), // prettier-ignore
-        severe:         verifyTuple([verifyPositive(lower[day].current.severe.total),       verifyPositive(upper[day].current.severe.total)],       x.current.severe.total), // prettier-ignore
-        critical:       verifyTuple([verifyPositive(lower[day].current.critical.total),     verifyPositive(upper[day].current.critical.total)],     x.current.critical.total), // prettier-ignore
-        overflow:       verifyTuple([verifyPositive(lower[day].current.overflow.total),     verifyPositive(upper[day].current.overflow.total)],     x.current.overflow.total), // prettier-ignore
-        recovered:      verifyTuple([verifyPositive(lower[day].cumulative.recovered.total), verifyPositive(upper[day].cumulative.recovered.total)], x.cumulative.recovered.total), // prettier-ignore
-        fatality:       verifyTuple([verifyPositive(lower[day].cumulative.fatality.total),  verifyPositive(upper[day].cumulative.fatality.total)],  x.cumulative.fatality.total), // prettier-ignore
+        susceptible:    verifyTuple([verifyPositive(lower[day].current.susceptible.total),  verifyPositive(upper[day].current.susceptible.total)],  middle[day].current.susceptible.total), // prettier-ignore
+        infectious:     verifyTuple([verifyPositive(lower[day].current.infectious.total),   verifyPositive(upper[day].current.infectious.total)],   middle[day].current.infectious.total), // prettier-ignore
+        severe:         verifyTuple([verifyPositive(lower[day].current.severe.total),       verifyPositive(upper[day].current.severe.total)],       middle[day].current.severe.total), // prettier-ignore
+        critical:       verifyTuple([verifyPositive(lower[day].current.critical.total),     verifyPositive(upper[day].current.critical.total)],     middle[day].current.critical.total), // prettier-ignore
+        overflow:       verifyTuple([verifyPositive(lower[day].current.overflow.total),     verifyPositive(upper[day].current.overflow.total)],     middle[day].current.overflow.total), // prettier-ignore
+        recovered:      verifyTuple([verifyPositive(lower[day].cumulative.recovered.total), verifyPositive(upper[day].cumulative.recovered.total)], middle[day].cumulative.recovered.total), // prettier-ignore
+        fatality:       verifyTuple([verifyPositive(lower[day].cumulative.fatality.total),  verifyPositive(upper[day].cumulative.fatality.total)],  middle[day].cumulative.fatality.total), // prettier-ignore
         weeklyFatality: verifyTuple([verifyPositive(weeklyFatalityLower),                   verifyPositive(weeklyFatalityUpper)],                   weeklyFatalityMiddle) // prettier-ignore
       },
     }
