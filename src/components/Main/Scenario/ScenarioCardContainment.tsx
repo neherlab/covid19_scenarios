@@ -26,7 +26,7 @@ function ScenarioCardContainment({ errors, touched }: ScenarioCardContainmentPro
       )}
     >
       <div className="w-auto">
-        <MitigationTable errors={errors} touched={touched} />
+        <MitigationTable />
       </div>
     </CollapsibleCard>
   )
