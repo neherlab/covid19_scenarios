@@ -1,5 +1,3 @@
-import { min, max, isNumeric } from 'mathjs'
-
 import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 
 export type MaybeNumber = number | undefined
@@ -7,26 +5,6 @@ export type MaybeNumber = number | undefined
 export function verifyPositive(x: number): MaybeNumber {
   const xRounded = Math.round(x)
   return xRounded > 0 ? xRounded : undefined
-}
-
-export function verifyTuple(low: MaybeNumber, mid: MaybeNumber, upp: MaybeNumber): [number, number] | undefined {
-  if (isNumeric(low) && isNumeric(upp) && isNumeric(mid)) {
-    return [min(low, mid), max(mid, upp)]
-  }
-
-  if (isNumeric(low) && isNumeric(upp)) {
-    return [low, upp]
-  }
-
-  if (!isNumeric(low) && isNumeric(upp) && isNumeric(mid)) {
-    return [0.0001, max(mid, upp)]
-  }
-
-  if (!isNumeric(low) && isNumeric(upp)) {
-    return [0.0001, upp]
-  }
-
-  return undefined
 }
 
 export function computeNewEmpiricalCases(

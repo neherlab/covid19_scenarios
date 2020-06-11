@@ -1,7 +1,8 @@
 import { pickBy, mapValues } from 'lodash'
+import { isNumeric, max, min } from 'mathjs'
 
 import type { Trajectory, PlotDatum } from './types/Result.types'
-import { verifyPositive, verifyTuple } from '../components/Main/Results/Utils'
+import { MaybeNumber, verifyPositive } from '../components/Main/Results/Utils'
 
 import { sortPair } from './utils/sortPair'
 // import { linesToPlot, areasToPlot, DATA_POINTS } from '../components/Main/Results/ChartCommon'
@@ -12,6 +13,26 @@ export function filterPositiveValues<T extends { [key: string]: number }>(obj: T
 
 export function roundValues<T extends { [key: string]: number }>(obj: T) {
   return mapValues(obj, verifyPositive) as T
+}
+
+export function verifyTuple(low: MaybeNumber, mid: MaybeNumber, upp: MaybeNumber): [number, number] | undefined {
+  if (isNumeric(low) && isNumeric(upp) && isNumeric(mid)) {
+    return [min(low, mid), max(mid, upp)]
+  }
+
+  if (isNumeric(low) && isNumeric(upp)) {
+    return [low, upp]
+  }
+
+  if (!isNumeric(low) && isNumeric(upp) && isNumeric(mid)) {
+    return [0.0001, max(mid, upp)]
+  }
+
+  if (!isNumeric(low) && isNumeric(upp)) {
+    return [0.0001, upp]
+  }
+
+  return undefined
 }
 
 export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
