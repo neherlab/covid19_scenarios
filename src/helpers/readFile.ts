@@ -16,7 +16,7 @@ export function readFile(file: File): Promise<string> {
     })
 
     reader.addEventListener('load', () => {
-      const content = reader?.result?.toString?.()
+      const content = reader.result?.toString?.()
       if (content) {
         resolve(content)
       } else {
