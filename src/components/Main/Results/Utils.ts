@@ -8,18 +8,27 @@ export function verifyPositive(x: number): MaybeNumber {
 }
 
 export function verifyTuple(x: [MaybeNumber, MaybeNumber], center: MaybeNumber): [number, number] | undefined {
-  const centerVal = center ? verifyPositive(center) : undefined
-  if (x[0] !== undefined && x[1] !== undefined && centerVal !== undefined) {
-    return [x[0] < centerVal ? x[0] : centerVal, x[1] > centerVal ? x[1] : centerVal]
+  const [lo, up] = x
+  const mi = center ? verifyPositive(center) : undefined
+
+  if (lo !== undefined && up !== undefined && mi !== undefined) {
+    // prettier-ignore
+    return [
+      lo < mi ? lo : mi,
+      up > mi ? up : mi,
+    ]
   }
-  if (x[0] !== undefined && x[1] !== undefined) {
-    return [x[0], x[1]]
+
+  if (lo !== undefined && up !== undefined) {
+    return [lo, up]
   }
-  if (x[0] === undefined && x[1] !== undefined && centerVal !== undefined) {
-    return [0.0001, x[1] > centerVal ? x[1] : centerVal]
+
+  if (lo === undefined && up !== undefined && mi !== undefined) {
+    return [0.0001, up > mi ? up : mi]
   }
-  if (x[0] === undefined && x[1] !== undefined) {
-    return [0.0001, x[1]]
+
+  if (lo === undefined && up !== undefined) {
+    return [0.0001, up]
   }
 
   return undefined
