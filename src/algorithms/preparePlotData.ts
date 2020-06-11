@@ -3,7 +3,7 @@ import { pickBy, mapValues } from 'lodash'
 import type { Trajectory, PlotDatum } from './types/Result.types'
 import { verifyPositive, verifyTuple } from '../components/Main/Results/Utils'
 
-import { sort2 } from './utils/sort2'
+import { sortPair } from './utils/sortPair'
 // import { linesToPlot, areasToPlot, DATA_POINTS } from '../components/Main/Results/ChartCommon'
 
 export function filterPositiveValues<T extends { [key: string]: number }>(obj: T) {
@@ -24,7 +24,7 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
     let weeklyFatalityLower  = lower[day].cumulative.fatality.total  - lower[previousDay].cumulative.fatality.total // prettier-ignore
     let weeklyFatalityUpper  = upper[day].cumulative.fatality.total  - upper[previousDay].cumulative.fatality.total // prettier-ignore
 
-    ;[weeklyFatalityLower, weeklyFatalityUpper] = sort2([weeklyFatalityLower, weeklyFatalityUpper]) // prettier-ignore
+    ;[weeklyFatalityLower, weeklyFatalityUpper] = sortPair([weeklyFatalityLower, weeklyFatalityUpper]) // prettier-ignore
 
     let lines = {
       susceptible: middle[day].current.susceptible.total,
