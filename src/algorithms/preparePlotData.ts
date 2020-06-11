@@ -2,6 +2,8 @@ import { pickBy, mapValues } from 'lodash'
 
 import type { Trajectory, PlotDatum } from './types/Result.types'
 import { verifyPositive, verifyTuple } from '../components/Main/Results/Utils'
+
+import { sort } from './utils/sort'
 // import { linesToPlot, areasToPlot, DATA_POINTS } from '../components/Main/Results/ChartCommon'
 
 export function filterPositiveValues<T extends { [key: string]: number }>(obj: T) {
@@ -17,13 +19,10 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
 
   return middle.map((x, day) => {
     const previousDay = day > 6 ? day - 7 : 0
-    const centerWeeklyDeaths = x.cumulative.fatality.total - middle[previousDay].cumulative.fatality.total
-
-    // NOTE: this is using the upper and lower trajectories
-    const extremeWeeklyDeaths1 = upper[day].cumulative.fatality.total - upper[previousDay].cumulative.fatality.total
-    const extremeWeeklyDeaths2 = lower[day].cumulative.fatality.total - lower[previousDay].cumulative.fatality.total
-    const upperWeeklyDeaths = extremeWeeklyDeaths1 > extremeWeeklyDeaths2 ? extremeWeeklyDeaths1 : extremeWeeklyDeaths2
-    const lowerWeeklyDeaths = extremeWeeklyDeaths1 > extremeWeeklyDeaths2 ? extremeWeeklyDeaths2 : extremeWeeklyDeaths1
+    let weeklyFatalityMiddle = x.cumulative.fatality.total - middle[previousDay].cumulative.fatality.total
+    let weeklyFatalityLower = lower[day].cumulative.fatality.total - lower[previousDay].cumulative.fatality.total // prettier-ignore
+    let weeklyFatalityUpper = upper[day].cumulative.fatality.total - upper[previousDay].cumulative.fatality.total // prettier-ignore
+    ;[weeklyFatalityLower, weeklyFatalityMiddle, weeklyFatalityUpper] = sort(weeklyFatalityLower, weeklyFatalityMiddle, weeklyFatalityUpper) // prettier-ignore
 
     let lines = {
       susceptible: x.current.susceptible.total,
@@ -33,7 +32,7 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
       overflow: x.current.overflow.total,
       recovered: x.cumulative.recovered.total,
       fatality: x.cumulative.fatality.total,
-      weeklyFatality: centerWeeklyDeaths,
+      weeklyFatality: weeklyFatalityMiddle,
     }
 
     lines = filterPositiveValues(lines)
@@ -50,7 +49,7 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
         overflow:       verifyTuple([verifyPositive(lower[day].current.overflow.total),     verifyPositive(upper[day].current.overflow.total)],     x.current.overflow.total), // prettier-ignore
         recovered:      verifyTuple([verifyPositive(lower[day].cumulative.recovered.total), verifyPositive(upper[day].cumulative.recovered.total)], x.cumulative.recovered.total), // prettier-ignore
         fatality:       verifyTuple([verifyPositive(lower[day].cumulative.fatality.total),  verifyPositive(upper[day].cumulative.fatality.total)],  x.cumulative.fatality.total), // prettier-ignore
-        weeklyFatality: verifyTuple([verifyPositive(lowerWeeklyDeaths),                     verifyPositive(upperWeeklyDeaths)],                     centerWeeklyDeaths) // prettier-ignore
+        weeklyFatality: verifyTuple([verifyPositive(weeklyFatalityLower),                   verifyPositive(weeklyFatalityUpper)],                   weeklyFatalityMiddle) // prettier-ignore
       },
     }
   })
