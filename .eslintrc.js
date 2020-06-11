@@ -77,6 +77,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/array-type': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/unbound-method': ['off'],
     'array-func/prefer-array-from': 'off',
     'cflint/no-substr': 'warn',
@@ -189,6 +190,7 @@ module.exports = {
     {
       files: ['*.d.ts'],
       rules: {
+        '@typescript-eslint/ban-types': ['warn', { extendDefaults: true, types: { object: false } }],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         'no-useless-constructor': 'off',
@@ -201,6 +203,8 @@ module.exports = {
         'babel.config.js',
         'config/**/*.js',
         'config/**/*.ts',
+        'config/jest/mocks/**/*.js',
+        'infra/**/*.js',
         'jest-runner-eslint.config.js',
         'jest.config.js',
         'lib/EnvVarError.js',
@@ -211,7 +215,12 @@ module.exports = {
         'webpack.config.js',
       ],
       rules: {
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
         '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/restrict-template-expressions': 'off',
         'global-require': 'off',
         'security/detect-child-process': 'off',
         'sonarjs/cognitive-complexity': ['warn', 50],
