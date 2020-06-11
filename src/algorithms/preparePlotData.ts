@@ -1,8 +1,10 @@
+/* eslint-disable no-param-reassign */
+
 import { pickBy, mapValues } from 'lodash'
 import { isNumeric, max, min } from 'mathjs'
 
 import type { Trajectory, PlotDatum } from './types/Result.types'
-import { MaybeNumber, verifyPositive } from '../components/Main/Results/Utils'
+import { MaybeNumber } from '../components/Main/Results/Utils'
 
 import { sortPair } from './utils/sortPair'
 // import { linesToPlot, areasToPlot, DATA_POINTS } from '../components/Main/Results/ChartCommon'
@@ -15,7 +17,16 @@ export function roundValues<T extends { [key: string]: number }>(obj: T) {
   return mapValues(obj, verifyPositive) as T
 }
 
-export function verifyTuple(low: MaybeNumber, mid: MaybeNumber, upp: MaybeNumber): [number, number] | undefined {
+export function verifyPositive(x: number): MaybeNumber {
+  const xRounded = Math.round(x)
+  return xRounded > 0 ? xRounded : undefined
+}
+
+export function verifyTuple([low, mid, upp]: [MaybeNumber, MaybeNumber, MaybeNumber]): [number, number] | undefined {
+  low = verifyPositive(low ?? 0)
+  mid = verifyPositive(mid ?? 0)
+  upp = verifyPositive(upp ?? 0)
+
   if (isNumeric(low) && isNumeric(upp) && isNumeric(mid)) {
     return [min(low, mid), max(mid, upp)]
   }
@@ -33,6 +44,10 @@ export function verifyTuple(low: MaybeNumber, mid: MaybeNumber, upp: MaybeNumber
   }
 
   return undefined
+}
+
+export function verifyTuples<T extends { [key: string]: MaybeNumber[] }>(obj: T) {
+  return mapValues(obj, (x) => verifyTuple(x))
 }
 
 export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
@@ -61,16 +76,18 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
     lines = filterPositiveValues(lines)
     lines = roundValues(lines)
 
-    let areas = {
-      susceptible:    verifyTuple(verifyPositive(lower[day].current.susceptible.total),  verifyPositive(upper[day].current.susceptible.total),  verifyPositive(middle[day].current.susceptible.total)), // prettier-ignore
-      infectious:     verifyTuple(verifyPositive(lower[day].current.infectious.total),   verifyPositive(upper[day].current.infectious.total),   verifyPositive(middle[day].current.infectious.total)), // prettier-ignore
-      severe:         verifyTuple(verifyPositive(lower[day].current.severe.total),       verifyPositive(upper[day].current.severe.total),       verifyPositive(middle[day].current.severe.total)), // prettier-ignore
-      critical:       verifyTuple(verifyPositive(lower[day].current.critical.total),     verifyPositive(upper[day].current.critical.total),     verifyPositive(middle[day].current.critical.total)), // prettier-ignore
-      overflow:       verifyTuple(verifyPositive(lower[day].current.overflow.total),     verifyPositive(upper[day].current.overflow.total),     verifyPositive(middle[day].current.overflow.total)), // prettier-ignore
-      recovered:      verifyTuple(verifyPositive(lower[day].cumulative.recovered.total), verifyPositive(upper[day].cumulative.recovered.total), verifyPositive(middle[day].cumulative.recovered.total)), // prettier-ignore
-      fatality:       verifyTuple(verifyPositive(lower[day].cumulative.fatality.total),  verifyPositive(upper[day].cumulative.fatality.total),  verifyPositive(middle[day].cumulative.fatality.total)), // prettier-ignore
-      weeklyFatality: verifyTuple(verifyPositive(weeklyFatalityLower),                   verifyPositive(weeklyFatalityUpper),                   verifyPositive(weeklyFatalityMiddle)) // prettier-ignore
+    const areasRaw = {
+      susceptible:    [ lower[day].current.susceptible.total,  middle[day].current.susceptible.total,   upper[day].current.susceptible.total  ], // prettier-ignore
+      infectious:     [ lower[day].current.infectious.total,   middle[day].current.infectious.total,    upper[day].current.infectious.total   ], // prettier-ignore
+      severe:         [ lower[day].current.severe.total,       middle[day].current.severe.total,        upper[day].current.severe.total       ], // prettier-ignore
+      critical:       [ lower[day].current.critical.total,     middle[day].current.critical.total,      upper[day].current.critical.total     ], // prettier-ignore
+      overflow:       [ lower[day].current.overflow.total,     middle[day].current.overflow.total,      upper[day].current.overflow.total     ], // prettier-ignore
+      recovered:      [ lower[day].cumulative.recovered.total, middle[day].cumulative.recovered.total,  upper[day].cumulative.recovered.total ], // prettier-ignore
+      fatality:       [ lower[day].cumulative.fatality.total,  middle[day].cumulative.fatality.total,   upper[day].cumulative.fatality.total  ], // prettier-ignore
+      weeklyFatality: [ weeklyFatalityLower,                   weeklyFatalityMiddle,                    weeklyFatalityUpper                   ] // prettier-ignore
     }
+
+    const areas = verifyTuples(areasRaw)
 
     return { time: middle[day].time, lines, areas }
   })

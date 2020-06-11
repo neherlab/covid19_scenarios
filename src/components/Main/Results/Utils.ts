@@ -2,11 +2,6 @@ import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 
 export type MaybeNumber = number | undefined
 
-export function verifyPositive(x: number): MaybeNumber {
-  const xRounded = Math.round(x)
-  return xRounded > 0 ? xRounded : undefined
-}
-
 export function computeNewEmpiricalCases(
   timeWindow: number,
   field: string,

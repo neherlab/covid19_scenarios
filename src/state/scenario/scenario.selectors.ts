@@ -7,7 +7,7 @@ import type {
   ScenarioParameters,
 } from '../../algorithms/types/Param.types'
 
-import { verifyPositive } from '../../components/Main/Results/Utils'
+import { verifyPositive } from '../../algorithms/preparePlotData'
 
 import type { State } from '../reducer'
 
