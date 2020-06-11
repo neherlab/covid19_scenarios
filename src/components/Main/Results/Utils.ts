@@ -1,13 +1,13 @@
 import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 
-export type maybeNumber = number | undefined
+export type MaybeNumber = number | undefined
 
-export function verifyPositive(x: number): maybeNumber {
+export function verifyPositive(x: number): MaybeNumber {
   const xRounded = Math.round(x)
   return xRounded > 0 ? xRounded : undefined
 }
 
-export function verifyTuple(x: [maybeNumber, maybeNumber], center: maybeNumber): [number, number] | undefined {
+export function verifyTuple(x: [MaybeNumber, MaybeNumber], center: MaybeNumber): [number, number] | undefined {
   const centerVal = center ? verifyPositive(center) : undefined
   if (x[0] !== undefined && x[1] !== undefined && centerVal !== undefined) {
     return [x[0] < centerVal ? x[0] : centerVal, x[1] > centerVal ? x[1] : centerVal]
@@ -29,8 +29,8 @@ export function computeNewEmpiricalCases(
   timeWindow: number,
   field: string,
   cumulativeCounts?: CaseCountsDatum[],
-): [maybeNumber[], number] {
-  const newEmpiricalCases: maybeNumber[] = []
+): [MaybeNumber[], number] {
+  const newEmpiricalCases: MaybeNumber[] = []
   const deltaDay = Math.floor(timeWindow)
   const deltaInt = timeWindow - deltaDay
 
