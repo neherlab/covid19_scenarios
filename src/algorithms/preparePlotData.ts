@@ -9,7 +9,7 @@ import { MaybeNumber } from '../components/Main/Results/Utils'
 import { sortPair } from './utils/sortPair'
 // import { linesToPlot, areasToPlot, DATA_POINTS } from '../components/Main/Results/ChartCommon'
 
-export function filterPositiveValues<T extends { [key: string]: number }>(obj: T) {
+export function takePositiveValues<T extends { [key: string]: number }>(obj: T) {
   return pickBy(obj, (value) => value > 0) as T
 }
 
@@ -73,7 +73,7 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
       weeklyFatality: weeklyFatalityMiddle,
     }
 
-    lines = filterPositiveValues(lines)
+    lines = takePositiveValues(lines)
     lines = roundValues(lines)
 
     const areasRaw = {
