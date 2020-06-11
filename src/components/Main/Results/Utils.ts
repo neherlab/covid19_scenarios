@@ -9,10 +9,7 @@ export function verifyPositive(x: number): MaybeNumber {
   return xRounded > 0 ? xRounded : undefined
 }
 
-export function verifyTuple(x: [MaybeNumber, MaybeNumber], center: MaybeNumber): [number, number] | undefined {
-  const [low, upp] = x
-  const mid = center ? verifyPositive(center) : undefined
-
+export function verifyTuple(low: MaybeNumber, mid: MaybeNumber, upp: MaybeNumber): [number, number] | undefined {
   if (isNumeric(low) && isNumeric(upp) && isNumeric(mid)) {
     return [min(low, mid), max(mid, upp)]
   }
