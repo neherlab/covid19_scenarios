@@ -22,14 +22,19 @@ import {
 
 import { useTranslation } from 'react-i18next'
 
-import type { ScenarioDatum, CaseCountsDatum } from '../../../algorithms/types/Param.types'
+import type { CaseCountsDatum, MitigationInterval } from '../../../algorithms/types/Param.types'
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 import { selectResult } from '../../../state/algorithm/algorithm.selectors'
 import { State } from '../../../state/reducer'
-import { selectScenarioData, selectCaseCountsData } from '../../../state/scenario/scenario.selectors'
+import {
+  selectCaseCountsData,
+  selectHospitalBeds,
+  selectIcuBeds,
+  selectMitigationIntervals,
+} from '../../../state/scenario/scenario.selectors'
 import { selectIsLogScale, selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
 
 import { calculatePosition, scrollToRef } from '../Results/chartHelper'
@@ -45,14 +50,16 @@ import { LinePlotTooltip } from '../Results/LinePlotTooltip'
 import { MitigationPlot } from '../Results/MitigationLinePlot'
 import { R0Plot } from '../Results/R0LinePlot'
 
-import { verifyPositive, computeNewEmpiricalCases } from '../Results/Utils'
+import { computeNewEmpiricalCases } from '../Results/Utils'
 
 import './ResultsTrajectoriesPlot.scss'
 
 const ASPECT_RATIO = 16 / 9
 
 export interface ResultsTrajectoriesPlotProps {
-  scenarioData: ScenarioDatum
+  hospitalBeds?: number
+  icuBeds?: number
+  mitigationIntervals: MitigationInterval[]
   result?: AlgorithmResult
   caseCountsData?: CaseCountsDatum[]
   isLogScale: boolean
@@ -60,7 +67,9 @@ export interface ResultsTrajectoriesPlotProps {
 }
 
 const mapStateToProps = (state: State) => ({
-  scenarioData: selectScenarioData(state),
+  hospitalBeds: selectHospitalBeds(state),
+  icuBeds: selectIcuBeds(state),
+  mitigationIntervals: selectMitigationIntervals(state),
   result: selectResult(state),
   caseCountsData: selectCaseCountsData(state),
   isLogScale: selectIsLogScale(state),
@@ -71,7 +80,9 @@ const mapDispatchToProps = {}
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function ResultsTrajectoriesPlotDiconnected({
-  scenarioData,
+  hospitalBeds,
+  icuBeds,
+  mitigationIntervals,
   result,
   caseCountsData,
   isLogScale,
@@ -87,11 +98,6 @@ export function ResultsTrajectoriesPlotDiconnected({
   if (!result) {
     return null
   }
-
-  const { mitigationIntervals } = scenarioData.mitigation
-
-  const nHospitalBeds = verifyPositive(scenarioData.population.hospitalBeds)
-  const nICUBeds = verifyPositive(scenarioData.population.icuBeds)
 
   // NOTE: this used to use scenarioData.epidemiological.infectiousPeriodDays as
   // time interval but a weekly interval makes more sense given reporting practices
@@ -119,13 +125,13 @@ export function ResultsTrajectoriesPlotDiconnected({
       ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.icu || undefined : undefined,
       newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newEmpiricalCases[i] : undefined,
       weeklyDeaths: enabledPlots.includes(DATA_POINTS.ObservedWeeklyDeaths) ? weeklyEmpiricalDeaths[i] : undefined,
-      hospitalBeds: nHospitalBeds,
-      ICUbeds: nICUBeds,
+      hospitalBeds,
+      ICUbeds: icuBeds,
     })) ?? []
 
   const plotData = [
     ...result.plotData.map((x) => {
-      const dpoint = { time: x.time, hospitalBeds: nHospitalBeds, ICUbeds: nICUBeds }
+      const dpoint = { time: x.time, hospitalBeds, ICUbeds: icuBeds }
       Object.keys(x.lines).forEach((d) => {
         dpoint[d] = enabledPlots.includes(d) ? x.lines[d] : undefined
       })

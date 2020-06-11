@@ -6,6 +6,9 @@ import type {
   SeverityDistributionDatum,
   ScenarioParameters,
 } from '../../algorithms/types/Param.types'
+
+import { verifyPositive } from '../../components/Main/Results/Utils'
+
 import type { State } from '../reducer'
 
 export const selectRunParams = (state: State): RunParams => {
@@ -47,5 +50,11 @@ export const selectScenarioParameters = ({
 
 export const selectMitigationIntervals = (state: State): MitigationInterval[] =>
   state.scenario.scenarioData.data.mitigation.mitigationIntervals
+
+export const selectHospitalBeds = (state: State): number | undefined =>
+  verifyPositive(state.scenario.scenarioData.data.population.hospitalBeds)
+
+export const selectIcuBeds = (state: State): number | undefined =>
+  verifyPositive(state.scenario.scenarioData.data.population.icuBeds)
 
 export const selectCanRun = (state: State): boolean => state.scenario.canRun && !state.algorithm.isRunning
