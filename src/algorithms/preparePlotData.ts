@@ -3,7 +3,7 @@ import { pickBy, mapValues } from 'lodash'
 import type { Trajectory, PlotDatum } from './types/Result.types'
 import { verifyPositive, verifyTuple } from '../components/Main/Results/Utils'
 
-import { sort } from './utils/sort'
+import { sort2 } from './utils/sort2'
 // import { linesToPlot, areasToPlot, DATA_POINTS } from '../components/Main/Results/ChartCommon'
 
 export function filterPositiveValues<T extends { [key: string]: number }>(obj: T) {
@@ -20,11 +20,11 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
   return middle.map((_0, day) => {
     const previousDay = day > 6 ? day - 7 : 0
 
-    let weeklyFatalityMiddle = middle[day].cumulative.fatality.total - middle[previousDay].cumulative.fatality.total // prettier-ignore
+    const weeklyFatalityMiddle = middle[day].cumulative.fatality.total - middle[previousDay].cumulative.fatality.total // prettier-ignore
     let weeklyFatalityLower  = lower[day].cumulative.fatality.total  - lower[previousDay].cumulative.fatality.total // prettier-ignore
     let weeklyFatalityUpper  = upper[day].cumulative.fatality.total  - upper[previousDay].cumulative.fatality.total // prettier-ignore
 
-    ;[weeklyFatalityLower, weeklyFatalityMiddle, weeklyFatalityUpper] = sort(weeklyFatalityLower, weeklyFatalityMiddle, weeklyFatalityUpper) // prettier-ignore
+    ;[weeklyFatalityLower, weeklyFatalityUpper] = sort2(weeklyFatalityLower, weeklyFatalityUpper) // prettier-ignore
 
     let lines = {
       susceptible: middle[day].current.susceptible.total,
