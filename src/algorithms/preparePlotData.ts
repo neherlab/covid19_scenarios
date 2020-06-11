@@ -24,7 +24,7 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
     let weeklyFatalityLower  = lower[day].cumulative.fatality.total  - lower[previousDay].cumulative.fatality.total // prettier-ignore
     let weeklyFatalityUpper  = upper[day].cumulative.fatality.total  - upper[previousDay].cumulative.fatality.total // prettier-ignore
 
-    ;[weeklyFatalityLower, weeklyFatalityUpper] = sort2(weeklyFatalityLower, weeklyFatalityUpper) // prettier-ignore
+    ;[weeklyFatalityLower, weeklyFatalityUpper] = sort2([weeklyFatalityLower, weeklyFatalityUpper]) // prettier-ignore
 
     let lines = {
       susceptible: middle[day].current.susceptible.total,
