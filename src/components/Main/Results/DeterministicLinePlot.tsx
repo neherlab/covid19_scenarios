@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { useState } from 'react'
 
 import _ from 'lodash'

@@ -292,6 +292,7 @@ export default {
           '!src/algorithms/results.ts', // FIXME
           '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
           '!src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
+          '!src/components/Main/Results/Utils.ts', // FIXME
           // end
 
           '!src/**/*.(spec|test).{js,jsx,ts,tsx}',
@@ -352,7 +353,7 @@ export default {
     production &&
       !analyze &&
       // TODO: remove ignores when typings update to v6.x.x
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       new CopyWebpackPlugin({ patterns: [{ from: './static', to: './' }] }),
 
@@ -403,7 +404,7 @@ export default {
     new webpack.SourceMapDevToolPlugin({
       filename: 'sourcemaps/[filebase].map[query]',
       publicPath: '/',
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore: BUG: This parameter is missing in @types/webpack declarations
       fileContext: 'web',
       noSources: false,

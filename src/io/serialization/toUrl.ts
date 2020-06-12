@@ -6,6 +6,6 @@ import { serialize } from './serialize'
 
 export function toUrl(data: ScenarioParameters): string {
   const serialized = serialize(data)
-  const obj = JSON.parse(serialized)
+  const obj = JSON.parse(serialized) as Record<string, unknown>
   return encode(obj)
 }

@@ -176,6 +176,8 @@ export function ModalButtonExportDisconnected({
       return
     }
 
+    // FIXME: this async operation should probably be moved to a saga or at least useEffect()
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     exportAll({
       scenarioParameters,
       result,

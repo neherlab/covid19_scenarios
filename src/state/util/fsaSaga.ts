@@ -37,13 +37,17 @@ export default function fsaSaga<Params, Result>(
 
     try {
       // Call worker
-      const result = yield call(worker, params)
+      const result = ((yield call(worker, params)) as unknown) as Result
 
       // Worker suceeded. dispatch "done" action with results
       yield put(asyncActionCreators.done({ params, result }))
     } catch (error) {
-      // Worker has failed. Dispatch "failed" action with the error.
-      yield put(asyncActionCreators.failed({ params, error: { error } }))
+      if (error instanceof Error) {
+        // Worker has failed. Dispatch "failed" action with the error.
+        yield put(asyncActionCreators.failed({ params, error: { error } }))
+      } else {
+        throw error
+      }
     } finally {
       // Worker was cancelled (e.g. manually or as a result of take*).
       // Dispatch "failed" action with the special error value.

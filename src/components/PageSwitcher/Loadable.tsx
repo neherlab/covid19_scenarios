@@ -1,4 +1,4 @@
-import loadable from '@loadable/component'
+import loadable, { DefaultComponent } from '@loadable/component'
 import delay from 'p-min-delay'
 import { timeout } from 'promise-timeout'
 import { withErrorBoundary } from 'react-error-boundary'
@@ -20,7 +20,8 @@ const Loadable = loadable((props: LoadableProps) => {
     /* webpackChunkName: "pages/[request]" */
     /* webpackExclude: /(\.(css|scss)|(\/__tests__\/.*|([.\/])(test|spec))\.(js|ts\md)sx?)$/ */
     `../../pages/${props.page}`
-  )
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ) as Promise<DefaultComponent<any>>
 
   // Force "Loading" component to be shown a given amount of time
   // (even if main component loads before the time elapses)

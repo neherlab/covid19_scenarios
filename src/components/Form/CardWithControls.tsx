@@ -23,7 +23,7 @@ export function CardWithControls({
   ...restProps
 }: CardWithControlsProps) {
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     <Card className={classNames(className, 'card-with-controls')} {...restProps}>
       <CardHeader className="card-with-controls-header">

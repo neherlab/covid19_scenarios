@@ -10,7 +10,7 @@ interface PageRenderParams {
 }
 
 interface PageProps {
-  match: { path: string; params: object }
+  match: { path: string; params: Record<string, unknown> }
 }
 
 function pageRender({ page, loadingComponent, forceLoadingMs, timeoutMs }: PageRenderParams) {
