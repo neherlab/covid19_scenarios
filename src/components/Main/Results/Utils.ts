@@ -1,5 +1,7 @@
 import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 
+import { verifyPositive } from '../../../algorithms/preparePlotData'
+
 export type MaybeNumber = number | undefined
 
 export function computeNewEmpiricalCases(
