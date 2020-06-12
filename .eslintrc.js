@@ -68,7 +68,6 @@ module.exports = {
     'only-warn',
 
     '@typescript-eslint',
-    '@typescript-eslint/tslint',
 
     // prettier should go last
     'prettier',
@@ -140,8 +139,6 @@ module.exports = {
 
     'lines-between-class-members': ['warn', 'always', { exceptAfterSingleLine: true }],
 
-    '@typescript-eslint/tslint/config': ['warn', { lintFile: path.join(__dirname, 'tslint.json') }],
-
     'require-await': 'off',
     '@typescript-eslint/require-await': 'off',
 
@@ -149,10 +146,6 @@ module.exports = {
     '@typescript-eslint/no-unused-expressions': 'warn',
 
     '@typescript-eslint/no-duplicate-imports': 'off',
-
-    '@typescript-eslint/tslint/max-union-size': 'off',
-    '@typescript-eslint/tslint/no-duplicate-imports': 'off',
-    '@typescript-eslint/tslint/prettier': 'off',
 
     'no-restricted-imports': [
       'error',
@@ -273,11 +266,9 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-typeof-undefined': 'off',
         '@typescript-eslint/no-unsafe-assignment': 'off',
-        '@typescript-eslint/tslint/no-typeof-undefined': 'off',
         'global-require': 'off',
         'lodash/prefer-lodash-typecheck': 'off',
         'no-typeof-undefined': 'off',
-        'tslint:no-typeof-undefined': 'off',
         'unicorn/import-index': 'off',
       },
     },
@@ -303,7 +294,6 @@ module.exports = {
         '@typescript-eslint/no-unsafe-member-access': 'off',
         '@typescript-eslint/no-unsafe-return': 'off',
         '@typescript-eslint/restrict-template-expressions': 'off',
-        '@typescript-eslint/tslint/no-identical-functions': 'off',
         'i18next/no-literal-string': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
@@ -325,7 +315,6 @@ module.exports = {
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
         'spaced-comment': 'off',
-        'tslint:no-namespace': 'off',
       },
     },
     {

@@ -82,7 +82,11 @@ const nextConfig: NextConfig = {
 
 const withConfig = nextRuntimeDotenv()
 
-const withMDX = getWithMDX({ extension: /\.mdx?$/ })
+const withMDX = getWithMDX({
+  extension: /\.mdx?$/,
+  remarkPlugins: ['remark-images', 'remark-math'].map(require),
+  rehypePlugins: ['rehype-katex'].map(require),
+})
 
 const withFriendlyConsole = getWithFriendlyConsole({
   clearConsole: false,

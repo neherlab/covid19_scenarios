@@ -1,5 +1,5 @@
 // This file provides type information patches for jest testing environment
-// because tslint and IDEs cannot deduce types from jest config file alone.
+// because tsc and IDEs cannot deduce types from jest config file alone.
 // Order of imports is important!
 
 import '@testing-library/jest-dom/extend-expect'
@@ -10,7 +10,6 @@ import 'jest-extended/types'
 
 import 'jest-chain'
 
-// tslint:disable-next-line:no-namespace
 declare global {
   namespace jest {
     interface Matchers<R> {

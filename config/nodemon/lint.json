@@ -18,7 +18,6 @@
     "package.json",
     "src",
     "tsconfig.json",
-    "tslint.json",
     "webpack.config.js",
     "yarn.lock"
   ],
