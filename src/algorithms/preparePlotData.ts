@@ -1,10 +1,11 @@
 /* eslint-disable no-param-reassign */
 
-import { pickBy, mapValues } from 'lodash'
+import { pickBy, mapValues, pick } from 'lodash'
 import { isNumeric, max, min } from 'mathjs'
 
-import type { Trajectory, PlotDatum } from './types/Result.types'
+import type { Trajectory, PlotDatum, Line, Area, PlotData } from './types/Result.types'
 import { MaybeNumber } from '../components/Main/Results/Utils'
+import { soa } from './utils/soa'
 
 import { sortPair } from './utils/sortPair'
 // import { linesToPlot, areasToPlot, DATA_POINTS } from '../components/Main/Results/ChartCommon'
@@ -50,10 +51,10 @@ export function verifyTuples<T extends { [key: string]: MaybeNumber[] }>(obj: T)
   return mapValues(obj, (x) => verifyTuple(x))
 }
 
-export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
+export function preparePlotData(trajectory: Trajectory) {
   const { lower, middle, upper } = trajectory
 
-  return middle.map((_0, day) => {
+  const data = middle.map((_0, day) => {
     const previousDay = day > 6 ? day - 7 : 0
 
     const weeklyFatalityMiddle = middle[day].cumulative.fatality.total - middle[previousDay].cumulative.fatality.total // prettier-ignore
@@ -62,7 +63,7 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
 
     ;[weeklyFatalityLower, weeklyFatalityUpper] = sortPair([weeklyFatalityLower, weeklyFatalityUpper]) // prettier-ignore
 
-    let lines = {
+    let lines: Line = {
       susceptible: middle[day].current.susceptible.total,
       infectious: middle[day].current.infectious.total,
       severe: middle[day].current.severe.total,
@@ -87,8 +88,17 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
       weeklyFatality: [ weeklyFatalityLower,                   weeklyFatalityMiddle,                    weeklyFatalityUpper                   ] // prettier-ignore
     }
 
-    const areas = verifyTuples(areasRaw)
+    const areas: Area = verifyTuples(areasRaw)
 
     return { time: middle[day].time, lines, areas }
   })
+
+  const { time, lines, areas } = (soa(data) as unknown) as PlotData
+
+  let linesObject = soa(lines)
+  let areasObject = soa(areas)
+
+  return { linesObject, areasObject }
+  // TODO: sort by time
+  // plotData.sort((a, b) => (a.time > b.time ? 1 : -1))
 }

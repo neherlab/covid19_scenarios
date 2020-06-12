@@ -1,7 +1,7 @@
 import React from 'react'
 import { TooltipProps, TooltipPayload } from 'recharts'
 
-import { colors } from './ChartCommon'
+import { CategoryColor } from './ChartCommon'
 import { ResponsiveTooltipContent, TooltipItem } from './ResponsiveTooltipContent'
 
 import './ResponsiveTooltipContent.scss'
@@ -58,7 +58,7 @@ export function ChartTooltip({ active, payload, label, valueFormatter, labelForm
         name: payloadItem.name,
         color:
           payloadItem.color ||
-          ((payloadItem.dataKey as string) in colors ? colors[payloadItem.dataKey as string] : '#bbbbbb'),
+          ((payloadItem.dataKey as string) in CategoryColor ? CategoryColor[payloadItem.dataKey as string] : '#bbbbbb'),
         key: (payloadItem.dataKey as string) || payloadItem.name,
         value: maybeFormatted(value),
         lower: maybeFormatted(lower),

@@ -92,10 +92,66 @@ export interface TimeSeriesWithRange {
   upper: TimeSeries
 }
 
+export interface Line {
+  susceptible?: number
+  infectious?: number
+  severe?: number
+  critical?: number
+  overflow?: number
+  recovered?: number
+  fatality?: number
+  weeklyFatality?: number
+}
+
+export type Pair<T> = [T, T]
+
+export interface Area {
+  susceptible?: Pair<number>
+  infectious?: Pair<number>
+  severe?: Pair<number>
+  critical?: Pair<number>
+  overflow?: Pair<number>
+  recovered?: Pair<number>
+  fatality?: Pair<number>
+  weeklyFatality?: Pair<number>
+}
+
 export interface PlotDatum {
   time: number
-  lines: Record<string, number | undefined>
-  areas: Record<string, [number, number] | undefined>
+  lines: Line
+  areas: Area
+}
+
+// TODO: should not intersect with AreaObject
+//  otherwise properties will be overwritten
+export interface LineObject {
+  susceptible?: number[]
+  infectious?: number[]
+  severe?: number[]
+  critical?: number[]
+  overflow?: number[]
+  recovered?: number[]
+  fatality?: number[]
+  weeklyFatality?: number[]
+}
+
+// TODO: should not intersect with LineObject
+//  otherwise properties will be overwritten
+export interface AreaObject {
+  susceptible?: Pair<number>[]
+  infectious?: Pair<number>[]
+  severe?: Pair<number>[]
+  critical?: Pair<number>[]
+  overflow?: Pair<number>[]
+  recovered?: Pair<number>[]
+  fatality?: Pair<number>[]
+  weeklyFatality?: Pair<number>[]
+}
+
+export interface PlotData {
+  time: number[]
+  linesObject: LineObject
+  areasObject: AreaObject
 }
 
 export interface AlgorithmResult {

@@ -2,7 +2,7 @@ import React from 'react'
 import { TooltipProps } from 'recharts'
 import { useTranslation } from 'react-i18next'
 
-import { linesToPlot, observationsToPlot, translatePlots } from './ChartCommon'
+import { linesMetaDefault, casesMetaDefault, translatePlots } from './ChartCommon'
 import { ResponsiveTooltipContent, TooltipItem } from './ResponsiveTooltipContent'
 
 import './ResponsiveTooltipContent.scss'
@@ -44,13 +44,13 @@ export function LinePlotTooltip({
 
   const tooltipItems = []
     .concat(
-      translatePlots(t, observationsToPlot()).map((observationToPlot) => ({
+      translatePlots(t, casesMetaDefault()).map((observationToPlot) => ({
         ...observationToPlot,
         displayUndefinedAs: '-',
       })) as never,
     )
     .concat(
-      translatePlots(t, linesToPlot).map((lineToPlot) => ({
+      translatePlots(t, linesMetaDefault).map((lineToPlot) => ({
         ...lineToPlot,
         displayUndefinedAs: 0,
       })) as never,
