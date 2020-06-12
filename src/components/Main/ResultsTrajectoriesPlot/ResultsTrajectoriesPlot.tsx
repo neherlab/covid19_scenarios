@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { useMemo, useState } from 'react'
 
 import _ from 'lodash'
