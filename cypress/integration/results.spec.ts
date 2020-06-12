@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-const resultsCharts = ['DeterministicLinePlot', 'AgeBarChart', 'OutcomeRatesTable']
+const resultsCharts = ['ResultsTrajectoriesPlot', 'AgeBarChart', 'OutcomeRatesTable']
 
 context('The results card', () => {
   beforeEach(() => {

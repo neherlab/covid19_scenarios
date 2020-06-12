@@ -1,36 +1,15 @@
 import type { CaseCountsDatum } from '../../../algorithms/types/Param.types'
 
-export type maybeNumber = number | undefined
+import { verifyPositive } from '../../../algorithms/preparePlotData'
 
-export function verifyPositive(x: number): maybeNumber {
-  const xRounded = Math.round(x)
-  return xRounded > 0 ? xRounded : undefined
-}
-
-export function verifyTuple(x: [maybeNumber, maybeNumber], center: maybeNumber): [number, number] | undefined {
-  const centerVal = center ? verifyPositive(center) : undefined
-  if (x[0] !== undefined && x[1] !== undefined && centerVal !== undefined) {
-    return [x[0] < centerVal ? x[0] : centerVal, x[1] > centerVal ? x[1] : centerVal]
-  }
-  if (x[0] !== undefined && x[1] !== undefined) {
-    return [x[0], x[1]]
-  }
-  if (x[0] === undefined && x[1] !== undefined && centerVal !== undefined) {
-    return [0.0001, x[1] > centerVal ? x[1] : centerVal]
-  }
-  if (x[0] === undefined && x[1] !== undefined) {
-    return [0.0001, x[1]]
-  }
-
-  return undefined
-}
+export type MaybeNumber = number | undefined
 
 export function computeNewEmpiricalCases(
   timeWindow: number,
   field: string,
   cumulativeCounts?: CaseCountsDatum[],
-): [maybeNumber[], number] {
-  const newEmpiricalCases: maybeNumber[] = []
+): [MaybeNumber[], number] {
+  const newEmpiricalCases: MaybeNumber[] = []
   const deltaDay = Math.floor(timeWindow)
   const deltaInt = timeWindow - deltaDay
 

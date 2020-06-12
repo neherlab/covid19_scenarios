@@ -25,7 +25,7 @@ import {
   selectSeverityDistributionData,
 } from '../../../state/scenario/scenario.selectors'
 
-import { DeterministicLinePlot } from '../Results/DeterministicLinePlot'
+import { ResultsTrajectoriesPlot } from '../ResultsTrajectoriesPlot/ResultsTrajectoriesPlot'
 import { OutcomeRatesTable } from '../Results/OutcomeRatesTable'
 import { AgeBarChart } from '../Results/AgeBarChart'
 import { OutcomesDetailsTable } from '../Results/OutcomesDetailsTable'
@@ -293,7 +293,7 @@ export function PrintPreviewDisconnected({
             <Row>
               <Col>
                 <h2>{t('Results')}</h2>
-                <DeterministicLinePlot />
+                <ResultsTrajectoriesPlot />
               </Col>
             </Row>
 

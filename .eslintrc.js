@@ -194,7 +194,7 @@ module.exports = {
         'src/algorithms/model.ts', // FIXME
         'src/algorithms/results.ts', // FIXME
         'src/components/Main/Results/AgeBarChart.tsx', // FIXME
-        'src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
+        'src/components/Main/ResultsTrajectoriesPlot/ResultsTrajectoriesPlot.tsx', // FIXME
         'src/components/Main/Results/Utils.ts', // FIXME
       ],
       rules: {

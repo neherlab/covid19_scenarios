@@ -1,5 +1,5 @@
 import { TFunction, TFunctionResult } from 'i18next'
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { sumBy } from 'lodash'
 import { connect } from 'react-redux'
@@ -22,13 +22,13 @@ import {
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
-import { numberFormatter } from '../../../helpers/numberFormat'
+import { getNumberFormatters } from '../../../helpers/numberFormat'
 import { State } from '../../../state/reducer'
 import { selectAgeDistributionData, selectSeverityDistributionData } from '../../../state/scenario/scenario.selectors'
 import { selectResult } from '../../../state/algorithm/algorithm.selectors'
 import { selectShouldFormatNumbers, selectShouldShowPlotLabels } from '../../../state/settings/settings.selectors'
 
-import { colors } from './ChartCommon'
+import { CategoryColor } from './ChartCommon'
 import { calculatePosition, scrollToRef } from './chartHelper'
 import { ChartTooltip } from './ChartTooltip'
 
@@ -64,6 +64,7 @@ export function AgeBarChartDisconnected({
 }: AgeBarChartProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
+  const { formatNumber, formatNumberRounded } = useMemo(() => getNumberFormatters({ shouldFormatNumbers }), [shouldFormatNumbers]) // prettier-ignore
 
   const t = unsafeT as SafeTFunction
 
@@ -85,16 +86,13 @@ export function AgeBarChartDisconnected({
         num = Number.parseFloat(num)
       }
 
-      return numberFormatter(true, false)(num)
+      return formatNumber(num)
     },
   }
 
   if (!result) {
     return null
   }
-
-  const formatNumber = numberFormatter(shouldFormatNumbers, false)
-  const formatNumberRounded = numberFormatter(shouldFormatNumbers, true)
 
   // Ensure age distribution is normalized
   const Z: number = sumBy(ageDistributionData, ({ population }) => population)
@@ -193,38 +191,38 @@ export function AgeBarChartDisconnected({
                 <Bar
                   isAnimationActive={false}
                   dataKey="peakSevere"
-                  fill={colors.severe}
+                  fill={CategoryColor.severe}
                   name={t('peak severe')}
                   label={label}
                 >
-                  <ErrorBar dataKey="errorPeakSevere" stroke={colors.severe} width={2} strokeWidth={1} />
+                  <ErrorBar dataKey="errorPeakSevere" stroke={CategoryColor.severe} width={2} strokeWidth={1} />
                 </Bar>
                 <Bar
                   isAnimationActive={false}
                   dataKey="peakCritical"
-                  fill={colors.critical}
+                  fill={CategoryColor.critical}
                   name={t('peak critical')}
                   label={label}
                 >
-                  <ErrorBar dataKey="errorPeakCritical" stroke={colors.critical} width={2} strokeWidth={1} />
+                  <ErrorBar dataKey="errorPeakCritical" stroke={CategoryColor.critical} width={2} strokeWidth={1} />
                 </Bar>
                 <Bar
                   isAnimationActive={false}
                   dataKey="peakOverflow"
-                  fill={colors.overflow}
+                  fill={CategoryColor.overflow}
                   name={t('peak overflow')}
                   label={label}
                 >
-                  <ErrorBar dataKey="errorPeakOverflow" stroke={colors.overflow} width={2} strokeWidth={1} />
+                  <ErrorBar dataKey="errorPeakOverflow" stroke={CategoryColor.overflow} width={2} strokeWidth={1} />
                 </Bar>
                 <Bar
                   isAnimationActive={false}
                   dataKey="totalFatalities"
-                  fill={colors.fatality}
+                  fill={CategoryColor.fatality}
                   name={t('total deaths')}
                   label={label}
                 >
-                  <ErrorBar dataKey="errorFatalities" stroke={colors.fatality} width={2} strokeWidth={1} />
+                  <ErrorBar dataKey="errorFatalities" stroke={CategoryColor.fatality} width={2} strokeWidth={1} />
                 </Bar>
                 <Bar
                   isAnimationActive={false}

@@ -13,16 +13,16 @@ import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import { State } from '../../../state/reducer'
 import { selectResult } from '../../../state/algorithm/algorithm.selectors'
 
-import { numberFormatter } from '../../../helpers/numberFormat'
+import { getNumberFormatters } from '../../../helpers/numberFormat'
 
 import './OutcomesDetailsTable.scss'
 
 const STEP = 7
 
-const formatter = numberFormatter(true, true)
+const { formatNumber } = getNumberFormatters({ shouldFormatNumbers: true })
 
 function numberFormat(x?: number): string {
-  return formatter(x ?? 0)
+  return formatNumber(x ?? 0)
 }
 
 function dateFormat(time: number) {
