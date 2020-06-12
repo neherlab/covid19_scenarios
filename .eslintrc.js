@@ -77,6 +77,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/array-type': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/unbound-method': ['off'],
     'array-func/prefer-array-from': 'off',
     'cflint/no-substr': 'warn',
@@ -186,9 +187,31 @@ module.exports = {
     },
   },
   overrides: [
+    // FIXME: These files are to be fixed and these ignores are to be removed
+    // begin
+    {
+      files: [
+        'src/algorithms/model.ts', // FIXME
+        'src/algorithms/results.ts', // FIXME
+        'src/components/Main/Results/AgeBarChart.tsx', // FIXME
+        'src/components/Main/Results/DeterministicLinePlot.tsx', // FIXME
+        'src/components/Main/Results/Utils.ts', // FIXME
+      ],
+      rules: {
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
+        '@typescript-eslint/restrict-plus-operands': 'off',
+        '@typescript-eslint/restrict-template-expressions': 'off',
+      },
+    },
+    // end
     {
       files: ['*.d.ts'],
       rules: {
+        '@typescript-eslint/ban-types': ['warn', { extendDefaults: true, types: { object: false } }],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         'no-useless-constructor': 'off',
@@ -201,6 +224,8 @@ module.exports = {
         'babel.config.js',
         'config/**/*.js',
         'config/**/*.ts',
+        'config/jest/mocks/**/*.js',
+        'infra/**/*.js',
         'jest-runner-eslint.config.js',
         'jest.config.js',
         'lib/EnvVarError.js',
@@ -211,7 +236,12 @@ module.exports = {
         'webpack.config.js',
       ],
       rules: {
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
         '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/restrict-template-expressions': 'off',
         'global-require': 'off',
         'security/detect-child-process': 'off',
         'sonarjs/cognitive-complexity': ['warn', 50],
@@ -232,6 +262,7 @@ module.exports = {
     {
       files: ['src/helpers/polyfill*', 'src/index.polyfilled.ts', 'src/workers/algorithm/worker.polyfilled.ts'],
       rules: {
+        '@typescript-eslint/no-unsafe-return': 'off',
         'global-require': 'off',
         'unicorn/import-index': 'off',
       },
@@ -241,6 +272,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-typeof-undefined': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/tslint/no-typeof-undefined': 'off',
         'global-require': 'off',
         'lodash/prefer-lodash-typecheck': 'off',
@@ -252,6 +284,7 @@ module.exports = {
     {
       files: ['src/state/store.ts'],
       rules: {
+        '@typescript-eslint/no-var-requires': 'off',
         'global-require': 'off',
         'no-underscore-dangle': 'off',
       },
@@ -265,10 +298,15 @@ module.exports = {
     {
       files: ['**/*.test.*', '**/__test__/**', '**/__tests__/**', '**/test/**', '**/tests/**'],
       rules: {
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
+        '@typescript-eslint/restrict-template-expressions': 'off',
+        '@typescript-eslint/tslint/no-identical-functions': 'off',
         'i18next/no-literal-string': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
-        '@typescript-eslint/tslint/no-identical-functions': 'off',
       },
     },
     {

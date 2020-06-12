@@ -22,8 +22,8 @@ import { CaseCountsLoaderUploadZone } from './CaseCountsUploadZone'
 import './CaseCountsUploader.scss'
 
 class UploadErrorTooManyFiles extends Error {
-  public readonly nFiles?: number
-  constructor(nFiles?: number) {
+  public readonly nFiles: number
+  constructor(nFiles: number) {
     super(`when uploading: one file is expected, but got ${nFiles}`)
     this.nFiles = nFiles
   }

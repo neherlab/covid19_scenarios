@@ -12,18 +12,20 @@ export function serialize(data: ScenarioParameters): string {
   const serializerLatest = SERIALIZER_LATEST.serialize
   const serialized = serializerLatest(data)
 
+  // This will verify the quility of serialization in dev mode
   if (process.env.NODE_ENV !== 'production') {
     const shareableDangerous = JSON.parse(serialized) as { schemaVer?: string }
     const schemaVer = semver.valid(shareableDangerous?.schemaVer)
-    if (!schemaVer) {
-      throw new DeserializationErrorSchemaVersionInvalid(shareableDangerous?.schemaVer)
-    }
 
-    if (schemaVer !== SERIALIZER_VERSION_LATEST) {
-      throw new SerializationErrorSchemaVersionNotLatest(schemaVer, SERIALIZER_VERSIONS)
-    }
+    if (schemaVer) {
+      if (schemaVer !== SERIALIZER_VERSION_LATEST) {
+        throw new SerializationErrorSchemaVersionNotLatest(schemaVer, SERIALIZER_VERSIONS)
+      }
 
-    deserialize(serialized)
+      deserialize(serialized)
+    } else {
+      throw new DeserializationErrorSchemaVersionInvalid('Not provided', SERIALIZER_VERSIONS)
+    }
   }
 
   return serialized

@@ -95,7 +95,7 @@ function ScenarioTitle({ title, onRename }: ScenarioTitleProps) {
         onKeyDown={handleKeyDown}
         // NOTE: This is a bug in @types/reactstrap typings:
         // it claims that `innerRef` is `React.Ref` while in reality it is `React.RefObject`
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         innerRef={inputRef}
       />

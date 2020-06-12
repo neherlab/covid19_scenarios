@@ -1,9 +1,9 @@
 import React from 'react'
 
-import _ from 'lodash'
-
+import classNames from 'classnames'
 import { Field, FormikErrors, FormikTouched } from 'formik'
 import { Col, FormGroup, Row } from 'reactstrap'
+import { getFormikErrors } from '../../helpers/getFormikErrors'
 
 import FormLabel from './FormLabel'
 
@@ -30,20 +30,8 @@ export function FormSpinBox<T>({
   errors,
   touched,
 }: FormSpinBoxProps<T>) {
-  const isTouched = _.get(touched, identifier)
-  const errorMessage = _.get(errors, identifier)
-  const showError = errorMessage && isTouched
-  const borderDanger = showError ? 'border-danger' : ''
-
-  function validate(value: number) {
-    let error
-    if (min && value < min) {
-      error = `The input cannot be less than ${min}`
-    } else if (max && value > max) {
-      error = `The input cannot be greater than ${max}`
-    }
-    return error
-  }
+  const errorMessages = getFormikErrors({ identifier, errors, touched })
+  const hasError = errorMessages.length > 0
 
   return (
     <Field>
@@ -55,7 +43,7 @@ export function FormSpinBox<T>({
             </Col>
             <Col xl={5}>
               <Field
-                className={`form-control form-spinbox ${borderDanger}`}
+                className={classNames(`form-control form-spinbox`, hasError && 'border-danger')}
                 id={identifier}
                 name={identifier}
                 type="number"
@@ -63,9 +51,12 @@ export function FormSpinBox<T>({
                 min={min}
                 max={max}
                 pattern={pattern}
-                validate={validate}
               />
-              {showError ? <div className="text-danger">{errorMessage}</div> : null}
+              {errorMessages.map((message) => (
+                <div key={message} className="my-0 text-right text-danger">
+                  {message}
+                </div>
+              ))}
             </Col>
           </Row>
         </FormGroup>

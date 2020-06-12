@@ -1,4 +1,4 @@
-/* eslint-disable no-console, unicorn/no-process-exit */
+/* eslint-disable no-console, unicorn/no-process-exit,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-floating-promises */
 import fs from 'fs'
 import yargs from 'yargs'
 

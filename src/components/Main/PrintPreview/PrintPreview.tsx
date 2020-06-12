@@ -126,7 +126,10 @@ export function PrintPreviewDisconnected({
               <Col>
                 <h1 className="heading-main text-center text-bold">{t(`COVID-19 Scenarios`)}</h1>
                 <p className="text-center text-bold mb-0">{t(`Printable report`)}</p>
-                <p className="text-center text-bold">{t(`Generated from ${linkComponent} on ${formattedDate}`)}</p>
+                <p className="text-center text-bold">
+                  {t(`Generated from {{appUrl}}`, { appUrl: '' })}${linkComponent}
+                  {t(` on {{date}}`, { date: formattedDate })}
+                </p>
               </Col>
             </Row>
 
@@ -232,8 +235,10 @@ export function PrintPreviewDisconnected({
                 {Object.entries(scenarioData.epidemiological).map(([key, val]) => {
                   // NOTE: val can be of different types here
                   // FIXME: This is a hole in type system, because the type of `val` is not checked (any)
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                   let value = val
                   if (key === 'peakMonth') {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                     value = months[val]
                   }
 

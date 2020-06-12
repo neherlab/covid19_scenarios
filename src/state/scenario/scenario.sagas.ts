@@ -24,7 +24,7 @@ export function* processUrl({ payload: { location } }: LocationChangeAction) {
 }
 
 export function* triggerAlgorithm() {
-  const isAutorunEnabled: boolean = yield select(selectIsAutorunEnabled)
+  const isAutorunEnabled = (yield select(selectIsAutorunEnabled) as unknown) as boolean
   if (isAutorunEnabled) {
     yield put(algorithmRunTrigger())
   }

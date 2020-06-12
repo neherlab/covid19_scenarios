@@ -77,7 +77,7 @@ export async function i18nInit({ localeKey }: I18NInitParams) {
 
     interpolation: {
       escapeValue: false,
-      format(value, format, lng) {
+      format<V, F, L>(value: V, format: F, lng: L) {
         return value
       },
     },

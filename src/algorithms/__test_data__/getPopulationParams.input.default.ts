@@ -1,3 +1,4 @@
+import { UUIDv4 } from '../../helpers/uuid'
 import { AgeGroup } from '../types/Param.types'
 
 import type {
@@ -9,7 +10,7 @@ import type {
 
 export const mitigationIntervals: MitigationInterval[] = [
   {
-    id: 'cdfcd00e-385b-4129-8ba9-7bca110edfaf',
+    id: 'cdfcd00e-385b-4129-8ba9-7bca110edfaf' as UUIDv4,
     name: 'Measure number one',
     timeRange: {
       begin: new Date('2020-03-15T04:00:00.000Z'),
@@ -19,7 +20,7 @@ export const mitigationIntervals: MitigationInterval[] = [
     transmissionReduction: { begin: 38, end: 38 },
   },
   {
-    id: '8310ae2f-8053-4eb6-a462-d542f06e01fb',
+    id: '8310ae2f-8053-4eb6-a462-d542f06e01fb' as UUIDv4,
     name: 'Measure number two',
     timeRange: {
       begin: new Date('2020-04-03T04:00:00.000Z'),

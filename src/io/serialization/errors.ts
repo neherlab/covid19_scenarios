@@ -26,11 +26,11 @@ export class DeserializationErrorSchemaVersionMissing extends DeserializationErr
 }
 
 export class DeserializationErrorSchemaVersionInvalid extends DeserializationError {
-  public readonly schemaVer?: string
-  public readonly errors?: string[]
+  public readonly schemaVer: string
+  public readonly errors: string[]
 
-  public constructor(schemaVer?: string, schemaVersions?: string[]) {
-    const error = `expected \`schemaVer\` to be one of \`[${schemaVersions}]\`, but received: ${schemaVer}`
+  public constructor(schemaVer: string, schemaVersions: string[]) {
+    const error = `expected \`schemaVer\` to be one of \`[${schemaVersions?.join(', ')}]\`, but received: ${schemaVer}`
     super(`when deserializing: ${error}`)
     this.schemaVer = schemaVer
     this.errors = [error]
@@ -38,10 +38,10 @@ export class DeserializationErrorSchemaVersionInvalid extends DeserializationErr
 }
 
 export class DeserializationErrorValidationFailed extends DeserializationError {
-  public errors?: string[]
+  public errors: string[]
 
-  public constructor(errors?: string[]) {
-    super(`when deserializing: validation failed:\n${errors?.map(appendDash).join('\n')}`)
+  public constructor(errors: string[]) {
+    super(`when deserializing: validation failed:\n${errors.map(appendDash).join('\n')}`)
     this.errors = errors
   }
 }
@@ -63,10 +63,10 @@ export class SerializationError extends ErrorArray {}
 
 export class SerializationErrorSchemaVersionNotLatest extends SerializationError {
   public schemaVer: string
-  public errors?: string[]
+  public errors: string[]
 
   public constructor(schemaVer: string, schemaVersions: string[]) {
-    const error = `when serializing: expected \`schemaVer\` to be the latest among \`[${schemaVersions}]\`, but received: ${schemaVer}` // prettier-ignore
+    const error = `when serializing: expected \`schemaVer\` to be the latest among \`[${schemaVersions.join(', ')}]\`, but received: ${schemaVer}` // prettier-ignore
     super(`when serializing: ${error}`)
     this.schemaVer = schemaVer
     this.errors = [error]
