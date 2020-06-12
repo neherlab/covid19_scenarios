@@ -22,12 +22,12 @@ export const DATA_POINTS = {
   CumulativeCases: 'cumulativeCases',
   NewCases: 'newCases',
   HospitalBeds: 'hospitalBeds',
-  ICUbeds: 'ICUbeds',
+  icuBeds: 'icuBeds',
   /* Observed */
   ObservedDeaths: 'observedDeaths',
   ObservedCases: 'cases',
   ObservedHospitalized: 'currentHospitalized',
-  ObservedICU: 'ICU',
+  ObservedICU: 'icu',
   ObservedNewCases: 'newCases',
   ObservedWeeklyDeaths: 'weeklyDeaths',
 }
@@ -40,11 +40,11 @@ export const defaultEnabledPlots = [
   'recovered',
   'weeklyFatality',
   'hospitalBeds',
-  'ICUbeds',
+  'icuBeds',
   /* Observed */
   'cases',
   'currentHospitalized',
-  'ICU',
+  'icu',
   'newCases',
   'weeklyDeaths',
 ]
@@ -61,7 +61,7 @@ export const colors = {
   [DATA_POINTS.CumulativeCases]: '#aaaaaa',
   [DATA_POINTS.NewCases]: '#edaf5f',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
-  [DATA_POINTS.ICUbeds]: '#cccccc',
+  [DATA_POINTS.icuBeds]: '#cccccc',
 }
 
 export const linesToPlot: LineProps[] = [
@@ -79,7 +79,7 @@ export const linesToPlot: LineProps[] = [
     legendType: 'line',
   },
   { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: 'Total hospital beds', legendType: 'none' },
-  { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: 'Total ICU/ICM beds', legendType: 'none' },
+  { key: DATA_POINTS.icuBeds, color: colors.icuBeds, name: 'Total ICU/ICM beds', legendType: 'none' },
 ]
 
 export const areasToPlot: LineProps[] = [

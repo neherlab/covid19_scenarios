@@ -132,16 +132,16 @@ export function ResultsTrajectoriesPlotDiconnected({
       currentHospitalized: enabledPlots.includes(DATA_POINTS.ObservedHospitalized)
         ? d.hospitalized || undefined
         : undefined,
-      ICU: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.icu || undefined : undefined,
+      icu: enabledPlots.includes(DATA_POINTS.ObservedICU) ? d.icu || undefined : undefined,
       newCases: enabledPlots.includes(DATA_POINTS.ObservedNewCases) ? newEmpiricalCases[i] : undefined,
       weeklyDeaths: enabledPlots.includes(DATA_POINTS.ObservedWeeklyDeaths) ? weeklyEmpiricalDeaths[i] : undefined,
       hospitalBeds,
-      ICUbeds: icuBeds,
+      icuBeds,
     })) ?? []
 
   const plotData = [
     ...result.plotData.map((x) => {
-      const dpoint = { time: x.time, hospitalBeds, ICUbeds: icuBeds }
+      const dpoint = { time: x.time, hospitalBeds, icuBeds }
       Object.keys(x.lines).forEach((d) => {
         dpoint[d] = enabledPlots.includes(d) ? x.lines[d] : undefined
       })
@@ -172,7 +172,7 @@ export function ResultsTrajectoriesPlotDiconnected({
   })
 
   // determine the max of enabled plots w/o the hospital capacity
-  const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.ICUbeds)
+  const dataKeys = enabledPlots.filter((d) => d !== DATA_POINTS.HospitalBeds && d !== DATA_POINTS.icuBeds)
   // @ts-ignore
   const yDataMax = _.max(consolidatedPlotData.map((d) => _.max(dataKeys.map((k) => d[k]))))
 
@@ -193,7 +193,7 @@ export function ResultsTrajectoriesPlotDiconnected({
   })
 
   const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(
-    (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey !== 'ICUbeds',
+    (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey !== 'icuBeds',
   )
 
   const logScaleString: YAxisProps['scale'] = isLogScale ? 'log' : 'linear'

@@ -394,7 +394,7 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
 }
 
 function title(name: string): string {
-  return name === 'critical' ? 'ICU' : name
+  return name === 'critical' ? 'icu' : name
 }
 
 export interface SerializeTrajectoryParams {
