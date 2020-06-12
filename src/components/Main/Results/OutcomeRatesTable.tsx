@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { useTranslation } from 'react-i18next'
 
@@ -12,7 +12,7 @@ import type { State } from '../../../state/reducer'
 import { selectResult } from '../../../state/algorithm/algorithm.selectors'
 import { selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
 
-import { numberFormatter } from '../../../helpers/numberFormat'
+import { getNumberFormatters } from '../../../helpers/numberFormat'
 
 interface RowProps {
   entry: number[]
@@ -53,12 +53,11 @@ export const OutcomeRatesTable = connect(mapStateToProps, mapDispatchToProps)(Ou
 
 export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, forPrint }: TableProps) {
   const { t } = useTranslation()
+  const { formatNumber } = useMemo(() => getNumberFormatters({ shouldFormatNumbers }), [shouldFormatNumbers]) // prettier-ignore
 
   if (!result) {
     return null
   }
-
-  const formatNumber = numberFormatter(shouldFormatNumbers, false)
 
   const endResult = {
     lower: result.trajectory.lower[result.trajectory.middle.length - 1],

@@ -1,5 +1,5 @@
 import { TFunction, TFunctionResult } from 'i18next'
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { sumBy } from 'lodash'
 import { connect } from 'react-redux'
@@ -22,7 +22,7 @@ import {
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 
-import { numberFormatter } from '../../../helpers/numberFormat'
+import { getNumberFormatters } from '../../../helpers/numberFormat'
 import { State } from '../../../state/reducer'
 import { selectAgeDistributionData, selectSeverityDistributionData } from '../../../state/scenario/scenario.selectors'
 import { selectResult } from '../../../state/algorithm/algorithm.selectors'
@@ -63,6 +63,7 @@ export function AgeBarChartDisconnected({
 }: AgeBarChartProps) {
   const { t: unsafeT } = useTranslation()
   const casesChartRef = React.useRef(null)
+  const { formatNumber, formatNumberRounded } = useMemo(() => getNumberFormatters({ shouldFormatNumbers }), [shouldFormatNumbers]) // prettier-ignore
 
   const t = unsafeT as SafeTFunction
 
@@ -84,16 +85,13 @@ export function AgeBarChartDisconnected({
         num = Number.parseFloat(num)
       }
 
-      return numberFormatter(true, false)(num)
+      return formatNumber(num)
     },
   }
 
   if (!result) {
     return null
   }
-
-  const formatNumber = numberFormatter(shouldFormatNumbers, false)
-  const formatNumberRounded = numberFormatter(shouldFormatNumbers, true)
 
   // Ensure age distribution is normalized
   const Z: number = sumBy(ageDistributionData, ({ population }) => population)

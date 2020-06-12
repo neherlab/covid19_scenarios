@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
 import _ from 'lodash'
 import { connect } from 'react-redux'
@@ -26,7 +26,7 @@ import type { CaseCountsDatum, MitigationInterval } from '../../../algorithms/ty
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
-import { numberFormatter } from '../../../helpers/numberFormat'
+import { getNumberFormatters } from '../../../helpers/numberFormat'
 import { selectResult } from '../../../state/algorithm/algorithm.selectors'
 import { State } from '../../../state/reducer'
 import {
@@ -91,9 +91,7 @@ export function ResultsTrajectoriesPlotDiconnected({
   const { t } = useTranslation()
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(defaultEnabledPlots)
-
-  const formatNumber = numberFormatter(!!shouldFormatNumbers, false)
-  const formatNumberRounded = numberFormatter(!!shouldFormatNumbers, true)
+  const { formatNumber, formatNumberRounded } = useMemo(() => getNumberFormatters({ shouldFormatNumbers }), [shouldFormatNumbers]) // prettier-ignore
 
   if (!result) {
     return null
