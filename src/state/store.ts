@@ -1,7 +1,9 @@
 import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory, createMemoryHistory } from 'history'
-import { applyMiddleware, createStore, StoreEnhancer, Store } from 'redux'
+import { applyMiddleware, createStore, StoreEnhancer, Store, Middleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { PersistorOptions, Persistor } from 'redux-persist/es/types'
+import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import createSagaMiddleware from 'redux-saga'
 
 import { persistStore } from 'redux-persist'
@@ -22,18 +24,16 @@ export async function configureStore() {
   const history = typeof window === 'undefined' ? createMemoryHistory() : createBrowserHistory()
 
   const sagaMiddleware = createSagaMiddleware()
-  const middlewares = [
-    process.env.DEV_ENABLE_REDUX_IMMUTABLE_STATE_INVARIANT === '1' &&
-      require('redux-immutable-state-invariant').default(),
-    routerMiddleware(history),
-    sagaMiddleware,
-  ].filter(Boolean)
+  let middlewares = [routerMiddleware(history), sagaMiddleware].filter(Boolean)
+
+  if (process.env.DEV_ENABLE_REDUX_IMMUTABLE_STATE_INVARIANT === '1') {
+    middlewares = [...middlewares, reduxImmutableStateInvariant() as Middleware<string>]
+  }
 
   let enhancer = applyMiddleware(...middlewares)
-  const devToolsCompose = require('redux-devtools-extension').composeWithDevTools
 
-  if (debug && devToolsCompose) {
-    enhancer = devToolsCompose({
+  if (debug && composeWithDevTools) {
+    enhancer = composeWithDevTools({
       trace: true,
       traceLimit: 25,
       actionsBlacklist: '@@INIT',

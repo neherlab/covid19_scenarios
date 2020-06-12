@@ -13,7 +13,7 @@ if (typeof Worker !== 'undefined') {
   runImpl = async (args: RunParams) => {
     return new Promise<AlgorithmResult>((resolve, reject) => {
       worker.addEventListener('message', (message: MessageEvent) => {
-        const { result, error }: MessageData = message.data
+        const { result, error }: MessageData = message.data as { result: AlgorithmResult; error: string }
 
         if (result) {
           resolve(result)

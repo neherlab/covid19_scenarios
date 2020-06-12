@@ -8,4 +8,4 @@ export interface GenericErrorParams {
 
 export const errorAdd = action<GenericErrorParams>('ERROR_ADD')
 
-export const errorDismiss = action<{}>('ERROR_DISMISS')
+export const errorDismiss = action<unknown>('ERROR_DISMISS')

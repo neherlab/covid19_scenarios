@@ -27,7 +27,7 @@ class Store extends JSONSchemaStore {
   async fetch(address: string): Promise<JSONSchema | undefined> {
     const schemaFilepath = path.join(this.schemasRoot, address)
     const jsonSchemaString = (await fs.readFile(schemaFilepath)).toString('utf-8')
-    return parseJSON(jsonSchemaString, 'JSON Schema', address)
+    return parseJSON(jsonSchemaString, 'JSON Schema', address) as Record<string, unknown>
   }
 }
 
@@ -36,7 +36,7 @@ function quicktypesAddSources(schemasRoot: string, schemaInput: JSONSchemaInput)
     const schemaFilepath = path.join(schemasRoot, schemaFilename)
     const typeName = schemaFilename.replace(SCHEMA_EXTENSION, '')
     const jsonSchemaString = (await fs.readFile(schemaFilepath)).toString('utf-8')
-    schemaInput.addSource({ name: typeName, schema: jsonSchemaString })
+    await schemaInput.addSource({ name: typeName, schema: jsonSchemaString })
   }
 }
 
@@ -78,7 +78,7 @@ function ajvAddSources(schemasRoot: string, ajv: AjvModule) {
   return async (schemaFilename: string) => {
     const schemaFilepath = path.join(schemasRoot, schemaFilename)
     const jsonSchemaString = fs.readFileSync(schemaFilepath).toString('utf-8')
-    const schema = yaml.safeLoad(jsonSchemaString)
+    const schema = yaml.safeLoad(jsonSchemaString) as Record<string, unknown>
     ajv.addSchema(schema)
   }
 }
@@ -88,10 +88,10 @@ function ajvGenerateOne(schemasRoot: string, ajv: AjvModule, outputDir: string) 
     const schemaFilepath = path.join(schemasRoot, schemaFilename)
     const typeName = schemaFilename.replace(SCHEMA_EXTENSION, '')
     const jsonSchemaString = fs.readFileSync(schemaFilepath).toString('utf-8')
-    const schema = yaml.safeLoad(jsonSchemaString)
+    const schema = yaml.safeLoad(jsonSchemaString) as Record<string, unknown>
     const validateFunction = ajv.compile(schema)
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     let code = pack(ajv, validateFunction)
     code = prettier.format(code, { parser: 'babel' })

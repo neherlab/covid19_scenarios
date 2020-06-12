@@ -21,7 +21,7 @@ export function validateAll(): CaseCountsData[] {
   return ((caseCountsDataRaw as unknown) as CaseCountsArray).all
 }
 
-export function validate(caseCountsDataDangerous: object): void {
+export function validate(caseCountsDataDangerous: Record<string, unknown>): void {
   if (!validateCaseCountsData(caseCountsDataDangerous)) {
     const locale = 'en' // TODO: use current locale
     const localize = ajvLocalizers[locale] ?? ajvLocalizers.en
@@ -41,7 +41,7 @@ export function validate(caseCountsDataDangerous: object): void {
   }
 }
 
-export function convert(caseCountsDangerous: object): CaseCountsData {
+export function convert(caseCountsDangerous: Record<string, unknown>): CaseCountsData {
   try {
     return Convert.toCaseCountsData(JSON.stringify(caseCountsDangerous))
   } catch (error) {
@@ -75,7 +75,7 @@ export function getCaseCountsData(name: string) {
     return { name, data: [] }
   }
 
-  const caseCountsData = convert(caseCountFound)
+  const caseCountsData = convert((caseCountFound as unknown) as Record<string, unknown>)
 
   const data = caseCountsData.data
     .filter((d) => d.cases || d.deaths || d.icu || d.hospitalized)

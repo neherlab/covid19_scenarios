@@ -1,6 +1,6 @@
 import { omit } from 'lodash'
 
-import { v4 as uuidv4 } from 'uuid'
+import { uuidv4 } from '../../helpers/uuid'
 
 import { MitigationInterval, MitigationIntervalExternal, ScenarioDatum, ScenarioDatumExternal } from './Param.types'
 

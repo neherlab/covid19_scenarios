@@ -109,9 +109,11 @@ export function R0PlotTooltip({
     key: 'r0',
     name: 'effective reproductive number',
     color: datum.color || '#883322',
+    /* eslint-disable @typescript-eslint/no-unsafe-member-access */
     value: valueFormatter ? valueFormatter(round(datum.payload.median)) : round(datum.payload.median),
     lower: valueFormatter ? valueFormatter(round(datum.payload.range[0])) : round(datum.payload.range[0]),
     upper: valueFormatter ? valueFormatter(round(datum.payload.range[1])) : round(datum.payload.range[1]),
+    /* eslint-enable @typescript-eslint/no-unsafe-member-access */
   }
 
   return <ResponsiveTooltipContent formattedLabel={formattedLabel} tooltipItems={[tooltipItem]} />

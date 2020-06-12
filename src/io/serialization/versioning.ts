@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable camelcase */
 
 import { last } from 'lodash'
 
@@ -25,5 +25,5 @@ export const SERIALIZERS = new Map<string, Serializers>(
 )
 
 export const SERIALIZER_VERSIONS = semver.sort(Array.from(SERIALIZERS.keys()))
-export const SERIALIZER_VERSION_LATEST = last(SERIALIZER_VERSIONS)
+export const SERIALIZER_VERSION_LATEST = last(SERIALIZER_VERSIONS) ?? 'NO_SERIALIZERS'
 export const SERIALIZER_LATEST = getOrThrow(SERIALIZERS, SERIALIZER_VERSION_LATEST)

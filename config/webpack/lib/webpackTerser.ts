@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import { MinifyOptions } from 'terser'
 
 import TerserPlugin from 'terser-webpack-plugin'
@@ -54,7 +53,7 @@ export default function webpackTerser({ sourceMaps, node, profile = false }: Web
   }
 
   return new TerserPlugin({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     terserOptions: node ? beautify : minify,
     parallel: true,

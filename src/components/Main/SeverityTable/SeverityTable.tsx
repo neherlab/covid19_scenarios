@@ -8,7 +8,6 @@ import {
   DataTypeProvider,
   DataTypeProviderProps,
   EditingColumnExtension,
-  Row as TableRow,
   EditingState,
 } from '@devexpress/dx-react-grid'
 
@@ -34,8 +33,6 @@ import {
   selectSeverityDistributionData,
 } from '../../../state/scenario/scenario.selectors'
 import { State } from '../../../state/reducer'
-
-import './SeverityTable.scss'
 
 export interface AgeGroupRow extends SeverityDistributionDatum, AgeDistributionDatum {
   id: string
@@ -72,7 +69,7 @@ const editingColumnExtensions: EditingColumnExtension[] = [
   { columnName: 'totalFatal', editingEnabled: false },
 ]
 
-const getRowId = (row: TableRow) => row.id
+const getRowId = (row: AgeGroupRow) => row.id
 
 type HeaderCellProps = Partial<Table.DataCellProps> & TableHeaderRow.CellProps
 
@@ -165,8 +162,11 @@ function SeverityTableDisconnected({
       return
     }
 
-    let newValue = value.map((row) => (changed[row.id] ? { ...row, ...changed[row.id] } : row))
-    newValue = newValue.map((row) => omit(row, ['totalFatal']))
+    const newValueWithTotals: AgeGroupRowWithTotals[] = parametersWithTotals.map((row) => {
+      const changedRow = changed[row.id] as AgeGroupRowWithTotals
+      return changedRow ? { ...row, ...changedRow } : row
+    })
+    const newValue = newValueWithTotals.map((row) => omit(row, ['totalFatal']))
     setValue(newValue)
   }
 
