@@ -24,6 +24,7 @@ import { useTranslation } from 'react-i18next'
 import type { CaseCountsDatum, MitigationInterval } from '../../../algorithms/types/Param.types'
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
+import { CASE_COUNTS_INTERVAL_DAYS } from '../../../constants'
 
 import { getNumberFormatters } from '../../../helpers/numberFormat'
 import { selectResult } from '../../../state/algorithm/algorithm.selectors'
@@ -98,9 +99,9 @@ export function ResultsTrajectoriesPlotDiconnected({
 
   // NOTE: this used to use scenarioData.epidemiological.infectiousPeriodDays as
   // time interval but a weekly interval makes more sense given reporting practices
-  const [newEmpiricalCases] = computeNewEmpiricalCases(7, 'cases', caseCountsData)
+  const [newEmpiricalCases] = computeNewEmpiricalCases(CASE_COUNTS_INTERVAL_DAYS, 'cases', caseCountsData)
 
-  const [weeklyEmpiricalDeaths] = computeNewEmpiricalCases(7, 'deaths', caseCountsData)
+  const [weeklyEmpiricalDeaths] = computeNewEmpiricalCases(CASE_COUNTS_INTERVAL_DAYS, 'deaths', caseCountsData)
 
   const hasObservations = {
     [DATA_POINTS.ObservedCases]: caseCountsData && caseCountsData.some((d) => d.cases),
