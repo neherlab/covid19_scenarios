@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 
 import _ from 'lodash'
 import { connect } from 'react-redux'
@@ -92,6 +92,18 @@ export function ResultsTrajectoriesPlotDiconnected({
   const chartRef = React.useRef(null)
   const [enabledPlots, setEnabledPlots] = useState(defaultEnabledPlots)
   const { formatNumber, formatNumberRounded } = useMemo(() => getNumberFormatters({ shouldFormatNumbers }), [shouldFormatNumbers]) // prettier-ignore
+  const handleLegendClick = useCallback(
+    ({ dataKey }) => {
+      const plots = enabledPlots.slice(0)
+      if (enabledPlots.includes(dataKey)) {
+        plots.splice(plots.indexOf(dataKey), 1)
+      } else {
+        plots.push(dataKey)
+      }
+      setEnabledPlots(plots)
+    },
+    [enabledPlots],
+  )
 
   if (!result) {
     return null
@@ -276,15 +288,7 @@ export function ResultsTrajectoriesPlotDiconnected({
                   )}
                 />
 
-                <Legend
-                  verticalAlign="bottom"
-                  formatter={legendFormatter(enabledPlots)}
-                  onClick={(e) => {
-                    const plots = enabledPlots.slice(0)
-                    enabledPlots.includes(e.dataKey) ? plots.splice(plots.indexOf(e.dataKey), 1) : plots.push(e.dataKey)
-                    setEnabledPlots(plots)
-                  }}
-                />
+                <Legend verticalAlign="bottom" formatter={legendFormatter(enabledPlots)} onClick={handleLegendClick} />
 
                 {translatePlots(t, observationsHavingDataToPlot).map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
