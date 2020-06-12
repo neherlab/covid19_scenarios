@@ -291,7 +291,7 @@ export default {
           '!src/algorithms/model.ts', // FIXME
           '!src/algorithms/results.ts', // FIXME
           '!src/components/Main/Results/AgeBarChart.tsx', // FIXME
-          '!src/components/Main/Results/ResultsTrajectoriesPlot.tsx', // FIXME
+          '!src/components/Main/ResultsTrajectoriesPlot/ResultsTrajectoriesPlot.tsx', // FIXME
           // end
 
           '!src/**/*.(spec|test).{js,jsx,ts,tsx}',
