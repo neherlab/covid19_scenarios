@@ -186,12 +186,7 @@ export function DeterministicLinePlotDiconnected({
     return false
   })
 
-  let tooltipItems: { [key: string]: number | undefined } = {}
-  consolidatedPlotData.forEach((d) => {
-    // @ts-ignore
-    tooltipItems = { ...tooltipItems, ...d }
-  })
-  const tooltipItemsToDisplay = Object.keys(tooltipItems).filter(
+  const tooltipItemsToDisplay = enabledPlots.filter(
     (itemKey: string) => itemKey !== 'time' && itemKey !== 'hospitalBeds' && itemKey !== 'ICUbeds',
   )
 
