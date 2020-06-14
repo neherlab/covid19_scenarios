@@ -14,6 +14,7 @@ function emptyTimePoint(t: number): ExportedTimePoint {
       exposed: {},
       infectious: {},
       overflow: {},
+      weeklyFatality: {},
     },
     cumulative: {
       recovered: {},
@@ -48,6 +49,7 @@ function operationTP(
       critical: operator(x.current.critical, y.current.critical),
       overflow: operator(x.current.overflow, y.current.overflow),
       infectious: operator(x.current.infectious, y.current.infectious),
+      weeklyFatality: operator(x.current.weeklyFatality, y.current.weeklyFatality),
     },
     cumulative: {
       critical: operator(x.cumulative.critical, y.cumulative.critical),
