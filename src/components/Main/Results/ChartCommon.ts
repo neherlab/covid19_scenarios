@@ -57,9 +57,9 @@ export const colors = {
   [DATA_POINTS.Overflow]: '#900d2c',
   [DATA_POINTS.Recovered]: '#33a02c',
   [DATA_POINTS.Fatalities]: '#5e506a',
-  [DATA_POINTS.WeeklyFatalities]: '#6e607a',
+  [DATA_POINTS.WeeklyFatalities]: '#9e90Aa',
   [DATA_POINTS.CumulativeCases]: '#aaaaaa',
-  [DATA_POINTS.NewCases]: '#edaf5f',
+  [DATA_POINTS.NewCases]: '#e89f55',
   [DATA_POINTS.HospitalBeds]: '#bbbbbb',
   [DATA_POINTS.ICUbeds]: '#cccccc',
 }
