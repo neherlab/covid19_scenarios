@@ -1,6 +1,6 @@
-import { put, takeEvery, takeLatest, select } from 'redux-saga/effects'
+import { put, takeLatest, select } from 'redux-saga/effects'
 
-import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router'
+import { replace, LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router'
 import { fromUrl } from '../../io/serialization/fromUrl'
 import { algorithmRunTrigger } from '../algorithm/algorithm.actions'
 import {
@@ -16,10 +16,13 @@ import { selectIsAutorunEnabled } from '../settings/settings.selectors'
 
 export function* processUrl({ payload: { location } }: LocationChangeAction) {
   const { pathname, search } = location
-
   if (pathname === '/' && search) {
     const state = fromUrl(search)
+    yield put(replace({ pathname, search: '' }))
     yield put(setScenarioState(state))
+    yield put(algorithmRunTrigger())
+  } else {
+    yield put(algorithmRunTrigger())
   }
 }
 
@@ -31,7 +34,7 @@ export function* triggerAlgorithm() {
 }
 
 export default [
-  takeEvery(LOCATION_CHANGE, processUrl),
+  takeLatest(LOCATION_CHANGE, processUrl),
   takeLatest(setScenario, triggerAlgorithm),
   takeLatest(setScenarioData, triggerAlgorithm),
   takeLatest(setScenarioState, triggerAlgorithm),
