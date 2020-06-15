@@ -6,6 +6,7 @@ import type {
   ScenarioDatum as ScenarioDatumExternal,
   ScenarioDatumMitigation as ScenarioDatumMitigationExternal,
   MitigationInterval as MitigationIntervalExternal,
+  MitigationAgeSpecificDatum as MitigationAgeSpecificDatumExternal,
   ScenarioDatumEpidemiological,
   ScenarioDatumPopulation,
   ScenarioDatumSimulation,
@@ -18,6 +19,7 @@ import type {
   ScenarioDatum,
   MitigationInterval,
   ScenarioDatumMitigation,
+  MitigationAgeSpecificDatum,
 } from './restricted/ScenarioDatum'
 
 export type {
@@ -37,7 +39,7 @@ export type { DateRange, NumericRangeNonNegative, PercentageRange } from '../../
 
 export { Convert, AgeGroup } from '../../.generated/latest/types'
 
-export type { ScenarioData, ScenarioDatum, MitigationInterval, ScenarioDatumMitigation }
+export type { ScenarioData, ScenarioDatum, MitigationInterval, ScenarioDatumMitigation, MitigationAgeSpecificDatum }
 
 export type { ScenarioDatumEpidemiological, ScenarioDatumPopulation, ScenarioDatumSimulation }
 
@@ -47,6 +49,7 @@ export type {
   ScenarioDatumExternal,
   ScenarioDatumMitigationExternal,
   MitigationIntervalExternal,
+  MitigationAgeSpecificDatumExternal,
 }
 
 export interface ScenarioParameters {

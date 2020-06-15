@@ -11,7 +11,7 @@ import { toExternal, toInternal } from '../../../algorithms/types/convert'
 
 import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from '../errors'
 
-const schemaVer = '2.0.0'
+const schemaVer = '2.1.0'
 
 function serialize(scenarioParameters: ScenarioParameters): string {
   const shareable: Shareable = {

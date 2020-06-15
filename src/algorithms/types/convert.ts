@@ -2,14 +2,27 @@ import { omit } from 'lodash'
 
 import { uuidv4 } from '../../helpers/uuid'
 
-import { MitigationInterval, MitigationIntervalExternal, ScenarioDatum, ScenarioDatumExternal } from './Param.types'
+import {
+  MitigationAgeSpecificDatum,
+  MitigationAgeSpecificDatumExternal,
+  MitigationInterval,
+  MitigationIntervalExternal,
+  ScenarioDatum,
+  ScenarioDatumExternal,
+} from './Param.types'
 
-export function addId(interval: MitigationIntervalExternal): MitigationInterval {
-  return { ...interval, id: uuidv4() }
+export function mitigtaionIntervalAgeSpecificToInternal(
+  mitigationAgeSpecificData: MitigationAgeSpecificDatumExternal[],
+): MitigationAgeSpecificDatum[] {
+  return mitigationAgeSpecificData.map((datum) => ({ ...datum, id: uuidv4() } as MitigationAgeSpecificDatum))
 }
 
-export function removeId(interval: MitigationInterval): MitigationIntervalExternal {
-  return omit(interval, 'id')
+export function mitigtaionIntervalToInternal(interval: MitigationIntervalExternal): MitigationInterval {
+  return {
+    ...interval,
+    id: uuidv4(),
+    mitigationAgeSpecificData: mitigtaionIntervalAgeSpecificToInternal(interval.mitigationAgeSpecificData),
+  }
 }
 
 export function toInternal(scenario: ScenarioDatumExternal): ScenarioDatum {
@@ -18,8 +31,22 @@ export function toInternal(scenario: ScenarioDatumExternal): ScenarioDatum {
     ...scenario,
     mitigation: {
       ...scenario.mitigation,
-      mitigationIntervals: mitigationIntervals.map(addId),
+      mitigationIntervals: mitigationIntervals.map(mitigtaionIntervalToInternal),
     },
+  }
+}
+
+export function mitigtaionIntervalAgeSpecificToExternal(
+  mitigationAgeSpecificData: MitigationAgeSpecificDatum[],
+): MitigationAgeSpecificDatumExternal[] {
+  return mitigationAgeSpecificData.map((datum) => omit(datum, 'id'))
+}
+
+export function mitigationIntervalToExternal(interval: MitigationInterval): MitigationIntervalExternal {
+  const intervalWithoutId = omit(interval, 'id')
+  return {
+    ...intervalWithoutId,
+    mitigationAgeSpecificData: mitigtaionIntervalAgeSpecificToExternal(intervalWithoutId.mitigationAgeSpecificData),
   }
 }
 
@@ -29,7 +56,7 @@ export function toExternal(scenario: ScenarioDatum): ScenarioDatumExternal {
     ...scenario,
     mitigation: {
       ...scenario.mitigation,
-      mitigationIntervals: mitigationIntervals.map(removeId),
+      mitigationIntervals: mitigationIntervals.map(mitigationIntervalToExternal),
     },
   }
 }

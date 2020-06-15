@@ -7,10 +7,16 @@
 
 import type { Merge, StrictOmit } from 'ts-essentials'
 import type { UUIDv4 } from '../../../helpers/uuid'
+import { MitigationAgeSpecificDatumExternal } from '../Param.types'
 import type { MitigationIntervalExternal, ScenarioDatumExternal, ScenarioDatumMitigationExternal } from '../Param.types'
+
+export interface MitigationAgeSpecificDatum extends MitigationAgeSpecificDatumExternal {
+  id: UUIDv4
+}
 
 export interface MitigationInterval extends MitigationIntervalExternal {
   id: UUIDv4
+  mitigationAgeSpecificData: MitigationAgeSpecificDatum[]
 }
 
 export interface ScenarioDatumMitigationInternalMutable extends ScenarioDatumMitigationExternal {
