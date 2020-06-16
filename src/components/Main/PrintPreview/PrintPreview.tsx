@@ -9,6 +9,8 @@ import { Button, Col, Container, Row, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FaWindowClose } from 'react-icons/fa'
 
+import { LinkExternal } from 'src/components/Link/LinkExternal'
+
 import i18n from '../../../i18n/i18n'
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -32,8 +34,6 @@ import { OutcomesDetailsTable } from '../Results/OutcomesDetailsTable'
 import { dateFormat, dateTimeFormat } from './dateFormat'
 
 import type { State } from '../../../state/reducer'
-
-import LinkExternal from '../../Router/LinkExternal'
 
 import PrintIntroduction from './PrintIntroduction.mdx'
 import PrintDisclaimer from './PrintDisclaimer.mdx'

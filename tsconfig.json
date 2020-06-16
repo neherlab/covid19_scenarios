@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "*": ["src/types/*", "src/generated/*"]
+      "*": ["src/types/*", "src/generated/*"],
+      "src/*": ["./src/*"]
     },
     "target": "esnext",
     "module": "esnext",
@@ -40,19 +41,21 @@
     "./**/*.js",
     "./**/*.jsx",
     "./**/*.ts",
-    "./**/*.tsx"
+    "./**/*.tsx",
+    "next-env.d.ts"
   ],
   "exclude": [
     ".build",
     ".cache",
+    ".idea",
     ".ignore",
     ".reports",
     "3rdparty",
     "covid19_scenarios_data",
     "cypress",
     "node_modules",
-    "public/static",
-    "tsconfig.json",
-    "src/.generated"
+    "public",
+    "src/.generated",
+    "tsconfig.json"
   ]
 }

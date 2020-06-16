@@ -7,13 +7,6 @@ import 'regenerator-runtime'
 
 import { run, RunParams } from '../../algorithms/run'
 
-import { EnvVarError } from '../../../lib/EnvVarError'
-
-const webRoot = process.env.WEB_ROOT
-if (!webRoot) {
-  throw new EnvVarError('WEB_ROOT', webRoot)
-}
-
 self.addEventListener('message', (event: MessageEvent) => {
   const args = event.data as RunParams
 

@@ -1,5 +1,3 @@
-const path = require('path')
-
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -47,7 +45,6 @@ module.exports = {
   plugins: [
     'array-func',
     'cflint',
-    'i18next',
     'import',
     'jest',
     'jsx-a11y',
@@ -175,8 +172,16 @@ module.exports = {
     node: true,
   },
   settings: {
-    react: {
+    'react': {
       version: 'detect',
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.js', '.jsx', '.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
     },
   },
   overrides: [
@@ -224,6 +229,7 @@ module.exports = {
         'lib/EnvVarError.js',
         'lib/findModuleRoot.js',
         'lib/getenv.js',
+        'next.config.js',
         'postcss.config.js',
         'stylelint.config.js',
         'webpack.config.js',

@@ -1,8 +1,8 @@
-import { connectRouter, RouterState } from 'connected-react-router'
-import { History } from 'history'
 import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { routerReducer } from 'connected-next-router'
+import { RouterState } from 'connected-next-router/types'
 
 import { algorithmReducer } from './algorithm/algorithm.reducer'
 import { AlgorithmState } from './algorithm/algorithm.state'
@@ -29,13 +29,12 @@ export interface State {
   router: RouterState
 }
 
-const rootReducer = (history: History) =>
-  combineReducers({
+export function createRootReducer() {
+  return combineReducers({
     algorithm: algorithmReducer,
     error: errorReducer,
     scenario: scenarioReducer,
     settings: settingsReducerPersisted,
-    router: connectRouter(history),
+    router: routerReducer,
   })
-
-export default rootReducer
+}

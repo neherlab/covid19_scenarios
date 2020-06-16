@@ -1,7 +1,1 @@
-import React from 'react'
-
-import { Main } from '../components/Main/Main'
-
-export default function Index() {
-  return <Main />
-}
+export { Main as default } from 'src/components/Main/Main'

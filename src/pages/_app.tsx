@@ -1,6 +1,6 @@
 import 'map.prototype.tojson' // to visualize Map in Redux Dev Tools
 import 'set.prototype.tojson' // to visualize Set in Redux Dev Tools
-import '../helpers/errorPrototypeTojson' // to visualize Error in Redux Dev Tools
+import 'src/helpers/errorPrototypeTojson' // to visualize Error in Redux Dev Tools
 
 import 'react-dates/initialize'
 
@@ -9,59 +9,60 @@ import { enableES5 } from 'immer'
 import React, { Suspense, useEffect, useState } from 'react'
 
 import NextApp, { AppInitialProps, AppContext, AppProps } from 'next/app'
-import type { History } from 'history'
-import type { Persistor } from 'redux-persist'
 import type { Store } from 'redux'
+import { ConnectedRouter } from 'connected-next-router'
+import type { Persistor } from 'redux-persist'
 import type { i18n } from 'i18next'
 
 import { Provider } from 'react-redux'
 import { I18nextProvider } from 'react-i18next'
-import { ConnectedRouter } from 'connected-react-router'
 import { PersistGate } from 'redux-persist/integration/react'
 import { MDXProvider } from '@mdx-js/react'
 
-import Loading from '../components/PageSwitcher/Loading'
+import { initialize } from 'src/initialize'
 
-import LinkExternal from '../components/Router/LinkExternal'
+import { LinkExternal } from 'src/components/Link/LinkExternal'
+import Loading from 'src/components/Loading/Loading'
+import { Layout } from 'src/components/Layout/Layout'
+import { MdxWrapper } from 'src/components/Layout/MdxWrapper'
 
-import { initialize } from '../initialize'
-
-import '../styles/global.scss'
+import 'src/styles/global.scss'
 
 enableES5()
 
 export interface AppState {
   persistor: Persistor
-  history: History
   store: Store
   i18n: i18n
 }
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps, router }: AppProps) {
   const [state, setState] = useState<AppState | undefined>()
 
   useEffect(() => {
-    initialize()
+    initialize({ router })
       .then(setState)
-      .catch((error) => {
+      .catch((error: Error) => {
         throw error
       })
-  }, [])
+  }, [router])
 
   if (!state) {
     return null
   }
 
-  const { store, history, persistor, i18n } = state
+  const { store, persistor, i18n } = state
 
   return (
     <Suspense fallback={<Loading />}>
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <MDXProvider components={{ a: LinkExternal }}>
+        <ConnectedRouter>
+          <MDXProvider components={{ wrapper: MdxWrapper, a: LinkExternal }}>
             <PersistGate loading={null} persistor={persistor}>
               <I18nextProvider i18n={i18n}>
-                <Component {...pageProps} />
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
               </I18nextProvider>
             </PersistGate>
           </MDXProvider>

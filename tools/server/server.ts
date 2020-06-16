@@ -23,16 +23,10 @@ import { findModuleRoot } from '../../lib/findModuleRoot'
 
 import { NEW_HEADERS } from '../../infra/lambda-at-edge/modifyOutgoingHeaders.lambda'
 
-import routes from '../routes'
-
 const { moduleRoot } = findModuleRoot()
 
 const buildDir = path.join(moduleRoot, '.build', 'production', 'web')
-const assetsDir = path.join(buildDir, 'assets')
-const contentDir = path.join(buildDir, 'content')
-const sourcemapDir = path.join(buildDir, '..', 'sourcemaps')
-
-const pages = routes.map((route) => route.path)
+const nextDir = path.join(buildDir, '_next')
 
 function main() {
   const app = express()
@@ -62,10 +56,7 @@ function main() {
 
   app.use(allowMethods(['GET', 'HEAD']))
   app.use(history())
-  app.use('/assets', expressStaticGzip(assetsDir, cacheOneYear))
-  app.use('/content', expressStaticGzip(contentDir, cacheOneYear))
-  app.use('/sourcemaps', expressStaticGzip(sourcemapDir, cacheOneYear))
-  app.use(pages, expressStaticGzip(buildDir, cacheOneYear))
+  app.use('/_next', expressStaticGzip(nextDir, cacheOneYear))
   app.get('*', expressStaticGzip(buildDir, cacheNone))
 
   const port = getenv('WEB_PORT_PROD')

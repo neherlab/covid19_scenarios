@@ -1,7 +1,6 @@
 import fs from 'fs-extra'
 import os from 'os'
 
-import { NextConfig } from '../../src/types/next'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import chalk from 'chalk'
 import isInteractive from 'is-interactive'
@@ -9,6 +8,7 @@ import { codeFrameColumns } from '@babel/code-frame'
 
 import { Issue, IssueSeverity, IssueOrigin } from 'fork-ts-checker-webpack-plugin/lib/issue'
 import { createInternalFormatter } from 'fork-ts-checker-webpack-plugin/lib/formatter'
+import { NextConfig } from '../../src/types/next'
 
 import { addWebpackPlugin } from './lib/addWebpackPlugin'
 
@@ -71,11 +71,12 @@ export function createFormatter({ warningsAreErrors }: CreateFormatterParams) {
 
     const eol = os.EOL
 
-    return `  ${position}${eol}  ${errorCode}${eol}  ${message}${eol}${eol}${frame}`
+    return `  ${file}:${position}${eol}  ${errorCode}${eol}  ${message}${eol}${eol}${frame}`
   }
 }
 
 export interface GetWithTypeCheckingParams {
+  eslint: boolean
   warningsAreErrors: boolean
   tsconfig: string
   reportFiles: string[]
@@ -83,6 +84,7 @@ export interface GetWithTypeCheckingParams {
 }
 
 const getWithTypeChecking = ({
+  eslint,
   warningsAreErrors,
   tsconfig,
   reportFiles,
@@ -94,7 +96,7 @@ const getWithTypeChecking = ({
       useTypescriptIncrementalApi: true,
       measureCompilationTime: false,
       memoryLimit,
-      eslint: true,
+      eslint,
       tsconfig,
       formatter: createFormatter({ warningsAreErrors }),
       checkSyntacticErrors: true,

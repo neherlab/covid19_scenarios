@@ -3,15 +3,16 @@
 \.cache
 \.env
 \.github
+\.idea
 \.ignore
 \.reports
 \.vscode
 cypress
 data
 node_modules
+public
 schemas
 src/.generated
 src/assets
-static
 styles
 tsconfig.json
