@@ -37,7 +37,7 @@ export function ErrorPage({ error, componentStack, isDev = development }: ErrorP
               </div>
             </Then>
             <Else>
-              <h3 className="h3-error text-center">{t('Oops! Something went wrong')}</h3>
+              <h3 className="h3-error text-center">{t('Something went wrong')}</h3>
             </Else>
           </If>
         </Col>
