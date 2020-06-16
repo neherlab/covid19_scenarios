@@ -109,12 +109,12 @@ def update_cia_facts(hospData, popData):
     return hospData, popData
 
 def check_if_age(country):
-    PATH_UN_AGES   = "../src/assets/data/country_age_distribution.json"
+    PATH_UN_AGES   = "../src/assets/data/ageDistribution.json"
 
     with open(PATH_UN_AGES, 'r') as f:
         ages = json.load(f)
 
-    return country in [x['country'] for x in ages]
+    return country in [x["name"] for x in ages["all"]]
     
 
 def update_hosp_data(hospData, popData):
