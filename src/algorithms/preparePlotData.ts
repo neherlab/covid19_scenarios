@@ -4,16 +4,7 @@ import { verifyPositive, verifyTuple } from '../components/Main/Results/Utils'
 
 export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
   const { lower, middle, upper } = trajectory
-
   return middle.map((x, day) => {
-    const previousDay = day > 6 ? day - 7 : 0
-    const centerWeeklyDeaths = x.cumulative.fatality.total - middle[previousDay].cumulative.fatality.total
-    // NOTE: this is using the upper and lower trajectories
-    const extremeWeeklyDeaths1 = upper[day].cumulative.fatality.total - upper[previousDay].cumulative.fatality.total
-    const extremeWeeklyDeaths2 = lower[day].cumulative.fatality.total - lower[previousDay].cumulative.fatality.total
-    const upperWeeklyDeaths = extremeWeeklyDeaths1 > extremeWeeklyDeaths2 ? extremeWeeklyDeaths1 : extremeWeeklyDeaths2
-    const lowerWeeklyDeaths = extremeWeeklyDeaths1 > extremeWeeklyDeaths2 ? extremeWeeklyDeaths2 : extremeWeeklyDeaths1
-
     return {
       time: x.time,
       lines: {
@@ -24,7 +15,7 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
         overflow: verifyPositive(x.current.overflow.total),
         recovered: verifyPositive(x.cumulative.recovered.total),
         fatality: verifyPositive(x.cumulative.fatality.total),
-        weeklyFatality: verifyPositive(centerWeeklyDeaths),
+        weeklyFatality: verifyPositive(x.current.weeklyFatality.total),
       },
       // Error bars
       areas: {
@@ -60,8 +51,11 @@ export function preparePlotData(trajectory: Trajectory): PlotDatum[] {
           x.cumulative.fatality.total,
         ),
         weeklyFatality: verifyTuple(
-          [verifyPositive(lowerWeeklyDeaths), verifyPositive(upperWeeklyDeaths)],
-          x.cumulative.fatality.total - middle[previousDay].cumulative.fatality.total,
+          [
+            verifyPositive(lower[day].current.weeklyFatality.total),
+            verifyPositive(upper[day].current.weeklyFatality.total),
+          ],
+          x.current.weeklyFatality.total,
         ),
       },
     }

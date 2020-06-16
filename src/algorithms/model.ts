@@ -337,7 +337,8 @@ const keys = <T>(o: T): Array<keyof T & string> => {
 export function collectTotals(trajectory: SimulationTimePoint[], ages: string[]): ExportedTimePoint[] {
   const res: ExportedTimePoint[] = []
 
-  trajectory.forEach((d) => {
+  trajectory.forEach((d, day) => {
+    const prevDay = day > 7 ? day - 7 : 0
     const tp: ExportedTimePoint = {
       time: d.time,
       current: {
@@ -347,6 +348,7 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
         overflow: {},
         critical: {},
         infectious: {},
+        weeklyFatality: {},
       },
       cumulative: {
         recovered: {},
@@ -368,6 +370,13 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
         ages.forEach((age, i) => {
           tp.current[k][age] = d.current.exposed[i].reduce((a, b) => a + b, 0)
         })
+      } else if (k === 'weeklyFatality') {
+        ages.forEach((age, i) => {
+          tp.current.weeklyFatality[age] = d.cumulative.fatality[i] - trajectory[prevDay].cumulative.fatality[i]
+        })
+        tp.current.weeklyFatality.total =
+          d.cumulative.fatality.reduce((a, b) => a + b) -
+          trajectory[prevDay].cumulative.fatality.reduce((a, b) => a + b)
       } else {
         ages.forEach((age, i) => {
           // @ts-ignore
@@ -378,7 +387,7 @@ export function collectTotals(trajectory: SimulationTimePoint[], ages: string[])
       }
     })
 
-    Object.keys(tp.cumulative).forEach((k) => {
+    Object.keys(tp.cumulative).forEach((k, day) => {
       ages.forEach((age, i) => {
         // @ts-ignore
         tp.cumulative[k][age] = d.cumulative[k][i]

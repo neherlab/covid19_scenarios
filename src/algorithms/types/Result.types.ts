@@ -24,6 +24,7 @@ export interface ExposedCurrentData {
   severe: Record<string, number>
   critical: Record<string, number>
   overflow: Record<string, number>
+  weeklyFatality: Record<string, number>
 }
 
 export interface ExposedCumulativeData {
