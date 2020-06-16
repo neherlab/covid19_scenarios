@@ -15,13 +15,14 @@ import { getGitCommitHash } from '../../lib/getGitCommitHash'
 
 import { getWebRoot } from './lib/getWebRoot'
 
+import getWithAssets from './withAssets'
 import getWithEnvironment from './withEnvironment'
 import getWithFriendlyConsole from './withFriendlyConsole'
 import getWithLodash from './withLodash'
+import getWithStaticCompression from './withStaticCompression'
 import getWithTypeChecking from './withTypeChecking'
 import withSvg from './withSvg'
 import withWorker from './withWorker'
-import getWithStaticCompression from './withStaticCompression'
 
 const BABEL_ENV = getenv('BABEL_ENV')
 const NODE_ENV = getenv('NODE_ENV')
@@ -74,6 +75,8 @@ const withMDX = getWithMDX({
   remarkPlugins: ['remark-images', 'remark-math'].map(require),
   rehypePlugins: ['rehype-katex'].map(require),
 })
+
+const withAssets = getWithAssets()
 
 const withFriendlyConsole = getWithFriendlyConsole({
   clearConsole: false,
@@ -131,6 +134,7 @@ const config = withConfig(
       [withEnvironment],
       [withWorker],
       [withSvg],
+      [withAssets],
       // ANALYZE && [withBundleAnalyzer],
       [withFriendlyConsole],
       [withMDX, { pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'] }],
