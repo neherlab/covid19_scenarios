@@ -56,8 +56,9 @@ export interface ModelFracs {
 }
 
 export interface ModelRates {
+  contactMatrix: number[][]
   latency: number
-  infection: (t: number) => number
+  infection: (t: number) => number[]
   recovery: number[]
   severe: number[]
   discharge: number[]
