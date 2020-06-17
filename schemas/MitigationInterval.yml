@@ -11,6 +11,7 @@ required:
   - color
   - timeRange
   - transmissionReduction
+  - mitigationAgeSpecificData
 
 properties:
   name:
@@ -25,3 +26,8 @@ properties:
 
   transmissionReduction:
     $ref: 'PercentageRange#'
+
+  mitigationAgeSpecificData:
+    type: array
+    items:
+      $ref: 'MitigationAgeSpecificDatum#'

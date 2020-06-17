@@ -34,6 +34,10 @@ function simulate(
 }
 
 export async function run({ params, severity, ageDistribution }: RunParams): Promise<AlgorithmResult> {
+  console.log(
+    JSON.stringify({ 'params.mitigationIntervals.mitigationAgeSpecificData': params.mitigationIntervals }, null, 2),
+  )
+
   const tMin: number = new Date(params.simulationTimeRange.begin).getTime()
   const tMax: number = new Date(params.simulationTimeRange.end).getTime()
   const ageGroups = ageDistribution.map((d) => d.ageGroup)

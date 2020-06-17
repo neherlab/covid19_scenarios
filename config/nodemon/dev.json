@@ -17,6 +17,7 @@
     "postcss.config.js",
     "schemas",
     "stylelint.config.js",
+    "tools/generateTypes.ts",
     "tsconfig.json",
     "tslint.json",
     "webpack.config.js",

@@ -7,7 +7,7 @@ import {
   ExportedTimePoint,
 } from './types/Result.types'
 
-import { msPerDay } from './initialize'
+import { msPerDay, sum } from './initialize'
 
 const eulerStep = 0.5
 export const eulerStepsPerDay = Math.round(1 / eulerStep)
@@ -71,10 +71,6 @@ function stepODE(pop: SimulationTimePoint, P: ModelParams, dt: number): Simulati
   state.time = t2.valueOf()
 
   return state
-}
-
-export function sum(arr: number[]): number {
-  return arr.reduce((a, b) => a + b, 0)
 }
 
 export function gz(x: number): number {
@@ -294,16 +290,17 @@ function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFl
   }
 
   // Compute all fluxes (apart from overflow states) barring no hospital bed constraints
-  const fracInfected = sum(pop.current.infectious) / P.populationServed
+  const infectionPressure = P.rate.infection(
+    time,
+    pop.current.infectious.map((d) => d / P.populationServed),
+  )
 
   for (let age = 0; age < pop.current.infectious.length; age++) {
     // Initialize all multi-faceted states with internal arrays
     flux.exposed[age] = Array(pop.current.exposed[age].length)
 
     // Susceptible -> Exposed
-    flux.susceptible[age] =
-      P.importsPerDay[age] +
-      (1 - P.frac.isolated[age]) * P.rate.infection(time) * pop.current.susceptible[age] * fracInfected
+    flux.susceptible[age] = P.importsPerDay[age] + infectionPressure[age] * pop.current.susceptible[age]
 
     // Exposed -> Internal -> Infectious
     pop.current.exposed[age].forEach((exposed, i, exposedArray) => {

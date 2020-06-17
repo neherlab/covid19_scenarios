@@ -124,6 +124,19 @@ export const schema: yup.Schema<FormData> = yup
                 transmissionReduction: percentageRange().required(MSG_REQUIRED),
                 name: yup.string().required(MSG_REQUIRED),
                 timeRange: dateRange().required(MSG_REQUIRED),
+                mitigationAgeSpecificData: yup
+                  .array()
+                  .of(
+                    yup
+                      .object({
+                        id: (yup.string().required(MSG_REQUIRED) as unknown) as yup.Schema<UUIDv4>,
+                        ageGroup: yup.string().oneOf(Object.values(AgeGroup)).required(MSG_REQUIRED),
+                        enabled: yup.boolean().required(MSG_REQUIRED),
+                        transmissionReduction: percentageRange().required(MSG_REQUIRED),
+                      })
+                      .required(MSG_REQUIRED),
+                  )
+                  .defined(),
               })
               .required(MSG_REQUIRED),
           )

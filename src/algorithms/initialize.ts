@@ -9,6 +9,10 @@ const monthToDay = (m: number) => {
   return m * 30 + 15
 }
 
+export function sum(arr: number[]): number {
+  return arr.reduce((a, b) => a + b, 0)
+}
+
 const jan2020 = new Date('2020-01-01').valueOf() // time in ms
 
 export function withUncertainty(scenario: ScenarioFlat): boolean {
@@ -33,13 +37,15 @@ export const msPerDay = 1000 * 60 * 60 * 24
  */
 export function infectionRate(
   time: number,
-  avgInfectionRate: number,
+  infectedFractionByAge: number[],
+  contactMatrix: number[][],
   peakMonth: number,
   seasonalForcing: number,
-): number {
+): number[] {
   // this is super hacky
   const phase = ((time - jan2020) / msPerDay / 365 - monthToDay(peakMonth) / 365) * 2 * Math.PI
-  return avgInfectionRate * (1 + seasonalForcing * Math.cos(phase))
+  const baseValue = 1 + seasonalForcing * Math.cos(phase)
+  return contactMatrix.map((v) => baseValue * sum(v.map((d, i) => d * infectedFractionByAge[i])))
 }
 
 export function getPopulationParams(
@@ -88,6 +94,7 @@ export function getPopulationParams(
       isolated: [],
     },
     rate: {
+      contactMatrix: Object.keys(AgeGroup).map(() => Object.keys(AgeGroup).map(() => 1.0)),
       latency: 1 / latencyDays,
       infection: () => -Infinity, // Dummy infectionRate function. This is set below.
       recovery: [],
@@ -145,8 +152,8 @@ export function getPopulationParams(
     const avgInfectionRate = tmpR0 / infectiousPeriodDays
 
     const containment = containmentRealization.length > 1 ? containmentRealization[i] : containmentRealization[0]
-    elt.rate.infection = (time: number) =>
-      containment(time) * infectionRate(time, avgInfectionRate, peakMonth, seasonalForcing)
+    elt.rate.infection = (time: number, infectedFraction: number[]) =>
+      containment(time) * infectionRate(time, infectedFraction, elt.rate.contactMatrix, avgInfectionRate, peakMonth, seasonalForcing)
 
     return elt
   })

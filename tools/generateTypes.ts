@@ -8,13 +8,16 @@ import yaml from 'js-yaml'
 import path from 'path'
 import prettier from 'prettier'
 import { quicktype, InputData, JSONSchema, JSONSchemaInput, JSONSchemaStore, parseJSON } from 'quicktype-core'
+import { valid } from 'semver'
 import util from 'util'
 
 import { findModuleRoot } from '../lib/findModuleRoot'
+import { get } from 'lodash'
 
 const rimraf = util.promisify(rimrafOriginal)
 
 const SCHEMA_EXTENSION = '.yml'
+const SCHEMA_VER_FILEPATH = 'schemas/_SchemaVer.yml'
 
 class Store extends JSONSchemaStore {
   private schemasRoot: string
@@ -42,6 +45,7 @@ function quicktypesAddSources(schemasRoot: string, schemaInput: JSONSchemaInput)
 
 async function quicktypesGenerate(
   lang: string,
+  schemaVer: string,
   schemasRoot: string,
   schemaFilenames: string[],
   outputPath: string,
@@ -55,8 +59,6 @@ async function quicktypesGenerate(
 
   const { lines } = await quicktype({ inputData, lang, rendererOptions })
   let code = lines.join('\n')
-
-  const schemaVer = '2.0.0'
 
   if (lang === 'typescript') {
     code = prettier.format(code, { parser: 'typescript' })
@@ -105,6 +107,16 @@ async function ajvGenerate(schemasRoot: string, schemaFilenames: string[], outpu
   return FA.concurrent.forEach(ajvGenerateOne(schemasRoot, ajv, outputDir), schemaFilenames)
 }
 
+async function getSchemaVer(schemaVerFilepath: string) {
+  const jsonSchemaString = fs.readFileSync(schemaVerFilepath).toString('utf-8')
+  const schema = yaml.safeLoad(jsonSchemaString) as Record<string, unknown>
+  const schemaVer = get(schema, 'const') as string
+  if (!valid(schemaVer)) {
+    throw new Error(`Expected \`schemaVer\` to be a valid version string but got: "${schemaVer}"`)
+  }
+  return schemaVer
+}
+
 export default async function generateTypes() {
   const { moduleRoot } = findModuleRoot()
   const schemasRoot = path.join(moduleRoot, 'schemas')
@@ -112,6 +124,9 @@ export default async function generateTypes() {
   const pyOutputDir = path.join(moduleRoot, 'data', 'generated')
   const tsOutput = path.join(tsOutputDir, 'types.ts')
   const pyOutput = path.join(pyOutputDir, 'types.py')
+  const schemaVerFilepath = path.join(moduleRoot, SCHEMA_VER_FILEPATH)
+
+  const schemaVer = await getSchemaVer(schemaVerFilepath)
 
   let schemaFilenames = await fs.readdir(schemasRoot)
   schemaFilenames = schemaFilenames.filter((schemaFilename) => schemaFilename.endsWith(SCHEMA_EXTENSION))
@@ -120,12 +135,12 @@ export default async function generateTypes() {
   await FA.concurrent.forEach(async (d) => fs.mkdirp(d), [tsOutputDir, pyOutputDir])
 
   return Promise.all([
-    quicktypesGenerate('typescript', schemasRoot, schemaFilenames, tsOutput, {
+    quicktypesGenerate('typescript', schemaVer, schemasRoot, schemaFilenames, tsOutput, {
       'converters': 'all-objects',
       'nice-property-names': 'true',
       'runtime-typecheck': 'true',
     }),
-    quicktypesGenerate('python', schemasRoot, schemaFilenames, pyOutput, {
+    quicktypesGenerate('python', schemaVer, schemasRoot, schemaFilenames, pyOutput, {
       'python-version': '3.6',
       'alphabetize-properties': 'false',
     }),

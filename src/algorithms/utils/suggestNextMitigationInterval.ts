@@ -17,6 +17,7 @@ export function suggestNextMitigationInterval(): MitigationInterval {
     name: `Intervention from ${tMinMoment.format('D MMM YYYY')}`,
     timeRange,
     transmissionReduction: { begin: 10, end: 30 },
+    mitigationAgeSpecificData: [],
   }
 
   const color = createColor(interval)
