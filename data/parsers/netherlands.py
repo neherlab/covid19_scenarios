@@ -33,7 +33,6 @@ def parse_csv(regions_date, url, column):
     r = requests.get(url)
     if not r.ok:
         print(f"Failed to fetch {url}", file=sys.stderr)
-        exit(1)
         r.close()
 
     fd = io.StringIO(r.text)
@@ -61,7 +60,6 @@ def parse_icu(regions_date):
     r = requests.get(URL_ICU_CUM)
     if not r.ok:
         print(f"Failed to fetch {URL}", file=sys.stderr)
-        exit(1)
         r.close()
 
     db = json.loads(r.text)
