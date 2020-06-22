@@ -107,6 +107,7 @@ export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
       draft.scenarioData = scenarioData
       draft.shouldRenameOnEdits = false
       draft.ageDistributionData = ageDistributionData
+      draft.severityDistributionData = severityDistributionData
       draft.caseCountsData = getCaseCountsData(scenarioData.data.population.caseCountsName)
       draft.caseCountsNameCustom = undefined
     }),
