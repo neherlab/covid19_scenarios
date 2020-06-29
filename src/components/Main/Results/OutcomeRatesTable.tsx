@@ -6,7 +6,7 @@ import * as d3 from 'd3'
 import { Col, Row } from 'reactstrap'
 import { connect } from 'react-redux'
 
-import { PieChart } from 'react-minimal-pie-chart'
+import { Chart } from 'react-google-charts'
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
@@ -108,25 +108,32 @@ export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, for
   const totalFormatter = (value: number) => formatNumber(value)
 
   const proportionsData = [
-    { title: 'Mild', value: mildFrac.slice(1, 2)[0], color: '#fdbf6f55' },
-    { title: 'Severe', value: severeFrac.slice(1, 2)[0], color: '#fb9a9955' },
-    { title: 'Critical', value: criticalFrac.slice(1, 2)[0], color: '#e31a1c55' },
-    { title: 'Fatal', value: deathFrac.slice(1, 2)[0], color: '#cab2d655' },
+    ['Cathergory', 'Percentage'],
+    [`Mild ${percentageFormatter(mildFrac.slice(1, 2)[0])}`, mildFrac.slice(1, 2)[0]],
+    [`Severe ${percentageFormatter(severeFrac.slice(1, 2)[0])}`, severeFrac.slice(1, 2)[0]],
+    [`Critical ${percentageFormatter(criticalFrac.slice(1, 2)[0])}`, criticalFrac.slice(1, 2)[0]],
+    [`Fatal ${percentageFormatter(deathFrac.slice(1, 2)[0])}`, deathFrac.slice(1, 2)[0]],
   ]
 
-  function PieData() {
+  const proportionsLabelColors = [
+    { color: '#fdbf6f' },
+    { color: '#fb9a99' },
+    { color: '#e31a1c' },
+    { color: '#cab2d6' },
+  ]
+
+  const PieData = () => {
     return (
-      <PieChart
+      <Chart
+        width={'100%'}
+        height={'200px'}
+        chartType="PieChart"
+        loader={<div>Loading Chart...</div>}
         data={proportionsData}
-        label={({ dataEntry }) => percentageFormatter(dataEntry.value)}
-        labelStyle={(index) => ({
-          fill: proportionsData[index].color,
-          fontSize: '8px',
-          fontFamily: 'sans-serif',
-        })}
-        labelPosition={112}
-        radius={42}
-        style={{ height: '200px' }}
+        options={{
+          slices: proportionsLabelColors,
+          backgroundColor: forPrint ? 'white' : '#f8f9fa',
+        }}
       />
     )
   }

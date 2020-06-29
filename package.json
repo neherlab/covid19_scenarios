@@ -108,6 +108,7 @@
     "react-dom": "16.13.1",
     "react-error-boundary": "2.2.2",
     "react-file-icon": "0.2.0",
+    "react-google-charts": "3.0.15",
     "react-grid-layout": "0.18.3",
     "react-i18next": "11.5.0",
     "react-icons": "3.10.0",
