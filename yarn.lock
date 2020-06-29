@@ -14664,6 +14664,11 @@ react-media@1.10.0:
     json2mq "^0.2.0"
     prop-types "^15.5.10"
 
+react-minimal-pie-chart@8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/react-minimal-pie-chart/-/react-minimal-pie-chart-8.0.1.tgz#163224967809d1d2e729c8f5d114d5ba1977b74f"
+  integrity sha512-XbWpt3dLuQn0PDLbrTkdkZh21pf5sraJ2fy37VeeCi9+5ndf+Adnr0alBZ0NaA45tMjPhcSig7pB9afrMm/VDQ==
+
 react-moment-proptypes@^1.6.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/react-moment-proptypes/-/react-moment-proptypes-1.7.0.tgz#89881479840a76c13574a86e3bb214c4ba564e7a"
