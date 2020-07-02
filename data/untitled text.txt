@@ -1,0 +1,38 @@
+(case when ("SIGLA" = 'L' AND "ITEM_EXAME" is null) or
+               ("SIGLA" = 'LEU' AND "ITEM_EXAME" ='LEUCÓCITOS') or
+               ("SIGLA" = 'HTR' AND "ITEM_EXAME" ='LEUCÓCITOS') or
+               ("SIGLA" = 'H' AND "ITEM_EXAME" ='LEUCÓCITOS')   then "RESULTADO_DE_EXAMES" else null end) as "SANGUE_LEUCOCITOS",
+(case when (("SIGLA" = 'L' AND "ITEM_EXAME" is null) or
+               ("SIGLA" = 'LEU' AND "ITEM_EXAME" ='LEUCÓCITOS') or
+               ("SIGLA" = 'HTR' AND "ITEM_EXAME" ='LEUCÓCITOS') or
+               ("SIGLA" = 'H' AND "ITEM_EXAME" ='LEUCÓCITOS')  AND "RESULTADO_DE_EXAMES"<15 then '<15 x10³/μL'
+          when (("SIGLA" = 'L' AND "ITEM_EXAME" is null) or
+               ("SIGLA" = 'LEU' AND "ITEM_EXAME" ='LEUCÓCITOS') or
+               ("SIGLA" = 'HTR' AND "ITEM_EXAME" ='LEUCÓCITOS') or
+               ("SIGLA" = 'H' AND "ITEM_EXAME" ='LEUCÓCITOS')  AND "RESULTADO_DE_EXAMES">=15 then '>=15 x10³/μL'
+          else null end) as "SANGUE_LEUCOCITOS_CAT",
+
+(case when "SIGLA" IN ('P','P.') AND "ITEM_EXAME" ='PLAQUETAS SANGUE' AND "RESULTADO_DE_EXAMES">=100 then '>=100 x10³/μL'
+          when "SIGLA" IN ('P','P.') AND "ITEM_EXAME" ='PLAQUETAS SANGUE' AND "RESULTADO_DE_EXAMES">=50 AND "RESULTADO_DE_EXAMES"<100 then '>= 50 <100 x10³/μL'
+          when "SIGLA" IN ('P','P.') AND "ITEM_EXAME" ='PLAQUETAS SANGUE' AND "RESULTADO_DE_EXAMES">=20 AND "RESULTADO_DE_EXAMES"<50 then '>=20 <50 x10³/μL'
+     when "SIGLA" IN ('P','P.') AND "ITEM_EXAME" ='PLAQUETAS SANGUE' AND "RESULTADO_DE_EXAMES"<20 then '<20 x10³/μL'
+     else null end) as "SANGUE_CONTAGEM_DE_PLAQUETAS_CAT",
+
+
+(case when "SIGLA" IN ('P','P.') AND "ITEM_EXAME" ='VPM' AND "RESULTADO_DE_EXAMES">11.8 then '>11.8 fL'
+          when "SIGLA" IN ('P','P.') AND "ITEM_EXAME" ='VPM' AND "RESULTADO_DE_EXAMES">=8.9 AND "RESULTADO_DE_EXAMES"<=11.8 then '>= 8.9 <=11.8 fL'
+          when "SIGLA" IN ('P','P.') AND "ITEM_EXAME" ='VPM' AND "RESULTADO_DE_EXAMES"<8.9 then '< 8.9 fL'
+     else null end) as "SANGUE_CONTAGEM_DE_PLAQUETAS_VPM_CAT",
+
+(case when "SIGLA" = 'CPK' AND "ITEM_EXAME" is null then "RESULTADO_DE_EXAMES" else null end) as "SANGUE_CREATINOFOSFOQUINASE",
+(case when "SIGLA" = 'CRE' AND "ITEM_EXAME" ='CREATININA SÉRICA'  then "RESULTADO_DE_EXAMES" else null end) as "SANGUE_CREATININA_SERICA",
+(case when "SIGLA" = 'CRE' AND "ITEM_EXAME" ='CREATININA SÉRICA' AND "RESULTADO_DE_EXAMES"<1.2 then '<1.2 mg/dL (<106.1 µmol/L)'
+          when "SIGLA" = 'CRE' AND "ITEM_EXAME" ='CREATININA SÉRICA' AND "RESULTADO_DE_EXAMES">=1.2 AND "RESULTADO_DE_EXAMES"<2 then '>=1.2 < 2 mg/dL (>=106.1 <176.8 µmol/L)'
+          when "SIGLA" = 'CRE' AND "ITEM_EXAME" ='CREATININA SÉRICA' AND "RESULTADO_DE_EXAMES">=2 AND "RESULTADO_DE_EXAMES"<3.5 then '>=2 <3.5 mg/dL ( >=176.8 <309.4 µmol/L)'
+          when "SIGLA" = 'CRE' AND "ITEM_EXAME" ='CREATININA SÉRICA' AND "RESULTADO_DE_EXAMES">=3.5 then '>=3.5 mg/dL ( >=309,4 µmol/L)'
+     else null end) as "SANGUE_CREATININA_SERICA_CAT",
+
+(case when "SIGLA" = 'BRT' AND "ITEM_EXAME" is null AND "RESULTADO_DE_EXAMES">6 then '>= 6 mg/dL'
+          when "SIGLA" = 'BRT' AND "ITEM_EXAME" is null AND "RESULTADO_DE_EXAMES"<2 then '< 2 mg/dL'
+          when "SIGLA" = 'BRT' AND "ITEM_EXAME" is null AND "RESULTADO_DE_EXAMES">=2 AND "RESULTADO_DE_EXAMES"<6 then '>=2 <6mg/dL'
+     else null end) as "SANGUE_BILIRRUBINA_TOTAL_CAT",

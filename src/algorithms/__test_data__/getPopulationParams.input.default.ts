@@ -59,6 +59,7 @@ export const severity: SeverityDistributionDatum[] = [
   {
     ageGroup: AgeGroup.The09,
     isolated: 0,
+    palliative: 0,
     confirmed: 5,
     severe: 1,
     critical: 5,
@@ -67,6 +68,7 @@ export const severity: SeverityDistributionDatum[] = [
   {
     ageGroup: AgeGroup.The1019,
     isolated: 0,
+    palliative: 0,
     confirmed: 5,
     severe: 3,
     critical: 10,
@@ -75,6 +77,7 @@ export const severity: SeverityDistributionDatum[] = [
   {
     ageGroup: AgeGroup.The2029,
     isolated: 0,
+    palliative: 0,
     confirmed: 10,
     severe: 3,
     critical: 10,
@@ -83,6 +86,7 @@ export const severity: SeverityDistributionDatum[] = [
   {
     ageGroup: AgeGroup.The3039,
     isolated: 0,
+    palliative: 0,
     confirmed: 15,
     severe: 3,
     critical: 15,
@@ -91,6 +95,7 @@ export const severity: SeverityDistributionDatum[] = [
   {
     ageGroup: AgeGroup.The4049,
     isolated: 0,
+    palliative: 0,
     confirmed: 20,
     severe: 6,
     critical: 20,
@@ -99,6 +104,7 @@ export const severity: SeverityDistributionDatum[] = [
   {
     ageGroup: AgeGroup.The5059,
     isolated: 0,
+    palliative: 0,
     confirmed: 25,
     severe: 10,
     critical: 25,
@@ -107,6 +113,7 @@ export const severity: SeverityDistributionDatum[] = [
   {
     ageGroup: AgeGroup.The6069,
     isolated: 0,
+    palliative: 0,
     confirmed: 30,
     severe: 25,
     critical: 35,
@@ -115,6 +122,7 @@ export const severity: SeverityDistributionDatum[] = [
   {
     ageGroup: AgeGroup.The7079,
     isolated: 0,
+    palliative: 0,
     confirmed: 40,
     severe: 35,
     critical: 45,
@@ -123,6 +131,7 @@ export const severity: SeverityDistributionDatum[] = [
   {
     ageGroup: AgeGroup.The80,
     isolated: 0,
+    palliative: 0,
     confirmed: 50,
     severe: 50,
     critical: 55,

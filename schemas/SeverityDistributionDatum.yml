@@ -9,6 +9,7 @@ type: object
 required:
   - ageGroup
   - isolated
+  - palliative
   - confirmed
   - severe
   - critical
@@ -19,6 +20,9 @@ properties:
     $ref: 'AgeGroup#'
 
   isolated:
+    $ref: 'Percentage#'
+
+  palliative:
     $ref: 'Percentage#'
 
   confirmed:

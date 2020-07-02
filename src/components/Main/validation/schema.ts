@@ -156,6 +156,7 @@ export const schema: yup.Schema<FormData> = yup
             population: positiveIntegerSchema.required(MSG_REQUIRED),
             confirmed: percentageSchema.required(MSG_REQUIRED),
             severe: percentageSchema.required(MSG_REQUIRED),
+            palliative: percentageSchema.required(MSG_REQUIRED),
             critical: percentageSchema.required(MSG_REQUIRED),
             fatal: percentageSchema.required(MSG_REQUIRED),
             isolated: percentageSchema.required(MSG_REQUIRED),
