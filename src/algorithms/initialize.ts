@@ -126,8 +126,8 @@ export function getPopulationParams(
     sim.frac.isolated[i] = isolated / 100
     sim.rate.recovery[i] = (1 - dHospital) / infectiousPeriodDays
     sim.rate.severe[i] = dHospital / infectiousPeriodDays
-    sim.rate.discharge[i] = (1 - dCritical - dPalliative) / hospitalStayDays    
-    sim.rate.palliative[i] = (dPalliative) / hospitalStayDays
+    sim.rate.discharge[i] = (1 - dCritical - dPalliative) / hospitalStayDays
+    sim.rate.palliative[i] = dPalliative / hospitalStayDays
     sim.rate.critical[i] = dCritical / hospitalStayDays
     sim.rate.stabilize[i] = (1 - dFatal) / icuStayDays
     sim.rate.fatality[i] = dFatal / icuStayDays

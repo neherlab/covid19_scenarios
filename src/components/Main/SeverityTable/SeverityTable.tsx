@@ -49,7 +49,7 @@ const columns: Column[] = [
   { name: 'population', title: i18n.t('Age distribution') },
   { name: 'confirmed', title: `${i18n.t('Confirmed')}\n% ${i18n.t('total')}` },
   { name: 'severe', title: `${i18n.t('Severe')}\n% ${i18n.t('of confirmed')}` },
-  { name: 'palliative', title: `${i18next.t('Palliative')}\n% ${i18next.t('of severe')}` },
+  { name: 'palliative', title: `${i18n.t('Palliative')}\n% ${i18n.t('of severe')}` },
   { name: 'critical', title: `${i18n.t('Critical')}\n% ${i18n.t('of severe')}` },
   { name: 'fatal', title: `${i18n.t('Fatal')}\n% ${i18n.t('of critical')}` },
   { name: 'totalFatal', title: `${i18n.t('Fatal')}\n% ${i18n.t('of all infections')}` },
