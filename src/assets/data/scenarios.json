@@ -10,6 +10,1587 @@
           "overflowSeverity": 2.0,
           "peakMonth": 0,
           "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-18",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Governo do Estado do Rio Grande do Sul",
+          "caseCountsName": "RS-Governo do Estado do Rio Grande do Sul",
+          "hospitalBeds": 6674,
+          "icuBeds": 826,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 11329605
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Governo do Estado do Rio Grande do Sul"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-03-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-07",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Prefeitura de Porto Alegre",
+          "caseCountsName": "RS-Prefeitura de Porto Alegre",
+          "hospitalBeds": 1427,
+          "icuBeds": 280,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 1465430
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Prefeitura de Porto Alegre"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-28",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Sul",
+          "caseCountsName": "RS-Sul",
+          "hospitalBeds": 1427,
+          "icuBeds": 280,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 1465430
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Sul"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-13",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-10",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Norte",
+          "caseCountsName": "RS-Norte",
+          "hospitalBeds": 1427,
+          "icuBeds": 280,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 1465430
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Norte"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": []
+        },
+        "population": {
+          "ageDistributionName": "RS-Centro-Oeste",
+          "caseCountsName": "None",
+          "hospitalBeds": 1427,
+          "icuBeds": 280,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 1465430
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Centro-Oeste"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Missioneira",
+          "caseCountsName": "RS-Missioneira",
+          "hospitalBeds": 1427,
+          "icuBeds": 280,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 1465430
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Missioneira"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Serra",
+          "caseCountsName": "RS-Serra",
+          "hospitalBeds": 1427,
+          "icuBeds": 280,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 1465430
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Serra"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-03-18",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-05-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Metropolitana",
+          "caseCountsName": "RS-Metropolitana",
+          "hospitalBeds": 1427,
+          "icuBeds": 280,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 1465430
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Metropolitana"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Vales",
+          "caseCountsName": "RS-Vales",
+          "hospitalBeds": 1427,
+          "icuBeds": 280,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 1465430
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Vales"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-03-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Bage-R22",
+          "caseCountsName": "RS-Bage-R22",
+          "hospitalBeds": 148,
+          "icuBeds": 22,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 184741
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Bage-R22"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-18",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Cachoeira Do Sul-R27",
+          "caseCountsName": "RS-Cachoeira Do Sul-R27",
+          "hospitalBeds": 151,
+          "icuBeds": 14,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 199957
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Cachoeira Do Sul-R27"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Canoas-R08",
+          "caseCountsName": "RS-Canoas-R08",
+          "hospitalBeds": 292,
+          "icuBeds": 40,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 792767
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Canoas-R08"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Capao Da Canoa-R04 R05",
+          "caseCountsName": "RS-Capao Da Canoa-R04 R05",
+          "hospitalBeds": 138,
+          "icuBeds": 18,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 397769
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Capao Da Canoa-R04 R05"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-05",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Caxias Do Sul-R23 R24 R25 R26",
+          "caseCountsName": "RS-Caxias Do Sul-R23 R24 R25 R26",
+          "hospitalBeds": 841,
+          "icuBeds": 79,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 1186443
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Caxias Do Sul-R23 R24 R25 R26"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-03",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Cruz Alta-R12",
+          "caseCountsName": "RS-Cruz Alta-R12",
+          "hospitalBeds": 247,
+          "icuBeds": 15,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 152581
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Cruz Alta-R12"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-07",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Erechim-R16",
+          "caseCountsName": "RS-Erechim-R16",
+          "hospitalBeds": 152,
+          "icuBeds": 23,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 240074
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Erechim-R16"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Ijui-R13",
+          "caseCountsName": "RS-Ijui-R13",
+          "hospitalBeds": 312,
+          "icuBeds": 9,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 240503
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Ijui-R13"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-06",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-05-02",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Lajeado-R29 R30",
+          "caseCountsName": "RS-Lajeado-R29 R30",
+          "hospitalBeds": 230,
+          "icuBeds": 30,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 366332
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Lajeado-R29 R30"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Novo Hamburgo-R07",
+          "caseCountsName": "RS-Novo Hamburgo-R07",
+          "hospitalBeds": 370,
+          "icuBeds": 17,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 819402
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Novo Hamburgo-R07"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Palmeira Das Missoes-R15 R20",
+          "caseCountsName": "RS-Palmeira Das Missoes-R15 R20",
+          "hospitalBeds": 252,
+          "icuBeds": 17,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 361215
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Palmeira Das Missoes-R15 R20"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-09",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-05-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Passo Fundo-R17 R18 R19",
+          "caseCountsName": "RS-Passo Fundo-R17 R18 R19",
+          "hospitalBeds": 457,
+          "icuBeds": 49,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 668458
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Passo Fundo-R17 R18 R19"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Pelotas-R21",
+          "caseCountsName": "RS-Pelotas-R21",
+          "hospitalBeds": 314,
+          "icuBeds": 31,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 871041
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Pelotas-R21"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Porto Alegre-R09 R10",
+          "caseCountsName": "RS-Porto Alegre-R09 R10",
+          "hospitalBeds": 1582,
+          "icuBeds": 317,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 2745593
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Porto Alegre-R09 R10"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-04-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Santa Cruz Do Sul-R28",
+          "caseCountsName": "RS-Santa Cruz Do Sul-R28",
+          "hospitalBeds": 199,
+          "icuBeds": 28,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 346943
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Santa Cruz Do Sul-R28"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-09",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Santa Maria-R01 R02",
+          "caseCountsName": "RS-Santa Maria-R01 R02",
+          "hospitalBeds": 299,
+          "icuBeds": 58,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 551963
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Santa Maria-R01 R02"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-30",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Santa Rosa-R14",
+          "caseCountsName": "RS-Santa Rosa-R14",
+          "hospitalBeds": 178,
+          "icuBeds": 10,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 236497
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Santa Rosa-R14"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Santo Angelo-R11",
+          "caseCountsName": "RS-Santo Angelo-R11",
+          "hospitalBeds": 211,
+          "icuBeds": 18,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 288687
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Santo Angelo-R11"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Taquara-R06",
+          "caseCountsName": "RS-Taquara-R06",
+          "hospitalBeds": 170,
+          "icuBeds": 3,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 228092
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Taquara-R06"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.7,
+            "end": 3.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-18",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "RS-Uruguaiana-R03",
+          "caseCountsName": "RS-Uruguaiana-R03",
+          "hospitalBeds": 131,
+          "icuBeds": 28,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 450547
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "RS-Uruguaiana-R03"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
             "begin": 2.12,
             "end": 2.59
           },
@@ -877,7 +2458,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Benin",
@@ -914,7 +2508,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-28",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Bhutan",
@@ -1051,7 +2658,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Botswana",
@@ -2659,36 +4279,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#bf5b17",
-              "name": "Intervention #1",
-              "timeRange": {
-                "begin": "2020-03-17",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 36.2,
-                "end": 43.8
-              }
-            },
-            {
-              "color": "#666666",
-              "name": "Intervention #2",
-              "timeRange": {
-                "begin": "2020-03-20",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 54.2,
-                "end": 65.8
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Switzerland",
-          "caseCountsName": "CHE-Graub\u00fcnden",
+          "caseCountsName": "None",
           "hospitalBeds": 709,
           "icuBeds": 32,
           "importsPerDay": 0.1,
@@ -2845,24 +4440,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-19",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 38.8,
-                "end": 47.2
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Switzerland",
-          "caseCountsName": "CHE-Neuch\u00e2tel",
+          "caseCountsName": "None",
           "hospitalBeds": 633,
           "icuBeds": 28,
           "importsPerDay": 0.1,
@@ -3030,6 +4612,18 @@
               "transmissionReduction": {
                 "begin": 36.2,
                 "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
               }
             }
           ]
@@ -3591,24 +5185,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-17",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 76.0,
-                "end": 86.0
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Switzerland",
-          "caseCountsName": "CHE-Z\u00fcrich",
+          "caseCountsName": "None",
           "hospitalBeds": 5447,
           "icuBeds": 247,
           "importsPerDay": 0.1,
@@ -4141,24 +5722,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-16",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 17.8,
-                "end": 20.2
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Germany",
-          "caseCountsName": "DEU-Baden-W\u00fcrttemberg",
+          "caseCountsName": "None",
           "hospitalBeds": 66152,
           "icuBeds": 3156,
           "importsPerDay": 0.1,
@@ -4940,24 +6508,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-24",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 71.5,
-                "end": 82.5
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Germany",
-          "caseCountsName": "DEU-Th\u00fcringen",
+          "caseCountsName": "None",
           "hospitalBeds": 12806,
           "icuBeds": 611,
           "importsPerDay": 0.1,
@@ -5276,6 +6831,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -5326,6 +6893,18 @@
                 "begin": 18.7,
                 "end": 21.3
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -5364,24 +6943,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-19",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 67.2,
-                "end": 78.8
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Spain",
-          "caseCountsName": "ESP-Andaluc\u00eda",
+          "caseCountsName": "None",
           "hospitalBeds": 19744,
           "icuBeds": 801,
           "importsPerDay": 0.1,
@@ -5414,24 +6980,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-26",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 59.1,
-                "end": 70.9
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Spain",
-          "caseCountsName": "ESP-Arag\u00f3n",
+          "caseCountsName": "None",
           "hospitalBeds": 3096,
           "icuBeds": 125,
           "importsPerDay": 0.1,
@@ -5714,24 +7267,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-20",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 74.9,
-                "end": 85.1
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Spain",
-          "caseCountsName": "ESP-Castilla y Le\u00f3n",
+          "caseCountsName": "None",
           "hospitalBeds": 5630,
           "icuBeds": 228,
           "importsPerDay": 0.1,
@@ -5801,24 +7341,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-21",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 79.5,
-                "end": 88.5
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Spain",
-          "caseCountsName": "ESP-Catalu\u00f1a",
+          "caseCountsName": "None",
           "hospitalBeds": 18010,
           "icuBeds": 731,
           "importsPerDay": 0.1,
@@ -6287,24 +7814,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-23",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 59.1,
-                "end": 70.9
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "Spain",
-          "caseCountsName": "ESP-Pa\u00eds Vasco",
+          "caseCountsName": "None",
           "hospitalBeds": 5180,
           "icuBeds": 210,
           "importsPerDay": 0.1,
@@ -6635,24 +8149,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-22",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 71.5,
-                "end": 82.5
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "France",
-          "caseCountsName": "FRA-Auvergne-Rh\u00f4ne-Alpes",
+          "caseCountsName": "None",
           "hospitalBeds": 16641,
           "icuBeds": 555,
           "importsPerDay": 0.1,
@@ -6685,24 +8186,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-17",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 63.1,
-                "end": 74.9
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "France",
-          "caseCountsName": "FRA-Bourgogne-Franche-Comt\u00e9",
+          "caseCountsName": "None",
           "hospitalBeds": 7095,
           "icuBeds": 121,
           "importsPerDay": 0.1,
@@ -7135,24 +8623,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#bf5b17",
-              "name": "Intervention #1",
-              "timeRange": {
-                "begin": "2020-03-25",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 36.2,
-                "end": 43.8
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "France",
-          "caseCountsName": "FRA-La-R\u00e9union",
+          "caseCountsName": "None",
           "hospitalBeds": 1260,
           "icuBeds": 60,
           "importsPerDay": 0.1,
@@ -7485,24 +8960,11 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": [
-            {
-              "color": "#cccccc",
-              "name": "Intervention 1",
-              "timeRange": {
-                "begin": "2020-03-24",
-                "end": "2020-09-01"
-              },
-              "transmissionReduction": {
-                "begin": 62.1,
-                "end": 73.9
-              }
-            }
-          ]
+          "mitigationIntervals": []
         },
         "population": {
           "ageDistributionName": "France",
-          "caseCountsName": "FRA-Provence-Alpes-C\u00f4te-dAzur",
+          "caseCountsName": "None",
           "hospitalBeds": 9909,
           "icuBeds": 460,
           "importsPerDay": 0.1,
@@ -8458,7 +9920,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -8495,7 +9970,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -8532,7 +10020,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-13",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -8669,7 +10170,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -8980,7 +10494,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9117,7 +10644,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9341,7 +10881,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-10",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9415,7 +10968,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9452,7 +11018,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9489,7 +11068,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9526,7 +11118,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9663,7 +11268,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9750,11 +11368,24 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-11",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
-          "caseCountsName": "None",
+          "caseCountsName": "IND-Telangana",
           "hospitalBeds": 20983,
           "icuBeds": 2066,
           "importsPerDay": 0.1,
@@ -9937,7 +11568,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-13",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -11560,7 +13204,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Jordan",
@@ -13555,7 +15212,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Kenya",
@@ -13721,12 +15391,24 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-04-10",
+                "begin": "2020-04-07",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
                 "begin": 36.2,
                 "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
               }
             }
           ]
@@ -13827,6 +15509,18 @@
               "transmissionReduction": {
                 "begin": 36.2,
                 "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-03",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
               }
             }
           ]
@@ -14003,7 +15697,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Liberia",
@@ -14040,7 +15747,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Libya",
@@ -14082,7 +15802,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-03-15",
+                "begin": "2020-03-14",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -15035,7 +16755,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-02",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Namibia",
@@ -18579,6 +20312,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -21215,7 +22960,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Venezuela (Bolivarian Republic of)",

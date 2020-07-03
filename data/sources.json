@@ -4,6 +4,11 @@
     "dataProvenance": "https://brasil.io/dataset/covid19/caso",
     "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
   },
+  "brazil_rs": {
+    "primarySource": "https://raw.githubusercontent.com/tiagoandresvaz/Covid-RS/master/data/Data_Regions_RS.csv",
+    "dataProvenance": "http://ti.saude.rs.gov.br/covid19/",
+    "license": "none specified"
+  },
   "france": {
     "primarySource": "https://github.com/opencovid19-fr/data/raw/master/dist/chiffres-cles.csv",
     "dataProvenance": "Données nationales concernant l'épidémie de COVID19",

@@ -33,7 +33,7 @@ export function NavigationBarDisconnected({ pathname }: NavigationBarProps) {
 
   const navLinksLeft = useMemo(
     () => ({
-      '/': t('COVID-19 Scenarios'),
+      '/': t('COVID-19 no RS'),
       '/about': t('About'),
       '/faq': t('FAQ'),
       '/updates': t('Updates'),
@@ -68,7 +68,7 @@ export function NavigationBarDisconnected({ pathname }: NavigationBarProps) {
 
   return (
     <nav
-      className="navbar navbar-expand navbar-dark bg-dark navbar-scroll hide-native-scrollbar"
+      className="navbar navbar-expand navbar-light bg-dark navbar-scroll hide-native-scrollbar"
       role="navigation"
       data-testid="NavigationBar"
     >

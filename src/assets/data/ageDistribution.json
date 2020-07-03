@@ -2,6 +2,412 @@
   "all": [
     {
       "data": [
+        { "ageGroup" : "0-9", "population": 1388981 },
+        { "ageGroup" : "10-19", "population": 1515888 },
+        { "ageGroup" : "20-29", "population": 1735938 },
+        { "ageGroup" : "30-39", "population": 1725413 },
+        { "ageGroup" : "40-49", "population": 1495007 },
+        { "ageGroup" : "50-59", "population": 1471525 },
+        { "ageGroup" : "60-69", "population": 1100483 },
+        { "ageGroup" : "70-79", "population": 596737 },
+        { "ageGroup" : "80+", "population": 299633 }
+        ],
+      "name": "RS-Governo do Estado do Rio Grande do Sul"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 174322 },
+        { "ageGroup" : "10-19", "population": 174481 },
+        { "ageGroup" : "20-29", "population": 220465 },
+        { "ageGroup" : "30-39", "population": 242155 },
+        { "ageGroup" : "40-49", "population": 192165 },
+        { "ageGroup" : "50-59", "population": 183360 },
+        { "ageGroup" : "60-69", "population": 148224 },
+        { "ageGroup" : "70-79", "population": 81674 },
+        { "ageGroup" : "80+", "population": 48584 }
+        ],
+      "name": "RS-Prefeitura de Porto Alegre"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 23298 },
+        { "ageGroup" : "10-19", "population": 26279 },
+        { "ageGroup" : "20-29", "population": 28099 },
+        { "ageGroup" : "30-39", "population": 26241 },
+        { "ageGroup" : "40-49", "population": 23721 },
+        { "ageGroup" : "50-59", "population": 24269 },
+        { "ageGroup" : "60-69", "population": 17418 },
+        { "ageGroup" : "70-79", "population": 10071 },
+        { "ageGroup" : "80+", "population": 5345 }
+        ],
+      "name": "RS-Bage-R22"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 81481 },
+        { "ageGroup" : "10-19", "population": 88988 },
+        { "ageGroup" : "20-29", "population": 104376 },
+        { "ageGroup" : "30-39", "population": 100339 },
+        { "ageGroup" : "40-49", "population": 86602 },
+        { "ageGroup" : "50-59", "population": 86366 },
+        { "ageGroup" : "60-69", "population": 65758 },
+        { "ageGroup" : "70-79", "population": 36577 },
+        { "ageGroup" : "80+", "population": 17971 }
+        ],
+      "name": "RS-Passo Fundo-R17 R18 R19"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 62036 },
+        { "ageGroup" : "10-19", "population": 72106 },
+        { "ageGroup" : "20-29", "population": 81001 },
+        { "ageGroup" : "30-39", "population": 78666 },
+        { "ageGroup" : "40-49", "population": 71321 },
+        { "ageGroup" : "50-59", "population": 76194 },
+        { "ageGroup" : "60-69", "population": 58219 },
+        { "ageGroup" : "70-79", "population": 34239 },
+        { "ageGroup" : "80+", "population": 18181 }
+        ],
+      "name": "RS-Santa Maria-R01 R02"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 29177 },
+        { "ageGroup" : "10-19", "population": 30604 },
+        { "ageGroup" : "20-29", "population": 35551 },
+        { "ageGroup" : "30-39", "population": 34980 },
+        { "ageGroup" : "40-49", "population": 31939 },
+        { "ageGroup" : "50-59", "population": 31607 },
+        { "ageGroup" : "60-69", "population": 25027 },
+        { "ageGroup" : "70-79", "population": 14290 },
+        { "ageGroup" : "80+", "population": 7328 }
+        ],
+      "name": "RS-Ijui-R13"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 26016 },
+        { "ageGroup" : "10-19", "population": 27524 },
+        { "ageGroup" : "20-29", "population": 34526 },
+        { "ageGroup" : "30-39", "population": 31921 },
+        { "ageGroup" : "40-49", "population": 31495 },
+        { "ageGroup" : "50-59", "population": 34295 },
+        { "ageGroup" : "60-69", "population": 27327 },
+        { "ageGroup" : "70-79", "population": 15870 },
+        { "ageGroup" : "80+", "population": 7523 }
+        ],
+      "name": "RS-Santa Rosa-R14"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 58724 },
+        { "ageGroup" : "10-19", "population": 66431 },
+        { "ageGroup" : "20-29", "population": 67672 },
+        { "ageGroup" : "30-39", "population": 59910 },
+        { "ageGroup" : "40-49", "population": 57685 },
+        { "ageGroup" : "50-59", "population": 59394 },
+        { "ageGroup" : "60-69", "population": 42690 },
+        { "ageGroup" : "70-79", "population": 25328 },
+        { "ageGroup" : "80+", "population": 12713 }
+        ],
+      "name": "RS-Uruguaiana-R03"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 43586 },
+        { "ageGroup" : "10-19", "population": 48953 },
+        { "ageGroup" : "20-29", "population": 54643 },
+        { "ageGroup" : "30-39", "population": 48717 },
+        { "ageGroup" : "40-49", "population": 44830 },
+        { "ageGroup" : "50-59", "population": 48126 },
+        { "ageGroup" : "60-69", "population": 39147 },
+        { "ageGroup" : "70-79", "population": 21866 },
+        { "ageGroup" : "80+", "population": 11347 }
+        ],
+      "name": "RS-Palmeira Das Missoes-R15 R20"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 144691 },
+        { "ageGroup" : "10-19", "population": 151171 },
+        { "ageGroup" : "20-29", "population": 187179 },
+        { "ageGroup" : "30-39", "population": 196733 },
+        { "ageGroup" : "40-49", "population": 161480 },
+        { "ageGroup" : "50-59", "population": 154339 },
+        { "ageGroup" : "60-69", "population": 107997 },
+        { "ageGroup" : "70-79", "population": 55117 },
+        { "ageGroup" : "80+", "population": 27736 }
+        ],
+      "name": "RS-Caxias Do Sul-R23 R24 R25 R26"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 342071 },
+        { "ageGroup" : "10-19", "population": 365923 },
+        { "ageGroup" : "20-29", "population": 425604 },
+        { "ageGroup" : "30-39", "population": 439990 },
+        { "ageGroup" : "40-49", "population": 361774 },
+        { "ageGroup" : "50-59", "population": 338292 },
+        { "ageGroup" : "60-69", "population": 260760 },
+        { "ageGroup" : "70-79", "population": 137875 },
+        { "ageGroup" : "80+", "population": 73304 }
+        ],
+      "name": "RS-Porto Alegre-R09 R10"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 102712 },
+        { "ageGroup" : "10-19", "population": 117662 },
+        { "ageGroup" : "20-29", "population": 129323 },
+        { "ageGroup" : "30-39", "population": 127244 },
+        { "ageGroup" : "40-49", "population": 113209 },
+        { "ageGroup" : "50-59", "population": 114033 },
+        { "ageGroup" : "60-69", "population": 89835 },
+        { "ageGroup" : "70-79", "population": 50711 },
+        { "ageGroup" : "80+", "population": 26312 }
+        ],
+      "name": "RS-Pelotas-R21"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 42010 },
+        { "ageGroup" : "10-19", "population": 45210 },
+        { "ageGroup" : "20-29", "population": 55582 },
+        { "ageGroup" : "30-39", "population": 57126 },
+        { "ageGroup" : "40-49", "population": 48491 },
+        { "ageGroup" : "50-59", "population": 48866 },
+        { "ageGroup" : "60-69", "population": 37313 },
+        { "ageGroup" : "70-79", "population": 20831 },
+        { "ageGroup" : "80+", "population": 10903 }
+        ],
+      "name": "RS-Lajeado-R29 R30"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 104672 },
+        { "ageGroup" : "10-19", "population": 113540 },
+        { "ageGroup" : "20-29", "population": 130837 },
+        { "ageGroup" : "30-39", "population": 133118 },
+        { "ageGroup" : "40-49", "population": 114151 },
+        { "ageGroup" : "50-59", "population": 108163 },
+        { "ageGroup" : "60-69", "population": 69009 },
+        { "ageGroup" : "70-79", "population": 32118 },
+        { "ageGroup" : "80+", "population": 13794 }
+        ],
+      "name": "RS-Novo Hamburgo-R07"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 26491 },
+        { "ageGroup" : "10-19", "population": 29048 },
+        { "ageGroup" : "20-29", "population": 35419 },
+        { "ageGroup" : "30-39", "population": 34585 },
+        { "ageGroup" : "40-49", "population": 31646 },
+        { "ageGroup" : "50-59", "population": 33589 },
+        { "ageGroup" : "60-69", "population": 25761 },
+        { "ageGroup" : "70-79", "population": 15117 },
+        { "ageGroup" : "80+", "population": 8418 }
+        ],
+      "name": "RS-Erechim-R16"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 52924 },
+        { "ageGroup" : "10-19", "population": 56601 },
+        { "ageGroup" : "20-29", "population": 57893 },
+        { "ageGroup" : "30-39", "population": 53135 },
+        { "ageGroup" : "40-49", "population": 49458 },
+        { "ageGroup" : "50-59", "population": 53378 },
+        { "ageGroup" : "60-69", "population": 41276 },
+        { "ageGroup" : "70-79", "population": 23117 },
+        { "ageGroup" : "80+", "population": 9987 }
+        ],
+      "name": "RS-Capao Da Canoa-R04 R05"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 22419 },
+        { "ageGroup" : "10-19", "population": 27188 },
+        { "ageGroup" : "20-29", "population": 28583 },
+        { "ageGroup" : "30-39", "population": 27298 },
+        { "ageGroup" : "40-49", "population": 25458 },
+        { "ageGroup" : "50-59", "population": 27839 },
+        { "ageGroup" : "60-69", "population": 22026 },
+        { "ageGroup" : "70-79", "population": 12831 },
+        { "ageGroup" : "80+", "population": 6315 }
+        ],
+      "name": "RS-Cachoeira Do Sul-R27"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 106581 },
+        { "ageGroup" : "10-19", "population": 112091 },
+        { "ageGroup" : "20-29", "population": 124636 },
+        { "ageGroup" : "30-39", "population": 127441 },
+        { "ageGroup" : "40-49", "population": 104264 },
+        { "ageGroup" : "50-59", "population": 97317 },
+        { "ageGroup" : "60-69", "population": 70521 },
+        { "ageGroup" : "70-79", "population": 34851 },
+        { "ageGroup" : "80+", "population": 15065 }
+        ],
+      "name": "RS-Canoas-R08"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 19131 },
+        { "ageGroup" : "10-19", "population": 20220 },
+        { "ageGroup" : "20-29", "population": 21854 },
+        { "ageGroup" : "30-39", "population": 21728 },
+        { "ageGroup" : "40-49", "population": 20009 },
+        { "ageGroup" : "50-59", "population": 20773 },
+        { "ageGroup" : "60-69", "population": 15566 },
+        { "ageGroup" : "70-79", "population": 8890 },
+        { "ageGroup" : "80+", "population": 4410 }
+        ],
+      "name": "RS-Cruz Alta-R12"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 33448 },
+        { "ageGroup" : "10-19", "population": 37899 },
+        { "ageGroup" : "20-29", "population": 43224 },
+        { "ageGroup" : "30-39", "population": 38343 },
+        { "ageGroup" : "40-49", "population": 38053 },
+        { "ageGroup" : "50-59", "population": 39562 },
+        { "ageGroup" : "60-69", "population": 31116 },
+        { "ageGroup" : "70-79", "population": 17981 },
+        { "ageGroup" : "80+", "population": 9061 }
+        ],
+      "name": "RS-Santo Angelo-R11"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 29146 },
+        { "ageGroup" : "10-19", "population": 33466 },
+        { "ageGroup" : "20-29", "population": 36669 },
+        { "ageGroup" : "30-39", "population": 35229 },
+        { "ageGroup" : "40-49", "population": 31555 },
+        { "ageGroup" : "50-59", "population": 29186 },
+        { "ageGroup" : "60-69", "population": 18744 },
+        { "ageGroup" : "70-79", "population": 9888 },
+        { "ageGroup" : "80+", "population": 4209 }
+        ],
+      "name": "RS-Taquara-R06"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 38367 },
+        { "ageGroup" : "10-19", "population": 44984 },
+        { "ageGroup" : "20-29", "population": 53267 },
+        { "ageGroup" : "30-39", "population": 52669 },
+        { "ageGroup" : "40-49", "population": 47866 },
+        { "ageGroup" : "50-59", "population": 45937 },
+        { "ageGroup" : "60-69", "population": 34973 },
+        { "ageGroup" : "70-79", "population": 19169 },
+        { "ageGroup" : "80+", "population": 9711 }
+        ],
+      "name": "RS-Santa Cruz Do Sul-R28"
+      },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 126010 },
+        { "ageGroup" : "10-19", "population": 143941 },
+        { "ageGroup" : "20-29", "population": 157422 },
+        { "ageGroup" : "30-39", "population": 153485 },
+        { "ageGroup" : "40-49", "population": 136930 },
+        { "ageGroup" : "50-59", "population": 138302 },
+        { "ageGroup" : "60-69", "population": 107253 },
+        { "ageGroup" : "70-79", "population": 60782 },
+        { "ageGroup" : "80+", "population": 31657 }
+        ],
+      "name": "RS-Sul"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 151558 },
+        { "ageGroup" : "10-19", "population": 166989 },
+        { "ageGroup" : "20-29", "population": 194438 },
+        { "ageGroup" : "30-39", "population": 183641 },
+        { "ageGroup" : "40-49", "population": 163078 },
+        { "ageGroup" : "50-59", "population": 168081 },
+        { "ageGroup" : "60-69", "population": 130666 },
+        { "ageGroup" : "70-79", "population": 73560 },
+        { "ageGroup" : "80+", "population": 37736 }
+        ],
+      "name": "RS-Norte"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 120760 },
+        { "ageGroup" : "10-19", "population": 138537 },
+        { "ageGroup" : "20-29", "population": 148673 },
+        { "ageGroup" : "30-39", "population": 138576 },
+        { "ageGroup" : "40-49", "population": 129006 },
+        { "ageGroup" : "50-59", "population": 135588 },
+        { "ageGroup" : "60-69", "population": 100909 },
+        { "ageGroup" : "70-79", "population": 59567 },
+        { "ageGroup" : "80+", "population": 30894 }
+        ],
+      "name": "RS-Centro-Oeste"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 107772 },
+        { "ageGroup" : "10-19", "population": 116247 },
+        { "ageGroup" : "20-29", "population": 135155 },
+        { "ageGroup" : "30-39", "population": 126972 },
+        { "ageGroup" : "40-49", "population": 121496 },
+        { "ageGroup" : "50-59", "population": 126237 },
+        { "ageGroup" : "60-69", "population": 99036 },
+        { "ageGroup" : "70-79", "population": 57031 },
+        { "ageGroup" : "80+", "population": 28322 }
+        ],
+      "name": "RS-Missioneira"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 144691 },
+        { "ageGroup" : "10-19", "population": 151171 },
+        { "ageGroup" : "20-29", "population": 187179 },
+        { "ageGroup" : "30-39", "population": 196733 },
+        { "ageGroup" : "40-49", "population": 161480 },
+        { "ageGroup" : "50-59", "population": 154339 },
+        { "ageGroup" : "60-69", "population": 107997 },
+        { "ageGroup" : "70-79", "population": 55117 },
+        { "ageGroup" : "80+", "population": 27736 }
+        ],
+      "name": "RS-Serra"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 635394 },
+        { "ageGroup" : "10-19", "population": 681621 },
+        { "ageGroup" : "20-29", "population": 775639 },
+        { "ageGroup" : "30-39", "population": 788913 },
+        { "ageGroup" : "40-49", "population": 661202 },
+        { "ageGroup" : "50-59", "population": 626336 },
+        { "ageGroup" : "60-69", "population": 460310 },
+        { "ageGroup" : "70-79", "population": 237849 },
+        { "ageGroup" : "80+", "population": 116359 }
+        ],
+      "name": "RS-Metropolitana"
+    },
+    {
+      "data": [
+        { "ageGroup" : "0-9", "population": 102796 },
+        { "ageGroup" : "10-19", "population": 117382 },
+        { "ageGroup" : "20-29", "population": 137432 },
+        { "ageGroup" : "30-39", "population": 137093 },
+        { "ageGroup" : "40-49", "population": 121815 },
+        { "ageGroup" : "50-59", "population": 122642 },
+        { "ageGroup" : "60-69", "population": 94312 },
+        { "ageGroup" : "70-79", "population": 52831 },
+        { "ageGroup" : "80+", "population": 26929 }
+        ],
+      "name": "RS-Vales"
+    },
+    {
+      "data": [
         { "ageGroup": "0-9", "population": 11088731 },
         { "ageGroup": "10-19", "population": 9821561 },
         { "ageGroup": "20-29", "population": 7035871 },

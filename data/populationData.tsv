@@ -1,4 +1,33 @@
 name	populationServed	ageDistribution	hospitalBeds	ICUBeds	hemisphere	srcPopulation	srcHospitalBeds	srcICUBeds
+RS-Governo do Estado do Rio Grande do Sul	11329605	RS-Governo do Estado do Rio Grande do Sul	6674	826	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Prefeitura de Porto Alegre	1465430	RS-Prefeitura de Porto Alegre	1427	280	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Sul	5555	RS-Sul	1427	280	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Norte	5555	RS-Norte	1427	280	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Centro-Oeste	5555	RS-Centro-Oeste	1427	280	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Missioneira	5555	RS-Missioneira	1427	280	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Serra	5555	RS-Serra	1427	280	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Metropolitana	5555	RS-Metropolitana	1427	280	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Vales	5555	RS-Vales	1427	280	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Bage-R22	184741	RS-Bage-R22	148	22	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Cachoeira Do Sul-R27	199957	RS-Cachoeira Do Sul-R27	151	14	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Canoas-R08	792767	RS-Canoas-R08	292	40	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Capao Da Canoa-R04 R05	397769	RS-Capao Da Canoa-R04 R05	138	18	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Caxias Do Sul-R23 R24 R25 R26	1186443	RS-Caxias Do Sul-R23 R24 R25 R26	841	79	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Cruz Alta-R12	152581	RS-Cruz Alta-R12	247	15	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Erechim-R16	240074	RS-Erechim-R16	152	23	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Ijui-R13	240503	RS-Ijui-R13	312	9	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Lajeado-R29 R30	366332	RS-Lajeado-R29 R30	230	30	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Novo Hamburgo-R07	819402	RS-Novo Hamburgo-R07	370	17	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Palmeira Das Missoes-R15 R20	361215	RS-Palmeira Das Missoes-R15 R20	252	17	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Passo Fundo-R17 R18 R19	668458	RS-Passo Fundo-R17 R18 R19	457	49	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Pelotas-R21	871041	RS-Pelotas-R21	314	31	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Porto Alegre-R09 R10	2745593	RS-Porto Alegre-R09 R10	1582	317	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Santa Cruz Do Sul-R28	346943	RS-Santa Cruz Do Sul-R28	199	28	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Santa Maria-R01 R02	551963	RS-Santa Maria-R01 R02	299	58	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Santa Rosa-R14	236497	RS-Santa Rosa-R14	178	10	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Santo Angelo-R11	288687	RS-Santo Angelo-R11	211	18	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Taquara-R06	228092	RS-Taquara-R06	170	3	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
+RS-Uruguaiana-R03	450547	RS-Uruguaiana-R03	131	28	Southern	RS-Governo do Estado do Rio Grande do Sul	Computed from total bed gov numbers and population size	None
 Afghanistan	37172386	Afghanistan	17470	524		ECDC	Computed from 2014 data in CIA fact book https://web.archive.org/web/20191122111714/https://www.cia.gov/library/publications/the-world-factbook/geos/af.html	Estimated based on 3% of hospital beds
 Albania	2866376	Albania	7621	228		ECDC	WHO Hospital data from https://gateway.euro.who.int/en/indicators/hfa_479-5061-number-of-acute-care-hospital-beds/	Estimated based on 3% of hospital beds
 Algeria	42228429	Algeria	79149	2374		ECDC	Computed from 2015 data in CIA fact book https://web.archive.org/web/20190912123823/https://www.cia.gov/library/publications/the-world-factbook/geos/ag.html	Estimated based on 3% of hospital beds
