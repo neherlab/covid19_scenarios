@@ -145,7 +145,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-05-28",
+                "begin": "2020-05-11",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -158,11 +158,11 @@
         "population": {
           "ageDistributionName": "RS-Sul",
           "caseCountsName": "RS-Sul",
-          "hospitalBeds": 1427,
-          "icuBeds": 280,
+          "hospitalBeds": 398,
+          "icuBeds": 63,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1465430
+          "populationServed": 1055782
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -195,7 +195,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-04-13",
+                "begin": "2020-04-12",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -207,7 +207,7 @@
               "color": "#666666",
               "name": "Intervention #2",
               "timeRange": {
-                "begin": "2020-06-10",
+                "begin": "2020-06-04",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -220,11 +220,11 @@
         "population": {
           "ageDistributionName": "RS-Norte",
           "caseCountsName": "RS-Norte",
-          "hospitalBeds": 1427,
-          "icuBeds": 280,
+          "hospitalBeds": 854,
+          "icuBeds": 134,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1465430
+          "populationServed": 1269747
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -257,11 +257,11 @@
         "population": {
           "ageDistributionName": "RS-Centro-Oeste",
           "caseCountsName": "None",
-          "hospitalBeds": 1427,
-          "icuBeds": 280,
+          "hospitalBeds": 473,
+          "icuBeds": 83,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1465430
+          "populationServed": 1002510
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -294,7 +294,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-06-01",
+                "begin": "2020-05-23",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -307,11 +307,11 @@
         "population": {
           "ageDistributionName": "RS-Missioneira",
           "caseCountsName": "RS-Missioneira",
-          "hospitalBeds": 1427,
-          "icuBeds": 280,
+          "hospitalBeds": 1004,
+          "icuBeds": 63,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1465430
+          "populationServed": 918268
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -344,7 +344,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-04-19",
+                "begin": "2020-04-16",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -356,7 +356,7 @@
               "color": "#666666",
               "name": "Intervention #2",
               "timeRange": {
-                "begin": "2020-06-14",
+                "begin": "2020-06-05",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -369,11 +369,11 @@
         "population": {
           "ageDistributionName": "RS-Serra",
           "caseCountsName": "RS-Serra",
-          "hospitalBeds": 1427,
-          "icuBeds": 280,
+          "hospitalBeds": 910,
+          "icuBeds": 144,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1465430
+          "populationServed": 1186443
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -406,7 +406,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-03-18",
+                "begin": "2020-04-06",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -418,7 +418,7 @@
               "color": "#666666",
               "name": "Intervention #2",
               "timeRange": {
-                "begin": "2020-05-16",
+                "begin": "2020-06-16",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -431,11 +431,11 @@
         "population": {
           "ageDistributionName": "RS-Metropolitana",
           "caseCountsName": "RS-Metropolitana",
-          "hospitalBeds": 1427,
-          "icuBeds": 280,
+          "hospitalBeds": 1997,
+          "icuBeds": 507,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1465430
+          "populationServed": 4983623
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -468,12 +468,24 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-04-20",
+                "begin": "2020-04-14",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
                 "begin": 36.2,
                 "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-06",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
               }
             }
           ]
@@ -481,11 +493,11 @@
         "population": {
           "ageDistributionName": "RS-Vales",
           "caseCountsName": "RS-Vales",
-          "hospitalBeds": 1427,
-          "icuBeds": 280,
+          "hospitalBeds": 548,
+          "icuBeds": 75,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1465430
+          "populationServed": 913232
         },
         "simulation": {
           "numberStochasticRuns": 15,
