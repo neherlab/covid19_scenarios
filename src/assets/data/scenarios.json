@@ -33,7 +33,7 @@
               "color": "#666666",
               "name": "Intervention #2",
               "timeRange": {
-                "begin": "2020-06-18",
+                "begin": "2020-06-17",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -145,7 +145,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-05-11",
+                "begin": "2020-05-10",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -252,11 +252,24 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-05-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "RS-Centro-Oeste",
-          "caseCountsName": "None",
+          "caseCountsName": "RS-Centro-Oeste",
           "hospitalBeds": 473,
           "icuBeds": 83,
           "importsPerDay": 0.1,
@@ -418,7 +431,7 @@
               "color": "#666666",
               "name": "Intervention #2",
               "timeRange": {
-                "begin": "2020-06-16",
+                "begin": "2020-06-15",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -699,6 +712,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -860,6 +885,18 @@
               "transmissionReduction": {
                 "begin": 36.2,
                 "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
               }
             }
           ]
@@ -1078,7 +1115,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-05-12",
+                "begin": "2020-05-11",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -1090,7 +1127,7 @@
               "color": "#666666",
               "name": "Intervention #2",
               "timeRange": {
-                "begin": "2020-06-17",
+                "begin": "2020-06-16",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -1202,7 +1239,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-05-26",
+                "begin": "2020-05-23",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -1264,7 +1301,7 @@
               "color": "#666666",
               "name": "Intervention #2",
               "timeRange": {
-                "begin": "2020-06-16",
+                "begin": "2020-06-15",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -1364,7 +1401,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-05-09",
+                "begin": "2020-05-07",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
