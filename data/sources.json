@@ -1,9 +1,5 @@
 {
-  "brazil": {
-    "primarySource": "https://brasil.io/api/dataset/covid19/caso/data",
-    "dataProvenance": "https://brasil.io/dataset/covid19/caso",
-    "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
-  },
+
   "brazil_rs": {
     "primarySource": "https://raw.githubusercontent.com/tiagoandresvaz/Covid-RS/master/data/Data_Regions_RS.csv",
     "dataProvenance": "http://ti.saude.rs.gov.br/covid19/",
@@ -58,11 +54,6 @@
     "primarySource": "https://covidtracking.com/api/states/daily",
     "dataProvenance": "The COVID Tracking Project",
     "license": "Apache License 2.0"
-  },
-  "netherlands": {
-    "primarySource": "https://github.com/J535D165/CoronaWatchNL/blob/master/data, https://www.stichting-nice.nl/covid-19/public/intake-count",
-    "dataProvenance": "CoronaWatchNL, Stichting NICE",
-    "license": "CC0 (CoronaWatchNL), none specified (Stichting NICE)"
   },
   "china": {
     "primarySource": "https://github.com/BlankerL/DXY-COVID-19-Data/raw/master/csv/DXYOverall.csv",

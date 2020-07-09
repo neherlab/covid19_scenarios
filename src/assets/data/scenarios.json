@@ -8017,7 +8017,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-03-20",
+                "begin": "2020-03-16",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -10367,6 +10367,18 @@
               "transmissionReduction": {
                 "begin": 18.7,
                 "end": 21.3
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-05",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
               }
             }
           ]
@@ -15971,7 +15983,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-05",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Madagascar",
@@ -16008,7 +16033,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-07",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Malawi",
@@ -16591,6 +16629,18 @@
               "transmissionReduction": {
                 "begin": 36.2,
                 "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-04",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
               }
             }
           ]
@@ -19304,6 +19354,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-06",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -21598,6 +21660,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-03",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -23096,7 +23170,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-08",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Zambia",
