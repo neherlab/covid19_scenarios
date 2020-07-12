@@ -1194,6 +1194,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.10.1":
+  version "7.10.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.4.tgz#a6724f1a6b8d2f6ea5236dbfe58c7d7ea9c5eb99"
+  integrity sha512-UpTN5yUJr9b4EX2CnGNWIvER7Ab83ibv0pcvvHc4UOdrBI5jb8bj+32cCwPX6xu0mt2daFNjYhoi+X7beH0RSw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.10.1", "@babel/template@^7.3.3", "@babel/template@^7.8.6":
   version "7.10.1"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.10.1.tgz#e167154a94cb5f14b28dc58f5356d2162f539811"
@@ -9352,7 +9359,14 @@ i18next-parser@2.0.0:
     vue-template-compiler "^2.6.11"
     yamljs "^0.3.0"
 
-i18next@19.4.5, i18next@^19.0.1:
+i18next@19.5.5:
+  version "19.5.5"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.5.5.tgz#e0eb84bdc81eb030079cbed13b688fc5ff1c3359"
+  integrity sha512-0vG/cdqA83RxEJfb07zEm1dl5akQono0vs1I+p0r6l7NwnNUIN4JIB+dYoyWlIEJ30/zNTZGnQVHBqXbEwA2gA==
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+
+i18next@^19.0.1:
   version "19.4.5"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.4.5.tgz#f9ea8bbb48d1ec66bc3436f0bb74a16b11821e11"
   integrity sha512-aLvSsURoupi3x9IndmV6+m3IGhzLzhYv7Gw+//K3ovdliyGcFRV0I1MuddI0Bk/zR7BG1U+kJOjeHFUcUIdEgg==
