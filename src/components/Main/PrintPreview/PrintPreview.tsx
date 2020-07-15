@@ -65,7 +65,9 @@ const parameterExplanations: ParameterExplanation = {
     long: i18n.t('Region for which to plot confirmed case and death counts.'),
     super: 2,
   },
-  populationServed: i18n.t('Population size'),
+  populationServed: {
+    short: i18n.t('Population size'),
+  },
   hospitalBeds: {
     short: i18n.t('Number of hospital beds'),
     long: i18n.t(
