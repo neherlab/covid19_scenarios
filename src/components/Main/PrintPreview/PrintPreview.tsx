@@ -46,22 +46,74 @@ import './PrintPreview.scss'
 
 const months = moment.months()
 
-const parameterExplanations = {
-  cases: i18n.t('Case counts for'),
-  country: i18n.t('Age distribution for'),
-  populationServed: i18n.t('Population size'),
-  hospitalBeds: i18n.t('Number of hospital beds'),
-  ICUBeds: i18n.t('Number of available ICU beds'),
-  importsPerDay: i18n.t('Cases imported into community per day'),
-  initialNumberOfCases: i18n.t('Number of cases at the start of the simulation'),
-  infectiousPeriod: i18n.t('Infectious period [days]'),
-  latencyTime: i18n.t('Latency [days]'),
-  lengthHospitalStay: i18n.t('Average time in regular ward [days]'),
-  lengthICUStay: i18n.t('Average time in ICU ward [days]'),
-  overflowSeverity: i18n.t('Increase in death rate when ICUs are overcrowded'),
-  r0: i18n.t('R0 at the beginning of the outbreak'),
-  seasonalForcing: i18n.t('Seasonal variation in transmissibility'),
-  peakMonth: i18n.t('Seasonal peak in transmissibility'),
+interface ParameterExplanation {
+  [key: string]: {
+    short: string
+    long?: string
+    super?: number
+  }
+}
+
+const parameterExplanations: ParameterExplanation = {
+  ageDistributionName: {
+    short: i18n.t('Age distribution for'),
+    long: i18n.t('Country to determine the age distribution in the population'),
+    super: 1,
+  },
+  caseCountsName: {
+    short: i18n.t('Case counts for'),
+    long: i18n.t('Region for which to plot confirmed case and death counts.'),
+    super: 2,
+  },
+  populationServed: {
+    short: i18n.t('Population size'),
+  },
+  hospitalBeds: {
+    short: i18n.t('Number of hospital beds'),
+    long: i18n.t(
+      'Number of hospital beds available. The default values are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
+    ),
+    super: 3,
+  },
+  icuBeds: {
+    short: i18n.t('Number of available ICU beds'),
+    long: i18n.t(
+      'Number of available beds in Intensive Care Units (ICUs). The default values are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
+    ),
+    super: 4,
+  },
+  importsPerDay: {
+    short: i18n.t('Cases imported into community per day'),
+  },
+  initialNumberOfCases: {
+    short: i18n.t('Number of cases at the start of the simulation'),
+  },
+  infectiousPeriodDays: {
+    short: i18n.t('Infectious period [days]'),
+  },
+  latencyDays: {
+    short: i18n.t('Latency [days]'),
+    long: i18n.t('Time from infection to onset of symptoms (here onset of infectiousness)'),
+    super: 5,
+  },
+  hospitalStayDays: {
+    short: i18n.t('Average time in regular ward [days]'),
+  },
+  icuStayDays: {
+    short: i18n.t('Average time in ICU ward [days]'),
+  },
+  overflowSeverity: {
+    short: i18n.t('Increase in death rate when ICUs are overcrowded'),
+  },
+  r0: {
+    short: i18n.t('R0 at the beginning of the outbreak'),
+  },
+  seasonalForcing: {
+    short: i18n.t('Seasonal variation in transmissibility'),
+  },
+  peakMonth: {
+    short: i18n.t('Seasonal peak in transmissibility'),
+  },
 }
 
 const print = () => typeof window !== 'undefined' && window.print()
@@ -214,12 +266,27 @@ export function PrintPreviewDisconnected({
               </thead>
 
               <tbody>
-                {Object.entries(scenarioData.population).map(([key, val]) => (
-                  <tr key={key}>
-                    <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations, key) || key}</td>
-                    <td className="text-right pl-4 pr-2 py-0">{val}</td>
-                  </tr>
-                ))}
+                {Object.entries(scenarioData.population).map(([key, val]) => {
+                  let explanation
+                  if (get(parameterExplanations, key).long) {
+                    explanation = (
+                      <td className="text-left pl-2 pr-4 py-0">
+                        {get(parameterExplanations, key).short}
+                        <sup>{get(parameterExplanations, key).super}</sup>
+                      </td>
+                    )
+                  } else {
+                    explanation = (
+                      <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations, key).short || key}</td>
+                    )
+                  }
+                  return (
+                    <tr key={key}>
+                      {explanation}
+                      <td className="text-right pl-4 pr-2 py-0">{val}</td>
+                    </tr>
+                  )
+                })}
               </tbody>
 
               <h4 className="pt-3">{`Epidemiology`}</h4>
@@ -246,10 +313,22 @@ export function PrintPreviewDisconnected({
                     const [begin, end] = Object.values(val).map((x) => Math.round(10 * (x as number)) / 10)
                     value = `${begin} - ${end}`
                   }
-
+                  let explanation
+                  if (get(parameterExplanations, key).long) {
+                    explanation = (
+                      <td className="text-left pl-2 pr-4 py-0">
+                        {get(parameterExplanations, key).short}
+                        <sup>{get(parameterExplanations, key).super}</sup>
+                      </td>
+                    )
+                  } else {
+                    explanation = (
+                      <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations, key).short || key}</td>
+                    )
+                  }
                   return (
                     <tr key={key}>
-                      <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations, key) || key}</td>
+                      {explanation}
                       <td className="text-right pl-4 pr-2 py-0">{value}</td>
                     </tr>
                   )
@@ -285,6 +364,24 @@ export function PrintPreviewDisconnected({
                 })}
               </tbody>
             </Table>
+            <Row>
+              <Col>
+                <div className="parameter-explanations">
+                  {Object.entries(parameterExplanations)
+                    .filter(([key, val]) => val.long != null && val.super != null)
+                    .sort(([key1, val1], [key2, val2]) => val1.super - val2.super)
+                    .map(([key, val]) => {
+                      const keyName = `${key}-long-desc`
+                      return (
+                        <p key={keyName} className="text-left pl-2 py-0 my-0">
+                          <sup>{val.super}</sup>
+                          {val.long}
+                        </p>
+                      )
+                    })}
+                </div>
+              </Col>
+            </Row>
           </Col>
         </Row>
 
