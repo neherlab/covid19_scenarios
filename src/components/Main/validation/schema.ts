@@ -21,7 +21,7 @@ const MSG_INTEGER = i18next.t('Should be a whole number')
 const MSG_MAX_100 = i18next.t('Should be 100 at most')
 const MSG_TOO_MANY_RUNS = i18next.t('Too many runs')
 const MSG_RANGE_INVALID = i18next.t('Range begin should be less or equal to range end')
-
+const MSG_EXCEED_100 = i18next.t('Palliative and critical together exceed 100%')
 // TODO: all this validation should be replaced with JSON-schema-based validation
 
 const percentageSchema = yup
@@ -156,7 +156,12 @@ export const schema: yup.Schema<FormData> = yup
             population: positiveIntegerSchema.required(MSG_REQUIRED),
             confirmed: percentageSchema.required(MSG_REQUIRED),
             severe: percentageSchema.required(MSG_REQUIRED),
-            critical: percentageSchema.required(MSG_REQUIRED),
+            palliative: percentageSchema.required(MSG_REQUIRED),
+            critical: percentageSchema.required(MSG_REQUIRED).test('max',MSG_EXCEED_100,function valExceed(value) 
+            {
+              const { palliative } = this.parent
+              return value <= 100 - palliative
+            }),
             fatal: percentageSchema.required(MSG_REQUIRED),
             isolated: percentageSchema.required(MSG_REQUIRED),
           })

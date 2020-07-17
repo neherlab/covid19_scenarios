@@ -21,6 +21,9 @@ properties:
   isolated:
     $ref: 'Percentage#'
 
+  palliative:
+    $ref: 'Percentage#'
+
   confirmed:
     $ref: 'Percentage#'
 
