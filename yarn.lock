@@ -4184,11 +4184,9 @@ babel-plugin-typescript-to-proptypes@1.3.2:
 
 babel-polyfill@^6.8.0:
   version "0.0.0"
-  uid ""
 
 "babel-polyfill@link:3rdparty/__empty-module":
   version "0.0.0"
-  uid ""
 
 babel-preset-current-node-syntax@^0.1.2:
   version "0.1.2"
@@ -5008,7 +5006,6 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
 
 "circular-json@link:node_modules/flatted":
   version "0.0.0"
-  uid ""
 
 class-utils@^0.3.5:
   version "0.3.6"
@@ -5248,10 +5245,10 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codecov@3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/codecov/-/codecov-3.7.0.tgz#4a09939cde24447a43f36d068e8b4e0188dc3f27"
-  integrity sha512-uIixKofG099NbUDyzRk1HdGtaG8O+PBUAg3wfmjwXw2+ek+PZp+puRvbTohqrVfuudaezivJHFgTtSC3M8MXww==
+codecov@3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/codecov/-/codecov-3.7.1.tgz#434cb8d55f18ef01672e5739d3d266696bebc202"
+  integrity sha512-JHWxyPTkMLLJn9SmKJnwAnvY09kg2Os2+Ux+GG7LwZ9g8gzDDISpIN5wAsH1UBaafA/yGcd3KofMaorE8qd6Lw==
   dependencies:
     argv "0.0.2"
     ignore-walk "3.0.3"
@@ -10904,15 +10901,12 @@ json2mq@^0.2.0:
 
 json3@3.3.0:
   version "0.0.0"
-  uid ""
 
 json3@^3.3.2:
   version "0.0.0"
-  uid ""
 
 "json3@link:3rdparty/__empty-module":
   version "0.0.0"
-  uid ""
 
 json5@2.x, json5@^2.1.2, json5@^2.1.3:
   version "2.1.3"
@@ -11144,7 +11138,6 @@ lead@^1.0.0:
 
 "left-pad@link:3rdparty/__empty-module":
   version "0.0.0"
-  uid ""
 
 leven@^2.1.0:
   version "2.1.0"
@@ -12349,7 +12342,6 @@ node-sass-import-once@1.2.0:
 
 "node-sass@link:node_modules/sass":
   version "0.0.0"
-  uid ""
 
 nodemon@2.0.4:
   version "2.0.4"
