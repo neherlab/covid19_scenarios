@@ -55,7 +55,7 @@
     "codeclimate": "UID=$(id -u) DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker/docker-compose.codeclimate.yml --compatibility up",
     "snyk-protect": "snyk protect",
     "prepare": "yarn run snyk-protect",
-    "cli": "yarn babel-node --extensions \".ts\" src/algorithms/cli.ts"
+    "cli": "yarn babel-node --extensions \".ts\" src/cli/cli.ts"
   },
   "dependencies": {
     "@babel/runtime": "7.10.2",
@@ -94,6 +94,7 @@
     "lodash": "4.17.15",
     "mathjs": "7.0.1",
     "moment": "2.26.0",
+    "neodoc": "^2.0.2",
     "numbro": "2.3.0",
     "p-min-delay": "3.1.0",
     "papaparse": "5.2.0",

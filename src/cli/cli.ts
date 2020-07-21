@@ -1,15 +1,16 @@
 /* eslint-disable no-console, unicorn/no-process-exit,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-floating-promises */
-import fs from 'fs'
+import fs from 'fs-extra'
 import yargs from 'yargs'
+import neodoc from 'neodoc'
 
 import { DEFAULT_SEVERITY_DISTRIBUTION } from '../constants'
 
-import { run } from './run'
+import { run } from '../algorithms/run'
 import { getAgeDistributionData } from '../io/defaults/getAgeDistributionData'
 import { getSeverityDistributionData } from '../io/defaults/getSeverityDistributionData'
 
-import type { ScenarioFlat, ScenarioData, SeverityDistributionData, AgeDistributionData } from './types/Param.types'
-import { toInternal } from './types/convert'
+import type { ScenarioFlat, ScenarioData, SeverityDistributionData, AgeDistributionData } from '../algorithms/types/Param.types'
+import { toInternal } from '../algorithms/types/convert'
 
 const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
   console.error(err)
@@ -18,15 +19,19 @@ const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
 
 process.on('unhandledRejection', handleRejection)
 
+async function runSimulation({ params, severity, ageDistribution }){
+  return await run({ params, severity, ageDistribution })
+}
+
 /**
  * Read a file in JSON format.
  *
  * @param inputFilename The path to the file.
  */
 function readJsonFromFile<T>(inputFilename: string) {
-  console.log(`Reading data from file ${inputFilename}`)
-  const inputData = fs.readFileSync(inputFilename, 'utf8')
-  return JSON.parse(inputData) as T
+  console.info(`Reading data from file ${inputFilename}`)
+  const inputData = fs.readJsonSync(inputFilename, 'utf8')
+  return inputData
 }
 
 /**
@@ -64,19 +69,18 @@ function getAge(inputFilename: string | undefined, name: string) {
 
 async function main() {
   // Command line argument processing.
-  const { argv } = yargs
-    .options({
-      scenario: { type: 'string', demandOption: true, describe: 'Path to scenario parameters JSON file.' },
-      age: { type: 'string', describe: 'Path to age distribution JSON file.' },
-      severity: { type: 'string', describe: 'Path to severity JSON file.' },
-      out: { type: 'string', demandOption: true, describe: 'Path to output file.' },
-    })
-    .help()
-    .version(false)
-    .alias('h', 'help')
-
+  const argv = neodoc.run(`
+    usage: cli <scenario> <output> [options]
+    
+    options:
+      <scenario>            Path to scenario parameters JSON file
+      <output>              Path to output file
+      --age <path>          Path to age distribution JSON file
+      --severity <path>     Path to severity JSON file
+    `, { smartOptions: true })
+  
   // Read the scenario data.
-  const scenarioData = readJsonFromFile<ScenarioData>(argv.scenario)
+  const scenarioData = readJsonFromFile<ScenarioData>(argv['<scenario>'])
   const scenario = toInternal(scenarioData.data)
   const params: ScenarioFlat = {
     ...scenario.population,
@@ -86,17 +90,17 @@ async function main() {
   }
 
   // Load severity and age data.
-  const severity = getSeverity(argv.severity)
-  const ageDistribution = getAge(argv.age, params.ageDistributionName)
+  const severity = getSeverity(argv['<severity>'])
+  const ageDistribution = getAge(argv['<age>'], params.ageDistributionName)
 
   // Run the model.
   try {
-    const outputFile = argv.out
-    console.log('Running the model')
-    const result = await run({ params, severity, ageDistribution })
-    console.log('Run complete')
-    console.log(result)
-    console.log(`Writing output to ${outputFile}`)
+    const outputFile = argv['<output>']
+    console.info('Running the model')
+    const result = await runSimulation({ params, severity, ageDistribution })
+    console.info('Run complete')
+    // console.info(result)
+    console.info(`Writing output to ${outputFile}`)
     fs.writeFileSync(outputFile, JSON.stringify(result))
   } catch (error) {
     console.error(`Run failed: ${error}`)
