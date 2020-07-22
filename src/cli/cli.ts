@@ -6,10 +6,10 @@ import neodoc from 'neodoc'
 import { DEFAULT_SEVERITY_DISTRIBUTION } from '../constants'
 
 import { run } from '../algorithms/run'
-import { getAgeDistributionData } from '../io/defaults/getAgeDistributionData'
+//import { getAgeDistributionData } from '../io/defaults/getAgeDistributionData'
 import { getSeverityDistributionData } from '../io/defaults/getSeverityDistributionData'
 
-import type { ScenarioFlat, ScenarioData, SeverityDistributionData, AgeDistributionData } from '../algorithms/types/Param.types'
+import { ScenarioFlat, ScenarioData, SeverityDistributionData, AgeDistributionData, Convert } from '../algorithms/types/Param.types'
 import { toInternal } from '../algorithms/types/convert'
 
 const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
@@ -19,7 +19,12 @@ const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
 
 process.on('unhandledRejection', handleRejection)
 
-async function runSimulation({ params, severity, ageDistribution }){
+/**
+ * Run the model
+ *
+ * @param things do this soon
+ */
+export async function runModel({ params, severity, ageDistribution }){
   return await run({ params, severity, ageDistribution })
 }
 
@@ -49,6 +54,7 @@ function getSeverity(inputFilename: string | undefined) {
   return getSeverityDistributionData(DEFAULT_SEVERITY_DISTRIBUTION).data
 }
 
+let cachedAgeDistributionData: AgeDistributionData; // I assume at some point we'll implement doing more than one run at a time?
 /**
  * Get age distribution data. If a file is specified on the command
  * line, give priority to its contents, else load the distribution
@@ -62,21 +68,54 @@ function getAge(inputFilename: string | undefined, name: string) {
   if (inputFilename) {
     const data = readJsonFromFile<AgeDistributionData>(inputFilename)
     return data.data
-  }
+  } else {
+    let data;
+    if(cachedAgeDistributionData){
+      data = cachedAgeDistributionData;
+    } else {
+      data = readJsonFromFile<AgeDistributionData>('./src/assets/data/ageDistribution.json')
+    }
+    
+    const ageDistributionFound = data.all.find((cad) => cad.name === name)
+    if (!ageDistributionFound) {
+      throw new Error(`Error: country age distribution "${name}" not found in JSON`)
+    }
 
-  return getAgeDistributionData(name).data
+    const ageDistribution = Convert.toAgeDistributionData(JSON.stringify(ageDistributionFound))
+
+    ageDistribution.data.sort((a, b) => {
+      if (a.ageGroup > b.ageGroup) {
+        return +1
+      }
+
+      if (a.ageGroup < b.ageGroup) {
+        return -1
+      }
+
+      return 0
+    })
+
+    return ageDistribution.data
+  }
 }
 
 async function main() {
   // Command line argument processing.
   const argv = neodoc.run(`
     usage: cli <scenario> <output> [options]
-    
+               [(--age=<path> | --ageDistribution=<ageDistribution>)]
+          
     options:
       <scenario>            Path to scenario parameters JSON file
       <output>              Path to output file
-      --age <path>          Path to age distribution JSON file
+      
+      --age=<pathToAgeDistribution>
+                            Path to age distribution JSON file
+      --ageDistribution=<ageDistribution>
+                            Name of country for age distribution
+      
       --severity <path>     Path to severity JSON file
+
     `, { smartOptions: true })
   
   // Read the scenario data.
@@ -88,16 +127,18 @@ async function main() {
     ...scenario.simulation,
     ...scenario.mitigation,
   }
-
+  
+  const ageDistributionName = (argv['--ageDistribution']) ? argv['--ageDistribution'] : params.ageDistributionName
+  
   // Load severity and age data.
-  const severity = getSeverity(argv['<severity>'])
-  const ageDistribution = getAge(argv['<age>'], params.ageDistributionName)
+  const severity = getSeverity(argv['--severity'])
+  const ageDistribution = getAge(argv['--age'], ageDistributionName)
 
   // Run the model.
   try {
     const outputFile = argv['<output>']
     console.info('Running the model')
-    const result = await runSimulation({ params, severity, ageDistribution })
+    const result = await runModel({ params, severity, ageDistribution })
     console.info('Run complete')
     // console.info(result)
     console.info(`Writing output to ${outputFile}`)
