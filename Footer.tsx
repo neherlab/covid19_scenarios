@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useTranslation } from 'react-i18next'
 import { Col, Container, Row, Table } from 'reactstrap'
-
+import ReactTooltip from "react-tooltip"
 import { getVersionString } from '../../helpers/getVersionString'
 
 import './Footer.scss'
@@ -12,6 +12,12 @@ import { ReactComponent as LogoUnibas } from '../../assets/img/unibas.svg'
 import Vercel from './vercel.png'
 import Github from './github.png'
 import Med from './medRxiv.png'
+const versionString = getVersionString()
+const versionNumber = versionString.split('(',1)
+const commitHash  = versionString.substring(versionString.indexOf("(")).split(',',1)
+const buildNumber = versionString.substring(versionString.indexOf(","))
+const versionLink = versionString.substring(8).split('(',1)
+const hashLink = versionString.substring(versionString.indexOf((":"))+2).split(',',1)
 
 
 export default function Footer() {
@@ -25,9 +31,27 @@ export default function Footer() {
             {t('COVID-19 Scenarios (c) 2020 neherlab')}
         </Col>
         <Col xs={12} md={6} className="d-flex justify-content-center justify-content-md-end align-items-center">
-          <a href ="https://github.com/neherlab/covid19_scenarios/commits/master" alt="Link to website of Github commits"> 
-            <small className="text-gray-light">{getVersionString()}</small>
+          <a href={'https://github.com/neherlab/covid19_scenarios/tree/' + versionLink}>
+            <small data-tip data-for="versiontip" className="text-gray-light">{versionNumber}</small>
           </a>
+          <ReactTooltip id="versiontip" place="top" effect="solid">
+            This Version's Page on GitHub
+          </ReactTooltip>
+​
+​
+          <a href={"https://github.com/neherlab/covid19_scenarios/commit/" + hashLink}>
+            <small data-tip data-for="committip" className="text-gray-light">{commitHash}</small>
+          </a>
+          <ReactTooltip id="committip" place="top" effect="solid">
+            Most Recent Change
+          </ReactTooltip>
+​
+          <a href="https://github.com/neherlab/covid19_scenarios/releases">
+            <small className="text-gray-light">{buildNumber}</small>
+          </a>
+          <ReactTooltip id="committip" place="top" effect="solid">
+            Most Recent Change
+          </ReactTooltip>
         </Col>
       </Row>
       <Row noGutters>
