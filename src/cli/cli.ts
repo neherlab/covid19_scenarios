@@ -20,9 +20,11 @@ const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
 process.on('unhandledRejection', handleRejection)
 
 /**
- * Run the model
+ * Run the model //TODO these docs
  *
- * @param things do this soon
+ * @param params:ScenarioFlat it's got some properties to it. yeah...
+ * @param severity            Severity array
+ * @param ageDistribution     Age distribution array
  */
 export async function runModel({ params, severity, ageDistribution }){
   return await run({ params, severity, ageDistribution })
@@ -39,6 +41,7 @@ function readJsonFromFile<T>(inputFilename: string) {
   return inputData
 }
 
+let cachedSeverityDistributionData: SeverityDistributionData;
 /**
  * Get severity distribution data. If a file is specified on the command
  * line, give priority to its contents, else load a default distribution.
@@ -49,12 +52,38 @@ function getSeverity(inputFilename: string | undefined) {
   if (inputFilename) {
     const data = readJsonFromFile<SeverityDistributionData>(inputFilename)
     return data.data
-  }
+  } else {
+    let data;
+    if(cachedSeverityDistributionData){
+      data = cachedAgeDistributionData;
+    } else {
+      data = readJsonFromFile<SeverityDistributionData>('./src/assets/data/severityDistributions.json')
+    }
+    
+    const severityDistributionFound = data.all.find((s) => s.name === DEFAULT_SEVERITY_DISTRIBUTION)
+    if (!severityDistributionFound) {
+      throw new Error(`Error: scenario "${name}" not found in JSON`)
+    }
 
-  return getSeverityDistributionData(DEFAULT_SEVERITY_DISTRIBUTION).data
+    const severityDistribution = Convert.toSeverityDistributionData(JSON.stringify(severityDistributionFound))
+
+    severityDistribution.data.sort((a, b) => {
+      if (a.ageGroup > b.ageGroup) {
+        return +1
+      }
+
+      if (a.ageGroup < b.ageGroup) {
+        return -1
+      }
+
+      return 0
+    })
+
+    return severityDistribution.data
+  }
 }
 
-let cachedAgeDistributionData: AgeDistributionData; // I assume at some point we'll implement doing more than one run at a time?
+let cachedAgeDistributionData: AgeDistributionData; // I assume at some point we'll implement doing more than one run at a time? should we do (later) a check 
 /**
  * Get age distribution data. If a file is specified on the command
  * line, give priority to its contents, else load the distribution
@@ -114,7 +143,8 @@ async function main() {
       --ageDistribution=<ageDistribution>
                             Name of country for age distribution
       
-      --severity <path>     Path to severity JSON file
+      --severity=<pathToSeverityDistribution>     
+                            Path to severity JSON file
 
     `, { smartOptions: true })
   
