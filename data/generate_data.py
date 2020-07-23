@@ -3,6 +3,7 @@ import argparse
 import os
 import json
 import importlib
+import traceback
 from datetime import datetime
 from paths import BASE_PATH, SOURCES_FILE, JSON_DIR, TMP_CASES, TMP_POPULATION, PARSERS_LOG_FILE
 
@@ -44,14 +45,16 @@ if __name__ == "__main__":
         for src in srcs:
             # Allow running this as `python3 covid19_scenarios_data/generate_data.py --fetch --parsers netherlands` to filter sources (debug mode)
             if (args.parsers is None) or src in args.parsers:
-                print(f"Running {src} to generate .tsv", file=sys.stderr)
+                print(f"\nGenerating  .tsv: Running parsers/{src}.py", file=sys.stderr)
                 try:
                     country = importlib.import_module(f"parsers.{src}")
                     country.parse()
                 except Exception as e:
                     # if error while running any of the parsers, save log in PARSERS_LOG_FILE
                     olog.insert(0,f'\t Error running parser for: {src}\n{e}\n')
-                    print(f"... ERROR while running {src} to generate .tsv. Updated parsers.log file.", file=sys.stderr)
+                    print(f"/x\ ERROR while running parsers/{src}.py. Updated parsers.log file.", file=sys.stderr)
+                    print(traceback.format_exc())
+
         # Prepend timestamp to PARSERS_LOG_FILE
         olog.insert(0,str(timestamp)+'\n')
         flog = open(os.path.join(BASE_PATH, PARSERS_LOG_FILE),'w+')
