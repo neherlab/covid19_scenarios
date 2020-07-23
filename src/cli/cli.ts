@@ -131,8 +131,7 @@ function getAge(inputFilename: string | undefined, name: string) {
 async function main() {
   // Command line argument processing.
   const argv = neodoc.run(`
-    usage: cli <scenario> <output> [options]
-               [(--age=<path> | --ageDistribution=<ageDistribution>)]
+    usage: cli <scenario> <output> [options] [(--age=<path> | --ageDistribution=<ageDistribution>)]
           
     options:
       <scenario>            Path to scenario parameters JSON file
