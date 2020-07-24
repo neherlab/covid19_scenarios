@@ -86,6 +86,7 @@ export function ExportFileElement({
   HelpDownload,
   onDownload,
 }: ExportElementProps) {
+  console.log(typeof Icon)
   return (
     <ListGroupItem className="d-flex">
       <span className="export-file-icon-container">
@@ -200,7 +201,7 @@ export function ModalButtonExportDisconnected({
         <MdFileDownload size={buttonSize} />
       </Button>
       <Modal className="export-modal" centered isOpen={isOpen} toggle={toggleOpen} fade={false} size="lg">
-        <ModalHeader toggle={close}>
+        <ModalHeader toggle={close} tag="div">
           <MdFileDownload size={30} />
           <h3 className="ml-2 d-inline align-middle">{t(`Export`)}</h3>
         </ModalHeader>
@@ -210,7 +211,7 @@ export function ModalButtonExportDisconnected({
               <Card>
                 <ListGroup flush>
                   <ExportFileElement
-                    Icon={FileIconJson}
+                    Icon={<FileIconJson />}
                     filename={FILENAME_PARAMS}
                     HelpMain={t('Parameters of the current scenario in JSON format.')}
                     HelpDetails={t(
@@ -221,7 +222,7 @@ export function ModalButtonExportDisconnected({
                   />
 
                   <ExportFileElement
-                    Icon={FileIconTsv}
+                    Icon={<FileIconTsv />}
                     filename={FILENAME_RESULTS_SUMMARY}
                     HelpMain={t('Results (summarized) as tab-separated values.')}
                     HelpDetails={t(
@@ -232,7 +233,7 @@ export function ModalButtonExportDisconnected({
                   />
 
                   <ExportFileElement
-                    Icon={FileIconTsvDetailed}
+                    Icon={<FileIconTsvDetailed />}
                     filename={FILENAME_RESULTS_DETAILED}
                     HelpMain={t('Results (detailed) as tab-separated values.')}
                     HelpDetails={t(
@@ -243,7 +244,7 @@ export function ModalButtonExportDisconnected({
                   />
 
                   <ExportFileElement
-                    Icon={FileIconZip}
+                    Icon={<FileIconZip />}
                     filename={FILENAME_ZIP}
                     HelpMain={t('Results and parameters in a zip archive.')}
                     HelpDetails={t('Contains all of the above files in a single zip file.')}
