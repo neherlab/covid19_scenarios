@@ -1,7 +1,7 @@
 '''
 parse country case counts provided by ECDC
 '''
-import xlrd
+import json
 import csv
 
 from urllib.request import urlretrieve
@@ -12,52 +12,42 @@ from .utils import sorted_date, parse_countries, stoi, store_data
 # -----------------------------------------------------------------------------
 # Globals
 
-URL  = "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-"
+# URL  = "https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-"
+URL = "https://opendata.ecdc.europa.eu/covid19/casedistribution/json"
 
 # -----------------------------------------------------------------------------
 # Functions
 
 def retrieve_case_data():
     countries = parse_countries(1)
-    countries['UK'] = countries['GB'] # fixing error in data source 
-    countries['EL'] = countries['GR'] # fixing error in data source 
-    
+    countries['UK'] = countries['GB'] # fixing error in data source
+    countries['EL'] = countries['GR'] # fixing error in data source
+
     cases = defaultdict(list)
 
     # For now, always get the data from yesterday. We could make fancier check if today's data is already available
-    try: 
-        yesterday = datetime.today()
-        date = yesterday.strftime("%Y-%m-%d")
-        file_name, headers = urlretrieve(URL+date+".xlsx")
+    try:
+        file_name, headers = urlretrieve(URL)
     except:
-        yesterday = datetime.today() - timedelta(days=1)
-        date = yesterday.strftime("%Y-%m-%d")
-        file_name, headers = urlretrieve(URL+date+".xlsx")
+        print(f'attempting to write to {file_name}')
+        raise(f'Can not retrieve from {URL}')
 
-    workbook = xlrd.open_workbook(file_name)
 
-    #worksheet = workbook.sheet_by_name('COVID-19-geographic-disbtributi')
-    worksheet = workbook.sheet_by_index(0) # likely more stable
+    with open(file_name, 'r') as fh:
+        data = json.load(fh)
 
-    i = 0
-    Ix = {}
-    for c in worksheet.row_values(0):
-        Ix[c] = i
-        i += 1
-    for row_index in range(1, worksheet.nrows):
-        row = worksheet.row_values(row_index)
-
-        country = row[Ix['countriesAndTerritories']].replace("_"," ")
+    for row in data['records']:
+        country = row['countriesAndTerritories'].replace("_"," ")
 
         # replace country name if we have the "official" one in country_codes.csv
-        geoID = row[Ix['geoId']]
+        geoID = row['geoId']
         if geoID in countries:
             country = countries[geoID]
 
-        date = f"{int(row[Ix['year']]):04d}-{int(row[Ix['month']]):02d}-{int(row[Ix['day']]):02d}"
+        date = f"{int(row['year']):04d}-{int(row['month']):02d}-{int(row['day']):02d}"
 
         # note: Cases are per day, not cumulative. We need to aggregate later
-        cases[country].append({"time": date, "deaths": stoi(row[Ix['deaths']]), "cases":  stoi(row[Ix['cases']])})
+        cases[country].append({"time": date, "deaths": stoi(row['deaths']), "cases":  stoi(row['cases'])})
 
     for cntry, data in cases.items():
         cases[cntry] = sorted_date(cases[cntry])

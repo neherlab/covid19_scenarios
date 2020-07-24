@@ -44,8 +44,8 @@ def parse():
     dataframe['date'] = pd.to_datetime(dataframe.year.astype(str)+'-'+dataframe.month.astype(str)+'-'+dataframe.date.astype(str), format=time_format)
     dataframe['date']=dataframe['date'].astype(str)
 
-    dataframe_japan=dataframe[['date', 'pcr_tested_positive', 'death', 'hospitalized', 'serious', 'discharged']].copy()
-    cols_int=['pcr_tested_positive', 'death', 'hospitalized', 'serious', 'discharged']
+    dataframe_japan=dataframe[['date', 'tested_positive', 'death', 'hospitalized', 'serious', 'discharged']].copy()
+    cols_int=['tested_positive', 'death', 'hospitalized', 'serious', 'discharged']
     for col in cols_int:
         dataframe_japan[col] = dataframe_japan[col].apply(lambda x: int(x) if x == x else "")
     dataframe_japan = dataframe_japan.where(pd.notnull(dataframe_japan), None)

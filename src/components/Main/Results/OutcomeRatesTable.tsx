@@ -6,6 +6,8 @@ import * as d3 from 'd3'
 import { Col, Row } from 'reactstrap'
 import { connect } from 'react-redux'
 
+import { Chart } from 'react-google-charts'
+
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 
 import type { State } from '../../../state/reducer'
@@ -34,7 +36,7 @@ function TableRow({ entry, fmt }: RowProps) {
   }
 }
 
-const percentageFormatter = (v: number) => d3.format('.2f')(v * 100)
+const percentageFormatter = (v: number) => `${d3.format('.2f')(v * 100)}%`
 
 export interface TableProps {
   result?: AlgorithmResult
@@ -105,36 +107,42 @@ export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, for
 
   const totalFormatter = (value: number) => formatNumber(value)
 
+  const proportionsData = [
+    ['Cathergory', 'Percentage'],
+    [`Mild ${percentageFormatter(mildFrac.slice(1, 2)[0])}`, mildFrac.slice(1, 2)[0]],
+    [`Severe ${percentageFormatter(severeFrac.slice(1, 2)[0])}`, severeFrac.slice(1, 2)[0]],
+    [`Critical ${percentageFormatter(criticalFrac.slice(1, 2)[0])}`, criticalFrac.slice(1, 2)[0]],
+    [`Fatal ${percentageFormatter(deathFrac.slice(1, 2)[0])}`, deathFrac.slice(1, 2)[0]],
+  ]
+
+  const proportionsLabelColors = [
+    { color: '#fdbf6f' },
+    { color: '#fb9a99' },
+    { color: '#e31a1c' },
+    { color: '#cab2d6' },
+  ]
+
+  const PieData = () => {
+    return (
+      <Chart
+        width={'100%'}
+        height={'200px'}
+        chartType="PieChart"
+        loader={<div>Loading Chart...</div>}
+        data={proportionsData}
+        options={{
+          slices: proportionsLabelColors,
+          backgroundColor: forPrint ? 'white' : '#f8f9fa',
+        }}
+      />
+    )
+  }
+
   if (forPrint) {
     return (
       <div>
         <h3>{t('Proportions')}</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>{t('Outcome')}</th>
-              <th>{t('Population average')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{t('Mild')} [%]: </td>
-              <TableRow entry={mildFrac.slice(1, 2)} fmt={percentageFormatter} />
-            </tr>
-            <tr>
-              <td>{t('Severe')} [%]: </td>
-              <TableRow entry={severeFrac.slice(1, 2)} fmt={percentageFormatter} />
-            </tr>
-            <tr>
-              <td>{t('Critical')} [%]: </td>
-              <TableRow entry={criticalFrac.slice(1, 2)} fmt={percentageFormatter} />
-            </tr>
-            <tr>
-              <td>{t('Fatal')} [%]: </td>
-              <TableRow entry={deathFrac.slice(1, 2)} fmt={percentageFormatter} />
-            </tr>
-          </tbody>
-        </table>
+        <PieData />
         <h3>{t('Totals/Peak')}</h3>
         <table>
           <thead>
@@ -171,32 +179,7 @@ export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, for
     <Row data-testid="OutcomeRatesTable">
       <Col lg={6}>
         <h3>{t('Proportions')}</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>{t('Outcome')}</th>
-              <th>{t('Population average')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{t('Mild')} [%]: </td>
-              <TableRow entry={mildFrac.slice(1, 2)} fmt={percentageFormatter} />
-            </tr>
-            <tr>
-              <td>{t('Severe')} [%]: </td>
-              <TableRow entry={severeFrac.slice(1, 2)} fmt={percentageFormatter} />
-            </tr>
-            <tr>
-              <td>{t('Critical')} [%]: </td>
-              <TableRow entry={criticalFrac.slice(1, 2)} fmt={percentageFormatter} />
-            </tr>
-            <tr>
-              <td>{t('Fatal')} [%]: </td>
-              <TableRow entry={deathFrac.slice(1, 2)} fmt={percentageFormatter} />
-            </tr>
-          </tbody>
-        </table>
+        <PieData />
       </Col>
       <Col lg={6}>
         <h3>{t('Totals/Peak')}</h3>
