@@ -266,7 +266,8 @@ function derivative(flux: StateFlux): TimeDerivative {
     grad.cumulative.recovered[age] = flux.infectious.recovered[age] + flux.severe.recovered[age]
     grad.cumulative.hospitalized[age] = flux.infectious.severe[age]
     grad.cumulative.critical[age] = flux.severe.critical[age]
-    grad.cumulative.fatality[age] = flux.critical.fatality[age] + flux.overflow.fatality[age] + flux.severe.palliative[age]
+    grad.cumulative.fatality[age] =
+      flux.critical.fatality[age] + flux.overflow.fatality[age] + flux.severe.palliative[age]
   }
 
   return grad
@@ -284,7 +285,7 @@ function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFl
     severe: {
       critical: [],
       recovered: [],
-      palliative: [], 
+      palliative: [],
     },
     critical: {
       severe: [],
