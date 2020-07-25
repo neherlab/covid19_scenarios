@@ -9,7 +9,7 @@ var validate = (function () {
     $id: "_SchemaVer",
     title: "_SchemaVer",
     type: "string",
-    const: "2.0.0",
+    const: "2.1.0",
   };
   refVal[1] = refVal1;
   var refVal2 = (function () {
@@ -3458,6 +3458,7 @@ var validate = (function () {
               false ||
               key0 == "ageGroup" ||
               key0 == "isolated" ||
+              key0 == "palliative" ||
               key0 == "confirmed" ||
               key0 == "severe" ||
               key0 == "critical" ||
@@ -3591,6 +3592,74 @@ var validate = (function () {
               var err = {
                 keyword: "type",
                 dataPath: (dataPath || "") + "/isolated",
+                schemaPath: "Percentage#/type",
+                params: {
+                  type: "number",
+                },
+                message: "should be number",
+              };
+              if (vErrors === null) vErrors = [err];
+              else vErrors.push(err);
+              errors++;
+            }
+            var valid2 = errors === errs_2;
+            var valid1 = errors === errs_1;
+          }
+          var data1 = data.palliative;
+          if (data1 === undefined) {
+            valid1 = false;
+            var err = {
+              keyword: "required",
+              dataPath: (dataPath || "") + "",
+              schemaPath: "#/required",
+              params: {
+                missingProperty: "palliative",
+              },
+              message: "should have required property 'palliative'",
+            };
+            if (vErrors === null) vErrors = [err];
+            else vErrors.push(err);
+            errors++;
+          } else {
+            var errs_1 = errors;
+            var errs_2 = errors;
+            if (typeof data1 === "number") {
+              if (data1 > 100 || data1 !== data1) {
+                var err = {
+                  keyword: "maximum",
+                  dataPath: (dataPath || "") + "/palliative",
+                  schemaPath: "Percentage#/maximum",
+                  params: {
+                    comparison: "<=",
+                    limit: 100,
+                    exclusive: false,
+                  },
+                  message: "should be <= 100",
+                };
+                if (vErrors === null) vErrors = [err];
+                else vErrors.push(err);
+                errors++;
+              }
+              if (data1 < 0 || data1 !== data1) {
+                var err = {
+                  keyword: "minimum",
+                  dataPath: (dataPath || "") + "/palliative",
+                  schemaPath: "Percentage#/minimum",
+                  params: {
+                    comparison: ">=",
+                    limit: 0,
+                    exclusive: false,
+                  },
+                  message: "should be >= 0",
+                };
+                if (vErrors === null) vErrors = [err];
+                else vErrors.push(err);
+                errors++;
+              }
+            } else {
+              var err = {
+                keyword: "type",
+                dataPath: (dataPath || "") + "/palliative",
                 schemaPath: "Percentage#/type",
                 params: {
                   type: "number",
@@ -3903,6 +3972,7 @@ var validate = (function () {
       required: [
         "ageGroup",
         "isolated",
+        "palliative",
         "confirmed",
         "severe",
         "critical",
@@ -3913,6 +3983,9 @@ var validate = (function () {
           $ref: "AgeGroup#",
         },
         isolated: {
+          $ref: "Percentage#",
+        },
+        palliative: {
           $ref: "Percentage#",
         },
         confirmed: {

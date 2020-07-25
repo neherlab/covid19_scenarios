@@ -1,4 +1,4 @@
-export const schemaVer = '2.0.0'
+export const schemaVer = '2.1.0'
 
 // To parse this data:
 //
@@ -163,13 +163,14 @@ export interface SeverityDistributionDatum {
   critical: number;
   fatal: number;
   isolated: number;
+  palliative: number;
   severe: number;
 }
 
 export interface Shareable {
   ageDistributionData: AgeDistributionData;
   scenarioData: ScenarioData;
-  schemaVer: '2.0.0';
+  schemaVer: '2.1.0';
   severityDistributionData: SeverityDistributionData;
 }
 
@@ -716,6 +717,7 @@ const typeMap: any = {
       { json: "critical", js: "critical", typ: 3.14 },
       { json: "fatal", js: "fatal", typ: 3.14 },
       { json: "isolated", js: "isolated", typ: 3.14 },
+      { json: "palliative", js: "palliative", typ: 3.14 },
       { json: "severe", js: "severe", typ: 3.14 },
     ],
     false

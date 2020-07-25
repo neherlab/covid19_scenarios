@@ -51,7 +51,7 @@ validate.schema = {
   $id: "_SchemaVer",
   title: "_SchemaVer",
   type: "string",
-  const: "2.0.0",
+  const: "2.1.0",
 };
 validate.errors = null;
 module.exports = validate;

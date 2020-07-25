@@ -56,7 +56,7 @@ async function quicktypesGenerate(
   const { lines } = await quicktype({ inputData, lang, rendererOptions })
   let code = lines.join('\n')
 
-  const schemaVer = '2.0.0'
+  const schemaVer = '2.1.0'
 
   if (lang === 'typescript') {
     code = prettier.format(code, { parser: 'typescript' })

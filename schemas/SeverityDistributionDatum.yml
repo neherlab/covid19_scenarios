@@ -9,6 +9,7 @@ type: object
 required:
   - ageGroup
   - isolated
+  - palliative
   - confirmed
   - severe
   - critical
