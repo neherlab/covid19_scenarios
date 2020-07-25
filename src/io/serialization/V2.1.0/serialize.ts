@@ -1,6 +1,6 @@
-import { trim, isEqual } from 'src/io/serialization/v2.1.0/node_modules/lodash'
+import { trim, isEqual } from 'lodash'
 
-import Ajv from 'src/io/serialization/v2.1.0/node_modules/ajv'
+import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
 
 import validateShareable, { errors } from '../../../.generated/latest/validateShareable'
