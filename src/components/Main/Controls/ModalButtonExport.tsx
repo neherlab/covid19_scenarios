@@ -42,7 +42,7 @@ export const FileIconJson = () => (
   />
 )
 
-export const FileIconTsv = ({ color = '#2e7ec9' }: { color: string }) => (
+export const FileIconTsv = ({ color = '#2e7ec9' }: { color?: string }) => (
   <FileIcon
     {...defaultStyles.csv}
     className="mr-2 export-file-icon"
