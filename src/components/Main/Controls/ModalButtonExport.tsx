@@ -70,10 +70,10 @@ export const FileIconZip = () => (
 )
 
 export interface ExportElementProps {
-  Icon: React.ElementType
+  Icon: React.ReactNode
   filename: string
-  HelpMain: React.ElementType
-  HelpDetails: React.ElementType
+  HelpMain: React.ReactNode
+  HelpDetails: React.ReactNode
   HelpDownload: string
   onDownload(): void
 }
@@ -89,9 +89,7 @@ export function ExportFileElement({
   console.log(typeof Icon)
   return (
     <ListGroupItem className="d-flex">
-      <span className="export-file-icon-container">
-        <Icon />
-      </span>
+      <span className="export-file-icon-container">{Icon}</span>
       <div className="mx-3 d-inline-block">
         <pre className="mb-0 export-file-filename">{filename}</pre>
         <p className="my-0 small">{HelpMain}</p>
