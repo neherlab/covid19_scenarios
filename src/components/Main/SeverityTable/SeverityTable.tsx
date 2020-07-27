@@ -107,7 +107,7 @@ const DecimalTypeProvider = (props: DataTypeProviderProps) => (
   <DataTypeProvider formatterComponent={DecimalFormatter} {...props} />
 )
 
-export function getErrorMessages(t: TFunction, errors?: FormikErrors<AgeGroupRow[]>): string[] {
+export function getErrorMessages(t: TFunction, errors?: FormikErrors<(AgeGroupRow | string)[]>): string[] {
   if (!errors) {
     return []
   }
@@ -116,7 +116,10 @@ export function getErrorMessages(t: TFunction, errors?: FormikErrors<AgeGroupRow
     const rowNum = Number.parseInt(i, 10)
     const ageGroup = Object.values(AgeGroup)[rowNum]
 
-    if (err) {
+    if (typeof err === 'string') {
+      return [...result, t(`Error in row "{{ageGroup}}": {{message}}`, { ageGroup, message: err })]
+    }
+    if (typeof err === 'object') {
       const messages = Object.entries(err).map(([column, message]) =>
         t('Error in column "{{column}}", row "{{ageGroup}}": {{message}}', { column, ageGroup, message }),
       )
@@ -150,7 +153,7 @@ function SeverityTableDisconnected({
 }: SeverityTableProps) {
   const { t } = useTranslation()
   const [{ value }, { error }, { setValue }] = useField<AgeGroupRow[]>('severity')
-  const errorMessages = getErrorMessages(t, error)
+  const errorMessages = getErrorMessages(t, error as FormikErrors<(AgeGroupRow | string)[]>)
 
   if (!value) {
     return null
