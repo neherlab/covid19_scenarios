@@ -63,9 +63,6 @@ async function quicktypesGenerate(
 
     // insert schemaVer constant
     code = `export const schemaVer = '${schemaVer}'\n\n${code}`
-
-    // make schemaVer to be of an exact string type (for example '2.0.0', instead of 'string')
-    code = code.replace(`schemaVer: string`, `schemaVer: '${schemaVer}'`)
   } else if (lang === 'python') {
     // insert schema_ver variable
     code = code.replace(`T = TypeVar("T")`, `schema_ver = '${schemaVer}'\n\nT = TypeVar("T")`)

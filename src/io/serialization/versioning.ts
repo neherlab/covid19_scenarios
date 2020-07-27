@@ -5,9 +5,11 @@ import { last } from 'lodash'
 import semver from 'semver'
 
 import type { ScenarioParameters } from '../../algorithms/types/Param.types'
+import { schemaVer } from '../../.generated/latest/types'
 
 import { getOrThrow } from '../../helpers/getOrThrow'
 
+import v2_0_0 from './v2.0.0/serialize'
 import v2_1_0 from './v2.1.0/serialize'
 
 export type Serializer = (input: ScenarioParameters) => string
@@ -20,6 +22,7 @@ export interface Serializers {
 
 export const SERIALIZERS = new Map<string, Serializers>(
   Object.entries({
+    ...v2_0_0,
     ...v2_1_0,
   }),
 )
