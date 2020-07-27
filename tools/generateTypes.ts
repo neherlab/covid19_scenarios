@@ -17,7 +17,7 @@ const rimraf = util.promisify(rimrafOriginal)
 const SCHEMA_EXTENSION = '.yml'
 
 class Store extends JSONSchemaStore {
-  private schemasRoot: string
+  private readonly schemasRoot: string
 
   constructor(schemasRoot: string) {
     super()

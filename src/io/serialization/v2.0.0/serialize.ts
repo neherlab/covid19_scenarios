@@ -1,4 +1,5 @@
-import { trim, isEqual } from 'lodash'
+/* eslint-disable camelcase */
+import { trim } from 'lodash'
 
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
@@ -7,7 +8,6 @@ import validateShareable, { errors } from '../../../.generated/2.0.0/validateSha
 import { Convert } from '../../../.generated/2.0.0/types'
 
 import type { ScenarioParameters, Shareable } from '../../../algorithms/types/Param.types'
-import { toExternal, toInternal } from '../../../algorithms/types/convert'
 
 import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from '../errors'
 import v2_1_0 from '../v2.1.0/serialize'
