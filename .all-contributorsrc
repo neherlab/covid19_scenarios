@@ -800,6 +800,36 @@
         "data",
         "design"
       ]
+    },
+    {
+      "login": "Chong-anson",
+      "name": "Anson Chong",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/40177631?v=4",
+      "profile": "https://chong-anson.github.io/portfolio/",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "nspringman",
+      "name": "Nathan Springman",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/46718540?v=4",
+      "profile": "https://github.com/nspringman",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "ekrell",
+      "name": "Evan Krell",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4443660?v=4",
+      "profile": "http://ekrell.pdp6.org/",
+      "contributions": [
+        "code",
+        "data"
+      ]
     }
   ],
   "repoType": "github",

@@ -99,6 +99,6 @@ def parse():
         regions['Spain'] = regions['ESP-Total']
         del regions['ESP-Total']
     except:
-        print("Spain totals don't exist")
+        print("  /!\ Warning: totals don't exist for Spain")
 
     store_data(regions, 'spain', cols)
