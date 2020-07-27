@@ -1,0 +1,50 @@
+{
+  "data": {
+    "epidemiological": {
+      "hospitalStayDays": 3.0,
+      "icuStayDays": 14.0,
+      "infectiousPeriodDays": 3.0,
+      "latencyDays": 3.0,
+      "overflowSeverity": 2.0,
+      "peakMonth": 0,
+      "r0": {
+        "begin": 2.12,
+        "end": 2.59
+      },
+      "seasonalForcing": 0.0
+    },
+    "mitigation": {
+      "mitigationIntervals": [
+        {
+          "color": "#cccccc",
+          "name": "Intervention 1",
+          "timeRange": {
+            "begin": "2020-04-02",
+            "end": "2020-09-01"
+          },
+          "transmissionReduction": {
+            "begin": 34.4,
+            "end": 41.6
+          }
+        }
+      ]
+    },
+    "population": {
+      "ageDistributionName": "Afghanistan",
+      "caseCountsName": "Afghanistan",
+      "hospitalBeds": 17470,
+      "icuBeds": 524,
+      "importsPerDay": 0.1,
+      "initialNumberOfCases": 58,
+      "populationServed": 37172386
+    },
+    "simulation": {
+      "numberStochasticRuns": 15,
+      "simulationTimeRange": {
+        "begin": "2020-03-03",
+        "end": "2020-08-31"
+      }
+    }
+  },
+  "name": "Afghanistan"
+}
