@@ -5,7 +5,6 @@ import { last } from 'lodash'
 import semver from 'semver'
 
 import type { ScenarioParameters } from '../../algorithms/types/Param.types'
-import { schemaVer } from '../../.generated/latest/types'
 
 import { getOrThrow } from '../../helpers/getOrThrow'
 
