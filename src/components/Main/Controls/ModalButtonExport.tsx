@@ -86,7 +86,6 @@ export function ExportFileElement({
   HelpDownload,
   onDownload,
 }: ExportElementProps) {
-  console.log(typeof Icon)
   return (
     <ListGroupItem className="d-flex">
       <span className="export-file-icon-container">{Icon}</span>
