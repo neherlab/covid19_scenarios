@@ -157,8 +157,8 @@ export const schema: yup.Schema<FormData> = yup
             confirmed: percentageSchema.required(MSG_REQUIRED),
             severe: percentageSchema.required(MSG_REQUIRED),
             palliative: percentageSchema.required(MSG_REQUIRED),
-            critical: percentageSchema.required(MSG_REQUIRED).test('max', MSG_EXCEED_100, function valExceed(value) {
-              return value <= 100 - this.parent
+            critical: percentageSchema.required(MSG_REQUIRED).test('max', MSG_EXCEED_100, function valExceed(critical) {
+              return critical + this.parent.palliative <= 100
             }),
             fatal: percentageSchema.required(MSG_REQUIRED),
             isolated: percentageSchema.required(MSG_REQUIRED),
