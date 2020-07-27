@@ -6,8 +6,6 @@ import neodoc from 'neodoc'
 import { DEFAULT_SEVERITY_DISTRIBUTION } from '../constants'
 
 import { run } from '../algorithms/run'
-//import { getAgeDistributionData } from '../io/defaults/getAgeDistributionData'
-import { getSeverityDistributionData } from '../io/defaults/getSeverityDistributionData'
 
 import { ScenarioFlat, ScenarioData, SeverityDistributionData, AgeDistributionData, Convert } from '../algorithms/types/Param.types'
 import { toInternal } from '../algorithms/types/convert'
@@ -20,13 +18,13 @@ const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
 process.on('unhandledRejection', handleRejection)
 
 /**
- * Run the model //TODO these docs
+ * Run the model //TODO: these docs
  *
- * @param params:ScenarioFlat it's got some properties to it. yeah...
- * @param severity            Severity array
- * @param ageDistribution     Age distribution array
+ * @param params: ScenarioFlat  it's got some properties to it
+ * @param severity              Severity array
+ * @param ageDistribution       Age distribution array
  */
-export async function runModel({ params, severity, ageDistribution }){
+export async function runModel(params, severity, ageDistribution){
   return await run({ params, severity, ageDistribution })
 }
 
@@ -167,7 +165,7 @@ async function main() {
   try {
     const outputFile = argv['<output>']
     console.info('Running the model')
-    const result = await runModel({ params, severity, ageDistribution })
+    const result = await runModel(params, severity, ageDistribution)
     console.info('Run complete')
     // console.info(result)
     console.info(`Writing output to ${outputFile}`)
