@@ -1,14 +1,28 @@
-/* eslint-disable no-console, unicorn/no-process-exit,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-floating-promises */
+/* eslint-disable unicorn/no-process-exit,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-floating-promises, sonarjs/no-duplicate-string */
 import fs from 'fs-extra'
-import yargs from 'yargs'
 import neodoc from 'neodoc'
-
 import { DEFAULT_SEVERITY_DISTRIBUTION } from '../constants'
 
 import { run } from '../algorithms/run'
 
-import { ScenarioFlat, ScenarioData, SeverityDistributionData, AgeDistributionData, Convert } from '../algorithms/types/Param.types'
+import {
+  ScenarioFlat,
+  ScenarioData,
+  SeverityDistributionData,
+  SeverityDistributionArray,
+  AgeDistributionData,
+  AgeDistributionArray,
+  Convert,
+} from '../algorithms/types/Param.types'
 import { toInternal } from '../algorithms/types/convert'
+
+interface Arguments {
+  '<output>': string
+  '<scenario>': string
+  '--severity'?: string
+  '--age'?: string
+  '--ageDistribution'?: string
+}
 
 const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
   console.error(err)
@@ -24,8 +38,12 @@ process.on('unhandledRejection', handleRejection)
  * @param severity              Severity array
  * @param ageDistribution       Age distribution array
  */
-export async function runModel(params, severity, ageDistribution){
-  return await run({ params, severity, ageDistribution })
+export async function runModel(
+  params: ScenarioFlat,
+  severity: SeverityDistributionData,
+  ageDistribution: AgeDistributionData,
+) {
+  return run({ params, severity, ageDistribution })
 }
 
 /**
@@ -35,53 +53,48 @@ export async function runModel(params, severity, ageDistribution){
  */
 function readJsonFromFile<T>(inputFilename: string) {
   console.info(`Reading data from file ${inputFilename}`)
-  const inputData = fs.readJsonSync(inputFilename, 'utf8')
-  return inputData
+  return fs.readJsonSync(inputFilename, 'utf8') as T
 }
 
-let cachedSeverityDistributionData: SeverityDistributionData;
 /**
  * Get severity distribution data. If a file is specified on the command
  * line, give priority to its contents, else load a default distribution.
  *
  * @param inputFilename The path to the file.
  */
-function getSeverity(inputFilename: string | undefined) {
+function getSeverity(inputFilename: string | undefined): SeverityDistributionData {
   if (inputFilename) {
-    const data = readJsonFromFile<SeverityDistributionData>(inputFilename)
+    const data: SeverityDistributionData = readJsonFromFile<SeverityDistributionData>(inputFilename)
     return data.data
-  } else {
-    let data;
-    if(cachedSeverityDistributionData){
-      data = cachedAgeDistributionData;
-    } else {
-      data = readJsonFromFile<SeverityDistributionData>('./src/assets/data/severityDistributions.json')
-    }
-    
-    const severityDistributionFound = data.all.find((s) => s.name === DEFAULT_SEVERITY_DISTRIBUTION)
-    if (!severityDistributionFound) {
-      throw new Error(`Error: scenario "${name}" not found in JSON`)
-    }
-
-    const severityDistribution = Convert.toSeverityDistributionData(JSON.stringify(severityDistributionFound))
-
-    severityDistribution.data.sort((a, b) => {
-      if (a.ageGroup > b.ageGroup) {
-        return +1
-      }
-
-      if (a.ageGroup < b.ageGroup) {
-        return -1
-      }
-
-      return 0
-    })
-
-    return severityDistribution.data
   }
+
+  const dataRaw: SeverityDistributionData = readJsonFromFile<SeverityDistributionData>(
+    './src/assets/data/severityDistributions.json',
+  )
+  const severityDistributionFound: SeverityDistributionArray = ((dataRaw as unknown) as SeverityDistributionArray).all.find(
+    (s) => s.name === DEFAULT_SEVERITY_DISTRIBUTION,
+  )
+  if (!severityDistributionFound) {
+    throw new Error(`Error: scenario not found`)
+  }
+
+  const severityDistribution = Convert.toSeverityDistributionData(JSON.stringify(severityDistributionFound))
+
+  severityDistribution.data.sort((a, b) => {
+    if (a.ageGroup > b.ageGroup) {
+      return +1
+    }
+
+    if (a.ageGroup < b.ageGroup) {
+      return -1
+    }
+
+    return 0
+  })
+
+  return severityDistribution.data
 }
 
-let cachedAgeDistributionData: AgeDistributionData; // I assume at some point we'll implement doing more than one run at a time? should we do (later) a check 
 /**
  * Get age distribution data. If a file is specified on the command
  * line, give priority to its contents, else load the distribution
@@ -91,44 +104,40 @@ let cachedAgeDistributionData: AgeDistributionData; // I assume at some point we
  * @param name The age distribution name to use if no file is
  *             specified.
  */
-function getAge(inputFilename: string | undefined, name: string) {
+function getAge(inputFilename: string | undefined, name: string): AgeDistributionData {
   if (inputFilename) {
     const data = readJsonFromFile<AgeDistributionData>(inputFilename)
     return data.data
-  } else {
-    let data;
-    if(cachedAgeDistributionData){
-      data = cachedAgeDistributionData;
-    } else {
-      data = readJsonFromFile<AgeDistributionData>('./src/assets/data/ageDistribution.json')
-    }
-    
-    const ageDistributionFound = data.all.find((cad) => cad.name === name)
-    if (!ageDistributionFound) {
-      throw new Error(`Error: country age distribution "${name}" not found in JSON`)
-    }
-
-    const ageDistribution = Convert.toAgeDistributionData(JSON.stringify(ageDistributionFound))
-
-    ageDistribution.data.sort((a, b) => {
-      if (a.ageGroup > b.ageGroup) {
-        return +1
-      }
-
-      if (a.ageGroup < b.ageGroup) {
-        return -1
-      }
-
-      return 0
-    })
-
-    return ageDistribution.data
   }
+  const dataRaw: AgeDistributionData = readJsonFromFile<AgeDistributionData>('./src/assets/data/ageDistribution.json')
+  const ageDistributionFound: AgeDistributionArray = ((dataRaw as unknown) as AgeDistributionArray).all.find(
+    (cad) => cad.name === name,
+  )
+  if (!ageDistributionFound) {
+    throw new Error(`Error: country age distribution "${name}" not found in JSON`)
+  }
+
+  const ageDistribution = Convert.toAgeDistributionData(JSON.stringify(ageDistributionFound))
+
+  ageDistribution.data.sort((a, b) => {
+    if (a.ageGroup > b.ageGroup) {
+      return +1
+    }
+
+    if (a.ageGroup < b.ageGroup) {
+      return -1
+    }
+
+    return 0
+  })
+
+  return ageDistribution.data
 }
 
 async function main() {
   // Command line argument processing.
-  const argv = neodoc.run(`
+  const argv: Arguments = neodoc.run(
+    `
     usage: cli <scenario> <output> [options] [(--age=<path> | --ageDistribution=<ageDistribution>)]
           
     options:
@@ -143,8 +152,10 @@ async function main() {
       --severity=<pathToSeverityDistribution>     
                             Path to severity JSON file
 
-    `, { smartOptions: true })
-  
+    `,
+    { smartOptions: true },
+  )
+
   // Read the scenario data.
   const scenarioData = readJsonFromFile<ScenarioData>(argv['<scenario>'])
   const scenario = toInternal(scenarioData.data)
@@ -154,16 +165,16 @@ async function main() {
     ...scenario.simulation,
     ...scenario.mitigation,
   }
-  
-  const ageDistributionName = (argv['--ageDistribution']) ? argv['--ageDistribution'] : params.ageDistributionName
-  
+
+  const ageDistributionName: string = argv['--ageDistribution'] ? argv['--ageDistribution'] : params.ageDistributionName
+
   // Load severity and age data.
   const severity = getSeverity(argv['--severity'])
   const ageDistribution = getAge(argv['--age'], ageDistributionName)
 
   // Run the model.
   try {
-    const outputFile = argv['<output>']
+    const outputFile: string = argv['<output>']
     console.info('Running the model')
     const result = await runModel(params, severity, ageDistribution)
     console.info('Run complete')
