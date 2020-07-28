@@ -14,6 +14,12 @@ two types of reasons
 We realize this can be confusing, but in this evolving situation, this is difficult to avoid. We try to summarize the
 most significant model changes below.
 
+
+### 2020-07-24: Added palliative flux to severity distribution
+Palliative flux is a transition when patients move from severe to death, without going to critical care. It represents cases of death straight from hospital regular ward (or nursing home). This in principle an age dependent parameter so we have created a new column on age specific severity distribution table to represent this percentage. Click on the severity distribution table and set this along other parameters for each age group. The sum of palliative and critical percentage can't exceed 100%. Due to this modification schema version was upgraded from 2.0.0 to 2.1.0 allowing old versions of json files holding parameters to keep working on this new version.
+
+
+
 ### 2020-06-14: Default plots are now include weekly cases and deaths
 Most locations have a pronounced weekly variation of case and fatality counts which have administrative rather than epidemiological reasons.
 We therefore decided to plot case counts and deaths as a rolling average over the last seven days, resulting in much smoother trajectories.

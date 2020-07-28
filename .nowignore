@@ -3,4 +3,4 @@
 .github
 .ignore
 .reports
-src/.generated
+src/.generated/latest
