@@ -94,6 +94,7 @@
     "lodash": "4.17.19",
     "mathjs": "7.1.0",
     "moment": "2.27.0",
+    "neodoc": "2.0.2",
     "numbro": "2.3.1",
     "p-min-delay": "3.1.0",
     "papaparse": "5.2.0",
