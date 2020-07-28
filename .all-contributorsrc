@@ -830,6 +830,37 @@
         "code",
         "data"
       ]
+    },
+    {
+      "login": "r-s-rai",
+      "name": "r-s-rai",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/43115888?v=4",
+      "profile": "https://github.com/r-s-rai",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "tiagoandresvaz",
+      "name": "TIAGO ANDRES VAZ",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/752397?v=4",
+      "profile": "https://github.com/tiagoandresvaz",
+      "contributions": [
+        "code",
+        "data",
+        "ideas"
+      ]
+    },
+    {
+      "login": "samanthahamilton",
+      "name": "Sam",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/67113216?v=4",
+      "profile": "https://darlingdocs.wordpress.com/",
+      "contributions": [
+        "doc",
+        "content"
+      ]
     }
   ],
   "repoType": "github",
