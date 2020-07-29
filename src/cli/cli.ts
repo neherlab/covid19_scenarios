@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/no-process-exit,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-floating-promises, sonarjs/no-duplicate-string */
+/* eslint-disable unicorn/no-process-exit,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-floating-promises */
 import fs from 'fs-extra'
 import neodoc from 'neodoc'
 import { DEFAULT_SEVERITY_DISTRIBUTION } from '../constants'
