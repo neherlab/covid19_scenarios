@@ -1,8 +1,6 @@
 /* eslint-disable no-restricted-globals */
 /* Necessary because 'self' should be accepted as a global in webworkers. */
 
-import 'core-js'
-
 import 'regenerator-runtime'
 
 import { run, RunParams } from '../../algorithms/run'
