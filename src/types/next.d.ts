@@ -77,4 +77,5 @@ export interface NextConfig {
     ignoreDevErrors?: boolean
     ignoreBuildErrors?: boolean
   }
+  exclude?: string | string[] | RegExp | RegExp[]
 }

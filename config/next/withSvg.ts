@@ -3,7 +3,7 @@ import type { NextConfig } from 'next'
 import { addWebpackLoader } from './lib/addWebpackLoader'
 
 export default function withSvg(nextConfig: NextConfig) {
-  return addWebpackLoader(nextConfig, (webpackConfig, { dev, isServer }) => ({
+  return addWebpackLoader(nextConfig, (webpackConfig, { dev }) => ({
     // eslint-disable-next-line security/detect-unsafe-regex
     test: /\.svg(\?.*)?$/i,
     use: [
@@ -23,10 +23,8 @@ export default function withSvg(nextConfig: NextConfig) {
         loader: 'url-loader',
         options: {
           limit: false,
-          publicPath: `${nextConfig.assetPrefix}/_next/static/images/`,
-          outputPath: `${isServer ? '../' : ''}static/images/`,
           name: dev ? '[name].[ext]' : '[name].[hash:7].[ext]',
-          esModule: true,
+          publicPath: 'assets',
         },
       },
     ],

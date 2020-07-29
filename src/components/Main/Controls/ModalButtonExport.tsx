@@ -15,9 +15,9 @@ import {
   ListGroupItem,
 } from 'reactstrap'
 import { MdFileDownload } from 'react-icons/md'
-import FileIcon, { defaultStyles } from 'react-file-icon'
-import { selectHasResult, selectResult } from '../../../state/algorithm/algorithm.selectors'
+import { FileIcon, defaultStyles } from 'react-file-icon'
 
+import { selectHasResult, selectResult } from '../../../state/algorithm/algorithm.selectors'
 import type { State } from '../../../state/reducer'
 import type { ScenarioParameters } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -31,7 +31,6 @@ export const FileIconJson = () => (
   <FileIcon
     {...defaultStyles.json}
     className="mr-2 export-file-icon"
-    size={45}
     extension="json"
     type="code"
     labelColor={'#66b51d'}
@@ -44,7 +43,6 @@ export const FileIconTsv = ({ color = '#2e7ec9' }: { color?: string }) => (
   <FileIcon
     {...defaultStyles.csv}
     className="mr-2 export-file-icon"
-    size={45}
     extension="tsv"
     type="spreadsheet"
     labelColor={color}

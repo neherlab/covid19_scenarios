@@ -12,7 +12,6 @@ const FEATURE_POLICY = {
   'midi': `'none'`,
   'payment': `'none'`,
   'picture-in-picture': `'none'`,
-  'screen-wake-lock': `'none'`,
   'sync-xhr': `'none'`,
   'usb': `'none'`,
   'xr-spatial-tracking': `'none'`,
@@ -63,23 +62,35 @@ function filterHeaders(headers) {
   }, {})
 }
 
-function modifyHeaders(headers) {
+function modifyHeaders({ request, response }) {
   let newHeaders = addHeaders(NEW_HEADERS)
 
   newHeaders = {
-    ...headers,
+    ...response.headers,
     ...newHeaders,
   }
 
   newHeaders = filterHeaders(newHeaders)
 
+  const url = request.uri || request.url
+  if (url.startsWith('/_next')) {
+    const cacheHeaders = addHeaders({
+      'Cache-Control': 'public,max-age=31536000,immutable',
+    })
+
+    newHeaders = {
+      ...newHeaders,
+      ...cacheHeaders,
+    }
+  }
+
   return newHeaders
 }
 
 exports.handler = (event, context, callback) => {
-  const { response } = event.Records[0].cf
-  response.headers = modifyHeaders(response.headers)
+  const { request, response } = event.Records[0].cf
+  response.headers = modifyHeaders({ request, response })
   callback(null, response)
 }
 
-exports.NEW_HEADERS = NEW_HEADERS
+exports.modifyHeaders = modifyHeaders

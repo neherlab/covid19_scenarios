@@ -21,12 +21,16 @@ import expressStaticGzip from 'express-static-gzip'
 import { getenv } from '../../lib/getenv'
 import { findModuleRoot } from '../../lib/findModuleRoot'
 
-import { NEW_HEADERS } from '../../infra/lambda-at-edge/modifyOutgoingHeaders.lambda'
+import { modifyHeaders } from '../../infra/lambda-at-edge/modifyOutgoingHeaders.lambda'
 
 const { moduleRoot } = findModuleRoot()
 
 const buildDir = path.join(moduleRoot, '.build', 'production', 'web')
 const nextDir = path.join(buildDir, '_next')
+
+export interface NewHeaders {
+  [key: string]: { key: string; value: string }[]
+}
 
 function main() {
   const app = express()
@@ -45,7 +49,9 @@ function main() {
   }
 
   app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
-    Object.entries(NEW_HEADERS).forEach(([header, value]) => {
+    const newHeaders = modifyHeaders({ request: req, response: res }) as NewHeaders
+    Object.entries(newHeaders).forEach(([header, arr]) => {
+      const [{ value }] = arr
       if (header.toLowerCase() === 'strict-transport-security') {
         return
       }

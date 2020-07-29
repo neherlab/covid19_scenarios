@@ -8,6 +8,8 @@ import 'jest-axe'
 
 import 'jest-extended/types'
 
+import 'jest-styled-components'
+
 import 'jest-chain'
 
 declare global {

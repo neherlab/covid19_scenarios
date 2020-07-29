@@ -3,7 +3,7 @@ import React from 'react'
 import { get } from 'lodash'
 
 import moment from 'moment'
-import { goBack } from 'connected-react-router'
+import { goBack } from 'connected-next-router'
 import { connect } from 'react-redux'
 import { Button, Col, Container, Row, Table } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
