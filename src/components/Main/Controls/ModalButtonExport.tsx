@@ -57,7 +57,6 @@ export const FileIconZip = () => (
   <FileIcon
     {...defaultStyles.zip}
     className="mr-2 export-file-icon"
-    size={45}
     extension="zip"
     labelColor="#91640f"
     glyphColor="#91640f"
@@ -84,8 +83,8 @@ export function ExportFileElement({
 }: ExportElementProps) {
   return (
     <ListGroupItem className="d-flex">
-      <span className="export-file-icon-container">{Icon}</span>
-      <div className="mx-3 d-inline-block">
+      <span className="export-file-icon-container flex-grow-0">{Icon}</span>
+      <div className="mx-3 d-inline-block flex-grow-1">
         <pre className="mb-0 export-file-filename">{filename}</pre>
         <p className="my-0 small">{HelpMain}</p>
         <p className="my-0 small">{HelpDetails}</p>
