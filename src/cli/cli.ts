@@ -16,14 +16,6 @@ import {
 } from '../algorithms/types/Param.types'
 import { toInternal } from '../algorithms/types/convert'
 
-interface Arguments {
-  '<output>': string
-  '<scenario>': string
-  '--severity'?: string
-  '--age'?: string
-  '--ageDistribution'?: string
-}
-
 const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
   console.error(err)
   process.exit(1)
@@ -136,7 +128,7 @@ function getAge(inputFilename: string | undefined, name: string): AgeDistributio
 
 async function main() {
   // Command line argument processing.
-  const argv: Arguments = neodoc.run(
+  const argv = neodoc.run(
     `
     usage: cli <scenario> <output> [options] [(--age=<path> | --ageDistribution=<ageDistribution>)]
           
