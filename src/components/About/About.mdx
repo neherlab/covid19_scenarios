@@ -2,11 +2,10 @@ import { Container, Col, Row } from 'reactstrap'
 
 import { FaGithub } from 'react-icons/fa'
 
-import model from 'src/assets/img/model_sketch.svg'
-import unibas_logo from 'src/assets/img/unibas.svg'
-import seasonalIllustration from 'src/assets/img/seasonal_illustration.svg'
+import { ReactComponent as Model } from 'src/assets/img/model_sketch.svg'
+import { ReactComponent as SeasonalIllustration } from 'src/assets/img/seasonal_illustration.svg'
 
-import LinkExternal from 'src/components/Router/LinkExternal'
+import { LinkExternal } from 'src/components/Link/LinkExternal'
 
 <Container>
 <Row>
@@ -34,8 +33,8 @@ The model works as follows:
 
 The individual parameters of the model can be changed to allow exploration of different scenarios.
 
-<figure className="figure w-100 text-center">
-  <img src={model} className="w-75 figure-img" alt="illustration of the model" />
+<figure className="figure w-100 text-center" alt="Illustration of the model">
+  <Model className="w-75 figure-img" />
   <figcaption className="figure-caption text-center">
     Figure 1. A schematic illustration of the underlying model. Variables include the susceptible population (S), exposed (E), infectious (I), recovered (R), severe and/or hospitalized (H), critical and/or in the ICU (C), those critical but not in ICU or overflow (O), and fatalities (D).
   </figcaption>
@@ -49,11 +48,9 @@ We don't yet know how seasonality will affect COVID-19 transmission; that said, 
 
 For further information on the possible effects of seasonality, see *Remaining parameters* below.
 
-<figure className="figure w-100 text-center">
-  <img
-    src={seasonalIllustration}
+<figure className="figure w-100 text-center" alt="Illustration of seasonal variation in transmission rate">
+  <SeasonalIllustration
     className="w-75 figure-img img-fluid"
-    alt="illustration of seasonal variation in transmission rate"
   />
   <figcaption className="figure-caption text-center">
     Figure 2. Seasonal variation in transmission rate is modeled by a cosine. The model allows to specify the
@@ -177,12 +174,6 @@ medRxiv 2020. doi:10.1101.2020.03.03.20030593
 
 Wang Y, Lu Q, Liu M, Wang Y, Zhang A, Jalali N, Dean N, Longini I, Holloran ME, Xu B, Zhang X, Wang L, Liu W, Fang L. Epidemiological and clinical features of the 2019 novel coronavirus outbreak in China. medRxiv 2020. doi:10.1101/2020.02.10.20021675
 
-<figure className="figure w-100 text-center">
-  <img src={unibas_logo} className="w-40 figure-img" alt="University of Basel" />
-  <figcaption className="figure-caption text-center">
-  COVID19-scenarios is developed at the University of Basel.
-  </figcaption>
-</figure>
 </Col>
 </Row>
 </Container>
