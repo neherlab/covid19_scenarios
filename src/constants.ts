@@ -1,5 +1,5 @@
 export const PROJECT_NAME = 'COVID-19 Scenarios' as const
-export const PROJECT_DESCRIPTION = '' as const
+export const PROJECT_DESCRIPTION = 'Models of COVID-19 outbreak trajectories and hospital demand' as const
 export const COPYRIGHT_YEAR_START = 2020 as const
 export const COMPANY_NAME = 'NeherLab' as const
 

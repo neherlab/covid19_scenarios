@@ -35,7 +35,7 @@ export const AppleIcons = [57, 60, 72, 76, 114, 120, 144, 152, 180].map((size) =
 export const MicrosoftIcons = (
   <>
     <meta name="msapplication-config" content={`${DOMAIN}/browserconfig.xml`} />
-    <meta name="msapplication-TileColor" content="#2b5797" />
+    <meta name="msapplication-TileColor" content="#2d89ef" />
     <meta name="msapplication-square70x70logo" content={`${DOMAIN}/icons/mstile-70x70.png`} />
     <meta name="msapplication-TileImage" content={`${DOMAIN}/icons/mstile-144x144.png`} />
     <meta name="msapplication-square150x150logo" content={`${DOMAIN}/icons/mstile-150x150.png`} />
@@ -87,7 +87,7 @@ export default class Document extends NextDocument {
           {GenericIcons}
 
           {AppleIcons}
-          <link rel="mask-icon" href={`${DOMAIN}/icons/safari-pinned-tab.svg" color="#555555`} />
+          <link rel="mask-icon" href={`${DOMAIN}/icons/safari-pinned-tab.svg" color="#333333`} />
 
           {MicrosoftIcons}
 
