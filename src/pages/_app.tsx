@@ -58,21 +58,23 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
   const { store, persistor } = state
 
   return (
-    <Provider store={store}>
-      <ConnectedRouter>
-        <ThemeProvider theme={theme}>
-          <I18nextProvider i18n={i18n}>
-            <MDXProvider components={{ a: LinkExternal }}>
-              <PersistGate loading={null} persistor={persistor}>
-                <SEO />
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
-              </PersistGate>
-            </MDXProvider>
-          </I18nextProvider>
-        </ThemeProvider>
-      </ConnectedRouter>
-    </Provider>
+    <Suspense fallback={<Loading />}>
+      <Provider store={store}>
+        <ConnectedRouter>
+          <ThemeProvider theme={theme}>
+            <I18nextProvider i18n={i18n}>
+              <MDXProvider components={{ a: LinkExternal }}>
+                <PersistGate loading={<Loading />} persistor={persistor}>
+                  <SEO />
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+                </PersistGate>
+              </MDXProvider>
+            </I18nextProvider>
+          </ThemeProvider>
+        </ConnectedRouter>
+      </Provider>
+    </Suspense>
   )
 }

@@ -1,6 +1,6 @@
-import * as React from 'react'
-
 declare module 'react-resize-detector' {
+  import type { FC } from 'react'
+
   export declare interface ReactResizeDetectorDimensions {
     width?: number
     height?: number
@@ -74,7 +74,7 @@ declare module 'react-resize-detector' {
     render?: (props: ReactResizeDetectorDimensions) => React.ReactNode
   }
 
-  declare class ReactResizeDetector extends React.PureComponent<ReactResizeDetectorProps> {}
+  declare const ReactResizeDetector: FC<ReactResizeDetectorProps>
 
   export declare function withResizeDetector<T extends Partial<ReactResizeDetectorDimensions>>(
     WrappedComponent: React.ComponentType<T>,

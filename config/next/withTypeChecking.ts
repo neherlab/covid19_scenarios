@@ -25,6 +25,10 @@ const getWithTypeChecking = ({ eslint, typeChecking, memoryLimit = 512, exclude 
   return addWebpackPlugin(
     nextConfig,
     new ForkTsCheckerWebpackPlugin({
+      issue: {
+        exclude: exclude?.map((file) => ({ origin: 'typescript', file })),
+      },
+
       typescript: {
         enabled: typeChecking,
         memoryLimit,
