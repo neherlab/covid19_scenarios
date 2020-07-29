@@ -16,5 +16,6 @@ data/generated
 data/parsers.log
 data/raw_data
 node_modules
+src/.generated/latest
 
 .next

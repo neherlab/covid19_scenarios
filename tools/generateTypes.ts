@@ -17,7 +17,7 @@ const rimraf = util.promisify(rimrafOriginal)
 const SCHEMA_EXTENSION = '.yml'
 
 class Store extends JSONSchemaStore {
-  private schemasRoot: string
+  private readonly schemasRoot: string
 
   constructor(schemasRoot: string) {
     super()
@@ -56,16 +56,13 @@ async function quicktypesGenerate(
   const { lines } = await quicktype({ inputData, lang, rendererOptions })
   let code = lines.join('\n')
 
-  const schemaVer = '2.0.0'
+  const schemaVer = '2.1.0'
 
   if (lang === 'typescript') {
     code = prettier.format(code, { parser: 'typescript' })
 
     // insert schemaVer constant
     code = `export const schemaVer = '${schemaVer}'\n\n${code}`
-
-    // make schemaVer to be of an exact string type (for example '2.0.0', instead of 'string')
-    code = code.replace(`schemaVer: string`, `schemaVer: '${schemaVer}'`)
   } else if (lang === 'python') {
     // insert schema_ver variable
     code = code.replace(`T = TypeVar("T")`, `schema_ver = '${schemaVer}'\n\nT = TypeVar("T")`)

@@ -1,35 +1,24 @@
-import { trim, isEqual } from 'lodash'
+/* eslint-disable camelcase */
+import { trim } from 'lodash'
 
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
 
-import validateShareable, { errors } from '../../../.generated/latest/validateShareable'
+import validateShareable, { errors } from '../../../.generated/2.0.0/validateShareable'
+import { Convert } from '../../../.generated/2.0.0/types'
 
 import type { ScenarioParameters, Shareable } from '../../../algorithms/types/Param.types'
-import { Convert } from '../../../algorithms/types/Param.types'
-import { toExternal, toInternal } from '../../../algorithms/types/convert'
 
 import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from '../errors'
+import v2_1_0 from '../v2.1.0/serialize'
 
-const schemaVer = '2.0.0'
+const schemaVer = '2.0.0' as const
+const schemaVerNext = '2.1.0' as const
 
-function serialize(scenarioParameters: ScenarioParameters): string {
-  const shareable: Shareable = {
-    ...scenarioParameters,
-    schemaVer,
-    scenarioData: {
-      ...scenarioParameters.scenarioData,
-      data: toExternal(scenarioParameters.scenarioData.data),
-    },
-  }
-
-  const serialized = Convert.shareableToJson(shareable)
-
-  if (process.env.NODE_ENV !== 'production' && !validateShareable(JSON.parse(serialized))) {
-    throw errors
-  }
-
-  return serialized
+export function serialize(_0: ScenarioParameters): string {
+  throw new Error(`: Developer error: This function should never be called.
+  Serialization must always use the latest version of the serializer, but serializer of version "${schemaVer}" is called instead.
+  Change the callee to use the latest version.`)
 }
 
 function validateSchema(shareableDangerous: Record<string, unknown>) {
@@ -52,7 +41,7 @@ function validateSchema(shareableDangerous: Record<string, unknown>) {
   }
 }
 
-function convert(shareableDangerous: Record<string, unknown>): Shareable {
+function convert(shareableDangerous: Record<string, unknown>) {
   try {
     return Convert.toShareable(JSON.stringify(shareableDangerous))
   } catch (error) {
@@ -64,43 +53,24 @@ function convert(shareableDangerous: Record<string, unknown>): Shareable {
   }
 }
 
-function validateMore(shareable: Shareable) {
-  const { scenarioData, ageDistributionData, severityDistributionData } = shareable
-
-  if (scenarioData.data.population.ageDistributionName !== ageDistributionData.name) {
-    throw new DeserializationErrorValidationFailed([
-      '/scenarioData/data/population/ageDistributionName should be equal to /ageDistributionData/name',
-    ])
-  }
-
-  const ageDistributionCategories = ageDistributionData.data.map(({ ageGroup }) => ageGroup)
-  const severityCategories = severityDistributionData.data.map(({ ageGroup }) => ageGroup)
-  if (!isEqual(ageDistributionCategories, severityCategories)) {
-    throw new DeserializationErrorValidationFailed([
-      'arrays /ageDistributionData/data[] and /severityDistributionData/data[] should contain the same number of the same values for ageGroup',
-    ])
-  }
-}
-
 function deserialize(input: string): ScenarioParameters {
   const shareableDangerous = JSON.parse(input) as Record<string, unknown>
-
   validateSchema(shareableDangerous)
-
   const shareable = convert(shareableDangerous)
 
-  validateMore(shareable)
-
-  const { scenarioData, ageDistributionData, severityDistributionData } = shareable
-
-  return {
-    scenarioData: {
-      ...scenarioData,
-      data: toInternal(scenarioData.data),
+  // Migrate object to schema v2.1.0:
+  //  - Add palliative severities and set them to 0
+  const shareableNew: Shareable = {
+    ...shareable,
+    schemaVer: schemaVerNext,
+    severityDistributionData: {
+      ...shareable.severityDistributionData,
+      data: shareable.severityDistributionData.data.map((severity) => ({ ...severity, palliative: 0 })),
     },
-    ageDistributionData,
-    severityDistributionData,
   }
+
+  // Delegate to the next version of deserializer
+  return v2_1_0[schemaVerNext].deserialize(JSON.stringify(shareableNew))
 }
 
 export default { [schemaVer]: { serialize, deserialize } }

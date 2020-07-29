@@ -86,6 +86,7 @@ export function getPopulationParams(
       critical: [],
       fatal: [],
       isolated: [],
+      palliative: [],
     },
     rate: {
       latency: 1 / latencyDays,
@@ -95,6 +96,7 @@ export function getPopulationParams(
       discharge: [],
       critical: [],
       stabilize: [],
+      palliative: [],
       fatality: [],
       overflowFatality: [],
     },
@@ -107,22 +109,25 @@ export function getPopulationParams(
 
   const total = sumBy(ageDistribution, ({ population }) => population)
 
-  severity.forEach(({ ageGroup, confirmed, critical, isolated, fatal, severe }, i) => {
+  severity.forEach(({ ageGroup, confirmed, critical, isolated, fatal, severe, palliative }, i) => {
     const freq = (1.0 * ageDistribution[i].population) / total
     sim.ageDistribution[i].population = freq
     sim.frac.severe[i] = (severe / 100) * (confirmed / 100)
     sim.frac.critical[i] = sim.frac.severe[i] * (critical / 100)
     sim.frac.fatal[i] = sim.frac.critical[i] * (fatal / 100)
+    sim.frac.palliative[i] = sim.frac.severe[i] * (palliative / 100)
 
     const dHospital = sim.frac.severe[i]
     const dCritical = critical / 100
     const dFatal = fatal / 100
+    const dPalliative = palliative / 100
 
     // Age specific rates
     sim.frac.isolated[i] = isolated / 100
     sim.rate.recovery[i] = (1 - dHospital) / infectiousPeriodDays
     sim.rate.severe[i] = dHospital / infectiousPeriodDays
-    sim.rate.discharge[i] = (1 - dCritical) / hospitalStayDays
+    sim.rate.discharge[i] = (1 - dCritical - dPalliative) / hospitalStayDays
+    sim.rate.palliative[i] = dPalliative / hospitalStayDays
     sim.rate.critical[i] = dCritical / hospitalStayDays
     sim.rate.stabilize[i] = (1 - dFatal) / icuStayDays
     sim.rate.fatality[i] = dFatal / icuStayDays
