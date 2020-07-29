@@ -26,39 +26,33 @@
     "sourceMap": true,
     "strict": true
   },
-  "include": [
-    "./*.js",
-    "./*.jsx",
-    "./*.ts",
-    "./*.tsx",
-    "./**/.*.js",
-    "./**/.*.jsx",
-    "./**/.*.ts",
-    "./**/.*.tsx",
-    "./**/*.js",
-    "./**/*.jsx",
-    "./**/*.ts",
-    "./**/*.tsx"
-  ],
+  "include": ["src/cli/**/*"],
   "exclude": [
     ".build",
     ".cache",
     ".ignore",
     ".reports",
     "3rdparty",
-    "covid19_scenarios_data",
     "cypress",
+    "data",
+    "docker",
+    "docs",
     "node_modules",
     "static",
     "tsconfig.json",
-    "src/.generated",
-    // FIXME: errors in these files have to be resolved eventually
-    // begin
-    "src/algorithms/model.ts", // FIXME
-    "src/algorithms/results.ts", // FIXME
-    "src/components/Main/Results/AgeBarChart.tsx", // FIXME
-    "src/components/Main/Results/DeterministicLinePlot.tsx", // FIXME
-    "src/components/Main/Results/Utils.ts" // FIXME
-    // end
+    "/src/.generated/",
+    "src/**/*.spec.*",
+    "src/**/*.test.*",
+    "src/**/__tests__/**/*",
+    "src/*generated*/**/*",
+    "src/algorithms/__test_data__/**/*",
+    "src/algorithms/model.ts",
+    "src/algorithms/results.ts",
+    "src/components/Main/Results/AgeBarChart.tsx",
+    "src/components/Main/PrintPreview/PrintPreview.tsx",
+    "src/components/Main/Results/DeterministicLinePlot.tsx",
+    "src/components/Main/Results/Utils.ts",
+    "src/styles/**/*",
+    "static/**/*"
   ]
 }
