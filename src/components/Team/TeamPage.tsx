@@ -6,9 +6,7 @@ import { useTranslation } from 'react-i18next'
 import CoreTeam from './CoreTeam.mdx'
 import ContributorsGenerated from './ContributorsGenerated.mdx'
 
-import '../../styles/components/Team.scss'
-
-export default function TeamPage() {
+export function TeamPage() {
   const { t } = useTranslation()
 
   return (
