@@ -11,13 +11,14 @@ import { enableES5 } from 'immer'
 import React, { useEffect, useState, Suspense } from 'react'
 
 import { AppProps } from 'next/app'
+import { I18nextProvider } from 'react-i18next'
 import type { Store } from 'redux'
 import { ConnectedRouter } from 'connected-next-router'
 import type { Persistor } from 'redux-persist'
+import { Layout } from 'src/components/Layout/Layout'
 import { ThemeProvider } from 'styled-components'
 
 import { Provider } from 'react-redux'
-import { I18nextProvider } from 'react-i18next'
 import { PersistGate } from 'redux-persist/integration/react'
 import { MDXProvider } from '@mdx-js/react'
 
@@ -60,12 +61,16 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
     <Provider store={store}>
       <ConnectedRouter>
         <ThemeProvider theme={theme}>
-          <MDXProvider components={{ a: LinkExternal }}>
-            <PersistGate loading={null} persistor={persistor}>
-              <SEO />
-              <Component {...pageProps} />
-            </PersistGate>
-          </MDXProvider>
+          <I18nextProvider i18n={i18n}>
+            <MDXProvider components={{ a: LinkExternal }}>
+              <PersistGate loading={null} persistor={persistor}>
+                <SEO />
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </PersistGate>
+            </MDXProvider>
+          </I18nextProvider>
         </ThemeProvider>
       </ConnectedRouter>
     </Provider>

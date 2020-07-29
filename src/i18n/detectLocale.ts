@@ -17,7 +17,7 @@ export function detectLocale({ defaultLanguage, availableLocales, shorten = true
 
   let language
   if (navigatorLocal?.languages && navigatorLocal.languages.length > 0) {
-    language = navigatorLocal?.language
+    language = navigatorLocal.language[0] ?? navigatorLocal.language
   } else {
     language =
       navigatorLocal?.browserLanguage ??

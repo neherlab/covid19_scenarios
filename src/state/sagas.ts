@@ -27,6 +27,7 @@ export function* rootSaga() {
 
 export function* rootSagaErrorHandler(error: Error) {
   console.error(error.message)
+  console.error(error.stack)
   yield put(errorAdd({ error }))
 }
 
