@@ -169,6 +169,8 @@ export function MainDisconnected({
 
   const { colScenario, colResults } = getColumnSizes(areResultsMaximized)
 
+  console.log('This is a test! Don\'t worry!')
+  
   return (
     <>
       <Disclaimer />
