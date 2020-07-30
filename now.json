@@ -3,7 +3,6 @@
   "builds": [
     {
       "use": "@vercel/static-build",
-      "source": "package.json",
       "src": "package.json",
       "config": { "distDir": ".build/production/web" }
     }
