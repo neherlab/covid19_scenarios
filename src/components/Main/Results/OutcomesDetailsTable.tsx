@@ -15,8 +15,6 @@ import { selectResult } from '../../../state/algorithm/algorithm.selectors'
 
 import { numberFormatter } from '../../../helpers/numberFormat'
 
-import './OutcomesDetailsTable.scss'
-
 const STEP = 7
 
 const formatter = numberFormatter(true, true)

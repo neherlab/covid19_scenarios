@@ -13,6 +13,5 @@ export function sampleUniform({ begin, end }: NumericRangeNonNegative, npoints: 
 }
 
 export function sampleRandom({ begin, end }: NumericRangeNonNegative): number {
-  // tslint:disable-next-line insecure-random
   return (end - begin) * Math.random() + begin
 }

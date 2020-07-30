@@ -1,5 +1,3 @@
-const path = require('path')
-
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -47,7 +45,6 @@ module.exports = {
   plugins: [
     'array-func',
     'cflint',
-    'i18next',
     'import',
     'jest',
     'jsx-a11y',
@@ -68,7 +65,6 @@ module.exports = {
     'only-warn',
 
     '@typescript-eslint',
-    '@typescript-eslint/tslint',
 
     // prettier should go last
     'prettier',
@@ -140,8 +136,6 @@ module.exports = {
 
     'lines-between-class-members': ['warn', 'always', { exceptAfterSingleLine: true }],
 
-    '@typescript-eslint/tslint/config': ['warn', { lintFile: path.join(__dirname, 'tslint.json') }],
-
     'require-await': 'off',
     '@typescript-eslint/require-await': 'off',
 
@@ -149,10 +143,6 @@ module.exports = {
     '@typescript-eslint/no-unused-expressions': 'warn',
 
     '@typescript-eslint/no-duplicate-imports': 'off',
-
-    '@typescript-eslint/tslint/max-union-size': 'off',
-    '@typescript-eslint/tslint/no-duplicate-imports': 'off',
-    '@typescript-eslint/tslint/prettier': 'off',
 
     'no-restricted-imports': [
       'error',
@@ -182,8 +172,16 @@ module.exports = {
     node: true,
   },
   settings: {
-    react: {
+    'react': {
       version: 'detect',
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.js', '.jsx', '.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
     },
   },
   overrides: [
@@ -231,6 +229,7 @@ module.exports = {
         'lib/EnvVarError.js',
         'lib/findModuleRoot.js',
         'lib/getenv.js',
+        'next.config.js',
         'postcss.config.js',
         'stylelint.config.js',
         'webpack.config.js',
@@ -273,11 +272,9 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-typeof-undefined': 'off',
         '@typescript-eslint/no-unsafe-assignment': 'off',
-        '@typescript-eslint/tslint/no-typeof-undefined': 'off',
         'global-require': 'off',
         'lodash/prefer-lodash-typecheck': 'off',
         'no-typeof-undefined': 'off',
-        'tslint:no-typeof-undefined': 'off',
         'unicorn/import-index': 'off',
       },
     },
@@ -303,7 +300,6 @@ module.exports = {
         '@typescript-eslint/no-unsafe-member-access': 'off',
         '@typescript-eslint/no-unsafe-return': 'off',
         '@typescript-eslint/restrict-template-expressions': 'off',
-        '@typescript-eslint/tslint/no-identical-functions': 'off',
         'i18next/no-literal-string': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
@@ -325,7 +321,6 @@ module.exports = {
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
         'spaced-comment': 'off',
-        'tslint:no-namespace': 'off',
       },
     },
     {

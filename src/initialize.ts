@@ -1,16 +1,15 @@
-import { State } from './state/reducer'
-import { selectLocaleKey } from './state/settings/settings.selectors'
+import type { Router } from 'next/router'
 
-import { i18nInit } from './i18n/i18n'
-import { configureStore } from './state/store'
+import { configureStore } from 'src/state/store'
+import { algorithmRunTrigger } from 'src/state/algorithm/algorithm.actions'
 
-export async function initialize() {
-  const { persistor, history, store } = await configureStore()
+export interface InitializeParams {
+  router: Router
+}
 
-  const state: State = store.getState()
-
-  const localeKey = selectLocaleKey(state)
-  const i18n = await i18nInit({ localeKey })
-
-  return { persistor, history, store, i18n }
+export async function initialize({ router }: InitializeParams) {
+  const { persistor, store } = await configureStore({ router })
+  const { dispatch } = store
+  dispatch(algorithmRunTrigger())
+  return { persistor, store }
 }

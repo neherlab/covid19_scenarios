@@ -1,0 +1,33 @@
+@import '../styles/variables';
+
+.responsive-tooltip-content-base {
+  z-index: 999;
+  padding: 0.25rem;
+  background-color: $white;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.responsive-tooltip-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.responsive-tooltip-content-item {
+  display: flex;
+  padding: 0.25rem 0.6rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.responsive-tooltip-content-placeholder {
+  min-width: 1rem;
+}
+
+@media screen and (max-width: 992px) {
+  .responsive-tooltip-content {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+    max-width: 90vw;
+  }
+}

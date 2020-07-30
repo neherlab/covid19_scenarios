@@ -13,8 +13,6 @@ import type { State } from '../../../state/reducer'
 import { addMitigationInterval, removeMitigationInterval } from '../../../state/scenario/scenario.actions'
 import { MitigationIntervalComponent } from './MitigationIntervalComponent'
 
-import './MitigationTable.scss'
-
 export interface MitigationTableProps {
   addMitigationInterval: ActionCreator<void>
   removeMitigationInterval: ActionCreator<UUIDv4>

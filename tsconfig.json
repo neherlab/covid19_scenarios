@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "*": ["src/types/*", "src/generated/*"]
+      "*": ["src/types/*", "src/generated/*"],
+      "src/*": ["./src/*"]
     },
     "target": "esnext",
     "module": "esnext",
     "lib": ["esnext", "dom", "webworker"],
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -24,7 +25,9 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
   },
   "include": [
     "./*.js",
@@ -38,19 +41,21 @@
     "./**/*.js",
     "./**/*.jsx",
     "./**/*.ts",
-    "./**/*.tsx"
+    "./**/*.tsx",
+    "next-env.d.ts"
   ],
   "exclude": [
     ".build",
     ".cache",
+    ".idea",
     ".ignore",
     ".reports",
     "3rdparty",
     "covid19_scenarios_data",
     "cypress",
     "node_modules",
-    "static",
-    "tsconfig.json",
-    "src/.generated"
+    "public",
+    "src/.generated",
+    "tsconfig.json"
   ]
 }

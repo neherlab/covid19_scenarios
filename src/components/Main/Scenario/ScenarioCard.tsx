@@ -30,8 +30,6 @@ import { ScenarioCardPopulation } from './ScenarioCardPopulation'
 import { SeverityCard } from './SeverityCard'
 import { ScenarioTitle } from './ScenarioTitle'
 
-import './ScenarioTitle.scss'
-
 export function getColumnSizes(areResultsMaximized: boolean) {
   if (areResultsMaximized) {
     return { colPopulation: { xxl: 6 }, colEpidemiological: { xxl: 6 } }

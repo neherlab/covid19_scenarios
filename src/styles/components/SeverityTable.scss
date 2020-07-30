@@ -1,0 +1,57 @@
+@import '../variables';
+@import '../mixins';
+
+.age-group-parameters {
+  // 700 = the point at which the titles break for english
+  // !important because react-grid assigns a width to the table element
+  table {
+    min-width: 700px !important;
+  }
+
+  td,
+  th {
+    padding: 0;
+  }
+
+  td > input {
+    // otherwise bootstrap makes it too large
+    height: auto;
+    padding: 0;
+  }
+
+  .dx-g-bs4-table-edit-cell {
+    padding: 0 !important;
+  }
+
+  td p {
+    margin: 0;
+  }
+
+  colgroup col:nth-child(3) {
+    background-color: #fdbf6f55;
+  }
+
+  colgroup col:nth-child(4) {
+    background-color: #fb9a9955;
+  }
+
+  colgroup col:nth-child(5) {
+    background-color: #db3c3f55;
+  }
+
+  colgroup col:nth-child(6) {
+    background-color: #e31a1c55;
+  }
+
+  colgroup col:nth-child(7) {
+    background-color: #cab2d655;
+  }
+
+  colgroup col:nth-child(8) {
+    background-color: #a6cee355;
+  }
+}
+
+.age-group-parameters .table-responsive.dx-g-bs4-table-container {
+  @include horizontal-scroll-shadow();
+}

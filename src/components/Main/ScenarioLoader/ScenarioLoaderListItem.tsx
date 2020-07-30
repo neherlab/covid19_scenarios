@@ -4,8 +4,6 @@ import { NavLink } from 'reactstrap'
 
 import type { ScenarioOption } from './ScenarioOption'
 
-import './ScenarioLoader.scss'
-
 export interface ScenarioLoaderListItemProps {
   option: ScenarioOption
   onItemClick: (id: string) => void

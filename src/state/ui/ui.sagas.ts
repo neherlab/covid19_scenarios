@@ -1,6 +1,6 @@
 import { select, takeEvery, put } from 'redux-saga/effects'
 
-import { push } from 'connected-react-router'
+import { push } from 'connected-next-router'
 import urlJoin from 'proper-url-join'
 
 import type { ScenarioParameters } from '../../algorithms/types/Param.types'

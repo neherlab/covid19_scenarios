@@ -17,8 +17,6 @@ import { stringsToOptions } from '../../Form/FormDropdownOption'
 import { ScenarioLoaderListItem } from './ScenarioLoaderListItem'
 import type { ScenarioOption } from './ScenarioOption'
 
-import './ScenarioLoader.scss'
-
 const DEBOUNCE_DELAY = 500
 
 export function includesLowerCase(candidate: string, searchTerm: string): boolean {

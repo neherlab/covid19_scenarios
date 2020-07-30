@@ -1,0 +1,34 @@
+@import '../variables';
+
+$btn-radius: 16px;
+
+.help-button {
+  display: flex;
+  width: $btn-radius;
+  height: $btn-radius;
+  padding: 0;
+  background-color: $gray-200;
+  border: 0;
+  border-radius: $btn-radius / 2;
+  align-items: center;
+  justify-content: center;
+}
+
+.help-button-icon {
+  font-family: $font-family-monospace;
+  font-size: $btn-radius * 0.85;
+  font-weight: bold;
+  color: $gray-600;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.card.card-help {
+  border-radius: 3px;
+
+  .card-body.card-body-help {
+    p {
+      color: $body-color;
+    }
+  }
+}

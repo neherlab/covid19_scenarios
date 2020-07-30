@@ -1,18 +1,17 @@
-import { routerMiddleware } from 'connected-react-router'
-import { createBrowserHistory } from 'history'
+import { format } from 'url'
+
+import type { Router } from 'next/router'
 import { applyMiddleware, createStore, StoreEnhancer, Store, Middleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { PersistorOptions, Persistor } from 'redux-persist/es/types'
+import type { PersistorOptions, Persistor } from 'redux-persist/es/types'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import createSagaMiddleware from 'redux-saga'
-
+import { createRouterMiddleware, initialRouterState } from 'connected-next-router'
 import { persistStore } from 'redux-persist'
+import { createLogger } from 'redux-logger'
 
-import createRootReducer from './reducer'
-import createRootSaga from './sagas'
-
-const development = process.env.NODE_ENV === 'development'
-const debug = development || process.env.DEBUGGABLE_PROD === '1'
+import { createRootReducer } from './reducer'
+import { createRootSaga } from './sagas'
 
 export function persistStoreAsync(store: Store, options: PersistorOptions): Promise<Persistor> {
   return new Promise((resolve) => {
@@ -20,27 +19,45 @@ export function persistStoreAsync(store: Store, options: PersistorOptions): Prom
   })
 }
 
-export async function configureStore() {
-  const history = createBrowserHistory()
+export interface ConfigureStoreParams {
+  router: Router
+}
 
+export async function configureStore({ router }: ConfigureStoreParams) {
+  const routerMiddleware = createRouterMiddleware()
   const sagaMiddleware = createSagaMiddleware()
-  let middlewares = [routerMiddleware(history), sagaMiddleware].filter(Boolean)
 
-  if (process.env.DEV_ENABLE_REDUX_IMMUTABLE_STATE_INVARIANT === '1') {
+  let middlewares: Middleware<string>[] = [routerMiddleware, sagaMiddleware].filter(Boolean)
+
+  if (process.env.ENABLE_REDUX_IMMUTABLE_STATE_INVARIANT === 'true') {
     middlewares = [...middlewares, reduxImmutableStateInvariant() as Middleware<string>]
+  }
+
+  if (process.env.ENABLE_REDUX_LOGGER === 'true') {
+    const logger = createLogger({})
+    middlewares = [...middlewares, logger]
   }
 
   let enhancer = applyMiddleware(...middlewares)
 
-  if (debug && composeWithDevTools) {
+  if (process.env.ENABLE_REDUX_DEV_TOOLS === 'true' && composeWithDevTools) {
     enhancer = composeWithDevTools({
-      trace: true,
-      traceLimit: 25,
+      // trace: true,
+      // traceLimit: 25,
       actionsBlacklist: '@@INIT',
     })(enhancer)
   }
 
-  const store = createStore(createRootReducer(history), {}, enhancer)
+  const { asPath, pathname, query } = router
+  let initialState
+  if (asPath) {
+    const url = format({ pathname, query })
+    initialState = {
+      router: initialRouterState(url, asPath),
+    }
+  }
+
+  const store = createStore(createRootReducer(), initialState, enhancer)
   const persistor = await persistStoreAsync(store, {})
 
   let rootSagaTask = sagaMiddleware.run(createRootSaga())
@@ -48,7 +65,7 @@ export async function configureStore() {
   if (module.hot) {
     // Setup hot reloading of root reducer
     module.hot.accept('./reducer', () => {
-      store.replaceReducer(createRootReducer(history))
+      store.replaceReducer(createRootReducer())
       console.info('[HMR] root reducer reloaded succesfully')
     })
 
@@ -66,7 +83,7 @@ export async function configureStore() {
     })
   }
 
-  return { store, history, persistor }
+  return { store, persistor }
 }
 
 declare const window: Window & {

@@ -18,8 +18,6 @@ import { ModalButtonSharing } from './ModalButtonSharing'
 import { RunButtonContent } from './RunButtonContent'
 import { SettingsControls } from './SettingsControls'
 
-import './SimulationControls.scss'
-
 const ICON_SIZE = 25
 
 export interface SimulationControlsProps {

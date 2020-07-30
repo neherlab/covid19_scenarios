@@ -2,17 +2,16 @@ import React from 'react'
 
 import { useTranslation } from 'react-i18next'
 import { Col, Container, Row, Table } from 'reactstrap'
-import { getVersionString } from '../../helpers/getVersionString'
 
-import './Footer.scss'
-import LinkExternal from '../Router/LinkExternal'
+import { getVersionString } from 'src/helpers/getVersionString'
+import { LinkExternal } from 'src/components/Link/LinkExternal'
 
-import { ReactComponent as LogoNeherlab } from '../../assets/img/neherlab.svg'
-import { ReactComponent as LogoBiozentrum } from '../../assets/img/biozentrum.svg'
-import { ReactComponent as LogoUnibas } from '../../assets/img/unibas.svg'
-import { ReactComponent as LogoVercel } from '../../assets/img/vercel.svg'
-import { ReactComponent as LogoGithub } from '../../assets/img/github.svg'
-import { ReactComponent as LogoMed } from '../../assets/img/medrxiv.svg'
+import { ReactComponent as LogoNeherlab } from 'src/assets/img/neherlab.svg'
+import { ReactComponent as LogoBiozentrum } from 'src/assets/img/biozentrum.svg'
+import { ReactComponent as LogoUnibas } from 'src/assets/img/unibas.svg'
+import { ReactComponent as LogoVercel } from 'src/assets/img/vercel.svg'
+import { ReactComponent as LogoGithub } from 'src/assets/img/github.svg'
+import { ReactComponent as LogoMed } from 'src/assets/img/medrxiv.svg'
 
 const versionString = getVersionString()
 const versionNumber = versionString.split('(', 1)

@@ -3,8 +3,6 @@ import React from 'react'
 import classNames from 'classnames'
 import { Field } from 'formik'
 
-import './SpinBox.scss'
-
 export interface FormSpinBoxProps<T> extends React.HTMLProps<HTMLInputElement> {
   identifier: string
   step?: number | string

@@ -34,8 +34,6 @@ import {
 } from '../../../state/scenario/scenario.selectors'
 import { State } from '../../../state/reducer'
 
-import './SeverityTable.scss'
-
 export interface AgeGroupRow extends SeverityDistributionDatum, AgeDistributionDatum {
   id: string
 }

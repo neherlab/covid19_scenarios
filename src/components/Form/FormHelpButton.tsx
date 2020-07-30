@@ -3,8 +3,6 @@ import { Card, CardBody } from 'reactstrap'
 
 import Popover from '../Wrappers/Popover'
 
-import './FormHelpButton.scss'
-
 export interface FormHelpButtonProps {
   help?: string | React.ReactNode
 }

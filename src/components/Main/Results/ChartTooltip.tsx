@@ -4,8 +4,6 @@ import { TooltipProps, TooltipPayload } from 'recharts'
 import { colors } from './ChartCommon'
 import { ResponsiveTooltipContent, TooltipItem } from './ResponsiveTooltipContent'
 
-import './ResponsiveTooltipContent.scss'
-
 export type ValueFormatter = (value: number | string) => string
 
 export function dispatch(key: string, item: TooltipPayload): [number | undefined, number | undefined] {

@@ -5,8 +5,6 @@ import { useTranslation } from 'react-i18next'
 import { linesToPlot, observationsToPlot, translatePlots } from './ChartCommon'
 import { ResponsiveTooltipContent, TooltipItem } from './ResponsiveTooltipContent'
 
-import './ResponsiveTooltipContent.scss'
-
 interface LinePlotItem extends TooltipItem {
   displayUndefinedAs: string | number
 }
