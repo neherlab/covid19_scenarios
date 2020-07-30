@@ -17,7 +17,7 @@
     "prod:clean": "yarn schema:clean && rimraf '.build/production/{*,.*}' 'node_modules/.cache'",
     "prod:build": "yarn schema:totypes && yarn run next:build && yarn run next:export",
     "prod:build:ci": "yarn run prod:build",
-    "prod:build:vercel": "cp .env.vercel .env && yarn install && yarn prod:build && cp .build/production/tmp/routes-manifest.json .build/production/web/",
+    "prod:build:vercel": "cp .env.vercel .env && yarn install && yarn prod:build",
     "prod:serve:nowatch": "babel-node --extensions \".ts\" ./tools/server/server.ts",
     "prod:serve": "nodemon --config config/nodemon/serve.json",
     "prod:watch": "nodemon --config config/nodemon/prod.json",
