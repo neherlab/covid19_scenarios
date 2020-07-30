@@ -47,7 +47,7 @@ export async function runModel(
  */
 function readJsonFromFile<T>(inputFilename: string) {
   console.info(`Reading data from file ${inputFilename}`)
-  return fs.readJsonSync(inputFilename, {encoding: 'utf8'}) as T
+  return fs.readJsonSync(inputFilename, { encoding: 'utf8' }) as T
 }
 
 /**
@@ -65,9 +65,11 @@ function getSeverity(inputFilename: string | undefined): SeverityDistributionDat
   const dataRaw: SeverityDistributionData = readJsonFromFile<SeverityDistributionData>(
     './src/assets/data/severityDistributions.json',
   )
-  const severityDistributionFound: SeverityDistributionData = ((dataRaw as unknown) as SeverityDistributionArray).all.find(
+  const severityDistributionFound:
+    | SeverityDistributionData
+    | undefined = ((dataRaw as unknown) as SeverityDistributionArray).all.find(
     (s) => s.name === DEFAULT_SEVERITY_DISTRIBUTION,
-  )!
+  )
   if (!severityDistributionFound) {
     throw new Error(`Error: scenario not found`)
   }
@@ -104,15 +106,16 @@ function getAge(inputFilename: string | undefined, name: string): AgeDistributio
     return data.data
   }
   const dataRaw: AgeDistributionData = readJsonFromFile<AgeDistributionData>('./src/assets/data/ageDistribution.json')
-  const ageDistributionFound: AgeDistributionData = ((dataRaw as unknown) as AgeDistributionArray).all.find(
+  const ageDistributionFound: AgeDistributionData | undefined = ((dataRaw as unknown) as AgeDistributionArray).all.find(
     (cad) => cad.name === name,
-  )!
+  )
   if (!ageDistributionFound) {
     throw new Error(`Error: country age distribution "${name}" not found in JSON`)
   }
 
   const ageDistribution = Convert.toAgeDistributionData(JSON.stringify(ageDistributionFound))
 
+  // eslint-disable-next-line sonarjs/no-identical-functions
   ageDistribution.data.sort((a, b) => {
     if (a.ageGroup > b.ageGroup) {
       return +1
@@ -151,7 +154,8 @@ async function main() {
   )
 
   // Read the scenario data.
-  const scenarioData = readJsonFromFile<ScenarioData>(argv['<scenario>']!)
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const scenarioData: ScenarioData = readJsonFromFile<ScenarioData>(argv['<scenario>']!)
   const scenario = toInternal(scenarioData.data)
   const params: ScenarioFlat = {
     ...scenario.population,
@@ -168,6 +172,7 @@ async function main() {
 
   // Run the model.
   try {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const outputFile: string = argv['<output>']!
     console.info('Running the model')
     const result = await runModel(params, severity, ageDistribution)
