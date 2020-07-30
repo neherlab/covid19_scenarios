@@ -1,6 +1,11 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "build": {
+    "use": "@vercel/static-build",
+    "source": "package.json",
+    "config": {
+      "distDir": ".build/production/web"
+    },
     "env": {
       "WEB_SCHEMA": "http",
       "WEB_HOST": "null",
