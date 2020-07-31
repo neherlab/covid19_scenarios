@@ -33,6 +33,7 @@ export const mitigationIntervals: MitigationInterval[] = [
 
 export const allParamsFlat: ScenarioFlat = {
   populationServed: 195000,
+  seroprevalence: 0,
   ageDistributionName: 'Switzerland',
   hospitalBeds: 698,
   icuBeds: 80,
