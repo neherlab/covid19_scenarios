@@ -38,7 +38,8 @@
           "icuBeds": 524,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 58,
-          "populationServed": 37172386
+          "populationServed": 37172386,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -88,7 +89,8 @@
           "icuBeds": 228,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 77,
-          "populationServed": 2866376
+          "populationServed": 2866376,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -138,7 +140,8 @@
           "icuBeds": 2374,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 31,
-          "populationServed": 42228429
+          "populationServed": 42228429,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -200,7 +203,8 @@
           "icuBeds": 6,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 77006
+          "populationServed": 77006,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -250,7 +254,8 @@
           "icuBeds": 10,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 96286
+          "populationServed": 96286,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -300,7 +305,8 @@
           "icuBeds": 6704,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 21,
-          "populationServed": 44494502
+          "populationServed": 44494502,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -350,7 +356,8 @@
           "icuBeds": 307,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 55,
-          "populationServed": 2951776
+          "populationServed": 2951776,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -400,7 +407,8 @@
           "icuBeds": 2378,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 24992369
+          "populationServed": 24992369,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -450,7 +458,8 @@
           "icuBeds": 1833,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 4,
-          "populationServed": 8847037
+          "populationServed": 8847037,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -500,7 +509,8 @@
           "icuBeds": 1023,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 13,
-          "populationServed": 9942334
+          "populationServed": 9942334,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -540,6 +550,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -550,7 +572,8 @@
           "icuBeds": 28,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 385640
+          "populationServed": 385640,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -612,7 +635,8 @@
           "icuBeds": 86,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1569439
+          "populationServed": 1569439,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -662,7 +686,8 @@
           "icuBeds": 1174,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1,
-          "populationServed": 161356039
+          "populationServed": 161356039,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -712,7 +737,8 @@
           "icuBeds": 51,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 286641
+          "populationServed": 286641,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -762,7 +788,8 @@
           "icuBeds": 2469,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1,
-          "populationServed": 9485386
+          "populationServed": 9485386,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -812,7 +839,8 @@
           "icuBeds": 1755,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 346,
-          "populationServed": 11422068
+          "populationServed": 11422068,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -840,7 +868,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Belize",
@@ -849,7 +890,8 @@
           "icuBeds": 15,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 383071
+          "populationServed": 383071,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -877,7 +919,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Benin",
@@ -886,7 +941,8 @@
           "icuBeds": 170,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 12,
-          "populationServed": 11485048
+          "populationServed": 11485048,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -914,7 +970,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-28",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Bhutan",
@@ -923,7 +992,8 @@
           "icuBeds": 39,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 754394
+          "populationServed": 754394,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -973,7 +1043,8 @@
           "icuBeds": 373,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 319,
-          "populationServed": 11353142
+          "populationServed": 11353142,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1023,7 +1094,8 @@
           "icuBeds": 404,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 260,
-          "populationServed": 3323929
+          "populationServed": 3323929,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1051,7 +1123,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Botswana",
@@ -1060,7 +1145,8 @@
           "icuBeds": 121,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2254126
+          "populationServed": 2254126,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1110,7 +1196,8 @@
           "icuBeds": 42000,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 221,
-          "populationServed": 209469333
+          "populationServed": 209469333,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1160,7 +1247,8 @@
           "icuBeds": 58,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 428962
+          "populationServed": 428962,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1200,6 +1288,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -1210,7 +1310,8 @@
           "icuBeds": 913,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 7024216
+          "populationServed": 7024216,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1247,7 +1348,8 @@
           "icuBeds": 236,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 19751535
+          "populationServed": 19751535,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1284,7 +1386,8 @@
           "icuBeds": 284,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 11175378
+          "populationServed": 11175378,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1334,7 +1437,8 @@
           "icuBeds": 35,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 26,
-          "populationServed": 543767
+          "populationServed": 543767,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1371,7 +1475,8 @@
           "icuBeds": 394,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 16249798
+          "populationServed": 16249798,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1421,7 +1526,8 @@
           "icuBeds": 999,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 25216237
+          "populationServed": 25216237,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1471,7 +1577,8 @@
           "icuBeds": 700,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 7,
-          "populationServed": 4413146
+          "populationServed": 4413146,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1521,7 +1628,8 @@
           "icuBeds": 680,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 12,
-          "populationServed": 5110917
+          "populationServed": 5110917,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1571,7 +1679,8 @@
           "icuBeds": 246,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 25,
-          "populationServed": 1377517
+          "populationServed": 1377517,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1621,7 +1730,8 @@
           "icuBeds": 144,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 779993
+          "populationServed": 779993,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1671,7 +1781,8 @@
           "icuBeds": 121,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 521356
+          "populationServed": 521356,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1721,7 +1832,8 @@
           "icuBeds": 128,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 111,
-          "populationServed": 977457
+          "populationServed": 977457,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1758,7 +1870,8 @@
           "icuBeds": 4,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 39097
+          "populationServed": 39097,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1795,7 +1908,8 @@
           "icuBeds": 4,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 44904
+          "populationServed": 44904,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1845,7 +1959,8 @@
           "icuBeds": 1723,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 7,
-          "populationServed": 14711827
+          "populationServed": 14711827,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1895,7 +2010,8 @@
           "icuBeds": 24,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 158158
+          "populationServed": 158158,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1945,7 +2061,8 @@
           "icuBeds": 633,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 26,
-          "populationServed": 8484965
+          "populationServed": 8484965,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -1985,6 +2102,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -1995,7 +2124,8 @@
           "icuBeds": 106,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1181666
+          "populationServed": 1181666,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2045,7 +2175,8 @@
           "icuBeds": 1,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 41078
+          "populationServed": 41078,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2095,7 +2226,8 @@
           "icuBeds": 4800,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 5,
-          "populationServed": 37058856
+          "populationServed": 37058856,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2145,7 +2277,8 @@
           "icuBeds": 172,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 4666377
+          "populationServed": 4666377,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2195,7 +2328,8 @@
           "icuBeds": 110,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 93,
-          "populationServed": 677000
+          "populationServed": 677000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2257,7 +2391,8 @@
           "icuBeds": 8,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 55000
+          "populationServed": 55000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2307,7 +2442,8 @@
           "icuBeds": 2,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 16000
+          "populationServed": 16000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2357,7 +2493,8 @@
           "icuBeds": 46,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 46,
-          "populationServed": 288000
+          "populationServed": 288000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2407,7 +2544,8 @@
           "icuBeds": 80,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 28,
-          "populationServed": 195000
+          "populationServed": 195000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2469,7 +2607,8 @@
           "icuBeds": 168,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1035000
+          "populationServed": 1035000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2519,7 +2658,8 @@
           "icuBeds": 51,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 176,
-          "populationServed": 319000
+          "populationServed": 319000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2569,7 +2709,8 @@
           "icuBeds": 81,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 34,
-          "populationServed": 499000
+          "populationServed": 499000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2631,7 +2772,8 @@
           "icuBeds": 6,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 40000
+          "populationServed": 40000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2664,7 +2806,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-03-17",
+                "begin": "2020-03-10",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -2693,7 +2835,8 @@
           "icuBeds": 32,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 198000
+          "populationServed": 198000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2755,7 +2898,8 @@
           "icuBeds": 11,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 73000
+          "populationServed": 73000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2817,7 +2961,8 @@
           "icuBeds": 66,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 410000
+          "populationServed": 410000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2867,7 +3012,8 @@
           "icuBeds": 28,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 237,
-          "populationServed": 177000
+          "populationServed": 177000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2929,7 +3075,8 @@
           "icuBeds": 7,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 43000
+          "populationServed": 43000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -2991,7 +3138,8 @@
           "icuBeds": 6,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 38000
+          "populationServed": 38000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3031,6 +3179,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -3041,7 +3201,8 @@
           "icuBeds": 13,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 82000
+          "populationServed": 82000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3103,7 +3264,8 @@
           "icuBeds": 25,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 159000
+          "populationServed": 159000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3165,7 +3327,8 @@
           "icuBeds": 44,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 273000
+          "populationServed": 273000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3227,7 +3390,8 @@
           "icuBeds": 82,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 508000
+          "populationServed": 508000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3289,7 +3453,8 @@
           "icuBeds": 44,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 276000
+          "populationServed": 276000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3339,7 +3504,8 @@
           "icuBeds": 57,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 168,
-          "populationServed": 353000
+          "populationServed": 353000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3401,7 +3567,8 @@
           "icuBeds": 5,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 36000
+          "populationServed": 36000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3451,7 +3618,8 @@
           "icuBeds": 56,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 256,
-          "populationServed": 344000
+          "populationServed": 344000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3501,7 +3669,8 @@
           "icuBeds": 130,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 78,
-          "populationServed": 799000
+          "populationServed": 799000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3563,7 +3732,8 @@
           "icuBeds": 20,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 127000
+          "populationServed": 127000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3613,7 +3783,8 @@
           "icuBeds": 247,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 14,
-          "populationServed": 1521000
+          "populationServed": 1521000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3663,7 +3834,8 @@
           "icuBeds": 1118,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 21,
-          "populationServed": 18729160
+          "populationServed": 18729160,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3713,7 +3885,8 @@
           "icuBeds": 49453,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 1392730000
+          "populationServed": 1392730000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3763,7 +3936,8 @@
           "icuBeds": 2546,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 282,
-          "populationServed": 49648685
+          "populationServed": 49648685,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3813,7 +3987,8 @@
           "icuBeds": 54,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 821164
+          "populationServed": 821164,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3863,7 +4038,8 @@
           "icuBeds": 169,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1,
-          "populationServed": 4999441
+          "populationServed": 4999441,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3913,7 +4089,8 @@
           "icuBeds": 650,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 22,
-          "populationServed": 4089400
+          "populationServed": 4089400,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -3963,7 +4140,8 @@
           "icuBeds": 1734,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 53,
-          "populationServed": 11338138
+          "populationServed": 11338138,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4013,7 +4191,8 @@
           "icuBeds": 92,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 42,
-          "populationServed": 1189265
+          "populationServed": 1189265,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4063,7 +4242,8 @@
           "icuBeds": 1227,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 35,
-          "populationServed": 10625695
+          "populationServed": 10625695,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4113,7 +4293,8 @@
           "icuBeds": 372,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 494,
-          "populationServed": 5797446
+          "populationServed": 5797446,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4163,7 +4344,8 @@
           "icuBeds": 3156,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 11070000
+          "populationServed": 11070000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4213,7 +4395,8 @@
           "icuBeds": 3728,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 40,
-          "populationServed": 13077000
+          "populationServed": 13077000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4263,7 +4446,8 @@
           "icuBeds": 1039,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 34,
-          "populationServed": 3645000
+          "populationServed": 3645000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4325,7 +4509,8 @@
           "icuBeds": 716,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2512000
+          "populationServed": 2512000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4375,7 +4560,8 @@
           "icuBeds": 194,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 36,
-          "populationServed": 683000
+          "populationServed": 683000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4425,7 +4611,8 @@
           "icuBeds": 524,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 214,
-          "populationServed": 1841000
+          "populationServed": 1841000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4475,7 +4662,8 @@
           "icuBeds": 1786,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 112,
-          "populationServed": 6266000
+          "populationServed": 6266000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4525,7 +4713,8 @@
           "icuBeds": 459,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 2,
-          "populationServed": 1610000
+          "populationServed": 1610000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4562,7 +4751,8 @@
           "icuBeds": 300,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 600000
+          "populationServed": 600000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4612,7 +4802,8 @@
           "icuBeds": 2275,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 7982000
+          "populationServed": 7982000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4662,7 +4853,8 @@
           "icuBeds": 5113,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 17933000
+          "populationServed": 17933000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4712,7 +4904,8 @@
           "icuBeds": 1164,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 122,
-          "populationServed": 4085000
+          "populationServed": 4085000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4762,7 +4955,8 @@
           "icuBeds": 282,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1,
-          "populationServed": 991000
+          "populationServed": 991000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4812,7 +5006,8 @@
           "icuBeds": 1162,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 14,
-          "populationServed": 4078000
+          "populationServed": 4078000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4862,7 +5057,8 @@
           "icuBeds": 629,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2208000
+          "populationServed": 2208000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4912,7 +5108,8 @@
           "icuBeds": 826,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 9,
-          "populationServed": 2897000
+          "populationServed": 2897000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -4962,7 +5159,8 @@
           "icuBeds": 611,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 3,
-          "populationServed": 2143000
+          "populationServed": 2143000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5012,7 +5210,8 @@
           "icuBeds": 37,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1,
-          "populationServed": 958920
+          "populationServed": 958920,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5062,7 +5261,8 @@
           "icuBeds": 8,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 71625
+          "populationServed": 71625,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5124,7 +5324,8 @@
           "icuBeds": 494,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 10627165
+          "populationServed": 10627165,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5186,7 +5387,8 @@
           "icuBeds": 742,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 17084357
+          "populationServed": 17084357,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5236,7 +5438,8 @@
           "icuBeds": 4771,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 489,
-          "populationServed": 98423595
+          "populationServed": 98423595,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5276,6 +5479,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -5286,7 +5501,8 @@
           "icuBeds": 241,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 6420744
+          "populationServed": 6420744,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5326,6 +5542,18 @@
                 "begin": 18.7,
                 "end": 21.3
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -5336,7 +5564,8 @@
           "icuBeds": 50,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1308974
+          "populationServed": 1308974,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5386,7 +5615,8 @@
           "icuBeds": 801,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 22,
-          "populationServed": 8414240
+          "populationServed": 8414240,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5436,7 +5666,8 @@
           "icuBeds": 125,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 43,
-          "populationServed": 1319291
+          "populationServed": 1319291,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5486,7 +5717,8 @@
           "icuBeds": 97,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 203,
-          "populationServed": 1022800
+          "populationServed": 1022800,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5536,7 +5768,8 @@
           "icuBeds": 109,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 126,
-          "populationServed": 1149460
+          "populationServed": 1149460,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5586,7 +5819,8 @@
           "icuBeds": 476,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 13,
-          "populationServed": 5003769
+          "populationServed": 5003769,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5636,7 +5870,8 @@
           "icuBeds": 205,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 25,
-          "populationServed": 2153389
+          "populationServed": 2153389,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5686,7 +5921,8 @@
           "icuBeds": 55,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 33,
-          "populationServed": 581078
+          "populationServed": 581078,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5736,7 +5972,8 @@
           "icuBeds": 228,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 56,
-          "populationServed": 2399548
+          "populationServed": 2399548,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5773,7 +6010,8 @@
           "icuBeds": 193,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2032863
+          "populationServed": 2032863,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5823,7 +6061,8 @@
           "icuBeds": 731,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 24,
-          "populationServed": 7675217
+          "populationServed": 7675217,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5885,7 +6124,8 @@
           "icuBeds": 8,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 84777
+          "populationServed": 84777,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5935,7 +6175,8 @@
           "icuBeds": 101,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 460,
-          "populationServed": 1067710
+          "populationServed": 1067710,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -5985,7 +6226,8 @@
           "icuBeds": 257,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 86,
-          "populationServed": 2699499
+          "populationServed": 2699499,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6047,7 +6289,8 @@
           "icuBeds": 30,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 316798
+          "populationServed": 316798,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6097,7 +6340,8 @@
           "icuBeds": 634,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 71,
-          "populationServed": 6663394
+          "populationServed": 6663394,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6159,7 +6403,8 @@
           "icuBeds": 8,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 86487
+          "populationServed": 86487,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6209,7 +6454,8 @@
           "icuBeds": 142,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 20,
-          "populationServed": 1493898
+          "populationServed": 1493898,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6259,7 +6505,8 @@
           "icuBeds": 62,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 240,
-          "populationServed": 654214
+          "populationServed": 654214,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6309,7 +6556,8 @@
           "icuBeds": 210,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 472,
-          "populationServed": 2207776
+          "populationServed": 2207776,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6371,7 +6619,8 @@
           "icuBeds": 196,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1320884
+          "populationServed": 1320884,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6411,6 +6660,18 @@
                 "begin": 18.7,
                 "end": 21.3
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -6421,7 +6682,8 @@
           "icuBeds": 68,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1367000
+          "populationServed": 1367000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6449,7 +6711,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Ethiopia",
@@ -6458,7 +6733,8 @@
           "icuBeds": 975,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 109224559
+          "populationServed": 109224559,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6491,7 +6767,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-03-20",
+                "begin": "2020-03-16",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -6520,7 +6796,8 @@
           "icuBeds": 6,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 48497
+          "populationServed": 48497,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6557,7 +6834,8 @@
           "icuBeds": 63,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 883483
+          "populationServed": 883483,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6607,7 +6885,8 @@
           "icuBeds": 329,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 248,
-          "populationServed": 5518050
+          "populationServed": 5518050,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6657,7 +6936,8 @@
           "icuBeds": 555,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 27,
-          "populationServed": 8026685
+          "populationServed": 8026685,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6707,7 +6987,8 @@
           "icuBeds": 121,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 654,
-          "populationServed": 2795301
+          "populationServed": 2795301,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6757,7 +7038,8 @@
           "icuBeds": 109,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3329395
+          "populationServed": 3329395,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6807,7 +7089,8 @@
           "icuBeds": 170,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 296,
-          "populationServed": 2566759
+          "populationServed": 2566759,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6857,7 +7140,8 @@
           "icuBeds": 71,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 339178
+          "populationServed": 339178,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6907,7 +7191,8 @@
           "icuBeds": 465,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 170,
-          "populationServed": 5518188
+          "populationServed": 5518188,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -6957,7 +7242,8 @@
           "icuBeds": 20,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 382704
+          "populationServed": 382704,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7007,7 +7293,8 @@
           "icuBeds": 15,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 296711
+          "populationServed": 296711,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7057,7 +7344,8 @@
           "icuBeds": 438,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 418,
-          "populationServed": 5978266
+          "populationServed": 5978266,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7107,7 +7395,8 @@
           "icuBeds": 1147,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 497,
-          "populationServed": 12213364
+          "populationServed": 12213364,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7157,7 +7446,8 @@
           "icuBeds": 60,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 866506
+          "populationServed": 866506,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7207,7 +7497,8 @@
           "icuBeds": 20,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 364354
+          "populationServed": 364354,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7257,7 +7548,8 @@
           "icuBeds": 15,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 270372
+          "populationServed": 270372,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7307,7 +7599,8 @@
           "icuBeds": 294,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 87,
-          "populationServed": 3319067
+          "populationServed": 3319067,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7357,7 +7650,8 @@
           "icuBeds": 449,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 203,
-          "populationServed": 5987014
+          "populationServed": 5987014,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7407,7 +7701,8 @@
           "icuBeds": 466,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 682,
-          "populationServed": 5892817
+          "populationServed": 5892817,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7457,7 +7752,8 @@
           "icuBeds": 181,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3786545
+          "populationServed": 3786545,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7507,7 +7803,8 @@
           "icuBeds": 460,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 110,
-          "populationServed": 5059473
+          "populationServed": 5059473,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7557,7 +7854,8 @@
           "icuBeds": 7540,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 248,
-          "populationServed": 66987244
+          "populationServed": 66987244,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7619,7 +7917,8 @@
           "icuBeds": 400,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2119275
+          "populationServed": 2119275,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7647,7 +7946,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Gambia",
@@ -7656,7 +7968,8 @@
           "icuBeds": 69,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2280102
+          "populationServed": 2280102,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7706,7 +8019,8 @@
           "icuBeds": 254,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3731000
+          "populationServed": 3731000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7756,7 +8070,8 @@
           "icuBeds": 23890,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 23,
-          "populationServed": 82927922
+          "populationServed": 82927922,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7806,7 +8121,8 @@
           "icuBeds": 758,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 87,
-          "populationServed": 29767108
+          "populationServed": 29767108,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7856,7 +8172,8 @@
           "icuBeds": 680,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 124,
-          "populationServed": 10727668
+          "populationServed": 10727668,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7906,7 +8223,8 @@
           "icuBeds": 14,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 56025
+          "populationServed": 56025,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -7956,7 +8274,8 @@
           "icuBeds": 12,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 111454
+          "populationServed": 111454,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8006,7 +8325,8 @@
           "icuBeds": 298,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 35,
-          "populationServed": 17247807
+          "populationServed": 17247807,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8056,7 +8376,8 @@
           "icuBeds": 106,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 218,
-          "populationServed": 12414318
+          "populationServed": 12414318,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8106,7 +8427,8 @@
           "icuBeds": 54,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 5,
-          "populationServed": 1874309
+          "populationServed": 1874309,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8156,7 +8478,8 @@
           "icuBeds": 35,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 779004
+          "populationServed": 779004,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8206,7 +8529,8 @@
           "icuBeds": 226,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 11123176
+          "populationServed": 11123176,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8256,7 +8580,8 @@
           "icuBeds": 192,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 85,
-          "populationServed": 9587522
+          "populationServed": 9587522,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8293,7 +8618,8 @@
           "icuBeds": 511,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 7213338
+          "populationServed": 7213338,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8343,7 +8669,8 @@
           "icuBeds": 1374,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 130,
-          "populationServed": 9768785
+          "populationServed": 9768785,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8393,7 +8720,8 @@
           "icuBeds": 29,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 3,
-          "populationServed": 353574
+          "populationServed": 353574,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8430,7 +8758,8 @@
           "icuBeds": 105,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 419978
+          "populationServed": 419978,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8458,7 +8787,32 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -8467,7 +8821,8 @@
           "icuBeds": 2278,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 52883163
+          "populationServed": 52883163,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8495,7 +8850,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -8504,7 +8872,8 @@
           "icuBeds": 236,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1528296
+          "populationServed": 1528296,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8532,7 +8901,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-13",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -8541,7 +8923,8 @@
           "icuBeds": 1688,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 34586234
+          "populationServed": 34586234,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8591,7 +8974,8 @@
           "icuBeds": 1183,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 4,
-          "populationServed": 119461013
+          "populationServed": 119461013,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8641,7 +9025,8 @@
           "icuBeds": 76,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 27,
-          "populationServed": 1126705
+          "populationServed": 1126705,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8669,7 +9054,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -8678,7 +9076,8 @@
           "icuBeds": 926,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 28566990
+          "populationServed": 28566990,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8715,7 +9114,8 @@
           "icuBeds": 58,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 378979
+          "populationServed": 378979,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8752,7 +9152,8 @@
           "icuBeds": 23,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 220084
+          "populationServed": 220084,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8802,7 +9203,8 @@
           "icuBeds": 2401,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 2,
-          "populationServed": 18345784
+          "populationServed": 18345784,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8842,6 +9244,18 @@
                 "begin": 18.7,
                 "end": 21.3
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-05",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -8852,7 +9266,8 @@
           "icuBeds": 296,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1542750
+          "populationServed": 1542750,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8902,7 +9317,8 @@
           "icuBeds": 3179,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 146,
-          "populationServed": 63907200
+          "populationServed": 63907200,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8942,6 +9358,18 @@
                 "begin": 18.7,
                 "end": 21.3
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -8952,7 +9380,8 @@
           "icuBeds": 1106,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 27388008
+          "populationServed": 27388008,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -8980,7 +9409,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -8989,7 +9431,8 @@
           "icuBeds": 1221,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 7316708
+          "populationServed": 7316708,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9029,6 +9472,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -9039,7 +9494,8 @@
           "icuBeds": 1147,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 13635010
+          "populationServed": 13635010,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9089,7 +9545,8 @@
           "icuBeds": 1062,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 5,
-          "populationServed": 37329128
+          "populationServed": 37329128,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9117,7 +9574,32 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9126,7 +9608,8 @@
           "icuBeds": 6910,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 66165886
+          "populationServed": 66165886,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9176,7 +9659,8 @@
           "icuBeds": 3742,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 35330888
+          "populationServed": 35330888,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9213,7 +9697,8 @@
           "icuBeds": 29,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 71218
+          "populationServed": 71218,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9263,7 +9748,8 @@
           "icuBeds": 2840,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 82342793
+          "populationServed": 82342793,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9313,7 +9799,8 @@
           "icuBeds": 5066,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 137,
-          "populationServed": 120837347
+          "populationServed": 120837347,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9341,7 +9828,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-10",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9350,7 +9850,8 @@
           "icuBeds": 140,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3008546
+          "populationServed": 3008546,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9378,7 +9879,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9387,7 +9901,8 @@
           "icuBeds": 438,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3276323
+          "populationServed": 3276323,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9415,7 +9930,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9424,7 +9952,8 @@
           "icuBeds": 196,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1205974
+          "populationServed": 1205974,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9452,7 +9981,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9461,7 +10003,8 @@
           "icuBeds": 185,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2189297
+          "populationServed": 2189297,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9489,7 +10032,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9498,7 +10054,8 @@
           "icuBeds": 1823,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 45429399
+          "populationServed": 45429399,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9526,7 +10083,32 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-13",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9535,7 +10117,8 @@
           "icuBeds": 351,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1375592
+          "populationServed": 1375592,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9585,7 +10168,8 @@
           "icuBeds": 1766,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 88,
-          "populationServed": 29611935
+          "populationServed": 29611935,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9635,7 +10219,8 @@
           "icuBeds": 3136,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 25,
-          "populationServed": 78230816
+          "populationServed": 78230816,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9663,7 +10248,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9672,7 +10270,8 @@
           "icuBeds": 153,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 671720
+          "populationServed": 671720,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9722,7 +10321,8 @@
           "icuBeds": 7635,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 9,
-          "populationServed": 76481545
+          "populationServed": 76481545,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9750,16 +10350,42 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-11",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
-          "caseCountsName": "None",
+          "caseCountsName": "IND-Telangana",
           "hospitalBeds": 20983,
           "icuBeds": 2066,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 38472769
+          "populationServed": 38472769,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9809,7 +10435,8 @@
           "icuBeds": 435,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 4057847
+          "populationServed": 4057847,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9859,7 +10486,8 @@
           "icuBeds": 7510,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 228959599
+          "populationServed": 228959599,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9909,7 +10537,8 @@
           "icuBeds": 838,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 11090425
+          "populationServed": 11090425,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9937,7 +10566,32 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-13",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "India",
@@ -9946,7 +10600,8 @@
           "icuBeds": 7737,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 97694960
+          "populationServed": 97694960,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -9996,7 +10651,8 @@
           "icuBeds": 29997,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 45,
-          "populationServed": 1352617328
+          "populationServed": 1352617328,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10046,7 +10702,8 @@
           "icuBeds": 7094,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1766,
-          "populationServed": 267663435
+          "populationServed": 267663435,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10096,7 +10753,8 @@
           "icuBeds": 3790,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 111,
-          "populationServed": 81800269
+          "populationServed": 81800269,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10146,7 +10804,8 @@
           "icuBeds": 1688,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 131,
-          "populationServed": 38433600
+          "populationServed": 38433600,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10196,7 +10855,8 @@
           "icuBeds": 289,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 139,
-          "populationServed": 4853506
+          "populationServed": 4853506,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10246,7 +10906,8 @@
           "icuBeds": 758,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1,
-          "populationServed": 8883800
+          "populationServed": 8883800,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10296,7 +10957,8 @@
           "icuBeds": 70,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 218,
-          "populationServed": 1311580
+          "populationServed": 1311580,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10346,7 +11008,8 @@
           "icuBeds": 5,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 562869
+          "populationServed": 562869,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10396,7 +11059,8 @@
           "icuBeds": 107,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 63,
-          "populationServed": 1947131
+          "populationServed": 1947131,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10446,7 +11110,8 @@
           "icuBeds": 320,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 25,
-          "populationServed": 5801692
+          "populationServed": 5801692,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10496,7 +11161,8 @@
           "icuBeds": 650,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 503,
-          "populationServed": 4459477
+          "populationServed": 4459477,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10546,7 +11212,8 @@
           "icuBeds": 825,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 338,
-          "populationServed": 1215220
+          "populationServed": 1215220,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10596,7 +11263,8 @@
           "icuBeds": 540,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 40,
-          "populationServed": 5879082
+          "populationServed": 5879082,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10658,7 +11326,8 @@
           "icuBeds": 75,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1550640
+          "populationServed": 1550640,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10708,7 +11377,8 @@
           "icuBeds": 1067,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 555,
-          "populationServed": 10060574
+          "populationServed": 10060574,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10758,7 +11428,8 @@
           "icuBeds": 400,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 214,
-          "populationServed": 1525271
+          "populationServed": 1525271,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10820,7 +11491,8 @@
           "icuBeds": 30,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 305617
+          "populationServed": 305617,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10882,7 +11554,8 @@
           "icuBeds": 64,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 531178
+          "populationServed": 531178,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10932,7 +11605,8 @@
           "icuBeds": 69,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 490,
-          "populationServed": 541098
+          "populationServed": 541098,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -10982,7 +11656,8 @@
           "icuBeds": 320,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 3,
-          "populationServed": 4356406
+          "populationServed": 4356406,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11032,7 +11707,8 @@
           "icuBeds": 300,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 272,
-          "populationServed": 4029053
+          "populationServed": 4029053,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11082,7 +11758,8 @@
           "icuBeds": 244,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 96,
-          "populationServed": 1639591
+          "populationServed": 1639591,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11132,7 +11809,8 @@
           "icuBeds": 441,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 22,
-          "populationServed": 4999891
+          "populationServed": 4999891,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11182,7 +11860,8 @@
           "icuBeds": 447,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 222,
-          "populationServed": 3729641
+          "populationServed": 3729641,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11232,7 +11911,8 @@
           "icuBeds": 75,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 280,
-          "populationServed": 1072276
+          "populationServed": 1072276,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11282,7 +11962,8 @@
           "icuBeds": 69,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 3,
-          "populationServed": 882015
+          "populationServed": 882015,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11332,7 +12013,8 @@
           "icuBeds": 0,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 361,
-          "populationServed": 125666
+          "populationServed": 125666,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11382,7 +12064,8 @@
           "icuBeds": 825,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 206,
-          "populationServed": 4905854
+          "populationServed": 4905854,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11432,7 +12115,8 @@
           "icuBeds": 7550,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 593,
-          "populationServed": 60431283
+          "populationServed": 60431283,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11482,7 +12166,8 @@
           "icuBeds": 143,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2934855
+          "populationServed": 2934855,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11532,7 +12217,8 @@
           "icuBeds": 9241,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 126529100
+          "populationServed": 126529100,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11560,7 +12246,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Jordan",
@@ -11569,7 +12268,8 @@
           "icuBeds": 439,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 9956011
+          "populationServed": 9956011,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11597,7 +12297,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Japan",
@@ -11606,7 +12319,8 @@
           "icuBeds": 551,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 7539185
+          "populationServed": 7539185,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11643,7 +12357,8 @@
           "icuBeds": 72,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 980684
+          "populationServed": 980684,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11680,7 +12395,8 @@
           "icuBeds": 92,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1262823
+          "populationServed": 1262823,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11730,7 +12446,8 @@
           "icuBeds": 458,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 3,
-          "populationServed": 6268585
+          "populationServed": 6268585,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11767,7 +12484,8 @@
           "icuBeds": 99,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1351510
+          "populationServed": 1351510,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11817,7 +12535,8 @@
           "icuBeds": 57,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 773731
+          "populationServed": 773731,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11867,7 +12586,8 @@
           "icuBeds": 373,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 3,
-          "populationServed": 5111494
+          "populationServed": 5111494,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11904,7 +12624,8 @@
           "icuBeds": 136,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1862705
+          "populationServed": 1862705,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11932,7 +12653,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Japan",
@@ -11941,7 +12675,8 @@
           "icuBeds": 146,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1999406
+          "populationServed": 1999406,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -11978,7 +12713,8 @@
           "icuBeds": 142,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1949440
+          "populationServed": 1949440,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12015,7 +12751,8 @@
           "icuBeds": 206,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2819962
+          "populationServed": 2819962,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12065,7 +12802,8 @@
           "icuBeds": 386,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 5285430
+          "populationServed": 5285430,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12115,7 +12853,8 @@
           "icuBeds": 401,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 5483450
+          "populationServed": 5483450,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12152,7 +12891,8 @@
           "icuBeds": 211,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2882943
+          "populationServed": 2882943,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12202,7 +12942,8 @@
           "icuBeds": 83,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1142965
+          "populationServed": 1142965,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12239,7 +12980,8 @@
           "icuBeds": 91,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1240522
+          "populationServed": 1240522,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12276,7 +13018,8 @@
           "icuBeds": 70,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 961900
+          "populationServed": 961900,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12304,7 +13047,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Japan",
@@ -12313,7 +13069,8 @@
           "icuBeds": 118,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1613969
+          "populationServed": 1613969,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12363,7 +13120,8 @@
           "icuBeds": 671,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 9179835
+          "populationServed": 9179835,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12413,7 +13171,8 @@
           "icuBeds": 52,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 705880
+          "populationServed": 705880,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12450,7 +13209,8 @@
           "icuBeds": 128,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1756442
+          "populationServed": 1756442,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12500,7 +13260,8 @@
           "icuBeds": 189,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1,
-          "populationServed": 2591779
+          "populationServed": 2591779,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12537,7 +13298,8 @@
           "icuBeds": 131,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1790376
+          "populationServed": 1790376,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12574,7 +13336,8 @@
           "icuBeds": 169,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2313215
+          "populationServed": 2313215,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12611,7 +13374,8 @@
           "icuBeds": 79,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1079727
+          "populationServed": 1079727,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12648,7 +13412,8 @@
           "icuBeds": 151,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2063865
+          "populationServed": 2063865,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12685,7 +13450,8 @@
           "icuBeds": 98,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1339438
+          "populationServed": 1339438,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12713,7 +13479,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Japan",
@@ -12722,7 +13501,8 @@
           "icuBeds": 98,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1340070
+          "populationServed": 1340070,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12759,7 +13539,8 @@
           "icuBeds": 164,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2245057
+          "populationServed": 2245057,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12796,7 +13577,8 @@
           "icuBeds": 83,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1142943
+          "populationServed": 1142943,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12833,7 +13615,8 @@
           "icuBeds": 139,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1899739
+          "populationServed": 1899739,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12861,7 +13644,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-09",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Japan",
@@ -12870,7 +13666,8 @@
           "icuBeds": 106,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1448101
+          "populationServed": 1448101,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12920,7 +13717,8 @@
           "icuBeds": 645,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 8824566
+          "populationServed": 8824566,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -12957,7 +13755,8 @@
           "icuBeds": 60,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 819110
+          "populationServed": 819110,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13007,7 +13806,8 @@
           "icuBeds": 535,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 7322645
+          "populationServed": 7322645,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13035,7 +13835,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Japan",
@@ -13044,7 +13857,8 @@
           "icuBeds": 103,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1412881
+          "populationServed": 1412881,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13081,7 +13895,8 @@
           "icuBeds": 50,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 679626
+          "populationServed": 679626,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13118,7 +13933,8 @@
           "icuBeds": 267,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3656487
+          "populationServed": 3656487,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13155,7 +13971,8 @@
           "icuBeds": 143,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1952926
+          "populationServed": 1952926,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13192,7 +14009,8 @@
           "icuBeds": 54,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 736475
+          "populationServed": 736475,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13242,7 +14060,8 @@
           "icuBeds": 1011,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 5,
-          "populationServed": 13843403
+          "populationServed": 13843403,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13279,7 +14098,8 @@
           "icuBeds": 41,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 560517
+          "populationServed": 560517,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13329,7 +14149,8 @@
           "icuBeds": 77,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1050246
+          "populationServed": 1050246,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13357,7 +14178,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Japan",
@@ -13366,7 +14200,8 @@
           "icuBeds": 68,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 934051
+          "populationServed": 934051,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13403,7 +14238,8 @@
           "icuBeds": 80,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1089806
+          "populationServed": 1089806,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13440,7 +14276,8 @@
           "icuBeds": 100,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1368495
+          "populationServed": 1368495,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13468,7 +14305,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Japan",
@@ -13477,7 +14327,8 @@
           "icuBeds": 60,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 818391
+          "populationServed": 818391,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13527,7 +14378,8 @@
           "icuBeds": 3948,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 8,
-          "populationServed": 18276499
+          "populationServed": 18276499,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13555,7 +14407,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Kenya",
@@ -13564,7 +14429,8 @@
           "icuBeds": 2032,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 51393010
+          "populationServed": 51393010,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13601,7 +14467,8 @@
           "icuBeds": 6,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 109367
+          "populationServed": 109367,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13638,7 +14505,8 @@
           "icuBeds": 10050,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 25381085
+          "populationServed": 25381085,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13688,7 +14556,8 @@
           "icuBeds": 5402,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 51635256
+          "populationServed": 51635256,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13721,12 +14590,24 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-04-10",
+                "begin": "2020-04-07",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
                 "begin": 36.2,
                 "end": 43.8
+              }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
               }
             }
           ]
@@ -13738,7 +14619,8 @@
           "icuBeds": 142,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1845300
+          "populationServed": 1845300,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13788,7 +14670,8 @@
           "icuBeds": 174,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 33,
-          "populationServed": 4137309
+          "populationServed": 4137309,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13828,6 +14711,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-03",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -13838,7 +14733,8 @@
           "icuBeds": 620,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 6315800
+          "populationServed": 6315800,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13875,7 +14771,8 @@
           "icuBeds": 152,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 7061507
+          "populationServed": 7061507,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13925,7 +14822,8 @@
           "icuBeds": 217,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 24,
-          "populationServed": 1926542
+          "populationServed": 1926542,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -13975,7 +14873,8 @@
           "icuBeds": 530,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 6848925
+          "populationServed": 6848925,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14003,7 +14902,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Liberia",
@@ -14012,7 +14924,8 @@
           "icuBeds": 115,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 4818977
+          "populationServed": 4818977,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14040,7 +14953,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Libya",
@@ -14049,7 +14975,8 @@
           "icuBeds": 749,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 6678567
+          "populationServed": 6678567,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14082,7 +15009,7 @@
               "color": "#bf5b17",
               "name": "Intervention #1",
               "timeRange": {
-                "begin": "2020-03-15",
+                "begin": "2020-03-14",
                 "end": "2020-09-01"
               },
               "transmissionReduction": {
@@ -14111,7 +15038,8 @@
           "icuBeds": 2,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 37910
+          "populationServed": 37910,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14161,7 +15089,8 @@
           "icuBeds": 502,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2789533
+          "populationServed": 2789533,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14211,7 +15140,8 @@
           "icuBeds": 127,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 55,
-          "populationServed": 607728
+          "populationServed": 607728,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14239,7 +15169,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-05",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Madagascar",
@@ -14248,7 +15191,8 @@
           "icuBeds": 154,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 26262368
+          "populationServed": 26262368,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14276,7 +15220,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-07",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Malawi",
@@ -14285,7 +15242,8 @@
           "icuBeds": 773,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 18143315
+          "populationServed": 18143315,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14335,7 +15293,8 @@
           "icuBeds": 1060,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 31528585
+          "populationServed": 31528585,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14385,7 +15344,8 @@
           "icuBeds": 50,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 515696
+          "populationServed": 515696,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14435,7 +15395,8 @@
           "icuBeds": 55,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 584,
-          "populationServed": 19077690
+          "populationServed": 19077690,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14497,7 +15458,8 @@
           "icuBeds": 66,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 483530
+          "populationServed": 483530,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14534,7 +15496,8 @@
           "icuBeds": 6,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 75684
+          "populationServed": 75684,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14584,7 +15547,8 @@
           "icuBeds": 151,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1265303
+          "populationServed": 1265303,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14634,7 +15598,8 @@
           "icuBeds": 5224,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 751,
-          "populationServed": 126190788
+          "populationServed": 126190788,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14671,7 +15636,8 @@
           "icuBeds": 9,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 103643
+          "populationServed": 103643,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14721,7 +15687,8 @@
           "icuBeds": 485,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 14,
-          "populationServed": 3545883
+          "populationServed": 3545883,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14783,7 +15750,8 @@
           "icuBeds": 12,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 38682
+          "populationServed": 38682,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14820,7 +15788,8 @@
           "icuBeds": 271,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3170208
+          "populationServed": 3170208,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14860,6 +15829,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-04",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -14870,7 +15851,8 @@
           "icuBeds": 73,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 622345
+          "populationServed": 622345,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14920,7 +15902,8 @@
           "icuBeds": 1132,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 122,
-          "populationServed": 36029138
+          "populationServed": 36029138,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -14957,7 +15940,8 @@
           "icuBeds": 571,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 29495962
+          "populationServed": 29495962,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15007,7 +15991,8 @@
           "icuBeds": 586,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 23,
-          "populationServed": 53708395
+          "populationServed": 53708395,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15035,7 +16020,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-02",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Namibia",
@@ -15044,7 +16042,8 @@
           "icuBeds": 205,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2448255
+          "populationServed": 2448255,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15081,7 +16080,8 @@
           "icuBeds": 1,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 9692
+          "populationServed": 9692,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15131,7 +16131,8 @@
           "icuBeds": 815,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 3,
-          "populationServed": 28087871
+          "populationServed": 28087871,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15181,7 +16182,8 @@
           "icuBeds": 1065,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 271,
-          "populationServed": 17231017
+          "populationServed": 17231017,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15231,7 +16233,8 @@
           "icuBeds": 153,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 31,
-          "populationServed": 4885500
+          "populationServed": 4885500,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15281,7 +16284,8 @@
           "icuBeds": 164,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 6465513
+          "populationServed": 6465513,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15331,7 +16335,8 @@
           "icuBeds": 178,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 244,
-          "populationServed": 2082958
+          "populationServed": 2082958,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15381,7 +16386,8 @@
           "icuBeds": 395,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 117,
-          "populationServed": 5314336
+          "populationServed": 5314336,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15431,7 +16437,8 @@
           "icuBeds": 499,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 14,
-          "populationServed": 4829483
+          "populationServed": 4829483,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15481,7 +16488,8 @@
           "icuBeds": 3142,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 70,
-          "populationServed": 212215030
+          "populationServed": 212215030,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15518,7 +16526,8 @@
           "icuBeds": 3,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 21516
+          "populationServed": 21516,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15568,7 +16577,8 @@
           "icuBeds": 262,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 132,
-          "populationServed": 4176873
+          "populationServed": 4176873,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15618,7 +16628,8 @@
           "icuBeds": 273,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 6956071
+          "populationServed": 6956071,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15668,7 +16679,8 @@
           "icuBeds": 1503,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 937,
-          "populationServed": 31989256
+          "populationServed": 31989256,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15718,7 +16730,8 @@
           "icuBeds": 2335,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 96,
-          "populationServed": 106651922
+          "populationServed": 106651922,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15755,7 +16768,8 @@
           "icuBeds": 16,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 4089676
+          "populationServed": 4089676,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15792,7 +16806,8 @@
           "icuBeds": 16,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1907454
+          "populationServed": 1907454,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15829,7 +16844,8 @@
           "icuBeds": 104,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 13152983
+          "populationServed": 13152983,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15866,7 +16882,8 @@
           "icuBeds": 55,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 5382803
+          "populationServed": 5382803,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15903,7 +16920,8 @@
           "icuBeds": 43,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 5001941
+          "populationServed": 5001941,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15940,7 +16958,8 @@
           "icuBeds": 35,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 5338223
+          "populationServed": 5338223,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -15977,7 +16996,8 @@
           "icuBeds": 36,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 4958181
+          "populationServed": 4958181,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16014,7 +17034,8 @@
           "icuBeds": 11,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2939578
+          "populationServed": 2939578,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16051,7 +17072,8 @@
           "icuBeds": 36,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3687845
+          "populationServed": 3687845,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16088,7 +17110,8 @@
           "icuBeds": 106,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 11739028
+          "populationServed": 11739028,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16125,7 +17148,8 @@
           "icuBeds": 138,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 15179591
+          "populationServed": 15179591,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16162,7 +17186,8 @@
           "icuBeds": 16,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3340861
+          "populationServed": 3340861,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16199,7 +17224,8 @@
           "icuBeds": 33,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 6506252
+          "populationServed": 6506252,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16236,7 +17262,8 @@
           "icuBeds": 39,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 8132584
+          "populationServed": 8132584,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16273,7 +17300,8 @@
           "icuBeds": 38,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 7928506
+          "populationServed": 7928506,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16310,7 +17338,8 @@
           "icuBeds": 29,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 4874138
+          "populationServed": 4874138,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16347,7 +17376,8 @@
           "icuBeds": 28,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 4026515
+          "populationServed": 4026515,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16397,7 +17427,8 @@
           "icuBeds": 2635,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 102,
-          "populationServed": 37978548
+          "populationServed": 37978548,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16447,7 +17478,8 @@
           "icuBeds": 451,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 10281762
+          "populationServed": 10281762,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16509,7 +17541,8 @@
           "icuBeds": 85,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2781677
+          "populationServed": 2781677,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16559,7 +17592,8 @@
           "icuBeds": 4574,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 239,
-          "populationServed": 19473936
+          "populationServed": 19473936,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16609,7 +17643,8 @@
           "icuBeds": 27453,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 13,
-          "populationServed": 144478050
+          "populationServed": 144478050,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16659,7 +17694,8 @@
           "icuBeds": 7,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 52441
+          "populationServed": 52441,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16709,7 +17745,8 @@
           "icuBeds": 6,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 181889
+          "populationServed": 181889,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16759,7 +17796,8 @@
           "icuBeds": 7,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 110210
+          "populationServed": 110210,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16821,7 +17859,8 @@
           "icuBeds": 3,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 33785
+          "populationServed": 33785,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16883,7 +17922,8 @@
           "icuBeds": 17,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 204454
+          "populationServed": 204454,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16933,7 +17973,8 @@
           "icuBeds": 6515,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 112,
-          "populationServed": 33699947
+          "populationServed": 33699947,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -16983,7 +18024,8 @@
           "icuBeds": 135,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 97,
-          "populationServed": 15854360
+          "populationServed": 15854360,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17033,7 +18075,8 @@
           "icuBeds": 977,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 12,
-          "populationServed": 6982084
+          "populationServed": 6982084,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17073,6 +18116,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-11",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -17083,7 +18138,8 @@
           "icuBeds": 10,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 96762
+          "populationServed": 96762,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17145,7 +18201,8 @@
           "icuBeds": 671,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 5638676
+          "populationServed": 5638676,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17195,7 +18252,8 @@
           "icuBeds": 500,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 5447011
+          "populationServed": 5447011,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17235,6 +18293,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -17245,7 +18315,8 @@
           "icuBeds": 131,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2067372
+          "populationServed": 2067372,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17282,7 +18353,8 @@
           "icuBeds": 27,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 660121
+          "populationServed": 660121,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17332,7 +18404,8 @@
           "icuBeds": 2938,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 15008154
+          "populationServed": 15008154,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17382,7 +18455,8 @@
           "icuBeds": 4021,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 193,
-          "populationServed": 57779622
+          "populationServed": 57779622,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17432,7 +18506,8 @@
           "icuBeds": 4479,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 64,
-          "populationServed": 46723749
+          "populationServed": 46723749,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17460,7 +18535,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-10",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Sri Lanka",
@@ -17469,7 +18557,8 @@
           "icuBeds": 519,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 21670000
+          "populationServed": 21670000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17519,7 +18608,8 @@
           "icuBeds": 1034,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 696,
-          "populationServed": 41801533
+          "populationServed": 41801533,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17559,6 +18649,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-06",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -17569,7 +18671,8 @@
           "icuBeds": 55,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 575991
+          "populationServed": 575991,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17606,7 +18709,8 @@
           "icuBeds": 108,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 2000000
+          "populationServed": 2000000,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17656,7 +18760,8 @@
           "icuBeds": 550,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 152,
-          "populationServed": 10183175
+          "populationServed": 10183175,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17706,7 +18811,8 @@
           "icuBeds": 1400,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 36,
-          "populationServed": 8516543
+          "populationServed": 8516543,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17743,7 +18849,8 @@
           "icuBeds": 875,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 16906283
+          "populationServed": 16906283,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17780,7 +18887,8 @@
           "icuBeds": 6701,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 23780452
+          "populationServed": 23780452,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17830,7 +18938,8 @@
           "icuBeds": 1058,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 8604882
+          "populationServed": 8604882,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17867,7 +18976,8 @@
           "icuBeds": 1164,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 42,
-          "populationServed": 56318348
+          "populationServed": 56318348,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17917,7 +19027,8 @@
           "icuBeds": 7100,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 0,
-          "populationServed": 69428524
+          "populationServed": 69428524,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17954,7 +19065,8 @@
           "icuBeds": 233,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1267972
+          "populationServed": 1267972,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -17982,7 +19094,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Togo",
@@ -17991,7 +19116,8 @@
           "icuBeds": 171,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 7889094
+          "populationServed": 7889094,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18028,7 +19154,8 @@
           "icuBeds": 8,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 106398
+          "populationServed": 106398,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18056,7 +19183,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Trinidad and Tobago",
@@ -18065,7 +19205,8 @@
           "icuBeds": 109,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1389858
+          "populationServed": 1389858,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18115,7 +19256,8 @@
           "icuBeds": 760,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 156,
-          "populationServed": 11565204
+          "populationServed": 11565204,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18165,7 +19307,8 @@
           "icuBeds": 6701,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 971,
-          "populationServed": 82319724
+          "populationServed": 82319724,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18202,7 +19345,8 @@
           "icuBeds": 487,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 5411012
+          "populationServed": 5411012,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18239,7 +19383,8 @@
           "icuBeds": 612,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 42723139
+          "populationServed": 42723139,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18289,7 +19434,8 @@
           "icuBeds": 2646,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 35,
-          "populationServed": 44622516
+          "populationServed": 44622516,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18339,7 +19485,8 @@
           "icuBeds": 349,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 37,
-          "populationServed": 9630959
+          "populationServed": 9630959,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18389,7 +19536,8 @@
           "icuBeds": 4114,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 53,
-          "populationServed": 66488991
+          "populationServed": 66488991,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18439,7 +19587,8 @@
           "icuBeds": 49499,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1,
-          "populationServed": 327167434
+          "populationServed": 327167434,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18489,7 +19638,8 @@
           "icuBeds": 283,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3449299
+          "populationServed": 3449299,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18539,7 +19689,8 @@
           "icuBeds": 507,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 76,
-          "populationServed": 4908621
+          "populationServed": 4908621,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18579,6 +19730,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-06-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -18589,7 +19752,8 @@
           "icuBeds": 54,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 734002
+          "populationServed": 734002,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18639,7 +19803,8 @@
           "icuBeds": 467,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 396,
-          "populationServed": 7378494
+          "populationServed": 7378494,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18701,7 +19866,8 @@
           "icuBeds": 324,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3038999
+          "populationServed": 3038999,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18751,7 +19917,8 @@
           "icuBeds": 2396,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 67,
-          "populationServed": 39937489
+          "populationServed": 39937489,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18801,7 +19968,8 @@
           "icuBeds": 370,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 26,
-          "populationServed": 5845526
+          "populationServed": 5845526,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18851,7 +20019,8 @@
           "icuBeds": 238,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 160,
-          "populationServed": 3563070
+          "populationServed": 3563070,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18901,7 +20070,8 @@
           "icuBeds": 72,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 36,
-          "populationServed": 982895
+          "populationServed": 982895,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -18951,7 +20121,8 @@
           "icuBeds": 106,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 81,
-          "populationServed": 720687
+          "populationServed": 720687,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19001,7 +20172,8 @@
           "icuBeds": 1906,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 11,
-          "populationServed": 21992985
+          "populationServed": 21992985,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19051,7 +20223,8 @@
           "icuBeds": 859,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 40,
-          "populationServed": 10736059
+          "populationServed": 10736059,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19091,6 +20264,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -19101,7 +20286,8 @@
           "icuBeds": 89,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1412687
+          "populationServed": 1412687,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19151,7 +20337,8 @@
           "icuBeds": 116,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 7,
-          "populationServed": 1826156
+          "populationServed": 1826156,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19201,7 +20388,8 @@
           "icuBeds": 1055,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 104,
-          "populationServed": 12659682
+          "populationServed": 12659682,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19251,7 +20439,8 @@
           "icuBeds": 607,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 35,
-          "populationServed": 6745354
+          "populationServed": 6745354,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19301,7 +20490,8 @@
           "icuBeds": 318,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 27,
-          "populationServed": 3179840
+          "populationServed": 3179840,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19351,7 +20541,8 @@
           "icuBeds": 320,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 117,
-          "populationServed": 2910357
+          "populationServed": 2910357,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19401,7 +20592,8 @@
           "icuBeds": 480,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 18,
-          "populationServed": 4499692
+          "populationServed": 4499692,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19451,7 +20643,8 @@
           "icuBeds": 511,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 33,
-          "populationServed": 4645184
+          "populationServed": 4645184,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19501,7 +20694,8 @@
           "icuBeds": 112,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 78,
-          "populationServed": 1345790
+          "populationServed": 1345790,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19551,7 +20745,8 @@
           "icuBeds": 385,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 61,
-          "populationServed": 6083116
+          "populationServed": 6083116,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19601,7 +20796,8 @@
           "icuBeds": 535,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 90,
-          "populationServed": 6976597
+          "populationServed": 6976597,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19651,7 +20847,8 @@
           "icuBeds": 837,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 161,
-          "populationServed": 10045029
+          "populationServed": 10045029,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19701,7 +20898,8 @@
           "icuBeds": 475,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 206,
-          "populationServed": 5700671
+          "populationServed": 5700671,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19751,7 +20949,8 @@
           "icuBeds": 399,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 527,
-          "populationServed": 2989260
+          "populationServed": 2989260,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19801,7 +21000,8 @@
           "icuBeds": 638,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 608,
-          "populationServed": 6169270
+          "populationServed": 6169270,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19841,6 +21041,18 @@
                 "begin": 36.2,
                 "end": 43.8
               }
+            },
+            {
+              "color": "#666666",
+              "name": "Intervention #2",
+              "timeRange": {
+                "begin": "2020-07-03",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
             }
           ]
         },
@@ -19851,7 +21063,8 @@
           "icuBeds": 120,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1086759
+          "populationServed": 1086759,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19901,7 +21114,8 @@
           "icuBeds": 234,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 9,
-          "populationServed": 1952570
+          "populationServed": 1952570,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -19951,7 +21165,8 @@
           "icuBeds": 220,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 26,
-          "populationServed": 3139658
+          "populationServed": 3139658,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20001,7 +21216,8 @@
           "icuBeds": 96,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 164,
-          "populationServed": 1371246
+          "populationServed": 1371246,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20051,7 +21267,8 @@
           "icuBeds": 715,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 56,
-          "populationServed": 8936574
+          "populationServed": 8936574,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20101,7 +21318,8 @@
           "icuBeds": 126,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 131,
-          "populationServed": 2096640
+          "populationServed": 2096640,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20151,7 +21369,8 @@
           "icuBeds": 1750,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 9,
-          "populationServed": 19440469
+          "populationServed": 19440469,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20201,7 +21420,8 @@
           "icuBeds": 743,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 14,
-          "populationServed": 10611862
+          "populationServed": 10611862,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20251,7 +21471,8 @@
           "icuBeds": 109,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 68,
-          "populationServed": 761723
+          "populationServed": 761723,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20313,7 +21534,8 @@
           "icuBeds": 1096,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 11747694
+          "populationServed": 11747694,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20363,7 +21585,8 @@
           "icuBeds": 369,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 29,
-          "populationServed": 3954821
+          "populationServed": 3954821,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20413,7 +21636,8 @@
           "icuBeds": 229,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 34,
-          "populationServed": 4301089
+          "populationServed": 4301089,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20463,7 +21687,8 @@
           "icuBeds": 1239,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 17,
-          "populationServed": 12820878
+          "populationServed": 12820878,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20525,7 +21750,8 @@
           "icuBeds": 202,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 3032160
+          "populationServed": 3032160,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20575,7 +21801,8 @@
           "icuBeds": 74,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 3,
-          "populationServed": 1056161
+          "populationServed": 1056161,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20625,7 +21852,8 @@
           "icuBeds": 417,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 214,
-          "populationServed": 5210095
+          "populationServed": 5210095,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20675,7 +21903,8 @@
           "icuBeds": 145,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 6,
-          "populationServed": 903027
+          "populationServed": 903027,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20725,7 +21954,8 @@
           "icuBeds": 667,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 12,
-          "populationServed": 6897576
+          "populationServed": 6897576,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20775,7 +22005,8 @@
           "icuBeds": 2260,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 1,
-          "populationServed": 29472295
+          "populationServed": 29472295,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20825,7 +22056,8 @@
           "icuBeds": 197,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 22,
-          "populationServed": 3282115
+          "populationServed": 3282115,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20875,7 +22107,8 @@
           "icuBeds": 44,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 143,
-          "populationServed": 628061
+          "populationServed": 628061,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20925,7 +22158,8 @@
           "icuBeds": 604,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 25,
-          "populationServed": 8626207
+          "populationServed": 8626207,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -20975,7 +22209,8 @@
           "icuBeds": 442,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 253,
-          "populationServed": 7797095
+          "populationServed": 7797095,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -21037,7 +22272,8 @@
           "icuBeds": 225,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 1778070
+          "populationServed": 1778070,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -21087,7 +22323,8 @@
           "icuBeds": 410,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 200,
-          "populationServed": 5851754
+          "populationServed": 5851754,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -21137,7 +22374,8 @@
           "icuBeds": 66,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 5,
-          "populationServed": 567025
+          "populationServed": 567025,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -21187,7 +22425,8 @@
           "icuBeds": 2951,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 25,
-          "populationServed": 32955400
+          "populationServed": 32955400,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -21215,7 +22454,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-06-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Venezuela (Bolivarian Republic of)",
@@ -21224,7 +22476,8 @@
           "icuBeds": 760,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 28870195
+          "populationServed": 28870195,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -21261,7 +22514,8 @@
           "icuBeds": 7569,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 95540395
+          "populationServed": 95540395,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -21298,7 +22552,8 @@
           "icuBeds": 602,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 28667230
+          "populationServed": 28667230,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -21326,7 +22581,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-08",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Zambia",
@@ -21335,7 +22603,8 @@
           "icuBeds": 986,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 17351822
+          "populationServed": 17351822,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,
@@ -21363,7 +22632,20 @@
           "seasonalForcing": 0.0
         },
         "mitigation": {
-          "mitigationIntervals": []
+          "mitigationIntervals": [
+            {
+              "color": "#bf5b17",
+              "name": "Intervention #1",
+              "timeRange": {
+                "begin": "2020-07-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
         },
         "population": {
           "ageDistributionName": "Zimbabwe",
@@ -21372,7 +22654,8 @@
           "icuBeds": 715,
           "importsPerDay": 0.1,
           "initialNumberOfCases": 10,
-          "populationServed": 14439018
+          "populationServed": 14439018,
+          "seroprevalence": 0.0
         },
         "simulation": {
           "numberStochasticRuns": 15,

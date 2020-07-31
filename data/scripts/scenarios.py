@@ -141,6 +141,7 @@ class MitigationInterval(schema.MitigationInterval):
 
 class PopulationParams(schema.ScenarioDatumPopulation):
     def __init__(self, region, age_distribution_name, population, beds, icus, cases_key):
+        defaults = DEFAULTS["PopulationData"]
         super(PopulationParams, self).__init__( \
                 case_counts_name=cases_key,
                 age_distribution_name=age_distribution_name,
@@ -148,6 +149,7 @@ class PopulationParams(schema.ScenarioDatumPopulation):
                 icu_beds=int(icus),
                 imports_per_day=0.1,
                 population_served=int(population),
+                seroprevalence=defaults['seroprevalence'],
                 initial_number_of_cases=int(round(FIT_CASE_DATA[region]['initialCases']
                                               if region in FIT_CASE_DATA else Fitter.cases_on_tMin)))
 
