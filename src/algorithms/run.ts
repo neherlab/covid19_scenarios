@@ -46,12 +46,24 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
   if (stochastic) {
     stochasticParams = getPopulationParams(params, severity, ageDistribution, false)
     stochasticTrajectories = stochasticParams.map((modelParams) => {
-      const tmpPopulation = initializePopulation(modelParams.populationServed, initialCases, tMin, ageDistribution)
+      const tmpPopulation = initializePopulation(
+        modelParams.populationServed,
+        initialCases,
+        tMin,
+        params,
+        ageDistribution,
+      )
       return simulate(tmpPopulation, modelParams, tMax, ageGroups, identity)
     })
   }
   const deterministicParams = getPopulationParams(params, severity, ageDistribution, true)[0]
-  const population = initializePopulation(deterministicParams.populationServed, initialCases, tMin, ageDistribution)
+  const population = initializePopulation(
+    deterministicParams.populationServed,
+    initialCases,
+    tMin,
+    params,
+    ageDistribution,
+  )
   const deterministicTrajectory = simulate(population, deterministicParams, tMax, ageGroups, identity)
 
   const thresholds = [0.2, 0.8]

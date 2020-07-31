@@ -161,6 +161,7 @@ export function initializePopulation(
   N: number,
   numCases: number,
   t0: number,
+  scenario: ScenarioFlat,
   ageDistribution: AgeDistributionDatum[],
 ): SimulationTimePoint {
   const Z = sumBy(ageDistribution, ({ population }) => population)
@@ -201,6 +202,7 @@ export function initializePopulation(
     pop.cumulative.fatality[i] = 0
 
     if (i === Math.round(ageDistribution.length / 2)) {
+      pop.current.susceptible[i] *= (100 - scenario.seroprevalence) / 100
       pop.current.susceptible[i] -= numCases
       pop.current.infectious[i] = initialInfectiousFraction * numCases
       const e = ((1 - initialInfectiousFraction) * numCases) / pop.current.exposed[i].length
