@@ -93,6 +93,9 @@ function deserialize(input: string): ScenarioParameters {
 
   const { scenarioData, ageDistributionData, severityDistributionData } = shareable
 
+  // HACK: implement proper schema migraion instead
+  scenarioData.data.population.seroprevalence = 0
+
   return {
     scenarioData: {
       ...scenarioData,

@@ -19,6 +19,9 @@ properties:
   populationServed:
     $ref: 'IntegerNonNegative#'
 
+  seroprevalence:
+    $ref: 'Percentage#'
+
   ageDistributionName:
     type: string
     minLength: 1

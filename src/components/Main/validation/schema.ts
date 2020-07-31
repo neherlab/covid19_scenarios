@@ -73,6 +73,8 @@ export const schema: yup.Schema<FormData> = yup
       .shape({
         populationServed: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 
+        seroprevalence: percentageSchema.required(MSG_REQUIRED),
+
         ageDistributionName: yup
           .string()
           .required(MSG_REQUIRED)
