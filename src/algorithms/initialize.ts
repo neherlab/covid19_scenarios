@@ -190,7 +190,8 @@ export function initializePopulation(
 
   ageDistribution.forEach(({ population }, i) => {
     const n = Math.round((population / Z) * N)
-    const immune = (n * (100 - scenario.seroprevalence)) / 100
+    const immuneFraction = (100 - scenario.seroprevalence) / 100
+    const immune = n * immuneFraction
     pop.current.susceptible[i] = n - immune
     pop.current.exposed[i] = [0, 0, 0]
     pop.current.infectious[i] = 0
