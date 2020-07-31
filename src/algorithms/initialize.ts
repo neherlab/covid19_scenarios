@@ -198,7 +198,7 @@ export function initializePopulation(
     pop.current.critical[i] = 0
     pop.current.overflow[i] = 0
     pop.cumulative.hospitalized[i] = 0
-    pop.cumulative.recovered[i] = 0
+    pop.cumulative.recovered[i] = immune
     pop.cumulative.critical[i] = 0
     pop.cumulative.fatality[i] = 0
 
