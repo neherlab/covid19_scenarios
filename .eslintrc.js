@@ -116,6 +116,7 @@ module.exports = {
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
+    'react/require-default-props': 'off',
     'react/state-in-constructor': 'off',
     'redux-saga/no-unhandled-errors': 'off',
     'security/detect-non-literal-fs-filename': 'off',
