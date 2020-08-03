@@ -16,6 +16,7 @@ import {
   AgeDistributionArray,
   Convert,
 } from '../algorithms/types/Param.types'
+
 import { toInternal } from '../algorithms/types/convert'
 
 const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
@@ -135,19 +136,40 @@ async function main() {
   // Command line argument processing.
   const argv = neodoc.run(
     `
-    usage: cli <scenario> <output> [options] [(--age=<path> | --ageDistribution=<ageDistribution>)]
-          
+    usage: cli <scenario> <output> [options]
+
     options:
       <scenario>            Path to scenario parameters JSON file
       <output>              Path to output file
-      
+
       --age=<pathToAgeDistribution>
                             Path to age distribution JSON file
       --ageDistribution=<ageDistribution>
                             Name of country for age distribution
-      
-      --severity=<pathToSeverityDistribution>     
+
+      --severity=<pathToSeverityDistribution>
                             Path to severity JSON file
+
+      --hospitalStayDays=<hospitalStayDays>
+      --icuStayDays=<icuStayDays>
+      --infectiousPeriodDays=<infectiousPeriodDays>
+      --latencyDays=<latencyDays>
+      --overflowSeverity=<overflowSeverity>
+      --peakMonth=<peakMonth>
+      --r0Begin=<r0Begin>
+      --r0End=<r0End>
+
+      --ageDistributionName=<ageDistributionName>
+      --caseCountsName=<caseCountsName>
+      --hospitalBeds=<hospitalBeds>
+      --icuBeds=<icuBeds>
+      --importsPerDay=<importsPerDay>
+      --initialNumberOfCases=<initialNumberOfCases>
+      --populationServed=<populationServed>
+
+      --numberStochasticRuns=<numberStochasticRuns>
+      --color=<color>
+
 
     `,
     { smartOptions: true },
@@ -170,6 +192,30 @@ async function main() {
   const severity = getSeverity(argv['--severity'])
   const ageDistribution = getAge(argv['--age'], ageDistributionName)
 
+
+  Object.keys(scenario.epidemiological).forEach((key) => {
+    if (argv[`--${key}`]) {
+      scenario.epidemiological[key] = argv[`--${key}`]
+    }
+  })
+  if (argv['--r0Begin']) {
+    scenario.epidemiological.r0.begin = argv['--r0Begin']
+  }
+  if (argv['--r0End']) {
+    scenario.epidemiological.r0.end = argv['--r0End']
+  }
+
+  Object.keys(scenario.population).forEach((key) => {
+    if (argv[`--${key}`]) {
+      scenario.population[key] = argv[`--${key}`]
+    }
+  })
+  if (argv['--numberStochasticRuns']) {
+    scenario.simulation.numberStochasticRuns = argv['--numberStochasticRuns']
+  }
+
+  scenario.mitigation.mitigationIntervals[0].color = argv['--color']
+
   // Run the model.
   try {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -179,6 +225,7 @@ async function main() {
     console.info('Run complete')
     // console.info(result)
     console.info(`Writing output to ${outputFile}`)
+    
     fs.writeFileSync(outputFile, JSON.stringify(result))
   } catch (error) {
     console.error(`Run failed: ${error}`)
