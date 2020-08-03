@@ -66,6 +66,9 @@ export function parameterExplanations(t: TFunction): ParameterExplanation {
     populationServed: {
       short: t('Population size'),
     },
+    seroprevalence: {
+      short: t('Seroprevalence [%]'),
+    },
     hospitalBeds: {
       short: t('Number of hospital beds'),
       long: t(
