@@ -15,6 +15,7 @@ import {
   AgeDistributionDatum,
   AgeDistributionArray,
   Convert,
+  MitigationInterval,
 } from '../algorithms/types/Param.types'
 
 import { toInternal } from '../algorithms/types/convert'
@@ -136,7 +137,11 @@ async function main() {
   // Command line argument processing.
   const argv = neodoc.run(
     `
-    usage: cli <scenario> <output> [options]
+    usage:  cli <scenario> <output> [options]
+            cli <scenario> <output> mitigation 
+              (<mitTimeBegin> <mitTimeEnd>
+              <transmissionReductionLow> <transmissionReductionHigh>)...
+              [options]
 
     options:
       <scenario>            Path to scenario parameters JSON file
@@ -180,9 +185,9 @@ async function main() {
                             Number of people served by the healthcare system
       --numberStochasticRuns=<numberStochasticRuns>
                             Number of runs, to account for the uncertainty of parameters.
-      --mitTimeRangeBegin=<mitTimeRangeBegin>
+      --mitTimeBegin=<mitTimeBegin>
                             Start of mitigation time period (date in form yyyy-mm-dd)
-      --mitTimeRangeEnd=<mitTimeRangeEnd>
+      --mitTimeEnd=<mitTimeEnd>
                             End of mitigation time period (date in form yyyy-mm-dd)
       --transmissionReductionLow=<transmissionReductionLow>
                             Intervention efficacy as a range of plausible multiplicative reductions of the base growth rate (low bound)
@@ -199,7 +204,6 @@ async function main() {
     `,
     { smartOptions: true },
   )
-
   // Read the scenario data.
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const scenarioData: ScenarioData = readJsonFromFile<ScenarioData>(argv['<scenario>']!)
@@ -216,7 +220,6 @@ async function main() {
   // Load severity and age data.
   const severity = getSeverity(argv['--severity'])
   const ageDistribution = getAge(argv['--age'], ageDistributionName)
-
 
   Object.keys(scenario.epidemiological).forEach((key) => {
     if (argv[`--${key}`]) {
@@ -236,29 +239,36 @@ async function main() {
     }
   })
   if (argv['--numberStochasticRuns']) {
-    scenario.simulation.numberStochasticRuns = argv['--numberStochasticRuns']
+    scenario.simulation.numberStochasticRuns = +argv['--numberStochasticRuns']
   }
-  if (argv['--mitTimeRangeBegin']) {
-    scenario.mitigation.mitigationIntervals[0].timeRange.begin = argv['--mitTimeRangeBegin']
+
+  if(argv['mitigation']){
+    let mitigationIntervals: MitigationInterval[] = [];
+    for(let i = 0; i < argv['<mitTimeBegin>'].length; ++i){
+      mitigationIntervals[i] = {
+        "color": scenario.mitigation.mitigationIntervals[0].color,
+        "name": `Intervention ${i+1}`,
+        "timeRange": {
+          "begin": argv['<mitTimeBegin>'][i] ? 
+            argv['<mitTimeBegin>'][i] : 
+            scenario.mitigation.mitigationIntervals[0].timeRange.begin,
+          "end": argv['<mitTimeEnd>'][i] ? 
+            argv['<mitTimeEnd>'][i] : 
+            scenario.mitigation.mitigationIntervals[0].timeRange.end
+        },
+        "transmissionReduction": {
+          "begin":  argv['<transmissionReductionLow>'][i] ? 
+            argv['<transmissionReductionLow>'][i] : 
+            scenario.mitigation.mitigationIntervals[0].transmissionReduction.begin,
+          "end": argv['<transmissionReductionHigh>'][i] ? 
+            argv['<transmissionReductionHigh>'][i] : 
+            scenario.mitigation.mitigationIntervals[0].transmissionReduction.end
+        }
+      }
+    }
+    scenario.mitigation.mitigationIntervals = mitigationIntervals
   }
-  if (argv['--mitTimeRangeEnd']) {
-    scenario.mitigation.mitigationIntervals[0].timeRange.end = argv['--mitTimeRangeEnd']
-  }
-  if (argv['--transmissionReductionLow']) {
-    scenario.mitigation.mitigationIntervals[0].transmissionReduction.begin = argv['--transmissionReductionLow']
-  }
-  if (argv['--transmissionReductionHigh']) {
-    scenario.mitigation.mitigationIntervals[0].transmissionReduction.end = argv['--transmissionReductionHigh']
-  }
-  if (argv['--simulationRangeBegin']) {
-    scenario.simulation.simulationTimeRange.begin = argv['--simulationRangeBegin']
-  }
-  if (argv['--transmissionReductionEnd']) {
-    scenario.simulation.simulationTimeRange.end = argv['--simulationRangeEnd']
-  }
-  if (argv['--name']) {
-    scenario.name = argv['--name']
-  }
+
   // Run the model.
   try {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -267,7 +277,6 @@ async function main() {
     const result = await runModel(params, severity, ageDistribution)
     console.info('Run complete')
     console.info(`Writing output to ${outputFile}`)
-    fs.writeFileSync('scenariofile.json',JSON.stringify(scenario))
     fs.writeFileSync(outputFile, JSON.stringify(result))
   } catch (error) {
     console.error(`Run failed: ${error}`)
