@@ -146,40 +146,56 @@ async function main() {
                             Path to age distribution JSON file
       --ageDistribution=<ageDistribution>
                             Name of country for age distribution
-
       --severity=<pathToSeverityDistribution>
                             Path to severity JSON file
-
       --hospitalStayDays=<hospitalStayDays>
+                            Average number of days a severe case stays in regular hospital beds
       --icuStayDays=<icuStayDays>
+                            Average number of days a critical case stays in the Intensive Care Unit (ICU)
       --infectiousPeriodDays=<infectiousPeriodDays>
+                            Average number of days a person is infectious
       --latencyDays=<latencyDays>
+                            Time from infection to onset of symptoms (here onset of infectiousness)
       --overflowSeverity=<overflowSeverity>
+                            A multiplicative factor to death rate to patients that require but do not have access to an Intensive Care Unit (ICU) bed relative to those who do
       --peakMonth=<peakMonth>
-      --r0Begin=<r0Begin>
-      --r0End=<r0End>
-
+                            Time of the year with peak transmission (month as a number)
+      --r0Low=<r0Low>
+                            Average number of secondary infections per case (lower bound)
+      --r0High=<r0High>
+                            Average number of secondary infections per case (upper bound)
       --ageDistributionName=<ageDistributionName>
+                            Name of age distribution data to use
       --caseCountsName=<caseCountsName>
+                            Name of case count data to use
       --hospitalBeds=<hospitalBeds>
+                            Number of hospital beds available
       --icuBeds=<icuBeds>
+                            Number of available beds in Intensive Care Units (ICUs)
       --importsPerDay=<importsPerDay>
+                            Number of cases imported from the outside per day on average
       --initialNumberOfCases=<initialNumberOfCases>
+                            Number of cases present at the start of simulation
       --populationServed=<populationServed>
-
+                            Number of people served by the healthcare system
       --numberStochasticRuns=<numberStochasticRuns>
-
+                            Number of runs, to account for the uncertainty of parameters.
+      --mitTimeRangeBegin=<mitTimeRangeBegin>
+                            Start of mitigation time period (date in form yyyy-mm-dd)
+      --mitTimeRangeEnd=<mitTimeRangeEnd>
+                            End of mitigation time period (date in form yyyy-mm-dd)
+      --transmissionReductionLow=<transmissionReductionLow>
+                            Intervention efficacy as a range of plausible multiplicative reductions of the base growth rate (low bound)
+      --transmissionReductionHigh=<transmissionReductionHigh>
+                            Intervention efficacy as a range of plausible multiplicative reductions of the base growth rate (high bound)
+      --simulationRangeBegin=<simulationRangeBegin>
+                            Beginning of simulation time range (date in form yyyy-mm-dd)
+      --simulationRangeEnd=<simulationRangeEnd>
+                            End of simulation time range (date in form yyyy-mm-dd)
+      --name=<name>
+                            Scenario name
       --color=<color>
                             Colorhex
-      --mitTimeRangeBegin=<mitTimeRangeBegin>
-      --mitTimeRangeEnd=<mitTimeRangeEnd>
-      --transmissionReductionBegin=<transmissionReductionBegin>
-      --transmissionReductionEnd=<transmissionReductionEnd>
-
-      --simulationRangeBegin=<simulationRangeBegin>
-      --simulationRangeEnd=<simulationRangeEnd>
-
-
     `,
     { smartOptions: true },
   )
@@ -207,11 +223,11 @@ async function main() {
       scenario.epidemiological[key] = argv[`--${key}`]
     }
   })
-  if (argv['--r0Begin']) {
-    scenario.epidemiological.r0.begin = argv['--r0Begin']
+  if (argv['--r0Low']) {
+    scenario.epidemiological.r0.begin = argv['--r0Low']
   }
-  if (argv['--r0End']) {
-    scenario.epidemiological.r0.end = argv['--r0End']
+  if (argv['--r0High']) {
+    scenario.epidemiological.r0.end = argv['--r0High']
   }
 
   Object.keys(scenario.population).forEach((key) => {
@@ -228,17 +244,20 @@ async function main() {
   if (argv['--mitTimeRangeEnd']) {
     scenario.mitigation.mitigationIntervals[0].timeRange.end = argv['--mitTimeRangeEnd']
   }
-  if (argv['--transmissionReductionBegin']) {
-    scenario.mitigation.mitigationIntervals[0].transmissionReduction.begin = argv['--transmissionReductionBegin']
+  if (argv['--transmissionReductionLow']) {
+    scenario.mitigation.mitigationIntervals[0].transmissionReduction.begin = argv['--transmissionReductionLow']
   }
-  if (argv['--transmissionReductionEnd']) {
-    scenario.mitigation.mitigationIntervals[0].transmissionReduction.end = argv['--transmissionReductionEnd']
+  if (argv['--transmissionReductionHigh']) {
+    scenario.mitigation.mitigationIntervals[0].transmissionReduction.end = argv['--transmissionReductionHigh']
   }
   if (argv['--simulationRangeBegin']) {
     scenario.simulation.simulationTimeRange.begin = argv['--simulationRangeBegin']
   }
   if (argv['--transmissionReductionEnd']) {
     scenario.simulation.simulationTimeRange.end = argv['--simulationRangeEnd']
+  }
+  if (argv['--name']) {
+    scenario.name = argv['--name']
   }
   // Run the model.
   try {
@@ -248,6 +267,7 @@ async function main() {
     const result = await runModel(params, severity, ageDistribution)
     console.info('Run complete')
     console.info(`Writing output to ${outputFile}`)
+    fs.writeFileSync('scenariofile.json',JSON.stringify(scenario))
     fs.writeFileSync(outputFile, JSON.stringify(result))
   } catch (error) {
     console.error(`Run failed: ${error}`)
