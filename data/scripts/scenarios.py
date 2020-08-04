@@ -74,7 +74,8 @@ class MitigationInterval(schema.MitigationInterval):
                 time_range = DateRange(tMin, tMax))
 
 class PopulationParams(schema.ScenarioDatumPopulation):
-    def __init__(self, region, age_distribution_name, population, beds, icus, cases_key, seroprevalence=0, imports_per_day=0.1, initial_number_of_cases=0):
+    def __init__(self, region, age_distribution_name, population, beds, icus, cases_key, seroprevalence=0.0,
+                 imports_per_day=0.1, initial_number_of_cases=0):
         super(PopulationParams, self).__init__( \
                 case_counts_name=cases_key,
                 age_distribution_name=age_distribution_name,
@@ -82,7 +83,7 @@ class PopulationParams(schema.ScenarioDatumPopulation):
                 icu_beds=int(icus),
                 imports_per_day=imports_per_day,
                 population_served=int(population),
-                seroprevalence=seroprevalence,
+                seroprevalence=float(seroprevalence),
                 initial_number_of_cases=initial_number_of_cases
                 )
 
@@ -188,8 +189,8 @@ def fit_population(args):
     mitigations = []
     for ci,cp in enumerate(change_points[:-1]):
         mitigations.append({'tMin':int(weekly_data['time'][cp]),
-                            'tMax':int(weekly_data['time'][change_points[ci+1]]),
-                            'value': float(1-piecewise_constant_Re[cp]/pop_params['r0'])})
+                            'tMax':int(weekly_data['time'][change_points[ci+1]-1]),
+                            'value': max(0,min(1, float(1-piecewise_constant_Re[cp]/pop_params['r0'])))})
 
 
     total_deaths_at_start = data['deaths'][-tp_to_eval_seroprevalence]
@@ -214,8 +215,12 @@ def fit_population(args):
         params[p] = float(params[p])
 
     params['mitigations'] = mitigations
+    params['tMin'] = datetime.fromordinal(tmin).date().strftime('%Y-%m-%d')
+    params['tMax'] = datetime.fromordinal(tmin+90).date().strftime('%Y-%m-%d')
     if return_fit_res:
         return (region, params, fit_result)
+    else:
+        return (region, params)
 
 
 def fit_all_case_data(num_procs=4):
@@ -248,7 +253,7 @@ def set_mitigation(scenario, mitigations):
             tMax=datetime.fromordinal(m['tMax']).date() + timedelta(1),
             color=mitigation_colors.get(name, "#cccccc"),
             # mitigationValue=report_errors(round(100*fit_params['efficacy']), 0, 100)))
-            mitigationValue=round(100*m['value'])))
+            mitigationValue=round(100*max(0, min(1, m['value'])))))
 
 
 # ------------------------------------------------------------------------
@@ -262,11 +267,8 @@ def generate(output_json, num_procs=1, recalculate=False):
         with open(fit_fname, 'w') as fh:
             json.dump(results, fh)
     else:
-        results = {}
         with open(fit_fname, 'r') as fh:
-            tmp = json.load(fh)
-            for k,v in tmp.items():
-                results[k] = v
+            results = json.load(fh)
 
     case_counts = parse_tsv()
     scenario_data = load_population_data()
@@ -275,13 +277,17 @@ def generate(output_json, num_procs=1, recalculate=False):
             continue
 
         # print(results[region])
-        scenario = AllParams(**scenario_data[region],
+        scenario = AllParams(**scenario_data[region], tMin=results[region]['tMin'], tMax=results[region]['tMax'],
                              cases_key=region if region in case_counts else 'None')
         if region in case_counts:
             set_mitigation(scenario, results[region].get('mitigations', []))
         else:
             scenario.mitigation.mitigation_intervals = []
-        scenario.population.seroprevalence = results[region]['seroprevalence']
+        if len(scenario.mitigation.mitigation_intervals):
+            scenario.mitigation.mitigation_intervals[-1].time_range.end = datetime.strptime(results[region]['tMax'], '%Y-%m-%d').date() + timedelta(1)
+        scenario.population.seroprevalence = round(100*results[region]['seroprevalence'],2)
+        scenario.population.initial_number_of_cases = int(round(np.exp(results[region]['logInitial'])))
+        print(scenario.population.initial_number_of_cases)
         scenarios.append(ScenarioData(scenario, region))
 
     with open(output_json, "w+") as fd:
