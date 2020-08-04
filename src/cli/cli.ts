@@ -168,7 +168,16 @@ async function main() {
       --populationServed=<populationServed>
 
       --numberStochasticRuns=<numberStochasticRuns>
+
       --color=<color>
+                            Colorhex
+      --mitTimeRangeBegin=<mitTimeRangeBegin>
+      --mitTimeRangeEnd=<mitTimeRangeEnd>
+      --transmissionReductionBegin=<transmissionReductionBegin>
+      --transmissionReductionEnd=<transmissionReductionEnd>
+
+      --simulationRangeBegin=<simulationRangeBegin>
+      --simulationRangeEnd=<simulationRangeEnd>
 
 
     `,
@@ -213,9 +222,24 @@ async function main() {
   if (argv['--numberStochasticRuns']) {
     scenario.simulation.numberStochasticRuns = argv['--numberStochasticRuns']
   }
-
-  scenario.mitigation.mitigationIntervals[0].color = argv['--color']
-
+  if (argv['--mitTimeRangeBegin']) {
+    scenario.mitigation.mitigationIntervals[0].timeRange.begin = argv['--mitTimeRangeBegin']
+  }
+  if (argv['--mitTimeRangeEnd']) {
+    scenario.mitigation.mitigationIntervals[0].timeRange.end = argv['--mitTimeRangeEnd']
+  }
+  if (argv['--transmissionReductionBegin']) {
+    scenario.mitigation.mitigationIntervals[0].transmissionReduction.begin = argv['--transmissionReductionBegin']
+  }
+  if (argv['--transmissionReductionEnd']) {
+    scenario.mitigation.mitigationIntervals[0].transmissionReduction.end = argv['--transmissionReductionEnd']
+  }
+  if (argv['--simulationRangeBegin']) {
+    scenario.simulation.simulationTimeRange.begin = argv['--simulationRangeBegin']
+  }
+  if (argv['--transmissionReductionEnd']) {
+    scenario.simulation.simulationTimeRange.end = argv['--simulationRangeEnd']
+  }
   // Run the model.
   try {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -223,9 +247,7 @@ async function main() {
     console.info('Running the model')
     const result = await runModel(params, severity, ageDistribution)
     console.info('Run complete')
-    // console.info(result)
     console.info(`Writing output to ${outputFile}`)
-    
     fs.writeFileSync(outputFile, JSON.stringify(result))
   } catch (error) {
     console.error(`Run failed: ${error}`)
