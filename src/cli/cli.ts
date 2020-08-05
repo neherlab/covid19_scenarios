@@ -16,7 +16,9 @@ import {
   AgeDistributionArray,
   Convert,
   MitigationInterval,
+  ScenarioParameters
 } from '../algorithms/types/Param.types'
+import { serialize } from '../io/serialization/serialize'
 
 import { toInternal } from '../algorithms/types/convert'
 
@@ -208,18 +210,6 @@ async function main() {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const scenarioData: ScenarioData = readJsonFromFile<ScenarioData>(argv['<scenario>']!)
   const scenario = toInternal(scenarioData.data)
-  const params: ScenarioFlat = {
-    ...scenario.population,
-    ...scenario.epidemiological,
-    ...scenario.simulation,
-    ...scenario.mitigation,
-  }
-
-  const ageDistributionName: string = argv['--ageDistribution'] ? argv['--ageDistribution'] : params.ageDistributionName
-
-  // Load severity and age data.
-  const severity = getSeverity(argv['--severity'])
-  const ageDistribution = getAge(argv['--age'], ageDistributionName)
 
   Object.keys(scenario.epidemiological).forEach((key) => {
     if (argv[`--${key}`]) {
@@ -227,10 +217,10 @@ async function main() {
     }
   })
   if (argv['--r0Low']) {
-    scenario.epidemiological.r0.begin = argv['--r0Low']
+    scenario.epidemiological.r0.begin = +argv['--r0Low']
   }
   if (argv['--r0High']) {
-    scenario.epidemiological.r0.end = argv['--r0High']
+    scenario.epidemiological.r0.end = +argv['--r0High']
   }
 
   Object.keys(scenario.population).forEach((key) => {
@@ -269,6 +259,41 @@ async function main() {
     scenario.mitigation.mitigationIntervals = mitigationIntervals
   }
 
+  const params: ScenarioFlat = {
+    ...scenario.population,
+    ...scenario.epidemiological,
+    ...scenario.simulation,
+    ...scenario.mitigation,
+  }
+  const ageDistributionName: string = argv['--ageDistribution'] ? argv['--ageDistribution'] : params.ageDistributionName
+
+  // Load severity and age data.
+  const severity = getSeverity(argv['--severity'])
+  const ageDistribution = getAge(argv['--age'], ageDistributionName)
+
+  const scenarioDataToSerialize: ScenarioData = {
+    name: 'Test',
+    data: scenario,
+  }
+  const ageDistributionDataToSerialize: AgeDistributionData = {
+    name: ageDistributionName,
+    data: ageDistribution,
+  }
+  const severityDataToSerialize: SeverityDistributionData = {
+    name: 'Test',
+    data: severity,
+  }
+  const scenarioParamsToSerialize: ScenarioParameters = {
+    scenarioData: scenarioDataToSerialize,
+    ageDistributionData: ageDistributionDataToSerialize,
+    severityDistributionData: severityDataToSerialize
+  }
+  try {
+    serialize(scenarioParamsToSerialize)
+  } catch (error) {
+    console.error(`Validation failed: ${error}`)
+    process.exit(1)
+  }
   // Run the model.
   try {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
