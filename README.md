@@ -376,7 +376,30 @@ yarn prod:watch
 This should build the application in production mode and to start static server that will serve the app on
 `http://localhost:8080` (by default)
 
-# Schemas
+
+### Translations
+
+The translation JSON files are in [src/i18n/resources](https://github.com/neherlab/covid19_scenarios/tree/master/src/i18n/resources)
+You can edit them directly or using GitLocalize. Here are the direct links to GitLocalize for each language that has translations currently:
+
+ - [:saudi_arabia: ar](https://gitlocalize.com/repo/4360/ar/src/i18n/resources/en/common.json)
+ - [:de: de](https://gitlocalize.com/repo/4360/de/src/i18n/resources/en/common.json)
+ - [:us: en](https://gitlocalize.com/repo/4360/en/src/i18n/resources/en/common.json)
+ - [:es: es](https://gitlocalize.com/repo/4360/es/src/i18n/resources/en/common.json)
+ - [:iran: fa](https://gitlocalize.com/repo/4360/fa/src/i18n/resources/en/common.json)
+ - [:fr: fr](https://gitlocalize.com/repo/4360/fr/src/i18n/resources/en/common.json)
+ - [:india: hi](https://gitlocalize.com/repo/4360/hi/src/i18n/resources/en/common.json)
+ - [:it: it](https://gitlocalize.com/repo/4360/it/src/i18n/resources/en/common.json)
+ - [:jp: ja](https://gitlocalize.com/repo/4360/ja/src/i18n/resources/en/common.json)
+ - [:kr: ko](https://gitlocalize.com/repo/4360/ko/src/i18n/resources/en/common.json)
+ - [:poland: pl](https://gitlocalize.com/repo/4360/pl/src/i18n/resources/en/common.json)
+ - [:portugal: pt](https://gitlocalize.com/repo/4360/pt/src/i18n/resources/en/common.json)
+ - [:ru: ru](https://gitlocalize.com/repo/4360/ru/src/i18n/resources/en/common.json)
+ - [:tr: tr](https://gitlocalize.com/repo/4360/tr/src/i18n/resources/en/common.json)
+ - [:cn: zh](https://gitlocalize.com/repo/4360/zh/src/i18n/resources/en/common.json)
+
+
+### Schemas
 
 The directory `schemas/` contains JSON schemas which serve as a base for type checking, validation and serialization.
 
