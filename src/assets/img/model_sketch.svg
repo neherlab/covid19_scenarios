@@ -8,8 +8,8 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="1187.4066"
-   height="377.1265"
-   viewBox="0 0 1113.194 353.55572"
+   height="457.12646"
+   viewBox="0 0 1113.194 428.55561"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -28,8 +28,8 @@
      id="namedview111"
      showgrid="false"
      inkscape:zoom="1.5"
-     inkscape:cx="586.90328"
-     inkscape:cy="14.711393"
+     inkscape:cx="948.66246"
+     inkscape:cy="94.71136"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -169,6 +169,32 @@
          inkscape:connector-curvature="0"
          style="fill:#808080;fill-rule:evenodd;stroke:#808080;stroke-width:0.4pt" />
     </marker>
+    <marker
+       overflow="visible"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="g-6"
+       style="overflow:visible">
+      <path
+         id="path28-8"
+         d="M -4,0 -6,2 1,0 -6,-2 -4,0 Z"
+         inkscape:connector-curvature="0"
+         style="fill:#808080;fill-rule:evenodd;stroke:#808080;stroke-width:0.4pt" />
+    </marker>
+    <marker
+       overflow="visible"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="d-1"
+       style="overflow:visible">
+      <path
+         id="path7-5"
+         d="M -4,0 -6,2 1,0 -6,-2 -4,0 Z"
+         inkscape:connector-curvature="0"
+         style="fill:#808080;fill-rule:evenodd;stroke:#808080;stroke-width:0.4pt" />
+    </marker>
   </defs>
   <g
      id="g33"
@@ -244,7 +270,7 @@
        style="fill:none;stroke:#808080;stroke-width:2;marker-end:url(#c)" />
     <path
        id="path57"
-       d="m 884.019,304.33 55.632,0"
+       d="m 881.43678,365.67446 52.22983,-19.15632"
        inkscape:connector-curvature="0"
        style="fill:none;stroke:#808080;stroke-width:1.57000005;marker-end:url(#d)" />
     <path
@@ -323,24 +349,24 @@
        letter-spacing="0"
        font-size="16.25"
        font-weight="400"
-       y="298.15399"
-       x="887.5"
+       y="348.15399"
+       x="878.125"
        style="font-weight:400;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0;word-spacing:0"
        sodipodi:linespacing="125%">
       <tspan
          id="tspan83"
-         y="298.15399"
-         x="887.5">
+         y="348.15399"
+         x="878.125">
         <tspan
            id="tspan85"
-           y="298.15399"
-           x="887.5">death</tspan>
+           y="348.15399"
+           x="878.125">death</tspan>
       </tspan>
     </text>
     <rect
        id="rect87"
        ry="15.278"
-       y="257.75299"
+       y="332.75299"
        x="778.35797"
        height="91.488998"
        width="91.488998"
@@ -348,12 +374,12 @@
        style="fill:none;stroke:#666666;stroke-width:4.4000001;stroke-linecap:round;stroke-linejoin:round" />
     <path
        id="path89"
-       d="m 712.638,298.108 55.633,0"
+       d="m 720.60219,337.88642 47.06978,29.65579"
        inkscape:connector-curvature="0"
        style="fill:none;stroke:#808080;stroke-width:1.57000005;marker-end:url(#g)" />
     <path
        id="path91"
-       d="m 768.362,309.553 -55.632,0"
+       d="M 761.64809,377.27407 714.57915,347.61881"
        inkscape:connector-curvature="0"
        style="fill:none;stroke:#808080;stroke-width:1.57000005;marker-end:url(#h)" />
     <path
@@ -526,7 +552,7 @@
            style="fill:#000000;stroke-width:0" /></g>    </g>
     <g
        id="g5191"
-       transform="matrix(1.5,0,0,1.5,557.55681,-692.45864)">
+       transform="matrix(1.5,0,0,1.5,557.55681,-617.45864)">
       <g
          id="g5193"
          transform="matrix(0.53875214,0,0,-0.53875214,-94.281625,890.55495)"
@@ -572,5 +598,46 @@
            d="m 463.44,410.09 -0.04,-0.18 -0.05,-0.17 -0.04,-0.16 -0.05,-0.15 -0.04,-0.15 -0.05,-0.13 -0.04,-0.13 -0.05,-0.12 -0.06,-0.11 -0.06,-0.11 -0.06,-0.1 -0.07,-0.09 -0.08,-0.09 -0.09,-0.07 -0.09,-0.08 -0.11,-0.06 -0.11,-0.07 -0.12,-0.05 -0.14,-0.05 -0.15,-0.05 -0.16,-0.04 -0.09,-0.02 -0.08,-0.01 -0.1,-0.02 -0.1,-0.02 -0.1,-0.01 -0.1,-0.01 -0.11,-0.01 -0.11,-0.02 -0.12,-0.01 -0.12,-0.01 -0.13,0 -0.13,-0.01 -0.13,-0.01 -0.15,0 -0.14,-0.01 -0.15,0 -0.16,-0.01 -0.16,0 -0.16,0 -0.17,0 -0.18,0 -0.18,0 c -0.84,0 -1.39,0 -1.39,-0.96 0,-0.59 0.44,-0.59 1.39,-0.59 l 16.48,0 -0.89,1.55 -5.62,0 c -0.7,0 -0.8,0 -1.11,0.04 -0.48,0.05 -0.64,0.1 -0.64,0.5 0,0.14 0,0.25 0.25,1.14 l 6.83,27.36 c 0.43,1.74 0.54,1.89 2.68,1.89 l 5.33,0 c 4.89,0 9.02,-2.64 9.02,-9.22 0,-2.43 -1,-10.6 -5.24,-16.09 -1.43,-1.84 -5.37,-5.62 -11.5,-5.62 l 0.89,-1.55 c 10.36,0 20.19,10.51 20.19,21.42 0,7.03 -4.23,12.61 -11.72,12.61 l -16.73,0 c -0.95,0 -1.5,0 -1.5,-0.95 0,-0.6 0.45,-0.6 1.45,-0.6 0.64,0 1.55,-0.04 2.14,-0.09 0.8,-0.11 1.1,-0.25 1.1,-0.8 0,-0.2 -0.05,-0.36 -0.21,-0.95 z"
            inkscape:connector-curvature="0"
            style="fill:#000000;stroke-width:0" /></g>    </g>
+    <g
+       transform="matrix(1.5,0,0,1.5,581.73784,-731.53002)"
+       id="g4874-4">
+      <g
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;letter-spacing:normal;word-spacing:normal;text-anchor:start;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10.43299961;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="g4876-8"
+         transform="matrix(0.53875214,0,0,-0.53875214,-94.281625,890.55495)"
+         xml:space="preserve"
+         stroke-miterlimit="10.433"
+         font-style="normal"
+         font-variant="normal"
+         font-weight="normal"
+         font-stretch="normal"
+         font-size-adjust="none"
+         letter-spacing="normal"
+         word-spacing="normal" />    </g>
+    <path
+       id="path89-7"
+       d="m 715.74616,288.05514 214.6791,-1.31006"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#808080;stroke-width:1.87500043;marker-end:url(#g-6);stroke-miterlimit:4;stroke-dasharray:none" />
+    <text
+       id="text81-9"
+       word-spacing="0"
+       letter-spacing="0"
+       font-size="16.25"
+       font-weight="400"
+       y="280.62503"
+       x="802.80585"
+       style="font-weight:400;font-size:16.25px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0;word-spacing:0"
+       sodipodi:linespacing="125%">
+      <tspan
+         id="tspan83-9"
+         y="280.62503"
+         x="802.80585">
+        <tspan
+           id="tspan85-7"
+           y="280.62503"
+           x="802.80585">death</tspan>
+      </tspan>
+    </text>
   </g>
 </svg>

@@ -4,13 +4,11 @@ import { connect } from 'react-redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, DropdownProps } from 'reactstrap'
 import { ActionCreator } from 'typescript-fsa'
 
-import { LocaleWithKey, localesArray, LocaleKey } from '../../i18n/i18n'
+import { LocaleWithKey, localesArray, LocaleKey } from 'src/i18n/i18n'
 
-import type { State } from '../../state/reducer'
-import { selectLocale } from '../../state/settings/settings.selectors'
-import { setLocale } from '../../state/settings/settings.actions'
-
-import './LanguageSwitcher.scss'
+import type { State } from 'src/state/reducer'
+import { selectLocale } from 'src/state/settings/settings.selectors'
+import { setLocale } from 'src/state/settings/settings.actions'
 
 export interface LanguageSwitcherProps extends DropdownProps {
   currentLocale: LocaleWithKey

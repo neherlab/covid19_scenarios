@@ -8,7 +8,7 @@ import scenarioSagas from './scenario/scenario.sagas'
 import settingsSagas from './settings/settings.sagas'
 import uiSagas from './ui/ui.sagas'
 
-function autoRestart(generator: Saga, handleError: Saga<[Error]>) {
+export function autoRestart(generator: Saga, handleError: Saga<[Error]>) {
   return function* autoRestarting() {
     while (true) {
       try {
@@ -21,15 +21,16 @@ function autoRestart(generator: Saga, handleError: Saga<[Error]>) {
   }
 }
 
-function* rootSaga() {
+export function* rootSaga() {
   yield all([...algorithmSagas, ...scenarioSagas, ...settingsSagas, ...uiSagas])
 }
 
-function* rootErrorHandler(error: Error) {
+export function* rootSagaErrorHandler(error: Error) {
   console.error(error.message)
+  console.error(error.stack)
   yield put(errorAdd({ error }))
 }
 
-export default function createRootSaga() {
-  return autoRestart(rootSaga, rootErrorHandler)
+export function createRootSaga() {
+  return autoRestart(rootSaga, rootSagaErrorHandler)
 }

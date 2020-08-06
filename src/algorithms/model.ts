@@ -22,6 +22,7 @@ interface StateFlux {
   severe: {
     critical: number[]
     recovered: number[]
+    palliative: number[]
   }
   critical: {
     severe: number[]
@@ -256,6 +257,7 @@ function derivative(flux: StateFlux): TimeDerivative {
       flux.critical.severe[age] +
       flux.overflow.severe[age] -
       flux.severe.critical[age] -
+      flux.severe.palliative[age] -
       flux.severe.recovered[age]
     grad.current.critical[age] = flux.severe.critical[age] - flux.critical.severe[age] - flux.critical.fatality[age]
     grad.current.overflow[age] = -(flux.overflow.severe[age] + flux.overflow.fatality[age])
@@ -264,7 +266,8 @@ function derivative(flux: StateFlux): TimeDerivative {
     grad.cumulative.recovered[age] = flux.infectious.recovered[age] + flux.severe.recovered[age]
     grad.cumulative.hospitalized[age] = flux.infectious.severe[age]
     grad.cumulative.critical[age] = flux.severe.critical[age]
-    grad.cumulative.fatality[age] = flux.critical.fatality[age] + flux.overflow.fatality[age]
+    grad.cumulative.fatality[age] =
+      flux.critical.fatality[age] + flux.overflow.fatality[age] + flux.severe.palliative[age]
   }
 
   return grad
@@ -282,6 +285,7 @@ function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFl
     severe: {
       critical: [],
       recovered: [],
+      palliative: [],
     },
     critical: {
       severe: [],
@@ -314,9 +318,10 @@ function fluxes(time: number, pop: SimulationTimePoint, P: ModelParams): StateFl
     flux.infectious.recovered[age] = pop.current.infectious[age] * P.rate.recovery[age]
     flux.infectious.severe[age] = pop.current.infectious[age] * P.rate.severe[age]
 
-    // Severe -> Recovered/Critical
+    // Severe -> Recovered/Palliative/Critical
     flux.severe.recovered[age] = pop.current.severe[age] * P.rate.discharge[age]
     flux.severe.critical[age] = pop.current.severe[age] * P.rate.critical[age]
+    flux.severe.palliative[age] = pop.current.severe[age] * P.rate.palliative[age]
 
     // Critical -> Severe/Fatality
     flux.critical.severe[age] = pop.current.critical[age] * P.rate.stabilize[age]

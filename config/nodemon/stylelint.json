@@ -19,13 +19,6 @@
     "yarn.lock"
   ],
   "ext": "js,jsx,ts,tsx,json,flow,css,scss,sass,styl,html,ejs,d,txt,yml,sh",
-  "ignore": [
-    "**/*.test.*s",
-    "**/*.test.*sx",
-    "**/__tests__",
-    ".build",
-    "config/jest",
-    "node_modules"
-  ],
+  "ignore": ["**/*.test.*s", "**/*.test.*sx", "**/__tests__", ".build", "config/jest", "node_modules"],
   "exec": "yarn clear && yarn stylelint && echo '\u2714 OK' || echo '\u274C FAILED' || cd ."
 }

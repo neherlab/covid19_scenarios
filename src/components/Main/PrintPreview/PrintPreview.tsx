@@ -1,15 +1,16 @@
 import React from 'react'
 
-import { get } from 'lodash'
+import { get, isNil } from 'lodash'
 
 import moment from 'moment'
-import { goBack } from 'connected-react-router'
+import { goBack } from 'connected-next-router'
 import { connect } from 'react-redux'
 import { Button, Col, Container, Row, Table } from 'reactstrap'
+import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { FaWindowClose } from 'react-icons/fa'
 
-import i18n from '../../../i18n/i18n'
+import { LinkExternal } from 'src/components/Link/LinkExternal'
 
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
 import type {
@@ -33,16 +34,12 @@ import { dateFormat, dateTimeFormat } from './dateFormat'
 
 import type { State } from '../../../state/reducer'
 
-import LinkExternal from '../../Router/LinkExternal'
-
 import PrintIntroduction from './PrintIntroduction.mdx'
 import PrintDisclaimer from './PrintDisclaimer.mdx'
 
 import { ReactComponent as LogoNeherlab } from '../../../assets/img/neherlab.svg'
 import { ReactComponent as LogoBiozentrum } from '../../../assets/img/biozentrum.svg'
 import { ReactComponent as LogoUnibas } from '../../../assets/img/unibas.svg'
-
-import './PrintPreview.scss'
 
 const months = moment.months()
 
@@ -54,66 +51,75 @@ interface ParameterExplanation {
   }
 }
 
-const parameterExplanations: ParameterExplanation = {
-  ageDistributionName: {
-    short: i18n.t('Age distribution for'),
-    long: i18n.t('Country to determine the age distribution in the population'),
-    super: 1,
-  },
-  caseCountsName: {
-    short: i18n.t('Case counts for'),
-    long: i18n.t('Region for which to plot confirmed case and death counts.'),
-    super: 2,
-  },
-  populationServed: {
-    short: i18n.t('Population size'),
-  },
-  hospitalBeds: {
-    short: i18n.t('Number of hospital beds'),
-    long: i18n.t(
-      'Number of hospital beds available. The default values are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
-    ),
-    super: 3,
-  },
-  icuBeds: {
-    short: i18n.t('Number of available ICU beds'),
-    long: i18n.t(
-      'Number of available beds in Intensive Care Units (ICUs). The default values are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
-    ),
-    super: 4,
-  },
-  importsPerDay: {
-    short: i18n.t('Cases imported into community per day'),
-  },
-  initialNumberOfCases: {
-    short: i18n.t('Number of cases at the start of the simulation'),
-  },
-  infectiousPeriodDays: {
-    short: i18n.t('Infectious period [days]'),
-  },
-  latencyDays: {
-    short: i18n.t('Latency [days]'),
-    long: i18n.t('Time from infection to onset of symptoms (here onset of infectiousness)'),
-    super: 5,
-  },
-  hospitalStayDays: {
-    short: i18n.t('Average time in regular ward [days]'),
-  },
-  icuStayDays: {
-    short: i18n.t('Average time in ICU ward [days]'),
-  },
-  overflowSeverity: {
-    short: i18n.t('Increase in death rate when ICUs are overcrowded'),
-  },
-  r0: {
-    short: i18n.t('R0 at the beginning of the outbreak'),
-  },
-  seasonalForcing: {
-    short: i18n.t('Seasonal variation in transmissibility'),
-  },
-  peakMonth: {
-    short: i18n.t('Seasonal peak in transmissibility'),
-  },
+export function parameterExplanations(t: TFunction): ParameterExplanation {
+  return {
+    ageDistributionName: {
+      short: t('Age distribution for'),
+      long: t('Country to determine the age distribution in the population'),
+      super: 1,
+    },
+    caseCountsName: {
+      short: t('Case counts for'),
+      long: t('Region for which to plot confirmed case and death counts.'),
+      super: 2,
+    },
+    populationServed: {
+      short: t('Population size'),
+    },
+    hospitalBeds: {
+      short: t('Number of hospital beds'),
+      long: t(
+        'Number of hospital beds available. The default values are rough estimates indicating total capacity. Number of beds available for COVID-19 treatment is likely much lower.',
+      ),
+      super: 3,
+    },
+    icuBeds: {
+      short: t('Number of available ICU beds'),
+      long: t(
+        'Number of available beds in Intensive Care Units (ICUs). The default values are rough estimates indicating total capacity. Number of ICU/ICMUs available for COVID-19 treatment is likely much lower.',
+      ),
+      super: 4,
+    },
+    importsPerDay: {
+      short: t('Cases imported into community per day'),
+    },
+    initialNumberOfCases: {
+      short: t('Number of cases at the start of the simulation'),
+    },
+    infectiousPeriodDays: {
+      short: t('Infectious period [days]'),
+    },
+    latencyDays: {
+      short: t('Latency [days]'),
+      long: t('Time from infection to onset of symptoms (here onset of infectiousness)'),
+      super: 5,
+    },
+    hospitalStayDays: {
+      short: t('Average time in regular ward [days]'),
+    },
+    icuStayDays: {
+      short: t('Average time in ICU ward [days]'),
+    },
+    overflowSeverity: {
+      short: t('Increase in death rate when ICUs are overcrowded'),
+    },
+    r0: {
+      short: t('R0 at the beginning of the outbreak'),
+    },
+    seasonalForcing: {
+      short: t('Seasonal variation in transmissibility'),
+    },
+    peakMonth: {
+      short: t('Seasonal peak in transmissibility'),
+    },
+  }
+}
+
+export function hasLongAndSuper(val: {
+  long?: string | null
+  super?: number | null
+}): val is { long: string; super: number } {
+  return !isNil(val.long) && !isNil(val.super)
 }
 
 const print = () => typeof window !== 'undefined' && window.print()
@@ -268,16 +274,16 @@ export function PrintPreviewDisconnected({
               <tbody>
                 {Object.entries(scenarioData.population).map(([key, val]) => {
                   let explanation
-                  if (get(parameterExplanations, key).long) {
+                  if (get(parameterExplanations(t), key).long) {
                     explanation = (
                       <td className="text-left pl-2 pr-4 py-0">
-                        {get(parameterExplanations, key).short}
-                        <sup>{get(parameterExplanations, key).super}</sup>
+                        {get(parameterExplanations(t), key).short}
+                        <sup>{get(parameterExplanations(t), key).super}</sup>
                       </td>
                     )
                   } else {
                     explanation = (
-                      <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations, key).short || key}</td>
+                      <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations(t), key).short || key}</td>
                     )
                   }
                   return (
@@ -314,16 +320,16 @@ export function PrintPreviewDisconnected({
                     value = `${begin} - ${end}`
                   }
                   let explanation
-                  if (get(parameterExplanations, key).long) {
+                  if (get(parameterExplanations(t), key).long) {
                     explanation = (
                       <td className="text-left pl-2 pr-4 py-0">
-                        {get(parameterExplanations, key).short}
-                        <sup>{get(parameterExplanations, key).super}</sup>
+                        {get(parameterExplanations(t), key).short}
+                        <sup>{get(parameterExplanations(t), key).super}</sup>
                       </td>
                     )
                   } else {
                     explanation = (
-                      <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations, key).short || key}</td>
+                      <td className="text-left pl-2 pr-4 py-0">{get(parameterExplanations(t), key).short || key}</td>
                     )
                   }
                   return (
@@ -367,9 +373,9 @@ export function PrintPreviewDisconnected({
             <Row>
               <Col>
                 <div className="parameter-explanations">
-                  {Object.entries(parameterExplanations)
-                    .filter(([key, val]) => val.long != null && val.super != null)
-                    .sort(([key1, val1], [key2, val2]) => val1.super - val2.super)
+                  {Object.entries(parameterExplanations(t))
+                    .filter(([key, val]) => hasLongAndSuper(val))
+                    .sort(([key1, val1], [key2, val2]) => (val1.super ?? Infinity) - (val2.super ?? Infinity))
                     .map(([key, val]) => {
                       const keyName = `${key}-long-desc`
                       return (

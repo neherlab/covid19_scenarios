@@ -11,10 +11,7 @@ const shouldRunEslint = process.env.WITH_ESLINT === '1'
 module.exports = {
   rootDir: moduleRoot,
 
-  projects: [
-    require('./jest.tests.config.js'),
-    shouldRunEslint && require('./jest.eslint.config.js'),
-  ].filter(Boolean),
+  projects: [require('./jest.tests.config.js'), shouldRunEslint && require('./jest.eslint.config.js')].filter(Boolean),
 
   coverageDirectory: path.join(moduleRoot, '.reports', 'coverage'),
 

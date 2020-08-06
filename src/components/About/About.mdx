@@ -1,0 +1,242 @@
+import { Container, Col, Row } from 'reactstrap'
+
+import { FaGithub } from 'react-icons/fa'
+
+import { ReactComponent as Model } from 'src/assets/img/model_sketch.svg'
+import { ReactComponent as SeasonalIllustration } from 'src/assets/img/seasonal_illustration.svg'
+
+import { LinkExternal } from 'src/components/Link/LinkExternal'
+
+<Container>
+<Row>
+<Col>
+
+<h1>About COVID-19 Scenarios</h1>
+
+This web application serves as an interactive planning tool for COVID-19 outbreaks in communities across the world. It
+implements a simple Susceptible-Infected-Recovered (SIR) model with additional categories for individuals exposed to the
+virus that are not yet infectious, severely sick people in need of hospitalization, people in critical condition, and a
+fatal category.
+
+The source code of this tool is freely available at
+
+<LinkExternal url="https://github.com/neherlab/covid19_scenarios">github.com/neherlab/covid19_scenarios</LinkExternal>
+and we welcome contributions in any form: comments, suggestions, or help with development. We also welcome you to join our <LinkExternal url="https://github.com/neherlab/covid19_scenarios/discussions">
+  General Discussion Thread
+</LinkExternal>
+. A preprint describing covid19-scenarios.org is now available on
+<LinkExternal url="https://www.medrxiv.org/content/10.1101/2020.05.05.20091363v2">
+  medrxiv (doi: 10.1101/2020.05.05.20091363v2)
+</LinkExternal>
+.
+
+## Basic assumptions
+
+The model works as follows:
+
+- Susceptible individuals are exposed/infected through contact with infectious individuals. Each infectious individual
+  causes on average $R_0$ secondary infections while they are infectious.
+  - Transmissibility of the virus could have seasonal variation which is parameterized with the parameter "seasonal
+    forcing" (amplitude) and "peak month" (month of most efficient transmission).
+- Exposed individuals progress to a symptomatic/infectious state after a latency period. This progression happens in
+  three stages to ensure the distribution of times spent in the exposed compartment is more realistic than a simple
+  exponential model.
+- Infectious individuals recover or progress to severe disease. The ratio of recovery to severe progression depends on
+  age.
+- Severely sick individuals either recover or deteriorate and turn critical. Again, this depends on the age.
+- Critically ill individuals either get admitted to ICU (if space is available), are placed in an overflow compartment,
+  or receive palliative care. Younger age-groups are given preferential access to ICU.
+- Individuals in ICU either return to regular hospital wards or die. Again, this depends on the age and on whether they
+  receive intensive care or not.
+- Individuals in palliative care die, which could also represent nursing home deaths or deaths at home.
+
+The individual parameters of the model can be changed to allow exploration of different scenarios.
+
+<figure className="figure w-100 text-center" alt="Illustration of the model">
+  <Model className="w-75 figure-img" />
+  <figcaption className="figure-caption text-center">
+    Figure 1. A schematic illustration of the underlying model. Variables include the susceptible population (S),
+    exposed (E), infectious (I), recovered (R), severe and/or hospitalized (H), critical in the ICU (C), those critical
+    but in ICU overflow (O), and fatalities (D).
+  </figcaption>
+</figure>
+
+COVID-19 is much more severe in the elderly, so proportion of elderly in a community is therefore an important
+determinant of the overall burden on the health care system and the death toll. We collected age distributions for many
+countries from data provided by the UN and make those available as input parameters. Furthermore, we use data provided
+by the epidemiology group of the
+
+<LinkExternal url="http://weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51">
+  Chinese CDC
+</LinkExternal>
+(<LinkExternal url="https://web.archive.org/web/20200320025420/weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51">
+  alternative link
+</LinkExternal>) to estimate the fraction of severe and fatal cases by age group.
+
+## Seasonality
+
+We don't yet know how seasonality will affect COVID-19 transmission; that said, many respiratory viruses such as
+influenza, common cold viruses (including other coronaviruses) have a pronounced seasonal variation in incidence, in
+part driven by climate variation through the year. We model this seasonal variation using a sinusoidal function with an
+annual period. This is a simplistic way to capture seasonality.
+
+For further information on the possible effects of seasonality, see _Remaining parameters_ below.
+
+<figure className="figure w-100 text-center" alt="Illustration of seasonal variation in transmission rate">
+  <SeasonalIllustration className="w-75 figure-img img-fluid" />
+  <figcaption className="figure-caption text-center">
+    Figure 2. Seasonal variation in transmission rate is modeled by a cosine. The model allows to specify the average
+    R0, the amplitude of the cosine (seasonal forcing), and the month of peak transmission.
+  </figcaption>
+</figure>
+
+## Transmission reduction
+
+The tool allows one to explore temporal variation in the reduction of transmission by infection control measures.
+Control measures can be specified as time intervals with start and end dates, during which transmission is reduced by a
+certain amount.
+
+Several studies attempt to estimate the effect of different aspects of social distancing and infection control on the
+rate of transmission. A report by [Wang et al.](https://www.medrxiv.org/content/10.1101/2020.03.03.20030593v1) estimates
+a step-wise reduction of $R_0$ from above 3 to around 1 and then to around 0.3 due to successive measures implemented in
+Wuhan. [This study](https://www.pnas.org/content/116/27/13174) by Litvinova et al. investigates the effect of school
+closures on influenza transmission.
+
+## Details of the model
+
+Qualitatively we model the epidemic dynamics with the following subpopulations:
+
+- Susceptible individuals [$S$] are exposed to the virus by contact with an infected individual.
+- Exposed individuals [$E$] progress towards a symptomatic state on average time $t_l$
+- Infected individuals [$I$] infect an average of $R_0$ secondary infections. On a time-scale of $t_i$, infected
+  individuals either recover or progress towards hospitalization.
+- Hospitalized individuals [$H$] either recover or worsen towards a critical state on a time-scale of $t_h$. They either
+  progress towards critically ill individuals in the ICU or individuals in palliative care that will die.
+- Critical individuals [$C$] model ICU usage. They either return to the hospital state or die [$D$] on a time-scale of
+  $t_c$
+- Recovered individuals [$R$] cannot be infected again.
+
+Subpopulations are delineated by age classes, indexed by $a$, to allow for variable transition rates dependent upon age.
+Quantitatively, we solve the following system of equations to estimate hospital usage:
+
+<div>
+
+$$
+\begin{aligned}
+\frac{dS_{a}(t)}{dt} & = - N^{-1}\beta_a(t) S_a(t)\sum_{b}I_b(t) \\
+\frac{dE_{a}^1(t)}{dt} & = N^{-1}\beta_a(t) S_a(t)\sum_{b}I_b(t) - 3E_{a}^1(t)/t_l \\
+\frac{dE_{a}^2(t)}{dt} & =  3E_{a}^1(t)/t_l - 3E_{a}^2(t)/t_l \\
+\frac{dE_{a}^3(t)}{dt} & =  3E_{a}^2(t)/t_l - 3E_{a}^3(t)/t_l \\
+\frac{dI_{a}(t)}{dt} & = 3E_{a}^3(t)/t_l - I_a(t)/t_i \\
+\frac{dH_{a}(t)}{dt} & = (1-m_a) I_a(t)/t_i + (1-f_a) C_a(t)/t_c - H_a(t)/t_h \\
+\frac{dC_{a}(t)}{dt} & = c_a H_a(t)/t_h - C_a(t)/t_c \\
+\frac{dR_{a}(t)}{dt} & = m_a I_a(t)/t_i + (1-c_a)H_a(t)/t_h \\
+\frac{dD_{a}(t)}{dt} & = f_a C_a(t)/t_c + p_a H_a(t)/t_h
+\end{aligned}
+$$
+
+</div>
+
+The parameters of this model fall into three categories, which determine the relative rates of different outcomes: (1) A
+time-dependent infection rate $\beta(t)$; (2) Time scales of transition to a different subpopulation $t_l$, $t_i$,
+$t_h$, $t_c$; and (3) Age-specific parameters $m_a$, $c_a$, $p_a$, and $f_a$. Here the latency time from infection to
+infectiousness is $t_l$, the time an individual is infectious after which he/she either recovers or falls severely ill
+is $t_i$, the time a sick person recovers or deteriorates into a critical state is $t_h$, and the time a person remains
+critical before dying or stabilizing is $t_c$. The fraction of infectious that are asymptomatic or mild is $m_a$, the
+fraction of severe cases that turn critical is $c_a$, the fraction of severe cases that go straight into palliative care
+is $p_a$, and the fraction of critical cases that are fatal is $f_a$.
+
+One aspect of the model is not reflected in the above system of equations: If the number of critically ill patients
+exceeds the capacity of ICU, they are placed in an overflow category $O$. Individuals in this category die at a higher
+rate. Otherwise, the flow is the same as for category $C_a$. Patients are allocated to the overflow category in a manner
+that gives priority to younger patients.
+
+The transmission rate $\beta_a(t)$ is given by:
+
+<div>
+
+$$
+  \beta_a(t) = R_0 \zeta_a M(t) (1+\varepsilon \cos(2\pi (t-t_{max})))/t_i
+$$
+
+</div>
+
+where $\zeta_a$ is the degree to which particular age groups are isolated from the rest of the population, $M(t)$ is the
+time course of mitigation measures, $\varepsilon$ is the amplitude of seasonal variation in transmissibility, and
+$t_{max}$ is the time of the year of peak transmission.
+
+## Parameter estimation
+
+With the prevalence of COVID-19 data for many regions, we now estimate a _few_ select parameters for independent regions
+that provide public data. Specifically, we estimate the following default scenario parameters:
+
+- $R_0$ value
+- The date and initial size of the epidemic start
+- Fraction of cases caught by the region's testing infrastructure
+
+These parameters are estimated from both the cumulative number of COVID-19 cases and COVID-19 related fatalities
+reported. The estimation is accomplished by the minimization of the least squared difference between our model
+predictions and the empirical data. Specifically:
+
+- We define an objective function that:
+  - Takes as input a set of model parameters to simulate.
+  - Integrates the equations of motion described above.
+  - Returns the sum of squared residuals between the given empirical data and the result of ODE integration.
+  - Weights the residuals to the cumulative fatalities relative to case data to account for the difference in
+    magnitudes.
+- The objective function is minimized with respect to the above variable parameters using the Nelder Mead algorithm.
+- Scenarios are populated with these individualized parameters
+
+## Remaining parameters
+
+- Many estimates of $R_0$ are in the [range of 2-3](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7001239/) with some
+  estimates pointing to considerably [higher values](https://www.medrxiv.org/content/10.1101/2020.02.10.20021675v1).
+- The serial interval--that is, the time between subsequent infections in a transmission chain--was initially
+  [estimated to be 7-8 days](https://www.nejm.org/doi/full/10.1056/NEJMoa2001316). More recent research now suggests a
+  serial interval of 5-6 days (see [Ganyani et al.](https://www.medrxiv.org/content/10.1101/2020.03.05.20031815v1)).
+- The China CDC compiled [extensive data](http://weekly.chinacdc.cn/en/article/id/e53946e2-c6c4-41e9-9a9b-fea8db1a8f51)
+  on severity and fatality of more than 40 thousand confirmed cases. In addition, we assume that a substantial fraction
+  of infections, especially in the young, go unreported. This is encoded in the columns "Confirmed [% of total]".
+- Seasonal variation in transmission is common for many respiratory viruses but the strength of seasonal forcing for
+  COVID19 is uncertain. For more information, see a [study by us](https://smw.ch/article/doi/smw.2020.20224) and by
+  [Kissler et al](https://www.medrxiv.org/content/10.1101/2020.03.04.20031112v1).
+
+## References
+
+Ganyani T, Kremer C, Chen D, Torneri A, Faes C, Wallinga J, Hens N. Estimating the generation interval for COVID-19
+based on symptom onset data. medRxiv 2020. doi:10.1101/2020.03.05.20031815
+
+Kissler SM, Tedijanto C, Goldstein E, Grad YH, Lipsitch M. Projecting the tramission dynamics of SARS-CoV-2 through the
+post-pandemic period. medRxiv 2020. doi:10.1101/2020.03.04.20031112
+
+Li Q, Guan X, Wu P, Wang X, Zhou L, Tong Y, Ren R, Leung KSM, Lau EHY, Wong JY, Xing X, Xiang N, et al. Early
+transmission dynamics in Wuhan, China of novel coronavirus-infected pneumonia. N Engl J Med 2020;382:1199-1207.
+doi:10.1056/NEJMoa2001316
+
+Litvinova M, Liu Q-H, Kulikov ES, Ajelli M. Reactive school closure weakens the network of social interactions and
+reduces the spread of influenza. PNAS 2019;116(27):13174-13181. doi:10.1073/pnas.1821298116
+
+Neher RA, Dyrdak R, Druelle V, Hodcroft EB, Albert J. Potential impact of seasonal forcing on a SARS-CoV-2 pandemic.
+Swiss Med Wkly 2020;150:w20224. doi:10.4414/smw.2020.20224
+
+Noll NB, Aksamentov I, Druelle V, Badenhorst A, Ronzani B, Jefferies G, Albert J, Neher R. COVID-19 Scenarios: An
+interactive tool to explore the spread and associated morbidity and mortality of SARS-CoV-2. medRxiv 2020.
+doi:10.1101/2020.05.05.20091363
+
+Riou J, Althaus CL. Pattern of early human-to-human transmission of Wuhan 2019 novel coronavirus (2019-nCoV), December
+2019 to January 2020. Euro Surveill 2020;25(4):2000058. doi:10.2807/1560-7917.ES.2020.25.4.2000058
+
+The Novel Coronavirus Pneumonia Emergency Response Epidemiology Team. The epidemiological characteristics of an outbreak
+of 2019 novel coronavirus diseases (COVID-19)-China 2020. Beijing, China: Chinese Center for Disease Control and
+Prevention; 2020 Feb. doi:10.46234/ccdcw2020.032
+
+Wang C, Liu L, Hao X, Guo H, Wang Q, Huang J, He N, Yu H, Lin X, Pan A, Wei S, Wu T. Evolving epidemiology and impact of
+non-pharmaceutical interventions on the outbreak of coronavirus disease 2019 in Wuhan, China. medRxiv 2020.
+doi:10.1101.2020.03.03.20030593
+
+Wang Y, Lu Q, Liu M, Wang Y, Zhang A, Jalali N, Dean N, Longini I, Holloran ME, Xu B, Zhang X, Wang L, Liu W, Fang L.
+Epidemiological and clinical features of the 2019 novel coronavirus outbreak in China. medRxiv 2020.
+doi:10.1101/2020.02.10.20021675
+</Col>
+</Row>
+</Container>

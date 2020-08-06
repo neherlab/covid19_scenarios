@@ -37,9 +37,6 @@ export interface FileIconProps {
   /** Corner radius of the file icon */
   radius: number
 
-  /** Width and height of the file icon */
-  size: number
-
   /** Type of glyph icon to display */
   type:
     | '3d'
@@ -171,10 +168,6 @@ export type FileExtension =
 
 export type FileIconComponent = React.FunctionComponent<FileIconProps | React.HTMLProps<HTMLDivElement>>
 
-declare const FileIcon: FileIconComponent
+export declare const FileIcon: FileIconComponent
 
-declare const defaultStyles: Record<FileExtension, FileIconProps>
-
-export { defaultStyles }
-
-export default FileIcon
+export declare const defaultStyles: Record<FileExtension, FileIconProps>

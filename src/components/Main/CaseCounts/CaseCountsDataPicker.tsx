@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 import { Button } from 'reactstrap'
-import { useTranslation, getI18n } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import type { FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { FaTrash } from 'react-icons/fa'
 import type { ActionCreator } from 'typescript-fsa'
@@ -21,7 +21,7 @@ import { FormDropdown } from '../../Form/FormDropdown'
 import CaseCountsUploader, { ImportedCaseCounts } from './CaseCountsUploader'
 
 const caseCountOptions = caseCountsNames.map((name) => ({ value: name, label: name }))
-caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: getI18n().t(NONE_COUNTRY_NAME) })
+caseCountOptions.push({ value: NONE_COUNTRY_NAME, label: NONE_COUNTRY_NAME })
 
 export interface CaseCountsDataPickerProps {
   caseCountsNameCustom?: string

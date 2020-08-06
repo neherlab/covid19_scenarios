@@ -1,6 +1,7 @@
 import { put, takeLatest, select } from 'redux-saga/effects'
 
-import { replace, LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router'
+import type { LocationChangeAction } from 'connected-next-router/actions'
+import { replace, LOCATION_CHANGE } from 'connected-next-router'
 import { fromUrl } from '../../io/serialization/fromUrl'
 import { algorithmRunTrigger } from '../algorithm/algorithm.actions'
 import {

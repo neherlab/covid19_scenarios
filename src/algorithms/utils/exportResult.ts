@@ -5,14 +5,10 @@ import type { StrictOmit } from 'ts-essentials'
 import type { ScenarioParameters } from '../types/Param.types'
 import type { AlgorithmResult } from '../types/Result.types'
 
+import { checkBlobSupport, saveFile } from '../../helpers/saveFile'
+
 import { serialize } from '../../io/serialization/serialize'
 import { serializeTrajectory } from '../model'
-
-export class ExportErrorBlobApiNotSupported extends Error {
-  constructor() {
-    super('Error: when exporting: `Blob()` API is not supported by this browser')
-  }
-}
 
 export class ExportErrorResultsInvalid extends Error {
   public result?: AlgorithmResult
@@ -21,19 +17,6 @@ export class ExportErrorResultsInvalid extends Error {
     super('Error: when exporting: algorithm results are invalid')
     this.result = result
   }
-}
-
-export function checkBlobSupport() {
-  try {
-    return !!new Blob()
-  } catch {
-    throw new ExportErrorBlobApiNotSupported()
-  }
-}
-
-export function saveFile(content: string, filename: string) {
-  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' })
-  saveAs(blob, filename)
 }
 
 export interface ExportResultsParams {

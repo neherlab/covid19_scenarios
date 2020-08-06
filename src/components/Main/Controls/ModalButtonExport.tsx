@@ -15,9 +15,9 @@ import {
   ListGroupItem,
 } from 'reactstrap'
 import { MdFileDownload } from 'react-icons/md'
-import FileIcon, { defaultStyles } from 'react-file-icon'
-import { selectHasResult, selectResult } from '../../../state/algorithm/algorithm.selectors'
+import { FileIcon, defaultStyles } from 'react-file-icon'
 
+import { selectHasResult, selectResult } from '../../../state/algorithm/algorithm.selectors'
 import type { State } from '../../../state/reducer'
 import type { ScenarioParameters } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -27,13 +27,10 @@ import { exportAll, exportResult, exportScenario } from '../../../algorithms/uti
 
 import { FILENAME_PARAMS, FILENAME_RESULTS_DETAILED, FILENAME_RESULTS_SUMMARY, FILENAME_ZIP } from './filenames'
 
-import './ModalButtonExport.scss'
-
 export const FileIconJson = () => (
   <FileIcon
     {...defaultStyles.json}
     className="mr-2 export-file-icon"
-    size={45}
     extension="json"
     type="code"
     labelColor={'#66b51d'}
@@ -42,11 +39,10 @@ export const FileIconJson = () => (
   />
 )
 
-export const FileIconTsv = ({ color = '#2e7ec9' }: { color: string }) => (
+export const FileIconTsv = ({ color = '#2e7ec9' }: { color?: string }) => (
   <FileIcon
     {...defaultStyles.csv}
     className="mr-2 export-file-icon"
-    size={45}
     extension="tsv"
     type="spreadsheet"
     labelColor={color}
@@ -61,7 +57,6 @@ export const FileIconZip = () => (
   <FileIcon
     {...defaultStyles.zip}
     className="mr-2 export-file-icon"
-    size={45}
     extension="zip"
     labelColor="#91640f"
     glyphColor="#91640f"
@@ -70,10 +65,10 @@ export const FileIconZip = () => (
 )
 
 export interface ExportElementProps {
-  Icon: React.ElementType
+  Icon: React.ReactNode
   filename: string
-  HelpMain: React.ElementType
-  HelpDetails: React.ElementType
+  HelpMain: React.ReactNode
+  HelpDetails: React.ReactNode
   HelpDownload: string
   onDownload(): void
 }
@@ -88,10 +83,8 @@ export function ExportFileElement({
 }: ExportElementProps) {
   return (
     <ListGroupItem className="d-flex">
-      <span className="export-file-icon-container">
-        <Icon />
-      </span>
-      <div className="mx-3 d-inline-block">
+      <span className="export-file-icon-container flex-grow-0">{Icon}</span>
+      <div className="mx-3 d-inline-block flex-grow-1">
         <pre className="mb-0 export-file-filename">{filename}</pre>
         <p className="my-0 small">{HelpMain}</p>
         <p className="my-0 small">{HelpDetails}</p>
@@ -200,7 +193,7 @@ export function ModalButtonExportDisconnected({
         <MdFileDownload size={buttonSize} />
       </Button>
       <Modal className="export-modal" centered isOpen={isOpen} toggle={toggleOpen} fade={false} size="lg">
-        <ModalHeader toggle={close}>
+        <ModalHeader toggle={close} tag="div">
           <MdFileDownload size={30} />
           <h3 className="ml-2 d-inline align-middle">{t(`Export`)}</h3>
         </ModalHeader>
@@ -210,7 +203,7 @@ export function ModalButtonExportDisconnected({
               <Card>
                 <ListGroup flush>
                   <ExportFileElement
-                    Icon={FileIconJson}
+                    Icon={<FileIconJson />}
                     filename={FILENAME_PARAMS}
                     HelpMain={t('Parameters of the current scenario in JSON format.')}
                     HelpDetails={t(
@@ -221,7 +214,7 @@ export function ModalButtonExportDisconnected({
                   />
 
                   <ExportFileElement
-                    Icon={FileIconTsv}
+                    Icon={<FileIconTsv />}
                     filename={FILENAME_RESULTS_SUMMARY}
                     HelpMain={t('Results (summarized) as tab-separated values.')}
                     HelpDetails={t(
@@ -232,7 +225,7 @@ export function ModalButtonExportDisconnected({
                   />
 
                   <ExportFileElement
-                    Icon={FileIconTsvDetailed}
+                    Icon={<FileIconTsvDetailed />}
                     filename={FILENAME_RESULTS_DETAILED}
                     HelpMain={t('Results (detailed) as tab-separated values.')}
                     HelpDetails={t(
@@ -243,7 +236,7 @@ export function ModalButtonExportDisconnected({
                   />
 
                   <ExportFileElement
-                    Icon={FileIconZip}
+                    Icon={<FileIconZip />}
                     filename={FILENAME_ZIP}
                     HelpMain={t('Results and parameters in a zip archive.')}
                     HelpDetails={t('Contains all of the above files in a single zip file.')}

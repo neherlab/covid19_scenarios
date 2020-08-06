@@ -2,7 +2,7 @@
 import Ajv, { Ajv as AjvModule } from 'ajv'
 import rimrafOriginal from 'rimraf'
 import pack from 'ajv-pack'
-import FA from 'fasy'
+import { concurrent } from 'fasy'
 import fs from 'fs-extra'
 import yaml from 'js-yaml'
 import path from 'path'
@@ -17,7 +17,7 @@ const rimraf = util.promisify(rimrafOriginal)
 const SCHEMA_EXTENSION = '.yml'
 
 class Store extends JSONSchemaStore {
-  private schemasRoot: string
+  private readonly schemasRoot: string
 
   constructor(schemasRoot: string) {
     super()
@@ -48,7 +48,7 @@ async function quicktypesGenerate(
   rendererOptions?: { [name: string]: string },
 ) {
   const schemaInput = new JSONSchemaInput(new Store(schemasRoot))
-  await FA.concurrent.forEach(quicktypesAddSources(schemasRoot, schemaInput), schemaFilenames)
+  await concurrent.forEach(quicktypesAddSources(schemasRoot, schemaInput), schemaFilenames)
 
   const inputData = new InputData()
   inputData.addInput(schemaInput)
@@ -56,16 +56,13 @@ async function quicktypesGenerate(
   const { lines } = await quicktype({ inputData, lang, rendererOptions })
   let code = lines.join('\n')
 
-  const schemaVer = '2.0.0'
+  const schemaVer = '2.1.0'
 
   if (lang === 'typescript') {
     code = prettier.format(code, { parser: 'typescript' })
 
     // insert schemaVer constant
     code = `export const schemaVer = '${schemaVer}'\n\n${code}`
-
-    // make schemaVer to be of an exact string type (for example '2.0.0', instead of 'string')
-    code = code.replace(`schemaVer: string`, `schemaVer: '${schemaVer}'`)
   } else if (lang === 'python') {
     // insert schema_ver variable
     code = code.replace(`T = TypeVar("T")`, `schema_ver = '${schemaVer}'\n\nT = TypeVar("T")`)
@@ -101,8 +98,8 @@ function ajvGenerateOne(schemasRoot: string, ajv: AjvModule, outputDir: string) 
 
 async function ajvGenerate(schemasRoot: string, schemaFilenames: string[], outputDir: string) {
   const ajv = new Ajv({ sourceCode: true, $data: true, jsonPointers: true, allErrors: true })
-  await FA.concurrent.forEach(ajvAddSources(schemasRoot, ajv), schemaFilenames)
-  return FA.concurrent.forEach(ajvGenerateOne(schemasRoot, ajv, outputDir), schemaFilenames)
+  await concurrent.forEach(ajvAddSources(schemasRoot, ajv), schemaFilenames)
+  return concurrent.forEach(ajvGenerateOne(schemasRoot, ajv, outputDir), schemaFilenames)
 }
 
 export default async function generateTypes() {
@@ -116,8 +113,8 @@ export default async function generateTypes() {
   let schemaFilenames = await fs.readdir(schemasRoot)
   schemaFilenames = schemaFilenames.filter((schemaFilename) => schemaFilename.endsWith(SCHEMA_EXTENSION))
 
-  await FA.concurrent.forEach(async (d) => rimraf(`${d}/**`), [tsOutputDir, pyOutputDir])
-  await FA.concurrent.forEach(async (d) => fs.mkdirp(d), [tsOutputDir, pyOutputDir])
+  await concurrent.forEach(async (d) => rimraf(`${d}/**`), [tsOutputDir, pyOutputDir])
+  await concurrent.forEach(async (d) => fs.mkdirp(d), [tsOutputDir, pyOutputDir])
 
   return Promise.all([
     quicktypesGenerate('typescript', schemasRoot, schemaFilenames, tsOutput, {

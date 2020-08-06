@@ -53,6 +53,7 @@ export interface ModelFracs {
   critical: number[]
   fatal: number[]
   isolated: number[]
+  palliative: number[]
 }
 
 export interface ModelRates {
@@ -61,6 +62,7 @@ export interface ModelRates {
   recovery: number[]
   severe: number[]
   discharge: number[]
+  palliative: number[]
   critical: number[]
   stabilize: number[]
   fatality: number[]

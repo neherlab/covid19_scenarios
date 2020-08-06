@@ -1,0 +1,28 @@
+@use "sass:map";
+
+@import '../styles/variables';
+
+$lg: map.get($grid-breakpoints, 'lg');
+
+.btn-simulation-controls {
+  margin-left: 3px;
+
+  @media screen and (min-width: $lg) {
+    $btn-size: 45px;
+
+    width: $btn-size * 1.333;
+    height: $btn-size;
+
+    svg {
+      fill: $gray-600;
+    }
+
+    &.btn-run {
+      width: $btn-size * 2;
+
+      svg {
+        fill: $gray-100;
+      }
+    }
+  }
+}

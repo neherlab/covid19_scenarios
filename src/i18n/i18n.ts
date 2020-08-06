@@ -1,11 +1,17 @@
-/* eslint-disable only-ascii/only-ascii */
+import { ElementType } from 'react'
+
 import { mapValues } from 'lodash'
 
-import i18n from 'i18next'
+import i18nOriginal, { i18n as I18N } from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 import moment from 'moment'
 import numbro from 'numbro'
+import { languages } from 'countries-list'
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import numbroLanguages from 'numbro/dist/languages.min'
 
 import { ReactComponent as US } from 'flag-icon-css/flags/1x1/us.svg'
 import { ReactComponent as DE } from 'flag-icon-css/flags/1x1/de.svg'
@@ -14,15 +20,15 @@ import { ReactComponent as FR } from 'flag-icon-css/flags/1x1/fr.svg'
 import { ReactComponent as PL } from 'flag-icon-css/flags/1x1/pl.svg'
 import { ReactComponent as PT } from 'flag-icon-css/flags/1x1/pt.svg'
 
-import en from './resources/en.json'
-import de from './resources/de.json'
-import es from './resources/es.json'
-import fr from './resources/fr.json'
-import pl from './resources/pl.json'
-import pt from './resources/pt.json'
+import en from './resources/en/common.json'
+import de from './resources/de/common.json'
+import es from './resources/es/common.json'
+import fr from './resources/fr/common.json'
+import pl from './resources/pl/common.json'
+import pt from './resources/pt/common.json'
 
 export const localized = { number: '{{value, localizedNumber}}' } as const
-export const translations = { en, pt, fr, de, es, pl }
+export const translations = { en, de, es, fr, pl, pt }
 export const flags = new Map()
 
 export type LocaleKey = keyof typeof translations
@@ -33,9 +39,8 @@ export const localeKeys = Object.keys(translations) as LocaleKey[]
 
 export interface Locale {
   readonly full: string
-  readonly flag: string
   readonly name: string
-  readonly Flag: React.ElementType
+  readonly Flag: ElementType
 }
 
 export interface LocaleWithKey extends Locale {
@@ -43,12 +48,12 @@ export interface LocaleWithKey extends Locale {
 }
 
 export const locales: Record<LocaleKey, Locale> = {
-  en: { full: 'en-US', flag: 'us', name: 'English', Flag: US },
-  de: { full: 'de-DE', flag: 'de', name: 'Deutsch', Flag: DE },
-  es: { full: 'es-ES', flag: 'es', name: 'Español', Flag: ES },
-  fr: { full: 'fr-FR', flag: 'fr', name: 'Français', Flag: FR },
-  pl: { full: 'pl-PL', flag: 'pl', name: 'Polski', Flag: PL },
-  pt: { full: 'pt-PT', flag: 'pt', name: 'Português', Flag: PT },
+  en: { full: 'en-US', name: languages.en.native, Flag: US },
+  de: { full: 'de-DE', name: languages.de.native, Flag: DE },
+  es: { full: 'es-ES', name: languages.es.native, Flag: ES },
+  fr: { full: 'fr-FR', name: languages.fr.native, Flag: FR },
+  pl: { full: 'pl-PL', name: languages.pl.native, Flag: PL },
+  pt: { full: 'pt-PT', name: languages.pt.native, Flag: PT },
 } as const
 
 export const localesArray: LocaleWithKey[] = Object.entries(locales).map(([key, value]) => ({
@@ -60,34 +65,30 @@ export interface I18NInitParams {
   localeKey: LocaleKey
 }
 
-export async function i18nInit({ localeKey }: I18NInitParams) {
-  // FIXME: make it an import if possible
-  // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
-  Object.values(require('numbro/dist/languages.min.js')).forEach((l) =>
-    numbro.registerLanguage(l as numbro.NumbroLanguage),
-  )
+export function i18nInit({ localeKey }: I18NInitParams) {
+  const enUS = numbro.languages()['en-US']
+  const allNumbroLanguages = numbroLanguages as numbro.NumbroLanguage
+  Object.values(allNumbroLanguages).forEach((languageRaw) => {
+    // If a language object lacks some of the features, substitute these features from English
+    numbro.registerLanguage({ ...enUS, ...languageRaw })
+  })
 
-  await i18n.use(initReactI18next).init({
+  const i18n = i18nOriginal.use(initReactI18next).createInstance({
     resources,
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: DEFAULT_LOCALE_KEY,
+    fallbackLng: DEFAULT_LOCALE_KEY,
     debug: process.env.DEV_ENABLE_I18N_DEBUG === '1',
     keySeparator: false, // Disable dots as key separators as we use dots in keys
     nsSeparator: false,
-
-    interpolation: {
-      escapeValue: false,
-      format<V, F, L>(value: V, format: F, lng: L) {
-        return value
-      },
-    },
-
-    react: {
-      useSuspense: true,
-    },
+    interpolation: { escapeValue: false },
   })
 
-  await changeLocale(localeKey)
+  // eslint-disable-next-line no-void
+  void i18n.init()
+
+  const locale = locales[localeKey]
+  moment.locale(localeKey)
+  numbro.setLanguage(locale.full)
 
   return i18n
 }
@@ -96,12 +97,14 @@ export function getLocaleWithKey(key: LocaleKey) {
   return { ...locales[key], key }
 }
 
-export async function changeLocale(localeKey: LocaleKey) {
+export async function changeLocale(i18n: I18N, localeKey: LocaleKey) {
   const locale = locales[localeKey]
   moment.locale(localeKey)
   numbro.setLanguage(locale.full)
   return i18n.changeLanguage(localeKey)
 }
+
+const i18n = i18nInit({ localeKey: DEFAULT_LOCALE_KEY })
 
 export { numbro }
 

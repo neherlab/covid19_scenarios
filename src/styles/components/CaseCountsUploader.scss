@@ -1,0 +1,36 @@
+@import '../styles/variables';
+
+.scenario-loader-uploader-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.case-counts-uploader-error-list {
+  max-height: 50vh;
+  overflow: scroll;
+  flex: 1;
+}
+
+.case-counts-uploader-error-list-item {
+  margin: 0.25em 0;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+$upload-zone-fg: $gray-500;
+$upload-zone-bg: $gray-100;
+
+.upload-zone {
+  cursor: pointer;
+  background-color: $upload-zone-bg;
+  border: 5px $upload-zone-fg dashed;
+
+  &.upload-zone-active {
+    border-style: dotted;
+  }
+}
+
+.upload-icon {
+  fill: $upload-zone-fg;
+}
