@@ -4,7 +4,7 @@ import neodoc from 'neodoc'
 import { DEFAULT_SEVERITY_DISTRIBUTION } from '../constants'
 
 import { run } from '../algorithms/run'
-
+import { appendDash } from '../helpers/appendDash'
 import {
   ScenarioFlat,
   ScenarioData,
@@ -18,7 +18,9 @@ import {
   MitigationInterval,
   ScenarioParameters
 } from '../algorithms/types/Param.types'
-import { serialize } from '../io/serialization/serialize'
+
+import { deserialize } from '../io/serialization/deserialize'
+import { DeserializationError } from '../io/serialization/errors'
 
 import { toInternal } from '../algorithms/types/convert'
 
@@ -272,7 +274,7 @@ async function main() {
   const ageDistribution = getAge(argv['--age'], ageDistributionName)
 
   const scenarioDataToSerialize: ScenarioData = {
-    name: 'Test',
+    name: 'Afghanistan',
     data: scenario,
   }
   const ageDistributionDataToSerialize: AgeDistributionData = {
@@ -280,19 +282,26 @@ async function main() {
     data: ageDistribution,
   }
   const severityDataToSerialize: SeverityDistributionData = {
-    name: 'Test',
+    name: 'China CDC',
     data: severity,
   }
-  const scenarioParamsToSerialize: ScenarioParameters = {
+  const scenarioParamsToSerialize = {
+    schemaVer: '2.0.0',
     scenarioData: scenarioDataToSerialize,
     ageDistributionData: ageDistributionDataToSerialize,
     severityDistributionData: severityDataToSerialize
   }
   try {
-    serialize(scenarioParamsToSerialize)
+    deserialize(JSON.stringify(scenarioParamsToSerialize))
   } catch (error) {
-    console.error(`Validation failed: ${error}`)
-    process.exit(1)
+    if (error instanceof DeserializationError) {
+      const { errors } = error
+      console.error(`when deserializing: validation failed:\n${errors.map(appendDash).join('\n')}`)
+      process.exit(1)
+    } else {
+      console.error(`when deserializing: unknown error occured`)
+      process.exit(1)
+    }
   }
   // Run the model.
   try {
