@@ -1,7 +1,13 @@
 /* eslint-disable unicorn/no-process-exit,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-floating-promises */
 import fs from 'fs-extra'
 import neodoc from 'neodoc'
+import yaml from 'js-yaml'
+import path from 'path'
+import Ajv from 'ajv'
+
 import { DEFAULT_SEVERITY_DISTRIBUTION } from '../constants'
+
+import validateShareable, { errors as validateShareableErrors } from '../.generated/latest/validateShareable'
 
 import { run } from '../algorithms/run'
 import { appendDash } from '../helpers/appendDash'
@@ -16,13 +22,12 @@ import {
   AgeDistributionArray,
   Convert,
   MitigationInterval,
-  ScenarioParameters
 } from '../algorithms/types/Param.types'
 
-import { deserialize } from '../io/serialization/deserialize'
+// import { deserialize } from '../io/serialization/deserialize'
 import { DeserializationError } from '../io/serialization/errors'
 
-import { toInternal } from '../algorithms/types/convert'
+import { findModuleRoot } from '../../lib/findModuleRoot'
 
 const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
   console.error(err)
@@ -211,7 +216,7 @@ async function main() {
   // Read the scenario data.
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const scenarioData: ScenarioData = readJsonFromFile<ScenarioData>(argv['<scenario>']!)
-  const scenario = toInternal(scenarioData.data)
+  const scenario = scenarioData.data
 
   Object.keys(scenario.epidemiological).forEach((key) => {
     if (argv[`--${key}`]) {
@@ -289,11 +294,48 @@ async function main() {
     schemaVer: '2.0.0',
     scenarioData: scenarioDataToSerialize,
     ageDistributionData: ageDistributionDataToSerialize,
-    severityDistributionData: severityDataToSerialize
+    severityDistributionData: severityDataToSerialize,
   }
+
+  function DELETEME_validateWithAjv() {
+    // Users ajv for validation
+
+    const SCHEMA_EXTENSION = '.yml'
+    const { moduleRoot } = findModuleRoot()
+    const schemasRoot = path.join(moduleRoot, 'schemas')
+
+    let schemaFilenames = fs.readdirSync(schemasRoot)
+    schemaFilenames = schemaFilenames.filter((schemaFilename) => schemaFilename.endsWith(SCHEMA_EXTENSION))
+
+    const ajv = new Ajv({ sourceCode: true, $data: true, jsonPointers: true, allErrors: true })
+
+    schemaFilenames.forEach((schemaFilename) => {
+      const schemaFilepath = path.join(schemasRoot, schemaFilename)
+      const jsonSchemaString = fs.readFileSync(schemaFilepath).toString('utf-8')
+      const schema = yaml.safeLoad(jsonSchemaString) as Record<string, unknown>
+      ajv.addSchema(schema, schemaFilename)
+    })
+
+    const valid = ajv.validate('Shareable.yml', scenarioParamsToSerialize)
+    const errors = ajv.errors
+    const errorsText = ajv.errorsText()
+    console.log(require('util').inspect({ valid, errors, errorsText }, { colors: true, depth: null }))
+  }
+
+  function DELETEME_validateWithAjvPack() {
+    // Uses validator generated with ajv-pack
+    const valid = validateShareable(scenarioParamsToSerialize)
+    const errors = validateShareableErrors
+    console.log(require('util').inspect({ valid, errors }, { colors: true, depth: null }))
+  }
+
+  DELETEME_validateWithAjv()
+
   try {
-    deserialize(JSON.stringify(scenarioParamsToSerialize))
+    // deserialize(JSON.stringify(scenarioParamsToSerialize))
   } catch (error) {
+    // console.log(require('util').inspect(error, { colors: true, depth: null }))
+
     if (error instanceof DeserializationError) {
       const { errors } = error
       console.error(`when deserializing: validation failed:\n${errors.map(appendDash).join('\n')}`)

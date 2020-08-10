@@ -16,6 +16,7 @@
     "mitigation": {
       "mitigationIntervals": [
         {
+          "id": "foo",
           "color": "#cccccc",
           "name": "Intervention 1",
           "timeRange": {
