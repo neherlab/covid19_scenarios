@@ -36,18 +36,18 @@ period, the same number of infections occur, but over a longer time period. Henc
 
 **Q:** Why is the number of severe cases lower than the number of critical cases?
 
-**A:** _Critical condition COVID-19 cases need intensive care for a long time. Our model assumes that they spend an
+**A:** _Critical condition COVID-19 cases require intensive care for a long time. In our model we assume that they spend an
 average of 14 days in the ICU. Severely ill is our proxy for those in need of a regular hospital bed. These individuals will either deteriorate
 rapidly or recover (default recovery time in our model is 4 days). Therefore, at any given point in time, the number of critically ill
-people can exceed the number of severely ill._
+cases can exceed the number of severely ill cases._
 
 ---
 
 **Q:** Is the model fit to observations?
 
-**A:** _Yes, provided we have a good source of COVID-19 cases, we fit several model parameters to observations.
+**A:** _Yes. Provided we have a good source of COVID-19 cases, we fit several model parameters to observations.
 Specifically, we estimate $R_0$, the initial size and date of the epidemic, and the case underreporting fraction. For case
-severity information we utilize an estimate from case outcome data from China._ 
+severity information we use an estimate from case outcome data from China._ 
 
 Note: Currently mitigation efforts, both the timing and the efficacy, are _not_ estimated from the data. 
 We are actively looking for user-provided dates of mitigation efforts for your region(s) of interest.
@@ -73,7 +73,7 @@ patients will die faster; the degree to which is specified by the `Severity of I
 **Q:** Wouldn't it be a good idea to model the isolation of specific age-groups?
 
 **A:** _Yes! This is indeed possible on [covid-scenarios](https://covid19-scenarios.org/). Expand the card
-`Severity assumptions and age-specific isolation`. The last column allows you to specify to what extent individual age
+`Age-Group-Specific Parameters`. The last column allows you to specify to what extent individual age
 groups are isolated from the rest of the population._
 
 ---
@@ -81,7 +81,7 @@ groups are isolated from the rest of the population._
 **Q:** How does your model compare to the one by Imperial College London?
 
 **A:** _You are probably referring to the
-[March 16 report by Neil Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf).
+March 16 report by [Neil Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf).
 Like us, Ferguson et al. use a computational model to investigate the effect of interventions on the spread of COVID-19. Their 
 model is individual based, meaning their program represents a large number of individuals among whom the virus is
 spreading. Our model breaks the population into age-groups and different categories corresponding to those susceptible,
@@ -92,7 +92,7 @@ exploration of various parameters._
 
 **Q:** What do the parameter ranges correspond to?
 
-**A:** _Parameter ranges allow the user to specify the distribution of possible values. We assume a uniform prior, i.e.,
+**A:** _Parameter ranges allow the user to specify the distribution of possible values. We assume a uniform prior, that is,
 any value within the range has an equal probability of being chosen. The model is then run with a Monte Carlo sampling from
 all specified parameter ranges for user-specified number of samples. The median trajectory, as well as the 20th and 80th percentiles,
 are displayed as the shaded uncertainty region._
