@@ -3,7 +3,6 @@ import path from 'path'
 import { uniq } from 'lodash'
 
 import type { NextConfig } from 'next'
-import getWithMDX from '@next/mdx'
 // import withBundleAnalyzer from '@zeit/next-bundle-analyzer'
 import withPlugins from 'next-compose-plugins'
 import getWithTranspileModules from 'next-transpile-modules'
@@ -21,6 +20,7 @@ import getWithFriendlyConsole from './withFriendlyConsole'
 import getWithLodash from './withLodash'
 import getWithStaticComprression from './withStaticCompression'
 import getWithTypeChecking from './withTypeChecking'
+import withMDX from './withMdx'
 import withRaw from './withRaw'
 import withSvg from './withSvg'
 import withImages from './withImages'
@@ -83,12 +83,6 @@ const nextConfig: NextConfig = {
   },
   env: clientEnv,
 }
-
-const withMDX = getWithMDX({
-  extension: /\.mdx?$/,
-  remarkPlugins: ['remark-images', 'remark-math'].map(require),
-  rehypePlugins: [].map(require),
-})
 
 const withFriendlyConsole = getWithFriendlyConsole({
   clearConsole: false,
