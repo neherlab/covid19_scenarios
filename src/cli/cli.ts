@@ -211,7 +211,7 @@ async function main() {
   // Read the scenario data.
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const scenarioData: ScenarioData = readJsonFromFile<ScenarioData>(argv['<scenario>']!)
-  const scenario = toInternal(scenarioData.data)
+  const scenario = scenarioData.data
 
   Object.keys(scenario.epidemiological).forEach((key) => {
     if (argv[`--${key}`]) {
@@ -300,6 +300,7 @@ async function main() {
       process.exit(1)
     } else {
       console.error(`when deserializing: unknown error occured`)
+      console.log(error)
       process.exit(1)
     }
   }
