@@ -4,7 +4,7 @@ import { trim } from 'lodash'
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
 
-import validateShareable, { errors } from '../../../.generated/2.0.0/validateShareable'
+import validateShareable from '../../../.generated/2.0.0/validateShareable'
 import { Convert } from '../../../.generated/2.0.0/types'
 
 import type { ScenarioParameters, Shareable } from '../../../algorithms/types/Param.types'
@@ -25,11 +25,11 @@ function validateSchema(shareableDangerous: Record<string, unknown>) {
   if (!validateShareable(shareableDangerous)) {
     const locale = 'en' // TODO: use current locale
     const localize = ajvLocalizers[locale] ?? ajvLocalizers.en
-    localize(errors)
+    localize(validateShareable.errors)
 
     const ajv = Ajv({ allErrors: true })
     const separator = '<<<NEWLINE>>>'
-    const errorString = ajv.errorsText(errors, { dataVar: '', separator })
+    const errorString = ajv.errorsText(validateShareable.errors, { dataVar: '', separator })
     if (typeof errorString === 'string') {
       const errorStrings = errorString.split(separator).map(trim)
       if (errorStrings.length > 0) {

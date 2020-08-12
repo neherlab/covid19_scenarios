@@ -142,7 +142,7 @@ async function main() {
   const argv = neodoc.run(
     `
     usage:  cli <scenario> <output> [options]
-            cli <scenario> <output> mitigation 
+            cli <scenario> <output> mitigation
               (<mitTimeBegin> <mitTimeEnd>
               <transmissionReductionLow> <transmissionReductionHigh>)...
               [options]
@@ -241,19 +241,19 @@ async function main() {
         "color": scenario.mitigation.mitigationIntervals[0].color,
         "name": `Intervention ${i+1}`,
         "timeRange": {
-          "begin": argv['<mitTimeBegin>'][i] ? 
-            argv['<mitTimeBegin>'][i] : 
+          "begin": argv['<mitTimeBegin>'][i] ?
+            argv['<mitTimeBegin>'][i] :
             scenario.mitigation.mitigationIntervals[0].timeRange.begin,
-          "end": argv['<mitTimeEnd>'][i] ? 
-            argv['<mitTimeEnd>'][i] : 
+          "end": argv['<mitTimeEnd>'][i] ?
+            argv['<mitTimeEnd>'][i] :
             scenario.mitigation.mitigationIntervals[0].timeRange.end
         },
         "transmissionReduction": {
-          "begin":  argv['<transmissionReductionLow>'][i] ? 
-            argv['<transmissionReductionLow>'][i] : 
+          "begin":  argv['<transmissionReductionLow>'][i] ?
+            argv['<transmissionReductionLow>'][i] :
             scenario.mitigation.mitigationIntervals[0].transmissionReduction.begin,
-          "end": argv['<transmissionReductionHigh>'][i] ? 
-            argv['<transmissionReductionHigh>'][i] : 
+          "end": argv['<transmissionReductionHigh>'][i] ?
+            argv['<transmissionReductionHigh>'][i] :
             scenario.mitigation.mitigationIntervals[0].transmissionReduction.end
         }
       }
@@ -286,7 +286,7 @@ async function main() {
     data: severity,
   }
   const scenarioParamsToSerialize = {
-    schemaVer: '2.0.0',
+    schemaVer: '2.1.0',
     scenarioData: scenarioDataToSerialize,
     ageDistributionData: ageDistributionDataToSerialize,
     severityDistributionData: severityDataToSerialize
