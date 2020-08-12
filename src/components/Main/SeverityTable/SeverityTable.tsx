@@ -34,8 +34,6 @@ import {
 } from '../../../state/scenario/scenario.selectors'
 import { State } from '../../../state/reducer'
 
-import './SeverityTable.scss'
-
 export interface AgeGroupRow extends SeverityDistributionDatum, AgeDistributionDatum {
   id: string
 }
@@ -49,6 +47,7 @@ const columns: Column[] = [
   { name: 'population', title: i18n.t('Age distribution') },
   { name: 'confirmed', title: `${i18n.t('Confirmed')}\n% ${i18n.t('total')}` },
   { name: 'severe', title: `${i18n.t('Severe')}\n% ${i18n.t('of confirmed')}` },
+  { name: 'palliative', title: `${i18n.t('Palliative')}\n% ${i18n.t('of severe')}` },
   { name: 'critical', title: `${i18n.t('Critical')}\n% ${i18n.t('of severe')}` },
   { name: 'fatal', title: `${i18n.t('Fatal')}\n% ${i18n.t('of critical')}` },
   { name: 'totalFatal', title: `${i18n.t('Fatal')}\n% ${i18n.t('of all infections')}` },
@@ -60,6 +59,7 @@ const columnExtensions: Table.ColumnExtension[] = [
   { columnName: 'population', align: 'center' },
   { columnName: 'confirmed', align: 'center' },
   { columnName: 'severe', align: 'center' },
+  { columnName: 'palliative', align: 'center' },
   { columnName: 'critical', align: 'center' },
   { columnName: 'fatal', align: 'center' },
   { columnName: 'totalFatal', align: 'center' },
@@ -105,7 +105,7 @@ const DecimalTypeProvider = (props: DataTypeProviderProps) => (
   <DataTypeProvider formatterComponent={DecimalFormatter} {...props} />
 )
 
-export function getErrorMessages(t: TFunction, errors?: FormikErrors<AgeGroupRow[]>): string[] {
+export function getErrorMessages(t: TFunction, errors?: FormikErrors<(AgeGroupRow | string)[]>): string[] {
   if (!errors) {
     return []
   }
@@ -114,7 +114,10 @@ export function getErrorMessages(t: TFunction, errors?: FormikErrors<AgeGroupRow
     const rowNum = Number.parseInt(i, 10)
     const ageGroup = Object.values(AgeGroup)[rowNum]
 
-    if (err) {
+    if (typeof err === 'string') {
+      return [...result, t(`Error in row "{{ageGroup}}": {{message}}`, { ageGroup, message: err })]
+    }
+    if (typeof err === 'object') {
       const messages = Object.entries(err).map(([column, message]) =>
         t('Error in column "{{column}}", row "{{ageGroup}}": {{message}}', { column, ageGroup, message }),
       )
@@ -148,7 +151,7 @@ function SeverityTableDisconnected({
 }: SeverityTableProps) {
   const { t } = useTranslation()
   const [{ value }, { error }, { setValue }] = useField<AgeGroupRow[]>('severity')
-  const errorMessages = getErrorMessages(t, error)
+  const errorMessages = getErrorMessages(t, error as FormikErrors<(AgeGroupRow | string)[]>)
 
   if (!value) {
     return null

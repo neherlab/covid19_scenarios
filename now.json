@@ -1,18 +1,31 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "builds": [
+    {
+      "use": "@vercel/static-build",
+      "src": "package.json",
+      "config": { "distDir": ".build/production/web" }
+    }
+  ],
   "build": {
     "env": {
-      "WEB_APP_NAME_FRIENDLY": "COVID-19 Scenarios",
-      "WEB_SCHEMA": "https",
+      "WEB_SCHEMA": "http",
+      "WEB_HOST": "null",
       "WEB_PORT_DEV": "3000",
       "WEB_PORT_PROD": "null",
       "WEB_PORT_ANALYZE": "8888",
-      "DEBUGGABLE_PROD": "1",
-      "DEV_FANCY_CONSOLE": "1",
-      "DEV_FANCY_CLEAR_CONSOLE": "1",
-      "DEV_DISABLE_CHECKS": "0",
-      "DEV_DISABLE_STYLELINT": "0",
-      "DEV_ENABLE_I18N_DEBUG": "0"
+
+      "NEXT_TELEMETRY_DISABLED": "0",
+
+      "DEV_ENABLE_TYPE_CHECKS": "1",
+      "DEV_ENABLE_ESLINT": "1",
+      "DEV_ENABLE_STYLELINT": "1",
+      "DEV_ENABLE_REDUX_DEV_TOOLS": "1",
+      "DEV_ENABLE_REDUX_IMMUTABLE_STATE_INVARIANT": "0",
+
+      "PROD_ENABLE_SOURCE_MAPS": "1",
+      "PROD_ENABLE_REDUX_DEV_TOOLS": "1",
+      "PROD_ENABLE_REDUX_IMMUTABLE_STATE_INVARIANT": "0"
     }
   }
 }

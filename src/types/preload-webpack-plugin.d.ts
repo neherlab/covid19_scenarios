@@ -6,7 +6,6 @@ declare module 'preload-webpack-plugin' {
 
     as: 'script' | 'font' | AsFunction
 
-    // tslint:disable-next-line:max-union-size
     include: 'initial' | 'asyncChunks' | 'allChunks' | 'allAssets' | string[]
 
     fileBlacklist: string[] | RegExp[]

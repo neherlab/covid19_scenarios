@@ -13,9 +13,6 @@
 
 @import './katex';
 
-@import '~react-grid-layout/css/styles.css';
-@import '~react-resizable/css/styles.css';
-
 html,
 body {
   height: 100%;
@@ -153,3 +150,30 @@ p {
 .btn-shadow {
   box-shadow: 4px 4px 10px 1px #222;
 }
+
+@import './components/CaseCountsUploader';
+@import './components/DeterministicLinePlot';
+@import './components/Disclaimer';
+@import './components/ErrorPage';
+@import './components/Footer';
+@import './components/FormHelpButton';
+@import './components/LanguageSwitcher';
+@import './components/Layout';
+@import './components/Loading';
+@import './components/Main';
+@import './components/MitigationTable';
+@import './components/ModalButtonExport';
+@import './components/ModalButtonSharing';
+@import './components/NavigationBar';
+@import './components/NotFound';
+@import './components/OutcomesDetailsTable';
+@import './components/Popover';
+@import './components/PrintPreview';
+@import './components/ResponsiveTooltipContent';
+@import './components/ResultsCard';
+@import './components/ScenarioLoader';
+@import './components/ScenarioTitle';
+@import './components/SeverityTable';
+@import './components/SimulationControls';
+@import './components/SpinBox';
+@import './components/Team';

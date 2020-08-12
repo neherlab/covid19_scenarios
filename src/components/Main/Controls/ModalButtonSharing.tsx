@@ -32,8 +32,6 @@ import { selectScenarioParameters } from '../../../state/scenario/scenario.selec
 import { ClipboardButton } from '../../Buttons/ClipboardButton'
 import { UrlTextInput } from './UrlTextInput'
 
-import './ModalButtonSharing.scss'
-
 const SOCIAL_ICON_SIZE = 44
 
 export interface ModalButtonSharingProps {

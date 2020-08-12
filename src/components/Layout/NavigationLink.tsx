@@ -1,7 +1,8 @@
 import React, { HTMLProps, PropsWithChildren } from 'react'
 
 import classNames from 'classnames'
-import { Link } from 'react-router-dom'
+
+import { Link } from 'src/components/Link/Link'
 
 export interface NavigationLinkProps extends PropsWithChildren<HTMLProps<HTMLDataListElement>> {
   active?: boolean
@@ -11,7 +12,7 @@ export interface NavigationLinkProps extends PropsWithChildren<HTMLProps<HTMLDat
 export default function NavigationLink<T>({ active, url, children }: NavigationLinkProps) {
   return (
     <li className={classNames('nav-item', active && 'active')}>
-      <Link className="nav-link" to={url}>
+      <Link className="nav-link" href={url}>
         {children}
       </Link>
     </li>

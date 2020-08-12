@@ -1,0 +1,25 @@
+@import '../styles/variables';
+
+.modal-dialog.export-modal {
+  max-width: 600px;
+}
+
+.export-file-icon-container {
+  flex: 0 0 50px;
+  margin: auto;
+  min-width: 50px;
+  max-width: 50px;
+
+  svg {
+    filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.4));
+  }
+}
+
+.btn-download svg {
+  fill: $gray-600;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));
+}
+
+.export-file-filename {
+  font-size: 1em;
+}

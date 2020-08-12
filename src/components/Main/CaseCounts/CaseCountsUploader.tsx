@@ -19,8 +19,6 @@ import { convert, validate } from '../../../io/defaults/getCaseCountsData'
 import CaseCountsUploaderInstructionsText from './CaseCountsUploaderInstructionsText.mdx'
 import { CaseCountsLoaderUploadZone } from './CaseCountsUploadZone'
 
-import './CaseCountsUploader.scss'
-
 class UploadErrorTooManyFiles extends Error {
   public readonly nFiles: number
   constructor(nFiles: number) {

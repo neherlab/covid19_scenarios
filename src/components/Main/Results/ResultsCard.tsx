@@ -24,8 +24,6 @@ import { OutcomesDetailsTable } from './OutcomesDetailsTable'
 import { SimulationControls } from '../Controls/SimulationControls'
 import { PlotSpinner } from './PlotSpinner'
 
-import './ResultsCard.scss'
-
 const ICON_SIZE = 50
 
 interface ResultsCardProps {

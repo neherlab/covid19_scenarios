@@ -1,0 +1,132 @@
+import { Container, Col, Row } from 'reactstrap'
+
+import { LinkExternal } from 'src/components/Link/LinkExternal'
+
+import youtubeTutorialThumbnail from 'src/assets/img/youtube-tutorial-thumbnail.jpg'
+
+<Container>
+
+**Q:** How do I use this tool? Is there a tutorial?
+
+**A:** _Our tutorial video is available on YouTube:_
+
+<Row>
+  <Col className="d-flex">
+    <LinkExternal className="mx-auto" href="https://www.youtube.com/watch?v=sv5T7MPKE5A" alt="Link to YouTube tutorial">
+      <img className="img-fluid" src={youtubeTutorialThumbnail} alt="Link to YouTube tutorial thumbnail" />
+    </LinkExternal>
+  </Col>
+</Row>
+
+---
+
+**Q:** How do I refer to the tool in publications? Is there a paper?
+
+**A:** _We have posted a preprint describing covid19-scenarios.org on medRxiv. Please use this as a reference until our 
+work appears in a journal. [doi: 10.1101/2020.05.05.20091363](https://doi.org/10.1101/2020.05.05.20091363 )_
+
+---
+
+**Q:** Why does the outbreak grow more slowly when I increase the infectious period?
+
+**A:** _The number of secondary cases resulting from a particular case is specified by $R_0$. If you increase the infectious
+period, the same number of infections occur, but over a longer time period. Hence the outbreak grows more slowly._
+
+---
+
+**Q:** Why is the number of severe cases lower than the number of critical cases?
+
+**A:** _Critical condition COVID-19 cases require intensive care for a long time. In our model we assume that they spend an
+average of 14 days in the ICU. Severely ill is our proxy for those in need of a regular hospital bed. These individuals will either deteriorate
+rapidly or recover (default recovery time in our model is 4 days). Therefore, at any given point in time, the number of critically ill
+cases can exceed the number of severely ill cases._
+
+---
+
+**Q:** Is the model fit to observations?
+
+**A:** _Yes. Provided we have a good source of COVID-19 cases, we fit several model parameters to observations.
+Specifically, we estimate $R_0$, the initial size and date of the epidemic, and the case underreporting fraction. For case
+severity information we use an estimate from case outcome data from China._ 
+
+Note: Currently mitigation efforts, both the timing and the efficacy, are _not_ estimated from the data. 
+We are actively looking for user-provided dates of mitigation efforts for your region(s) of interest.
+
+---
+
+**Q:** My town/region/country is missing!
+
+**A:** _If you have suggestions on additional regions that should be covered, head over to our 
+[GitHub data directory](https://github.com/neherlab/covid19_scenarios/tree/master/data) and make a pull request!_
+
+---
+
+**Q:** What is "ICU overflow"?
+
+**A:** _In places that have seen a severe COVID-19 outbreak, the capacity of intensive care facilities is quickly
+exhausted. Due to the resulting resource shortage, patients that need ventilation cannot get access. "ICU overflow" is
+our label for critically ill patients that should be ventilated, but are NOT, since no ventilators are available. These
+patients will die faster; the degree to which is specified by the `Severity of ICU overflow` parameter._
+
+---
+
+**Q:** Wouldn't it be a good idea to model the isolation of specific age-groups?
+
+**A:** _Yes! This is indeed possible on [covid-scenarios](https://covid19-scenarios.org/). Expand the card
+`Age-Group-Specific Parameters`. The last column allows you to specify to what extent individual age
+groups are isolated from the rest of the population._
+
+---
+
+**Q:** How does your model compare to the one by Imperial College London?
+
+**A:** _You are probably referring to the
+March 16 report by [Neil Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf).
+Like us, Ferguson et al. use a computational model to investigate the effect of interventions on the spread of COVID-19. Their 
+model is individual based, meaning their program represents a large number of individuals among whom the virus is
+spreading. Our model breaks the population into age-groups and different categories corresponding to those susceptible,
+infected, dead, recovered, etc. While this may lose some realism, our model type allows for faster simulations and
+exploration of various parameters._
+
+---
+
+**Q:** What do the parameter ranges correspond to?
+
+**A:** _Parameter ranges allow the user to specify the distribution of possible values. We assume a uniform prior, that is,
+any value within the range has an equal probability of being chosen. The model is then run with a Monte Carlo sampling from
+all specified parameter ranges for user-specified number of samples. The median trajectory, as well as the 20th and 80th percentiles,
+are displayed as the shaded uncertainty region._
+
+---
+
+**Q:** Why do the curves sometimes have strange kinks?
+
+**A:** _The curves show the median of a number simulations sampled from the parameter ranges. If the simulations
+corresponding to different parameter combinations intersect, the curve representing the median can change,
+resulting in a kink._
+
+---
+
+**Q:** What is a good number of simulations to run?
+
+**A:** _We chose 15 as the default number of simulations to run. This is a good balance between sufficient sampling and maintaining interactivity.
+Once you have discovered a set of parameters that you find reasonable, we suggest increasing the number to more accurately capture
+the statistics._
+
+---
+
+**Q:** Can I run a simulation with no uncertainty?
+
+**A:** _If you set the lower and upper bounds of each parameter to the same value, your result will include only get one curve
+and no uncertainty bands. Note that in this case the number of simulation runs is ignored._
+
+---
+
+**Q:** How do I interpret the figures reported under "Proportions"? Is a fatal case also counted as critical or severe case? Is a critical case also counted as severe case?
+
+**A:** _These numbers sum to 100%. The number reported as "critical" is the fraction of infected people that fall critically ill but did not die.
+Similarly, the reported fraction of "severe" cases is the proportion of cases that were severely ill but did not need critical care.
+In essence, these numbers report the most serious outcome for each case._
+
+
+</Container>

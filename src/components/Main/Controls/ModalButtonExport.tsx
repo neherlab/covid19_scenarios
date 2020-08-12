@@ -15,9 +15,9 @@ import {
   ListGroupItem,
 } from 'reactstrap'
 import { MdFileDownload } from 'react-icons/md'
-import FileIcon, { defaultStyles } from 'react-file-icon'
-import { selectHasResult, selectResult } from '../../../state/algorithm/algorithm.selectors'
+import { FileIcon, defaultStyles } from 'react-file-icon'
 
+import { selectHasResult, selectResult } from '../../../state/algorithm/algorithm.selectors'
 import type { State } from '../../../state/reducer'
 import type { ScenarioParameters } from '../../../algorithms/types/Param.types'
 import type { AlgorithmResult } from '../../../algorithms/types/Result.types'
@@ -27,13 +27,10 @@ import { exportAll, exportResult, exportScenario } from '../../../algorithms/uti
 
 import { FILENAME_PARAMS, FILENAME_RESULTS_DETAILED, FILENAME_RESULTS_SUMMARY, FILENAME_ZIP } from './filenames'
 
-import './ModalButtonExport.scss'
-
 export const FileIconJson = () => (
   <FileIcon
     {...defaultStyles.json}
     className="mr-2 export-file-icon"
-    size={45}
     extension="json"
     type="code"
     labelColor={'#66b51d'}
@@ -46,7 +43,6 @@ export const FileIconTsv = ({ color = '#2e7ec9' }: { color?: string }) => (
   <FileIcon
     {...defaultStyles.csv}
     className="mr-2 export-file-icon"
-    size={45}
     extension="tsv"
     type="spreadsheet"
     labelColor={color}
@@ -61,7 +57,6 @@ export const FileIconZip = () => (
   <FileIcon
     {...defaultStyles.zip}
     className="mr-2 export-file-icon"
-    size={45}
     extension="zip"
     labelColor="#91640f"
     glyphColor="#91640f"
@@ -88,8 +83,8 @@ export function ExportFileElement({
 }: ExportElementProps) {
   return (
     <ListGroupItem className="d-flex">
-      <span className="export-file-icon-container">{Icon}</span>
-      <div className="mx-3 d-inline-block">
+      <span className="export-file-icon-container flex-grow-0">{Icon}</span>
+      <div className="mx-3 d-inline-block flex-grow-1">
         <pre className="mb-0 export-file-filename">{filename}</pre>
         <p className="my-0 small">{HelpMain}</p>
         <p className="my-0 small">{HelpDetails}</p>
