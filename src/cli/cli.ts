@@ -16,7 +16,7 @@ import {
   AgeDistributionArray,
   Convert,
   MitigationInterval,
-  ScenarioParameters
+  ScenarioParameters,
 } from '../algorithms/types/Param.types'
 
 import { deserialize } from '../io/serialization/deserialize'
@@ -234,28 +234,28 @@ async function main() {
     scenario.simulation.numberStochasticRuns = +argv['--numberStochasticRuns']
   }
 
-  if(argv['mitigation']){
-    let mitigationIntervals: MitigationInterval[] = [];
-    for(let i = 0; i < argv['<mitTimeBegin>'].length; ++i){
+  if (argv.mitigation) {
+    const mitigationIntervals: MitigationInterval[] = []
+    for (let i = 0; i < argv['<mitTimeBegin>'].length; ++i) {
       mitigationIntervals[i] = {
-        "color": scenario.mitigation.mitigationIntervals[0].color,
-        "name": `Intervention ${i+1}`,
-        "timeRange": {
-          "begin": argv['<mitTimeBegin>'][i] ?
-            argv['<mitTimeBegin>'][i] :
-            scenario.mitigation.mitigationIntervals[0].timeRange.begin,
-          "end": argv['<mitTimeEnd>'][i] ?
-            argv['<mitTimeEnd>'][i] :
-            scenario.mitigation.mitigationIntervals[0].timeRange.end
+        color: scenario.mitigation.mitigationIntervals[0].color,
+        name: `Intervention ${i + 1}`,
+        timeRange: {
+          begin: argv['<mitTimeBegin>'][i]
+            ? argv['<mitTimeBegin>'][i]
+            : scenario.mitigation.mitigationIntervals[0].timeRange.begin,
+          end: argv['<mitTimeEnd>'][i]
+            ? argv['<mitTimeEnd>'][i]
+            : scenario.mitigation.mitigationIntervals[0].timeRange.end,
         },
-        "transmissionReduction": {
-          "begin":  argv['<transmissionReductionLow>'][i] ?
-            argv['<transmissionReductionLow>'][i] :
-            scenario.mitigation.mitigationIntervals[0].transmissionReduction.begin,
-          "end": argv['<transmissionReductionHigh>'][i] ?
-            argv['<transmissionReductionHigh>'][i] :
-            scenario.mitigation.mitigationIntervals[0].transmissionReduction.end
-        }
+        transmissionReduction: {
+          begin: argv['<transmissionReductionLow>'][i]
+            ? argv['<transmissionReductionLow>'][i]
+            : scenario.mitigation.mitigationIntervals[0].transmissionReduction.begin,
+          end: argv['<transmissionReductionHigh>'][i]
+            ? argv['<transmissionReductionHigh>'][i]
+            : scenario.mitigation.mitigationIntervals[0].transmissionReduction.end,
+        },
       }
     }
     scenario.mitigation.mitigationIntervals = mitigationIntervals
@@ -289,7 +289,7 @@ async function main() {
     schemaVer: '2.1.0',
     scenarioData: scenarioDataToSerialize,
     ageDistributionData: ageDistributionDataToSerialize,
-    severityDistributionData: severityDataToSerialize
+    severityDistributionData: severityDataToSerialize,
   }
   try {
     deserialize(JSON.stringify(scenarioParamsToSerialize))
