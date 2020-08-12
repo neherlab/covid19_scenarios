@@ -18,6 +18,9 @@ cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
 def sorted_date(s):
     return sorted(s, key=lambda d: datetime.strptime(d[cols.index('time')], "%Y-%m-%d"))
 
+
+place_map = {'Telangana***': 'Telangana', 'Telengana':'Telangana'}
+
 # ------------------------------------------------------------------------
 # Main point of entry
 
@@ -43,7 +46,9 @@ def parse():
                 confirmedCases += i["confirmedCasesForeign"]
 
             deaths = i["deaths"]
-            location = '-'.join(['IND',i['loc'].replace('#','')])
+
+            loc = i['loc'].replace('#','')
+            location = '-'.join(['IND',place_map.get(loc,loc)])
             elt  = [ dates, confirmedCases, deaths, None, None, None ]
             states[location].append(elt)
 
