@@ -22,8 +22,6 @@ import {
 import { deserialize } from '../io/serialization/deserialize'
 import { DeserializationError } from '../io/serialization/errors'
 
-import { toInternal } from '../algorithms/types/convert'
-
 const handleRejection: NodeJS.UnhandledRejectionListener = (err) => {
   console.error(err)
   process.exit(1)
@@ -141,8 +139,8 @@ async function main() {
   // Command line argument processing.
   const argv = neodoc.run(
     `
-    usage:  cli <scenario> <output> [options]
-            cli <scenario> <output> mitigation
+    usage:  covid19_scenarios <scenario> <output> [options]
+            covid19_scenarios <scenario> <output> mitigation
               (<mitTimeBegin> <mitTimeEnd>
               <transmissionReductionLow> <transmissionReductionHigh>)...
               [options]
@@ -236,6 +234,7 @@ async function main() {
 
   if (argv.mitigation) {
     const mitigationIntervals: MitigationInterval[] = []
+    // eslint-disable-next-line no-loops/no-loops
     for (let i = 0; i < argv['<mitTimeBegin>'].length; ++i) {
       mitigationIntervals[i] = {
         color: scenario.mitigation.mitigationIntervals[0].color,
@@ -299,8 +298,7 @@ async function main() {
       console.error(`when deserializing: validation failed:\n${errors.map(appendDash).join('\n')}`)
       process.exit(1)
     } else {
-      console.error(`when deserializing: unknown error occured`)
-      console.log(error)
+      console.error(`when deserializing: unknown error occured\n${error}`)
       process.exit(1)
     }
   }
