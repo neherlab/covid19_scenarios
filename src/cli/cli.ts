@@ -16,7 +16,6 @@ import {
   AgeDistributionArray,
   Convert,
   MitigationInterval,
-  ScenarioParameters,
 } from '../algorithms/types/Param.types'
 
 import { deserialize } from '../io/serialization/deserialize'
@@ -187,13 +186,13 @@ async function main() {
                             Number of people served by the healthcare system
       --numberStochasticRuns=<numberStochasticRuns>
                             Number of runs, to account for the uncertainty of parameters.
-      --mitTimeBegin=<mitTimeBegin>
+      <mitTimeBegin>
                             Start of mitigation time period (date in form yyyy-mm-dd)
-      --mitTimeEnd=<mitTimeEnd>
+      <mitTimeEnd>
                             End of mitigation time period (date in form yyyy-mm-dd)
-      --transmissionReductionLow=<transmissionReductionLow>
+      <transmissionReductionLow>
                             Intervention efficacy as a range of plausible multiplicative reductions of the base growth rate (low bound)
-      --transmissionReductionHigh=<transmissionReductionHigh>
+      <transmissionReductionHigh>
                             Intervention efficacy as a range of plausible multiplicative reductions of the base growth rate (high bound)
       --simulationRangeBegin=<simulationRangeBegin>
                             Beginning of simulation time range (date in form yyyy-mm-dd)
@@ -235,7 +234,7 @@ async function main() {
   if (argv.mitigation) {
     const mitigationIntervals: MitigationInterval[] = []
     // eslint-disable-next-line no-loops/no-loops
-    for (let i = 0; i < argv['<mitTimeBegin>'].length; ++i) {
+    for (let i = 0; i < argv['<mitTimeBegin>'].length; i += 1) {
       mitigationIntervals[i] = {
         color: scenario.mitigation.mitigationIntervals[0].color,
         name: `Intervention ${i + 1}`,
@@ -260,24 +259,20 @@ async function main() {
     scenario.mitigation.mitigationIntervals = mitigationIntervals
   }
 
-  const params: ScenarioFlat = {
-    ...scenario.population,
-    ...scenario.epidemiological,
-    ...scenario.simulation,
-    ...scenario.mitigation,
-  }
-  const ageDistributionName: string = argv['--ageDistribution'] ? argv['--ageDistribution'] : params.ageDistributionName
+  scenario.population.ageDistributionName = argv['--ageDistribution']
+    ? argv['--ageDistribution']
+    : scenario.population.ageDistributionName
 
   // Load severity and age data.
   const severity = getSeverity(argv['--severity'])
-  const ageDistribution = getAge(argv['--age'], ageDistributionName)
+  const ageDistribution = getAge(argv['--age'], scenario.population.ageDistributionName)
 
   const scenarioDataToSerialize: ScenarioData = {
-    name: 'Afghanistan',
+    name: scenarioData.name,
     data: scenario,
   }
   const ageDistributionDataToSerialize: AgeDistributionData = {
-    name: ageDistributionName,
+    name: scenario.population.ageDistributionName,
     data: ageDistribution,
   }
   const severityDataToSerialize: SeverityDistributionData = {
@@ -290,6 +285,14 @@ async function main() {
     ageDistributionData: ageDistributionDataToSerialize,
     severityDistributionData: severityDataToSerialize,
   }
+
+  const params: ScenarioFlat = {
+    ...scenario.population,
+    ...scenario.epidemiological,
+    ...scenario.simulation,
+    ...scenario.mitigation,
+  }
+
   try {
     deserialize(JSON.stringify(scenarioParamsToSerialize))
   } catch (error) {

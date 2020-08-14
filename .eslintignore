@@ -16,3 +16,5 @@ src/.generated
 src/assets
 styles
 tsconfig.json
+covid19_scenarios.js
+covid19_scenarios.mjs

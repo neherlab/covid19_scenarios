@@ -35476,13 +35476,13 @@ function main() {
 
 function _main() {
   _main = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2() {
-    var argv, scenarioData, scenario, mitigationIntervals, i, params, ageDistributionName, severity, ageDistribution, scenarioDataToSerialize, ageDistributionDataToSerialize, severityDataToSerialize, scenarioParamsToSerialize, errors, outputFile, result;
+    var argv, scenarioData, scenario, mitigationIntervals, i, severity, ageDistribution, scenarioDataToSerialize, ageDistributionDataToSerialize, severityDataToSerialize, scenarioParamsToSerialize, params, errors, outputFile, result;
     return regenerator.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             // Command line argument processing.
-            argv = neodoc$1.run("\n    usage:  covid19_scenarios <scenario> <output> [options]\n            covid19_scenarios <scenario> <output> mitigation\n              (<mitTimeBegin> <mitTimeEnd>\n              <transmissionReductionLow> <transmissionReductionHigh>)...\n              [options]\n\n    options:\n      <scenario>            Path to scenario parameters JSON file\n      <output>              Path to output file\n\n      --age=<pathToAgeDistribution>\n                            Path to age distribution JSON file\n      --ageDistribution=<ageDistribution>\n                            Name of country for age distribution\n      --severity=<pathToSeverityDistribution>\n                            Path to severity JSON file\n      --hospitalStayDays=<hospitalStayDays>\n                            Average number of days a severe case stays in regular hospital beds\n      --icuStayDays=<icuStayDays>\n                            Average number of days a critical case stays in the Intensive Care Unit (ICU)\n      --infectiousPeriodDays=<infectiousPeriodDays>\n                            Average number of days a person is infectious\n      --latencyDays=<latencyDays>\n                            Time from infection to onset of symptoms (here onset of infectiousness)\n      --overflowSeverity=<overflowSeverity>\n                            A multiplicative factor to death rate to patients that require but do not have access to an Intensive Care Unit (ICU) bed relative to those who do\n      --peakMonth=<peakMonth>\n                            Time of the year with peak transmission (month as a number)\n      --r0Low=<r0Low>\n                            Average number of secondary infections per case (lower bound)\n      --r0High=<r0High>\n                            Average number of secondary infections per case (upper bound)\n      --ageDistributionName=<ageDistributionName>\n                            Name of age distribution data to use\n      --caseCountsName=<caseCountsName>\n                            Name of case count data to use\n      --hospitalBeds=<hospitalBeds>\n                            Number of hospital beds available\n      --icuBeds=<icuBeds>\n                            Number of available beds in Intensive Care Units (ICUs)\n      --importsPerDay=<importsPerDay>\n                            Number of cases imported from the outside per day on average\n      --initialNumberOfCases=<initialNumberOfCases>\n                            Number of cases present at the start of simulation\n      --populationServed=<populationServed>\n                            Number of people served by the healthcare system\n      --numberStochasticRuns=<numberStochasticRuns>\n                            Number of runs, to account for the uncertainty of parameters.\n      --mitTimeBegin=<mitTimeBegin>\n                            Start of mitigation time period (date in form yyyy-mm-dd)\n      --mitTimeEnd=<mitTimeEnd>\n                            End of mitigation time period (date in form yyyy-mm-dd)\n      --transmissionReductionLow=<transmissionReductionLow>\n                            Intervention efficacy as a range of plausible multiplicative reductions of the base growth rate (low bound)\n      --transmissionReductionHigh=<transmissionReductionHigh>\n                            Intervention efficacy as a range of plausible multiplicative reductions of the base growth rate (high bound)\n      --simulationRangeBegin=<simulationRangeBegin>\n                            Beginning of simulation time range (date in form yyyy-mm-dd)\n      --simulationRangeEnd=<simulationRangeEnd>\n                            End of simulation time range (date in form yyyy-mm-dd)\n      --name=<name>\n                            Scenario name\n      --color=<color>\n                            Colorhex\n    ", {
+            argv = neodoc$1.run("\n    usage:  covid19_scenarios <scenario> <output> [options]\n            covid19_scenarios <scenario> <output> mitigation\n              (<mitTimeBegin> <mitTimeEnd>\n              <transmissionReductionLow> <transmissionReductionHigh>)...\n              [options]\n\n    options:\n      <scenario>            Path to scenario parameters JSON file\n      <output>              Path to output file\n\n      --age=<pathToAgeDistribution>\n                            Path to age distribution JSON file\n      --ageDistribution=<ageDistribution>\n                            Name of country for age distribution\n      --severity=<pathToSeverityDistribution>\n                            Path to severity JSON file\n      --hospitalStayDays=<hospitalStayDays>\n                            Average number of days a severe case stays in regular hospital beds\n      --icuStayDays=<icuStayDays>\n                            Average number of days a critical case stays in the Intensive Care Unit (ICU)\n      --infectiousPeriodDays=<infectiousPeriodDays>\n                            Average number of days a person is infectious\n      --latencyDays=<latencyDays>\n                            Time from infection to onset of symptoms (here onset of infectiousness)\n      --overflowSeverity=<overflowSeverity>\n                            A multiplicative factor to death rate to patients that require but do not have access to an Intensive Care Unit (ICU) bed relative to those who do\n      --peakMonth=<peakMonth>\n                            Time of the year with peak transmission (month as a number)\n      --r0Low=<r0Low>\n                            Average number of secondary infections per case (lower bound)\n      --r0High=<r0High>\n                            Average number of secondary infections per case (upper bound)\n      --ageDistributionName=<ageDistributionName>\n                            Name of age distribution data to use\n      --caseCountsName=<caseCountsName>\n                            Name of case count data to use\n      --hospitalBeds=<hospitalBeds>\n                            Number of hospital beds available\n      --icuBeds=<icuBeds>\n                            Number of available beds in Intensive Care Units (ICUs)\n      --importsPerDay=<importsPerDay>\n                            Number of cases imported from the outside per day on average\n      --initialNumberOfCases=<initialNumberOfCases>\n                            Number of cases present at the start of simulation\n      --populationServed=<populationServed>\n                            Number of people served by the healthcare system\n      --numberStochasticRuns=<numberStochasticRuns>\n                            Number of runs, to account for the uncertainty of parameters.\n      <mitTimeBegin>\n                            Start of mitigation time period (date in form yyyy-mm-dd)\n      <mitTimeEnd>\n                            End of mitigation time period (date in form yyyy-mm-dd)\n      <transmissionReductionLow>\n                            Intervention efficacy as a range of plausible multiplicative reductions of the base growth rate (low bound)\n      <transmissionReductionHigh>\n                            Intervention efficacy as a range of plausible multiplicative reductions of the base growth rate (high bound)\n      --simulationRangeBegin=<simulationRangeBegin>\n                            Beginning of simulation time range (date in form yyyy-mm-dd)\n      --simulationRangeEnd=<simulationRangeEnd>\n                            End of simulation time range (date in form yyyy-mm-dd)\n      --name=<name>\n                            Scenario name\n      --color=<color>\n                            Colorhex\n    ", {
               smartOptions: true
             }); // Read the scenario data.
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -35516,7 +35516,7 @@ function _main() {
             if (argv.mitigation) {
               mitigationIntervals = []; // eslint-disable-next-line no-loops/no-loops
 
-              for (i = 0; i < argv['<mitTimeBegin>'].length; ++i) {
+              for (i = 0; i < argv['<mitTimeBegin>'].length; i += 1) {
                 mitigationIntervals[i] = {
                   color: scenario.mitigation.mitigationIntervals[0].color,
                   name: "Intervention ".concat(i + 1),
@@ -35534,17 +35534,16 @@ function _main() {
               scenario.mitigation.mitigationIntervals = mitigationIntervals;
             }
 
-            params = _objectSpread$4(_objectSpread$4(_objectSpread$4(_objectSpread$4({}, scenario.population), scenario.epidemiological), scenario.simulation), scenario.mitigation);
-            ageDistributionName = argv['--ageDistribution'] ? argv['--ageDistribution'] : params.ageDistributionName; // Load severity and age data.
+            scenario.population.ageDistributionName = argv['--ageDistribution'] ? argv['--ageDistribution'] : scenario.population.ageDistributionName; // Load severity and age data.
 
             severity = getSeverity(argv['--severity']);
-            ageDistribution = getAge(argv['--age'], ageDistributionName);
+            ageDistribution = getAge(argv['--age'], scenario.population.ageDistributionName);
             scenarioDataToSerialize = {
-              name: 'Afghanistan',
+              name: scenarioData.name,
               data: scenario
             };
             ageDistributionDataToSerialize = {
-              name: ageDistributionName,
+              name: scenario.population.ageDistributionName,
               data: ageDistribution
             };
             severityDataToSerialize = {
@@ -35557,6 +35556,7 @@ function _main() {
               ageDistributionData: ageDistributionDataToSerialize,
               severityDistributionData: severityDataToSerialize
             };
+            params = _objectSpread$4(_objectSpread$4(_objectSpread$4(_objectSpread$4({}, scenario.population), scenario.epidemiological), scenario.simulation), scenario.mitigation);
 
             try {
               deserialize$2(JSON.stringify(scenarioParamsToSerialize));
