@@ -239,20 +239,12 @@ async function main() {
         color: scenario.mitigation.mitigationIntervals[0].color,
         name: `Intervention ${i + 1}`,
         timeRange: {
-          begin: argv['<mitTimeBegin>'][i]
-            ? argv['<mitTimeBegin>'][i]
-            : scenario.mitigation.mitigationIntervals[0].timeRange.begin,
-          end: argv['<mitTimeEnd>'][i]
-            ? argv['<mitTimeEnd>'][i]
-            : scenario.mitigation.mitigationIntervals[0].timeRange.end,
+          begin: argv['<mitTimeBegin>'][i],
+          end: argv['<mitTimeEnd>'][i],
         },
         transmissionReduction: {
-          begin: argv['<transmissionReductionLow>'][i]
-            ? argv['<transmissionReductionLow>'][i]
-            : scenario.mitigation.mitigationIntervals[0].transmissionReduction.begin,
-          end: argv['<transmissionReductionHigh>'][i]
-            ? argv['<transmissionReductionHigh>'][i]
-            : scenario.mitigation.mitigationIntervals[0].transmissionReduction.end,
+          begin: argv['<transmissionReductionLow>'][i],
+          end: argv['<transmissionReductionHigh>'][i],
         },
       }
     }
