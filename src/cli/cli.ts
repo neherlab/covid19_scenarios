@@ -146,11 +146,9 @@ async function main() {
               (<mitTimeBegin> <mitTimeEnd>
               <transmissionReductionLow> <transmissionReductionHigh>)...
               [options]
-
     options:
       <scenario>            Path to scenario parameters JSON file
       <output>              Path to output file
-
       --age=<pathToAgeDistribution>
                             Path to age distribution JSON file
       --ageDistribution=<ageDistribution>
@@ -272,6 +270,8 @@ async function main() {
   // Load severity and age data.
   const severity = getSeverity(argv['--severity'])
   const ageDistribution = getAge(argv['--age'], ageDistributionName)
+
+  scenario.population.ageDistributionName = ageDistributionName
 
   const scenarioDataToSerialize: ScenarioData = {
     name: 'Afghanistan',
