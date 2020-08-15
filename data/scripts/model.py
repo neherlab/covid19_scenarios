@@ -72,9 +72,9 @@ class Params(Data):
         self.confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
         self.severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
         self.severe   *= self.confirmed
-        self.palliative       = np.array([0, 0, 0, 0, 0, 0, 0, 10, 30]) / 100
-        self.icu       = np.array([5, 10, 10, 15, 20, 25, 35, 30, 10]) / 100
-        self.fatality  = np.array([30, 30, 30, 30, 30, 40, 40, 50, 50]) / 100
+        self.palliative       = np.array([0, 0, 0, 0, 0, 0, 5, 10, 20]) / 100
+        self.icu       = np.array([5, 10, 10, 15, 20, 25, 30, 25, 15]) / 100
+        self.fatality  = np.array([10, 10, 10, 10, 10, 20, 30, 40, 50]) / 100
 
         self.recovery  = 1 - self.severe
         self.discharge = 1 - self.icu
@@ -99,9 +99,11 @@ def get_reporting_fraction(cases, deaths, IFR, right_censoring=30, n_days=60):
     n_cases = cases[right_index] - cases[left_index]
     n_deaths = deaths[right_index] - deaths[left_index]
     if n_deaths:
-        return IFR*n_cases/n_deaths
-    else:
-        return 0.3
+        reported = IFR*n_cases/n_deaths
+        if np.isfinite(reported):
+            return reported
+
+    return 0.3
 
 # ------------------------------------------
 # Modeling
@@ -168,6 +170,7 @@ def solve_ode(params, init_pop):
     evolve = make_evolve(params)
     solver = solve.ode(evolve) # TODO: Add Jacobian
     solver.set_initial_value(init_pop.flatten(), t_beg)
+    solver.set_integrator('dopri5')
 
     solution = np.zeros((num_tp, init_pop.shape[0], init_pop.shape[1]))
     solution[0, :, :] = init_pop

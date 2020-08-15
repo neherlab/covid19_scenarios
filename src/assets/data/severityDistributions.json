@@ -1,11 +1,10 @@
 {
   "all": [
     {
-      "data": [
+     "data": [
         {
           "ageGroup": "0-9",
           "isolated": 0.0,
-          "palliative": 0.0,
           "confirmed": 5.0,
           "severe": 1.0,
           "palliative": 0.0,
@@ -15,7 +14,6 @@
         {
           "ageGroup": "10-19",
           "isolated": 0.0,
-          "palliative": 0.0,
           "confirmed": 5.0,
           "severe": 3.0,
           "palliative": 0.0,
@@ -25,7 +23,6 @@
         {
           "ageGroup": "20-29",
           "isolated": 0.0,
-          "palliative": 0.0,
           "confirmed": 10.0,
           "severe": 3.0,
           "palliative": 0.0,
@@ -35,7 +32,6 @@
         {
           "ageGroup": "30-39",
           "isolated": 0.0,
-          "palliative": 0.0,
           "confirmed": 15.0,
           "severe": 3.0,
           "palliative": 0.0,
@@ -45,7 +41,6 @@
         {
           "ageGroup": "40-49",
           "isolated": 0.0,
-          "palliative": 0.0,
           "confirmed": 20.0,
           "severe": 6.0,
           "palliative": 0.0,
@@ -55,7 +50,6 @@
         {
           "ageGroup": "50-59",
           "isolated": 0.0,
-          "palliative": 0.0,
           "confirmed": 25.0,
           "severe": 10.0,
           "palliative": 0.0,
@@ -65,7 +59,6 @@
         {
           "ageGroup": "60-69",
           "isolated": 0.0,
-          "palliative": 0.0,
           "confirmed": 30.0,
           "severe": 25.0,
           "palliative": 0.0,
@@ -75,7 +68,6 @@
         {
           "ageGroup": "70-79",
           "isolated": 0.0,
-          "palliative": 0.0,
           "confirmed": 40.0,
           "severe": 35.0,
           "palliative": 0.0,
@@ -85,7 +77,6 @@
         {
           "ageGroup": "80+",
           "isolated": 0.0,
-          "palliative": 0.0,
           "confirmed": 50.0,
           "severe": 50.0,
           "palliative": 0.0,
@@ -94,6 +85,92 @@
         }
       ],
       "name": "China CDC"
+    },
+    {
+      "data": [
+        {
+          "ageGroup": "0-9",
+          "isolated": 0.0,
+          "confirmed": 5.0,
+          "severe": 1.0,
+          "palliative": 0.0,
+          "critical": 5,
+          "fatal": 10
+        },
+        {
+          "ageGroup": "10-19",
+          "isolated": 0.0,
+          "confirmed": 5.0,
+          "severe": 3.0,
+          "palliative": 0.0,
+          "critical": 10,
+          "fatal": 10
+        },
+        {
+          "ageGroup": "20-29",
+          "isolated": 0.0,
+          "confirmed": 10.0,
+          "severe": 3.0,
+          "palliative": 0.0,
+          "critical": 10,
+          "fatal": 10
+        },
+        {
+          "ageGroup": "30-39",
+          "isolated": 0.0,
+          "confirmed": 15.0,
+          "severe": 3.0,
+          "palliative": 0.0,
+          "critical": 15,
+          "fatal": 10
+        },
+        {
+          "ageGroup": "40-49",
+          "isolated": 0.0,
+          "confirmed": 20.0,
+          "severe": 6.0,
+          "palliative": 0.0,
+          "critical": 20,
+          "fatal": 10
+        },
+        {
+          "ageGroup": "50-59",
+          "isolated": 0.0,
+          "confirmed": 25.0,
+          "severe": 10.0,
+          "palliative": 0.0,
+          "critical": 25,
+          "fatal": 20
+        },
+        {
+          "ageGroup": "60-69",
+          "isolated": 0.0,
+          "confirmed": 30.0,
+          "severe": 25.0,
+          "palliative": 5.0,
+          "critical": 30,
+          "fatal": 30
+        },
+        {
+          "ageGroup": "70-79",
+          "isolated": 0.0,
+          "confirmed": 40.0,
+          "severe": 35.0,
+          "palliative": 10.0,
+          "critical": 25,
+          "fatal": 40
+        },
+        {
+          "ageGroup": "80+",
+          "isolated": 0.0,
+          "confirmed": 50.0,
+          "severe": 50.0,
+          "palliative": 20.0,
+          "critical": 15,
+          "fatal": 40
+        }
+      ],
+      "name": "Adjusted"
     }
   ]
 }

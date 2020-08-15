@@ -198,12 +198,23 @@ def fit_population(args):
     reporting_fraction = get_reporting_fraction(data['cases'], data['deaths'], IFR)
     n_cases_at_start = total_deaths_at_start/IFR
     seroprevalence = n_cases_at_start / pop_params['size']
+    if np.isnan(seroprevalence):
+        import ipdb; ipdb.set_trace()
 
     tmin = weekly_data_for_fit['time'][0]
     average_Re = np.mean(Re[-time_range_fit:])
     fixed_params = {'logR0': np.log(pop_params['r0']), 'efficacy': 1-average_Re/pop_params['r0'], 'containment_start':tmin,
                     'seroprevalence':seroprevalence, 'reported': reporting_fraction}
-    guess =  {'logInitial':np.log(weekly_data_for_fit['cases'][0]/reporting_fraction)}
+    if (weekly_data_for_fit['cases'][0]):
+        guess =  {'logInitial':np.log((0.5 + weekly_data_for_fit['cases'][0])/reporting_fraction)}
+    elif (weekly_data_for_fit['deaths'][0]) and reporting_fraction>0:
+        guess =  {'logInitial':np.log((0.5 + weekly_data_for_fit['deaths'][0])/reporting_fraction/IFR)}
+    elif (weekly_data_for_fit['deaths'][0]):
+        guess =  {'logInitial':np.log((0.5 + weekly_data_for_fit['deaths'][0])/0.3/IFR)}
+    else:
+        guess =  {'logInitial':np.log(1)}
+
+    print(fixed_params, weekly_data_for_fit['cases'][:10], guess)
     fit_result, success = fit_params(data['time'][-time_range_fit-7:], weekly_data_for_fit, guess,
                             age_distribution, pop_params['size'], fixed_params = fixed_params)
 
@@ -238,7 +249,12 @@ def fit_all_case_data(num_procs=4):
 
     results_dict = {}
     for k, params in results:
-        results_dict[k] = params
+        if params is None:
+            results_dict[k] = None
+        elif np.isfinite(params['logInitial']):
+            results_dict[k] = params
+        else:
+            results_dict[k] = None
 
     return results_dict
 
@@ -306,8 +322,9 @@ if __name__ == '__main__':
     case_counts = parse_tsv()
     scenario_data = load_population_data()
     age_distributions = load_distribution()
-    region = 'Austria'
-    region, p, fit_params = fit_population((region, case_counts[region], scenario_data[region], age_distributions[region]))
+    region = 'IND-Sikkim' #'United States of America'
+    age_dis = age_distributions[scenario_data[region]['ages']]
+    region, p, fit_params = fit_population((region, case_counts[region], scenario_data[region], age_dis, True))
 
     model_data = generate_data(fit_params)
     model_cases = model_data['cases'][7:] - model_data['cases'][:-7]
@@ -317,7 +334,7 @@ if __name__ == '__main__':
     cases = cumulative_to_rolling_average(convert_to_vectors(case_counts[region]))
 
     print(fit_params.reported, np.exp(fit_params.logInitial))
-    print(get_IFR(age_distributions[region]))
+    print(get_IFR(age_dis))
 
     plt.plot(model_time, model_cases)
     plt.plot(model_time, model_deaths)
