@@ -6,6 +6,7 @@ import { getPopulationParams, initializePopulation, withUncertainty } from './in
 import { collectTotals, evolve } from './model'
 import { percentileTrajectory } from './results'
 import { preparePlotData } from './preparePlotData'
+import { msPerDay } from './initialize'
 
 const identity = (x: number) => x
 
@@ -65,24 +66,40 @@ export async function run({ params, severity, ageDistribution }: RunParams): Pro
     ageDistribution,
   )
   const deterministicTrajectory = simulate(population, deterministicParams, tMax, ageGroups, identity)
+  const R0Times = []
+  let tR0 = new Date('2020-02-01').getTime()
+
+  while (tR0 < tMin) {
+    R0Times.push({ time: tR0, seroprevalence: params.seroprevalence })
+    tR0 += msPerDay
+  }
+  deterministicTrajectory.forEach((tp) => {
+    R0Times.push({
+      time: tp.time,
+      seroprevalence: params.seroprevalence + tp.cumulative.recovered.total / params.populationServed,
+    })
+  })
 
   const thresholds = [0.2, 0.8]
   const idxs = thresholds.map((d) => Math.ceil((stochasticTrajectories.length - 1) * d))
   const R0Trajectories = stochastic
-    ? deterministicTrajectory.map((d) => {
+    ? R0Times.map((d) => {
         return {
           t: d.time,
           y: stochasticParams
-            .map((ModelParams) => ModelParams.rate.infection(d.time) * params.infectiousPeriodDays)
+            .map(
+              (ModelParams) =>
+                ModelParams.rate.infection(d.time) * params.infectiousPeriodDays * (1 - d.seroprevalence * 0.01),
+            )
             .sort((a, b) => a - b),
         }
       })
     : []
 
-  const meanR0Trajectory = deterministicTrajectory.map((d) => {
+  const meanR0Trajectory = R0Times.map((d) => {
     return {
       t: d.time,
-      y: deterministicParams.rate.infection(d.time) * params.infectiousPeriodDays,
+      y: deterministicParams.rate.infection(d.time) * params.infectiousPeriodDays * (1 - d.seroprevalence * 0.01),
     }
   })
   const resultsTrajectory = {
