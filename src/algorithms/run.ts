@@ -2,11 +2,10 @@ import { AgeGroup } from '../.generated/latest/types'
 import { AgeDistributionDatum, ScenarioFlat, SeverityDistributionDatum } from './types/Param.types'
 import { AlgorithmResult, SimulationTimePoint, ExportedTimePoint, ModelParams } from './types/Result.types'
 
-import { getPopulationParams, initializePopulation, withUncertainty } from './initialize'
+import { getPopulationParams, initializePopulation, withUncertainty, msPerDay } from './initialize'
 import { collectTotals, evolve } from './model'
 import { percentileTrajectory } from './results'
 import { preparePlotData } from './preparePlotData'
-import { msPerDay } from './initialize'
 
 const identity = (x: number) => x
 
