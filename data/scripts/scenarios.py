@@ -186,12 +186,6 @@ def fit_population(args):
     Refit = fit_REblocks(weekly_data['time'][:-8], Re)
     piecewise_constant_Re = Refit.predict(weekly_data['time'].reshape(-1,1))
     change_points = np.concatenate([[-1], np.where(np.diff(piecewise_constant_Re)!=0)[0], [len(Re)-1]]) + 1
-    mitigations = []
-    for ci,cp in enumerate(change_points[:-1]):
-        mitigations.append({'tMin':int(weekly_data['time'][cp]),
-                            'tMax':int(weekly_data['time'][change_points[ci+1]-1]),
-                            'value': max(0,min(1, float(1-piecewise_constant_Re[cp]/pop_params['r0'])))})
-
 
     total_deaths_at_start = data['deaths'][-tp_to_eval_seroprevalence]
     IFR = get_IFR(age_distribution)
@@ -200,6 +194,13 @@ def fit_population(args):
     seroprevalence = n_cases_at_start / pop_params['size']
     if np.isnan(seroprevalence):
         import ipdb; ipdb.set_trace()
+
+    mitigations = []
+    for ci,cp in enumerate(change_points[:-1]):
+        mitigations.append({'tMin':int(weekly_data['time'][cp]),
+                            'tMax':int(weekly_data['time'][change_points[ci+1]-1]),
+                            'value': max(0,min(1, float(1-piecewise_constant_Re[cp]/(1-seroprevalence)/pop_params['r0'])))})
+
 
     tmin = weekly_data_for_fit['time'][0]
     average_Re = np.mean(Re[-time_range_fit:])
@@ -214,7 +215,6 @@ def fit_population(args):
     else:
         guess =  {'logInitial':np.log(1)}
 
-    print(fixed_params, weekly_data_for_fit['cases'][:10], guess)
     fit_result, success = fit_params(data['time'][-time_range_fit-7:], weekly_data_for_fit, guess,
                             age_distribution, pop_params['size'], fixed_params = fixed_params)
 
@@ -303,7 +303,6 @@ def generate(output_json, num_procs=1, recalculate=False):
             scenario.mitigation.mitigation_intervals[-1].time_range.end = datetime.strptime(results[region]['tMax'], '%Y-%m-%d').date() + timedelta(1)
         scenario.population.seroprevalence = round(100*results[region]['seroprevalence'],2)
         scenario.population.initial_number_of_cases = int(round(np.exp(results[region]['logInitial'])))
-        print(scenario.population.initial_number_of_cases)
         scenarios.append(ScenarioData(scenario, region))
 
     with open(output_json, "w+") as fd:
