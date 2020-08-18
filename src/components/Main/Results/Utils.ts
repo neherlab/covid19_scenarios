@@ -7,7 +7,7 @@ export function verifyPositive(x: number): maybeNumber {
   return xRounded > 0 ? xRounded : undefined
 }
 
-export function verifyTuple(x: [maybeNumber, maybeNumber], center: maybeNumber): [number, number] | undefined {
+export function verifyTuple(x: [maybeNumber, maybeNumber], center?: maybeNumber): [number, number] | undefined {
   const centerVal = center ? verifyPositive(center) : undefined
   if (x[0] !== undefined && x[1] !== undefined && centerVal !== undefined) {
     return [x[0] < centerVal ? x[0] : centerVal, x[1] > centerVal ? x[1] : centerVal]
@@ -47,8 +47,11 @@ export function computeNewEmpiricalCases(
     const startDay = day - deltaDay
     const startDayPlus = day - deltaDay - 1
 
+    // @ts-ignore
     const nowCases = cumulativeCounts[day][field]
+    // @ts-ignore
     const oldCases = cumulativeCounts[startDay][field]
+    // @ts-ignore
     const olderCases = cumulativeCounts[startDayPlus] ? cumulativeCounts[startDayPlus][field] : undefined
     if (oldCases && nowCases) {
       const newCases = verifyPositive(

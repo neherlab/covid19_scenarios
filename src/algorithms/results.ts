@@ -208,8 +208,11 @@ export function percentileTPs(tps: ExportedTimePoint[], prc: number): ExportedTi
   const idx = Math.ceil(prc * (tps.length - 1))
 
   Object.keys(tps[0]).forEach((kind) => {
+    // @ts-ignore
     Object.keys(tps[0][kind]).forEach((k) => {
+      // @ts-ignore
       Object.keys(tps[0][kind][k]).forEach((age) => {
+        // @ts-ignore
         res[kind][k][age] = tps.map((d) => d[kind][k][age]).sort((x, y) => x - y)[idx]
       })
     })

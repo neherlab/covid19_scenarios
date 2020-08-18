@@ -48,7 +48,7 @@
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,html,css,less,scss,yml,yaml}\"",
     "format:fix": "yarn format --write",
     "test": "yarn test:nowatch --watch --verbose",
-    "test:nowatch": "jest --config=config/jest/jest.config.js",
+    "test:nowatch": "jest --config=config/jest/jest.config.js --cacheDirectory .cache/jest",
     "test:lint": "WITH_ESLINT=1 yarn test",
     "test:lint:nowatch": "WITH_ESLINT=1 yarn test:nowatch",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --config=config/jest/jest.config.js --runInBand --watch",
