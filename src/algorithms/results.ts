@@ -147,6 +147,7 @@ function scaleTP(x: ExportedTimePoint, transform: (x: number) => number): Export
       critical: scale(x.current.critical),
       overflow: scale(x.current.overflow),
       infectious: scale(x.current.infectious),
+      weeklyFatality: scale(x.current.weeklyFatality),
     },
     cumulative: {
       critical: scale(x.cumulative.critical),
