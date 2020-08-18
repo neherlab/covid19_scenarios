@@ -7,7 +7,7 @@ export function verifyPositive(x: number): maybeNumber {
   return xRounded > 0 ? xRounded : undefined
 }
 
-export function verifyTuple(x: [maybeNumber, maybeNumber], center: maybeNumber): [number, number] | undefined {
+export function verifyTuple(x: [maybeNumber, maybeNumber], center?: maybeNumber): [number, number] | undefined {
   const centerVal = center ? verifyPositive(center) : undefined
   if (x[0] !== undefined && x[1] !== undefined && centerVal !== undefined) {
     return [x[0] < centerVal ? x[0] : centerVal, x[1] > centerVal ? x[1] : centerVal]

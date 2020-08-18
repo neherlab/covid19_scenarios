@@ -12,6 +12,7 @@ module.exports = {
   preset: 'ts-jest',
   globals: {
     'ts-jest': {
+      isolatedModules: true,
       babelConfig: true,
       diagnostics: {
         pathRegex: /(\/__tests?__\/.*|([./])(test|spec))\.[jt]sx?$/,
@@ -38,6 +39,7 @@ module.exports = {
     'react-i18next': '<rootDir>/config/jest/mocks/mockReactI18next.js',
     'popper-js': '<rootDir>/config/jest/mockPopperJS.js',
     'use-debounce': '<rootDir>/config/jest/mocks/mockUseDebounce.js',
+    'src/(.*)': '<rootDir>/src/$1',
   },
   setupFilesAfterEnv: [
     '<rootDir>/config/jest/setupDotenv.js',

@@ -62,7 +62,7 @@ describe('model', () => {
 
   describe('getPopulationParams', () => {
     it('calculates correct params', () => {
-      const params = getPopulationParams(allParamsFlat, severity, ageDistribution)
+      const params = getPopulationParams(allParamsFlat, severity, ageDistribution, false)
       expect(params).toMatchSnapshot()
     })
   })
@@ -81,7 +81,7 @@ describe('model', () => {
 
   describe('evolve', () => {
     it('produces correct output for 10 days', () => {
-      const params = getPopulationParams(allParamsFlat, severity, ageDistribution)
+      const params = getPopulationParams(allParamsFlat, severity, ageDistribution, false)
 
       const input = initializePopulation(
         initializePopulationParams.N,

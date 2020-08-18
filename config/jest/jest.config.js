@@ -23,6 +23,8 @@ module.exports = {
     '!<rootDir>/src/locales/**/*',
   ],
 
+  cacheDirectory: '<rootDir>/.cache/jest',
+
   coverageThreshold: {
     global: {
       // TODO: write more tests?
