@@ -47,8 +47,11 @@ export function computeNewEmpiricalCases(
     const startDay = day - deltaDay
     const startDayPlus = day - deltaDay - 1
 
+    // @ts-ignore
     const nowCases = cumulativeCounts[day][field]
+    // @ts-ignore
     const oldCases = cumulativeCounts[startDay][field]
+    // @ts-ignore
     const olderCases = cumulativeCounts[startDayPlus] ? cumulativeCounts[startDayPlus][field] : undefined
     if (oldCases && nowCases) {
       const newCases = verifyPositive(

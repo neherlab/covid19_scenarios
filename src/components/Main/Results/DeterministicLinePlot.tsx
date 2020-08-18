@@ -141,9 +141,11 @@ export function DeterministicLinePlotDiconnected({
     ...result.plotData.map((x) => {
       const dpoint = { time: x.time, hospitalBeds: nHospitalBeds, ICUbeds: nICUBeds }
       Object.keys(x.lines).forEach((d) => {
+        // @ts-ignore
         dpoint[d] = enabledPlots.includes(d) ? x.lines[d] : undefined
       })
       Object.keys(x.areas).forEach((d) => {
+        // @ts-ignore
         dpoint[`${d}Area`] = enabledPlots.includes(d) ? x.areas[d] : undefined
       })
       return dpoint

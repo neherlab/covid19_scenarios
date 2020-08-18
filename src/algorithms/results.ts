@@ -147,6 +147,7 @@ function scaleTP(x: ExportedTimePoint, transform: (x: number) => number): Export
       critical: scale(x.current.critical),
       overflow: scale(x.current.overflow),
       infectious: scale(x.current.infectious),
+      weeklyFatality: scale(x.current.weeklyFatality),
     },
     cumulative: {
       critical: scale(x.cumulative.critical),
@@ -207,8 +208,11 @@ export function percentileTPs(tps: ExportedTimePoint[], prc: number): ExportedTi
   const idx = Math.ceil(prc * (tps.length - 1))
 
   Object.keys(tps[0]).forEach((kind) => {
+    // @ts-ignore
     Object.keys(tps[0][kind]).forEach((k) => {
+      // @ts-ignore
       Object.keys(tps[0][kind][k]).forEach((age) => {
+        // @ts-ignore
         res[kind][k][age] = tps.map((d) => d[kind][k][age]).sort((x, y) => x - y)[idx]
       })
     })
