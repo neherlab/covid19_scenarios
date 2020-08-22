@@ -276,34 +276,59 @@ def set_mitigation(scenario, mitigations):
 # Main point of entry
 
 def generate(output_json, num_procs=1, recalculate=False):
+    import re
     scenarios = []
-    fit_fname = os.path.join(BASE_PATH,FIT_PARAMETERS)
-    if recalculate or (not os.path.isfile(fit_fname)):
-        results = fit_all_case_data(num_procs)
-        with open(fit_fname, 'w') as fh:
-            json.dump(results, fh)
-    else:
-        with open(fit_fname, 'r') as fh:
-            results = json.load(fh)
-
     case_counts = parse_tsv()
     scenario_data = load_population_data()
-    for region in scenario_data:
-        if region not in results or results[region] is None or np.isnan(results[region]['logInitial']) or np.isinf(results[region]['logInitial']):
-            continue
 
-        # print(results[region])
-        scenario = AllParams(**scenario_data[region], tMin=results[region]['tMin'], tMax=results[region]['tMax'],
-                             cases_key=region if region in case_counts else 'None')
-        if region in case_counts:
-            set_mitigation(scenario, results[region].get('mitigations', []))
+    for fname in (FIT_PARAMETERS, 'fit_parameters_1stwave.json'):
+        print("reading file", fname)
+        fit_fname = os.path.join(BASE_PATH,fname)
+        if recalculate or (not os.path.isfile(fit_fname)):
+            results = fit_all_case_data(num_procs)
+            with open(fit_fname, 'w') as fh:
+                json.dump(results, fh)
         else:
-            scenario.mitigation.mitigation_intervals = []
-        if len(scenario.mitigation.mitigation_intervals):
-            scenario.mitigation.mitigation_intervals[-1].time_range.end = datetime.strptime(results[region]['tMax'], '%Y-%m-%d').date() + timedelta(1)
-        scenario.population.seroprevalence = round(100*results[region]['seroprevalence'],2)
-        scenario.population.initial_number_of_cases = int(round(np.exp(results[region]['logInitial'])))
-        scenarios.append(ScenarioData(scenario, region))
+            with open(fit_fname, 'r') as fh:
+                results = json.load(fh)
+
+        for region in scenario_data:
+            if region not in results or results[region] is None:
+                continue
+            if '1stwave' in fname: # skip if a small region or not fit to case data (no 'containment_start')
+                results[region]['logInitial'] = np.log(results[region]['initialCases'])
+                results[region]['tMax'] = '2020-08-31'
+                results[region]['seroprevalence'] = 0.0
+                if (re.match('[A-Z][A-Z][A-Z]-', region) and results[region]['initialCases']<100) or ('containment_start' not in results[region]):
+                    continue
+            elif np.isnan(results[region]['logInitial']) or np.isinf(results[region]['logInitial']):
+                continue
+
+            scenario = AllParams(**scenario_data[region], tMin=results[region]['tMin'], tMax=results[region]['tMax'],
+                                cases_key=region if region in case_counts else 'None')
+            if '1stwave' in fname:
+                scenario.mitigation.mitigation_intervals = [MitigationInterval(
+                    name="Intervention 1",
+                    tMin=datetime.strptime(results[region]['containment_start'], '%Y-%m-%d').date(),
+                    id=uuid4(),
+                    tMax=scenario.simulation.simulation_time_range.end + timedelta(1),
+                    color=mitigation_colors.get("Intervention 1", "#cccccc"),
+                    mitigationValue=round(100*results[region]['efficacy']))]
+            elif region in case_counts:
+                set_mitigation(scenario, results[region].get('mitigations', []))
+            else:
+                scenario.mitigation.mitigation_intervals = []
+            if len(scenario.mitigation.mitigation_intervals):
+                scenario.mitigation.mitigation_intervals[-1].time_range.end = datetime.strptime(results[region]['tMax'], '%Y-%m-%d').date() + timedelta(1)
+            scenario.population.seroprevalence = round(100*results[region]['seroprevalence'],2)
+            scenario.population.initial_number_of_cases = int(round(np.exp(results[region]['logInitial'])))
+
+            if '1stwave' in fname:
+                scenario_name = f"[1st wave] {region}"
+            else:
+                scenario_name = region
+
+            scenarios.append(ScenarioData(scenario, scenario_name))
 
     with open(output_json, "w+") as fd:
         output = ScenarioArray(scenarios)
