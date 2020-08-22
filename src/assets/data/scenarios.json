@@ -40511,6 +40511,7044 @@
         }
       },
       "name": "Zimbabwe"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.12,
+            "end": 2.6
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-02",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 34.4,
+                "end": 41.6
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Afghanistan",
+          "caseCountsName": "Afghanistan",
+          "hospitalBeds": 17470,
+          "icuBeds": 524,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 58,
+          "populationServed": 37172386,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-03",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Afghanistan"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 38.8,
+                "end": 47.2
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Albania",
+          "caseCountsName": "Albania",
+          "hospitalBeds": 7621,
+          "icuBeds": 228,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 77,
+          "populationServed": 2866376,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-28",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Albania"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.47,
+            "end": 3.01
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 52.3,
+                "end": 63.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Algeria",
+          "caseCountsName": "Algeria",
+          "hospitalBeds": 79149,
+          "icuBeds": 2374,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 31,
+          "populationServed": 42228429,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-24",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Algeria"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.48,
+            "end": 3.04
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 48.6,
+                "end": 59.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Argentina",
+          "caseCountsName": "Argentina",
+          "hospitalBeds": 223470,
+          "icuBeds": 6704,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 21,
+          "populationServed": 44494502,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-28",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Argentina"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-31",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 17.8,
+                "end": 20.2
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Armenia",
+          "caseCountsName": "Armenia",
+          "hospitalBeds": 10253,
+          "icuBeds": 307,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 55,
+          "populationServed": 2951776,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Armenia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.41,
+            "end": 2.95
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 56.2,
+                "end": 67.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Australia",
+          "caseCountsName": "Australia",
+          "hospitalBeds": 95970,
+          "icuBeds": 2378,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 0,
+          "populationServed": 24992369,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-08",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Australia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.45,
+            "end": 4.21
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 71.5,
+                "end": 82.5
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Austria",
+          "caseCountsName": "Austria",
+          "hospitalBeds": 47920,
+          "icuBeds": 1833,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 4,
+          "populationServed": 8847037,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-19",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Austria"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.9,
+            "end": 2.32
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-02",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 30.9,
+                "end": 37.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Azerbaijan",
+          "caseCountsName": "Azerbaijan",
+          "hospitalBeds": 34107,
+          "icuBeds": 1023,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 13,
+          "populationServed": 9942334,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-04",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Azerbaijan"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.4,
+            "end": 4.16
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 60.1,
+                "end": 71.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Bangladesh",
+          "caseCountsName": "Bangladesh",
+          "hospitalBeds": 32611,
+          "icuBeds": 1174,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 1,
+          "populationServed": 161356039,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-08",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Bangladesh"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.34,
+            "end": 2.86
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-11",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 52.3,
+                "end": 63.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Belarus",
+          "caseCountsName": "Belarus",
+          "hospitalBeds": 82314,
+          "icuBeds": 2469,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 1,
+          "populationServed": 9485386,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-28",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Belarus"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.26,
+            "end": 2.76
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 65.2,
+                "end": 76.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Belgium",
+          "caseCountsName": "Belgium",
+          "hospitalBeds": 56927,
+          "icuBeds": 1755,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 346,
+          "populationServed": 11422068,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-20",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Belgium"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 1.0,
+                "end": 1.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Benin",
+          "caseCountsName": "Benin",
+          "hospitalBeds": 5670,
+          "icuBeds": 170,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 12,
+          "populationServed": 11485048,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-23",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Benin"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 3.0,
+                "end": 3.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Bolivia (Plurinational State of)",
+          "caseCountsName": "Bolivia (Plurinational State of)",
+          "hospitalBeds": 12436,
+          "icuBeds": 373,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 319,
+          "populationServed": 11353142,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-08",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Bolivia (Plurinational State of)"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 33.6,
+                "end": 40.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Bosnia and Herzegovina",
+          "caseCountsName": "Bosnia and Herzegovina",
+          "hospitalBeds": 13474,
+          "icuBeds": 404,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 260,
+          "populationServed": 3323929,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-03",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Bosnia and Herzegovina"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.73,
+            "end": 3.33
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 49.6,
+                "end": 60.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Brazil",
+          "caseCountsName": "Brazil",
+          "hospitalBeds": 481779,
+          "icuBeds": 42000,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 221,
+          "populationServed": 209469333,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-24",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Brazil"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 16.9,
+                "end": 19.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Cabo Verde",
+          "caseCountsName": "Cabo Verde",
+          "hospitalBeds": 1193,
+          "icuBeds": 35,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 26,
+          "populationServed": 543767,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-04-02",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Cabo Verde"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-18",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 58.1,
+                "end": 69.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Canada",
+          "caseCountsName": "CAN-Nova Scotia",
+          "hospitalBeds": 1896,
+          "icuBeds": 128,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 111,
+          "populationServed": 977457,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-07",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] CAN-Nova Scotia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.98,
+            "end": 3.64
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 67.2,
+                "end": 78.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Canada",
+          "caseCountsName": "Canada",
+          "hospitalBeds": 72264,
+          "icuBeds": 4800,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 5,
+          "populationServed": 37058856,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-16",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Canada"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.54,
+            "end": 1.88
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 49.6,
+                "end": 60.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Switzerland",
+          "caseCountsName": "CHE-Fribourg",
+          "hospitalBeds": 1142,
+          "icuBeds": 51,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 176,
+          "populationServed": 319000,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-27",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] CHE-Fribourg"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 38.8,
+                "end": 47.2
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Switzerland",
+          "caseCountsName": "CHE-Neuch\u00e2tel",
+          "hospitalBeds": 633,
+          "icuBeds": 28,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 237,
+          "populationServed": 177000,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-23",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] CHE-Neuch\u00e2tel"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.1,
+            "end": 2.56
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 65.2,
+                "end": 76.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Switzerland",
+          "caseCountsName": "CHE-Ticino",
+          "hospitalBeds": 1264,
+          "icuBeds": 57,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 168,
+          "populationServed": 353000,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-20",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] CHE-Ticino"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.59,
+            "end": 1.95
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 49.6,
+                "end": 60.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Switzerland",
+          "caseCountsName": "CHE-Valais",
+          "hospitalBeds": 1231,
+          "icuBeds": 56,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 256,
+          "populationServed": 344000,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-25",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] CHE-Valais"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.26,
+            "end": 2.76
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 39.7,
+                "end": 48.3
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Chile",
+          "caseCountsName": "Chile",
+          "hospitalBeds": 37271,
+          "icuBeds": 1118,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 21,
+          "populationServed": 18729160,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-27",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Chile"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 4.46,
+            "end": 5.45
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-01-30",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 78.3,
+                "end": 87.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "China",
+          "caseCountsName": "China",
+          "hospitalBeds": 5494778,
+          "icuBeds": 49453,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 0,
+          "populationServed": 1392730000,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2019-12-17",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] China"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.84,
+            "end": 2.25
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 31.8,
+                "end": 38.2
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Colombia",
+          "caseCountsName": "Colombia",
+          "hospitalBeds": 84899,
+          "icuBeds": 2546,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 282,
+          "populationServed": 49648685,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Colombia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.33,
+            "end": 2.85
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 48.6,
+                "end": 59.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Costa Rica",
+          "caseCountsName": "Costa Rica",
+          "hospitalBeds": 5649,
+          "icuBeds": 169,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 1,
+          "populationServed": 4999441,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-27",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Costa Rica"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.32,
+            "end": 2.84
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 67.2,
+                "end": 78.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Croatia",
+          "caseCountsName": "Croatia",
+          "hospitalBeds": 14475,
+          "icuBeds": 650,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 22,
+          "populationServed": 4089400,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-28",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Croatia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.74,
+            "end": 2.12
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-10",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 58.1,
+                "end": 69.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Cuba",
+          "caseCountsName": "Cuba",
+          "hospitalBeds": 57805,
+          "icuBeds": 1734,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 53,
+          "populationServed": 11338138,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-07",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Cuba"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-03",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 45.9,
+                "end": 56.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Cyprus",
+          "caseCountsName": "Cyprus",
+          "hospitalBeds": 2922,
+          "icuBeds": 92,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 42,
+          "populationServed": 1189265,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Cyprus"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.46,
+            "end": 3.0
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 63.1,
+                "end": 74.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Czechia",
+          "caseCountsName": "Czechia",
+          "hospitalBeds": 43531,
+          "icuBeds": 1227,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 35,
+          "populationServed": 10625695,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-23",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Czechia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.02,
+            "end": 2.46
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-13",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 59.1,
+                "end": 70.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Denmark",
+          "caseCountsName": "Denmark",
+          "hospitalBeds": 14621,
+          "icuBeds": 372,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 494,
+          "populationServed": 5797446,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-21",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Denmark"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-02",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 47.7,
+                "end": 58.3
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Germany",
+          "caseCountsName": "DEU-Hamburg",
+          "hospitalBeds": 11001,
+          "icuBeds": 524,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 214,
+          "populationServed": 1841000,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-25",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] DEU-Hamburg"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.13,
+            "end": 2.61
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 62.1,
+                "end": 73.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Germany",
+          "caseCountsName": "DEU-Hessen",
+          "hospitalBeds": 37444,
+          "icuBeds": 1786,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 112,
+          "populationServed": 6266000,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-24",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] DEU-Hessen"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.75,
+            "end": 2.13
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 52.3,
+                "end": 63.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Germany",
+          "caseCountsName": "DEU-Rheinland-Pfalz",
+          "hospitalBeds": 24411,
+          "icuBeds": 1164,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 122,
+          "populationServed": 4085000,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-25",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] DEU-Rheinland-Pfalz"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.41,
+            "end": 2.95
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 57.1,
+                "end": 68.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Djibouti",
+          "caseCountsName": "Djibouti",
+          "hospitalBeds": 1237,
+          "icuBeds": 37,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 1,
+          "populationServed": 958920,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-17",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Djibouti"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.88,
+            "end": 2.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 37.9,
+                "end": 46.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Egypt",
+          "caseCountsName": "Egypt",
+          "hospitalBeds": 159061,
+          "icuBeds": 4771,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 489,
+          "populationServed": 98423595,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-24",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Egypt"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.98,
+            "end": 2.42
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 56.2,
+                "end": 67.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Spain",
+          "caseCountsName": "ESP-Asturias",
+          "hospitalBeds": 2400,
+          "icuBeds": 97,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 203,
+          "populationServed": 1022800,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-26",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ESP-Asturias"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.91,
+            "end": 2.33
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 60.1,
+                "end": 71.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Spain",
+          "caseCountsName": "ESP-Baleares",
+          "hospitalBeds": 2697,
+          "icuBeds": 109,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 126,
+          "populationServed": 1149460,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-27",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ESP-Baleares"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.84,
+            "end": 2.24
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 67.2,
+                "end": 78.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Spain",
+          "caseCountsName": "ESP-Extremadura",
+          "hospitalBeds": 2505,
+          "icuBeds": 101,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 460,
+          "populationServed": 1067710,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-28",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ESP-Extremadura"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.78,
+            "end": 2.18
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 44.1,
+                "end": 53.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Spain",
+          "caseCountsName": "ESP-Navarra",
+          "hospitalBeds": 1535,
+          "icuBeds": 62,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 240,
+          "populationServed": 654214,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-26",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ESP-Navarra"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.88,
+            "end": 2.3
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 59.1,
+                "end": 70.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Spain",
+          "caseCountsName": "ESP-Pa\u00eds Vasco",
+          "hospitalBeds": 5180,
+          "icuBeds": 210,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 472,
+          "populationServed": 2207776,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-21",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ESP-Pa\u00eds Vasco"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.59,
+            "end": 1.95
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 46.8,
+                "end": 57.2
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Finland",
+          "caseCountsName": "Finland",
+          "hospitalBeds": 15397,
+          "icuBeds": 329,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 248,
+          "populationServed": 5518050,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-24",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Finland"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.93,
+            "end": 2.35
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 63.1,
+                "end": 74.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "France",
+          "caseCountsName": "FRA-Bourgogne-Franche-Comt\u00e9",
+          "hospitalBeds": 7095,
+          "icuBeds": 121,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 654,
+          "populationServed": 2795301,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-20",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] FRA-Bourgogne-Franche-Comt\u00e9"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.96,
+            "end": 2.4
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 59.1,
+                "end": 70.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "France",
+          "caseCountsName": "FRA-Centre-Val-de-Loire",
+          "hospitalBeds": 4984,
+          "icuBeds": 170,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 296,
+          "populationServed": 2566759,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-26",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] FRA-Centre-Val-de-Loire"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.15,
+            "end": 3.85
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 71.5,
+                "end": 82.5
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "France",
+          "caseCountsName": "FRA-Grand-Est",
+          "hospitalBeds": 13548,
+          "icuBeds": 465,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 170,
+          "populationServed": 5518188,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-19",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] FRA-Grand-Est"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.73,
+            "end": 2.11
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 53.3,
+                "end": 64.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "France",
+          "caseCountsName": "FRA-Hauts-de-France",
+          "hospitalBeds": 13872,
+          "icuBeds": 438,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 418,
+          "populationServed": 5978266,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-17",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] FRA-Hauts-de-France"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.27,
+            "end": 2.77
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 68.3,
+                "end": 79.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "France",
+          "caseCountsName": "FRA-Ile-de-France",
+          "hospitalBeds": 22792,
+          "icuBeds": 1147,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 497,
+          "populationServed": 12213364,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-17",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] FRA-Ile-de-France"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.94,
+            "end": 2.38
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-20",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 59.1,
+                "end": 70.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "France",
+          "caseCountsName": "FRA-Nouvelle-Aquitaine",
+          "hospitalBeds": 12491,
+          "icuBeds": 449,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 203,
+          "populationServed": 5987014,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-23",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] FRA-Nouvelle-Aquitaine"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 45.0,
+                "end": 55.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "France",
+          "caseCountsName": "FRA-Occitanie",
+          "hospitalBeds": 9851,
+          "icuBeds": 466,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 682,
+          "populationServed": 5892817,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-22",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] FRA-Occitanie"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.09,
+            "end": 2.55
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 62.1,
+                "end": 73.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "France",
+          "caseCountsName": "FRA-Provence-Alpes-C\u00f4te-dAzur",
+          "hospitalBeds": 9909,
+          "icuBeds": 460,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 110,
+          "populationServed": 5059473,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-20",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] FRA-Provence-Alpes-C\u00f4te-dAzur"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.11,
+            "end": 3.81
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 74.9,
+                "end": 85.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "France",
+          "caseCountsName": "France",
+          "hospitalBeds": 206619,
+          "icuBeds": 7540,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 248,
+          "populationServed": 66987244,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-14",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] France"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.9,
+            "end": 3.54
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 72.6,
+                "end": 83.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Germany",
+          "caseCountsName": "Germany",
+          "hospitalBeds": 497182,
+          "icuBeds": 23890,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 23,
+          "populationServed": 82927922,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-13",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Germany"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 16.0,
+                "end": 18.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Ghana",
+          "caseCountsName": "Ghana",
+          "hospitalBeds": 25292,
+          "icuBeds": 758,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 87,
+          "populationServed": 29767108,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-08",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Ghana"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 39.7,
+                "end": 48.3
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Greece",
+          "caseCountsName": "Greece",
+          "hospitalBeds": 38747,
+          "icuBeds": 680,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 124,
+          "populationServed": 10727668,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-21",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Greece"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.66,
+            "end": 2.02
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-10",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 15.1,
+                "end": 16.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Guatemala",
+          "caseCountsName": "Guatemala",
+          "hospitalBeds": 9948,
+          "icuBeds": 298,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 35,
+          "populationServed": 17247807,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-10",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Guatemala"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 26.6,
+                "end": 31.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Guinea",
+          "caseCountsName": "Guinea",
+          "hospitalBeds": 3556,
+          "icuBeds": 106,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 218,
+          "populationServed": 12414318,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-19",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Guinea"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.92,
+            "end": 2.34
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-05-05",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 6.8,
+                "end": 7.2
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Guinea-Bissau",
+          "caseCountsName": "Guinea-Bissau",
+          "hospitalBeds": 1833,
+          "icuBeds": 54,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 5,
+          "populationServed": 1874309,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-24",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Guinea-Bissau"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.86,
+            "end": 2.28
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 23.1,
+                "end": 26.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Honduras",
+          "caseCountsName": "Honduras",
+          "hospitalBeds": 6427,
+          "icuBeds": 192,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 85,
+          "populationServed": 9587522,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-06",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Honduras"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.68,
+            "end": 2.06
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-10",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 51.4,
+                "end": 62.6
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Hungary",
+          "caseCountsName": "Hungary",
+          "hospitalBeds": 41803,
+          "icuBeds": 1374,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 130,
+          "populationServed": 9768785,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-29",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Hungary"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.07,
+            "end": 2.53
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 80.7,
+                "end": 89.3
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Iceland",
+          "caseCountsName": "Iceland",
+          "hospitalBeds": 862,
+          "icuBeds": 29,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 3,
+          "populationServed": 353574,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-19",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Iceland"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.98,
+            "end": 2.42
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-18",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 40.5,
+                "end": 49.5
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "India",
+          "caseCountsName": "IND-Gujarat",
+          "hospitalBeds": 32280,
+          "icuBeds": 3179,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 146,
+          "populationServed": 63907200,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-09",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] IND-Gujarat"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.96,
+            "end": 2.4
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-10",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 34.4,
+                "end": 41.6
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "India",
+          "caseCountsName": "IND-Maharashtra",
+          "hospitalBeds": 51446,
+          "icuBeds": 5066,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 137,
+          "populationServed": 120837347,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] IND-Maharashtra"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.23,
+            "end": 2.73
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-03",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 42.3,
+                "end": 51.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "India",
+          "caseCountsName": "India",
+          "hospitalBeds": 810730,
+          "icuBeds": 29997,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 45,
+          "populationServed": 1352617328,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-20",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] India"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.66,
+            "end": 2.02
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 35.3,
+                "end": 42.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Indonesia",
+          "caseCountsName": "Indonesia",
+          "hospitalBeds": 308435,
+          "icuBeds": 7094,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 1766,
+          "populationServed": 267663435,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-27",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Indonesia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.69,
+            "end": 4.51
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-04",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 66.2,
+                "end": 77.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Iran (Islamic Republic of)",
+          "caseCountsName": "Iran (Islamic Republic of)",
+          "hospitalBeds": 130690,
+          "icuBeds": 3790,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 111,
+          "populationServed": 81800269,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-09",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Iran (Islamic Republic of)"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-02",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 24.0,
+                "end": 28.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Iraq",
+          "caseCountsName": "Iraq",
+          "hospitalBeds": 56271,
+          "icuBeds": 1688,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 131,
+          "populationServed": 38433600,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-18",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Iraq"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.51,
+            "end": 3.07
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 70.5,
+                "end": 81.5
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Ireland",
+          "caseCountsName": "Ireland",
+          "hospitalBeds": 13297,
+          "icuBeds": 289,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 139,
+          "populationServed": 4853506,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-24",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Ireland"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.17,
+            "end": 3.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 83.1,
+                "end": 90.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Israel",
+          "caseCountsName": "Israel",
+          "hospitalBeds": 19133,
+          "icuBeds": 758,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 1,
+          "populationServed": 8883800,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-14",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Israel"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.81,
+            "end": 2.21
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 58.1,
+                "end": 69.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-Abruzzo",
+          "hospitalBeds": 3872,
+          "icuBeds": 70,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 218,
+          "populationServed": 1311580,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-24",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-Abruzzo"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.84,
+            "end": 2.24
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 63.1,
+                "end": 74.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-Emilia-Romagna",
+          "hospitalBeds": 16304,
+          "icuBeds": 650,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 503,
+          "populationServed": 4459477,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-11",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-Emilia-Romagna"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 48.6,
+                "end": 59.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-Friuli Venezia Giulia",
+          "hospitalBeds": 3899,
+          "icuBeds": 825,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 338,
+          "populationServed": 1215220,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-20",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-Friuli Venezia Giulia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.56,
+            "end": 3.12
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 66.2,
+                "end": 77.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-Lombardia",
+          "hospitalBeds": 34473,
+          "icuBeds": 1067,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 555,
+          "populationServed": 10060574,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-10",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-Lombardia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.23,
+            "end": 2.73
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-13",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 64.1,
+                "end": 75.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-Marche",
+          "hospitalBeds": 4698,
+          "icuBeds": 400,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 214,
+          "populationServed": 1525271,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-16",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-Marche"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.58,
+            "end": 1.94
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 58.1,
+                "end": 69.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-P.A. Trento",
+          "hospitalBeds": 2132,
+          "icuBeds": 69,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 490,
+          "populationServed": 541098,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-23",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-P.A. Trento"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.72,
+            "end": 2.1
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 58.1,
+                "end": 69.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-Puglia",
+          "hospitalBeds": 11306,
+          "icuBeds": 300,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 272,
+          "populationServed": 4029053,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-22",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-Puglia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.08,
+            "end": 2.54
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 64.1,
+                "end": 75.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-Toscana",
+          "hospitalBeds": 10366,
+          "icuBeds": 447,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 222,
+          "populationServed": 3729641,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-19",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-Toscana"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.05,
+            "end": 2.51
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 71.5,
+                "end": 82.5
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-TrentinoAltoAdige",
+          "hospitalBeds": 3763,
+          "icuBeds": 75,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 280,
+          "populationServed": 1072276,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-22",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-TrentinoAltoAdige"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.57,
+            "end": 1.93
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-18",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 53.3,
+                "end": 64.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-Valle d'Aosta",
+          "hospitalBeds": 449,
+          "icuBeds": 0,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 361,
+          "populationServed": 125666,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-26",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-Valle d'Aosta"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.86,
+            "end": 2.28
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 67.2,
+                "end": 78.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "ITA-Veneto",
+          "hospitalBeds": 15857,
+          "icuBeds": 825,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 206,
+          "populationServed": 4905854,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-10",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] ITA-Veneto"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.42,
+            "end": 2.96
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 68.3,
+                "end": 79.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Italy",
+          "caseCountsName": "Italy",
+          "hospitalBeds": 158891,
+          "icuBeds": 7550,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 593,
+          "populationServed": 60431283,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-09",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Italy"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.91,
+            "end": 4.79
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-02-22",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 83.1,
+                "end": 90.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Japan",
+          "caseCountsName": "Japan",
+          "hospitalBeds": 710846,
+          "icuBeds": 9241,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 0,
+          "populationServed": 126529100,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-01-20",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Japan"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.33,
+            "end": 2.85
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-30",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 49.6,
+                "end": 60.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Kazakhstan",
+          "caseCountsName": "Kazakhstan",
+          "hospitalBeds": 101231,
+          "icuBeds": 3948,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 8,
+          "populationServed": 18276499,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-04",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Kazakhstan"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 4.5,
+            "end": 5.5
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-02-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 70.5,
+                "end": 81.5
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Korea, Republic of",
+          "caseCountsName": "Korea, Republic of",
+          "hospitalBeds": 270100,
+          "icuBeds": 5402,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 0,
+          "populationServed": 51635256,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-01-23",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Korea, Republic of"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-07",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 3.0,
+                "end": 3.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Kuwait",
+          "caseCountsName": "Kuwait",
+          "hospitalBeds": 5832,
+          "icuBeds": 174,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 33,
+          "populationServed": 4137309,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-13",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Kuwait"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 38.8,
+                "end": 47.2
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Latvia",
+          "caseCountsName": "Latvia",
+          "hospitalBeds": 6407,
+          "icuBeds": 217,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 24,
+          "populationServed": 1926542,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Latvia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.16,
+            "end": 2.64
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 60.1,
+                "end": 71.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Luxembourg",
+          "caseCountsName": "Luxembourg",
+          "hospitalBeds": 2251,
+          "icuBeds": 127,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 55,
+          "populationServed": 607728,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-28",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Luxembourg"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.67,
+            "end": 3.27
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 65.2,
+                "end": 76.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Malaysia",
+          "caseCountsName": "Malaysia",
+          "hospitalBeds": 62353,
+          "icuBeds": 1060,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 0,
+          "populationServed": 31528585,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Malaysia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.13,
+            "end": 2.61
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 37.9,
+                "end": 46.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Maldives",
+          "caseCountsName": "Maldives",
+          "hospitalBeds": 1687,
+          "icuBeds": 50,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 10,
+          "populationServed": 515696,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-30",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Maldives"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.57,
+            "end": 1.93
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 36.2,
+                "end": 43.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Mali",
+          "caseCountsName": "Mali",
+          "hospitalBeds": 1842,
+          "icuBeds": 55,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 584,
+          "populationServed": 19077690,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-19",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Mali"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.18,
+            "end": 2.66
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 42.3,
+                "end": 51.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Mexico",
+          "caseCountsName": "Mexico",
+          "hospitalBeds": 174143,
+          "icuBeds": 5224,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 751,
+          "populationServed": 126190788,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-29",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Mexico"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.25,
+            "end": 2.75
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-05",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 51.4,
+                "end": 62.6
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Moldova, Republic of",
+          "caseCountsName": "Moldova, Republic of",
+          "hospitalBeds": 16168,
+          "icuBeds": 485,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 14,
+          "populationServed": 3545883,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Moldova, Republic of"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.04,
+            "end": 2.5
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-31",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Morocco",
+          "caseCountsName": "Morocco",
+          "hospitalBeds": 37745,
+          "icuBeds": 1132,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 122,
+          "populationServed": 36029138,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-02",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Morocco"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.55,
+            "end": 1.89
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 24.0,
+                "end": 28.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Myanmar",
+          "caseCountsName": "Myanmar",
+          "hospitalBeds": 58600,
+          "icuBeds": 586,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 23,
+          "populationServed": 53708395,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-20",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Myanmar"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-05-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 1.0,
+                "end": 1.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Nepal",
+          "caseCountsName": "Nepal",
+          "hospitalBeds": 89152,
+          "icuBeds": 815,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 3,
+          "populationServed": 28087871,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-04-04",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Nepal"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.29,
+            "end": 2.79
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 67.2,
+                "end": 78.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Netherlands",
+          "caseCountsName": "Netherlands",
+          "hospitalBeds": 50047,
+          "icuBeds": 1065,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 271,
+          "populationServed": 17231017,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-18",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Netherlands"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.84,
+            "end": 2.25
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-28",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 61.1,
+                "end": 72.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "New Zealand",
+          "caseCountsName": "New Zealand",
+          "hospitalBeds": 12653,
+          "icuBeds": 153,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 31,
+          "populationServed": 4885500,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-04",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] New Zealand"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-05",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 30.1,
+                "end": 35.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "North Macedonia",
+          "caseCountsName": "North Macedonia",
+          "hospitalBeds": 5937,
+          "icuBeds": 178,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 244,
+          "populationServed": 2082958,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-04",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] North Macedonia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.07,
+            "end": 2.53
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 64.1,
+                "end": 75.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Norway",
+          "caseCountsName": "Norway",
+          "hospitalBeds": 16885,
+          "icuBeds": 395,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 117,
+          "populationServed": 5314336,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-18",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Norway"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.66,
+            "end": 2.02
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-15",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 25.7,
+                "end": 30.3
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Oman",
+          "caseCountsName": "Oman",
+          "hospitalBeds": 5736,
+          "icuBeds": 499,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 14,
+          "populationServed": 4829483,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-29",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Oman"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.93,
+            "end": 3.59
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 56.2,
+                "end": 67.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Pakistan",
+          "caseCountsName": "Pakistan",
+          "hospitalBeds": 125680,
+          "icuBeds": 3142,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 70,
+          "populationServed": 212215030,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-27",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Pakistan"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.09,
+            "end": 2.55
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 52.3,
+                "end": 63.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Panama",
+          "caseCountsName": "Panama",
+          "hospitalBeds": 8741,
+          "icuBeds": 262,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 132,
+          "populationServed": 4176873,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-28",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Panama"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.6,
+            "end": 1.96
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 24.9,
+                "end": 29.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Peru",
+          "caseCountsName": "Peru",
+          "hospitalBeds": 50129,
+          "icuBeds": 1503,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 937,
+          "populationServed": 31989256,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-28",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Peru"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.25,
+            "end": 2.75
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-31",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 51.4,
+                "end": 62.6
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Philippines",
+          "caseCountsName": "Philippines",
+          "hospitalBeds": 63108,
+          "icuBeds": 2335,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 96,
+          "populationServed": 106651922,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-25",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Philippines"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.11,
+            "end": 2.57
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Poland",
+          "caseCountsName": "Poland",
+          "hospitalBeds": 184230,
+          "icuBeds": 2635,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 102,
+          "populationServed": 37978548,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-26",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Poland"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.74,
+            "end": 4.57
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-18",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 19.6,
+                "end": 22.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Portugal",
+          "caseCountsName": "Portugal",
+          "hospitalBeds": 33447,
+          "icuBeds": 451,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 0,
+          "populationServed": 10281762,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-23",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Portugal"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.85,
+            "end": 2.27
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-31",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 49.6,
+                "end": 60.4
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Romania",
+          "caseCountsName": "Romania",
+          "hospitalBeds": 102899,
+          "icuBeds": 4574,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 239,
+          "populationServed": 19473936,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-26",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Romania"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.76,
+            "end": 3.38
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-03",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 55.2,
+                "end": 66.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Russian Federation",
+          "caseCountsName": "Russian Federation",
+          "hospitalBeds": 915124,
+          "icuBeds": 27453,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 13,
+          "populationServed": 144478050,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-27",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Russian Federation"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.65,
+            "end": 2.01
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 30.9,
+                "end": 37.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Saudi Arabia",
+          "caseCountsName": "Saudi Arabia",
+          "hospitalBeds": 70815,
+          "icuBeds": 6515,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 112,
+          "populationServed": 33699947,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-26",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Saudi Arabia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 18.7,
+                "end": 21.3
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Senegal",
+          "caseCountsName": "Senegal",
+          "hospitalBeds": 4506,
+          "icuBeds": 135,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 97,
+          "populationServed": 15854360,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Senegal"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.41,
+            "end": 2.95
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-02",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 67.2,
+                "end": 78.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Serbia",
+          "caseCountsName": "Serbia",
+          "hospitalBeds": 32585,
+          "icuBeds": 977,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 12,
+          "populationServed": 6982084,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-28",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Serbia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.7,
+            "end": 2.08
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-25",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 22.2,
+                "end": 25.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "South Africa",
+          "caseCountsName": "South Africa",
+          "hospitalBeds": 134048,
+          "icuBeds": 4021,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 193,
+          "populationServed": 57779622,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-29",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] South Africa"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.93,
+            "end": 4.81
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 77.2,
+                "end": 86.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Spain",
+          "caseCountsName": "Spain",
+          "hospitalBeds": 113042,
+          "icuBeds": 4479,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 64,
+          "populationServed": 46723749,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-14",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Spain"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.73,
+            "end": 2.11
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-05-01",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 8.7,
+                "end": 9.3
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Sudan",
+          "caseCountsName": "Sudan",
+          "hospitalBeds": 34496,
+          "icuBeds": 1034,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 696,
+          "populationServed": 41801533,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-31",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Sudan"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.08,
+            "end": 2.54
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 54.2,
+                "end": 65.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Sweden",
+          "caseCountsName": "Sweden",
+          "hospitalBeds": 20477,
+          "icuBeds": 550,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 152,
+          "populationServed": 10183175,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-19",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Sweden"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.86,
+            "end": 3.5
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-19",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 76.0,
+                "end": 86.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Switzerland",
+          "caseCountsName": "Switzerland",
+          "hospitalBeds": 30057,
+          "icuBeds": 1400,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 36,
+          "populationServed": 8516543,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-17",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Switzerland"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.75,
+            "end": 2.13
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-23",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 1.0,
+                "end": 1.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Tanzania, United Republic of",
+          "caseCountsName": "Tanzania, United Republic of",
+          "hospitalBeds": 38815,
+          "icuBeds": 1164,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 42,
+          "populationServed": 56318348,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-19",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Tanzania, United Republic of"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.61,
+            "end": 3.19
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-21",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 71.5,
+                "end": 82.5
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Thailand",
+          "caseCountsName": "Thailand",
+          "hospitalBeds": 139216,
+          "icuBeds": 7100,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 0,
+          "populationServed": 69428524,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-01-22",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Thailand"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.66,
+            "end": 2.02
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-30",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 61.1,
+                "end": 72.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Tunisia",
+          "caseCountsName": "Tunisia",
+          "hospitalBeds": 25335,
+          "icuBeds": 760,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 156,
+          "populationServed": 11565204,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-03",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Tunisia"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.65,
+            "end": 3.23
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 67.2,
+                "end": 78.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Turkey",
+          "caseCountsName": "Turkey",
+          "hospitalBeds": 223386,
+          "icuBeds": 6701,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 971,
+          "populationServed": 82319724,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-03",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Turkey"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.08,
+            "end": 2.54
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-14",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 50.5,
+                "end": 61.5
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Ukraine",
+          "caseCountsName": "Ukraine",
+          "hospitalBeds": 276004,
+          "icuBeds": 2646,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 35,
+          "populationServed": 44622516,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-06",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Ukraine"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.84,
+            "end": 2.24
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-07",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 41.4,
+                "end": 50.6
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United Arab Emirates",
+          "caseCountsName": "United Arab Emirates",
+          "hospitalBeds": 11641,
+          "icuBeds": 349,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 37,
+          "populationServed": 9630959,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-16",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] United Arab Emirates"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.9,
+            "end": 3.54
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-28",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 65.2,
+                "end": 76.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United Kingdom of Great Britain and Northern Ireland",
+          "caseCountsName": "United Kingdom of Great Britain and Northern Ireland",
+          "hospitalBeds": 139647,
+          "icuBeds": 4114,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 53,
+          "populationServed": 66488991,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-16",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] United Kingdom of Great Britain and Northern Ireland"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 4.08,
+            "end": 4.98
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 73.8,
+                "end": 84.2
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "United States of America",
+          "hospitalBeds": 798288,
+          "icuBeds": 49499,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 1,
+          "populationServed": 327167434,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-08",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] United States of America"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.9,
+            "end": 2.32
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 42.3,
+                "end": 51.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Arizona",
+          "hospitalBeds": 14019,
+          "icuBeds": 467,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 396,
+          "populationServed": 7378494,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-03",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Arizona"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.82,
+            "end": 3.44
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 65.2,
+                "end": 76.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Connecticut",
+          "hospitalBeds": 7126,
+          "icuBeds": 238,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 160,
+          "populationServed": 3563070,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Connecticut"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.09,
+            "end": 3.77
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-24",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 64.1,
+                "end": 75.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Illinois",
+          "hospitalBeds": 31649,
+          "icuBeds": 1055,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 104,
+          "populationServed": 12659682,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-27",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Illinois"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.75,
+            "end": 2.13
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-29",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 35.3,
+                "end": 42.7
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Kansas",
+          "hospitalBeds": 9604,
+          "icuBeds": 320,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 117,
+          "populationServed": 2910357,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-05",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Kansas"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 3.0,
+            "end": 3.66
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-16",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 67.2,
+                "end": 78.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Michigan",
+          "hospitalBeds": 25113,
+          "icuBeds": 837,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 161,
+          "populationServed": 10045029,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-18",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Michigan"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.67,
+            "end": 2.05
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-26",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 21.4,
+                "end": 24.6
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Minnesota",
+          "hospitalBeds": 14252,
+          "icuBeds": 475,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 206,
+          "populationServed": 5700671,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-29",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Minnesota"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.67,
+            "end": 2.04
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-27",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 37.0,
+                "end": 45.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Mississippi",
+          "hospitalBeds": 11957,
+          "icuBeds": 399,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 527,
+          "populationServed": 2989260,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-03",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Mississippi"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.67,
+            "end": 2.05
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-30",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 37.9,
+                "end": 46.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Missouri",
+          "hospitalBeds": 19125,
+          "icuBeds": 638,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 608,
+          "populationServed": 6169270,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-05",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Missouri"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.56,
+            "end": 1.9
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-31",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 29.2,
+                "end": 34.8
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-New Hampshire",
+          "hospitalBeds": 2880,
+          "icuBeds": 96,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 164,
+          "populationServed": 1371246,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-04",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-New Hampshire"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.61,
+            "end": 1.97
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-07",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 32.7,
+                "end": 39.3
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-New Mexico",
+          "hospitalBeds": 3774,
+          "icuBeds": 126,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 131,
+          "populationServed": 2096640,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-03",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-New Mexico"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.71,
+            "end": 2.09
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-02",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 41.4,
+                "end": 50.6
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-South Carolina",
+          "hospitalBeds": 12504,
+          "icuBeds": 417,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 214,
+          "populationServed": 5210095,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-02",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-South Carolina"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-03",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 45.9,
+                "end": 56.1
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Vermont",
+          "hospitalBeds": 1319,
+          "icuBeds": 44,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 143,
+          "populationServed": 628061,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-04",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Vermont"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 2.04,
+            "end": 2.5
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-17",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 60.1,
+                "end": 71.9
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Washington",
+          "hospitalBeds": 13255,
+          "icuBeds": 442,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 253,
+          "populationServed": 7797095,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-02-16",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Washington"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.84,
+            "end": 2.24
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-03-28",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 41.4,
+                "end": 50.6
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "United States of America",
+          "caseCountsName": "USA-Wisconsin",
+          "hospitalBeds": 12289,
+          "icuBeds": 410,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 200,
+          "populationServed": 5851754,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-01",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] USA-Wisconsin"
+    },
+    {
+      "data": {
+        "epidemiological": {
+          "hospitalStayDays": 3.0,
+          "icuStayDays": 14.0,
+          "infectiousPeriodDays": 3.0,
+          "latencyDays": 3.0,
+          "overflowSeverity": 2.0,
+          "peakMonth": 0,
+          "r0": {
+            "begin": 1.53,
+            "end": 1.87
+          },
+          "seasonalForcing": 0.0
+        },
+        "mitigation": {
+          "mitigationIntervals": [
+            {
+              "color": "#cccccc",
+              "name": "Intervention 1",
+              "timeRange": {
+                "begin": "2020-04-12",
+                "end": "2020-09-01"
+              },
+              "transmissionReduction": {
+                "begin": 37.0,
+                "end": 45.0
+              }
+            }
+          ]
+        },
+        "population": {
+          "ageDistributionName": "Uzbekistan",
+          "caseCountsName": "Uzbekistan",
+          "hospitalBeds": 98390,
+          "icuBeds": 2951,
+          "importsPerDay": 0.1,
+          "initialNumberOfCases": 25,
+          "populationServed": 32955400,
+          "seroprevalence": 0.0
+        },
+        "simulation": {
+          "numberStochasticRuns": 15,
+          "simulationTimeRange": {
+            "begin": "2020-03-05",
+            "end": "2020-08-31"
+          }
+        }
+      },
+      "name": "[1st wave] Uzbekistan"
     }
   ]
 }

@@ -20,7 +20,8 @@ The first version of covid19-scenarios assumed a fully susceptible population. I
 longer the case. Instead of providing scenarios that model the outbreak through all past phases, it is more robust to
 "restart" the simulation at later dates with appropriately chosen initial conditions including the seroprevalence in the
 population. The new release makes release allows the user to specify seroprevalence. In addition, we have updated the
-default parameters for disease severity to reflect new research on the topic.
+default parameters for disease severity to reflect new research on the topic. We have kept the scenarios from the first
+wave as presets -- these are labeled for example as _[1st wave] Italy_
 
 ### 2020-07-24: Added palliative flux to severity distribution
 
