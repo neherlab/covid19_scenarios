@@ -170,6 +170,7 @@ export function AgeBarChartDisconnected({
                 />
                 <YAxis
                   label={{ value: t('Cases'), angle: -90, position: 'insideLeft', fill: '#495057' }}
+                  domain={[0, 'dataMax']}
                   tickFormatter={tickFormatter}
                 />
                 <YAxis
