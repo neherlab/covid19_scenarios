@@ -204,7 +204,8 @@ export function initializePopulation(
     pop.cumulative.critical[i] = 0
     pop.cumulative.fatality[i] = 0
 
-    if (i === Math.round(ageDistribution.length / 2)) {
+    if (i === 2) {
+      // start outbreak in 20-30y old.
       pop.current.susceptible[i] -= numCases
       pop.current.infectious[i] = initialInfectiousFraction * numCases
       const e = ((1 - initialInfectiousFraction) * numCases) / pop.current.exposed[i].length
