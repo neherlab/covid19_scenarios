@@ -192,8 +192,8 @@ def fit_population(args):
     reporting_fraction = get_reporting_fraction(data['cases'], data['deaths'], IFR)
     n_cases_at_start = total_deaths_at_start/IFR
     seroprevalence = n_cases_at_start / pop_params['size']
-    if np.isnan(seroprevalence):
-        import ipdb; ipdb.set_trace()
+    if np.isnan(seroprevalence) or (type(seroprevalence)==np.ma.core.MaskedConstant and seroprevalence.mask==True):
+        seroprevalence = 0
 
     mitigations = []
     for ci,cp in enumerate(change_points[:-1]):
@@ -232,7 +232,7 @@ def fit_population(args):
         return (region, params, fit_result)
     else:
         return (region, params)
-
+        import ipdb; ipdb.set_trace()
 
 def fit_all_case_data(num_procs=4):
     pool = multi.Pool(num_procs)
@@ -321,7 +321,8 @@ if __name__ == '__main__':
     case_counts = parse_tsv()
     scenario_data = load_population_data()
     age_distributions = load_distribution()
-    region = 'IND-Sikkim' #'United States of America'
+    region = 'JPN-Kagawa'
+    #region = 'United States of America'
     age_dis = age_distributions[scenario_data[region]['ages']]
     region, p, fit_params = fit_population((region, case_counts[region], scenario_data[region], age_dis, True))
 
