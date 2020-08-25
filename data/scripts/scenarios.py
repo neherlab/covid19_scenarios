@@ -227,7 +227,7 @@ def fit_population(args):
 
     params['mitigations'] = mitigations
     params['tMin'] = datetime.fromordinal(tmin).date().strftime('%Y-%m-%d')
-    params['tMax'] = datetime.fromordinal(tmin+90).date().strftime('%Y-%m-%d')
+    params['tMax'] = datetime.fromordinal(tmin+120).date().strftime('%Y-%m-%d')
     if return_fit_res:
         return (region, params, fit_result)
     else:
