@@ -29,21 +29,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true
   },
-  "include": [
-    "./*.js",
-    "./*.jsx",
-    "./*.ts",
-    "./*.tsx",
-    "./**/.*.js",
-    "./**/.*.jsx",
-    "./**/.*.ts",
-    "./**/.*.tsx",
-    "./**/*.js",
-    "./**/*.jsx",
-    "./**/*.ts",
-    "./**/*.tsx",
-    "next-env.d.ts"
-  ],
+  "include": ["src/cli/**/*"],
   "exclude": [
     ".build",
     ".cache",
@@ -51,12 +37,18 @@
     ".ignore",
     ".reports",
     "3rdparty",
-    "covid19_scenarios_data",
     "cypress",
+    "data",
+    "docker",
+    "docs",
     "node_modules",
     "public",
     "src/.generated",
     "tsconfig.json",
+    "src/**/*.spec.*",
+    "src/**/*.test.*",
+    "src/**/__tests__/**/*",
+    "src/algorithms/__test_data__/**/*",
     // FIXME: errors in these files have to be resolved eventually
     // begin
     "src/algorithms/model.ts", // FIXME

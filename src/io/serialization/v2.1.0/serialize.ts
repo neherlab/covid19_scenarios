@@ -3,7 +3,7 @@ import { trim, isEqual } from 'lodash'
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
 
-import validateShareable, { errors } from '../../../.generated/latest/validateShareable'
+import validateShareable from '../../../.generated/latest/validateShareable'
 
 import type { ScenarioParameters, Shareable } from '../../../algorithms/types/Param.types'
 import { Convert } from '../../../algorithms/types/Param.types'
@@ -26,7 +26,7 @@ function serialize(scenarioParameters: ScenarioParameters): string {
   const serialized = Convert.shareableToJson(shareable)
 
   if (process.env.NODE_ENV !== 'production' && !validateShareable(JSON.parse(serialized))) {
-    throw errors
+    throw validateShareable.errors
   }
 
   return serialized
@@ -36,11 +36,11 @@ function validateSchema(shareableDangerous: Record<string, unknown>) {
   if (!validateShareable(shareableDangerous)) {
     const locale = 'en' // TODO: use current locale
     const localize = ajvLocalizers[locale] ?? ajvLocalizers.en
-    localize(errors)
+    localize(validateShareable.errors)
 
     const ajv = Ajv({ allErrors: true })
     const separator = '<<<NEWLINE>>>'
-    const errorString = ajv.errorsText(errors, { dataVar: '', separator })
+    const errorString = ajv.errorsText(validateShareable.errors, { dataVar: '', separator })
     if (typeof errorString === 'string') {
       const errorStrings = errorString.split(separator).map(trim)
       if (errorStrings.length > 0) {
