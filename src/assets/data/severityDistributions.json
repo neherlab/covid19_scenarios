@@ -136,7 +136,7 @@
         {
           "ageGroup": "50-59",
           "isolated": 0.0,
-          "confirmed": 25.0,
+          "confirmed": 20.0,
           "severe": 10.0,
           "palliative": 0.0,
           "critical": 25,
@@ -145,7 +145,7 @@
         {
           "ageGroup": "60-69",
           "isolated": 0.0,
-          "confirmed": 30.0,
+          "confirmed": 25.0,
           "severe": 25.0,
           "palliative": 5.0,
           "critical": 30,
@@ -154,7 +154,7 @@
         {
           "ageGroup": "70-79",
           "isolated": 0.0,
-          "confirmed": 40.0,
+          "confirmed": 30.0,
           "severe": 35.0,
           "palliative": 10.0,
           "critical": 25,
@@ -163,7 +163,7 @@
         {
           "ageGroup": "80+",
           "isolated": 0.0,
-          "confirmed": 50.0,
+          "confirmed": 40.0,
           "severe": 50.0,
           "palliative": 20.0,
           "critical": 15,
