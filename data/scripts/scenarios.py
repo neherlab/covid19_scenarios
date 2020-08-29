@@ -178,7 +178,7 @@ def fit_population(args):
     if weekly_data['cases'] is None or weekly_data['deaths'] is None:
         return (region, None, None) if return_fit_res else (region, None)
 
-    weekly_data_for_fit = {k:v[-time_range_fit:] for k,v in weekly_data.items()}
+    weekly_data_for_fit = {k:v[-time_range_fit+7:] for k,v in weekly_data.items()}
 
     # estimate Re and bound from above (usually a problem at the very beginning of a wave)
     res = estimate_Re(weekly_data['cases'], imports=1, cutoff=5, chop=3)
@@ -202,20 +202,20 @@ def fit_population(args):
                             'value': max(0,min(1, float(1-piecewise_constant_Re[cp]/(1-seroprevalence)/pop_params['r0'])))})
 
 
-    tmin = weekly_data_for_fit['time'][0]
-    average_Re = np.mean(Re[-time_range_fit:])
+    tmin = data['time'][-time_range_fit]
+    average_Re = np.mean(Re[-30:])
     fixed_params = {'logR0': np.log(pop_params['r0']), 'efficacy': 1-average_Re/pop_params['r0'], 'containment_start':tmin,
-                    'seroprevalence':seroprevalence, 'reported': reporting_fraction}
+                    'seroprevalence':seroprevalence}
     if (weekly_data_for_fit['cases'][0]):
-        guess =  {'logInitial':np.log((0.5 + weekly_data_for_fit['cases'][0])/reporting_fraction)}
+        guess =  {'logInitial':np.log((0.5 + weekly_data_for_fit['cases'][0])/reporting_fraction), 'reported': reporting_fraction}
     elif (weekly_data_for_fit['deaths'][0]) and reporting_fraction>0:
-        guess =  {'logInitial':np.log((0.5 + weekly_data_for_fit['deaths'][0])/reporting_fraction/IFR)}
+        guess =  {'logInitial':np.log((0.5 + weekly_data_for_fit['deaths'][0])/reporting_fraction/IFR), 'reported': reporting_fraction}
     elif (weekly_data_for_fit['deaths'][0]):
-        guess =  {'logInitial':np.log((0.5 + weekly_data_for_fit['deaths'][0])/0.3/IFR)}
+        guess =  {'logInitial':np.log((0.5 + weekly_data_for_fit['deaths'][0])/0.3/IFR), 'reported': reporting_fraction}
     else:
-        guess =  {'logInitial':np.log(1)}
+        guess =  {'logInitial':np.log(1), 'reported': reporting_fraction}
 
-    fit_result, success = fit_params(data['time'][-time_range_fit-7:], weekly_data_for_fit, guess,
+    fit_result, success = fit_params(data['time'][-time_range_fit:], weekly_data_for_fit, guess,
                             age_distribution, pop_params['size'], fixed_params = fixed_params)
 
     params = {}
@@ -227,7 +227,7 @@ def fit_population(args):
 
     params['mitigations'] = mitigations
     params['tMin'] = datetime.fromordinal(tmin).date().strftime('%Y-%m-%d')
-    params['tMax'] = datetime.fromordinal(tmin+120).date().strftime('%Y-%m-%d')
+    params['tMax'] = datetime.fromordinal(tmin+90).date().strftime('%Y-%m-%d')
     if return_fit_res:
         return (region, params, fit_result)
     else:
@@ -282,9 +282,10 @@ def generate(output_json, num_procs=1, recalculate=False):
     scenario_data = load_population_data()
 
     for fname in (FIT_PARAMETERS, 'fit_parameters_1stwave.json'):
+        first_wave = '1stwave' in fname
         print("reading file", fname)
         fit_fname = os.path.join(BASE_PATH,fname)
-        if recalculate or (not os.path.isfile(fit_fname)):
+        if (recalculate or (not os.path.isfile(fit_fname))) and (not first_wave):
             results = fit_all_case_data(num_procs)
             with open(fit_fname, 'w') as fh:
                 json.dump(results, fh)
@@ -293,9 +294,9 @@ def generate(output_json, num_procs=1, recalculate=False):
                 results = json.load(fh)
 
         for region in scenario_data:
-            if region not in results or results[region] is None:
+            if region not in results or results[region] is None or region.startswith('FRA-'):
                 continue
-            if '1stwave' in fname: # skip if a small region or not fit to case data (no 'containment_start')
+            if first_wave: # skip if a small region or not fit to case data (no 'containment_start')
                 results[region]['logInitial'] = np.log(results[region]['initialCases'])
                 results[region]['tMax'] = '2020-08-31'
                 results[region]['seroprevalence'] = 0.0
@@ -306,7 +307,7 @@ def generate(output_json, num_procs=1, recalculate=False):
 
             scenario = AllParams(**scenario_data[region], tMin=results[region]['tMin'], tMax=results[region]['tMax'],
                                 cases_key=region if region in case_counts else 'None')
-            if '1stwave' in fname:
+            if first_wave:
                 scenario.mitigation.mitigation_intervals = [MitigationInterval(
                     name="Intervention 1",
                     tMin=datetime.strptime(results[region]['containment_start'], '%Y-%m-%d').date(),
@@ -323,7 +324,7 @@ def generate(output_json, num_procs=1, recalculate=False):
             scenario.population.seroprevalence = round(100*results[region]['seroprevalence'],2)
             scenario.population.initial_number_of_cases = int(round(np.exp(results[region]['logInitial'])))
 
-            if '1stwave' in fname:
+            if first_wave:
                 scenario_name = f"[1st wave] {region}"
             else:
                 scenario_name = region
@@ -346,8 +347,11 @@ if __name__ == '__main__':
     case_counts = parse_tsv()
     scenario_data = load_population_data()
     age_distributions = load_distribution()
-    region = 'JPN-Kagawa'
-    #region = 'United States of America'
+    # region = 'JPN-Kagawa'
+    region = 'United States of America'
+    # region = 'Germany'
+    region = 'Switzerland'
+    region = 'USA-Texas'
     age_dis = age_distributions[scenario_data[region]['ages']]
     region, p, fit_params = fit_population((region, case_counts[region], scenario_data[region], age_dis, True))
 

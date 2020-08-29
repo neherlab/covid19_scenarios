@@ -69,7 +69,7 @@ class Params(Data):
         self.efficacy    = DefaultRates["efficacy"]
 
         # Fracs
-        self.confirmed = np.array([5, 5, 10, 15, 20, 25, 30, 40, 50]) / 100
+        self.confirmed = np.array([5, 5, 10, 15, 20, 20, 25, 30, 40]) / 100
         self.severe    = np.array([1, 3, 3, 3, 6, 10, 25, 35, 50]) / 100
         self.severe   *= self.confirmed
         self.palliative       = np.array([0, 0, 0, 0, 0, 0, 5, 10, 20]) / 100
@@ -155,11 +155,11 @@ def init_pop(ages, size, cases, seroprevalence):
 
     pop[Sub.S, :]  -= cases*ages
     # 30% of cases in infectious category
-    pop[Sub.I, :]  += cases*ages*0.3
+    pop[Sub.I, :]  += cases*ages*0.5
     # 70% of cases spread evenly over the exposed categories
-    pop[Sub.E1, :] += cases*ages*0.7/3
-    pop[Sub.E2, :] += cases*ages*0.7/3
-    pop[Sub.E3, :] += cases*ages*0.7/3
+    pop[Sub.E1, :] += cases*ages*0.5/3
+    pop[Sub.E2, :] += cases*ages*0.5/3
+    pop[Sub.E3, :] += cases*ages*0.5/3
 
     return pop
 
@@ -194,7 +194,7 @@ def is_cumulative(vec):
 def poissonNegLogLH(n,lam, eps=0.1):
     L = np.abs(lam)
     N = np.abs(n)
-    return (L-N) - N*np.log((L+eps)/(N+eps))
+    return L - N*np.log(L+eps)
 
 def get_rolling_numbers(model_out, smooting=7):
     return (model_out[smooting:, Sub.T] - model_out[:-smooting, Sub.T],

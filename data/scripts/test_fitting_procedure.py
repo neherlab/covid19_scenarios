@@ -16,7 +16,7 @@ def generate_data(params):
     model_out = model.solve_ode(params, pop)
     res = model.trace_ages(model_out)
 
-    for ii, k in [(Sub.T, 'cases'), (Sub.D, 'deaths'), (Sub.H, 'hospitalized'), (Sub.C, 'icu')]:
+    for ii, k in [(Sub.T, 'cases'), (Sub.D, 'deaths'), (Sub.H, 'hospitalized'), (Sub.I, 'infectious'), (Sub.S, 'susceptible'), (Sub.C, 'icu')]:
         data[k] = np.ma.array(res[:,ii])
 
     return data
