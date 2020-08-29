@@ -50,7 +50,9 @@ function SeverityCardDisconnected({
           <p className="my-0">{t('Demographics, disease severity, group-specific isolation')}</p>
         </>
       }
-      help={t('Assumptions on severity which are informed by epidemiological and clinical observations in China')}
+      help={t(
+        'Assumptions on severity which are informed by epidemiological and clinical observations in China, Spain, Switzerland, and Italy',
+      )}
       defaultCollapsed={false}
     >
       <SeverityTable />

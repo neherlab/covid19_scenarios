@@ -10,6 +10,7 @@ import { getOrThrow } from '../../helpers/getOrThrow'
 
 import v2_0_0 from './v2.0.0/serialize'
 import v2_1_0 from './v2.1.0/serialize'
+import v2_2_0 from './v2.2.0/serialize'
 
 export type Serializer = (input: ScenarioParameters) => string
 export type Deserializer = (input: string) => ScenarioParameters
@@ -23,6 +24,7 @@ export const SERIALIZERS = new Map<string, Serializers>(
   Object.entries({
     ...v2_0_0,
     ...v2_1_0,
+    ...v2_2_0,
   }),
 )
 

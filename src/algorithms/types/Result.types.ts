@@ -37,6 +37,7 @@ export interface ExposedCumulativeData {
 // This defines the internal data structure
 export interface SimulationTimePoint {
   time: number
+  immune: number[]
   current: InternalCurrentData
   cumulative: InternalCumulativeData
 }

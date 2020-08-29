@@ -90,6 +90,7 @@ function advanceState(
 ): SimulationTimePoint {
   const newPop: SimulationTimePoint = {
     time: 0,
+    immune: [],
     current: {
       susceptible: [],
       exposed: [],

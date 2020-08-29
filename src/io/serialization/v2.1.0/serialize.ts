@@ -1,35 +1,24 @@
-import { trim, isEqual } from 'lodash'
+/* eslint-disable camelcase */
+import { trim, set } from 'lodash'
 
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
 
-import validateShareable, { errors } from '../../../.generated/latest/validateShareable'
+import validateShareable, { errors } from '../../../.generated/2.1.0/validateShareable'
+import { Convert } from '../../../.generated/2.1.0/types'
 
-import type { ScenarioParameters, Shareable } from '../../../algorithms/types/Param.types'
-import { Convert } from '../../../algorithms/types/Param.types'
-import { toExternal, toInternal } from '../../../algorithms/types/convert'
+import type { ScenarioParameters } from '../../../algorithms/types/Param.types'
 
 import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from '../errors'
+import v2_2_0 from '../v2.2.0/serialize'
 
-const schemaVer = '2.1.0'
+const schemaVer = '2.1.0' as const
+const schemaVerNext = '2.2.0' as const
 
-function serialize(scenarioParameters: ScenarioParameters): string {
-  const shareable: Shareable = {
-    ...scenarioParameters,
-    schemaVer,
-    scenarioData: {
-      ...scenarioParameters.scenarioData,
-      data: toExternal(scenarioParameters.scenarioData.data),
-    },
-  }
-
-  const serialized = Convert.shareableToJson(shareable)
-
-  if (process.env.NODE_ENV !== 'production' && !validateShareable(JSON.parse(serialized))) {
-    throw errors
-  }
-
-  return serialized
+export function serialize(_0: ScenarioParameters): string {
+  throw new Error(`: Developer error: This function should never be called.
+  Serialization must always use the latest version of the serializer, but serializer of version "${schemaVer}" is called instead.
+  Change the callee to use the latest version.`)
 }
 
 function validateSchema(shareableDangerous: Record<string, unknown>) {
@@ -52,7 +41,7 @@ function validateSchema(shareableDangerous: Record<string, unknown>) {
   }
 }
 
-function convert(shareableDangerous: Record<string, unknown>): Shareable {
+function convert(shareableDangerous: Record<string, unknown>) {
   try {
     return Convert.toShareable(JSON.stringify(shareableDangerous))
   } catch (error) {
@@ -64,43 +53,17 @@ function convert(shareableDangerous: Record<string, unknown>): Shareable {
   }
 }
 
-function validateMore(shareable: Shareable) {
-  const { scenarioData, ageDistributionData, severityDistributionData } = shareable
-
-  if (scenarioData.data.population.ageDistributionName !== ageDistributionData.name) {
-    throw new DeserializationErrorValidationFailed([
-      '/scenarioData/data/population/ageDistributionName should be equal to /ageDistributionData/name',
-    ])
-  }
-
-  const ageDistributionCategories = ageDistributionData.data.map(({ ageGroup }) => ageGroup)
-  const severityCategories = severityDistributionData.data.map(({ ageGroup }) => ageGroup)
-  if (!isEqual(ageDistributionCategories, severityCategories)) {
-    throw new DeserializationErrorValidationFailed([
-      'arrays /ageDistributionData/data[] and /severityDistributionData/data[] should contain the same number of the same values for ageGroup',
-    ])
-  }
-}
-
 function deserialize(input: string): ScenarioParameters {
   const shareableDangerous = JSON.parse(input) as Record<string, unknown>
-
   validateSchema(shareableDangerous)
-
   const shareable = convert(shareableDangerous)
 
-  validateMore(shareable)
+  // Migrate object to schema v2.2.0:
+  //  - Add seroprevalence and set it to 0
+  set(shareable.scenarioData.data.population, 'seroprevalence', 0)
 
-  const { scenarioData, ageDistributionData, severityDistributionData } = shareable
-
-  return {
-    scenarioData: {
-      ...scenarioData,
-      data: toInternal(scenarioData.data),
-    },
-    ageDistributionData,
-    severityDistributionData,
-  }
+  // Delegate to the next version of deserializer
+  return v2_2_0[schemaVerNext].deserialize(JSON.stringify(shareable))
 }
 
 export default { [schemaVer]: { serialize, deserialize } }

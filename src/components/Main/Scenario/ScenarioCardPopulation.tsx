@@ -43,6 +43,20 @@ function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps
         errors={errors}
         touched={touched}
       />
+
+      <FormSpinBox
+        identifier="population.seroprevalence"
+        label={t('Seroprevalence')}
+        help={t(
+          'Portion of population that is immune to the virus. Estimated from the number of confirmed death and the infection fatality ratio.',
+        )}
+        step={1}
+        min={0}
+        max={100}
+        errors={errors}
+        touched={touched}
+      />
+
       <FormDropdown<string>
         identifier="population.ageDistributionName"
         label={t('Age distribution')}

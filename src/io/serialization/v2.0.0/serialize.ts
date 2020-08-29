@@ -6,8 +6,7 @@ import ajvLocalizers from 'ajv-i18n'
 
 import validateShareable, { errors } from '../../../.generated/2.0.0/validateShareable'
 import { Convert } from '../../../.generated/2.0.0/types'
-
-import type { ScenarioParameters, Shareable } from '../../../algorithms/types/Param.types'
+import { Shareable } from '../../../.generated/2.1.0/types'
 
 import { DeserializationErrorConversionFailed, DeserializationErrorValidationFailed } from '../errors'
 import v2_1_0 from '../v2.1.0/serialize'
@@ -15,7 +14,7 @@ import v2_1_0 from '../v2.1.0/serialize'
 const schemaVer = '2.0.0' as const
 const schemaVerNext = '2.1.0' as const
 
-export function serialize(_0: ScenarioParameters): string {
+export function serialize(_0: unknown): string {
   throw new Error(`: Developer error: This function should never be called.
   Serialization must always use the latest version of the serializer, but serializer of version "${schemaVer}" is called instead.
   Change the callee to use the latest version.`)
@@ -53,7 +52,7 @@ function convert(shareableDangerous: Record<string, unknown>) {
   }
 }
 
-function deserialize(input: string): ScenarioParameters {
+function deserialize(input: string) {
   const shareableDangerous = JSON.parse(input) as Record<string, unknown>
   validateSchema(shareableDangerous)
   const shareable = convert(shareableDangerous)

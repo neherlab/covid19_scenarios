@@ -7,16 +7,17 @@ from R0_estimator import empty_data_list, get_Re_guess, stair_func
 import matplotlib.pyplot as plt
 
 
-def generate_data(params, initialCases):
+def generate_data(params):
     """
     Generates fake data using the model.py with the given parameters and initial number of cases
     """
-    data = empty_data_list()
-    pop = model.init_pop(params.ages, params.size, initialCases)
-    res = model.trace_ages(model.solve_ode(params, pop))
+    data = {}
+    pop = model.init_pop(params.ages, params.size, np.exp(params.logInitial), params.seroprevalence)
+    model_out = model.solve_ode(params, pop)
+    res = model.trace_ages(model_out)
 
-    for ii in [Sub.T, Sub.D, Sub.H, Sub.C]:
-        data[ii] = np.ma.array(res[:,ii])
+    for ii, k in [(Sub.T, 'cases'), (Sub.D, 'deaths'), (Sub.H, 'hospitalized'), (Sub.I, 'infectious'), (Sub.S, 'susceptible'), (Sub.C, 'icu')]:
+        data[k] = np.ma.array(res[:,ii])
 
     return data
 

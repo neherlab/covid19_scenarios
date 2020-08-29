@@ -68,6 +68,11 @@ export function DisclaimerDisconnected({
                 'It is not a medical predictor, and should be used for informational and research purposes only. Please carefully consider the parameters you choose. Interpret and use the simulated results responsibly. Authors are not liable for any direct or indirect consequences of this usage.',
               )}
             </p>
+            <p>
+              {t(
+                'The pre-set parameters in the different scenarios are meant as a starting point for adjustments by the user, not as proper fits to the available data.',
+              )}
+            </p>
           </Col>
         </Row>
 

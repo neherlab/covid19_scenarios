@@ -159,7 +159,7 @@ function SeverityTableDisconnected({
 
   const parametersWithTotals: AgeGroupRowWithTotals[] = value.map((row) => ({
     ...row,
-    totalFatal: row.confirmed * row.severe * row.critical * row.fatal * 1e-6,
+    totalFatal: row.confirmed * row.severe * (row.palliative + row.critical * row.fatal * 1e-2) * 1e-4,
   }))
 
   const commitChanges = ({ changed }: ChangeSet) => {

@@ -2,6 +2,9 @@
 # Globals
 
 DEFAULTS = {
+        "PopulationData" : {
+          "seroprevalence": 0.0,
+        },
         "EpidemiologicalData" : {
             "latencyTime" : 3.0,
             "infectiousPeriod" : 3.0,

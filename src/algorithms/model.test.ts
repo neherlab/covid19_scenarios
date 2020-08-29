@@ -73,6 +73,7 @@ describe('model', () => {
         initializePopulationParams.N,
         initializePopulationParams.numCases,
         initializePopulationParams.t0,
+        allParamsFlat,
         initializePopulationParams.ages,
       )
       expect(result.current).toMatchSnapshot()
@@ -87,6 +88,7 @@ describe('model', () => {
         initializePopulationParams.N,
         initializePopulationParams.numCases,
         initializePopulationParams.t0,
+        allParamsFlat,
         initializePopulationParams.ages,
       )
 
