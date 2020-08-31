@@ -4,7 +4,7 @@ import { FileRejection } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { UncontrolledAlert } from 'reactstrap'
-import type { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'src/state/util/fsaActions'
 import { ScenarioParameters } from '../../../algorithms/types/Param.types'
 
 import { appendDash } from '../../../helpers/appendDash'

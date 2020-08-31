@@ -1,5 +1,5 @@
 import { SagaIterator } from 'redux-saga'
-import { select, takeEvery } from 'redux-saga/effects'
+import { select, takeLatest } from 'redux-saga/effects'
 import { RunParams } from '../../algorithms/run'
 
 import { selectRunParams } from '../scenario/scenario.selectors'
@@ -15,4 +15,4 @@ export function* workerAlgorithmRun(): SagaIterator | AlgorithmRunResults {
   return { result }
 }
 
-export default [takeEvery(algorithmRunTrigger, fsaSaga(algorithmRunAsync, workerAlgorithmRun))]
+export default [takeLatest(algorithmRunTrigger, fsaSaga(algorithmRunAsync, workerAlgorithmRun))]

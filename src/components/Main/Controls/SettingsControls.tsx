@@ -3,7 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Col, Row } from 'reactstrap'
-import { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'src/state/util/fsaActions'
 
 import type { State } from '../../../state/reducer'
 

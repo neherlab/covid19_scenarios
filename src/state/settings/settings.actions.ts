@@ -1,4 +1,4 @@
-import actionCreatorFactory from 'typescript-fsa'
+import { actionCreatorFactory } from 'src/state/util/fsaActions'
 
 import type { LocaleKey } from '../../i18n/i18n'
 

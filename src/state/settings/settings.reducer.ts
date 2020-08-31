@@ -1,6 +1,4 @@
-import { reducerWithInitialState } from 'typescript-fsa-reducers'
-
-import immerCase from '../util/fsaImmerReducer'
+import { reducerWithInitialState } from 'src/state/util/fsaReducer'
 
 import {
   setAutorun,
@@ -19,68 +17,46 @@ import {
 import { settingsDefaultState } from './settings.state'
 
 export const settingsReducer = reducerWithInitialState(settingsDefaultState)
-  .withHandling(
-    immerCase(toggleAutorun, (draft) => {
-      draft.isAutorunEnabled = !draft.isAutorunEnabled
-    }),
-  )
+  .icase(toggleAutorun, (draft) => {
+    draft.isAutorunEnabled = !draft.isAutorunEnabled
+  })
 
-  .withHandling(
-    immerCase(toggleLogScale, (draft) => {
-      draft.isLogScale = !draft.isLogScale
-    }),
-  )
+  .icase(toggleLogScale, (draft) => {
+    draft.isLogScale = !draft.isLogScale
+  })
 
-  .withHandling(
-    immerCase(toggleFormatNumbers, (draft) => {
-      draft.shouldFormatNumbers = !draft.shouldFormatNumbers
-    }),
-  )
+  .icase(toggleFormatNumbers, (draft) => {
+    draft.shouldFormatNumbers = !draft.shouldFormatNumbers
+  })
 
-  .withHandling(
-    immerCase(toggleResultsMaximized, (draft) => {
-      draft.areResultsMaximized = !draft.areResultsMaximized
-    }),
-  )
+  .icase(toggleResultsMaximized, (draft) => {
+    draft.areResultsMaximized = !draft.areResultsMaximized
+  })
 
-  .withHandling(
-    immerCase(setAutorun, (draft, isAutorunEnabled) => {
-      draft.isAutorunEnabled = isAutorunEnabled
-    }),
-  )
+  .icase(setAutorun, (draft, isAutorunEnabled) => {
+    draft.isAutorunEnabled = isAutorunEnabled
+  })
 
-  .withHandling(
-    immerCase(setLogScale, (draft, isLogScale) => {
-      draft.isLogScale = isLogScale
-    }),
-  )
+  .icase(setLogScale, (draft, isLogScale) => {
+    draft.isLogScale = isLogScale
+  })
 
-  .withHandling(
-    immerCase(setFormatNumbers, (draft, shouldFormatNumbers) => {
-      draft.shouldFormatNumbers = shouldFormatNumbers
-    }),
-  )
+  .icase(setFormatNumbers, (draft, shouldFormatNumbers) => {
+    draft.shouldFormatNumbers = shouldFormatNumbers
+  })
 
-  .withHandling(
-    immerCase(setResultsMaximized, (draft, areResultsMaximized) => {
-      draft.areResultsMaximized = areResultsMaximized
-    }),
-  )
+  .icase(setResultsMaximized, (draft, areResultsMaximized) => {
+    draft.areResultsMaximized = areResultsMaximized
+  })
 
-  .withHandling(
-    immerCase(setDisclaimerVersionAccepted, (draft, version) => {
-      draft.disclaimerVersionAccepted = version
-    }),
-  )
+  .icase(setDisclaimerVersionAccepted, (draft, version) => {
+    draft.disclaimerVersionAccepted = version
+  })
 
-  .withHandling(
-    immerCase(toggleDisclaimerShouldSuppress, (draft) => {
-      draft.disclaimerShouldSuppress = !draft.disclaimerShouldSuppress
-    }),
-  )
+  .icase(toggleDisclaimerShouldSuppress, (draft) => {
+    draft.disclaimerShouldSuppress = !draft.disclaimerShouldSuppress
+  })
 
-  .withHandling(
-    immerCase(setLocale, (draft, localeKey) => {
-      draft.localeKey = localeKey
-    }),
-  )
+  .icase(setLocale, (draft, localeKey) => {
+    draft.localeKey = localeKey
+  })

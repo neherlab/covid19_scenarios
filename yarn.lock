@@ -18073,16 +18073,6 @@ typescript-compare@^0.0.2:
   dependencies:
     typescript-logic "^0.0.0"
 
-typescript-fsa-reducers@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/typescript-fsa-reducers/-/typescript-fsa-reducers-1.2.2.tgz#1e2c8e8a50ca3e09e0d6fdf2a3b42bdd17de8094"
-  integrity sha512-IQ2VsIqUvmzVgWNDjxkeOxX97itl/rq+2u82jGsRdzCSFi9OtV4qf1Ec1urvj/eDlPHOaihIL7wMZzLYx9GvFg==
-
-typescript-fsa@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/typescript-fsa/-/typescript-fsa-3.0.0.tgz#3ad1cb915a67338e013fc21f67c9b3e0e110c912"
-  integrity sha512-xiXAib35i0QHl/+wMobzPibjAH5TJLDj+qGq5jwVLG9qR4FUswZURBw2qihBm0m06tHoyb3FzpnJs1GRhRwVag==
-
 typescript-logic@^0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/typescript-logic/-/typescript-logic-0.0.0.tgz#66ebd82a2548f2b444a43667bec120b496890196"

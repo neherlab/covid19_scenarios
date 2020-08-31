@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { MdClear } from 'react-icons/md'
 import { connect } from 'react-redux'
 import { Button, Input, InputGroup, InputGroupAddon } from 'reactstrap'
-import { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'src/state/util/fsaActions'
 import { useDebouncedCallback } from 'use-debounce'
 
 import { State } from '../../../state/reducer'

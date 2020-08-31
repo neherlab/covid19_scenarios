@@ -1,8 +1,6 @@
-import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import { reducerWithInitialState } from 'src/state/util/fsaReducer'
 import { suggestNextMitigationInterval } from '../../algorithms/utils/suggestNextMitigationInterval'
 import { getCaseCountsData } from '../../io/defaults/getCaseCountsData'
-
-import immerCase from '../util/fsaImmerReducer'
 
 import { CUSTOM_COUNTRY_NAME } from '../../constants'
 
@@ -34,101 +32,79 @@ export function maybeChangeTitle(state: ScenarioState) {
 }
 
 export const scenarioReducer = reducerWithInitialState(defaultScenarioState)
-  .withHandling(
-    immerCase(renameCurrentScenario, (draft, { name }) => {
-      draft.scenarioData.name = name
-      draft.shouldRenameOnEdits = false
-    }),
-  )
+  .icase(renameCurrentScenario, (draft, { name }) => {
+    draft.scenarioData.name = name
+    draft.shouldRenameOnEdits = false
+  })
 
-  .withHandling(
-    immerCase(setScenario, (draft, { name }) => {
-      draft.scenarioData.name = name
-      draft.shouldRenameOnEdits = true
-      draft.scenarioData = getScenarioData(name)
+  .icase(setScenario, (draft, { name }) => {
+    draft.scenarioData.name = name
+    draft.shouldRenameOnEdits = true
+    draft.scenarioData = getScenarioData(name)
+    draft.ageDistributionData = getAgeDistributionData(draft.scenarioData.data.population.ageDistributionName)
+    draft.caseCountsNameCustom = undefined
+    draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
+  })
+
+  .icase(setScenarioData, (draft, data) => {
+    draft.scenarioData.name = maybeChangeTitle(draft)
+    draft.shouldRenameOnEdits = false
+    draft.scenarioData.data = data
+    if (draft.scenarioData.data.population.ageDistributionName !== CUSTOM_COUNTRY_NAME) {
       draft.ageDistributionData = getAgeDistributionData(draft.scenarioData.data.population.ageDistributionName)
-      draft.caseCountsNameCustom = undefined
+    }
+
+    if (!draft.caseCountsNameCustom) {
       draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
-    }),
-  )
+    }
+  })
 
-  .withHandling(
-    immerCase(setScenarioData, (draft, data) => {
-      draft.scenarioData.name = maybeChangeTitle(draft)
-      draft.shouldRenameOnEdits = false
-      draft.scenarioData.data = data
-      if (draft.scenarioData.data.population.ageDistributionName !== CUSTOM_COUNTRY_NAME) {
-        draft.ageDistributionData = getAgeDistributionData(draft.scenarioData.data.population.ageDistributionName)
-      }
+  .icase(setAgeDistributionData, (draft, data) => {
+    draft.scenarioData.name = maybeChangeTitle(draft)
+    draft.shouldRenameOnEdits = false
+    draft.ageDistributionData.data = data
 
-      if (!draft.caseCountsNameCustom) {
-        draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
-      }
-    }),
-  )
+    // FIXME: these are duplicated
+    draft.ageDistributionData.name = CUSTOM_COUNTRY_NAME
+    draft.scenarioData.data.population.ageDistributionName = CUSTOM_COUNTRY_NAME
+  })
 
-  .withHandling(
-    immerCase(setAgeDistributionData, (draft, data) => {
-      draft.scenarioData.name = maybeChangeTitle(draft)
-      draft.shouldRenameOnEdits = false
-      draft.ageDistributionData.data = data
+  .icase(setSeverityDistributionData, (draft, data) => {
+    draft.scenarioData.name = maybeChangeTitle(draft)
+    draft.shouldRenameOnEdits = false
+    draft.severityDistributionData.data = data
+    draft.severityDistributionData.name = CUSTOM_COUNTRY_NAME
+  })
 
-      // FIXME: these are duplicated
-      draft.ageDistributionData.name = CUSTOM_COUNTRY_NAME
-      draft.scenarioData.data.population.ageDistributionName = CUSTOM_COUNTRY_NAME
-    }),
-  )
+  .icase(setCaseCountsDataCustom, (draft, data) => {
+    draft.caseCountsData = data
+    draft.caseCountsNameCustom = data.name
+  })
 
-  .withHandling(
-    immerCase(setSeverityDistributionData, (draft, data) => {
-      draft.scenarioData.name = maybeChangeTitle(draft)
-      draft.shouldRenameOnEdits = false
-      draft.severityDistributionData.data = data
-      draft.severityDistributionData.name = CUSTOM_COUNTRY_NAME
-    }),
-  )
+  .icase(resetCaseCounts, (draft) => {
+    draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
+    draft.caseCountsNameCustom = undefined
+  })
 
-  .withHandling(
-    immerCase(setCaseCountsDataCustom, (draft, data) => {
-      draft.caseCountsData = data
-      draft.caseCountsNameCustom = data.name
-    }),
-  )
+  .icase(setScenarioState, (draft, { scenarioData, ageDistributionData, severityDistributionData }) => {
+    draft.scenarioData = scenarioData
+    draft.shouldRenameOnEdits = false
+    draft.ageDistributionData = ageDistributionData
+    draft.severityDistributionData = severityDistributionData
+    draft.caseCountsData = getCaseCountsData(scenarioData.data.population.caseCountsName)
+    draft.caseCountsNameCustom = undefined
+  })
 
-  .withHandling(
-    immerCase(resetCaseCounts, (draft) => {
-      draft.caseCountsData = getCaseCountsData(draft.scenarioData.data.population.caseCountsName)
-      draft.caseCountsNameCustom = undefined
-    }),
-  )
+  .icase(addMitigationInterval, (draft) => {
+    draft.scenarioData.data.mitigation.mitigationIntervals.push(suggestNextMitigationInterval())
+  })
 
-  .withHandling(
-    immerCase(setScenarioState, (draft, { scenarioData, ageDistributionData, severityDistributionData }) => {
-      draft.scenarioData = scenarioData
-      draft.shouldRenameOnEdits = false
-      draft.ageDistributionData = ageDistributionData
-      draft.severityDistributionData = severityDistributionData
-      draft.caseCountsData = getCaseCountsData(scenarioData.data.population.caseCountsName)
-      draft.caseCountsNameCustom = undefined
-    }),
-  )
-
-  .withHandling(
-    immerCase(addMitigationInterval, (draft) => {
-      draft.scenarioData.data.mitigation.mitigationIntervals.push(suggestNextMitigationInterval())
-    }),
-  )
-
-  .withHandling(
-    immerCase(removeMitigationInterval, (draft, id) => {
-      // prettier-ignore
-      draft.scenarioData.data.mitigation.mitigationIntervals =
+  .icase(removeMitigationInterval, (draft, id) => {
+    // prettier-ignore
+    draft.scenarioData.data.mitigation.mitigationIntervals =
         draft.scenarioData.data.mitigation.mitigationIntervals.filter((interval) => interval.id !== id)
-    }),
-  )
+  })
 
-  .withHandling(
-    immerCase(setCanRun, (draft, canRun) => {
-      draft.canRun = canRun
-    }),
-  )
+  .icase(setCanRun, (draft, canRun) => {
+    draft.canRun = canRun
+  })

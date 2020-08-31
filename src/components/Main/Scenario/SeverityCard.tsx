@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import type { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'src/state/util/fsaActions'
 
 import type { AgeDistributionDatum, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
 import { setAgeDistributionData, setSeverityDistributionData } from '../../../state/scenario/scenario.actions'

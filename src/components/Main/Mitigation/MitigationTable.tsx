@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { FaPlus } from 'react-icons/fa'
 import { connect } from 'react-redux'
 import { Button, Col, Row } from 'reactstrap'
-import { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'src/state/util/fsaActions'
 
 import type { MitigationInterval } from '../../../algorithms/types/Param.types'
 import { UUIDv4 } from '../../../helpers/uuid'

@@ -5,9 +5,9 @@ import { isEqual, omit, pick, zipWith } from 'lodash'
 import { connect } from 'react-redux'
 import { Form, Formik, FormikErrors, FormikValues, FormikHelpers } from 'formik'
 import { Col, Row } from 'reactstrap'
-import { ActionCreator } from 'typescript-fsa'
 import { useDebouncedCallback } from 'use-debounce'
 
+import type { ActionCreator } from 'src/state/util/fsaActions'
 import type { ScenarioDatum, SeverityDistributionDatum, AgeDistributionDatum } from '../../algorithms/types/Param.types'
 
 import type { State } from '../../state/reducer'

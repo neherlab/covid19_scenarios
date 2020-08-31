@@ -1,6 +1,6 @@
 import { SagaIterator } from 'redux-saga'
 import { call, cancelled, put } from 'redux-saga/effects'
-import { Action, AsyncActionCreators } from 'typescript-fsa'
+import { Action, AsyncActionCreators } from './fsaActions'
 
 /**
  * Produces a saga that wraps an original worker saga, into a common usage

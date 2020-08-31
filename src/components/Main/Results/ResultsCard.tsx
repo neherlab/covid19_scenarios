@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Button, Col, Row } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { FiChevronLeft } from 'react-icons/fi'
-import { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'src/state/util/fsaActions'
 
 import { selectHasResult } from '../../../state/algorithm/algorithm.selectors'
 import { State } from '../../../state/reducer'

@@ -5,7 +5,7 @@ import { Button } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import type { FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { FaTrash } from 'react-icons/fa'
-import type { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'src/state/util/fsaActions'
 
 import type { CaseCountsData } from '../../../algorithms/types/Param.types'
 

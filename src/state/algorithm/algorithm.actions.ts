@@ -1,4 +1,4 @@
-import actionCreatorFactory from 'typescript-fsa'
+import { actionCreatorFactory } from 'src/state/util/fsaActions'
 
 import type { AlgorithmResult } from '../../algorithms/types/Result.types'
 import type { RunParams } from '../../algorithms/run'

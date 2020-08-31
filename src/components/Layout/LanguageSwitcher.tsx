@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { connect } from 'react-redux'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, DropdownProps } from 'reactstrap'
-import { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'src/state/util/fsaActions'
 
 import { LocaleWithKey, localesArray, LocaleKey } from 'src/i18n/i18n'
 

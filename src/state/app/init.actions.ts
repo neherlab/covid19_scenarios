@@ -1,4 +1,4 @@
-import actionCreatorFactory from 'typescript-fsa'
+import { actionCreatorFactory } from 'src/state/util/fsaActions'
 
 const action = actionCreatorFactory('App')
 

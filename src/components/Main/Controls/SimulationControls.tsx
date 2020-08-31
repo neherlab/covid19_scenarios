@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { AiFillFilePdf } from 'react-icons/ai'
 import { MdTab } from 'react-icons/md'
 import { Button } from 'reactstrap'
-import { ActionCreator } from 'typescript-fsa'
+import type { ActionCreator } from 'src/state/util/fsaActions'
 
 import type { State } from '../../../state/reducer'
 import { selectIsRunning, selectHasResult } from '../../../state/algorithm/algorithm.selectors'

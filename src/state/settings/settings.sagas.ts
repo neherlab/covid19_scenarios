@@ -1,6 +1,6 @@
 import { takeEvery, call } from 'redux-saga/effects'
 
-import { Action } from 'typescript-fsa'
+import { Action } from 'src/state/util/fsaActions'
 
 import i18n, { changeLocale, LocaleKey } from '../../i18n/i18n'
 import { setLocale } from './settings.actions'
