@@ -4,12 +4,12 @@ checks:
   argument-count:
     enabled: true
     config:
-      threshold: 5
+      threshold: 6
 
   complex-logic:
     enabled: true
     config:
-      threshold: 5
+      threshold: 9
 
   file-lines:
     enabled: true
@@ -29,25 +29,25 @@ checks:
   method-lines:
     enabled: true
     config:
-      threshold: 60
+      threshold: 120
 
   nested-control-flow:
     enabled: true
     config:
-      threshold: 4
+      threshold: 5
 
   return-statements:
     enabled: true
     config:
-      threshold: 4
+      threshold: 6
 
   similar-code:
     enabled: true
-    threshold: 75
+    threshold: 120
 
   identical-code:
     enabled: true
-    threshold: 75
+    threshold: 120
 
 plugins:
   duplication:
@@ -55,9 +55,9 @@ plugins:
     config:
       languages:
         javascript:
-          mass_threshold: 75
+          mass_threshold: 120
         typescript:
-          mass_threshold: 75
+          mass_threshold: 120
 
 exclude_patterns:
   - '**/*.*test*.*'
