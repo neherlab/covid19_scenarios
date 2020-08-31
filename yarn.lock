@@ -18039,6 +18039,11 @@ typed-function@^2.0.0:
   resolved "https://registry.yarnpkg.com/typed-function/-/typed-function-2.0.0.tgz#15ab3825845138a8b1113bd89e60cd6a435739e8"
   integrity sha512-Hhy1Iwo/e4AtLZNK10ewVVcP2UEs408DS35ubP825w/YgSBK1KVLwALvvIG4yX75QJrxjCpcWkzkVRB0BwwYlA==
 
+typed-redux-saga@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/typed-redux-saga/-/typed-redux-saga-1.2.0.tgz#120e700c0f10ae73e831f72d68e8279017ea9473"
+  integrity sha512-iEQJqgGeN26kKidG7Tka7QDd1F1DmP0IyzvQo2poCCgiAWxXi/LAJ/sg/H1GPy6lusYd+wrePQg33JU4WARQog==
+
 typed-styles@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/typed-styles/-/typed-styles-0.0.7.tgz#93392a008794c4595119ff62dde6809dbc40a3d9"

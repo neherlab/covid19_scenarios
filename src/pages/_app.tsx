@@ -23,6 +23,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { MDXProvider } from '@mdx-js/react'
 
 import { initialize } from 'src/initialize'
+import { init } from 'src/state/app/init.actions'
 import i18n from 'src/i18n/i18n'
 
 import Loading from 'src/components/Loading/Loading'
@@ -45,7 +46,11 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
 
   useEffect(() => {
     initialize({ router })
-      .then(setState)
+      // eslint-disable-next-line promise/always-return
+      .then((state: AppState) => {
+        setState(state)
+        state.store.dispatch(init())
+      })
       .catch((error: Error) => {
         throw error
       })

@@ -348,6 +348,7 @@
     "ts-essentials": "7.0.0",
     "ts-jest": "26.1.4",
     "ts-node": "8.10.2",
+    "typed-redux-saga": "1.2.0",
     "typescript": "3.9.7",
     "url-loader": "4.1.0",
     "utility-types": "3.10.0",
