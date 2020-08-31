@@ -1,9 +1,12 @@
-import { put, takeLatest, select } from 'redux-saga/effects'
+import { put, takeLatest, select } from 'typed-redux-saga'
 
+import type { LocationState } from 'connected-next-router/types'
 import type { LocationChangeAction } from 'connected-next-router/actions'
-import { replace, LOCATION_CHANGE } from 'connected-next-router'
-import { fromUrl } from '../../io/serialization/fromUrl'
-import { algorithmRunTrigger } from '../algorithm/algorithm.actions'
+import { routerActions, LOCATION_CHANGE } from 'connected-next-router'
+
+import { init } from 'src/state/app/init.actions'
+import { fromUrl } from 'src/io/serialization/fromUrl'
+import { algorithmRunTrigger } from 'src/state/algorithm/algorithm.actions'
 import {
   addMitigationInterval,
   removeMitigationInterval,
@@ -12,30 +15,40 @@ import {
   setScenarioData,
   setScenarioState,
   setSeverityDistributionData,
-} from './scenario.actions'
-import { selectIsAutorunEnabled } from '../settings/settings.selectors'
+} from 'src/state/scenario/scenario.actions'
+import { selectIsAutorunEnabled } from 'src/state/settings/settings.selectors'
+import { selectLocation } from 'src/state/router/router.selectors'
 
-export function* processUrl({ payload: { location } }: LocationChangeAction) {
+export function* onInit() {
+  const location = yield* select(selectLocation)
+  yield* processUrl(location)
+}
+
+export function* onLocationChange({ payload: { location } }: LocationChangeAction) {
+  yield* processUrl(location)
+}
+
+export function* processUrl(location: LocationState) {
   const { pathname, search } = location
-  if (pathname === '/' && search) {
+  if (pathname === '/' && search && search !== '') {
     const state = fromUrl(search)
-    yield put(replace({ pathname, search: '' }))
-    yield put(setScenarioState(state))
-    yield put(algorithmRunTrigger())
+    yield* put(routerActions.replace({ pathname, search: '' }))
+    yield* put(setScenarioState(state))
   } else {
-    yield put(algorithmRunTrigger())
+    yield* triggerAlgorithm()
   }
 }
 
 export function* triggerAlgorithm() {
-  const isAutorunEnabled = (yield select(selectIsAutorunEnabled) as unknown) as boolean
+  const isAutorunEnabled = yield* select(selectIsAutorunEnabled)
   if (isAutorunEnabled) {
-    yield put(algorithmRunTrigger())
+    yield* put(algorithmRunTrigger())
   }
 }
 
 export default [
-  takeLatest(LOCATION_CHANGE, processUrl),
+  takeLatest(init, onInit),
+  takeLatest(LOCATION_CHANGE, onLocationChange),
   takeLatest(setScenario, triggerAlgorithm),
   takeLatest(setScenarioData, triggerAlgorithm),
   takeLatest(setScenarioState, triggerAlgorithm),
