@@ -60,7 +60,7 @@ export function NavigationBarDisconnected({ pathname }: NavigationBarProps) {
       },
       {
         title: t('GitHub'),
-        url: 'https://github.com/neherlab/webclades',
+        url: 'https://github.com/neherlab/covid19_scenarios',
         alt: t('Link to our Github page'),
         icon: <FaGithub size={28} color="#aaa" />,
       },
