@@ -1,7 +1,7 @@
 import { format } from 'url'
 
 import type { Router } from 'next/router'
-import { applyMiddleware, createStore, StoreEnhancer, Store, Middleware } from 'redux'
+import { applyMiddleware, createStore, Store, Middleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import type { PersistorOptions, Persistor } from 'redux-persist/es/types'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
@@ -84,10 +84,6 @@ export async function configureStore({ router }: ConfigureStoreParams) {
   }
 
   return { store, persistor }
-}
-
-declare const window: Window & {
-  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: StoreEnhancer
 }
 
 declare const module: NodeHotModule

@@ -1,7 +1,5 @@
 import React from 'react'
 
-export = Popover
-
 declare class Popover extends React.Component<Popover.PopoverProps> {}
 
 declare namespace Popover {
@@ -13,3 +11,5 @@ declare namespace Popover {
     arrowProps?: object
   }
 }
+
+export default Popover

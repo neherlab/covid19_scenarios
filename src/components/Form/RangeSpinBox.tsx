@@ -4,7 +4,7 @@ import { InputGroup } from 'reactstrap'
 
 import { SpinBox } from './SpinBox'
 
-export interface RangeSpinBoxProps<T> {
+export interface RangeSpinBoxProps {
   identifier: string
   step?: number | string
   min?: number
@@ -13,7 +13,7 @@ export interface RangeSpinBoxProps<T> {
   hasError?: boolean
 }
 
-export function RangeSpinBox<T>({ identifier, step, min, max, pattern, hasError }: RangeSpinBoxProps<T>) {
+export function RangeSpinBox({ identifier, step, min, max, pattern, hasError }: RangeSpinBoxProps) {
   return (
     <InputGroup>
       <SpinBox identifier={`${identifier}.begin`} type="number" step={step} min={min} max={max} hasError={hasError} />

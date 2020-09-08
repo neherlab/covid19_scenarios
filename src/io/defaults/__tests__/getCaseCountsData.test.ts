@@ -5,6 +5,7 @@ describe('getSortedNonEmptyCaseCounts', () => {
     const got = getCaseCountsData('United States of America').data
     got.forEach((entry, index) => {
       if (index > 0) {
+        // eslint-disable-next-line jest/no-conditional-expect
         expect(entry.time.getTime()).toBeGreaterThan(got[index - 1].time.getTime())
       }
     })

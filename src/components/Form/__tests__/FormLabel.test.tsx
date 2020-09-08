@@ -24,6 +24,7 @@ describe('FormLabel', () => {
 
     expect(labelElement).not.toBeNull()
     if (labelElement) {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(labelElement.htmlFor).toBe('abc')
     }
   })
