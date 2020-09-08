@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { Field } from 'formik'
 
-export interface FormSpinBoxProps<T> extends React.HTMLProps<HTMLInputElement> {
+export interface FormSpinBoxProps extends React.HTMLProps<HTMLInputElement> {
   identifier: string
   step?: number | string
   min?: number
@@ -12,7 +12,7 @@ export interface FormSpinBoxProps<T> extends React.HTMLProps<HTMLInputElement> {
   hasError?: boolean
 }
 
-export function SpinBox<T>({ identifier, step, min, max, pattern, hasError, ...restProps }: FormSpinBoxProps<T>) {
+export function SpinBox({ identifier, step, min, max, pattern, hasError, ...restProps }: FormSpinBoxProps) {
   return (
     <Field
       className={classNames('form-control', 'd-inline', hasError && 'border-danger')}

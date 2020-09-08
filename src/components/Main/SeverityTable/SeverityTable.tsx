@@ -12,11 +12,12 @@ import {
 } from '@devexpress/dx-react-grid'
 
 import type { TFunction } from 'i18next'
-import { format as d3format } from 'd3-format'
 import { FormikErrors, useField } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Grid, Table, TableHeaderRow, TableInlineCellEditing } from '@devexpress/dx-react-grid-bootstrap4'
+
+import { numberFormatter } from 'src/helpers/numberFormat'
 
 import { AgeGroup } from '../../../algorithms/types/Param.types'
 import type {
@@ -78,6 +79,7 @@ type HeaderCellProps = Partial<Table.DataCellProps> & TableHeaderRow.CellProps
 function HeaderCell({ column }: HeaderCellProps) {
   const { title } = column
   const content = title?.split('\n').map((line, i) => (
+    // eslint-disable-next-line react/no-array-index-key
     <p key={`line ${i}: ${line}`} className={`text-center text-bold ${i !== 0 ? 'small' : ''}`}>
       {line}
     </p>
@@ -98,7 +100,7 @@ const ValueCell = ({ onClick, column, ...props }: ValueCellProps) => {
 }
 
 const DecimalFormatter = ({ value }: DataTypeProvider.ValueFormatterProps) => (
-  <span>{d3format('.2')(Number.parseFloat(value))}</span>
+  <span>{numberFormatter(true, false)(Number.parseFloat(value))}</span>
 )
 
 const DecimalTypeProvider = (props: DataTypeProviderProps) => (

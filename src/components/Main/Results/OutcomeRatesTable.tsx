@@ -2,7 +2,6 @@ import React from 'react'
 
 import { useTranslation } from 'react-i18next'
 
-import * as d3 from 'd3'
 import { Col, Row } from 'reactstrap'
 import { connect } from 'react-redux'
 
@@ -14,7 +13,7 @@ import type { State } from '../../../state/reducer'
 import { selectResult } from '../../../state/algorithm/algorithm.selectors'
 import { selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
 
-import { numberFormatter } from '../../../helpers/numberFormat'
+import { numberFormatter, percentageFormatter } from '../../../helpers/numberFormat'
 
 interface RowProps {
   entry: number[]
@@ -35,8 +34,6 @@ function TableRow({ entry, fmt }: RowProps) {
       return <td />
   }
 }
-
-const percentageFormatter = (v: number) => `${d3.format('.2f')(v * 100)}%`
 
 export interface TableProps {
   result?: AlgorithmResult

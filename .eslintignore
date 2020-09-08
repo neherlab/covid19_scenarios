@@ -14,5 +14,6 @@ public
 schemas
 src/.generated
 src/assets
+src/i18n/resources
 styles
 tsconfig.json

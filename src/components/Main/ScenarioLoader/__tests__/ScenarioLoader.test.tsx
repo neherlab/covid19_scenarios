@@ -20,7 +20,7 @@ describe('ScenarioLoader', () => {
 
   afterAll(async () => {
     useDebounceMock.clearAllMocks()
-    await cleanup()
+    cleanup()
   })
 
   beforeEach(() => {

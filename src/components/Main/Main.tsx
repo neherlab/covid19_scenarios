@@ -138,11 +138,10 @@ export function MainDisconnected({
           setSeverityDistributionData(newSeverityDistributionData)
         }
 
+        // eslint-disable-next-line promise/always-return
         if (!isEqual(newAgeDistributionData, ageDistributionData)) {
           setAgeDistributionData(newAgeDistributionData)
         }
-
-        return newFormDataValid
       })
       .catch((error: FormikValidationErrors) => {
         if (canRun) {

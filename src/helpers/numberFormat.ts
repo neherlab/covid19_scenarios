@@ -9,3 +9,11 @@ export function numberFormatter(humanize: boolean, round: boolean) {
       mantissa: round ? 0 : 2,
     })
 }
+
+export function percentageFormatter(value: number, mantissa = 2) {
+  return numbro(value).format({
+    output: 'percent',
+    trimMantissa: true,
+    mantissa,
+  })
+}

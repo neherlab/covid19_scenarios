@@ -94,7 +94,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'jest/consistent-test-it': 'warn',
     'jest/expect-expect': 'warn',
-    'jest/no-test-callback': 'warn',
+    'jest/no-done-callback': 'warn',
     'jsx-a11y/label-has-associated-control': ['warn', { assert: 'either' }],
     'lodash/chaining': 'off',
     'lodash/import-scope': 'off',

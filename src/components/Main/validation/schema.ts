@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
 import i18next from 'i18next'
-import { AgeGroup, SeverityDistributionDatum } from '../../../algorithms/types/Param.types'
+import { AgeGroup, DateRange, NumericRangeNonNegative } from '../../../algorithms/types/Param.types'
 import { UUIDv4 } from '../../../helpers/uuid'
 
 import type { FormData } from '../Main'
@@ -22,7 +22,16 @@ const MSG_MAX_100 = i18next.t('Should be 100 at most')
 const MSG_TOO_MANY_RUNS = i18next.t('Too many runs')
 const MSG_RANGE_INVALID = i18next.t('Range begin should be less or equal to range end')
 const MSG_EXCEED_100 = i18next.t('Palliative and critical together exceed 100%')
+
 // TODO: all this validation should be replaced with JSON-schema-based validation
+
+const isValidRange = (val?: NumericRangeNonNegative | DateRange | null) => {
+  if (!val) {
+    return false
+  }
+  const { begin, end } = val
+  return begin <= end
+}
 
 const percentageSchema = yup
   .number()
@@ -44,7 +53,7 @@ export function numericRangeNonNegative() {
       begin: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
       end: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
     })
-    .test('valid numeric range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
+    .test('valid numeric range', MSG_RANGE_INVALID, isValidRange)
 }
 
 export function percentageRange() {
@@ -53,7 +62,7 @@ export function percentageRange() {
       begin: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE).max(100, MSG_MAX_100),
       end: yup.number().required(MSG_REQUIRED).max(100, MSG_MAX_100),
     })
-    .test('valid percentage range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
+    .test('valid percentage range', MSG_RANGE_INVALID, isValidRange)
 }
 
 export function dateRange() {
@@ -62,7 +71,7 @@ export function dateRange() {
       begin: yup.date().required(MSG_REQUIRED),
       end: yup.date().required(MSG_REQUIRED),
     })
-    .test('valid percentage range', MSG_RANGE_INVALID, ({ begin, end }) => begin <= end)
+    .test('valid percentage range', MSG_RANGE_INVALID, isValidRange)
 }
 
 export const schema: yup.Schema<FormData> = yup
@@ -164,7 +173,11 @@ export const schema: yup.Schema<FormData> = yup
             isolated: percentageSchema.required(MSG_REQUIRED),
           })
           .required(MSG_REQUIRED)
-          .test('max', MSG_EXCEED_100, ({ critical, palliative }: SeverityDistributionDatum) => {
+          .test('max', MSG_EXCEED_100, (value) => {
+            if (!value) {
+              return false
+            }
+            const { critical, palliative } = value
             return critical + palliative <= 100
           }),
       )
