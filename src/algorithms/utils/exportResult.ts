@@ -1,11 +1,10 @@
 import JSZip from 'jszip'
-import { saveAs } from 'file-saver'
 
 import type { StrictOmit } from 'ts-essentials'
 import type { ScenarioParameters } from '../types/Param.types'
 import type { AlgorithmResult } from '../types/Result.types'
 
-import { checkBlobSupport, saveFile } from '../../helpers/saveFile'
+import { checkBlobSupport, saveBlobFile, saveTextFile } from '../../helpers/saveTextFile'
 
 import { serialize } from '../../io/serialization/serialize'
 import { serializeTrajectory } from '../model'
@@ -35,7 +34,7 @@ export function exportResult({ scenarioParameters, result, detailed, filename }:
   }
 
   const str = serializeTrajectory({ trajectory, detailed })
-  saveFile(str, filename)
+  saveTextFile(str, filename, 'text/csv;charset=utf-8')
 }
 
 export interface ExportScenarioParams {
@@ -46,7 +45,7 @@ export interface ExportScenarioParams {
 export function exportScenario({ scenarioParameters, filename }: ExportScenarioParams) {
   checkBlobSupport()
   const str = serialize(scenarioParameters)
-  saveFile(str, filename)
+  saveTextFile(str, filename, 'application/json;charset=utf-8')
 }
 
 export interface Filenames {
@@ -86,5 +85,5 @@ export async function exportAll({
   zip.file(filenameResultsDetailed, detailedStr)
 
   const zipFile = await zip.generateAsync({ type: 'blob' })
-  saveAs(zipFile, filenameZip)
+  saveBlobFile(zipFile, filenameZip)
 }
