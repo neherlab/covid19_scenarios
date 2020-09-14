@@ -14,7 +14,15 @@ export function checkBlobSupport() {
   }
 }
 
-export function saveFile(content: string, filename: string) {
-  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' })
-  saveAs(blob, filename)
+export interface SaveFileOptions {
+  mimeType?: string
+}
+
+export function saveTextFile(content: string, filename: string, type: string) {
+  const blob = new Blob([content], { type })
+  saveBlobFile(blob, filename)
+}
+
+export function saveBlobFile(content: Blob, filename: string) {
+  saveAs(content, filename)
 }
