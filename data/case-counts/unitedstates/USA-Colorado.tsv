@@ -2,7 +2,7 @@
 # Data provenance: The COVID Tracking Project
 # License: Apache License 2.0
 time	cases	deaths	hospitalized	icu	recovered
-2020-03-05	0				
+2020-03-05	2				
 2020-03-06	2				
 2020-03-07	8				
 2020-03-08	8				
@@ -193,3 +193,7 @@ time	cases	deaths	hospitalized	icu	recovered
 2020-09-09	59674	1868	218		
 2020-09-10	59920	1882	226		
 2020-09-11	60185	1889	240		
+2020-09-12	60492	1889	232		
+2020-09-13	60907	1889	226		
+2020-09-14	61324	1889	228		
+2020-09-15	61699	1894	239		
