@@ -19,6 +19,7 @@ import { ReactComponent as US } from 'flag-icon-css/flags/1x1/us.svg'
 import { ReactComponent as ES } from 'flag-icon-css/flags/1x1/es.svg'
 import { ReactComponent as IR } from 'flag-icon-css/flags/1x1/ir.svg'
 import { ReactComponent as FR } from 'flag-icon-css/flags/1x1/fr.svg'
+import { ReactComponent as FI } from 'flag-icon-css/flags/1x1/fi.svg'
 import { ReactComponent as IN } from 'flag-icon-css/flags/1x1/in.svg'
 import { ReactComponent as IT } from 'flag-icon-css/flags/1x1/it.svg'
 import { ReactComponent as JP } from 'flag-icon-css/flags/1x1/jp.svg'
@@ -35,6 +36,7 @@ import en from './resources/en/common.json'
 import es from './resources/es/common.json'
 import fa from './resources/fa/common.json'
 import fr from './resources/fr/common.json'
+import fi from './resources/fi/common.json'
 import hi from './resources/hi/common.json'
 import it from './resources/it/common.json'
 import ja from './resources/ja/common.json'
@@ -46,7 +48,7 @@ import tr from './resources/tr/common.json'
 import zh from './resources/zh/common.json'
 
 export const localized = { number: '{{value, localizedNumber}}' } as const
-export const translations = { ar, de, en, es, fa, fr, hi, it, ja, ko, pl, pt, ru, tr, zh }
+export const translations = { ar, de, en, es, fa, fi, fr, hi, it, ja, ko, pl, pt, ru, tr, zh }
 export const flags = new Map()
 
 export type LocaleKey = keyof typeof translations
@@ -72,6 +74,7 @@ export const locales: Record<LocaleKey, Locale> = {
   es: { full: 'es-ES', name: languages.es.native, Flag: ES },
   fa: { full: 'fa-IR', name: languages.fa.native, Flag: IR },
   fr: { full: 'fr-FR', name: languages.fr.native, Flag: FR },
+  fi: { full: 'fr-FR', name: languages.fi.native, Flag: FI },
   hi: { full: 'hi-IN', name: languages.hi.native, Flag: IN },
   it: { full: 'it-IT', name: languages.it.native, Flag: IT },
   ja: { full: 'ja-JP', name: languages.ja.native, Flag: JP },
