@@ -1,5 +1,5 @@
-import { LineProps as RechartsLineProps } from 'recharts'
-import { TFunction } from 'i18next'
+import type { LineProps as RechartsLineProps } from 'recharts'
+import type { TFunction } from 'i18next'
 
 export interface LineProps {
   key: string
@@ -64,88 +64,81 @@ export const colors = {
   [DATA_POINTS.ICUbeds]: '#cccccc',
 }
 
-export const linesToPlot: LineProps[] = [
-  { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: 'Susceptible', legendType: 'line' },
-  { key: DATA_POINTS.Recovered, color: colors.recovered, name: 'Recovered', legendType: 'line' },
-  { key: DATA_POINTS.Infectious, color: colors.infectious, name: 'Infectious', legendType: 'line' },
-  { key: DATA_POINTS.Severe, color: colors.severe, name: 'Severely ill', legendType: 'line' },
-  { key: DATA_POINTS.Critical, color: colors.critical, name: 'Patients in ICU (model)', legendType: 'line' },
-  { key: DATA_POINTS.Overflow, color: colors.overflow, name: 'ICU overflow', legendType: 'line' },
-  { key: DATA_POINTS.Fatalities, color: colors.fatality, name: 'Cumulative deaths (model)', legendType: 'line' },
-  {
-    key: DATA_POINTS.WeeklyFatalities,
-    color: colors.weeklyFatality,
-    name: 'Weekly deaths (model)',
-    legendType: 'line',
-  },
-  { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: 'Total hospital beds', legendType: 'none' },
-  { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: 'Total ICU/ICM beds', legendType: 'none' },
-]
-
-export const areasToPlot: LineProps[] = [
-  {
-    key: `${DATA_POINTS.Susceptible}Area`,
-    color: colors.susceptible,
-    name: 'Susceptible uncertainty',
-    legendType: 'none',
-  },
-  {
-    key: `${DATA_POINTS.Infectious}Area`,
-    color: colors.infectious,
-    name: 'Infectious uncertainty',
-    legendType: 'none',
-  },
-  {
-    key: `${DATA_POINTS.Severe}Area`,
-    color: colors.severe,
-    name: 'Severely ill uncertainty',
-    legendType: 'none',
-  },
-  {
-    key: `${DATA_POINTS.Critical}Area`,
-    color: colors.critical,
-    name: 'Patients in ICU (model) uncertainty',
-    legendType: 'none',
-  },
-  {
-    key: `${DATA_POINTS.Overflow}Area`,
-    color: colors.overflow,
-    name: 'ICU overflow uncertainty',
-    legendType: 'none',
-  },
-  {
-    key: `${DATA_POINTS.Recovered}Area`,
-    color: colors.recovered,
-    name: 'Recovered uncertainty',
-    legendType: 'none',
-  },
-  {
-    key: `${DATA_POINTS.Fatalities}Area`,
-    color: colors.fatality,
-    name: 'Cumulative deaths (model) uncertainty',
-    legendType: 'none',
-  },
-  {
-    key: `${DATA_POINTS.WeeklyFatalities}Area`,
-    color: colors.weeklyFatality,
-    name: 'Weekly deaths (model) uncertainty',
-    legendType: 'none',
-  },
-]
-
-export function observationsToPlot(): LineProps[] {
+export function getLinesToPlot(t: TFunction): LineProps[] {
   return [
-    { key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: 'Cumulative cases (data)' },
-    { key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: `Weekly cases (data)` },
-    { key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: 'Patients in hospital (data)' },
-    { key: DATA_POINTS.ObservedICU, color: colors.critical, name: 'Patients in ICU (data)' },
-    { key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: 'Cumulative deaths (data)' },
-    { key: DATA_POINTS.ObservedWeeklyDeaths, color: colors.weeklyFatality, name: 'Weekly deaths (data)' },
+    { key: DATA_POINTS.Susceptible, color: colors.susceptible, name: t('Susceptible'), legendType: 'line' },
+    { key: DATA_POINTS.Recovered, color: colors.recovered, name: t('Recovered'), legendType: 'line' },
+    { key: DATA_POINTS.Infectious, color: colors.infectious, name: t('Infectious'), legendType: 'line' },
+    { key: DATA_POINTS.Severe, color: colors.severe, name: t('Severely ill'), legendType: 'line' },
+    { key: DATA_POINTS.Critical, color: colors.critical, name: t('Patients in ICU (model)'), legendType: 'line' },
+    { key: DATA_POINTS.Overflow, color: colors.overflow, name: t('ICU overflow'), legendType: 'line' },
+    { key: DATA_POINTS.Fatalities, color: colors.fatality, name: t('Cumulative deaths (model)'), legendType: 'line' },
+    { key: DATA_POINTS.WeeklyFatalities, color: colors.weeklyFatality, name: t('Weekly deaths (model)'), legendType: 'line' }, // prettier-ignore
+    { key: DATA_POINTS.HospitalBeds, color: colors.hospitalBeds, name: t('Total hospital beds'), legendType: 'none' },
+    { key: DATA_POINTS.ICUbeds, color: colors.ICUbeds, name: t('Total ICU/ICM beds'), legendType: 'none' },
   ]
 }
 
-export function translatePlots(t: TFunction, lines: LineProps[]): LineProps[] {
-  return lines.map((line) => {
-    return { ...line, name: t(line.name) }
-  })
+export function getAreasToPlot(t: TFunction): LineProps[] {
+  return [
+    {
+      key: `${DATA_POINTS.Susceptible}Area`,
+      color: colors.susceptible,
+      name: t('Susceptible uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Infectious}Area`,
+      color: colors.infectious,
+      name: t('Infectious uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Severe}Area`,
+      color: colors.severe,
+      name: t('Severely ill uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Critical}Area`,
+      color: colors.critical,
+      name: t('Patients in ICU (model) uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Overflow}Area`,
+      color: colors.overflow,
+      name: t('ICU overflow uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Recovered}Area`,
+      color: colors.recovered,
+      name: t('Recovered uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.Fatalities}Area`,
+      color: colors.fatality,
+      name: t('Cumulative deaths (model) uncertainty'),
+      legendType: 'none',
+    },
+    {
+      key: `${DATA_POINTS.WeeklyFatalities}Area`,
+      color: colors.weeklyFatality,
+      name: t('Weekly deaths (model) uncertainty'),
+      legendType: 'none',
+    },
+  ]
+}
+
+export function observationsToPlot(t: TFunction): LineProps[] {
+  return [
+    { key: DATA_POINTS.ObservedCases, color: colors.cumulativeCases, name: t('Cumulative cases (data)') },
+    { key: DATA_POINTS.ObservedNewCases, color: colors.newCases, name: t('Weekly cases (data)') },
+    { key: DATA_POINTS.ObservedHospitalized, color: colors.severe, name: t('Patients in hospital (data)') },
+    { key: DATA_POINTS.ObservedICU, color: colors.critical, name: t('Patients in ICU (data)') },
+    { key: DATA_POINTS.ObservedDeaths, color: colors.fatality, name: t('Cumulative deaths (data)') },
+    { key: DATA_POINTS.ObservedWeeklyDeaths, color: colors.weeklyFatality, name: t('Weekly deaths (data)') },
+  ]
 }

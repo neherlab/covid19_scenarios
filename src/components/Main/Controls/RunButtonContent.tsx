@@ -1,8 +1,9 @@
 import React from 'react'
 
-import i18next from 'i18next'
+import type { TFunction } from 'i18next'
 import { MdPlayArrow, MdRefresh } from 'react-icons/md'
 import Loader from 'react-loader-spinner'
+import { useTranslation } from 'react-i18next'
 
 export interface RunningSpinerProps {
   size: number
@@ -12,28 +13,32 @@ export function RunningSpinner({ size }: RunningSpinerProps) {
   return <Loader type="ThreeDots" color="white" height={size} width={size} />
 }
 
+export type ButtonStateName = 'normalIdling' | 'normalRunning' | 'autorunIdling' | 'autorunRunning'
+
 export interface ButtonState {
   Icon: React.ElementType
   text: string
 }
 
-const states: Record<'normalIdling' | 'normalRunning' | 'autorunIdling' | 'autorunRunning', ButtonState> = {
-  normalIdling: {
-    Icon: MdPlayArrow,
-    text: i18next.t(`Run`),
-  },
-  normalRunning: {
-    Icon: RunningSpinner,
-    text: i18next.t(`Running...`),
-  },
-  autorunIdling: {
-    Icon: MdRefresh,
-    text: i18next.t(`Refresh`),
-  },
-  autorunRunning: {
-    Icon: RunningSpinner,
-    text: i18next.t(`Refreshing...`),
-  },
+export function getStates(t: TFunction): Record<ButtonStateName, ButtonState> {
+  return {
+    normalIdling: {
+      Icon: MdPlayArrow,
+      text: t(`Run`),
+    },
+    normalRunning: {
+      Icon: RunningSpinner,
+      text: t(`Running...`),
+    },
+    autorunIdling: {
+      Icon: MdRefresh,
+      text: t(`Refresh`),
+    },
+    autorunRunning: {
+      Icon: RunningSpinner,
+      text: t(`Refreshing...`),
+    },
+  }
 }
 
 export function RunButtonContentConcrete({ state, size }: { state: ButtonState; size: number }) {
@@ -49,6 +54,9 @@ export interface RunButtonContentProps {
 }
 
 export function RunButtonContent({ isRunning, isAutorunEnabled, size = 35 }: RunButtonContentProps) {
+  const { t } = useTranslation()
+  const states = getStates(t)
+
   let state = states.autorunIdling
   if (isAutorunEnabled && isRunning) {
     state = states.autorunRunning

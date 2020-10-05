@@ -32,14 +32,7 @@ import { selectScenarioData, selectCaseCountsData } from '../../../state/scenari
 import { selectIsLogScale, selectShouldFormatNumbers } from '../../../state/settings/settings.selectors'
 
 import { calculatePosition, scrollToRef } from './chartHelper'
-import {
-  linesToPlot,
-  areasToPlot,
-  observationsToPlot,
-  DATA_POINTS,
-  translatePlots,
-  defaultEnabledPlots,
-} from './ChartCommon'
+import { getLinesToPlot, getAreasToPlot, observationsToPlot, DATA_POINTS, defaultEnabledPlots } from './ChartCommon'
 import { LinePlotTooltip } from './LinePlotTooltip'
 import { MitigationPlot } from './MitigationLinePlot'
 import { R0Plot } from './R0LinePlot'
@@ -179,7 +172,7 @@ export function DeterministicLinePlotDiconnected({
   const tMin = _.minBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
   const tMax = _.maxBy(plotData, 'time')!.time // eslint-disable-line @typescript-eslint/no-non-null-assertion
 
-  const observationsHavingDataToPlot = observationsToPlot().filter((itemToPlot) => {
+  const observationsHavingDataToPlot = observationsToPlot(t).filter((itemToPlot) => {
     if (observations.length !== 0) {
       return hasObservations[itemToPlot.key]
     }
@@ -283,11 +276,11 @@ export function DeterministicLinePlotDiconnected({
                   }}
                 />
 
-                {translatePlots(t, observationsHavingDataToPlot).map((d) => (
+                {observationsHavingDataToPlot.map((d) => (
                   <Scatter key={d.key} dataKey={d.key} fill={d.color} name={d.name} isAnimationActive={false} />
                 ))}
 
-                {translatePlots(t, linesToPlot).map((d) => (
+                {getLinesToPlot(t).map((d) => (
                   <Line
                     key={d.key}
                     dot={false}
@@ -301,7 +294,7 @@ export function DeterministicLinePlotDiconnected({
                   />
                 ))}
 
-                {translatePlots(t, areasToPlot).map((d) => (
+                {getAreasToPlot(t).map((d) => (
                   <Area
                     key={d.key}
                     type="monotone"

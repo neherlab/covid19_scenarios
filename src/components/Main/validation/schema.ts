@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-import i18next from 'i18next'
+import i18n from 'src/i18n/i18n'
 import { AgeGroup, DateRange, NumericRangeNonNegative } from '../../../algorithms/types/Param.types'
 import { UUIDv4 } from '../../../helpers/uuid'
 
@@ -12,16 +12,16 @@ import { ageDistributionNames } from '../../../io/defaults/getAgeDistributionDat
 
 const ageRegions = [...ageDistributionNames, CUSTOM_COUNTRY_NAME]
 
-const MSG_REQUIRED = i18next.t('Value is required')
-const MSG_NON_NEGATIVE = i18next.t('Should be non-negative (or zero)')
-const MSG_POSITIVE = i18next.t('Should be strictly positive (non-zero)')
-const MSG_AT_LEAST_TEN = i18next.t('Should be at least ten')
-const MSG_AT_LEAST_ONE_DAY = i18next.t('Should be at least one day or greater')
-const MSG_INTEGER = i18next.t('Should be a whole number')
-const MSG_MAX_100 = i18next.t('Should be 100 at most')
-const MSG_TOO_MANY_RUNS = i18next.t('Too many runs')
-const MSG_RANGE_INVALID = i18next.t('Range begin should be less or equal to range end')
-const MSG_EXCEED_100 = i18next.t('Palliative and critical together exceed 100%')
+const MSG_REQUIRED = i18n.t('Value is required')
+const MSG_NON_NEGATIVE = i18n.t('Should be non-negative (or zero)')
+const MSG_POSITIVE = i18n.t('Should be strictly positive (non-zero)')
+const MSG_AT_LEAST_TEN = i18n.t('Should be at least ten')
+const MSG_AT_LEAST_ONE_DAY = i18n.t('Should be at least one day or greater')
+const MSG_INTEGER = i18n.t('Should be a whole number')
+const MSG_MAX_100 = i18n.t('Should be 100 at most')
+const MSG_TOO_MANY_RUNS = i18n.t('Too many runs')
+const MSG_RANGE_INVALID = i18n.t('Range begin should be less or equal to range end')
+const MSG_EXCEED_100 = i18n.t('Palliative and critical together exceed 100%')
 
 // TODO: all this validation should be replaced with JSON-schema-based validation
 
@@ -35,17 +35,17 @@ const isValidRange = (val?: NumericRangeNonNegative | DateRange | null) => {
 
 const percentageSchema = yup
   .number()
-  .required(i18next.t(MSG_REQUIRED))
-  .min(0, i18next.t('Percentage should be non-negative'))
-  .max(100, i18next.t('Percentage cannot be greater than 100'))
-  .typeError(i18next.t('Percentage should be a number'))
+  .required(i18n.t(MSG_REQUIRED))
+  .min(0, i18n.t('Percentage should be non-negative'))
+  .max(100, i18n.t('Percentage cannot be greater than 100'))
+  .typeError(i18n.t('Percentage should be a number'))
 
 const positiveIntegerSchema = yup
   .number()
-  .required(i18next.t(MSG_REQUIRED))
-  .integer(i18next.t('This value should be an integer'))
-  .min(0, i18next.t('This value should be non-negative'))
-  .typeError(i18next.t('This value should be an integer'))
+  .required(i18n.t(MSG_REQUIRED))
+  .integer(i18n.t('This value should be an integer'))
+  .min(0, i18n.t('This value should be non-negative'))
+  .typeError(i18n.t('This value should be an integer'))
 
 export function numericRangeNonNegative() {
   return yup
@@ -87,7 +87,7 @@ export const schema: yup.Schema<FormData> = yup
         ageDistributionName: yup
           .string()
           .required(MSG_REQUIRED)
-          .oneOf(ageRegions, i18next.t('No such region in our data')),
+          .oneOf(ageRegions, i18n.t('No such region in our data')),
 
         initialNumberOfCases: yup.number().required(MSG_REQUIRED).min(0, MSG_NON_NEGATIVE),
 

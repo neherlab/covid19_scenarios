@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { FileRejection } from 'react-dropzone'
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, UncontrolledAlert } from 'reactstrap'
-import i18next from 'i18next'
+import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import Papa from 'papaparse'
 
@@ -33,15 +33,15 @@ class UploadErrorUnknown extends Error {
   }
 }
 
-function exceptionsToStrings(error: Error): string[] {
+function exceptionsToStrings(t: TFunction, error: Error): string[] {
   if (error instanceof UploadErrorTooManyFiles) {
-    return [i18next.t('Only one file is expected')]
+    return [t('Only one file is expected')]
   }
   if (error instanceof UploadErrorUnknown) {
-    return [i18next.t('Unknown error')]
+    return [t('Unknown error')]
   }
   if (error instanceof FileReaderError) {
-    return [i18next.t('Unable to read file.')]
+    return [t('Unable to read file.')]
   }
   if (error instanceof ErrorArray) {
     return error.errors ?? []
@@ -118,7 +118,7 @@ export default function CaseCountsUploader({ onDataImported }: ImportCaseCountDi
     try {
       await processFiles(acceptedFiles, rejectedFiles)
     } catch (error) {
-      const errors = exceptionsToStrings(error)
+      const errors = exceptionsToStrings(t, error)
       setErrors((prevErrors) => [...prevErrors, ...errors])
     }
   }

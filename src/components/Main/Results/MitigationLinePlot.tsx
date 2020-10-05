@@ -4,6 +4,7 @@ import _ from 'lodash'
 
 import { CartesianGrid, ComposedChart, Label, ReferenceArea, XAxis, YAxis } from 'recharts'
 
+import { useTranslationSafe } from 'src/helpers/useTranslationSafe'
 import type { MitigationInterval, NumericRangeNonNegative } from '../../../algorithms/types/Param.types'
 
 const intervalOpacity = (transmissionReduction: NumericRangeNonNegative): number => {
@@ -20,6 +21,8 @@ export interface MitigationPlotProps {
 }
 
 export function MitigationPlot({ mitigation, width, height, tMin, tMax }: MitigationPlotProps) {
+  const { t } = useTranslationSafe()
+
   return (
     <ComposedChart
       width={width}
@@ -44,7 +47,7 @@ export function MitigationPlot({ mitigation, width, height, tMin, tMax }: Mitiga
         allowDataOverflow
         orientation={'left'}
         type="number"
-        label={{ value: 'Efficiency', angle: -90, dx: -12, fill: '#495057' }}
+        label={{ value: t('Efficiency'), angle: -90, dx: -12, fill: '#495057' }}
         domain={[0, 100]}
       />
       {mitigation.map(({ id, name, timeRange, transmissionReduction, color }, i) => {

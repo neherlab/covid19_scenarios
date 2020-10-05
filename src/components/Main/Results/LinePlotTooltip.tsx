@@ -1,8 +1,8 @@
 import React from 'react'
-import { TooltipProps } from 'recharts'
+import type { TooltipProps } from 'recharts'
 import { useTranslation } from 'react-i18next'
 
-import { linesToPlot, observationsToPlot, translatePlots } from './ChartCommon'
+import { getLinesToPlot, observationsToPlot } from './ChartCommon'
 import { ResponsiveTooltipContent, TooltipItem } from './ResponsiveTooltipContent'
 
 interface LinePlotItem extends TooltipItem {
@@ -42,13 +42,13 @@ export function LinePlotTooltip({
 
   const tooltipItems = []
     .concat(
-      translatePlots(t, observationsToPlot()).map((observationToPlot) => ({
+      observationsToPlot(t).map((observationToPlot) => ({
         ...observationToPlot,
         displayUndefinedAs: '-',
       })) as never,
     )
     .concat(
-      translatePlots(t, linesToPlot).map((lineToPlot) => ({
+      getLinesToPlot(t).map((lineToPlot) => ({
         ...lineToPlot,
         displayUndefinedAs: 0,
       })) as never,
@@ -97,6 +97,8 @@ export function R0PlotTooltip({
   labelFormatter,
   itemsToDisplay,
 }: R0PlotTooltipProps) {
+  const { t } = useTranslation()
+
   if (!active || !label || !payload || !itemsToDisplay || payload.length <= 2) {
     // The tooltip gets some odd payloads intermittently
     // https://github.com/neherlab/covid19_scenarios/issues/234#issuecomment-611279609
@@ -110,7 +112,7 @@ export function R0PlotTooltip({
 
   const tooltipItem: TooltipItem = {
     key: 'r0',
-    name: 'effective reproductive number',
+    name: t('Effective reproductive number'),
     color: datum.color || '#883322',
     /* eslint-disable @typescript-eslint/no-unsafe-member-access */
     value: valueFormatter ? valueFormatter(round(datum.payload.median)) : round(datum.payload.median),

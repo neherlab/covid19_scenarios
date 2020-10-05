@@ -3,8 +3,6 @@ import React from 'react'
 import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useTranslation } from 'react-i18next'
 
-import i18n from 'src/i18n/i18n'
-
 import { CUSTOM_COUNTRY_NAME } from '../../../constants'
 
 import { ageDistributionNames } from '../../../io/defaults/getAgeDistributionData'
@@ -17,7 +15,6 @@ import { FormSpinBox } from '../../Form/FormSpinBox'
 import { CaseCountsDataPicker } from '../CaseCounts/CaseCountsDataPicker'
 
 const countryOptions = ageDistributionNames.map((country) => ({ value: country, label: country }))
-countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: i18n.t(CUSTOM_COUNTRY_NAME) })
 
 export interface ScenarioCardPopulationProps {
   errors?: FormikErrors<FormikValues>
@@ -26,6 +23,8 @@ export interface ScenarioCardPopulationProps {
 
 function ScenarioCardPopulation({ errors, touched }: ScenarioCardPopulationProps) {
   const { t } = useTranslation()
+
+  countryOptions.push({ value: CUSTOM_COUNTRY_NAME, label: t(CUSTOM_COUNTRY_NAME) })
 
   return (
     <CardWithControls

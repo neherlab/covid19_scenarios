@@ -1,4 +1,4 @@
-import { TFunction, TFunctionResult } from 'i18next'
+import type { TFunction, TFunctionResult } from 'i18next'
 import React from 'react'
 
 import { sumBy } from 'lodash'

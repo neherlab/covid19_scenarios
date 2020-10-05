@@ -26,8 +26,6 @@ import type {
   ScenarioDatum,
 } from '../../../algorithms/types/Param.types'
 
-import i18n from '../../../i18n/i18n'
-
 import {
   selectAgeDistributionData,
   selectScenarioData,
@@ -43,17 +41,19 @@ export interface AgeGroupRowWithTotals extends AgeGroupRow {
   totalFatal: number
 }
 
-const columns: Column[] = [
-  { name: 'ageGroup', title: i18n.t('Age group') },
-  { name: 'population', title: i18n.t('Age distribution') },
-  { name: 'confirmed', title: `${i18n.t('Confirmed')}\n% ${i18n.t('total')}` },
-  { name: 'severe', title: `${i18n.t('Severe')}\n% ${i18n.t('of confirmed')}` },
-  { name: 'palliative', title: `${i18n.t('Palliative')}\n% ${i18n.t('of severe')}` },
-  { name: 'critical', title: `${i18n.t('Critical')}\n% ${i18n.t('of severe')}` },
-  { name: 'fatal', title: `${i18n.t('Fatal')}\n% ${i18n.t('of critical')}` },
-  { name: 'totalFatal', title: `${i18n.t('Fatal')}\n% ${i18n.t('of all infections')}` },
-  { name: 'isolated', title: `${i18n.t('Isolated')}\n% ${i18n.t('total')}` },
-]
+export function getColumns(t: TFunction): Column[] {
+  return [
+    { name: 'ageGroup', title: t('Age group') },
+    { name: 'population', title: t('Age distribution') },
+    { name: 'confirmed', title: `${t('Confirmed')}\n% ${t('total')}` },
+    { name: 'severe', title: `${t('Severe')}\n% ${t('of confirmed')}` },
+    { name: 'palliative', title: `${t('Palliative')}\n% ${t('of severe')}` },
+    { name: 'critical', title: `${t('Critical')}\n% ${t('of severe')}` },
+    { name: 'fatal', title: `${t('Fatal')}\n% ${t('of critical')}` },
+    { name: 'totalFatal', title: `${t('Fatal')}\n% ${t('of all infections')}` },
+    { name: 'isolated', title: `${t('Isolated')}\n% ${t('total')}` },
+  ]
+}
 
 const columnExtensions: Table.ColumnExtension[] = [
   { columnName: 'ageGroup', align: 'center' },
@@ -154,6 +154,8 @@ function SeverityTableDisconnected({
   const { t } = useTranslation()
   const [{ value }, { error }, { setValue }] = useField<AgeGroupRow[]>('severity')
   const errorMessages = getErrorMessages(t, error as FormikErrors<(AgeGroupRow | string)[]>)
+
+  const columns = getColumns(t)
 
   if (!value) {
     return null
