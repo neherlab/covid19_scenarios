@@ -50,26 +50,26 @@ export default function Footer() {
         </Col>
       </Row>
       <Row noGutters>
-        <Col className="text-center mb-2 mb-md-0">Proudly Powered by</Col>
+        <Col className="text-center mb-2 mb-md-0">{t('Powered by')}</Col>
       </Row>
       <Row noGutters>
         <Table className="w-100 center mx-auto table-layout-fixed">
           <tbody>
             <tr>
               <td className="w-100 text-center">
-                <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
+                <LinkExternal url="https://neherlab.org/" alt={t('Link to website of NeherLab')}>
                   <LogoNeherlab viewBox="0 0 354.325 354.325" className="mx-auto" width="50" height="50" />
                 </LinkExternal>
               </td>
 
               <td className="w-100 text-center">
-                <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
+                <LinkExternal url="https://www.biozentrum.unibas.ch/" alt={t('Link to website of Biozentrum Basel')}>
                   <LogoBiozentrum viewBox="0 0 88 40" className="mx-auto" height="50" />
                 </LinkExternal>
               </td>
 
               <td className="w-100 text-center">
-                <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of University of Basel">
+                <LinkExternal url="https://www.unibas.ch/en.html" alt={t('Link to website of University of Basel')}>
                   <LogoUnibas viewBox="0 0 172 57" className="mx-auto" height="50" />
                 </LinkExternal>
               </td>
@@ -78,20 +78,20 @@ export default function Footer() {
               <td className="w-100 text-center">
                 <LinkExternal
                   url="https://docs.github.com/en/github/building-a-strong-community/about-team-discussions"
-                  alt="Link to Github Discussions"
+                  alt={t('Link to Github Discussions')}
                 >
                   <LogoGithub viewBox="0 0 24 24" className="mx-auto" height="50" />
                 </LinkExternal>
               </td>
 
               <td className="w-100 text-center">
-                <LinkExternal url="https://vercel.com/?utm_source=nextstrain" alt="Link to website of Vercel">
+                <LinkExternal url="https://vercel.com/?utm_source=nextstrain" alt={t('Link to website of Vercel')}>
                   <LogoVercel viewBox="0 0 212 44" className="mx-auto" width="150" height="50" />
                 </LinkExternal>
               </td>
 
               <td className="w-100 text-center">
-                <LinkExternal url="https://doi.org/10.1101/2020.05.05.20091363" alt="Link to website of Github">
+                <LinkExternal url="https://doi.org/10.1101/2020.05.05.20091363" alt={t('Link to website of Github')}>
                   <LogoMed viewBox="0 0 300 89" className="mx-auto" width="175" height="50" />
                 </LinkExternal>
               </td>

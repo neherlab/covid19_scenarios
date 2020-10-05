@@ -43,6 +43,7 @@ export interface AgeGroupRowWithTotals extends AgeGroupRow {
 
 export function getColumns(t: TFunction): Column[] {
   return [
+    /* eslint-disable i18next/no-literal-string */
     { name: 'ageGroup', title: t('Age group') },
     { name: 'population', title: t('Age distribution') },
     { name: 'confirmed', title: `${t('Confirmed')}\n% ${t('total')}` },
@@ -52,6 +53,7 @@ export function getColumns(t: TFunction): Column[] {
     { name: 'fatal', title: `${t('Fatal')}\n% ${t('of critical')}` },
     { name: 'totalFatal', title: `${t('Fatal')}\n% ${t('of all infections')}` },
     { name: 'isolated', title: `${t('Isolated')}\n% ${t('total')}` },
+    /* eslint-enable i18next/no-literal-string */
   ]
 }
 
@@ -152,7 +154,7 @@ function SeverityTableDisconnected({
   severityDistributionData,
 }: SeverityTableProps) {
   const { t } = useTranslation()
-  const [{ value }, { error }, { setValue }] = useField<AgeGroupRow[]>('severity')
+  const [{ value }, { error }, { setValue }] = useField<AgeGroupRow[]>('severity') // eslint-disable-line i18next/no-literal-string
   const errorMessages = getErrorMessages(t, error as FormikErrors<(AgeGroupRow | string)[]>)
 
   const columns = getColumns(t)

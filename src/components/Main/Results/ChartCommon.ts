@@ -32,6 +32,7 @@ export const DATA_POINTS = {
   ObservedWeeklyDeaths: 'weeklyDeaths',
 }
 
+/* eslint-disable i18next/no-literal-string */
 export const defaultEnabledPlots = [
   /* Computed */
   'susceptible',
@@ -48,6 +49,7 @@ export const defaultEnabledPlots = [
   'newCases',
   'weeklyDeaths',
 ]
+/* eslint-enablee i18next/no-literal-string */
 
 export const colors = {
   [DATA_POINTS.Susceptible]: '#a6cee3',

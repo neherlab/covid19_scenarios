@@ -50,7 +50,7 @@ function labelFormatter(value: string | number): React.ReactNode {
 }
 
 function legendFormatter(enabledPlots: string[], value?: LegendPayload['value'], entry?: LegendPayload) {
-  let activeClassName = 'legend-inactive'
+  let activeClassName = 'legend-inactive' // eslint-disable-line i18next/no-literal-string
   if (entry?.dataKey && enabledPlots.includes(entry.dataKey)) {
     activeClassName = 'legend'
   }
@@ -102,9 +102,9 @@ export function DeterministicLinePlotDiconnected({
 
   // NOTE: this used to use scenarioData.epidemiological.infectiousPeriodDays as
   // time interval but a weekly interval makes more sense given reporting practices
-  const [newEmpiricalCases] = computeNewEmpiricalCases(7, 'cases', caseCountsData)
+  const [newEmpiricalCases] = computeNewEmpiricalCases(7, 'cases', caseCountsData) // eslint-disable-line i18next/no-literal-string
 
-  const [weeklyEmpiricalDeaths] = computeNewEmpiricalCases(7, 'deaths', caseCountsData)
+  const [weeklyEmpiricalDeaths] = computeNewEmpiricalCases(7, 'deaths', caseCountsData) // eslint-disable-line i18next/no-literal-string
 
   const hasObservations = {
     [DATA_POINTS.ObservedCases]: caseCountsData && caseCountsData.some((d) => d.cases),

@@ -8,7 +8,7 @@ export interface ColProps extends Omit<ReactstrapColProps, 'ref'> {
 }
 
 function ColCustom({ ...restProps }: ColProps) {
-  return <Col widths={['xs', 'sm', 'md', 'lg', 'xl', 'xxl']} {...restProps} />
+  return <Col widths={['xs', 'sm', 'md', 'lg', 'xl', 'xxl']} {...restProps} /> // eslint-disable-line i18next/no-literal-string
 }
 
 export { ColCustom }

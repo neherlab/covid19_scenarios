@@ -24,7 +24,7 @@ function numberFormat(x?: number): string {
 }
 
 function dateFormat(time: number) {
-  return moment(time).format('MMM DD YYYY')
+  return moment(time).format('MMM DD YYYY') // eslint-disable-line i18next/no-literal-string
 }
 
 /**

@@ -12,8 +12,9 @@ import {
   Coordinate,
   ComposedChart,
 } from 'recharts'
-import { TimeSeriesWithRange } from '../../../algorithms/types/Result.types'
 
+import { useTranslationSafe } from 'src/helpers/useTranslationSafe'
+import { TimeSeriesWithRange } from '../../../algorithms/types/Result.types'
 import { R0PlotTooltip } from './LinePlotTooltip'
 
 export interface R0PlotProps {
@@ -37,6 +38,8 @@ export function R0Plot({
   tooltipPosition,
   tooltipValueFormatter,
 }: R0PlotProps) {
+  const { t } = useTranslationSafe()
+
   const plotData = R0Trajectory.mean.map((d, i) => {
     return {
       time: d.t,
@@ -53,7 +56,7 @@ export function R0Plot({
     tooltipItems = { ...tooltipItems, ...d }
   })
 
-  const tooltipItemToDisplay = ['median']
+  const tooltipItemToDisplay = ['median'] // eslint-disable-line i18next/no-literal-string
 
   return (
     <ComposedChart
@@ -80,7 +83,7 @@ export function R0Plot({
         allowDataOverflow
         orientation={'left'}
         type="number"
-        label={{ value: 'Rt', angle: -90, dx: -12, fill: '#495057' }}
+        label={{ value: t('Rt'), angle: -90, dx: -12, fill: '#495057' }}
         domain={[0, dataMax]}
       />
       <Tooltip
@@ -98,7 +101,7 @@ export function R0Plot({
         strokeWidth={3}
         dataKey={'median'}
         stroke={R0Color}
-        name={'Average R0'}
+        name={t('Average R0')}
         yAxisId="R0Axis"
       />
       <Line
@@ -117,7 +120,7 @@ export function R0Plot({
         fillOpacity={0.075}
         dataKey={'range'}
         isAnimationActive={false}
-        name={'R0 range'}
+        name={t('R0 range')}
         stroke={R0Color}
         strokeWidth={0}
         fill={R0Color}

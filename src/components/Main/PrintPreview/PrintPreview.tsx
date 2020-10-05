@@ -212,19 +212,27 @@ export function PrintPreviewDisconnected({
                   <tbody>
                     <tr>
                       <td className="w-100 text-center">
-                        <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
+                        <LinkExternal url="https://neherlab.org/" alt={t('Link to website of NeherLab')}>
                           <LogoNeherlab viewBox="0 0 354.325 354.325" className="mx-auto" width="50" height="50" />
                         </LinkExternal>
                       </td>
 
                       <td className="w-100 text-center">
-                        <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
+                        {/* eslint-disable sonarjs/no-duplicate-string */}
+                        <LinkExternal
+                          url="https://www.biozentrum.unibas.ch/"
+                          alt={t('Link to website of Biozentrum Basel')}
+                        >
                           <LogoBiozentrum viewBox="0 0 88 40" className="mx-auto" height="50" />
                         </LinkExternal>
+                        {/* eslint-enable sonarjs/no-duplicate-string */}
                       </td>
 
                       <td className="w-100 text-center">
-                        <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of University of Basel">
+                        <LinkExternal
+                          url="https://www.unibas.ch/en.html"
+                          alt={t('Link to website of University of Basel')}
+                        >
                           <LogoUnibas viewBox="0 0 172 57" className="mx-auto" height="50" />
                         </LinkExternal>
                       </td>
@@ -234,19 +242,25 @@ export function PrintPreviewDisconnected({
                   <tbody>
                     <tr>
                       <td className="w-100 text-center">
-                        <LinkExternal url="https://neherlab.org/" alt="Link to website of NeherLab">
+                        <LinkExternal url="https://neherlab.org/" alt={t('Link to website of NeherLab')}>
                           {t('neherlab.org')}
                         </LinkExternal>
                       </td>
 
                       <td className="w-100 text-center">
-                        <LinkExternal url="https://www.biozentrum.unibas.ch/" alt="Link to website of Biozentrum Basel">
+                        <LinkExternal
+                          url="https://www.biozentrum.unibas.ch/"
+                          alt={t('Link to website of Biozentrum Basel')}
+                        >
                           {t('biozentrum.unibas.ch')}
                         </LinkExternal>
                       </td>
 
                       <td className="w-100 text-center">
-                        <LinkExternal url="https://www.unibas.ch/en.html" alt="Link to website of Biozentrum Basel">
+                        <LinkExternal
+                          url="https://www.unibas.ch/en.html"
+                          alt={t('Link to website of Biozentrum Basel')}
+                        >
                           {t('unibas.ch')}
                         </LinkExternal>
                       </td>
