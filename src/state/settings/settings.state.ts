@@ -1,5 +1,4 @@
-import { detectLocale } from '../../i18n/detectLocale'
-import { DEFAULT_LOCALE_KEY, LocaleKey, localeKeys } from '../../i18n/i18n'
+import { DEFAULT_LOCALE_KEY, LocaleKey } from '../../i18n/i18n'
 
 export interface SettingsState {
   isAutorunEnabled: boolean
@@ -20,5 +19,5 @@ export const settingsDefaultState: SettingsState = {
   areResultsMaximized: typeof window !== 'undefined' && window?.innerWidth > 2000,
   disclaimerVersionAccepted: undefined,
   disclaimerShouldSuppress: false,
-  localeKey: detectLocale({ defaultLanguage: DEFAULT_LOCALE_KEY, availableLocales: localeKeys }),
+  localeKey: DEFAULT_LOCALE_KEY,
 }
