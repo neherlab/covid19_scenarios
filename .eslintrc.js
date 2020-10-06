@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-unsafe-regex */
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -45,6 +46,7 @@ module.exports = {
   plugins: [
     'array-func',
     'cflint',
+    'i18next',
     'import',
     'jest',
     'jsx-a11y',
@@ -251,10 +253,59 @@ module.exports = {
       files: ['src/components/**', 'src/pages/**'],
       rules: {
         'i18next/no-literal-string': [
-          'off',
+          'warn',
           {
-            ignoreCallee: ['t'],
-            ignoreAttribute: ['url', 'key', 'identifier'],
+            ignore: [
+              'dataMax',
+              'dataMin',
+              'search-scenario',
+              /^#(?:[\dA-Fa-f]{3}){1,2}$/, // hex colors, e.g. #ffffff
+              /^\//i, // paths starting with `/`
+              /^\d+px$/, // CSS pixels, e.g. '11px'
+              /^div$/i,
+              /^https?:\/\//i, // urls starting with `http://` or `https://`
+              /^json$/i,
+              /^tsv$/i,
+              /^zip$/i,
+            ],
+            ignoreCallee: [
+              // pretter-ignore
+              'get',
+              'omit',
+              'pick',
+              'replace',
+              'set',
+              't',
+              'test',
+            ],
+            ignoreAttribute: [
+              'autoComplete',
+              'color',
+              'data-testid',
+              'dataKey',
+              'displayFormat',
+              'for',
+              'identifier',
+              'key',
+              'lang',
+              'orientation',
+              'overlayColor',
+              'role',
+              'size',
+              'startEditAction',
+              'strokeDasharray',
+              'url',
+              'useField',
+              'viewBox',
+              'yAxisId',
+            ],
+            ignoreProperty: [
+              // prettier-ignore
+              'className',
+              'columnName',
+              'key',
+              'textAnchor',
+            ],
           },
         ],
       },

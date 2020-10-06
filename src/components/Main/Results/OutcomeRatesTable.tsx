@@ -104,12 +104,17 @@ export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, for
 
   const totalFormatter = (value: number) => formatNumber(value)
 
+  const mild = mildFrac.slice(1, 2)[0]
+  const severe = severeFrac.slice(1, 2)[0]
+  const critical = criticalFrac.slice(1, 2)[0]
+  const fatal = deathFrac.slice(1, 2)[0]
+
   const proportionsData = [
-    ['Cathergory', 'Percentage'],
-    [`Mild ${percentageFormatter(mildFrac.slice(1, 2)[0])}`, mildFrac.slice(1, 2)[0]],
-    [`Severe ${percentageFormatter(severeFrac.slice(1, 2)[0])}`, severeFrac.slice(1, 2)[0]],
-    [`Critical ${percentageFormatter(criticalFrac.slice(1, 2)[0])}`, criticalFrac.slice(1, 2)[0]],
-    [`Fatal ${percentageFormatter(deathFrac.slice(1, 2)[0])}`, deathFrac.slice(1, 2)[0]],
+    [t('Category'), t('Percentage')],
+    [t('Mild {{percentage}}', { percentage: percentageFormatter(mild) }), mild],
+    [t('Severe {{percentage}}', { percentage: percentageFormatter(severe) }), severe],
+    [t('Critical {{percentage}}', { percentage: percentageFormatter(critical) }), critical],
+    [t('Fatal {{percentage}}', { percentage: percentageFormatter(fatal) }), fatal],
   ]
 
   const proportionsLabelColors = [
@@ -125,7 +130,7 @@ export function OutcomeRatesTableDisconnected({ result, shouldFormatNumbers, for
         width={'100%'}
         height={'200px'}
         chartType="PieChart"
-        loader={<div>Loading Chart...</div>}
+        loader={<div>{t('Loading...')}</div>}
         data={proportionsData}
         options={{
           slices: proportionsLabelColors,

@@ -29,6 +29,7 @@ export const MitigationTable = connect(mapStateToProps, mapDispatchToProps)(Miti
 
 export function MitigationTableDisconnected({ addMitigationInterval, removeMitigationInterval }: MitigationTableProps) {
   const { t } = useTranslation()
+  // eslint-disable-next-line i18next/no-literal-string
   const [{ value: mitigationIntervals }] = useField<MitigationInterval[]>('mitigation.mitigationIntervals') // prettier-ignore
 
   return (
