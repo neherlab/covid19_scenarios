@@ -861,6 +861,16 @@
         "doc",
         "content"
       ]
+    },
+    {
+      "login": "juhalehtonen",
+      "name": "Juha",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3315272?v=4",
+      "profile": "https://juha.tl/",
+      "contributions": [
+        "content",
+        "translation"
+      ]
     }
   ],
   "repoType": "github",
