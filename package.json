@@ -89,7 +89,7 @@
     "jszip": "3.5.0",
     "katex": "0.12.0",
     "lodash": "4.17.20",
-    "mathjs": "7.2.0",
+    "mathjs": "7.5.1",
     "moment": "2.27.0",
     "next": "9.5.3",
     "next-compose-plugins": "2.2.0",
