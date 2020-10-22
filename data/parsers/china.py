@@ -22,7 +22,8 @@ def parse():
     r  = requests.get(URL)
     if not r.ok:
         print(f"Failed to fetch {URL}", file=sys.stderr)
-        exit(1)
+        raise ValueError
+
     cases  = {}
     aggregates = {} # aggregate per state and use later if no direct state-level data available
     dates = {}
@@ -43,7 +44,7 @@ def parse():
         if not country == 'China' or state == 'Taiwan':
             # let's only pull China data for now
             continue
-        
+
         if not country in cases:
            cases[country] = []
            dates[country] = {}
@@ -89,7 +90,7 @@ def parse():
 
     # add up county numbers to province numbers
     aggregates2 = {}
-    for cntry, data in cases.items():        
+    for cntry, data in cases.items():
         # for each state, pull all counties
         for c in [value for key, value in aggregates.items() if cntry in key]:
             # we now have a list of dicts for the county
@@ -109,9 +110,9 @@ def parse():
                 except (StopIteration, KeyError) as e:
                     # first observation for that date and
                     aggregates2[cntry].append(d)
-                
+
     # now update cases if we don't have values for a specific day
-    for cntry, data in aggregates2.items():        
+    for cntry, data in aggregates2.items():
         # for each state, pull all counties
         for d in data: # each day, a dict
             try:
