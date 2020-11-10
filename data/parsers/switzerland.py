@@ -4,6 +4,7 @@ import csv
 import io
 
 from collections import defaultdict
+import numpy as np
 from .utils import store_data, stoi
 
 # ------------------------------------------------------------------------
@@ -40,9 +41,26 @@ cantonal_codes = {
    "CH": "Switzerland",
 }
 
+aggregates = {"Basel": ["Basel-Landschaft", "Basel-Stadt"],
+              "NWS": ["Basel-Landschaft", "Basel-Stadt", "Aargau"]}
+
 URL_MASK  = "https://raw.githubusercontent.com/openZH/covid_19/master/fallzahlen_kanton_total_csv/COVID19_Fallzahlen_Kanton_CANTONCODE_total.csv"
 URL_FL  = "https://raw.githubusercontent.com/openZH/covid_19/master/fallzahlen_kanton_total_csv/COVID19_Fallzahlen_FL_total.csv"
 cols = ['time', 'cases', 'deaths', 'hospitalized', 'icu', 'recovered']
+
+def aggregate_regions(regions, cantons):
+    data_by_date = defaultdict(list)
+
+    for c in cantons:
+        for d in regions[c]:
+            data_by_date[d[0]].append([x if x else np.nan for x in d[1:]])
+
+    new_data = [[date] + [None if np.isnan(x) else int(x) for x in np.sum(v, axis=0)]
+                for date, v in sorted(data_by_date.items())]
+
+    return new_data
+
+
 
 # ------------------------------------------------------------------------
 # Main point of entry
@@ -86,11 +104,15 @@ def parse():
 
         regions[cantonal_codes[canton]] = canton_data
 
+    for name, cantons in aggregates.items():
+        regions[name] = aggregate_regions(regions, cantons)
+
     regions2 = {}
     for region in regions.keys():
         if region == 'Switzerland' or region == 'Liechtenstein':
             regions2[region] = regions[region]
         else:
             regions2['-'.join(['CHE',region])] = regions[region]
+
 
     store_data(regions2, 'switzerland', cols)
