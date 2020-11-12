@@ -2,18 +2,5 @@
 # Data provenance: European Centre for Disease Prevention and Control
 # License: The downloadable data file is updated daily and contains the latest available public data on COVID-19. Public-use data files allows users to manipulate the data in a format appropriate for their analyses. Users of ECDC public-use data files must comply with data use restrictions to ensure that the information will be used solely for statistical analysis or reporting purposes.
 time	cases	deaths	hospitalized	icu	recovered
-2020-10-29	1	0			
-2020-10-30	1	0			
-2020-10-31	1	0			
-2020-11-01	1	0			
-2020-11-02	1	0			
-2020-11-03	1	0			
-2020-11-04	1	0			
-2020-11-05	1	0			
-2020-11-06	1	0			
-2020-11-07	1	0			
-2020-11-08	1	0			
-2020-11-09	1	0			
-2020-11-10	1	0			
 2020-11-11	1	0			
 2020-11-12	1	0			
