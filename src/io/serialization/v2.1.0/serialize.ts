@@ -61,6 +61,7 @@ function deserialize(input: string): ScenarioParameters {
   // Migrate object to schema v2.2.0:
   //  - Add seroprevalence and set it to 0
   set(shareable.scenarioData.data.population, 'seroprevalence', 0)
+  set(shareable, 'schemaVer', schemaVerNext)
 
   // Delegate to the next version of deserializer
   return v2_2_0[schemaVerNext].deserialize(JSON.stringify(shareable))

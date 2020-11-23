@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { trim } from 'lodash'
+import { set, trim } from 'lodash'
 
 import Ajv from 'ajv'
 import ajvLocalizers from 'ajv-i18n'
@@ -67,6 +67,8 @@ function deserialize(input: string) {
       data: shareable.severityDistributionData.data.map((severity) => ({ ...severity, palliative: 0 })),
     },
   }
+
+  set(shareable, 'schemaVer', schemaVerNext)
 
   // Delegate to the next version of deserializer
   return v2_1_0[schemaVerNext].deserialize(JSON.stringify(shareableNew))
