@@ -1,0 +1,58 @@
+name: 'Update data'
+
+on:
+  schedule:
+    - cron: '0 8 * * MON-SUN'
+
+  repository_dispatch:
+    types: update-case-counts
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: update-data
+        run: |
+          set -x
+
+          PATH="$HOME/.local/bin:$PATH"
+          python3 -m pip install --upgrade pip setuptools pipenv
+          pipenv sync
+
+          git checkout master
+          git pull origin master
+
+          cd data
+
+          pipenv run generate_data.py --fetch
+          git add case-counts/*tsv
+          git commit -m "update case count tsv files"
+
+          pipenv run generate_data.py --output-cases ../src/assets/data/caseCounts.json
+          cd ..
+          git add src/assets/data/caseCounts.json
+          git commit -m "update case count json"
+
+      - name: Create Pull Request
+          uses: peter-evans/create-pull-request@v3
+          with:
+            branch: chore/update-case-counts
+            base: master
+            title: 'Update case counts data'
+            body: |
+              Update case counts data
+              - update case count tsv files
+              - update case count json
+            delete-branch: true
+
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
