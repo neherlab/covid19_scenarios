@@ -30,11 +30,11 @@ jobs:
           cd data
           pipenv sync
 
-          pipenv run generate_data.py --fetch
+          pipenv run python generate_data.py --fetch
           git add case-counts/*tsv
           git commit -m "update case count tsv files"
 
-          pipenv run generate_data.py --output-cases ../src/assets/data/caseCounts.json
+          pipenv run python generate_data.py --output-cases ../src/assets/data/caseCounts.json
           cd ..
           git add src/assets/data/caseCounts.json
           git commit -m "update case count json"
