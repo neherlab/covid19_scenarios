@@ -41,16 +41,16 @@ jobs:
           git commit -m "update case count json"
 
       - name: Create Pull Request
-          uses: peter-evans/create-pull-request@v3
-          with:
-            branch: chore/update-case-counts
-            base: master
-            title: 'Update case counts data'
-            body: |
-              Update case counts data
-              - update case count tsv files
-              - update case count json
-            delete-branch: true
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: chore/update-case-counts
+          base: master
+          title: 'Update case counts data'
+          body: |
+            Update case counts data
+            - update case count tsv files
+            - update case count json
+          delete-branch: true
 
       - name: Check outputs
         run: |
