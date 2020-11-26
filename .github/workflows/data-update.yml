@@ -2,7 +2,7 @@ name: 'Update data'
 
 on:
   schedule:
-    - cron: '0 8 * * MON-SUN'
+    - cron: '0 8 * * *'
 
   repository_dispatch:
     types: update-case-counts
