@@ -11,11 +11,14 @@ THIS_DIR=$(
   pwd
 )
 
-REPO="neherlab/covid19_scenarios"
-EVENT="update-data"
+# Put your GITHUB_TOKEN into .env file
+[ -f "${THIS_DIR}/../.env" ] && source "${THIS_DIR}/../.env"
 
-curl -fsS "https://api.github.com/repos/${REPO}/dispatches" \
+# or set an environment variable (not recommended)
+GITHUB_TOKEN=${GITHUB_TOKEN:?GITHUB_TOKEN is required}
+
+
+curl -i https://api.github.com/repos/neherlab/covid19_scenarios/dispatches \
   -H "Accept: application/vnd.github.v3+json" \
-  -H "Content-Type: application/json" \
-  -d "{ \"EVENT\": \"${EVENT}\" }" \
-  "$@"
+  -H "Authorization: token ${GITHUB_TOKEN}" \
+  -d '{ "event_type": "update-case-counts-data" }' \
