@@ -20,15 +20,24 @@ jobs:
         with:
           ref: master
 
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
       - name: update-case-counts-data
         run: |
           set -x
 
-          PATH="$HOME/.local/bin:$PATH"
+          PATH="$HOME/.local/bin:$PWD/node_modules/.bin:$PATH"
+
           python3 -m pip install --upgrade pip setuptools pipenv
+
+          yarn install
+          yarn schema:totypes
 
           cd data
           pipenv sync
+
           pipenv run python generate_data.py --fetch
           pipenv run python generate_data.py --output-cases ../src/assets/data/caseCounts.json
 
