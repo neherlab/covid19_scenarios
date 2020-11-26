@@ -24,12 +24,12 @@ jobs:
 
           PATH="$HOME/.local/bin:$PATH"
           python3 -m pip install --upgrade pip setuptools pipenv
-          pipenv sync
 
           git checkout master
           git pull origin master
 
           cd data
+          pipenv sync
 
           pipenv run generate_data.py --fetch
           git add case-counts/*tsv
