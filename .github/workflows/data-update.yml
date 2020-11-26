@@ -29,15 +29,8 @@ jobs:
 
           cd data
           pipenv sync
-
           pipenv run python generate_data.py --fetch
-          git add case-counts/*tsv
-          git commit -m "update case count tsv files"
-
           pipenv run python generate_data.py --output-cases ../src/assets/data/caseCounts.json
-          cd ..
-          git add src/assets/data/caseCounts.json
-          git commit -m "update case count json"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
