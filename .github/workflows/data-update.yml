@@ -9,7 +9,7 @@ on:
 
 jobs:
   update-data:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
