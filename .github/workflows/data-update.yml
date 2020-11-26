@@ -1,11 +1,11 @@
-name: 'Update data'
+name: 'Update case counts data'
 
 on:
   schedule:
     - cron: '0 8 * * *'
 
   repository_dispatch:
-    types: update-case-counts
+    types: update-case-counts-data
 
 jobs:
   update-data:
@@ -17,16 +17,15 @@ jobs:
     steps:
 
       - uses: actions/checkout@v2
+        with:
+          ref: master
 
-      - name: update-data
+      - name: update-case-counts-data
         run: |
           set -x
 
           PATH="$HOME/.local/bin:$PATH"
           python3 -m pip install --upgrade pip setuptools pipenv
-
-          git checkout master
-          git pull origin master
 
           cd data
           pipenv sync
@@ -44,7 +43,6 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: chore/update-case-counts
-          base: master
           title: 'Update case counts data'
           body: |
             Update case counts data
