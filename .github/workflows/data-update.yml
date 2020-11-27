@@ -28,6 +28,9 @@ jobs:
         run: |
           set -x
 
+          git config --global user.name ${GITHUB_ACTOR}
+          git config --global user.email ${GITHUB_ACTOR}@github.com
+
           PATH="$HOME/.local/bin:$PWD/node_modules/.bin:$PATH"
 
           python3 -m pip install --upgrade pip setuptools pipenv
@@ -39,17 +42,26 @@ jobs:
           pipenv sync
 
           pipenv run python generate_data.py --fetch
+          git add case-counts/*tsv
+          git commit -m "update case count tsv files"
+
           pipenv run python generate_data.py --output-cases ../src/assets/data/caseCounts.json
+          git add ../src/assets/data/caseCounts.json
+          git commit -m "update case count json"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
           branch: chore/update-case-counts
-          title: 'Update case counts data'
+          commit-message: 'update case counts data'
+          title: '[bot] Update case counts data'
           body: |
             Update case counts data
             - update case count tsv files
             - update case count json
+          labels:
+            - 's:data'
+            - 'bot'
           delete-branch: true
 
       - name: Check outputs
