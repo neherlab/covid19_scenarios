@@ -8,7 +8,7 @@ on:
     types: update-case-counts-data
 
 jobs:
-  update-data:
+  update-case-counts-data:
     runs-on: ubuntu-20.04
 
     env:
@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: staging
 
       - uses: actions/setup-node@v1
         with:
