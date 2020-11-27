@@ -59,9 +59,9 @@ jobs:
             Update case counts data
             - update case count tsv files
             - update case count json
-          labels:
-            - 's:data'
-            - 'bot'
+          labels: |
+            s:data
+            bot
           delete-branch: true
 
       - name: Check outputs
