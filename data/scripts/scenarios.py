@@ -281,6 +281,7 @@ def generate(output_json, num_procs=1, recalculate=False):
     case_counts = parse_tsv()
     scenario_data = load_population_data()
 
+    time_range_fit = 60
     for fname in (FIT_PARAMETERS, 'fit_parameters_1stwave.json'):
         first_wave = '1stwave' in fname
         print("reading file", fname)
@@ -326,7 +327,7 @@ def generate(output_json, num_procs=1, recalculate=False):
                 scenario.mitigation.mitigation_intervals[-1].time_range.end = datetime.strptime(results[region]['tMax'], '%Y-%m-%d').date() + timedelta(1)
             scenario.population.seroprevalence = round(100*results[region]['seroprevalence'],2)
             print(region, tmp_initial)
-            scenario.population.initial_number_of_cases = int(round(tmp_initial*2))
+            scenario.population.initial_number_of_cases = int(round(tmp_initial*5))
 
             if first_wave:
                 scenario_name = f"[1st wave] {region}"
