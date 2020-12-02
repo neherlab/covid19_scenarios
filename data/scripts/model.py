@@ -28,7 +28,7 @@ Age = IntEnum('Age', groups , start=0)
 
 # ------------------------------------------------------------------------
 # Default parameters
-DefaultRates = {"latency":1/3.0, "logR0":1.0, "infection":1/3.0, "hospital":1/3.0, "critical":1/14, "imports":.1, "efficacy":0.5}
+DefaultRates = {"latency":1/3.0, "logR0":1.0, "infection":1/3.0, "hospital":1/7.0, "critical":1/14, "imports":.1, "efficacy":0.5}
 RateFields   = list(DefaultRates.keys())
 
 # ------------------------------------------------------------------------

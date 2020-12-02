@@ -8,7 +8,7 @@ DEFAULTS = {
         "EpidemiologicalData" : {
             "latencyTime" : 3.0,
             "infectiousPeriod" : 3.0,
-            "lengthHospitalStay": 3.0,
+            "lengthHospitalStay": 7.0,
             "lengthICUStay": 14.0,
             "seasonalForcing": 0.0,
             "peakMonth": 0,

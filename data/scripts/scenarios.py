@@ -317,12 +317,16 @@ def generate(output_json, num_procs=1, recalculate=False):
                     mitigationValue=round(100*results[region]['efficacy']))]
             elif region in case_counts:
                 set_mitigation(scenario, results[region].get('mitigations', []))
+                data = convert_to_vectors(case_counts[region])
+                weekly_data = cumulative_to_rolling_average(data)
+                tmp_initial = weekly_data['cases'][-time_range_fit]
             else:
                 scenario.mitigation.mitigation_intervals = []
             if len(scenario.mitigation.mitigation_intervals):
                 scenario.mitigation.mitigation_intervals[-1].time_range.end = datetime.strptime(results[region]['tMax'], '%Y-%m-%d').date() + timedelta(1)
             scenario.population.seroprevalence = round(100*results[region]['seroprevalence'],2)
-            scenario.population.initial_number_of_cases = int(round(np.exp(results[region]['logInitial'])))
+            print(region, tmp_initial)
+            scenario.population.initial_number_of_cases = int(round(tmp_initial*2))
 
             if first_wave:
                 scenario_name = f"[1st wave] {region}"
@@ -351,7 +355,11 @@ if __name__ == '__main__':
     region = 'United States of America'
     # region = 'Germany'
     region = 'Switzerland'
-    region = 'USA-Texas'
+    # region = 'USA-Texas'
+
+    data = convert_to_vectors(case_counts[region])
+    weekly_data = cumulative_to_rolling_average(data)
+
     age_dis = age_distributions[scenario_data[region]['ages']]
     region, p, fit_params = fit_population((region, case_counts[region], scenario_data[region], age_dis, True))
 
