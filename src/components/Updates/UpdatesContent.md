@@ -14,6 +14,9 @@ We realize this can be confusing, but in this evolving situation, changes are di
 to our model are necessary to maintain an accurate representation of the virual situation. To help you, we include
 summaries of our most significant model changes, as shown below.
 
+### 2020-12-02: Increase default hospital duration to seven days
+
+
 ### 2020-08-29: Add seroprevalence field and recalculate "second wave" scenarios.
 
 The first version of covid19-scenarios assumed a fully susceptible population. In many parts of the world, this is no
