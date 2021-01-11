@@ -2,7 +2,6 @@
 # Data provenance: Our World in Data
 # License: CC-BY
 time	cases	deaths	hospitalized	icu	recovered
-2020-03-03	0	0			
 2020-03-04	2	0			
 2020-03-05	2	0			
 2020-03-06	2	0			
@@ -312,3 +311,4 @@ time	cases	deaths	hospitalized	icu	recovered
 2021-01-04	328851	9977			
 2021-01-05	329721	10080			
 2021-01-06	331768	10198			
+2021-01-07	334836	10325			
