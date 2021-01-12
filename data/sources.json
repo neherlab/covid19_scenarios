@@ -29,11 +29,6 @@
     "dataProvenance": "https://github.com/idandrd/israel-covid19-data",
     "license": "MIT"
   },
-  "spain": {
-    "primarySource": "https://github.com/datadista/datasets/tree/master/COVID%2019",
-    "dataProvenance": "http://www.datadista.com",
-    "license": "unclear"
-  },
   "switzerland": {
     "primarySource": "https://raw.githubusercontent.com/openZH/covid_19/master/fallzahlen_kanton_total_csv/COVID19_Fallzahlen_Kanton_CANTONCODE_total.csv",
     "dataProvenance": "OpenZH",
