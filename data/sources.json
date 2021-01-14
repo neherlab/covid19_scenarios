@@ -34,11 +34,6 @@
     "dataProvenance": "OpenZH",
     "license": "none specified"
   },
-  "canada": {
-    "primarySource": "https://github.com/ishaberry/Covid19Canada",
-    "dataProvenance": "Offical government data",
-    "license": "none specified"
-  },
   "canada-ontario": {
     "primarySource": "https://data.ontario.ca/api/3/action/datastore_search?resource_id=ed270bb8-340b-41f9-a7c6-e8ef587e6d11",
     "dataProvenance": "Ontario.ca - official website of the Ontario Government. Dataset: \"Confirmed positive cases of COVID19 in Ontario\".",
@@ -49,16 +44,6 @@
     "dataProvenance": "The COVID Tracking Project",
     "license": "Apache License 2.0"
   },
-  "netherlands": {
-    "primarySource": "https://github.com/J535D165/CoronaWatchNL/blob/master/data, https://www.stichting-nice.nl/covid-19/public/intake-count",
-    "dataProvenance": "CoronaWatchNL, Stichting NICE",
-    "license": "CC0 (CoronaWatchNL), none specified (Stichting NICE)"
-  },
-  "china": {
-    "primarySource": "https://github.com/BlankerL/DXY-COVID-19-Data/raw/master/csv/DXYOverall.csv",
-    "dataProvenance": "https://github.com/BlankerL/DXY-COVID-19-Data",
-    "license": "MIT"
-  },
   "india": {
     "primarySource": "https://api.rootnet.in/covid19-in/stats/daily",
     "dataProvenance": "https://github.com/amodm/api-covid19-in",
@@ -68,11 +53,6 @@
     "primarySource": "https://github.com/spigolotti/covid2019data_okinawa/blob/master/okinawaCOVID19.csv",
     "dataProvenance": "https://okinawa.stopcovid19.jp/en/?fbclid=IwAR2MxJ3yYdpGJn7gb3OXc4JzX8CMHSHUWjtwU3t7JnuoNXv1OQI64zz0VsU",
     "license": "MIT"
-  },
-  "japan": {
-    "primarySource": "https://raw.githubusercontent.com/kaz-ogiwara/covid19/master/data/prefectures.csv",
-    "dataProvenance": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00086.html",
-    "license": "MIT license"
   },
   "singapore": {
     "primarySource": "https://github.com/hxchua/datadoubleconfirm/blob/master/datasets/covid19_sg.csv",
