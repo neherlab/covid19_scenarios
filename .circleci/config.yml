@@ -36,11 +36,6 @@ jobs:
           keys:
             - cache-covid19_scenarios-build-v1-{{ arch }}-{{ checksum "yarn.lock" }}
 
-      - restore_cache:
-          name: 'Restore eslint cache'
-          keys:
-            - cache-covid19_scenarios-eslint-v2-{{ arch }}-{{ checksum ".cache/eslint" }}
-
       - run: yarn install --frozen-lockfile
       - run: cp .env.example .env
       - run: yarn schema:totypes
@@ -48,16 +43,10 @@ jobs:
       - run: yarn prod:build
 
       - save_cache:
-          name: 'Save eslint cache'
-          key: cache-covid19_scenarios-eslint-v2-{{ arch }}-{{ checksum ".cache/eslint" }}
-          paths:
-            - ./.cache/eslint
-
-      - save_cache:
           name: 'Save build cache'
           key: cache-covid19_scenarios-build-v1-{{ arch }}-{{ checksum "yarn.lock" }}
           paths:
-            - ./.cache/yarn
+            - ./.cache
             - ./.build/production/tmp/cache
 
       - run:
