@@ -20,8 +20,8 @@ CIRCLECI_PROJECT=covid19_scenarios
 
 BRANCHES=(
   master \
-  release \
   staging \
+  release \
 )
 
 VAR_NAMES=(
@@ -51,7 +51,9 @@ done
 
 for branch in "${BRANCHES[@]}"; do
   CONTEXT_NAME="${CIRCLECI_PROJECT}-${branch}"
-  circleci context create "${CIRCLECI_VCS}" "${CIRCLECI_ORG}" "${CONTEXT_NAME}"
+
+  # circleci context delete "${CIRCLECI_VCS}" "${CIRCLECI_ORG}" "${CONTEXT_NAME}"
+  circleci context create "${CIRCLECI_VCS}" "${CIRCLECI_ORG}" "${CONTEXT_NAME}" || true
 
   for var_name in "${VAR_NAMES[@]}"; do
     var_name_for_branch_key="${branch}_${var_name}"
