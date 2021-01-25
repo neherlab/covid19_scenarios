@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - checkout
-      - run: apk add curl bash python3 py3-pip
+      - run: apk add -q curl bash git python3 py3-pip
       - run: pip3 install -q awscli
       - run:
           name: "Print versions"
