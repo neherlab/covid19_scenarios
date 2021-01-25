@@ -29,6 +29,12 @@ export async function main() {
       'node_modules/next/dist/pages/_document.js',
       `console.warn("Warning: <title> should not be used in _document.js's <Head>. https://err.sh/next.js/no-document-title");`,
     ),
+
+    replace(
+      'node_modules/next/dist/export/index.js',
+      'const threads=options.threads||Math.max((0,_os.cpus)().length-1,1);',
+      'const threads=2;',
+    ),
   ])
 }
 
