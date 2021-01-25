@@ -11,7 +11,6 @@ jobs:
       - image: node:14.15.4-alpine3.12
 
     steps:
-      - checkout
       - run: apk add -q curl bash git python3 py3-pip
       - run: pip3 install -q awscli
       - run:
@@ -23,6 +22,8 @@ jobs:
             yarn --version
             python3 --version
             aws --version
+
+      - checkout
 
       - restore_cache:
           name: 'Restore cache'
