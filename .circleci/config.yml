@@ -11,19 +11,23 @@ jobs:
       - image: node:14.15.4-alpine3.12
 
     steps:
-      - run: apk add -q curl bash git python3 py3-pip
-      - run: pip3 install -q awscli
+      - run: apk add -q curl bash git unzip
+
+      - run:
+          name: 'Install AWS CLI v2'
+          command: |
+            set -x
+            ./tools/install-awscli.sh
+
       - run:
           name: 'Print versions'
           command: |
             set -x
+            git --version
             node --version
             npm --version
             yarn --version
-            python3 --version
             aws --version
-            echo "CIRCLE_NODE_TOTAL=$CIRCLE_NODE_TOTAL"
-            node -e "console.log('Node os.cpus(): ', ((os.cpus() || { length: 1 }).length) - 1)"
 
       - checkout
 
