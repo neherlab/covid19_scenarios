@@ -14,7 +14,7 @@ jobs:
       - run: apk add -q curl bash git python3 py3-pip
       - run: pip3 install -q awscli
       - run:
-          name: "Print versions"
+          name: 'Print versions'
           command: |
             set -x
             node --version
@@ -30,7 +30,7 @@ jobs:
       - restore_cache:
           name: 'Restore cache'
           keys:
-            - cache-c19s-v2-{{ arch }}-{{ checksum "yarn.lock" }}
+            - cache-covid19_scenarios-v1-{{ arch }}-{{ checksum "yarn.lock" }}
 
       - run: yarn install --frozen-lockfile
       - run: cp .env.example .env
@@ -40,38 +40,39 @@ jobs:
 
       - save_cache:
           name: 'Save cache'
-          key: cache-c19s-v2-{{ arch }}-{{ checksum "yarn.lock" }}
+          key: cache-covid19_scenarios-v1-{{ arch }}-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
             - ./.cache
             - ./.build/production/tmp/cache
 
-      - aws-s3/copy:
-          arguments: |
-            --dryrun \
-            --recursive \
-            --cache-control "max-age=86400"
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_DEFAULT_REGION
-          from: '.build/production/web'
-          to: 's3://${AWS_S3_BUCKET}/'
+      - run:
+          name: 'Deploy web content to AWS S3'
+          command: |
+            cd .build/production/web
+            aws s3 cp \
+              --dryrun \
+              --recursive \
+              --cache-control "max-age=2592000, public"
+                s3://${AWS_S3_BUCKET}/_next' \
+                s3://${AWS_S3_BUCKET}/' \
+            - "{}" \;
 
       - run:
-          name: "Upload html files"
+          name: 'Deploy html files to AWS S3'
           command: |
             cd .build/production/web
             find * -type f -name "*.html" -exec bash -c '\
             aws s3 cp \
               --dryrun \
-              --content-type "text/html" \
+              --cache-control "no-cache"
               --metadata-directive REPLACE \
                 s3://${AWS_S3_BUCKET}/$1 \
                 s3://${AWS_S3_BUCKET}/${1%.html}' \
             - "{}" \;
 
       - run:
-          name: "Invalidate Cloudfront cache"
+          name: 'Invalidate Cloudfront cache'
           command: |
             aws cloudfront create-invalidation \
               --dryrun \
@@ -83,8 +84,7 @@ workflows:
   build:
     jobs:
       - build:
-          context:
-            covid19_scenarios-<< pipeline.git.branch >>
+          context: covid19_scenarios-<< pipeline.git.branch >>
           filters:
             branches:
               only: /^(master|staging|release)$/
