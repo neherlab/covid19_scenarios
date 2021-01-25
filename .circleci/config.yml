@@ -53,10 +53,9 @@ jobs:
             aws s3 cp \
               --dryrun \
               --recursive \
-              --cache-control "max-age=2592000, public"
-                s3://${AWS_S3_BUCKET}/_next' \
-                s3://${AWS_S3_BUCKET}/' \
-            - "{}" \;
+              --cache-control "max-age=2592000, public" \
+                _next \
+                s3://${AWS_S3_BUCKET}/
 
       - run:
           name: 'Deploy html files to AWS S3'
@@ -65,7 +64,7 @@ jobs:
             find * -type f -name "*.html" -exec bash -c '\
             aws s3 cp \
               --dryrun \
-              --cache-control "no-cache"
+              --cache-control "no-cache" \
               --metadata-directive REPLACE \
                 s3://${AWS_S3_BUCKET}/$1 \
                 s3://${AWS_S3_BUCKET}/${1%.html}' \
