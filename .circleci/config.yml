@@ -34,7 +34,7 @@ jobs:
       - restore_cache:
           name: 'Restore cache'
           keys:
-            - cache-covid19_scenarios-v1-{{ arch }}-{{ checksum "yarn.lock" }}
+            - cache-covid19_scenarios-v2-{{ arch }}-{{ checksum "yarn.lock" }}
 
       - run: yarn install --frozen-lockfile
       - run: cp .env.example .env
@@ -44,9 +44,8 @@ jobs:
 
       - save_cache:
           name: 'Save cache'
-          key: cache-covid19_scenarios-v1-{{ arch }}-{{ checksum "yarn.lock" }}
+          key: cache-covid19_scenarios-v2-{{ arch }}-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
             - ./.cache
             - ./.build/production/tmp/cache
 
