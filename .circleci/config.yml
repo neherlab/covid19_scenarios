@@ -73,4 +73,4 @@ workflows:
             covid19_scenarios-env-<< pipeline.git.branch >>
           filters:
             branches:
-              only: (master|staging|release)
+              only: /^(master|staging|release)$/
