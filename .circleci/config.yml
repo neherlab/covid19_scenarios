@@ -70,7 +70,7 @@ workflows:
     jobs:
       - build:
           context:
-            covid19_scenarios-env-<< pipeline.git.branch >>
+            covid19_scenarios-<< pipeline.git.branch >>
           filters:
             branches:
               only: /^(master|staging|release)$/
