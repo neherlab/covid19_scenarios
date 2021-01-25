@@ -17,6 +17,6 @@ unzip -oqq awscliv2.zip
 ls -al
 ls -al /tmp/aws/
 ls -al /tmp/aws/dist/
-./aws/install --update
+sudo ./aws/install --update
 
 popd >/dev/null
