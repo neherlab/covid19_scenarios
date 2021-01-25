@@ -11,6 +11,11 @@ jobs:
       - image: node:14.15.4-alpine3.12
 
     steps:
+      - run:
+          name: "Setup custom environment variables"
+          command: |
+            echo 'export PATH=${PATH:+"$PATH:"}/usr/local/bin}' >> $BASH_ENV
+
       - run: apk add -q curl bash git unzip
 
       - run:
