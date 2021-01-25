@@ -74,7 +74,7 @@ jobs:
           command: |
             aws cloudfront create-invalidation \
               --dryrun \
-              --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} \
+              --distribution-id ${AWS_CLOUDFRONT_DISTRIBUTION_ID} \
               --paths "/*"
 
 workflows:
