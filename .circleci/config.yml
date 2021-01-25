@@ -8,15 +8,10 @@ jobs:
     resource_class: medium
 
     docker:
-      - image: node:14.15.4-alpine3.12
+      - image: cimg/node::14.15.4
 
     steps:
-      - run:
-          name: "Setup custom environment variables"
-          command: |
-            echo 'export PATH=${PATH:+"$PATH:"}/usr/local/bin}' >> $BASH_ENV
-
-      - run: apk add -q curl bash git unzip
+      - run: apt-get install -qq --yes curl bash git unzip
 
       - run:
           name: 'Print versions'
