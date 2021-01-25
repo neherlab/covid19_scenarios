@@ -22,6 +22,7 @@ export function getGitBranch() {
     getenv('ZEIT_GITHUB_COMMIT_REF', null) ??
     getenv('ZEIT_GITLAB_COMMIT_REF', null) ??
     getenv('ZEIT_BITBUCKET_COMMIT_REF', null) ??
+    getenv('CIRCLE_BRANCH', null) ??
     getGitCommitHashLocal() ??
     ''
   )
