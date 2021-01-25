@@ -37,9 +37,11 @@ jobs:
 
       - save_cache:
           name: 'Save cache'
-          key: cache-c19s-v1-{arch}-{checksum "yarn.lock"}
+          key: cache-c19s-v2-{arch}-{checksum "yarn.lock"}
           paths:
-            - .cache
+            - ./node_modules
+            - ./.cache
+            - ./.build/production/tmp/cache
 
       - aws-s3/copy:
           arguments: |
