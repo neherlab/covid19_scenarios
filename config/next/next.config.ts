@@ -59,6 +59,7 @@ const clientEnv = {
   DOMAIN,
 }
 
+console.info(`Build Environment:\n${JSON.stringify({ CIRCLECI, ENABLE_SOURCE_MAPS }, null, 2)}`)
 console.info(`Client-side Environment:\n${JSON.stringify(clientEnv, null, 2)}`)
 
 const nextConfig: NextConfig = {
@@ -70,6 +71,7 @@ const nextConfig: NextConfig = {
   experimental: {
     modern: false, // this breaks Threads.js workers in production
     productionBrowserSourceMaps: ENABLE_SOURCE_MAPS,
+    workerThreads: !CIRCLECI,
     cpus: CIRCLECI ? 2 : undefined,
   },
   future: {
@@ -105,7 +107,7 @@ const withStaticComprression = getWithStaticComprression({ brotli: false })
 const withTypeChecking = getWithTypeChecking({
   typeChecking: ENABLE_TYPE_CHECKS,
   eslint: ENABLE_ESLINT,
-  memoryLimit: CIRCLECI ? 512 : 2048,
+  memoryLimit: CIRCLECI ? 1024 : 2048,
   exclude: [
     // FIXME: errors in these files have to be resolved eventually
     // begin
