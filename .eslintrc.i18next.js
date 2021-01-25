@@ -9,7 +9,7 @@ module.exports = {
       globalReturn: false,
     },
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json', './cypress/tsconfig.json'],
+    project: ['./tsconfig.json'],
     warnOnUnsupportedTypeScriptVersion: true,
   },
   globals: {},

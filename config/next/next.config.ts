@@ -59,9 +59,6 @@ const clientEnv = {
   DOMAIN,
 }
 
-console.info(`Build Environment:\n${JSON.stringify({ CIRCLECI, ENABLE_SOURCE_MAPS }, null, 2)}`)
-console.info(`Client-side Environment:\n${JSON.stringify(clientEnv, null, 2)}`)
-
 const nextConfig: NextConfig = {
   distDir: `.build/${process.env.NODE_ENV}/tmp`,
   onDemandEntries: {
@@ -71,6 +68,7 @@ const nextConfig: NextConfig = {
   experimental: {
     modern: false, // this breaks Threads.js workers in production
     productionBrowserSourceMaps: ENABLE_SOURCE_MAPS,
+    cpus: 2,
   },
   future: {
     excludeDefaultMomentLocales: true,
@@ -85,6 +83,10 @@ const nextConfig: NextConfig = {
   },
   env: clientEnv,
 }
+
+console.info(`\nBuild Environment:\n${JSON.stringify({ CIRCLECI, ENABLE_SOURCE_MAPS }, null, 2)}`)
+console.info(`\nClient-side Environment:\n${JSON.stringify(clientEnv, null, 2)}`)
+console.info(`\nNext.js config:\n${JSON.stringify(nextConfig, null, 2)}`)
 
 const withFriendlyConsole = getWithFriendlyConsole({
   clearConsole: false,

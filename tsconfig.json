@@ -5,6 +5,7 @@
       "*": ["src/types/*", "src/generated/*"],
       "src/*": ["./src/*"]
     },
+    "types": ["jest"],
     "target": "esnext",
     "module": "esnext",
     "lib": ["esnext", "dom", "webworker"],

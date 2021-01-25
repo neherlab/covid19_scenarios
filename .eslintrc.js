@@ -10,7 +10,7 @@ module.exports = {
       globalReturn: false,
     },
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json', './cypress/tsconfig.json'],
+    project: ['./tsconfig.json'],
     warnOnUnsupportedTypeScriptVersion: true,
   },
   globals: {},
@@ -355,24 +355,6 @@ module.exports = {
         'i18next/no-literal-string': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',
-      },
-    },
-    {
-      files: ['cypress/**'],
-      env: {
-        'cypress/globals': true,
-      },
-      plugins: ['cypress'],
-      rules: {
-        'cypress/assertion-before-screenshot': 'warn',
-        'cypress/no-assigning-return-values': 'warn',
-        'cypress/no-force': 'warn',
-        'cypress/no-unnecessary-waiting': 'warn',
-        'jest/consistent-test-it': 'off',
-        'jest/expect-expect': 'off',
-        'sonarjs/no-duplicate-string': 'off',
-        'sonarjs/no-identical-functions': 'off',
-        'spaced-comment': 'off',
       },
     },
     {
