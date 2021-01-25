@@ -9,6 +9,8 @@ export function getEnvVars() {
   const PRODUCTION = NODE_ENV === 'production'
   const DOMAIN = getDomain()
 
+  const CIRCLECI = getbool('CIRCLECI')
+
   const common = {
     BABEL_ENV,
     NODE_ENV,
@@ -16,6 +18,7 @@ export function getEnvVars() {
     PROFILE,
     PRODUCTION,
     DOMAIN,
+    CIRCLECI,
   }
 
   if (PRODUCTION) {

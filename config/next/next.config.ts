@@ -42,6 +42,7 @@ const {
   ENABLE_REDUX_IMMUTABLE_STATE_INVARIANT,
   ENABLE_REDUX_LOGGER,
   DOMAIN,
+  CIRCLECI,
 } = getEnvVars()
 
 const { pkg, moduleRoot } = findModuleRoot()
@@ -69,6 +70,7 @@ const nextConfig: NextConfig = {
   experimental: {
     modern: false, // this breaks Threads.js workers in production
     productionBrowserSourceMaps: ENABLE_SOURCE_MAPS,
+    cpus: CIRCLECI ? 2 : undefined,
   },
   future: {
     excludeDefaultMomentLocales: true,
@@ -103,7 +105,7 @@ const withStaticComprression = getWithStaticComprression({ brotli: false })
 const withTypeChecking = getWithTypeChecking({
   typeChecking: ENABLE_TYPE_CHECKS,
   eslint: ENABLE_ESLINT,
-  memoryLimit: 2048,
+  memoryLimit: CIRCLECI ? 512 : 2048,
   exclude: [
     // FIXME: errors in these files have to be resolved eventually
     // begin
