@@ -50,13 +50,19 @@ jobs:
             - ./.build/production/tmp/cache
 
       - run:
-          name: 'Deploy web content to AWS S3'
+          name: 'Deploy web bundle to AWS S3'
           command: |
             cd .build/production/web
             aws s3 cp --recursive --cache-control "max-age=2592000, public" "_next/" "s3://${AWS_S3_BUCKET}/_next/"
 
       - run:
-          name: 'Deploy html files to AWS S3'
+          name: 'Deploy web root to AWS S3'
+          command: |
+            cd .build/production/web
+            aws s3 cp --recursive --exclude "_next" --exclude "*.html" "./" "s3://${AWS_S3_BUCKET}/"
+
+      - run:
+          name: 'Deploy html files to AWS S3, removing extension'
           command: |
             cd .build/production/web
             find * -type f -name "*.html" -exec bash -c '\
