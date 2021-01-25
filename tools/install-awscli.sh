@@ -14,9 +14,6 @@ pushd /tmp >/dev/null
 
 curl -fsS "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip -oqq awscliv2.zip
-ls -al
-ls -al /tmp/aws/
-ls -al /tmp/aws/dist/
 sudo ./aws/install --update
 
 popd >/dev/null
