@@ -40,7 +40,7 @@ VAR_NAMES=(
 for branch in "${BRANCHES[@]}"; do
   for var_name in "${VAR_NAMES[@]}"; do
     var_name_for_branch_key="${branch}_${var_name}"
-    declare -n var_name_for_branch_value=${var_name_for_branch_key}
+    declare -n "var_name_for_branch_value=${var_name_for_branch_key}"
 
     if [ -z "${var_name_for_branch_value}" ]; then
       echo "Error: the required variable ${var_name_for_branch_key} is not set. Refusing to proceed. The configuration is not changed."
@@ -55,8 +55,7 @@ for branch in "${BRANCHES[@]}"; do
 
   for var_name in "${VAR_NAMES[@]}"; do
     var_name_for_branch_key="${branch}_${var_name}"
-    declare -n var_name_for_branch_value=${var_name_for_branch_key}
-
-    circleci context store-secret "${CIRCLECI_VCS}" "${CIRCLECI_ORG}" "${CONTEXT_NAME}" "${var_name}" <<< "${var_name_for_branch_value}"
+    declare -n "var_name_for_branch_value=${var_name_for_branch_key}"
+    echo $var_name_for_branch_value | tr -d '\n' | circleci context store-secret "${CIRCLECI_VCS}" "${CIRCLECI_ORG}" "${CONTEXT_NAME}" "${var_name}"
   done
 done
