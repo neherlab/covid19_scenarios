@@ -28,7 +28,7 @@ jobs:
       - restore_cache:
           name: 'Restore cache'
           keys:
-            - cache-c19s-v1-{arch}-{checksum "yarn.lock"}
+            - cache-c19s-v2-{arch}-{checksum "yarn.lock"}
 
       - run: yarn install --frozen-lockfile
       - run: cp .env.example .env
