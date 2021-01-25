@@ -64,7 +64,7 @@ jobs:
               --content-type "text/html" \
               --cache-control "no-cache" \
               --metadata-directive REPLACE \
-                s3://${AWS_S3_BUCKET}/$1 \
+                $1 \
                 s3://${AWS_S3_BUCKET}/${1%.html}' \
             - "{}" \;
 
