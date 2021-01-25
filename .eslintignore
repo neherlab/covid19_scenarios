@@ -1,11 +1,15 @@
 3rdparty
 \.build
 \.cache
+\.circleci
 \.env
+\.git
+\.github
 \.github
 \.idea
 \.ignore
 \.reports
+\.vscode
 \.vscode
 cypress
 data

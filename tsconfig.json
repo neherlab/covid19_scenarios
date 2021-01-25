@@ -48,15 +48,23 @@
   "exclude": [
     ".build",
     ".cache",
+    ".circleci",
+    ".git",
+    ".github",
     ".idea",
     ".ignore",
-    ".reports",
+    ".vscode",
     "3rdparty",
-    "covid19_scenarios_data",
-    "cypress",
+    "data",
+    "docker",
+    "docs",
     "node_modules",
     "public",
+    "schemas",
     "src/.generated",
+    "src/assets",
+    "src/i18n/resources",
+    "styles",
     "tsconfig.json"
   ]
 }
