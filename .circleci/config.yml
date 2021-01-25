@@ -1,0 +1,76 @@
+version: 2.1
+
+orbs:
+  aws-s3: circleci/aws-s3@2.0.0
+  aws-cli: circleci/aws-cli@1.3.2
+
+jobs:
+  build:
+    resource_class: medium
+
+    docker:
+      - image: node:14.15.4-alpine3.12
+
+    steps:
+      - checkout
+      - aws-cli/setup
+
+      - restore_cache:
+          name: 'Restore cache'
+          keys:
+            - cache-c19s-v1-{arch}-{checksum "yarn.lock"}
+
+      - run: yarn install --frozen-lockfile
+      - run: cp .env.example .env
+      - run: yarn schema:totypes
+      - run: yarn eslint --max-warnings=0
+      - run: yarn prod:build
+
+      - save_cache:
+          name: 'Save cache'
+          key: cache-c19s-v1-{arch}-{checksum "yarn.lock"}
+          paths:
+            - .cache
+
+      - aws-s3/copy:
+          arguments: |
+            --dryrun \
+            --recursive \
+            --cache-control "max-age=86400"
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_DEFAULT_REGION
+          from: '.build/production/web'
+          to: 's3://${AWS_S3_BUCKET}/'
+
+      - run:
+          name: "Upload html files"
+          command: |
+            cd .build/production/web
+            find * -type f -name "*.html" -exec bash -c '\
+            aws s3 cp \
+              --dryrun \
+              --content-type "text/html" \
+              --metadata-directive REPLACE \
+                s3://${AWS_S3_BUCKET}/$1 \
+                s3://${AWS_S3_BUCKET}/${1%.html}' \
+            - "{}" \;
+
+      - run:
+          name: "Invalidate Cloudfront cache"
+          command: |
+            aws cloudfront create-invalidation \
+              --dryrun \
+              --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} \
+              --paths "/*"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          context:
+            covid19_scenarios-env-<< pipeline.git.branch >>
+          filters:
+            branches:
+              only: (master|staging|release)
