@@ -107,7 +107,7 @@ const withLodash = getWithLodash({ unicode: false })
 const withTypeChecking = getWithTypeChecking({
   typeChecking: ENABLE_TYPE_CHECKS,
   eslint: ENABLE_ESLINT,
-  memoryLimit: 2048,
+  memoryLimit: 3000,
   exclude: [
     // FIXME: errors in these files have to be resolved eventually
     // begin
