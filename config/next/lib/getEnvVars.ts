@@ -9,7 +9,7 @@ export function getEnvVars() {
   const PRODUCTION = NODE_ENV === 'production'
   const DOMAIN = getDomain()
 
-  const CIRCLECI = getbool('CIRCLECI')
+  const CIRCLECI = getbool('CIRCLECI', false)
 
   const common = {
     BABEL_ENV,
