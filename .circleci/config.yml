@@ -53,12 +53,8 @@ jobs:
           name: 'Deploy web content to AWS S3'
           command: |
             cd .build/production/web
-            aws s3 cp \
-              --dryrun \
-              --recursive \
-              --cache-control "max-age=2592000, public" \
-                _next \
-                s3://${AWS_S3_BUCKET}/
+            aws s3 cp --dryrun --recursive --cache-control "max-age=2592000, public" "_next/" "s3://{AWS_S3_BUCKET}/_next/"
+
 
       - run:
           name: 'Deploy html files to AWS S3'
