@@ -32,9 +32,14 @@ jobs:
             aws --version
 
       - restore_cache:
-          name: 'Restore cache'
+          name: 'Restore build cache'
           keys:
-            - cache-covid19_scenarios-v2-{{ arch }}-{{ checksum "yarn.lock" }}
+            - cache-covid19_scenarios-build-v2-{{ arch }}-{{ checksum "yarn.lock" }}
+
+      - restore_cache:
+          name: 'Restore eslint cache'
+          keys:
+            - cache-covid19_scenarios-eslint-v2-{{ arch }}-{{ checksum ".cache/eslint" }}
 
       - run: yarn install --frozen-lockfile
       - run: cp .env.example .env
@@ -43,10 +48,16 @@ jobs:
       - run: yarn prod:build
 
       - save_cache:
-          name: 'Save cache'
-          key: cache-covid19_scenarios-v2-{{ arch }}-{{ checksum "yarn.lock" }}
+          name: 'Save eslint cache'
+          key: cache-covid19_scenarios-eslint-v2-{{ arch }}-{{ checksum ".cache/eslint" }}
           paths:
-            - ./.cache
+            - ./.cache/eslint
+
+      - save_cache:
+          name: 'Save build cache'
+          key: cache-covid19_scenarios-v3-{{ arch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ./.cache/yarn
             - ./.build/production/tmp/cache
 
       - run:
