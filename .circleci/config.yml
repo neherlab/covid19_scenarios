@@ -14,12 +14,6 @@ jobs:
       - run: apk add -q curl bash git unzip
 
       - run:
-          name: 'Install AWS CLI v2'
-          command: |
-            set -x
-            ./tools/install-awscli.sh
-
-      - run:
           name: 'Print versions'
           command: |
             set -x
@@ -27,9 +21,15 @@ jobs:
             node --version
             npm --version
             yarn --version
-            aws --version
 
       - checkout
+
+      - run:
+          name: 'Install AWS CLI v2'
+          command: |
+            set -x
+            ./tools/install-awscli.sh
+            aws --version
 
       - restore_cache:
           name: 'Restore cache'
