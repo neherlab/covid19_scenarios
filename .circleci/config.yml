@@ -72,6 +72,7 @@ jobs:
             cd .build/production/web
             find * -type f -name "*.html" -exec bash -c '\
             aws s3 cp \
+              --content-type "text/html" \
               --cache-control "no-cache" \
               --metadata-directive REPLACE \
                 s3://${AWS_S3_BUCKET}/$1 \
