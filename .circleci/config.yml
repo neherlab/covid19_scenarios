@@ -53,7 +53,7 @@ jobs:
           name: 'Deploy web content to AWS S3'
           command: |
             cd .build/production/web
-            aws s3 cp --dryrun --recursive --cache-control "max-age=2592000, public" "_next/" "s3://{AWS_S3_BUCKET}/_next/"
+            aws s3 cp --recursive --cache-control "max-age=2592000, public" "_next/" "s3://{AWS_S3_BUCKET}/_next/"
 
 
       - run:
@@ -62,7 +62,6 @@ jobs:
             cd .build/production/web
             find * -type f -name "*.html" -exec bash -c '\
             aws s3 cp \
-              --dryrun \
               --cache-control "no-cache" \
               --metadata-directive REPLACE \
                 s3://${AWS_S3_BUCKET}/$1 \
@@ -73,7 +72,6 @@ jobs:
           name: 'Invalidate Cloudfront cache'
           command: |
             aws cloudfront create-invalidation \
-              --dryrun \
               --distribution-id ${AWS_CLOUDFRONT_DISTRIBUTION_ID} \
               --paths "/*"
 
