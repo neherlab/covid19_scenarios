@@ -11,7 +11,7 @@ jobs:
       - image: cimg/node:14.15.4
 
     steps:
-      - run: apt-get install -qq --yes curl bash git unzip
+      - run: sudo apt-get install -qq --yes curl bash git unzip
 
       - run:
           name: 'Print versions'
