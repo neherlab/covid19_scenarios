@@ -34,7 +34,7 @@ jobs:
       - restore_cache:
           name: 'Restore build cache'
           keys:
-            - cache-covid19_scenarios-build-v2-{{ arch }}-{{ checksum "yarn.lock" }}
+            - cache-covid19_scenarios-build-v1-{{ arch }}-{{ checksum "yarn.lock" }}
 
       - restore_cache:
           name: 'Restore eslint cache'
@@ -55,7 +55,7 @@ jobs:
 
       - save_cache:
           name: 'Save build cache'
-          key: cache-covid19_scenarios-v3-{{ arch }}-{{ checksum "yarn.lock" }}
+          key: cache-covid19_scenarios-build-v1-{{ arch }}-{{ checksum "yarn.lock" }}
           paths:
             - ./.cache/yarn
             - ./.build/production/tmp/cache
@@ -65,7 +65,6 @@ jobs:
           command: |
             cd .build/production/web
             aws s3 cp --recursive --cache-control "max-age=2592000, public" "_next/" "s3://${AWS_S3_BUCKET}/_next/"
-
 
       - run:
           name: 'Deploy html files to AWS S3'
