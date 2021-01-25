@@ -18,7 +18,7 @@ import { getEnvVars } from './lib/getEnvVars'
 import getWithExtraWatch from './withExtraWatch'
 import getWithFriendlyConsole from './withFriendlyConsole'
 import getWithLodash from './withLodash'
-import getWithStaticComprression from './withStaticCompression'
+// import getWithStaticComprression from './withStaticCompression'
 import getWithTypeChecking from './withTypeChecking'
 import withMDX from './withMdx'
 import withRaw from './withRaw'
@@ -102,7 +102,7 @@ const withExtraWatch = getWithExtraWatch({
 
 const withLodash = getWithLodash({ unicode: false })
 
-const withStaticComprression = getWithStaticComprression({ brotli: false })
+// const withStaticComprression = getWithStaticComprression({ brotli: false })
 
 const withTypeChecking = getWithTypeChecking({
   typeChecking: ENABLE_TYPE_CHECKS,
@@ -197,7 +197,7 @@ const config = withPlugins(
     [withLodash],
     [withTypeChecking],
     [withTranspileModules],
-    PRODUCTION && [withStaticComprression],
+    // PRODUCTION && [withStaticComprression],
     // [withoutMinification],
   ].filter(Boolean),
   nextConfig,
