@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: apk add curl bash python3 py3-pip
-      - run: pip3 install awscli
+      - run: pip3 install -q awscli
       - run:
           name: "Print versions"
           command: |
@@ -21,7 +21,7 @@ jobs:
             node --version
             npm --version
             yarn --version
-            python --version
+            python3 --version
             aws --version
 
       - restore_cache:
