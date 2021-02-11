@@ -1,0 +1,25 @@
+# Data source: https://covid.ourworldindata.org/data/owid-covid-data.json
+# Data provenance: Our World in Data
+# License: CC-BY
+time	cases	deaths	hospitalized	icu	recovered
+2021-01-10	0	0			
+2021-01-11	0	0			
+2021-01-12	0	0			
+2021-01-13	0	0			
+2021-01-14	0	0			
+2021-01-15	0	0			
+2021-01-16	0	0			
+2021-01-17	0	0			
+2021-01-18	0	0			
+2021-01-19	0	0			
+2021-01-20	0	0			
+2021-01-21	0	0			
+2021-01-22	0	0			
+2021-01-23	0	0			
+2021-01-24	0	0			
+2021-01-25	0	0			
+2021-01-26	0	0			
+2021-01-27	0	0			
+2021-01-28	0	0			
+2021-01-29	0	0			
+2021-01-30	0	0			
