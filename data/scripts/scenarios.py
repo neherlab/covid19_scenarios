@@ -202,7 +202,7 @@ def fit_population(args):
                             'value': max(0,min(1, float(1-piecewise_constant_Re[cp]/(1-seroprevalence)/pop_params['r0'])))})
 
 
-    tmin = data['time'][-time_range_fit]
+    tmin = data['time'][-time_range_fit if time_range_fit<len(data['time']) else 0]
     average_Re = np.mean(Re[-30:])
     fixed_params = {'logR0': np.log(pop_params['r0']), 'efficacy': 1-average_Re/pop_params['r0'], 'containment_start':tmin,
                     'seroprevalence':seroprevalence}
@@ -320,7 +320,7 @@ def generate(output_json, num_procs=1, recalculate=False):
                 set_mitigation(scenario, results[region].get('mitigations', []))
                 data = convert_to_vectors(case_counts[region])
                 weekly_data = cumulative_to_rolling_average(data)
-                tmp_initial = weekly_data['cases'][-time_range_fit]
+                tmp_initial = weekly_data['cases'][-time_range_fit if time_range_fit<len(data['time']) else 0]
             else:
                 scenario.mitigation.mitigation_intervals = []
             if len(scenario.mitigation.mitigation_intervals):

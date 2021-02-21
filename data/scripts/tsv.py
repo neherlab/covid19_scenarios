@@ -48,7 +48,7 @@ def filter_tsv(fname):
 # -----------------------------------------------------------------------------
 # Main point of entry
 
-def parse(output=None):
+def parse(output=None, last_n_records=None):
     files = defaultdict(list)
     srcs = list(json.load(open(os.path.join(BASE_PATH, SOURCES_FILE))).keys())
 
@@ -62,7 +62,7 @@ def parse(output=None):
             data, ok = parse_tsv(filter_tsv(os.path.join(BASE_PATH,TSV_DIR,d,f)), f[:-4])
             i += 1
             if ok:
-                json_data = merge_cases(json_data, data)
+                json_data = merge_cases(json_data, data[-last_n_records:] if last_n_records else data)
             else:
                 print(f"Panic: '{f}' incorrectly formatted", file=sys.stderr)
 
