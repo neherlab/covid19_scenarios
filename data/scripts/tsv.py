@@ -62,7 +62,7 @@ def parse(output=None, last_n_records=None):
             data, ok = parse_tsv(filter_tsv(os.path.join(BASE_PATH,TSV_DIR,d,f)), f[:-4])
             i += 1
             if ok:
-                json_data = merge_cases(json_data, data[-last_n_records:] if last_n_records else data)
+                json_data = merge_cases(json_data, {x:data[x][-last_n_records:] if last_n_records else data[x] for x in data})
             else:
                 print(f"Panic: '{f}' incorrectly formatted", file=sys.stderr)
 
