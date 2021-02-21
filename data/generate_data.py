@@ -19,6 +19,7 @@ if __name__ == "__main__":
     parser.add_argument('--output-population', type=str, default=None, help='path to population file')
     parser.add_argument('--output-scenarios', type=str, default=None, help='path to scenarios file')
     parser.add_argument('--num-threads', type=int, default=1, help='number of threads to open for fitting')
+    parser.add_argument('--last-n-records', type=int, default=200, help='number of days to export case data for')
     args = parser.parse_args()
 
     if not os.path.isdir(BASE_PATH):
@@ -65,7 +66,7 @@ if __name__ == "__main__":
     if args.output_cases:
         print(f"Generating cases json")
         pop = importlib.import_module(f"scripts.tsv")
-        pop.parse(args.output_cases)
+        pop.parse(args.output_cases, last_n_records=args.last_n_records)
 
 
     if args.output_population:
