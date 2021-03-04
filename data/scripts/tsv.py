@@ -10,7 +10,7 @@ from glob import glob
 
 from collections import defaultdict
 from datetime import datetime, timedelta
-from parsers.utils import write_tsv, flatten, parse_countries, stoi, merge_cases, sorted_date, store_json
+from parsers.utils import write_tsv, flatten, parse_countries, stoi_nonnegative, merge_cases, sorted_date, store_json
 from paths import BASE_PATH, JSON_DIR, TMP_CASES, TSV_DIR, SOURCES_FILE
 
 # -----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ def parse_tsv(tsv, location):
 
     data = defaultdict(list)
     for row in rdr:
-        data[location].append({c:stoi(row[idx[c]]) if i > 0 else row[idx[c]] for i, c in enumerate(cols)})
+        data[location].append({c:stoi_nonnegative(row[idx[c]]) if i > 0 else row[idx[c]] for i, c in enumerate(cols)})
 
     return data, True
 
