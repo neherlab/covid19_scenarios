@@ -2,7 +2,6 @@
 # Data provenance: Our World in Data
 # License: CC-BY
 time	cases	deaths	hospitalized	icu	recovered
-2020-02-02	0	0			
 2020-02-06	0	0			
 2020-02-07	0	0			
 2020-02-08	0	0			
@@ -437,3 +436,10 @@ time	cases	deaths	hospitalized	icu	recovered
 2021-04-12	29661	402			
 2021-04-13	29720	403			
 2021-04-14	29778	403			
+2021-04-15	29833	403			
+2021-04-16	29860	405			
+2021-04-17	29927	409			
+2021-04-18	29966	409			
+2021-04-19	30026	409			
+2021-04-20	30039	411			
+2021-04-21	30063	411			
