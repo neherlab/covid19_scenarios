@@ -7,6 +7,9 @@ on:
   repository_dispatch:
     types: update-case-counts-data
 
+  workflow_dispatch:
+
+
 jobs:
   update-case-counts-data:
     runs-on: ubuntu-20.04
