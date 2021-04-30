@@ -15,7 +15,6 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-
       - uses: actions/checkout@v2
         with:
           ref: staging
@@ -28,8 +27,8 @@ jobs:
         run: |
           set -x
 
-          git config --global user.name ${GITHUB_ACTOR}
-          git config --global user.email ${GITHUB_ACTOR}@github.com
+          git config --global user.name neherlab-bot
+          git config --global user.email neherlab-bot@users.noreply.github.com
 
           PATH="$HOME/.local/bin:$PWD/node_modules/.bin:$PATH"
 
@@ -52,7 +51,10 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: chore/update-case-counts
+          token: ${{ secrets.NEHERLAB_BOT_GITHUB_TOKEN }}
+          author: 'neherlab-bot <neherlab-bot@users.noreply.github.com>'
+          committer: 'neherlab-bot <neherlab-bot@users.noreply.github.com>'
+          branch: 'chore/update-case-counts'
           commit-message: 'update case counts data'
           title: '[bot] Update case counts data'
           body: |
