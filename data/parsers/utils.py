@@ -55,6 +55,12 @@ def stoi(x):
 
     return int(x)
 
+def stoi_nonnegative(x):
+    if x is None or x == "NA" or x == '':
+        return None
+
+    return max(0,int(x))
+
 def write_tsv(path, cols, rows, region):
     with open(path, 'w+') as fd:
         fd.write(get_header(region))
