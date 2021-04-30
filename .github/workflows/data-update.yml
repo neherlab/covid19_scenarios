@@ -69,6 +69,11 @@ jobs:
 
             See also: [Recent Github Actions](https://github.com/neherlab/covid19_scenarios/actions?query=workflow%3A%22Update%20case%20counts%20data%22)
 
+            Update can be re-triggered manually in Github Actions UI or with [GitHub CLI](https://github.com/cli/cli):
+            ```
+            gh workflow run 'Update case counts data'
+            ```
+
           labels: |
             s:data
             bot
