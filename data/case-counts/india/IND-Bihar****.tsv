@@ -1,0 +1,6 @@
+# Data source: https://api.rootnet.in/covid19-in/stats/daily
+# Data provenance: https://github.com/amodm/api-covid19-in
+# License: Scraped from Ministry of Health and Family Welfare plus other sources, no clear license
+time	cases	deaths	hospitalized	icu	recovered
+2021-06-09	715179	9429			
+2021-06-10	715179	9429			
