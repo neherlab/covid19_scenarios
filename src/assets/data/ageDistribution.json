@@ -2438,6 +2438,20 @@
     },
     {
       "data": [
+        { "ageGroup": "0-9", "population":   884945 },
+        { "ageGroup": "10-19", "population": 700000 },
+        { "ageGroup": "20-29", "population": 750000 },
+        { "ageGroup": "30-39", "population": 600000 },
+        { "ageGroup": "40-49", "population": 600000 },
+        { "ageGroup": "50-59", "population": 530000 },
+        { "ageGroup": "60-69", "population": 244359 },
+        { "ageGroup": "70-79", "population": 150000 },
+        { "ageGroup": "80+", "population":   78000 }
+      ],
+      "name": "Switzerland_unvaccinated"
+    },
+    {
+      "data": [
         { "ageGroup": "0-9", "population": 884945 },
         { "ageGroup": "10-19", "population": 834866 },
         { "ageGroup": "20-29", "population": 1039727 },

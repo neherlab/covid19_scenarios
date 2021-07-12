@@ -191,7 +191,7 @@ def fit_population(args):
     IFR = get_IFR(age_distribution)
     reporting_fraction = get_reporting_fraction(data['cases'], data['deaths'], IFR)
     n_cases_at_start = total_deaths_at_start/IFR
-    seroprevalence = n_cases_at_start / pop_params['size']
+    seroprevalence = min(0.5,n_cases_at_start / pop_params['size'])
     if np.isnan(seroprevalence) or (type(seroprevalence)==np.ma.core.MaskedConstant and seroprevalence.mask==True):
         seroprevalence = 0
 
