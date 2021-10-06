@@ -1,3 +1,8 @@
+// Adds additional headers to the response, including security headers.
+// Suited for websites.
+//
+// Usage: Create an AWS Lambda@Edge function and attach it to "Viewer Response" event of a Cloudfront distribution
+
 const FEATURE_POLICY = {
   'accelerometer': `'none'`,
   'autoplay': `'none'`,
@@ -25,7 +30,7 @@ function generateFeaturePolicyHeader(featurePoicyObject) {
 
 const NEW_HEADERS = {
   'Content-Security-Policy':
-    "default-src 'self'; script-src 'self' *.gstatic.com plausible.io; style-src 'self' 'unsafe-inline' *.gstatic.com; img-src 'self' data: *.githubusercontent.com",
+    "default-src 'self'; script-src 'self' *.gstatic.com plausible.io; style-src 'self' 'unsafe-inline' *.gstatic.com; img-src 'self' data: *.githubusercontent.com; connect-src *",
   'Referrer-Policy': 'no-referrer',
   'Strict-Transport-Security': 'max-age=15768000; includeSubDomains; preload',
   'X-Content-Type-Options': 'nosniff',
