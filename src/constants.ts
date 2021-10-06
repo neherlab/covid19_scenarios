@@ -9,6 +9,7 @@ export const CUSTOM_COUNTRY_NAME = 'Custom' as const
 export const NONE_COUNTRY_NAME = 'None' as const
 
 export const DOMAIN = process.env.DOMAIN ?? ''
+export const DOMAIN_STRIPPED = process.env.DOMAIN_STRIPPED ?? ''
 export const URL_FAVICON = `${DOMAIN}/favicon.ico`
 export const URL_SOCIAL_IMAGE = `${DOMAIN}/social-1200x600.png`
 export const URL_MANIFEST_JSON = `${DOMAIN}/manifest.json`

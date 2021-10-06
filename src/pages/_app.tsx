@@ -26,6 +26,8 @@ import { initialize } from 'src/initialize'
 import { init } from 'src/state/app/init.actions'
 import i18n from 'src/i18n/i18n'
 
+import { DOMAIN_STRIPPED } from 'src/constants'
+import { Plausible } from 'src/components/Common/Plausible'
 import Loading from 'src/components/Loading/Loading'
 import { LinkExternal } from 'src/components/Link/LinkExternal'
 import { SEO } from 'src/components/Common/SEO'
@@ -69,6 +71,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
           <ThemeProvider theme={theme}>
             <I18nextProvider i18n={i18n}>
               <MDXProvider components={{ a: LinkExternal }}>
+                <Plausible domain={DOMAIN_STRIPPED} />
                 <PersistGate loading={<Loading />} persistor={persistor}>
                   <SEO />
                   <Layout>

@@ -8,6 +8,7 @@ export function getEnvVars() {
   const PROFILE = getbool('PROFILE')
   const PRODUCTION = NODE_ENV === 'production'
   const DOMAIN = getDomain()
+  const DOMAIN_STRIPPED = DOMAIN.replace('https://', '').replace('http://', '')
 
   const CIRCLECI = getbool('CIRCLECI', false)
 
@@ -18,6 +19,7 @@ export function getEnvVars() {
     PROFILE,
     PRODUCTION,
     DOMAIN,
+    DOMAIN_STRIPPED,
     CIRCLECI,
   }
 

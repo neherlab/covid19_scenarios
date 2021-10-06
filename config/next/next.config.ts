@@ -42,6 +42,7 @@ const {
   ENABLE_REDUX_IMMUTABLE_STATE_INVARIANT,
   ENABLE_REDUX_LOGGER,
   DOMAIN,
+  DOMAIN_STRIPPED,
   CIRCLECI,
 } = getEnvVars()
 
@@ -57,6 +58,7 @@ const clientEnv = {
   TRAVIS_BUILD_WEB_URL: getBuildUrl(),
   COMMIT_HASH: getGitCommitHash(),
   DOMAIN,
+  DOMAIN_STRIPPED,
 }
 
 const nextConfig: NextConfig = {
