@@ -2,10 +2,4 @@
 # Data provenance: https://github.com/amodm/api-covid19-in
 # License: Scraped from Ministry of Health and Family Welfare plus other sources, no clear license
 time	cases	deaths	hospitalized	icu	recovered
-2020-11-10	1723135	45325			
-2020-12-17	1886807	48434			
-2020-12-18	1886807	48499			
-2021-09-10	6497872	138061			
-2021-09-11	6497872	138061			
-2021-09-12	6497872	138096			
-2021-09-13	6497877	138142			
+2021-09-16	175088	3289			
