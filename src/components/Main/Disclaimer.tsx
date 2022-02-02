@@ -2,7 +2,19 @@ import React, { useState } from 'react'
 
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { Button, Col, CustomInput, Form, FormGroup, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap'
+import {
+  Button,
+  Col,
+  CustomInput,
+  Form,
+  FormGroup,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Row,
+  UncontrolledAlert,
+} from 'reactstrap'
 import { ActionCreator } from 'typescript-fsa'
 
 import type { State } from '../../state/reducer'
@@ -11,8 +23,9 @@ import {
   selectDisclaimerVersionAccepted,
 } from '../../state/settings/settings.selectors'
 import { setDisclaimerVersionAccepted, toggleDisclaimerShouldSuppress } from '../../state/settings/settings.actions'
+import { LinkExternal } from '../Link/LinkExternal'
 
-const DISCLAIMER_CURRENT_VERSION = 1
+const DISCLAIMER_CURRENT_VERSION = 2
 
 export interface DisclaimerProps {
   disclaimerVersionAccepted?: number
@@ -53,9 +66,30 @@ export function DisclaimerDisconnected({
   const toggleDisclaimerShouldSuppressLocal = () => toggleDisclaimerShouldSuppress()
 
   return (
-    <Modal isOpen={isOpen} backdrop="static" fade={false} centered autoFocus>
+    <Modal isOpen={isOpen} backdrop="static" fade={false} centered autoFocus size="lg">
       <ModalHeader>{t(`COVID-19 Scenarios`)}</ModalHeader>
       <ModalBody>
+        <Row noGutters>
+          <Col>
+            <UncontrolledAlert color="warning">
+              <h5 className="text-center">{t('Archived')}</h5>
+              <p>
+                {t(
+                  'The data and pre-set scenarios are no longer being updated, but we keep the website alive for posterity.',
+                )}
+              </p>
+              <p>
+                {t(
+                  'If you want to continue this work, you can find the source code for the website as well as the data update scripts at ',
+                )}
+                <LinkExternal url="https://github.com/neherlab/covid19_scenarios">
+                  {t('https://github.com/neherlab/covid19_scenarios')}
+                </LinkExternal>
+              </p>
+            </UncontrolledAlert>
+          </Col>
+        </Row>
+
         <Row>
           <Col>
             <p>

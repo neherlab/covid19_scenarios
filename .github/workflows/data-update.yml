@@ -1,8 +1,9 @@
 name: 'Update case counts data'
 
 on:
-  schedule:
-    - cron: '0 8 * * *'
+  # Scheduled updates are disabled. Reenable by uncommenting this block.
+  # schedule:
+  #  - cron: '0 8 * * *'
 
   repository_dispatch:
     types: update-case-counts-data
