@@ -73,7 +73,7 @@ export function DisclaimerDisconnected({
           <Col>
             <UncontrolledAlert color="warning">
               <h5 className="text-center">{t('Archived')}</h5>
-              <p>{t('The data is no longer being updated, but we keep the website alive for posterity.')}</p>
+              <p>{t('The data and pre-set scenarios are no longer being updated, but we keep the website alive for posterity.')}</p>
               <p>
                 {t(
                   'If you want to continue this work, you can find the source code for the website as well as the data update scripts at ',
